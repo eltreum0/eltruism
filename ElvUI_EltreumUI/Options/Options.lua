@@ -4579,15 +4579,62 @@ function ElvUI_EltreumUI:Configtable()
 									ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
-							header5 = {
+							header3evoker = {
 								order = 73,
+								type = "description",
+								name = L["Evoker"],
+								width = 'full',
+								hidden = not E.Retail,
+								--hidden = function() if E.Retail then return false else return true end end,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gradientevoker1 = {
+								order = 74,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								hidden = not E.Retail,
+								--hidden = function() if E.Retail then return false else return true end end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorR1
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorG1
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorB1
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorB1, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorB1 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							gradientevoker2 = {
+								order = 75,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								hidden = not E.Retail,
+								--hidden = function() if E.Retail then return false else return true end end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorR2
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorG2
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorB2
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorB2, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.evokercustomcolorB2 = r, g, b
+									ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							header5 = {
+								order = 76,
 								type = "description",
 								name = L["Hunter"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							gradienthunter1 = {
-								order = 74,
+								order = 77,
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
@@ -4604,7 +4651,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							gradienthunter2 = {
-								order = 75,
+								order = 78,
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
@@ -4621,14 +4668,14 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							header6 = {
-								order = 76,
+								order = 79,
 								type = "description",
 								name = L["Mage"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							gradientmage1 = {
-								order = 77,
+								order = 80,
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
@@ -4645,7 +4692,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							gradientmage2 = {
-								order = 78,
+								order = 81,
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
@@ -4662,7 +4709,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							header7 = {
-								order = 79,
+								order = 82,
 								type = "description",
 								name = L["Monk"],
 								width = 'full',
@@ -4671,7 +4718,7 @@ function ElvUI_EltreumUI:Configtable()
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							gradientmonk1 = {
-								order = 80,
+								order = 83,
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
@@ -4690,7 +4737,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							gradientmonk2 = {
-								order = 81,
+								order = 84,
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
@@ -4709,14 +4756,14 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							header8 = {
-								order = 82,
+								order = 85,
 								type = "description",
 								name = L["Paladin"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							gradientpaladin1 = {
-								order = 83,
+								order = 86,
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
@@ -4733,7 +4780,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							gradientpaladin2 = {
-								order = 84,
+								order = 87,
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
@@ -4750,14 +4797,14 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							header9 = {
-								order = 85,
+								order = 88,
 								type = "description",
 								name = L["Priest"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							gradientpriest1 = {
-								order = 86,
+								order = 89,
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
@@ -4774,7 +4821,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							gradientpriest2 = {
-								order = 87,
+								order = 90,
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
@@ -4791,14 +4838,14 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							header10 = {
-								order = 88,
+								order = 91,
 								type = "description",
 								name = L["Rogue"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							gradientrogue1 = {
-								order = 89,
+								order = 92,
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
@@ -4815,7 +4862,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							gradientrogue2 = {
-								order = 90,
+								order = 93,
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
@@ -4832,14 +4879,14 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							header11 = {
-								order = 91,
+								order = 94,
 								type = "description",
 								name = L["Shaman"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							gradientshaman1 = {
-								order = 92,
+								order = 95,
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
@@ -4856,7 +4903,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							gradientshaman2 = {
-								order = 93,
+								order = 96,
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
@@ -4873,14 +4920,14 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							header12 = {
-								order = 94,
+								order = 97,
 								type = "description",
 								name = L["Warlock"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							gradientwarlock1 = {
-								order = 95,
+								order = 98,
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
@@ -4897,7 +4944,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							gradientwarlock2 = {
-								order = 96,
+								order = 99,
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
@@ -4914,14 +4961,14 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							header13 = {
-								order = 97,
+								order = 100,
 								type = "description",
 								name = L["Warrior"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							gradientwarrior1 = {
-								order = 98,
+								order = 101,
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
@@ -4938,7 +4985,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							gradientwarrior2 = {
-								order = 99,
+								order = 102,
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
@@ -4955,14 +5002,14 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							header14 = {
-								order = 100,
+								order = 103,
 								type = "description",
 								name = L["Friendly NPC"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							friendlynpc1 = {
-								order = 101,
+								order = 104,
 								type = 'color',
 								name = L["Color 1"],
 								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
@@ -4980,7 +5027,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							friendlynpc2 = {
-								order = 102,
+								order = 105,
 								type = 'color',
 								name = L["Color 2"],
 								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
@@ -4998,14 +5045,14 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							header15 = {
-								order = 103,
+								order = 106,
 								type = "description",
 								name = L["Neutral NPC"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							neutralnpc1 = {
-								order = 104,
+								order = 107,
 								type = 'color',
 								name = L["Color 1"],
 								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
@@ -5023,7 +5070,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							neutralnpc2 = {
-								order = 105,
+								order = 108,
 								type = 'color',
 								name = L["Color 2"],
 								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
@@ -5041,14 +5088,14 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							header16 = {
-								order = 105,
+								order = 109,
 								type = "description",
 								name = L["Unfriendly NPC"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							unfriendlynpc1 = {
-								order = 106,
+								order = 110,
 								type = 'color',
 								name = L["Color 1"],
 								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
@@ -5066,7 +5113,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							unfriendlynpc2 = {
-								order = 107,
+								order = 111,
 								type = 'color',
 								name = L["Color 2"],
 								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
@@ -5084,14 +5131,14 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							header17 = {
-								order = 108,
+								order = 112,
 								type = "description",
 								name = L["Hostile NPC"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							hostilenpc1 = {
-								order = 109,
+								order = 113,
 								type = 'color',
 								name = L["Color 1"],
 								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
@@ -5109,7 +5156,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							hostilenpc2 = {
-								order = 110,
+								order = 114,
 								type = 'color',
 								name = L["Color 2"],
 								desc = L["NPCs use Target Castbar colors not NPC colors for their castbars"],
@@ -5127,14 +5174,14 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							header17tapped = {
-								order = 111,
+								order = 115,
 								type = "description",
 								name = L["Tapped NPC"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							tappednpc1 = {
-								order = 112,
+								order = 116,
 								type = 'color',
 								name = L["Color 1"],
 								hasAlpha = false,
@@ -5151,7 +5198,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 							},
 							tappednpc2 = {
-								order = 113,
+								order = 117,
 								type = 'color',
 								name = L["Color 2"],
 								hasAlpha = false,
@@ -5167,7 +5214,6 @@ function ElvUI_EltreumUI:Configtable()
 									ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
-
 						},
 					},
 					unitframe = {
@@ -10997,6 +11043,19 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = key end,
+							},
+							evokertexture = {
+								order = 110,
+								type = 'select',
+								width = "double",
+								dialogControl = 'LSM30_Statusbar',
+								name = L["Evoker"],
+								desc = L["Select a Texture"],
+								values = AceGUIWidgetLSMlists.statusbar,
+								hidden = not E.Retail,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = key end,
 							},
 							paladintexture = {
 								order = 110,
