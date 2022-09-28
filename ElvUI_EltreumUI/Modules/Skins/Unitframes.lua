@@ -10,7 +10,7 @@ local tostring = _G.tostring
 local select = _G.select
 local UnitIsTapDenied = _G.UnitIsTapDenied
 local UnitPlayerControlled = _G.UnitPlayerControlled
-local _, unit1class, buttonclass, classunit, unitframe, namebar, reaction
+local _, unit1class, buttonclass, classunit, unitframe, namebar, reaction,groupbar
 local headergroup = nil
 local headertank = nil
 local headerassist = nil
@@ -406,7 +406,7 @@ function ElvUI_EltreumUI:ApplyGroupGradientTexture(button)
 	end
 	_, buttonclass = UnitClass(button.unit)
 	if buttonclass then
-
+		groupbar = ElvUI_EltreumUI:UnitframeClassTexture(buttonclass)
 		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 				if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
@@ -454,7 +454,7 @@ function ElvUI_EltreumUI:ApplyGroupGradientTexture(button)
 		end
 		if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-				button.Health:SetStatusBarTexture(namebar)
+				button.Health:SetStatusBarTexture(groupbar)
 			elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and unitframe.Health.backdropTex then
 				button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
 				button.Health.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
