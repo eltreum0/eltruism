@@ -9674,7 +9674,7 @@ function ElvUI_EltreumUI:Configtable()
 								step = 0.01,
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.skins.characterpanelscale end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterpanelscale = value _G["CharacterFrame"]:SetScale(value) end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterpanelscale = value _G["CharacterFrame"]:SetScale(value) _G["CharacterModelFrame"]:SetIgnoreParentScale(false) end,
 							},
 							gapmodelcam1 = {
 								order = 147,

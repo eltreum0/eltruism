@@ -301,6 +301,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 	if not InCombatLockdown() then
 		_G["CharacterFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.characterpanelscale)
+		_G["CharacterModelFrame"]:SetIgnoreParentScale(false)
 	end
 
 	if E.Retail then
