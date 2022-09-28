@@ -10489,7 +10489,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "toggle",
 								desc = L["Requires Light Mode Enabled"],
 								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.lightmode or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -10637,7 +10637,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Backdrop Texture"],
 								desc = L["Select a Texture"],
 								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture = key end,
 							},
@@ -10819,7 +10819,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						name = L["Textures"],
 						order = 2,
-						disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
+						disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 						args = {
 							unitframesdesc = {
 								order = 102,
@@ -11136,7 +11136,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = "group",
 						name = L["Gradient"],
 						order = 3,
-						disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+						disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
 						args = {
 							header1 = {
 								order = 1,
@@ -11381,7 +11381,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Gradient Texture"],
 								desc = L["Select a Texture"],
 								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture = key ElvUI_EltreumUI:GradientCustomTexture() end,
 							},
@@ -11391,7 +11391,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = "double",
 								name = L["Use ElvUI Unitframe Texture"],
 								desc = L["Uses ElvUI Unitframe Statusbar texture instead"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
