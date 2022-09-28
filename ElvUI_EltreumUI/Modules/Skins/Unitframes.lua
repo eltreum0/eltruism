@@ -452,6 +452,14 @@ function ElvUI_EltreumUI:ApplyGroupGradientTexture(button)
 				end
 			end
 		end
+		if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+				button.Health:SetStatusBarTexture(namebar)
+			elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and unitframe.Health.backdropTex then
+				button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
+				button.Health.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+			end
+		end
 	end
 end
 
