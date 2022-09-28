@@ -1,6 +1,15 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.4.6
+Added compatibility between Custom Textures and Gradient, now allowing both at the same time\
+Added Evoker preliminary Textures and Colors\
+Updated Wowhead button to check game version\
+Updated Quest Item Bar to better detect items\
+Updated Threat Databar to not overlap with the Eltruism Datatext Panel\
+Updated Addon profiles to better detect ElvUI Font Outlines\
+Updated Nameplate Power Bar setup process\
+Updated Cursor Textures to avoid aliasing in lower resolutions
 ### 3.4.5
 Added EltreumRefreshDebuff nameplate style filter, which will set nameplates that have expiring debuffs to full scale and alpha, but it requires the player to manually add the debuffs to its list\
 Added a shortcut to the EltreumRefreshDebuff nameplate style filter in Eltruism > Nameplates so that its easier to add Debuffs to it\

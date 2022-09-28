@@ -727,6 +727,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G["ElvUI_ThreatBar"],
 			_G["ElvUIStatusReport"],
 			_G["ElvUIStatusPlugins"],
+			_G["ElvUIVendorGraysFrame"],
 		}
 		for _, frame in pairs(GeneralElvUIFrames) do
 			if frame and not frame.shadow then

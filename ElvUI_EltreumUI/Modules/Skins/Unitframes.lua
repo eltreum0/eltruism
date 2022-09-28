@@ -10,7 +10,7 @@ local tostring = _G.tostring
 local select = _G.select
 local UnitIsTapDenied = _G.UnitIsTapDenied
 local UnitPlayerControlled = _G.UnitPlayerControlled
-local _, unit1class, buttonclass, classunit, unitframe, namebar, reaction
+local _, unit1class, buttonclass, classunit, unitframe, namebar, reaction,groupbar
 local headergroup = nil
 local headertank = nil
 local headerassist = nil
@@ -34,21 +34,19 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 			if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
 				namebar = ElvUI_EltreumUI:UnitframeClassTexture("TAPPED")
 			else
-				if reaction and reaction >= 5 then
-					namebar = ElvUI_EltreumUI:UnitframeClassTexture("NPCFRIENDLY")
-				elseif reaction and reaction == 4 then
-					namebar = ElvUI_EltreumUI:UnitframeClassTexture("NPCNEUTRAL")
-				elseif reaction and reaction == 3 then
-					namebar = ElvUI_EltreumUI:UnitframeClassTexture("NPCUNFRIENDLY")
-				elseif reaction and reaction <= 2 then
-					namebar = ElvUI_EltreumUI:UnitframeClassTexture("NPCHOSTILE")
+				if reaction then
+					if reaction >= 5 then
+						namebar = ElvUI_EltreumUI:UnitframeClassTexture("NPCFRIENDLY")
+					elseif reaction == 4 then
+						namebar = ElvUI_EltreumUI:UnitframeClassTexture("NPCNEUTRAL")
+					elseif reaction == 3 then
+						namebar = ElvUI_EltreumUI:UnitframeClassTexture("NPCUNFRIENDLY")
+					elseif reaction <= 2 then
+						namebar = ElvUI_EltreumUI:UnitframeClassTexture("NPCHOSTILE")
+					end
 				end
 			end
 		end
-	end
-	--if UF["units"][uf] and UnitExists(unit) then
-	--E.db["unitframe"]["units"][uf] fails for target of target of target
-	if UnitExists(unit) then
 		unitframe = _G["ElvUF_"..name]
 		if unitframe and unitframe.Health then
 			unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
@@ -57,130 +55,143 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 				unitframe.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				unitframe.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 			end
-			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-				if E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
-					if UnitIsPlayer(unit) then
-						if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+			if UnitIsPlayer(unit) then
+				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
+							unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit))
+						else
+							unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
+						end
+					end
+					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
+						if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
 								unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 							else
 								unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 							end
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
-									if unit == "target" then
-										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, true, false))
-									else
-										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, false, false))
-									end
+						end
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
+								if unit == "target" then
+									unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, true, false))
 								else
 									unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, false, false))
 								end
 							else
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
-									if unit == "target" then
-										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, true, false))
-									else
-										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, false))
-									end
+								unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, false, false))
+							end
+						else
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
+								if unit == "target" then
+									unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, true, false))
 								else
 									unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, false))
 								end
+							else
+								unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, false))
 							end
-						elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and unitframe.Health.backdropTex then
+						end
+					end
+				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and unitframe.Health.backdropTex then
+					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
+							unitframe.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit))
+						else
+							unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
+						end
+					end
+					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
+						if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
 								unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 							else
 								unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 							end
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
-									if unit == "target" then
-										unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, true, true))
-									else
-										unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, false, true))
-									end
+						end
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
+								if unit == "target" then
+									unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, true, true))
 								else
 									unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, false, true))
 								end
 							else
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
-									if unit == "target" then
-										unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, true, true))
-									else
-										unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, true))
-									end
+								unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, false, true))
+							end
+						else
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
+								if unit == "target" then
+									unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, true, true))
 								else
 									unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, true))
 								end
+							else
+								unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, true))
 							end
 						end
-					else
-						if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+					end
+				end
+			else
+				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
+							if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
+								unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("TAPPED"))
+							else
+								if reaction then
+									if reaction >= 5 then
+										unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCFRIENDLY"))
+									elseif reaction == 4 then
+										unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCNEUTRAL"))
+									elseif reaction == 3 then
+										unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCUNFRIENDLY"))
+									elseif reaction <= 2 then
+										unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCHOSTILE"))
+									end
+								end
+							end
+						else
+							unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
+						end
+					end
+					if E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
+						if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
 								unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 							else
 								unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 							end
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
-								if unit == "target" then
-									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-										if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
-											unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", true, false))
-										else
-											if reaction and reaction >= 5 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", true, false))
-											elseif reaction and reaction == 4 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", true, false))
-											elseif reaction and reaction == 3 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", true, false))
-											elseif reaction and reaction <= 2 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", true, false))
-											end
-										end
+						end
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
+							if unit == "target" then
+								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+									if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
+										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", true, false))
 									else
-										if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
-											unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("TAPPED", true, false))
-										else
-											if reaction and reaction >= 5 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", true, false))
-											elseif reaction and reaction == 4 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", true, false))
-											elseif reaction and reaction == 3 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", true, false))
-											elseif reaction and reaction <= 2 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", true, false))
-											end
+										if reaction and reaction >= 5 then
+											unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", true, false))
+										elseif reaction and reaction == 4 then
+											unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", true, false))
+										elseif reaction and reaction == 3 then
+											unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", true, false))
+										elseif reaction and reaction <= 2 then
+											unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", true, false))
 										end
 									end
 								else
-									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-										if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
-											unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false))
-										else
-											if reaction and reaction >= 5 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, false))
-											elseif reaction and reaction == 4 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", false, false))
-											elseif reaction and reaction == 3 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", false, false))
-											elseif reaction and reaction <= 2 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", false, false))
-											end
-										end
+									if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
+										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("TAPPED", true, false))
 									else
-										if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
-											unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("TAPPED", false, false))
-										else
-											if reaction and reaction >= 5 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, false))
-											elseif reaction and reaction == 4 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", false, false))
-											elseif reaction and reaction == 3 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", false, false))
-											elseif reaction and reaction <= 2 then
-												unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, false))
-											end
+										if reaction and reaction >= 5 then
+											unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", true, false))
+										elseif reaction and reaction == 4 then
+											unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", true, false))
+										elseif reaction and reaction == 3 then
+											unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", true, false))
+										elseif reaction and reaction <= 2 then
+											unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", true, false))
 										end
 									end
 								end
@@ -201,7 +212,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 									end
 								else
 									if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
-										unitframe.Health:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("TAPPED", false, false))
+										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("TAPPED", false, false))
 									else
 										if reaction and reaction >= 5 then
 											unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, false))
@@ -215,71 +226,96 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 									end
 								end
 							end
-						elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and unitframe.Health.backdropTex then
+						else
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+								if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
+									unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, false))
+								else
+									if reaction and reaction >= 5 then
+										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, false))
+									elseif reaction and reaction == 4 then
+										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", false, false))
+									elseif reaction and reaction == 3 then
+										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", false, false))
+									elseif reaction and reaction <= 2 then
+										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", false, false))
+									end
+								end
+							else
+								if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
+									unitframe.Health:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("TAPPED", false, false))
+								else
+									if reaction and reaction >= 5 then
+										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, false))
+									elseif reaction and reaction == 4 then
+										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", false, false))
+									elseif reaction and reaction == 3 then
+										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", false, false))
+									elseif reaction and reaction <= 2 then
+										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, false))
+									end
+								end
+							end
+						end
+					end
+				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and unitframe.Health.backdropTex then
+					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
+							if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
+								unitframe.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("TAPPED"))
+							else
+								if reaction then
+									if reaction >= 5 then
+										unitframe.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCFRIENDLY"))
+									elseif reaction == 4 then
+										unitframe.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCNEUTRAL"))
+									elseif reaction == 3 then
+										unitframe.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCUNFRIENDLY"))
+									elseif reaction <= 2 then
+										unitframe.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCHOSTILE"))
+									end
+								end
+							end
+						else
+							unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
+						end
+					end
+					if E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
+						if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
 								unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 							else
 								unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 							end
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
-								if unit == "target" then
-									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-										if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
-											unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", true, true))
-										else
-											if reaction and reaction >= 5 then
-												unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", true, true))
-											elseif reaction and reaction == 4 then
-												unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", true, true))
-											elseif reaction and reaction == 3 then
-												unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", true, true))
-											elseif reaction and reaction == 2 or reaction == 1 then
-												unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", true, true))
-											end
-										end
+						end
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
+							if unit == "target" then
+								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+									if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
+										unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", true, true))
 									else
-										if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
-											unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("TAPPED", true, true))
-										else
-											if reaction and reaction >= 5 then
-												unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", true, true))
-											elseif reaction and reaction == 4 then
-												unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", true, true))
-											elseif reaction and reaction == 3 then
-												unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", true, true))
-											elseif reaction and reaction == 2 or reaction == 1 then
-												unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation,ElvUI_EltreumUI:GradientColors("NPCHOSTILE", true, true))
-											end
+										if reaction and reaction >= 5 then
+											unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", true, true))
+										elseif reaction and reaction == 4 then
+											unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", true, true))
+										elseif reaction and reaction == 3 then
+											unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", true, true))
+										elseif reaction and reaction == 2 or reaction == 1 then
+											unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", true, true))
 										end
 									end
 								else
-									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-										if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
-											unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, true))
-										else
-											if reaction and reaction >= 5 then
-												unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, true))
-											elseif reaction and reaction == 4 then
-												unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", false, true))
-											elseif reaction and reaction == 3 then
-												unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", false, true))
-											elseif reaction and reaction == 2 or reaction == 1 then
-												unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", false, true))
-											end
-										end
+									if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
+										unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("TAPPED", true, true))
 									else
-										if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
-											unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("TAPPED", false, true))
-										else
-											if reaction and reaction >= 5 then
-												unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, true))
-											elseif reaction and reaction == 4 then
-												unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", false, true))
-											elseif reaction and reaction == 3 then
-												unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", false, true))
-											elseif reaction and reaction == 2 or reaction == 1 then
-												unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation,ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, true))
-											end
+										if reaction and reaction >= 5 then
+											unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", true, true))
+										elseif reaction and reaction == 4 then
+											unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", true, true))
+										elseif reaction and reaction == 3 then
+											unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", true, true))
+										elseif reaction and reaction == 2 or reaction == 1 then
+											unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation,ElvUI_EltreumUI:GradientColors("NPCHOSTILE", true, true))
 										end
 									end
 								end
@@ -309,48 +345,51 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 										elseif reaction and reaction == 3 then
 											unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", false, true))
 										elseif reaction and reaction == 2 or reaction == 1 then
-											unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, true))
+											unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation,ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, true))
 										end
+									end
+								end
+							end
+						else
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+								if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
+									unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("TAPPED", false, true))
+								else
+									if reaction and reaction >= 5 then
+										unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, true))
+									elseif reaction and reaction == 4 then
+										unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", false, true))
+									elseif reaction and reaction == 3 then
+										unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", false, true))
+									elseif reaction and reaction == 2 or reaction == 1 then
+										unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", false, true))
+									end
+								end
+							else
+								if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
+									unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("TAPPED", false, true))
+								else
+									if reaction and reaction >= 5 then
+										unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, true))
+									elseif reaction and reaction == 4 then
+										unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", false, true))
+									elseif reaction and reaction == 3 then
+										unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", false, true))
+									elseif reaction and reaction == 2 or reaction == 1 then
+										unitframe.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, true))
 									end
 								end
 							end
 						end
 					end
 				end
-			else
-				if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-					if UnitIsPlayer(unit) then
-						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
-							unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit))
-						else
-							unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
-						end
-					else
-						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
-							if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
-								unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("TAPPED"))
-							else
-								if reaction and reaction >= 5 then
-									unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCFRIENDLY"))
-								elseif reaction and reaction == 4 then
-									unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCNEUTRAL"))
-								elseif reaction and reaction == 3 then
-									unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCUNFRIENDLY"))
-								elseif reaction and reaction <= 2 then
-									unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCHOSTILE"))
-								end
-							end
-						else
-							unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
-						end
-					end
-				else
-					if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-						unitframe.Health:SetStatusBarTexture(namebar)
-					elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and unitframe.Health.backdropTex then
-						unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
-						unitframe.Health.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-					end
+			end
+			if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+					unitframe.Health:SetStatusBarTexture(namebar)
+				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and unitframe.Health.backdropTex then
+					unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
+					unitframe.Health.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				end
 			end
 		end
@@ -367,71 +406,44 @@ function ElvUI_EltreumUI:ApplyGroupGradientTexture(button)
 	end
 	_, buttonclass = UnitClass(button.unit)
 	if buttonclass then
-
-		--glow dispellable debuffs
-		--[[if E.db.ElvUI_EltreumUI.glow.enableUFs then
-			if button.Debuffs then
-				local canglow = false
-				if button.Debuffs.visibleDebuffs ~= nil then
-					for d = 1, button.Debuffs.visibleDebuffs do
-						local debuff = select(d, button.Debuffs:GetChildren())
-						if debuff then
-							if debuff.canDispel then
-								if not canglow then
-									canglow = true
-								end
-							end
-						end
-					end
-					if canglow then
-						if E.db.ElvUI_EltreumUI.glow.pixel then
-							LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
-						elseif E.db.ElvUI_EltreumUI.glow.autocast then
-							LCG.AutoCastGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-						elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-							LCG.ButtonGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
-						end
-					else
-						if E.db.ElvUI_EltreumUI.glow.pixel then
-							LCG.PixelGlow_Stop(button)
-						elseif E.db.ElvUI_EltreumUI.glow.autocast then
-							LCG.AutoCastGlow_Stop(button)
-						elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-							LCG.ButtonGlow_Stop(button)
-						end
-					end
-					if button.Debuffs.visibleDebuffs == 0 then
-						if E.db.ElvUI_EltreumUI.glow.pixel then
-							LCG.PixelGlow_Stop(button)
-						elseif E.db.ElvUI_EltreumUI.glow.autocast then
-							LCG.AutoCastGlow_Stop(button)
-						elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-							LCG.ButtonGlow_Stop(button)
-						end
-					end
+		groupbar = ElvUI_EltreumUI:UnitframeClassTexture(buttonclass)
+		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+				if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
+					button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTexture(buttonclass))
 				else
-					LCG.PixelGlow_Stop(button)
+					button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
 				end
 			end
-		end]]
-
-		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
-			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
-					button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-				else
-					button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
+				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
+						button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+					else
+						button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+					end
 				end
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 					button.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, false))
 				else
 					button.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, false, false))
 				end
-			elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and button.Health.backdropTex then
-				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
-					button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+			end
+		elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and button.Health.backdropTex then
+			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+				if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
+					button.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTexture(buttonclass))
 				else
-					button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+					button.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
+				end
+			end
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
+				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
+						button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+					else
+						button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+					end
 				end
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 					button.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, true))
@@ -439,17 +451,13 @@ function ElvUI_EltreumUI:ApplyGroupGradientTexture(button)
 					button.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, false, true))
 				end
 			end
-		elseif not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+		end
+		if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-				if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-					button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
-				else
-					button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTexture(buttonclass))
-				end
-			elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-				if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable and button.Health.backdropTex then
-					button.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
-				end
+				button.Health:SetStatusBarTexture(groupbar)
+			elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and unitframe.Health.backdropTex then
+				button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
+				button.Health.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 			end
 		end
 	end

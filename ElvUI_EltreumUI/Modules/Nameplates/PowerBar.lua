@@ -66,6 +66,7 @@ local currentSpec
 local cost
 local placeValue = ("%%.%df"):format(1)
 local power
+local isSetup, isSetupprediction = false, false
 
 --Calculate the Power Cost and draw on the Bar
 function ElvUI_EltreumUI:PowerPrediction()
@@ -74,24 +75,20 @@ function ElvUI_EltreumUI:PowerPrediction()
 		EltreumPowerPredictionIncoming:Hide() --hide at the start before events
 		predictioncolorr, predictioncolorg, predictioncolorb = EltreumPowerBar:GetStatusBarColor()
 
-		EltreumPowerPrediction:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture))
-		EltreumPowerPredictionIncoming:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture))
-		--[[if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight then
-			EltreumPowerPrediction:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex*E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["scale"], E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
-			EltreumPowerPredictionIncoming:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex*E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["scale"], E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
-		else
+		if not isSetupprediction then
+			EltreumPowerPrediction:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture))
+			EltreumPowerPredictionIncoming:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture))
+			--make them behave nicely since i had to split them
+			EltreumPowerPrediction:SetReverseFill(true)
+			EltreumPowerPredictionIncoming:SetReverseFill(false)
 			EltreumPowerPrediction:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
 			EltreumPowerPredictionIncoming:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
-		end]]
-		EltreumPowerPrediction:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
-		EltreumPowerPredictionIncoming:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
+
+			isSetupprediction = true
+		end
+
 		EltreumPowerPrediction:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
 		EltreumPowerPredictionIncoming:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
-
-		--make them behave nicely since i had to split them
-		EltreumPowerPrediction:SetReverseFill(true)
-		EltreumPowerPredictionIncoming:SetReverseFill(false)
-
 
 		if IsPlayerSpell(193195) then
 			mindblast = 9
@@ -218,34 +215,28 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			else
 				ret = UnitPower("player") -- hundreds
 			end
-			EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.font), E.db.ElvUI_EltreumUI.nameplates.nameplatepower.fontsize, E.db.general.fontStyle)
-			EltreumPowerBar.Text:SetText(ret)	--this is an actual number not string
-			--[[if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight then
-				EltreumPowerBar:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex*E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["scale"], E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
-				--EltreumPowerBar:SetSize(E.db.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey) --testwidth
-			else
+
+			if not isSetup then
+				EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.font), E.db.ElvUI_EltreumUI.nameplates.nameplatepower.fontsize, E.db.general.fontStyle)
 				EltreumPowerBar:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
-			end]]
-			EltreumPowerBar:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
-			EltreumPowerBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture))
-			EltreumPowerBar:SetFrameStrata("MEDIUM")
-			--[[if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight then
-				EltreumPowerBar.bg:SetSize((E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex + 1)*E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["scale"] , E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey + 1 )
-			else
+				EltreumPowerBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture))
+				EltreumPowerBar:SetFrameStrata("MEDIUM")
 				EltreumPowerBar.bg:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex + 1 , E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey + 1 )
-			end]]
-			EltreumPowerBar.bg:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex + 1 , E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey + 1 )
-			EltreumPowerBar.bg:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.r, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.g, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.b, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.a) -- background color
+				EltreumPowerBar.bg:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.r, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.g, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.b, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.a) -- background color
+				EltreumPowerPrediction:SetFrameStrata("HIGH")
+				EltreumPowerPredictionIncoming:SetFrameStrata("HIGH")
+				isSetup = true
+			end
+
+			EltreumPowerBar.Text:SetText(ret)	--this is an actual number not string
 
 			--update power prediction
 			EltreumPowerPrediction:SetMinMaxValues(0, UnitPowerMax("player"))
 			EltreumPowerPrediction:SetPoint("RIGHT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
-			EltreumPowerPrediction:SetFrameStrata("HIGH")
 
 			--update power prediction incoming
 			EltreumPowerPredictionIncoming:SetMinMaxValues(0, UnitPowerMax("player"))
 			EltreumPowerPredictionIncoming:SetPoint("LEFT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
-			EltreumPowerPredictionIncoming:SetFrameStrata("HIGH")
 
 			if E.Retail then
 				if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -958,7 +949,7 @@ function ElvUI_EltreumUI:NameplatePowerTextUpdate()
 			ret2 = power -- hundreds
 		end
 
-		EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.font), E.db.ElvUI_EltreumUI.nameplates.nameplatepower.fontsize, E.db.general.fontStyle)
+		--EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.font), E.db.ElvUI_EltreumUI.nameplates.nameplatepower.fontsize, E.db.general.fontStyle)
 		EltreumPowerBar.Text:SetText(ret)
 		--EltreumPowerBar.Text:SetText(BreakUpLargeNumbers(power))
 	end
