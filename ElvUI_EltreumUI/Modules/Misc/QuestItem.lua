@@ -32,8 +32,7 @@ local _, instanceType
 local EltruismQuestItemFrame = CreateFrame("Frame", "EltruismQuestItem", UIParent, BackdropTemplateMixin and "BackdropTemplate")	-- 9.0.1: Using BackdropTemplate
 EltruismQuestItemFrame:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, 34)
 E:CreateMover(EltruismQuestItemFrame, "MoverEltruismQuestItem", "EltruismQuestItemBar", nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,quests')
-EltruismQuestItemFrame.tip = CreateFrame("GameTooltip","EltruismQuestItemTip",nil,"GameTooltipTemplate")
-EltruismQuestItemFrame.tip:SetOwner(UIParent,"ANCHOR_NONE")
+
 EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_DELAYED")
 EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_COOLDOWN")
 EltruismQuestItemFrame:RegisterUnitEvent("UNIT_INVENTORY_CHANGED", "player")
@@ -44,6 +43,8 @@ EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED") -- Needed for items that 
 EltruismQuestItemFrame:RegisterEvent("QUEST_LOG_UPDATE") -- For when items get added/removed during quest
 EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
 
+EltruismQuestItemFrame.tip = CreateFrame("GameTooltip","EltruismQuestItemTip",nil,"GameTooltipTemplate")
+EltruismQuestItemFrame.tip:SetOwner(UIParent,"ANCHOR_NONE")
 EltruismQuestItemFrame.tip = CreateFrame("GameTooltip","EltruismQuestItem",nil,"GameTooltipTemplate")
 EltruismQuestItemFrame.tip:SetOwner(UIParent,"ANCHOR_NONE")
 EltruismQuestItemFrame.items = {}
@@ -551,5 +552,8 @@ function ElvUI_EltreumUI:QuestItem()
 			end
 
 		end
+	else
+		EltruismQuestItemFrame:UnregisterAllEvents()
+
 	end
 end
