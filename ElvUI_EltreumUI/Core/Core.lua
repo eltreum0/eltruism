@@ -134,8 +134,6 @@ end
 --Resolution check for font outline
 function ElvUI_EltreumUI:ResolutionOutline()
 	local width = GetPhysicalScreenSize()
-	--C_CVar.GetCVar('gxFullscreenResolution') == "3840x2160"
-	--C_CVar.GetCVar('gxWindowedResolution') == "3840x2160"
 	if width == 3840 then
 		ElvUI_EltreumUI:Print(L["4K resolution detected, setting fonts to default mode."])
 		ElvUI_EltreumUI:SetupFontsOutlineDefault()

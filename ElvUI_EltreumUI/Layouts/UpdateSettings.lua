@@ -25,7 +25,14 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture = "ElvUI Norm1"
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = true
+
+	--power bar scaling issues
+	local width = GetPhysicalScreenSize()
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex = 133.6
+	if width == 1920 then
+		E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex = 127.8
+	end
+
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.a = 0.70
 	E.db.ElvUI_EltreumUI.nameplates.nameplatelevel = true
 	E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames = false -- turns out blizzard fakes the nameplates and alphas the helthbar, causing huge performance costs

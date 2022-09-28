@@ -42,6 +42,9 @@ LSM:Register("statusbar", "Eltreum-Class-RogueV3", [[Interface\Addons\ElvUI_Eltr
 LSM:Register("statusbar", "Eltreum-Class-ShamanV3", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-SHV3.tga]])
 LSM:Register("statusbar", "Eltreum-Class-WarriorV3", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-WAV3.tga]])
 LSM:Register("statusbar", "Eltreum-Class-WarlockV3", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-WLV3.tga]])
+LSM:Register("statusbar", "Eltreum-Class-Evoker", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-EV.tga]])
+LSM:Register("statusbar", "Eltreum-Class-EvokerV2", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-EVv2.tga]])
+LSM:Register("statusbar", "Eltreum-Class-EvokerV3", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-EVV3.tga]])
 
 LSM:Register("statusbar", "Eltreum-Tapped", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Tapped.tga]])
 LSM:Register("statusbar", "Eltreum-TappedV2", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-TappedV2.tga]])

@@ -1038,6 +1038,7 @@ local classes = {
 	["WARLOCK"] = true,
 	["DRUID"] = true,
 	["DEMONHUNTER"] = true,
+	["EVOKER"] = true
 }
 
 --Details gradient, inspired by aftermathh's edit but had to delve deeper into it, too many things going on there
