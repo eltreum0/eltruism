@@ -274,10 +274,6 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.db.ElvUI_EltreumUI.unitframes.lightmode = false
 		E.db.ElvUI_EltreumUI.unitframes.darkmode = true
 	end
-	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then --convert the option
-		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = true
-	end
 	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.playerclass then
 		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = false
 		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.playerclass = true
