@@ -286,9 +286,11 @@ if not E.Retail then
 		wrathdualspec:RegisterEvent("PLAYER_TALENT_UPDATE")
 		--wrathdualspec:RegisterEvent("CHARACTER_POINTS_CHANGED")
 		wrathdualspec:SetScript("OnEvent", function()
-			if CharacterFrame.Text5 and CharacterFrame.Text5:GetText() ~= nil then
-				CharacterFrame.Text5:SetText(ElvUI_EltreumUI:GetPlayerSpec())
-			end
+			E:Delay(2, function()
+				if CharacterFrame.Text5 and CharacterFrame.Text5:GetText() ~= nil then
+					CharacterFrame.Text5:SetText(ElvUI_EltreumUI:GetPlayerSpec())
+				end
+			end)
 		end)
 	end
 end
