@@ -34,6 +34,24 @@ EltruismQuestItemFrame:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, 34)
 E:CreateMover(EltruismQuestItemFrame, "MoverEltruismQuestItem", "EltruismQuestItemBar", nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,quests')
 EltruismQuestItemFrame.tip = CreateFrame("GameTooltip","EltruismQuestItemTip",nil,"GameTooltipTemplate")
 EltruismQuestItemFrame.tip:SetOwner(UIParent,"ANCHOR_NONE")
+EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_DELAYED")
+EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_COOLDOWN")
+EltruismQuestItemFrame:RegisterUnitEvent("UNIT_INVENTORY_CHANGED", "player")
+EltruismQuestItemFrame:RegisterEvent("QUEST_WATCH_UPDATE")
+EltruismQuestItemFrame:RegisterEvent("BAG_NEW_ITEMS_UPDATED")
+EltruismQuestItemFrame:RegisterEvent("MAIL_SUCCESS") -- when mailing quest items UNIT_INVENTORY_CHANGED does not fire
+EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED") -- Needed for items that starts a quest, when we accept it, update to remove the icon
+EltruismQuestItemFrame:RegisterEvent("QUEST_LOG_UPDATE") -- For when items get added/removed during quest
+EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
+
+EltruismQuestItemFrame.tip = CreateFrame("GameTooltip","EltruismQuestItem",nil,"GameTooltipTemplate")
+EltruismQuestItemFrame.tip:SetOwner(UIParent,"ANCHOR_NONE")
+EltruismQuestItemFrame.items = {}
+
+-- Constants
+local UPDATE_DELAY = 1.0 --was 0.5 but i think that might be too low
+local ITEMID_PATTERN = "item:(%d+)"
+local QUEST_TOKEN = (GetItemClassInfo and GetItemClassInfo(LE_ITEM_CLASS_QUESTITEM or 12) or LOOT_JOURNAL_LEGENDARIES_SOURCE_QUEST or "Quest") -- Obtain the localization of the "Quest" type for items -- [7.0.3/Legion] API Removed: GetAuctionItemClasses()
 
 local slots = {
 	"HeadSlot", "NeckSlot", "ShoulderSlot", "BackSlot", "ChestSlot", "ShirtSlot", "TabardSlot", "WristSlot",
@@ -110,17 +128,10 @@ local blocklist = {
 function ElvUI_EltreumUI:QuestItem()
 	_, instanceType = IsInInstance()
 	if E.db.ElvUI_EltreumUI.quests.questitems then
-		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "arena" or instanceType == "pvp" then
+		if instanceType ~= "none" then
 			EltruismQuestItemFrame:Hide()
 		else
-			if not EltruismQuestItemFrame:IsShown() then
-				EltruismQuestItemFrame:Show()
-			end
-			-- Constants
-			local UPDATE_DELAY = 1.0 --was 0.5 but i think that might be too low
-			local ITEMID_PATTERN = "item:(%d+)"
-			local QUEST_TOKEN = (GetItemClassInfo and GetItemClassInfo(LE_ITEM_CLASS_QUESTITEM or 12) or LOOT_JOURNAL_LEGENDARIES_SOURCE_QUEST or "Quest") -- Obtain the localization of the "Quest" type for items -- [7.0.3/Legion] API Removed: GetAuctionItemClasses()
-
+			EltruismQuestItemFrame:Show()
 
 			if E.db.ElvUI_EltreumUI.quests.questitemsbar1 and E.private.actionbar.enable then
 				if not InCombatLockdown() then
@@ -132,16 +143,6 @@ function ElvUI_EltreumUI:QuestItem()
 				EltruismQuestItemFrame:SetClampedToScreen(true)
 				EltruismQuestItemFrame:SetFrameStrata("MEDIUM")
 			end
-			--EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE")
-			EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_DELAYED")
-			EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_COOLDOWN")
-			EltruismQuestItemFrame:RegisterUnitEvent("UNIT_INVENTORY_CHANGED", "player")
-			EltruismQuestItemFrame:RegisterEvent("QUEST_WATCH_UPDATE")
-			EltruismQuestItemFrame:RegisterEvent("BAG_NEW_ITEMS_UPDATED")
-			EltruismQuestItemFrame:RegisterEvent("MAIL_SUCCESS") -- when mailing quest items UNIT_INVENTORY_CHANGED does not fire
-			EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED") -- Needed for items that starts a quest, when we accept it, update to remove the icon
-			EltruismQuestItemFrame:RegisterEvent("QUEST_LOG_UPDATE") -- For when items get added/removed during quest
-			EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
 
 			--get the keybind
 			local bindingText1 = GetBindingKey("CLICK EltruismQuestItem1:LeftButton")
@@ -197,9 +198,7 @@ function ElvUI_EltreumUI:QuestItem()
 				end
 			end
 
-			EltruismQuestItemFrame.tip = CreateFrame("GameTooltip","EltruismQuestItem",nil,"GameTooltipTemplate")
-			EltruismQuestItemFrame.tip:SetOwner(UIParent,"ANCHOR_NONE")
-			EltruismQuestItemFrame.items = {}
+
 			--------------------------------------------------------------------------------------------------------
 			--                                                Items                                               --
 			--------------------------------------------------------------------------------------------------------
