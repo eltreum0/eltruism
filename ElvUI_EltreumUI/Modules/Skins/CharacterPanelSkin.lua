@@ -1477,10 +1477,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 				end
 			end
-			_G.PaperDollItemsFrame:SetScript("OnShow", ResizeCharacterFrame)
+			_G.PaperDollItemsFrame:HookScript("OnShow", ResizeCharacterFrame)
 			CharacterFrame:HookScript("OnShow", ResizeCharacterFrame)
 			hooksecurefunc("CharacterFrameTab_OnClick", ResizeCharacterFrame)
-			_G.PaperDollItemsFrame:SetScript("OnHide", function()
+			_G.PaperDollItemsFrame:HookScript("OnHide", function()
 				ClassCrestFrame:SetPoint("CENTER", CharacterFrame, 0 , 50)
 			end)
 
