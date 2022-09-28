@@ -47,7 +47,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 
 	--gradient/texture
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-		if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable and (not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable) then
+		if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 			castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
 			if UnitExists("target") then
 				targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
@@ -56,8 +56,10 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 
 		--player
 		if UnitExists("player") then
-			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) then
-				castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+					castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+				end
 				if castbar.notInterruptible then --cant interrupt
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbarnoninterruptible then
 						if E.db.unitframe.units.player.castbar.reverse == true then
@@ -102,8 +104,10 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 		if UnitExists("target") then
 			_, targetclass = UnitClass("target")
 			reactiontarget = UnitReaction("target", "player")
-			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) then
-				targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+				if not  E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+					targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+				end
 				if (targetcastbar.notInterruptible) then --cant interrupt
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible then
 						if E.db.unitframe.units.target.castbar.reverse == true then
