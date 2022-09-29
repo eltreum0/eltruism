@@ -160,7 +160,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 							unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
 						end
 					end
-					if E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
+					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
 						if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
 								unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
@@ -284,7 +284,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
 							unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
 						end
 					end
-					if E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
+					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
 						if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
 								unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
