@@ -62,57 +62,221 @@ local slots = {
 
 -- These items are not marked as being quest items, but we want to include them anyway
 local qItems = {
-	--by Eltreum
-	28607, -- Sunfury Disguise
-	28132, -- area 52 bomb
-	28038, -- seaforium explosive
-	49132, -- fireliminator x-21
-	49368, -- ambassador disquise
-	24501, -- gordawag's boulder
-	24467, -- living fire
-	25458, -- mag'har battle standard
-	34475, -- arcane charges
-	34483, --orb of murloc control
-	35233, --multiphase spectographic goggles
-	33349, --plague vials
-	34023, --empty apothecary's flask
-	34024, --flask of vrykul blood
-	33614, --empty apothecary's flask
-	33615, --flask of vrykul blood
-
-	-- by Az
-	23818,	-- Stillpine Furbolg Language Primer
-	23792,	-- Tree Disguise Kit
-	24084,	-- Draenei Banner
-	24278,	-- Flare Gun
+	972,
+	3985,
+	4854,
+	4945,
+	5411,
 	5456,	-- Divining Scroll (item has no Use: text, even though you can use it)
-
+	5996,
+	6372,
+	6636,
+	7843,
+	8432,
+	8474,
+	8529,
+	10569,
+	10687,
+	10688,
+	10689,
+	10690,
+	10695,
+	11116,
+	11568,
 	11582,	-- Fel Salve
-	12922,	-- Empty Canteen
 	11914, -- Cursed Ooze Jar
 	11948,	-- Tainted Ooze Jar
-	28038,	-- Seaforium PU-36 Explosive Nether Modulator
-	28132,	-- Area 52 Special
+	11955,
+	12565,
+	12886,
+	12922,	-- Empty Canteen
+	16302,
+	16321,
+	16790,
+	20483,
+	21713,	-- Elune's Candle (Lunar Festival)
 	23361,	-- Cleansing Vial
-	25465,	-- Stormcrow Amulet
+	23417,
+	23645,
+	23792,	-- Tree Disguise Kit
+	23818,	-- Stillpine Furbolg Language Primer
+	24084,	-- Draenei Banner
+	24278,	-- Flare Gun
+	24330,
+	24335,
+	24355,
 	24355,	-- Ironvine Seeds
+	24421,
+	24467, -- living fire
+	24474,
+	24501,	-- Gordawg's Boulder
+	24504,
+	24558,
+	24559,
+	25458, -- mag'har battle standard
+	25465,	-- Stormcrow Amulet
+	25539,
 	25552,	-- Warmaul Ogre Banner
 	25555,	-- Kil'sorrow Banner
 	25658,	-- Damp Woolen Blanket
 	25853,	-- Pack of Incendiary Bombs (Old Hillsbrad)
-	24501,	-- Gordawg's Boulder
-
-	33634,	-- Orehammer's Precision Bombs, quest from Howling Fjord
-	49278,	-- Goblin Rocket Pack (ICC - Lootship)
-
-	33096,	-- Complimentary Brewfest Sampler (Brew Fest)
+	28038,	-- Seaforium PU-36 Explosive Nether Modulator
+	28132,	-- Area 52 Special
+	28607, -- Sunfury Disguise
+	29324,
+	29443,
+	29473,
+	29588,
+	29590,
+	29778,
+	30105,
+	30540,
+	30576,
+	30712,
+	30719,
+	30811,
+	31121,
+	31122,
+	31495,
+	31518,
+	31664,
+	31702,
+	31955,
+	32385,
+	32386,
+	32405,
+	32406,
+	32726,
 	32971,	-- Water Bucket (Hallow's End)
+	33096,	-- Complimentary Brewfest Sampler (Brew Fest)
+	33349, --plague vials
+	33614, --empty apothecary's flask
+	33615, --flask of vrykul blood
+	33621, --plague spray
+	33634,	-- Orehammer's Precision Bombs, quest from Howling Fjord
+	34023, --empty apothecary's flask
+	34024, --flask of vrykul blood
+	34076,
+	34475, -- arcane charges
+	34483, --orb of murloc control
+	34871,
+	35233, --multiphase spectographic goggles
+	35704,
+	35792,
+	36770,
+	36771,
+	37173,
+	37265,
+	37445,
+	37708,
+	37877,
+	38351,
+	38657,
+	38659,
+	38676,
+	38684,
+	38689,
+	38697,
+	38699,
+	38701,
+	38709,
+	38731,
+	39041,
+	39154,
+	39157,
+	39158,
+	39164,
+	39165,
+	39187,
+	39206,
+	39238,
+	39253,
+	39268,
+	39566,
+	39574,
+	39576,
+	39615,
+	39645,
+	39664,
+	39700,
+	39737,
+	40390,
+	40397,
+	40551,
+	40587,
+	40676,
+	40730,
+	40731,
+	40732,
+	40946,
+	41131,
+	41179,
+	41340,
+	41366,
+	41372,
+	41390,
+	41430,
+	41431,
+	41615,
+	41776,
+	41988,
+	42164,
+	42419,
+	42424,
+	42441,
+	42442,
+	42479,
+	42480,
+	42481,
+	42499,
+	42624,
+	42679,
+	42769,
+	42774,
+	42781,
+	42797,
+	42837,
+	42840,
+	42918,
+	42928,
+	43101,
+	43139,
+	43142,
+	43147,
+	43153,
+	43166,
+	43206,
+	43243,
+	43289,
+	43315,
+	43524,
+	43564,
+	43608,
+	43968,
+	44048,
+	44064,
+	44065,
+	44127,
+	44186,
+	44212,
+	44222,
+	44251,
+	44304,
+	44307,
+	44433,
+	44450,
+	44653,
+	44704,
+	44890,
+	44950,
+	45067,	-- Egg Basket -- Az: offhand item, but I wanted it on my bar for a hotkey
 	46861,	-- Bouquet of Orange Marigolds (Day of the Dead)
-	21713,	-- Elune's Candle (Lunar Festival)
-
+	49132, -- fireliminator x-21
+	49278,	-- Goblin Rocket Pack (ICC - Lootship)
+	49368, -- ambassador disquise
 	56909,	-- Earthen Ring Unbinding Totem (Cata event)
 	60501, 	-- Stormstone, Deepholm Quest
-	45067,	-- Egg Basket -- Az: offhand item, but I wanted it on my bar for a hotkey
+	185956,
 }
 local blocklist = {
 	[176809] = true, -- junk item that for some reason showed up
