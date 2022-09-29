@@ -75,6 +75,7 @@ local qItems = {
 	34483, --orb of murloc control
 	35233, --multiphase spectographic goggles
 	33349, --plague vials
+	34023, --empty apothecary's flask
 
 	-- by Az
 	23818,	-- Stillpine Furbolg Language Primer
