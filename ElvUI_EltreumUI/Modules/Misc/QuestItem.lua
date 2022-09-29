@@ -34,7 +34,7 @@ EltruismQuestItemFrame:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, 34)
 E:CreateMover(EltruismQuestItemFrame, "MoverEltruismQuestItem", "EltruismQuestItemBar", nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,quests')
 
 EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_DELAYED")
-EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_COOLDOWN")
+--EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_COOLDOWN")
 EltruismQuestItemFrame:RegisterUnitEvent("UNIT_INVENTORY_CHANGED", "player")
 EltruismQuestItemFrame:RegisterEvent("QUEST_WATCH_UPDATE")
 EltruismQuestItemFrame:RegisterEvent("BAG_NEW_ITEMS_UPDATED")
@@ -76,6 +76,9 @@ local qItems = {
 	35233, --multiphase spectographic goggles
 	33349, --plague vials
 	34023, --empty apothecary's flask
+	34024, --flask of vrykul blood
+	33614, --empty apothecary's flask
+	33615, --flask of vrykul blood
 
 	-- by Az
 	23818,	-- Stillpine Furbolg Language Primer
@@ -199,8 +202,6 @@ function ElvUI_EltreumUI:QuestItem()
 					self:UpdateButtons()
 				end
 			end
-
-
 			--------------------------------------------------------------------------------------------------------
 			--                                                Items                                               --
 			--------------------------------------------------------------------------------------------------------
