@@ -26,7 +26,10 @@ local VideoOptionsFrame = _G.VideoOptionsFrame
 local UIErrorsFrame = _G.UIErrorsFrame
 local RaidWarningFrame = _G.RaidWarningFrame
 local W
-
+local EnhancedShadows = nil
+if IsAddOnLoaded("ProjectAzilroka") then
+	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
+end
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
@@ -556,6 +559,7 @@ if E.Retail then
 			LoadAddOn("Blizzard_ClickBindingUI")
 			if not _G["ClickBindingFrame"].shadow then
 				_G["ClickBindingFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ClickBindingFrame"].shadow) end
 			end
 		end
 		if not _G["ClickBindingFrame"]:IsShown() then
