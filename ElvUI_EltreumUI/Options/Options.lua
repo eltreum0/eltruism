@@ -63,6 +63,7 @@ local SUPPORTER = {
 	'|cffB50909Brovenn|r',
 	'|cffB50909Daxxarri|r',
 	'|cffB50909Dlarge|r',
+	'|cffB50909Dreamador|r',
 	'|cffB50909Dreandor|r',
 	'|cffB50909Greevir|r',
 	'|cffB50909Jiberish|r',
