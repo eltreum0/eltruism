@@ -398,14 +398,14 @@ end
 
 --set the textures or gradients for group units
 function ElvUI_EltreumUI:ApplyGroupGradientTexture(button)
-	button.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
 	if E.db.ElvUI_EltreumUI.unitframes.lightmode then ---TODO confirm this is fine for dark mode
 		--button.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 		button.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 		button.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 	end
 	_, buttonclass = UnitClass(button.unit)
-	if buttonclass then
+	if buttonclass and button.Health then
+		button.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
 		groupbar = ElvUI_EltreumUI:UnitframeClassTexture(buttonclass)
 		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
@@ -455,7 +455,7 @@ function ElvUI_EltreumUI:ApplyGroupGradientTexture(button)
 		if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 				button.Health:SetStatusBarTexture(groupbar)
-			elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and unitframe.Health.backdropTex then
+			elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and button.Health.backdropTex then
 				button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
 				button.Health.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 			end
