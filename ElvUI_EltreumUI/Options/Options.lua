@@ -179,12 +179,19 @@ function ElvUI_EltreumUI:Configtable()
 						inline = true,
 						name = "",
 						args = {
-							nameplateagain = {
+							nameplatereset = {
 								order = 1,
 								type = 'execute',
 								name = L["Reset nameplates to Eltruism settings"],
 								width = 'full',
 								func = function() ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end,
+							},
+							nameplatestylefilter = {
+								order = 2,
+								type = 'execute',
+								name = L["Reset Nameplate Style Filters"],
+								width = 'full',
+								func = function() ElvUI_EltreumUI:SetupStyleFilters() end,
 							},
 						},
 					},

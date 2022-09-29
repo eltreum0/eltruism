@@ -569,6 +569,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			ElvUI_EltreumUI:Print(L["ElvUI NamePlates were setup."])
 	end
 end
+
 -- Style Filter Setup
 function ElvUI_EltreumUI:SetupStyleFilters()
 	if E.private["nameplates"]["enable"] == true then
