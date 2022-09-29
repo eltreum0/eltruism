@@ -57,7 +57,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 
 		--to make sure its correct height
 		E.db["unitframe"]["units"]["player"]["height"] = 54
+		E.db["unitframe"]["units"]["player"]["infoPanel"]["enable"] = false
 		E.db["unitframe"]["units"]["target"]["height"] = 54
+		E.db["unitframe"]["units"]["target"]["infoPanel"]["enable"] = false
 		E.db["unitframe"]["units"]["targettarget"]["height"] = 54
 		E.db["unitframe"]["units"]["player"]["classbar"]["height"] = 10
 		E.db["unitframe"]["units"]["player"]["power"]["height"] = 15

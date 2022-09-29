@@ -455,19 +455,22 @@ function ElvUI_EltreumUI:CastCursor()
 		--this is kinda of a roundabout way of getting this to working here
 		cursorframe:RegisterEvent("PLAYER_STARTED_MOVING")
 		cursorframe:SetScript("OnEvent", function(self, event, _)
-			--print('cursorframe loaded')
-			collectgarbage()
-			ResetCPUUsage()
-			cursorframe:UnregisterEvent("PLAYER_STARTED_MOVING")
-			cursorframe:SetScript("OnEvent", nil)
-			cursorframe:SetPoint("Center", UIParent, "Center")
-			cursorframe:Hide()
-			Cursor.db = Defaults.cursor
-			Cast.db = Defaults.cast
-			GCD.db = Defaults.gcd
-			Setup(Cursor)
-			Setup(Cast)
-			Setup(GCD)
-		end )
+			if InCombatLockdown() then UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r") end
+			if not InCombatLockdown() then
+				--print('cursorframe loaded')
+				collectgarbage()
+				ResetCPUUsage()
+				cursorframe:UnregisterEvent("PLAYER_STARTED_MOVING")
+				cursorframe:SetScript("OnEvent", nil)
+				cursorframe:SetPoint("Center", UIParent, "Center")
+				cursorframe:Hide()
+				Cursor.db = Defaults.cursor
+				Cast.db = Defaults.cast
+				GCD.db = Defaults.gcd
+				Setup(Cursor)
+				Setup(Cast)
+				Setup(GCD)
+			end
+		end)
 	end
 end
