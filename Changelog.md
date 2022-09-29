@@ -3,6 +3,7 @@ The future is uncertain
 ___
 ### 3.4.6
 Added compatibility between Custom Textures and Gradient, now allowing both at the same time\
+Added support for ProjectAzilroka's Enhanced Shadows, allowing shadows to change colors if ProjectAzilroka is loaded and using that module\
 Added Evoker preliminary Textures and Colors\
 Updated Wowhead button to check game version\
 Updated Quest Item Bar to better detect items\
