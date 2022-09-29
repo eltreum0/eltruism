@@ -31,6 +31,11 @@ local wasPreviewing = false
 local ignoredSpells
 local cooldowns, animating, watching = { }, { }, { }
 local petOverlay = {1,1,1}
+local EnhancedShadows = nil
+if IsAddOnLoaded("ProjectAzilroka") then
+	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
+end
+
 
 --createframes
 local DCP = CreateFrame("FRAME","EltruismDoomCDPulse")
@@ -83,6 +88,7 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 		--create shadow
 		if not DCP.shadow then
 			DCP:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			if EnhancedShadows then EnhancedShadows:RegisterShadow(DCP.shadow) end
 		end
 
 		--load in the ignored spells

@@ -33,7 +33,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 	--	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex = 127.8
 	--end
 
-	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.a = 0.70
+	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.a = 1
 	E.db.ElvUI_EltreumUI.nameplates.nameplatelevel = true
 	E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames = false -- turns out blizzard fakes the nameplates and alphas the helthbar, causing huge performance costs
 	E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly = false -- and this one is the same but with health so make this one off as well
