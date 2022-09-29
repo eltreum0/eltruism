@@ -12,7 +12,9 @@ Updated Threat Databar to not overlap with the Eltruism Datatext Panel\
 Updated Addon profiles to better detect ElvUI Font Outlines\
 Updated Nameplate Power Bar setup process\
 Updated Threat Databar in Classic/Wrath\
-Updated Cursor Textures to avoid aliasing in lower resolutions
+Updated Cursor Textures to avoid aliasing in lower resolutions\
+Fixed a possible error with Cursor when reloading in combat\
+Fixed Custom Textures not automatically updating without a reload
 ### 3.4.5
 Added EltreumRefreshDebuff nameplate style filter, which will set nameplates that have expiring debuffs to full scale and alpha, but it requires the player to manually add the debuffs to its list\
 Added a shortcut to the EltreumRefreshDebuff nameplate style filter in Eltruism > Nameplates so that its easier to add Debuffs to it\
