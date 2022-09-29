@@ -98,7 +98,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			if E.locale == "deDE" then
 				wowheadregion = "wowhead.com/wotlk/de"
 			elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW" then
-				wowheadregion = "wowhead.com/wotlk/"
+				wowheadregion = "wowhead.com/wotlk"
 			elseif E.locale == "esMX" or E.locale == "esES" then
 				wowheadregion = "wowhead.com/wotlk/es"
 			elseif E.locale == "frFR" then
