@@ -413,11 +413,7 @@ function ElvUI_EltreumUI:ApplyGroupGradientTexture(button)
 		groupbar = ElvUI_EltreumUI:UnitframeClassTexture(buttonclass)
 		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-				if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
-					button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTexture(buttonclass))
-				else
-					button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
-				end
+				button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
 			end
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
 				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
@@ -435,11 +431,7 @@ function ElvUI_EltreumUI:ApplyGroupGradientTexture(button)
 			end
 		elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and button.Health.backdropTex then
 			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-				if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
-					button.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTexture(buttonclass))
-				else
-					button.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
-				end
+				button.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
 			end
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
 				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
@@ -557,7 +549,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 
 	end
 end
-hooksecurefunc(UF, "Style", ElvUI_EltreumUI.GradientCustomTexture) --if not hooking into this then when the target of target changes it doesnt update
+--hooksecurefunc(UF, "Style", ElvUI_EltreumUI.GradientCustomTexture) --if not hooking into this then when the target of target changes it doesnt update
 hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientCustomTexture)
 
 --glow dispellable debuffs
