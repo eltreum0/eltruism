@@ -1172,3 +1172,4 @@ L["Add North, East, South, West to Minimap"] = true
 L["Cardinal Text Offset"] = true
 L["You have another Nameplate Addon installed and loaded, and many nameplate features will not work with it"] = true
 L["Reset Nameplate Style Filters"] = true
+L["Enable adding more functions to ElvUI Chat"] = true

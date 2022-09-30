@@ -1165,3 +1165,4 @@ L["Add North, East, South, West to Minimap"] = "Adicionar Norte, Leste, Sul e Oe
 L["Cardinal Text Offset"] = "Deslocamento do texto de Direções Cardinais"
 L["You have another Nameplate Addon installed and loaded, and many nameplate features will not work with it"] = "Você possui outro Addon de placa de identificação instalado e carregado, e muitas funções de placa de identificação não funcionarão com ele"
 L["Reset Nameplate Style Filters"] = "Resetar Filtros de Estilo de Placas de Nomes"
+L["Enable adding more functions to ElvUI Chat"] = "Habilitar adicionar mais funções ao Chat do ElvUI"

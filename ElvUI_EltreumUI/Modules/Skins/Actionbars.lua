@@ -266,6 +266,8 @@ function ElvUI_EltreumUI:SkillGlow()
 					[6572] = true,
 
 					--kill shot
+					[53351] = true,
+					[61005] = true,
 					[61006] = true,
 
 					--rune strike
