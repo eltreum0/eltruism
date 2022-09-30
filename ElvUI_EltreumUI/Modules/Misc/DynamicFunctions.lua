@@ -42,8 +42,10 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 			--pause if dead
 			if UnitIsDead("target") then
 				E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = true
+				E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 1
 			else
 				E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = false
+				E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 0
 			end
 		end
 	end
