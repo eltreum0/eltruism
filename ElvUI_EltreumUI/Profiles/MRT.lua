@@ -46,7 +46,7 @@ function ElvUI_EltreumUI:GetMRTProfile()
 					["Outline"] = true,
 				},
 				["ProfileKeys"] = {
-					["Addontesting-Benedictus"] = "Eltreum",
+					[E.mynameRealm] = "Eltreum",
 				},
 				["Encounter"] = {
 					["list"] = {
