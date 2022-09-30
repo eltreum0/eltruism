@@ -348,7 +348,6 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'toggle',
 						name = L["Enable"],
 						order = 2,
-						hidden = not E.Retail,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.afkmusic.enable end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.afkmusic.enable = value end,
 					},
@@ -362,14 +361,10 @@ function ElvUI_EltreumUI:Configtable()
 					afksoundtyperetail = {
 						order = 4,
 						type = 'group',
+						inline = true,
 						name = L["Select a type of music"],
 						hidden = not E.Retail,
 						args = {
-							yetanothergap = {
-							order = 2,
-							type = "description",
-							name = "",
-							},
 							racial = {
 								type = 'toggle',
 								name = L["Racial Music"],
@@ -387,14 +382,6 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.afkmusic.playerclass = value end,
 							},
 						},
-					},
-					enableclassic = {
-						type = 'toggle',
-						name = L["Enable"],
-						order = 5,
-						hidden = E.Retail,
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.afkmusic.enable end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.afkmusic.enable = value end,
 					},
 					header3 = {
 						order = 6,
