@@ -466,7 +466,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 		ElvUI_EltreumUI:ApplyUnitGradientTexture("player", "Player", "player")
 		ElvUI_EltreumUI:ApplyUnitGradientTexture("target", "Target", "target")
 		ElvUI_EltreumUI:ApplyUnitGradientTexture("targettarget", "TargetTarget", "targettarget")
-		ElvUI_EltreumUI:ApplyUnitGradientTexture("targettargettarget", "TargetTargetTarget"," targetargettarget")
+		ElvUI_EltreumUI:ApplyUnitGradientTexture("targettargettarget", "TargetTargetTarget","targettargettarget")
 		ElvUI_EltreumUI:ApplyUnitGradientTexture("pet", "Pet", "pet")
 		if E.Retail or E.Wrath then
 			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss1", "Boss1", "boss")

@@ -857,44 +857,40 @@ function ElvUI_EltreumUI:SkinQuests()
 					WatchFrame.HeaderBar:SetAlpha(1)
 				end
 
-				if InCombatLockdown() then
-					return
-				else
-					for i = 1, _G.WATCHFRAME_NUM_ITEMS do
-						local Button = _G["WatchFrameItem"..i]
-						if not (Button) then
-							return
-						end
-						local _, Anchor = Button:GetPoint()
-						Button:ClearAllPoints()
-						if Anchor ~= nil then
-							Button:SetPoint("LEFT", Anchor, "LEFT", -40, -10)
-						--elseif Anchor == nil then
-							--Button:SetPoint("LEFT", _G["WatchFrameLine"..i.."Text"], "LEFT", -40, -10)
-							if not (Button.QuestTexture) then
-								if _G["EltruismQuestTexture"] then
-									Button.QuestTexture = _G["EltruismQuestTexture"]
-								else
-									Button.QuestTexture = Button:CreateTexture("EltruismQuestTexture")
-								end
-								Button.QuestTexture:SetSize(24, 24)
-								Button.QuestTexture:SetPoint("LEFT", Button, "LEFT", -12, 0)
-								Button.QuestTexture:SetTexture(E.Media.Textures.BagQuestIcon)
-								Button.QuestTexture:SetParent(Button)
-							end
-							Button:SetSize(E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize, E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize)
-							if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not Button.shadow then
-								Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(Button.shadow) end
-							end
-							S:HandleButton(Button)
-							local texture = _G["WatchFrameItem"..i.."IconTexture"]
-							texture:SetTexCoord(0.08,0.92,0.08,0.92)
-						else
-							Button:ClearAllPoints()
+				for i = 1, _G.WATCHFRAME_NUM_ITEMS do
+					local Button = _G["WatchFrameItem"..i]
+					if not (Button) then
+						return
+					end
+					local _, Anchor = Button:GetPoint()
+					Button:ClearAllPoints()
+					if Anchor ~= nil then
+						Button:SetPoint("LEFT", Anchor, "LEFT", -40, -10)
+					--elseif Anchor == nil then
+						--Button:SetPoint("LEFT", _G["WatchFrameLine"..i.."Text"], "LEFT", -40, -10)
+						if not (Button.QuestTexture) then
 							if _G["EltruismQuestTexture"] then
-								_G["EltruismQuestTexture"]:ClearAllPoints()
+								Button.QuestTexture = _G["EltruismQuestTexture"]
+							else
+								Button.QuestTexture = Button:CreateTexture("EltruismQuestTexture")
 							end
+							Button.QuestTexture:SetSize(24, 24)
+							Button.QuestTexture:SetPoint("LEFT", Button, "LEFT", -12, 0)
+							Button.QuestTexture:SetTexture(E.Media.Textures.BagQuestIcon)
+							Button.QuestTexture:SetParent(Button)
+						end
+						Button:SetSize(E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize, E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize)
+						if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not Button.shadow then
+							Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(Button.shadow) end
+						end
+						S:HandleButton(Button)
+						local texture = _G["WatchFrameItem"..i.."IconTexture"]
+						texture:SetTexCoord(0.08,0.92,0.08,0.92)
+					else
+						Button:ClearAllPoints()
+						if _G["EltruismQuestTexture"] then
+							_G["EltruismQuestTexture"]:ClearAllPoints()
 						end
 					end
 				end

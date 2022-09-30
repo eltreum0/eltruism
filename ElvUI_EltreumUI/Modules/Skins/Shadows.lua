@@ -1006,6 +1006,8 @@ function ElvUI_EltreumUI:Shadows()
 			local elvuiframes = {
 				_G["ElvUF_TargetTarget_HealthBar"],
 				_G["ElvUF_TargetTarget_PowerBar"],
+				_G["ElvUF_TargetTargetTarget_HealthBar"],
+				_G["ElvUF_TargetTargetTarget_PowerBar"],
 				_G["ElvUF_Target_HealthBar"],
 				_G["ElvUF_Target_PowerBar"],
 				_G["ElvUF_Pet_HealthBar"],

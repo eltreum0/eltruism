@@ -85,7 +85,7 @@ function ElvUI_EltreumUI:GradientPower()
 		ElvUI_EltreumUI:ApplyGradientPower("target", "Target")
 		ElvUI_EltreumUI:ApplyGradientPower("targettarget", "TargetTarget")
 		ElvUI_EltreumUI:ApplyGradientPower("pet", "Pet")
-		ElvUI_EltreumUI:ApplyGradientPower("targettargettarget", "TargetTargetTarget"," targetargettarget")
+		ElvUI_EltreumUI:ApplyGradientPower("targettargettarget", "TargetTargetTarget")
 		if E.Retail or E.Wrath then
 			ElvUI_EltreumUI:ApplyGradientPower("boss1", "Boss1")
 			ElvUI_EltreumUI:ApplyGradientPower("boss2", "Boss2")

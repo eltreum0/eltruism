@@ -16,6 +16,8 @@ Updated Cursor Textures to avoid aliasing in lower resolutions\
 Updated Options, making it easier to see which options are incompatible\
 Updated Target Portrait Fix, which will now also pause and desaturate dead target models\
 Updated Procs in Wrath, adding missing ranks for Kill Shot\
+Updated Quest Skin in an attempt to avoid the moving Quest Item in Wrath\
+Updated some addon profiles to prevent overwriting existing profiles\
 Fixed a possible error with Cursor when reloading in combat\
 Fixed Custom Textures not automatically updating without a reload
 ### 3.4.5
