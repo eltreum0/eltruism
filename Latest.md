@@ -11,5 +11,8 @@ Updated Addon profiles to better detect ElvUI Font Outlines\
 Updated Nameplate Power Bar setup process\
 Updated Threat Databar in Classic/Wrath\
 Updated Cursor Textures to avoid aliasing in lower resolutions\
+Updated Options, making it easier to see which options are incompatible\
+Updated Target Portrait Fix, which will now also pause and desaturate dead target models\
+Updated Procs in Wrath, adding missing ranks for Kill Shot\
 Fixed a possible error with Cursor when reloading in combat\
 Fixed Custom Textures not automatically updating without a reload

@@ -16,11 +16,13 @@ local level
 function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 	if E.db.ElvUI_EltreumUI.unitframes.portraitfix and E.private.unitframe.enable then
 		if UnitExists("target") then
-			--print(_G["ElvUF_Target"].Portrait3D:GetModelFileID() ) -- actually prints
-			--_G["ElvUF_Target"].Portrait3D:SetCamera(1)
+
+			--fix camera rotation
 			if UnitIsPlayer("target") then
 				E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 			else
+				--print(_G["ElvUF_Target"].Portrait3D:GetModelFileID() ) -- actually prints
+				--_G["ElvUF_Target"].Portrait3D:SetCamera(1)
 				--E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
 				--_G["ElvUF_Target"].Portrait3D:GetModelFileID()
 				--_G["ElvUF_Target"].Portrait3D:SetPosition(0, 0, 0)
@@ -35,6 +37,15 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 				else
 					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
 				end
+			end
+
+			--pause if dead
+			if UnitIsDead("target") then
+				E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = true
+				E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 1
+			else
+				E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = false
+				E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 0
 			end
 		end
 	end
