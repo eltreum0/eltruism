@@ -70,6 +70,10 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[3365] = 53323, -- rune of swordshattering
 		[3883] = 70164, -- rune of the nerubian carapace
 		[1950] = 46594, -- Enchant Chest - Defense
+		[3603] = 54998, -- Hand-Mounted Pyro Rocket
+		[3604] = 54999, -- Hyperspeed Accelerators
+		[3599] = 54736, -- Personal Electromagnetic Pulse Generator
+		[3860] = 63770, -- Reticulated Armor Webbing
 
 		---- old list
 		[15] = 2831, -- Reinforced (+$k1 Armor)
