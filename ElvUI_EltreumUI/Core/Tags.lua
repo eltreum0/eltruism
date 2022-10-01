@@ -535,63 +535,79 @@ end)
 E:AddTagInfo("eltruism:smartlevel", ElvUI_EltreumUI.Name, L["Shows level difference when it exists for NPCs and players, hides for players if same level"])
 
 E:AddTag("eltruism:stance", 'UNIT_AURA', function(unit)
-	local presence = GetShapeshiftForm()
+	local stance = GetShapeshiftForm()
 	local name
-	if not E.Retail then
-		if E.myclass == 'DEATHKNIGHT' then
-			if presence == 1 then --blood
-				name = GetSpellInfo(48266)
-				return name
-				--return _G.RELIC_SLOT_TYPE_BLOOD
-			elseif presence == 2 then --frost
-				name = GetSpellInfo(48263)
-				return name
-				--return _G.RELIC_SLOT_TYPE_FROST
-			elseif presence == 3 then --unholy
-				name = GetSpellInfo(48265)
-				return name
-				--return _G.RUNE_COST_UNHOLY:format("")
-			else
-				return nil
-			end
-		elseif E.myclass == 'PALADIN' then
-			if presence == 1 then --Devotion
+	if E.myclass == 'DEATHKNIGHT' then
+		if stance == 1 then --blood
+			name = GetSpellInfo(48266)
+			return name
+			--return _G.RELIC_SLOT_TYPE_BLOOD
+		elseif stance == 2 then --frost
+			name = GetSpellInfo(48263)
+			return name
+			--return _G.RELIC_SLOT_TYPE_FROST
+		elseif stance == 3 then --unholy
+			name = GetSpellInfo(48265)
+			return name
+			--return _G.RUNE_COST_UNHOLY:format("")
+		else
+			return nil
+		end
+	elseif E.myclass == 'PALADIN' then
+		if not E.Retail then
+			if stance == 1 then --Devotion
 				name = GetSpellInfo(465)
 				return name
-			elseif presence == 2 then --Retribution
+			elseif stance == 2 then --Retribution
 				name = GetSpellInfo(7294)
 				return name
-			elseif presence == 3 then --Concentration
+			elseif stance == 3 then --Concentration
 				name = GetSpellInfo(19746)
 				return name
-			elseif presence == 4 then --Shadow Resistance
+			elseif stance == 4 then --Shadow Resistance
 				name = GetSpellInfo(19876)
 				return name
-			elseif presence == 5 then --Frost Resistance
+			elseif stance == 5 then --Frost Resistance
 				name = GetSpellInfo(19888)
 				return name
-			elseif presence == 6 then --Fire Resistance
+			elseif stance == 6 then --Fire Resistance
 				name = GetSpellInfo(19891)
 				return name
-			elseif presence == 7 then --Crusader
+			elseif stance == 7 then --Crusader
 				name = GetSpellInfo(32223)
 				return name
 			else
 				return nil
 			end
-		elseif E.myclass == 'WARRIOR' then
-			if presence == 1 then --Battle
-				name = GetSpellInfo(2457)
-				return name
-			elseif presence == 2 then --Defensive
-				name = GetSpellInfo(71)
-				return name
-			elseif presence == 3 then --Berserker
-				name = GetSpellInfo(2458)
-				return name
+		elseif E.Retail then
+			if stance == 1 then --Crusader
+				name = GetSpellInfo(32223)
+				return name,"1"
+			elseif stance == 2 then --Devotion
+				name = GetSpellInfo(465)
+				return name,"2"
+			elseif stance == 3 then --Concentration
+				name = GetSpellInfo(317920)
+				return name,"3"
+			elseif stance == 4 then --Retribution
+				name = GetSpellInfo(183435)
+				return name,"4"
 			else
 				return nil
 			end
+		end
+	elseif E.myclass == 'WARRIOR' then
+		if stance == 1 then --Battle
+			name = GetSpellInfo(2457)
+			return name
+		elseif stance == 2 then --Defensive
+			name = GetSpellInfo(71)
+			return name
+		elseif stance == 3 then --Berserker
+			name = GetSpellInfo(2458)
+			return name
+		else
+			return nil
 		end
 	end
 end)
