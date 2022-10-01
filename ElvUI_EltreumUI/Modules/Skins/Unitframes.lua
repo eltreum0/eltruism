@@ -854,7 +854,7 @@ function ElvUI_EltreumUI:SkinPortrait(frame)
 		local width, height = portrait.db.width, 15+12+55--?
 		local ratio = width / height
 
-		print(portrait.db.width,portrait.db.height,ratio)
+		--print(portrait.db.width,portrait.db.height,ratio)
 		if ratio > 1 then
 			local trimAmount = (1 - (1 / ratio)) * 0.5
 			top = top + trimAmount

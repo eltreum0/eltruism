@@ -621,7 +621,7 @@ function ElvUI_EltreumUI:QuestItem()
 					end
 					return true
 				end
-				print(TableComp(check,verify))]]
+				--print(TableComp(check,verify))]]
 
 				-- Set Shown Items
 				self.shownItems = (index - 1)

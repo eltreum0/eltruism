@@ -1,5 +1,5 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
-local id, _, powertype
+local id, _, powertype,powernumber,tablepowernumber
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local IsPlayerSpell = _G.IsPlayerSpell
@@ -63,7 +63,6 @@ local costTable
 local ret, ret2
 local predictioncolorr, predictioncolorg, predictioncolorb
 local currentSpec
-local cost
 local placeValue = ("%%.%df"):format(1)
 local power
 local isSetup, isSetupprediction = false, false
@@ -129,22 +128,34 @@ function ElvUI_EltreumUI:PowerPrediction()
 			[56641] = 10, --steady shot
 		}
 
+		mainCost = 0 --reset
+		tablepowernumber = powernumber
 
 		_, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
 		if startTime ~= endTime then
+
 			costTable = GetSpellPowerCost(spellID)
-			if costTable ~= nil then
+			if costTable then
 				for _, v in next, costTable do
-					cost = v.cost
-					mainCost = cost
+					if v.type == powernumber then
+						mainCost = v.cost
+					else
+						mainCost = 0
+						tablepowernumber = 123123 --random value so it doesnt match
+					end
 				end
 			end
-			if spellGenerators[spellID] ~= nil then
+
+			if spellGenerators[spellID] and tablepowernumber == powernumber then
 				incResource = spellGenerators[spellID]
 				--readjust if the incoming would go over max
 				if (incResource + EltreumPowerBar:GetValue()) >= UnitPowerMax("player") then
 					incResource = (UnitPowerMax("player") - EltreumPowerBar:GetValue())
+				elseif EltreumPowerBar:GetValue() == UnitPowerMax("player") then
+					incResource = 0
 				end
+			else
+				incResource = 0
 			end
 
 			if UnitPower("player") == 0 then
@@ -159,6 +170,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 					EltreumPowerPrediction:SetValue(mainCost)
 				end
 			end
+
 			EltreumPowerPrediction:Show()
 			EltreumPowerPredictionIncoming:SetValue(incResource)
 			EltreumPowerPredictionIncoming:Show()
@@ -251,7 +263,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
 				end
 			end
-			_, powertype = UnitPowerType("player")
+			powernumber, powertype = UnitPowerType("player")
 			if E.myclass == 'PALADIN' or E.myclass == 'MAGE' or E.myclass == 'WARLOCK' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 					EltreumPowerBar:Show()
