@@ -36,7 +36,7 @@ local function AddLootIcons(_, _, message, ...)
 	local _, _, _, _, _, _, _, _, _, _, guid = ...
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
-	elseif E.db.ElvUI_EltreumUI.chat.enable and E.db.ElvUI_EltreumUI.chat.looticons then
+	elseif E.db.ElvUI_EltreumUI.chat.enable then
 		local function Icon(link)
 
 			ilvlpattern = _G.ITEM_LEVEL:gsub('%%d', '(%%d+)')
@@ -87,21 +87,40 @@ local function AddLootIcons(_, _, message, ...)
 				return "|T"..texture..":12:12:0:0:64:64:5:59:5:59|t"..link
 			end
 		end
-		--if guid ~= nil and guid:match("Player") and E.db.ElvUI_EltreumUI.chat.classcolorchat then
-		if guid ~= nil and E.db.ElvUI_EltreumUI.chat.classcolorchat then
-			local _, unitclass =GetPlayerInfoByGUID(guid)
-			local msg
-			local tname
-			if E.db.ElvUI_EltreumUI.chat.classcolorchatcustom then
-				local r,g,b = ElvUI_EltreumUI:ChatCustomColor(unitclass)
-				msg = "|c"..E:RGBToHex(r,g,b, 'ff')..message:gsub("(|c%x+|Hitem:.-|h|r)", Icon).."|r"
-			else
-				msg = "|cff"..classcolorsescape[unitclass]..message:gsub("(|c%x+|Hitem:.-|h|r)", Icon).."|r"
-			end
-			return false, msg, ...
-		else
+		if E.db.ElvUI_EltreumUI.chat.looticons and not E.db.ElvUI_EltreumUI.chat.classcolorchat then
 			message = message:gsub("(|c%x+|Hitem:.-|h|r)", Icon)
 			return false, message, ...
+		elseif E.db.ElvUI_EltreumUI.chat.looticons and E.db.ElvUI_EltreumUI.chat.classcolorchat then
+			if guid ~= nil then
+				local _, unitclass =GetPlayerInfoByGUID(guid)
+				local msg
+				local tname
+				if E.db.ElvUI_EltreumUI.chat.classcolorchatcustom then
+					local r,g,b = ElvUI_EltreumUI:ChatCustomColor(unitclass)
+					msg = "|c"..E:RGBToHex(r,g,b, 'ff')..message:gsub("(|c%x+|Hitem:.-|h|r)", Icon).."|r"
+				else
+					msg = "|cff"..classcolorsescape[unitclass]..message:gsub("(|c%x+|Hitem:.-|h|r)", Icon).."|r"
+				end
+				return false, msg, ...
+			else
+				message = message:gsub("(|c%x+|Hitem:.-|h|r)", Icon)
+				return false, message, ...
+			end
+		elseif not E.db.ElvUI_EltreumUI.chat.looticons and E.db.ElvUI_EltreumUI.chat.classcolorchat then
+			if guid ~= nil then
+				local _, unitclass =GetPlayerInfoByGUID(guid)
+				local msg
+				local tname
+				if E.db.ElvUI_EltreumUI.chat.classcolorchatcustom then
+					local r,g,b = ElvUI_EltreumUI:ChatCustomColor(unitclass)
+					msg = "|c"..E:RGBToHex(r,g,b, 'ff')..message.."|r"
+				else
+					msg = "|cff"..classcolorsescape[unitclass]..message.."|r"
+				end
+				return false, msg, ...
+			else
+				return false, message, ...
+			end
 		end
 	end
 end
