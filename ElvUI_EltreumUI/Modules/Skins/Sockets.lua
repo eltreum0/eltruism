@@ -72,7 +72,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[1950] = 46594, -- Enchant Chest - Defense
 		[3603] = 54998, -- Hand-Mounted Pyro Rocket
 		[3604] = 54999, -- Hyperspeed Accelerators
-		[3599] = 54736, -- Personal Electromagnetic Pulse Generator
 		[3860] = 63770, -- Reticulated Armor Webbing
 
 		---- old list
