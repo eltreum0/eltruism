@@ -141,7 +141,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 						mainCost = v.cost
 					else
 						mainCost = 0
-						tablepowernumber = 123123
+						tablepowernumber = 123123 --random value so it doesnt match
 					end
 				end
 			end
