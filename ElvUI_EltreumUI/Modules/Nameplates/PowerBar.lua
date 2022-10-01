@@ -143,7 +143,6 @@ function ElvUI_EltreumUI:PowerPrediction()
 						mainCost = 0
 						tablepowernumber = 123123
 					end
-
 				end
 			end
 
