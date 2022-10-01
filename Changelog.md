@@ -18,7 +18,9 @@ Updated Target Portrait Fix, which will now also pause and desaturate dead targe
 Updated Procs in Wrath, adding missing ranks for Kill Shot\
 Updated Quest Skin in an attempt to avoid the moving Quest Item in Wrath\
 Updated some addon profiles to prevent overwriting existing profiles\
+Updated Nameplate Power Bar Prediction\
 Fixed a possible error with Cursor when reloading in combat\
+Fixed gradient for Target of Target of Target\
 Fixed Custom Textures not automatically updating without a reload
 ### 3.4.5
 Added EltreumRefreshDebuff nameplate style filter, which will set nameplates that have expiring debuffs to full scale and alpha, but it requires the player to manually add the debuffs to its list\
