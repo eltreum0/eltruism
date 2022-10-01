@@ -1,6 +1,11 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.4.7
+Added Engineering Enchants to Sockets in Wrath\
+Updated Chat Class Colors to not depend upon Chat Loot Icons\
+Updated [eltruism:presence] into [eltruism:stance] which will work with more classes and return their stances in Classic/Wrath, in Retail it will only work with Paladins due to stances being removed\
+Fixed Non Interruptable Gradient Color not having the correct gradient
 ### 3.4.6
 Added compatibility between Custom Textures and Gradient, now allowing both at the same time\
 Added support for ProjectAzilroka's Enhanced Shadows, allowing shadows to change colors if ProjectAzilroka is loaded and using that module\
