@@ -1169,3 +1169,4 @@ L["Cardinal Text Offset"] = true
 L["You have another Nameplate Addon installed and loaded, and many nameplate features will not work with it"] = true
 L["Reset Nameplate Style Filters"] = true
 L["Enable adding more functions to ElvUI Chat"] = true
+L["Shows the current stance"] = true
