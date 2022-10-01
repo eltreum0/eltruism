@@ -534,21 +534,68 @@ E:AddTag("eltruism:smartlevel", 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 end)
 E:AddTagInfo("eltruism:smartlevel", ElvUI_EltreumUI.Name, L["Shows level difference when it exists for NPCs and players, hides for players if same level"])
 
-E:AddTag("eltruism:presence", 'RUNE_POWER_UPDATE', function(unit)
+E:AddTag("eltruism:stance", 'UNIT_AURA', function(unit)
 	local presence = GetShapeshiftForm()
-	if E.Wrath and E.myclass == 'DEATHKNIGHT' then
-		if presence == 1 then --blood
-			return _G.RELIC_SLOT_TYPE_BLOOD
-		elseif presence == 2 then --frost
-			return _G.RELIC_SLOT_TYPE_FROST
-		elseif presence == 3 then --unholy
-			return _G.RUNE_COST_UNHOLY:format("")
-		else
-			return nil
+	local name
+	if not E.Retail then
+		if E.myclass == 'DEATHKNIGHT' then
+			if presence == 1 then --blood
+				name = GetSpellInfo(48266)
+				return name
+				--return _G.RELIC_SLOT_TYPE_BLOOD
+			elseif presence == 2 then --frost
+				name = GetSpellInfo(48263)
+				return name
+				--return _G.RELIC_SLOT_TYPE_FROST
+			elseif presence == 3 then --unholy
+				name = GetSpellInfo(48265)
+				return name
+				--return _G.RUNE_COST_UNHOLY:format("")
+			else
+				return nil
+			end
+		elseif E.myclass == 'PALADIN' then
+			if presence == 1 then --Devotion
+				name = GetSpellInfo(465)
+				return name
+			elseif presence == 2 then --Retribution
+				name = GetSpellInfo(7294)
+				return name
+			elseif presence == 3 then --Concentration
+				name = GetSpellInfo(19746)
+				return name
+			elseif presence == 4 then --Shadow Resistance
+				name = GetSpellInfo(19876)
+				return name
+			elseif presence == 5 then --Frost Resistance
+				name = GetSpellInfo(19888)
+				return name
+			elseif presence == 6 then --Fire Resistance
+				name = GetSpellInfo(19891)
+				return name
+			elseif presence == 7 then --Crusader
+				name = GetSpellInfo(32223)
+				return name
+			else
+				return nil
+			end
+		elseif E.myclass == 'WARRIOR' then
+			if presence == 1 then --Battle
+				name = GetSpellInfo(2457)
+				return name
+			elseif presence == 2 then --Defensive
+				name = GetSpellInfo(71)
+				return name
+			elseif presence == 3 then --Berserker
+				name = GetSpellInfo(2458)
+				return name
+			else
+				return nil
+			end
 		end
 	end
 end)
-E:AddTagInfo("eltruism:presence", ElvUI_EltreumUI.Name, L["Shows the current Death Knight presence"])
+E:AddTagInfo("eltruism:stance", ElvUI_EltreumUI.Name, L["Shows the current stance"])
 
 --group number only for first member of group (can break if players get moved tho)
 E:AddTag("eltruism:groupnumber", "GROUP_ROSTER_UPDATE UNIT_NAME_UPDATE", function(unit)
