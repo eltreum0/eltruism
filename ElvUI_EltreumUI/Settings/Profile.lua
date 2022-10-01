@@ -669,8 +669,8 @@ P.ElvUI_EltreumUI = {
 			playercastbarR1noninterruptible = 1,
 			playercastbarR2noninterruptible = 1,
 			playercastbarB1noninterruptible = 0,
-			playercastbarB2noninterruptible = 0,
-			playercastbarG1noninterruptible = 0,
+			playercastbarB2noninterruptible = 0.29019607843137,
+			playercastbarG1noninterruptible = 0.34901960784314,
 			playercastbarG2noninterruptible = 0.19607843137255,
 
 			playercastbarR1noninterruptiblecustom = 1,
