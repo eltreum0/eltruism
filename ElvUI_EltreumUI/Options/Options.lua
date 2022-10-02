@@ -10537,7 +10537,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = value end,
 							},
 							enablegradient = {
 								order = 3,
@@ -10547,7 +10547,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							enablepower = {
 								order = 4,
@@ -10567,7 +10567,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							darklightmode = {
 								order = 96,
