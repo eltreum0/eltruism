@@ -1167,3 +1167,5 @@ L["You have another Nameplate Addon installed and loaded, and many nameplate fea
 L["Reset Nameplate Style Filters"] = "Resetar Filtros de Estilo de Placas de Nomes"
 L["Enable adding more functions to ElvUI Chat"] = "Habilitar adicionar mais funções ao Chat do ElvUI"
 L["Shows the current stance"] = "Mostra a postura atual"
+L["Item Level on Tooltip"] = "Nível do Item nas Dicas de interface"
+L["Shows Item Level on Tooltips"] = "Mostra o Nível do Item nas Dicas de interface"
