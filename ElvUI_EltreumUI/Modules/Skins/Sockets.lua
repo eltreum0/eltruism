@@ -1323,8 +1323,12 @@ function ElvUI_EltreumUI:ClassicSockets()
 	end
 
 	function SlotIconManager:Refresh()
+
+		-- Both UNIT_INVENTORY_CHANGED and INSPECT_READY is called way before it is actually ready (~5-6 seconds early on inspect)
+		-- Setup timers to update over the next period of time. This can probably be done smarter, but I don't know lua :D
+
 		-- Cancel any refresh timers
-		if self.refreshTimer0 ~= nil then
+		--[[if self.refreshTimer0 ~= nil then
 			self.refreshTimer0:Cancel()
 			self.refreshTimer0 = nil
 		end
@@ -1336,16 +1340,23 @@ function ElvUI_EltreumUI:ClassicSockets()
 			self.refreshTimer2:Cancel()
 			self.refreshTimer2 = nil
 		end
+		if self.refreshTimer3 ~= nil then
+			self.refreshTimer3:Cancel()
+			self.refreshTimer3 = nil
+		end
 		self:_Refresh()
-		-- Both UNIT_INVENTORY_CHANGED and INSPECT_READY is called way before it is actually ready (~5-6 seconds early on inspect)
-		-- Setup timers to update over the next period of time. This can probably be done smarter, but I don't know lua :D
-		--[[self.refreshTimer0 = C_Timer.NewTimer(2, function()
+
+
+		self.refreshTimer0 = C_Timer.NewTimer(0.1, function()
 			self:_Refresh()
 		end)
-		self.refreshTimer1 = C_Timer.NewTimer(3, function()
+		self.refreshTimer1 = C_Timer.NewTimer(1, function()
 			self:_Refresh()
 		end)
-		self.refreshTimer2 = C_Timer.NewTimer(4, function() --possible source of hara's error
+		self.refreshTimer2 = C_Timer.NewTimer(2, function()
+			self:_Refresh()
+		end)
+		self.refreshTimer3 = C_Timer.NewTimer(3, function() --possible source of hara's error
 			self:_Refresh()
 		end)]]
 
@@ -1353,7 +1364,13 @@ function ElvUI_EltreumUI:ClassicSockets()
 		self.refreshTimer0 = C_Timer.After(0.1, function()
 			self:_Refresh()
 		end)
-		self.refreshTimer0 = C_Timer.After(1, function()
+		self.refreshTimer1 = C_Timer.After(1, function()
+			self:_Refresh()
+		end)
+		self.refreshTimer2 = C_Timer.After(2, function()
+			self:_Refresh()
+		end)
+		self.refreshTimer3 = C_Timer.After(3, function()
 			self:_Refresh()
 		end)
 	end
