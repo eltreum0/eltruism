@@ -191,6 +191,7 @@ P.ElvUI_EltreumUI = {
 			tts = false,
 			ttsvoice = nil,
 		},
+		ilvltooltip = true,
 	},
 
 	cursors = {

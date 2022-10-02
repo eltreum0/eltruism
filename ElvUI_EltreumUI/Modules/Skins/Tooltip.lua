@@ -1,20 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
-
---add item level to tooltip
-if not E.Retail then
-	local _,itemLink,itemLevel, classID
-	GameTooltip:HookScript("OnTooltipSetItem", function(tooltip)
-		_, itemLink = tooltip:GetItem()
-		if (itemLink ~= nil) then
-			_, _, _, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(itemLink)
-			if itemLevel and (classID == 2 or classID == 4)then
-				tooltip:AddLine(string.format(ITEM_LEVEL, itemLevel))
-			end
-		end
-	end)
-end
+local TT = E:GetModule('Tooltip')
 
 --gradient tooltip health
 local function SetTooltipGradient(unit)
@@ -68,9 +55,11 @@ local function SetTooltipGradient(unit)
 	end
 end
 
-local TT = E:GetModule('Tooltip')
-function ElvUI_EltreumUI:GradientTooltip(tt, unit)
+--skin tooltip
+function ElvUI_EltreumUI:Tooltip(tt, unit)
 	if tt and tt:IsForbidden() then return end
+
+	--gradient
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.private.tooltip.enable then
 		local _, fixunit = _G.GameTooltip:GetUnit()
 		SetTooltipGradient(fixunit)
@@ -84,6 +73,25 @@ function ElvUI_EltreumUI:GradientTooltip(tt, unit)
 			self.isHooked = true
 		end
 	end
+
+	--ilvl tooltip
+	if E.db.ElvUI_EltreumUI.skins.ilvltooltip then
+		if not E.Retail and not self.ilvlHook then
+			local _,itemLink,itemLevel, classID
+			GameTooltip:HookScript("OnTooltipSetItem", function(tooltip)
+				_, itemLink = tooltip:GetItem()
+				if (itemLink ~= nil) then
+					_, _, _, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(itemLink)
+					if itemLevel and (classID == 2 or classID == 4)then
+						tooltip:AddLine(string.format(ITEM_LEVEL, itemLevel))
+					end
+				end
+			end)
+			print("test12313123123")
+			self.ilvlHook = true
+		end
+	end
+
 end
-hooksecurefunc(TT, 'AddTargetInfo', ElvUI_EltreumUI.GradientTooltip)
-hooksecurefunc(TT, 'GameTooltip_OnTooltipSetUnit', ElvUI_EltreumUI.GradientTooltip)
+hooksecurefunc(TT, 'AddTargetInfo', ElvUI_EltreumUI.Tooltip)
+hooksecurefunc(TT, 'GameTooltip_OnTooltipSetUnit', ElvUI_EltreumUI.Tooltip)
