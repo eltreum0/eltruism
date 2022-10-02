@@ -37,6 +37,10 @@ local ITEM_MOD_HIT_MELEE_RATING_SHORT = _G.ITEM_MOD_HIT_MELEE_RATING_SHORT
 local STAT_CATEGORY_ENHANCEMENTS = _G.STAT_CATEGORY_ENHANCEMENTS
 local ITEM_MOD_SPELL_PENETRATION_SHORT = _G.ITEM_MOD_SPELL_PENETRATION_SHORT
 local CR_RESILIENCE_CRIT_TAKEN = _G.CR_RESILIENCE_CRIT_TAKEN
+local CR_CRIT_TAKEN_MELEE = _G.CR_CRIT_TAKEN_MELEE
+local CR_CRIT_TAKEN_RANGED = _G.CR_CRIT_TAKEN_RANGED
+local CR_CRIT_TAKEN_SPELL = _G.CR_CRIT_TAKEN_SPELL
+local GetCombatRating = _G.GetCombatRating
 local GetCombatRatingBonus = _G.GetCombatRatingBonus
 local GetSpellBonusDamage = _G.GetSpellBonusDamage
 local GetVersatilityBonus = _G.GetVersatilityBonus
@@ -132,6 +136,12 @@ local function EltruismStatsDatatextOnEnter()
 		DT.tooltip:ClearLines()
 		DT.tooltip:AddDoubleLine(basestatlabel..":", ElvUI[1].media.hexvaluecolor..currentstat.."|r ".."(|cffFFFFFF"..(basestat-statbuff+statnerf).."|r + |cff09ff00"..statbuff.."|r - |cfff44336"..statnerf.."|r)",1,1,1)
 
+		--resilience
+		local meleeres = GetCombatRating(CR_CRIT_TAKEN_MELEE)
+		local rangedres = GetCombatRating(CR_CRIT_TAKEN_RANGED)
+		local spellres = GetCombatRating(CR_CRIT_TAKEN_SPELL)
+		local minResilience = math.min(meleeres, rangedres,spellres)
+
 		--add line here
 		DT.tooltip:AddLine(' ')
 		if E.myclass == "HUNTER" then
@@ -199,7 +209,7 @@ local function EltruismStatsDatatextOnEnter()
 			DT.tooltip:AddDoubleLine(ITEM_MOD_ARMOR_PENETRATION_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetArmorPenetration()).."|r",1,1,1)
 			DT.tooltip:AddDoubleLine(STAT_EXPERTISE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetExpertise()*0.25).."|r", 1, 1, 1)
 		end
-		DT.tooltip:AddDoubleLine(STAT_RESILIENCE..":", ElvUI[1].media.hexvaluecolor..GetCombatRating(CR_RESILIENCE_CRIT_TAKEN).."|r", 1, 1, 1)
+		DT.tooltip:AddDoubleLine(STAT_RESILIENCE..":", ElvUI[1].media.hexvaluecolor..minResilience.."|r", 1, 1, 1)
 		DT.tooltip:Show()
 	end
 end
