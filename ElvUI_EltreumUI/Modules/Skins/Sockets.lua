@@ -1328,7 +1328,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		-- Setup timers to update over the next period of time. This can probably be done smarter, but I don't know lua :D
 
 		-- Cancel any refresh timers
-		--[[if self.refreshTimer0 ~= nil then
+		if self.refreshTimer0 ~= nil then
 			self.refreshTimer0:Cancel()
 			self.refreshTimer0 = nil
 		end
@@ -1347,7 +1347,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		self:_Refresh()
 
 
-		self.refreshTimer0 = C_Timer.NewTimer(0.1, function()
+		--[[self.refreshTimer0 = C_Timer.NewTimer(0.1, function()
 			self:_Refresh()
 		end)
 		self.refreshTimer1 = C_Timer.NewTimer(1, function()
