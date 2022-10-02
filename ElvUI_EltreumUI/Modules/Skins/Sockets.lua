@@ -536,6 +536,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[4217] = 93448, -- Pyrium Weapon Chain
 		[4222] = 67839, -- Mind Amplification Dish
 		[4223] = 55016, -- Nitro Boosts
+		[3606] = 55016, -- Nitro Boosts
 		[4227] = 95471, -- +$k1 Agility
 		[4245] = 96245, -- +$k1 Intellect and +$k2 PvP Resilience
 		[4246] = 96246, -- +$k1 Agility and +$k2 PvP Resilience
