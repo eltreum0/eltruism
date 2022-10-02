@@ -707,7 +707,6 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 			if not _G.PallyPowerFrame.shadow then
 				_G.PallyPowerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				_G.PallyPowerFrame.shadow:SetParent(_G.PallyPowerC1)
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PallyPowerFrame.shadow) end
 			end
 			if _G.PallyPowerFrame.shadow then
 				if _G.PallyPowerC1 and _G.PallyPowerC1:IsShown() then
@@ -870,6 +869,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 					end
 					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC10, "BOTTOMRIGHT",3,-3)
 				end
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PallyPowerFrame.shadow) end
 			end
 		end
 
