@@ -350,6 +350,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						[28160] = true, --free teleport guy for wrath to scholazar
 						[26673] = true, --magical kingdom of dalaran alliance free tp to dalaran
 						[29155] = true, --magical kingdom of dalaran horde free tp to dalaran
+						[29156] = true, --magical kingdom of dalaran free tp to dalaran
 					}
 					if ignoredNPCS[NPC_ID] then
 						if E.db.ElvUI_EltreumUI.dev then
