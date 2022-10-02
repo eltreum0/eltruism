@@ -40,6 +40,7 @@
 	<Script file='Skins/Stealth.lua'/>
 	<Script file='Skins/Gradient.lua'/>
 	<Script file='Skins/GradientPower.lua'/>
+	<Script file='Skins/Tooltip.lua'/>
 	<Script file='Skins/Unitframes.lua'/>
 	<Script file='Skins/Castbar.lua'/>
 	<Script file='Skins/Models.lua'/>

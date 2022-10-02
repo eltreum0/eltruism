@@ -9175,7 +9175,6 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.colormodkey end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.colormodkey = value end,
 							},
-
 							cdcolorheader = {
 								order = 98,
 								type = "description",
@@ -9191,6 +9190,22 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Sets Cooldowns to be Class Colored"],
 								get = function() return E.db.ElvUI_EltreumUI.skins.classcolorcooldowns end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classcolorcooldowns = value ElvUI_EltreumUI:CooldownColors() end,
+							},
+							headerilvltooltip = {
+								order = 100,
+								type = "description",
+								name = E.NewSign..L["Item Level on Tooltip"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							ilvltooltip = {
+								order = 101,
+								type = 'toggle',
+								name = L["Enable"],
+								width = 'full',
+								desc = L["Shows Item Level on Tooltips"],
+								get = function() return E.db.ElvUI_EltreumUI.skins.ilvltooltip end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvltooltip = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							headerroleicon = {
 								order = 161,

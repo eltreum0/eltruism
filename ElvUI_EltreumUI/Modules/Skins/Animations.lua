@@ -73,7 +73,7 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 			scaleOut:SetDuration(5)
 			scaleOut:SetStartDelay(0.1)
 			scaleOut:SetSmoothing("OUT")
-			scaleOut:SetFromScale(1, 1)
+			scaleOut:SetFromScale(1, 1)  --TODO DRAGONFLIGHT
 			scaleOut:SetToScale(2, 2)
 			moveOut:SetOrder(1)
 			moveOut:SetDuration(5)

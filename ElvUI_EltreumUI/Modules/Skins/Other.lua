@@ -78,20 +78,6 @@ function E:UpdateBackdropColors()
 	end
 end]]
 
---add item level to tooltip
-if not E.Retail then
-	local _,itemLink,itemLevel, classID
-	GameTooltip:HookScript("OnTooltipSetItem", function(tooltip)
-		_, itemLink = tooltip:GetItem()
-		if (itemLink ~= nil) then
-			_, _, _, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(itemLink)
-			if itemLevel and (classID == 2 or classID == 4)then
-				tooltip:AddLine(string.format(ITEM_LEVEL, itemLevel))
-			end
-		end
-	end)
-end
-
 --gradient misc
 function ElvUI_EltreumUI:GradientMirrorLoot()
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then

@@ -1215,3 +1215,6 @@ L["Cardinal Text Offset"] = "Himmelsrichtungstext Versatz"
 L["You have another Nameplate Addon installed and loaded, and many nameplate features will not work with it"] = "Du hast ein anderes Namensschild Addon installiert und geladen, und viele Namensschild Funktionen funktionieren damit nicht."
 L["Reset Nameplate Style Filters"] = "Einheitsfenster Stilfilter zurücksetzen"
 L["Enable adding more functions to ElvUI Chat"] = "Hinzufügen weiterer Funktionen zum ElvUI Chat aktivieren"
+L["Shows the current stance"] = true
+L["Item Level on Tooltip"] = true
+L["Shows Item Level on Tooltips"] = true
