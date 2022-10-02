@@ -875,7 +875,7 @@ function ElvUI_EltreumUI:AuraBarTexture(unit, bar, _, _, _, _, debuffType, isSte
 		bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not bar.shadow then
 			bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			if EnhancedShadows then EnhancedShadows:RegisterShadow(bar.shadow) end
+			--if EnhancedShadows then EnhancedShadows:RegisterShadow(bar.shadow) end
 			bar.shadow:ClearAllPoints()
 			bar.shadow:SetPoint("TOPLEFT", bar.icon, "TOPLEFT", -3,3)
 			bar.shadow:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT",3,-3)
