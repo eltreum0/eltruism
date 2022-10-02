@@ -87,7 +87,6 @@ function ElvUI_EltreumUI:Tooltip(tt, unit)
 					end
 				end
 			end)
-			print("test12313123123")
 			self.ilvlHook = true
 		end
 	end
