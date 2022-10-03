@@ -1304,6 +1304,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 			refreshTimer1 = nil,
 			refreshTimer2 = nil,
 		}
+		--could check professions here
 		setmetatable(instance, SlotIconManagerMetaTable)
 		instance:Init()
 		return instance
