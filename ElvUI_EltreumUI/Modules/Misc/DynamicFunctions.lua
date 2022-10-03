@@ -146,37 +146,45 @@ local models = {
 --set portrait rotation based on target being npc or not
 function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 	if E.db.ElvUI_EltreumUI.unitframes.portraitfix and E.private.unitframe.enable then
-		if UnitExists("target") then
+		if UnitExists("target") and _G["ElvUF_Target"] then
+			E:Delay(0, function()
 
-			if _G["ElvUF_Target"] and _G["ElvUF_Target"].Portrait3D then
-				targetmodel = _G["ElvUF_Target"].Portrait3D:GetModelFileID()
-				if targetmodel == nil then
-					targetmodel = 118355
+				--get the model id
+				if _G["ElvUF_Target"].Portrait3D then
+					targetmodel = _G["ElvUF_Target"].Portrait3D:GetModelFileID()
+				else
+					targetmodel = "NotYetObtained"
 				end
-			else
-				targetmodel = 000
-			end
 
-			--fix camera rotation
-			if UnitIsPlayer("target") then
-				E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
-			else
-
-				if UnitCreatureType("target") == "Humanoid" or models[targetmodel] then
+				--fix camera rotation
+				if UnitIsPlayer("target") then
 					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 				else
-					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
+					if targetmodel and targetmodel ~= "NotYetObtained" then
+						if UnitCreatureType("target") == "Humanoid" or models[targetmodel] then
+							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
+						else
+							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
+						end
+					else
+						if UnitCreatureType("target") == "Humanoid" then
+							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
+						else
+							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
+						end
+					end
 				end
-			end
 
-			--pause if dead
-			if UnitIsDead("target") then
-				E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = true
-				E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 1
-			else
-				E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = false
-				E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 0
-			end
+				--pause if dead
+				if UnitIsDead("target") then
+					E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = true
+					E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 1
+				else
+					E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = false
+					E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 0
+				end
+				_G["ElvUF_Target"].Portrait3D:ForceUpdate()
+			end)
 		end
 	end
 end
