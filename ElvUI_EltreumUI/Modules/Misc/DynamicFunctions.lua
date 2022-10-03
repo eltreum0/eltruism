@@ -10,7 +10,7 @@ local HasNewMail = _G.HasNewMail
 local PlaySoundFile = _G.PlaySoundFile
 local C_Timer = _G.C_Timer
 local _, instanceType
-local level
+local level, targetmodel
 
 --character models
 local models = {
@@ -148,9 +148,13 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 	if E.db.ElvUI_EltreumUI.unitframes.portraitfix and E.private.unitframe.enable then
 		if UnitExists("target") then
 
-			local targetmodel = _G["ElvUF_Target"].Portrait3D:GetModelFileID()
-			if targetmodel == nil then
-				targetmodel = 118355
+			if _G["ElvUF_Target"] and _G["ElvUF_Target"].Portrait3D then
+				targetmodel = _G["ElvUF_Target"].Portrait3D:GetModelFileID()
+				if targetmodel == nil then
+					targetmodel = 118355
+				end
+			else
+				targetmodel = 000
 			end
 
 			--fix camera rotation
