@@ -394,6 +394,8 @@ P.ElvUI_EltreumUI = {
 		questitems = false,
 		questitemsbar1 = false,
 		questitemsize = 36,
+		questitemsizey = 36,
+		questitemspacing = 2,
 		questitemsfade = false,
 	},
 
