@@ -8,12 +8,17 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 -- Set version & reload on "Finished"
 local function InstallComplete()
 	E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
+	E.private.ElvUI_EltreumUI.skippedcheck = nil
 	ReloadUI()
 end
 
 -- Set version & reload on "Skip"
 local function SkipInstallComplete()
 	E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
+	if E.private.ElvUI_EltreumUI.skippedcheck then
+		E.private.ElvUI_EltreumUI.skippedcheck = nil
+		E.private.install_complete = nil --reset so that elvui install pops up again in case they didnt run it
+	end
 	E.private.ElvUI_EltreumUI.isInstalled.sle = true
 	E.private.ElvUI_EltreumUI.isInstalled.windtools = true
 	E.private.ElvUI_EltreumUI.isInstalled.projectazilroka = true

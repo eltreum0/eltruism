@@ -340,15 +340,19 @@ function ElvUI_EltreumUI:QuestItem()
 						if self.shownItems ~= 1 then
 							if (self.shownItems % 2) == 0 then
 								if xOfs >= 0 then
-									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
+									--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
+									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2)-(E.db.ElvUI_EltreumUI.quests.questitemspacing *(self.shownItems-1)/2), yOfs)
 								elseif xOfs < 0 then
-									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
+									--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
+									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2)+(E.db.ElvUI_EltreumUI.quests.questitemspacing *(self.shownItems-1)/2), yOfs)
 								end
 							else
 								if xOfs >= 0 then
-									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize+1))/2), yOfs)
+									--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize+1))/2), yOfs)
+									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(E.db.ElvUI_EltreumUI.quests.questitemspacing *(self.shownItems-1)/2)-(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize+1))/2), yOfs)
 								elseif xOfs < 0 then
-									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize-1))/2), yOfs)
+									--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize-1))/2), yOfs)
+									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(E.db.ElvUI_EltreumUI.quests.questitemspacing *(self.shownItems-1)/2)+(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize-1))/2), yOfs)
 								end
 							end
 						else
@@ -389,7 +393,7 @@ function ElvUI_EltreumUI:QuestItem()
 			local function CreateItemButton()
 				local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"SecureActionButtonTemplate")
 				b:CreateBackdrop('Transparent')
-				b:SetSize(E.db.ElvUI_EltreumUI.quests.questitemsize,E.db.ElvUI_EltreumUI.quests.questitemsize)
+				b:SetSize(E.db.ElvUI_EltreumUI.quests.questitemsize,E.db.ElvUI_EltreumUI.quests.questitemsizey)
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 					if not b.shadow then
 						b:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -490,7 +494,23 @@ function ElvUI_EltreumUI:QuestItem()
 				local _, _, _, _, _, _, _, _, _, itemTexture, _, _ = GetItemInfo(link)
 				--print(link,index)
 				btn.icon:SetTexture(itemTexture)
-				btn.icon:SetTexCoord(0.08,0.92,0.08,0.92)
+				--btn.icon:SetTexCoord(0.08,0.92,0.08,0.92)
+				--btn.icon:SetTexCoord(unpack(E.TexCoords))
+
+				--from elvui trim action bar button
+				local left, right, top, bottom = 0.08,0.92,0.08,0.92
+				local width, height = btn:GetSize()
+				local ratio = width / height
+				if ratio > 1 then
+					local trimAmount = (1 - (1 / ratio)) * 0.5
+					top = top + trimAmount
+					bottom = bottom - trimAmount
+				else
+					local trimAmount = (1 - ratio) * 0.5
+					left = left + trimAmount
+					right = right - trimAmount
+				end
+				btn.icon:SetTexCoord(left, right, top, bottom)
 				btn.count:SetText(count and count > 1 and count or "")
 
 				btn.link = link
@@ -501,7 +521,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 				if (index > 1) then
 					btn:ClearAllPoints()
-					btn:SetPoint("LEFT",EltruismQuestItemFrame.items[index - 1],"RIGHT",2,0)
+					btn:SetPoint("LEFT", EltruismQuestItemFrame.items[index - 1], "RIGHT", E.db.ElvUI_EltreumUI.quests.questitemspacing, 0) --CONTROLS SPACING ????
 				end
 				btn:Show()
 

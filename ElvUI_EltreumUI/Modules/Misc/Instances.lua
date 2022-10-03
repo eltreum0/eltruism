@@ -34,10 +34,20 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 		instancedifficulty.Text:SetPoint("CENTER", _G["MoverEltruismInstanceDifficulty"])
 		instancedifficulty.Text:SetParent(Minimap)
 		local DifficultyID = select(3, GetInstanceInfo()) --https://wowpedia.fandom.com/wiki/DifficultyID
+
+
 		if DifficultyID == 1 then
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonNormal)
 		elseif DifficultyID == 2 then
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroic)
+		elseif DifficultyID == 3 then --10man wrath
+			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.Raid10)
+		elseif DifficultyID == 4 then --25man wrath
+			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.Raid25)
+		elseif DifficultyID == 5 then --10man heroic wrath
+			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.Raid10Heroic)
+		elseif DifficultyID == 6 then --25man heroic wrath
+			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.Raid25Heroic)
 		elseif DifficultyID == 23 then
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonMythic)
 		elseif DifficultyID == 8 then
@@ -49,9 +59,9 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			end
 		elseif DifficultyID == 24 then
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalker)
-		elseif DifficultyID == 3 or DifficultyID == 4 or DifficultyID == 9 or DifficultyID == 14 or DifficultyID == 173 then
+		elseif DifficultyID == 9 or DifficultyID == 14 or DifficultyID == 173 then
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.Raid)
-		elseif DifficultyID == 5 or DifficultyID == 6 or DifficultyID == 174 or DifficultyID == 15 or DifficultyID == 148 or DifficultyID == 175 or DifficultyID == 176 then
+		elseif DifficultyID == 174 or DifficultyID == 15 or DifficultyID == 148 or DifficultyID == 175 or DifficultyID == 176 then
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.RaidHeroic)
 		elseif DifficultyID == 16 then
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.MythicRaid)
@@ -63,6 +73,11 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			--print("unknown instance type")
 			--instancedifficulty.Text:SetText(DifficultyID)
 		end
+
+
+
+
+
 		if E.Retail then
 			if _G["MiniMapInstanceDifficulty"] and (_G["MiniMapInstanceDifficulty"]:IsShown() == true or _G["MiniMapInstanceDifficulty"]:GetAlpha() == 1) then
 				_G["MiniMapInstanceDifficulty"]:SetAlpha(0)
