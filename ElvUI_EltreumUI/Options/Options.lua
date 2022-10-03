@@ -8710,7 +8710,6 @@ function ElvUI_EltreumUI:Configtable()
 						name = L["Raid (Normal)"],
 						desc = L["The text displayed when in a normal raid"],
 						--width = 'double',
-						hidden = E.Wrath,
 						disabled = function() return (not E.db.ElvUI_EltreumUI.skins.instances.enable) end,
 						get = function() return E.db.ElvUI_EltreumUI.skins.instances.Raid end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.skins.instances.Raid = tostring(value) E:StaticPopup_Show('PRIVATE_RL') end,
