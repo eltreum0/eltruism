@@ -12,28 +12,154 @@ local C_Timer = _G.C_Timer
 local _, instanceType
 local level
 
+--character models
+local models = {
+	[118355] = true, --dwarf male
+	[118135] = true, --dwarf female
+	[1838560] = true, --dwarfmale_hd_sdr.m2
+	[1838562] = true, --dwarffemale_hd_sdr.m2
+	[878772] = true, --dwarfmale_hd.m2
+	[950080] = true, --dwarffemale_hd.m2
+	[116921] = true, --"bloodelffemale.m2",
+	[1100258] = true, --"bloodelffemale_hd.m2",
+	[1839709] = true, --"bloodelffemale_hd_sdr.m2",
+	[117170] = true, --"bloodelfmale.m2",
+	[1100087] = true, --"bloodelfmale_hd.m2",
+	[1853408] = true, --"bloodelfmale_hd_sdr.m2",
+	[1890763] = true, --"darkirondwarffemale.m2",
+	[1892825] = true, --"darkirondwarffemale_sdr.m2",
+	[1890765] = true, --"darkirondwarfmale.m2",
+	[1892543] = true, --"darkirondwarfmale_sdr.m2",
+	[117437] = true, --"draeneifemale.m2",
+	[1022598] = true, --"draeneifemale_hd.m2",
+	[1822372] = true, --"draeneifemale_hd_sdr.m2",
+	[117721] = true, --"draeneimale.m2",
+	[1005887] = true, --"draeneimale_hd.m2",
+	[1839253] = true, --"draeneimale_hd_sdr.m2",
+	[119063] = true, --"gnomefemale.m2",
+	[940356] = true, --"gnomefemale_hd.m2",
+	[1838564] = true, --"gnomefemale_hd_sdr.m2",
+	[119159] = true, --"gnomemale.m2",
+	[900914] = true, --"gnomemale_hd.m2",
+	[1838566] = true, --"gnomemale_hd_sdr.m2",
+	[119369] = true, --"goblinfemale.m2",
+	[1838568] = true, --"goblinfemale_sdr.m2",
+	[119376] = true, --"goblinmale.m2",
+	[1838570] = true, --"goblinmale_sdr.m2",
+	[1630402] = true, --"highmountaintaurenfemale.m2",
+	[1859379] = true, --"highmountaintaurenfemale_sdr.m2",
+	[1630218] = true, --"highmountaintaurenmale.m2",
+	[1858265] = true, --"highmountaintaurenmale_sdr.m2",
+	[119563] = true, --"humanfemale.m2",
+	[1000764] = true, --"humanfemale_hd.m2",
+	[1838572] = true, --"humanfemale_hd_sdr.m2",
+	[1842700] = true, --"humanfemale_sdr.m2",
+	[119940] = true, --"humanmale.m2",
+	[1011653] = true, --"humanmale_hd.m2",
+	[1838385] = true, --"humanmale_hd_sdr.m2",
+	[1886724] = true, --"kultiranfemale.m2",
+	[1721003] = true, --"kultiranmale.m2",
+	[1593999] = true, --"lightforgeddraeneifemale.m2",
+	[1825438] = true, --"lightforgeddraeneifemale_sdr.m2",
+	[1620605] = true, --"lightforgeddraeneimale.m2",
+	[1839042] = true, --"lightforgeddraeneimale_sdr.m2",
+	[2564806] = true, --"mechagnomefemale.m2",
+	[2622502] = true, --"mechagnomemale.m2",
+	[1810676] = true, --"nightbornefemale.m2",
+	[1858099] = true, --"nightbornefemale_sdr.m2",
+	[1814471] = true, --"nightbornemale.m2",
+	[1857801] = true, --"nightbornemale_sdr.m2",
+	[120590] = true, --"nightelffemale.m2",
+	[921844] = true, --"nightelffemale_hd.m2",
+	[1838574] = true, --"nightelffemale_hd_sdr.m2",
+	[120791] = true, --"nightelfmale.m2",
+	[974343] = true, --"nightelfmale_hd.m2",
+	[1838576] = true, --"nightelfmale_hd_sdr.m2",
+	[121087] = true, --"orcfemale.m2",
+	[949470] = true, --"orcfemale_hd.m2",
+	[1838580] = true, --"orcfemale_hd_sdr.m2",
+	[121287] = true, --"orcmale.m2",
+	[917116] = true, --"orcmale_hd.m2",
+	[1838578] = true, --"orcmale_hd_sdr.m2",
+	[1968587] = true, --"orcmaleupright.m2",
+	[1968838] = true, --"orcmaleupright_sdr.m2",
+	[1087591] = true, --"orcfemale_hd_shadowmoon.m2",
+	[1088030] = true, --"orcmale_hd_shadowmoon.m2",
+	[589715] = true, --"pandarenfemale.m2",
+	[1853610] = true, --"pandarenfemale_sdr.m2",
+	[535052] = true, --"pandarenmale.m2",
+	[1853956] = true, --"pandarenmale_sdr.m2",
+	[121608] = true, --"scourgefemale.m2",
+	[997378] = true, --"scourgefemale_hd.m2",
+	[1838582] = true, --"scourgefemale_hd_sdr.m2",
+	[121768] = true, --"scourgemale.m2",
+	[959310] = true, --"scourgemale_hd.m2",
+	[1838584] = true, --"scourgemale_hd_sdr.m2",
+	[233878] = true, --"taunkamale.m2",
+	[121961] = true, --"taurenfemale.m2",
+	[986648] = true, --"taurenfemale_hd.m2",
+	[1839008] = true, --"taurenfemale_hd_sdr.m2",
+	[122055] = true, --"taurenmale.m2",
+	[968705] = true, --"taurenmale_hd.m2",
+	[1838586] = true, --"taurenmale_hd_sdr.m2",
+	[122414] = true, --"trollfemale.m2",
+	[1018060] = true, --"trollfemale_hd.m2",
+	[1838588] = true, --"trollfemale_hd_sdr.m2",
+	[122560] = true, --"trollmale.m2",
+	[1022938] = true, --"trollmale_hd.m2",
+	[1838590] = true, --"trollmale_hd_sdr.m2",
+	[1733758] = true, --"voidelffemale.m2",
+	[1859345] = true, --"voidelffemale_sdr.m2",
+	[1734034] = true, --"voidelfmale.m2",
+	[1858367] = true, --"voidelfmale_sdr.m2",
+	[1890759] = true, --"vulperafemale.m2",
+	[1890761] = true, --"vulperamale.m2",
+	[307453] = true, --"worgenfemale.m2",
+	[1838201] = true, --"worgenfemale_sdr.m2",
+	[307454] = true, --"worgenmale.m2",
+	[1838592] = true, --"worgenmale_sdr.m2",
+	[1662187] = true, --"zandalaritrollfemale.m2",
+	[1894572] = true, --"zandalaritrollfemale_sdr.m2",
+	[1630447] = true, --"zandalaritrollmale.m2",
+	[1900779] = true, --"zandalaritrollmale_sdr.m2",
+
+	--not sure about these
+	[117400] = true, --"brokenfemale.m2",
+	[117412] = true, --"brokenmale.m2",
+	[118652] = true, --"felorcfemale.m2",
+	[118653] = true, --"felorcmale.m2",
+	[118654] = true, --"felorcmaleaxe.m2",
+	[118667] = true, --"felorcmalesword.m2",
+	[118798] = true, --"foresttrollmale.m2",
+	[1006221] = true, --"humanmaletransform_hd.m2",
+	[232863] = true, --"icetrollmale.m2",
+	[120263] = true, --"naga_female.m2",
+	[120294] = true, --"naga_male.m2",
+	[121941] = true, --"skeletonfemale.m2",
+	[121942] = true, --"skeletonmale.m2",
+	[233367] = true, --"northrendskeletonmale.m2",
+	[1793470] = true, --"thinhumanmale.m2",
+	[122815] = true, --"vrykulmale.m2",
+	[122738] = true, --"tuskarrmale.m2",
+}
+
 --set portrait rotation based on target being npc or not
 function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 	if E.db.ElvUI_EltreumUI.unitframes.portraitfix and E.private.unitframe.enable then
 		if UnitExists("target") then
 
+			local targetmodel = _G["ElvUF_Target"].Portrait3D:GetModelFileID()
+			if targetmodel == nil then
+				targetmodel = 118355
+			end
+
 			--fix camera rotation
 			if UnitIsPlayer("target") then
 				E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 			else
-				--print(_G["ElvUF_Target"].Portrait3D:GetModelFileID() ) -- actually prints
-				--_G["ElvUF_Target"].Portrait3D:SetCamera(1)
-				--E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
-				--_G["ElvUF_Target"].Portrait3D:GetModelFileID()
-				--_G["ElvUF_Target"].Portrait3D:SetPosition(0, 0, 0)
-				--_G["ElvUF_Target"].Portrait3D:SetCamDistanceScale(1)
-				--_G["ElvUF_Target"].Portrait3D:SetPortraitZoom(.85)
-				if UnitCreatureType("target") == "Humanoid" then
+
+				if UnitCreatureType("target") == "Humanoid" or models[targetmodel] then
 					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
-				--[[elseif UnitCreatureType("target") == "Mechanical" then
-					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
-				elseif UnitCreatureType("target") == "Demon" then
-					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291]]
 				else
 					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
 				end
