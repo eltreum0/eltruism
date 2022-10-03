@@ -811,7 +811,7 @@ mailsoundframe:SetScript("OnEvent", function()
 
 		if E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" and E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice ~= nil then
 			--C_VoiceChat.SpeakText(voiceID, text, destination, rate, volume)
-			C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext, Enum.VoiceTtsDestination.LocalPlayback, 0, 100)
+			C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
 		elseif E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "sharedmedia" then
 			PlaySoundFile(E.LSM:Fetch("sound", E.db.ElvUI_EltreumUI.otherstuff.mailsound) , "Master")
 		end

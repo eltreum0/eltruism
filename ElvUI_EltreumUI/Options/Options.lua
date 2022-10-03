@@ -3012,17 +3012,29 @@ function ElvUI_EltreumUI:Configtable()
 						style = 'radio',
 						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable or not E.db.ElvUI_EltreumUI.skins.doom.tts end,
 						get = function() return E.db.ElvUI_EltreumUI.skins.doom.ttsvoice end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.ttsvoice = tonumber(value) C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, 100) end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.ttsvoice = tonumber(value) C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume) end,
+					},
+					volume = {
+						type = 'range',
+						name = VOLUME,
+						order = 103,
+						min = 1,
+						max = 100,
+						step = 1,
+						width = "full",
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable or not E.db.ElvUI_EltreumUI.skins.doom.tts end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.ttsvolume end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.ttsvolume = value end,
 					},
 					previewgap = {
-						order = 103,
+						order = 104,
 						type = "description",
 						name = PREVIEW,
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
 					preview ={
-						order = 104,
+						order = 105,
 						type = "execute",
 						name = PREVIEW,
 						width = 'full',
@@ -7625,7 +7637,7 @@ function ElvUI_EltreumUI:Configtable()
 						set = function(_, value)
 							E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext = tostring(value)
 							if E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice ~= nil then
-								C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, tostring(value) , Enum.VoiceTtsDestination.LocalPlayback, 0, 100)
+								C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, tostring(value) , Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
 							end
 						end,
 					},
@@ -7656,11 +7668,23 @@ function ElvUI_EltreumUI:Configtable()
 						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or not E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" end,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice = tonumber(value)
-							C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, 100)
+							C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
 						end,
 					},
-					header15 = {
+					volume = {
+						type = 'range',
+						name = VOLUME,
 						order = 94,
+						min = 1,
+						max = 100,
+						step = 1,
+						width = "full",
+						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or not E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" end,
+						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume = value end,
+					},
+					header15 = {
+						order = 95,
 						type = "description",
 						name = L["Blizzard Floating Combat Text"],
 						width = 'full',
@@ -10537,7 +10561,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = value end,
 							},
 							enablegradient = {
 								order = 3,
@@ -10547,7 +10571,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							enablepower = {
 								order = 4,
@@ -10567,7 +10591,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							darklightmode = {
 								order = 96,

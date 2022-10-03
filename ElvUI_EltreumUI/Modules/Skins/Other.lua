@@ -353,119 +353,127 @@ SkinLocale()
 --SkinMeeting horn as asked by Neo
 function ElvUI_EltreumUI:EltruismMeetingHorn()
 	if E.db.ElvUI_EltreumUI.skins.meetinghorn then
-		S:HandleFrame(_G.MeetingHornMainPanel)
-		_G.MeetingHornMainPanel:SetTemplate('Transparent', nil, true)
 
-		if not _G.MeetingHornMainPanel.shadow then
-			_G.MeetingHornMainPanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.MeetingHornMainPanel.shadow) end
+		local f = LibStub("AceAddon-3.0"):GetAddon("MeetingHorn")
+		S:HandleFrame(f.MainPanel)
+		f.MainPanel:SetTemplate('Transparent', nil, true)
+
+		if not f.MainPanel.shadow then
+			f.MainPanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			if EnhancedShadows then EnhancedShadows:RegisterShadow(f.MainPanel.shadow) end
+		end
+
+		if f.MainPanel.PortraitFrame then
+			f.MainPanel.PortraitFrame:Hide()
 		end
 
 		--search
-		S:HandleFrame(_G.MeetingHornMainPanel.Browser)
-		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Activity)
-		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Mode)
-		S:HandleFrame(_G.MeetingHornMainPanelScrollChild)
-		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header1)
-		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header2)
-		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header3)
-		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header4)
-		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header5)
-		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header6)
-		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header7)
-		S:HandleFrame(_G.MeetingHornMainPanel.Browser.Header8)
-		S:HandleEditBox(_G.MeetingHornMainPanel.Browser.Input)
-		S:HandleButton(_G.MeetingHornMainPanel.Browser.Refresh)
-		S:HandleButton(_G.MeetingHornMainPanel.Browser.Reset)
-
-		S:HandleScrollBar(_G.MeetingHornMainPanel.Browser.ActivityList.scrollBar)
+		S:HandleFrame(f.MainPanel.Browser)
+		S:HandleFrame(f.MainPanel.Browser.Activity)
+		S:HandleFrame(f.MainPanel.Browser.Mode)
+		S:HandleFrame(f.MainPanel.Browser.ActivityList.ScrollChild)
+		S:HandleFrame(f.MainPanel.Browser.Header1)
+		S:HandleFrame(f.MainPanel.Browser.Header2)
+		S:HandleFrame(f.MainPanel.Browser.Header3)
+		S:HandleFrame(f.MainPanel.Browser.Header4)
+		S:HandleFrame(f.MainPanel.Browser.Header5)
+		S:HandleFrame(f.MainPanel.Browser.Header6)
+		S:HandleFrame(f.MainPanel.Browser.Header7)
+		S:HandleFrame(f.MainPanel.Browser.Header8)
+		S:HandleEditBox(f.MainPanel.Browser.Input)
+		S:HandleButton(f.MainPanel.Browser.Refresh)
+		S:HandleButton(f.MainPanel.Browser.Reset)
+		S:HandleScrollBar(f.MainPanel.Browser.ActivityList.scrollBar)
 
 		--challenge
-		S:HandleFrame(_G.MeetingHornMainPanel.Challenge)
-		S:HandleButton(_G.MeetingHornMainPanel.Challenge.Body.Reward.Exchange)
-		S:HandleButton(_G.MeetingHornMainPanel.Browser.Refresh)
+		S:HandleFrame(f.MainPanel.Challenge)
+		S:HandleButton(f.MainPanel.Challenge.Body.Reward.Exchange)
+		S:HandleButton(f.MainPanel.Browser.Refresh)
 
 		--create
-		S:HandleFrame(_G.MeetingHornMainPanel.Manage)
-		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Creator)
-		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Creator.Activity)
-		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Creator.Mode)
-		S:HandleScrollBar(_G.MeetingHornMainPanel.Manage.Chat.ChatFrame.scrollBar)
-		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Creator.Comment)
-		S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.CreateButton)
-		S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.RecruitButton)
-		S:HandleButton(_G.MeetingHornMainPanel.Manage.Creator.CloseButton)
-		--_G.MeetingHornMainPanel.Manage.Creator.CloseButton.Texture:SetPoint("RIGHT", _G.MeetingHornMainPanel.Manage.Creator.CloseButton, "RIGHT")
-		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Chat)
-		S:HandleFrame(_G.MeetingHornMainPanel.Manage.Chat.ChatFrame)
-		_G.MeetingHornMainPanel.Manage.Chat.ChatBg:Hide()
-		_G.MeetingHornMainPanel.Manage.Creator.RecruitButton.RightSeparator:Hide()
-		_G.MeetingHornMainPanel.Manage.Creator.CreateButton.RightSeparator:Hide()
-		_G.MeetingHornMainPanel.Manage.Creator.CloseButton.Texture:Hide()
+		S:HandleFrame(f.MainPanel.Manage)
+		S:HandleFrame(f.MainPanel.Manage.Creator)
+		S:HandleFrame(f.MainPanel.Manage.Creator.Activity)
+		S:HandleFrame(f.MainPanel.Manage.Creator.Mode)
+		S:HandleScrollBar(f.MainPanel.Manage.Chat.ChatFrame.scrollBar)
+		S:HandleFrame(f.MainPanel.Manage.Creator.Comment)
+		S:HandleButton(f.MainPanel.Manage.Creator.CreateButton)
+		S:HandleButton(f.MainPanel.Manage.Creator.RecruitButton)
+		S:HandleButton(f.MainPanel.Manage.Creator.CloseButton)
+		f.MainPanel.Manage.Creator.CloseButton.Texture:SetPoint("RIGHT", f.MainPanel.Manage.Creator.CloseButton, "RIGHT")
+		S:HandleFrame(f.MainPanel.Manage.Chat)
+		S:HandleFrame(f.MainPanel.Manage.Chat.ChatFrame)
+		f.MainPanel.Manage.Chat.ChatBg:Hide()
+		f.MainPanel.Manage.Creator.RecruitButton.RightSeparator:Hide()
+		f.MainPanel.Manage.Creator.CreateButton.RightSeparator:Hide()
+		f.MainPanel.Browser.RechargeBtn.RightSeparator:Hide()
+		f.MainPanel.Browser.RechargeBtn.LeftSeparator:Hide()
+		f.MainPanel.Manage.Creator.CreateButton.RightSeparator:Hide()
+		f.MainPanel.Manage.Creator.CloseButton.Texture:Hide()
 
 		--leader
-		S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader)
-		S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First)
-		S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First.Footer)
-		S:HandleFrame(_G.MeetingHornMainPanel.GoodLeader.First.Header)
-		S:HandleButton(_G.MeetingHornMainPanel.GoodLeader.First.Header.ApplyLeaderBtn)
+		S:HandleFrame(f.MainPanel.GoodLeader)
+		S:HandleFrame(f.MainPanel.GoodLeader.First)
+		S:HandleFrame(f.MainPanel.GoodLeader.First.Footer)
+		S:HandleFrame(f.MainPanel.GoodLeader.First.Header)
+		S:HandleButton(f.MainPanel.GoodLeader.First.Header.ApplyLeaderBtn)
 
 		--announcement
-		--S:HandleFrame(_G.MeetingHornMainPanel.Announcement)
-		--S:HandleFrame(_G.MeetingHornMainPanel.Announcement.loading)
+		S:HandleFrame(f.MainPanel.Announcement)
+		S:HandleFrame(f.MainPanel.Announcement.loading)
 
 		--mission guidance
-		S:HandleFrame(_G.MeetingHornMainPanel.MissionGuidance)
+		S:HandleFrame(f.MainPanel.MissionGuidance)
 
 		--recent
-		S:HandleFrame(_G.MeetingHornMainPanel.Recent)
-		S:HandleFrame(_G.MeetingHornMainPanel.Recent.Left)
-		S:HandleFrame(_G.MeetingHornMainPanel.Recent.Right)
-		S:HandleFrame(_G.MeetingHornMainPanel.Recent.Members)
-		S:HandleFrame(_G.MeetingHornMainPanel.Recent.Instance)
-		S:HandleButton(_G.MeetingHornMainPanel.Recent.Invite)
-		_G.MeetingHornMainPanel.Recent.Invite.RightSeparator:Hide()
-		_G.MeetingHornMainPanel.Recent.Invite.LeftSeparator:Hide()
+		S:HandleFrame(f.MainPanel.Recent)
+		S:HandleFrame(f.MainPanel.Recent.Left)
+		S:HandleFrame(f.MainPanel.Recent.Right)
+		S:HandleFrame(f.MainPanel.Recent.Members)
+		S:HandleFrame(f.MainPanel.Recent.Instance)
+		S:HandleButton(f.MainPanel.Recent.Invite)
+		f.MainPanel.Recent.Invite.RightSeparator:Hide()
+		f.MainPanel.Recent.Invite.LeftSeparator:Hide()
 
 		--quest
-		S:HandleFrame(_G.MeetingHornMainPanel.Loading)
-		S:HandleFrame(_G.MeetingHornMainPanel.Quest)
-		S:HandleFrame(_G.MeetingHornMainPanel.Quest.Body)
-		--S:HandleFrame(_G.MeetingHornMainPanel.Quest.Body.Quests)
-		S:HandleButton(_G.MeetingHornMainPanel.Quest.Body.Refresh)
-		S:HandleScrollBar(_G.MeetingHornMainPanel.Quest.Body.Quests.scrollBar)
-		S:HandleFrame(_G.MeetingHornMainPanel.Quest.Summary)
+		S:HandleFrame(f.MainPanel.Loading)
+		S:HandleFrame(f.MainPanel.Quest)
+		S:HandleFrame(f.MainPanel.Quest.Body)
+		S:HandleFrame(f.MainPanel.Quest.Body.Quests)
+		S:HandleButton(f.MainPanel.Quest.Body.Refresh)
+		S:HandleScrollBar(f.MainPanel.Quest.Body.Quests.scrollBar)
+		S:HandleFrame(f.MainPanel.Quest.Summary)
 
 		--options
-		S:HandleFrame(_G.MeetingHornMainPanel.Options)
-		S:HandleFrame(_G.MeetingHornMainPanel.Options.Options)
-		S:HandleFrame(_G.MeetingHornMainPanel.Options.Filters)
-		S:HandleFrame(_G.MeetingHornMainPanel.Options.Filters.FilterList)
-		S:HandleScrollBar(_G.MeetingHornMainPanel.Options.Filters.FilterList.scrollBar)
+		S:HandleFrame(f.MainPanel.Options)
+		S:HandleFrame(f.MainPanel.Options.Options)
+		S:HandleFrame(f.MainPanel.Options.Filters)
+		S:HandleFrame(f.MainPanel.Options.Filters.FilterList)
+		S:HandleScrollBar(f.MainPanel.Options.Filters.FilterList.scrollBar)
 
-		S:HandleButton(_G.MeetingHornMainPanel.Options.Filters.Add)
-		S:HandleButton(_G.MeetingHornMainPanel.Options.Filters.Import)
-		S:HandleButton(_G.MeetingHornMainPanel.Options.Filters.Export)
+		S:HandleButton(f.MainPanel.Options.Filters.Add)
+		S:HandleButton(f.MainPanel.Options.Filters.Import)
+		S:HandleButton(f.MainPanel.Options.Filters.Export)
 
 		--main buttons
-		S:HandleButton(_G.MeetingHornMainPanel.Browser.RechargeBtn)
-		S:HandleButton(_G.MeetingHornMainPanel.Browser.ApplyLeaderBtn)
-		--S:HandleDropDownBox(_G.MeetingHornMainPanel.Browser.Activity)
-		--S:HandleDropDownBox(_G.MeetingHornMainPanel.Browser.Mode)
+		S:HandleButton(f.MainPanel.Browser.RechargeBtn)
+		S:HandleButton(f.MainPanel.Browser.ApplyLeaderBtn)
+		--S:HandleDropDownBox(f.MainPanel.Browser.Activity) --issue due to Button being MenuButton instead
+		--S:HandleDropDownBox(f.MainPanel.Browser.Mode) --same
+
+		S:HandleScrollBar(f.MainPanel.Manage.Creator.Comment.ScrollFrame.ScrollBar)
+		S:HandleScrollBar(f.MainPanel.MissionGuidance.MissionGuidanceScrollFrame.ScrollBar)
 
 		--feedback
-		S:HandleFrame(_G.MeetingHornMainPanel.FeedBack.EditBox)
-		S:HandleButton(_G.MeetingHornMainPanel.FeedBack.AcceptButton)
-		S:HandleButton(_G.MeetingHornMainPanel.FeedBack.CancelButton)
-
-		--portrait
-		_G.MeetingHornMainPanelPortraitFrame:Hide()
+		S:HandleFrame(f.MainPanel.FeedBack.EditBox)
+		S:HandleButton(f.MainPanel.FeedBack.AcceptButton)
+		S:HandleButton(f.MainPanel.FeedBack.CancelButton)
 
 		--help
-		S:HandleFrame(_G.MeetingHornMainPanel.Help)
+		S:HandleFrame(f.MainPanel.Help)
 
 		--bc the tab names are nil, gotta try to detect it
-		local header = _G["MeetingHornMainPanel"]
+		local header = f.MainPanel
 		for i = 1, header:GetNumChildren() do
 			local group = select(i, header:GetChildren())
 			if group and group:GetName() == nil then
@@ -478,9 +486,6 @@ function ElvUI_EltreumUI:EltruismMeetingHorn()
 				end
 			end
 		end
-
-		--idk why but it doesnt seem to skin
-		S:HandleScrollBar(_G.MeetingHornMainPanelScrollBar)
 	end
 end
 S:AddCallbackForAddon('MeetingHorn', 'EltruismMeetingHorn', ElvUI_EltreumUI.EltruismMeetingHorn)
@@ -707,7 +712,6 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 			if not _G.PallyPowerFrame.shadow then
 				_G.PallyPowerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				_G.PallyPowerFrame.shadow:SetParent(_G.PallyPowerC1)
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PallyPowerFrame.shadow) end
 			end
 			if _G.PallyPowerFrame.shadow then
 				if _G.PallyPowerC1 and _G.PallyPowerC1:IsShown() then
@@ -870,6 +874,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 					end
 					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC10, "BOTTOMRIGHT",3,-3)
 				end
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PallyPowerFrame.shadow) end
 			end
 		end
 
@@ -1141,3 +1146,4 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 		end
 	end
 end
+

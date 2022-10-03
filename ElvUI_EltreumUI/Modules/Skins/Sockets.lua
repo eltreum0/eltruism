@@ -536,6 +536,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[4217] = 93448, -- Pyrium Weapon Chain
 		[4222] = 67839, -- Mind Amplification Dish
 		[4223] = 55016, -- Nitro Boosts
+		[3606] = 55016, -- Nitro Boosts
 		[4227] = 95471, -- +$k1 Agility
 		[4245] = 96245, -- +$k1 Intellect and +$k2 PvP Resilience
 		[4246] = 96246, -- +$k1 Agility and +$k2 PvP Resilience
@@ -1323,6 +1324,10 @@ function ElvUI_EltreumUI:ClassicSockets()
 	end
 
 	function SlotIconManager:Refresh()
+
+		-- Both UNIT_INVENTORY_CHANGED and INSPECT_READY is called way before it is actually ready (~5-6 seconds early on inspect)
+		-- Setup timers to update over the next period of time. This can probably be done smarter, but I don't know lua :D
+
 		-- Cancel any refresh timers
 		if self.refreshTimer0 ~= nil then
 			self.refreshTimer0:Cancel()
@@ -1336,16 +1341,23 @@ function ElvUI_EltreumUI:ClassicSockets()
 			self.refreshTimer2:Cancel()
 			self.refreshTimer2 = nil
 		end
+		if self.refreshTimer3 ~= nil then
+			self.refreshTimer3:Cancel()
+			self.refreshTimer3 = nil
+		end
 		self:_Refresh()
-		-- Both UNIT_INVENTORY_CHANGED and INSPECT_READY is called way before it is actually ready (~5-6 seconds early on inspect)
-		-- Setup timers to update over the next period of time. This can probably be done smarter, but I don't know lua :D
-		--[[self.refreshTimer0 = C_Timer.NewTimer(2, function()
+
+
+		--[[self.refreshTimer0 = C_Timer.NewTimer(0.1, function()
 			self:_Refresh()
 		end)
-		self.refreshTimer1 = C_Timer.NewTimer(3, function()
+		self.refreshTimer1 = C_Timer.NewTimer(1, function()
 			self:_Refresh()
 		end)
-		self.refreshTimer2 = C_Timer.NewTimer(4, function() --possible source of hara's error
+		self.refreshTimer2 = C_Timer.NewTimer(2, function()
+			self:_Refresh()
+		end)
+		self.refreshTimer3 = C_Timer.NewTimer(3, function() --possible source of hara's error
 			self:_Refresh()
 		end)]]
 
@@ -1353,13 +1365,13 @@ function ElvUI_EltreumUI:ClassicSockets()
 		self.refreshTimer0 = C_Timer.After(0.1, function()
 			self:_Refresh()
 		end)
-		self.refreshTimer0 = C_Timer.After(2, function()
+		self.refreshTimer1 = C_Timer.After(1, function()
 			self:_Refresh()
 		end)
-		self.refreshTimer1 = C_Timer.After(3, function()
+		self.refreshTimer2 = C_Timer.After(2, function()
 			self:_Refresh()
 		end)
-		self.refreshTimer2 = C_Timer.After(4, function()
+		self.refreshTimer3 = C_Timer.After(3, function()
 			self:_Refresh()
 		end)
 	end
