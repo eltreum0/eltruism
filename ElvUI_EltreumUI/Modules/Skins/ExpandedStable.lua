@@ -5,7 +5,9 @@ local CreateFrame = _G.CreateFrame
 
 --based on Improved Stable Frame by Cybeloras
 function ElvUI_EltreumUI:ExpandedStable()
-	if E.db.ElvUI_EltreumUI.skins.expandedstable then
+	if E.db.ElvUI_EltreumUI.skins.expandedstable and not self.StableSkinned then
+		self.StableSkinned = true
+
 		local maxSlots = NUM_PET_STABLE_PAGES * NUM_PET_STABLE_SLOTS
 		local NUM_PER_ROW = 10
 
