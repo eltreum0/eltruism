@@ -73,6 +73,10 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[3603] = 54998, -- Hand-Mounted Pyro Rocket
 		[3604] = 54999, -- Hyperspeed Accelerators
 		[3860] = 63770, -- Reticulated Armor Webbing
+		[3327] = 50903, --jormungar-leg-reinforcements
+		[3328] = 50904, --nerubian-leg-reinforcements
+		[3331] = 50911, --dragonscale-leg-armor
+		[3290] = 52639, --spring-loaded-cloak-expander
 
 		---- old list
 		[15] = 2831, -- Reinforced (+$k1 Armor)
@@ -1286,11 +1290,11 @@ function ElvUI_EltreumUI:ClassicSockets()
 				ChestSlot = true,
 				WristSlot = true,
 				HandsSlot = true,
-				WaistSlot = E.Wrath and true or false,
+				--WaistSlot = E.Wrath and true or false,
 				LegsSlot = true,
 				FeetSlot = true,
-				Finger0Slot = true,
-				Finger1Slot = true,
+				--Finger0Slot = true,
+				--Finger1Slot = true,
 				-- Trinket0Slot = true,
 				-- Trinket1Slot = true,
 				MainHandSlot = true,
@@ -1304,6 +1308,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 			refreshTimer1 = nil,
 			refreshTimer2 = nil,
 		}
+		--could check professions here
 		setmetatable(instance, SlotIconManagerMetaTable)
 		instance:Init()
 		return instance
