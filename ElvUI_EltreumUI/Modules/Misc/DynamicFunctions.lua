@@ -183,7 +183,9 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 					E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = false
 					E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 0
 				end
-				_G["ElvUF_Target"].Portrait3D:ForceUpdate()
+				if _G["ElvUF_Target"].Portrait3D then
+					_G["ElvUF_Target"].Portrait3D:ForceUpdate()
+				end
 			end)
 		end
 	end
