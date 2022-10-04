@@ -3016,7 +3016,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					volume = {
 						type = 'range',
-						name = VOLUME,
+						name = E.NewSign..VOLUME,
 						order = 103,
 						min = 1,
 						max = 100,
@@ -7673,7 +7673,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					volume = {
 						type = 'range',
-						name = VOLUME,
+						name = E.NewSign..VOLUME,
 						order = 94,
 						min = 1,
 						max = 100,
