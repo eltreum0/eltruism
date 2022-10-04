@@ -881,7 +881,9 @@ function ElvUI_EltreumUI:AuraBarTexture(unit, bar, _, _, _, _, debuffType, isSte
 			bar.shadow:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT",3,-3)
 		end
 		if bar.bg then
-			bar.bg:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+			if E.db["unitframe"]["colors"]["transparentAurabars"] then
+				bar.bg:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+			end
 			bar.backdrop:SetBackdropColor(0,0,0,0)
 		end
 		--[[if isStealable then --maybe later
@@ -890,9 +892,17 @@ function ElvUI_EltreumUI:AuraBarTexture(unit, bar, _, _, _, _, debuffType, isSte
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars then
 			local r,g,b = bar:GetStatusBarColor()
 			if unit == "player" then
-				bar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.3, g-0.3, b-0.3, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha,r, g, b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+				if E.db["unitframe"]["colors"]["transparentAurabars"] then
+					bar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.3, g-0.3, b-0.3, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha,r, g, b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+				else
+					bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.3, g-0.3, b-0.3, r, g, b)
+				end
 			elseif unit == "target" then
-				bar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r, g, b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, r-0.3, g-0.3, b-0.3, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+				if E.db["unitframe"]["colors"]["transparentAurabars"] then
+					bar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r, g, b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, r-0.3, g-0.3, b-0.3, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+				else
+					bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r, g, b, r-0.3, g-0.3, b-0.3)
+				end
 			end
 		end
 	end
