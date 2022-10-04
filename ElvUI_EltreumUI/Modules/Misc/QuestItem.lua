@@ -331,6 +331,58 @@ function ElvUI_EltreumUI:QuestItem()
 			local bindingText11 = GetBindingKey("CLICK EltruismQuestItem11:LeftButton")
 			local bindingText12 = GetBindingKey("CLICK EltruismQuestItem12:LeftButton")
 
+			--register keybind
+			if not InCombatLockdown() then
+				if bindingText1 then
+					--SetBindingClick(bindingText1, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1))
+					SetBindingClick(bindingText1, "EltruismQuestItem1")
+				end
+				if bindingText2 then
+					--SetBindingClick(bindingText2, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 2))
+					SetBindingClick(bindingText2, "EltruismQuestItem2")
+				end
+				if bindingText3 then
+					--SetBindingClick(bindingText3, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 3))
+					SetBindingClick(bindingText3, "EltruismQuestItem3")
+				end
+				if bindingText4 then
+					--SetBindingClick(bindingText4, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 4))
+					SetBindingClick(bindingText4, "EltruismQuestItem4")
+				end
+				if bindingText5 then
+					--SetBindingClick(bindingText5, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 5))
+					SetBindingClick(bindingText5, "EltruismQuestItem5")
+				end
+				if bindingText6 then
+					--SetBindingClick(bindingText6, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 6))
+					SetBindingClick(bindingText6, "EltruismQuestItem6")
+				end
+				if bindingText7 then
+					--SetBindingClick(bindingText7, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 7))
+					SetBindingClick(bindingText7, "EltruismQuestItem7")
+				end
+				if bindingText8 then
+					--SetBindingClick(bindingText8, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 8))
+					SetBindingClick(bindingText8, "EltruismQuestItem8")
+				end
+				if bindingText9 then
+					--SetBindingClick(bindingText9, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 9))
+					SetBindingClick(bindingText9, "EltruismQuestItem9")
+				end
+				if bindingText10 then
+					--SetBindingClick(bindingText10, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 10))
+					SetBindingClick(bindingText10, "EltruismQuestItem10")
+				end
+				if bindingText11 then
+					--SetBindingClick(bindingText11, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 11))
+					SetBindingClick(bindingText11, "EltruismQuestItem11")
+				end
+				if bindingText12 then
+					--SetBindingClick(bindingText12, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 12))
+					SetBindingClick(bindingText12, "EltruismQuestItem12")
+				end
+			end
+
 			-- update mover position
 			function EltruismQuestItemFrame:FixPosition()
 				E:Delay(0, function()
@@ -446,46 +498,6 @@ function ElvUI_EltreumUI:QuestItem()
 				end
 				EltruismQuestItemFrame.items[#EltruismQuestItemFrame.items + 1] = b
 				return b
-			end
-
-			--register keybind
-			if not InCombatLockdown() then
-				if bindingText1 then
-					SetBindingClick(bindingText1, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1))
-				end
-				if bindingText2 then
-					SetBindingClick(bindingText2, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 2))
-				end
-				if bindingText3 then
-					SetBindingClick(bindingText3, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 3))
-				end
-				if bindingText4 then
-					SetBindingClick(bindingText4, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 4))
-				end
-				if bindingText5 then
-					SetBindingClick(bindingText5, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 5))
-				end
-				if bindingText6 then
-					SetBindingClick(bindingText6, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 6))
-				end
-				if bindingText7 then
-					SetBindingClick(bindingText7, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 7))
-				end
-				if bindingText8 then
-					SetBindingClick(bindingText8, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 8))
-				end
-				if bindingText9 then
-					SetBindingClick(bindingText9, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 9))
-				end
-				if bindingText10 then
-					SetBindingClick(bindingText10, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 10))
-				end
-				if bindingText11 then
-					SetBindingClick(bindingText11, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 11))
-				end
-				if bindingText12 then
-					SetBindingClick(bindingText12, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 12))
-				end
 			end
 
 			-- Add Button

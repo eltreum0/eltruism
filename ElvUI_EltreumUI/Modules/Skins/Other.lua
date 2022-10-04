@@ -78,6 +78,66 @@ function E:UpdateBackdropColors()
 	end
 end]]
 
+--add cardinal directions to minimap
+local Cardinals = CreateFrame("FRAME", "Eltruism Cardinal Directions")
+Cardinals:SetParent(Minimap)
+function ElvUI_EltreumUI:MinimapCardinalDirections()
+	if C_CVar.GetCVar("rotateMinimap") == "1" then return end
+	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable then
+		if not Cardinals.N then
+			Cardinals.N = Cardinals:CreateFontString("EltruismNorth", "ARTWORK", "GameFontNormal")
+		end
+		Cardinals.N:SetText("N")
+		if not Cardinals.E then
+			Cardinals.E = Cardinals:CreateFontString("EltruismEast", "ARTWORK", "GameFontNormal")
+		end
+		Cardinals.E:SetText("E")
+		if not Cardinals.S then
+			Cardinals.S = Cardinals:CreateFontString("EltruismSouth", "ARTWORK", "GameFontNormal")
+		end
+		Cardinals.S:SetText("S")
+		if not Cardinals.W then
+			Cardinals.W = Cardinals:CreateFontString("EltruismWest", "ARTWORK", "GameFontNormal")
+		end
+		Cardinals.W:SetText("W")
+
+		Cardinals.N:SetPoint("BOTTOM", Minimap, "TOP", 0, -E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset)
+		Cardinals.E:SetPoint("LEFT", Minimap, "RIGHT", -E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset, 0)
+		Cardinals.S:SetPoint("TOP", Minimap, "BOTTOM", 0, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset)
+		Cardinals.W:SetPoint("RIGHT", Minimap, "LEFT", E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset, 0)
+
+		Cardinals.N:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize, E.db.general.fontStyle)
+		Cardinals.E:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize, E.db.general.fontStyle)
+		Cardinals.S:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize, E.db.general.fontStyle)
+		Cardinals.W:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize, E.db.general.fontStyle)
+
+		if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor then
+			Cardinals.N:SetTextColor(classcolor.r,classcolor.g,classcolor.b)
+			Cardinals.E:SetTextColor(classcolor.r,classcolor.g,classcolor.b)
+			Cardinals.S:SetTextColor(classcolor.r,classcolor.g,classcolor.b)
+			Cardinals.W:SetTextColor(classcolor.r,classcolor.g,classcolor.b)
+		else
+			Cardinals.N:SetTextColor(E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b)
+			Cardinals.E:SetTextColor(E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b)
+			Cardinals.S:SetTextColor(E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b)
+			Cardinals.W:SetTextColor(E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b)
+		end
+	else
+		if Cardinals.N then
+			Cardinals.N:SetText("")
+		end
+		if Cardinals.E then
+			Cardinals.E:SetText("")
+		end
+		if Cardinals.S then
+			Cardinals.S:SetText("")
+		end
+		if Cardinals.W then
+			Cardinals.W:SetText("")
+		end
+	end
+end
+
 --gradient misc
 function ElvUI_EltreumUI:GradientMirrorLoot()
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
@@ -1086,64 +1146,3 @@ function ElvUI_EltreumUI:EltruismDetails()
 	end
 end
 S:AddCallbackForAddon('Details', "EltruismDetails", ElvUI_EltreumUI.EltruismDetails)
-
---add cardinal directions to minimap
-local Cardinals = CreateFrame("FRAME", "Eltruism Cardinal Directions")
-Cardinals:SetParent(Minimap)
-function ElvUI_EltreumUI:MinimapCardinalDirections()
-	if C_CVar.GetCVar("rotateMinimap") == "1" then return end
-	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable then
-		if not Cardinals.N then
-			Cardinals.N = Cardinals:CreateFontString("EltruismNorth", "ARTWORK", "GameFontNormal")
-		end
-		Cardinals.N:SetText("N")
-		if not Cardinals.E then
-			Cardinals.E = Cardinals:CreateFontString("EltruismEast", "ARTWORK", "GameFontNormal")
-		end
-		Cardinals.E:SetText("E")
-		if not Cardinals.S then
-			Cardinals.S = Cardinals:CreateFontString("EltruismSouth", "ARTWORK", "GameFontNormal")
-		end
-		Cardinals.S:SetText("S")
-		if not Cardinals.W then
-			Cardinals.W = Cardinals:CreateFontString("EltruismWest", "ARTWORK", "GameFontNormal")
-		end
-		Cardinals.W:SetText("W")
-
-		Cardinals.N:SetPoint("BOTTOM", Minimap, "TOP", 0, -E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset)
-		Cardinals.E:SetPoint("LEFT", Minimap, "RIGHT", -E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset, 0)
-		Cardinals.S:SetPoint("TOP", Minimap, "BOTTOM", 0, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset)
-		Cardinals.W:SetPoint("RIGHT", Minimap, "LEFT", E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset, 0)
-
-		Cardinals.N:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize, E.db.general.fontStyle)
-		Cardinals.E:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize, E.db.general.fontStyle)
-		Cardinals.S:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize, E.db.general.fontStyle)
-		Cardinals.W:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize, E.db.general.fontStyle)
-
-		if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor then
-			Cardinals.N:SetTextColor(classcolor.r,classcolor.g,classcolor.b)
-			Cardinals.E:SetTextColor(classcolor.r,classcolor.g,classcolor.b)
-			Cardinals.S:SetTextColor(classcolor.r,classcolor.g,classcolor.b)
-			Cardinals.W:SetTextColor(classcolor.r,classcolor.g,classcolor.b)
-		else
-			Cardinals.N:SetTextColor(E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b)
-			Cardinals.E:SetTextColor(E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b)
-			Cardinals.S:SetTextColor(E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b)
-			Cardinals.W:SetTextColor(E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b)
-		end
-	else
-		if Cardinals.N then
-			Cardinals.N:SetText("")
-		end
-		if Cardinals.E then
-			Cardinals.E:SetText("")
-		end
-		if Cardinals.S then
-			Cardinals.S:SetText("")
-		end
-		if Cardinals.W then
-			Cardinals.W:SetText("")
-		end
-	end
-end
-
