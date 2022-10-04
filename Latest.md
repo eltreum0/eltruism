@@ -15,4 +15,4 @@ Updated Quest Item Bar to prevent a keybind issue\
 Updated German locale by Dlarge\
 Updated MeetingHorn Skin\
 Fixed Threat Bar not being centered\
-Fixed Non Interruptable Gradient Color not having the correct gradient
+Fixed Non Interruptible Gradient Color not having the correct gradient

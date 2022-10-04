@@ -17,7 +17,7 @@ Updated Quest Item Bar to prevent a keybind issue\
 Updated German locale by Dlarge\
 Updated MeetingHorn Skin\
 Fixed Threat Bar not being centered\
-Fixed Non Interruptable Gradient Color not having the correct gradient
+Fixed Non Interruptible Gradient Color not having the correct gradient
 ### 3.4.6
 Added compatibility between Custom Textures and Gradient, now allowing both at the same time\
 Added support for ProjectAzilroka's Enhanced Shadows, allowing shadows to change colors if ProjectAzilroka is loaded and using that module\
