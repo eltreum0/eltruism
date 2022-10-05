@@ -77,6 +77,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[3328] = 50904, --nerubian-leg-reinforcements
 		[3331] = 50911, --dragonscale-leg-armor
 		[3290] = 52639, --spring-loaded-cloak-expander
+		[3729] = 55655, --eternal-belt-buckle
 
 		---- old list
 		[15] = 2831, -- Reinforced (+$k1 Armor)
