@@ -142,6 +142,16 @@ local modelsRotate = {
 	[122738] = true, --"tuskarrmale.m2",
 	[126286] = true, --"tuskarrmalefisherman.m2",
 	[234884] = true, --"undeadicetroll.m2",,
+	--[1302532] = true, --"druidbear2.m2",
+	[1272625] = true, --""druidbear2_artifact1.m2",
+	[1272606] = true, --""druidbear2_artifact2.m2",
+	[1272605] = true, --""druidbear2_artifact3.m2",
+	[1272604] = true, --""druidbear2_artifact4.m2",
+	[1272741] = true, --""druidbear2_artifact5.m2",
+	[1505169] = true, --""druidbear2_artifact6.m2",
+	--[1336653] = true, --""druidbeartauren2.m2",
+	--[1336652] = true, --""druidbeartroll2.m2",
+	--[1336654] = true, --""druidbearworgen2.m2",
 }
 
 --these are humanoids that should be 0
@@ -178,21 +188,19 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 				end
 
 				--fix camera rotation
-				if UnitIsPlayer("target") then
-					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
-				else
-					if targetmodel and targetmodel ~= "NotYetObtained" then
-						if (UnitCreatureType("target") == "Humanoid" or modelsRotate[targetmodel]) and not modelsNoRotate[targetmodel] then
-							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
-						else
-							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
-						end
+				if targetmodel and targetmodel ~= "NotYetObtained" then
+					if modelsRotate[targetmodel] and not modelsNoRotate[targetmodel] then
+						E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
+					elseif UnitCreatureType("target") == "Humanoid" then
+						E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 					else
-						if UnitCreatureType("target") == "Humanoid" then
-							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
-						else
-							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
-						end
+						E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
+					end
+				else
+					if UnitCreatureType("target") == "Humanoid" then
+						E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
+					else
+						E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
 					end
 				end
 
@@ -213,6 +221,13 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 		end
 	end
 end
+
+--check for druid things, ofc
+local shapeshiftcheck = CreateFrame("FRAME")
+shapeshiftcheck:RegisterUnitEvent("UNIT_MODEL_CHANGED", "target")
+shapeshiftcheck:SetScript("OnEvent", function()
+	ElvUI_EltreumUI:DynamicUFPortraitRotation()
+end)
 
 --fixed cooldown text to be class color
 function ElvUI_EltreumUI:CooldownColors()
