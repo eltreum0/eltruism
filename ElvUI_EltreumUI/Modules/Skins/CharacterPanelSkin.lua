@@ -1490,7 +1490,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterModelFrame:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic)
 
 			CharacterFrame.Text6:SetSize(418, 72)
-			CharacterFrame.Text6:SetPoint("CENTER", CharacterFrame)
+			CharacterFrame.Text6:SetPoint("TOP", CharacterFrame, "TOP", 0, -50)
 			CharacterFrame.Text6:SetParent(CharacterFrame)
 			CharacterFrame.Text6:SetTextColor(1, 0, 0, 1)
 			CharacterFrame.Text6:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
