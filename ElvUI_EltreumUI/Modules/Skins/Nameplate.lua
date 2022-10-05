@@ -42,6 +42,9 @@ function NP:ThreatIndicator_PostUpdate(unit, status)
 			if sf.HealthColor then
 				return
 			else
+				if E.db.ElvUI_EltreumUI.dev then
+					ElvUI_EltreumUI:Print(nameplate.CurrentlyBeingTanked,self.isTank,self.offTank,status)
+				end
 				if status == 3 then -- securely tanking
 					--Color = self.offTank and colors.offTankColor or self.isTank and colors.goodColor or colors.badColor
 					if self.isTank then
