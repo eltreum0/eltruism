@@ -1290,7 +1290,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 				ChestSlot = true,
 				WristSlot = true,
 				HandsSlot = true,
-				--WaistSlot = E.Wrath and true or false,
+				WaistSlot = E.Wrath and true or false,
 				LegsSlot = true,
 				FeetSlot = true,
 				--Finger0Slot = true,
