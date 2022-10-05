@@ -6,114 +6,40 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 		if not IsAddOnLoaded("Questie") then
 			LoadAddOn("Questie")
 		end
-		QuestieConfig = {
-			["dbIsCompiled"] = false,
-			["global"] = {
-				["trackerbindSetTomTom"] = "left",
-				["DBMHUDZoom"] = 200,
-				["questObjectiveColors"] = true,
-				["dbmHUDRadius"] = 4,
-				["trackerFontObjective"] = E.db.general.font,
-				--["trackerEnabled"] = true, --enables/disables the actual objective tracker
-				["trackerEnabled"] = false,
-				["mapCoordinatesEnabled"] = false,
-				["professionTrainers"] = {},
-				["trackerFontZone"] = E.db.general.font,
-				["trackerFontOutline"] = "Outline",
-				["disableYellComms"] = true,
-				["globalTrackerLocation"] = false,
-				["questieTLoc"] = "global",
-				["classSpecificTownsfolk"] = {
-					["HUNTER"] = {
-						["Class Trainer"] = {},
-					},
-					["WARRIOR"] = {
-						["Class Trainer"] = {},
-					},
-					["ROGUE"] = {
-						["Class Trainer"] = {},
-					},
-					["MAGE"] = {
-						["Class Trainer"] = {},
-					},
-					["PRIEST"] = {
-						["Class Trainer"] = {},
-					},
-					["WARLOCK"] = {
-						["Class Trainer"] = {},
-					},
-					["DRUID"] = {
-						["Class Trainer"] = {},
-					},
-					["SHAMAN"] = {
-						["Class Trainer"] = {},
-					},
-					["PALADIN"] = {
-						["Class Trainer"] = {},
-					},
-				},
-				["trackerFontHeader"] = E.db.general.font,
-				["trackerBorderEnabled"] = true,
-				["TrackerWidth"] = 0,
-				["petFoodVendorTypes"] = {},
-				["hideTrackerInCombat"] = false,
-				["questMinimapObjectiveColors"] = true,
-				["trackerFontSizeHeader"] = 14,
-				["nameplateX"] = -30,
-				["trackerBackdropFader"] = true,
-				["trackerFontSizeObjective"] = 12,
-				["mapShowHideEnabled"] = false,
-				["trackerFontQuest"] = E.db.general.font,
-				["trackerbindOpenQuestLog"] = "right",
-				["dbmHUDShowQuest"] = false,
-				["factionSpecificTownsfolk"] = {
-					["Horde"] = {
-						["Spirit Healer"] = {},
-						["Mailbox"] = {},
-					},
-					["Alliance"] = {
-						["Spirit Healer"] = {},
-						["Mailbox"] = {},
-					},
-				},
-				["townsfolk"] = {
-					["Repair"] = {},
-					["Flight Master"] = {},
-					["Innkeeper"] = {},
-					["Weapon Master"] = {},
-					["Auctioneer"] = {},
-					["Battlemaster"] = {},
-					["Banker"] = {},
-				},
-				["trackerFontSizeQuest"] = 12,
-				["nameplateY"] = 0,
-				["onlyPartyShared"] = true,
-				["dbmHUDEnable"] = false,
-				["trackerSortObjectives"] = "byProximity",
-				["migrationVersion"] = {
-				},
-				["collapseCompletedQuests"] = true,
-				["trackerColorObjectives"] = "whiteAndGreen",
-				["hasSeenBetaMessage"] = true,
-			},
-			["profileKeys"] = {
-			},
-			["dbCompiledOnVersion"] = "v6.8.2",
-			["npcBin"] = "",
-			["dbCompiledLang"] = "enUS",
-			["profiles"] = {
-				["Eltreum"] = {
-				},
-			},
-			["char"] = {
-			},
-			["itemBin"] = "",
-			["questBin"] = "",
-			["npcPtrs"] = "",
-			["questPtrs"] = "",
-			["objPtrs"] = "",
-			["itemPtrs"] = "",
-			["objBin"] = "",
-		}
+		QuestieConfig["global"]["TrackerWidth"] = 0
+		QuestieConfig["global"]["trackerbindSetTomTom"] = "left"
+		QuestieConfig["global"]["trackerFontObjective"] = E.db.general.font
+		QuestieConfig["global"]["trackerEnabled"] = false --enables/disables the actual objective tracker
+		QuestieConfig["global"]["trackerFontZone"] = E.db.general.font
+		QuestieConfig["global"]["trackerFontOutline"] = "Outline"
+		QuestieConfig["global"]["trackerFontHeader"] = E.db.general.font
+		QuestieConfig["global"]["trackerBorderEnabled"] = true
+		QuestieConfig["global"]["trackerFontSizeHeader"] = 14
+		QuestieConfig["global"]["trackerBackdropFader"] = true
+		QuestieConfig["global"]["trackerFontSizeObjective"] = 12
+		QuestieConfig["global"]["trackerFontQuest"] = E.db.general.font
+		QuestieConfig["global"]["trackerbindOpenQuestLog"] = "right"
+		QuestieConfig["global"]["trackerFontSizeQuest"] = 12
+		QuestieConfig["global"]["trackerSortObjectives"] = "byProximity"
+		QuestieConfig["global"]["trackerColorObjectives"] = "whiteAndGreen"
+
+		QuestieConfig["global"]["dbmHUDEnable"] = false
+		QuestieConfig["global"]["DBMHUDZoom"] = 200
+		QuestieConfig["global"]["dbmHUDRadius"] = 4
+		QuestieConfig["global"]["dbmHUDShowQuest"] = false
+
+		QuestieConfig["global"]["nameplateX"] = -30
+		QuestieConfig["global"]["nameplateY"] = 0
+
+		QuestieConfig["global"]["questMinimapObjectiveColors"] = true
+		QuestieConfig["global"]["questObjectiveColors"] = true
+
+		QuestieConfig["global"]["mapCoordinatesEnabled"] = false
+		QuestieConfig["global"]["disableYellComms"] = true
+		QuestieConfig["global"]["globalTrackerLocation"] = false
+		QuestieConfig["global"]["hideTrackerInCombat"] = false
+		QuestieConfig["global"]["mapShowHideEnabled"] = false
+		QuestieConfig["global"]["onlyPartyShared"] = true
+		QuestieConfig["global"]["collapseCompletedQuests"] = true
 	end
 end
