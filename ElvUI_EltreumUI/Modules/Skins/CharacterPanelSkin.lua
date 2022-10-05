@@ -1492,7 +1492,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			local function ResizeCharacterFrame()
 				if InCombatLockdown() then  ---??????
 					UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
-
 					for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 						if _G["EltruismItemQuality"..InvSlotName] then
 							_G["EltruismItemQuality"..InvSlotName]:Hide()
@@ -1538,6 +1537,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 				end
 			end
+
 			_G.PaperDollItemsFrame:HookScript("OnShow", ResizeCharacterFrame)
 			CharacterFrame:HookScript("OnShow", ResizeCharacterFrame)
 			hooksecurefunc("CharacterFrameTab_OnClick", ResizeCharacterFrame)
