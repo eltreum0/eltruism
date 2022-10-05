@@ -29,6 +29,7 @@ local _, spent1, spent2, spent3, name, spent
 local linewidth1, linewidth2, linewidth3, linewidth4
 local texturefile, linewidthsle1, linewidthsle2
 local id, currentSpec, speed, combatText, combat, regenRate, regenRateText
+local qualityAnchor,qualityAnchorInspect
 
 --improving character panel
 local CharacterFrame = _G.CharacterFrame
@@ -155,6 +156,51 @@ local statgradients = {
 	["DRUID"] = {r1 = 1, g1 = 0.24, b1 = 0, r2 = 1, g2 = 0.48, b2 = 0.04},
 	["DEMONHUNTER"] = {r1 = 0.56, g1 = 0.33, b1 = 0.77, r2 = 0.74, g2 = 0.19, b2 = 1},
 }
+
+--https://wowpedia.fandom.com/wiki/InventorySlotId
+local InvSlotIdTable = {
+	[1] = "HeadSlot", --left
+	[2] = "NeckSlot", --left
+	[3] = "ShoulderSlot", --left
+	[4] = "ShirtSlot", --left
+	[5] = "ChestSlot", --left
+	[6] = "WaistSlot", --right
+	[7] = "LegsSlot", --right
+	[8] = "FeetSlot",--right
+	[9] = "WristSlot", --left
+	[10] = "HandsSlot", --right
+	[11] = "Finger0Slot", --right
+	[12] = "Finger1Slot",--right
+	[13] = "Trinket0Slot",--right
+	[14] = "Trinket1Slot",--right
+	[15] = "BackSlot", --left
+	[16] = "MainHandSlot", --left
+	[17] = "SecondaryHandSlot",--right
+	[18] = "RangedSlot", --classic only
+	[19] = "TabardSlot", --left
+}
+
+if E.Retail then
+	InvSlotIdTable = {
+		[1] = "HeadSlot", --left
+		[2] = "NeckSlot", --left
+		[3] = "ShoulderSlot", --left
+		[4] = "ShirtSlot", --left
+		[5] = "ChestSlot", --left
+		[6] = "WaistSlot", --right
+		[7] = "LegsSlot", --right
+		[8] = "FeetSlot",--right
+		[9] = "WristSlot", --left
+		[10] = "HandsSlot", --right
+		[11] = "Finger0Slot", --right
+		[12] = "Finger1Slot",--right
+		[13] = "Trinket0Slot",--right
+		[14] = "Trinket1Slot",--right
+		[15] = "BackSlot", --left
+		[16] = "MainHandSlot", --left
+		[17] = "SecondaryHandSlot",--right
+	}
+end
 
 --adapted from libiteminfo to be player only
 function ElvUI_EltreumUI:GetUnitItemLevel(unit)
@@ -1444,8 +1490,20 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--fix frame size depending on tab
 			local function ResizeCharacterFrame()
-				if InCombatLockdown() then UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r") end
-				if not InCombatLockdown() then
+				if InCombatLockdown() then  ---??????
+					UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
+
+					for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
+						if _G["EltruismItemQuality"..InvSlotName] then
+							_G["EltruismItemQuality"..InvSlotName]:Hide()
+						end
+					end
+				else
+					for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
+						if _G["EltruismItemQuality"..InvSlotName] then
+							_G["EltruismItemQuality"..InvSlotName]:Show()
+						end
+					end
 					if PaperDollFrame:IsVisible() then
 						CharacterFrame:SetSize(700, 505)
 						CharacterNameText:ClearAllPoints()
@@ -1919,54 +1977,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		end
 	end
 end
-
---https://wowpedia.fandom.com/wiki/InventorySlotId
-local InvSlotIdTable = {
-	[1] = "HeadSlot", --left
-	[2] = "NeckSlot", --left
-	[3] = "ShoulderSlot", --left
-	[4] = "ShirtSlot", --left
-	[5] = "ChestSlot", --left
-	[6] = "WaistSlot", --right
-	[7] = "LegsSlot", --right
-	[8] = "FeetSlot",--right
-	[9] = "WristSlot", --left
-	[10] = "HandsSlot", --right
-	[11] = "Finger0Slot", --right
-	[12] = "Finger1Slot",--right
-	[13] = "Trinket0Slot",--right
-	[14] = "Trinket1Slot",--right
-	[15] = "BackSlot", --left
-	[16] = "MainHandSlot", --left
-	[17] = "SecondaryHandSlot",--right
-	[18] = "RangedSlot", --classic only
-	[19] = "TabardSlot", --left
-}
-
-if E.Retail then
-	InvSlotIdTable = {
-		[1] = "HeadSlot", --left
-		[2] = "NeckSlot", --left
-		[3] = "ShoulderSlot", --left
-		[4] = "ShirtSlot", --left
-		[5] = "ChestSlot", --left
-		[6] = "WaistSlot", --right
-		[7] = "LegsSlot", --right
-		[8] = "FeetSlot",--right
-		[9] = "WristSlot", --left
-		[10] = "HandsSlot", --right
-		[11] = "Finger0Slot", --right
-		[12] = "Finger1Slot",--right
-		[13] = "Trinket0Slot",--right
-		[14] = "Trinket1Slot",--right
-		[15] = "BackSlot", --left
-		[16] = "MainHandSlot", --left
-		[17] = "SecondaryHandSlot",--right
-	}
-end
-
-local qualityAnchor
-local qualityAnchorInspect
 
 --Player Item Quality Texture
 function ElvUI_EltreumUI:PlayerItemQuality(unit)
