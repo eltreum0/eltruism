@@ -152,6 +152,8 @@ local modelsRotate = {
 	--[1336653] = true, --""druidbeartauren2.m2",
 	--[1336652] = true, --""druidbeartroll2.m2",
 	--[1336654] = true, --""druidbearworgen2.m2",
+	[3013816] = true, --"automatonbrute.m2",
+	[3196574] = true, --"denathrius.m2",
 }
 
 --these are humanoids that should be 0
@@ -185,24 +187,14 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 					--get the model id
 					if _G["ElvUF_Target"].Portrait3D then
 						targetmodel = _G["ElvUF_Target"].Portrait3D:GetModelFileID()
-					else
-						targetmodel = "NotYetObtained"
-					end
 
-					--fix camera rotation
-					if targetmodel and targetmodel ~= "NotYetObtained" then
+						--fix camera rotation
 						if modelsRotate[targetmodel]then
 							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 						--elseif modelsNoRotate[targetmodel] then
 							--E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
 						--elseif UnitCreatureType("target") == "Humanoid" then --TODO CHECK MORE MODELS
 							--E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
-						else
-							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
-						end
-					else
-						if UnitCreatureType("target") == "Humanoid" then
-							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 						else
 							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
 						end
