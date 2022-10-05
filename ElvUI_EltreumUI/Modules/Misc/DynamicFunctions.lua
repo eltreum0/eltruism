@@ -140,6 +140,7 @@ local modelsRotate = {
 	[233367] = true, --"northrendskeletonmale.m2",
 	[1793470] = true, --"thinhumanmale.m2",
 	[122738] = true, --"tuskarrmale.m2",
+	[126286] = true, --"tuskarrmalefisherman.m2",
 	[234884] = true, --"undeadicetroll.m2",,
 }
 
