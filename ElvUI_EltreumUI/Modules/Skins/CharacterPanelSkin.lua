@@ -1493,7 +1493,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				if InCombatLockdown() then
 					UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
 					local width = CharacterFrame:GetWidth()
-					if math.min(width) ~= 700 then
+					if math.floor(width) ~= 700 then
 						for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 							if _G["EltruismItemQuality"..InvSlotName] then
 								_G["EltruismItemQuality"..InvSlotName]:Hide()
