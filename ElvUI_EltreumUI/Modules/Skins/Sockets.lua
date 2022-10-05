@@ -805,8 +805,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[6168] = { 172363, 309618, nil }, -- Tenet of Mastery
 		[6170] = { 172364, 309619, nil }, -- Tenet of Versatility
 
-
-
 		--BfA
 		--Enchant Ring
 		[5942] = { 153442, 255075, 162716 }, -- Pact of Critical Strike
@@ -1238,6 +1236,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 	}
 	local SlotIconManagerMetaTable = { __index = SlotIconManager }
 	ElvUI_EltreumUI.SlotIconManager = SlotIconManager
+
 	function SlotIconManager:new(adapter)
 		local instance = {
 			adapter = adapter,
@@ -1291,7 +1290,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 				ChestSlot = true,
 				WristSlot = true,
 				HandsSlot = true,
-				WaistSlot = E.Wrath and true or false,
+				--WaistSlot = E.Wrath and true or false,
 				LegsSlot = true,
 				FeetSlot = true,
 				--Finger0Slot = true,
@@ -1299,7 +1298,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 				-- Trinket0Slot = true,
 				-- Trinket1Slot = true,
 				MainHandSlot = true,
-				-- SecondaryHandSlot = true,
+				--SecondaryHandSlot = E.Wrath and true or false,
 			},
 			itemInfos = nil,
 			parentVisible = false,
