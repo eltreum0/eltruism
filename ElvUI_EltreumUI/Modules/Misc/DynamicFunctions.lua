@@ -140,12 +140,27 @@ local modelsRotate = {
 	[233367] = true, --"northrendskeletonmale.m2",
 	[1793470] = true, --"thinhumanmale.m2",
 	[122738] = true, --"tuskarrmale.m2",
+	[234884] = true, --"undeadicetroll.m2",,
 }
 
 --these are humanoids that should be 0
 local modelsNoRotate = {
 	[122815] = true, --"vrykulmale.m2",
-	[234919] = true, --"vrykulfemale.m2",
+	[234622] = true, --"frostvrykulmale.m2",
+	[234679] = true, --"ironvrykulmale.m2",
+	[234834] = true, --"seavrykulmale.m2",
+	[234835] = true, --"seavrykulmale_a.m2",
+	[234842] = true, --"seavrykulmaleoarsman.m2",
+	[234919] = true, --"vrykulfemalecaster.m2",
+    [234902] = true, --"femalevrykulboss.m2",
+	[234907] = true, --"frostvrykulfemalecaster.m2",
+	[234908] = true, -- "frostvrykulfemaledruid.m2",
+	[234914] = true, --"frostvrykulfemalehunter.m2",
+	[234918] = true, --"frostvrykulfemalewarrior.m2",
+	[126397] = true, --"vrykulfemale.m2",
+	[234926] = true, --"vrykulfemaledruid.m2",
+	[234933] = true, --"vrykulfemalehunter.m2",
+	[234946] = true, --"vrykulfemalewarrior.m2",
 }
 
 --set portrait rotation based on target being npc or not
