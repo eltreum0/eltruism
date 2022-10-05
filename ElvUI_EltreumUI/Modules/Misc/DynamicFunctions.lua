@@ -12,7 +12,7 @@ local C_Timer = _G.C_Timer
 local _, instanceType
 local level, targetmodel
 
---character models
+--character models that should be rotated
 local models = {
 	[118355] = true, --dwarf male
 	[118135] = true, --dwarf female
@@ -139,8 +139,13 @@ local models = {
 	[121942] = true, --"skeletonmale.m2",
 	[233367] = true, --"northrendskeletonmale.m2",
 	[1793470] = true, --"thinhumanmale.m2",
-	[122815] = true, --"vrykulmale.m2",
 	[122738] = true, --"tuskarrmale.m2",
+}
+
+--these are humanoids that should be 0
+local modelsnororate = {
+	[122815] = true, --"vrykulmale.m2",
+	[234919] = true, --"vrykulfemale.m2",
 }
 
 --set portrait rotation based on target being npc or not
@@ -161,7 +166,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 				else
 					if targetmodel and targetmodel ~= "NotYetObtained" then
-						if UnitCreatureType("target") == "Humanoid" or models[targetmodel] then
+						if (UnitCreatureType("target") == "Humanoid" or models[targetmodel]) and not modelsnororate[targetmodel] then
 							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 						else
 							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
