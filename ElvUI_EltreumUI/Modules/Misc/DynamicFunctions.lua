@@ -155,7 +155,7 @@ local modelsRotate = {
 }
 
 --these are humanoids that should be 0
-local modelsNoRotate = {
+--[[local modelsNoRotate = {
 	[122815] = true, --"vrykulmale.m2",
 	[234622] = true, --"frostvrykulmale.m2",
 	[234679] = true, --"ironvrykulmale.m2",
@@ -172,7 +172,7 @@ local modelsNoRotate = {
 	[234926] = true, --"vrykulfemaledruid.m2",
 	[234933] = true, --"vrykulfemalehunter.m2",
 	[234946] = true, --"vrykulfemalewarrior.m2",
-}
+}]]
 
 --set portrait rotation based on target being npc or not
 function ElvUI_EltreumUI:DynamicUFPortraitRotation()
@@ -193,8 +193,8 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 					if targetmodel and targetmodel ~= "NotYetObtained" then
 						if modelsRotate[targetmodel]then
 							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
-						elseif modelsNoRotate[targetmodel] then
-							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
+						--elseif modelsNoRotate[targetmodel] then
+							--E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
 						--elseif UnitCreatureType("target") == "Humanoid" then --TODO CHECK MORE MODELS
 							--E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 						else
