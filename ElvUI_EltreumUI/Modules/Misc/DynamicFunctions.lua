@@ -191,10 +191,12 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 
 					--fix camera rotation
 					if targetmodel and targetmodel ~= "NotYetObtained" then
-						if modelsRotate[targetmodel] and not modelsNoRotate[targetmodel] then
+						if modelsRotate[targetmodel]then
 							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
-						elseif UnitCreatureType("target") == "Humanoid" then
-							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
+						elseif modelsNoRotate[targetmodel] then
+							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
+						--elseif UnitCreatureType("target") == "Humanoid" then --TODO CHECK MORE MODELS
+							--E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 						else
 							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
 						end
