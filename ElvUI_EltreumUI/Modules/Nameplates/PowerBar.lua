@@ -3,7 +3,7 @@ local id, _, powertype,powernumber,tablepowernumber
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local IsPlayerSpell = _G.IsPlayerSpell
-local GetPlayerAuraBySpellID = _G.GetPlayerAuraBySpellID
+local GetPlayerAuraBySpellID = _G.GetPlayerAuraBySpellID --TODO GetPlayerAuraBySpellID DRAGONFLIGHT
 local UnitCastingInfo = _G.UnitCastingInfo
 local GetSpellPowerCost = _G.GetSpellPowerCost
 local next = _G.next

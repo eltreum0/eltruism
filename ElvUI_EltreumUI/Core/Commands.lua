@@ -7,13 +7,13 @@ local CombatText_AddMessage = _G.CombatText_AddMessage
 local CombatText_StandardScroll = _G.CombatText_StandardScroll
 local print = _G.print
 local strlower = _G.strlower
-local GetContainerNumSlots = _G.GetContainerNumSlots
+local GetContainerNumSlots = _G.GetContainerNumSlots --TODO GetContainerNumSlots DRAGONFLIGHT
 local select = _G.select
-local GetContainerItemInfo = _G.GetContainerItemInfo
+local GetContainerItemInfo = _G.GetContainerItemInfo --TODO GetContainerItemInfo DRAGONFLIGHT
 local C_Covenants = _G.C_Covenants
 local next = _G.next
 local SendChatMessage = _G.SendChatMessage
-local UseContainerItem = _G.UseContainerItem
+local UseContainerItem = _G.UseContainerItem --TODO UseContainerItem DRAGONFLIGHT
 
 -- Register on init
 function ElvUI_EltreumUI:LoadCommands()

@@ -14,7 +14,7 @@ local GetSpellInfo = _G.GetSpellInfo
 local GetSpellBaseCooldown = _G.GetSpellBaseCooldown
 local GetSpellCooldown = _G.GetSpellCooldown
 local GetInventoryItemLink = _G.GetInventoryItemLink
-local GetContainerItemLink = _G.GetContainerItemLink
+local GetContainerItemLink = _G.GetContainerItemLink --TODO GetContainerItemLink DRAGONFLIGHT
 local tonumber = _G.tonumber
 local GetItemInfo = _G.GetItemInfo
 local GetItemCooldown = _G.GetItemCooldown
@@ -114,7 +114,7 @@ function ElvUI_EltreumUI:CooldownEnable()
 		ElvUI_EltreumUI:SecureHook("UseAction", "checkActionCooldown") --this enables tracking actions that are not macros
 	end
 
-	if ElvUI_EltreumUI:IsHooked("UseContainerItem", "checkContainerItemCooldown") then
+	if ElvUI_EltreumUI:IsHooked("UseContainerItem", "checkContainerItemCooldown") then --TODO UseContainerItem DRAGONFLIGHT
 		return
 	else
 		ElvUI_EltreumUI:SecureHook("UseContainerItem", "checkContainerItemCooldown")
@@ -145,7 +145,7 @@ function ElvUI_EltreumUI:CooldownEnable()
 	end
 
 	--self:SecureHook("UseAction", "checkActionCooldown") --this enables tracking actions that are not macros
-	--self:SecureHook("UseContainerItem", "checkContainerItemCooldown")
+	--self:SecureHook("UseContainerItem", "checkContainerItemCooldown") --TODO UseContainerItem DRAGONFLIGHT
 	--self:SecureHook("UseInventoryItem", "checkInventoryItemCooldown")
 	--self:SecureHook("UseItemByName", "checkItemCooldown")
 	--self:SecureHook("CastSpellByName", "checkSpellCooldown") -- only needed for pet spells
