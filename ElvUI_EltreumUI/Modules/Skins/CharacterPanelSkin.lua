@@ -1085,7 +1085,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			end
 		end)
-	elseif E.Wrath or E.TBC or E.Classic then
+	else
 
 		--gradient colors to categories other
 		if E.db.ElvUI_EltreumUI.skins.characterskingradients then
@@ -1490,17 +1490,23 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--fix frame size depending on tab
 			local function ResizeCharacterFrame()
-				if InCombatLockdown() then  ---??????
+				if InCombatLockdown() then
 					UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
-					for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
-						if _G["EltruismItemQuality"..InvSlotName] then
-							_G["EltruismItemQuality"..InvSlotName]:Hide()
-						end
-					end
 					local width = CharacterFrame:GetWidth()
-					if width ~= 505 then
+					if math.min(width) ~= 700 then
+						for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
+							if _G["EltruismItemQuality"..InvSlotName] then
+								_G["EltruismItemQuality"..InvSlotName]:Hide()
+							end
+						end
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
+						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+						end
+					else
+						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 						end
@@ -1549,9 +1555,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			end
 
-			_G.PaperDollItemsFrame:HookScript("OnShow", ResizeCharacterFrame)
 			CharacterFrame:HookScript("OnShow", ResizeCharacterFrame)
 			hooksecurefunc("CharacterFrameTab_OnClick", ResizeCharacterFrame)
+
+			_G.PaperDollItemsFrame:HookScript("OnShow", ResizeCharacterFrame)
 			_G.PaperDollItemsFrame:HookScript("OnHide", function()
 				ClassCrestFrame:SetPoint("CENTER", CharacterFrame, 0 , 50)
 			end)
