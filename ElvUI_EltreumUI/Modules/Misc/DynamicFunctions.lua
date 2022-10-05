@@ -154,6 +154,12 @@ local modelsRotate = {
 	--[1336654] = true, --""druidbearworgen2.m2",
 	[3013816] = true, --"automatonbrute.m2",
 	[3196574] = true, --"denathrius.m2",
+	[3487358] = true, --"maldraxxusskeleton.m2",
+	[3542807] = true, --"maldraxxusgladiatorfemale.m2",
+	[3284341] = true, --"maldraxxusgladiator.m2",
+	[125092] = true, --"necromancer.m2",
+	[3087468] = true, --"necromancer2.m2",
+	[3570847] = true, --"maldraxxusdraka.m2",
 }
 
 --these are humanoids that should be 0
