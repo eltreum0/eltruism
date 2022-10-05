@@ -206,7 +206,7 @@ local function GradientNameplates(unit)
 					targettype = "NPCHOSTILE"
 				end
 
-				if not InCombatLockdown() then
+				if not InCombatLockdown() or UnitIsDead("player") then
 					unit.CurrentlyBeingTanked = nil
 				end
 
