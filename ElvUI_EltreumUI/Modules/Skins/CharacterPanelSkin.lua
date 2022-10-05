@@ -1489,19 +1489,18 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterModelFrame:SetPosition(0, 0, 0) -- zoom, x, y
 			CharacterModelFrame:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic)
 
-			CharacterFrame.Text5:SetSize(418, 72)
-			CharacterFrame.Text5:SetPoint("CENTER", CharacterFrame)
-			CharacterFrame.Text5:SetParent(CharacterFrame)
-			CharacterFrame.Text5:SetTextColor(1, 0, 0, 1)
-			CharacterFrame.Text5:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
-			CharacterFrame.Text5:SetText("")
-
+			CharacterFrame.Text6:SetSize(418, 72)
+			CharacterFrame.Text6:SetPoint("CENTER", CharacterFrame)
+			CharacterFrame.Text6:SetParent(CharacterFrame)
+			CharacterFrame.Text6:SetTextColor(1, 0, 0, 1)
+			CharacterFrame.Text6:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
+			CharacterFrame.Text6:SetText("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
 
 			--fix frame size depending on tab
 			local function ResizeCharacterFrame()
 				if InCombatLockdown() then
 					UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
-					CharacterFrame.Text5:SetText("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
+					CharacterFrame.Text6:Show()
 					local width = CharacterFrame:GetWidth()
 					if math.floor(width) ~= 700 then
 
@@ -1547,7 +1546,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						ClassCrestFrame:SetPoint("CENTER", CharacterModelFrame, 0 , 50)
 					end
 				else
-					CharacterFrame.Text5:SetText("")
+					CharacterFrame.Text4:Show()
+					CharacterFrame.StatusLine4:Show()
+					CharacterFrame.StatusLine2:Show()
+					CharacterFrame.Text6:Hide()
 					--show quality texture
 					for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 						if _G["EltruismItemQuality"..InvSlotName] then
@@ -1555,9 +1557,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						end
 					end
 					if PaperDollFrame:IsVisible() then
-						CharacterFrame.Text4:Show()
-						CharacterFrame.StatusLine4:Show()
-						CharacterFrame.StatusLine2:Show()
+
 
 						CharacterFrame:SetSize(700, 505)
 						CharacterNameText:ClearAllPoints()
