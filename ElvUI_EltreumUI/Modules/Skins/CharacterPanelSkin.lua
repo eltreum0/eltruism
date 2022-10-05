@@ -1492,13 +1492,29 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			local function ResizeCharacterFrame()
 				if InCombatLockdown() then
 					UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
+
 					local width = CharacterFrame:GetWidth()
 					if math.floor(width) ~= 700 then
+
+						--hide quality texture
 						for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 							if _G["EltruismItemQuality"..InvSlotName] then
 								_G["EltruismItemQuality"..InvSlotName]:Hide()
 							end
 						end
+						CharacterNameText:ClearAllPoints()
+						CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 40)
+
+						if _G.PlayerTitleDropDown then
+							_G.PlayerTitleDropDown:SetPoint('TOP', CharacterNameText, 0, -40)
+						end
+						--better zoom
+						CharacterModelFrame:SetSize(220,350)
+						CharacterModelFrame:ClearAllPoints()
+						CharacterModelFrame:SetPoint("CENTER", CharacterFrame,"CENTER", 0, 15)
+						CharacterModelFrame:SetPosition(0, 0, 0)
+						CharacterModelFrame:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic)
+
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.39, 0, 1)
 						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
@@ -1515,6 +1531,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						ClassCrestFrame:SetPoint("CENTER", CharacterModelFrame, 0 , 50)
 					end
 				else
+					--show quality texture
 					for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 						if _G["EltruismItemQuality"..InvSlotName] then
 							_G["EltruismItemQuality"..InvSlotName]:Show()
