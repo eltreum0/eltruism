@@ -14,7 +14,7 @@ local soundfile
 
 --play music during combat
 function ElvUI_EltreumUI:CombatMusic(event, event2)
-	if E.private.ElvUI_EltreumUI.combatmusic.enable and C_CVar.GetCVar('Sound_EnableMusic') == '1' then
+	if E.private.ElvUI_EltreumUI.combatmusic.enable and tostring(C_CVar.GetCVar('Sound_EnableMusic')) == '1' then
 		_, instanceType = IsInInstance()
 		soundfile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.musicfile
 		if E.private.ElvUI_EltreumUI.combatmusic.disableinstance == false then
