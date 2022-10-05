@@ -1500,10 +1500,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			local function ResizeCharacterFrame()
 				if InCombatLockdown() then
 					UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
-					CharacterFrame.Text6:Show()
 					local width = CharacterFrame:GetWidth()
 					if math.floor(width) ~= 700 then
-
+						CharacterFrame.Text6:Show()
 						CharacterFrame.Text4:Hide()
 						CharacterFrame.StatusLine4:Hide()
 						CharacterFrame.StatusLine2:Hide()
@@ -1533,6 +1532,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 						end
 					else
+						CharacterFrame.Text6:Hide()
 						CharacterFrame.Text4:Show()
 						CharacterFrame.StatusLine4:Show()
 						CharacterFrame.StatusLine2:Show()
