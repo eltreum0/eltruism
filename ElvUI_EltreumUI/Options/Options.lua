@@ -7649,7 +7649,6 @@ function ElvUI_EltreumUI:Configtable()
 						function()
 							local Voices = {}
 							for i, v in pairs(C_VoiceChat.GetTtsVoices()) do
-								--Voices[i] = v.name
 								Voices[i] = v.voiceID
 							end
 							return Voices
@@ -7661,11 +7660,8 @@ function ElvUI_EltreumUI:Configtable()
 								return false
 							end
 						end,
-						--[[sorting = function()
-							return sort(Voices, SortList)
-						end,]]
 						style = 'radio',
-						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or not E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" end,
+						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice = tonumber(value)
 							C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
@@ -7679,7 +7675,7 @@ function ElvUI_EltreumUI:Configtable()
 						max = 100,
 						step = 1,
 						width = "full",
-						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or not E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" end,
+						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume = value end,
 					},

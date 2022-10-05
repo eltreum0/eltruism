@@ -8,10 +8,11 @@ Added options to change the Width and Height of the Quest Item Bar Buttons, alon
 Added another NPC to the block list for Automatic Quest Turn Ins (Magical Kingdom of Dalaran NPC in Dalaran)\
 Updated [eltruism:presence] into [eltruism:stance] which will work with more classes and return their stances in Classic/Wrath, in Retail it will only work with Paladins due to stances being removed\
 Updated Sockets and Enchants to not always require Rings and Belt enchants due to professions limitations, and enabled level checking again\
+Updated Gradient Aurabars to make them compatible with Transparent and Non Transparent Aura Bars from ElvUI\
 Updated Portrait Fix to also use Model detection for some models\
 Updated Chat Class Colors to not depend upon Chat Loot Icons\
 Updated Quest Item Bar to prevent a keybind issue\
 Updated German locale by Dlarge\
 Updated MeetingHorn Skin\
 Fixed Threat Bar not being centered\
-Fixed Non Interruptable Gradient Color not having the correct gradient
+Fixed Non Interruptible Gradient Color not having the correct gradient
