@@ -13,7 +13,7 @@ local _, instanceType
 local level, targetmodel
 
 --character models that should be rotated
-local models = {
+local modelsRotate = {
 	[118355] = true, --dwarf male
 	[118135] = true, --dwarf female
 	[1838560] = true, --dwarfmale_hd_sdr.m2
@@ -143,7 +143,7 @@ local models = {
 }
 
 --these are humanoids that should be 0
-local modelsnororate = {
+local modelsNoRotate = {
 	[122815] = true, --"vrykulmale.m2",
 	[234919] = true, --"vrykulfemale.m2",
 }
@@ -166,7 +166,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 				else
 					if targetmodel and targetmodel ~= "NotYetObtained" then
-						if (UnitCreatureType("target") == "Humanoid" or models[targetmodel]) and not modelsnororate[targetmodel] then
+						if (UnitCreatureType("target") == "Humanoid" or modelsRotate[targetmodel]) and not modelsNoRotate[targetmodel] then
 							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 						else
 							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
