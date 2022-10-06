@@ -992,7 +992,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["player"]["debuffs"]["countYOffset"] = -4
 	E.db["unitframe"]["units"]["player"]["debuffs"]["height"] = 25
 	E.db["unitframe"]["units"]["player"]["debuffs"]["keepSizeRatio"] = false
-	E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal,blockNoDuration"
 	E.db["unitframe"]["units"]["player"]["debuffs"]["sizeOverride"] = 30
 	E.db["unitframe"]["units"]["player"]["debuffs"]["yOffset"] = -32
 	E.db["unitframe"]["units"]["player"]["debuffs"]["xOffset"] = -15
@@ -1288,7 +1287,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["target"]["aurabar"]["maxBars"] = 15
 	E.db["unitframe"]["units"]["target"]["aurabar"]["yOffset"] = 1
 	E.db["unitframe"]["units"]["target"]["aurabar"]["spacing"] = 1
-	E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,CastByUnit,BlizzardNameplate"
 	E.db["unitframe"]["units"]["target"]["aurabar"]["sortDirection"] = "ASCENDING"
 	E.db["unitframe"]["units"]["target"]["buffs"]["countXOffset"] = 2
 	E.db["unitframe"]["units"]["target"]["buffs"]["countYOffset"] = -3
@@ -1302,11 +1300,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["target"]["buffs"]["growthX"] = "RIGHT"
 	E.db["unitframe"]["units"]["target"]["buffs"]["height"] = 25
 	E.db["unitframe"]["units"]["target"]["buffs"]["keepSizeRatio"] = false
-	if E.Retail then
-		E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal,Dispellable"
-	elseif E.Wrath or E.TBC or E.Classic then
-		E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal,Dispellable,BlizzardNameplate"
-	end
 	E.db["unitframe"]["units"]["target"]["buffs"]["sizeOverride"] = 30
 	E.db["unitframe"]["units"]["target"]["buffs"]["sortDirection"] = "ASCENDING"
 	E.db["unitframe"]["units"]["target"]["buffs"]["xOffset"] = 15
