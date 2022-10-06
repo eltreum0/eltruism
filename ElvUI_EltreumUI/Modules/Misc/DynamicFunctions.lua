@@ -185,6 +185,20 @@ local modelsRotate = {
 	[1024776] = true, --"khadgar2.m2",
 	[124659] = true, --"kalecgos.m2",
 	[579571] = true, --"jinyu.m2",
+	[1611191] = true, --"turalyon.m2",
+	[125263] = true, --"ogre.m2",
+	[125264] = true, --"ogremage.m2",
+	[125293] = true, --"ogrewarlord.m2",
+	[125300] = true, --"ogre02.m2",
+	[930099] = true, --"ogredraenor.m2",
+	[1039724] = true, --"ogredraenorbutcher.m2",
+	[976839] = true, --"ogrefelbreaker.m2",
+	[1027992] = true, --"ogrehighmaulking.m2",
+	[125313] = true, --"ogreking.m2",
+	[125317] = true, --"ogremage02.m2",
+	[125336] = true, --"ogremagelord.m2",
+	[3545238] = true, --"ogrenecromancer.m2",
+	[1956660] = true, --"ogrepirate.m2",
 }
 
 --these are humanoids that should be 0
