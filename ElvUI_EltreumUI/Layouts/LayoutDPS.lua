@@ -954,6 +954,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["player"]["aurabar"]["maxDuration"] = 60
 	E.db["unitframe"]["units"]["player"]["aurabar"]["spacing"] = 2
 	E.db["unitframe"]["units"]["player"]["aurabar"]["yOffset"] = 1
+	E.db["unitframe"]["units"]["player"]["aurabar"]["sortDirection"] = "ASCENDING"
 	E.db["unitframe"]["units"]["player"]["buffs"]["yOffset"] = -227
 	E.db["unitframe"]["units"]["player"]["buffs"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["player"]["buffs"]["countFont"] = "Kimberley"
@@ -1288,6 +1289,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["target"]["aurabar"]["yOffset"] = 1
 	E.db["unitframe"]["units"]["target"]["aurabar"]["spacing"] = 1
 	E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,CastByUnit,BlizzardNameplate"
+	E.db["unitframe"]["units"]["target"]["aurabar"]["sortDirection"] = "ASCENDING"
 	E.db["unitframe"]["units"]["target"]["buffs"]["countXOffset"] = 2
 	E.db["unitframe"]["units"]["target"]["buffs"]["countYOffset"] = -3
 	E.db["unitframe"]["units"]["target"]["buffs"]["durationPosition"] = "TOP"
