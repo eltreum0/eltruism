@@ -221,6 +221,12 @@ local modelsRotate = {
 	[576676] = true, --"mogu.m2",
 	[613021] = true, --"moguking.m2",
 	[666357] = true, --"mogulieutenant.m2",
+	[625293] = true, --"pandarenmalekid_basic.m2",
+	[653173] = true, --"pandarenmalekid.m2",
+	[328267] = true, --"pandarenmonk.m2",
+	[652330] = true, --"pandarenfemalekid.m2",
+	[647984] = true, --"lili.m2",
+	[648647] = true, --"chenstormstout.m2",
 }
 
 --these are humanoids that should be 0
