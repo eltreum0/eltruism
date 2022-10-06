@@ -146,6 +146,12 @@ function ElvUI_EltreumUI:RunCommands(message)
 		E.db.general.backdropcolor.r = valuecolors.r*0.14
 		--E:UpdateBackdropColors()
 		E:UpdateMediaItems()
+	elseif message == 'modeldebug' then
+		if E.db.unitframe.units.target.portrait.enable and E.db.unitframe.units.target.portrait.style == "3D" then
+			ElvUI_EltreumUI:Print(_G["ElvUF_Target"].Portrait3D:GetModelFileID())
+		else
+			ElvUI_EltreumUI:Print("Target doesn't have 3D model portrait enabled")
+		end
 	else
 		ElvUI_EltreumUI:Print("|cff82B4ffYou have entered an unknown command, here's a list of commands you can use:|r")
 		print("|cff82B4ff/eltruism|r - Opens Eltruism Config")
