@@ -27,9 +27,9 @@ if IsAddOnLoaded("ProjectAzilroka") then
 end
 
 function ElvUI_EltreumUI:SkinQuests()
-	if E.db.ElvUI_EltreumUI.skins.quests and E.private.skins.blizzard.objectiveTracker and E.private.skins.blizzard.enable then
 
-		--create the button for wowhead
+	--create the button for wowhead
+	if E.db.ElvUI_EltreumUI.skins.questswowhead then
 		if E.Retail then
 			wowheadbutton:SetWidth(80)
 			wowheadbutton:SetHeight(20)
@@ -137,12 +137,9 @@ function ElvUI_EltreumUI:SkinQuests()
 		end
 		--register the button for clicks
 		wowheadbutton:RegisterForClicks("AnyUp")
-		if not E.db.ElvUI_EltreumUI.skins.questswowhead then
-			wowheadbutton:Hide()
-		end
 
+		--get questid
 		if E.Retail then
-			--get questid
 			local questID
 			local getquestid = CreateFrame("FRAME")
 			getquestid:RegisterEvent("QUEST_DATA_LOAD_RESULT")
@@ -162,7 +159,33 @@ function ElvUI_EltreumUI:SkinQuests()
 					E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, L["No quest selected"])
 				end
 			end)
+		elseif E.Classic or E.TBC then
+			local questID
+			--hook the function that sets the quest detail to get the questID from the quest title
+			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --questlogframe.lua 311
+				questID = select(8, GetQuestLogTitle(questTitle))
+			end)
+			--set the link to show when the button is clicked
+			wowheadbutton:SetScript('OnClick', function()
+				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
+			end)
+		elseif E.Wrath then
+			local questID
+			--hook the function that sets the quest detail to get the questID from the quest title
+			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --_G.QuestLogFrame.lua 311
+				questID = select(8, GetQuestLogTitle(questTitle))
+			end)
+			--set the link to show when the button is clicked
+			wowheadbutton:SetScript('OnClick', function()
+				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
+			end)
+		end
+	else
+		wowheadbutton:Hide()
+	end
 
+	if E.db.ElvUI_EltreumUI.skins.quests and E.private.skins.blizzard.objectiveTracker and E.private.skins.blizzard.enable then
+		if E.Retail then
 			-- and (not IsAddOnLoaded("ElvUI_WindTools"))
 			if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 				--WQs banner
@@ -539,18 +562,8 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 					end
 				end)
-
 			end
 		elseif E.Classic or E.TBC then
-			local questID
-			--hook the function that sets the quest detail to get the questID from the quest title
-			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --questlogframe.lua 311
-				questID = select(8, GetQuestLogTitle(questTitle))
-			end)
-			--set the link to show when the button is clicked
-			wowheadbutton:SetScript('OnClick', function()
-				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
-			end)
 
 			--move the text for no quests
 			_G.QuestLogNoQuestsText:ClearAllPoints()
@@ -756,15 +769,6 @@ function ElvUI_EltreumUI:SkinQuests()
 				UIParent_ManageFramePositions()
 			end)
 		elseif E.Wrath then
-			local questID
-			--hook the function that sets the quest detail to get the questID from the quest title
-			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --_G.QuestLogFrame.lua 311
-				questID = select(8, GetQuestLogTitle(questTitle))
-			end)
-			--set the link to show when the button is clicked
-			wowheadbutton:SetScript('OnClick', function()
-				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
-			end)
 
 			if IsAddOnLoaded('Questie') then --questie overwrites the default tracker sadly instead of hooking into it
 				if _G.Questie.db.global.trackerEnabled then

@@ -10,10 +10,10 @@ local HasNewMail = _G.HasNewMail
 local PlaySoundFile = _G.PlaySoundFile
 local C_Timer = _G.C_Timer
 local _, instanceType
-local level, targetmodel
+local level, targetmodel--, playermodel
 
---character models
-local models = {
+--character models that should be rotated
+local modelsRotate = {
 	[118355] = true, --dwarf male
 	[118135] = true, --dwarf female
 	[1838560] = true, --dwarfmale_hd_sdr.m2
@@ -139,59 +139,145 @@ local models = {
 	[121942] = true, --"skeletonmale.m2",
 	[233367] = true, --"northrendskeletonmale.m2",
 	[1793470] = true, --"thinhumanmale.m2",
-	[122815] = true, --"vrykulmale.m2",
 	[122738] = true, --"tuskarrmale.m2",
+	[126286] = true, --"tuskarrmalefisherman.m2",
+	[234884] = true, --"undeadicetroll.m2",,
+	--[1302532] = true, --"druidbear2.m2",
+	[1272625] = true, --""druidbear2_artifact1.m2",
+	[1272606] = true, --""druidbear2_artifact2.m2",
+	[1272605] = true, --""druidbear2_artifact3.m2",
+	[1272604] = true, --""druidbear2_artifact4.m2",
+	[1272741] = true, --""druidbear2_artifact5.m2",
+	[1505169] = true, --""druidbear2_artifact6.m2",
+	--[1336653] = true, --""druidbeartauren2.m2",
+	--[1336652] = true, --""druidbeartroll2.m2",
+	--[1336654] = true, --""druidbearworgen2.m2",
+	[3013816] = true, --"automatonbrute.m2",
+	[3196574] = true, --"denathrius.m2",
+	[3487358] = true, --"maldraxxusskeleton.m2",
+	[3542807] = true, --"maldraxxusgladiatorfemale.m2",
+	[3284341] = true, --"maldraxxusgladiator.m2",
+	[125092] = true, --"necromancer.m2",
+	[3087468] = true, --"necromancer2.m2",
+	[3570847] = true, --"maldraxxusdraka.m2",
 }
+
+--these are humanoids that should be 0
+--[[local modelsNoRotate = {
+	[122815] = true, --"vrykulmale.m2",
+	[234622] = true, --"frostvrykulmale.m2",
+	[234679] = true, --"ironvrykulmale.m2",
+	[234834] = true, --"seavrykulmale.m2",
+	[234835] = true, --"seavrykulmale_a.m2",
+	[234842] = true, --"seavrykulmaleoarsman.m2",
+	[234919] = true, --"vrykulfemalecaster.m2",
+	[234902] = true, --"femalevrykulboss.m2",
+	[234907] = true, --"frostvrykulfemalecaster.m2",
+	[234908] = true, -- "frostvrykulfemaledruid.m2",
+	[234914] = true, --"frostvrykulfemalehunter.m2",
+	[234918] = true, --"frostvrykulfemalewarrior.m2",
+	[126397] = true, --"vrykulfemale.m2",
+	[234926] = true, --"vrykulfemaledruid.m2",
+	[234933] = true, --"vrykulfemalehunter.m2",
+	[234946] = true, --"vrykulfemalewarrior.m2",
+}]]
 
 --set portrait rotation based on target being npc or not
 function ElvUI_EltreumUI:DynamicUFPortraitRotation()
-	if E.db.ElvUI_EltreumUI.unitframes.portraitfix and E.private.unitframe.enable and E.db.unitframe.units.target.portrait.enable and E.db.unitframe.units.target.portrait.style == "3D" then
-		if UnitExists("target") and _G["ElvUF_Target"] then
-			E:Delay(0, function()
+	if E.db.ElvUI_EltreumUI.unitframes.portraitfix and E.private.unitframe.enable then
 
-				--get the model id
-				if _G["ElvUF_Target"].Portrait3D then
-					targetmodel = _G["ElvUF_Target"].Portrait3D:GetModelFileID()
-				else
-					targetmodel = "NotYetObtained"
-				end
+		if E.db.unitframe.units.target.portrait.enable and E.db.unitframe.units.target.portrait.style == "3D" then
+			if UnitExists("target") and _G["ElvUF_Target"] then
+				E:Delay(0, function()
 
-				--fix camera rotation
-				if UnitIsPlayer("target") then
-					E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
-				else
-					if targetmodel and targetmodel ~= "NotYetObtained" then
-						if UnitCreatureType("target") == "Humanoid" or models[targetmodel] then
+					--get the model id
+					if _G["ElvUF_Target"].Portrait3D then
+						targetmodel = _G["ElvUF_Target"].Portrait3D:GetModelFileID()
+
+						--fix camera rotation
+						if modelsRotate[targetmodel]then
 							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
-						else
-							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
-						end
-					else
-						if UnitCreatureType("target") == "Humanoid" then
-							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
+						--elseif modelsNoRotate[targetmodel] then
+							--E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
+						--elseif UnitCreatureType("target") == "Humanoid" then --TODO CHECK MORE MODELS
+							--E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 						else
 							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
 						end
 					end
-				end
 
-				--pause if dead
-				if UnitIsDead("target") then
-					E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = true
-					E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 1
-				else
-					E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = false
-					E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 0
-				end
+					--pause if dead
+					if UnitIsDead("target") then
+						E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = true
+						E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 1
+					else
+						E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = false
+						E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 0
+					end
 
-				--force update portrait
-				if _G["ElvUF_Target"].Portrait3D then
-					_G["ElvUF_Target"].Portrait3D:ForceUpdate()
-				end
-			end)
+					--force update portrait
+					if _G["ElvUF_Target"].Portrait3D then
+						_G["ElvUF_Target"].Portrait3D:ForceUpdate()
+					end
+				end)
+			end
 		end
+		--maybe player fix?
+		--[[if E.db.unitframe.units.player.portrait.enable and E.db.unitframe.units.player.portrait.style == "3D" then
+			if _G["ElvUF_Player"] then
+				E:Delay(0, function()
+
+					--get the model id
+					if _G["ElvUF_Player"].Portrait3D then
+						playermodel = _G["ElvUF_Player"].Portrait3D:GetModelFileID()
+					else
+						playermodel = "NotYetObtained"
+					end
+
+					--fix camera rotation
+					if playermodel and playermodel ~= "NotYetObtained" then
+						if modelsRotate[playermodel] and not modelsNoRotate[playermodel] then
+							E.db["unitframe"]["units"]["player"]["portrait"]["rotation"] = 0
+						elseif UnitCreatureType("player") == "Humanoid" then
+							E.db["unitframe"]["units"]["player"]["portrait"]["rotation"] = 0
+						else
+							E.db["unitframe"]["units"]["player"]["portrait"]["rotation"] = 291
+						end
+					else
+						if UnitCreatureType("player") == "Humanoid" then
+							E.db["unitframe"]["units"]["player"]["portrait"]["rotation"] = 0
+						else
+							E.db["unitframe"]["units"]["player"]["portrait"]["rotation"] = 291
+						end
+					end
+
+					--pause if dead
+					if UnitIsDead("player") then
+						E.db["unitframe"]["units"]["player"]["portrait"]["paused"] = true
+						E.db["unitframe"]["units"]["player"]["portrait"]["desaturation"] = 1
+					else
+						E.db["unitframe"]["units"]["player"]["portrait"]["paused"] = false
+						E.db["unitframe"]["units"]["player"]["portrait"]["desaturation"] = 0
+					end
+
+					--force update portrait
+					if _G["ElvUF_Player"].Portrait3D then
+						_G["ElvUF_Player"].Portrait3D:ForceUpdate()
+					end
+				end)
+			end
+		end]]
+
 	end
 end
+
+--check for druid things, ofc
+local shapeshiftcheck = CreateFrame("FRAME")
+shapeshiftcheck:RegisterUnitEvent("UNIT_MODEL_CHANGED", "target")
+--shapeshiftcheck:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+shapeshiftcheck:SetScript("OnEvent", function()
+	ElvUI_EltreumUI:DynamicUFPortraitRotation()
+end)
 
 --fixed cooldown text to be class color
 function ElvUI_EltreumUI:CooldownColors()

@@ -77,6 +77,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[3328] = 50904, --nerubian-leg-reinforcements
 		[3331] = 50911, --dragonscale-leg-armor
 		[3290] = 52639, --spring-loaded-cloak-expander
+		[3729] = 55655, --eternal-belt-buckle
 
 		---- old list
 		[15] = 2831, -- Reinforced (+$k1 Armor)
@@ -804,8 +805,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[6168] = { 172363, 309618, nil }, -- Tenet of Mastery
 		[6170] = { 172364, 309619, nil }, -- Tenet of Versatility
 
-
-
 		--BfA
 		--Enchant Ring
 		[5942] = { 153442, 255075, 162716 }, -- Pact of Critical Strike
@@ -1237,6 +1236,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 	}
 	local SlotIconManagerMetaTable = { __index = SlotIconManager }
 	ElvUI_EltreumUI.SlotIconManager = SlotIconManager
+
 	function SlotIconManager:new(adapter)
 		local instance = {
 			adapter = adapter,
@@ -1298,7 +1298,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 				-- Trinket0Slot = true,
 				-- Trinket1Slot = true,
 				MainHandSlot = true,
-				-- SecondaryHandSlot = true,
+				--SecondaryHandSlot = E.Wrath and true or false,
 			},
 			itemInfos = nil,
 			parentVisible = false,

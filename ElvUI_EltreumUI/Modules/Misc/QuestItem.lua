@@ -14,16 +14,16 @@ local GameFontNormal = _G.GameFontNormal
 local GameTooltip = _G.GameTooltip
 local GetItemInfo = _G.GetItemInfo
 local ipairs = _G.ipairs
-local GetContainerNumSlots = _G.GetContainerNumSlots
+local GetContainerNumSlots = _G.GetContainerNumSlots --TODO GetContainerNumSlots DRAGONFLIGHT
 local GetContainerItemLink = _G.GetContainerItemLink
 local tonumber = _G.tonumber
-local GetContainerItemQuestInfo = _G.GetContainerItemQuestInfo
+local GetContainerItemQuestInfo = _G.GetContainerItemQuestInfo --TODO GetContainerItemQuestInfo DRAGONFLIGHT
 local GetContainerItemInfo = _G.GetContainerItemInfo
 local GetInventorySlotInfo = _G.GetInventorySlotInfo
 local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetBindingText = _G.GetBindingText
 local CooldownFrame_Set = _G.CooldownFrame_Set
-local GetContainerItemCooldown = _G.GetContainerItemCooldown
+local GetContainerItemCooldown = _G.GetContainerItemCooldown --TODO GetContainerItemCooldown DRAGONFLIGHT
 local GetInventoryItemCooldown = _G.GetInventoryItemCooldown
 local _, instanceType
 local EnhancedShadows = nil
@@ -172,6 +172,7 @@ local qItems = {
 	37173,
 	37265,
 	37445,
+	37661, --gossamer potion
 	37708,
 	37877,
 	38351,

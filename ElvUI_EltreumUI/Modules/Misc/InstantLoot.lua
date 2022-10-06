@@ -195,7 +195,7 @@ EltruismInstantLoot:SetScript("OnEvent", InstantLoot)
 		if E.db.ElvUI_EltreumUI.loot.fastloot then
 			local openslots = 0
 			for i=0, 4 do
-				openslots = openslots + GetContainerNumFreeSlots(i)
+				openslots = openslots + GetContainerNumFreeSlots(i) --TODO GetContainerNumFreeSlots DRAGONFLIGHT
 			end
 			if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
 				for i = GetNumLootItems(), 1, -1 do

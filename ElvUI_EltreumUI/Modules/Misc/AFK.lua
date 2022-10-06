@@ -92,7 +92,8 @@ local classicMusic = {
 }
 
 -- with the help of Repooc, Simpy, Nihilistzsche and Acidweb (not in order :D)
-local musicSetting = C_CVar.GetCVar('Sound_EnableMusic')
+local musicSettingLoadingIn = C_CVar.GetCVar('Sound_EnableMusic')
+local musicSetting = musicSettingLoadingIn
 local classicmusicstopper = nil
 local willplay = nil
 function ElvUI_EltreumUI:AFKmusic()
@@ -116,12 +117,16 @@ function ElvUI_EltreumUI:AFKmusic()
 		else
 			if E.Retail or E.TBC or E.Wrath then
 				StopMusic()
-				SetCVar("Sound_EnableMusic", musicSetting)
+				if musicSettingLoadingIn ~= musicSetting then
+					SetCVar("Sound_EnableMusic", musicSetting)
+				end
 			elseif E.Classic then
 				if willplay then
 					StopSound(classicmusicstopper,3000)
 				end
-				SetCVar("Sound_EnableMusic", musicSetting)
+				if musicSettingLoadingIn ~= musicSetting then
+					SetCVar("Sound_EnableMusic", musicSetting)
+				end
 			end
 		end
 	end

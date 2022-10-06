@@ -7,12 +7,12 @@ local GetItemInfo = _G.GetItemInfo
 local GetItemInfoInstant = _G.GetItemInfoInstant
 local GetItemCount = _G.GetItemCount
 local format = _G.format
-local GetContainerItemID = _G.GetContainerItemID
+local GetContainerItemID = _G.GetContainerItemID --TODO GetContainerItemID DRAGONFLIGHT
 local GetInventoryItemCount = _G.GetInventoryItemCount
 local GetInventoryItemID = _G.GetInventoryItemID
-local ContainerIDToInventoryID = _G.ContainerIDToInventoryID
-local GetContainerNumSlots = _G.GetContainerNumSlots
-local GetContainerNumFreeSlots = _G.GetContainerNumFreeSlots
+local ContainerIDToInventoryID = _G.ContainerIDToInventoryID --TODO ContainerIDToInventoryID DRAGONFIGHT
+local GetContainerNumSlots = _G.GetContainerNumSlots --TODO GetContainerNumSlots DRAGONFLIGHT
+local GetContainerNumFreeSlots = _G.GetContainerNumFreeSlots --TODO GetContainerNumFreeSlots DRAGONFLIGHT
 local GetItemQualityColor = _G.GetItemQualityColor
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
