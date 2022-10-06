@@ -218,6 +218,9 @@ local modelsRotate = {
 	[898014] = true, --"ordos.m2",
 	[577035] = true, --"yaunka.m2",
 	[588373] = true, --"spikysprite.m2",
+	[576676] = true, --"mogu.m2",
+	[613021] = true, --"moguking.m2",
+	[666357] = true, --"mogulieutenant.m2",
 }
 
 --these are humanoids that should be 0
