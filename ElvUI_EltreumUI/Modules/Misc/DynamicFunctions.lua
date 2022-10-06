@@ -170,6 +170,10 @@ local modelsRotate = {
 	[3948222] = true, --"sylvanasbanshee.m2",
 	[3221727] = true, --"sylvanasshadowlands.m2",
 	[3996207] = true, --"mawnecromancerboss.m2",
+	[1246857] = true, --"genngreymane.m2",
+	[1466597] = true, --"genngreymaneworgen.m2",
+	[1817113] = true, --"genngreymaneworgen2.m2",
+	[3527746] = true, --"attendantoribos.m2",
 }
 
 --these are humanoids that should be 0
