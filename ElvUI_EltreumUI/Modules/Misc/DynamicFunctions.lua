@@ -232,6 +232,9 @@ local modelsRotate = {
 	[123249] = true, --"clockworkgnome_b.m2",
 	[123250] = true, --"clockworkgnome_c.m2",
 	[123251] = true, --"clockworkgnome_d.m2",
+	[234666] = true, --"irondwarf.m2",
+	[250585] = true, --"irondwarf_low01.m2",
+	[250586] = true, --"irondwarf_low02.m2",
 }
 
 --these are humanoids that should be 0
