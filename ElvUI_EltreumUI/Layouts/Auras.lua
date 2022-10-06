@@ -4,23 +4,23 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 --dps filters
 local Eltruismdpstargetbuffs = "Blacklist,Dispellable,blockNoDuration,PlayerBuffs,nonPersonal,RaidBuffsElvUI,TurtleBuffs"
-local Eltruismdpstargetdebuffs = "Blacklist,Personal,RaidDebuffs,CCDebuffs,Friendly:Dispellable"
+local Eltruismdpstargetdebuffs = "Blacklist,Personal,CCDebuffs"
 local Eltruismdpsplayerdebuffs = "Blacklist,blockNoDuration,Personal,nonPersonal"
-local Eltruismdpsplayerbuffs = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal"
-local Eltruismdpsbossbuffs = "Blacklist,CastByUnit,Dispellable,Whitelist,RaidBuffsElvUI"
-local Eltruismdpsbossdebuffs = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,Whitelist"
-local Eltruismdpsfocusbuffs = "Blacklist,Personal,PlayerBuffs,CastByUnit,Dispellable,RaidBuffsElvUI"
-local Eltruismdpsfocusdebuffs = "Blacklist,Personal,Boss,RaidDebuffs,Dispellable,Whitelist"
+local Eltruismdpsplayerbuffs = "Blacklist,Personal,nonPersonal"
+local Eltruismdpsbossbuffs = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
+local Eltruismdpsbossdebuffs = "Blacklist,Personal,CCDebuffs"
+local Eltruismdpsfocusbuffs = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
+local Eltruismdpsfocusdebuffs = "Blacklist,Personal,CCDebuffs"
 
 --healer filters
 local Eltruismhealertargetbuffs = "Blacklist,Dispellable,blockNoDuration,PlayerBuffs,nonPersonal,RaidBuffsElvUI,TurtleBuffs"
-local Eltruismhealertargetdebuffs = "Blacklist,Personal,RaidDebuffs,CCDebuffs,Friendly:Dispellable"
+local Eltruismhealertargetdebuffs = "Blacklist,Personal,CCDebuffs"
 local Eltruismhealerplayerdebuffs = "Blacklist,blockNoDuration,Personal,nonPersonal"
-local Eltruismhealerplayerbuffs = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal"
-local Eltruismhealerfocusbuffs = "Blacklist,Personal,PlayerBuffs,CastByUnit,Dispellable,RaidBuffsElvUI"
-local Eltruismhealerfocusdebuffs = "Blacklist,Personal,Boss,RaidDebuffs,Dispellable,Whitelist"
-local Eltruismhealerbossbuffs = "Blacklist,CastByUnit,Dispellable,Whitelist,RaidBuffsElvUI"
-local Eltruismhealerbossdebuffs = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,Whitelist"
+local Eltruismhealerplayerbuffs = "Blacklist,Personal,nonPersonal"
+local Eltruismhealerfocusbuffs = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
+local Eltruismhealerfocusdebuffs = "Blacklist,Personal,CCDebuffs"
+local Eltruismhealerbossbuffs = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
+local Eltruismhealerbossdebuffs = "Blacklist,Personal,CCDebuffs"
 
 --nameplates
 local Eltruismnpenemyplayerbuffs = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs"
