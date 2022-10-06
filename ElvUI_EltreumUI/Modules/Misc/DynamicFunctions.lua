@@ -174,6 +174,17 @@ local modelsRotate = {
 	[1466597] = true, --"genngreymaneworgen.m2",
 	[1817113] = true, --"genngreymaneworgen2.m2",
 	[3527746] = true, --"attendantoribos.m2",
+	[3257514] = true, --"faunfemale.m2",
+	[3063200] = true, --"faunmale.m2",
+	[2173913] = true, --"boralusguard_f.m2",
+	[2173917] = true, --"boralusguard_ktf.m2",
+	[2173915] = true, --"boralusguard_ktm.m2",
+	[2173911] = true, --"boralusguard_m.m2",
+	[234599] = true, --"earthendwarf.m2",
+	[407377] = true, --"earthendwarf_low.m2",
+	[1024776] = true, --"khadgar2.m2",
+	[124659] = true, --"kalecgos.m2",
+	[579571] = true, --"jinyu.m2",
 }
 
 --these are humanoids that should be 0
