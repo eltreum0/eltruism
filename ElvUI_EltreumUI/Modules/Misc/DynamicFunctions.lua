@@ -235,6 +235,16 @@ local modelsRotate = {
 	[234666] = true, --"irondwarf.m2",
 	[250585] = true, --"irondwarf_low01.m2",
 	[250586] = true, --"irondwarf_low02.m2",
+	[124521] = true, --"humanmalepiratecrewman.m2",
+	[124522] = true, --"humanmalepiratecrewman_ghost.m2",
+	[234501] = true, --"ladyalexstrasa.m2",
+	[575104] = true, --"ladyalexstrasa2.m2",
+	[1624825] = true, --"alleria.m2",
+	[1668960] = true, --"alleriavoid.m2",
+	[437089] = true, --"ysera.m2",
+	[575208] = true, --"ysera2.m2",
+	[526474] = true, --"nozdormu.m2",
+	[575159] = true, --"nozdormu2.m2",
 }
 
 --these are humanoids that should be 0
