@@ -240,7 +240,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 					_G.TradeSkillSkillIcon:SetParent(_G.TradeSkillFrame)
 
 					_G.TradeSkillRequirementLabel:ClearAllPoints()
-					_G.TradeSkillRequirementLabel:SetPoint("BOTTOMLEFT", _G.TradeSkillSkillName, "TOPLEFT", 0, -25)
+					_G.TradeSkillRequirementLabel:SetPoint("BOTTOMLEFT", _G.TradeSkillSkillName, "TOPLEFT", 0, -30)
 					_G.TradeSkillRequirementLabel:SetParent(_G.TradeSkillFrame)
 					_G.TradeSkillRequirementText:ClearAllPoints()
 					_G.TradeSkillRequirementText:SetPoint("LEFT", _G.TradeSkillRequirementLabel,"RIGHT", 5, 0)
