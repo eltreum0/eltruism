@@ -868,6 +868,9 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 					local _, Anchor = Button:GetPoint()
 					Button:ClearAllPoints()
+					if _G["WatchFrameItem"..i.."HotKey"] then
+						_G["WatchFrameItem"..i.."HotKey"]:SetText("")
+					end
 					if Anchor ~= nil then
 						if questside:match("RIGHT") then
 							Button:SetPoint("LEFT", Anchor, "LEFT", -40, -10)
@@ -919,6 +922,9 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 					local _, Anchor = Button:GetPoint()
 					Button:ClearAllPoints()
+					if _G["WatchFrameItem"..i.."HotKey"] then
+						_G["WatchFrameItem"..i.."HotKey"]:SetText("")
+					end
 					if Anchor ~= nil then
 						if questside:match("RIGHT") then
 							Button:SetPoint("LEFT", Anchor, "LEFT", -40, -10)
