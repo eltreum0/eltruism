@@ -74,6 +74,38 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.private["general"]["pixelPerfect"] = true
 		E.db["unitframe"]["thinBorders"] = true
 
+		--aura filtering
+		E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,nonPersonal"
+		E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = "Blacklist,Personal,nonPersonal"
+		E.db["unitframe"]["units"]["arena"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
+		E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
+		--E.db["unitframe"]["units"]["raid1"]["debuffs"]["priority"] = "Blacklist,Boss,CCDebuffs,Dispellable,Whitelist"
+		--E.db["unitframe"]["units"]["raid2"]["debuffs"]["priority"] = "Blacklist,Boss,CCDebuffs,Dispellable,Whitelist"
+		--E.db["unitframe"]["units"]["raid3"]["debuffs"]["priority"] = "Blacklist,Boss,CCDebuffs,Dispellable,Whitelist"
+		E.db["unitframe"]["units"]["raid1"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
+		E.db["unitframe"]["units"]["raid2"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
+		E.db["unitframe"]["units"]["raid3"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
+		E.db["unitframe"]["units"]["party"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
+		E.db["unitframe"]["units"]["tank"]["debuffs"]["priority"] = "Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist"
+		E.db["unitframe"]["units"]["tank"]["buffs"]["priority"] = "Blacklist,TurtleBuffs,RaidBuffsElvUI"
+		E.db["unitframe"]["units"]["assist"]["buffs"]["priority"] = "Blacklist,TurtleBuffs,RaidBuffsElvUI"
+		--E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,CastByUnit,BlizzardNameplate"
+		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,CCDebuffs,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
+		--[[if E.Retail then
+			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal,Dispellable"
+		elseif E.Wrath or E.TBC or E.Classic then
+			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal,Dispellable,BlizzardNameplate"
+		end]]
+		E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Dispellable,blockNoDuration,PlayerBuffs,nonPersonal,RaidBuffsElvUI,TurtleBuffs"
+		--E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
+		E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
+		E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,MyPet"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
+		E.db["unitframe"]["units"]["focustarget"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Dispellable"
+		E.db["unitframe"]["units"]["arena"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
+		E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
+		E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
 
 		--movers
 		E.db["movers"]["MoverEltruismInstanceDifficulty"] = "TOPRIGHT,UIParent,TOPRIGHT,-146,-21"

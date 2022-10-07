@@ -1,6 +1,38 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 --Eltruism/Default ElvUI filters
+
+--dps filters
+local Eltruismdpstargetbuffs = "Blacklist,Dispellable,blockNoDuration,PlayerBuffs,nonPersonal,RaidBuffsElvUI,TurtleBuffs"
+local Eltruismdpstargetdebuffs = "Blacklist,Personal,CCDebuffs"
+local Eltruismdpsplayerdebuffs = "Blacklist,blockNoDuration,Personal,nonPersonal"
+local Eltruismdpsplayerbuffs = "Blacklist,Personal,nonPersonal"
+local Eltruismdpsbossbuffs = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
+local Eltruismdpsbossdebuffs = "Blacklist,Personal,CCDebuffs"
+local Eltruismdpsfocusbuffs = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
+local Eltruismdpsfocusdebuffs = "Blacklist,Personal,CCDebuffs"
+
+--healer filters
+local Eltruismhealertargetbuffs = "Blacklist,Dispellable,blockNoDuration,PlayerBuffs,nonPersonal,RaidBuffsElvUI,TurtleBuffs"
+local Eltruismhealertargetdebuffs = "Blacklist,Personal,CCDebuffs"
+local Eltruismhealerplayerdebuffs = "Blacklist,blockNoDuration,Personal,nonPersonal"
+local Eltruismhealerplayerbuffs = "Blacklist,Personal,nonPersonal"
+local Eltruismhealerfocusbuffs = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
+local Eltruismhealerfocusdebuffs = "Blacklist,Personal,CCDebuffs"
+local Eltruismhealerbossbuffs = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
+local Eltruismhealerbossdebuffs = "Blacklist,Personal,CCDebuffs"
+
+--nameplates
+local Eltruismnpenemyplayerbuffs = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs"
+local Eltruismnpenemyplayerdebuffs = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
+local Eltruismnpenemynpcbuffs = "Blacklist,RaidBuffsElvUI,Dispellable,blockNoDuration,CastByUnit"
+local Eltruismnpenemynpcdebuffs = "Blacklist,Personal,CCDebuffs"
+
+--All filter mainly for wrath/tbc/classic
+local allfilter = "Blacklist,Personal,nonPersonal"
+
+--backup
+--[[
 --dps filters
 local Eltruismdpstargetbuffs = "Blacklist,Personal,nonPersonal,Dispellable,BlizzardNameplate"
 local Eltruismdpstargetdebuffs = "Blacklist,Personal,RaidDebuffs,CCDebuffs,Friendly:Dispellable"
@@ -24,9 +56,7 @@ local Eltruismnpenemynpcbuffs = "Blacklist,RaidBuffsElvUI,Dispellable,blockNoDur
 local Eltruismnpenemyplayerbuffs = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs"
 local Eltruismnpenemynpcdebuffs = "Blacklist,Personal,CCDebuffs"
 local Eltruismnpenemyplayerdebuffs = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
-
---All filter mainly for tbc/classic
-local allfilter = "Blacklist,Personal,nonPersonal,CastByPlayers,CastByUnit"
+]]
 
 --aura filter setup based on Luckyone's credits to him!
 function ElvUI_EltreumUI:SetupBuffs(frame, type)

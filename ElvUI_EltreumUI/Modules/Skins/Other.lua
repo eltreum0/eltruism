@@ -240,11 +240,25 @@ function ElvUI_EltreumUI:SkinProfessions()
 					_G.TradeSkillSkillIcon:SetParent(_G.TradeSkillFrame)
 
 					_G.TradeSkillRequirementLabel:ClearAllPoints()
-					_G.TradeSkillRequirementLabel:SetPoint("BOTTOMLEFT", _G.TradeSkillSkillName, "TOPLEFT", 0, -25)
+					_G.TradeSkillRequirementLabel:SetPoint("BOTTOMLEFT", _G.TradeSkillSkillName, "TOPLEFT", 0, -30)
 					_G.TradeSkillRequirementLabel:SetParent(_G.TradeSkillFrame)
 					_G.TradeSkillRequirementText:ClearAllPoints()
 					_G.TradeSkillRequirementText:SetPoint("LEFT", _G.TradeSkillRequirementLabel,"RIGHT", 5, 0)
 					_G.TradeSkillRequirementText:SetParent(_G.TradeSkillFrame)
+
+					--Auctionator search fix
+					if IsAddOnLoaded("Auctionator") then
+						E:Delay(0, function()
+							if _G.AuctionatorTradeSkillSearch then
+								_G.AuctionatorTradeSkillSearch:ClearAllPoints()
+								_G.AuctionatorTradeSkillSearch:SetPoint("RIGHT", _G.TradeSkillSkillName,"RIGHT", 0, -40)
+							end
+							if _G.AuctionatorCraftSkillSearch then
+								_G.AuctionatorCraftSkillSearch:ClearAllPoints()
+								_G.AuctionatorCraftSkillSearch:SetPoint("RIGHT", _G.TradeSkillSkillName,"RIGHT", 0, -40)
+							end
+						end)
+					end
 
 					if _G.TradeSkillDescription then
 						_G.TradeSkillDescription:ClearAllPoints()
