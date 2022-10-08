@@ -6,7 +6,7 @@ function ElvUI_EltreumUI:GetASProfile()
 	local valuecolors = E:ClassColor(E.myclass, true)
 	if IsAddOnLoaded("AddOnSkins") then
 		local AS = unpack(AddOnSkins)
-		AS.data:SetProfile("Eltreum Dual")
+		--AS.data:SetProfile("Eltreum Dual")
 		AS.db["EmbedBackdrop"] = false
 		AS.db["EmbedBackdropTransparent"] = false
 		AS.db["EmbedRightChat"] = true

@@ -776,7 +776,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 			end
 			--from blizzard's FrameXML/WatchFrame.lua
-
+			local questside = _G.ObjectiveFrameMover:GetPoint()
 			--skin the classic objective frame, based on aftermathh's
 			local function colorquests(line, _, _, isHeader, text, _, _, isComplete) --(line, anchor, verticalOffset, isHeader, text, dash, hasItem, isComplete)
 				if line and line.text then
@@ -868,8 +868,15 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 					local _, Anchor = Button:GetPoint()
 					Button:ClearAllPoints()
+					if _G["WatchFrameItem"..i.."HotKey"] then
+						_G["WatchFrameItem"..i.."HotKey"]:SetText("")
+					end
 					if Anchor ~= nil then
-						Button:SetPoint("LEFT", Anchor, "LEFT", -40, -10)
+						if questside:match("RIGHT") then
+							Button:SetPoint("LEFT", Anchor, "LEFT", -40, -10)
+						else
+							Button:SetPoint("RIGHT", Anchor, "RIGHT", 120, -10)
+						end
 					--elseif Anchor == nil then
 						--Button:SetPoint("LEFT", _G["WatchFrameLine"..i.."Text"], "LEFT", -40, -10)
 						if not (Button.QuestTexture) then
@@ -879,7 +886,11 @@ function ElvUI_EltreumUI:SkinQuests()
 								Button.QuestTexture = Button:CreateTexture("EltruismQuestTexture")
 							end
 							Button.QuestTexture:SetSize(24, 24)
-							Button.QuestTexture:SetPoint("LEFT", Button, "LEFT", -12, 0)
+							if questside:match("RIGHT") then
+								Button.QuestTexture:SetPoint("LEFT", Button, "LEFT", -12, 0)
+							else
+								Button.QuestTexture:SetPoint("RIGHT", Button, "RIGHT", 26, 0)
+							end
 							Button.QuestTexture:SetTexture(E.Media.Textures.BagQuestIcon)
 							Button.QuestTexture:SetParent(Button)
 						end
@@ -911,10 +922,21 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 					local _, Anchor = Button:GetPoint()
 					Button:ClearAllPoints()
+					if _G["WatchFrameItem"..i.."HotKey"] then
+						_G["WatchFrameItem"..i.."HotKey"]:SetText("")
+					end
 					if Anchor ~= nil then
-						Button:SetPoint("LEFT", Anchor, "LEFT", -40, -10)
+						if questside:match("RIGHT") then
+							Button:SetPoint("LEFT", Anchor, "LEFT", -40, -10)
+						else
+							Button:SetPoint("RIGHT", Anchor, "RIGHT", 120, -10)
+						end
 					elseif Anchor == nil then
-						Button:SetPoint("LEFT", _G["WatchFrameLine"..i.."Text"], "LEFT", -40, -10)
+						if questside:match("RIGHT") then
+							Button:SetPoint("LEFT", _G["WatchFrameLine"..i.."Text"], "LEFT", -40, -10)
+						else
+							Button:SetPoint("RIGHT", _G["WatchFrameLine"..i.."Text"], "RIGHT", 120, -10)
+						end
 					end
 				end
 			end)

@@ -1,18 +1,13 @@
-### 3.4.7 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.4.8 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added Engineering Enchants to Sockets in Wrath\
-Added Wrath Instance Difficulties (10/25/10 Heroic/25 Heroic)\
-Added an option to disable Tooltip Item Level in Classic/Wrath\
-Added a setting to change the Volume of Text to Speech to Cooldowns and Mail Text To Speech\
-Added options to change the Width and Height of the Quest Item Bar Buttons, alongside button spacing settings\
-Added another NPC to the block list for Automatic Quest Turn Ins (Magical Kingdom of Dalaran NPC in Dalaran)\
-Updated [eltruism:presence] into [eltruism:stance] which will work with more classes and return their stances in Classic/Wrath, in Retail it will only work with Paladins due to stances being removed\
-Updated Sockets and Enchants to not always require Rings and Belt enchants due to professions limitations, and enabled level checking again\
-Updated Gradient Aurabars to make them compatible with Transparent and Non Transparent Aura Bars from ElvUI\
-Updated Portrait Fix to also use Model detection for some models\
-Updated Chat Class Colors to not depend upon Chat Loot Icons\
-Updated Quest Item Bar to prevent a keybind issue\
-Updated German locale by Dlarge\
-Updated MeetingHorn Skin\
-Fixed Threat Bar not being centered\
-Fixed Non Interruptible Gradient Color not having the correct gradient
+Updated Character Panel Skin while in Combat in Classic/Wrath, it will not be the same but should be more usable and contain a warning about being in Combat\
+Updated Quest Skin to adjust the Quest Item Button if the Quests is set on the left side instead of the right side of the screen\
+Updated TradeSkill Skin to move the Auctionator Price Check Button if Auctionator is Enabled\
+Updated TradeSkill Skin in Classic Wrath to prevent Engineering Tinkers Text Overlap\
+Updated Questie Profile Import, which will now not overwrite your current profile\
+Updated Target Portrait Fix with many more Models to be detected\
+Updated Aurabars to Sort by Ascending\
+Updated Aura Filtering Priorities for Profiles\
+Fixed Shaman Totem Glows activating when the Classbar was disabled in Classic/Wrath\
+Fixed Wowhead Quest Button only appearing when the Quests Skin was enabled\
+Fixed AFK Music rarely enabling Sounds

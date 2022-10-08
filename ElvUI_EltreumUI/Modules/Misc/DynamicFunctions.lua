@@ -245,6 +245,18 @@ local modelsRotate = {
 	[575208] = true, --"ysera2.m2",
 	[526474] = true, --"nozdormu.m2",
 	[575159] = true, --"nozdormu2.m2",
+	[123690] = true, --"druidowlbear.m2",
+	[629427] = true, --"druidowlbearepic.m2",
+	[123695] = true, --"druidowlbeartauren.m2",
+	[629453] = true, --"druidowlbeartaurenepic.m2",
+	[1139162] = true, --"druidowlbear2.m2",
+	[1139289] = true, --"druidowlbearepic2.m2",
+	[1139164] = true, --"druidowlbeartauren2.m2",
+	[1139167] = true, --"druidowlbeartaurenepic2.m2",
+	[2393672] = true, --"druidowlbearhmtauren2.m2",
+	[2574520] = true, --"druidowlbearhmtaurenepic2.m2",
+	[2734575] = true, --"druidowlbearkultiranepic2.m2",
+	[2734573] = true, --"druidowlbearzandalariepic2.m2",
 }
 
 --these are humanoids that should be 0

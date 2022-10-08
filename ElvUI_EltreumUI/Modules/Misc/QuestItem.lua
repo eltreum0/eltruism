@@ -305,7 +305,9 @@ function ElvUI_EltreumUI:QuestItem()
 		if instanceType ~= "none" then
 			EltruismQuestItemFrame:Hide()
 		else
-			EltruismQuestItemFrame:Show()
+			if not InCombatLockdown() then
+				EltruismQuestItemFrame:Show()
+			end
 
 			if E.db.ElvUI_EltreumUI.quests.questitemsbar1 and E.private.actionbar.enable then
 				if not InCombatLockdown() then

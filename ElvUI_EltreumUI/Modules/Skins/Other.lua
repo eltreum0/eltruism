@@ -240,7 +240,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 					_G.TradeSkillSkillIcon:SetParent(_G.TradeSkillFrame)
 
 					_G.TradeSkillRequirementLabel:ClearAllPoints()
-					_G.TradeSkillRequirementLabel:SetPoint("BOTTOMLEFT", _G.TradeSkillSkillName, "TOPLEFT", 0, -30)
+					_G.TradeSkillRequirementLabel:SetPoint("BOTTOMLEFT", _G.TradeSkillSkillName, "TOPLEFT", 0, -35)
 					_G.TradeSkillRequirementLabel:SetParent(_G.TradeSkillFrame)
 					_G.TradeSkillRequirementText:ClearAllPoints()
 					_G.TradeSkillRequirementText:SetPoint("LEFT", _G.TradeSkillRequirementLabel,"RIGHT", 5, 0)
@@ -262,23 +262,18 @@ function ElvUI_EltreumUI:SkinProfessions()
 
 					if _G.TradeSkillDescription then
 						_G.TradeSkillDescription:ClearAllPoints()
-						_G.TradeSkillDescription:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", 74, -74)
+						_G.TradeSkillDescription:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", 74, -114)
 						_G.TradeSkillDescription:SetParent(_G.TradeSkillFrame)
-
-						_G.TradeSkillReagentLabel:ClearAllPoints()
-						_G.TradeSkillReagentLabel:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", -35, -100)
-						_G.TradeSkillReagentLabel:SetParent(_G.TradeSkillFrame)
-					else
-						_G.TradeSkillReagentLabel:ClearAllPoints()
-						_G.TradeSkillReagentLabel:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", -35, -45)
-						_G.TradeSkillReagentLabel:SetParent(_G.TradeSkillFrame)
 					end
+					_G.TradeSkillReagentLabel:ClearAllPoints()
+					_G.TradeSkillReagentLabel:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", -35, -120)
+					_G.TradeSkillReagentLabel:SetParent(_G.TradeSkillFrame)
 
 					TradeSkillListScrollFrameScrollBar:ClearAllPoints()
 					TradeSkillListScrollFrameScrollBar:SetPoint("LEFT", TradeSkillDetailScrollChildFrame, -30, -70)
 					TradeSkillListScrollFrameScrollBar:SetHeight(320)
 
-					for i =1, 15 do
+					for i = 1, 15 do
 						if _G["TradeSkillReagent"..i] then
 							_G["TradeSkillReagent"..i]:SetParent(_G.TradeSkillFrame)
 						else
