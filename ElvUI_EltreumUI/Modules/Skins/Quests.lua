@@ -776,7 +776,12 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 			end
 			--from blizzard's FrameXML/WatchFrame.lua
-			local questside = _G.ObjectiveFrameMover:GetPoint()
+			local questside
+			if _G.ObjectiveFrameMover then
+				questside = _G.ObjectiveFrameMover:GetPoint()
+			else
+				questside = "RIGHT"
+			end
 			--skin the classic objective frame, based on aftermathh's
 			local function colorquests(line, _, _, isHeader, text, _, _, isComplete) --(line, anchor, verticalOffset, isHeader, text, dash, hasItem, isComplete)
 				if line and line.text then
