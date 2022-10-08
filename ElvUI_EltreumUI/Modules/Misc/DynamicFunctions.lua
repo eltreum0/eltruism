@@ -289,6 +289,12 @@ local modelsRotate = {
 	[125948] = true, --"skeletonnaked.m2",
 	[1120702] = true, --"harpy2.m2",
 	[1568931] = true, --"harpy2fel.m2",
+	[2617507] = true, --"deepjinyucaster.m2",
+	[2617509] = true, --"deepjinyumelee.m2",
+	[2445592] = true, --"lorthemar.m2",
+	--[368597] = true, --"gilgoblin.m2", --for whatever reason this one is ok, female isnt
+	[2832038] = true, --"gilgoblin_female.m2",
+	[1716306] = true, --"skeletaltrollwarrior.m2",
 }
 
 --set portrait rotation based on target being npc or not
