@@ -115,12 +115,12 @@ function ElvUI_EltreumUI:AFKmusic()
 				PlayMusic(wrathMusic[E.myrace])
 			end
 		else
-			if E.Retail or E.TBC or E.Wrath then
+			if not E.Classic then
 				StopMusic()
 				if musicSettingLoadingIn ~= musicSetting then
 					SetCVar("Sound_EnableMusic", musicSetting)
 				end
-			elseif E.Classic then
+			else
 				if willplay then
 					StopSound(classicmusicstopper,3000)
 				end
