@@ -291,45 +291,18 @@ local modelsRotate = {
 	[1568931] = true, --"harpy2fel.m2",
 }
 
---these are humanoids that should be 0
---[[local modelsNoRotate = {
-	[122815] = true, --"vrykulmale.m2",
-	[234622] = true, --"frostvrykulmale.m2",
-	[234679] = true, --"ironvrykulmale.m2",
-	[234834] = true, --"seavrykulmale.m2",
-	[234835] = true, --"seavrykulmale_a.m2",
-	[234842] = true, --"seavrykulmaleoarsman.m2",
-	[234919] = true, --"vrykulfemalecaster.m2",
-	[234902] = true, --"femalevrykulboss.m2",
-	[234907] = true, --"frostvrykulfemalecaster.m2",
-	[234908] = true, -- "frostvrykulfemaledruid.m2",
-	[234914] = true, --"frostvrykulfemalehunter.m2",
-	[234918] = true, --"frostvrykulfemalewarrior.m2",
-	[126397] = true, --"vrykulfemale.m2",
-	[234926] = true, --"vrykulfemaledruid.m2",
-	[234933] = true, --"vrykulfemalehunter.m2",
-	[234946] = true, --"vrykulfemalewarrior.m2",
-}]]
-
 --set portrait rotation based on target being npc or not
 function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 	if E.db.ElvUI_EltreumUI.unitframes.portraitfix and E.private.unitframe.enable then
-
 		if E.db.unitframe.units.target.portrait.enable and E.db.unitframe.units.target.portrait.style == "3D" then
 			if UnitExists("target") and _G["ElvUF_Target"] then
 				E:Delay(0, function()
 
-					--get the model id
+					--fix camera rotation by get the model id
 					if _G["ElvUF_Target"].Portrait3D then
 						targetmodel = _G["ElvUF_Target"].Portrait3D:GetModelFileID()
-
-						--fix camera rotation
 						if modelsRotate[targetmodel]then
 							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
-						--elseif modelsNoRotate[targetmodel] then
-							--E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
-						--elseif UnitCreatureType("target") == "Humanoid" then --TODO CHECK MORE MODELS
-							--E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
 						else
 							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
 						end
@@ -396,7 +369,6 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 				end)
 			end
 		end]]
-
 	end
 end
 
