@@ -282,6 +282,8 @@ local modelsRotate = {
 	[234694] = true, --"kingvarianwrynn.m2",
 	[1466423] = true, --"kingvarianwrynn2.m2",
 	[1697869] = true, --"katherineproudmoore.m2",
+	[1321518] = true, --"hulkedguldan.m2",
+	[1344610] = true, --"hulkedguldan_super.m2",
 }
 
 --these are humanoids that should be 0
