@@ -137,11 +137,11 @@ local modelsRotate = {
 	[1793470] = true, --"thinhumanmale.m2",
 	[122738] = true, --"tuskarrmale.m2",
 	[234884] = true, --"undeadicetroll.m2",,
-	[1272625] = true, --""druidbear2_artifact1.m2",
-	[1272606] = true, --""druidbear2_artifact2.m2",
-	[1272605] = true, --""druidbear2_artifact3.m2",
-	[1272604] = true, --""druidbear2_artifact4.m2",
-	[1272741] = true, --""druidbear2_artifact5.m2",
+	--[1272625] = true, --""druidbear2_artifact1.m2",
+	--[1272606] = true, --""druidbear2_artifact2.m2",
+	--[1272605] = true, --""druidbear2_artifact3.m2",
+	--[1272604] = true, --""druidbear2_artifact4.m2",
+	--[1272741] = true, --""druidbear2_artifact5.m2",
 	[1505169] = true, --""druidbear2_artifact6.m2",
 	[3013816] = true, --"automatonbrute.m2",
 	[3196574] = true, --"denathrius.m2",
@@ -259,49 +259,78 @@ local modelsRotate = {
 	[2734573] = true, --"druidowlbearzandalariepic2.m2",
 	[1133752] = true, --"warden.m2",
 	[2406143] = true, --"warden_wraith.m2",
+	[1769126] = true, --"nathanos.m2",
+	[1729790] = true, --"bainebloodhoof.m2",
+	[1368775] = true, --"nightbornefemalecitizen.m2",
+	[1389276] = true, --"nightbornefemalecitizen2.m2",
+	[1661111] = true, --"nightbornefemalecreature.m2",
+	[1390672] = true, --"nightbornefemalefel.m2",
+	[1368718] = true, --"nightbornemalecitizen.m2",
+	[1389275] = true, --"nightbornemalecitizen2.m2",
+	[1661112] = true, --"nightbornemalecreature.m2",
+	[1393158] = true, --"nightbornemalefel.m2",
+	[1273520] = true, --"nightbornespellbreaker.m2",
+	[2123299] = true, --"nightelfarcher_f.m2",
+	[2153839] = true, --"nightelfarcher_m.m2",
+	[2123317] = true, --"nightelfsentinel_f.m2",
+	[1271671] = true, --"nightfallenfemale.m2",
+	[1274732] = true, --"nightfallenmale.m2",
+	[1277447] = true, --"nightborneastronomer.m2",
+	[1306568] = true, --"nightbornebotanist.m2",
+	[1692762] = true, --"princesstalanji.m2",
+	[3990370] = true, --"progenitorbotguardbroken.m2",
+	[234694] = true, --"kingvarianwrynn.m2",
+	[1466423] = true, --"kingvarianwrynn2.m2",
+	[1697869] = true, --"katherineproudmoore.m2",
+	[1321518] = true, --"hulkedguldan.m2",
+	[1344610] = true, --"hulkedguldan_super.m2",
+	[1264839] = true, --"bloodtotemtauren_caster.m2",
+	[1261881] = true, --"bloodtotemtauren_melee.m2",
+	[125948] = true, --"skeletonnaked.m2",
+	[1120702] = true, --"harpy2.m2",
+	[1568931] = true, --"harpy2fel.m2",
+	[2617507] = true, --"deepjinyucaster.m2",
+	[2617509] = true, --"deepjinyumelee.m2",
+	[2445592] = true, --"lorthemar.m2",
+	--[368597] = true, --"gilgoblin.m2", --for whatever reason this one is ok, female isnt
+	[2832038] = true, --"gilgoblin_female.m2",
+	[1716306] = true, --"skeletaltrollwarrior.m2",
+	[1110239] = true, --"felorcmalehd.m2",
+	[1129716] = true, --"felorcjubei_baked.m2",
+	[123915] = true, --"felorcwarriorsword.m2",
+	[123918] = true, --"felorcwarlord.m2",
+	[123901] = true, --"felorcdire.m2",
+	[123900] = true, --"felorcwarriorboss.m2",
+	[123893] = true, --"felorcwarrioraxe.m2",
+	[123887] = true, --"felorc_sword.m2",
+	[123882] = true, --"felorc_axe.m2",
+	[123880] = true, --"felorc.m2",
+	[414827] = true, --"chogall.m2",
+	[1035318] = true, --"chogall2.m2",
+	[394557] = true, --"chogalldisciple.m2",
+	[467025] = true, --"chogall_corrupt.m2",
+	[124667] = true, --"kargath.m2",
+	[971774] = true, --"kargathbladefist.m2",
+	[3483612] = true, --"yserashadowlands.m2",
 }
-
---these are humanoids that should be 0
---[[local modelsNoRotate = {
-	[122815] = true, --"vrykulmale.m2",
-	[234622] = true, --"frostvrykulmale.m2",
-	[234679] = true, --"ironvrykulmale.m2",
-	[234834] = true, --"seavrykulmale.m2",
-	[234835] = true, --"seavrykulmale_a.m2",
-	[234842] = true, --"seavrykulmaleoarsman.m2",
-	[234919] = true, --"vrykulfemalecaster.m2",
-	[234902] = true, --"femalevrykulboss.m2",
-	[234907] = true, --"frostvrykulfemalecaster.m2",
-	[234908] = true, -- "frostvrykulfemaledruid.m2",
-	[234914] = true, --"frostvrykulfemalehunter.m2",
-	[234918] = true, --"frostvrykulfemalewarrior.m2",
-	[126397] = true, --"vrykulfemale.m2",
-	[234926] = true, --"vrykulfemaledruid.m2",
-	[234933] = true, --"vrykulfemalehunter.m2",
-	[234946] = true, --"vrykulfemalewarrior.m2",
-}]]
 
 --set portrait rotation based on target being npc or not
 function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 	if E.db.ElvUI_EltreumUI.unitframes.portraitfix and E.private.unitframe.enable then
-
 		if E.db.unitframe.units.target.portrait.enable and E.db.unitframe.units.target.portrait.style == "3D" then
 			if UnitExists("target") and _G["ElvUF_Target"] then
 				E:Delay(0, function()
 
-					--get the model id
+					local originalrotation = E.db["unitframe"]["units"]["target"]["portrait"]["rotation"]
+					local newrotation
+
+					--fix camera rotation by get the model id
 					if _G["ElvUF_Target"].Portrait3D then
 						targetmodel = _G["ElvUF_Target"].Portrait3D:GetModelFileID()
-
-						--fix camera rotation
 						if modelsRotate[targetmodel]then
-							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
-						--elseif modelsNoRotate[targetmodel] then
-							--E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
-						--elseif UnitCreatureType("target") == "Humanoid" then --TODO CHECK MORE MODELS
-							--E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
+							newrotation = 291
 						else
-							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
+							newrotation = 0
 						end
 					end
 
@@ -312,6 +341,10 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 					else
 						E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = false
 						E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 0
+					end
+
+					if newrotation ~= originalrotation then
+						E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = newrotation
 					end
 
 					--force update portrait
@@ -366,7 +399,6 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 				end)
 			end
 		end]]
-
 	end
 end
 
