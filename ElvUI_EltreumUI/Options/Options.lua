@@ -70,6 +70,7 @@ local SUPPORTER = {
 	'|cffB50909Michael_|r',
 	'|cffB50909Morthart|r',
 	'|cffB50909Nekator|r',
+	'|cffB50909Nyhilatiant|r',
 	'|cffB50909Vxt|r',
 }
 
