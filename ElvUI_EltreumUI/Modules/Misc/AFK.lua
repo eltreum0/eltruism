@@ -99,7 +99,7 @@ local willplay = nil
 function ElvUI_EltreumUI:AFKmusic()
 	if E.db.ElvUI_EltreumUI.otherstuff.afkmusic.enable then
 		if UnitIsAFK("player") then
-			musicSetting = C_CVar.GetCVar('Sound_EnableMusic')
+			musicSetting = tonumber(C_CVar.GetCVar('Sound_EnableMusic'))
 			SetCVar("Sound_EnableMusic", 1)
 			if E.Retail then
 				if E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial then
