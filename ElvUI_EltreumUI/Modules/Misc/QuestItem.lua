@@ -392,23 +392,27 @@ function ElvUI_EltreumUI:QuestItem()
 					if not InCombatLockdown() and _G["EltruismQuestItem1"] then
 						local point, relativeTo, relativePoint, xOfs, yOfs = EltruismQuestItemFrame:GetPoint()
 						_G["EltruismQuestItem1"]:ClearAllPoints()
-						if self.shownItems ~= 1 then
-							if (self.shownItems % 2) == 0 then
-								if xOfs >= 0 then
-									--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
-									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2)-(E.db.ElvUI_EltreumUI.quests.questitemspacing *(self.shownItems-1)/2), yOfs)
-								elseif xOfs < 0 then
-									--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
-									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2)+(E.db.ElvUI_EltreumUI.quests.questitemspacing *(self.shownItems-1)/2), yOfs)
+						if E.db.ElvUI_EltreumUI.quests.questorientation == "HORIZONTAL" then
+							if self.shownItems ~= 1 then
+								if (self.shownItems % 2) == 0 then
+									if xOfs >= 0 then
+										--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
+										_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2)-(E.db.ElvUI_EltreumUI.quests.questitemspacing *(self.shownItems-1)/2), yOfs)
+									elseif xOfs < 0 then
+										--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
+										_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2)+(E.db.ElvUI_EltreumUI.quests.questitemspacing *(self.shownItems-1)/2), yOfs)
+									end
+								else
+									if xOfs >= 0 then
+										--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize+1))/2), yOfs)
+										_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(E.db.ElvUI_EltreumUI.quests.questitemspacing *(self.shownItems-1)/2)-(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize+1))/2), yOfs)
+									elseif xOfs < 0 then
+										--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize-1))/2), yOfs)
+										_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(E.db.ElvUI_EltreumUI.quests.questitemspacing *(self.shownItems-1)/2)+(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize-1))/2), yOfs)
+									end
 								end
 							else
-								if xOfs >= 0 then
-									--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize+1))/2), yOfs)
-									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(E.db.ElvUI_EltreumUI.quests.questitemspacing *(self.shownItems-1)/2)-(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize+1))/2), yOfs)
-								elseif xOfs < 0 then
-									--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize-1))/2), yOfs)
-									_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(E.db.ElvUI_EltreumUI.quests.questitemspacing *(self.shownItems-1)/2)+(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize-1))/2), yOfs)
-								end
+								_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs, yOfs)
 							end
 						else
 							_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs, yOfs)
@@ -497,7 +501,11 @@ function ElvUI_EltreumUI:QuestItem()
 				b:Show()
 				--if (#EltruismQuestItemFrame.items == 0) then
 				if (self.shownItems == 0) then
-					b:SetPoint("TOPLEFT",EltruismQuestItemFrame,0,0)
+					if E.db.ElvUI_EltreumUI.quests.questorientation == "HORIZONTAL" then
+						b:SetPoint("TOPLEFT",EltruismQuestItemFrame,0,0)
+					else
+						b:SetPoint("BOTTOM",EltruismQuestItemFrame,0,0)
+					end
 				end
 				EltruismQuestItemFrame.items[#EltruismQuestItemFrame.items + 1] = b
 				return b
@@ -536,7 +544,11 @@ function ElvUI_EltreumUI:QuestItem()
 
 				if (index > 1) then
 					btn:ClearAllPoints()
-					btn:SetPoint("LEFT", EltruismQuestItemFrame.items[index - 1], "RIGHT", E.db.ElvUI_EltreumUI.quests.questitemspacing, 0) --CONTROLS SPACING ????
+					if E.db.ElvUI_EltreumUI.quests.questorientation == "HORIZONTAL" then
+						btn:SetPoint("LEFT", EltruismQuestItemFrame.items[index - 1], "RIGHT", E.db.ElvUI_EltreumUI.quests.questitemspacing, 0) --CONTROLS SPACING
+					else
+						btn:SetPoint("TOP", EltruismQuestItemFrame.items[index - 1], "BOTTOM", 0, -E.db.ElvUI_EltreumUI.quests.questitemspacing) --CONTROLS SPACING
+					end
 				end
 				btn:Show()
 

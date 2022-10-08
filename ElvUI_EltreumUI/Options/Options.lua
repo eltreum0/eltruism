@@ -9013,6 +9013,19 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.quests.questitemspacing end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.quests.questitemspacing = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
+					setorientation = {
+						type = 'select',
+						name = L["Bar Direction"],
+						order = 12,
+						values = {
+							["HORIZONTAL"] = L["Horizontal"],
+							["VERTICAL"] = L["Vertical"],
+						},
+						style = 'radio',
+						disabled = function() return not E.db.ElvUI_EltreumUI.quests.questitems end,
+						get = function() return E.db.ElvUI_EltreumUI.quests.questorientation end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.quests.questorientation = value E:StaticPopup_Show('CONFIG_RL') end,
+					},
 					headergaphere9487 = {
 						order = 95,
 						type = "description",

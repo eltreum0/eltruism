@@ -400,6 +400,7 @@ P.ElvUI_EltreumUI = {
 		questitemsize = 36,
 		questitemsizey = 36,
 		questitemspacing = 2,
+		questorientation = "HORIZONTAL",
 		questitemsfade = false,
 	},
 
