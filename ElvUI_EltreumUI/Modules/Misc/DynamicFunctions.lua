@@ -295,6 +295,16 @@ local modelsRotate = {
 	--[368597] = true, --"gilgoblin.m2", --for whatever reason this one is ok, female isnt
 	[2832038] = true, --"gilgoblin_female.m2",
 	[1716306] = true, --"skeletaltrollwarrior.m2",
+	[1110239] = true, --"felorcmalehd.m2",
+	[1129716] = true, --"felorcjubei_baked.m2",
+	[123915] = true, --"felorcwarriorsword.m2",
+	[123918] = true, --"felorcwarlord.m2",
+	[123901] = true, --"felorcdire.m2",
+	[123900] = true, --"felorcwarriorboss.m2",
+	[123893] = true, --"felorcwarrioraxe.m2",
+	[123887] = true, --"felorc_sword.m2",
+	[123882] = true, --"felorc_axe.m2",
+	[123880] = true, --"felorc.m2",
 }
 
 --set portrait rotation based on target being npc or not
@@ -331,7 +341,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 					end
 
 					--force update portrait
-					if _G["ElvUF_Target"].Portrait3D and (newrotation ~= originalrotation) then
+					if _G["ElvUF_Target"].Portrait3D then
 						_G["ElvUF_Target"].Portrait3D:ForceUpdate()
 					end
 				end)
