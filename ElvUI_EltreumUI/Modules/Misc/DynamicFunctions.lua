@@ -311,6 +311,7 @@ local modelsRotate = {
 	[467025] = true, --"chogall_corrupt.m2",
 	[124667] = true, --"kargath.m2",
 	[971774] = true, --"kargathbladefist.m2",
+	[3483612] = true, --"yserashadowlands.m2",
 }
 
 --set portrait rotation based on target being npc or not
