@@ -286,6 +286,9 @@ local modelsRotate = {
 	[1344610] = true, --"hulkedguldan_super.m2",
 	[1264839] = true, --"bloodtotemtauren_caster.m2",
 	[1261881] = true, --"bloodtotemtauren_melee.m2",
+	[125948] = true, --"skeletonnaked.m2",
+	[1120702] = true, --"harpy2.m2",
+	[1568931] = true, --"harpy2fel.m2",
 }
 
 --these are humanoids that should be 0
