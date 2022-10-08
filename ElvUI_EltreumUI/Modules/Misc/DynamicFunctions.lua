@@ -304,13 +304,16 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 			if UnitExists("target") and _G["ElvUF_Target"] then
 				E:Delay(0, function()
 
+					local originalrotation = E.db["unitframe"]["units"]["target"]["portrait"]["rotation"]
+					local newrotation
+
 					--fix camera rotation by get the model id
 					if _G["ElvUF_Target"].Portrait3D then
 						targetmodel = _G["ElvUF_Target"].Portrait3D:GetModelFileID()
 						if modelsRotate[targetmodel]then
-							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 291
+							newrotation = 291
 						else
-							E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = 0
+							newrotation = 0
 						end
 					end
 
@@ -323,8 +326,12 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 						E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 0
 					end
 
+					if newrotation ~= originalrotation then
+						E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = newrotation
+					end
+
 					--force update portrait
-					if _G["ElvUF_Target"].Portrait3D then
+					if _G["ElvUF_Target"].Portrait3D and (newrotation ~= originalrotation) then
 						_G["ElvUF_Target"].Portrait3D:ForceUpdate()
 					end
 				end)
