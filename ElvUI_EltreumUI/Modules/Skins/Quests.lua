@@ -259,7 +259,7 @@ function ElvUI_EltreumUI:SkinQuests()
 								block.currentLine.Text:SetWordWrap(true)
 							end
 						end
-						local line = DEFAULT_OBJECTIVE_TRACKER_MODULE:GetLine(block, objectiveKey, lineType);
+						local line = DEFAULT_OBJECTIVE_TRACKER_MODULE:GetLine(block, objectiveKey, lineType)
 						if ( line.Dash ) then
 							if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
 								line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
