@@ -564,6 +564,9 @@ function ElvUI_EltreumUI:SkinQuests()
 				end)
 			end
 		elseif E.Classic or E.TBC then
+			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
+				return
+			end
 
 			--move the text for no quests
 			_G.QuestLogNoQuestsText:ClearAllPoints()
@@ -769,6 +772,9 @@ function ElvUI_EltreumUI:SkinQuests()
 				UIParent_ManageFramePositions()
 			end)
 		elseif E.Wrath then
+			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
+				return
+			end
 
 			if IsAddOnLoaded('Questie') then --questie overwrites the default tracker sadly instead of hooking into it
 				if _G.Questie.db.global.trackerEnabled then
