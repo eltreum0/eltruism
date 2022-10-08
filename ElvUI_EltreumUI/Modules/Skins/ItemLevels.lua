@@ -159,7 +159,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 				end)
 			end
 			if event == "INSPECT_READY" then
-				C_Timer.After(1, function()
+				C_Timer.After(0.1, function()
 					if _G.InspectFrame and _G.InspectFrame:IsVisible() then
 						_G.InspectPaperDollFrame_UpdateButtons()
 					end
