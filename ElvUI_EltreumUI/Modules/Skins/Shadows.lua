@@ -731,7 +731,6 @@ function ElvUI_EltreumUI:Shadows()
 				_G.CharacterFrameTab4.backdrop, --only in classic though
 				_G.CharacterFrameTab5.backdrop, --only in classic though
 				_G.FriendsFrameTab5.backdrop, --only in classic though
-				_G.QuestLogDetailFrame.backdrop,
 				_G.PetStableFrame.backdrop,
 				_G.TaxiFrame.backdrop,
 				_G.TabardFrame.backdrop,
@@ -748,6 +747,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.LFGParentFrame.backdrop,
 				_G.LFGParentFrameTab1.backdrop,
 				_G.LFGParentFrameTab2.backdrop,
+				_G.QuestLogDetailFrame.backdrop,
 				}
 				for _, frame in pairs(tbcframes) do
 					if frame and not frame.shadow then
