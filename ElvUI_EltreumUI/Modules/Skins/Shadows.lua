@@ -203,6 +203,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G.VoidStorageFrame,
 			_G.BonusRollFrame,
 			_G.ItemRefTooltip,
+			_G.CinematicFrameCloseDialog,
 			--_G.ImmersionFrame.TalkBox,
 		}
 		for _, frame in pairs(blizzardframes) do
