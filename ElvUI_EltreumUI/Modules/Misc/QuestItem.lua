@@ -568,7 +568,7 @@ function ElvUI_EltreumUI:QuestItem()
 				end
 				-- Scan Tip -- Az: any reason we cant just check for more or equal to 4 lines, or would some quest items fail that check?
 				EltruismQuestItemFrame.tip:ClearLines()
-				EltruismQuestItemFrame.tip:SetHyperlink(link)
+				EltruismQuestItemFrame.tip:SetHyperlink(link) --TODO confirm working DRAGONFLIGHT
 				local numLines = EltruismQuestItemFrame.tip:NumLines()
 				local line2 = (_G["EltruismQuestItemTipTextLeft2"]:GetText() or "")
 				if (numLines >= 3) and (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12 or line2 == ITEM_BIND_QUEST or line2 == GetZoneText()) and itemEquipLoc == "" then
