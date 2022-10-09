@@ -312,6 +312,8 @@ local modelsRotate = {
 	[124667] = true, --"kargath.m2",
 	[971774] = true, --"kargathbladefist.m2",
 	[3483612] = true, --"yserashadowlands.m2",
+	[387859] = true, --"garrosh.m2",
+	[876912] = true,--"garrosh2",
 }
 
 local druidfix = {
