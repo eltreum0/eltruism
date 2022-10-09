@@ -1,13 +1,12 @@
-### 3.4.8 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.4.9 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Updated Character Panel Skin while in Combat in Classic/Wrath, it will not be the same but should be more usable and contain a warning about being in Combat\
-Updated Quest Skin to adjust the Quest Item Button if the Quests is set on the left side instead of the right side of the screen\
-Updated TradeSkill Skin to move the Auctionator Price Check Button if Auctionator is Enabled\
-Updated TradeSkill Skin in Classic Wrath to prevent Engineering Tinkers Text Overlap\
-Updated Questie Profile Import, which will now not overwrite your current profile\
-Updated Target Portrait Fix with many more Models to be detected\
-Updated Aurabars to Sort by Ascending\
-Updated Aura Filtering Priorities for Profiles\
-Fixed Shaman Totem Glows activating when the Classbar was disabled in Classic/Wrath\
-Fixed Wowhead Quest Button only appearing when the Quests Skin was enabled\
-Fixed AFK Music rarely enabling Sounds
+Added more models to the Target Portrait Fix\
+Added option to set the Quest Item Bar Vertically\
+Added preset settings for Pet Party Frames in Wrath\
+Updated AFK Music with more possible fixes\
+Updated Inspect Sockets, Enchants and Item Level unit detection\
+Fixed a possible issue when using other Quest Trackers besides Questie\
+Fixed Spec Details Profile in Classic Era\
+Fixed Questie Hide in Classic Era\
+Fixed a shadow in Classic Era\
+Fixed Stats Datatext in Classic Era
