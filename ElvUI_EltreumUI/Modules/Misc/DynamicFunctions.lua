@@ -10,7 +10,7 @@ local HasNewMail = _G.HasNewMail
 local PlaySoundFile = _G.PlaySoundFile
 local C_Timer = _G.C_Timer
 local _, instanceType
-local level, targetmodel--, playermodel
+local level, targetmodel, playermodel
 
 --character models that should be rotated
 local modelsRotate = {
@@ -354,32 +354,26 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 				end)
 			end
 		end
-		--maybe player fix?
-		--[[if E.db.unitframe.units.player.portrait.enable and E.db.unitframe.units.player.portrait.style == "3D" then
-			if _G["ElvUF_Player"] then
+	end
+end
+
+--because sometimes player portrait gets replaced and has wrong rotation too
+function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
+	if E.db.ElvUI_EltreumUI.unitframes.portraitfix and E.private.unitframe.enable then
+		if E.db.unitframe.units.player.portrait.enable and E.db.unitframe.units.player.portrait.style == "3D" then
+			if UnitExists("player") and _G["ElvUF_Player"] then
 				E:Delay(0, function()
 
-					--get the model id
+					local originalrotation = E.db["unitframe"]["units"]["player"]["portrait"]["rotation"]
+					local newrotation
+
+					--fix camera rotation by get the model id
 					if _G["ElvUF_Player"].Portrait3D then
 						playermodel = _G["ElvUF_Player"].Portrait3D:GetModelFileID()
-					else
-						playermodel = "NotYetObtained"
-					end
-
-					--fix camera rotation
-					if playermodel and playermodel ~= "NotYetObtained" then
-						if modelsRotate[playermodel] and not modelsNoRotate[playermodel] then
-							E.db["unitframe"]["units"]["player"]["portrait"]["rotation"] = 0
-						elseif UnitCreatureType("player") == "Humanoid" then
-							E.db["unitframe"]["units"]["player"]["portrait"]["rotation"] = 0
+						if modelsRotate[playermodel]then
+							newrotation = 0
 						else
-							E.db["unitframe"]["units"]["player"]["portrait"]["rotation"] = 291
-						end
-					else
-						if UnitCreatureType("player") == "Humanoid" then
-							E.db["unitframe"]["units"]["player"]["portrait"]["rotation"] = 0
-						else
-							E.db["unitframe"]["units"]["player"]["portrait"]["rotation"] = 291
+							newrotation = 66--39
 						end
 					end
 
@@ -392,22 +386,31 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 						E.db["unitframe"]["units"]["player"]["portrait"]["desaturation"] = 0
 					end
 
+					if newrotation ~= originalrotation then
+						E.db["unitframe"]["units"]["player"]["portrait"]["rotation"] = newrotation
+					end
+
 					--force update portrait
 					if _G["ElvUF_Player"].Portrait3D then
 						_G["ElvUF_Player"].Portrait3D:ForceUpdate()
 					end
 				end)
 			end
-		end]]
+		end
 	end
 end
 
 --check for druid things, ofc
 local shapeshiftcheck = CreateFrame("FRAME")
 shapeshiftcheck:RegisterUnitEvent("UNIT_MODEL_CHANGED", "target")
---shapeshiftcheck:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
-shapeshiftcheck:SetScript("OnEvent", function()
-	ElvUI_EltreumUI:DynamicUFPortraitRotation()
+shapeshiftcheck:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+shapeshiftcheck:SetScript("OnEvent", function(_,_,unit)
+	if unit == "target" then
+		ElvUI_EltreumUI:DynamicUFPortraitRotation()
+	elseif unit == "player" then
+		ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
+		ElvUI_EltreumUI:DynamicUFPortraitRotation()
+	end
 end)
 
 --fixed cooldown text to be class color
