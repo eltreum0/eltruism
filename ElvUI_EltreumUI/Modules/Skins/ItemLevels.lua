@@ -154,12 +154,12 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 				EltruismInspectilvls:UnregisterEvent("ADDON_LOADED")
 				hooksecurefunc("InspectPaperDollItemSlotButton_Update", function(button)
 					if E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
-						UpdateItemSlotButton(button, "target")
+						UpdateItemSlotButton(button, _G.InspectFrame.unit)
 					end
 				end)
 			end
 			if event == "INSPECT_READY" then
-				C_Timer.After(1, function()
+				C_Timer.After(0.1, function()
 					if _G.InspectFrame and _G.InspectFrame:IsVisible() then
 						_G.InspectPaperDollFrame_UpdateButtons()
 					end

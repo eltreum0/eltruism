@@ -22,7 +22,7 @@ local InCombatLockdown = _G.InCombatLockdown
 local HideUIPanel = _G.HideUIPanel
 local LoadAddOn = LoadAddOn
 local GameMenuFrame = _G.GameMenuFrame
-local VideoOptionsFrame = _G.VideoOptionsFrame
+local VideoOptionsFrame = _G.VideoOptionsFrame  --TODO DRAGONFLIGHT
 local UIErrorsFrame = _G.UIErrorsFrame
 local RaidWarningFrame = _G.RaidWarningFrame
 local W

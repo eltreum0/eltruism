@@ -93,7 +93,7 @@ local classicMusic = {
 
 -- with the help of Repooc, Simpy, Nihilistzsche and Acidweb (not in order :D)
 local musicSettingLoadingIn = C_CVar.GetCVar('Sound_EnableMusic')
-local musicSetting --= musicSettingLoadingIn
+local musicSetting = musicSettingLoadingIn
 local classicmusicstopper = nil
 local willplay = nil
 function ElvUI_EltreumUI:AFKmusic()

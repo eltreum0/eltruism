@@ -564,6 +564,9 @@ function ElvUI_EltreumUI:SkinQuests()
 				end)
 			end
 		elseif E.Classic or E.TBC then
+			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
+				return
+			end
 
 			--move the text for no quests
 			_G.QuestLogNoQuestsText:ClearAllPoints()
@@ -769,6 +772,9 @@ function ElvUI_EltreumUI:SkinQuests()
 				UIParent_ManageFramePositions()
 			end)
 		elseif E.Wrath then
+			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
+				return
+			end
 
 			if IsAddOnLoaded('Questie') then --questie overwrites the default tracker sadly instead of hooking into it
 				if _G.Questie.db.global.trackerEnabled then
@@ -776,7 +782,12 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 			end
 			--from blizzard's FrameXML/WatchFrame.lua
-			local questside = _G.ObjectiveFrameMover:GetPoint()
+			local questside
+			if _G.ObjectiveFrameMover then
+				questside = _G.ObjectiveFrameMover:GetPoint()
+			else
+				questside = "RIGHT"
+			end
 			--skin the classic objective frame, based on aftermathh's
 			local function colorquests(line, _, _, isHeader, text, _, _, isComplete) --(line, anchor, verticalOffset, isHeader, text, dash, hasItem, isComplete)
 				if line and line.text then

@@ -1,6 +1,17 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.4.9
+Added more models to the Target Portrait Fix\
+Added option to set the Quest Item Bar Vertically\
+Added preset settings for Pet Party Frames in Wrath\
+Updated AFK Music with more possible fixes\
+Updated Inspect Sockets, Enchants and Item Level unit detection\
+Fixed a possible issue when using other Quest Trackers besides Questie\
+Fixed Spec Details Profile in Classic Era\
+Fixed Questie Hide in Classic Era\
+Fixed a shadow in Classic Era\
+Fixed Stats Datatext in Classic Era
 ### 3.4.8
 Updated Character Panel Skin while in Combat in Classic/Wrath, it will not be the same but should be more usable and contain a warning about being in Combat\
 Updated Quest Skin to adjust the Quest Item Button if the Quests is set on the left side instead of the right side of the screen\

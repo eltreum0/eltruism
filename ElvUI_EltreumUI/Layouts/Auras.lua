@@ -24,9 +24,9 @@ local Eltruismhealerbossdebuffs = "Blacklist,Personal,CCDebuffs"
 
 --nameplates
 local Eltruismnpenemyplayerbuffs = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs"
-local Eltruismnpenemyplayerdebuffs = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
+local Eltruismnpenemyplayerdebuffs = "Blacklist,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
 local Eltruismnpenemynpcbuffs = "Blacklist,RaidBuffsElvUI,Dispellable,blockNoDuration,CastByUnit"
-local Eltruismnpenemynpcdebuffs = "Blacklist,Personal,CCDebuffs"
+local Eltruismnpenemynpcdebuffs = "Blacklist,Personal,CCDebuffs,CastByNPC"
 
 --All filter mainly for wrath/tbc/classic
 local allfilter = "Blacklist,Personal,nonPersonal"
