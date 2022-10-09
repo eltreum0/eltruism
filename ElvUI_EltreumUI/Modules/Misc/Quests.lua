@@ -72,7 +72,9 @@ function ElvUI_EltreumUI:ArenaQuest()
 			elseif E.TBC or E.Classic then
 				_G.QuestWatchFrame:Hide()
 				if IsAddOnLoaded("Questie") then
-					_G["Questie_BaseFrame"]:Hide()
+					if _G["Questie_BaseFrame"] then
+						_G["Questie_BaseFrame"]:Show()
+					end
 				end
 			elseif E.Wrath then
 				_G.WatchFrame:Hide()
@@ -83,7 +85,9 @@ function ElvUI_EltreumUI:ArenaQuest()
 			elseif E.TBC or E.Classic then
 				_G.QuestWatchFrame:Show()
 				if IsAddOnLoaded("Questie") then
-					_G["Questie_BaseFrame"]:Show()
+					if _G["Questie_BaseFrame"] then
+						_G["Questie_BaseFrame"]:Show()
+					end
 				end
 			elseif E.Wrath then
 				_G.WatchFrame:Show()
