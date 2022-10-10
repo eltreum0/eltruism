@@ -31,25 +31,9 @@ local classcolorsescape = {
 	["WARRIOR"] = "C69B6D",
 }
 
-local classIcons = {
-	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorReleaf.tga:0:0:0:0|t",
-	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinReleaf.tga:0:0:0:0|t",
-	["HUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterReleaf.tga:0:0:0:0|t",
-	["ROGUE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\RogueReleaf.tga:0:0:0:0|t",
-	["PRIEST"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PriestReleaf.tga:0:0:0:0|t",
-	["DEATHKNIGHT"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnightReleaf.tga:0:0:0:0|t",
-	["SHAMAN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanReleaf.tga:0:0:0:0|t",
-	["MAGE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MageReleaf.tga:0:0:0:0|t",
-	["WARLOCK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarlockReleaf.tga:0:0:0:0|t",
-	["MONK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MonkReleaf.tga:0:0:0:0|t",
-	["DRUID"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DruidReleaf.tga:0:0:0:0|t",
-	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunterReleaf.tga:0:0:0:0|t",
-}
-
 --Forked from Chat Loot Icons by Stanzilla which is Public Domain, modified to do more things
-local function AddLootIcons(_, _, message, playerName, languageName, channelName, playerName2, specialFlags, zoneChannelID, channelIndex, channelBaseName, languageID, lineID,guid,  bnSenderID, isMobile, isSubtitle, hideSenderInLetterbox, supressRaidIcons)
-	-- text, playerName, languageName, channelName, playerName2, specialFlags, zoneChannelID, channelIndex, channelBaseName, languageID, lineID, guid, bnSenderID, isMobile, isSubtitle, hideSenderInLetterbox, supressRaidIcons
-	--local _, _, _, _, _, _, _, _, _, _, guid = ...
+local function AddLootIcons(_, _, message, ...)
+	local _, _, _, _, _, _, _, _, _, _, guid = ...
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
 	elseif E.db.ElvUI_EltreumUI.chat.enable then
@@ -104,15 +88,12 @@ local function AddLootIcons(_, _, message, playerName, languageName, channelName
 			end
 		end
 		if E.db.ElvUI_EltreumUI.chat.looticons and not E.db.ElvUI_EltreumUI.chat.classcolorchat then
-			if guid ~= nil then
+			--[[if guid then
 				local localizedClass, englishClass, localizedRace, englishRace, sex, name, realm = GetPlayerInfoByGUID(guid)
-				if englishClass and classIcons[englishClass] and playerName then
-					playerName = playerName..classIcons[englishClass]
-				end
-			end
+				print(name,englishRace,englishClass)
+			end]]
 			message = message:gsub("(|c%x+|Hitem:.-|h|r)", Icon)
-			--return false, message, ...
-			return false,message, playerName, languageName, channelName, playerName2, specialFlags, zoneChannelID, channelIndex, channelBaseName, languageID, guid, lineID, bnSenderID, isMobile, isSubtitle, hideSenderInLetterbox, supressRaidIcons
+			return false, message, ...
 		elseif E.db.ElvUI_EltreumUI.chat.looticons and E.db.ElvUI_EltreumUI.chat.classcolorchat then
 			if guid ~= nil then
 				local _, unitclass = GetPlayerInfoByGUID(guid)
@@ -124,10 +105,10 @@ local function AddLootIcons(_, _, message, playerName, languageName, channelName
 				else
 					msg = "|cff"..classcolorsescape[unitclass]..message:gsub("(|c%x+|Hitem:.-|h|r)", Icon).."|r"
 				end
-				return false,message, playerName, languageName, channelName, playerName2, specialFlags, zoneChannelID, channelIndex, channelBaseName, languageID, guid, lineID, bnSenderID, isMobile, isSubtitle, hideSenderInLetterbox, supressRaidIcons
+				return false, msg, ...
 			else
 				message = message:gsub("(|c%x+|Hitem:.-|h|r)", Icon)
-				return false,message, playerName, languageName, channelName, playerName2, specialFlags, zoneChannelID, channelIndex, channelBaseName, languageID, guid, lineID, bnSenderID, isMobile, isSubtitle, hideSenderInLetterbox, supressRaidIcons
+				return false, message, ...
 			end
 		elseif not E.db.ElvUI_EltreumUI.chat.looticons and E.db.ElvUI_EltreumUI.chat.classcolorchat then
 			if guid ~= nil then
@@ -140,9 +121,9 @@ local function AddLootIcons(_, _, message, playerName, languageName, channelName
 				else
 					msg = "|cff"..classcolorsescape[unitclass]..message.."|r"
 				end
-				return false, msg, playerName, languageName, channelName, playerName2, specialFlags, zoneChannelID, channelIndex, channelBaseName, languageID, guid, lineID, bnSenderID, isMobile, isSubtitle, hideSenderInLetterbox, supressRaidIcons
+				return false, msg, ...
 			else
-				return false, message, playerName, languageName, channelName, playerName2, specialFlags, zoneChannelID, channelIndex, channelBaseName, languageID, guid, lineID, bnSenderID, isMobile, isSubtitle, hideSenderInLetterbox, supressRaidIcons
+				return false, message, ...
 			end
 		end
 	end
