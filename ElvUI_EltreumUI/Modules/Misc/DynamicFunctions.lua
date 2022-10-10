@@ -370,7 +370,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 						else
 							newrotation = 0
 						end
-						if targetmodel == 1273833 or druidfix[targetmodel] then
+						if targetmodel == 1273833 or druidfix[targetmodel] or targetmodel == 926251 then
 							E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = -0.59 --cat & other bears
 						elseif targetmodel == 1505169 then
 							E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = 0.2 --bear
