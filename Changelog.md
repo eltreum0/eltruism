@@ -2,11 +2,15 @@
 The future is uncertain
 ___
 ### 3.4.9
+Added player to Portrait Fix\
 Added more models to the Target Portrait Fix\
 Added option to set the Quest Item Bar Vertically\
 Added preset settings for Pet Party Frames in Wrath\
+Added a new sound: Durumu - Wipe\
+Added a few missing shadows\
 Updated AFK Music with more possible fixes\
 Updated Inspect Sockets, Enchants and Item Level unit detection\
+Updated Nameplate Aura Filters\
 Fixed a possible issue when using other Quest Trackers besides Questie\
 Fixed Spec Details Profile in Classic Era\
 Fixed Questie Hide in Classic Era\

@@ -225,6 +225,7 @@ function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED(event)
 	ElvUI_EltreumUI:QuestCombatEnd()
 	ElvUI_EltreumUI:MinimapHide(event)
 	ElvUI_EltreumUI:DatatextHide(event)
+	ElvUI_EltreumUI:NameplateCustomOptions()
 end
 
 function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED(event)

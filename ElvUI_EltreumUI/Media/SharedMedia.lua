@@ -144,6 +144,7 @@ LSM:Register("sound", "Warcraft 3 - Rokhan Hear", [[Interface\Addons\ElvUI_Eltre
 LSM:Register("sound", "Warcraft 3 - Rokhan Be Happy", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3RokhanBeHappy.ogg]])
 LSM:Register("sound", "Warcraft 3 - Rokhan Feel", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3RokhanFeel.ogg]])
 LSM:Register("sound", "Warcraft 3 - Taz'dingo", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3RokhanTazdingo.ogg]])
+LSM:Register("sound", "Durumu - Wipe", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\DurumuWipe.ogg]])
 
 -- Border
 LSM:Register("border", "Eltreum-Border-1", [[Interface\Addons\ElvUI_EltreumUI\Media\border\Eltreum-Border-1.tga]])

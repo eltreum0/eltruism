@@ -184,6 +184,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G.FriendsFrameTab4.backdrop,
 			_G.SpellBookFrameTabButton1.backdrop,
 			_G.SpellBookFrameTabButton2.backdrop,
+			_G.SpellBookFrameTabButton3.backdrop,
 			_G.ItemTextFrame.backdrop,
 			_G.GossipFrame.backdrop,
 			_G.BNToastFrame,
@@ -203,6 +204,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G.VoidStorageFrame,
 			_G.BonusRollFrame,
 			_G.ItemRefTooltip,
+			_G.CinematicFrameCloseDialog,
 			--_G.ImmersionFrame.TalkBox,
 		}
 		for _, frame in pairs(blizzardframes) do

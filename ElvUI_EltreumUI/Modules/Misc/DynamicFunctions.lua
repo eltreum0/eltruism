@@ -312,6 +312,33 @@ local modelsRotate = {
 	[124667] = true, --"kargath.m2",
 	[971774] = true, --"kargathbladefist.m2",
 	[3483612] = true, --"yserashadowlands.m2",
+	[387859] = true, --"garrosh.m2",
+	[876912] = true,--"garrosh2",
+}
+
+local druidfix = {
+	[1272625] = true, --""druidbear2_artifact1.m2",
+	[1272606] = true, --""druidbear2_artifact2.m2",
+	[1272605] = true, --""druidbear2_artifact3.m2",
+	[1272604] = true, --""druidbear2_artifact4.m2",
+	[1272741] = true, --""druidbear2_artifact5.m2",
+	--[1505169] = true, --""druidbear2_artifact6.m2",
+	[1273658] = true, --"druidcat2.m2",
+	[1363012] = true, --"druidcattauren2.m2",
+	[1363013] = true, --"druidcattroll2.m2",
+	[1363016] = true, --"druidcatworgen2.m2",
+	[1302532] = true, --"druidbear2.m2",
+	[1336653] = true, --"druidbeartauren2.m2",
+	[1336652] = true, --"druidbeartroll2.m2",
+	[1336654] = true, --"druidbearworgen2.m2",
+	[4268207] = true, --"cheetahnewthingthatisnotcataloged"
+	[652455] = true, --"druidtravelalliance.m2",
+	[660898] = true, --"druidtravelalliance_low01.m2",
+	[1778010] = true, --"druidtravelhmtauren.m2",
+	[652458] = true, --"druidtravelhorde.m2",
+	[2068158] = true, --"druidtravelkultiran.m2",
+	[1818256] = true, --"druidtravelzandalaritroll.m2",
+	[1378642] = true, --"doe.m2",
 }
 
 --set portrait rotation based on target being npc or not
@@ -331,6 +358,13 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 							newrotation = 291
 						else
 							newrotation = 0
+						end
+						if targetmodel == 1273833 or druidfix[targetmodel] then
+							E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = -0.59 --cat & other bears
+						elseif targetmodel == 1505169 then
+							E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = 0.2 --bear
+						else
+							E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = 0
 						end
 					end
 
@@ -373,7 +407,16 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 						if modelsRotate[playermodel]then
 							newrotation = 0
 						else
-							newrotation = 66--39
+							newrotation = 67--39
+						end
+						if playermodel == 1273833 then
+							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.59 --cat
+						elseif playermodel == 1505169 then
+							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0.62 --bear
+						elseif druidfix[playermodel] then
+							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.39 --other bears
+						else
+							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0
 						end
 					end
 
@@ -698,7 +741,7 @@ function ElvUI_EltreumUI:ActionPagingSwap()
 			E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[form:1] 7;[bonusbar:5] 11;"
 			E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
 			if not E.Retail then
-				E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;[stance:1] 7;  [stance:2] 8; [stance:3] 9;"
+				E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;[stance:1] 7; [stance:2] 8; [stance:3] 9;"
 				E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11; [bonusbar:1] 7;"
 			end
 			E.db["actionbar"]["bar1"]["paging"]["DEATHKNIGHT"] = ""
