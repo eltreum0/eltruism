@@ -12,6 +12,31 @@ local C_Timer = _G.C_Timer
 local _, instanceType
 local level, targetmodel, playermodel
 
+local druidfix = {
+	[1272625] = true, --""druidbear2_artifact1.m2",
+	[1272606] = true, --""druidbear2_artifact2.m2",
+	[1272605] = true, --""druidbear2_artifact3.m2",
+	[1272604] = true, --""druidbear2_artifact4.m2",
+	[1272741] = true, --""druidbear2_artifact5.m2",
+	--[1505169] = true, --""druidbear2_artifact6.m2",
+	[1273658] = true, --"druidcat2.m2",
+	[1363012] = true, --"druidcattauren2.m2",
+	[1363013] = true, --"druidcattroll2.m2",
+	[1363016] = true, --"druidcatworgen2.m2",
+	[1302532] = true, --"druidbear2.m2",
+	[1336653] = true, --"druidbeartauren2.m2",
+	[1336652] = true, --"druidbeartroll2.m2",
+	[1336654] = true, --"druidbearworgen2.m2",
+	[4268207] = true, --"cheetahnewthingthatisnotcataloged"
+	[652455] = true, --"druidtravelalliance.m2",
+	[660898] = true, --"druidtravelalliance_low01.m2",
+	[1778010] = true, --"druidtravelhmtauren.m2",
+	[652458] = true, --"druidtravelhorde.m2",
+	[2068158] = true, --"druidtravelkultiran.m2",
+	[1818256] = true, --"druidtravelzandalaritroll.m2",
+	[1378642] = true, --"doe.m2",
+}
+
 --character models that should be rotated
 local modelsRotate = {
 	[118355] = true, --dwarf male
@@ -314,31 +339,9 @@ local modelsRotate = {
 	[3483612] = true, --"yserashadowlands.m2",
 	[387859] = true, --"garrosh.m2",
 	[876912] = true,--"garrosh2",
-}
-
-local druidfix = {
-	[1272625] = true, --""druidbear2_artifact1.m2",
-	[1272606] = true, --""druidbear2_artifact2.m2",
-	[1272605] = true, --""druidbear2_artifact3.m2",
-	[1272604] = true, --""druidbear2_artifact4.m2",
-	[1272741] = true, --""druidbear2_artifact5.m2",
-	--[1505169] = true, --""druidbear2_artifact6.m2",
-	[1273658] = true, --"druidcat2.m2",
-	[1363012] = true, --"druidcattauren2.m2",
-	[1363013] = true, --"druidcattroll2.m2",
-	[1363016] = true, --"druidcatworgen2.m2",
-	[1302532] = true, --"druidbear2.m2",
-	[1336653] = true, --"druidbeartauren2.m2",
-	[1336652] = true, --"druidbeartroll2.m2",
-	[1336654] = true, --"druidbearworgen2.m2",
-	[4268207] = true, --"cheetahnewthingthatisnotcataloged"
-	[652455] = true, --"druidtravelalliance.m2",
-	[660898] = true, --"druidtravelalliance_low01.m2",
-	[1778010] = true, --"druidtravelhmtauren.m2",
-	[652458] = true, --"druidtravelhorde.m2",
-	[2068158] = true, --"druidtravelkultiran.m2",
-	[1818256] = true, --"druidtravelzandalaritroll.m2",
-	[1378642] = true, --"doe.m2",
+	[126337] = true,--"velen.m2",
+	[971357] = true,--"velen2.m2",
+	[1695214] = true,--"velen2young.m2",
 }
 
 --set portrait rotation based on target being npc or not
