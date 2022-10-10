@@ -350,6 +350,7 @@ local modelsRotate = {
 	[1624880] = true, --"darkwatcherfemale.m2",
 	[1249799] = true, --"malfurion.m2",
 	[432000] = true, --"malfurionstormrage.m2",
+	--[3449671] = true, --"gargoyle2_femaleboss.m2",
 }
 
 --set portrait rotation based on target being npc or not
