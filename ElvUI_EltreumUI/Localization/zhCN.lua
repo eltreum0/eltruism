@@ -5,7 +5,7 @@ L["4K resolution detected, setting fonts to default mode."] = "检测到4K分辨
 L["1440p resolution detected, setting fonts to outline mode."] = "检测到1440p分辨率，字体已设为Outline模式。"
 L["1080p resolution detected, setting fonts to outline mode."] = "检测到1080p分辨率，字体已设为Outline模式。"
 L["Fonts were set to Outline due to your resolution."] = "因为你的分辨率设置，字体已设为Outline模式。"
-L["EltruismConsumablesWA"] = "Eltruism消耗品WA"
+L["EltruismConsumablesWA"] = true
 --Install
 L["General CVars have been set."] = "通用CVars参数已被设置。"
 L["NamePlate CVars have been set."] = "姓名版CVars参数已被设置。"
@@ -44,7 +44,7 @@ L["Importance: "] = "重要程度:"
 L["Very High"] = "非常高"
 L["Fonts"] = "字体"
 L["Eltruism uses Kimberley as the default font"] = "Eltruism的为默认字体是Kimberley"
-L["You can replace it with one of the following:"] = “你可以将其替换为以下几个的其中一种:"
+L["You can replace it with one of the following:"] = "你可以将其替换为以下几个的其中一种:"
 L["Optional"] = "可选"
 L["Your current settings will be lost, please back them up"] = "你目前的设置将会丢失，请做好备份"
 L["Import "] = "导入"
