@@ -18,7 +18,7 @@ local druidfix = {
 	[1272605] = true, --""druidbear2_artifact3.m2",
 	[1272604] = true, --""druidbear2_artifact4.m2",
 	[1272741] = true, --""druidbear2_artifact5.m2",
-	--[1505169] = true, --""druidbear2_artifact6.m2",
+	--[1505169] = true, --""druidbear2_artifact6.m2", --mage tower
 	[1273658] = true, --"druidcat2.m2",
 	[1363012] = true, --"druidcattauren2.m2",
 	[1363013] = true, --"druidcattroll2.m2",
@@ -35,6 +35,7 @@ local druidfix = {
 	[2068158] = true, --"druidtravelkultiran.m2",
 	[1818256] = true, --"druidtravelzandalaritroll.m2",
 	[1378642] = true, --"doe.m2",
+	--[926251] = true, --"wolfdraenor.m2",
 }
 
 --character models that should be rotated
@@ -416,6 +417,8 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 						playermodel = _G["ElvUF_Player"].Portrait3D:GetModelFileID()
 						if modelsRotate[playermodel]then
 							newrotation = 0
+						elseif playermodel == 926251 then
+							newrotation = 99
 						else
 							newrotation = 67--39
 						end
@@ -423,7 +426,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.59 --cat
 						elseif playermodel == 1505169 then
 							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0.62 --bear
-						elseif druidfix[playermodel] then
+						elseif druidfix[playermodel] or playermodel == 926251 then
 							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.39 --other bears
 						else
 							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0
