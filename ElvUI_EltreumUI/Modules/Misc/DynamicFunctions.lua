@@ -224,7 +224,7 @@ local modelsRotate = {
 	[125336] = true, --"ogremagelord.m2",
 	[3545238] = true, --"ogrenecromancer.m2",
 	[1956660] = true, --"ogrepirate.m2",
-	[1687797] = true, --"titanargus.m2",
+	--[1687797] = true, --"titanargus.m2",
 	[790332] = true, --"beholdereye.m2",
 	[962079] = true, --"elekkdraenor.m2",
 	[942697] = true, --"talbukdraenor.m2",
@@ -338,10 +338,15 @@ local modelsRotate = {
 	[971774] = true, --"kargathbladefist.m2",
 	[3483612] = true, --"yserashadowlands.m2",
 	[387859] = true, --"garrosh.m2",
-	[876912] = true,--"garrosh2",
-	[126337] = true,--"velen.m2",
-	[971357] = true,--"velen2.m2",
-	[1695214] = true,--"velen2young.m2",
+	[876912] = true, --"garrosh2",
+	[126337] = true, --"velen.m2",
+	[971357] = true, --"velen2.m2",
+	[1695214] = true, --"velen2young.m2",
+	[1572084] = true, --"wingederedar.m2",
+	[1671255] = true, --"wingederedarboss.m2",
+	[1661447] = true, --"fellord_bountyhunter.m2",
+	[1279257] = true, --"fellord_creature.m2",
+	[1624880] = true, --"darkwatcherfemale.m2",
 }
 
 --set portrait rotation based on target being npc or not
