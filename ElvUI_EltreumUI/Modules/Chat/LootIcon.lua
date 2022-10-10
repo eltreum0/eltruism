@@ -88,11 +88,15 @@ local function AddLootIcons(_, _, message, ...)
 			end
 		end
 		if E.db.ElvUI_EltreumUI.chat.looticons and not E.db.ElvUI_EltreumUI.chat.classcolorchat then
+			--[[if guid then
+				local localizedClass, englishClass, localizedRace, englishRace, sex, name, realm = GetPlayerInfoByGUID(guid)
+				print(name,englishRace,englishClass)
+			end]]
 			message = message:gsub("(|c%x+|Hitem:.-|h|r)", Icon)
 			return false, message, ...
 		elseif E.db.ElvUI_EltreumUI.chat.looticons and E.db.ElvUI_EltreumUI.chat.classcolorchat then
 			if guid ~= nil then
-				local _, unitclass =GetPlayerInfoByGUID(guid)
+				local _, unitclass = GetPlayerInfoByGUID(guid)
 				local msg
 				local tname
 				if E.db.ElvUI_EltreumUI.chat.classcolorchatcustom then
@@ -108,7 +112,7 @@ local function AddLootIcons(_, _, message, ...)
 			end
 		elseif not E.db.ElvUI_EltreumUI.chat.looticons and E.db.ElvUI_EltreumUI.chat.classcolorchat then
 			if guid ~= nil then
-				local _, unitclass =GetPlayerInfoByGUID(guid)
+				local _, unitclass = GetPlayerInfoByGUID(guid)
 				local msg
 				local tname
 				if E.db.ElvUI_EltreumUI.chat.classcolorchatcustom then
