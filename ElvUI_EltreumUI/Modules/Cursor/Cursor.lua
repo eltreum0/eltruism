@@ -250,9 +250,9 @@ function ElvUI_EltreumUI:CastCursor()
 			if self.max == nil then
 				self.max = 0
 			end
-			if dur >= self.max then 
+			if dur >= self.max then
 				RingSetShown(self,false)
-				return 
+				return
 			end
 			self.dur = dur
 			local rev = self.reverse
