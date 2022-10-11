@@ -359,13 +359,15 @@ function ElvUI_EltreumUI:EnchantScroll()
 			disenchantbutton:SetAttribute("type1", "spell")
 			disenchantbutton:SetAttribute("spell", "13262")
 			if E.Retail then
-				local vellum = select(1, GetItemInfo(38682))
-				vellum = string.match(vellum, "%s+(%S+)")
-				vellumbutton:SetText(vellum)
-				vellumbutton:SetScript("OnClick", function()
-					C_TradeSkillUI.CraftRecipe(_G["TradeSkillFrame"].DetailsFrame.selectedRecipeID)
-					UseItemByName(38682)
-				end)
+				local vellum = GetItemInfo(38682)
+				if vellum then
+					vellum = string.match(vellum, "%s+(%S+)")
+					vellumbutton:SetText(vellum)
+					vellumbutton:SetScript("OnClick", function()
+						C_TradeSkillUI.CraftRecipe(_G["TradeSkillFrame"].DetailsFrame.selectedRecipeID)
+						UseItemByName(38682)
+					end)
+				end
 			end
 
 			self.isScripted = true
