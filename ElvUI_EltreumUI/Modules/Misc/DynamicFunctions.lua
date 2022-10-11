@@ -35,58 +35,8 @@ local druidfix = {
 	[2068158] = true, --"druidtravelkultiran.m2",
 	[1818256] = true, --"druidtravelzandalaritroll.m2",
 	[1378642] = true, --"doe.m2",
-
-	[2123275] = true, --"druidaquatickultiran.m2",
-	[2200968] = true, --"druidaquaticzandalari.m2",
-
-	[1509765] = true, --"druidflightform.m2",
-	[1778479] = true, --"druidflighthmtauren.m2",
-	[2147167] = true, --"druidflightkultiran.m2",
-	[1888159] = true, --"druidflightzandalaritroll.m2",
-	[2821730] = true, --"druidflightzandalaritroll_noarmor.m2",
 	--[926251] = true, --"wolfdraenor.m2",
 	--[1043712] = true, --"raptor2.m2",
-}
-
-local druidcats = {
-	[1274669] = true, --"druidcat2_artifact1.m2",
-	--[1273833] = true, --"druidcat2_artifact2.m2",
-	[1273834] = true, --"druidcat2_artifact3.m2",
-	[1273835] = true, --"druidcat2_artifact4.m2",
-	[1273904] = true, --"druidcat2_artifact5.m2",
-	[1722933] = true, --"druidcathmtauren.m2",
-	[2021536] = true, --"druidcatkultiran.m2",
-	[2054482] = true, --"druidcatkultiran_noarmor.m2",
-	[123688] = true, --"druidcattauren.m2",
-	[307530] = true, --"druidcattauren_legacy.m2",
-	[628230] = true, --"druidcattaurenepic.m2",
-	[392615] = true, --"druidcattroll.m2",
-	[628243] = true, --"druidcattrollepic.m2",
-	[393783] = true, --"druidcatworgen.m2",
-	[628255] = true, --"druidcatworgenepic.m2",
-	[1966095] = true, --"druidcatzandalaritroll.m2",
-	[2054480] = true, --"druidcatzandalaritroll_noarmor.m2",
-	[1958497] = true, --"druidbearzandalaritroll.m2",
-	[2059840] = true, --"druidbearzandalaritroll_noarmor.m2",
-	[123682] = true, --"druidcat.m2",
-	[307529] = true, --"druidcat_legacy.m2",
-	[628202] = true, --"druidcatepic.m2",
-}
-
-local druidbears = {
-	[1722843] = true, --"druidbearhmtauren.m2",
-	[1980608] = true, --"druidbearkultiran.m2",
-	[2059842] = true, --"druidbearkultiran_noarmor.m2",
-	[123678] = true, --"druidbear.m2",
-	[307528] = true, --"druidbear_legacy.m2",
-	[629107] = true, --"druidbearepic.m2",
-	[123680] = true, --"druidbeartauren.m2",
-	[307527] = true, --"druidbeartauren_legacy.m2",
-	[629121] = true, --"druidbeartaurenepic.m2",
-	[403282] = true, --"druidbeartroll.m2",
-	[629136] = true, --"druidbeartrollepic.m2",
-	[393782] = true, --"druidbearworgen.m2",
-	[629150] = true, --"druidbearworgenepic.m2",
 }
 
 --character models that should be rotated
@@ -426,7 +376,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 						else
 							newrotation = 0
 						end
-						if druidcats[targetmodel] or druidfix[targetmodel] or druidbears[targetmodel] or targetmodel == 926251 or targetmodel == 1043712 then
+						if targetmodel == 1273833 or druidfix[targetmodel] or targetmodel == 926251 or targetmodel == 1043712 then
 							E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = -0.59 --shaman/druid things
 						elseif targetmodel == 1505169 then
 							E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = 0.2 --bear
@@ -482,8 +432,8 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.59 --cat
 						elseif playermodel == 1505169 then
 							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0.62 --bear
-						elseif druidcats[playermodel] or druidfix[playermodel] or druidbears[playermodel] or playermodel == 926251 then
-							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.39 --others
+						elseif druidfix[playermodel] or playermodel == 926251 then
+							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.39 --other bears
 						elseif playermodel == 1043712 then
 							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -1 --shaman raptor
 						else
