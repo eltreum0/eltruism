@@ -9290,7 +9290,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Enable"],
 								type = "toggle",
 								desc = L["Skin the Profession/Tradeskill Frame"],
-								hidden = E.Retail,
+								--hidden = E.Retail,
 								--hidden = function() if E.Retail then return true else return false end end,
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.skins.professions end,

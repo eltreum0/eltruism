@@ -327,44 +327,45 @@ end
 
 --enchanting vellum/disenchant buttons
 function ElvUI_EltreumUI:EnchantScroll()
-	--create vellum button
-	if not _G["EltruismVellumButton"] then
-		vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["TradeSkillFrame"], "MagicButtonTemplate")
-		S:HandleButton(vellumbutton)
+	if E.db.ElvUI_EltreumUI.skins.professions and E.private.skins.blizzard.enable then
+		--create vellum button
+		if not _G["EltruismVellumButton"] then
+			vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["TradeSkillFrame"], "MagicButtonTemplate")
+			S:HandleButton(vellumbutton)
 
-		vellumbutton:SetPoint("RIGHT", _G.TradeSkillFrame.DetailsFrame.CreateButton, "LEFT", -1, 0)
-	else
-		vellumbutton = _G["EltruismVellumButton"]
+			vellumbutton:SetPoint("RIGHT", _G.TradeSkillFrame.DetailsFrame.CreateButton, "LEFT", -1, 0)
+		else
+			vellumbutton = _G["EltruismVellumButton"]
+		end
+
+		--create disenchant button
+		if not _G["EltruismDisenchantButton"] then
+			disenchantbutton = CreateFrame("BUTTON", "EltruismDisenchantButton", _G["TradeSkillFrame"], "MagicButtonTemplate,InsecureActionButtonTemplate")
+			S:HandleButton(disenchantbutton)
+			disenchantbutton:SetPoint("RIGHT", "EltruismVellumButton", "LEFT", -1, 0)
+
+		else
+			disenchantbutton = _G["EltruismDisenchantButton"]
+		end
+
+		--script buttons
+		if not self.isScripted then
+			local disenchant = GetSpellInfo(13262)
+			disenchantbutton:SetText(disenchant)
+			disenchantbutton:SetAttribute("type1", "spell")
+			disenchantbutton:SetAttribute("spell", "13262")
+
+			local vellum = select(1, GetItemInfo(38682))
+			vellum = string.match(vellum, "%s+(%S+)")
+			vellumbutton:SetText(vellum)
+			vellumbutton:SetScript("OnClick", function()
+				C_TradeSkillUI.CraftRecipe(_G["TradeSkillFrame"].DetailsFrame.selectedRecipeID)
+				UseItemByName(38682)
+			end)
+
+			self.isScripted = true
+		end
 	end
-
-	--create disenchant button
-	if not _G["EltruismDisenchantButton"] then
-		disenchantbutton = CreateFrame("BUTTON", "EltruismDisenchantButton", _G["TradeSkillFrame"], "MagicButtonTemplate,InsecureActionButtonTemplate")
-		S:HandleButton(disenchantbutton)
-		disenchantbutton:SetPoint("RIGHT", "EltruismVellumButton", "LEFT", -1, 0)
-
-	else
-		disenchantbutton = _G["EltruismDisenchantButton"]
-	end
-
-	--script buttons
-	if not self.isScripted then
-		local disenchant = GetSpellInfo(13262)
-		disenchantbutton:SetText(disenchant)
-		disenchantbutton:SetAttribute("type1", "spell")
-		disenchantbutton:SetAttribute("spell", "13262")
-
-		local vellum = select(1, GetItemInfo(38682))
-		vellum = string.match(vellum, "%s+(%S+)")
-		vellumbutton:SetText(vellum)
-		vellumbutton:SetScript("OnClick", function()
-			C_TradeSkillUI.CraftRecipe(_G["TradeSkillFrame"].DetailsFrame.selectedRecipeID)
-			UseItemByName(38682)
-		end)
-
-		self.isScripted = true
-	end
-
 end
 
 --frame that checks for the blizzard addon for the enchanting buttons
