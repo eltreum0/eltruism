@@ -8,75 +8,13 @@ local WideTradeSkillEnchant = CreateFrame("Frame")
 WideTradeSkillEnchant:RegisterEvent("PLAYER_ENTERING_WORLD")
 local dontexpandanymoreEnchant = 0
 local dontexpandanymore = 0
-local skillbutton
-local skillTitle
+local skillbutton,skillTitle
+local vellumbutton,disenchantbutton,tradeskilloadmonitor
 local classcolor = E:ClassColor(E.myclass, true)
 local EnhancedShadows = nil
 if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
 end
-
---test elvui backdrop transparency, can also replace the backdrop texture
---[[
---E.media.blankTex = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Stripes.tga"
-function E:UpdateBackdropColors()
-	local r, g, b = unpack(E.media.backdropcolor)
-	local r2, g2, b2, a2 = unpack(E.media.backdropfadecolor)
-
-	for frame in pairs(E.frames) do
-		if frame and frame.template and not frame:IsForbidden() then
-			if not frame.ignoreUpdates then
-				if frame.callbackBackdropColor then
-					local edgeSize = E.twoPixelsPlease and 2 or 1
-					frame:SetBackdrop({
-						edgeFile = E.media.blankTex,
-						bgFile = E.media.glossTex,
-						edgeSize = edgeSize
-					})
-					frame:callbackBackdropColor()
-
-				elseif frame.template == 'Default' then
-					local edgeSize = E.twoPixelsPlease and 2 or 1
-					frame:SetBackdrop({
-						edgeFile = E.media.blankTex,
-						bgFile = E.media.glossTex,
-						edgeSize = edgeSize
-					})
-					frame:SetBackdropColor(r, g, b, a2)
-
-
-				elseif frame.template == 'Transparent' then
-					local edgeSize = E.twoPixelsPlease and 2 or 1
-					frame:SetBackdrop({
-						edgeFile = E.media.blankTex,
-						bgFile = E.media.glossTex,
-						edgeSize = edgeSize
-					})
-					frame:SetBackdropColor(r2, g2, b2, frame.customBackdropAlpha or a2)
-
-				end
-			end
-		else
-			E.frames[frame] = nil
-		end
-	end
-
-	for frame in pairs(E.unitFrameElements) do
-		if frame and frame.template and not frame:IsForbidden() then
-			if not frame.ignoreUpdates then
-				if frame.callbackBackdropColor then
-					frame:callbackBackdropColor()
-				elseif frame.template == 'Default' then
-					frame:SetBackdropColor(r, g, b)
-				elseif frame.template == 'Transparent' then
-					frame:SetBackdropColor(r2, g2, b2, frame.customBackdropAlpha or a2)
-				end
-			end
-		else
-			E.unitFrameElements[frame] = nil
-		end
-	end
-end]]
 
 --add cardinal directions to minimap
 local Cardinals = CreateFrame("FRAME", "Eltruism Cardinal Directions")
@@ -176,6 +114,7 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 	end
 end
 
+--wide professions for classic
 function ElvUI_EltreumUI:SkinProfessions()
 	if E.db.ElvUI_EltreumUI.skins.professions and E.private.skins.blizzard.enable then
 
@@ -385,6 +324,59 @@ function ElvUI_EltreumUI:SkinProfessions()
 		end)
 	end
 end
+
+--enchanting vellum/disenchant buttons
+function ElvUI_EltreumUI:EnchantScroll()
+	--create vellum button
+	if not _G["EltruismVellumButton"] then
+		vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["TradeSkillFrame"], "MagicButtonTemplate")
+		S:HandleButton(vellumbutton)
+
+		vellumbutton:SetPoint("RIGHT", _G.TradeSkillFrame.DetailsFrame.CreateButton, "LEFT", -1, 0)
+	else
+		vellumbutton = _G["EltruismVellumButton"]
+	end
+
+	--create disenchant button
+	if not _G["EltruismDisenchantButton"] then
+		disenchantbutton = CreateFrame("BUTTON", "EltruismDisenchantButton", _G["TradeSkillFrame"], "MagicButtonTemplate,InsecureActionButtonTemplate")
+		S:HandleButton(disenchantbutton)
+		disenchantbutton:SetPoint("RIGHT", "EltruismVellumButton", "LEFT", -1, 0)
+
+	else
+		disenchantbutton = _G["EltruismDisenchantButton"]
+	end
+
+	--script buttons
+	if not self.isScripted then
+		local disenchant = GetSpellInfo(13262)
+		disenchantbutton:SetText(disenchant)
+		disenchantbutton:SetAttribute("type1", "spell")
+		disenchantbutton:SetAttribute("spell", "13262")
+
+		local vellum = select(1, GetItemInfo(38682))
+		vellum = string.match(vellum, "%s+(%S+)")
+		vellumbutton:SetText(vellum)
+		vellumbutton:SetScript("OnClick", function()
+			C_TradeSkillUI.CraftRecipe(_G["TradeSkillFrame"].DetailsFrame.selectedRecipeID)
+			UseItemByName(38682)
+		end)
+
+		self.isScripted = true
+	end
+
+end
+
+--frame that checks for the blizzard addon for the enchanting buttons
+local tradeskilloadmonitor = CreateFrame("FRAME")
+tradeskilloadmonitor:RegisterEvent("PLAYER_ENTERING_WORLD")
+tradeskilloadmonitor:RegisterEvent("ADDON_LOADED")
+tradeskilloadmonitor:SetScript("OnEvent", function(_,_,arg)
+	if IsAddOnLoaded("Blizzard_TradeSkillUI") or (arg == "Blizzard_TradeSkillUI") then
+		ElvUI_EltreumUI:EnchantScroll()
+		tradeskilloadmonitor:UnregisterAllEvents()
+	end
+end)
 
 function ElvUI_EltreumUI:SkinMailZone()
 	if E.db.ElvUI_EltreumUI.skins.zones then
