@@ -355,6 +355,7 @@ local modelsRotate = {
 	--[3155463] = true, --"gargoyle2_female.m2", --and this would require special offsets
 	[1132139] = true, --"dhfemaledps.m2",
 	[1270179] = true, --"dhfemaledps2.m2",
+	[4190632] = true, --"antros not cataloged model"
 }
 
 --set portrait rotation based on target being npc or not
