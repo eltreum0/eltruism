@@ -2536,7 +2536,12 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						qualityAnchorInspect.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
 
 						--get item (actual) quality
-						local itemLink = _G.GetInventoryItemLink(_G.InspectFrame.unit, InvSlotId)
+						local itemLink
+						if _G.InspectFrame and _G.InspectFrame.unit then
+							itemLink = _G.GetInventoryItemLink(_G.InspectFrame.unit, InvSlotId)
+						else
+							itemLink = _G.GetInventoryItemLink("target", InvSlotId)
+						end
 						if itemLink ~= nil then
 							local quality = select(3,_G.GetItemInfo(itemLink))
 							local isSetItem = select(16, _G.GetItemInfo(itemLink))
