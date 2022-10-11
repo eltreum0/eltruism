@@ -38,7 +38,6 @@ local druidfix = {
 
 	[2123275] = true, --"druidaquatickultiran.m2",
 	[2200968] = true, --"druidaquaticzandalari.m2",
-
 	[1509765] = true, --"druidflightform.m2",
 	[1778479] = true, --"druidflighthmtauren.m2",
 	[2147167] = true, --"druidflightkultiran.m2",
@@ -50,7 +49,7 @@ local druidfix = {
 
 local druidcats = {
 	[1274669] = true, --"druidcat2_artifact1.m2",
-	--[1273833] = true, --"druidcat2_artifact2.m2",
+	[1273833] = true, --"druidcat2_artifact2.m2",
 	[1273834] = true, --"druidcat2_artifact3.m2",
 	[1273835] = true, --"druidcat2_artifact4.m2",
 	[1273904] = true, --"druidcat2_artifact5.m2",
@@ -66,8 +65,6 @@ local druidcats = {
 	[628255] = true, --"druidcatworgenepic.m2",
 	[1966095] = true, --"druidcatzandalaritroll.m2",
 	[2054480] = true, --"druidcatzandalaritroll_noarmor.m2",
-	[1958497] = true, --"druidbearzandalaritroll.m2",
-	[2059840] = true, --"druidbearzandalaritroll_noarmor.m2",
 	[123682] = true, --"druidcat.m2",
 	[307529] = true, --"druidcat_legacy.m2",
 	[628202] = true, --"druidcatepic.m2",
@@ -87,6 +84,8 @@ local druidbears = {
 	[629136] = true, --"druidbeartrollepic.m2",
 	[393782] = true, --"druidbearworgen.m2",
 	[629150] = true, --"druidbearworgenepic.m2",
+	[1958497] = true, --"druidbearzandalaritroll.m2",
+	[2059840] = true, --"druidbearzandalaritroll_noarmor.m2",
 }
 
 --character models that should be rotated
@@ -426,7 +425,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 						else
 							newrotation = 0
 						end
-						if druidcats[targetmodel] or druidfix[targetmodel] or druidbears[targetmodel] or targetmodel == 926251 or targetmodel == 1043712 then
+						if druidcats[targetmodel] or druidfix[targetmodel] or druidbears[targetmodel] or targetmodel == 926251 or targetmodel == 1043712 or targetmodel == 1237910 then
 							E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = -0.59 --shaman/druid things
 						elseif targetmodel == 1505169 then
 							E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = 0.2 --bear
@@ -478,12 +477,12 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 						else
 							newrotation = 67--39
 						end
-						if playermodel == 1273833 then
-							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.59 --cat
-						elseif playermodel == 1505169 then
+						if playermodel == 1505169 then
 							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0.62 --bear
-						elseif druidcats[playermodel] or druidfix[playermodel] or druidbears[playermodel] or playermodel == 926251 then
-							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.39 --others
+						elseif druidcats[playermodel] or druidfix[playermodel] or playermodel == 926251 or playermodel == 1237910 then
+							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.59 --others
+						elseif druidbears[playermodel] then
+							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.29 --others
 						elseif playermodel == 1043712 then
 							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -1 --shaman raptor
 						else
