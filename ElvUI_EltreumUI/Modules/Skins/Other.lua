@@ -329,21 +329,29 @@ end
 function ElvUI_EltreumUI:EnchantScroll()
 	if E.db.ElvUI_EltreumUI.skins.professions and E.private.skins.blizzard.enable then
 		--create vellum button
-		if not _G["EltruismVellumButton"] then
-			vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["TradeSkillFrame"], "MagicButtonTemplate")
-			S:HandleButton(vellumbutton)
-
-			vellumbutton:SetPoint("RIGHT", _G.TradeSkillFrame.DetailsFrame.CreateButton, "LEFT", -1, 0)
-		else
-			vellumbutton = _G["EltruismVellumButton"]
+		if E.Retail then
+			if not _G["EltruismVellumButton"] then
+				vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["TradeSkillFrame"], "MagicButtonTemplate")
+				if E.Retail then
+					vellumbutton:SetPoint("RIGHT", _G.TradeSkillFrame.DetailsFrame.CreateButton, "LEFT", -1, 0)
+				else
+					vellumbutton:SetPoint("RIGHT", _G.TradeSkillCreateButton, "LEFT", -1, 0)
+				end
+				S:HandleButton(vellumbutton)
+			else
+				vellumbutton = _G["EltruismVellumButton"]
+			end
 		end
 
 		--create disenchant button
 		if not _G["EltruismDisenchantButton"] then
 			disenchantbutton = CreateFrame("BUTTON", "EltruismDisenchantButton", _G["TradeSkillFrame"], "MagicButtonTemplate,InsecureActionButtonTemplate")
+			if E.Retail then
+				disenchantbutton:SetPoint("RIGHT", "EltruismVellumButton", "LEFT", -1, 0)
+			else
+				disenchantbutton:SetPoint("RIGHT", _G.TradeSkillCreateButton, "LEFT", -1, 0)
+			end
 			S:HandleButton(disenchantbutton)
-			disenchantbutton:SetPoint("RIGHT", "EltruismVellumButton", "LEFT", -1, 0)
-
 		else
 			disenchantbutton = _G["EltruismDisenchantButton"]
 		end
@@ -354,14 +362,15 @@ function ElvUI_EltreumUI:EnchantScroll()
 			disenchantbutton:SetText(disenchant)
 			disenchantbutton:SetAttribute("type1", "spell")
 			disenchantbutton:SetAttribute("spell", "13262")
-
-			local vellum = select(1, GetItemInfo(38682))
-			vellum = string.match(vellum, "%s+(%S+)")
-			vellumbutton:SetText(vellum)
-			vellumbutton:SetScript("OnClick", function()
-				C_TradeSkillUI.CraftRecipe(_G["TradeSkillFrame"].DetailsFrame.selectedRecipeID)
-				UseItemByName(38682)
-			end)
+			if E.Retail then
+				local vellum = select(1, GetItemInfo(38682))
+				vellum = string.match(vellum, "%s+(%S+)")
+				vellumbutton:SetText(vellum)
+				vellumbutton:SetScript("OnClick", function()
+					C_TradeSkillUI.CraftRecipe(_G["TradeSkillFrame"].DetailsFrame.selectedRecipeID)
+					UseItemByName(38682)
+				end)
+			end
 
 			self.isScripted = true
 		end
