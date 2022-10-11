@@ -520,12 +520,14 @@ EltruismGameMenu:SetScript("OnEvent", function()
 end)
 
 --make the video options movable because its annoying when adjusting settings
-VideoOptionsFrame:SetMovable(true)
-VideoOptionsFrame:EnableMouse(true)
-VideoOptionsFrame:RegisterForDrag("LeftButton")
-VideoOptionsFrame:SetScript("OnDragStart", VideoOptionsFrame.StartMoving)
-VideoOptionsFrame:SetScript("OnDragStop", VideoOptionsFrame.StopMovingOrSizing)
-VideoOptionsFrame:SetClampedToScreen(true)
+if not E.WoW10 then
+	VideoOptionsFrame:SetMovable(true)
+	VideoOptionsFrame:EnableMouse(true)
+	VideoOptionsFrame:RegisterForDrag("LeftButton")
+	VideoOptionsFrame:SetScript("OnDragStart", VideoOptionsFrame.StartMoving)
+	VideoOptionsFrame:SetScript("OnDragStop", VideoOptionsFrame.StopMovingOrSizing)
+	VideoOptionsFrame:SetClampedToScreen(true)
+end
 
 --click casting button toggle
 if E.Retail then

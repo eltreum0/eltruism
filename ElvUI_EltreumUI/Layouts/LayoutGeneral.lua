@@ -1288,8 +1288,10 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('colorChatNamesByClass', 1)
 	SetCVar('chatClassColorOverride', 0)
 
-	_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:SetValue('SHIFT')
-	_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:RefreshValue()
+	if not E.WoW10 then
+		_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:SetValue('SHIFT')
+		_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:RefreshValue()
+	end
 
 	if not E.Wrath then
 		SetCVar('cameraDistanceMaxZoomFactor', 2.6)
