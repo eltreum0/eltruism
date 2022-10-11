@@ -36,6 +36,7 @@ local druidfix = {
 	[1818256] = true, --"druidtravelzandalaritroll.m2",
 	[1378642] = true, --"doe.m2",
 	--[926251] = true, --"wolfdraenor.m2",
+	--[1043712] = true, --"raptor2.m2",
 }
 
 --character models that should be rotated
@@ -350,6 +351,10 @@ local modelsRotate = {
 	[1624880] = true, --"darkwatcherfemale.m2",
 	[1249799] = true, --"malfurion.m2",
 	[432000] = true, --"malfurionstormrage.m2",
+	--[3449671] = true, --"gargoyle2_femaleboss.m2", --this
+	--[3155463] = true, --"gargoyle2_female.m2", --and this would require special offsets
+	[1132139] = true, --"dhfemaledps.m2",
+	[1270179] = true, --"dhfemaledps2.m2",
 }
 
 --set portrait rotation based on target being npc or not
@@ -370,8 +375,8 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 						else
 							newrotation = 0
 						end
-						if targetmodel == 1273833 or druidfix[targetmodel] or targetmodel == 926251 then
-							E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = -0.59 --cat & other bears
+						if targetmodel == 1273833 or druidfix[targetmodel] or targetmodel == 926251 or targetmodel == 1043712 then
+							E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = -0.59 --shaman/druid things
 						elseif targetmodel == 1505169 then
 							E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = 0.2 --bear
 						else
@@ -428,6 +433,8 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0.62 --bear
 						elseif druidfix[playermodel] or playermodel == 926251 then
 							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.39 --other bears
+						elseif playermodel == 1043712 then
+							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -1 --shaman raptor
 						else
 							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0
 						end

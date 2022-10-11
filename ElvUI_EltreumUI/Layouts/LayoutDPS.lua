@@ -1205,7 +1205,9 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["raid2"]["summonIcon"]["attachToObject"] = "Health"
 	E.db["unitframe"]["units"]["raid2"]["summonIcon"]["yOffset"] = -5
 	E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid21,noexists][@raid31,exists] hide;show"
+	E.db["unitframe"]["units"]["raid2"]["numGroups"] = 6
 	if not E.Retail then
+		E.db["unitframe"]["units"]["raid2"]["numGroups"] = 5
 		E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid11,noexists][@raid26,exists] hide;show"
 	end
 	E.db["unitframe"]["units"]["raid2"]["width"] = 120

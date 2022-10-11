@@ -2432,7 +2432,11 @@ function ElvUI_EltreumUI:InspectBg(unit)
 								_G.InspectFrame.Ilvl:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
 								_G.InspectLevelText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 								_G.InspectFrame.Ilvl:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
-								E:Delay(0.1, function() _G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel(_G.InspectFrame.unit)*100))/100) end)
+								if _G.InspectFrame and _G.InspectFrame.unit then
+									E:Delay(0.1, function() _G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel(_G.InspectFrame.unit)*100))/100) end)
+								else
+									E:Delay(0.1, function() _G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100) end)
+								end
 							end)
 						end
 
@@ -2536,7 +2540,12 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						qualityAnchorInspect.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
 
 						--get item (actual) quality
-						local itemLink = _G.GetInventoryItemLink(_G.InspectFrame.unit, InvSlotId)
+						local itemLink
+						if _G.InspectFrame and _G.InspectFrame.unit then
+							itemLink = _G.GetInventoryItemLink(_G.InspectFrame.unit, InvSlotId)
+						else
+							itemLink = _G.GetInventoryItemLink("target", InvSlotId)
+						end
 						if itemLink ~= nil then
 							local quality = select(3,_G.GetItemInfo(itemLink))
 							local isSetItem = select(16, _G.GetItemInfo(itemLink))
@@ -2591,7 +2600,11 @@ function ElvUI_EltreumUI:InspectBg(unit)
 										end
 										if _G.InspectFrame.Ilvl:GetText() ~= nil and not _G.InspectFrame.Ilvl:GetText():match("|r") then
 											local _, _, _, hex = GetItemQualityColor(maxquality)
-											_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r ".."|c"..hex..((math.floor(ElvUI_EltreumUI:GetUnitItemLevel(_G.InspectFrame.unit)*100))/100).."|r")
+											if _G.InspectFrame and _G.InspectFrame.unit then
+												_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r ".."|c"..hex..((math.floor(ElvUI_EltreumUI:GetUnitItemLevel(_G.InspectFrame.unit)*100))/100).."|r")
+											else
+												_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r ".."|c"..hex..((math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100).."|r")
+											end
 										end
 									end
 								end
