@@ -218,3 +218,13 @@ roleframe:SetScript("OnEvent", function()
 		roleframe:UnregisterAllEvents()
 	end
 end)
+
+--automatic combat logging
+--[[function ElvUI_EltreumUI:AutoCombatLog()
+	local _, instanceType = IsInInstance()
+	if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then
+		LoggingCombat(true)
+	else
+		LoggingCombat(false)
+	end
+end]]
