@@ -117,6 +117,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:CooldownColors() --changes cooldown colors to be class colored
 	ElvUI_EltreumUI:GradientMirrorLoot() --gradient misc frames like breath/lootroll
 	ElvUI_EltreumUI:MinimapCardinalDirections() -- minimap cardinal directions
+	ElvUI_EltreumUI:AutoCombatLog() -- automatic combat logging inside instances + advanced log for warcraftlogs
 end
 
 function ElvUI_EltreumUI:Initialize()

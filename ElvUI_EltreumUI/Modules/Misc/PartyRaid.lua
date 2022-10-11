@@ -220,11 +220,16 @@ roleframe:SetScript("OnEvent", function()
 end)
 
 --automatic combat logging
---[[function ElvUI_EltreumUI:AutoCombatLog()
-	local _, instanceType = IsInInstance()
-	if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then
-		LoggingCombat(true)
-	else
-		LoggingCombat(false)
+function ElvUI_EltreumUI:AutoCombatLog()
+	if E.db.ElvUI_EltreumUI.cvars.combatlog then
+		if not InCombatLockdown() then
+			SetCVar("advancedCombatLogging", 1)
+		end
+		local _, instanceType = IsInInstance()
+		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then
+			LoggingCombat(true)
+		else
+			LoggingCombat(false)
+		end
 	end
-end]]
+end

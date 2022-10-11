@@ -8714,6 +8714,21 @@ function ElvUI_EltreumUI:Configtable()
 					headergapisntance2 = {
 						order = 17,
 						type = "description",
+						name = COMBAT_LOG,
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					instancetextenable = {
+						type = 'toggle',
+						name = L["Enable Automatic Combat Log"],
+						width = "full",
+						order = 18,
+						get = function() return E.db.ElvUI_EltreumUI.cvars.combatlog end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.cvars.combatlog = value end,
+					},
+					headergapisntance3 = {
+						order = 79,
+						type = "description",
 						name = "",
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,

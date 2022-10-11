@@ -1195,3 +1195,4 @@ L["Enable adding more functions to ElvUI Chat"] = "Permitir añadir más funcion
 L["Shows the current stance"] = "Muestra la postura actual"
 L["Item Level on Tooltip"] = "Nivel de artículo en la descripciones"
 L["Shows Item Level on Tooltips"] = "Muestra el nivel del artículo en la descripciones"
+L["Enable Automatic Combat Log"] = true

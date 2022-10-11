@@ -1176,3 +1176,4 @@ L["Enable adding more functions to ElvUI Chat"] = true
 L["Shows the current stance"] = true
 L["Item Level on Tooltip"] = true
 L["Shows Item Level on Tooltips"] = true
+L["Enable Automatic Combat Log"] = true
