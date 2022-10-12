@@ -339,6 +339,12 @@ function ElvUI_EltreumUI:SkinQuests()
 						if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow then
 							bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(bar.shadow) end
+							if progressBar.block and progressBar.Bar.Icon then
+								progressBar.block:CreateShadow()
+								progressBar.block.shadow:ClearAllPoints()
+								progressBar.block.shadow:SetPoint("TOPLEFT", progressBar.Bar.Icon, "TOPLEFT", -3,3)
+								progressBar.block.shadow:SetPoint("BOTTOMRIGHT", progressBar.Bar.Icon, "BOTTOMRIGHT", 3,-3)
+							end
 						end
 						progressBar.Bar.backdrop:SetAlpha(0.7)
 						--progressBar:SetBackdropColor(0, 0, 0, 1)
