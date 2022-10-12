@@ -119,6 +119,7 @@ P.ElvUI_EltreumUI = {
 			linecustomcolor2r = 0.2,
 			linecustomcolor2g = 0.7,
 			linecustomcolor2b = 1,
+			questScale = 1,
 		},
 		professions = false,
 		colormodkey = false,

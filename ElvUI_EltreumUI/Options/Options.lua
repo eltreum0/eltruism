@@ -10542,6 +10542,38 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.fontSize end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.fontSize = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							questscaleheader = {
+								order = 95,
+								type = "description",
+								name = "",
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								width = 'full',
+							},
+							questscale = {
+								type = 'range',
+								order = 96,
+								name = L["Quest Detail Scale"],
+								min = 0.01,
+								max = 3,
+								step = 0.01,
+								--width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.questScale end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.questScale = value
+									if _G["QuestFrame"] then
+										_G["QuestFrame"]:SetScale(value)
+									end
+									if _G["QuestLogDetailFrame"] then
+										_G["QuestLogDetailFrame"]:SetScale(value)
+									end
+									if _G["QuestLogFrame"] then
+										_G["QuestLogFrame"]:SetScale(value)
+									end
+									if _G["GossipFrame"] then
+										_G["GossipFrame"]:SetScale(value)
+									end
+								end,
+							},
 						},
 					},
 					databars = {
