@@ -6865,6 +6865,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'toggle',
 								name = L["Enable Autopin"],
 								desc = L["Automatically pin the Waypoint"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -6873,6 +6874,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'toggle',
 								name = L["Limit Max Distance"],
 								hidden = function() if E.Retail then return false else return true end end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance or not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance = value end,
 							},
@@ -9397,6 +9399,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "description",
 								name = E.NewSign..L["Item Level on Tooltip"],
 								width = 'full',
+								hidden = E.Retail,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							ilvltooltip = {
@@ -9405,6 +9408,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Enable"],
 								width = 'full',
 								desc = L["Shows Item Level on Tooltips"],
+								hidden = E.Retail,
 								get = function() return E.db.ElvUI_EltreumUI.skins.ilvltooltip end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvltooltip = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -10041,6 +10045,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "toggle",
 								width = 'full',
 								hidden = not E.Retail,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.classicarmory end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -10050,7 +10055,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "toggle",
 								width = 'full',
 								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable or not E.db.ElvUI_EltreumUI.skins.classicarmory end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -10060,7 +10065,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Bad Color"],
 								hasAlpha = false,
 								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom or not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom or not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable or not E.db.ElvUI_EltreumUI.skins.classicarmory end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR
 									local dg = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG
@@ -10077,7 +10082,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Medium Color"],
 								hasAlpha = false,
 								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom or not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom or not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable or not E.db.ElvUI_EltreumUI.skins.classicarmory end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR
 									local dg = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG
@@ -10094,7 +10099,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Good Color"],
 								hasAlpha = false,
 								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom or not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom or not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable or not E.db.ElvUI_EltreumUI.skins.classicarmory end,
 								get = function()
 									local dr = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR
 									local dg = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG
