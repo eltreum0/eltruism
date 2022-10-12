@@ -346,8 +346,8 @@ function ElvUI_EltreumUI:SkinQuests()
 									end
 									if progressBar.block.shadow then
 										progressBar.block.shadow:ClearAllPoints()
-										progressBar.block.shadow:SetPoint("TOPLEFT", progressBar.Bar.Icon, "TOPLEFT", -3,3)
-										progressBar.block.shadow:SetPoint("BOTTOMRIGHT", progressBar.Bar.Icon, "BOTTOMRIGHT", 3,-3)
+										progressBar.block.shadow:SetPoint("TOPLEFT", progressBar.Bar.Icon, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
+										progressBar.block.shadow:SetPoint("BOTTOMRIGHT", progressBar.Bar.Icon, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
 										progressBar.block.shadow:Show()
 										progressBar.block.shadow:SetParent(progressBar.Bar)
 									end
