@@ -363,15 +363,48 @@ function ElvUI_EltreumUI:EnchantScroll()
 				if vellum then
 					vellum = string.match(vellum, "%s+(%S+)")
 					vellumbutton:SetText(vellum)
+					vellumbutton:SetScript("OnShow", function()
+						if GetItemCount(38682) > 0 then
+							vellumbutton:SetEnabled(true)
+						else
+							vellumbutton:SetEnabled(false)
+						end
+					end)
 					vellumbutton:SetScript("OnClick", function()
-						C_TradeSkillUI.CraftRecipe(_G["TradeSkillFrame"].DetailsFrame.selectedRecipeID)
-						UseItemByName(38682)
+						if GetItemCount(38682) > 0 then
+							vellumbutton:SetEnabled(true)
+							C_TradeSkillUI.CraftRecipe(_G["TradeSkillFrame"].DetailsFrame.selectedRecipeID)
+							UseItemByName(38682)
+						else
+							vellumbutton:SetEnabled(false)
+						end
 					end)
 				end
 			end
 
 			self.isScripted = true
 		end
+
+		--hook tradeskill because it shoul show only with enchanting
+		local function UpdateButtons()
+			E:Delay(0, function()
+				local enchantingtext = GetSpellInfo(7411)
+				local tradeskilltext = _G.TradeSkillFrameTitleText:GetText()
+				if enchantingtext == tradeskilltext then
+					if E.Retail then
+						vellumbutton:Show()
+					end
+					disenchantbutton:Show()
+				else
+					if E.Retail then
+						vellumbutton:Hide()
+					end
+					disenchantbutton:Hide()
+				end
+			end)
+		end
+		_G.TradeSkillFrame:HookScript("OnShow",function() UpdateButtons() end)
+		_G.TradeSkillFrame:HookScript("OnEvent",function() UpdateButtons() end)
 	end
 end
 
