@@ -117,6 +117,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:CooldownColors() --changes cooldown colors to be class colored
 	ElvUI_EltreumUI:GradientMirrorLoot() --gradient misc frames like breath/lootroll
 	ElvUI_EltreumUI:MinimapCardinalDirections() -- minimap cardinal directions
+	ElvUI_EltreumUI:AutoCombatLog() -- automatic combat logging inside instances + advanced log for warcraftlogs
 end
 
 function ElvUI_EltreumUI:Initialize()
@@ -292,11 +293,11 @@ function ElvUI_EltreumUI:UI_ERROR_MESSAGE()
 	ElvUI_EltreumUI:LootText()
 end
 
-local currenttalentretail = E.Retail and GetSpecialization() or nil
-local currenttalentwrath = E.Wrath and GetActiveTalentGroup() or nil
+local currenttalentretail = E.Retail and GetSpecialization()
+local currenttalentwrath = E.Wrath and GetActiveTalentGroup()
 function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
-	local newtalentretail = E.Retail and GetSpecialization() or nil
-	local newtalentwrath = E.Wrath and GetActiveTalentGroup() or nil
+	local newtalentretail = E.Retail and GetSpecialization()
+	local newtalentwrath = E.Wrath and GetActiveTalentGroup()
 	if (E.Retail and currenttalentretail ~= newtalentretail) or (E.Wrath and currenttalentwrath ~= newtalentwrath) then
 		currenttalentretail = newtalentretail
 		currenttalentwrath = newtalentwrath
@@ -316,6 +317,7 @@ function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 				E:Delay(2, function() ElvUI_EltreumUI:Borders() end)
 			end
 			E:Delay(2, function() ElvUI_EltreumUI:ShowHideBorders() end)
+			E:Delay(0.5, function() ElvUI_EltreumUI:ExpandedCharacterStats() end)
 		end
 	end
 end

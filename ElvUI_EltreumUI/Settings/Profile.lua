@@ -34,6 +34,7 @@ P.ElvUI_EltreumUI = {
 		--for tbc/classic
 		clampTargetNameplateToScreen = 1,
 		autohidenpcname = false,
+		combatlog = false,
 	},
 
 	skins = {
