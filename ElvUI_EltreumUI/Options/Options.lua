@@ -10597,6 +10597,9 @@ function ElvUI_EltreumUI:Configtable()
 									if _G["GossipFrame"] then
 										_G["GossipFrame"]:SetScale(value)
 									end
+									if _G["WorldMapFrame"] then
+										_G["WorldMapFrame"]:SetScale(value)
+									end
 								end,
 							},
 						},
