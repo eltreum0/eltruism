@@ -1219,3 +1219,5 @@ L["Shows the current stance"] = "Zeigt die aktuelle Haltung an"
 L["Item Level on Tooltip"] = "Gegenstandsstufe in Tooltip"
 L["Shows Item Level on Tooltips"] = "Zeigt Gegenstandsstufe im Tooltip an."
 L["Enable Automatic Combat Log"] = true
+L["Quest Detail Scale"] = true
+L["Flight Frame Scale"] = true

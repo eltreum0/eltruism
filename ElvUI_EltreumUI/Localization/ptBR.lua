@@ -1170,3 +1170,5 @@ L["Shows the current stance"] = "Mostra a postura atual"
 L["Item Level on Tooltip"] = "Nível do Item nas Dicas de interface"
 L["Shows Item Level on Tooltips"] = "Mostra o Nível do Item nas Dicas de interface"
 L["Enable Automatic Combat Log"] = true
+L["Quest Detail Scale"] = true
+L["Flight Frame Scale"] = true

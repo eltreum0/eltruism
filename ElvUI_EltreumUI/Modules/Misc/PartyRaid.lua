@@ -228,8 +228,10 @@ function ElvUI_EltreumUI:AutoCombatLog()
 		local _, instanceType = IsInInstance()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then
 			LoggingCombat(true)
+			--ElvUI_EltreumUI:Print(COMBATLOGENABLED)
 		else
 			LoggingCombat(false)
+			--ElvUI_EltreumUI:Print(COMBATLOGDISABLED)
 		end
 	end
 end

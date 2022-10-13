@@ -285,7 +285,8 @@ local qItems = {
 }
 local blocklist = {
 	[176809] = true, -- junk item that for some reason showed up
-
+	[8529] = true, --noggenfogger
+	[180536] = true, --broken kyrian flute, can't be used
 	[180817] = true, -- cypher of relocation
 	--[140212] = true, --test item
 

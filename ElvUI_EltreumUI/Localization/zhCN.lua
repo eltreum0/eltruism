@@ -1173,3 +1173,5 @@ L["Shows the current stance"] = true
 L["Item Level on Tooltip"] = true
 L["Shows Item Level on Tooltips"] = true
 L["Enable Automatic Combat Log"] = true
+L["Quest Detail Scale"] = true
+L["Flight Frame Scale"] = true
