@@ -25,7 +25,7 @@ function ElvUI_EltreumUI:GetWarpDepleteProfile()
 			["bar1TextureColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
 			["forcesFont"] = E.db.general.font,
 			["frameX"] = 0,
-			["completedObjectivesColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
+			["completedObjectivesColor"] = not E.myclass == "PRIEST" and tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")) or tostring(E:RGBToHex(classcolor.r-0.3, classcolor.g-0.3, classcolor.b-0.3, "ff", "")),
 			["keyDetailsFontSize"] = 14,
 			["timerFont"] = E.db.general.font,
 			["bar3Font"] = E.db.general.font,
