@@ -7056,6 +7056,31 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						},
 					},
+					headertaxiscale = {
+						order = 7,
+						type = "description",
+						name = "",
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					taxiscale = {
+						type = 'range',
+						name = L["Flight Frame Scale"],
+						order = 8,
+						min = 0.1,
+						max = 3,
+						step = 0.01,
+						--width = "double",
+						get = function() return E.db.ElvUI_EltreumUI.otherstuff.taxiscale end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.taxiscale = value
+							if _G["TaxiFrame"] then
+								_G["TaxiFrame"]:SetScale(value)
+							end
+							if _G["FlightMapFrame"] then
+								_G["FlightMapFrame"]:SetScale(value)
+							end
+						end,
+					},
 				},
 			},
 			media = {

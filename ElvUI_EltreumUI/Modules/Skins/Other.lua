@@ -16,6 +16,20 @@ if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
 end
 
+--flight master scale
+function ElvUI_EltreumUI:TaxiScale()
+	if _G["TaxiFrame"] then
+		_G["TaxiFrame"]:HookScript("OnShow", function()
+			_G["TaxiFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.taxiscale)
+		end)
+	end
+	if _G["FlightMapFrame"] then
+		_G["FlightMapFrame"]:HookScript("OnShow", function()
+			_G["FlightMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.taxiscale)
+		end)
+	end
+end
+
 --add cardinal directions to minimap
 local Cardinals = CreateFrame("FRAME", "Eltruism Cardinal Directions")
 Cardinals:SetParent(Minimap)
