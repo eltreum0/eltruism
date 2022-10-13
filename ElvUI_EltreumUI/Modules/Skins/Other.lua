@@ -442,6 +442,12 @@ function ElvUI_EltreumUI:SkinMailZone()
 				PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
 				PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
 			end)]]
+			--[[_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, "NONE")
+			_G.ZoneTextString:SetShadowColor(0,0,0,1)
+			_G.ZoneTextString:SetShadowOffset(3, -3)
+			_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, "NONE")
+			_G.SubZoneTextString:SetShadowColor(0,0,0,1)
+			_G.SubZoneTextString:SetShadowOffset(3, -3)]]
 			_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, E.db.general.fontStyle)
 			_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, E.db.general.fontStyle)
 			_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
