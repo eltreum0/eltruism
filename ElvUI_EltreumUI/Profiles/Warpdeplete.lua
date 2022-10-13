@@ -34,6 +34,7 @@ function ElvUI_EltreumUI:GetWarpDepleteProfile()
 			["keyDetailsFont"] = E.db.general.font,
 			["keyFont"] = E.db.general.font,
 			["prideGlowColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
+			["showPrideGlow"] = false,
 			["deathsFont"] = E.db.general.font,
 			["completedForcesColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
 			["bar1Font"] = E.db.general.font,
