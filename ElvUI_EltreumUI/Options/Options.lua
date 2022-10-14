@@ -57,7 +57,7 @@ local THANKYOU = {
 	'|cff960000Atwood|r - for some of the role icons',
 }
 
-local SUPPORTER = {
+local DONATORS = {
 	'|cffB50909Akiao|r',
 	'|cffB50909Artan|r',
 	'|cffB50909Brovenn|r',
@@ -89,7 +89,7 @@ end
 
 sort(AUTHORS, SortList)
 sort(THANKYOU, SortList)
-sort(SUPPORTER, SortList)
+sort(DONATORS, SortList)
 sort(TRANSLATORS, SortList)
 
 -- Author table
@@ -104,11 +104,11 @@ for _, name in pairs(THANKYOU) do
 end
 local THANKYOU_STRING = tconcat(THANKYOU, '|n')
 
--- Supporter table
-for _, name in pairs(SUPPORTER) do
+-- Donators table
+for _, name in pairs(DONATORS) do
 	tinsert(ElvUI_EltreumUI.CreditsList, name)
 end
-local SUPPORTER_STRING = tconcat(SUPPORTER, '|n')
+local DONATORS_STRING = tconcat(DONATORS, '|n')
 
 -- Translators table
 for _, name in pairs(TRANSLATORS) do
@@ -12126,17 +12126,17 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						},
 					},
-					supporters = {
+					donatorss = {
 						order = 3,
 						type = 'group',
 						inline = true,
-						name = L["Supporters"],
+						name = L["Donators"],
 						args = {
 							desc = {
 								order = 1,
 								type = 'description',
 								fontSize = 'medium',
-								name = SUPPORTER_STRING,
+								name = DONATORS_STRING,
 							},
 						},
 					},
