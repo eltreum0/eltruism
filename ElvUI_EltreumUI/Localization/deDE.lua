@@ -1221,3 +1221,4 @@ L["Shows Item Level on Tooltips"] = "Zeigt Gegenstandsstufe im Tooltip an."
 L["Enable Automatic Combat Log"] = "Automatisches Kampflog aktivieren"
 L["Quest Detail Scale"] = "Questdetail Skalierung"
 L["Flight Frame Scale"] = "Flugfenster Skalierung"
+L["Donators"] = true
