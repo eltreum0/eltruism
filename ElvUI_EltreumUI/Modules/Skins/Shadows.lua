@@ -690,21 +690,6 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		elseif E.Wrath or E.TBC or E.Classic then
 
-			--classic only elvui
-			local ClassicElvUIFrames = {
-			_G["ElvUF_PartyGroup1UnitButton1Pet"],
-			_G["ElvUF_PartyGroup1UnitButton2Pet"],
-			_G["ElvUF_PartyGroup1UnitButton3Pet"],
-			_G["ElvUF_PartyGroup1UnitButton4Pet"],
-			_G["ElvUF_PartyGroup1UnitButton5Pet"],
-			}
-			for _, frame in pairs(ClassicElvUIFrames) do
-				if frame and not frame.shadow then
-					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
-				end
-			end
-
 			--totems
 			local ElvUITotemFrames = {
 			_G["ElvUF_PlayerTotem1"],
@@ -1177,6 +1162,32 @@ function ElvUI_EltreumUI:Shadows()
 							end
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
 						end
+					end
+				end
+			end
+
+			--party pets
+			local PartyPetElvUIFrames = {
+			_G["ElvUF_PartyGroup1UnitButton1Pet"],
+			_G["ElvUF_PartyGroup1UnitButton2Pet"],
+			_G["ElvUF_PartyGroup1UnitButton3Pet"],
+			_G["ElvUF_PartyGroup1UnitButton4Pet"],
+			_G["ElvUF_PartyGroup1UnitButton5Pet"],
+			}
+			for _, frame in pairs(PartyPetElvUIFrames) do
+				if frame and not frame.shadow then
+					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+				end
+			end
+
+			--raidpets
+			for i =1, 40 do
+				local RaidPetElvUIFrames = {_G["ElvUF_RaidpetGroup1UnitButton"..i]}
+				for _, frame in pairs(RaidPetElvUIFrames) do
+					if frame and not frame.shadow then
+						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
 					end
 				end
 			end
