@@ -297,6 +297,7 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 	end
 end
 hooksecurefunc(NP, "StyleFilterUpdate", ElvUI_EltreumUI.NameplateCustomOptions)
+--UNIT_FLAGS might work, as might "UNIT_THREAT_LIST_UPDATE", but linking to the function is the issue
 
 --Adds a model of the Target to the Target nameplate
 local target3d = CreateFrame('PlayerModel', "EltruismNameplateModel")
