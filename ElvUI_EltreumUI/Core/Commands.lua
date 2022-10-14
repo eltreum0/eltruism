@@ -251,7 +251,7 @@ end)
 local keystone = CreateFrame("FRAME")
 keystone:RegisterEvent("ADDON_LOADED")
 keystone:SetScript("OnEvent", function(_,_,addon)
-	if addon == "Blizzard_ChallengesUI" and E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
+	if (addon == "Blizzard_ChallengesUI" or IsAddOnLoaded("Blizzard_ChallengesUI")) and E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
 		keystone:UnregisterAllEvents()
 		if _G.ChallengesKeystoneFrame then
 			_G.ChallengesKeystoneFrame:SetScript("OnShow", function()

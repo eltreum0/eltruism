@@ -185,13 +185,36 @@ function ElvUI_EltreumUI:SkinQuests()
 	end
 
 	if E.db.ElvUI_EltreumUI.skins.quests and E.private.skins.blizzard.objectiveTracker and E.private.skins.blizzard.enable then
-		if E.Retail then
-			if _G["QuestFrame"] then
-				_G["QuestFrame"]:HookScript("OnShow", function()
-					_G["QuestFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
-				end)
-			end
 
+
+		--option to change the quest scale
+		if _G["QuestFrame"] then
+			_G["QuestFrame"]:HookScript("OnShow", function()
+				_G["QuestFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
+			end)
+		end
+		if _G["QuestLogFrame"] then
+			_G["QuestLogFrame"]:HookScript("OnShow", function()
+				_G["QuestLogFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
+			end)
+		end
+		if _G["QuestLogDetailFrame"] then
+			_G["QuestLogDetailFrame"]:HookScript("OnShow", function()
+				_G["QuestLogDetailFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
+			end)
+		end
+		if _G["GossipFrame"] then
+			_G["GossipFrame"]:HookScript("OnShow", function()
+				_G["GossipFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
+			end)
+		end
+		if _G["WorldMapFrame"] and E.Retail then
+			_G["WorldMapFrame"]:HookScript("OnShow", function()
+				_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
+			end)
+		end
+
+		if E.Retail then
 			-- and (not IsAddOnLoaded("ElvUI_WindTools"))
 			if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 				--WQs banner
@@ -588,28 +611,6 @@ function ElvUI_EltreumUI:SkinQuests()
 				end)
 			end
 		elseif E.Classic or E.TBC then
-			--option to change the quest scale
-			if _G["QuestFrame"] then
-				_G["QuestFrame"]:HookScript("OnShow", function()
-					_G["QuestFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
-				end)
-			end
-			if _G["QuestLogFrame"] then
-				_G["QuestLogFrame"]:HookScript("OnShow", function()
-					_G["QuestLogFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
-				end)
-			end
-			if _G["QuestLogDetailFrame"] then
-				_G["QuestLogDetailFrame"]:HookScript("OnShow", function()
-					_G["QuestLogDetailFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
-				end)
-			end
-			if _G["GossipFrame"] then
-				_G["GossipFrame"]:HookScript("OnShow", function()
-					_G["GossipFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
-				end)
-			end
-
 			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
 				return
 			end
@@ -818,24 +819,6 @@ function ElvUI_EltreumUI:SkinQuests()
 				UIParent_ManageFramePositions()
 			end)
 		elseif E.Wrath then
-
-			--option to change the quest scale
-			if _G["QuestFrame"] then
-				_G["QuestFrame"]:HookScript("OnShow", function()
-					_G["QuestFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
-				end)
-			end
-			if _G["QuestLogDetailFrame"] then
-				_G["QuestLogDetailFrame"]:HookScript("OnShow", function()
-					_G["QuestLogDetailFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
-				end)
-			end
-			if _G["GossipFrame"] then
-				_G["GossipFrame"]:HookScript("OnShow", function()
-					_G["GossipFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
-				end)
-			end
-
 			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
 				return
 			end

@@ -409,6 +409,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["movers"]["SquareMinimapBar"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-197"
 	E.db["movers"]["TalkingHeadFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-77"
 	E.db["movers"]["ThreatBarMover"] = "TOP,ElvUIParent,TOP,0,-42"
+	E.db["movers"]["AlertFrameMover"] = "TOP,UIParent,TOP,0,-67"
 	E.db["movers"]["TooltipMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,274,-134"
 	E.db["movers"]["TorghastBuffsMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,206"
 	E.db["movers"]["TotemBarMover"] = "BOTTOM,UIParent,BOTTOM,308,306" --shaman totem
