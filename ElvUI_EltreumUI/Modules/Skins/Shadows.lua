@@ -381,32 +381,34 @@ function ElvUI_EltreumUI:Shadows()
 					end)
 				end
 				if (arg == "Blizzard_Communities") or IsAddOnLoaded("Blizzard_Communities") then
-					_G.CommunitiesFrame:HookScript("OnShow", function()
-						if not _G.CommunitiesFrame.shadow then
-							_G.CommunitiesFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.shadow) end
-						end
-						if _G.CommunitiesFrameTab1 and _G.CommunitiesFrameTab1.backdrop and not _G.CommunitiesFrameTab1.backdrop.shadow then
-							_G.CommunitiesFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab1.backdrop.shadow) end
-						end
-						if _G.CommunitiesFrameTab2 and _G.CommunitiesFrameTab2.backdrop and not _G.CommunitiesFrameTab2.backdrop.shadow then
-							_G.CommunitiesFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab2.backdrop.shadow) end
-						end
-						if _G.CommunitiesFrameTab3 and _G.CommunitiesFrameTab3.backdrop and not _G.CommunitiesFrameTab3.backdrop.shadow then
-							_G.CommunitiesFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab3.backdrop.shadow) end
-						end
-						if _G.CommunitiesFrameTab4 and _G.CommunitiesFrameTab4.backdrop and not _G.CommunitiesFrameTab4.backdrop.shadow then
-							_G.CommunitiesFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab4.backdrop.shadow) end
-						end
-						if _G.CommunitiesFrameTab5 and _G.CommunitiesFrameTab5.backdrop and not _G.CommunitiesFrameTab5.backdrop.shadow then
-							_G.CommunitiesFrameTab5.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab5.backdrop.shadow) end
-						end
-					end)
+					if _G.CommunitiesFrame then
+						_G.CommunitiesFrame:HookScript("OnShow", function()
+							if not _G.CommunitiesFrame.shadow then
+								_G.CommunitiesFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.shadow) end
+							end
+							if _G.CommunitiesFrameTab1 and _G.CommunitiesFrameTab1.backdrop and not _G.CommunitiesFrameTab1.backdrop.shadow then
+								_G.CommunitiesFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab1.backdrop.shadow) end
+							end
+							if _G.CommunitiesFrameTab2 and _G.CommunitiesFrameTab2.backdrop and not _G.CommunitiesFrameTab2.backdrop.shadow then
+								_G.CommunitiesFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab2.backdrop.shadow) end
+							end
+							if _G.CommunitiesFrameTab3 and _G.CommunitiesFrameTab3.backdrop and not _G.CommunitiesFrameTab3.backdrop.shadow then
+								_G.CommunitiesFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab3.backdrop.shadow) end
+							end
+							if _G.CommunitiesFrameTab4 and _G.CommunitiesFrameTab4.backdrop and not _G.CommunitiesFrameTab4.backdrop.shadow then
+								_G.CommunitiesFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab4.backdrop.shadow) end
+							end
+							if _G.CommunitiesFrameTab5 and _G.CommunitiesFrameTab5.backdrop and not _G.CommunitiesFrameTab5.backdrop.shadow then
+								_G.CommunitiesFrameTab5.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab5.backdrop.shadow) end
+							end
+						end)
+					end
 				end
 				if (arg == "Blizzard_AchievementUI") or IsAddOnLoaded("Blizzard_AchievementUI") then
 					_G.AchievementFrame:HookScript("OnShow", function()
