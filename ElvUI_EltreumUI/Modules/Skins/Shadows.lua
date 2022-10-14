@@ -19,7 +19,7 @@ function ElvUI_EltreumUI:Shadows()
 		local EltruismBlizzShadows = CreateFrame("Frame")
 		EltruismBlizzShadows:RegisterEvent("ADDON_LOADED")
 		EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
-			if (arg == "Blizzard_MacroUI") then
+			if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
 				_G.MacroFrame:HookScript("OnShow", function()
 					if E.Retail or E.Wrath or E.TBC then
 						if not _G.MacroFrame.shadow then
@@ -34,7 +34,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
-			if (arg == "Blizzard_DeathRecap") then
+			if (arg == "Blizzard_DeathRecap") or IsAddOnLoaded("Blizzard_DeathRecap") then
 				_G.DeathRecapFrame:HookScript("OnShow", function()
 					if not _G.DeathRecapFrame.shadow then
 						_G.DeathRecapFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -42,7 +42,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
-			if (arg == "Blizzard_FlightMap") then
+			if (arg == "Blizzard_FlightMap") or IsAddOnLoaded("Blizzard_FlightMap") then
 				_G.FlightMapFrame:HookScript("OnShow", function()
 					if not _G.FlightMapFrame.shadow then
 						_G.FlightMapFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -50,7 +50,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
-			if (arg == "Blizzard_GuildBankUI") then
+			if (arg == "Blizzard_GuildBankUI") or IsAddOnLoaded("Blizzard_GuildBankUI") then
 				_G.GuildBankFrame:HookScript("OnShow", function()
 					if E.Retail then
 						if not _G.GuildBankFrame.shadow then
@@ -65,7 +65,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
-			if (arg == "Blizzard_TrainerUI") then
+			if (arg == "Blizzard_TrainerUI") or IsAddOnLoaded("Blizzard_TrainerUI") then
 				_G.ClassTrainerFrame:HookScript("OnShow", function()
 					if E.Retail then
 						if not _G.ClassTrainerFrame.shadow then
@@ -80,7 +80,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
-			if (arg == "Blizzard_ItemSocketingUI") then
+			if (arg == "Blizzard_ItemSocketingUI") or IsAddOnLoaded("Blizzard_ItemSocketingUI") then
 				_G.ItemSocketingFrame:HookScript("OnShow", function()
 					if not _G.ItemSocketingFrame.shadow then
 						_G.ItemSocketingFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -88,7 +88,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
-			if (arg == "Blizzard_TradeSkillUI") then
+			if (arg == "Blizzard_TradeSkillUI") or IsAddOnLoaded("Blizzard_TradeSkillUI") then
 				_G.TradeSkillFrame:HookScript("OnShow", function()
 					if E.Retail then
 						if not _G.TradeSkillFrame.shadow then
@@ -103,7 +103,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
-			if (arg == "Blizzard_BindingUI") then
+			if (arg == "Blizzard_BindingUI") or IsAddOnLoaded("Blizzard_BindingUI") then
 				_G.KeyBindingFrame:HookScript("OnShow", function()
 					if not _G.KeyBindingFrame.shadow then
 						_G.KeyBindingFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -111,7 +111,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
-			if (arg == "Blizzard_InspectUI") then
+			if (arg == "Blizzard_InspectUI") or IsAddOnLoaded("Blizzard_InspectUI") then
 				_G.InspectFrame:HookScript("OnShow", function()
 					if E.Retail then
 						if _G.InspectFrame and not _G.InspectFrame.shadow then
@@ -139,7 +139,7 @@ function ElvUI_EltreumUI:Shadows()
 				end)
 			end
 			if E.Retail then
-				if (arg == "Blizzard_AuctionHouseUI") then
+				if (arg == "Blizzard_AuctionHouseUI") or IsAddOnLoaded("Blizzard_AuctionHouseUI") then
 					_G.AuctionHouseFrame:HookScript("OnShow", function()
 						if _G.AuctionHouseFrame and not _G.AuctionHouseFrame.shadow then
 							_G.AuctionHouseFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -148,7 +148,7 @@ function ElvUI_EltreumUI:Shadows()
 					end)
 				end
 			elseif E.Wrath or E.TBC or E.Classic then
-				if (arg == "Blizzard_AuctionUI") then
+				if (arg == "Blizzard_AuctionUI") or IsAddOnLoaded("Blizzard_AuctionUI") then
 					_G.AuctionFrame:HookScript("OnShow", function()
 						if _G.AuctionFrame and _G.AuctionFrame.backdrop and not _G.AuctionFrame.backdrop.shadow then
 							_G.AuctionFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -318,7 +318,7 @@ function ElvUI_EltreumUI:Shadows()
 		EltruismBlizzShadowsRetail:SetScript("OnEvent", function(_, _, arg)
 			if E.private.skins.blizzard.enable then
 				if E.Retail then
-					if (arg == "Blizzard_TalentUI") then
+					if (arg == "Blizzard_TalentUI") or IsAddOnLoaded("Blizzard_TalentUI") then
 						_G.PlayerTalentFrame:HookScript("OnShow", function()
 							if not _G.PlayerTalentFrame.shadow then
 								_G.PlayerTalentFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -339,7 +339,7 @@ function ElvUI_EltreumUI:Shadows()
 						end)
 					end
 				elseif not E.Retail then
-					if (arg == "Blizzard_TalentUI") then
+					if (arg == "Blizzard_TalentUI") or IsAddOnLoaded("Blizzard_TalentUI") then
 						_G.PlayerTalentFrame:HookScript("OnShow", function()
 							if _G.PlayerTalentFrame and _G.PlayerTalentFrame.backdrop and not _G.PlayerTalentFrame.backdrop.shadow then
 								_G.PlayerTalentFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -372,7 +372,7 @@ function ElvUI_EltreumUI:Shadows()
 						end)
 					end
 				end
-				if (arg == "Blizzard_Calendar") then
+				if (arg == "Blizzard_Calendar") or IsAddOnLoaded("Blizzard_Calendar") then
 					_G.CalendarFrame:HookScript("OnShow", function()
 						if not _G.CalendarFrame.shadow then
 							_G.CalendarFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -380,7 +380,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 				end
-				if (arg == "Blizzard_Communities") then
+				if (arg == "Blizzard_Communities") or IsAddOnLoaded("Blizzard_Communities") then
 					_G.CommunitiesFrame:HookScript("OnShow", function()
 						if not _G.CommunitiesFrame.shadow then
 							_G.CommunitiesFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -408,7 +408,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 				end
-				if (arg == "Blizzard_AchievementUI") then
+				if (arg == "Blizzard_AchievementUI") or IsAddOnLoaded("Blizzard_AchievementUI") then
 					_G.AchievementFrame:HookScript("OnShow", function()
 						if _G.AchievementFrame and _G.AchievementFrame.backdrop and not _G.AchievementFrame.backdrop.shadow then
 							_G.AchievementFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -436,7 +436,7 @@ function ElvUI_EltreumUI:Shadows()
 						end)
 					end
 				end
-				if (arg == "Blizzard_GarrisonUI") then
+				if (arg == "Blizzard_GarrisonUI") or IsAddOnLoaded("Blizzard_GarrisonUI") then
 					_G.GarrisonLandingPage:HookScript("OnShow", function()
 						if not _G.GarrisonLandingPage.shadow then
 							_G.GarrisonLandingPage:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -450,7 +450,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 				end
-				if (arg == "Blizzard_CovenantSanctum") then
+				if (arg == "Blizzard_CovenantSanctum") or IsAddOnLoaded("Blizzard_CovenantSanctum") then
 					_G.CovenantSanctumFrame:HookScript("OnShow", function()
 						if not _G.CovenantSanctumFrame.shadow then
 							_G.CovenantSanctumFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -458,7 +458,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 				end
-				if (arg == "Blizzard_Soulbinds") then
+				if (arg == "Blizzard_Soulbinds") or IsAddOnLoaded("Blizzard_Soulbinds") then
 					_G.SoulbindViewer:HookScript("OnShow", function()
 						if not _G.SoulbindViewer.shadow then
 							_G.SoulbindViewer:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -466,7 +466,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 				end
-				if (arg == "Blizzard_Collections") then
+				if (arg == "Blizzard_Collections") or IsAddOnLoaded("Blizzard_Collections") then
 					_G.CollectionsJournal:HookScript("OnShow", function()
 						if not _G.CollectionsJournal.shadow then
 							_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -559,7 +559,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 				end
-				if (arg == "Blizzard_PVPUI") then
+				if (arg == "Blizzard_PVPUI") or IsAddOnLoaded("Blizzard_PVPUI") then
 					_G.PVPUIFrame:HookScript("OnShow", function()
 						if not _G.PVPUIFrame.shadow then
 							_G.PVPUIFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -567,7 +567,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 				end
-				if (arg == "Blizzard_VoidStorageUI") then
+				if (arg == "Blizzard_VoidStorageUI") or IsAddOnLoaded("Blizzard_VoidStorageUI") then
 					_G.VoidStorageFrame:HookScript("OnShow", function()
 						if not _G.VoidStorageFrame.shadow then
 							_G.VoidStorageFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -575,7 +575,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 				end
-				if (arg == "Blizzard_ChallengesUI") then
+				if (arg == "Blizzard_ChallengesUI") or IsAddOnLoaded("Blizzard_ChallengesUI") then
 					_G.PVEFrame:HookScript("OnShow", function()
 						if not _G.PVEFrame.shadow then
 							_G.PVEFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -583,7 +583,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 				end
-				if (arg == "Blizzard_EncounterJournal") then
+				if (arg == "Blizzard_EncounterJournal") or IsAddOnLoaded("Blizzard_EncounterJournal") then
 					_G.EncounterJournal:HookScript("OnShow", function()
 						if not _G.EncounterJournal.shadow then
 							_G.EncounterJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -591,7 +591,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 				end
-				if (arg == "Blizzard_WeeklyRewards") then
+				if (arg == "Blizzard_WeeklyRewards") or IsAddOnLoaded("Blizzard_WeeklyRewards") then
 					_G.WeeklyRewardsFrame:HookScript("OnShow", function()
 						if not _G.WeeklyRewardsFrame.shadow then
 							_G.WeeklyRewardsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)

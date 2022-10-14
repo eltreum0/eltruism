@@ -149,7 +149,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 		EltruismInspectilvls:RegisterEvent("ADDON_LOADED")
 		EltruismInspectilvls:RegisterEvent("INSPECT_READY")
 		EltruismInspectilvls:SetScript("OnEvent", function(_,event,arg)
-			if arg == "Blizzard_InspectUI" then
+			if arg == "Blizzard_InspectUI" or IsAddOnLoaded("Blizzard_InspectUI") then
 				--EltruismInspectilvls:UnregisterAllEvents()
 				EltruismInspectilvls:UnregisterEvent("ADDON_LOADED")
 				hooksecurefunc("InspectPaperDollItemSlotButton_Update", function(button)
