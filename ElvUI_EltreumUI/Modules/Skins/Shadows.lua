@@ -448,6 +448,14 @@ function ElvUI_EltreumUI:Shadows()
 							_G.CovenantMissionFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantMissionFrame.shadow) end
 						end
+						if not _G.CovenantMissionFrameTab1.backdrop.shadow then
+							_G.CovenantMissionFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantMissionFrameTab1.backdrop.shadow) end
+						end
+						if not _G.CovenantMissionFrameTab2.backdrop.shadow then
+							_G.CovenantMissionFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantMissionFrameTab2.backdrop.shadow) end
+						end
 					end)
 				end
 				if (arg == "Blizzard_CovenantSanctum") or IsAddOnLoaded("Blizzard_CovenantSanctum") then
