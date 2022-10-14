@@ -407,6 +407,22 @@ function ElvUI_EltreumUI:Shadows()
 								_G.CommunitiesFrameTab5.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab5.backdrop.shadow) end
 							end
+							if _G.CommunitiesFrame.ChatTab and _G.CommunitiesFrame.ChatTab.backdrop and not _G.CommunitiesFrame.ChatTab.backdrop.shadow then
+								_G.CommunitiesFrame.ChatTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.ChatTab.backdrop.shadow) end
+							end
+							if _G.CommunitiesFrame.RosterTab and _G.CommunitiesFrame.RosterTab.backdrop and not _G.CommunitiesFrame.RosterTab.backdrop.shadow then
+								_G.CommunitiesFrame.RosterTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.RosterTab.backdrop.shadow) end
+							end
+							if _G.CommunitiesFrame.GuildBenefitsTab and _G.CommunitiesFrame.GuildBenefitsTab.backdrop and not _G.CommunitiesFrame.GuildBenefitsTab.backdrop.shadow then
+								_G.CommunitiesFrame.GuildBenefitsTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.GuildBenefitsTab.backdrop.shadow) end
+							end
+							if _G.CommunitiesFrame.GuildInfoTab and _G.CommunitiesFrame.GuildInfoTab.backdrop and not _G.CommunitiesFrame.GuildInfoTab.backdrop.shadow then
+								_G.CommunitiesFrame.GuildInfoTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.GuildInfoTab.backdrop.shadow) end
+							end
 						end)
 					end
 				end
