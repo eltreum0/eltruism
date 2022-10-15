@@ -481,20 +481,24 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 				if (arg == "Blizzard_CovenantSanctum") or IsAddOnLoaded("Blizzard_CovenantSanctum") then
-					_G.CovenantSanctumFrame:HookScript("OnShow", function()
-						if not _G.CovenantSanctumFrame.shadow then
-							_G.CovenantSanctumFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantSanctumFrame.shadow) end
-						end
-					end)
+					if _G.CovenantSanctumFrame then
+						_G.CovenantSanctumFrame:HookScript("OnShow", function()
+							if not _G.CovenantSanctumFrame.shadow then
+								_G.CovenantSanctumFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantSanctumFrame.shadow) end
+							end
+						end)
+					end
 				end
 				if (arg == "Blizzard_Soulbinds") or IsAddOnLoaded("Blizzard_Soulbinds") then
-					_G.SoulbindViewer:HookScript("OnShow", function()
-						if not _G.SoulbindViewer.shadow then
-							_G.SoulbindViewer:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.SoulbindViewer.shadow) end
-						end
-					end)
+					if _G.SoulbindViewer then
+						_G.SoulbindViewer:HookScript("OnShow", function()
+							if not _G.SoulbindViewer.shadow then
+								_G.SoulbindViewer:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.SoulbindViewer.shadow) end
+							end
+						end)
+					end
 				end
 				if (arg == "Blizzard_Collections") or IsAddOnLoaded("Blizzard_Collections") then
 					_G.CollectionsJournal:HookScript("OnShow", function()
