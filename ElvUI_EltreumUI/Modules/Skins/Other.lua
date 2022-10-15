@@ -399,6 +399,20 @@ function ElvUI_EltreumUI:EnchantScroll()
 			self.isScripted = true
 		end
 
+		--fixx disenchant overlap with create all
+		if E.Retail then
+			if _G.TradeSkillFrame.DetailsFrame.CreateAllButton then
+				_G.TradeSkillFrame.DetailsFrame.CreateAllButton:SetScript("OnShow", function()
+					disenchantbutton:ClearAllPoints()
+					disenchantbutton:SetPoint("BOTTOM", "EltruismVellumButton", "TOP", 0, 1)
+				end)
+				_G.TradeSkillFrame.DetailsFrame.CreateAllButton:SetScript("OnHide", function()
+					disenchantbutton:ClearAllPoints()
+					disenchantbutton:SetPoint("RIGHT", "EltruismVellumButton", "LEFT", -1, 0)
+				end)
+			end
+		end
+
 		--hook tradeskill because it shoul show only with enchanting
 		local function UpdateButtons()
 			E:Delay(0, function()
@@ -407,11 +421,15 @@ function ElvUI_EltreumUI:EnchantScroll()
 				if enchantingtext == tradeskilltext then
 					if E.Retail then
 						vellumbutton:Show()
+						_G.TradeSkillFrame.DetailsFrame.CreateMultipleInputBox:ClearAllPoints()
+						_G.TradeSkillFrame.DetailsFrame.CreateMultipleInputBox:SetPoint("BOTTOM", _G.TradeSkillFrame.DetailsFrame.CreateButton, "TOP", 0, 1)
 					end
 					disenchantbutton:Show()
 				else
 					if E.Retail then
 						vellumbutton:Hide()
+						_G.TradeSkillFrame.DetailsFrame.CreateMultipleInputBox:ClearAllPoints()
+						_G.TradeSkillFrame.DetailsFrame.CreateMultipleInputBox:SetPoint("RIGHT", _G.TradeSkillFrame.DetailsFrame.CreateButton, "LEFT", -1, 0)
 					end
 					disenchantbutton:Hide()
 				end
