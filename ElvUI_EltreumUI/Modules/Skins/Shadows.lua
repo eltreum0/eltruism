@@ -455,26 +455,30 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 				if (arg == "Blizzard_GarrisonUI") or IsAddOnLoaded("Blizzard_GarrisonUI") then
-					_G.GarrisonLandingPage:HookScript("OnShow", function()
-						if not _G.GarrisonLandingPage.shadow then
-							_G.GarrisonLandingPage:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GarrisonLandingPage.shadow) end
-						end
-					end)
-					_G.CovenantMissionFrame:HookScript("OnShow", function()
-						if not _G.CovenantMissionFrame.shadow then
-							_G.CovenantMissionFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantMissionFrame.shadow) end
-						end
-						if not _G.CovenantMissionFrameTab1.backdrop.shadow then
-							_G.CovenantMissionFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantMissionFrameTab1.backdrop.shadow) end
-						end
-						if not _G.CovenantMissionFrameTab2.backdrop.shadow then
-							_G.CovenantMissionFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantMissionFrameTab2.backdrop.shadow) end
-						end
-					end)
+					if _G.GarrisonLandingPage then
+						_G.GarrisonLandingPage:HookScript("OnShow", function()
+							if not _G.GarrisonLandingPage.shadow then
+								_G.GarrisonLandingPage:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GarrisonLandingPage.shadow) end
+							end
+						end)
+					end
+					if _G.CovenantMissionFrame then
+						_G.CovenantMissionFrame:HookScript("OnShow", function()
+							if not _G.CovenantMissionFrame.shadow then
+								_G.CovenantMissionFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantMissionFrame.shadow) end
+							end
+							if not _G.CovenantMissionFrameTab1.backdrop.shadow then
+								_G.CovenantMissionFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantMissionFrameTab1.backdrop.shadow) end
+							end
+							if not _G.CovenantMissionFrameTab2.backdrop.shadow then
+								_G.CovenantMissionFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantMissionFrameTab2.backdrop.shadow) end
+							end
+						end)
+					end
 				end
 				if (arg == "Blizzard_CovenantSanctum") or IsAddOnLoaded("Blizzard_CovenantSanctum") then
 					_G.CovenantSanctumFrame:HookScript("OnShow", function()
