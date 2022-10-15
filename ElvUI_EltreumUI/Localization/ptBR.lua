@@ -1172,3 +1172,4 @@ L["Shows Item Level on Tooltips"] = "Mostra o Nível do Item nas Dicas de interf
 L["Enable Automatic Combat Log"] = true
 L["Quest Detail Scale"] = true
 L["Flight Frame Scale"] = true
+L["Donators"] = true

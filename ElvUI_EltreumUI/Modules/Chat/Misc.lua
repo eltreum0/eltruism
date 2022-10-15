@@ -63,7 +63,7 @@ local function ColorSysMsgs(_, event, message, ...)
 			joinsstring = "joins"
 			joinsstring2 = " join "
 			joinsstring3 = " joined "
-			leavestring = "left"
+			leavestring = " left "
 			leavestring2 = "leaves"
 		elseif E.locale == "zhCN" then
 			rollstring = "掷出"
@@ -164,7 +164,7 @@ local function ColorSysMsgs(_, event, message, ...)
 			return false, gsub(message, joinsstring3, "|cff82B4ff"..joinsstring3.."|r"), ...
 		end
 		if message:find(leavestring) then
-			return false, gsub(message, "left", "|cffB50909"..leavestring.."|r"), ...
+			return false, gsub(message, leavestring, "|cffB50909"..leavestring.."|r"), ...
 		end
 		if message:find(leavestring2) then
 			return false, gsub(message, leavestring2, "|cffB50909"..leavestring2.."|r"), ...
