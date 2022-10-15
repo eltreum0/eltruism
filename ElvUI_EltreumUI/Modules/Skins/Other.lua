@@ -359,7 +359,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 			if E.Retail then
 				disenchantbutton:SetPoint("RIGHT", "EltruismVellumButton", "LEFT", -1, 0)
 			else
-				disenchantbutton:SetPoint("RIGHT", _G.TradeSkillCreateButton, "LEFT", -1, 0)
+				disenchantbutton:SetPoint("LEFT", _G.TradeSkillCreateButton, "RIGHT", 1, 0)
 			end
 			S:HandleButton(disenchantbutton)
 		else
