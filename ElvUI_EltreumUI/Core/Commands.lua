@@ -183,6 +183,7 @@ local ids = {
 	[180653] = true, -- Shadowlands
 	[151086] = true, -- Tournament
 	[187786] = true, -- Legion Timewalking
+	[186159] = true, -- TODO, confirm its Dragonflight
 }
 local keys = {
 }

@@ -14,7 +14,8 @@ local _, unit1class, buttonclass, classunit, unitframe, namebar, reaction,groupb
 local headergroup = nil
 local headertank = nil
 local headerassist = nil
-local group, groupbutton, tankbutton, assistbutton
+local headerraidpet = nil
+local group, groupbutton, tankbutton, assistbutton, raidpetbutton,partypetbutton
 local orientation, barTexture, texture
 local LCG = E.Libs.CustomGlow
 local classcolor = E:ClassColor(E.myclass, true)
@@ -25,7 +26,7 @@ if IsAddOnLoaded("ProjectAzilroka") then
 end
 
 --set the textures or gradients for single units
-function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name,uf)
+function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name)
 	_, classunit = UnitClass(unit)
 	namebar = E.LSM:Fetch("statusbar", "Eltreum-Blank")
 	reaction = UnitReaction(unit, "player")
@@ -407,7 +408,14 @@ function ElvUI_EltreumUI:ApplyGroupGradientTexture(button)
 		button.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 		button.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 	end
-	_, buttonclass = UnitClass(button.unit)
+
+	--due to raid pet, check if is player
+	if UnitIsPlayer(button.unit) then
+		_, buttonclass = UnitClass(button.unit)
+	else
+		buttonclass = "NPCFRIENDLY"
+	end
+
 	if buttonclass and button.Health then
 		button.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
 		groupbar = ElvUI_EltreumUI:UnitframeClassTexture(buttonclass)
@@ -463,11 +471,12 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 
 		--main issue = the toggle for some units like boss and arena wont work bc it checks for boss1,boss2... instead of just boss
-		ElvUI_EltreumUI:ApplyUnitGradientTexture("player", "Player", "player")
-		ElvUI_EltreumUI:ApplyUnitGradientTexture("target", "Target", "target")
-		ElvUI_EltreumUI:ApplyUnitGradientTexture("targettarget", "TargetTarget", "targettarget")
-		ElvUI_EltreumUI:ApplyUnitGradientTexture("targettargettarget", "TargetTargetTarget","targettargettarget")
-		ElvUI_EltreumUI:ApplyUnitGradientTexture("pet", "Pet", "pet")
+		ElvUI_EltreumUI:ApplyUnitGradientTexture("player", "Player")
+		ElvUI_EltreumUI:ApplyUnitGradientTexture("target", "Target")
+		ElvUI_EltreumUI:ApplyUnitGradientTexture("targettarget", "TargetTarget")
+		ElvUI_EltreumUI:ApplyUnitGradientTexture("targettargettarget", "TargetTargetTarget")
+		ElvUI_EltreumUI:ApplyUnitGradientTexture("pet", "Pet")
+
 		if E.Retail or E.Wrath then
 			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss1", "Boss1", "boss")
 			ElvUI_EltreumUI:ApplyUnitGradientTexture("boss2", "Boss2", "boss")
@@ -511,6 +520,11 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 				headerassist = _G["ElvUF_Assist"]
 			end
 
+			headerraidpet = nil
+			if _G["ElvUF_RaidpetGroup1"] and _G["ElvUF_RaidpetGroup1"]:IsShown() and E.db.unitframe.units.raidpet.enable then
+				headerraidpet = _G["ElvUF_RaidpetGroup1"]
+			end
+
 			_, unit1class = UnitClass(unit)
 			if not unit1class then
 				return
@@ -524,6 +538,15 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 						if groupbutton and groupbutton.Health then
 							ElvUI_EltreumUI:ApplyGroupGradientTexture(groupbutton)
 						end
+					end
+				end
+			end
+
+			if headergroup == _G["ElvUF_Party"] and E.db.unitframe.units.party.petsGroup.enable then
+				for i = 1, 5 do
+					partypetbutton = _G["ElvUF_PartyGroup1UnitButton"..i.."Pet"]
+					if partypetbutton and partypetbutton.Health then
+						ElvUI_EltreumUI:ApplyGroupGradientTexture(partypetbutton)
 					end
 				end
 			end
@@ -545,6 +568,16 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 					end
 				end
 			end
+
+			if headerraidpet ~= nil then
+				for i = 1, headerraidpet:GetNumChildren() do
+					raidpetbutton = select(i, headerraidpet:GetChildren())
+					if raidpetbutton and raidpetbutton.Health then
+						ElvUI_EltreumUI:ApplyGroupGradientTexture(raidpetbutton)
+					end
+				end
+			end
+
 		end
 
 	end
