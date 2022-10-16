@@ -443,7 +443,7 @@ function ElvUI_EltreumUI:SkillGlowPet()
 	if not E.private.ElvUI_EltreumUI then
 		return
 	end
-	if (E.myclass == 'HUNTER' or E.myclass == 'WARLOCK') and (not IsAddOnLoaded("ElvUI_ActionBarMasks")) then
+	if (not IsAddOnLoaded("ElvUI_ActionBarMasks")) then
 		local skillglowcolor = {E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.r, E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.g, E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.b, 1}
 		if E.db.ElvUI_EltreumUI.glow.colorclass then
 			skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}

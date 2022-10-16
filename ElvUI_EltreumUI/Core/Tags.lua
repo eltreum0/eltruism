@@ -534,82 +534,35 @@ E:AddTag("eltruism:smartlevel", 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 end)
 E:AddTagInfo("eltruism:smartlevel", ElvUI_EltreumUI.Name, L["Shows level difference when it exists for NPCs and players, hides for players if same level"])
 
+--ty a lot azilroka
+local stanceID = {
+    DEATHKNIGHT = {
+        [1] = not E.Retail and GetSpellInfo(48266),
+        [2] = not E.Retail and GetSpellInfo(48263),
+        [3] = not E.Retail and GetSpellInfo(48265),
+    },
+    PALADIN = {
+        [1] = E.Retail and GetSpellInfo(32223) or GetSpellInfo(465),
+        [2] = E.Retail and GetSpellInfo(465) or GetSpellInfo(7294),
+        [3] = E.Retail and GetSpellInfo(317920) or GetSpellInfo(19746),
+        [4] = E.Retail and GetSpellInfo(183435) or GetSpellInfo(19876),
+        [5] = not E.Retail and GetSpellInfo(19888),
+        [6] = not E.Retail and GetSpellInfo(19891),
+        [7] = not E.Retail and GetSpellInfo(32223),
+    },
+    WARRIOR = {
+        [1] = not E.Retail and GetSpellInfo(2457),
+        [2] = not E.Retail and GetSpellInfo(71),
+        [3] = not E.Retail and GetSpellInfo(2458),
+    }
+}
 E:AddTag("eltruism:stance", 'UNIT_AURA', function(unit)
-	local stance = GetShapeshiftForm()
-	local name
-	if E.myclass == 'DEATHKNIGHT' then
-		if stance == 1 then --blood
-			name = GetSpellInfo(48266)
-			return name
-			--return _G.RELIC_SLOT_TYPE_BLOOD
-		elseif stance == 2 then --frost
-			name = GetSpellInfo(48263)
-			return name
-			--return _G.RELIC_SLOT_TYPE_FROST
-		elseif stance == 3 then --unholy
-			name = GetSpellInfo(48265)
-			return name
-			--return _G.RUNE_COST_UNHOLY:format("")
-		else
-			return nil
-		end
-	elseif E.myclass == 'PALADIN' then
-		if not E.Retail then
-			if stance == 1 then --Devotion
-				name = GetSpellInfo(465)
-				return name
-			elseif stance == 2 then --Retribution
-				name = GetSpellInfo(7294)
-				return name
-			elseif stance == 3 then --Concentration
-				name = GetSpellInfo(19746)
-				return name
-			elseif stance == 4 then --Shadow Resistance
-				name = GetSpellInfo(19876)
-				return name
-			elseif stance == 5 then --Frost Resistance
-				name = GetSpellInfo(19888)
-				return name
-			elseif stance == 6 then --Fire Resistance
-				name = GetSpellInfo(19891)
-				return name
-			elseif stance == 7 then --Crusader
-				name = GetSpellInfo(32223)
-				return name
-			else
-				return nil
-			end
-		elseif E.Retail then
-			if stance == 1 then --Crusader
-				name = GetSpellInfo(32223)
-				return name,"1"
-			elseif stance == 2 then --Devotion
-				name = GetSpellInfo(465)
-				return name,"2"
-			elseif stance == 3 then --Concentration
-				name = GetSpellInfo(317920)
-				return name,"3"
-			elseif stance == 4 then --Retribution
-				name = GetSpellInfo(183435)
-				return name,"4"
-			else
-				return nil
-			end
-		end
-	elseif E.myclass == 'WARRIOR' then
-		if stance == 1 then --Battle
-			name = GetSpellInfo(2457)
-			return name
-		elseif stance == 2 then --Defensive
-			name = GetSpellInfo(71)
-			return name
-		elseif stance == 3 then --Berserker
-			name = GetSpellInfo(2458)
-			return name
-		else
-			return nil
-		end
-	end
+    local stance = GetShapeshiftForm()
+    local stanceInfo = stanceID[E.myclass] and stanceID[E.myclass][stance]
+
+    if stanceInfo then
+        return stanceInfo, tostring(stance)
+    end
 end)
 E:AddTagInfo("eltruism:stance", ElvUI_EltreumUI.Name, L["Shows the current stance"])
 
