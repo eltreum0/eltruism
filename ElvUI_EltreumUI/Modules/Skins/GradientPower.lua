@@ -4,6 +4,8 @@ local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local powertype, _
 local unitframe, Additionalframe, isHooked, staggerframe, npstaggerframe,isHookedstagger
+local UnitPowerTyp = _G.UnitPowerType
+local UnitExists = _G.UnitExists
 
 --powers there are gradients for since retail has like 100+ power types
 local powertypes ={

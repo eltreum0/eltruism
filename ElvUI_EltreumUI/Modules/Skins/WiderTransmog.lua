@@ -7,7 +7,6 @@ local WardrobeTransmogFrame
 local WardrobeOutfitDropDown
 local WardrobeCollectionFrame
 
-
 --Wider Transmog Window
 local EltruismWiderTransmog = CreateFrame("Frame", "EltruismWiderTransmog")
 EltruismWiderTransmog:RegisterEvent("ADDON_LOADED")

@@ -1744,4 +1744,3 @@ function ElvUI_EltreumUI:UFAuraShadows(button)
 	end
 end
 hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraShadows) --uf aura shadows
-
