@@ -3,6 +3,8 @@
 	<Script file='Addons/Details.lua'/>
 	<Script file='Borders/Borders.lua'/>
 	<Script file='Borders/BorderAdjust.lua'/>
+	<Script file='Character/CharacterPanelIcons.lua'/>
+	<Script file='Character/CharacterPanelSkin.lua'/>
 	<Script file='Nameplate/Gradient.lua'/>
 	<Script file='Nameplate/Height.lua'/>
 	<Script file='Nameplate/Model.lua'/>
@@ -14,8 +16,6 @@
 	<Script file='Unitframes/Unitframes.lua'/>
 	<Script file='Actionbars.lua'/>
 	<Script file='Animations.lua'/>
-	<Script file='CharacterPanelIcons.lua'/>
-	<Script file='CharacterPanelSkin.lua'/>
 	<Script file='DarkLightColors.lua'/>
 	<Script file='Databars.lua'/>
 	<Script file='Doom.lua'/>

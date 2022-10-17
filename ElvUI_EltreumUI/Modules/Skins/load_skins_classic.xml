@@ -5,6 +5,10 @@
 	<Script file='Addons/PallyPower.lua'/>
 	<Script file='Borders/Borders.lua'/>
 	<Script file='Borders/BorderAdjust.lua'/>
+	<Script file='Character/CharacterPanelIcons.lua'/>
+	<Script file='Character/CharacterPanelSkin.lua'/>
+	<Script file='Character/ItemLevels.lua'/>
+	<Script file='Character/Sockets.lua'/>
 	<Script file='Nameplate/Gradient.lua'/>
 	<Script file='Nameplate/Height.lua'/>
 	<Script file='Nameplate/Model.lua'/>
@@ -16,19 +20,15 @@
 	<Script file='Unitframes/Unitframes.lua'/>
 	<Script file='Actionbars.lua'/>
 	<Script file='Animations.lua'/>
-	<Script file='CharacterPanelIcons.lua'/>
-	<Script file='CharacterPanelSkin.lua'/>
 	<Script file='DarkLightColors.lua'/>
 	<Script file='Databars.lua'/>
 	<Script file='Doom.lua'/>
 	<Script file='ExpandedStable.lua'/>
 	<Script file='ExpandedTalents.lua'/>
-	<Script file='ItemLevels.lua'/>
 	<Script file='LevelUp.lua'/>
 	<Script file='Other.lua'/>
 	<Script file='Quests.lua'/>
 	<Script file='Shadows.lua'/>
-	<Script file='Sockets.lua'/>
 	<Script file='Stealth.lua'/>
 	<Script file='Tooltip.lua'/>
 </Ui>
