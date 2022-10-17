@@ -19,6 +19,7 @@
 	<Script file='ItemLevels.lua'/>
 	<Script file='LevelUp.lua'/>
 	<Script file='Other.lua'/>
+	<Script file='Portrait.lua'/>
 	<Script file='Quests.lua'/>
 	<Script file='Shadows.lua'/>
 	<Script file='Sockets.lua'/>

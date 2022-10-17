@@ -5,12 +5,14 @@
 	<Script file='Chat/Fade.lua'/>
 	<Script file='Chat/LootIcon.lua'/>
 	<Script file='Chat/Misc.lua'/>
+	<Script file='Chat/ChatColor.lua'/>
 	<Script file='DataTexts/Ammo.lua'/>
 	<Script file='DataTexts/Config.lua'/>
 	<Script file='DataTexts/Other.lua'/>
 	<Script file='DataTexts/Stats.lua'/>
 	<Script file='DataTexts/Teleports.lua'/>
 	<Script file='Misc/AFK.lua'/>
+	<Script file='Misc/BorderAdjust.lua'/>
 	<Script file='Misc/CombatEvents.lua'/>
 	<Script file='Misc/DynamicFunctions.lua'/>
 	<Script file='Misc/InstantLoot.lua'/>
