@@ -356,6 +356,8 @@ local modelsRotate = {
 	[1132139] = true, --"dhfemaledps.m2",
 	[1270179] = true, --"dhfemaledps2.m2",
 	[4190632] = true, --"antros not cataloged model"
+	[3620242] = true, --"mawguardspikes.m2",
+	[3636995] = true, --"anduinshadowlands.m2",
 }
 
 --set portrait rotation based on target being npc or not

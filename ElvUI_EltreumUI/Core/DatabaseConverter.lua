@@ -431,17 +431,21 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 					if data then
 						if data.unitframe then
 							if data.unitframe.units then
-								if data.unitframe.units.raid3 then
+								if data.unitframe.units.raid1 then
 									if data.unitframe.units.raid1.customTexts then
 										if data.unitframe.units.raid1.customTexts.EltreumGroup then
 											data.unitframe.units.raid1.customTexts.EltreumGroup.text_format = "[eltruism:groupnumber]"
 										end
 									end
+								end
+								if data.unitframe.units.raid2 then
 									if data.unitframe.units.raid2.customTexts then
 										if data.unitframe.units.raid2.customTexts.EltreumGroup then
 											data.unitframe.units.raid2.customTexts.EltreumGroup.text_format = "[eltruism:groupnumber]"
 										end
 									end
+								end
+								if data.unitframe.units.raid3 then
 									if data.unitframe.units.raid3.customTexts then
 										if data.unitframe.units.raid3.customTexts.EltreumGroup then
 											data.unitframe.units.raid3.customTexts.EltreumGroup.text_format = "[eltruism:groupnumber]"
