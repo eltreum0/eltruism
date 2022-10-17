@@ -1,6 +1,8 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file='Addons/BigWigs.lua'/>
 	<Script file='Addons/Details.lua'/>
+	<Script file='Borders/Borders.lua'/>
+	<Script file='Borders/BorderAdjust.lua'/>
 	<Script file='Nameplate/Gradient.lua'/>
 	<Script file='Nameplate/Height.lua'/>
 	<Script file='Nameplate/Model.lua'/>
@@ -12,7 +14,6 @@
 	<Script file='Unitframes/Unitframes.lua'/>
 	<Script file='Actionbars.lua'/>
 	<Script file='Animations.lua'/>
-	<Script file='Borders.lua'/>
 	<Script file='CharacterPanelIcons.lua'/>
 	<Script file='CharacterPanelSkin.lua'/>
 	<Script file='DarkLightColors.lua'/>

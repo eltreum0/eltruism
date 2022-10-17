@@ -1,5 +1,4 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
-	<Include file='Skins\load_skins.xml'/>
 	<Script file='Cursor/Cooldown.lua'/>
 	<Script file='Cursor/Cursor.lua'/>
 	<Script file='Chat/Fade.lua'/>
@@ -11,7 +10,6 @@
 	<Script file='DataTexts/Stats.lua'/>
 	<Script file='DataTexts/Teleports.lua'/>
 	<Script file='Misc/AFK.lua'/>
-	<Script file='Misc/BorderAdjust.lua'/>
 	<Script file='Misc/CombatEvents.lua'/>
 	<Script file='Misc/DynamicFunctions.lua'/>
 	<Script file='Misc/InstantLoot.lua'/>
@@ -34,4 +32,5 @@
 	<Script file='Fonts/OutlineNone.lua'/>
 	<Script file='Fonts/OutlineOutline.lua'/>
 	<Script file='Fonts/OutlineThick.lua'/>
+	<Include file='Skins\load_skins.xml'/>
 </Ui>
