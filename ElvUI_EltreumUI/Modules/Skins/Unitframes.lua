@@ -914,7 +914,7 @@ function ElvUI_EltreumUI:AuraBarTexture(unit, bar, _, _, _, _, debuffType, isSte
 			bar.shadow:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT",3,-3)
 		end
 		if bar.bg then
-			if E.db["unitframe"]["colors"]["transparentAurabars"] then
+			if E.db.unitframe.colors.transparentAurabars then
 				bar.bg:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 			end
 			bar.backdrop:SetBackdropColor(0,0,0,0)
