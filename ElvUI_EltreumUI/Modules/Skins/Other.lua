@@ -429,7 +429,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 					if E.Retail then
 						vellumbutton:Hide()
 						_G.TradeSkillFrame.DetailsFrame.CreateMultipleInputBox:ClearAllPoints()
-						_G.TradeSkillFrame.DetailsFrame.CreateMultipleInputBox:SetPoint("RIGHT", _G.TradeSkillFrame.DetailsFrame.CreateButton, "LEFT", -1, 0)
+						_G.TradeSkillFrame.DetailsFrame.CreateMultipleInputBox:SetPoint("RIGHT", _G.TradeSkillFrame.DetailsFrame.CreateButton, "LEFT", -26, 0)
 					end
 					disenchantbutton:Hide()
 				end
