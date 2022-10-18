@@ -11,6 +11,7 @@ local PlaySoundFile = _G.PlaySoundFile
 local C_Timer = _G.C_Timer
 local _, instanceType
 local level
+local IsPlayerAtEffectiveMaxLevel = _G.IsPlayerAtEffectiveMaxLevel
 
 --fixed cooldown text to be class color
 function ElvUI_EltreumUI:CooldownColors()
