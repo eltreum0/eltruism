@@ -1177,6 +1177,8 @@ P.ElvUI_EltreumUI = {
 			r2 = 0.85,
 			g2 = 0.3,
 			b2 = 0.3,
+			sizex = 188,
+			sizey = 9,
 		},
 		taxiscale = 1,
 	},
