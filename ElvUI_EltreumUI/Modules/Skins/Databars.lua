@@ -1,5 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local DB = E:GetModule('DataBars')
+local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local databarXP, databarRep, databarHonor
@@ -37,3 +38,13 @@ hooksecurefunc(DB, 'ReputationBar_Update', ElvUI_EltreumUI.GradientDatabar)
 if E.Retail then
 	hooksecurefunc(DB, 'HonorBar_Update', ElvUI_EltreumUI.GradientDatabar)
 end
+
+
+--gradient digsite
+function ElvUI_EltreumUI:GradientArcheology()
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and _G.ArcheologyDigsiteProgressBar then
+		local r,g,b,a = _G.ArcheologyDigsiteProgressBar.FillBar:GetStatusBarColor()
+		_G.ArcheologyDigsiteProgressBar.FillBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL",r+0.2,g+0.2,b+0.2,a,r-0.2,g-0.2,b-0.2,a)
+	end
+end
+S:AddCallbackForAddon('Blizzard_ArchaeologyUI', "GradientArcheology", ElvUI_EltreumUI.GradientArcheology)
