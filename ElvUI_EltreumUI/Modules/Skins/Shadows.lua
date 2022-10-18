@@ -755,6 +755,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.MailFrame.backdrop,
 				_G.MerchantFrame.backdrop,
 				_G.WorldMapFrame,
+				--_G.WorldMapFrame.ScrollContainer,
 				_G.CharacterFrameTab4.backdrop, --only in classic though
 				_G.CharacterFrameTab5.backdrop, --only in classic though
 				_G.FriendsFrameTab5.backdrop, --only in classic though
@@ -768,6 +769,16 @@ function ElvUI_EltreumUI:Shadows()
 					if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
 				end
 			end
+
+			--leatrix causing issues yet again
+			if IsAddOnLoaded("Leatrix_Maps") then
+				if LeaMapsDB["NoMapBorder"] == "On" then
+					if _G.WorldMapFrame.shadow then
+						_G.WorldMapFrame.shadow:Hide()
+					end
+				end
+			end
+
 			--wrath/tbc only frames
 			if E.Wrath or E.TBC then
 				local tbcframes = {
