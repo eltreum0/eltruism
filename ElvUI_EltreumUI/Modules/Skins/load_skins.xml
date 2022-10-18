@@ -1,4 +1,5 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file='Actionbars/Actionbars.lua'/>
 	<Script file='Addons/BigWigs.lua'/>
 	<Script file='Addons/Details.lua'/>
 	<Script file='Borders/Borders.lua'/>
@@ -14,7 +15,6 @@
 	<Script file='Unitframes/Models.lua'/>
 	<Script file='Unitframes/Portrait.lua'/>
 	<Script file='Unitframes/Unitframes.lua'/>
-	<Script file='Actionbars.lua'/>
 	<Script file='Animations.lua'/>
 	<Script file='DarkLightColors.lua'/>
 	<Script file='Databars.lua'/>

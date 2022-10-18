@@ -741,3 +741,17 @@ function ElvUI_EltreumUI:NameplateRestedOverlaps()
 		end
 	end
 end
+
+local NP = E:GetModule('NamePlates')
+hooksecurefunc(NP, 'Initialize', function()
+	if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor then
+		NP.multiplier = 0
+	end
+end)
+if E.Retail or E.Wrath then
+	hooksecurefunc(NP, 'Construct_Runes', function()
+		if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor then
+			NP.multiplier = 0
+		end
+	end)
+end
