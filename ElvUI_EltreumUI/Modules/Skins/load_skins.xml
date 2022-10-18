@@ -10,7 +10,6 @@
 	<Script file='Nameplate/Height.lua'/>
 	<Script file='Nameplate/Model.lua'/>
 	<Script file='Other/ExpandedStable.lua'/>
-	<Script file='Other/ExpandedTalents.lua'/>
 	<Script file='Other/LevelUp.lua'/>
 	<Script file='Other/Other.lua'/>
 	<Script file='Other/Stealth.lua'/>
