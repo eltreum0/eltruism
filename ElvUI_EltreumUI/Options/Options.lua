@@ -10765,6 +10765,82 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							header8898digsite = {
+								order = 74,
+								type = "description",
+								name = "",
+								width = 'full',
+								hidden = not E.Retail,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gradientdigsite = {
+								order = 75,
+								type = "description",
+								name = L["Gradient Archeology Digsite Bar"],
+								width = "full",
+								hidden = not E.Retail,
+							},
+							gradientdigcolor1 = {
+								order = 76,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								--width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+								get = function()
+									return E.db.ElvUI_EltreumUI.otherstuff.archeology.r1, E.db.ElvUI_EltreumUI.otherstuff.archeology.g1, E.db.ElvUI_EltreumUI.otherstuff.archeology.b1, 1, P.ElvUI_EltreumUI.otherstuff.archeology.r1, P.ElvUI_EltreumUI.otherstuff.archeology.g1, P.ElvUI_EltreumUI.otherstuff.archeology.b1, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.otherstuff.archeology.r1, E.db.ElvUI_EltreumUI.otherstuff.archeology.g1, E.db.ElvUI_EltreumUI.otherstuff.archeology.b1 = r, g, b E:StaticPopup_Show('CONFIG_RL')
+								end,
+							},
+							gradientdigcolor2 = {
+								order = 77,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								--width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+								get = function()
+									return E.db.ElvUI_EltreumUI.otherstuff.archeology.r2, E.db.ElvUI_EltreumUI.otherstuff.archeology.g2, E.db.ElvUI_EltreumUI.otherstuff.archeology.b2, 1, P.ElvUI_EltreumUI.otherstuff.archeology.r2, P.ElvUI_EltreumUI.otherstuff.archeology.g2, P.ElvUI_EltreumUI.otherstuff.archeology.b2, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.otherstuff.archeology.r2, E.db.ElvUI_EltreumUI.otherstuff.archeology.g2, E.db.ElvUI_EltreumUI.otherstuff.archeology.b2 = r, g, b E:StaticPopup_Show('CONFIG_RL')
+								end,
+							},
+							digsitefontsize = {
+								type = 'range',
+								name = L["Font Size"],
+								order = 78,
+								min = 4,
+								max = 40,
+								step = 1,
+								width = "full",
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontsize end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontsize = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							digsiteoffsetx = {
+								type = 'range',
+								name = L["Text X offset"],
+								order = 79,
+								min = -100,
+								max = 100,
+								step = 1,
+								width = "full",
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							digsiteoffsety = {
+								type = 'range',
+								name = L["Text Y offset"],
+								order = 80,
+								min = -100,
+								max = 100,
+								step = 1,
+								width = "full",
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
 						},
 					},
 				},
