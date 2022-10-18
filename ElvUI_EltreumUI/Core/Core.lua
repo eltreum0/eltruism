@@ -22,7 +22,6 @@ local InCombatLockdown = _G.InCombatLockdown
 local HideUIPanel = _G.HideUIPanel
 local LoadAddOn = LoadAddOn
 local GameMenuFrame = _G.GameMenuFrame
-local VideoOptionsFrame = _G.VideoOptionsFrame  --TODO DRAGONFLIGHT
 local UIErrorsFrame = _G.UIErrorsFrame
 local RaidWarningFrame = _G.RaidWarningFrame
 local W
@@ -520,12 +519,15 @@ EltruismGameMenu:SetScript("OnEvent", function()
 end)
 
 --make the video options movable because its annoying when adjusting settings
-VideoOptionsFrame:SetMovable(true)
-VideoOptionsFrame:EnableMouse(true)
-VideoOptionsFrame:RegisterForDrag("LeftButton")
-VideoOptionsFrame:SetScript("OnDragStart", VideoOptionsFrame.StartMoving)
-VideoOptionsFrame:SetScript("OnDragStop", VideoOptionsFrame.StopMovingOrSizing)
-VideoOptionsFrame:SetClampedToScreen(true)
+local VideoOptionsFrame = _G.VideoOptionsFrame  --TODO DRAGONFLIGHT
+if VideoOptionsFrame then
+	VideoOptionsFrame:SetMovable(true)
+	VideoOptionsFrame:EnableMouse(true)
+	VideoOptionsFrame:RegisterForDrag("LeftButton")
+	VideoOptionsFrame:SetScript("OnDragStart", VideoOptionsFrame.StartMoving)
+	VideoOptionsFrame:SetScript("OnDragStop", VideoOptionsFrame.StopMovingOrSizing)
+	VideoOptionsFrame:SetClampedToScreen(true)
+end
 
 --click casting button toggle
 if E.Retail then
