@@ -94,7 +94,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 			mindflay = 22
 		end
 		if E.Retail then
-			druideclipse = GetPlayerAuraBySpellID(48517) --might be removed in dragonflight
+			druideclipse = C_UnitAuras.GetPlayerAuraBySpellID(48517) --might be removed in dragonflight
 			if IsPlayerSpell(114107) and druideclipse ~= nil then
 				druidwrath = 9
 			end

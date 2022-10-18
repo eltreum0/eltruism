@@ -30,6 +30,8 @@ local linewidth1, linewidth2, linewidth3, linewidth4
 local texturefile, linewidthsle1, linewidthsle2
 local id, currentSpec, speed, combatText, combat, regenRate, regenRateText
 local qualityAnchor,qualityAnchorInspect
+local CreateColor = _G.CreateColor
+local CharacterModelScene = _G.CharacterModelScene
 
 --improving character panel
 local CharacterFrame = _G.CharacterFrame
@@ -348,7 +350,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 	if not InCombatLockdown() then
 		_G["CharacterFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.characterpanelscale)
-		_G["CharacterModelFrame"]:SetIgnoreParentScale(false)
+		if _G["CharacterModelFrame"] then
+			_G["CharacterModelFrame"]:SetIgnoreParentScale(false)
+		end
+		if _G["CharacterModelScene"] then --TODO DRAGONFLIGHT
+			_G["CharacterModelScene"]:SetIgnoreParentScale(false)
+		end
 	end
 
 	if E.Retail then
@@ -362,8 +369,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end]]
 
 			--color the avg item level
-			CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0.4, classcolor.r, classcolor.g, classcolor.b, 0)
-			CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0, classcolor.r, classcolor.g, classcolor.b, 0.4)
+			CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradient('Horizontal', CreateColor(classcolor.r, classcolor.g, classcolor.b, 0.4), CreateColor(classcolor.r, classcolor.g, classcolor.b, 0))
+			CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradient('Horizontal', CreateColor(classcolor.r, classcolor.g, classcolor.b, 0), CreateColor(classcolor.r, classcolor.g, classcolor.b, 0.4))
 
 			--CharacterFrame:SetHeight(505)
 			CharacterFrame:SetHeight(455)
@@ -373,19 +380,33 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			-- Move bottom equipment slots
 			_G.CharacterMainHandSlot:SetPoint('BOTTOMLEFT', PaperDollItemsFrame, 'BOTTOMLEFT', 195, 20)
 			--strech it a bit
-			CharacterModelFrame:ClearAllPoints()
-			CharacterModelFrame:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
-			CharacterModelFrame:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
-			CharacterModelFrame:SetPoint('BOTTOM', _G.CharacterMainHandSlot, 0, -5)
-			CharacterModelFrame:SetPosition(0, 0, 0)
-			CharacterModelFrame:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+			if CharacterModelFrame then
+				CharacterModelFrame:ClearAllPoints()
+				CharacterModelFrame:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
+				CharacterModelFrame:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
+				CharacterModelFrame:SetPoint('BOTTOM', _G.CharacterMainHandSlot, 0, -5)
+				CharacterModelFrame:SetPosition(0, 0, 0)
+				CharacterModelFrame:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+			end
+			if CharacterModelScene then
+				CharacterModelScene:ClearAllPoints()
+				CharacterModelScene:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
+				CharacterModelScene:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
+				CharacterModelScene:SetPoint('BOTTOM', _G.CharacterMainHandSlot, 0, -5)
+				--CharacterModelScene:SetPosition(0, 0, 0)
+				--CharacterModelScene:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+			end
 
 			--move the equipment manager to a nice position
-			_G.PaperDollEquipmentManagerPane:ClearAllPoints()
-			_G.PaperDollEquipmentManagerPane:SetPoint("RIGHT", CharacterFrame, "RIGHT", -30, -20)
+			if _G.PaperDollEquipmentManagerPane then
+				_G.PaperDollEquipmentManagerPane:ClearAllPoints()
+				_G.PaperDollEquipmentManagerPane:SetPoint("RIGHT", CharacterFrame, "RIGHT", -30, -20)
+			end
 			--move the titles panel to a nice position
-			_G.PaperDollTitlesPane:ClearAllPoints()
-			_G.PaperDollTitlesPane:SetPoint("RIGHT", CharacterFrame, "RIGHT", -30, -20)
+			if _G.PaperDollTitlesPane then
+				_G.PaperDollTitlesPane:ClearAllPoints()
+				_G.PaperDollTitlesPane:SetPoint("RIGHT", CharacterFrame, "RIGHT", -30, -20)
+			end
 
 			if (not IsAddOnLoaded('DejaCharacterStats')) then
 				CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
@@ -780,7 +801,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetSize(linewidth1, 4)
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.ItemLevelCategory.Title, "LEFT", 0, -1)
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], 1), CreateColor(statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], 1))
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismItemLevelCategoryLine2", CharacterStatsPane)
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetSize(linewidth1, 4)
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.ItemLevelCategory.Title, "RIGHT", -1, -1)

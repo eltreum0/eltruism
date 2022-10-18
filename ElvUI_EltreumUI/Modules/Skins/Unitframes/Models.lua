@@ -164,7 +164,8 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 				if E.Retail then
 					powerbareffectplayer:SetModel(1715069)
 					powerbareffectplayer:MakeCurrentCameraCustom()
-					powerbareffectplayer:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.785)
+					--powerbareffectplayer:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.785)
+					--powerbareffectplayer:SetTransform(-0.035, rad(270), 0.785)
 					powerbareffectplayer:SetPortraitZoom(1)
 					powerbareffectplayer:SetAlpha(0.4) --might do this
 				else
@@ -268,7 +269,7 @@ function ElvUI_EltreumUI:TargetUFEffects()
 				if E.Retail then
 					powerbareffecttarget:SetModel(1715069)
 					powerbareffecttarget:MakeCurrentCameraCustom()
-					powerbareffecttarget:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
+					--powerbareffecttarget:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
 					powerbareffecttarget:SetPortraitZoom(1)
 					powerbareffecttarget:SetAlpha(0.4) --might do this
 				else
@@ -369,7 +370,7 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 				if E.Retail then
 					powerbareffecttargettarget:SetModel(1715069)
 					powerbareffecttargettarget:MakeCurrentCameraCustom()
-					powerbareffecttargettarget:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
+					--powerbareffecttargettarget:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
 					powerbareffecttargettarget:SetPortraitZoom(1)
 					powerbareffecttargettarget:SetAlpha(0.4) --might do this
 				else
@@ -468,7 +469,7 @@ function ElvUI_EltreumUI:PetUFEffects()
 				if E.Retail then
 					powerbareffectpet:SetModel(1715069)
 					powerbareffectpet:MakeCurrentCameraCustom()
-					powerbareffectpet:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
+					--powerbareffectpet:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.585)
 					powerbareffectpet:SetPortraitZoom(1)
 					powerbareffectpet:SetAlpha(0.8) --might do this
 				else
