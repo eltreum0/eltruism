@@ -10,6 +10,7 @@ local castbar
 local targetcastbar
 local reactiontarget
 local _, targetclass
+local IsAddOnLoaded = _G.IsAddOnLoaded
 
 function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
 	if IsAddOnLoaded("ElvUI_mMediaTag") then

@@ -19,6 +19,12 @@ function ElvUI_EltreumUI:Shadows()
 		local EltruismBlizzShadows = CreateFrame("Frame")
 		EltruismBlizzShadows:RegisterEvent("ADDON_LOADED")
 		EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
+			if (arg == "Blizzard_ArchaeologyUI") or IsAddOnLoaded("Blizzard_ArchaeologyUI") then
+				if _G.ArcheologyDigsiteProgressBar then
+					_G.ArcheologyDigsiteProgressBar.FillBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ArcheologyDigsiteProgressBar.FillBar.shadow) end
+				end
+			end
 			if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
 				_G.MacroFrame:HookScript("OnShow", function()
 					if E.Retail or E.Wrath or E.TBC then
@@ -1744,4 +1750,3 @@ function ElvUI_EltreumUI:UFAuraShadows(button)
 	end
 end
 hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraShadows) --uf aura shadows
-

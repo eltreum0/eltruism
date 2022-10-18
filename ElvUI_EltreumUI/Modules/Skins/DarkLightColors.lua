@@ -383,20 +383,6 @@ function ElvUI_EltreumUI:GradientMode()
 	end
 end
 
-local NP = E:GetModule('NamePlates')
-hooksecurefunc(NP, 'Initialize', function()
-	if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor then
-		NP.multiplier = 0
-	end
-end)
-if E.Retail or E.Wrath then
-	hooksecurefunc(NP, 'Construct_Runes', function()
-		if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor then
-			NP.multiplier = 0
-		end
-	end)
-end
-
 function ElvUI_EltreumUI:ShamanTextureMode()
 	if (E.Wrath or E.TBC or E.Classic) and E.myclass == 'SHAMAN' then
 		if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor and E.private.unitframe.enable then
@@ -450,9 +436,9 @@ function ElvUI_EltreumUI:BlackBg()
 end
 
 function ElvUI_EltreumUI:CheckBackground()
-	if E.db.ElvUI_EltreumUI.unitframes.greybackground == false then
+	if not E.db.ElvUI_EltreumUI.unitframes.greybackground then
 		ElvUI_EltreumUI:GreyBg()
-	elseif E.db.ElvUI_EltreumUI.unitframes.greybackground == true then
+	elseif E.db.ElvUI_EltreumUI.unitframes.greybackground then
 		ElvUI_EltreumUI:BlackBg()
 	else
 		ElvUI_EltreumUI:GreyBg()
