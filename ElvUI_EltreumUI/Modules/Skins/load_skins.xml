@@ -9,6 +9,12 @@
 	<Script file='Nameplate/Gradient.lua'/>
 	<Script file='Nameplate/Height.lua'/>
 	<Script file='Nameplate/Model.lua'/>
+	<Script file='Other/ExpandedStable.lua'/>
+	<Script file='Other/ExpandedTalents.lua'/>
+	<Script file='Other/LevelUp.lua'/>
+	<Script file='Other/Other.lua'/>
+	<Script file='Other/Stealth.lua'/>
+	<Script file='Other/WiderTransmog.lua'/>
 	<Script file='Unitframes/Castbar.lua'/>
 	<Script file='Unitframes/Gradient.lua'/>
 	<Script file='Unitframes/GradientPower.lua'/>
@@ -19,13 +25,7 @@
 	<Script file='DarkLightColors.lua'/>
 	<Script file='Databars.lua'/>
 	<Script file='Doom.lua'/>
-	<Script file='ExpandedStable.lua'/>
-	<Script file='ExpandedTalents.lua'/>
-	<Script file='LevelUp.lua'/>
-	<Script file='Other.lua'/>
 	<Script file='Quests.lua'/>
 	<Script file='Shadows.lua'/>
-	<Script file='Stealth.lua'/>
 	<Script file='Tooltip.lua'/>
-	<Script file='WiderTransmog.lua'/>
 </Ui>
