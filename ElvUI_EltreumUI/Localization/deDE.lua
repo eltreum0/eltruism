@@ -1222,3 +1222,6 @@ L["Enable Automatic Combat Log"] = "Automatisches Kampflog aktivieren"
 L["Quest Detail Scale"] = "Questdetail Skalierung"
 L["Flight Frame Scale"] = "Flugfenster Skalierung"
 L["Donators"] = true
+L["Gradient Archeology Digsite Bar"] = true
+L["Text X offset"] = true
+L["Text Y offset"] = true
