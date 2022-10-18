@@ -21,6 +21,7 @@ local UnitArmor = _G.UnitArmor
 local UnitHealthMax = _G.UnitHealthMax
 local UnitIsGroupLeader = _G.UnitIsGroupLeader
 local UnitIsGroupAssistant = _G.UnitIsGroupAssistant
+local GetPartyAssignment = _G.GetPartyAssignment
 
 -- Name custom abbreviation by Azilroka
 E:AddTag("name:eltruism:abbreviate", "UNIT_NAME_UPDATE", function(unit)
