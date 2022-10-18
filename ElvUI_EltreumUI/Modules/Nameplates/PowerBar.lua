@@ -914,7 +914,8 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						powerbareffect:SetModel(1715069) --better for retail, inspired by asakawa's bar model
 						--powerbareffect:SetModel(1630153)
 						powerbareffect:MakeCurrentCameraCustom()
-						powerbareffect:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.785)
+						--powerbareffect:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.785)
+						powerbareffect:SetTransform(0, rad(270), 0.785)
 						powerbareffect:SetPortraitZoom(1)
 						powerbareffect:SetAlpha(0.4) --might do this
 					else
