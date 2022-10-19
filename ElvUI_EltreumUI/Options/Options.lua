@@ -3191,7 +3191,13 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.cooldown end,
 								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.cooldownsound end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.cooldownsound = value SetCVar('Sound_EnableErrorSpeech', 0) E:StaticPopup_Show('PRIVATE_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.cooldownsound = value
+									if value == true then
+										SetCVar('Sound_EnableErrorSpeech', 0)
+									else
+										SetCVar('Sound_EnableErrorSpeech', 1)
+									end
+									E:StaticPopup_Show('PRIVATE_RL') end,
 							},
 							cdsound = {
 								order = 99,
