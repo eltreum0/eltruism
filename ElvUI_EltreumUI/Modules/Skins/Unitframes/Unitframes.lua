@@ -29,7 +29,6 @@ local CreateColor = _G.CreateColor
 --set the textures or gradients for single units
 function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name)
 	_, classunit = UnitClass(unit)
-	namebar = E.LSM:Fetch("statusbar", "Eltreum-Blank")
 	reaction = UnitReaction(unit, "player")
 	if UnitExists(unit) then
 		if UnitIsPlayer(unit) then
