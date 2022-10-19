@@ -19,6 +19,21 @@ function ElvUI_EltreumUI:Shadows()
 		local EltruismBlizzShadows = CreateFrame("Frame")
 		EltruismBlizzShadows:RegisterEvent("ADDON_LOADED")
 		EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
+			if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then
+				if _G.ClassTalentFrame then
+					_G.ClassTalentFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClassTalentFrame.shadow) end
+					if _G.ClassTalentFrame.TabSystem then
+						for i = 1, _G.ClassTalentFrame.TabSystem:GetNumChildren() do
+							local tab = select(i, _G.ClassTalentFrame.TabSystem:GetChildren())
+							if tab and tab.backdrop then
+								tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(tab.backdrop.shadow) end
+							end
+						end
+					end
+				end
+			end
 			if (arg == "Blizzard_ArchaeologyUI") or IsAddOnLoaded("Blizzard_ArchaeologyUI") then
 				if _G.ArcheologyDigsiteProgressBar then
 					_G.ArcheologyDigsiteProgressBar.FillBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
