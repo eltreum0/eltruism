@@ -16,6 +16,7 @@ local UnitCanAttack = _G.UnitCanAttack
 local C_NamePlate = _G.C_NamePlate
 local GetShapeshiftForm = _G.GetShapeshiftForm
 local stance
+local CreateVector3D = _G.CreateVector3D
 
 --Setup Power Bar, Prediction and Text
 local EltreumPowerAnchor
@@ -914,8 +915,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						powerbareffect:SetModel(1715069) --better for retail, inspired by asakawa's bar model
 						--powerbareffect:SetModel(1630153)
 						powerbareffect:MakeCurrentCameraCustom()
-						--powerbareffect:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.785)
-						powerbareffect:SetTransform(0, rad(270), 0.785)
+						powerbareffect:SetTransform(CreateVector3D(-0.035, 0, 0),CreateVector3D(rad(270), 0, 0),0.785)
 						powerbareffect:SetPortraitZoom(1)
 						powerbareffect:SetAlpha(0.4) --might do this
 					else
