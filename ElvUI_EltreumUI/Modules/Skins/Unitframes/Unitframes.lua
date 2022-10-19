@@ -17,6 +17,8 @@ local headerassist = nil
 local headerraidpet = nil
 local group, groupbutton, tankbutton, assistbutton, raidpetbutton,partypetbutton
 local orientation, barTexture, texture
+local IsInGroup = _G.IsInGroup
+local IsAddOnLoaded = _G.IsAddOnLoaded
 local LCG = E.Libs.CustomGlow
 local classcolor = E:ClassColor(E.myclass, true)
 local skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
