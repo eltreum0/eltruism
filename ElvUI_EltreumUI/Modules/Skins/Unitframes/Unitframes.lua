@@ -499,7 +499,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 		end
 
 		--group/raid unitframes
-		if UnitExists(unit) and (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
+		if IsInGroup() and UnitExists(unit) and (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
 			headergroup = nil
 			if _G["ElvUF_Raid1"] and _G["ElvUF_Raid1"]:IsShown() then
 				headergroup = _G["ElvUF_Raid1"]
@@ -578,9 +578,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 					end
 				end
 			end
-
 		end
-
 	end
 end
 --hooksecurefunc(UF, "Style", ElvUI_EltreumUI.GradientCustomTexture) --if not hooking into this then when the target of target changes it doesnt update
