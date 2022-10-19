@@ -48,6 +48,61 @@ local unitframegradients = {
 	["PAIN"] = {r1 = 1, g1 = 0.61, b1 = 0, r2 = 1, g2 = 0.30, b2 = 0}, --PAIN
 }
 
+
+local unitframegradientsRetail = {
+	["WARRIOR"] = {
+		["minColor"] = {0.42745098039216, 0.13725490196078, 0.090196078431373},
+		["maxColor"] = {0.56470588235294, 0.43137254901961, 0.24705882352941},
+	},
+	["PALADIN"] = {r1 = 1, g1 = 0.26666666666667, b1 = 0.53725490196078, r2 = 0.95686274509804, g2 = 0.54901960784314, b2 = 0.72941176470588},
+	--["HUNTER"] = {r1 = 0.45490196078431, g1 = 0.59607843137255, b1 = 0.25490196078431, r2 = 0.43921568627451, g2 = 0.87843137254902, b2 = 0},
+	--["MONK"] = {r1 = 0, g1 = 0.77254901960784, b1 = 0.45882352941176, r2 = 0, g2 = 0.76078431372549, b2 = 0.24313725490196},
+	["HUNTER"] = {r1 = 0.40392156862745, g1 = 0.53725490196078, b1 = 0.22352941176471, r2 = 0.67058823529412, g2 = 0.92941176470588, b2 = 0.30980392156863},
+	["MONK"] = {r1 = 0.015686274509804, g1 = 0.6078431372549, b1 = 0.36862745098039, r2 = 0, g2 = 1, b2 = 0.58823529411765},
+	["ROGUE"] = {r1 = 1, g1 = 0.68627450980392, b1 = 0, r2 = 1, g2 = 0.83137254901961, b2 = 0.25490196078431},
+	["PRIEST"] = {r1 = 0.3568627450980392, g1 = 0.3568627450980392, b1 = 0.3568627450980392, r2 = 0.98823529411765, g2 = 0.98823529411765, b2 = 0.98823529411765},
+	["DEATHKNIGHT"] = {r1 = 0.49803921568627, g1 = 0.074509803921569, b1 = 0.14901960784314, r2 = 1, g2 = 0.1843137254902, b2 = 0.23921568627451},
+	["SHAMAN"] = {r1 = 0, g1 = 0.25882352941176, b1 = 0.50980392156863, r2 = 0.3921568627451, g2 = 0.44313725490196, b2 = 1},
+	["MAGE"] = {r1 = 0, g1 = 0.33333333333333, b1 = 0.53725490196078, r2 = 0.49019607843137, g2 = 0.87058823529412, b2 = 1},
+	["WARLOCK"] = {r1 = 0.26274509803922, g1 = 0.26666666666667, b1 = 0.46666666666667, r2 = 0.66274509803922, g2= 0.3921568627451, b2 = 0.7843137254902},
+
+
+	--[[["DRUID"] = {
+		["minColor"] = {1, 0.23921568627451, 0.007843137254902},
+		["maxColor"] = {1, 0.48627450980392, 0.03921568627451},
+	},]]
+
+	["DRUID"] = {CreateColor(1, 0.23921568627451, 0.007843137254902), CreateColor(1, 0.48627450980392, 0.03921568627451)},
+
+	["DEMONHUNTER"] = {r1 = 0.36470588235294, g1 = 0.13725490196078, b1 = 0.57254901960784, r2 = 0.74509803921569, g2 = 0.1921568627451, b2 = 1},
+	["EVOKER"] = {r1 = 0.19607843137255, g1 = 0.46666666666667, b1 = 0.53725490196078, r2 = 0.2, g2 = 0.57647058823529, b2 = 0.49803921568627},
+	["NPCFRIENDLY"] = {r1 = 0.30980392156863, g1 = 0.85098039215686, b1 = 0.2, r2 = 0.34117647058824, g2 = 0.62745098039216, b2 = 0.4078431372549},
+	["NPCNEUTRAL"] = {r1 = 0.8156862745098, g1 = 1, b1 = 0, r2 = 1, g2 = 0.85882352941176, b2 = 0.2078431372549},
+	["NPCUNFRIENDLY"] = {r1 = 0.84313725490196, g1 = 0.30196078431373, b1 = 0, r2 = 0.83137254901961, g2 = 0.45882352941176, b2 = 0},
+	["NPCHOSTILE"] = {r1 = 1, g1 = 0.090196078431373, b1 = 0, r2 = 1, g2 = 0, b2 = 0.54901960784314},
+	["TAPPED"] = {r1 = 1, g1 = 1, b1 = 1, r2 = 0, g2 = 0, b2 = 0},
+	["GOODTHREAT"] = {r1 = 0.27843075990677, g1 = 1, b1 = 0, r2 = 0.95294117647059, g2 = 0.99999779462814, b2 = 0},
+	["BADTHREAT"] = {r1 = 1, g1 = 0.17647058823529, b1 = 0.1764702051878, r2 = 0.82352941176471, g2 = 0, b2 = 0.34901960784314},
+	["GOODTHREATTRANSITION"] = {r1 = 1, g1 = 0.99607843137255, b1 = 0.2, r2 = 1, g2 = 0.73333333333333, b2 = 0},
+	["BADTHREATTRANSITION"] = {r1 = 1, g1 = 0.3921568627451, b1 = 0.2, r2 = 1, g2 = 0.9843137254902, b2 = 0},
+	["OFFTANK"] = {r1 = 0.72941176470588, g1 = 0.2, b1 = 1, r2 = 0.34117647058824, g2 = 0, b2 = 1},
+	["OFFTANKBADTHREATTRANSITION"] = {r1 = 0.70980392156863, g1 = 0.43137254901961, b1 = 0.27058823529412, r2 = 0.90196078431373, g2 = 0.15294117647059, b2 = 0},
+	["OFFTANKGOODTHREATTRANSITION"] = {r1 = 0.30980392156863, g1 = 0.45098039215686, b1 = 0.63137254901961, r2 = 0, g2 = 1, b2 = 0.70980392156863},
+	["MANA"] = {r1 = 0.49, g1 = 0.71, b1 = 1, r2 = 0.29, g2 = 0.26, b2 = 1}, --MANA
+	["RAGE"] = {r1 = 1, g1 = 0.32, b1 = 0.32, r2 = 1, g2 = 0, b2 = 0.13}, --RAGE
+	["FOCUS"] = {r1 = 1, g1 = 0.50, b1 = 0.25, r2 = 0.71, g2 = 0.22, b2 = 0.07}, --FOCUS
+	["ENERGY"] = {r1 = 1, g1 = 0.97, b1 = 0.54, r2 = 1, g2 = 0.70, b2 = 0.07}, --ENERGY
+	["RUNIC_POWER"] = {r1 = 0, g1 = 0.82, b1 = 1, r2 = 0, g2 = 0.40, b2 = 1}, --RUNIC POWER
+	["LUNAR_POWER"] = {r1 = 0.30, g1 = 0.52, b1 = 0.90, r2 = 0.12, g2 = 0.36, b2 = 0.90}, --LUNAR POWER
+	["ALT_POWER"] = {r1 = 0.2, g1 = 0.4, b1 = 0.8, r2 = 0.25, g2 = 0.51, b2 = 1}, --ALTERNATE POWER
+	["MAELSTROM"] = {r1 = 0, g1 = 0.50, b1 = 1, r2 = 0, g2 = 0.11, b2 = 1}, --MAELSTROM
+	["INSANITY"] = {r1 = 0.50, g1 = 0.25, b1 = 1, r2 = 0.70, g2 = 0, b2 = 1}, --INSANITY
+	["FURY"] = {r1 = 0.79, g1 = 0.26, b1 = 1, r2 = 0.71, g2 = 0, b2 = 1}, --FURY
+	["PAIN"] = {r1 = 1, g1 = 0.61, b1 = 0, r2 = 1, g2 = 0.30, b2 = 0}, --PAIN
+}
+
+
+
 local unitframecustomgradients = {
 	["WARRIOR"] = {r1 = 0.42745098039216, g1 = 0.13725490196078, b1 = 0.090196078431373, r2 = 0.56470588235294, g2 = 0.43137254901961, b2 = 0.24705882352941},
 	["PALADIN"] = {r1 = 1, g1 = 0.26666666666667, b1 = 0.53725490196078, r2 = 0.95686274509804, g2 = 0.54901960784314, b2 = 0.72941176470588},
@@ -349,8 +404,13 @@ function ElvUI_EltreumUI:GradientColors(unitclass, invert, alpha, isBG)
 						return CreateColor(unitframegradients[unitclass].r2 - bgfade, unitframegradients[unitclass].g2 - bgfade, unitframegradients[unitclass].b2 - bgfade, 1), CreateColor(unitframegradients[unitclass].r1 - bgfade, unitframegradients[unitclass].g1 - bgfade, unitframegradients[unitclass].b1 - bgfade, 1)
 					end
 				else
+					print("121312")
 					if alpha then
-						return CreateColor(unitframegradients[unitclass].r1 - bgfade, unitframegradients[unitclass].g1 - bgfade, unitframegradients[unitclass].b1 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha), CreateColor(unitframegradients[unitclass].r2 - bgfade, unitframegradients[unitclass].g2 - bgfade, unitframegradients[unitclass].b2 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+
+						return unitframegradients[unitclass]
+
+
+						--return CreateColor(unitframegradients[unitclass].r1 - bgfade, unitframegradients[unitclass].g1 - bgfade, unitframegradients[unitclass].b1 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha), CreateColor(unitframegradients[unitclass].r2 - bgfade, unitframegradients[unitclass].g2 - bgfade, unitframegradients[unitclass].b2 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 					else
 						return CreateColor(unitframegradients[unitclass].r1 - bgfade, unitframegradients[unitclass].g1 - bgfade, unitframegradients[unitclass].b1 - bgfade, 1), CreateColor(unitframegradients[unitclass].r2 - bgfade, unitframegradients[unitclass].g2 - bgfade, unitframegradients[unitclass].b2 - bgfade, 1)
 					end
