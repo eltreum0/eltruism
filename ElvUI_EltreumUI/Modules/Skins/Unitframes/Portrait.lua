@@ -352,6 +352,9 @@ local modelsRotate = {
 	[3620242] = true, --"mawguardspikes.m2",
 	[3636995] = true, --"anduinshadowlands.m2",
 	[3158650] = true, --"ghost from shadowlands not categorized"
+	[4395382] = true, --"dracthyr male blood elf"
+	[4207724] = true, --"dracthyr not dragon"
+	[4220448] = true, -- "dracthyr female human"
 }
 
 --set portrait rotation based on target being npc or not
