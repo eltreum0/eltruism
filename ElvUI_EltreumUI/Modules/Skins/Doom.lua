@@ -337,8 +337,8 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 				watching[itemID] = {GetTime(),"item",texture}
 			end
 		end)
-		hooksecurefunc(C_Container, "UseContainerItem", function(bag,slot) --TODO UseContainerItem DRAGONFLIGHT
-			local itemID = C_Container.GetContainerItemID(bag, slot)
+		hooksecurefunc("UseContainerItem", function(bag,slot) --TODO UseContainerItem DRAGONFLIGHT
+			local itemID = GetContainerItemID(bag, slot)
 			if (itemID) then
 				local texture = select(10, GetItemInfo(itemID))
 				watching[itemID] = {GetTime(),"item",texture}
