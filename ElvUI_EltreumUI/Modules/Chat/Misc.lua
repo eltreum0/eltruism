@@ -373,13 +373,10 @@ function ElvUI_EltreumUI:EltruismHideTalkingHead()
 				if E.Retail then
 					local TalkingHeadFrame = _G.TalkingHeadFrame
 					if TalkingHeadFrame then
-						--[[hooksecurefunc('TalkingHeadFrame_PlayCurrent', function()
+						hooksecurefunc(_G["TalkingHeadFrame"], "PlayCurrent", function()
 							TalkingHeadFrame:Hide()
 						end)
-						hooksecurefunc('TalkingHeadFrame_Reset', function()
-							TalkingHeadFrame:Hide()
-						end)]]
-						TalkingHeadFrame:HookScript("OnShow", function()
+						hooksecurefunc(_G["TalkingHeadFrame"], "Reset", function()
 							TalkingHeadFrame:Hide()
 						end)
 						EltruismHideTalkingHead:UnregisterAllEvents()
