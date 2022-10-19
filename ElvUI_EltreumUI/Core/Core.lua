@@ -486,6 +486,15 @@ local isMenuExpanded = false
 local EltruismGameMenu = CreateFrame("Frame")
 EltruismGameMenu:RegisterEvent("PLAYER_ENTERING_WORLD")
 EltruismGameMenu:SetScript("OnEvent", function()
+
+	--use elvui moveui instead of blizzard edit mode
+	if _G.GameMenuButtonEditMode then
+		_G.GameMenuButtonEditMode:SetScript("OnClick", function()
+			E:ToggleMoveMode()
+			HideUIPanel(_G["GameMenuFrame"])
+		end)
+	end
+
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu and isMenuExpanded == false then
 		--EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:14:14:0:0:64:64:5:59:5:59|t".. ElvUI_EltreumUI.Name)
 		EltruismMenuButton:SetText(ElvUI_EltreumUI.Name)
