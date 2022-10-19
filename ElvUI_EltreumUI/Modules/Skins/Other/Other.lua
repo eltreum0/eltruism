@@ -347,11 +347,17 @@ end
 --enchanting vellum/disenchant buttons
 function ElvUI_EltreumUI:EnchantScroll()
 	if E.db.ElvUI_EltreumUI.skins.professions and E.private.skins.blizzard.enable then
+
 		--create vellum button
 		if E.Retail then
 			if not _G["EltruismVellumButton"] then
-				vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["TradeSkillFrame"], "MagicButtonTemplate")
-				vellumbutton:SetPoint("RIGHT", _G.TradeSkillFrame.DetailsFrame.CreateButton, "LEFT", -1, 0)
+				if E.Retail then
+					vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["ProfessionsFrame"], "MagicButtonTemplate")
+					vellumbutton:SetPoint("RIGHT", _G.ProfessionsFrame.CraftingPage.CreateAllButton, "LEFT", -1, 0)
+				else
+					vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["TradeSkillFrame"], "MagicButtonTemplate")
+					vellumbutton:SetPoint("RIGHT", _G.TradeSkillFrame.DetailsFrame.CreateButton, "LEFT", -1, 0)
+				end
 				S:HandleButton(vellumbutton)
 			else
 				vellumbutton = _G["EltruismVellumButton"]
@@ -360,10 +366,11 @@ function ElvUI_EltreumUI:EnchantScroll()
 
 		--create disenchant button
 		if not _G["EltruismDisenchantButton"] then
-			disenchantbutton = CreateFrame("BUTTON", "EltruismDisenchantButton", _G["TradeSkillFrame"], "MagicButtonTemplate,InsecureActionButtonTemplate")
 			if E.Retail then
+				disenchantbutton = CreateFrame("BUTTON", "EltruismDisenchantButton", _G["ProfessionsFrame"], "MagicButtonTemplate,InsecureActionButtonTemplate")
 				disenchantbutton:SetPoint("RIGHT", "EltruismVellumButton", "LEFT", -1, 0)
 			else
+				disenchantbutton = CreateFrame("BUTTON", "EltruismDisenchantButton", _G["TradeSkillFrame"], "MagicButtonTemplate,InsecureActionButtonTemplate")
 				disenchantbutton:SetPoint("LEFT", _G.TradeSkillCreateButton, "RIGHT", 1, 0)
 			end
 			S:HandleButton(disenchantbutton)
@@ -392,7 +399,8 @@ function ElvUI_EltreumUI:EnchantScroll()
 					vellumbutton:SetScript("OnClick", function()
 						if GetItemCount(38682) > 0 then
 							vellumbutton:SetEnabled(true)
-							C_TradeSkillUI.CraftRecipe(_G["TradeSkillFrame"].DetailsFrame.selectedRecipeID)
+							--C_TradeSkillUI.CraftRecipe(_G["TradeSkillFrame"].DetailsFrame.selectedRecipeID)
+							C_TradeSkillUI.CraftRecipe(_G["ProfessionsFrame"].CraftingPage.RecipeList.previousRecipeID)
 							UseItemByName(38682)
 						else
 							vellumbutton:SetEnabled(false)
@@ -406,42 +414,48 @@ function ElvUI_EltreumUI:EnchantScroll()
 
 		--fixx disenchant overlap with create all
 		if E.Retail then
-			if _G.TradeSkillFrame.DetailsFrame.CreateAllButton then
-				_G.TradeSkillFrame.DetailsFrame.CreateAllButton:SetScript("OnShow", function()
-					disenchantbutton:ClearAllPoints()
-					disenchantbutton:SetPoint("BOTTOM", "EltruismVellumButton", "TOP", 0, 1)
+			if _G.ProfessionsFrame.CraftingPage.CreateAllButton then
+				_G.ProfessionsFrame.CraftingPage.CreateAllButton:SetScript("OnShow", function()
+					vellumbutton:ClearAllPoints()
+					vellumbutton:SetPoint("RIGHT", _G.ProfessionsFrame.CraftingPage.CreateAllButton, "LEFT", -1, 0)
 				end)
-				_G.TradeSkillFrame.DetailsFrame.CreateAllButton:SetScript("OnHide", function()
-					disenchantbutton:ClearAllPoints()
-					disenchantbutton:SetPoint("RIGHT", "EltruismVellumButton", "LEFT", -1, 0)
+				_G.ProfessionsFrame.CraftingPage.CreateAllButton:SetScript("OnHide", function()
+					vellumbutton:ClearAllPoints()
+					vellumbutton:SetPoint("RIGHT", _G.ProfessionsFrame.CraftingPage.CreateButton, "LEFT", -1, 0)
 				end)
 			end
 		end
 
 		--hook tradeskill because it shoul show only with enchanting
 		local function UpdateButtons()
-			E:Delay(0, function()
+			E:Delay(0.08, function()
 				local enchantingtext = GetSpellInfo(7411)
-				local tradeskilltext = _G.TradeSkillFrameTitleText:GetText()
-				if enchantingtext == tradeskilltext then
+				local tradeskilltext
+				if E.Retail then
+					tradeskilltext = _G.ProfessionsFrameTitleText:GetText()
+				else
+					tradeskilltext = _G.TradeSkillFrameTitleText:GetText()
+				end
+				if tradeskilltext and tradeskilltext:match(enchantingtext) then
 					if E.Retail then
 						vellumbutton:Show()
-						_G.TradeSkillFrame.DetailsFrame.CreateMultipleInputBox:ClearAllPoints()
-						_G.TradeSkillFrame.DetailsFrame.CreateMultipleInputBox:SetPoint("BOTTOM", _G.TradeSkillFrame.DetailsFrame.CreateButton, "TOP", 0, 1)
 					end
 					disenchantbutton:Show()
 				else
 					if E.Retail then
 						vellumbutton:Hide()
-						_G.TradeSkillFrame.DetailsFrame.CreateMultipleInputBox:ClearAllPoints()
-						_G.TradeSkillFrame.DetailsFrame.CreateMultipleInputBox:SetPoint("RIGHT", _G.TradeSkillFrame.DetailsFrame.CreateButton, "LEFT", -26, 0)
 					end
 					disenchantbutton:Hide()
 				end
 			end)
 		end
-		_G.TradeSkillFrame:HookScript("OnShow",function() UpdateButtons() end)
-		_G.TradeSkillFrame:HookScript("OnEvent",function() UpdateButtons() end)
+		if E.Retail then
+			_G.ProfessionsFrame:HookScript("OnShow",function() UpdateButtons() end)
+			_G.ProfessionsFrame:HookScript("OnEvent",function() UpdateButtons() end)
+		else
+			_G.TradeSkillFrame:HookScript("OnShow",function() UpdateButtons() end)
+			_G.TradeSkillFrame:HookScript("OnEvent",function() UpdateButtons() end)
+		end
 	end
 end
 
@@ -450,7 +464,7 @@ local tradeskilloadmonitor = CreateFrame("FRAME")
 tradeskilloadmonitor:RegisterEvent("PLAYER_ENTERING_WORLD")
 tradeskilloadmonitor:RegisterEvent("ADDON_LOADED")
 tradeskilloadmonitor:SetScript("OnEvent", function(_,_,arg)
-	if IsAddOnLoaded("Blizzard_TradeSkillUI") or (arg == "Blizzard_TradeSkillUI") then
+	if IsAddOnLoaded("Blizzard_TradeSkillUI") or (arg == "Blizzard_TradeSkillUI") or _G.ProfessionsFrame then
 		ElvUI_EltreumUI:EnchantScroll()
 		tradeskilloadmonitor:UnregisterAllEvents()
 	end
