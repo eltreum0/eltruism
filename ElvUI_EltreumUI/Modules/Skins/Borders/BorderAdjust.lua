@@ -227,6 +227,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 					end
 				end
 			elseif not E.db.ElvUI_EltreumUI.borders.borders then
+				E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.7
 
 				if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
 					E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,22"
