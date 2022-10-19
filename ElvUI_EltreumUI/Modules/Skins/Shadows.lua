@@ -318,7 +318,7 @@ function ElvUI_EltreumUI:Shadows()
 						_G.GameTooltip.shadow:SetPoint("TOPLEFT", _G.GameTooltip,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
 						_G.GameTooltip.shadow:SetPoint("TOPRIGHT", _G.GameTooltip,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					end
-					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GameTooltip.shadow) end
+					--if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GameTooltip.shadow) end
 				end
 			end)
 			_G.GameTooltipStatusBar:HookScript("OnHide", function()
@@ -329,7 +329,7 @@ function ElvUI_EltreumUI:Shadows()
 					_G.GameTooltip.shadow:SetPoint("TOPLEFT", _G.GameTooltip,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
 					_G.GameTooltip.shadow:SetPoint("TOPRIGHT", _G.GameTooltip,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				end
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GameTooltip.shadow) end
+				--if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GameTooltip.shadow) end
 			end)
 		end
 
