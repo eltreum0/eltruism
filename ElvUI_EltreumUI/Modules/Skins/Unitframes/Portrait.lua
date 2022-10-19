@@ -379,6 +379,8 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 							E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = -0.59 --shaman/druid things
 						elseif targetmodel == 1505169 then
 							E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = 0.2 --bear
+						elseif targetmodel == 4207724 then
+							E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = 0.6 --dracthyr
 						else
 							E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = 0
 						end
@@ -431,6 +433,8 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.59 --cat
 						elseif playermodel == 1505169 then
 							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0.62 --bear
+						elseif playermodel == 4207724 then
+							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0.5 --dracthyr
 						elseif druidfix[playermodel] or playermodel == 926251 then
 							E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.39 --other bears
 						elseif playermodel == 1043712 then
