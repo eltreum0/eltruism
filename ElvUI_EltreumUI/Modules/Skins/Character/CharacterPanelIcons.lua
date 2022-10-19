@@ -61,7 +61,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		end
 	end
 
-	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false then
+	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and E.private.skins.blizzard.enable then
 		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
 			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
 		elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
