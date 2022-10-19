@@ -465,8 +465,9 @@ tradeskilloadmonitor:RegisterEvent("PLAYER_ENTERING_WORLD")
 tradeskilloadmonitor:RegisterEvent("ADDON_LOADED")
 tradeskilloadmonitor:SetScript("OnEvent", function(_,_,arg)
 	if IsAddOnLoaded("Blizzard_TradeSkillUI") or (arg == "Blizzard_TradeSkillUI") or _G.ProfessionsFrame then
-		ElvUI_EltreumUI:EnchantScroll()
 		tradeskilloadmonitor:UnregisterAllEvents()
+		if not E.private.ElvUI_EltreumUI then return end
+		ElvUI_EltreumUI:EnchantScroll()
 	end
 end)
 
