@@ -755,6 +755,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.MailFrame.backdrop,
 				_G.MerchantFrame.backdrop,
 				_G.WorldMapFrame,
+				--_G.WorldMapFrame.ScrollContainer,
 				_G.CharacterFrameTab4.backdrop, --only in classic though
 				_G.CharacterFrameTab5.backdrop, --only in classic though
 				_G.FriendsFrameTab5.backdrop, --only in classic though
@@ -768,6 +769,16 @@ function ElvUI_EltreumUI:Shadows()
 					if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
 				end
 			end
+
+			--leatrix causing issues yet again
+			if IsAddOnLoaded("Leatrix_Maps") then
+				if LeaMapsDB["NoMapBorder"] == "On" then
+					if _G.WorldMapFrame.shadow then
+						_G.WorldMapFrame.shadow:Hide()
+					end
+				end
+			end
+
 			--wrath/tbc only frames
 			if E.Wrath or E.TBC then
 				local tbcframes = {
@@ -870,7 +881,7 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		--action bars
-		if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") and E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
+		if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") and E.db.ElvUI_EltreumUI.skins.shadow.actionbars and not IsAddOnLoaded("Masque") then
 			--elvui action bars
 			for i = 1, 10 do
 				for k = 1, 12 do
@@ -1732,7 +1743,7 @@ end
 hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) --nameplate buffs/debuffs shadows
 
 function ElvUI_EltreumUI:AuraShadows(button)
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) then
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) and not IsAddOnLoaded("Masque") then
 		if button and not button.shadow then
 			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			if EnhancedShadows then EnhancedShadows:RegisterShadow(button.shadow) end
@@ -1742,7 +1753,7 @@ end
 hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
 
 function ElvUI_EltreumUI:UFAuraShadows(button)
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.ufaura then
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.ufaura and not IsAddOnLoaded("Masque") then
 		if button and not button.shadow then
 			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			if EnhancedShadows then EnhancedShadows:RegisterShadow(button.shadow) end

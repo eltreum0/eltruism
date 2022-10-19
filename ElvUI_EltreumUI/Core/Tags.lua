@@ -21,6 +21,7 @@ local UnitArmor = _G.UnitArmor
 local UnitHealthMax = _G.UnitHealthMax
 local UnitIsGroupLeader = _G.UnitIsGroupLeader
 local UnitIsGroupAssistant = _G.UnitIsGroupAssistant
+local GetPartyAssignment = _G.GetPartyAssignment
 
 -- Name custom abbreviation by Azilroka
 E:AddTag("name:eltruism:abbreviate", "UNIT_NAME_UPDATE", function(unit)
@@ -230,7 +231,6 @@ E:AddTag("eltruism:raidmarker", 'RAID_TARGET_UPDATE', function(unit)
 	return mark
 end)
 E:AddTagInfo("eltruism:raidmarker", ElvUI_EltreumUI.Name, L["Shows raid target marker"])
-
 
 --level difference table based on blizzard's
 local eltruismdif = {
@@ -454,10 +454,20 @@ E:AddTagInfo("eltruism:levelskull", ElvUI_EltreumUI.Name, L["Shows the Unit Leve
 E:AddTag("eltruism:leader", "GROUP_ROSTER_UPDATE", function(unit)
 	local leader = UnitIsGroupLeader(unit)
 	local assist = UnitIsGroupAssistant(unit)
-	if leader then
+	local isTank = GetPartyAssignment("MAINTANK", unit)
+	local isMainAssist = GetPartyAssignment("MAINASSIST", unit)
+	if leader and not assist and not isTank and not isMainAssist then
 		return "|TInterface\\GROUPFRAME\\UI-GROUP-LEADERICON.BLP:0:0:0:0|t"
-	elseif assist then
+	elseif assist and not leader and not isTank and not isMainAssist then
 		return "|TInterface\\GROUPFRAME\\UI-GROUP-ASSISTANTICON.BLP:0:0:0:0|t"
+	elseif isTank and isMainAssist and not leader and not assist then
+		return "|TInterface\\GROUPFRAME\\UI-GROUP-MAINTANKICON.BLP:0:0:0:0|t".."|TInterface\\GROUPFRAME\\UI-GROUP-MAINASSISTICON.BLP:0:0:0:0|t"
+	elseif isTank and not isMainAssist and not leader and not assist then
+		return "|TInterface\\GROUPFRAME\\UI-GROUP-MAINTANKICON.BLP:0:0:0:0|t"
+	elseif isMainAssist and not isTank and not leader and not assist then
+		return "|TInterface\\GROUPFRAME\\UI-GROUP-MAINASSISTICON.BLP:0:0:0:0|t"
+	elseif leader and isTank then
+		return "|TInterface\\GROUPFRAME\\UI-GROUP-LEADERICON.BLP:0:0:0:0|t".."|TInterface\\GROUPFRAME\\UI-GROUP-MAINTANKICON.BLP:0:0:0:0|t"
 	end
 end)
 E:AddTagInfo("eltruism:leader", ElvUI_EltreumUI.Name, L["Shows the Leader Icon or Assist icon if the unit is Leader or Assist"])
@@ -832,3 +842,71 @@ E:AddTag("eltruism:pchpdeficit", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE", 
 	end
 end)
 E:AddTagInfo("eltruism:pchpdeficit", ElvUI_EltreumUI.Name, L["Displays current health percentage and health lost in shortvalue"])
+
+--[[
+--role icons
+local roleicons = {
+	[1] = {
+		["TANK"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga',
+		["HEALER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga',
+		["DAMAGER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga',
+	},
+	[2] ={
+		["TANK"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\Tank.tga',
+		["HEALER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\Healer.tga',
+		["DAMAGER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\DPS.tga',
+	},
+	[3] ={
+		["TANK"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\Tank.tga',
+		["HEALER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\Healer.tga',
+		["DAMAGER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\DPS.tga',
+	},
+	[3] = {
+		["TANK"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\Tank.tga',
+		["HEALER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\Healer.tga',
+		["DAMAGER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\DPS.tga',
+	},
+	[4] = {
+		["TANK"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Tank.tga',
+		["HEALER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Healer.tga',
+		["DAMAGER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\DPS.tga',
+	},
+	[5] = {
+		["TANK"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Tank.tga',
+		["HEALER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Healer.tga',
+		["DAMAGER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\DPS.tga',
+	},
+	[6] = {
+		["TANK"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Tank.tga',
+		["HEALER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer.tga',
+		["DAMAGER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS.tga',
+	},
+}
+E:AddTag("eltruism:role", 'ROLE_CHANGED_INFORM PLAYER_ROLES_ASSIGNED TALENT_GROUP_ROLE_CHANGED', function(unit,_,args)
+	local iconnumber = strsplit(':', args or '')
+	if not unit then unit = "player" end
+	if unit then
+		if (E.Retail or E.Wrath) then
+			local role
+			if E.Retail then
+				local currentSpec = GetSpecialization()
+				if currentSpec then
+					role = GetSpecializationRole(currentSpec)
+				end
+			elseif E.Wrath then
+				role = GetTalentGroupRole(GetActiveTalentGroup())
+			end
+			if role then
+				if role == 'HEALER' then
+					return '|T'..roleicons[iconnumber]["HEALER"]..':0:0:0:0|t'
+				elseif role == 'DAMAGER' then
+					return '|T'..roleicons[iconnumber]["DAMAGER"]..':0:0:0:0|t'
+				elseif role == 'TANK' then
+					return '|T'..roleicons[iconnumber]["TANK"]..':0:0:0:0|t'
+				end
+			end
+		end
+	end
+end)
+E:AddTagInfo("eltruism:role", ElvUI_EltreumUI.Name, L["Displays current role"])
+]]

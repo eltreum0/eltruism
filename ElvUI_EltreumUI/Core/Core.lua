@@ -22,7 +22,6 @@ local InCombatLockdown = _G.InCombatLockdown
 local HideUIPanel = _G.HideUIPanel
 local LoadAddOn = LoadAddOn
 local GameMenuFrame = _G.GameMenuFrame
-local VideoOptionsFrame = _G.VideoOptionsFrame  --TODO DRAGONFLIGHT
 local UIErrorsFrame = _G.UIErrorsFrame
 local RaidWarningFrame = _G.RaidWarningFrame
 local W
@@ -207,20 +206,20 @@ EltruismWAConsumablesAnchor:SetPoint("LEFT", _G["ElvUF_Player"], 0, -75)
 function ElvUI_EltreumUI:Anchors()
 	if E.private.unitframe.enable then
 		--Anchor for general weakauras, like those that replace actionbars
-		EltreumWAAnchor:SetParent("ElvUF_Player")
+		EltreumWAAnchor:SetParent(_G["ElvUF_Player"])
 		EltreumWAAnchor:SetFrameStrata("BACKGROUND")
 		--position the anchor around the place where the action bars would be
 		EltreumWAAnchor:Size(250, 70)
 		--E:CreateMover(parent, name, textString, overlay, snapoffset, postdrag, types, shouldDisable, configString, ignoreSizeChanged)
 		E:CreateMover(EltreumWAAnchor, "MoverEltruismWA", "EltruismWA", nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
 		--do it again
-		EltreumWAAnchor2:SetParent("ElvUF_Player")
+		EltreumWAAnchor2:SetParent(_G["ElvUF_Player"])
 		EltreumWAAnchor2:SetFrameStrata("BACKGROUND")
 		EltreumWAAnchor2:Size(250, 70)
 		E:CreateMover(EltreumWAAnchor2, "MoverEltruismWA2", "EltruismWA2", nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
 
 		--consumable weakauras, usually placed near player unitframe
-		EltruismWAConsumablesAnchor:SetParent("ElvUF_Player")
+		EltruismWAConsumablesAnchor:SetParent(_G["ElvUF_Player"])
 		EltruismWAConsumablesAnchor:SetFrameStrata("BACKGROUND")
 		EltruismWAConsumablesAnchor:Size(270, 30)
 		E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", L["EltruismConsumablesWA"], nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
@@ -520,12 +519,15 @@ EltruismGameMenu:SetScript("OnEvent", function()
 end)
 
 --make the video options movable because its annoying when adjusting settings
-VideoOptionsFrame:SetMovable(true)
-VideoOptionsFrame:EnableMouse(true)
-VideoOptionsFrame:RegisterForDrag("LeftButton")
-VideoOptionsFrame:SetScript("OnDragStart", VideoOptionsFrame.StartMoving)
-VideoOptionsFrame:SetScript("OnDragStop", VideoOptionsFrame.StopMovingOrSizing)
-VideoOptionsFrame:SetClampedToScreen(true)
+local VideoOptionsFrame = _G.VideoOptionsFrame  --TODO DRAGONFLIGHT
+if VideoOptionsFrame then
+	VideoOptionsFrame:SetMovable(true)
+	VideoOptionsFrame:EnableMouse(true)
+	VideoOptionsFrame:RegisterForDrag("LeftButton")
+	VideoOptionsFrame:SetScript("OnDragStart", VideoOptionsFrame.StartMoving)
+	VideoOptionsFrame:SetScript("OnDragStop", VideoOptionsFrame.StopMovingOrSizing)
+	VideoOptionsFrame:SetClampedToScreen(true)
+end
 
 --click casting button toggle
 if E.Retail then
