@@ -268,6 +268,22 @@ function ElvUI_EltreumUI:Anchors()
 			E:DisableMover('BossBannerMover')
 		end
 
+		if not _G["ObjectiveFrameHolder"] then --TODO DRAGONFLIGHT
+			local B = E:GetModule('Blizzard')
+			local holder = CreateFrame('Frame', 'ObjectiveFrameHolder', E.UIParent)
+			holder:Point('TOPRIGHT', E.UIParent, 'TOPRIGHT', -135, -300)
+			holder:Size(130, 22)
+
+			E:CreateMover(holder, 'ObjectiveFrameMover', L["Objective Frame"], nil, nil, B.HandleMawBuffsFrame, nil, nil, 'general,blizzUIImprovements')
+			holder:SetAllPoints(_G.ObjectiveFrameMover)
+
+			local tracker = _G.ObjectiveTrackerFrame
+			tracker:SetClampedToScreen(false)
+			tracker:ClearAllPoints()
+			tracker:Point('TOP', holder, 'TOP')
+			tracker:SetMovable(true)
+			tracker:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <3
+		end
 	end
 end
 
