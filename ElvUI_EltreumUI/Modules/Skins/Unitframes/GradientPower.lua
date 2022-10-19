@@ -76,7 +76,11 @@ end
 --additional power gradient/combo/runes as well
 function ElvUI_EltreumUI:UFClassPower_SetBarColor(bar, r, g, b)
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-		bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, CreateColor(r - 0.3, g - 0.3, b - 0.3, 1), CreateColor(r, g, b, 1))
+		if E.Retail then
+			bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, CreateColor(r - 0.3, g - 0.3, b - 0.3, 1), CreateColor(r, g, b, 1))
+		else
+			bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, r - 0.3, g - 0.3, b - 0.3, r, g, b)
+		end
 	end
 end
 hooksecurefunc(UF, "ClassPower_SetBarColor", ElvUI_EltreumUI.UFClassPower_SetBarColor)
@@ -114,7 +118,11 @@ function ElvUI_EltreumUI:GradientPower()
 			Additionalframe =  _G["ElvUF_Player_AdditionalPowerBar"]
 			if Additionalframe then
 				hooksecurefunc(Additionalframe, "SetStatusBarColor", function(_,r,g,b) --i knew the vertex thing from details could be useful
-					Additionalframe:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, CreateColor(r - 0.4, g - 0.4, b - 0.4, 1), CreateColor(r, g, b, 1))
+					if E.Retail then
+						Additionalframe:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, CreateColor(r - 0.4, g - 0.4, b - 0.4, 1), CreateColor(r, g, b, 1))
+					else
+						Additionalframe:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, r - 0.4, g - 0.4, b - 0.4, r, g, b)
+					end
 				end)
 				isHooked = true
 			end
@@ -131,15 +139,21 @@ function ElvUI_EltreumUI:GradientStagger()
 			staggerframe = _G["ElvUF_Player_Stagger"]
 			if staggerframe then
 				hooksecurefunc(staggerframe, "SetStatusBarColor", function(self,r,g,b)
-					self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, CreateColor(r - 0.5, g - 0.5, b - 0.5, 1), CreateColor(r + 0.2, g + 0.2, b + 0.2, 1))
-					--self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, 0, 0, 0, 1, 0, 0)
+					if E.Retail then
+						self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, CreateColor(r - 0.5, g - 0.5, b - 0.5, 1), CreateColor(r + 0.2, g + 0.2, b + 0.2, 1))
+					else
+						self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, r - 0.5, g - 0.5, b - 0.5, r + 0.2, g + 0.2, b + 0.2)
+					end
 				end)
 			end
 			npstaggerframe = _G["ElvNP_TargetClassPowerStagger"]
 			if npstaggerframe then
 				hooksecurefunc(npstaggerframe, "SetStatusBarColor", function(self,r,g,b)
-					self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, CreateColor(r - 0.5, g - 0.5, b - 0.5, 1), CreateColor(r + 0.2, g + 0.2, b + 0.2, 1))
-					--self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, 0, 0, 0, 1, 0, 0)
+					if E.Retail then
+						self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, CreateColor(r - 0.5, g - 0.5, b - 0.5, 1), CreateColor(r + 0.2, g + 0.2, b + 0.2, 1))
+					else
+						self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, r - 0.5, g - 0.5, b - 0.5, r + 0.2, g + 0.2, b + 0.2)
+					end
 				end)
 			end
 			isHookedstagger = true
