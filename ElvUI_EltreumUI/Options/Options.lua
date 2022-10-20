@@ -65,6 +65,7 @@ local DONATORS = {
 	'|cffB50909Dlarge|r',
 	'|cffB50909Dreamador|r',
 	'|cffB50909Dreandor|r',
+	'|cffB50909Gently Caress the Constabulary|r',
 	'|cffB50909Greevir|r',
 	'|cffB50909Jazz|r',
 	'|cffB50909Jiberish|r',
