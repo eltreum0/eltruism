@@ -277,7 +277,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		if E.private["general"]["minimap"]["enable"] and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.minimapborder) then
+		if E.private["general"]["minimap"]["enable"] and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.minimapborder) and E.db.ElvUI_EltreumUI.skins.shadow.minimap then
 			local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
 			local Minimapsizex, Minimapsizey = _G["Minimap"]:GetSize()
 			MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
@@ -1501,7 +1501,7 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		--chat
-		if not (E.db.ElvUI_EltreumUI.borders.chatborder and E.db.ElvUI_EltreumUI.borders.borders) then
+		if E.db.ElvUI_EltreumUI.skins.shadow.chat and not (E.db.ElvUI_EltreumUI.borders.chatborder and E.db.ElvUI_EltreumUI.borders.borders) then
 			local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
 			local rightsizex, rightsizey = _G["RightChatMover"]:GetSize()
 			RightChatShadow:SetSize(rightsizex, rightsizey)
