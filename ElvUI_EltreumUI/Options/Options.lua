@@ -9571,7 +9571,6 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.bigwigs = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-
 							detailsbigwigsgap = {
 								order = 900,
 								type = "description",
