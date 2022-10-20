@@ -202,6 +202,7 @@ P.ElvUI_EltreumUI = {
 			ttsvolume = 100,
 		},
 		ilvltooltip = true,
+		professionscale = 1,
 	},
 
 	cursors = {

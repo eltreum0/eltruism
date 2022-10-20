@@ -348,6 +348,19 @@ end
 function ElvUI_EltreumUI:EnchantScroll()
 	if E.db.ElvUI_EltreumUI.skins.professions and E.private.skins.blizzard.enable then
 
+		--hijack here because retail is different
+		if E.Retail then
+			if _G.ProfessionsFrame then
+				_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale)
+				_G.ProfessionsFrame:HookScript("OnEvent", function()
+					_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale)
+				end)
+				_G.ProfessionsFrame:HookScript("OnShow", function()
+					_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale)
+				end)
+			end
+		end
+
 		--create vellum button
 		if E.Retail then
 			if not _G["EltruismVellumButton"] then
@@ -468,6 +481,28 @@ tradeskilloadmonitor:SetScript("OnEvent", function(_,_,arg)
 		tradeskilloadmonitor:UnregisterAllEvents()
 		if not E.private.ElvUI_EltreumUI then return end
 		ElvUI_EltreumUI:EnchantScroll()
+	end
+end)
+
+function ElvUI_EltreumUI:RetailTalentScale()
+	if _G.ClassTalentFrame then
+		_G.ClassTalentFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
+		_G.ClassTalentFrame:HookScript("OnShow", function()
+			_G.ClassTalentFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
+		end)
+	end
+end
+
+--frame that checks for new talent
+local retailtalentmonitor = CreateFrame("FRAME")
+retailtalentmonitor:RegisterEvent("PLAYER_ENTERING_WORLD")
+retailtalentmonitor:RegisterEvent("ADDON_LOADED")
+retailtalentmonitor:SetScript("OnEvent", function(_,_,arg)
+	if not E.Retail then retailtalentmonitor:UnregisterAllEvents() end
+	if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then
+		if not E.private.ElvUI_EltreumUI then return end
+		ElvUI_EltreumUI:RetailTalentScale()
+		retailtalentmonitor:UnregisterAllEvents()
 	end
 end)
 
