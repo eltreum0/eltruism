@@ -34,6 +34,12 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 			end
+			if (arg == "Blizzard_OrderHallUI") or IsAddOnLoaded("Blizzard_OrderHallUI") then
+				if _G.OrderHallCommandBar then
+					_G.OrderHallCommandBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.OrderHallCommandBar.shadow) end
+				end
+			end
 			if (arg == "Blizzard_ArchaeologyUI") or IsAddOnLoaded("Blizzard_ArchaeologyUI") then
 				if _G.ArcheologyDigsiteProgressBar then
 					_G.ArcheologyDigsiteProgressBar.FillBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -226,12 +232,24 @@ function ElvUI_EltreumUI:Shadows()
 			_G.BonusRollFrame,
 			_G.ItemRefTooltip,
 			_G.CinematicFrameCloseDialog,
+			_G.OrderHallCommandBar,
+			_G.ProfessionsFrame,
 			--_G.ImmersionFrame.TalkBox,
 		}
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then
 				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+			end
+		end
+
+		if _G.ProfessionsFrame and _G.ProfessionsFrame.TabSystem then
+			for i = 1, _G.ProfessionsFrame.TabSystem:GetNumChildren() do
+				local tab = select(i, _G.ProfessionsFrame.TabSystem:GetChildren())
+				if tab and tab.backdrop then
+					tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(tab.backdrop.shadow) end
+				end
 			end
 		end
 
