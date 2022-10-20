@@ -351,7 +351,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 		--hijack here because retail is different
 		if E.Retail then
 			if _G.ProfessionsFrame then
-				_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale)
+				--_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale)
 				_G.ProfessionsFrame:HookScript("OnEvent", function()
 					_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale)
 				end)
@@ -480,6 +480,9 @@ tradeskilloadmonitor:SetScript("OnEvent", function(_,_,arg)
 	if IsAddOnLoaded("Blizzard_TradeSkillUI") or (arg == "Blizzard_TradeSkillUI") or _G.ProfessionsFrame then
 		tradeskilloadmonitor:UnregisterAllEvents()
 		if not E.private.ElvUI_EltreumUI then return end
+		if not E.db.ElvUI_EltreumUI then return end
+		if not E.db.ElvUI_EltreumUI.skins then return end
+		if not E.db.ElvUI_EltreumUI.skins.professions then return end
 		ElvUI_EltreumUI:EnchantScroll()
 	end
 end)
@@ -501,6 +504,9 @@ retailtalentmonitor:SetScript("OnEvent", function(_,_,arg)
 	if not E.Retail then retailtalentmonitor:UnregisterAllEvents() end
 	if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then
 		if not E.private.ElvUI_EltreumUI then return end
+		if not E.db.ElvUI_EltreumUI then return end
+		if not E.db.ElvUI_EltreumUI.skins then return end
+		if not E.db.ElvUI_EltreumUI.skins.expandedtalentscale then return end
 		ElvUI_EltreumUI:RetailTalentScale()
 		retailtalentmonitor:UnregisterAllEvents()
 	end
