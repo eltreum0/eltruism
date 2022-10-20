@@ -5,29 +5,6 @@ local OKAY = _G.OKAY
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local fixingold = false
 
---TODO DRAGONFLIGHT
---[[
--- stealth rogue
-GetBonusBarIndex: 7              GetBonusBarIndex: 7
-GetBonusBarOffset: 1             GetBonusBarOffset: 1
-GetExtraBarIndex: 15             GetExtraBarIndex: 19
-GetMultiCastBarIndex: 11         GetMultiCastBarIndex: 12
-GetOverrideBarIndex: 14          GetOverrideBarIndex: 18
-GetTempShapeshiftBarIndex: 13    GetTempShapeshiftBarIndex: 17
-GetVehicleBarIndex: 12           GetVehicleBarIndex: 16
-
--- no stealth rogue
-GetBonusBarIndex: 0              GetBonusBarIndex: 0
-GetBonusBarOffset: 0             GetBonusBarOffset: 0
-GetExtraBarIndex: 15             GetExtraBarIndex: 19
-GetMultiCastBarIndex: 11         GetMultiCastBarIndex: 12
-GetOverrideBarIndex: 14          GetOverrideBarIndex: 18
-GetTempShapeshiftBarIndex: 13    GetTempShapeshiftBarIndex: 17
-GetVehicleBarIndex: 12           GetVehicleBarIndex: 16
-
---dragon riding is [bonusbar:5] 11
-]]
-
 function ElvUI_EltreumUI:VersionCheckInit()
 	if E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version then
 		ElvUI_EltreumUI:DatabaseConversions()
