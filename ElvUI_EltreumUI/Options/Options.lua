@@ -9338,7 +9338,11 @@ function ElvUI_EltreumUI:Configtable()
 								max = 1.3,
 								step = 0.01,
 								get = function() return E.db.ElvUI_EltreumUI.skins.expandedtalentscale end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandedtalentscale = value _G.ClassTalentFrame:SetScale(value) end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandedtalentscale = value
+									if _G.ClassTalentFrame then
+										_G.ClassTalentFrame:SetScale(value)
+									end
+								end,
 							},
 							expandedstable = {
 								order = 50,
