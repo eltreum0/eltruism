@@ -451,6 +451,12 @@ function ElvUI_EltreumUI:FixChatToggles()
 		_G.LeftChatToggleButton:SetAlpha(1)
 		_G.LeftChatToggleButton:Show()
 
+		--nice but the fix datatext button should solve it already
+		--local buttonwidth = _G.RightChatToggleButton:GetWidth()
+		--local width = GetScreenWidth()
+		--E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2 + math.ceil(width - (buttonwidth * 2))
+		--E:UpdateDataTexts()
+
 		--[[
 			_G.LeftChatToggleButton:SetPoint('TOPRIGHT', _G.DTPanelEltruismMover, 'TOPLEFT', 0, 0)
 			_G.LeftChatToggleButton:SetPoint('BOTTOMLEFT', _G.DTPanelEltruismMover, 'BOTTOMLEFT', 0, 0)
