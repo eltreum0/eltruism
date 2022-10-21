@@ -232,7 +232,6 @@ function ElvUI_EltreumUI:Shadows()
 			_G.BonusRollFrame,
 			_G.ItemRefTooltip,
 			_G.CinematicFrameCloseDialog,
-      _G.GhostFrameContentsFrame,
 			_G.OrderHallCommandBar,
 			_G.ProfessionsFrame,
 			--_G.ImmersionFrame.TalkBox,
