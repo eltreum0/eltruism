@@ -745,9 +745,9 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 end
 --hooksecurefunc(UF, "Style", ElvUI_EltreumUI.GradientCustomTexture) --if not hooking into this then when the target of target changes it doesnt update
 hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientCustomTexture)
+--hooksecurefunc(UF, "PostUpdateHealth", ElvUI_EltreumUI.GradientCustomTexture)
 
 --glow dispellable debuffs
---local filtercheck = E:GetModule('NamePlates')
 function ElvUI_EltreumUI:UFGlow(object, debuffType, _, wasFiltered)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		if E.db.ElvUI_EltreumUI.glow.enableUFs then
