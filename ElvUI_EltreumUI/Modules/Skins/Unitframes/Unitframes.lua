@@ -544,14 +544,6 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name)
 					unitframe.Health.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				end
 			end
-
-			---if E.Retail then
-				--print(math.random(1,999999), unitframe:GetName())
-				--local cur = UnitHealth(unit)
-				--print(unitframe.Health:GetValue(),cur,unitframe:GetName())
-				--unitframe.Health:SetValue(cur)
-				--unitframe.Health:PostUpdateColor()
-			--end
 		end
 	end
 end
