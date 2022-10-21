@@ -737,6 +737,7 @@ function ElvUI_EltreumUI:GradientCustomTexture(unit)
 end
 --hooksecurefunc(UF, "Style", ElvUI_EltreumUI.GradientCustomTexture) --if not hooking into this then when the target of target changes it doesnt update
 hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientCustomTexture)
+--hooksecurefunc(UF, "Update_StatusBars", GradientCustomTexture)
 --hooksecurefunc(UF, "PostUpdateHealth", ElvUI_EltreumUI.GradientCustomTexture)
 
 --glow dispellable debuffs
@@ -1078,7 +1079,7 @@ function ElvUI_EltreumUI:AuraBarTexture(unit, bar, _, _, _, _, debuffType, isSte
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars then
 			local r,g,b = bar:GetStatusBarColor()
 			if unit == "player" then
-				if E.db["unitframe"]["colors"]["transparentAurabars"] then
+				if E.db.unitframe.colors.transparentAurabars then
 					if E.Retail then
 						bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, CreateColor(r-0.3, g-0.3, b-0.3, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha),CreateColor(r, g, b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha))
 					else
