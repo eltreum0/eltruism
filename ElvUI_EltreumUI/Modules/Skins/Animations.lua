@@ -73,17 +73,30 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 			scaleOut:SetDuration(5)
 			scaleOut:SetStartDelay(0.1)
 			scaleOut:SetSmoothing("OUT")
-			scaleOut:SetFromScale(1, 1)  --TODO SetFromScale DRAGONFLIGHT
-			scaleOut:SetToScale(2, 2) --TODO SetToScale DRAGONFLIGHT
+			if not E.Retail then
+				scaleOut:SetFromScale(1, 1)  --TODO SetFromScale DRAGONFLIGHT
+				scaleOut:SetToScale(2, 2) --TODO SetToScale DRAGONFLIGHT
+			else
+				scaleOut:SetScaleFrom(1, 1)  --TODO SetFromScale DRAGONFLIGHT
+				scaleOut:SetScaleTo(2, 2) --TODO SetToScale DRAGONFLIGHT
+			end
 			moveOut:SetOrder(1)
 			moveOut:SetDuration(5)
 			moveOut:SetSmoothing("OUT")
 			moveOut:SetStartDelay(0.1)
 			if E.db.ElvUI_EltreumUI.skins.playerdeathcustom then
 				local textwidth = darksouls.Text:GetStringWidth()
-				moveOut:SetOffset(-textwidth/2, -fontsize/4)
+				if E.Retail then
+					moveOut:SetOffset(-textwidth/2, fontsize/8)
+				else
+					moveOut:SetOffset(-textwidth/2, -fontsize/4)
+				end
 			else
-				moveOut:SetOffset(-fontsize, -fontsize/4)
+				if E.Retail then
+					moveOut:SetOffset(-fontsize, fontsize/8)
+				else
+					moveOut:SetOffset(-fontsize, -fontsize/4)
+				end
 			end
 
 			local _, instanceType = IsInInstance()

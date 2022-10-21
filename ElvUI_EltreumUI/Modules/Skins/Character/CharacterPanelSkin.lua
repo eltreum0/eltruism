@@ -30,6 +30,9 @@ local linewidth1, linewidth2, linewidth3, linewidth4
 local texturefile, linewidthsle1, linewidthsle2
 local id, currentSpec, speed, combatText, combat, regenRate, regenRateText
 local qualityAnchor,qualityAnchorInspect
+local CreateColor = _G.CreateColor
+local CharacterModelScene = _G.CharacterModelScene
+local CharacterFrameTitleText = _G.CharacterFrameTitleText
 
 --improving character panel
 local CharacterFrame = _G.CharacterFrame
@@ -348,7 +351,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 	if not InCombatLockdown() then
 		_G["CharacterFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.characterpanelscale)
-		_G["CharacterModelFrame"]:SetIgnoreParentScale(false)
+		if _G["CharacterModelFrame"] then
+			_G["CharacterModelFrame"]:SetIgnoreParentScale(false)
+		end
+		if _G["CharacterModelScene"] then --TODO DRAGONFLIGHT
+			_G["CharacterModelScene"]:SetIgnoreParentScale(false)
+		end
 	end
 
 	if E.Retail then
@@ -362,8 +370,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end]]
 
 			--color the avg item level
-			CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0.4, classcolor.r, classcolor.g, classcolor.b, 0)
-			CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradientAlpha('Horizontal', classcolor.r, classcolor.g, classcolor.b, 0, classcolor.r, classcolor.g, classcolor.b, 0.4)
+			CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradient('Horizontal', CreateColor(classcolor.r, classcolor.g, classcolor.b, 0.4), CreateColor(classcolor.r, classcolor.g, classcolor.b, 0))
+			CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradient('Horizontal', CreateColor(classcolor.r, classcolor.g, classcolor.b, 0), CreateColor(classcolor.r, classcolor.g, classcolor.b, 0.4))
 
 			--CharacterFrame:SetHeight(505)
 			CharacterFrame:SetHeight(455)
@@ -373,19 +381,29 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			-- Move bottom equipment slots
 			_G.CharacterMainHandSlot:SetPoint('BOTTOMLEFT', PaperDollItemsFrame, 'BOTTOMLEFT', 195, 20)
 			--strech it a bit
-			CharacterModelFrame:ClearAllPoints()
-			CharacterModelFrame:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
-			CharacterModelFrame:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
-			CharacterModelFrame:SetPoint('BOTTOM', _G.CharacterMainHandSlot, 0, -5)
-			CharacterModelFrame:SetPosition(0, 0, 0)
-			CharacterModelFrame:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+			if CharacterModelScene then --TODO
+				CharacterModelScene:ClearAllPoints()
+				CharacterModelScene:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
+				CharacterModelScene:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
+				CharacterModelScene:SetPoint('BOTTOM', _G.CharacterMainHandSlot, 0, -5)
+				local actor = CharacterModelScene:GetPlayerActor()
+				--local actor = CharacterModelScene:AcquireActor()
+				if actor then
+					actor:SetPosition(0, 0, 0)
+					actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+				end
+			end
 
 			--move the equipment manager to a nice position
-			_G.PaperDollEquipmentManagerPane:ClearAllPoints()
-			_G.PaperDollEquipmentManagerPane:SetPoint("RIGHT", CharacterFrame, "RIGHT", -30, -20)
+			if _G.PaperDollEquipmentManagerPane then
+				_G.PaperDollEquipmentManagerPane:ClearAllPoints()
+				_G.PaperDollEquipmentManagerPane:SetPoint("RIGHT", CharacterFrame, "RIGHT", -30, -20)
+			end
 			--move the titles panel to a nice position
-			_G.PaperDollTitlesPane:ClearAllPoints()
-			_G.PaperDollTitlesPane:SetPoint("RIGHT", CharacterFrame, "RIGHT", -30, -20)
+			if _G.PaperDollTitlesPane then
+				_G.PaperDollTitlesPane:ClearAllPoints()
+				_G.PaperDollTitlesPane:SetPoint("RIGHT", CharacterFrame, "RIGHT", -30, -20)
+			end
 
 			if (not IsAddOnLoaded('DejaCharacterStats')) then
 				CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
@@ -419,12 +437,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetSize(linewidthsle1, 4)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.OffenseCategory.Title, "LEFT", 0, -1)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-				CharacterStatsPane.OffenseCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+				CharacterStatsPane.OffenseCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], 1), CreateColor(statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], 1))
 				CharacterStatsPane.OffenseCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismOffenseCategoryLine2", CharacterStatsPane)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetSize(linewidthsle1, 4)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.OffenseCategory.Title, "RIGHT", -1, -1)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-				CharacterStatsPane.OffenseCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+				CharacterStatsPane.OffenseCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], 1), CreateColor(statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], 1))
 
 				--defense
 				CharacterStatsPane.DefenceCategory.backdrop:Hide()
@@ -442,12 +460,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterStatsPane.DefenceCategory.Title.StatusLine:SetSize(linewidthsle2, 4)
 				CharacterStatsPane.DefenceCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.DefenceCategory.Title, "LEFT", 0, -1)
 				CharacterStatsPane.DefenceCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-				CharacterStatsPane.DefenceCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+				CharacterStatsPane.DefenceCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], 1), CreateColor(statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], 1))
 				CharacterStatsPane.DefenceCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismDefenceCategoryLine2", CharacterStatsPane)
 				CharacterStatsPane.DefenceCategory.Title.StatusLine2:SetSize(linewidthsle2, 4)
 				CharacterStatsPane.DefenceCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.DefenceCategory.Title, "RIGHT", -1, -1)
 				CharacterStatsPane.DefenceCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-				CharacterStatsPane.DefenceCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+				CharacterStatsPane.DefenceCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], 1), CreateColor(statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], 1))
 
 				--fix enhancement
 				if CharacterStatsPane.EnhancementsCategory.Title.StatusLine then
@@ -780,12 +798,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetSize(linewidth1, 4)
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.ItemLevelCategory.Title, "LEFT", 0, -1)
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], 1), CreateColor(statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], 1))
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismItemLevelCategoryLine2", CharacterStatsPane)
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetSize(linewidth1, 4)
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.ItemLevelCategory.Title, "RIGHT", -1, -1)
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], 1), CreateColor(statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], 1))
 
 			if IsAddOnLoaded("ElvUI_SLE") then
 				linewidth2 = (( 300 - CharacterStatsPane.AttributesCategory.Title:GetStringWidth())/2)
@@ -796,12 +814,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetSize(linewidth2, 4)
 			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.AttributesCategory.Title, "LEFT", 0, -1)
 			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.AttributesCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+			CharacterStatsPane.AttributesCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], 1), CreateColor(statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], 1))
 			CharacterStatsPane.AttributesCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismAttributesCategoryLine2", CharacterStatsPane)
 			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetSize(linewidth2, 4)
 			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.AttributesCategory.Title, "RIGHT", -1, -1)
 			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.AttributesCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+			CharacterStatsPane.AttributesCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], 1), CreateColor(statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], 1))
 
 			if IsAddOnLoaded("ElvUI_SLE") then
 				linewidth3 = (( 300 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
@@ -812,22 +830,22 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetSize(linewidth3, 4)
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.EnhancementsCategory.Title, "LEFT", 0, -1)
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], 1), CreateColor(statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], 1))
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine2", CharacterStatsPane)
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetSize(linewidth3, 4)
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.EnhancementsCategory.Title, "RIGHT", -1, -1)
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], 1), CreateColor(statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], 1))
 
 			linewidth4 = (( 193 - CharacterFrame.EltruismExtraStatsFont:GetStringWidth())/2)
 			CharacterFrame.EltruismExtraStats:SetSize(linewidth4, 4)
 			CharacterFrame.EltruismExtraStats:SetPoint("RIGHT", CharacterFrame.EltruismExtraStatsFont, "LEFT", 0, -1)
 			CharacterFrame.EltruismExtraStats:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterFrame.EltruismExtraStats:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"])
+			CharacterFrame.EltruismExtraStats:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], 1), CreateColor(statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], 1))
 			CharacterFrame.EltruismExtraStats2:SetSize(linewidth4, 4)
 			CharacterFrame.EltruismExtraStats2:SetPoint("LEFT", CharacterFrame.EltruismExtraStatsFont, "RIGHT", 0, -1)
 			CharacterFrame.EltruismExtraStats2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterFrame.EltruismExtraStats2:GetStatusBarTexture():SetGradient("HORIZONTAL", statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"])
+			CharacterFrame.EltruismExtraStats2:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(statgradients[E.myclass]["r2"],statgradients[E.myclass]["g2"],statgradients[E.myclass]["b2"], 1), CreateColor(statgradients[E.myclass]["r1"],statgradients[E.myclass]["g1"],statgradients[E.myclass]["b1"], 1))
 
 			if IsAddOnLoaded("ElvUI_SLE") then
 				if E.db["sle"]["armory"]["character"]["enable"] then
@@ -903,11 +921,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 
 			--hide other bgs so one can be streched like the talents for tbc/classic
-			CharacterModelFrame.BackgroundTopRight:Hide()
-			CharacterModelFrame.BackgroundBotLeft:Hide()
-			CharacterModelFrame.BackgroundBotRight:Hide()
-			CharacterModelFrame.BackgroundTopLeft:SetAllPoints(CharacterModelFrame)
-			_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(CharacterModelFrame)
+			CharacterModelScene.BackgroundTopRight:Hide() --TODO
+			CharacterModelScene.BackgroundBotLeft:Hide()
+			CharacterModelScene.BackgroundBotRight:Hide()
+			CharacterModelScene.BackgroundTopLeft:SetAllPoints(CharacterModelScene)
+			_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(CharacterModelScene)
 
 			--add bg texture
 			CharacterFrameBackgroundTextureFader:SetAllPoints(CharacterFrame)
@@ -945,9 +963,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrameBackgroundTexture:SetParent(CharacterFrame)
 			CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK",6)
 
-			_G.CharacterModelFrame.backdrop:Hide()
-			_G.CharacterModelFrameBackgroundTopLeft:Hide()
-			_G.CharacterModelFrameBackgroundOverlay:Hide()
+			if _G.CharacterModelScene then --TODO
+				_G.CharacterModelScene.backdrop:Hide()
+				_G.CharacterModelFrameBackgroundTopLeft:Hide()
+				_G.CharacterModelFrameBackgroundOverlay:Hide()
+			end
 
 			--hide the backdrop on reputation/currency tab
 			hooksecurefunc("CharacterFrameTab_OnClick", function()
@@ -969,22 +989,22 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.CharacterModelFrameBackgroundTopRight:ClearAllPoints()
 			_G.CharacterModelFrameBackgroundBotLeft:ClearAllPoints()
 			_G.CharacterModelFrameBackgroundBotRight:ClearAllPoints()
-			_G.CharacterModelFrameBackgroundTopLeft:SetPoint("TOPLEFT", _G.CharacterModelFrame, "TOPLEFT",0,0)
+			_G.CharacterModelFrameBackgroundTopLeft:SetPoint("TOPLEFT", _G.CharacterModelScene, "TOPLEFT",0,0)
 			_G.CharacterModelFrameBackgroundTopLeft:SetWidth(404)
 			_G.CharacterModelFrameBackgroundTopLeft:SetHeight(309)
-			_G.CharacterModelFrameBackgroundBotLeft:SetPoint("BOTTOMLEFT", _G.CharacterModelFrame, "BOTTOMLEFT", 0, -54)
+			_G.CharacterModelFrameBackgroundBotLeft:SetPoint("BOTTOMLEFT", _G.CharacterModelScene, "BOTTOMLEFT", 0, -54)
 			_G.CharacterModelFrameBackgroundBotLeft:SetWidth(404)
-			_G.CharacterModelFrameBackgroundTopRight:SetPoint("TOPRIGHT", _G.CharacterModelFrame, "TOPRIGHT",0,0)
+			_G.CharacterModelFrameBackgroundTopRight:SetPoint("TOPRIGHT", _G.CharacterModelScene, "TOPRIGHT",0,0)
 			_G.CharacterModelFrameBackgroundTopRight:SetWidth(60)
 			_G.CharacterModelFrameBackgroundTopRight:SetHeight(309)
-			_G.CharacterModelFrameBackgroundBotRight:SetPoint("BOTTOMRIGHT", _G.CharacterModelFrame, "BOTTOMRIGHT",0,-54)
+			_G.CharacterModelFrameBackgroundBotRight:SetPoint("BOTTOMRIGHT", _G.CharacterModelScene, "BOTTOMRIGHT",0,-54)
 			_G.CharacterModelFrameBackgroundBotRight:SetWidth(60)
 		end
 
 		--add class crest
 		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
 			ClassCrestFrame:SetSize(256, 256)
-			ClassCrestFrame:SetPoint("CENTER", CharacterModelFrame, 0, 50)
+			ClassCrestFrame:SetPoint("CENTER", CharacterModelScene, 0, 50) --TODO
 			ClassCrestFrame:SetParent(CharacterFrame)
 			ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
 			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
@@ -996,8 +1016,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
 					CharacterFrame:SetWidth(505)
-					CharacterModelFrame:SetPosition(0, 0, 0) -- zoom, x, y
-					CharacterModelFrame:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+					local actor = CharacterModelScene:GetPlayerActor();
+					if actor then
+						actor:SetPosition(0, 0, 0)
+						actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+					end
+
+
 					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
 						if not IsAddOnLoaded("ElvUI_SLE") then
 						local bagilvl, equippedilvl = GetAverageItemLevel()
@@ -1058,8 +1083,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 					end
 					CharacterFrame:SetWidth(700)
-					CharacterModelFrame:SetPosition(0, 0, 0) -- zoom, x, y
-					CharacterModelFrame:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+					local actor = CharacterModelScene:GetPlayerActor();
+					if actor then
+						actor:SetPosition(0, 0, 0)
+						actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+					end
 				end
 				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
@@ -1558,7 +1586,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 					if PaperDollFrame:IsVisible() then
 
-
 						CharacterFrame:SetSize(700, 505)
 						CharacterNameText:ClearAllPoints()
 						CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 40)
@@ -1573,7 +1600,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						CharacterModelFrame:SetPoint("CENTER", CharacterFrame,"CENTER", -126, 15)
 						CharacterModelFrame:SetPosition(0, 0, 0)
 						CharacterModelFrame:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic)
-
 						ClassCrestFrame:SetPoint("CENTER", CharacterModelFrame, 0 , 50)
 						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
 							CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)

@@ -14,6 +14,9 @@ local ReputationFrame = _G.ReputationFrame
 local TokenFrame = _G.TokenFrame
 local string = _G.string
 local classsymbolonframe
+local CharacterFrameTitleText = _G.CharacterFrameTitleText
+local CharacterModelScene = _G.CharacterModelScene
+
 local classIcons = {
 	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Warrior",
 	["PALADIN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Paladin",
@@ -58,7 +61,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		end
 	end
 
-	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and not E.private.skins.blizzard.enable == false then
+	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and E.private.skins.blizzard.enable then
 		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
 			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
 		elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
@@ -88,14 +91,17 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
 			hooksecurefunc('PaperDollFrame_SetLevel', function()
 				CharacterFrameTitleText:ClearAllPoints()
-				CharacterFrameTitleText:SetPoint('TOP', CharacterModelFrame, 0, 50)
+				CharacterFrameTitleText:SetPoint('TOP', CharacterModelScene, 0, 50)
 				CharacterFrameTitleText:SetParent(CharacterFrame)
 				CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 				CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 				CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
 				CharacterFrameTitleText:SetShadowOffset(2, -1)
+
+				--TODO
 				CharacterLevelText:ClearAllPoints()
 				CharacterLevelText:SetPoint('TOP', CharacterFrameTitleText, 'BOTTOM', 0, 0)
+
 				CharacterLevelText:SetDrawLayer("OVERLAY")
 				if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
 					CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)

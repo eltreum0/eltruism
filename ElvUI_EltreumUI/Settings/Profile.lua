@@ -137,6 +137,9 @@ P.ElvUI_EltreumUI = {
 			npportraits = false,
 			nppower = false,
 			npcastbar = false,
+			minimap = true,
+			chat = true,
+			bigwigs = true,
 		},
 		meetinghorn = false,
 		pallypower = false,
@@ -199,6 +202,7 @@ P.ElvUI_EltreumUI = {
 			ttsvolume = 100,
 		},
 		ilvltooltip = true,
+		professionscale = 1,
 	},
 
 	cursors = {
