@@ -1183,6 +1183,3 @@ L["Donators"] = true
 L["Gradient Archeology Digsite Bar"] = true
 L["Text X offset"] = true
 L["Text Y offset"] = true
-L["Add Shadows to BigWigs Bars"] = true
-L["Add Shadows to the Minimap"] = true
-L["Add Shadows to the Chat Frames"] = true

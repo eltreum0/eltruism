@@ -14,7 +14,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 				if not E.db.movers then E.db.movers = {} end
 
 				--transparency doesnt work well with borders due to the .backdrop/twopixels thing on UF
-				E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 1
+				--E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 1
 
 				--general border settings for both profiles
 				E.db.ElvUI_EltreumUI.borders.texture = "Eltreum-Border-1"
@@ -227,7 +227,6 @@ function ElvUI_EltreumUI:BorderAdjust()
 					end
 				end
 			elseif not E.db.ElvUI_EltreumUI.borders.borders then
-				E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.7
 
 				if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
 					E.db["movers"]["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,-1,22"

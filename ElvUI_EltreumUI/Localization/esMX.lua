@@ -1199,6 +1199,3 @@ L["Enable Automatic Combat Log"] = true
 L["Quest Detail Scale"] = true
 L["Flight Frame Scale"] = true
 L["Donators"] = true
-L["Add Shadows to BigWigs Bars"] = true
-L["Add Shadows to the Minimap"] = true
-L["Add Shadows to the Chat Frames"] = true

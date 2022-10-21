@@ -347,30 +347,11 @@ end
 --enchanting vellum/disenchant buttons
 function ElvUI_EltreumUI:EnchantScroll()
 	if E.db.ElvUI_EltreumUI.skins.professions and E.private.skins.blizzard.enable then
-
-		--hijack here because retail is different
-		if E.Retail then
-			if _G.ProfessionsFrame then
-				--_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale)
-				_G.ProfessionsFrame:HookScript("OnEvent", function()
-					_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale)
-				end)
-				_G.ProfessionsFrame:HookScript("OnShow", function()
-					_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale)
-				end)
-			end
-		end
-
 		--create vellum button
 		if E.Retail then
 			if not _G["EltruismVellumButton"] then
-				if E.Retail then
-					vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["ProfessionsFrame"], "MagicButtonTemplate")
-					vellumbutton:SetPoint("RIGHT", _G.ProfessionsFrame.CraftingPage.CreateAllButton, "LEFT", -1, 0)
-				else
-					vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["TradeSkillFrame"], "MagicButtonTemplate")
-					vellumbutton:SetPoint("RIGHT", _G.TradeSkillFrame.DetailsFrame.CreateButton, "LEFT", -1, 0)
-				end
+				vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["TradeSkillFrame"], "MagicButtonTemplate")
+				vellumbutton:SetPoint("RIGHT", _G.TradeSkillFrame.DetailsFrame.CreateButton, "LEFT", -1, 0)
 				S:HandleButton(vellumbutton)
 			else
 				vellumbutton = _G["EltruismVellumButton"]
@@ -379,11 +360,10 @@ function ElvUI_EltreumUI:EnchantScroll()
 
 		--create disenchant button
 		if not _G["EltruismDisenchantButton"] then
+			disenchantbutton = CreateFrame("BUTTON", "EltruismDisenchantButton", _G["TradeSkillFrame"], "MagicButtonTemplate,InsecureActionButtonTemplate")
 			if E.Retail then
-				disenchantbutton = CreateFrame("BUTTON", "EltruismDisenchantButton", _G["ProfessionsFrame"], "MagicButtonTemplate,InsecureActionButtonTemplate")
 				disenchantbutton:SetPoint("RIGHT", "EltruismVellumButton", "LEFT", -1, 0)
 			else
-				disenchantbutton = CreateFrame("BUTTON", "EltruismDisenchantButton", _G["TradeSkillFrame"], "MagicButtonTemplate,InsecureActionButtonTemplate")
 				disenchantbutton:SetPoint("LEFT", _G.TradeSkillCreateButton, "RIGHT", 1, 0)
 			end
 			S:HandleButton(disenchantbutton)
@@ -412,8 +392,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 					vellumbutton:SetScript("OnClick", function()
 						if GetItemCount(38682) > 0 then
 							vellumbutton:SetEnabled(true)
-							--C_TradeSkillUI.CraftRecipe(_G["TradeSkillFrame"].DetailsFrame.selectedRecipeID)
-							C_TradeSkillUI.CraftRecipe(_G["ProfessionsFrame"].CraftingPage.RecipeList.previousRecipeID)
+							C_TradeSkillUI.CraftRecipe(_G["TradeSkillFrame"].DetailsFrame.selectedRecipeID)
 							UseItemByName(38682)
 						else
 							vellumbutton:SetEnabled(false)
@@ -427,48 +406,42 @@ function ElvUI_EltreumUI:EnchantScroll()
 
 		--fixx disenchant overlap with create all
 		if E.Retail then
-			if _G.ProfessionsFrame.CraftingPage.CreateAllButton then
-				_G.ProfessionsFrame.CraftingPage.CreateAllButton:SetScript("OnShow", function()
-					vellumbutton:ClearAllPoints()
-					vellumbutton:SetPoint("RIGHT", _G.ProfessionsFrame.CraftingPage.CreateAllButton, "LEFT", -1, 0)
+			if _G.TradeSkillFrame.DetailsFrame.CreateAllButton then
+				_G.TradeSkillFrame.DetailsFrame.CreateAllButton:SetScript("OnShow", function()
+					disenchantbutton:ClearAllPoints()
+					disenchantbutton:SetPoint("BOTTOM", "EltruismVellumButton", "TOP", 0, 1)
 				end)
-				_G.ProfessionsFrame.CraftingPage.CreateAllButton:SetScript("OnHide", function()
-					vellumbutton:ClearAllPoints()
-					vellumbutton:SetPoint("RIGHT", _G.ProfessionsFrame.CraftingPage.CreateButton, "LEFT", -1, 0)
+				_G.TradeSkillFrame.DetailsFrame.CreateAllButton:SetScript("OnHide", function()
+					disenchantbutton:ClearAllPoints()
+					disenchantbutton:SetPoint("RIGHT", "EltruismVellumButton", "LEFT", -1, 0)
 				end)
 			end
 		end
 
 		--hook tradeskill because it shoul show only with enchanting
 		local function UpdateButtons()
-			E:Delay(0.08, function()
+			E:Delay(0, function()
 				local enchantingtext = GetSpellInfo(7411)
-				local tradeskilltext
-				if E.Retail then
-					tradeskilltext = _G.ProfessionsFrameTitleText:GetText()
-				else
-					tradeskilltext = _G.TradeSkillFrameTitleText:GetText()
-				end
-				if tradeskilltext and tradeskilltext:match(enchantingtext) then
+				local tradeskilltext = _G.TradeSkillFrameTitleText:GetText()
+				if enchantingtext == tradeskilltext then
 					if E.Retail then
 						vellumbutton:Show()
+						_G.TradeSkillFrame.DetailsFrame.CreateMultipleInputBox:ClearAllPoints()
+						_G.TradeSkillFrame.DetailsFrame.CreateMultipleInputBox:SetPoint("BOTTOM", _G.TradeSkillFrame.DetailsFrame.CreateButton, "TOP", 0, 1)
 					end
 					disenchantbutton:Show()
 				else
 					if E.Retail then
 						vellumbutton:Hide()
+						_G.TradeSkillFrame.DetailsFrame.CreateMultipleInputBox:ClearAllPoints()
+						_G.TradeSkillFrame.DetailsFrame.CreateMultipleInputBox:SetPoint("RIGHT", _G.TradeSkillFrame.DetailsFrame.CreateButton, "LEFT", -26, 0)
 					end
 					disenchantbutton:Hide()
 				end
 			end)
 		end
-		if E.Retail then
-			_G.ProfessionsFrame:HookScript("OnShow",function() UpdateButtons() end)
-			_G.ProfessionsFrame:HookScript("OnEvent",function() UpdateButtons() end)
-		else
-			_G.TradeSkillFrame:HookScript("OnShow",function() UpdateButtons() end)
-			_G.TradeSkillFrame:HookScript("OnEvent",function() UpdateButtons() end)
-		end
+		_G.TradeSkillFrame:HookScript("OnShow",function() UpdateButtons() end)
+		_G.TradeSkillFrame:HookScript("OnEvent",function() UpdateButtons() end)
 	end
 end
 
@@ -477,38 +450,9 @@ local tradeskilloadmonitor = CreateFrame("FRAME")
 tradeskilloadmonitor:RegisterEvent("PLAYER_ENTERING_WORLD")
 tradeskilloadmonitor:RegisterEvent("ADDON_LOADED")
 tradeskilloadmonitor:SetScript("OnEvent", function(_,_,arg)
-	if IsAddOnLoaded("Blizzard_TradeSkillUI") or (arg == "Blizzard_TradeSkillUI") or _G.ProfessionsFrame then
-		tradeskilloadmonitor:UnregisterAllEvents()
-		if not E.private.ElvUI_EltreumUI then return end
-		if not E.db.ElvUI_EltreumUI then return end
-		if not E.db.ElvUI_EltreumUI.skins then return end
-		if not E.db.ElvUI_EltreumUI.skins.professions then return end
+	if IsAddOnLoaded("Blizzard_TradeSkillUI") or (arg == "Blizzard_TradeSkillUI") then
 		ElvUI_EltreumUI:EnchantScroll()
-	end
-end)
-
-function ElvUI_EltreumUI:RetailTalentScale()
-	if _G.ClassTalentFrame then
-		_G.ClassTalentFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
-		_G.ClassTalentFrame:HookScript("OnShow", function()
-			_G.ClassTalentFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
-		end)
-	end
-end
-
---frame that checks for new talent
-local retailtalentmonitor = CreateFrame("FRAME")
-retailtalentmonitor:RegisterEvent("PLAYER_ENTERING_WORLD")
-retailtalentmonitor:RegisterEvent("ADDON_LOADED")
-retailtalentmonitor:SetScript("OnEvent", function(_,_,arg)
-	if not E.Retail then retailtalentmonitor:UnregisterAllEvents() end
-	if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then
-		if not E.private.ElvUI_EltreumUI then return end
-		if not E.db.ElvUI_EltreumUI then return end
-		if not E.db.ElvUI_EltreumUI.skins then return end
-		if not E.db.ElvUI_EltreumUI.skins.expandedtalentscale then return end
-		ElvUI_EltreumUI:RetailTalentScale()
-		retailtalentmonitor:UnregisterAllEvents()
+		tradeskilloadmonitor:UnregisterAllEvents()
 	end
 end)
 
@@ -531,9 +475,7 @@ function ElvUI_EltreumUI:SkinMailZone()
 			_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, E.db.general.fontStyle)
 			_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
 			_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
-			--if _G.OpenMailBodyText then
-			--	_G.OpenMailBodyText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
-			--end
+			_G.OpenMailBodyText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 			if E.Retail then
 				_G.SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 			--elseif E.TBC or E.Classic then

@@ -152,16 +152,15 @@ function ElvUI_EltreumUI:RogueAutoOpen()
 		local NPC_ID = tonumber(string.match(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
 
 		local function handle_NPC_Interaction()
-			local gossipInfoTable = C_GossipInfo.GetOptions()
-			if #gossipInfoTable ~= 2 then
+			if C_GossipInfo.GetNumOptions() ~= 2 then ---TODO C_GossipInfo.GetNumOptions DRAGONFLIGHT
 				--ElvUI_EltreumUI:Print('not the right amount of gossip')
 				return
 			end
-			--local gossipInfoTable = C_GossipInfo.GetOptions()
-			--[[if gossipInfoTable[1].type ~= "gossip" then
+			local gossipInfoTable = C_GossipInfo.GetOptions()
+			if gossipInfoTable[1].type ~= "gossip" then
 				--ElvUI_EltreumUI:Print('not a gossip at first')
 				return
-			end]]
+			end
 			if NPC_ID == 97004 or NPC_ID == 96782 or NPC_ID == 93188 then
 				--ElvUI_EltreumUI:Print('its the right npc')
 				if IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown() then
@@ -376,13 +375,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 									if E.db.ElvUI_EltreumUI.dev then
 										ElvUI_EltreumUI:Print("iterate and select quest to get")
 									end
-
-									for l, v in next, k do
-										if l == "questID" then
-											C_GossipInfo.SelectAvailableQuest(v)
-										end
-									end
-									--C_GossipInfo.SelectAvailableQuest(i)
+									C_GossipInfo.SelectAvailableQuest(i)
 								end
 							elseif active[1] and active[1].title ~= nil then
 								for i, k in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
@@ -419,6 +412,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 									--end
 								end
 
+
 								--ElvUI_EltreumUI:Print(completed, notcomplete)
 								if loopcomplete == true then
 									for i, k in next, C_GossipInfo.GetActiveQuests() do
@@ -426,26 +420,14 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 											if E.db.ElvUI_EltreumUI.dev then
 												ElvUI_EltreumUI:Print("iterate and select already active quest")
 											end
-											for l, v in next, k do
-												if l == "questID" then
-													C_GossipInfo.SelectActiveQuest(v)
-												end
-											end
-											--C_GossipInfo.SelectActiveQuest(i)
+											C_GossipInfo.SelectActiveQuest(i)
 										end
 										if completed == 0 then
 											if E.db.ElvUI_EltreumUI.dev then
 												ElvUI_EltreumUI:Print("selecting gossip instead")
 											end
 											local gossipInfoTable = C_GossipInfo.GetOptions()
-											for i = 1, #gossipInfoTable do
-												if NPC_ID == 153897 then
-													return
-												else
-													C_GossipInfo.SelectOption(gossipInfoTable[i].gossipOptionID)
-												end
-											end
-											--[[for i = 1, C_GossipInfo.GetNumOptions() do
+											for i = 1, C_GossipInfo.GetNumOptions() do
 												if gossipInfoTable[i].type == "gossip" or gossipInfoTable[i].type == "chatbubble" then --and gossipInfoTable[i].type ~= "vendor" then --chatbubble is for sanctum stuff
 													if NPC_ID == 153897 then
 														return
@@ -453,27 +435,22 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 														C_GossipInfo.SelectOption(i)
 													end
 												end
-											end]]
+											end
 										end
 									end
 								end
+
+
 							elseif (not active[1] or active[1].title == nil) or (not available[1] or available[1].title == nil) then
 								if E.db.ElvUI_EltreumUI.dev then
 									ElvUI_EltreumUI:Print("no available or active quest, looking for gossip instead")
 								end
 								local gossipInfoTable = C_GossipInfo.GetOptions()
-								if #gossipInfoTable == 1 then
-									if NPC_ID == 153897 then
-										return
-									else
-										C_GossipInfo.SelectOption(gossipInfoTable[1].gossipOptionID)
-									end
-								end
-								--[[for i = 1, #gossipInfoTable do
+								for i = 1, C_GossipInfo.GetNumOptions() do
 									if gossipInfoTable[i].type == "gossip" or gossipInfoTable[i].type == "chatbubble" then --and gossipInfoTable[i].type ~= "vendor" then --chatbubble is for sanctum stuff
 										if NPC_ID == 153897 then
 											return
-										elseif #gossipInfoTable > 1 then
+										elseif C_GossipInfo.GetNumOptions() > 1 then
 											return
 										else
 											if E.db.ElvUI_EltreumUI.dev then
@@ -483,7 +460,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 											C_GossipInfo.SelectOption(i)
 										end
 									end
-								end]]
+								end
 							end
 						elseif E.Wrath or E.TBC or E.Classic then
 							if (GetNumGossipAvailableQuests() > 0) then

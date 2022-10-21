@@ -54,21 +54,6 @@ function ElvUI_EltreumUI:LootText()
 		local yDir
 		local lowestMessage
 		local useXadjustment = 0
-
-		--TODO DRAGONFLIGHT
-		if not COMBAT_TEXT_LOCATIONS.startY then
-			COMBAT_TEXT_LOCATIONS.startY = 384
-		end
-		if not COMBAT_TEXT_LOCATIONS.endY then
-			COMBAT_TEXT_LOCATIONS.endY = 609
-		end
-		if not COMBAT_TEXT_LOCATIONS.startX then
-			COMBAT_TEXT_LOCATIONS.startX = 0
-		end
-		if not COMBAT_TEXT_LOCATIONS.endX then
-			COMBAT_TEXT_LOCATIONS.endX = 0
-		end
-
 		if ( COMBAT_TEXT_LOCATIONS.startY < COMBAT_TEXT_LOCATIONS.endY ) then
 			-- Flowing up
 			lowestMessage = string:GetBottom()
