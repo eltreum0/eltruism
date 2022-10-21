@@ -181,14 +181,14 @@ end
 local function GradientNameplates(unit)
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 		if unit and unit.Health then
-			_, className = UnitClass(unit.unit)
-			player = UnitIsPlayer(unit.unit)
-			reaction = UnitReaction(unit.unit, "player")
-
 			sf = NP:StyleFilterChanges(unit)
 			if sf.HealthColor then
 				return
 			else
+				_, className = UnitClass(unit.unit)
+				player = UnitIsPlayer(unit.unit)
+				reaction = UnitReaction(unit.unit, "player")
+
 				if reaction and reaction >= 5 then
 					targettype = "NPCFRIENDLY"
 				elseif reaction and reaction == 4 then
