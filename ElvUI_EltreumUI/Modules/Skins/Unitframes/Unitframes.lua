@@ -27,6 +27,7 @@ if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
 end
 local CreateColor = _G.CreateColor
+local UnitIsCharmed = _G.UnitIsCharmed
 
 --set the textures or gradients for single units
 function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name)
@@ -62,7 +63,7 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name)
 				unitframe.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				unitframe.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 			end
-			if UnitIsPlayer(unit) then
+			if UnitIsPlayer(unit) and not UnitIsCharmed(unit) then
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
@@ -543,6 +544,14 @@ function ElvUI_EltreumUI:ApplyUnitGradientTexture(unit,name)
 					unitframe.Health.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				end
 			end
+
+			---if E.Retail then
+				--print(math.random(1,999999), unitframe:GetName())
+				--local cur = UnitHealth(unit)
+				--print(unitframe.Health:GetValue(),cur,unitframe:GetName())
+				--unitframe.Health:SetValue(cur)
+				--unitframe.Health:PostUpdateColor()
+			--end
 		end
 	end
 end
