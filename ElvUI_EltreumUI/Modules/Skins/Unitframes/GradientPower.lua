@@ -75,7 +75,7 @@ end
 
 --additional power gradient/combo/runes as well
 function ElvUI_EltreumUI:UFClassPower_SetBarColor(bar, r, g, b)
-	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		if E.Retail then
 			bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, CreateColor(r - 0.3, g - 0.3, b - 0.3, 1), CreateColor(r, g, b, 1))
 		else
@@ -87,7 +87,7 @@ hooksecurefunc(UF, "ClassPower_SetBarColor", ElvUI_EltreumUI.UFClassPower_SetBar
 
 --Gradient Power Colors
 function ElvUI_EltreumUI:GradientPower()
-	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		ElvUI_EltreumUI:ApplyGradientPower("player", "Player")
 		ElvUI_EltreumUI:ApplyGradientPower("target", "Target")
 		ElvUI_EltreumUI:ApplyGradientPower("targettarget", "TargetTarget")
@@ -134,7 +134,7 @@ hooksecurefunc(UF, "PostUpdatePowerColor", ElvUI_EltreumUI.GradientPower)
 
 --gradient stagger because its special
 function ElvUI_EltreumUI:GradientStagger()
-	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		if not isHookedstagger then
 			staggerframe = _G["ElvUF_Player_Stagger"]
 			if staggerframe then
