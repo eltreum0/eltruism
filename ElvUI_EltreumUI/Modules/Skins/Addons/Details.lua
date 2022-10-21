@@ -25,7 +25,7 @@ function ElvUI_EltreumUI:EltruismDetails()
 	if E.db.ElvUI_EltreumUI.skins.details then
 		local Details = _G.Details
 		local unitclass
-		hooksecurefunc(Details, "InstanceRefreshRows", function(instancia, test,test2,test3,test4)
+		hooksecurefunc(Details, "InstanceRefreshRows", function(instancia)
 			if instancia.barras and instancia.barras[1] then
 				for _, row in next, instancia.barras do
 					if row and row.textura then
