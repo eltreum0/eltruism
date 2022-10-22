@@ -355,6 +355,8 @@ local modelsRotate = {
 	[4395382] = true, --"dracthyr male blood elf"
 	[4207724] = true, --"dracthyr not dragon"
 	[4220448] = true, -- "dracthyr female human"
+	[4217881] = true, --Scalesworn Guardian
+
 }
 
 --set portrait rotation based on target being npc or not
