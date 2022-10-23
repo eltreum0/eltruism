@@ -9109,8 +9109,15 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.quests.combatenable end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.quests.combatenable = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
-					arenaquestsettings = {
+					headergaphere3 = {
 						order = 99,
+						type = "description",
+						name = "",
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					arenaquestsettings = {
+						order = 100,
 						type = 'toggle',
 						width = 'full',
 						name = L["Hide Quests during Battlegrounds and Arenas"],
@@ -9118,6 +9125,40 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.quests.arena end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.quests.arena = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
+					--[[headergaphere4 = {
+						order = 101,
+						type = "description",
+						name = "",
+						width = 'full',
+						hidden = not E.Retail,
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					objectiveheight = {
+						type = 'range',
+						name = L["Objective Frame Height"],
+						desc = L["Height of the objective tracker. Increase size to be able to see more objectives."],
+						order = 102,
+						min = 100,
+						max = 900,
+						step = 1,
+						width = "double",
+						hidden = not E.Retail,
+						get = function()
+							if ObjectiveTrackerFrame then
+								return ObjectiveTrackerFrame.editModeHeight
+							else
+								return 1
+							end
+						end,
+						set = function(_, value)
+							if ObjectiveTrackerFrame then
+								ObjectiveTrackerFrame.editModeHeight = value
+								ObjectiveTrackerFrame:SetHeight(value)
+
+								--ObjectiveTracker_UpdateHeight()
+							end
+						end,
+					},]]
 				},
 			},
 			skins = {
