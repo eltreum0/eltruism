@@ -439,7 +439,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		end
 
 		--color rares according to class
-		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture then
+		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate then
 			if E.global.nameplates.filters.EltreumRare then
 				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["enable"] = true
