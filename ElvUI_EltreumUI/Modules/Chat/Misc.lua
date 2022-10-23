@@ -182,7 +182,7 @@ local function ColorSysMsgs(_, event, message, ...)
 
 	if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 		local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
-		if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" then
+		if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == nil then
 			local roleIcons = {
 				TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
 				HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
@@ -267,7 +267,7 @@ ChatFrame_AddMessageEventFilter("PLAYER_ROLES_ASSIGNED", ColorSysMsgs)
 function ElvUI_EltreumUI:ChatRoleSwapIcons()
 	if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 		local UF = E:GetModule('UnitFrames')
-		if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" then
+		if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == nil then
 			UF.RoleIconTextures = {
 				TANK = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga',
 				HEALER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga',
@@ -401,7 +401,7 @@ if not E.db.ElvUI_EltreumUI.otherstuff then return end
 local CH = E:GetModule('Chat')
 local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
 if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
-	if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" then
+	if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == nil then
 		local roleIcons = {
 			TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
 			HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
@@ -517,7 +517,7 @@ if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 
 	if IsAddOnLoaded("ElvUI_WindTools") then
 		local CT = WT:GetModule("ChatText")
-		if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" then
+		if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == nil then
 			local roleIcons = {
 				TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
 				HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
@@ -592,7 +592,7 @@ if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 		end
 
 		local function RoleIcons()
-			if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" then
+			if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == nil then
 				local roleIcons = {
 					TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
 					HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
