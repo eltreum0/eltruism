@@ -548,8 +548,6 @@ function ElvUI_EltreumUI:SkinMailZone()
 				else
 					_G.SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 				end
-			--elseif E.TBC or E.Classic then
-				--MailEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 			end
 		end
 	end
