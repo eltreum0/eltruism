@@ -36,10 +36,18 @@ function ElvUI_EltreumUI:EltruismDetails()
 							if row.minha_tabela and row.minha_tabela.name then
 								unitclass = row.minha_tabela:class() --from details api returns class of that row
 								if unitclass ~='UNKNOW' and classes[unitclass] then
-									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-										row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
+									if E.Retail then
+										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+											row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
+										else
+											row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
+										end
 									else
-										row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
+										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+											row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
+										else
+											row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
+										end
 									end
 								else
 									if E.Retail then
