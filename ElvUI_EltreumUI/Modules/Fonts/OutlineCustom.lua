@@ -2,10 +2,9 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 
-function ElvUI_EltreumUI:SetupFontsOutlineNone()
+function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 
-	local fontStyle = "NONE"
-	if E.Retail then
+	if E.Retail and fontStyle == "NONE" then
 		fontStyle = ""
 	end
 

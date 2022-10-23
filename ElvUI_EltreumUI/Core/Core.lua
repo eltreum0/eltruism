@@ -140,13 +140,13 @@ function ElvUI_EltreumUI:ResolutionOutline()
 		ElvUI_EltreumUI:Print(L["4K resolution detected, setting fonts to default mode."])
 		ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	elseif width == 2560 then
-		ElvUI_EltreumUI:SetupFontsOutlineOutline()
+		ElvUI_EltreumUI:SetupFontsOutlineCustom("OUTLINE")
 		ElvUI_EltreumUI:Print(L["1440p resolution detected, setting fonts to outline mode."])
 	elseif width == 1920 then
-		ElvUI_EltreumUI:SetupFontsOutlineOutline()
+		ElvUI_EltreumUI:SetupFontsOutlineCustom("OUTLINE")
 		ElvUI_EltreumUI:Print(L["1080p resolution detected, setting fonts to outline mode."])
 	else
-		ElvUI_EltreumUI:SetupFontsOutlineOutline()
+		ElvUI_EltreumUI:SetupFontsOutlineCustom("OUTLINE")
 		ElvUI_EltreumUI:Print(L["Fonts were set to Outline due to your resolution."])
 	end
 end

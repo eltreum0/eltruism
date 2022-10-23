@@ -29,8 +29,6 @@
 	<Script file='Fonts/Kimberley.lua'/>
 	<Script file='Fonts/Roboto.lua'/>
 	<Script file='Fonts/OutlineDefault.lua'/>
-	<Script file='Fonts/OutlineNone.lua'/>
-	<Script file='Fonts/OutlineOutline.lua'/>
-	<Script file='Fonts/OutlineThick.lua'/>
+	<Script file='Fonts/OutlineCustom.lua'/>
 	<Include file='Skins\load_skins.xml'/>
 </Ui>

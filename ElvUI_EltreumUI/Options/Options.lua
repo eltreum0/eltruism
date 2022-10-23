@@ -7221,7 +7221,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = L["None"],
 								desc = L["This will set fonts to no outline"],
-								func = function() ElvUI_EltreumUI:SetupFontsOutlineNone() E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() ElvUI_EltreumUI:SetupFontsOutlineCustom("NONE") E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('CONFIG_RL') end,
 								confirm = true,
 							},
 							outlinegap = {
@@ -7234,7 +7234,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = L["Outline"],
 								desc = L["This will set fonts to use outline, recommended for 1440p and 1080p"],
-								func = function() ElvUI_EltreumUI:SetupFontsOutlineOutline() E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() ElvUI_EltreumUI:SetupFontsOutlineCustom("OUTLINE") E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('CONFIG_RL') end,
 								confirm = true,
 							},
 							thick = {
@@ -7242,7 +7242,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = L["Thick Outline"],
 								desc = L["This will set fonts to use thick outline"],
-								func = function() ElvUI_EltreumUI:SetupFontsOutlineThick() E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() ElvUI_EltreumUI:SetupFontsOutlineCustom("THICKOUTLINE") E:StaggeredUpdateAll(nil, true) E:StaticPopup_Show('CONFIG_RL') end,
 								confirm = true,
 							},
 							header448 = {
