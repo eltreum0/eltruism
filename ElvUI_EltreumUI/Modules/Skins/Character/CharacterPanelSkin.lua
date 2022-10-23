@@ -386,12 +386,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterModelScene:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
 				CharacterModelScene:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
 				CharacterModelScene:SetPoint('BOTTOM', _G.CharacterMainHandSlot, 0, -5)
-				local actor = CharacterModelScene:GetPlayerActor()
-				--local actor = CharacterModelScene:AcquireActor()
-				if actor then
-					actor:SetPosition(0, 0, 0)
-					actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
-				end
+				CharacterModelScene:SetCameraPosition(0, 0, 0)
+				CharacterModelScene:SetCameraPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
 			end
 
 			--move the equipment manager to a nice position
@@ -1016,12 +1012,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
 					CharacterFrame:SetWidth(505)
-					local actor = CharacterModelScene:GetPlayerActor();
-					if actor then
-						actor:SetPosition(0, 0, 0)
-						actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
-					end
-
+					CharacterModelScene:SetCameraPosition(0, 0, 0)
+					CharacterModelScene:SetCameraPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
 
 					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
 						if not IsAddOnLoaded("ElvUI_SLE") then
@@ -1083,11 +1075,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 					end
 					CharacterFrame:SetWidth(700)
-					local actor = CharacterModelScene:GetPlayerActor();
-					if actor then
-						actor:SetPosition(0, 0, 0)
-						actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
-					end
+					CharacterModelScene:SetCameraPosition(0, 0, 0)
+					CharacterModelScene:SetCameraPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
 				end
 				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
