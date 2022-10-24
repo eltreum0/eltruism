@@ -7907,7 +7907,6 @@ function ElvUI_EltreumUI:Configtable()
 							textureselect = {
 								type = 'select',
 								name= "",
-								--desc = L["Choose the direction of the gradient"],
 								order = 6,
 								values = {
 									["V1"] = L["Version 1"],
@@ -11132,12 +11131,12 @@ function ElvUI_EltreumUI:Configtable()
 							textureselect = {
 								type = 'select',
 								name= "",
-								--desc = L["Choose the direction of the gradient"],
 								order = 100,
 								values = {
 									["V1"] = L["Version 1"],
 									["V2"] = L["Version 2"],
 									["V3"] = L["Version 3"],
+									["NONE"] = L["None"],
 								},
 								style = 'radio',
 								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.lightmode end,
