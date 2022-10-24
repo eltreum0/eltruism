@@ -404,7 +404,7 @@ if not E.db.ElvUI_EltreumUI.otherstuff then return end
 local CH = E:GetModule('Chat')
 local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
 if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
-	if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" then
+	if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == nil then
 		local roleIcons = {
 			TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
 			HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
