@@ -151,6 +151,18 @@ function ElvUI_EltreumUI:Shadows()
 							_G.InspectFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrame.shadow) end
 						end
+						if _G.InspectFrameTab1 and _G.InspectFrameTab1.backdrop and not _G.InspectFrameTab1.backdrop.shadow then
+							_G.InspectFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab1.backdrop.shadow) end
+						end
+						if _G.InspectFrameTab2 and _G.InspectFrameTab2.backdrop and not _G.InspectFrameTab2.backdrop.shadow then
+							_G.InspectFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab2.backdrop.shadow) end
+						end
+						if _G.InspectFrameTab3 and _G.InspectFrameTab3.backdrop and not _G.InspectFrameTab3.backdrop.shadow then
+							_G.InspectFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab3.backdrop.shadow) end
+						end
 					else
 						if _G.InspectFrame and _G.InspectFrame.backdrop and not _G.InspectFrame.backdrop.shadow then
 							_G.InspectFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
