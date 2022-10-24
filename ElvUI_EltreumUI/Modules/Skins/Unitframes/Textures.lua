@@ -63,9 +63,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name)
 					end
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
 						if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
-								unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-							else
+							if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
 								unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 							end
 						end
@@ -96,9 +94,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name)
 					end
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
 						if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
-								unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-							else
+							if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
 								unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 							end
 						end
@@ -107,10 +103,9 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name)
 			end
 			if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					unitframe.Health:SetStatusBarTexture(namebar)
-				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and unitframe.Health.backdropTex then
-					unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
-					unitframe.Health.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+					if E.db.ElvUI_EltreumUI.unitframes.uftextureversion ~= "NONE" then
+						unitframe.Health:SetStatusBarTexture(namebar)
+					end
 				end
 			end
 		end
@@ -141,9 +136,7 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button)
 			end
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
 				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
-						button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-					else
+					if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
 						button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 					end
 				end
@@ -151,7 +144,9 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button)
 		end
 		if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-				button.Health:SetStatusBarTexture(groupbar)
+				if E.db.ElvUI_EltreumUI.unitframes.uftextureversion ~= "NONE" then
+					button.Health:SetStatusBarTexture(groupbar)
+				end
 			end
 		end
 	end
@@ -270,6 +265,11 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 		end
 	end
 end
---hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.CustomTexture)
+--[[hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.CustomTexture)
 hooksecurefunc(UF, "Construct_HealthBar", ElvUI_EltreumUI.CustomTexture)
-
+hooksecurefunc(UF, 'Update_PartyFrames', ElvUI_EltreumUI.CustomTexture)
+hooksecurefunc(UF, 'Update_RaidFrames', ElvUI_EltreumUI.CustomTexture)
+hooksecurefunc(UF, "Configure_HealthBar", ElvUI_EltreumUI.CustomTexture)
+hooksecurefunc(UF, "LoadUnits", ElvUI_EltreumUI.CustomTexture)
+hooksecurefunc(UF, "Construct_UF", ElvUI_EltreumUI.CustomTexture)]]
+hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.CustomTexture)
