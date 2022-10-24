@@ -9,7 +9,8 @@ Added Objective Tracker Mover since ElvUI's was removed, Objective Height needs 
 Added various models to the Target Portrait Fix\
 Added toggles for BigWigs, Chat and Minimap shadows\
 Added options to change the scale of the Talents and Profession frames in Retail\
-Added Dispel Illusion sound (What are you hiding? from Suramar)\
+Added Dispel Illusion sound ("Something is not quite right" from Suramar)\
+Added a new Texture option for Light Mode, "NONE", which will disable Light Mode Textures\
 Updated some files to better load functions\
 Updated [eltruism:leader] tag to also show main tank and assist icons\
 Updated map shadows in Wrath/Classic to check for Leatrix Maps due to it changing the skin\
@@ -18,4 +19,13 @@ Updated tooltip shadows to remove Enhanced shadows since they could break the to
 Updated Action Paging to the new paging in 10.0\
 Updated Gradient Power to be enabled separately from Gradient Health\
 Updated Waypoint Time to Arrive to calculate based on distance changed since Dragonriding does not give player speed\
-Note: There are various outstanding bugs in Blizzard's UI, such as SetStatusBarColor causing Statusbar values to be incorrectly set for a frame, Models not inheriting alpha and various others that can be found here <https://github.com/Stanzilla/WoWUIBugs/issues>
+Fixed Rare nameplate Style filter not updating when changing classes\
+Fixed Role Icons in chat sometimes not applying\
+
+For Retail:
+There are various outstanding bugs in Blizzard's UI, such as SetStatusBarTexture causing Statusbar values to be incorrectly set for a frame, Models not inheriting alpha and various others that can be found here <https://github.com/Stanzilla/WoWUIBugs/issues>
+If you are using Light Mode and not Gradient, i recommend checking the new "NONE" texture option to prevent the blinking
+If you are using Light Mode and Gradient, i recommend enabling ElvUI Unitframe Textures instead of Gradient Textures\
+Custom Textures in Light Mode will cause issues due to Blizzard bugs\
+Aurabar Blinking is due to the SetStatusBarTexture issue mentioned, and can happen even without Eltruism enabled\
+Nameplates Blinking is also due to the SetStatusBarTexture issue and happens if there is Texture replacing the existing Texture, this can happen to other nameplate addons like Plater and not just ElvUI Nameplates\
