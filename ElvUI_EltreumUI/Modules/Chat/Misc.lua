@@ -369,17 +369,14 @@ EltruismHideTalkingHead:RegisterEvent('ADDON_LOADED')
 function ElvUI_EltreumUI:EltruismHideTalkingHead()
 	if E.db.ElvUI_EltreumUI.skins.hidetalkinghead then
 		EltruismHideTalkingHead:SetScript('OnEvent', function(_, event)
-			if event == 'PLAYER_ENTERING_WORLD' or event == 'ADDON_LOADED' then
+			if event == 'PLAYER_ENTERING_WORLD' or event == 'ADDON_LOADED' or IsAddOnLoaded("Blizzard_TalkingHeadUI") then
 				if E.Retail then
-					if not IsAddOnLoaded("Blizzard_TalkingHeadUI") then
-						UIParentLoadAddOn("Blizzard_TalkingHeadUI")
-					end
-					if IsAddOnLoaded('Blizzard_TalkingHeadUI') then
-						local TalkingHeadFrame = _G.TalkingHeadFrame
-						hooksecurefunc('TalkingHeadFrame_PlayCurrent', function()
+					local TalkingHeadFrame = _G.TalkingHeadFrame
+					if TalkingHeadFrame then
+						hooksecurefunc(_G["TalkingHeadFrame"], "PlayCurrent", function()
 							TalkingHeadFrame:Hide()
 						end)
-						hooksecurefunc('TalkingHeadFrame_Reset', function()
+						hooksecurefunc(_G["TalkingHeadFrame"], "Reset", function()
 							TalkingHeadFrame:Hide()
 						end)
 						EltruismHideTalkingHead:UnregisterAllEvents()
