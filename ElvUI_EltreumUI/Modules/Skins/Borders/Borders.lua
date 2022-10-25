@@ -900,7 +900,11 @@ function ElvUI_EltreumUI:AuraBorders(button)
 		else
 			auraborder = _G["EltruismAuraBorder"..button:GetName()]
 		end
-		auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.aurasizex, E.db.ElvUI_EltreumUI.borders.aurasizey)
+		if button:GetName():match("Debuffs") then
+			auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.debuffaurasizex, E.db.ElvUI_EltreumUI.borders.debuffaurasizey)
+		else
+			auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.aurasizex, E.db.ElvUI_EltreumUI.borders.aurasizey)
+		end
 		auraborder:SetPoint("CENTER", button, "CENTER", 0, 0)
 		auraborder:SetBackdrop({
 		edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
