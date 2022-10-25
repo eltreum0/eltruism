@@ -97,14 +97,41 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 						end
 
 						--calculate time to arrive
-						--local speed = GetUnitSpeed("player") or GetUnitSpeed("vehicle")
+						local speed = GetUnitSpeed("player") or GetUnitSpeed("vehicle")
 						local distance = C_Navigation.GetDistance()
 						local seconds = 0
 						local minutes = 0
-						C_Timer.After(1, function()
-							local previousdistance = C_Navigation.GetDistance()
-							local speed = math.abs(distance - previousdistance)
-							--print(distance,previousdistance, speed)
+						if not speed or speed == 0 then --might be dragonflying, calculate based on delta distance
+							C_Timer.After(1, function()
+								local previousdistance = C_Navigation.GetDistance()
+								local speed = math.abs(distance - previousdistance)
+								--print(distance,previousdistance, speed)
+								if speed and speed > 0 then
+									local eta= math.abs(distance / speed)
+									if eta > 600 then
+										minutes = string.format("%02.f", math.floor(eta/60 ))
+										seconds = string.format("%02.f", math.floor(eta - minutes *60))
+									elseif eta < 600 and eta > 10 then
+										minutes = string.format("%01.f", math.floor(eta/60))
+										seconds = string.format("%02.f", math.floor(eta - minutes *60))
+									elseif eta < 10 then
+										minutes = string.format("%01.f", math.floor(eta/60))
+										seconds = string.format("%1.d", math.floor(eta - minutes *60))
+									else
+										minutes = string.format("%02.f", math.floor(eta/60))
+										seconds = string.format("%02.f", math.floor(eta - minutes *60))
+									end
+								end
+								--set the time to arrive to the frame's text
+								if minutes == 0 and seconds == 0 then
+									EltruismTimeToArrive.TimeText:SetText("***")
+								elseif minutes < "01" and seconds > "0" then
+									EltruismTimeToArrive.TimeText:SetText(seconds.."s")
+								else
+									EltruismTimeToArrive.TimeText:SetText(minutes.."m"..":"..seconds.."s")
+								end
+							end)
+						else --might not be dragonriding, calculate normally
 							if speed and speed > 0 then
 								local eta= math.abs(distance / speed)
 								if eta > 600 then
@@ -129,7 +156,7 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 							else
 								EltruismTimeToArrive.TimeText:SetText(minutes.."m"..":"..seconds.."s")
 							end
-						end)
+						end
 					end
 				end)
 			else
