@@ -3192,7 +3192,13 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.cooldown end,
 								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.cooldownsound end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.cooldownsound = value SetCVar('Sound_EnableErrorSpeech', 0) E:StaticPopup_Show('PRIVATE_RL') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.cooldownsound = value
+									if value == true then
+										SetCVar('Sound_EnableErrorSpeech', 0)
+									else
+										SetCVar('Sound_EnableErrorSpeech', 1)
+									end
+									E:StaticPopup_Show('PRIVATE_RL') end,
 							},
 							cdsound = {
 								order = 99,
@@ -9269,9 +9275,21 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Skin the Profession/Tradeskill Frame"],
 								--hidden = E.Retail,
 								--hidden = function() if E.Retail then return true else return false end end,
-								width = 'full',
+								--width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.skins.professions end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.professions = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							professionscale = {
+								type = 'range',
+								name = L["Scale"],
+								hidden = not E.Retail,
+								order = 38,
+								min = 0.2,
+								max = 1.3,
+								step = 0.01,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.professions end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.professionscale end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.professionscale = value _G.ProfessionsFrame:SetScale(value) end,
 							},
 							header64546 = {
 								order = 39,
@@ -9337,10 +9355,34 @@ function ElvUI_EltreumUI:Configtable()
 								order = 45,
 								min = 0.1,
 								max = 2,
-								step = 0.1,
+								step = 0.01,
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.tbctalents end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.expandedtalentscale end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandedtalentscale = value _G.PlayerTalentFrame:SetScale(value) end,
+							},
+							retailtalentinfo = {
+								order = 43,
+								type = "description",
+								name = L["Talents"],
+								hidden = not E.Retail,
+								--hidden = function() if E.Retail then return true else return false end end,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								width = "full",
+							},
+							retailtalentscale = {
+								type = 'range',
+								name = L["Scale"],
+								hidden = not E.Retail,
+								order = 45,
+								min = 0.1,
+								max = 1.3,
+								step = 0.01,
+								get = function() return E.db.ElvUI_EltreumUI.skins.expandedtalentscale end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandedtalentscale = value
+									if _G.ClassTalentFrame then
+										_G.ClassTalentFrame:SetScale(value)
+									end
+								end,
 							},
 							expandedstable = {
 								order = 50,
@@ -9593,9 +9635,24 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'toggle',
 								name = E.NewSign..L["Skin BigWigs"],
 								desc = L["Skin BigWigs"],
-								width = "full",
+								--width = "full",
 								get = function() return E.db.ElvUI_EltreumUI.skins.bigwigs end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.bigwigs = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							bigwigsshadows = {
+								order = 201,
+								type = 'toggle',
+								name = E.NewSign..L["Shadows"],
+								desc = L["Add Shadows to BigWigs Bars"],
+								--width = "full",
+								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.bigwigs = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							detailsbigwigsgap = {
+								order = 900,
+								type = "description",
+								name = "",
+								width = "full",
 							},
 							detailsskin = {
 								order = 901,
@@ -9946,7 +10003,14 @@ function ElvUI_EltreumUI:Configtable()
 								step = 0.01,
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.skins.characterpanelscale end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterpanelscale = value _G["CharacterFrame"]:SetScale(value) _G["CharacterModelFrame"]:SetIgnoreParentScale(false) end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterpanelscale = value
+									_G["CharacterFrame"]:SetScale(value)
+									if _G["CharacterModelFrame"] then
+										_G["CharacterModelFrame"]:SetIgnoreParentScale(false)
+									else
+										_G["CharacterModelScene"]:SetIgnoreParentScale(false)
+									end
+								end,
 							},
 							gapmodelcam1 = {
 								order = 147,
@@ -10310,6 +10374,26 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.raid end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.raid = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							shadowsenableminimap = {
+								order = 4,
+								name = MINIMAP_LABEL,
+								type = "toggle",
+								desc = L["Add Shadows to the Minimap"],
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.minimap end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.minimap = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							shadowsenablechat = {
+								order = 4,
+								name = CHAT_LABEL,
+								type = "toggle",
+								desc = L["Add Shadows to the Chat Frames"],
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.chat end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.chat = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header845 = {
 								order = 98,
