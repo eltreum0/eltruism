@@ -289,8 +289,8 @@ function ElvUI_EltreumUI:Anchors()
 				tracker:SetMovable(true)
 				tracker:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <3
 			end)
-		end
 
+		end
 	end
 end
 
@@ -457,6 +457,12 @@ function ElvUI_EltreumUI:FixChatToggles()
 		]]
 		_G.LeftChatToggleButton:SetAlpha(1)
 		_G.LeftChatToggleButton:Show()
+
+		--nice but the fix datatext button should solve it already
+		--local buttonwidth = _G.RightChatToggleButton:GetWidth()
+		--local width = GetScreenWidth()
+		--E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2 + math.ceil(width - (buttonwidth * 2))
+		--E:UpdateDataTexts()
 
 		--[[
 			_G.LeftChatToggleButton:SetPoint('TOPRIGHT', _G.DTPanelEltruismMover, 'TOPLEFT', 0, 0)
