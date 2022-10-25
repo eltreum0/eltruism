@@ -1228,3 +1228,5 @@ L["Text Y offset"] = "Text Y-Versatz"
 L["Add Shadows to BigWigs Bars"] = true
 L["Add Shadows to the Minimap"] = true
 L["Add Shadows to the Chat Frames"] = true
+L["Debuff Aura Border X offset"] = true
+L["Debuff Aura Border Y offset"] = true
