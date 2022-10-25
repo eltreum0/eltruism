@@ -273,6 +273,7 @@ function ElvUI_EltreumUI:ActionPagingSwap()
 				E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;[stance:1] 7;  [stance:2] 8; [stance:3] 9;"
 				E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11; [bonusbar:1] 7;"
 			end
+
 			E.db["actionbar"]["bar1"]["paging"]["DEATHKNIGHT"] = ""
 			E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] = ""
 			E.db["actionbar"]["bar1"]["paging"]["DRUID"] = ""
