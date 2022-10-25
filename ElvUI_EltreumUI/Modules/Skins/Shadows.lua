@@ -19,6 +19,33 @@ function ElvUI_EltreumUI:Shadows()
 		local EltruismBlizzShadows = CreateFrame("Frame")
 		EltruismBlizzShadows:RegisterEvent("ADDON_LOADED")
 		EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
+			if (arg == "Blizzard_GenericTraitUI") or IsAddOnLoaded("Blizzard_GenericTraitUI") then
+				if _G.GenericTraitFrame then
+					_G.GenericTraitFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GenericTraitFrame.shadow) end
+				end
+			end
+			if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then
+				if _G.ClassTalentFrame then
+					_G.ClassTalentFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClassTalentFrame.shadow) end
+					if _G.ClassTalentFrame.TabSystem then
+						for i = 1, _G.ClassTalentFrame.TabSystem:GetNumChildren() do
+							local tab = select(i, _G.ClassTalentFrame.TabSystem:GetChildren())
+							if tab and tab.backdrop then
+								tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(tab.backdrop.shadow) end
+							end
+						end
+					end
+				end
+			end
+			if (arg == "Blizzard_OrderHallUI") or IsAddOnLoaded("Blizzard_OrderHallUI") then
+				if _G.OrderHallCommandBar then
+					_G.OrderHallCommandBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.OrderHallCommandBar.shadow) end
+				end
+			end
 			if (arg == "Blizzard_ArchaeologyUI") or IsAddOnLoaded("Blizzard_ArchaeologyUI") then
 				if _G.ArcheologyDigsiteProgressBar then
 					_G.ArcheologyDigsiteProgressBar.FillBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -124,6 +151,18 @@ function ElvUI_EltreumUI:Shadows()
 							_G.InspectFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrame.shadow) end
 						end
+						if _G.InspectFrameTab1 and _G.InspectFrameTab1.backdrop and not _G.InspectFrameTab1.backdrop.shadow then
+							_G.InspectFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab1.backdrop.shadow) end
+						end
+						if _G.InspectFrameTab2 and _G.InspectFrameTab2.backdrop and not _G.InspectFrameTab2.backdrop.shadow then
+							_G.InspectFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab2.backdrop.shadow) end
+						end
+						if _G.InspectFrameTab3 and _G.InspectFrameTab3.backdrop and not _G.InspectFrameTab3.backdrop.shadow then
+							_G.InspectFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab3.backdrop.shadow) end
+						end
 					else
 						if _G.InspectFrame and _G.InspectFrame.backdrop and not _G.InspectFrame.backdrop.shadow then
 							_G.InspectFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -211,13 +250,27 @@ function ElvUI_EltreumUI:Shadows()
 			_G.BonusRollFrame,
 			_G.ItemRefTooltip,
 			_G.CinematicFrameCloseDialog,
+			_G.OrderHallCommandBar,
+			_G.ProfessionsFrame,
 			_G.GhostFrameContentsFrame,
+			_G.SettingsPanel,
+			_G.ExpansionLandingPage,
 			--_G.ImmersionFrame.TalkBox,
 		}
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then
 				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+			end
+		end
+
+		if _G.ProfessionsFrame and _G.ProfessionsFrame.TabSystem then
+			for i = 1, _G.ProfessionsFrame.TabSystem:GetNumChildren() do
+				local tab = select(i, _G.ProfessionsFrame.TabSystem:GetChildren())
+				if tab and tab.backdrop then
+					tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(tab.backdrop.shadow) end
+				end
 			end
 		end
 
@@ -245,7 +298,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		if E.private["general"]["minimap"]["enable"] and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.minimapborder) then
+		if E.private["general"]["minimap"]["enable"] and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.minimapborder) and E.db.ElvUI_EltreumUI.skins.shadow.minimap then
 			local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
 			local Minimapsizex, Minimapsizey = _G["Minimap"]:GetSize()
 			MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
@@ -430,15 +483,43 @@ function ElvUI_EltreumUI:Shadows()
 								_G.CommunitiesFrame.GuildInfoTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.GuildInfoTab.backdrop.shadow) end
 							end
+							if _G.ClubFinderGuildFinderFrame then
+								if _G.ClubFinderGuildFinderFrame.ClubFinderSearchTab and _G.ClubFinderGuildFinderFrame.ClubFinderSearchTab.backdrop and not _G.ClubFinderGuildFinderFrame.ClubFinderSearchTab.backdrop.shadow then
+									_G.ClubFinderGuildFinderFrame.ClubFinderSearchTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClubFinderGuildFinderFrame.ClubFinderSearchTab.backdrop.shadow) end
+								end
+								if _G.ClubFinderGuildFinderFrame.ClubFinderPendingTab and _G.ClubFinderGuildFinderFrame.ClubFinderPendingTab.backdrop and not _G.ClubFinderGuildFinderFrame.ClubFinderPendingTab.backdrop.shadow then
+									_G.ClubFinderGuildFinderFrame.ClubFinderPendingTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClubFinderGuildFinderFrame.ClubFinderPendingTab.backdrop.shadow) end
+								end
+							end
+							if _G.ClubFinderCommunityAndGuildFinderFrame then
+								if _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab and _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop and not _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop.shadow then
+									_G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop.shadow) end
+								end
+								if _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderPendingTab and _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderPendingTab.backdrop and not _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderPendingTab.backdrop.shadow then
+									_G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderPendingTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderPendingTab.backdrop.shadow) end
+								end
+							end
 						end)
 					end
 				end
 				if (arg == "Blizzard_AchievementUI") or IsAddOnLoaded("Blizzard_AchievementUI") then
 					_G.AchievementFrame:HookScript("OnShow", function()
-						if _G.AchievementFrame and _G.AchievementFrame.backdrop and not _G.AchievementFrame.backdrop.shadow then
-							_G.AchievementFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AchievementFrame.backdrop.shadow) end
+						if E.Retail then
+							if _G.AchievementFrame and not _G.AchievementFrame.shadow then
+								_G.AchievementFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AchievementFrame.shadow) end
+							end
+						else
+							if _G.AchievementFrame and _G.AchievementFrame.backdrop and not _G.AchievementFrame.backdrop.shadow then
+								_G.AchievementFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AchievementFrame.backdrop.shadow) end
+							end
 						end
+
 					end)
 					_G.AchievementFrameTab1:HookScript("OnShow", function()
 						if _G.AchievementFrameTab1 and _G.AchievementFrameTab1.backdrop and not _G.AchievementFrameTab1.backdrop.shadow then
@@ -1469,7 +1550,7 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		--chat
-		if not (E.db.ElvUI_EltreumUI.borders.chatborder and E.db.ElvUI_EltreumUI.borders.borders) then
+		if E.db.ElvUI_EltreumUI.skins.shadow.chat and not (E.db.ElvUI_EltreumUI.borders.chatborder and E.db.ElvUI_EltreumUI.borders.borders) then
 			local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
 			local rightsizex, rightsizey = _G["RightChatMover"]:GetSize()
 			RightChatShadow:SetSize(rightsizex, rightsizey)

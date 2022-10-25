@@ -39,6 +39,9 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 			targetcastbar.Spark_:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
 			targetcastbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
 			targetcastbar.Spark_:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
+			if not E.db.unitframe.units.target.castbar.reverse then
+				targetcastbar.Spark_:SetTexCoord(1, 0, 0, 1)
+			end
 		end
 	end
 

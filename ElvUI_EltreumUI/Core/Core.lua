@@ -140,13 +140,13 @@ function ElvUI_EltreumUI:ResolutionOutline()
 		ElvUI_EltreumUI:Print(L["4K resolution detected, setting fonts to default mode."])
 		ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	elseif width == 2560 then
-		ElvUI_EltreumUI:SetupFontsOutlineOutline()
+		ElvUI_EltreumUI:SetupFontsOutlineCustom("OUTLINE")
 		ElvUI_EltreumUI:Print(L["1440p resolution detected, setting fonts to outline mode."])
 	elseif width == 1920 then
-		ElvUI_EltreumUI:SetupFontsOutlineOutline()
+		ElvUI_EltreumUI:SetupFontsOutlineCustom("OUTLINE")
 		ElvUI_EltreumUI:Print(L["1080p resolution detected, setting fonts to outline mode."])
 	else
-		ElvUI_EltreumUI:SetupFontsOutlineOutline()
+		ElvUI_EltreumUI:SetupFontsOutlineCustom("OUTLINE")
 		ElvUI_EltreumUI:Print(L["Fonts were set to Outline due to your resolution."])
 	end
 end
@@ -234,7 +234,11 @@ function ElvUI_EltreumUI:Anchors()
 	else
 		E:CreateMover(UIErrorsFrame, "MoverUIERRORS", "UI Error Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
 		if E.db.ElvUI_EltreumUI.skins.blizzframes.errorframe then
-			UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, E.db.general.fontStyle)
+			if E.Retail and E.db.general.fontStyle == "NONE" then
+				UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, "")
+			else
+				UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, E.db.general.fontStyle)
+			end
 		end
 	end
 
@@ -266,6 +270,25 @@ function ElvUI_EltreumUI:Anchors()
 		if E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss then
 			_G.BossBanner:UnregisterAllEvents()
 			E:DisableMover('BossBannerMover')
+		end
+
+		if not _G["ObjectiveFrameHolder"] then --TODO DRAGONFLIGHT
+			local B = E:GetModule('Blizzard')
+			local holder = CreateFrame('Frame', 'ObjectiveFrameHolder', E.UIParent)
+			holder:Point('TOPRIGHT', E.UIParent, 'TOPRIGHT', -135, -300)
+			holder:Size(130, 22)
+
+			E:CreateMover(holder, 'ObjectiveFrameMover', L["Objective Frame"], nil, nil, B.HandleMawBuffsFrame, nil, nil, 'ALL,general,blizzUIImprovements')
+			holder:SetAllPoints(_G.ObjectiveFrameMover)
+
+			E:Delay(0, function()
+				local tracker = _G.ObjectiveTrackerFrame
+				tracker:SetClampedToScreen(false)
+				tracker:ClearAllPoints()
+				tracker:Point('TOP', holder, 'TOP')
+				tracker:SetMovable(true)
+				tracker:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <3
+			end)
 		end
 
 	end
@@ -486,6 +509,15 @@ local isMenuExpanded = false
 local EltruismGameMenu = CreateFrame("Frame")
 EltruismGameMenu:RegisterEvent("PLAYER_ENTERING_WORLD")
 EltruismGameMenu:SetScript("OnEvent", function()
+
+	--use elvui moveui instead of blizzard edit mode
+	--[[if _G.GameMenuButtonEditMode then --TODO DRAGONFLIGHT
+		_G.GameMenuButtonEditMode:SetScript("OnClick", function()
+			E:ToggleMoveMode()
+			HideUIPanel(_G["GameMenuFrame"])
+		end)
+	end]]
+
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu and isMenuExpanded == false then
 		--EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:14:14:0:0:64:64:5:59:5:59|t".. ElvUI_EltreumUI.Name)
 		EltruismMenuButton:SetText(ElvUI_EltreumUI.Name)

@@ -460,7 +460,7 @@ function ElvUI_EltreumUI:QuestItem()
 						if EnhancedShadows then EnhancedShadows:RegisterShadow(b.shadow) end
 					end
 				end
-				b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
+				b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square") --check 10.0 TODO
 				b:RegisterForClicks("LeftButtonUp","RightButtonUp")
 				b:SetScript("OnEnter", function (self)
 					GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
