@@ -11,6 +11,7 @@ Added toggles for BigWigs, Chat and Minimap shadows\
 Added options to change the scale of the Talents and Profession frames in Retail\
 Added Dispel Illusion sound ("Something is not quite right" from Suramar)\
 Added a new Texture option for Light Mode, "NONE", which will disable Light Mode Textures\
+Added an option to set Debuff Borders separate from Buffs\
 Updated some files to better load functions\
 Updated [eltruism:leader] tag to also show main tank and assist icons\
 Updated map shadows in Wrath/Classic to check for Leatrix Maps due to it changing the skin\
