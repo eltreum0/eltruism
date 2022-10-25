@@ -1225,3 +1225,6 @@ L["Donators"] = "Spender"
 L["Gradient Archeology Digsite Bar"] = "Archologie Ausgrabungsleisten Farbverlauf"
 L["Text X offset"] = "Text X-Versatz"
 L["Text Y offset"] = "Text Y-Versatz"
+L["Add Shadows to BigWigs Bars"] = true
+L["Add Shadows to the Minimap"] = true
+L["Add Shadows to the Chat Frames"] = true
