@@ -440,13 +440,12 @@ function ElvUI_EltreumUI:QuestItem()
 			-- OnClick
 			--local function Button_OnClick(self,button, down)
 			local function Button_OnClick(self, _, _)
+			--print(button,down)
 				-- Handle Modified Click
 				if (HandleModifiedItemClick(self.link)) then
 					return
-				-- Ignore
-				elseif (IsShiftKeyDown()) then
-					self:RequestUpdate()
 				end
+				self:Click("LeftButton", true)
 			end
 
 			-- Make Loot Button
@@ -542,6 +541,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 				btn:SetAttribute("bag",bag)
 				btn:SetAttribute("slot",slot)
+				btn:RegisterForClicks("AnyDown", "AnyUp")
 
 				if (index > 1) then
 					btn:ClearAllPoints()
