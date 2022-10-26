@@ -32,6 +32,10 @@ EltruismTimeToArrive:SetParent(_G["SuperTrackedFrame"])
 SuperTrackedFrame.DistanceText:SetTextColor(1,1,1)
 SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 
+if _G["MinimapCluster"] then
+	_G["MinimapCluster"].Tracking.Button:Hide()
+end
+
 --set the throttle
 local ONUPDATE_INTERVAL = 1
 local TimeSinceLastUpdate = 0
