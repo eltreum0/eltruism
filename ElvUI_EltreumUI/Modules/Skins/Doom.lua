@@ -256,8 +256,10 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 					local alpha = E.db.ElvUI_EltreumUI.skins.doom.maxAlpha
 					if (runtimer < E.db.ElvUI_EltreumUI.skins.doom.fadeInTime) then
 						alpha = E.db.ElvUI_EltreumUI.skins.doom.maxAlpha * (runtimer / E.db.ElvUI_EltreumUI.skins.doom.fadeInTime)
+						if alpha > 1 then alpha = 1 end
 					elseif (runtimer >= E.db.ElvUI_EltreumUI.skins.doom.fadeInTime + E.db.ElvUI_EltreumUI.skins.doom.holdTime) then
 						alpha = E.db.ElvUI_EltreumUI.skins.doom.maxAlpha - ( E.db.ElvUI_EltreumUI.skins.doom.maxAlpha * ((runtimer - E.db.ElvUI_EltreumUI.skins.doom.holdTime - E.db.ElvUI_EltreumUI.skins.doom.fadeInTime) / E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime))
+						if alpha < 0 then alpha = 0 end
 					end
 					DCP:SetAlpha(alpha)
 					DCP.shadow:SetAlpha(alpha)
