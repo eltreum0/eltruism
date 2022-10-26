@@ -1530,11 +1530,11 @@ function ElvUI_EltreumUI:Shadows()
 
 		--bags
 		if E.private.bags.enable then
-			if not _G.ElvUI_ContainerFrame.shadow then
+			if _G.ElvUI_ContainerFrame and not _G.ElvUI_ContainerFrame.shadow then
 				_G["ElvUI_ContainerFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvUI_ContainerFrame"].shadow) end
 			end
-			if not _G.ElvUI_BankContainerFrame.shadow then
+			if _G.ElvUI_BankContainerFrame and not _G.ElvUI_BankContainerFrame.shadow then
 				_G["ElvUI_BankContainerFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvUI_BankContainerFrame"].shadow) end
 			end
