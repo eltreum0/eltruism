@@ -253,7 +253,7 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 							DCPT:SetVertexColor(unpack(petOverlay))
 						end
 					end
-					local alpha = E.db.ElvUI_EltreumUI.skins.doom.maxAlpha
+					local alpha = E.db.ElvUI_EltreumUI.skins.doom.maxAlpha or 0.7
 					if (runtimer < E.db.ElvUI_EltreumUI.skins.doom.fadeInTime) then
 						alpha = E.db.ElvUI_EltreumUI.skins.doom.maxAlpha * (runtimer / E.db.ElvUI_EltreumUI.skins.doom.fadeInTime)
 						if alpha > 1 then alpha = 1 end
