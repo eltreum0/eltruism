@@ -56,12 +56,12 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			addonname = "MerathilisUI"
 		end
 
-		if E.db.ElvUI_EltreumUI.skins.instances.enable and E.db.mui.maps.minimap.instanceDifficulty.enable then
+		--[[if E.db.ElvUI_EltreumUI.skins.instances.enable and E.db.mui.maps.minimap.instanceDifficulty.enable then
 			E.db.mui.maps.minimap.instanceDifficulty.enable = false
 			E.db.ElvUI_EltreumUI.skins.instances.enable = true
 			compatibilityran = true
 			addonname = "MerathilisUI"
-		end
+		end]]
 
 		if E.db.ElvUI_EltreumUI.loot.loottext.combatindicator and E.db.mui.CombatAlert.enable then
 			E.db.mui.CombatAlert.enable = false
