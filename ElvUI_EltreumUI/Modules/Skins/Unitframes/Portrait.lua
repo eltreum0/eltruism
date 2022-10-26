@@ -358,6 +358,7 @@ local modelsRotate = {
 	[4217881] = true, --Scalesworn Guardian
 	[126483] = true, --nightelf wisp
 	[799941] = true, --animated warrior isle of thunder
+	[123730] = true, --pink elekk
 }
 
 --set portrait rotation based on target being npc or not
