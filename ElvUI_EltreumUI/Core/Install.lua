@@ -35,7 +35,7 @@ ElvUI_EltreumUI.InstallerData = {
 			ElvUI_EltreumUI:HidePopups(0.1)
 			if not _G.PluginInstallFrame.gaptexture then
 				_G.PluginInstallFrame.gaptexture = _G.PluginInstallFrame:CreateTexture()
-				_G.PluginInstallFrame.gaptexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\SquareMask")
+				_G.PluginInstallFrame.gaptexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\square_mask.tga")
 				_G.PluginInstallFrame.gaptexture:SetVertexColor(0, 0, 0, 1)
 				_G.PluginInstallFrame.gaptexture:SetPoint("TOPLEFT", _G.PluginInstallFrame, "TOPRIGHT", 0, 0)
 				_G.PluginInstallFrame.gaptexture:SetPoint("BOTTOMLEFT", _G.PluginInstallFrame, "BOTTOMRIGHT",0,0)

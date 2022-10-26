@@ -4,11 +4,14 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local IsPlayerSpell = _G.IsPlayerSpell
 local GetPlayerAuraBySpellID = _G.GetPlayerAuraBySpellID --TODO GetPlayerAuraBySpellID DRAGONFLIGHT
+local C_UnitAuras = _G.C_UnitAuras
 local UnitCastingInfo = _G.UnitCastingInfo
 local GetSpellPowerCost = _G.GetSpellPowerCost
 local next = _G.next
 local UnitPowerMax = _G.UnitPowerMax
 local UnitPower = _G.UnitPower
+local UnitPowerType = _G.UnitPowerType
+local rad = _G.UnitPowerType
 local GetSpecialization = _G.GetSpecialization
 local GetSpecializationInfo = _G.GetSpecializationInfo
 local UnitExists = _G.UnitExists
@@ -16,6 +19,7 @@ local UnitCanAttack = _G.UnitCanAttack
 local C_NamePlate = _G.C_NamePlate
 local GetShapeshiftForm = _G.GetShapeshiftForm
 local stance
+local CreateVector3D = _G.CreateVector3D
 
 --Setup Power Bar, Prediction and Text
 local EltreumPowerAnchor
@@ -94,7 +98,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 			mindflay = 22
 		end
 		if E.Retail then
-			druideclipse = GetPlayerAuraBySpellID(48517) --might be removed in dragonflight
+			druideclipse = C_UnitAuras.GetPlayerAuraBySpellID(48517) --might be removed in dragonflight
 			if IsPlayerSpell(114107) and druideclipse ~= nil then
 				druidwrath = 9
 			end
@@ -914,7 +918,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						powerbareffect:SetModel(1715069) --better for retail, inspired by asakawa's bar model
 						--powerbareffect:SetModel(1630153)
 						powerbareffect:MakeCurrentCameraCustom()
-						powerbareffect:SetTransform(-0.035, 0, 0, rad(270), 0, 0, 0.785)
+						powerbareffect:SetTransform(CreateVector3D(-0.035, 0, 0),CreateVector3D(rad(270), 0, 0),0.785)
 						powerbareffect:SetPortraitZoom(1)
 						powerbareffect:SetAlpha(0.4) --might do this
 					else

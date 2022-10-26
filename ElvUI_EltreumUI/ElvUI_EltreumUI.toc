@@ -1,4 +1,4 @@
-## Interface: 90207
+## Interface: 100000
 ## Author: Eltreum
 ## Version: 3.5.0
 ## Title: |cff1784d1ElvUI|r Eltruism

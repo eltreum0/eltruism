@@ -49,7 +49,7 @@ P.ElvUI_EltreumUI = {
 		classicarmoryautostats = false,
 		charactermodelcam = {
 			zoomretail = -0.2,
-			xretail = 0,
+			xretail = 0.8,
 			yretail = 0,
 			zoomclassic = -0.2,
 			xclassic = 0,
@@ -137,6 +137,9 @@ P.ElvUI_EltreumUI = {
 			npportraits = false,
 			nppower = false,
 			npcastbar = false,
+			minimap = true,
+			chat = true,
+			bigwigs = true,
 		},
 		meetinghorn = false,
 		pallypower = false,
@@ -199,6 +202,7 @@ P.ElvUI_EltreumUI = {
 			ttsvolume = 100,
 		},
 		ilvltooltip = true,
+		professionscale = 1,
 	},
 
 	cursors = {
@@ -445,6 +449,8 @@ P.ElvUI_EltreumUI = {
 		auraborder = true,
 		aurasizex = 54,
 		aurasizey = 54,
+		debuffaurasizex = 54,
+		debuffaurasizey = 54,
 
 		chatborder = true,
 		leftchatborderx = 432,

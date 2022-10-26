@@ -182,7 +182,7 @@ local function ColorSysMsgs(_, event, message, ...)
 
 	if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 		local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
-		if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" then
+		if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == nil then
 			local roleIcons = {
 				TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
 				HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
@@ -267,7 +267,7 @@ ChatFrame_AddMessageEventFilter("PLAYER_ROLES_ASSIGNED", ColorSysMsgs)
 function ElvUI_EltreumUI:ChatRoleSwapIcons()
 	if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 		local UF = E:GetModule('UnitFrames')
-		if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" then
+		if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == nil then
 			UF.RoleIconTextures = {
 				TANK = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga',
 				HEALER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga',
@@ -369,17 +369,14 @@ EltruismHideTalkingHead:RegisterEvent('ADDON_LOADED')
 function ElvUI_EltreumUI:EltruismHideTalkingHead()
 	if E.db.ElvUI_EltreumUI.skins.hidetalkinghead then
 		EltruismHideTalkingHead:SetScript('OnEvent', function(_, event)
-			if event == 'PLAYER_ENTERING_WORLD' or event == 'ADDON_LOADED' then
+			if event == 'PLAYER_ENTERING_WORLD' or event == 'ADDON_LOADED' or IsAddOnLoaded("Blizzard_TalkingHeadUI") then
 				if E.Retail then
-					if not IsAddOnLoaded("Blizzard_TalkingHeadUI") then
-						UIParentLoadAddOn("Blizzard_TalkingHeadUI")
-					end
-					if IsAddOnLoaded('Blizzard_TalkingHeadUI') then
-						local TalkingHeadFrame = _G.TalkingHeadFrame
-						hooksecurefunc('TalkingHeadFrame_PlayCurrent', function()
+					local TalkingHeadFrame = _G.TalkingHeadFrame
+					if TalkingHeadFrame then
+						hooksecurefunc(_G["TalkingHeadFrame"], "PlayCurrent", function()
 							TalkingHeadFrame:Hide()
 						end)
-						hooksecurefunc('TalkingHeadFrame_Reset', function()
+						hooksecurefunc(_G["TalkingHeadFrame"], "Reset", function()
 							TalkingHeadFrame:Hide()
 						end)
 						EltruismHideTalkingHead:UnregisterAllEvents()
@@ -520,7 +517,7 @@ if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 
 	if IsAddOnLoaded("ElvUI_WindTools") then
 		local CT = WT:GetModule("ChatText")
-		if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" then
+		if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == nil then
 			local roleIcons = {
 				TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
 				HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
@@ -595,7 +592,7 @@ if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 		end
 
 		local function RoleIcons()
-			if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" then
+			if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == nil then
 				local roleIcons = {
 					TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga', sizeString),
 					HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga', sizeString),
