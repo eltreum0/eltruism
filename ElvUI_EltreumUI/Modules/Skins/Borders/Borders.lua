@@ -798,9 +798,9 @@ function ElvUI_EltreumUI:Borders()
 			MinimapBorder:SetFrameLevel(2)
 
 			if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
-				MinimapBorder:SetPoint("CENTER", _G["MinimapBackdrop"] ,"CENTER", 0, 0)
+				MinimapBorder:SetPoint("CENTER", _G["MinimapBackdrop"],"CENTER", 0, 0)
 			else
-				MinimapBorder:SetPoint("CENTER", _G["MMHolder"] ,"CENTER", 0, 0)
+				MinimapBorder:SetPoint("CENTER", _G["ElvUI_MinimapHolder"],"CENTER", 0, 0)
 			end
 
 			if IsAddOnLoaded("ElvUI_SLE") and E.private["sle"]["minimap"]["rectangle"] == true then --Shadow and Light Rectangle Minimap

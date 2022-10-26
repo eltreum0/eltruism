@@ -185,12 +185,14 @@ function ElvUI_EltreumUI:Shadows()
 			end
 			if E.Retail then
 				if (arg == "Blizzard_AuctionHouseUI") or IsAddOnLoaded("Blizzard_AuctionHouseUI") then
-					_G.AuctionHouseFrame:HookScript("OnShow", function()
-						if _G.AuctionHouseFrame and not _G.AuctionHouseFrame.shadow then
-							_G.AuctionHouseFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionHouseFrame.shadow) end
-						end
-					end)
+					if _G.AuctionHouseFrame then
+						_G.AuctionHouseFrame:HookScript("OnShow", function()
+							if _G.AuctionHouseFrame and not _G.AuctionHouseFrame.shadow then
+								_G.AuctionHouseFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionHouseFrame.shadow) end
+							end
+						end)
+					end
 				end
 			elseif E.Wrath or E.TBC or E.Classic then
 				if (arg == "Blizzard_AuctionUI") or IsAddOnLoaded("Blizzard_AuctionUI") then
@@ -1528,11 +1530,11 @@ function ElvUI_EltreumUI:Shadows()
 
 		--bags
 		if E.private.bags.enable then
-			if not _G.ElvUI_ContainerFrame.shadow then
+			if _G.ElvUI_ContainerFrame and not _G.ElvUI_ContainerFrame.shadow then
 				_G["ElvUI_ContainerFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvUI_ContainerFrame"].shadow) end
 			end
-			if not _G.ElvUI_BankContainerFrame.shadow then
+			if _G.ElvUI_BankContainerFrame and not _G.ElvUI_BankContainerFrame.shadow then
 				_G["ElvUI_BankContainerFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvUI_BankContainerFrame"].shadow) end
 			end

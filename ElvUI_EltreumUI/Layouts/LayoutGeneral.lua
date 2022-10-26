@@ -175,13 +175,18 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["general"]["minimap"]["icons"]["mail"]["texture"] = "Mail1"
 		E.db["general"]["minimap"]["icons"]["mail"]["xOffset"] = 0
 
+		E.db["general"]["minimap"]["icons"]["mail"]["yOffset"] = 0
 		if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
-			E.db["general"]["minimap"]["icons"]["mail"]["yOffset"] = -10
 			E.db["general"]["minimap"]["icons"]["queueStatus"]["yOffset"] = 13
 			E.db["movers"]["DTPanelEltruismDataTextMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,0"
+			if not E.Retail then
+				E.db["general"]["minimap"]["icons"]["mail"]["yOffset"] = -10
+			end
 		else
 			E.db["general"]["minimap"]["icons"]["queueStatus"]["yOffset"] = 3
-			E.db["general"]["minimap"]["icons"]["mail"]["yOffset"] = -27
+			if not E.Retail then
+				E.db["general"]["minimap"]["icons"]["mail"]["yOffset"] = -27
+			end
 		end
 
 		E.db["general"]["minimap"]["locationFont"] = "Kimberley"
