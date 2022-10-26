@@ -74,7 +74,11 @@ end
 function ElvUI_EltreumUI:MinimapHide(event)
 	if E.db.ElvUI_EltreumUI.otherstuff.mapcombathide then
 		if event == 'PLAYER_REGEN_DISABLED' then
-			Minimap:Hide()
+			if not E.Retail then
+				Minimap:Hide()
+			else
+				_G.MinimapCluster:Hide()
+			end
 			if E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura then
 				E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-4"
 				E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-101"
@@ -82,7 +86,11 @@ function ElvUI_EltreumUI:MinimapHide(event)
 				E:SetMoverPoints("DebuffsMover")
 			end
 		elseif event == 'PLAYER_REGEN_ENABLED' then
-			Minimap:Show()
+			if not E.Retail then
+				Minimap:Show()
+			else
+				_G.MinimapCluster:Show()
+			end
 			if E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura then
 				E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-4"
 				E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-101"
