@@ -39,6 +39,10 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 				end
+				if _G.ClassTalentLoadoutImportDialog then
+					_G.ClassTalentLoadoutImportDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClassTalentLoadoutImportDialog.shadow) end
+				end
 			end
 			if (arg == "Blizzard_OrderHallUI") or IsAddOnLoaded("Blizzard_OrderHallUI") then
 				if _G.OrderHallCommandBar then
