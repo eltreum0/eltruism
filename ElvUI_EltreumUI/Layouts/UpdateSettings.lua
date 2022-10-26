@@ -77,6 +77,7 @@ function ElvUI_EltreumUI:UpdateSettings()
 
 	if E.Retail then
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = true --while the issue is not resolved
+		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "NONE" --same
 	end
 
 	-- Skins
