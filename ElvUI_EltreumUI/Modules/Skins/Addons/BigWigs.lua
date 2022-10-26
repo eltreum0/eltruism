@@ -27,3 +27,4 @@ function ElvUI_EltreumUI:EltruismBigWigs()
 	end
 end
 S:AddCallbackForAddon('BigWigs_Plugins', "EltruismBigWigs", ElvUI_EltreumUI.EltruismBigWigs)
+--S:AddCallbackForAddon('Capping', "EltruismBigWigs", ElvUI_EltreumUI.EltruismBigWigs)
