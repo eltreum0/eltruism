@@ -19,7 +19,7 @@ local unitframegradients = {
 -- Setup Windtools
 function ElvUI_EltreumUI:GetWindToolsProfile()
 	if IsAddOnLoaded("ElvUI_WindTools") then
-		E.private["WT"]["combat"]["talentManager"]["pvpTalent"] = true
+		--E.private["WT"]["combat"]["talentManager"]["pvpTalent"] = true
 		--E.global["WT"]["core"]["loginMessage"] = false
 		E.global["WT"]["core"]["loginMessage"] = false --changed in 2.43
 		E.private["WT"]["maps"]["minimapButtons"]["backdrop"] = false
