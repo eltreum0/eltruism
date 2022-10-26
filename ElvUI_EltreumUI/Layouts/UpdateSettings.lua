@@ -75,7 +75,9 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "V2"
 	E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect = true
 
-	E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = true --while the issue is not resolved
+	if E.Retail then
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = true --while the issue is not resolved
+	end
 
 	-- Skins
 	E.db.ElvUI_EltreumUI.skins.levelbossinstance = true
