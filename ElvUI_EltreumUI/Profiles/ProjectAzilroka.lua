@@ -35,7 +35,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["MouseoverAuras"]["Enable"] = false
 	PA.db["MovableFrames"]["Enable"] = true
 	PA.db["OzCooldowns"]["Enable"] = false
-	PA.db["TargetSounds"]["Enable"] = true
+	PA.db["TargetSounds"]["Enable"] = false
 	PA.db["stAddonManager"]["Enable"] = true
 	PA.db["stAddonManager"]["FontSize"] = 15
 	PA.db["stAddonManager"]["NumAddOns"] = 20
