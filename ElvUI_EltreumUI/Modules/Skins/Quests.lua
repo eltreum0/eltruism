@@ -25,6 +25,7 @@ local EnhancedShadows = nil
 if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
 end
+local CreateColor = _G.CreateColor
 
 function ElvUI_EltreumUI:SkinQuests()
 
@@ -345,7 +346,7 @@ function ElvUI_EltreumUI:SkinQuests()
 										module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
 									end
 								else
-									module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g,E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b,E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b)
+									module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, CreateColor(E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g,E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b, 1), CreateColor(E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b, 1))
 								end
 								module.Header.EltruismStatusLine:SetFrameLevel(1)
 								if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not module.Header.EltruismStatusLine.shadow then
