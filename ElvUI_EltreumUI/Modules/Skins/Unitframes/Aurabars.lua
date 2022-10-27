@@ -67,6 +67,7 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 				if bar.bg then
 					if E.db.unitframe.colors.transparentAurabars then
 						bar.bg:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+						bar:SetAlpha(E.db.general.backdropfadecolor.a)
 						--bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 					end
 					bar.backdrop:SetBackdropColor(0,0,0,0)
