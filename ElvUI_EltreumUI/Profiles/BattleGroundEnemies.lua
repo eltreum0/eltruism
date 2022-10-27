@@ -18,63 +18,94 @@ function ElvUI_EltreumUI:GetBattleGroundEnemiesProfile()
 					0, -- [2]
 					0, -- [3]
 				},
-				["Enemies"] = {
+				["Allies"] = {
 					["40"] = {
-						["Position_Y"] = 610,
-						["RoleIcon_VerticalPosition"] = 4,
-						["Name_Outline"] = "OUTLINE",
-						["PowerBar_Texture"] = "ElvUI Norm",
-						["Framescale"] = 0.75,
-						["HealthBar_Texture"] = "ElvUI Norm",
+						["RoleIcon_VerticalPosition"] = 5,
+						["Auras_Enabled"] = true,
+						["DrTracking_GrowDirection"] = "leftwards",
+						["HealthBar_Texture"] = "ElvUI Blank",
 						["HealthBar_Background"] = {
 							nil, -- [1]
 							nil, -- [2]
 							nil, -- [3]
 							1, -- [4]
 						},
-						["NumericTargetindicator_Outline"] = "OUTLINE",
-						["Position_X"] = 1000,
-						["DrTracking_Container_Color"] = {
-							[3] = 0,
-						},
-						["RoleIcon_Size"] = 15,
-						["HealthBar_HealthPrediction_Enabled"] = true,
 						["PowerBar_Background"] = {
 							nil, -- [1]
 							nil, -- [2]
 							nil, -- [3]
 							1, -- [4]
 						},
-					},
-					["LevelText_EnableTextshadow"] = true,
-					["RangeIndicator_Everything"] = true,
-					["LevelText_Fontsize"] = 14,
-					["5"] = {
-						["Position_Y"] = 519.1110821469629,
-						["Name_Outline"] = "OUTLINE",
-						["PowerBar_Texture"] = "ElvUI Blank",
-						["BarWidth"] = 250,
-						["HealthBar_Texture"] = "ElvUI Norm",
-						["NumericTargetindicator_Outline"] = "OUTLINE",
-						["Position_X"] = 1116.08794380349,
-						["PowerBar_Enabled"] = true,
-						["BarHeight"] = 35,
-						["Enabled"] = false,
+						["DrTracking_Container_Color"] = {
+							[3] = 0,
+						},
 						["HealthBar_HealthPrediction_Enabled"] = true,
+						["Name_Outline"] = "OUTLINE",
+						["NumericTargetindicator_Outline"] = "OUTLINE",
+						["ButtonModules"] = {
+							["healthBar"] = {
+								["Texture"] = "ElvUI Norm1",
+							},
+						},
+						["PowerBar_Texture"] = "ElvUI Norm",
+						["Position_Y"] = 610,
+						["Framescale"] = 0.75,
+						["Position_X"] = 200,
 					},
+					["RangeIndicator_Range"] = 34191,
+					["LevelText_Fontsize"] = 14,
 					["ShowRealmnames"] = false,
 					["15"] = {
-						["Position_Y"] = 630.0000249809018,
-						["Trinket_Width"] = 30,
-						["BarVerticalSpacing"] = 5,
+						["RacialFiltering_Filterlist"] = {
+							[26297] = true,
+							[107079] = true,
+							[121093] = true,
+							[50613] = true,
+							[20549] = true,
+							[59543] = true,
+							[59544] = true,
+							[68992] = true,
+							[25046] = true,
+							[59547] = true,
+							[59548] = true,
+							[202719] = true,
+							[33697] = true,
+							[59542] = true,
+							[69070] = true,
+							[155145] = true,
+							[129597] = true,
+							[33702] = true,
+							[20572] = true,
+							[59545] = true,
+							[28880] = true,
+							[20589] = true,
+							[69179] = true,
+							[7744] = true,
+							[232633] = true,
+							[58984] = true,
+							[20594] = true,
+							[59752] = true,
+							[28730] = true,
+							[80483] = true,
+						},
 						["RoleIcon_VerticalPosition"] = 6,
-						["Auras_Enabled"] = false,
-						["DrTracking_Container_OffsetX"] = -1,
-						["Name_Outline"] = "OUTLINE",
-						["PowerBar_Texture"] = "ElvUI Blank",
+						["Racial_OffsetX"] = -1,
+						["PlayerCount_EnableTextshadow"] = true,
+						["Auras_Debuffs_DebuffTypeFiltering_Enabled"] = false,
+						["DrTracking_Container_Color"] = {
+							[3] = 0,
+						},
+						["PowerBar_Enabled"] = true,
+						["PowerBar_Height"] = 6,
+						["RoleIcon_Size"] = 15,
+						["Position_Y"] = 630,
+						["Trinket_Width"] = 30,
 						["Racial_Width"] = 30,
+						["BarHeight"] = 32,
+						["Auras_Debuffs_Container_RelativePoint"] = "LEFT",
+						["Spec_Width"] = 30,
 						["ObjectiveAndRespawn_Width"] = 30,
-						["Racial_OffsetX"] = 1,
+						["HealthBar_Texture"] = "ElvUI Blank",
 						["Spec_AuraDisplay_Enabled"] = false,
 						["HealthBar_Background"] = {
 							nil, -- [1]
@@ -82,188 +113,182 @@ function ElvUI_EltreumUI:GetBattleGroundEnemiesProfile()
 							nil, -- [3]
 							1, -- [4]
 						},
+						["Auras_Debuffs_Container_RelativeTo"] = "DRContainer",
+						["Auras_Debuffs_Container_Point"] = "RIGHT",
+						["ObjectiveAndRespawn_EnableTextshadow"] = true,
+						["Name_Outline"] = "OUTLINE",
+						["PowerBar_Texture"] = "ElvUI Blank",
+						["DrTracking_GrowDirection"] = "leftwards",
+						["NumericTargetindicator_Outline"] = "OUTLINE",
+						["BarVerticalSpacing"] = 5,
+						["ButtonModules"] = {
+							["healthBar"] = {
+								["Texture"] = "ElvUI Norm1",
+							},
+							["Power"] = {
+								["Texture"] = "ElvUI Norm1",
+							},
+						},
+						["Auras_Debuffs_Size"] = 27,
+						["RacialFiltering_Enabled"] = true,
 						["PowerBar_Background"] = {
 							nil, -- [1]
 							nil, -- [2]
 							nil, -- [3]
 							1, -- [4]
 						},
-						["NumericTargetindicator_Outline"] = "OUTLINE",
-						["Spec_Width"] = 30,
-						["RacialFiltering_Enabled"] = true,
-						["Position_X"] = 999.9999776482582,
-						["RoleIcon_Size"] = 15,
-						["DrTracking_Container_Color"] = {
-							[3] = 0,
-						},
-						["PowerBar_Enabled"] = true,
-						["PowerBar_Height"] = 6,
-						["BarHeight"] = 32,
 						["HealthBar_HealthPrediction_Enabled"] = true,
-						["HealthBar_Texture"] = "ElvUI Norm",
-						["RacialFiltering_Filterlist"] = {
-							[26297] = true,
-							[107079] = true,
-							[80483] = true,
-							[50613] = true,
-							[59542] = true,
-							[59543] = true,
-							[59544] = true,
-							[68992] = true,
-							[25046] = true,
-							[59547] = true,
-							[59548] = true,
-							[121093] = true,
-							[33697] = true,
-							[20549] = true,
-							[69070] = true,
-							[59752] = true,
-							[20594] = true,
-							[33702] = true,
-							[20572] = true,
-							[58984] = true,
-							[28880] = true,
-							[20589] = true,
-							[69179] = true,
-							[7744] = true,
-							[232633] = true,
-							[59545] = true,
-							[129597] = true,
-							[155145] = true,
-							[28730] = true,
-							[202719] = true,
-						},
-						["ObjectiveAndRespawn_EnableTextshadow"] = true,
+						["Position_X"] = 200,
 					},
 					["LevelText_Enabled"] = true,
+					["5"] = {
+						["Enabled"] = false,
+						["Position_Y"] = 528.7111600573844,
+						["Position_X"] = 183.1111287196472,
+					},
 					["RangeIndicator_Alpha"] = 0.5,
 					["LevelText_Outline"] = "OUTLINE",
 				},
-				["Font"] = E.db.general.font,
+				["Font"] = "Kimberley",
 				["RBG"] = {
+					["TargetCalling_NotificationSound"] = "Warcraft 3 - Blademaster Twinblade ",
 					["TargetCalling_SetMark"] = true,
 					["EnemiesTargetingMe_Amount"] = 2,
-					["EnemiesTargetingMe_Sound"] = "! - Metal Gear Solid",
 					["EnemiesTargetingMe_Enabled"] = true,
+					["EnemiesTargetingMe_Sound"] = "! - Metal Gear Solid",
 				},
 				["Locked"] = true,
 				["lastReadVersion"] = "9.2.0.4",
-				["Allies"] = {
+				["Enemies"] = {
 					["40"] = {
-						["Position_Y"] = 610,
-						["RoleIcon_VerticalPosition"] = 5,
-						["Name_Outline"] = "OUTLINE",
+						["RoleIcon_VerticalPosition"] = 4,
 						["PowerBar_Texture"] = "ElvUI Norm",
-						["Framescale"] = 0.75,
-						["HealthBar_Texture"] = "ElvUI Blank",
+						["HealthBar_Texture"] = "ElvUI Norm",
 						["HealthBar_Background"] = {
 							nil, -- [1]
 							nil, -- [2]
 							nil, -- [3]
 							1, -- [4]
 						},
-						["NumericTargetindicator_Outline"] = "OUTLINE",
-						["Position_X"] = 200,
 						["PowerBar_Background"] = {
 							nil, -- [1]
 							nil, -- [2]
 							nil, -- [3]
 							1, -- [4]
 						},
+						["HealthBar_HealthPrediction_Enabled"] = true,
+						["Name_Outline"] = "OUTLINE",
 						["DrTracking_Container_Color"] = {
 							[3] = 0,
 						},
-						["DrTracking_GrowDirection"] = "leftwards",
-						["HealthBar_HealthPrediction_Enabled"] = true,
-						["Auras_Enabled"] = true,
+						["NumericTargetindicator_Outline"] = "OUTLINE",
+						["RoleIcon_Size"] = 15,
+						["ButtonModules"] = {
+							["healthBar"] = {
+								["Texture"] = "ElvUI Norm1",
+							},
+						},
+						["Position_Y"] = 610,
+						["Framescale"] = 0.75,
+						["Position_X"] = 1000,
 					},
-					["RangeIndicator_Range"] = 34191,
-					["RangeIndicator_Everything"] = true,
-					["LevelText_Fontsize"] = 14,
-					["5"] = {
-						["Position_Y"] = 528.7111600573844,
-						["Position_X"] = 183.1111287196472,
-						["Enabled"] = false,
-					},
+					["LevelText_EnableTextshadow"] = true,
 					["RangeIndicator_Alpha"] = 0.5,
 					["15"] = {
-						["Auras_Debuffs_Container_RelativeTo"] = "DRContainer",
-						["Auras_Debuffs_DebuffTypeFiltering_Enabled"] = false,
-						["Position_Y"] = 630,
-						["Trinket_Width"] = 30,
-						["BarVerticalSpacing"] = 5,
-						["Auras_Debuffs_Size"] = 27,
-						["PowerBar_Background"] = {
-							nil, -- [1]
-							nil, -- [2]
-							nil, -- [3]
-							1, -- [4]
-						},
 						["RoleIcon_VerticalPosition"] = 6,
-						["Auras_Debuffs_Container_RelativePoint"] = "LEFT",
-						["Name_Outline"] = "OUTLINE",
 						["PowerBar_Texture"] = "ElvUI Blank",
-						["Racial_Width"] = 30,
-						["ObjectiveAndRespawn_Width"] = 30,
-						["Racial_OffsetX"] = -1,
-						["HealthBar_Texture"] = "ElvUI Blank",
-						["HealthBar_Background"] = {
-							nil, -- [1]
-							nil, -- [2]
-							nil, -- [3]
-							1, -- [4]
-						},
-						["NumericTargetindicator_Outline"] = "OUTLINE",
-						["RacialFiltering_Enabled"] = true,
-						["Position_X"] = 200,
-						["RoleIcon_Size"] = 15,
 						["DrTracking_Container_Color"] = {
 							[3] = 0,
 						},
 						["PowerBar_Enabled"] = true,
 						["PowerBar_Height"] = 6,
+						["RoleIcon_Size"] = 15,
+						["Position_Y"] = 630.0000249809018,
+						["Trinket_Width"] = 30,
+						["Racial_Width"] = 30,
 						["BarHeight"] = 32,
-						["DrTracking_GrowDirection"] = "leftwards",
-						["PlayerCount_EnableTextshadow"] = true,
 						["Spec_Width"] = 30,
-						["Auras_Debuffs_Container_Point"] = "RIGHT",
-						["HealthBar_HealthPrediction_Enabled"] = true,
+						["ObjectiveAndRespawn_Width"] = 30,
+						["HealthBar_Texture"] = "ElvUI Norm",
+						["HealthBar_Background"] = {
+							nil, -- [1]
+							nil, -- [2]
+							nil, -- [3]
+							1, -- [4]
+						},
 						["Spec_AuraDisplay_Enabled"] = false,
+						["PowerBar_Background"] = {
+							nil, -- [1]
+							nil, -- [2]
+							nil, -- [3]
+							1, -- [4]
+						},
+						["HealthBar_HealthPrediction_Enabled"] = true,
+						["Name_Outline"] = "OUTLINE",
 						["RacialFiltering_Filterlist"] = {
 							[26297] = true,
 							[107079] = true,
-							[121093] = true,
+							[80483] = true,
 							[50613] = true,
-							[20549] = true,
+							[59542] = true,
 							[59543] = true,
 							[59544] = true,
 							[68992] = true,
 							[25046] = true,
 							[59547] = true,
 							[59548] = true,
-							[202719] = true,
+							[121093] = true,
 							[33697] = true,
-							[59542] = true,
+							[20549] = true,
 							[69070] = true,
-							[155145] = true,
-							[129597] = true,
+							[59752] = true,
+							[20594] = true,
 							[33702] = true,
 							[20572] = true,
-							[59545] = true,
+							[58984] = true,
 							[28880] = true,
 							[20589] = true,
 							[69179] = true,
 							[7744] = true,
 							[232633] = true,
-							[58984] = true,
-							[20594] = true,
-							[59752] = true,
+							[59545] = true,
+							[129597] = true,
+							[155145] = true,
 							[28730] = true,
-							[80483] = true,
+							[202719] = true,
 						},
+						["BarVerticalSpacing"] = 5,
+						["NumericTargetindicator_Outline"] = "OUTLINE",
+						["DrTracking_Container_OffsetX"] = -1,
+						["ButtonModules"] = {
+							["healthBar"] = {
+								["Texture"] = "ElvUI Norm1",
+							},
+							["Power"] = {
+								["Texture"] = "ElvUI Norm1",
+							},
+						},
+						["Auras_Enabled"] = false,
+						["RacialFiltering_Enabled"] = true,
 						["ObjectiveAndRespawn_EnableTextshadow"] = true,
+						["Racial_OffsetX"] = 1,
+						["Position_X"] = 999.9999776482582,
 					},
 					["LevelText_Enabled"] = true,
+					["LevelText_Fontsize"] = 14,
+					["5"] = {
+						["BarHeight"] = 35,
+						["PowerBar_Texture"] = "ElvUI Blank",
+						["HealthBar_Texture"] = "ElvUI Norm",
+						["Enabled"] = false,
+						["HealthBar_HealthPrediction_Enabled"] = true,
+						["Name_Outline"] = "OUTLINE",
+						["NumericTargetindicator_Outline"] = "OUTLINE",
+						["PowerBar_Enabled"] = true,
+						["Position_Y"] = 519.1110821469629,
+						["BarWidth"] = 250,
+						["Position_X"] = 1116.08794380349,
+					},
 					["ShowRealmnames"] = false,
 					["LevelText_Outline"] = "OUTLINE",
 				},
