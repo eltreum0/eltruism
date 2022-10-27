@@ -354,7 +354,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		if _G["CharacterModelFrame"] then
 			_G["CharacterModelFrame"]:SetIgnoreParentScale(false)
 		end
-		if _G["CharacterModelScene"] then --TODO DRAGONFLIGHT
+		if _G["CharacterModelScene"] then
 			_G["CharacterModelScene"]:SetIgnoreParentScale(false)
 		end
 	end
@@ -381,7 +381,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			-- Move bottom equipment slots
 			_G.CharacterMainHandSlot:SetPoint('BOTTOMLEFT', PaperDollItemsFrame, 'BOTTOMLEFT', 195, 20)
 			--strech it a bit
-			if CharacterModelScene then --TODO
+			if CharacterModelScene then
 				CharacterModelScene:ClearAllPoints()
 				CharacterModelScene:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
 				CharacterModelScene:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
@@ -929,7 +929,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 
 			--hide other bgs so one can be streched like the talents for tbc/classic
-			CharacterModelScene.BackgroundTopRight:Hide() --TODO
+			CharacterModelScene.BackgroundTopRight:Hide()
 			CharacterModelScene.BackgroundBotLeft:Hide()
 			CharacterModelScene.BackgroundBotRight:Hide()
 			CharacterModelScene.BackgroundTopLeft:SetAllPoints(CharacterModelScene)
@@ -971,7 +971,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrameBackgroundTexture:SetParent(CharacterFrame)
 			CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK",6)
 
-			if _G.CharacterModelScene then --TODO
+			if _G.CharacterModelScene then
 				_G.CharacterModelScene.backdrop:Hide()
 				_G.CharacterModelFrameBackgroundTopLeft:Hide()
 				_G.CharacterModelFrameBackgroundOverlay:Hide()
@@ -1012,7 +1012,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		--add class crest
 		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
 			ClassCrestFrame:SetSize(256, 256)
-			ClassCrestFrame:SetPoint("CENTER", CharacterModelScene, 0, 50) --TODO
+			ClassCrestFrame:SetPoint("CENTER", CharacterModelScene, 0, 50)
 			ClassCrestFrame:SetParent(CharacterFrame)
 			ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
 			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)

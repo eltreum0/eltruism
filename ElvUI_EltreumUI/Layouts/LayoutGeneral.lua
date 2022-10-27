@@ -1111,6 +1111,9 @@ function ElvUI_EltreumUI:SetupPrivate()
 	E.private["general"]["nameplateFontSize"] = 10
 	E.private["general"]["nameplateLargeFont"] = "Kimberley"
 	E.private["general"]["nameplateLargeFontSize"] = 10
+	if E.Retail then
+		E.private["general"]["minimap"]["hideTracking"] = true
+	end
 end
 
 -- Global DB

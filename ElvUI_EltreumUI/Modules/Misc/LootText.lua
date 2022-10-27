@@ -55,7 +55,6 @@ function ElvUI_EltreumUI:LootText()
 		local lowestMessage
 		local useXadjustment = 0
 
-		--TODO DRAGONFLIGHT
 		if not COMBAT_TEXT_LOCATIONS.startY then
 			COMBAT_TEXT_LOCATIONS.startY = 384
 		end

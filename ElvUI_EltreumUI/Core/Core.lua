@@ -192,10 +192,17 @@ function ElvUI_EltreumUI:RestoreBlizzCombatText()
 		SetCVar("floatingCombatTextCombatHealingAbsorbTarget", 1)
 		SetCVar("floatingCombatTextCombatDamage", 1)
 		SetCVar("floatingCombatTextEnergyGains", 1)
-
-		SetCVar('ActionButtonUseKeyDown', 1) --fix bc key down > right click
 	end
 end
+
+local fixkeydown = CreateFrame("FRAME") --fix while the issue exists
+fixkeydown:RegisterEvent("PLAYER_STARTED_MOVING")
+fixkeydown:SetScript("OnEvent", function()
+	if not InCombatLockdown() then
+		SetCVar('ActionButtonUseKeyDown', 1) --fix bc key down > right click
+		fixkeydown:UnregisterAllEvents()
+	end
+end)
 
 -- Ghost frame for Automatic Weakauras Positioning
 local EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", UIParent)
@@ -460,10 +467,12 @@ function ElvUI_EltreumUI:FixChatToggles()
 		_G.LeftChatToggleButton:SetAlpha(1)
 		_G.LeftChatToggleButton:Show()
 
-		--nice but the fix datatext button should solve it already
-		--local buttonwidth = _G.RightChatToggleButton:GetWidth()
-		--local width = GetScreenWidth()
-		--E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2 + math.ceil(width - (buttonwidth * 2))
+		--fix if the value changed since install
+		local buttonwidth = _G.RightChatToggleButton:GetWidth()
+		local width = GetScreenWidth()
+		if E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] >= width then
+			E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2 + math.ceil(width - (buttonwidth * 2))
+		end
 		--E:UpdateDataTexts()
 
 		--[[

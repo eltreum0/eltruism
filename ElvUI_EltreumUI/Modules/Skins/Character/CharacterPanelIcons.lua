@@ -98,7 +98,6 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
 				CharacterFrameTitleText:SetShadowOffset(2, -1)
 
-				--TODO
 				CharacterLevelText:ClearAllPoints()
 				CharacterLevelText:SetPoint('TOP', CharacterFrameTitleText, 'BOTTOM', 0, 0)
 

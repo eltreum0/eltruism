@@ -27,7 +27,9 @@ function ElvUI_EltreumUI:GetPAProfile()
 		PA.db["TorghastBuffs"]["Enable"] = false
 	end
 	PA.db["Cooldown"]["Enable"] = false
-	PA.db["DragonOverlay"]["Enable"] = false
+	if PA.db["DragonOverlay"] and PA.db["DragonOverlay"]["Enable"] then
+		PA.db["DragonOverlay"]["Enable"] = false
+	end
 	PA.db["EnhancedShadows"]["Enable"] = false
 	PA.db["EnhancedShadows"]["ColorByClass"] = true --lol it was false while enable was true causing the purple color
 	PA.db["EnhancedShadows"]["Size"] = 3

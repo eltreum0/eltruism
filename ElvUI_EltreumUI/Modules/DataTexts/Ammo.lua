@@ -7,16 +7,16 @@ local GetItemInfo = _G.GetItemInfo
 local GetItemInfoInstant = _G.GetItemInfoInstant
 local GetItemCount = _G.GetItemCount
 local format = _G.format
-local GetContainerItemID = _G.GetContainerItemID --TODO GetContainerItemID DRAGONFLIGHT
+local GetContainerItemID = _G.GetContainerItemID
 local GetInventoryItemCount = _G.GetInventoryItemCount
 local GetInventoryItemID = _G.GetInventoryItemID
-local ContainerIDToInventoryID = _G.ContainerIDToInventoryID --TODO ContainerIDToInventoryID DRAGONFIGHT
-local GetContainerNumSlots = _G.GetContainerNumSlots --TODO GetContainerNumSlots DRAGONFLIGHT
-local GetContainerNumFreeSlots = _G.GetContainerNumFreeSlots --TODO GetContainerNumFreeSlots DRAGONFLIGHT
+local ContainerIDToInventoryID = _G.ContainerIDToInventoryID
+local GetContainerNumSlots = _G.GetContainerNumSlots
+local GetContainerNumFreeSlots = _G.GetContainerNumFreeSlots
 local GetItemQualityColor = _G.GetItemQualityColor
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
-if E.Classic or E.Wrath or E.TBC then
+if not E.Retail then
 	if E.myclass ~= 'HUNTER' and E.myclass ~= 'ROGUE' and E.myclass ~= 'WARLOCK' and E.myclass ~= 'WARRIOR' then return end
 	local iconString = '|T%s:16:16:0:0:64:64:4:55:4:55|t'
 	local itemName = {}

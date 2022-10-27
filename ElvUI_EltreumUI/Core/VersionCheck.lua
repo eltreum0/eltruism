@@ -316,6 +316,13 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = false
 		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = true
 	end
+
+
+	if E.Retail then --while the issue is not resolved
+		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "NONE"
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = true
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
+	end
 end
 
 function ElvUI_EltreumUI:NewVersionCheck()
