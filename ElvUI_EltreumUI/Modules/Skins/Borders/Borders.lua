@@ -919,7 +919,7 @@ end
 hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraBorders) --aura (minimap) borders
 
 function ElvUI_EltreumUI:UFAuraBorders(button)
-	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable then
+	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf and E.private.auras.enable then
 		if E.db.ElvUI_EltreumUI.borders.classcolor then
 			classcolor = E:ClassColor(E.myclass, true)
 		elseif not E.db.ElvUI_EltreumUI.borders.classcolor then
