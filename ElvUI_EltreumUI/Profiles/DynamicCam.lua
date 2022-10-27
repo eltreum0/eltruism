@@ -20,8 +20,8 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 						["cameraZoomSpeed"] = 50,
 						["test_cameraDynamicPitchBaseFovPadFlying"] = 0.9500000000000001,
 						["test_cameraDynamicPitchBaseFovPadDownScale"] = 1,
-						["test_cameraDynamicPitch"] = 1,
 						["test_cameraDynamicPitchBaseFovPad"] = 0.7000000000000001,
+						["test_cameraDynamicPitch"] = 1,
 						["cameraDistanceMaxZoomFactor"] = 2.6,
 						["test_cameraDynamicPitchSmartPivotCutoffDist"] = 0,
 					},
@@ -30,15 +30,15 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 				["situations"] = {
 					["303"] = {
 						["enabled"] = true,
+						["hideUI"] = {
+							["fadeOpacity"] = 0,
+							["hideEntireUI"] = true,
+							["enabled"] = true,
+						},
 						["rotation"] = {
 							["enabled"] = true,
 							["rotationSpeed"] = 3,
 							["rotateBack"] = false,
-						},
-						["hideUI"] = {
-							["enabled"] = true,
-							["fadeOpacity"] = 0,
-							["hideEntireUI"] = true,
 						},
 					},
 					["060"] = {
@@ -50,6 +50,14 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 							},
 						},
 					},
+					["030"] = {
+						["enabled"] = true,
+						["situationSettings"] = {
+							["cvars"] = {
+								["test_cameraOverShoulder"] = 0,
+							},
+						},
+					},
 					["002"] = {
 						["enabled"] = true,
 						["situationSettings"] = {
@@ -58,9 +66,9 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 							},
 						},
 						["viewZoom"] = {
+							["enabled"] = true,
 							["zoomMax"] = 20,
 							["zoomTransitionTime"] = 1.05,
-							["enabled"] = true,
 							["zoomType"] = "in",
 							["zoomValue"] = 15,
 							["zoomMin"] = 20,
@@ -96,10 +104,10 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 							},
 						},
 						["viewZoom"] = {
-							["zoomTransitionTime"] = 1.5,
 							["enabled"] = true,
 							["zoomType"] = "in",
 							["zoomValue"] = 20,
+							["zoomTransitionTime"] = 1.5,
 						},
 					},
 					["101"] = {
@@ -119,10 +127,10 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 							},
 						},
 						["viewZoom"] = {
-							["zoomTransitionTime"] = 1.5,
 							["enabled"] = true,
 							["zoomType"] = "out",
 							["zoomValue"] = 20,
+							["zoomTransitionTime"] = 1.5,
 						},
 					},
 					["004"] = {
@@ -133,10 +141,10 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 							},
 						},
 						["viewZoom"] = {
-							["zoomTransitionTime"] = 1.5,
 							["enabled"] = true,
 							["zoomType"] = "out",
 							["zoomValue"] = 30,
+							["zoomTransitionTime"] = 1.5,
 						},
 					},
 					["300"] = {
@@ -152,26 +160,13 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 							["enabled"] = true,
 						},
 					},
-					["200"] = {
+					["020"] = {
 						["enabled"] = true,
-						["executeOnInit"] = "this.spells = {\n  556,     -- Astral Recall\n  3561,    -- Teleport: Stormwind\n  3562,    -- Teleport: Ironforge\n  3563,    -- Teleport: Undercity\n  3565,    -- Teleport: Darnassus\n  3566,    -- Teleport: Thunder Bluff\n  3567,    -- Teleport: Orgrimmar\n  8690,    -- Hearthstone\n  32271,   -- Teleport: Exodar\n  32272,   -- Teleport: Silvermoon\n  33690,   -- Teleport: Shattrath\n  35715,   -- Teleport: Shattrath\n  49358,   -- Teleport: Stonard\n  49359,   -- Teleport: Theramore\n  49844,   -- Using Direbrew's Remote\n  50977,   -- Death Gate\n  53140,   -- Teleport: Dalaran - Northrend\n  54406,   -- Teleport: Dalaran\n  75136,   -- Ethereal Portal\n  88342,   -- Teleport: Tol Barad\n  88344,   -- Teleport: Tol Barad\n  94719,   -- The Innkeeper's Daughter\n  120145,  -- Ancient Teleport: Dalaran\n  132621,  -- Teleport: Vale of Eternal Blossoms\n  132627,  -- Teleport: Vale of Eternal Blossoms\n  136508,  -- Dark Portal\n  140295,  -- Kirin Tor Beacon\n  168487,  -- Home Away from Home\n  168499,  -- Home Away from Home\n  171253,  -- Garrison Hearthstone\n  176242,  -- Teleport: Warspear\n  176248,  -- Teleport: Stormshield\n  189838,  -- Teleport to Shipyard\n  192084,  -- Jump to Skyhold\n  192085,  -- Jump to Skyhold\n  193669,  -- Basic Dimensional Rifting\n  193753,  -- Dreamwalk\n  193759,  -- Teleport: Hall of the Guardian\n  196079,  -- Recall (to the sanctuary of Frostwolf Keep)\n  196080,  -- Recall (to the sanctuary of Dun Baldar)\n  216016,  -- Jump to Skyhold\n  222695,  -- Dalaran Hearthstone\n  223805,  -- Advanced Dimensional Rifting\n  224869,  -- Teleport: Dalaran - Broken Isles\n  225428,  -- Town Portal: Shala'nir\n  225434,  -- Town Portal: Sashj'tar\n  225435,  -- Town Portal: Kal'delar\n  225440,  -- Town Portal: Lian'tril\n  225436,  -- Town Portal: Faronaar\n  227334,  -- Flight Master's Whistle\n  231504,  -- [Tome of] Town Portal\n  231505,  -- [Scroll of] Town Portal\n  248906,  -- Vindicaar Teleport Beacon\n  262100,  -- Recall (to your Great Hall)\n  278244,  -- Greatfather Winter's Hearthstone\n  278559,  -- Headless Horseman's Hearthstone\n  281403,  -- Teleport: Boralus\n  281404,  -- Teleport: Dazar'alor\n  285362,  -- Lunar Elder's Hearthstone\n  285424,  -- Peddlefeet's Lovely Hearthstone\n  286031,  -- Noble Gardener's Hearthstone\n  286331,  -- Fire Eater's Hearthstone\n  286353,  -- Brewfest Reveler's Hearthstone\n  298068,  -- Holographic Digitalization Hearthstone\n  308742,  -- Eternal Traveler's Hearthstone\n  312372,  -- Return to Camp\n  326064,  -- Night Fae Hearthstone\n  335671,  -- Scroll of Teleport: Theater of Pain\n  340200,  -- Necrolord Hearthstone\n  126892,  -- Zen Pilgrimage\n  340767,  -- Chromie's Teleportation Scroll  \n  344587,  -- Teleport: Oribos\n  324031, -- Wormhole Generator: Shadowlands\n  \n}",
 						["situationSettings"] = {
 							["cvars"] = {
 								["test_cameraOverShoulder"] = 0,
+								["test_cameraDynamicPitch"] = 0,
 							},
-						},
-						["viewZoom"] = {
-							["enabled"] = true,
-							["zoomValue"] = 4,
-							["viewNumber"] = 3,
-						},
-						["rotation"] = {
-							["enabled"] = true,
-							["pitchDegrees"] = 15,
-							["rotationType"] = "degrees",
-							["rotationSpeed"] = 80,
-							["yawDegrees"] = 270,
-							["rotateBack"] = false,
 						},
 					},
 					["100"] = {
@@ -184,28 +179,32 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 							},
 						},
 						["viewZoom"] = {
-							["zoomTransitionTime"] = 0.75,
 							["enabled"] = true,
+							["zoomTransitionTime"] = 0.75,
 							["zoomType"] = "out",
 							["zoomValue"] = 30,
 							["zoomTimeIsMax"] = true,
 						},
 					},
-					["030"] = {
+					["200"] = {
 						["enabled"] = true,
+						["rotation"] = {
+							["enabled"] = true,
+							["pitchDegrees"] = 15,
+							["rotationType"] = "degrees",
+							["rotationSpeed"] = 80,
+							["yawDegrees"] = 270,
+							["rotateBack"] = false,
+						},
 						["situationSettings"] = {
 							["cvars"] = {
 								["test_cameraOverShoulder"] = 0,
 							},
 						},
-					},
-					["020"] = {
-						["enabled"] = true,
-						["situationSettings"] = {
-							["cvars"] = {
-								["test_cameraOverShoulder"] = 0,
-								["test_cameraDynamicPitch"] = 0,
-							},
+						["viewZoom"] = {
+							["enabled"] = true,
+							["zoomValue"] = 4,
+							["viewNumber"] = 3,
 						},
 					},
 				},
