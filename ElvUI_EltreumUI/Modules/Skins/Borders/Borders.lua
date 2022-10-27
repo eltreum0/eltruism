@@ -1,6 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local A = E:GetModule('Auras')
+local UF = E:GetModule('UnitFrames')
 local CreateFrame = _G.CreateFrame
 local hooksecurefunc = _G.hooksecurefunc
 local BackdropTemplateMixin = _G.BackdropTemplateMixin
@@ -907,15 +908,50 @@ function ElvUI_EltreumUI:AuraBorders(button)
 		end
 		auraborder:SetPoint("CENTER", button, "CENTER", 0, 0)
 		auraborder:SetBackdrop({
-		edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
-		edgeSize = E.db.ElvUI_EltreumUI.borders.aurasize,
+			edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
+			edgeSize = E.db.ElvUI_EltreumUI.borders.aurasize,
 		})
 		auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 		auraborder:SetFrameStrata("MEDIUM")
 		auraborder:SetFrameLevel(4)
 	end
 end
-hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraBorders) --aura (minimap) shadows
+hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraBorders) --aura (minimap) borders
+
+function ElvUI_EltreumUI:UFAuraBorders(button)
+	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable then
+		if E.db.ElvUI_EltreumUI.borders.classcolor then
+			classcolor = E:ClassColor(E.myclass, true)
+		elseif not E.db.ElvUI_EltreumUI.borders.classcolor then
+			classcolor = {
+				r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
+				g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
+				b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
+			}
+		end
+
+		local auraborder
+		if not _G["EltruismAuraBorder"..button:GetName()] then
+			auraborder =  CreateFrame("Frame", "EltruismAuraBorder"..button:GetName(), button, BackdropTemplateMixin and "BackdropTemplate")
+		else
+			auraborder = _G["EltruismAuraBorder"..button:GetName()]
+		end
+		if button:GetName():match("Debuffs") then
+			auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufdebuffsizex, E.db.ElvUI_EltreumUI.borders.ufdebuffsizey)
+		else
+			auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufbuffsizex, E.db.ElvUI_EltreumUI.borders.ufbuffsizey)
+		end
+		auraborder:SetPoint("CENTER", button, "CENTER", 0, 0)
+		auraborder:SetBackdrop({
+			edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
+			edgeSize = E.db.ElvUI_EltreumUI.borders.aurasize,
+		})
+		auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+		auraborder:SetFrameStrata("MEDIUM")
+		auraborder:SetFrameLevel(4)
+	end
+end
+hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraBorders) --uf aura borders
 
 function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of target changes if the target is not in party/raid, no event to register :(
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor == true then

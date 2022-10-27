@@ -452,6 +452,12 @@ P.ElvUI_EltreumUI = {
 		debuffaurasizex = 54,
 		debuffaurasizey = 54,
 
+		auraborderuf = true,
+		ufbuffsizex = 54,
+		ufbuffsizey = 48,
+		ufdebuffsizex = 54,
+		ufdebuffsizey = 48,
+
 		chatborder = true,
 		leftchatborderx = 432,
 		leftchatbordery = 224,
@@ -489,6 +495,7 @@ P.ElvUI_EltreumUI = {
 		chatsize = 13,
 		aurasize = 13,
 		baredgesize = 13,
+
 
 		powerbarborder = false,
 		powerbarsize = 4,
