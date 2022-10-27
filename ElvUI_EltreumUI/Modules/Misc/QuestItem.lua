@@ -282,6 +282,7 @@ local qItems = {
 	56909,	-- Earthen Ring Unbinding Totem (Cata event)
 	60501, 	-- Stormstone, Deepholm Quest
 	185956,
+	180008, --resonating anima core
 }
 local blocklist = {
 	[176809] = true, -- junk item that for some reason showed up
