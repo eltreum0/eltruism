@@ -45,8 +45,13 @@ function UF:ToggleTransparentStatusBar(isTransparent, statusBar, backdropTex, ad
 	UF:HandleStatusBarTemplate(statusBar, statusBar:GetParent(), isTransparent)
 
 	if isTransparent then
-		statusBar:SetStatusBarTexture(0, 0, 0, 0)
-		UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.media.blankTex)
+		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+			statusBar:SetStatusBarTexture(E.LSM:Fetch('statusbar', UF.db.statusbar))
+			UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.LSM:Fetch('statusbar', UF.db.statusbar))
+		else
+			statusBar:SetStatusBarTexture(0, 0, 0, 0)
+			UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.media.blankTex)
+		end
 
 		UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
 	else
