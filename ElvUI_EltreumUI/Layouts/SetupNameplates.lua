@@ -591,6 +591,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 
 		--actually set the scale since 10.0 seems to break it
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["scale"] = 1.25
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["isTarget"] = true
 
 		-- Non targeted enemies
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["actions"]["alpha"] = 20
