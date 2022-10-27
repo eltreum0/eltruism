@@ -57,7 +57,6 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 	if frame and frame.AuraBars then
 		hooksecurefunc(frame.AuraBars, 'PostUpdateBar', function(_,_,bar)
 			if bar then
-				bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not bar.shadow then
 					bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					--if EnhancedShadows then EnhancedShadows:RegisterShadow(bar.shadow) end
@@ -68,6 +67,7 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 				if bar.bg then
 					if E.db.unitframe.colors.transparentAurabars then
 						bar.bg:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+						--bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 					end
 					bar.backdrop:SetBackdropColor(0,0,0,0)
 				end
