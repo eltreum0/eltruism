@@ -181,7 +181,10 @@ function ElvUI_EltreumUI:LightMode()
 		E.db.ElvUI_EltreumUI.unitframes.darkmode = false
 		--E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = false
 		E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
-		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "V2"
+		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "V2" --TODO check back when blinking is fixed
+		if E.Retail then
+			E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "NONE"
+		end
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
