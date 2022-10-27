@@ -1322,6 +1322,8 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar('spellActivationOverlayOpacity', 0.5)
 		SetCVar('displaySpellActivationOverlays', 1)
 
+		SetCVar('minimapTrackingShowAll', 1) --return old tracking on right click
+
 		--[[
 		SetCVar('findYourselfAnywhere', 0) --"Always Highlight your character"
 		SetCVar('findYourselfAnywhereOnlyInCombat', 0) --"Highlight your character only when in combat"
