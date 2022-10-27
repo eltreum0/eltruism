@@ -976,7 +976,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["player"]["aurabar"]["spacing"] = 2
 	E.db["unitframe"]["units"]["player"]["aurabar"]["yOffset"] = 1
 	E.db["unitframe"]["units"]["player"]["aurabar"]["sortDirection"] = "ASCENDING"
-	E.db["unitframe"]["units"]["player"]["buffs"]["yOffset"] = -227
+	E.db["unitframe"]["units"]["player"]["buffs"]["yOffset"] = 22
 	E.db["unitframe"]["units"]["player"]["buffs"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["player"]["buffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["player"]["buffs"]["countFontOutline"] = "OUTLINE"
