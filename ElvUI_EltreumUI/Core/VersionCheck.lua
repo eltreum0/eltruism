@@ -318,7 +318,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 	end
 
 
-	if E.Retail then --while the issue is not resolved
+	if E.Retail and E.db.ElvUI_EltreumUI.unitframes.lightmode then --while the issue is not resolved
 		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "NONE"
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = true
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
