@@ -7936,6 +7936,7 @@ function ElvUI_EltreumUI:Configtable()
 									["V1"] = L["Version 1"],
 									["V2"] = L["Version 2"],
 									["V3"] = L["Version 3"],
+									["NONE"] = L["None"],
 								},
 								style = 'radio',
 								disabled = function() return (not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture) end,

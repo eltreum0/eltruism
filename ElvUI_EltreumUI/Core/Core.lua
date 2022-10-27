@@ -192,6 +192,8 @@ function ElvUI_EltreumUI:RestoreBlizzCombatText()
 		SetCVar("floatingCombatTextCombatHealingAbsorbTarget", 1)
 		SetCVar("floatingCombatTextCombatDamage", 1)
 		SetCVar("floatingCombatTextEnergyGains", 1)
+
+		SetCVar('ActionButtonUseKeyDown', 1) --fix bc key down > right click
 	end
 end
 
