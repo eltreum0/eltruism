@@ -192,10 +192,17 @@ function ElvUI_EltreumUI:RestoreBlizzCombatText()
 		SetCVar("floatingCombatTextCombatHealingAbsorbTarget", 1)
 		SetCVar("floatingCombatTextCombatDamage", 1)
 		SetCVar("floatingCombatTextEnergyGains", 1)
-
-		SetCVar('ActionButtonUseKeyDown', 1) --fix bc key down > right click
 	end
 end
+
+local fixkeydown = CreateFrame("FRAME") --fix while the issue exists
+fixkeydown:RegisterEvent("PLAYER_STARTED_MOVING")
+fixkeydown:SetScript("OnEvent", function()
+	if not InCombatLockdown() then
+		SetCVar('ActionButtonUseKeyDown', 1) --fix bc key down > right click
+		fixkeydown:UnregisterAllEvents()
+	end
+end)
 
 -- Ghost frame for Automatic Weakauras Positioning
 local EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", UIParent)
