@@ -6,7 +6,7 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 local GetSpellInfo = _G.GetSpellInfo
 local GetItemInfo = _G.GetItemInfo
 local GetItemCount = _G.GetItemCount
-
+local CreateColor = _G.CreateColor
 local WideTradeSkill = CreateFrame("Frame")
 WideTradeSkill:RegisterEvent("PLAYER_ENTERING_WORLD")
 local WideTradeSkillEnchant = CreateFrame("Frame")
@@ -105,7 +105,11 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 			if statusBar then
 				statusBar:HookScript("OnShow", function()
 					local r,g,b,a = statusBar:GetStatusBarColor()
-					statusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r - 0.3, g - 0.3, b - 0.3, a, r + 0.2, g + 0.2, b + 0.2, a)
+					if E.Retail then
+						statusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(r - 0.3, g - 0.3, b - 0.3, a), CreateColor(r + 0.2, g + 0.2, b + 0.2, a))
+					else
+						statusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r - 0.3, g - 0.3, b - 0.3, a, r + 0.2, g + 0.2, b + 0.2, a)
+					end
 				end)
 			end
 		end
@@ -123,7 +127,11 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 				if not frame.GradientHook then
 					frame:HookScript("OnShow", function()
 						local r,g,b = frame.status:GetStatusBarColor()
-						frame.status:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r - 0.5, g - 0.5, b - 0.5, 1, r + 0.3, g + 0.3, b + 0.3, 1)
+						if E.Retail then
+							frame.status:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(r - 0.5, g - 0.5, b - 0.5, 1), CreateColor(r + 0.3, g + 0.3, b + 0.3, 1))
+						else
+							frame.status:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r - 0.5, g - 0.5, b - 0.5, 1, r + 0.3, g + 0.3, b + 0.3, 1)
+						end
 					end)
 					frame.GradientHook = true
 				end
