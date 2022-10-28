@@ -173,12 +173,15 @@ function ElvUI_EltreumUI:PowerPrediction()
 						mainCost = v.cost
 					else
 						mainCost = 0
-						tablepowernumber = 123123 --random value so it doesnt match
+						if E.myclass == "HUNTER" then
+							tablepowernumber = 123123 --random value so it doesnt match
+						end
 					end
 				end
 			end
 
-			if spellGenerators[spellID] and tablepowernumber == powernumber then
+			--because priest/shaman/druid have a secondary power AND mana they need to be checked against
+			if spellGenerators[spellID] and (E.myclass == "HUNTER" and tablepowernumber == powernumber or E.myclass ~= "HUNTER") then
 				incResource = spellGenerators[spellID]
 				--readjust if the incoming would go over max
 				if (incResource + EltreumPowerBar:GetValue()) >= UnitPowerMax("player") then
