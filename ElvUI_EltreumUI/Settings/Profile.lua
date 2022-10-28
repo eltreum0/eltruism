@@ -1049,9 +1049,9 @@ P.ElvUI_EltreumUI = {
 			furyR1 = 0.79,
 			furyG1 = 0.26,
 			furyB1 = 1,
-			furyR2 = 0.71,
+			furyR2 = 1,
 			furyG2 = 0,
-			furyB2 = 1,
+			furyB2 = 0.95,
 
 			painR1 = 1,
 			painG1 = 0.61,
