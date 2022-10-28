@@ -74,10 +74,6 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			--instancedifficulty.Text:SetText(DifficultyID)
 		end
 
-
-
-
-
 		if E.Retail then
 			if _G["MiniMapInstanceDifficulty"] and (_G["MiniMapInstanceDifficulty"]:IsShown() == true or _G["MiniMapInstanceDifficulty"]:GetAlpha() == 1) then
 				_G["MiniMapInstanceDifficulty"]:SetAlpha(0)
