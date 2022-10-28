@@ -287,7 +287,6 @@ function ElvUI_EltreumUI:Anchors()
 			holder:SetPoint('TOPRIGHT', E.UIParent, 'TOPRIGHT', -135, -300)
 			holder:SetSize(130, 22)
 
-
 			--holder:SetAllPoints(_G.ObjectiveFrameMover)
 
 			E:Delay(0, function()
@@ -299,9 +298,6 @@ function ElvUI_EltreumUI:Anchors()
 				tracker:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <3
 				E:CreateMover(holder, 'ObjectiveFrameMover', L["Objective Frame"], nil, nil, B.HandleMawBuffsFrame, nil, nil, 'ALL,general,blizzUIImprovements')
 			end)
-
-
-
 		end
 	end
 end
