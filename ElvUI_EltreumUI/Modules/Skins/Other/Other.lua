@@ -174,83 +174,86 @@ function ElvUI_EltreumUI:SkinProfessions()
 				end
 
 				TradeSkillFrame:HookScript("OnShow", function()
-					TradeSkillFrame:SetWidth(765)
-					TradeSkillFrame:SetHeight(550)
+					E:Delay(0, function()
+						TradeSkillFrame:SetWidth(765)
+						TradeSkillFrame:SetHeight(550)
 
-					TradeSkillDetailScrollFrame:SetHeight(390)
-					TradeSkillDetailScrollFrame:SetWidth(350)
+						TradeSkillDetailScrollFrame:SetHeight(390)
+						TradeSkillDetailScrollFrame:SetWidth(350)
 
-					TradeSkillDetailScrollFrame:ClearAllPoints()
-					TradeSkillDetailScrollFrame:SetPoint("RIGHT", TradeSkillFrame, 0, -35)
-					TradeSkillDetailScrollFrame:SetHeight(390)
+						TradeSkillDetailScrollFrame:ClearAllPoints()
+						TradeSkillDetailScrollFrame:SetPoint("RIGHT", TradeSkillFrame, 0, -35)
+						TradeSkillDetailScrollFrame:SetHeight(390)
 
-					--mouse wheel scroll frame
-					_G.TradeSkillListScrollFrame:ClearAllPoints()
-					_G.TradeSkillListScrollFrame:SetPoint("LEFT", TradeSkillFrame, "LEFT", 40, 0)
-					_G.TradeSkillListScrollFrame:SetHeight(350)
-					_G.TradeSkillListScrollFrame:SetWidth(330)
+						--mouse wheel scroll frame
+						_G.TradeSkillListScrollFrame:ClearAllPoints()
+						_G.TradeSkillListScrollFrame:SetPoint("LEFT", TradeSkillFrame, "LEFT", 40, 0)
+						_G.TradeSkillListScrollFrame:SetHeight(350)
+						_G.TradeSkillListScrollFrame:SetWidth(330)
 
-					_G.TradeSkillSkillName:ClearAllPoints()
-					_G.TradeSkillSkillName:SetPoint("CENTER", TradeSkillFrame, 200, 150) --main
-					_G.TradeSkillSkillName:SetParent(_G.TradeSkillFrame)
-					_G.TradeSkillSkillIcon:ClearAllPoints()
-					_G.TradeSkillSkillIcon:SetPoint("RIGHT", _G.TradeSkillSkillName, "LEFT", -5, -10)
-					_G.TradeSkillSkillIcon:SetParent(_G.TradeSkillFrame)
+						--[[_G.TradeSkillSkillName:ClearAllPoints()
+						_G.TradeSkillSkillName:SetPoint("CENTER", TradeSkillFrame, 200, 150) --main
+						_G.TradeSkillSkillName:SetParent(_G.TradeSkillFrame)
+						_G.TradeSkillSkillIcon:ClearAllPoints()
+						_G.TradeSkillSkillIcon:SetPoint("RIGHT", _G.TradeSkillSkillName, "LEFT", -5, -10)
+						_G.TradeSkillSkillIcon:SetParent(_G.TradeSkillFrame)
 
-					_G.TradeSkillRequirementLabel:ClearAllPoints()
-					_G.TradeSkillRequirementLabel:SetPoint("BOTTOMLEFT", _G.TradeSkillSkillName, "TOPLEFT", 0, -35)
-					_G.TradeSkillRequirementLabel:SetParent(_G.TradeSkillFrame)
-					_G.TradeSkillRequirementText:ClearAllPoints()
-					_G.TradeSkillRequirementText:SetPoint("LEFT", _G.TradeSkillRequirementLabel,"RIGHT", 5, 0)
-					_G.TradeSkillRequirementText:SetParent(_G.TradeSkillFrame)
+						_G.TradeSkillRequirementLabel:ClearAllPoints()
+						_G.TradeSkillRequirementLabel:SetPoint("BOTTOMLEFT", _G.TradeSkillSkillName, "TOPLEFT", 0, -35)
+						_G.TradeSkillRequirementLabel:SetParent(_G.TradeSkillFrame)
+						_G.TradeSkillRequirementText:ClearAllPoints()
+						_G.TradeSkillRequirementText:SetPoint("LEFT", _G.TradeSkillRequirementLabel,"RIGHT", 5, 0)
+						_G.TradeSkillRequirementText:SetParent(_G.TradeSkillFrame)]]
 
-					--Auctionator search fix
-					if IsAddOnLoaded("Auctionator") then
-						E:Delay(0, function()
-							if _G.AuctionatorTradeSkillSearch then
-								_G.AuctionatorTradeSkillSearch:ClearAllPoints()
-								_G.AuctionatorTradeSkillSearch:SetPoint("RIGHT", _G.TradeSkillSkillName,"RIGHT", 0, -40)
-							end
-							if _G.AuctionatorCraftSkillSearch then
-								_G.AuctionatorCraftSkillSearch:ClearAllPoints()
-								_G.AuctionatorCraftSkillSearch:SetPoint("RIGHT", _G.TradeSkillSkillName,"RIGHT", 0, -40)
-							end
-						end)
-					end
-
-					if _G.TradeSkillDescription then
-						_G.TradeSkillDescription:ClearAllPoints()
-						_G.TradeSkillDescription:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", 74, -114)
-						_G.TradeSkillDescription:SetParent(_G.TradeSkillFrame)
-					end
-					_G.TradeSkillReagentLabel:ClearAllPoints()
-					_G.TradeSkillReagentLabel:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", -35, -120)
-					_G.TradeSkillReagentLabel:SetParent(_G.TradeSkillFrame)
-
-					TradeSkillListScrollFrameScrollBar:ClearAllPoints()
-					TradeSkillListScrollFrameScrollBar:SetPoint("LEFT", TradeSkillDetailScrollChildFrame, -30, -70)
-					TradeSkillListScrollFrameScrollBar:SetHeight(320)
-
-					for i = 1, 15 do
-						if _G["TradeSkillReagent"..i] then
-							_G["TradeSkillReagent"..i]:SetParent(_G.TradeSkillFrame)
-						else
-							break
+						--Auctionator search fix
+						if IsAddOnLoaded("Auctionator") then
+							E:Delay(0, function()
+								if _G.AuctionatorTradeSkillSearch then
+									_G.AuctionatorTradeSkillSearch:ClearAllPoints()
+									_G.AuctionatorTradeSkillSearch:SetPoint("RIGHT", _G.TradeSkillSkillName,"RIGHT", 0, -40)
+								end
+								if _G.AuctionatorCraftSkillSearch then
+									_G.AuctionatorCraftSkillSearch:ClearAllPoints()
+									_G.AuctionatorCraftSkillSearch:SetPoint("RIGHT", _G.TradeSkillSkillName,"RIGHT", 0, -40)
+								end
+							end)
 						end
-					end
 
-					if _G.TradeSkillDetailScrollFrameScrollBar then
-						_G.TradeSkillDetailScrollFrameScrollBar:Hide()
-					end
+						--if _G.TradeSkillDescription then
+							--_G.TradeSkillDescription:ClearAllPoints()
+							--_G.TradeSkillDescription:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", 74, -114)
+							--.TradeSkillDescription:SetParent(_G.TradeSkillFrame)
+						--end
 
-					TradeSkillCreateAllButton:ClearAllPoints()
-					TradeSkillCreateAllButton:SetPoint("LEFT", TradeSkillFrame, "BOTTOMLEFT", 15, 95)
+						--[[_G.TradeSkillReagentLabel:ClearAllPoints()
+						_G.TradeSkillReagentLabel:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", -35, -120)
+						_G.TradeSkillReagentLabel:SetParent(_G.TradeSkillFrame)]]
 
-					TradeSkillCreateButton:ClearAllPoints()
-					TradeSkillCreateButton:SetPoint("LEFT", TradeSkillFrame, "BOTTOMLEFT", 180, 95)
+						TradeSkillListScrollFrameScrollBar:ClearAllPoints()
+						TradeSkillListScrollFrameScrollBar:SetPoint("LEFT", TradeSkillDetailScrollChildFrame, -30, -70)
+						TradeSkillListScrollFrameScrollBar:SetHeight(320)
 
-					TradeSkillCancelButton:ClearAllPoints()
-					TradeSkillCancelButton:SetPoint("RIGHT", TradeSkillFrame, "BOTTOMRIGHT", -50, 95)
+						for i = 1, 15 do
+							if _G["TradeSkillReagent"..i] then
+								_G["TradeSkillReagent"..i]:SetParent(_G.TradeSkillFrame)
+							else
+								break
+							end
+						end
+
+						if _G.TradeSkillDetailScrollFrameScrollBar then
+							_G.TradeSkillDetailScrollFrameScrollBar:Hide()
+						end
+
+						TradeSkillCreateAllButton:ClearAllPoints()
+						TradeSkillCreateAllButton:SetPoint("LEFT", TradeSkillFrame, "BOTTOMLEFT", 15, 95)
+
+						TradeSkillCreateButton:ClearAllPoints()
+						TradeSkillCreateButton:SetPoint("LEFT", TradeSkillFrame, "BOTTOMLEFT", 180, 95)
+
+						TradeSkillCancelButton:ClearAllPoints()
+						TradeSkillCancelButton:SetPoint("RIGHT", TradeSkillFrame, "BOTTOMRIGHT", -50, 95)
+					end)
 				end)
 			end
 		end)
