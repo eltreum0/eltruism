@@ -45,12 +45,10 @@ function UF:ToggleTransparentStatusBar(isTransparent, statusBar, backdropTex, ad
 	UF:HandleStatusBarTemplate(statusBar, statusBar:GetParent(), isTransparent)
 
 	if isTransparent then
-		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and statusBar:GetName():match("AuraBar") then
 			statusBar:SetStatusBarTexture(E.LSM:Fetch('statusbar', UF.db.statusbar))
 			UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.LSM:Fetch('statusbar', UF.db.statusbar))
-			if statusBar:GetName():match("HealthBar") then
-				statusBar:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-			end
+			--statusBar:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 		else
 			statusBar:SetStatusBarTexture(0, 0, 0, 0)
 			UF:Update_StatusBar(statusBar.bg or statusBar.BG, E.media.blankTex)

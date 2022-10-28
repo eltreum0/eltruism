@@ -174,83 +174,86 @@ function ElvUI_EltreumUI:SkinProfessions()
 				end
 
 				TradeSkillFrame:HookScript("OnShow", function()
-					TradeSkillFrame:SetWidth(765)
-					TradeSkillFrame:SetHeight(550)
+					E:Delay(0, function()
+						TradeSkillFrame:SetWidth(765)
+						TradeSkillFrame:SetHeight(550)
 
-					TradeSkillDetailScrollFrame:SetHeight(390)
-					TradeSkillDetailScrollFrame:SetWidth(350)
+						TradeSkillDetailScrollFrame:SetHeight(390)
+						TradeSkillDetailScrollFrame:SetWidth(350)
 
-					TradeSkillDetailScrollFrame:ClearAllPoints()
-					TradeSkillDetailScrollFrame:SetPoint("RIGHT", TradeSkillFrame, 0, -35)
-					TradeSkillDetailScrollFrame:SetHeight(390)
+						TradeSkillDetailScrollFrame:ClearAllPoints()
+						TradeSkillDetailScrollFrame:SetPoint("RIGHT", TradeSkillFrame, 0, -35)
+						TradeSkillDetailScrollFrame:SetHeight(390)
 
-					--mouse wheel scroll frame
-					_G.TradeSkillListScrollFrame:ClearAllPoints()
-					_G.TradeSkillListScrollFrame:SetPoint("LEFT", TradeSkillFrame, "LEFT", 40, 0)
-					_G.TradeSkillListScrollFrame:SetHeight(350)
-					_G.TradeSkillListScrollFrame:SetWidth(330)
+						--mouse wheel scroll frame
+						_G.TradeSkillListScrollFrame:ClearAllPoints()
+						_G.TradeSkillListScrollFrame:SetPoint("LEFT", TradeSkillFrame, "LEFT", 40, 0)
+						_G.TradeSkillListScrollFrame:SetHeight(350)
+						_G.TradeSkillListScrollFrame:SetWidth(330)
 
-					_G.TradeSkillSkillName:ClearAllPoints()
-					_G.TradeSkillSkillName:SetPoint("CENTER", TradeSkillFrame, 200, 150) --main
-					_G.TradeSkillSkillName:SetParent(_G.TradeSkillFrame)
-					_G.TradeSkillSkillIcon:ClearAllPoints()
-					_G.TradeSkillSkillIcon:SetPoint("RIGHT", _G.TradeSkillSkillName, "LEFT", -5, -10)
-					_G.TradeSkillSkillIcon:SetParent(_G.TradeSkillFrame)
+						--[[_G.TradeSkillSkillName:ClearAllPoints()
+						_G.TradeSkillSkillName:SetPoint("CENTER", TradeSkillFrame, 200, 150) --main
+						_G.TradeSkillSkillName:SetParent(_G.TradeSkillFrame)
+						_G.TradeSkillSkillIcon:ClearAllPoints()
+						_G.TradeSkillSkillIcon:SetPoint("RIGHT", _G.TradeSkillSkillName, "LEFT", -5, -10)
+						_G.TradeSkillSkillIcon:SetParent(_G.TradeSkillFrame)
 
-					_G.TradeSkillRequirementLabel:ClearAllPoints()
-					_G.TradeSkillRequirementLabel:SetPoint("BOTTOMLEFT", _G.TradeSkillSkillName, "TOPLEFT", 0, -35)
-					_G.TradeSkillRequirementLabel:SetParent(_G.TradeSkillFrame)
-					_G.TradeSkillRequirementText:ClearAllPoints()
-					_G.TradeSkillRequirementText:SetPoint("LEFT", _G.TradeSkillRequirementLabel,"RIGHT", 5, 0)
-					_G.TradeSkillRequirementText:SetParent(_G.TradeSkillFrame)
+						_G.TradeSkillRequirementLabel:ClearAllPoints()
+						_G.TradeSkillRequirementLabel:SetPoint("BOTTOMLEFT", _G.TradeSkillSkillName, "TOPLEFT", 0, -35)
+						_G.TradeSkillRequirementLabel:SetParent(_G.TradeSkillFrame)
+						_G.TradeSkillRequirementText:ClearAllPoints()
+						_G.TradeSkillRequirementText:SetPoint("LEFT", _G.TradeSkillRequirementLabel,"RIGHT", 5, 0)
+						_G.TradeSkillRequirementText:SetParent(_G.TradeSkillFrame)]]
 
-					--Auctionator search fix
-					if IsAddOnLoaded("Auctionator") then
-						E:Delay(0, function()
-							if _G.AuctionatorTradeSkillSearch then
-								_G.AuctionatorTradeSkillSearch:ClearAllPoints()
-								_G.AuctionatorTradeSkillSearch:SetPoint("RIGHT", _G.TradeSkillSkillName,"RIGHT", 0, -40)
-							end
-							if _G.AuctionatorCraftSkillSearch then
-								_G.AuctionatorCraftSkillSearch:ClearAllPoints()
-								_G.AuctionatorCraftSkillSearch:SetPoint("RIGHT", _G.TradeSkillSkillName,"RIGHT", 0, -40)
-							end
-						end)
-					end
-
-					if _G.TradeSkillDescription then
-						_G.TradeSkillDescription:ClearAllPoints()
-						_G.TradeSkillDescription:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", 74, -114)
-						_G.TradeSkillDescription:SetParent(_G.TradeSkillFrame)
-					end
-					_G.TradeSkillReagentLabel:ClearAllPoints()
-					_G.TradeSkillReagentLabel:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", -35, -120)
-					_G.TradeSkillReagentLabel:SetParent(_G.TradeSkillFrame)
-
-					TradeSkillListScrollFrameScrollBar:ClearAllPoints()
-					TradeSkillListScrollFrameScrollBar:SetPoint("LEFT", TradeSkillDetailScrollChildFrame, -30, -70)
-					TradeSkillListScrollFrameScrollBar:SetHeight(320)
-
-					for i = 1, 15 do
-						if _G["TradeSkillReagent"..i] then
-							_G["TradeSkillReagent"..i]:SetParent(_G.TradeSkillFrame)
-						else
-							break
+						--Auctionator search fix
+						if IsAddOnLoaded("Auctionator") then
+							E:Delay(0, function()
+								if _G.AuctionatorTradeSkillSearch then
+									_G.AuctionatorTradeSkillSearch:ClearAllPoints()
+									_G.AuctionatorTradeSkillSearch:SetPoint("RIGHT", _G.TradeSkillSkillName,"RIGHT", 0, -40)
+								end
+								if _G.AuctionatorCraftSkillSearch then
+									_G.AuctionatorCraftSkillSearch:ClearAllPoints()
+									_G.AuctionatorCraftSkillSearch:SetPoint("RIGHT", _G.TradeSkillSkillName,"RIGHT", 0, -40)
+								end
+							end)
 						end
-					end
 
-					if _G.TradeSkillDetailScrollFrameScrollBar then
-						_G.TradeSkillDetailScrollFrameScrollBar:Hide()
-					end
+						--if _G.TradeSkillDescription then
+							--_G.TradeSkillDescription:ClearAllPoints()
+							--_G.TradeSkillDescription:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", 74, -114)
+							--.TradeSkillDescription:SetParent(_G.TradeSkillFrame)
+						--end
 
-					TradeSkillCreateAllButton:ClearAllPoints()
-					TradeSkillCreateAllButton:SetPoint("LEFT", TradeSkillFrame, "BOTTOMLEFT", 15, 95)
+						--[[_G.TradeSkillReagentLabel:ClearAllPoints()
+						_G.TradeSkillReagentLabel:SetPoint("BOTTOM", _G.TradeSkillRequirementLabel, "TOP", -35, -120)
+						_G.TradeSkillReagentLabel:SetParent(_G.TradeSkillFrame)]]
 
-					TradeSkillCreateButton:ClearAllPoints()
-					TradeSkillCreateButton:SetPoint("LEFT", TradeSkillFrame, "BOTTOMLEFT", 180, 95)
+						TradeSkillListScrollFrameScrollBar:ClearAllPoints()
+						TradeSkillListScrollFrameScrollBar:SetPoint("LEFT", TradeSkillDetailScrollChildFrame, -30, -70)
+						TradeSkillListScrollFrameScrollBar:SetHeight(320)
 
-					TradeSkillCancelButton:ClearAllPoints()
-					TradeSkillCancelButton:SetPoint("RIGHT", TradeSkillFrame, "BOTTOMRIGHT", -50, 95)
+						for i = 1, 15 do
+							if _G["TradeSkillReagent"..i] then
+								_G["TradeSkillReagent"..i]:SetParent(_G.TradeSkillFrame)
+							else
+								break
+							end
+						end
+
+						if _G.TradeSkillDetailScrollFrameScrollBar then
+							_G.TradeSkillDetailScrollFrameScrollBar:Hide()
+						end
+
+						TradeSkillCreateAllButton:ClearAllPoints()
+						TradeSkillCreateAllButton:SetPoint("LEFT", TradeSkillFrame, "BOTTOMLEFT", 15, 95)
+
+						TradeSkillCreateButton:ClearAllPoints()
+						TradeSkillCreateButton:SetPoint("LEFT", TradeSkillFrame, "BOTTOMLEFT", 180, 95)
+
+						TradeSkillCancelButton:ClearAllPoints()
+						TradeSkillCancelButton:SetPoint("RIGHT", TradeSkillFrame, "BOTTOMRIGHT", -50, 95)
+					end)
 				end)
 			end
 		end)
@@ -272,72 +275,74 @@ function ElvUI_EltreumUI:SkinProfessions()
 				local CraftDetailScrollFrameScrollBar = _G.CraftDetailScrollFrameScrollBar
 
 				CraftFrame:HookScript("OnShow", function()
-					if not CraftFrame.backdrop.shadow then
-						CraftFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(CraftFrame.backdrop.shadow) end
-					end
-					CraftFrame:SetWidth(765)
-					CraftFrame:SetHeight(550)
-
-					_G.CraftListScrollFrame:ClearAllPoints()
-					_G.CraftListScrollFrame:SetPoint("LEFT", CraftFrame, "LEFT", 20, 10)
-					_G.CraftListScrollFrame:SetHeight(340)
-					_G.CraftListScrollFrame:SetWidth(330)
-
-					CraftListScrollFrameScrollChildFrame:SetHeight(390)
-					CraftListScrollFrameScrollChildFrame:SetWidth(350)
-
-					CraftListScrollFrameScrollBar:ClearAllPoints()
-					CraftListScrollFrameScrollBar:SetPoint("CENTER", CraftFrame, "CENTER", 10, 12)
-					CraftListScrollFrameScrollBar:SetHeight(320)
-
-					CraftDetailScrollChildFrame:ClearAllPoints()
-					CraftDetailScrollChildFrame:SetParent(CraftFrame)
-					CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30, -46)
-					CraftDetailScrollChildFrame:SetHeight(390)
-
-					CraftDetailScrollFrame:Hide()
-					CraftDetailScrollFrameScrollBar:Hide()
-					if E.Wrath or E.TBC then
-						CraftFrameFilterDropDown:ClearAllPoints()
-						CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
-						CraftFrameAvailableFilterCheckButton:ClearAllPoints()
-						CraftFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", CraftFrame, 64,-48)
-					end
-
-					_G.CraftFramePointsLabel:ClearAllPoints()
-					_G.CraftFramePointsLabel:SetPoint("LEFT", _G["CraftCreateButton"], "RIGHT", 5, 0)
-					_G.CraftFramePointsText:ClearAllPoints()
-					_G.CraftFramePointsText:SetPoint("LEFT", _G.CraftFramePointsLabel, "RIGHT", 5, 0)
-
-					CraftCancelButton:ClearAllPoints()
-					CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
-
-					if dontexpandanymoreEnchant == 0 then
-						-- Create the additional rows
-						--local numCrafts = CRAFTS_DISPLAYED
-						local numCrafts = 8
-						--CRAFTS_DISPLAYED = CRAFTS_DISPLAYED + 14
-						_G.CRAFTS_DISPLAYED = 22
-						for i = numCrafts + 1, 22 do
-							local craftbutton = CreateFrame("Button", "Craft" .. i, CraftFrame, "CraftButtonTemplate")
-							craftbutton:SetID(i)
-							craftbutton:Hide()
-							craftbutton:ClearAllPoints()
-							craftbutton:SetPoint("TOPLEFT", _G["Craft" .. (i - 1)], "BOTTOMLEFT", 0, 1)
+					E:Delay(0, function()
+						if not CraftFrame.backdrop.shadow then
+							CraftFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(CraftFrame.backdrop.shadow) end
 						end
-						--increase the width of the rows so the title fits
-						for i = 1, 8 do
-							local craftTitle = _G["Craft"..i]
-							craftTitle:Width(335)
-						end
-						dontexpandanymoreEnchant = 1
-					end
+						CraftFrame:SetWidth(765)
+						CraftFrame:SetHeight(550)
 
-					CraftCreateButton:ClearAllPoints()
-					CraftCreateButton:SetPoint("LEFT", CraftFrame, "BOTTOMLEFT", 25, 95)
-					CraftCancelButton:ClearAllPoints()
-					CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
+						_G.CraftListScrollFrame:ClearAllPoints()
+						_G.CraftListScrollFrame:SetPoint("LEFT", CraftFrame, "LEFT", 20, 10)
+						_G.CraftListScrollFrame:SetHeight(340)
+						_G.CraftListScrollFrame:SetWidth(330)
+
+						CraftListScrollFrameScrollChildFrame:SetHeight(390)
+						CraftListScrollFrameScrollChildFrame:SetWidth(350)
+
+						CraftListScrollFrameScrollBar:ClearAllPoints()
+						CraftListScrollFrameScrollBar:SetPoint("CENTER", CraftFrame, "CENTER", 10, 12)
+						CraftListScrollFrameScrollBar:SetHeight(320)
+
+						CraftDetailScrollChildFrame:ClearAllPoints()
+						CraftDetailScrollChildFrame:SetParent(CraftFrame)
+						CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30, -46)
+						CraftDetailScrollChildFrame:SetHeight(390)
+
+						CraftDetailScrollFrame:Hide()
+						CraftDetailScrollFrameScrollBar:Hide()
+						if E.Wrath or E.TBC then
+							CraftFrameFilterDropDown:ClearAllPoints()
+							CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
+							CraftFrameAvailableFilterCheckButton:ClearAllPoints()
+							CraftFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", CraftFrame, 64,-48)
+						end
+
+						_G.CraftFramePointsLabel:ClearAllPoints()
+						_G.CraftFramePointsLabel:SetPoint("LEFT", _G["CraftCreateButton"], "RIGHT", 5, 0)
+						_G.CraftFramePointsText:ClearAllPoints()
+						_G.CraftFramePointsText:SetPoint("LEFT", _G.CraftFramePointsLabel, "RIGHT", 5, 0)
+
+						CraftCancelButton:ClearAllPoints()
+						CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
+
+						if dontexpandanymoreEnchant == 0 then
+							-- Create the additional rows
+							--local numCrafts = CRAFTS_DISPLAYED
+							local numCrafts = 8
+							--CRAFTS_DISPLAYED = CRAFTS_DISPLAYED + 14
+							_G.CRAFTS_DISPLAYED = 22
+							for i = numCrafts + 1, 22 do
+								local craftbutton = CreateFrame("Button", "Craft" .. i, CraftFrame, "CraftButtonTemplate")
+								craftbutton:SetID(i)
+								craftbutton:Hide()
+								craftbutton:ClearAllPoints()
+								craftbutton:SetPoint("TOPLEFT", _G["Craft" .. (i - 1)], "BOTTOMLEFT", 0, 1)
+							end
+							--increase the width of the rows so the title fits
+							for i = 1, 8 do
+								local craftTitle = _G["Craft"..i]
+								craftTitle:Width(335)
+							end
+							dontexpandanymoreEnchant = 1
+						end
+
+						CraftCreateButton:ClearAllPoints()
+						CraftCreateButton:SetPoint("LEFT", CraftFrame, "BOTTOMLEFT", 25, 95)
+						CraftCancelButton:ClearAllPoints()
+						CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
+					end)
 				end)
 			end
 		end)

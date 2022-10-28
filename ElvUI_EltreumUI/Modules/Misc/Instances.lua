@@ -94,6 +94,20 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 					end
 				end
 			end
+			for i = 1, _G["Minimap"]:GetNumChildren() do
+				local v = select(i, _G["Minimap"]:GetChildren())
+				 if v then
+					if v.Instance then
+						v:SetAlpha(0)
+					end
+					if v.HeroicTexture then
+						v:SetAlpha(0)
+					end
+					if v.ChallengeModeTexture then
+						v:SetAlpha(0)
+					end
+				end
+			end
 		end
 		instancedifficulty:Show()
 	else
