@@ -275,72 +275,74 @@ function ElvUI_EltreumUI:SkinProfessions()
 				local CraftDetailScrollFrameScrollBar = _G.CraftDetailScrollFrameScrollBar
 
 				CraftFrame:HookScript("OnShow", function()
-					if not CraftFrame.backdrop.shadow then
-						CraftFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(CraftFrame.backdrop.shadow) end
-					end
-					CraftFrame:SetWidth(765)
-					CraftFrame:SetHeight(550)
-
-					_G.CraftListScrollFrame:ClearAllPoints()
-					_G.CraftListScrollFrame:SetPoint("LEFT", CraftFrame, "LEFT", 20, 10)
-					_G.CraftListScrollFrame:SetHeight(340)
-					_G.CraftListScrollFrame:SetWidth(330)
-
-					CraftListScrollFrameScrollChildFrame:SetHeight(390)
-					CraftListScrollFrameScrollChildFrame:SetWidth(350)
-
-					CraftListScrollFrameScrollBar:ClearAllPoints()
-					CraftListScrollFrameScrollBar:SetPoint("CENTER", CraftFrame, "CENTER", 10, 12)
-					CraftListScrollFrameScrollBar:SetHeight(320)
-
-					CraftDetailScrollChildFrame:ClearAllPoints()
-					CraftDetailScrollChildFrame:SetParent(CraftFrame)
-					CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30, -46)
-					CraftDetailScrollChildFrame:SetHeight(390)
-
-					CraftDetailScrollFrame:Hide()
-					CraftDetailScrollFrameScrollBar:Hide()
-					if E.Wrath or E.TBC then
-						CraftFrameFilterDropDown:ClearAllPoints()
-						CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
-						CraftFrameAvailableFilterCheckButton:ClearAllPoints()
-						CraftFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", CraftFrame, 64,-48)
-					end
-
-					_G.CraftFramePointsLabel:ClearAllPoints()
-					_G.CraftFramePointsLabel:SetPoint("LEFT", _G["CraftCreateButton"], "RIGHT", 5, 0)
-					_G.CraftFramePointsText:ClearAllPoints()
-					_G.CraftFramePointsText:SetPoint("LEFT", _G.CraftFramePointsLabel, "RIGHT", 5, 0)
-
-					CraftCancelButton:ClearAllPoints()
-					CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
-
-					if dontexpandanymoreEnchant == 0 then
-						-- Create the additional rows
-						--local numCrafts = CRAFTS_DISPLAYED
-						local numCrafts = 8
-						--CRAFTS_DISPLAYED = CRAFTS_DISPLAYED + 14
-						_G.CRAFTS_DISPLAYED = 22
-						for i = numCrafts + 1, 22 do
-							local craftbutton = CreateFrame("Button", "Craft" .. i, CraftFrame, "CraftButtonTemplate")
-							craftbutton:SetID(i)
-							craftbutton:Hide()
-							craftbutton:ClearAllPoints()
-							craftbutton:SetPoint("TOPLEFT", _G["Craft" .. (i - 1)], "BOTTOMLEFT", 0, 1)
+					E:Delay(0, function()
+						if not CraftFrame.backdrop.shadow then
+							CraftFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(CraftFrame.backdrop.shadow) end
 						end
-						--increase the width of the rows so the title fits
-						for i = 1, 8 do
-							local craftTitle = _G["Craft"..i]
-							craftTitle:Width(335)
-						end
-						dontexpandanymoreEnchant = 1
-					end
+						CraftFrame:SetWidth(765)
+						CraftFrame:SetHeight(550)
 
-					CraftCreateButton:ClearAllPoints()
-					CraftCreateButton:SetPoint("LEFT", CraftFrame, "BOTTOMLEFT", 25, 95)
-					CraftCancelButton:ClearAllPoints()
-					CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
+						_G.CraftListScrollFrame:ClearAllPoints()
+						_G.CraftListScrollFrame:SetPoint("LEFT", CraftFrame, "LEFT", 20, 10)
+						_G.CraftListScrollFrame:SetHeight(340)
+						_G.CraftListScrollFrame:SetWidth(330)
+
+						CraftListScrollFrameScrollChildFrame:SetHeight(390)
+						CraftListScrollFrameScrollChildFrame:SetWidth(350)
+
+						CraftListScrollFrameScrollBar:ClearAllPoints()
+						CraftListScrollFrameScrollBar:SetPoint("CENTER", CraftFrame, "CENTER", 10, 12)
+						CraftListScrollFrameScrollBar:SetHeight(320)
+
+						CraftDetailScrollChildFrame:ClearAllPoints()
+						CraftDetailScrollChildFrame:SetParent(CraftFrame)
+						CraftDetailScrollChildFrame:SetPoint("LEFT", CraftListScrollFrameScrollBar, 30, -46)
+						CraftDetailScrollChildFrame:SetHeight(390)
+
+						CraftDetailScrollFrame:Hide()
+						CraftDetailScrollFrameScrollBar:Hide()
+						if E.Wrath or E.TBC then
+							CraftFrameFilterDropDown:ClearAllPoints()
+							CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
+							CraftFrameAvailableFilterCheckButton:ClearAllPoints()
+							CraftFrameAvailableFilterCheckButton:SetPoint("TOPLEFT", CraftFrame, 64,-48)
+						end
+
+						_G.CraftFramePointsLabel:ClearAllPoints()
+						_G.CraftFramePointsLabel:SetPoint("LEFT", _G["CraftCreateButton"], "RIGHT", 5, 0)
+						_G.CraftFramePointsText:ClearAllPoints()
+						_G.CraftFramePointsText:SetPoint("LEFT", _G.CraftFramePointsLabel, "RIGHT", 5, 0)
+
+						CraftCancelButton:ClearAllPoints()
+						CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
+
+						if dontexpandanymoreEnchant == 0 then
+							-- Create the additional rows
+							--local numCrafts = CRAFTS_DISPLAYED
+							local numCrafts = 8
+							--CRAFTS_DISPLAYED = CRAFTS_DISPLAYED + 14
+							_G.CRAFTS_DISPLAYED = 22
+							for i = numCrafts + 1, 22 do
+								local craftbutton = CreateFrame("Button", "Craft" .. i, CraftFrame, "CraftButtonTemplate")
+								craftbutton:SetID(i)
+								craftbutton:Hide()
+								craftbutton:ClearAllPoints()
+								craftbutton:SetPoint("TOPLEFT", _G["Craft" .. (i - 1)], "BOTTOMLEFT", 0, 1)
+							end
+							--increase the width of the rows so the title fits
+							for i = 1, 8 do
+								local craftTitle = _G["Craft"..i]
+								craftTitle:Width(335)
+							end
+							dontexpandanymoreEnchant = 1
+						end
+
+						CraftCreateButton:ClearAllPoints()
+						CraftCreateButton:SetPoint("LEFT", CraftFrame, "BOTTOMLEFT", 25, 95)
+						CraftCancelButton:ClearAllPoints()
+						CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
+					end)
 				end)
 			end
 		end)
