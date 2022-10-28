@@ -9212,7 +9212,7 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return E.db.ElvUI_EltreumUI.quests.arena end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.quests.arena = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
-					--[[headergaphere4 = {
+					headergaphere4 = {
 						order = 101,
 						type = "description",
 						name = "",
@@ -9239,13 +9239,14 @@ function ElvUI_EltreumUI:Configtable()
 						end,
 						set = function(_, value)
 							if ObjectiveTrackerFrame then
+								E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight = value
 								ObjectiveTrackerFrame.editModeHeight = value
+								Enum.EditModeObjectiveTrackerSetting.Height = value
 								ObjectiveTrackerFrame:SetHeight(value)
-
-								--ObjectiveTracker_UpdateHeight()
+								ObjectiveTracker_UpdateHeight()
 							end
 						end,
-					},]]
+					},
 				},
 			},
 			skins = {

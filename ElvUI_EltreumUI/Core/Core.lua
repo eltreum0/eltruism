@@ -297,6 +297,11 @@ function ElvUI_EltreumUI:Anchors()
 				tracker:SetMovable(true)
 				tracker:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <3
 				E:CreateMover(holder, 'ObjectiveFrameMover', L["Objective Frame"], nil, nil, B.HandleMawBuffsFrame, nil, nil, 'ALL,general,blizzUIImprovements')
+
+				ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight
+				--Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight
+				--ObjectiveTrackerFrame:SetHeight(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight)
+				ObjectiveTracker_UpdateHeight()
 			end)
 		end
 	end
