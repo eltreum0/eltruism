@@ -100,7 +100,15 @@ end
 function ElvUI_EltreumUI:OldVersionCheck()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
-	elseif E.private.ElvUI_EltreumUI.install_version and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
+	end
+
+	if E.Retail and E.db.ElvUI_EltreumUI.unitframes.lightmode then --while the issue is not resolved
+		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "NONE"
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = true
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
+	end
+
+	if E.private.ElvUI_EltreumUI.install_version and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
 		return
 	elseif E.private.ElvUI_EltreumUI.install_version < "2.9.3" then
 		if E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then --convert the option
@@ -315,13 +323,6 @@ function ElvUI_EltreumUI:OldVersionCheck()
 	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture then
 		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = false
 		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = true
-	end
-
-
-	if E.Retail and E.db.ElvUI_EltreumUI.unitframes.lightmode then --while the issue is not resolved
-		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "NONE"
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = true
-		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
 	end
 end
 
