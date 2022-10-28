@@ -72,8 +72,8 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"]["Eltreum"] = {
-			["posx"] = 1072,
-			["posy"] = 500,
+			["posx"] = 386,
+			["posy"] = 121,
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"]["Eltreum"] = {
@@ -104,9 +104,9 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["objects"] = {
 				["background"] = false,
 			},
-			["posy"] = 590,
+			["posy"] = 121,
 			["height"] = 93,
-			["posx"] = 1080,
+			["posx"] = 928,
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"]["Eltreum"] = {

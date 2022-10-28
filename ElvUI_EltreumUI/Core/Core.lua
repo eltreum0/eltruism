@@ -284,21 +284,25 @@ function ElvUI_EltreumUI:Anchors()
 		if not _G["ObjectiveFrameHolder"] then --TODO DRAGONFLIGHT
 			local B = E:GetModule('Blizzard')
 			local holder = CreateFrame('Frame', 'ObjectiveFrameHolder', E.UIParent)
-			holder:Point('TOPRIGHT', E.UIParent, 'TOPRIGHT', -135, -300)
-			holder:Size(130, 22)
+			holder:SetPoint('TOPRIGHT', E.UIParent, 'TOPRIGHT', -135, -300)
+			holder:SetSize(130, 22)
 
-			E:CreateMover(holder, 'ObjectiveFrameMover', L["Objective Frame"], nil, nil, B.HandleMawBuffsFrame, nil, nil, 'ALL,general,blizzUIImprovements')
-			holder:SetAllPoints(_G.ObjectiveFrameMover)
+			--holder:SetAllPoints(_G.ObjectiveFrameMover)
 
 			E:Delay(0, function()
 				local tracker = _G.ObjectiveTrackerFrame
-				tracker:SetClampedToScreen(false)
+				tracker:SetClampedToScreen(true)
 				tracker:ClearAllPoints()
-				tracker:Point('TOP', holder, 'TOP')
+				tracker:SetPoint('TOP', holder, 'TOP')
 				tracker:SetMovable(true)
 				tracker:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <3
-			end)
+				E:CreateMover(holder, 'ObjectiveFrameMover', L["Objective Frame"], nil, nil, B.HandleMawBuffsFrame, nil, nil, 'ALL,general,blizzUIImprovements')
 
+				ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight
+				--Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight
+				--ObjectiveTrackerFrame:SetHeight(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight)
+				ObjectiveTracker_UpdateHeight()
+			end)
 		end
 	end
 end
@@ -528,12 +532,12 @@ EltruismGameMenu:RegisterEvent("PLAYER_ENTERING_WORLD")
 EltruismGameMenu:SetScript("OnEvent", function()
 
 	--use elvui moveui instead of blizzard edit mode
-	--[[if _G.GameMenuButtonEditMode then --TODO DRAGONFLIGHT
+	if _G.GameMenuButtonEditMode then --TODO DRAGONFLIGHT
 		_G.GameMenuButtonEditMode:SetScript("OnClick", function()
 			E:ToggleMoveMode()
 			HideUIPanel(_G["GameMenuFrame"])
 		end)
-	end]]
+	end
 
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu and isMenuExpanded == false then
 		--EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:14:14:0:0:64:64:5:59:5:59|t".. ElvUI_EltreumUI.Name)

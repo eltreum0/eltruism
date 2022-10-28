@@ -60,9 +60,15 @@ local incResource = 0
 local startTime, endTime, spellID = 0, 0, 0
 local spellGenerators
 local druidwrath = 6
-local mindblast = 8
-local mindflay = 18
+local druidstarfire = 8
+local shamanhex = 0
+local shamanbolt = 8
+local shamanlavaburst = 10
+local huntersteadyshot = 0
+local mindblast = 6
+local mindflay = 12
 local druideclipse
+--local druidelunewarrior
 local costTable
 local ret, ret2
 local predictioncolorr, predictioncolorg, predictioncolorb
@@ -93,43 +99,65 @@ function ElvUI_EltreumUI:PowerPrediction()
 		EltreumPowerPrediction:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
 		EltreumPowerPredictionIncoming:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
 
-		if IsPlayerSpell(193195) then
+		if IsPlayerSpell(193195) then --talent might be removed
 			mindblast = 9
 			mindflay = 22
 		end
 		if E.Retail then
 			druideclipse = C_UnitAuras.GetPlayerAuraBySpellID(48517) --might be removed in dragonflight
+			--druidelunewarrior = C_UnitAuras.GetPlayerAuraBySpellID(202425) --might be removed in dragonflight
 			if IsPlayerSpell(114107) and druideclipse ~= nil then
 				druidwrath = 9
+			end
+			--[[if IsPlayerSpell(202425) and druidelunewarrior ~= nil then --its instant cast, so for now not needed
+				druidstarfire = 11
+			end]]
+			if IsPlayerSpell(378776) then --shaman inundate
+				shamanhex = 8
+			end
+			if IsPlayerSpell(321018) then --improved steady shot
+				huntersteadyshot = 10
+			end
+			if IsPlayerSpell(385923) then --shaman flow of pwoer
+				shamanbolt = 10
+				shamanlavaburst = 12
 			end
 		end
 
 		--Some of this is from Asakawa's Universal Power Bar, but mostly has been revamped and updated to current values instead of BFA values
 		spellGenerators = {
+
 			-- Balance Druid
 			[190984] = druidwrath, --wrath
-			[194153] = 8, -- StarFire
+			[194153] = druidstarfire, -- StarFire
 			[214281] = 10, -- New Moon
 			[274281] = 10, -- New Moon
 			[214282] = 20, -- Half Moon
 			[274282] = 20, -- Half Moon
 			[274283] = 40, -- Full Moon
 			[202347] = 8, -- Stellar Flare
+
 			-- Shadow Priest
 			[8092] = mindblast, -- mind blast
 			[34914] = 5, -- vampiric touch
 			[15407] = mindflay, -- mind flay, but is a channel so idc
 			[48045] = 6, -- per target, but is a channel so idc
 			[263165] = 60, -- void torrent, but is a channel so idc
+			[263346] = 15, --dark void
+			[73510] = 4, --mind spike
+			[391109] = 30, --dark ascension
+
 			-- Elemental Shaman
-			[188196] = 8, --lightning bolt
-			[51505] = 10, --lava burst
-			[117014] = 30, --elemental blast
-			[114074] = 4, --lava beam
+			[188196] = shamanbolt, --lightning bolt
+			[51505] = shamanlavaburst, --lava burst
+			--[117014] = 30, --elemental blast
+			[114074] = 3, --lava beam
 			[210714] = 25, --icefury
 			[188443] = 4, --chain lightning (per target hit)
+			[51514] = shamanhex, --hex can have maelstrom if they have inundate
+
 			--Hunter
-			[56641] = 10, --steady shot
+			[56641] = huntersteadyshot, --steady shot only gives focus with a talent now
 		}
 
 		mainCost = 0 --reset
@@ -145,12 +173,15 @@ function ElvUI_EltreumUI:PowerPrediction()
 						mainCost = v.cost
 					else
 						mainCost = 0
-						tablepowernumber = 123123 --random value so it doesnt match
+						if E.myclass == "HUNTER" then
+							tablepowernumber = 123123 --random value so it doesnt match
+						end
 					end
 				end
 			end
 
-			if spellGenerators[spellID] and tablepowernumber == powernumber then
+			--because priest/shaman/druid have a secondary power AND mana they need to be checked against
+			if spellGenerators[spellID] and (E.myclass == "HUNTER" and tablepowernumber == powernumber or E.myclass ~= "HUNTER") then
 				incResource = spellGenerators[spellID]
 				--readjust if the incoming would go over max
 				if (incResource + EltreumPowerBar:GetValue()) >= UnitPowerMax("player") then
