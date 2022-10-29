@@ -70,12 +70,11 @@ end
 function ElvUI_EltreumUI:ArenaUnitframes()
 	if E.db.ElvUI_EltreumUI.unitframes.arenaunitframes and E.private.unitframe.enable then
 		_, instanceType = IsInInstance()
-		if instanceType == "arena" then
+		if instanceType == "arena" or (instanceType == "pvp" and IsAddOnLoaded("BattleGroundEnemies")) then
 			_G["ElvUF_Arena1"]:Hide()
 			_G["ElvUF_Arena2"]:Hide()
 			_G["ElvUF_Arena3"]:Hide()
 			_G["ElvUF_Arena4"]:Hide()
-			--ConsoleExec("ElvUF_Arena4:Hide()")
 			_G["ElvUF_Arena5"]:Hide()
 		end
 	end
