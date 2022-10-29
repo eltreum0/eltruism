@@ -71,6 +71,11 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["g"] = 1
 		E.db["unitframe"]["units"]["party"]["CombatIcon"]["defaultColor"] = false
 
+		--reverse target
+		E.db["unitframe"]["units"]["target"]["health"]["reverseFill"] = true
+		E.db["unitframe"]["units"]["target"]["power"]["reverseFill"] = true
+
+		--general pixel perfect things
 		E.private["general"]["pixelPerfect"] = true
 		E.db["unitframe"]["thinBorders"] = true
 
