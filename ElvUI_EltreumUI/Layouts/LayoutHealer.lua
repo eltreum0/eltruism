@@ -157,7 +157,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 16; [overridebar] 18; [possessbar] 16;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [vehicleui] 16; [overridebar] 18; [possessbar] 12;[bonusbar:2] 8;[bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
 		E.db["actionbar"]["bar4"]["paging"]["SHAMAN"] = "[vehicleui] 16; [overridebar] 18; [possessbar] 16;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[form:1] 7;[bonusbar:5] 11;"
+		E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["EVOKER"] = "[vehicleui] 16; [overridebar] 18; [possessbar] 16;[bonusbar:5] 11;[bonusbar:1] 7;"
 	else
