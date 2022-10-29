@@ -1742,6 +1742,25 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
+		if E.db["unitframe"]["units"]["player"]["classbar"]["detachFromFrame"] then
+			if _G["ElvUF_Player_ClassBar"].shadow then
+				_G["ElvUF_Player_ClassBar"].shadow:Show()
+			else
+				_G["ElvUF_Player_ClassBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvUF_Player_ClassBar"].shadow) end
+			end
+		end
+		if E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] then
+			if _G["ElvUF_Player_PowerBar"].shadow then
+				_G["ElvUF_Player_PowerBar"].shadow:Show()
+			end
+		end
+		if E.db["unitframe"]["units"]["target"]["power"]["detachFromFrame"] then
+			if _G["ElvUF_Target_PowerBar"].shadow then
+				_G["ElvUF_Target_PowerBar"].shadow:Show()
+			end
+		end
+
 		------------------------------------------------------------------------------------------------------end of elvui frames
 		if IsAddOnLoaded('ProjectAzilroka') then
 			if _G.stAMFrame and not _G.stAMFrame.shadow then
