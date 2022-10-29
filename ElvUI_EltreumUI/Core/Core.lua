@@ -549,7 +549,7 @@ EltruismGameMenu:RegisterEvent("PLAYER_ENTERING_WORLD")
 EltruismGameMenu:SetScript("OnEvent", function()
 
 	--use elvui moveui instead of blizzard edit mode
-	if _G.GameMenuButtonEditMode then --TODO DRAGONFLIGHT
+	if _G.GameMenuButtonEditMode and E.db.ElvUI_EltreumUI.otherstuff.gamemenu then --TODO DRAGONFLIGHT
 		_G.GameMenuButtonEditMode:SetScript("OnClick", function()
 			E:ToggleMoveMode()
 			HideUIPanel(_G["GameMenuFrame"])
