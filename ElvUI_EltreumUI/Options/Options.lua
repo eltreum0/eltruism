@@ -216,7 +216,38 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = L["Reset Chat to ElvUI Settings"],
 								width = 'full',
-								func = function() E:SetupChat() ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."]) end,
+								func = function()
+									E:SetupChat()
+									ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
+									--for classic chat lfg
+									local lfg
+									if E.global.general.locale == "enUS" then
+										lfg = "LookingForGroup"
+									elseif E.global.general.locale == "deDE" then
+										lfg = "SucheNachGruppe"
+									elseif E.global.general.locale == "esMX" or E.global.general.locale == "esES" then
+										lfg = "BuscarGrupo"
+									elseif E.global.general.locale == "frFR" then
+										lfg = "RechercheDeGroupe"
+									elseif E.global.general.locale == "ruRU" then
+										lfg = "ПоискСпутников"
+									elseif E.global.general.locale == "zhTW" then
+										lfg = "尋求組隊"
+									else
+										lfg = "LookingForGroup"
+									end
+									if not E.Retail then --remove lfg spam from general and creat tab for it
+										if lfg then
+											ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
+											FCF_OpenNewWindow()
+											ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
+											FCF_SetWindowName(_G.ChatFrame5, 'LFG')
+											ChatFrame_AddChannel(_G.ChatFrame5, lfg)
+											FCFTab_UpdateColors(_G.ChatFrame5Tab)
+											FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
+										end
+									end
+								end,
 							},
 						},
 					},
