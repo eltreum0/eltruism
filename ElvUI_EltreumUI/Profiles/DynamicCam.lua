@@ -12,31 +12,32 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 			DynamicCamDB["profileKeys"][E.mynameRealm] = "Eltreum"
 			DynamicCamDB["profiles"]["Eltreum"] = {}
 			DynamicCamDB["profiles"]["Eltreum"] = {
+				["standardSettings"] = {
+					["reactiveZoomAddIncrements"] = 1.5,
+					["reactiveZoomIncAddDifference"] = 2,
+					["shoulderOffsetZoomUpperBound"] = 8,
+					["cvars"] = {
+						["cameraZoomSpeed"] = 50,
+						["test_cameraDynamicPitchBaseFovPadFlying"] = 0.9500000000000001,
+						["test_cameraDynamicPitchBaseFovPadDownScale"] = 1,
+						["test_cameraDynamicPitchBaseFovPad"] = 0.7000000000000001,
+						["cameraDistanceMaxZoomFactor"] = 2.6,
+						["test_cameraDynamicPitch"] = 1,
+						["test_cameraDynamicPitchSmartPivotCutoffDist"] = 0,
+					},
+					["reactiveZoomAddIncrementsAlways"] = 0,
+				},
 				["situations"] = {
 					["303"] = {
 						["enabled"] = true,
+						["hideUI"] = {
+							["fadeOpacity"] = 0,
+							["hideEntireUI"] = true,
+						},
 						["rotation"] = {
 							["enabled"] = true,
 							["rotationSpeed"] = 3,
 							["rotateBack"] = false,
-						},
-						["hideUI"] = {
-							["enabled"] = true,
-							["hideEntireUI"] = true,
-							["fadeOpacity"] = 0,
-						},
-					},
-					["301"] = {
-						["enabled"] = true,
-						["viewZoom"] = {
-							["enabled"] = true,
-						},
-						["situationSettings"] = {
-							["cvars"] = {
-								["test_cameraOverShoulder"] = 1,
-								["test_cameraTargetFocusInteractStrengthPitch"] = 1,
-								["test_cameraTargetFocusInteractEnable"] = 1,
-							},
 						},
 					},
 					["060"] = {
@@ -44,59 +45,6 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 						["situationSettings"] = {
 							["cvars"] = {
 								["test_cameraDynamicPitch"] = 0,
-								["test_cameraOverShoulder"] = 0,
-							},
-						},
-					},
-					["101"] = {
-						["enabled"] = true,
-						["rotation"] = {
-							["enabled"] = true,
-							["rotateBackTime"] = 0.5,
-							["rotationTime"] = 0.5,
-							["rotateBack"] = false,
-						},
-					},
-					["050"] = {
-						["enabled"] = true,
-						["situationSettings"] = {
-							["cvars"] = {
-								["test_cameraDynamicPitch"] = 0,
-								["test_cameraOverShoulder"] = 0,
-							},
-						},
-					},
-					["001"] = {
-						["enabled"] = true,
-						["viewZoom"] = {
-							["enabled"] = true,
-							["zoomType"] = "out",
-							["zoomTransitionTime"] = 1.5,
-							["zoomValue"] = 20,
-						},
-						["situationSettings"] = {
-							["cvars"] = {
-								["test_cameraOverShoulder"] = 0,
-							},
-						},
-					},
-					["200"] = {
-						["enabled"] = true,
-						["rotation"] = {
-							["enabled"] = true,
-							["pitchDegrees"] = 15,
-							["rotationType"] = "degrees",
-							["rotationSpeed"] = 80,
-							["yawDegrees"] = 270,
-							["rotateBack"] = false,
-						},
-						["viewZoom"] = {
-							["enabled"] = true,
-							["viewNumber"] = 3,
-							["zoomValue"] = 4,
-						},
-						["situationSettings"] = {
-							["cvars"] = {
 								["test_cameraOverShoulder"] = 0,
 							},
 						},
@@ -109,31 +57,106 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 							},
 						},
 					},
-					["004"] = {
+					["002"] = {
 						["enabled"] = true,
-						["viewZoom"] = {
-							["enabled"] = true,
-							["zoomType"] = "out",
-							["zoomTransitionTime"] = 1.5,
-							["zoomValue"] = 30,
-						},
 						["situationSettings"] = {
 							["cvars"] = {
 								["test_cameraOverShoulder"] = 0,
 							},
 						},
+						["viewZoom"] = {
+							["enabled"] = true,
+							["zoomMax"] = 20,
+							["zoomMin"] = 20,
+							["zoomType"] = "in",
+							["zoomValue"] = 15,
+							["zoomTransitionTime"] = 1.05,
+						},
 					},
-					["300"] = {
+					["050"] = {
 						["enabled"] = true,
+						["situationSettings"] = {
+							["cvars"] = {
+								["test_cameraDynamicPitch"] = 0,
+								["test_cameraOverShoulder"] = 0,
+							},
+						},
+					},
+					["301"] = {
+						["enabled"] = true,
+						["situationSettings"] = {
+							["cvars"] = {
+								["test_cameraOverShoulder"] = 1,
+								["test_cameraTargetFocusInteractStrengthPitch"] = 1,
+								["test_cameraTargetFocusInteractEnable"] = 1,
+							},
+						},
 						["viewZoom"] = {
 							["enabled"] = true,
 						},
+					},
+					["005"] = {
+						["enabled"] = true,
+						["situationSettings"] = {
+							["cvars"] = {
+								["test_cameraOverShoulder"] = 0,
+							},
+						},
+						["viewZoom"] = {
+							["enabled"] = true,
+							["zoomType"] = "in",
+							["zoomValue"] = 20,
+							["zoomTransitionTime"] = 1.5,
+						},
+					},
+					["101"] = {
+						["enabled"] = true,
+						["rotation"] = {
+							["enabled"] = true,
+							["rotateBackTime"] = 0.5,
+							["rotationTime"] = 0.5,
+							["rotateBack"] = false,
+						},
+					},
+					["001"] = {
+						["enabled"] = true,
+						["situationSettings"] = {
+							["cvars"] = {
+								["test_cameraOverShoulder"] = 0,
+							},
+						},
+						["viewZoom"] = {
+							["enabled"] = true,
+							["zoomType"] = "out",
+							["zoomValue"] = 20,
+							["zoomTransitionTime"] = 1.5,
+						},
+					},
+					["004"] = {
+						["enabled"] = true,
+						["situationSettings"] = {
+							["cvars"] = {
+								["test_cameraOverShoulder"] = 0,
+							},
+						},
+						["viewZoom"] = {
+							["enabled"] = true,
+							["zoomType"] = "out",
+							["zoomValue"] = 30,
+							["zoomTransitionTime"] = 1.5,
+						},
+					},
+					["300"] = {
+						["enabled"] = true,
 						["situationSettings"] = {
 							["cvars"] = {
 								["test_cameraOverShoulder"] = 0,
 								["test_cameraTargetFocusInteractStrengthPitch"] = 1,
 								["test_cameraTargetFocusInteractEnable"] = 1,
 							},
+						},
+						["viewZoom"] = {
+							["enabled"] = true,
 						},
 					},
 					["020"] = {
@@ -147,13 +170,6 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 					},
 					["100"] = {
 						["enabled"] = true,
-						["viewZoom"] = {
-							["enabled"] = true,
-							["zoomType"] = "out",
-							["zoomValue"] = 30,
-							["zoomTransitionTime"] = 0.75,
-							["zoomTimeIsMax"] = true,
-						},
 						["situationSettings"] = {
 							["cvars"] = {
 								["test_cameraDynamicPitch"] = 0,
@@ -161,52 +177,35 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 								["test_cameraTargetFocusEnemyEnable"] = 0,
 							},
 						},
-					},
-					["002"] = {
-						["enabled"] = true,
 						["viewZoom"] = {
 							["enabled"] = true,
-							["zoomType"] = "in",
-							["zoomMax"] = 20,
-							["zoomMin"] = 20,
-							["zoomValue"] = 15,
-							["zoomTransitionTime"] = 1.05,
+							["zoomTransitionTime"] = 0.75,
+							["zoomType"] = "out",
+							["zoomValue"] = 30,
+							["zoomTimeIsMax"] = true,
+						},
+					},
+					["200"] = {
+						["enabled"] = true,
+						["rotation"] = {
+							["enabled"] = true,
+							["pitchDegrees"] = 15,
+							["rotationType"] = "degrees",
+							["rotationSpeed"] = 80,
+							["yawDegrees"] = 270,
+							["rotateBack"] = false,
 						},
 						["situationSettings"] = {
 							["cvars"] = {
 								["test_cameraOverShoulder"] = 0,
 							},
 						},
-					},
-					["005"] = {
-						["enabled"] = true,
 						["viewZoom"] = {
 							["enabled"] = true,
-							["zoomType"] = "in",
-							["zoomTransitionTime"] = 1.5,
-							["zoomValue"] = 20,
-						},
-						["situationSettings"] = {
-							["cvars"] = {
-								["test_cameraOverShoulder"] = 0,
-							},
+							["zoomValue"] = 4,
+							["viewNumber"] = 3,
 						},
 					},
-				},
-				["standardSettings"] = {
-					["reactiveZoomAddIncrements"] = 1.5,
-					["cvars"] = {
-						["test_cameraDynamicPitchBaseFovPad"] = 0.7000000000000001,
-						["cameraDistanceMaxZoomFactor"] = 2.6,
-						["test_cameraDynamicPitchBaseFovPadDownScale"] = 1,
-						["cameraZoomSpeed"] = 50,
-						["test_cameraDynamicPitchBaseFovPadFlying"] = 0.9500000000000001,
-						["test_cameraDynamicPitch"] = 1,
-						["test_cameraDynamicPitchSmartPivotCutoffDist"] = 0,
-					},
-					["reactiveZoomIncAddDifference"] = 2,
-					["shoulderOffsetZoomUpperBound"] = 8,
-					["reactiveZoomAddIncrementsAlways"] = 0,
 				},
 				["version"] = 3,
 				["firstRun"] = false,
