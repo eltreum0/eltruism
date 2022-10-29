@@ -281,29 +281,46 @@ function ElvUI_EltreumUI:Anchors()
 			E:DisableMover('BossBannerMover')
 		end
 
-		if not _G["ObjectiveFrameHolder"] then --TODO DRAGONFLIGHT
-			local B = E:GetModule('Blizzard')
-			local holder = CreateFrame('Frame', 'ObjectiveFrameHolder', E.UIParent)
-			holder:SetPoint('TOPRIGHT', E.UIParent, 'TOPRIGHT', -135, -300)
-			holder:SetSize(130, 22)
+		--from elvui
+		E:Delay(0, function()
+			if not _G["ObjectiveFrameHolder"] then --TODO DRAGONFLIGHT
+				local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
+				holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
+				holder:SetSize(130, 22)
 
-			--holder:SetAllPoints(_G.ObjectiveFrameMover)
+				local editMode = _G.EditModeManagerFrame
+				local registered = editMode.registeredSystemFrames
+				for i = #registered, 1, -1 do
+					local name = registered[i]:GetName()
+					if name == "ObjectiveTrackerFrame" then
+						tremove(editMode.registeredSystemFrames, i)
+					end
+				end
 
-			E:Delay(0, function()
-				local tracker = _G.ObjectiveTrackerFrame
-				tracker:SetClampedToScreen(true)
-				tracker:ClearAllPoints()
-				tracker:SetPoint('TOP', holder, 'TOP')
-				tracker:SetMovable(true)
-				tracker:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <3
-				E:CreateMover(holder, 'ObjectiveFrameMover', L["Objective Frame"], nil, nil, B.HandleMawBuffsFrame, nil, nil, 'ALL,general,blizzUIImprovements')
-
-				ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight
-				--Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight
-				--ObjectiveTrackerFrame:SetHeight(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight)
+				ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 				ObjectiveTracker_UpdateHeight()
-			end)
-		end
+
+				_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
+				_G.ObjectiveTrackerFrame:SetMovable(true)
+				_G.ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
+				_G.ObjectiveTrackerFrame:ClearAllPoints()
+				_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
+				E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,general,blizzUIImprovements", nil, 'ElvUI_EltreumUI,quests')
+
+				hooksecurefunc("ObjectiveTracker_UpdateHeight", function()
+					_G.ObjectiveTrackerFrame:ClearAllPoints()
+					_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
+				end)
+
+				--[[local questmonitor = CreateFrame("FRAME")
+				questmonitor:RegisterEvent("QUEST_LOG_UPDATE")
+				questmonitor:RegisterEvent("UPDATE_UI_WIDGET")
+				questmonitor:SetScript("OnEvent", function()
+					_G.ObjectiveTrackerFrame:ClearAllPoints()
+					_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
+				end)]]
+			end
+		end)
 	end
 end
 
@@ -532,7 +549,7 @@ EltruismGameMenu:RegisterEvent("PLAYER_ENTERING_WORLD")
 EltruismGameMenu:SetScript("OnEvent", function()
 
 	--use elvui moveui instead of blizzard edit mode
-	if _G.GameMenuButtonEditMode then --TODO DRAGONFLIGHT
+	if _G.GameMenuButtonEditMode and E.db.ElvUI_EltreumUI.otherstuff.gamemenu then --TODO DRAGONFLIGHT
 		_G.GameMenuButtonEditMode:SetScript("OnClick", function()
 			E:ToggleMoveMode()
 			HideUIPanel(_G["GameMenuFrame"])

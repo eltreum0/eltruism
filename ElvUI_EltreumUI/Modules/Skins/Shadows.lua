@@ -294,12 +294,24 @@ function ElvUI_EltreumUI:Shadows()
 		end)
 
 		--mirror timer shadow
-		for i = 1, _G.MIRRORTIMER_NUMTIMERS do
-			local statusBar = _G['MirrorTimer'..i..'StatusBar']
-			if statusBar then
-				if not statusBar.shadow then
-					statusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					if EnhancedShadows then EnhancedShadows:RegisterShadow(statusBar.shadow) end
+		if not E.Retail then
+			for i = 1, _G.MIRRORTIMER_NUMTIMERS do
+				local statusBar = _G['MirrorTimer'..i..'StatusBar']
+				if statusBar then
+					if not statusBar.shadow then
+						statusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(statusBar.shadow) end
+					end
+				end
+			end
+		else
+			for i = 1, _G.MIRRORTIMER_NUMTIMERS do
+				local statusBar = _G['MirrorTimer'..i]
+				if statusBar then
+					if not statusBar.shadow then
+						statusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(statusBar.shadow) end
+					end
 				end
 			end
 		end

@@ -95,24 +95,90 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 	end
 end
 
---gradient misc
+--gradient mirror/breath/feigndeath
+function S:HandleMirrorTimer() --(timer, value, maxvalue, scale, paused, label)
+	for i = 1, _G.MIRRORTIMER_NUMTIMERS do
+		local frame = _G['MirrorTimer'..i]
+		if frame then
+			if not frame.atlasHolder then
+				frame.atlasHolder = CreateFrame('Frame', nil, frame)
+				frame.atlasHolder:SetClipsChildren(true)
+				frame.atlasHolder:SetInside()
+
+				frame.StatusBar:SetParent(frame.atlasHolder)
+				frame.StatusBar:ClearAllPoints()
+				frame.StatusBar:SetSize(204, 22)
+				frame.StatusBar:Point('TOP', 0, 2)
+
+				frame:SetSize(200, 18)
+
+				frame.Text:FontTemplate()
+				frame.Text:ClearAllPoints()
+				frame.Text:SetParent(frame.StatusBar)
+				frame.Text:SetPoint('CENTER', frame.StatusBar, 0, 1)
+			end
+
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+				local atlas = frame.StatusBar:GetStatusBarTexture():GetAtlas()
+				local alpha = frame.StatusBar:GetAlpha()
+				--print(atlas)
+				frame.StatusBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.private.general.glossTex))
+
+				--print(timer, value, maxvalue, scale, paused, label)
+				local MirrorTimerAtlasCheck = {
+					["EXHAUSTION"] = "UI-CastingBar-Filling-Standard", --yellow
+					["BREATH"] = "UI-CastingBar-Filling-ApplyingCrafting", --changing talents (blue)
+					--["DEATH"] = "UI-CastingBar-Filling-Standard",  --same as EXHAUSTION
+					["FEIGNDEATH"] = "UI-CastingBar-Filling-Channel", --green
+				}
+				if atlas == MirrorTimerAtlasCheck["EXHAUSTION"] then
+					if E.Retail then
+						frame.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(1, 0.68, 0, alpha), CreateColor(1, 0.83, 0.25, alpha))
+					else
+						frame.StatusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", 1, 0.68, 0, alpha, 1, 0.83, 0.25, alpha)
+					end
+				elseif atlas == MirrorTimerAtlasCheck["BREATH"] then
+					if E.Retail then
+						frame.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(0, 0.33, 0.53, alpha), CreateColor(0.49, 0.87, 1, alpha))
+					else
+						frame.StatusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", 0, 0.33, 0.53, alpha, 0.49, 0.87, 1, alpha)
+					end
+				elseif atlas == MirrorTimerAtlasCheck["FEIGNDEATH"] then
+					if E.Retail then
+						frame.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(0.01, 0.6, 0.36, alpha), CreateColor(0, 1, 0.58, alpha))
+					else
+						frame.StatusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", 0.01, 0.6, 0.36, alpha, 0, 1, 0.58, alpha)
+					end
+				end
+			end
+
+			frame:StripTextures()
+			frame:SetTemplate('Transparent')
+		end
+	end
+end
+
+--gradient loot roll
 function ElvUI_EltreumUI:GradientMirrorLoot()
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 
 		--breath/mirror
-		for i = 1, _G.MIRRORTIMER_NUMTIMERS do
-			local statusBar = _G['MirrorTimer'..i..'StatusBar']
-			if statusBar then
-				statusBar:HookScript("OnShow", function()
-					local r,g,b,a = statusBar:GetStatusBarColor()
-					if E.Retail then
-						statusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(r - 0.3, g - 0.3, b - 0.3, a), CreateColor(r + 0.2, g + 0.2, b + 0.2, a))
-					else
-						statusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r - 0.3, g - 0.3, b - 0.3, a, r + 0.2, g + 0.2, b + 0.2, a)
-					end
-				end)
+		if not E.Retail then
+			for i = 1, _G.MIRRORTIMER_NUMTIMERS do
+				local statusBar = _G['MirrorTimer'..i..'StatusBar']
+				if statusBar then
+					statusBar:HookScript("OnShow", function()
+						local r,g,b,a = statusBar:GetStatusBarColor()
+						if E.Retail then
+							statusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(r - 0.3, g - 0.3, b - 0.3, a), CreateColor(r + 0.2, g + 0.2, b + 0.2, a))
+						else
+							statusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r - 0.3, g - 0.3, b - 0.3, a, r + 0.2, g + 0.2, b + 0.2, a)
+						end
+					end)
+				end
 			end
 		end
+
 
 		--loot roll
 		for i = 1, NUM_GROUP_LOOT_FRAMES do
@@ -137,7 +203,6 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 				end
 			end
 		end
-
 	end
 end
 
