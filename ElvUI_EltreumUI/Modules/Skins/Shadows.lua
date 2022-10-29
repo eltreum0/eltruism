@@ -261,6 +261,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G.GhostFrameContentsFrame,
 			_G.SettingsPanel,
 			_G.ExpansionLandingPage,
+			_G.OrderHallMissionFrame,
 			--_G.ImmersionFrame.TalkBox,
 		}
 		for _, frame in pairs(blizzardframes) do
