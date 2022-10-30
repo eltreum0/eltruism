@@ -85,12 +85,14 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 										if d <= E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance then
 											return 1
 										elseif d > E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance then
+											C_Map.ClearUserWaypoint()
 											return 0
 										end
 									else
 										return 1
 									end
 								else
+									C_Map.ClearUserWaypoint()
 									return 0
 								end
 							end
