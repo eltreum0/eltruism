@@ -162,6 +162,16 @@ local TeleportsSpells = {
 	373190, --path-of-the-sire
 	373191, --path-of-the-tormented-soul
 	373192, --path-of-the-first-ones
+	393222, --path-of-the-watchers-legacy
+	393273, --path-of-the-draconic-diploma
+	393256, --path-of-the-clutch-defender
+	393262, --path-of-the-windswept-plains
+	393283, --path-of-the-titanic-reservoir
+	393276, --path-of-the-obsidian-hoard
+	393279, --path-of-arcane-secrets
+	393764, --path-of-proven-worth
+	393766, --path-of-the-grand-magistrix
+	393267, --path-of-the-rotting-woods
 }
 local teleportupdate = CreateFrame("FRAME")
 local TimeSinceLastUpdate = 0
