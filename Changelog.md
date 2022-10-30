@@ -1,6 +1,20 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.5.4
+Added a temporary option to change the Keypress CVar that is currently causing issues in Retail due to 10.0\
+Added transparency to Castbar Gradient which will now better follow ElvUI settings\
+Added 10.0 dungeon Teleports to the Teleports Datatext\
+Added Paladin Battle Res Icon in Retail\
+Added Evoker to multiple tags\
+Added a few missing shadows\
+Updated Hide Arena to Hide in Battlegrounds if Battleground Enemies is loaded since it also adds indicators\
+Updated Waypoint function to remove Waypoint once you arrive at the destination\
+Updated DynamicCam profile to fix an issue with the new Fade UI default\
+Updated Custom Backdrop for Castbars to use a 0.4 alpha\
+Updated profile to reverse Target Unitframe\
+Updated German Locale by Dlarge\
+Fixed SoulShape paging Warlock's ActionBar in Retail
 ### 3.5.3
 Added cvar to enable all minimap tracking options during install\
 Added an option to change the Objective Tracker Height\

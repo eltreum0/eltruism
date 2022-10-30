@@ -262,6 +262,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G.SettingsPanel,
 			_G.ExpansionLandingPage,
 			_G.OrderHallMissionFrame,
+			_G.LootHistoryFrame,
 			--_G.ImmersionFrame.TalkBox,
 		}
 		for _, frame in pairs(blizzardframes) do
@@ -955,6 +956,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G["ElvUIStatusReport"],
 			_G["ElvUIStatusPlugins"],
 			_G["ElvUIVendorGraysFrame"],
+			_G["ElvUI_ContainerFrameContainerHolder"],
 		}
 		for _, frame in pairs(GeneralElvUIFrames) do
 			if frame and not frame.shadow then
@@ -1623,6 +1625,7 @@ function ElvUI_EltreumUI:Shadows()
 				RightChatShadow:Hide()
 			end
 		end
+
 		--info panel on top
 		if E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
 			if E.db["unitframe"]["units"]["player"]["infoPanel"]["enable"] then

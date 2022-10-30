@@ -546,7 +546,8 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["colors"]["castbar_backdrop"]["b"] = 0
 	E.db["unitframe"]["colors"]["castbar_backdrop"]["g"] = 0
 	E.db["unitframe"]["colors"]["castbar_backdrop"]["r"] = 0
-	E.db["unitframe"]["colors"]["castReactionColor"] = true
+	E.db["unitframe"]["colors"]["castbar_backdrop"]["a"] = 0.4
+	E.db["unitframe"]["colors"]["castReactionColor"] = false
 	E.db["unitframe"]["colors"]["classResources"]["PALADIN"]["b"] = 0.050980392156863
 	E.db["unitframe"]["colors"]["classResources"]["PALADIN"]["g"] = 1
 	E.db["unitframe"]["colors"]["classResources"]["PALADIN"]["r"] = 1
@@ -627,7 +628,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["colors"]["transparentAurabars"] = true
 	E.db["unitframe"]["colors"]["transparentCastbar"] = true
 	E.db["unitframe"]["colors"]["transparentHealth"] = true
-	--E.db["unitframe"]["colors"]["transparentPower"] = true
 	E.db["unitframe"]["colors"]["transparentPower"] = false
 
 	--dps options

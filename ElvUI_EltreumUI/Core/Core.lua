@@ -198,9 +198,20 @@ end
 local fixkeydown = CreateFrame("FRAME") --fix while the issue exists
 fixkeydown:RegisterEvent("PLAYER_STARTED_MOVING")
 fixkeydown:SetScript("OnEvent", function()
-	if not InCombatLockdown() then
-		SetCVar('ActionButtonUseKeyDown', 1) --fix bc key down > right click
-		fixkeydown:UnregisterAllEvents()
+	if not E.private.ElvUI_EltreumUI then
+		return
+	elseif not E.private.ElvUI_EltreumUI.install_version then
+		return
+	elseif not E.db.ElvUI_EltreumUI then
+		return
+	elseif not E.db.ElvUI_EltreumUI.otherstuff then
+		return
+	end
+	if E.db.ElvUI_EltreumUI.otherstuff.fixkeypress and E.Retail then
+		if not InCombatLockdown() then
+			SetCVar('ActionButtonUseKeyDown', 1) --fix bc key down > right click
+			fixkeydown:UnregisterAllEvents()
+		end
 	end
 end)
 
