@@ -207,7 +207,7 @@ fixkeydown:SetScript("OnEvent", function()
 	elseif not E.db.ElvUI_EltreumUI.otherstuff then
 		return
 	end
-	if E.db.ElvUI_EltreumUI.otherstuff.fixkeypress then
+	if E.db.ElvUI_EltreumUI.otherstuff.fixkeypress and E.Retail then
 		if not InCombatLockdown() then
 			SetCVar('ActionButtonUseKeyDown', 1) --fix bc key down > right click
 			fixkeydown:UnregisterAllEvents()
