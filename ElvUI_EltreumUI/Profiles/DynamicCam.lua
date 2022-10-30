@@ -211,7 +211,7 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 				["firstRun"] = false,
 			}
 		end
-	elseif E.Wrath or E.TBC or E.Classic then
+	elseif E.Wrath or E.Classic then
 		if DynamicCamDB.profiles.Eltreum then
 			local key = {[E.mynameRealm] = "Eltreum"}
 			table.insert(DynamicCamDB.profileKeys, key)

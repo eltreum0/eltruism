@@ -226,7 +226,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		BigWigsClassicDB["profileKeys"] = {[E.mynameRealm] = "Eltreum",
 		}
 	end
-	if E.TBC or E.Wrath then
+	if E.Wrath then
 		--create profile
 		BigWigsClassicDB["profiles"] = BigWigsClassicDB["profiles"] or {}
 		BigWigsClassicDB["profiles"]["Eltreum"] = BigWigsClassicDB["profiles"]["Eltreum"] or {}

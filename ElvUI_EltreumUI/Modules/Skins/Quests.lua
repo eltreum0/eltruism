@@ -36,7 +36,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			wowheadbutton:SetHeight(20)
 			wowheadbutton:SetParent(_G.WorldMapFrame)
 			wowheadbutton:SetPoint("TOPRIGHT", _G.WorldMapFrame, "TOPRIGHT", -80, 0)
-		elseif E.TBC or E.Classic then
+		elseif E.Classic then
 			local x, y = _G.QuestFramePushQuestButton:GetSize()
 			wowheadbutton:SetWidth(x)
 			wowheadbutton:SetHeight(y)
@@ -74,26 +74,6 @@ function ElvUI_EltreumUI:SkinQuests()
 				wowheadregion = "ru.wowhead.com"
 			elseif E.locale == "zhCN" or E.locale == "zhTW" then
 				wowheadregion = "cn.wowhead.com"
-			end
-		elseif E.TBC then
-			if E.locale == "deDE" then
-				wowheadregion = "de.tbc.wowhead.com"
-			elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW" then
-				wowheadregion = "tbc.wowhead.com"
-			elseif E.locale == "esMX" or E.locale == "esES" then
-				wowheadregion = "es.tbc.wowhead.com"
-			elseif E.locale == "frFR" then
-				wowheadregion = "fr.tbc.wowhead.com"
-			elseif E.locale == "itIT" then
-				wowheadregion = "it.tbc.wowhead.com"
-			elseif E.locale == "koKR" then
-				wowheadregion = "ko.tbc.wowhead.com"
-			elseif E.locale == "ptBR" or E.locale == "ptPT" then
-				wowheadregion = "pt.tbc.wowhead.com"
-			elseif E.locale == "ruRU" then
-				wowheadregion = "ru.tbc.wowhead.com"
-			elseif E.locale == "zhCN" or E.locale == "zhTW" then
-				wowheadregion = "cn.tbc.wowhead.com"
 			end
 		elseif E.Wrath then
 			if E.locale == "deDE" then
@@ -160,7 +140,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, L["No quest selected"])
 				end
 			end)
-		elseif E.Classic or E.TBC then
+		elseif E.Classic then
 			local questID
 			--hook the function that sets the quest detail to get the questID from the quest title
 			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --questlogframe.lua 311
@@ -611,7 +591,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 				end)
 			end
-		elseif E.Classic or E.TBC then
+		elseif E.Classic then
 			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
 				return
 			end

@@ -618,7 +618,7 @@ function ElvUI_EltreumUI:QuestItem()
 										AddButton(index,bag,slot,link,itemId,count)
 										index = (index + 1)
 									end
-								elseif E.Wrath or E.TBC or E.Classic then
+								elseif E.Wrath or E.Classic then
 									if ((itemType == "Quest" or classID == 12) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
 										local _, count = GetContainerItemInfo(bag,slot)
 										AddButton(index,bag,slot,link,itemId,count)

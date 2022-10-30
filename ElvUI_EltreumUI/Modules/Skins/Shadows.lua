@@ -58,7 +58,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 			if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
 				_G.MacroFrame:HookScript("OnShow", function()
-					if E.Retail or E.Wrath or E.TBC then
+					if E.Retail or E.Wrath then
 						if not _G.MacroFrame.shadow then
 							_G.MacroFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.MacroFrame.shadow) end
@@ -198,7 +198,7 @@ function ElvUI_EltreumUI:Shadows()
 						end)
 					end
 				end
-			elseif E.Wrath or E.TBC or E.Classic then
+			elseif E.Wrath or E.Classic then
 				if (arg == "Blizzard_AuctionUI") or IsAddOnLoaded("Blizzard_AuctionUI") then
 					_G.AuctionFrame:HookScript("OnShow", function()
 						if _G.AuctionFrame and _G.AuctionFrame.backdrop and not _G.AuctionFrame.backdrop.shadow then
@@ -819,7 +819,7 @@ function ElvUI_EltreumUI:Shadows()
 					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.BossButton.shadow) end
 				end
 			end
-		elseif E.Wrath or E.TBC or E.Classic then
+		elseif E.Wrath or E.Classic then
 
 			--totems
 			local ElvUITotemFrames = {
@@ -881,7 +881,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--wrath/tbc only frames
-			if E.Wrath or E.TBC then
+			if E.Wrath then
 				local tbcframes = {
 				_G.LFGParentFrame.backdrop,
 				_G.LFGParentFrameTab1.backdrop,
@@ -1068,7 +1068,7 @@ function ElvUI_EltreumUI:Shadows()
 
 		--unitframes
 		if E.private.unitframe.enable then
-			if E.Retail or E.Wrath or E.TBC then
+			if E.Retail or E.Wrath then
 				if not _G["ElvUF_Focus_HealthBar"].shadow and not (E.db.ElvUI_EltreumUI.borders.focusborder and E.db.ElvUI_EltreumUI.borders.borders)then
 					_G["ElvUF_Focus_HealthBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvUF_Focus_HealthBar"].shadow) end

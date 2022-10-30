@@ -162,7 +162,7 @@ function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 		return
 	else
 		if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" and E.db.nameplates.filters.EltreumSpellsteal and not InCombatLockdown() then
-			if E.Wrath or E.TBC or E.Retail then
+			if E.Wrath or E.Retail then
 				if E.myclass == 'MAGE' then
 					level = UnitLevel("player")
 					if E.Retail then
@@ -171,7 +171,7 @@ function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 						elseif level < 39 then
 							E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
 						end
-					elseif E.Wrath or E.TBC then
+					elseif E.Wrath then
 						if level >= 70 then
 							E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
 						elseif level < 70 then
@@ -291,7 +291,7 @@ function ElvUI_EltreumUI:ActionPagingSwap()
 end
 
 --fix master loot?
-if E.Wrath or E.TBC then
+if E.Wrath then
 	hooksecurefunc(_G.MasterLooterFrame, 'Hide', function(self)
 		self:ClearAllPoints()
 	end)

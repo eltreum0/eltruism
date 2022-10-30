@@ -126,7 +126,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 				end)
 			end
 			button.count:SetParent(button.cd)
-			if E.Wrath or E.Wrath or E.TBC or E.Classic then
+			if E.Wrath or E.Wrath or E.Classic then
 				if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable then
 					button.count:Point('BOTTOMRIGHT', 2, -3) --elvui added a setting for it but its missing some things
 				end
@@ -547,7 +547,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 							_G["ElvNP_TargetClassPowerClassPower"]:Show()
 						end
 					end
-				elseif E.Wrath or E.TBC or E.Classic then
+				elseif E.Wrath or E.Classic then
 					if E.myclass == 'ROGUE' then
 						_G["ElvNP_TargetClassPowerClassPower"]:Show()
 					elseif E.myclass == 'DEATHKNIGHT' then
@@ -580,7 +580,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 						end
 					end
-				elseif E.Wrath or E.TBC or E.Classic then
+				elseif E.Wrath or E.Classic then
 					if E.myclass == 'ROGUE' then
 						_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 					elseif E.myclass == 'DEATHKNIGHT' then
@@ -616,12 +616,6 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				else
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.10
 				end
-			elseif E.TBC then
-				if E.myclass == "WARRIOR" or E.myclass == "MAGE" then
-					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20
-				else
-					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.10
-				end
 			elseif E.Classic then
 				if E.myclass == "WARRIOR" then
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20
@@ -640,7 +634,7 @@ EltruismNamePlateOptionsFrame:SetScript("OnEvent", ElvUI_EltreumUI.NamePlateOpti
 --add threat to nameplate by putting threat into title and moving title to the healthbar
 function ElvUI_EltreumUI:ClassicThreatNP()
 	if E.private.nameplates.enable == true then
-		if E.Classic or E.TBC or E.Wrath then
+		if E.Classic or E.Wrath then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = E.db.general.font
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["fontOutline"] = E.db.general.fontStyle
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = true

@@ -50,7 +50,7 @@ local classIconsReleafborder = {
 
 if E.Retail then
 	CharacterLevelText:SetWidth(300) --new
-elseif E.Classic or E.Wrath or E.TBC then
+elseif E.Classic or E.Wrath then
 	CharacterLevelText:SetWidth(280) --new
 end
 

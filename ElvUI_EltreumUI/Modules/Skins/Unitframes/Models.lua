@@ -73,26 +73,6 @@ elseif E.Wrath then
 		--["PALADIN"] = "spells/arcanebreath.m2",
 		--["NPCFRIENDLY"] = "spells/spells/cycloneearth_state.m2",
 	}
-elseif E.TBC then
-	classModels = {
-		["PRIEST"] = "spells/christmassnowrain.m2",
-		["DEATHKNIGHT"] = "environments/stars/bladesedgeskybox.m2", --"spells/frostbreath.m2",
-		["WARRIOR"] = "spells/flamebreath.m2", --spells/disarm_impact_chest.m2
-		["ROGUE"] = "environments/stars/shadowmoonillidan.m2",
-		["PALADIN"] = "environments/stars/netherstormskybox.m2",
-		["HUNTER"] = "environments/stars/hellfireskybox.m2",
-		["WARLOCK"] = "environments/stars/netherstormskybox.m2",
-		["SHAMAN"] = "spells/arcanepower_state_chest.m2",
-		["DRUID"] = "spells/cyclonefire_state.m2",
-		["MAGE"] = "spells/frostbreath.m2",
-		["NPCNEUTRAL"] = "spells/acidliquidbreath.m2",
-		["NPCFRIENDLY"] = "environments/stars/portalworldlegionsky.m2",
-		["NPCUNFRIENDLY"] = "spells/flamebreath.m2", --spells/darkritual_precast_base.m2",
-		["NPCHOSTILE"] = "spells/deathanddecay_area_base.m2",
-		--["DEMONHUNTER"] = "environments/stars/nexusraid_nebulasky.m2",
-		--["PALADIN"] = "spells/arcanebreath.m2",
-		--["NPCFRIENDLY"] = "spells/spells/cycloneearth_state.m2",
-	}
 else
 	classModels = {
 		["PRIEST"] = "spells/christmassnowrain.m2",
