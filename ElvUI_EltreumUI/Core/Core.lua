@@ -309,7 +309,7 @@ function ElvUI_EltreumUI:Anchors()
 
 				hooksecurefunc("ObjectiveTracker_UpdateHeight", function()
 					_G.ObjectiveTrackerFrame:ClearAllPoints()
-					_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
+					_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
 				end)
 
 				--[[local questmonitor = CreateFrame("FRAME")
