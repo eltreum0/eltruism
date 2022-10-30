@@ -3,6 +3,7 @@
 ## Version: 3.5.3
 ## Title: |cff1784d1ElvUI|r Eltruism
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
+## Notes-deDE: Eltruism ist ein ElvUI Plugin mit Profilen und anderen Funktionen, die in ElvUI nicht verfügbar sind
 ## Dependencies: ElvUI, AddOnSkins
 ## RequiredDeps: Blizzard_CombatText
 ## OptionalDeps: NameplateSCT, Immersion, DynamicCam, GladiusEx, ElvUI_SLE, ElvUI_WindTools, ProjectAzilroka
