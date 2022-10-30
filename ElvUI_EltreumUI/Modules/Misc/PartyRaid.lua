@@ -104,6 +104,8 @@ function ElvUI_EltreumUI:BattleRes()
 				spellicon:SetTexture(GetSpellTexture(61999))
 			elseif E.myclass == "WARLOCK" then
 				spellicon:SetTexture(GetSpellTexture(20707))
+			elseif E.myclass == "PALADIN" then
+				spellicon:SetTexture(GetSpellTexture(391054))
 			end
 			spellicon:SetTexCoord(0.08,0.92,0.08,0.92)
 

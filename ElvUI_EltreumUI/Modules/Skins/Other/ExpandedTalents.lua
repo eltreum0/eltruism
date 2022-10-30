@@ -6,7 +6,7 @@ local EltruismExpandedTalents = CreateFrame("Frame")
 
 function ElvUI_EltreumUI:ExpandedTalents()
 	--Reskin Blizzard Talent frame for TBC
-	if E.Wrath or E.TBC or E.Classic then
+	if E.Wrath or E.Classic then
 		if E.db.ElvUI_EltreumUI.skins.tbctalents and not E.private.skins.blizzard.enable == false then
 			EltruismExpandedTalents:RegisterEvent("ADDON_LOADED")
 			EltruismExpandedTalents:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -30,7 +30,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 					--increase the size of the whole frame
 					if PlayerTalentFrame then
 						--PlayerTalentFrame:SetScale(0.8,0.8) --should be around this scale for wrath
-						if E.Wrath or E.TBC then
+						if E.Wrath then
 							PlayerTalentFrame:SetSize(376, 780)
 						elseif E.Classic then
 							PlayerTalentFrame:SetSize(376, 670)
@@ -46,9 +46,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 
 					if PlayerTalentFrameScrollFrame then
 						--increase the size of the actual frame that has the talent buttons
-						if E.TBC then
-							PlayerTalentFrameScrollFrame:SetSize( 280 , 580)
-						elseif E.Wrath then
+						if E.Wrath then
 							PlayerTalentFrameScrollFrame:SetSize( 280 , 720)
 						elseif E.Classic then
 							PlayerTalentFrameScrollFrame:SetSize( 280 , 470)
@@ -60,31 +58,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 
 					--increase the size of the background
 					if PlayerTalentFrameBackgroundTopLeft then
-						if E.TBC then
-							--PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 600)
-							if PlayerTalentFrameScrollFrame.backdrop then
-								PlayerTalentFrameScrollFrame.backdrop:Kill()
-							end
-							PlayerTalentFrameBackgroundTopLeft:ClearAllPoints()
-							PlayerTalentFrameBackgroundTopLeft:SetParent(PlayerTalentFrame)
-							PlayerTalentFrameBackgroundTopLeft:SetPoint("TOPLEFT", PlayerTalentFrameScrollFrame, "TOPLEFT", -8, 1)
-							PlayerTalentFrameBackgroundTopLeft:SetSize(243, 431)
-
-							PlayerTalentFrameBackgroundBottomLeft:ClearAllPoints()
-							PlayerTalentFrameBackgroundBottomLeft:SetParent(PlayerTalentFrame)
-							PlayerTalentFrameBackgroundBottomLeft:SetPoint("BOTTOMLEFT", PlayerTalentFrameScrollFrame, "BOTTOMLEFT", -8, -100)
-							PlayerTalentFrameBackgroundBottomLeft:SetSize(243, 250)
-
-							PlayerTalentFrameBackgroundTopRight:ClearAllPoints()
-							PlayerTalentFrameBackgroundTopRight:SetParent(PlayerTalentFrame)
-							PlayerTalentFrameBackgroundTopRight:SetPoint("TOPRIGHT", PlayerTalentFrameScrollFrame, "TOPRIGHT", 12, 1)
-							PlayerTalentFrameBackgroundTopRight:SetSize(57, 431)
-
-							PlayerTalentFrameBackgroundBottomRight:ClearAllPoints()
-							PlayerTalentFrameBackgroundBottomRight:SetParent(PlayerTalentFrame)
-							PlayerTalentFrameBackgroundBottomRight:SetPoint("BOTTOMRIGHT", PlayerTalentFrameScrollFrame, "BOTTOMRIGHT", 12, -100)
-							PlayerTalentFrameBackgroundBottomRight:SetSize(57, 250)
-						elseif E.Wrath then
+						if E.Wrath then
 							if PlayerTalentFrameScrollFrame.backdrop then
 								PlayerTalentFrameScrollFrame.backdrop:Kill()
 							end

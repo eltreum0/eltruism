@@ -32,7 +32,7 @@ function ElvUI_EltreumUI:QuestEncounter()
 			if E.Retail then
 				--ObjectiveTracker_Collapse()
 				ObjectiveTrackerFrame:Hide()
-			elseif E.TBC or E.Classic then
+			elseif E.Classic then
 				_G.QuestWatchFrame:Hide()
 				if IsAddOnLoaded("Questie") then
 					_G["Questie_BaseFrame"]:Hide()
@@ -51,7 +51,7 @@ function ElvUI_EltreumUI:QuestEncounterEnd()
 			if E.Retail then
 				--ObjectiveTracker_Expand()
 				ObjectiveTrackerFrame:Show()
-			elseif E.TBC or E.Classic then
+			elseif E.Classic then
 				_G.QuestWatchFrame:Show()
 				if IsAddOnLoaded("Questie") then
 					_G["Questie_BaseFrame"]:Show()
@@ -69,7 +69,7 @@ function ElvUI_EltreumUI:ArenaQuest()
 		if instanceType == "arena" or instanceType == "pvp" then
 			if E.Retail then
 				ObjectiveTrackerFrame:Hide()
-			elseif E.TBC or E.Classic then
+			elseif E.Classic then
 				_G.QuestWatchFrame:Hide()
 				if IsAddOnLoaded("Questie") then
 					if _G["Questie_BaseFrame"] then
@@ -82,7 +82,7 @@ function ElvUI_EltreumUI:ArenaQuest()
 		elseif instanceType == "none" then
 			if E.Retail then
 				ObjectiveTrackerFrame:Show()
-			elseif E.TBC or E.Classic then
+			elseif E.Classic then
 				_G.QuestWatchFrame:Show()
 				if IsAddOnLoaded("Questie") then
 					if _G["Questie_BaseFrame"] then
@@ -100,7 +100,7 @@ function ElvUI_EltreumUI:QuestCombat()
 	if E.db.ElvUI_EltreumUI.quests.combatenable then
 		if E.Retail then
 			ObjectiveTracker_Collapse()
-		elseif E.TBC or E.Classic then
+		elseif E.Classic then
 			_G.QuestWatchFrame:Hide()
 			if IsAddOnLoaded("Questie") then
 				_G["Questie_BaseFrame"]:Hide()
@@ -115,7 +115,7 @@ function ElvUI_EltreumUI:QuestCombatEnd()
 	if E.db.ElvUI_EltreumUI.quests.combatenable then
 		if E.Retail then
 			ObjectiveTracker_Expand()
-		elseif E.TBC or E.Classic then
+		elseif E.Classic then
 			_G.QuestWatchFrame:Show()
 			if IsAddOnLoaded("Questie") then
 				if _G["Questie_BaseFrame"] then
@@ -232,7 +232,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								end
 								SelectActiveQuest(i)
 							end
-						elseif E.Wrath or E.TBC or E.Classic then
+						elseif E.Wrath or E.Classic then
 							if completed then
 								if E.db.ElvUI_EltreumUI.dev then
 									ElvUI_EltreumUI:Print("tried to complete "..completed)
@@ -280,11 +280,11 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 										ElvUI_EltreumUI:Print("quest accepted")
 									end
 								end
-							elseif E.Wrath or E.TBC or E.Classic then
+							elseif E.Wrath or E.Classic then
 								AcceptQuest()
 							end
 						end
-					elseif E.Wrath or E.TBC or E.Classic then
+					elseif E.Wrath or E.Classic then
 						AcceptQuest()
 						if E.db.ElvUI_EltreumUI.dev then
 							ElvUI_EltreumUI:Print("quest accepted")
@@ -485,7 +485,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 									end
 								end]]
 							end
-						elseif E.Wrath or E.TBC or E.Classic then
+						elseif E.Wrath or E.Classic then
 							if (GetNumGossipAvailableQuests() > 0) then
 								if E.db.ElvUI_EltreumUI.dev then
 									ElvUI_EltreumUI:Print("number of available quests > 0")
@@ -533,7 +533,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 											end
 											return
 										end
-									elseif E.Wrath or E.TBC or E.Classic then
+									elseif E.Wrath or E.Classic then
 										AcceptQuest()
 										if (GetNumQuestChoices() <= 0) then
 											return
@@ -580,7 +580,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 									CompleteQuest()
 								end
 							end
-						elseif E.Wrath or E.TBC or E.Classic then
+						elseif E.Wrath or E.Classic then
 							if E.db.ElvUI_EltreumUI.dev then
 								ElvUI_EltreumUI:Print("tried to complete quest")
 							end
@@ -630,7 +630,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								end
 								GetQuestReward(GetNumQuestChoices())
 							end
-						elseif E.Wrath or E.TBC or E.Classic then
+						elseif E.Wrath or E.Classic then
 							if GetNumQuestChoices() == 1 then
 								GetQuestReward(1)
 								if E.db.ElvUI_EltreumUI.dev then

@@ -357,7 +357,7 @@ function ElvUI_EltreumUI:checkPetActionCooldown(index)
 	--print("checkPetActionCooldown spam "..math.random(1,99))
 	if not index then return end
 	_, texturepetcd, _, _, _, _, spellIdpetcd, _, _ = GetPetActionInfo(index) --shadowlands
-	--[[if E.Classic or E.TBC then
+	--[[if E.Classic then
 		local _, _, texture, _, _, _, _, spellId = GetPetActionInfo(index) --old
 	elseif E.Retail then
 		local _, texture, _, _, _, _, spellId, _, _ = GetPetActionInfo(index) --shadowlands

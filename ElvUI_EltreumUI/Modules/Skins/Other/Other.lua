@@ -375,7 +375,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 
 						CraftDetailScrollFrame:Hide()
 						CraftDetailScrollFrameScrollBar:Hide()
-						if E.Wrath or E.TBC then
+						if E.Wrath then
 							CraftFrameFilterDropDown:ClearAllPoints()
 							CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
 							CraftFrameAvailableFilterCheckButton:ClearAllPoints()

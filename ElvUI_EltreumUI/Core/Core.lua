@@ -309,7 +309,7 @@ function ElvUI_EltreumUI:Anchors()
 
 				hooksecurefunc("ObjectiveTracker_UpdateHeight", function()
 					_G.ObjectiveTrackerFrame:ClearAllPoints()
-					_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
+					_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
 				end)
 
 				--[[local questmonitor = CreateFrame("FRAME")
@@ -355,7 +355,7 @@ function ElvUI_EltreumUI:EnteringWorldCVars()
 	--ElvUI_EltreumUI:Print(L["Custom Nameplate CVars were set."])
 	if E.Retail and E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable then
 		SetCVar('showInGameNavigation', E.db.ElvUI_EltreumUI.cvars.showInGameNavigation)
-	elseif E.Classic or E.Wrath or E.TBC then
+	elseif E.Classic or E.Wrath then
 		SetCVar('clampTargetNameplateToScreen', E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen)
 	end
 end

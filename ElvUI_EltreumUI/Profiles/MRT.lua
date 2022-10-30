@@ -1566,7 +1566,7 @@ function ElvUI_EltreumUI:GetMRTProfile()
 					["Strata"] = "HIGH",
 				},
 			}
-		elseif E.TBC then
+		elseif E.Wrath then
 			VMRT = {
 				["Note"] = {
 					["BlackNames"] = {

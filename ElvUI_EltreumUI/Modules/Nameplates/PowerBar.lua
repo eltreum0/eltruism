@@ -291,7 +291,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				else
 					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
 				end
-			elseif E.Classic or E.Wrath or E.TBC then
+			elseif E.Classic or E.Wrath then
 				if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
 					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
 				else
@@ -311,7 +311,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					else
 						EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
 					end
-					if E.Classic or E.Wrath or E.TBC then
+					if E.Classic or E.Wrath then
 						if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
 						else
@@ -510,7 +510,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						end
 					end
 				end
-				if E.Classic or E.Wrath or E.TBC then
+				if E.Classic or E.Wrath then
 					if stance == 0 then --humanoid
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 							EltreumPowerBar:Show()
@@ -629,7 +629,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						else
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
 						end
-					elseif E.Classic or E.Wrath or E.TBC then
+					elseif E.Classic or E.Wrath then
 						if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
 						else
@@ -660,7 +660,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						else
 							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
 						end
-					elseif E.Wrath or E.TBC or E.Classic then
+					elseif E.Wrath or E.Classic then
 						if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
 							if _G["ElvNP_TargetClassPowerClassPower"] and _G["ElvNP_TargetClassPowerClassPower"]:IsShown() then
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 17)
@@ -719,7 +719,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					end
 				end
 			elseif E.myclass == 'HUNTER' then
-				if E.Classic or E.Wrath or E.TBC then
+				if E.Classic or E.Wrath then
 					if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 						EltreumPowerBar:Show()
 						if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
@@ -775,7 +775,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					end
 				end
 			elseif E.myclass == 'PRIEST' then
-				if E.Classic or E.Wrath or E.TBC then
+				if E.Classic or E.Wrath then
 					if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 						EltreumPowerBar:Show()
 						if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
@@ -849,7 +849,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					end
 				end
 			elseif E.myclass == 'SHAMAN' then
-				if E.Classic or E.Wrath or E.TBC then
+				if E.Classic or E.Wrath then
 					if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 						EltreumPowerBar:Show()
 						if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
@@ -1046,7 +1046,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 				end
-			elseif E.TBC or E.Classic then
+			elseif E.Classic then
 				if E.myclass == 'ROGUE' or E.myclass == 'DRUID' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
@@ -1076,7 +1076,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.mana then
-				if E.Classic or E.Wrath or E.TBC then
+				if E.Classic or E.Wrath then
 					if E.myclass == 'MAGE' or E.myclass == 'HUNTER' or E.myclass == 'PRIEST' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' then
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10

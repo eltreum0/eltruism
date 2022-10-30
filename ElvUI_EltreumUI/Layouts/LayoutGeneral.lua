@@ -99,7 +99,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,CCDebuffs,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
 		--[[if E.Retail then
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal,Dispellable"
-		elseif E.Wrath or E.TBC or E.Classic then
+		elseif E.Wrath or E.Classic then
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal,Dispellable,BlizzardNameplate"
 		end]]
 		E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Dispellable,blockNoDuration,PlayerBuffs,nonPersonal,RaidBuffsElvUI,TurtleBuffs"
@@ -352,7 +352,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["databars"]["threat"]["width"] = 450
 		E.db["databars"]["threat"]["frameLevel"] = 3
 		E.db["databars"]["threat"]["frameStrata"] = "MEDIUM"
-		if E.Wrath or E.TBC or E.Classic then
+		if E.Wrath or E.Classic then
 			E.db["databars"]["threat"]["enable"] = true
 		elseif E.Retail then
 			E.db["databars"]["threat"]["enable"] = false
@@ -462,7 +462,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			else
 				E.db["datatexts"]["panels"]["MinimapPanel"][2] = "Friends"
 			end
-		elseif E.Classic or E.Wrath or E.TBC then
+		elseif E.Classic or E.Wrath then
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "Eltruism"
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"]["left"] = "Eltruism"
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][2] = "Durability"
@@ -609,7 +609,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 
 		-- Custom Text: Arena
 		E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
-		if E.Retail or E.Wrath or E.TBC then
+		if E.Retail or E.Wrath then
 			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] = {
 				["attachTextTo"] = "Health",
 				["enable"] = true,
@@ -704,7 +704,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
-		elseif E.Wrath or E.TBC or E.Classic then
+		elseif E.Wrath or E.Classic then
 			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 				["attachTextTo"] = "Health",
 				["enable"] = true,
@@ -1007,7 +1007,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["xOffset"] = -2,
 				["yOffset"] = 0
 			}
-		elseif E.Wrath or E.TBC or E.Classic then
+		elseif E.Wrath or E.Classic then
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] = {
 				["attachTextTo"] = "Health",
 				["enable"] = true,
@@ -1130,7 +1130,7 @@ function ElvUI_EltreumUI:SetupGlobal()
 		E.global["general"]["smallerWorldMapScale"] = 1
 		E.global["general"]["mapAlphaWhenMoving"] = 0.35
 	end
-	if E.Classic or E.Wrath or E.TBC then
+	if E.Classic or E.Wrath then
 		E.global["general"]["smallerWorldMapScale"] = 0.5
 		E.global["general"]["mapAlphaWhenMoving"] = 0.5
 		E.global["general"]["smallerWorldMap"] = true
@@ -1338,7 +1338,7 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar('findYourselfInRaidOnlyInCombat', 0) --"Highlight your character in Raids only when in combat"
 		SetCVar('findYourselfMode', 1) --"Highlight you character. 0 = circle, 1 = circle & outline"
 		]]
-	elseif E.Wrath or E.TBC or E.Classic then
+	elseif E.Wrath or E.Classic then
 		SetCVar("lootUnderMouse", 1)
 		SetCVar("chatBubbles", 1)
 		SetCVar("chatBubblesParty", 1)

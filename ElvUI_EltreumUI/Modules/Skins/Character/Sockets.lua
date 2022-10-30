@@ -1633,9 +1633,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 
 	function SlotIconManager:IsAtMaxLevel()
 		--return UnitLevel(self.adapter:GetUnit()) >= 60
-		if E.TBC then
-			return UnitLevel(self.adapter:GetUnit()) == 70
-		elseif E.Classic then
+		if E.Classic then
 			return UnitLevel(self.adapter:GetUnit()) == 60
 		elseif E.Wrath then
 			return UnitLevel(self.adapter:GetUnit()) == 80
@@ -1879,7 +1877,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 					Tooltips[i]:SetOwner(Tooltips[i - 1], "ANCHOR_NONE")
 					Tooltips[i]:SetPoint("TOPLEFT", Tooltips[i - 1], "TOPRIGHT")
 				end
-				if E.Wrath or E.TBC then
+				if E.Wrath then
 					if item[FIELD_TYPE] == TYPE_HYPERLINK then
 						Tooltips[i]:SetHyperlink(item[FIELD_CONTENT])
 						self.link = item[FIELD_CONTENT]

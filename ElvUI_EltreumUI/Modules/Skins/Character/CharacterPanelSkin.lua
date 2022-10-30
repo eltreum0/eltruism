@@ -58,7 +58,7 @@ if E.Retail then
 	CharacterFrame.EltruismSpeedDescTooltip = CreateFrame("Frame", "EltruismSpeedDesc")
 end
 
-if E.Wrath or E.TBC or E.Classic then
+if E.Wrath or E.Classic then
 	CharacterFrame.Text = CharacterFrame:CreateFontString("EltruismIlvlBanner", "OVERLAY", "GameFontNormal")
 	CharacterFrame.Text2 = CharacterFrame:CreateFontString("EltruismIlvlText", "OVERLAY", "GameFontNormal")
 	CharacterFrame.Text3 = CharacterFrame:CreateFontString("EltruismAttributes", "OVERLAY", "GameFontNormal")
@@ -71,7 +71,7 @@ if E.Wrath or E.TBC or E.Classic then
 	CharacterFrame.StatusLine4 = CreateFrame("StatusBar", "EltruismCharacterBar4", PaperDollItemsFrame)
 end
 
-if E.Wrath or E.TBC then
+if E.Wrath then
 	_G.PlayerStatFrameLeft2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine12", PaperDollItemsFrame)
 	_G.PlayerStatFrameLeft4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine22", PaperDollItemsFrame)
 	_G.PlayerStatFrameLeft6.StatusLine = CreateFrame("StatusBar", "EltruismStatLine32", PaperDollItemsFrame)
@@ -1135,7 +1135,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		--color stats with a class gradient
 		local function SetStatGradient()
-			if E.Wrath or E.TBC then
+			if E.Wrath then
 				_G.PlayerStatFrameLeft1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				if not _G.PlayerStatFrameLeft1Label:GetText():match("|r") then
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
@@ -1334,7 +1334,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		--or just set font size
 		local function SetFontSize()
-			if E.Wrath or E.TBC then
+			if E.Wrath then
 				_G.PlayerStatFrameLeft1Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				_G.PlayerStatFrameLeft2Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				_G.PlayerStatFrameLeft3Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
@@ -1365,13 +1365,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		if E.db.ElvUI_EltreumUI.skins.statcolors or E.db.ElvUI_EltreumUI.skins.characterskingradients then
 			--set hooks
-			if E.Wrath or E.TBC then
+			if E.Wrath then
 				hooksecurefunc('PlayerStatFrameLeftDropDown_OnClick', SetStatGradient)
 				hooksecurefunc('PlayerStatFrameRightDropDown_OnClick', SetStatGradient)
 			end
 			hooksecurefunc("PaperDollFrame_UpdateStats", SetStatGradient)
 		else
-			if E.Wrath or E.TBC then
+			if E.Wrath then
 				hooksecurefunc('PlayerStatFrameLeftDropDown_OnClick', SetFontSize)
 				hooksecurefunc('PlayerStatFrameRightDropDown_OnClick', SetFontSize)
 			end
@@ -1502,7 +1502,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			end
 
-			if E.Wrath or E.TBC then
+			if E.Wrath then
 				_G.PlayerTitleDropDown:ClearAllPoints()
 				_G.PlayerTitleDropDown:SetParent(CharacterModelFrame)
 				_G.PlayerTitleDropDown:SetPoint('TOP', CharacterModelFrame, -6, 40)
@@ -1752,7 +1752,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--magic resistance stuff, maybe make it a loop in the future
 			_G.MagicResFrame1:ClearAllPoints()
-			if E.Wrath or E.TBC then
+			if E.Wrath then
 				_G.MagicResFrame1:SetParent(_G.PlayerStatFrameLeft1)
 				_G.MagicResFrame1:SetPoint("TOPLEFT", _G.PlayerStatFrameLeftDropDown, "TOPLEFT", 13, 25)
 			elseif E.Classic then
@@ -1776,7 +1776,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.MagicResFrame5:SetPoint("RIGHT", _G.MagicResFrame4, "RIGHT", 27, 0)
 			_G.MagicResFrame5:SetParent(CharacterFrame.StatusLine4)
 
-			if E.Wrath or E.TBC then
+			if E.Wrath then
 				--"left side" or in this case the top side
 				_G.PlayerStatFrameLeftDropDown:ClearAllPoints()
 				_G.PlayerStatFrameLeftDropDown:SetPoint("CENTER", CharacterFrame.StatusLine3, "CENTER", 0, -45)
@@ -2284,7 +2284,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 										_G.InspectFrame:SetWidth(384)
 									end)
 
-									if E.Wrath or E.TBC then
+									if E.Wrath then
 										_G.InspectTalentFrame:HookScript("OnShow", function()
 											if InCombatLockdown() then
 												UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
@@ -2330,12 +2330,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 												end
 												--increase the size of the background
 												if _G.InspectTalentFrameBackgroundTopLeft then
-													if E.TBC then
-														_G.InspectTalentFrameBackgroundTopLeft:ClearAllPoints()
-														_G.InspectTalentFrameBackgroundTopLeft:SetParent(_G.InspectTalentFrame)
-														--_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 600)
-														_G.InspectTalentFrameBackgroundTopLeft:SetAllPoints(_G.InspectTalentFrameScrollFrame)
-													elseif E.Wrath then
+													if E.Wrath then
 														if _G.InspectTalentFrameScrollFrame.backdrop then
 															_G.InspectTalentFrameScrollFrame.backdrop:Kill()
 														end
@@ -2514,7 +2509,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						end
 
 						EltruismInspectBgTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
-						if E.Wrath or E.TBC or E.Classic then
+						if E.Wrath or E.Classic then
 							EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop)
 							EltruismInspectBgTexture:SetParent(_G.InspectFrame)
 							if _G.InspectModelFrameRotateLeftButton:IsShown() then

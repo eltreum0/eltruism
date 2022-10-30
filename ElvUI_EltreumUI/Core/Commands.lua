@@ -50,7 +50,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 			--RaidNotice_AddMessage(RaidWarningFrame, "Raid Boss Emote Frame Raid Warning Test Message", ChatTypeInfo["RAID_WARNING"], 10)
 			if E.Retail then
 				CombatText_AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."9.999.999 Gold", CombatText_StandardScroll, 255, 255, 255)
-			elseif E.Classic or E.Wrath or E.TBC then
+			elseif E.Classic or E.Wrath then
 				CombatText_AddMessage("|T ".. aImage ..":22:22:0:0:64:64:5:59:5:59|t ".."214.748 Gold |T ".. aSilver ..":22:22:0:0:64:64:5:59:5:59|t ".."36 Silver |T ".. aCopper ..":22:22:0:0:64:64:5:59:5:59|t ".."47 Copper", CombatText_StandardScroll, 255, 255, 255)
 			end
 		else
@@ -189,7 +189,7 @@ local keys = {
 }
 
 function ElvUI_EltreumUI:Keys(event,message)
-	if E.Wrath or E.TBC or E.Classic then
+	if E.Wrath or E.Classic then
 		return
 	elseif message == nil then
 		return
