@@ -623,7 +623,8 @@ if E.Retail then
 
 	S:HandleButton(clickbindopenbutton)
 	local bindexture = clickbindopenbutton:CreateTexture()
-	bindexture:SetTexture(4238928)
+	--bindexture:SetTexture(4238928)
+	bindexture:SetTexture("interface\\cursor\\crosshair\\cast")
 	bindexture:SetTexCoord(0.08,0.92,0.08,0.92)
 	bindexture:SetAllPoints(clickbindopenbutton)
 	clickbindopenbutton:RegisterForClicks("AnyUp")

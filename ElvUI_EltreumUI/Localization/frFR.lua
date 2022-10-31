@@ -1195,3 +1195,5 @@ L["Unitframe Aura Border X offset"] = "Cadre unitaire - Amélioration - Bordure 
 L["Unitframe Aura Border Y offset"] = "Cadre unitaire - Amélioration - Bordure de l'aura Décalage Y"
 L["Unitframes Debuff Aura Border X offset"] = "Cadre unitaire - Débouffeur - Bordure de l'aura Décalage X"
 L["Unitframes Debuff Aura Border Y offset"] = "Cadre unitaire - Débouffeur - Bordure de l'aura Décalage Y"
+L["Add gradient to Details Bars"] = true
+ L["Add Gradient to BigWigs Bars"] = true

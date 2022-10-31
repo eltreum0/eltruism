@@ -1187,3 +1187,5 @@ L["Unitframe Aura Border X offset"] = "Deslocamento X da Borda da Aura de Bônus
 L["Unitframe Aura Border Y offset"] = "Deslocamento Y da Borda da Aura de Bônus dos Painéis"
 L["Unitframes Debuff Aura Border X offset"] = "Deslocamento X da Borda da Aura de Penalidade dos Painéis"
 L["Unitframes Debuff Aura Border Y offset"] = "Deslocamento Y da Borda da Aura de Penalidade dos Painéis"
+L["Add gradient to Details Bars"] = true
+ L["Add Gradient to BigWigs Bars"] = true
