@@ -4507,30 +4507,6 @@ function ElvUI_EltreumUI:Configtable()
 						get = function() return C_CVar.GetCVar('nameplateTargetRadialPosition') end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition = value SetCVar('nameplateTargetRadialPosition', value) end,
 					},
-					headertempkeyfix = {
-						order = 10,
-						type = "description",
-						name = L["(Temporary) Key Press Fix"],
-						width = 'full',
-						hidden = not E.Retail,
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					fixkeypress = {
-						order = 11,
-						type = 'toggle',
-						name = E.NewSign..L["Activate Skills on Key Down"],
-						desc = L["Temporary Setting to Fix Skills being used on Key Release due to a bug in Blizzard's UI that causes issues with the ability to right click buffs, ElvUI currently enforces Key Release while Eltruism enforces Key Down"],
-						hidden = not E.Retail,
-						width = 'full',
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.fixkeypress end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.fixkeypress = value
-							if value == true then
-								SetCVar('ActionButtonUseKeyDown', 1)
-							else
-								SetCVar('ActionButtonUseKeyDown', 0)
-							end
-						end,
-					},
 					header4 = {
 						order = 197,
 						type = "description",
