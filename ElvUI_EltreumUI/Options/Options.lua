@@ -2510,13 +2510,13 @@ function ElvUI_EltreumUI:Configtable()
 							headerlineUFborder = {
 								order = 97,
 								type = "description",
-								name = L["Unitframe Auras"],
+								name = E.NewSign..L["Unitframe Auras"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							enableaurauf = {
 								type = 'toggle',
-								name = L["Enable Unitframe Auras"],
+								name = E.NewSign..L["Enable Unitframe Auras"],
 								width = "full",
 								order = 98,
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
@@ -2525,7 +2525,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							ufaurabordersizex = {
 								type = 'range',
-								name = L["Unitframe Aura Border X offset"],
+								name = E.NewSign..L["Unitframe Aura Border X offset"],
 								order = 99,
 								min = 1,
 								max = 100,
@@ -2537,7 +2537,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							ufaurabordersizey = {
 								type = 'range',
-								name = L["Unitframe Aura Border Y offset"],
+								name = E.NewSign..L["Unitframe Aura Border Y offset"],
 								order = 100,
 								min = 1,
 								max = 100,
@@ -2549,7 +2549,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							ufdebuffaurabordersizex = {
 								type = 'range',
-								name = L["Unitframes Debuff Aura Border X offset"],
+								name = E.NewSign..L["Unitframes Debuff Aura Border X offset"],
 								order = 101,
 								min = 1,
 								max = 100,
@@ -2561,7 +2561,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							ufdebuffaurabordersizey = {
 								type = 'range',
-								name = L["Unitframes Debuff Aura Border Y offset"],
+								name = E.NewSign..L["Unitframes Debuff Aura Border Y offset"],
 								order = 102,
 								min = 1,
 								max = 100,
@@ -2793,7 +2793,7 @@ function ElvUI_EltreumUI:Configtable()
 					classcolormsgs = {
 						order = 89,
 						type = 'toggle',
-						name = E.NewSign..L["Enable on Chat Messages"],
+						name = L["Enable on Chat Messages"],
 						width = 'double',
 						desc = L["Toggle the option on"],
 						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
@@ -2803,7 +2803,7 @@ function ElvUI_EltreumUI:Configtable()
 					classcolormsgscustom = {
 						order = 90,
 						type = 'toggle',
-						name = E.NewSign..L["Custom Color"],
+						name = L["Custom Color"],
 						--width = 'double',
 						desc = L["Toggle the option on"],
 						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable or not E.db.ElvUI_EltreumUI.chat.classcolorchat end,
@@ -3176,7 +3176,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					volume = {
 						type = 'range',
-						name = E.NewSign..VOLUME,
+						name = VOLUME,
 						order = 103,
 						min = 1,
 						max = 100,
@@ -3270,7 +3270,7 @@ function ElvUI_EltreumUI:Configtable()
 							enablecdsound = {
 								order = 98,
 								type = 'toggle',
-								name = E.NewSign..L["Play a Sound when attempting to use a skill that is on cooldown."],
+								name = L["Play a Sound when attempting to use a skill that is on cooldown."],
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.cooldown end,
 								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.cooldownsound end,
@@ -4518,7 +4518,7 @@ function ElvUI_EltreumUI:Configtable()
 					fixkeypress = {
 						order = 11,
 						type = 'toggle',
-						name = L["Activate Skills on Key Down"],
+						name = E.NewSign..L["Activate Skills on Key Down"],
 						desc = L["Temporary Setting to Fix Skills being used on Key Release due to a bug in Blizzard's UI that causes issues with the ability to right click buffs, ElvUI currently enforces Key Release while Eltruism enforces Key Down"],
 						hidden = not E.Retail,
 						width = 'full',
@@ -6778,7 +6778,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					lootconfirmbop = {
 						order = 43,
-						name = E.NewSign..L["Enable Automatically Confirming Bind on Pickup"],
+						name = L["Enable Automatically Confirming Bind on Pickup"],
 						type = "toggle",
 						desc = L["Loot Window will automatically confirm looting Bind on Pickup items"],
 						width = 'full',
@@ -7144,7 +7144,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					taxiscale = {
 						type = 'range',
-						name = L["Flight Frame Scale"],
+						name = E.NewSign..L["Flight Frame Scale"],
 						order = 8,
 						min = 0.1,
 						max = 3,
@@ -7840,7 +7840,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					volume = {
 						type = 'range',
-						name = E.NewSign..VOLUME,
+						name = VOLUME,
 						order = 94,
 						min = 1,
 						max = 100,
@@ -7989,7 +7989,7 @@ function ElvUI_EltreumUI:Configtable()
 							enableCustomHealthHeight = {
 								order = 8,
 								type = 'toggle',
-								name = E.NewSign..L["Enable Custom Health Heights"],
+								name = L["Enable Custom Health Heights"],
 								desc = L["Changes Nameplate Health Height depending on conditions"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight end,
@@ -7998,7 +7998,7 @@ function ElvUI_EltreumUI:Configtable()
 							enableCustomHealthHeightelvui = {
 								order = 8,
 								type = 'toggle',
-								name = E.NewSign..L["Use ElvUI Health Heights"],
+								name = L["Use ElvUI Health Heights"],
 								desc = L["Use ElvUI Nameplate Health Heights when targeted or in combat"],
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight end,
@@ -8007,7 +8007,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							enableCustomHealthHeightnocombat = {
 								type = 'range',
-								name = E.NewSign..L["Out of Combat/Not Targeted"],
+								name = L["Out of Combat/Not Targeted"],
 								desc = L["Choose the Health Height for Nameplates not in combat or not targeted"],
 								order = 12,
 								min = 1,
@@ -8020,7 +8020,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							enableCustomHealthHeightincombat = {
 								type = 'range',
-								name = E.NewSign..L["In Combat/Targeted"],
+								name = L["In Combat/Targeted"],
 								desc = L["Choose the Health Height for Nameplates that are in combat or targeted"],
 								order = 12,
 								min = 1,
@@ -9174,7 +9174,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					objectiveheight = {
 						type = 'range',
-						name = L["Objective Frame Height"],
+						name = E.NewSign..L["Objective Frame Height"],
 						desc = L["Height of the objective tracker. Increase size to be able to see more objectives."],
 						order = 102,
 						min = 100,
@@ -9283,7 +9283,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							hidealertframe = {
 								order = 36,
-								name = E.NewSign..L["Hide Alert Frame"],
+								name = L["Hide Alert Frame"],
 								desc = L["Hide the Alert Frame that appears when looting a rare item or earning an achievement"],
 								type = "toggle",
 								width = 'full',
@@ -9292,7 +9292,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							hidebossbannerframe = {
 								order = 36,
-								name = E.NewSign..L["Hide Boss Banner Frame"],
+								name = L["Hide Boss Banner Frame"],
 								desc = L["Hide the boss banner that appears when killing a raid boss or completing a Mythic+ dungeon"],
 								type = "toggle",
 								width = 'full',
@@ -9320,7 +9320,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							professionscale = {
 								type = 'range',
-								name = L["Scale"],
+								name = E.NewSign..L["Scale"],
 								hidden = not E.Retail,
 								order = 38,
 								min = 0.2,
@@ -9403,7 +9403,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							retailtalentscale = {
 								type = 'range',
-								name = L["Scale"],
+								name = E.NewSign..L["Scale"],
 								hidden = not E.Retail,
 								order = 45,
 								min = 0.1,
@@ -9484,7 +9484,7 @@ function ElvUI_EltreumUI:Configtable()
 							headerhidekeypressab = {
 								order = 94,
 								type = "description",
-								name = E.NewSign..L["Hide Actionbar Button Press"],
+								name = L["Hide Actionbar Button Press"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -9514,7 +9514,7 @@ function ElvUI_EltreumUI:Configtable()
 							cdcolorheader = {
 								order = 98,
 								type = "description",
-								name = E.NewSign..L["Class Colored Cooldowns"],
+								name = L["Class Colored Cooldowns"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -9530,7 +9530,7 @@ function ElvUI_EltreumUI:Configtable()
 							headerilvltooltip = {
 								order = 100,
 								type = "description",
-								name = E.NewSign..L["Item Level on Tooltip"],
+								name = L["Item Level on Tooltip"],
 								width = 'full',
 								hidden = E.Retail,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
@@ -9637,7 +9637,7 @@ function ElvUI_EltreumUI:Configtable()
 							meetinghorn = {
 								order = 200,
 								type = 'toggle',
-								name = E.NewSign..L["Skin MeetingHorn"],
+								name = L["Skin MeetingHorn"],
 								desc = L["Skin MeetingHorn"],
 								hidden = E.Retail,
 								width = "full",
@@ -9647,7 +9647,7 @@ function ElvUI_EltreumUI:Configtable()
 							pallypower = {
 								order = 200,
 								type = 'toggle',
-								name = E.NewSign..L["Skin PallyPower"],
+								name = L["Skin PallyPower"],
 								desc = L["Skin PallyPower"],
 								hidden = E.Retail,
 								width = "full",
@@ -9657,7 +9657,7 @@ function ElvUI_EltreumUI:Configtable()
 							bigwigs = {
 								order = 200,
 								type = 'toggle',
-								name = E.NewSign..L["Skin BigWigs"],
+								name = L["Skin BigWigs"],
 								desc = L["Add Gradient to BigWigs Bars"],
 								--width = "full",
 								get = function() return E.db.ElvUI_EltreumUI.skins.bigwigs end,
@@ -9666,7 +9666,7 @@ function ElvUI_EltreumUI:Configtable()
 							bigwigsshadows = {
 								order = 201,
 								type = 'toggle',
-								name = E.NewSign..L["Shadows"],
+								name = L["Shadows"],
 								desc = L["Add Shadows to BigWigs Bars"],
 								--width = "full",
 								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
@@ -9681,7 +9681,7 @@ function ElvUI_EltreumUI:Configtable()
 							detailsskin = {
 								order = 901,
 								type = 'toggle',
-								name = E.NewSign..L["Skin Details"],
+								name = L["Skin Details"],
 								desc = L["Add gradient to Details Bars"],
 								--width = "full",
 								get = function() return E.db.ElvUI_EltreumUI.skins.details end,
@@ -10392,7 +10392,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							shadowsenablechat = {
 								order = 4,
-								name = CHAT_LABEL,
+								name = E.NewSign..CHAT_LABEL,
 								type = "toggle",
 								desc = L["Add Shadows to the Chat Frames"],
 								width = 'full',
@@ -10473,7 +10473,7 @@ function ElvUI_EltreumUI:Configtable()
 							headershadowsize = {
 								order = 100,
 								type = "description",
-								name = E.NewSign..L["Shadow Size"],
+								name = L["Shadow Size"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -11071,7 +11071,7 @@ function ElvUI_EltreumUI:Configtable()
 							enableaurabars = {
 								order = 5,
 								type = 'toggle',
-								name = E.NewSign..L["Enable Gradient Aurabars"],
+								name = L["Enable Gradient Aurabars"],
 								desc = L["Enable Gradient Aurabars"],
 								width = 'full',
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
@@ -11151,7 +11151,7 @@ function ElvUI_EltreumUI:Configtable()
 							headerorientation = {
 								order = 101,
 								type = "description",
-								name = E.NewSign..L["Unitframe Fill Orientation"],
+								name = L["Unitframe Fill Orientation"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -11241,7 +11241,7 @@ function ElvUI_EltreumUI:Configtable()
 							infoPanelOnTopheader = {
 								order = 986,
 								type = "description",
-								name = E.NewSign..L["Information Panel"],
+								name = L["Information Panel"],
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 								width = "full",
 							},
