@@ -12,4 +12,5 @@ Updated DynamicCam profile to fix an issue with the new Fade UI default\
 Updated Custom Backdrop for Castbars to use a 0.4 alpha\
 Updated profile to reverse Target Unitframe\
 Updated German Locale by Dlarge\
-Fixed SoulShape paging Warlock's ActionBar in Retail
+Fixed SoulShape paging Warlock's ActionBar in Retail\
+Fixed an Error on LootText when refunding an item
