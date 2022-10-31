@@ -458,6 +458,10 @@ function ElvUI_EltreumUI:Shadows()
 							_G.CalendarFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CalendarFrame.shadow) end
 						end
+						if not _G.CalendarViewHolidayFrame.shadow then
+							_G.CalendarViewHolidayFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CalendarViewHolidayFrame.shadow) end
+						end
 					end)
 				end
 				if (arg == "Blizzard_Communities") or IsAddOnLoaded("Blizzard_Communities") then
