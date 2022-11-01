@@ -289,6 +289,10 @@ function ElvUI_EltreumUI:Shadows()
 					if EnhancedShadows then EnhancedShadows:RegisterShadow(tab.backdrop.shadow) end
 				end
 			end
+			if _G.ProfessionsFrame.CraftingPage.CraftingOutputLog then
+				_G.ProfessionsFrame.CraftingPage.CraftingOutputLog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ProfessionsFrame.CraftingPage.CraftingOutputLog.shadow) end
+			end
 		end
 
 		--[[if _G.ImmersionFrame.TalkBox.shadow then --works but no guarantee they'll be using the layout/size/addonskins skin
