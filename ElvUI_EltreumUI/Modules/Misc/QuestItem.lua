@@ -493,6 +493,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 				b.cooldown = CreateFrame("Cooldown",nil,b,"CooldownFrameTemplate")
 				b.cooldown:SetAllPoints()
+				E:RegisterCooldown(b.cooldown)
 
 				b.bind = b:CreateFontString(nil,"ARTWORK","NumberFontNormalSmallGray")
 				b.bind:SetPoint("TOPLEFT",b.icon,0,0)

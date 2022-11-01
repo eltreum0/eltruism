@@ -186,7 +186,14 @@ local function GradientNameplates(unit)
 		if unit and unit.Health then
 			sf = NP:StyleFilterChanges(unit)
 			if sf.HealthColor then
-				return
+				local r,g,b,a = unit.Health:GetStatusBarColor()
+				if r and g and b and a then
+					if E.Retail then
+						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation,CreateColor(r, g, b, a or 1), CreateColor(r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr, g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg, b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb, a or 1))
+					else
+						unit.Health:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, r, g, b, a or 1, r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr, g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg, b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb, a or 1)
+					end
+				end
 			else
 				_, className = UnitClass(unit.unit)
 				player = UnitIsPlayer(unit.unit)

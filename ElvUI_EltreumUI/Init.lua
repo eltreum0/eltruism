@@ -53,6 +53,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:LoadCommands() --loads chat commands
 	ElvUI_EltreumUI:BorderAdjust() --auto adjust actionbar/border if option is enabled
 	ElvUI_EltreumUI:Borders() --creates borders if option is enabled
+	ElvUI_EltreumUI:GroupBorderColorUpdate()
 	ElvUI_EltreumUI:GradientColorTableUpdate() -- should load table on init
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel() --adds class icons to character panel
 	ElvUI_EltreumUI:CursorInit() --starts cursor modules
@@ -201,6 +202,9 @@ function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		ElvUI_EltreumUI:GradientUF()
 		ElvUI_EltreumUI:CustomTexture()
+	end
+	if E.db.ElvUI_EltreumUI.borders.borders then
+		ElvUI_EltreumUI:GroupBorderColorUpdate()
 	end
 end
 
