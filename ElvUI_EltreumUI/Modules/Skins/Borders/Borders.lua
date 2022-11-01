@@ -17,7 +17,7 @@ local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder
 local bordertexture,classcolor,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder
 local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction,focustargetcastbarborder
 local MinimapBorder,LeftChatBorder,RightChatBorder,auraborder,totemborderfly,focustargetborder
-local raid1borderholder,raid2borderholder,raid3borderholder = {},{},{}
+local raid1borderholder,raid2borderholder,raid3borderholder,partyborderholder = {},{},{}, {}
 local rectangleminimapdetect = CreateFrame("FRAME")
 local updatelocationpos = CreateFrame("Frame")
 local classcolorreaction = {
@@ -257,6 +257,7 @@ function ElvUI_EltreumUI:Borders()
 						partyborder:SetSize(E.db.ElvUI_EltreumUI.borders.partysizex, E.db.ElvUI_EltreumUI.borders.partysizey)
 						partyborder:SetPoint("CENTER", _G["ElvUF_PartyGroup1UnitButton"..i], "CENTER")
 						partyborder:SetParent(_G["ElvUF_PartyGroup1UnitButton"..i])
+						table.insert(partyborderholder, partyborder)
 						partyborder:SetBackdrop({
 							edgeFile = bordertexture,
 							edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
@@ -1139,10 +1140,6 @@ function ElvUI_EltreumUI:ShowHideBorders(install)
 		LeftChatBorder,
 		RightChatBorder,
 		playercastbarborder,
-		partyborder,
-		raid1borderholder,
-		raid2borderholder,
-		raid3borderholder,
 		focuscastbarborder,
 	}
 	local barborderbutton
@@ -1151,6 +1148,26 @@ function ElvUI_EltreumUI:ShowHideBorders(install)
 	local function Show()
 		for _, frame in pairs(borderlist) do
 			if frame ~= nil then
+				frame:Show()
+			end
+		end
+		for _, frame in pairs(partyborderholder) do
+			if frame then
+				frame:Show()
+			end
+		end
+		for _, frame in pairs(raid1borderholder) do
+			if frame then
+				frame:Show()
+			end
+		end
+		for _, frame in pairs(raid2borderholder) do
+			if frame then
+				frame:Show()
+			end
+		end
+		for _, frame in pairs(raid3borderholder) do
+			if frame then
 				frame:Show()
 			end
 		end
@@ -1187,10 +1204,31 @@ function ElvUI_EltreumUI:ShowHideBorders(install)
 
 	local function Hide()
 		for _, frame in pairs(borderlist) do
-			if frame ~= nil then
+			if frame then
 				frame:Hide()
 			end
 		end
+		for _, frame in pairs(partyborderholder) do
+			if frame then
+				frame:Hide()
+			end
+		end
+		for _, frame in pairs(raid1borderholder) do
+			if frame then
+				frame:Hide()
+			end
+		end
+		for _, frame in pairs(raid2borderholder) do
+			if frame then
+				frame:Hide()
+			end
+		end
+		for _, frame in pairs(raid3borderholder) do
+			if frame then
+				frame:Hide()
+			end
+		end
+
 		for k = 1,6 do
 			barborderbutton = "EltruismAB"..k.."Border"
 			for b = 1,12 do
