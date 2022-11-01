@@ -688,16 +688,6 @@ function ElvUI_EltreumUI:Shadows()
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournal.shadow) end
 						end
 					end)
-					--[[_G.WardrobeCollectionFrame:HookScript("OnShow", function()
-						if not _G.WardrobeCollectionFrame.shadow then
-							_G.WardrobeCollectionFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.WardrobeCollectionFrame.shadow) end
-						end
-						if not _G.CollectionsJournal.shadow then
-							_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournal.shadow) end
-						end
-					end)]]
 					_G.WardrobeFrame:HookScript("OnShow", function()
 						if not _G.WardrobeFrame.shadow then
 							_G.WardrobeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
