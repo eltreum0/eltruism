@@ -490,6 +490,7 @@ if E.Retail then
 		if endAlpha == 0 then
 			if frame.Portrait3D then
 				frame.Portrait3D:Hide()
+				frame.FixRotationEltruism = false
 			end
 			if _G["EltruismPlayerEffect"] then
 				_G["EltruismPlayerEffect"]:SetAlpha(0)
@@ -506,6 +507,8 @@ if E.Retail then
 		elseif endAlpha == 1 then
 			if frame.Portrait3D then
 				frame.Portrait3D:Show()
+				ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
+				frame.FixRotationEltruism = true
 			end
 			if _G["EltruismPlayerEffect"] then
 				_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
@@ -525,6 +528,7 @@ if E.Retail then
 		if endAlpha == 0 then
 			if frame.Portrait3D then
 				frame.Portrait3D:Hide()
+				frame.FixRotationEltruism = false
 			end
 			if _G["EltruismPlayerEffect"] then
 				_G["EltruismPlayerEffect"]:SetAlpha(0)
@@ -541,6 +545,10 @@ if E.Retail then
 		elseif endAlpha == 1 then
 			if frame.Portrait3D then
 				frame.Portrait3D:Show()
+				if not frame.FixRotationEltruism then
+					ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
+					frame.FixRotationEltruism = true
+				end
 			end
 			if _G["EltruismPlayerEffect"] then
 				_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
@@ -604,8 +612,11 @@ if E.Retail then
 				portrait:SetAlpha(portrait.db.overlayAlpha)
 				if frame:GetAlpha() == 1 then
 					portrait:Show()
+					ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
+					frame.FixRotationEltruism = true
 				elseif frame:GetAlpha() == 0 then
 					portrait:Hide()
+					frame.FixRotationEltruism = false
 				end
 				portrait.backdrop:Hide()
 
