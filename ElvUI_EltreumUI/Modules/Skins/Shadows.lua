@@ -266,6 +266,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G.ExtraActionButton1,
 			_G.ExtraActionButton2,
 			_G.ExtraActionButton3,
+			_G.ChatFrame1EditBox,
 			--_G.ImmersionFrame.TalkBox,
 		}
 		for _, frame in pairs(blizzardframes) do
@@ -742,6 +743,38 @@ function ElvUI_EltreumUI:Shadows()
 						if not _G.EncounterJournal.shadow then
 							_G.EncounterJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournal.shadow) end
+						end
+						if not _G.EncounterJournalSuggestTab.backdrop.shadow then
+							_G.EncounterJournalSuggestTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalSuggestTab.backdrop.shadow) end
+						end
+						if not _G.EncounterJournalDungeonTab.backdrop.shadow then
+							_G.EncounterJournalDungeonTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalDungeonTab.backdrop.shadow) end
+						end
+						if not _G.EncounterJournalRaidTab.backdrop.shadow then
+							_G.EncounterJournalRaidTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalRaidTab.backdrop.shadow) end
+						end
+						if not _G.EncounterJournalLootJournalTab.backdrop.shadow then
+							_G.EncounterJournalLootJournalTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalLootJournalTab.backdrop.shadow) end
+						end
+						if not _G.EncounterJournalEncounterFrameInfoOverviewTab.shadow then
+							_G.EncounterJournalEncounterFrameInfoOverviewTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalEncounterFrameInfoOverviewTab.shadow) end
+						end
+						if not _G.EncounterJournalEncounterFrameInfoLootTab.shadow then
+							_G.EncounterJournalEncounterFrameInfoLootTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalEncounterFrameInfoLootTab.shadow) end
+						end
+						if not _G.EncounterJournalEncounterFrameInfoBossTab.shadow then
+							_G.EncounterJournalEncounterFrameInfoBossTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalEncounterFrameInfoBossTab.shadow) end
+						end
+						if not _G.EncounterJournalEncounterFrameInfoModelTab.shadow then
+							_G.EncounterJournalEncounterFrameInfoModelTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalEncounterFrameInfoModelTab.shadow) end
 						end
 					end)
 				end
