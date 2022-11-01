@@ -492,17 +492,21 @@ if E.Retail then
 				frame.Portrait3D:Hide()
 				frame.FixRotationEltruism = false
 			end
-			if _G["EltruismPlayerEffect"] then
-				_G["EltruismPlayerEffect"]:SetAlpha(0)
+			if frame:GetName():match("Player") then
+				if _G["EltruismPlayerEffect"] then
+					_G["EltruismPlayerEffect"]:SetAlpha(0)
+				end
+				if _G["EltruismPlayerPowerBarEffect"] then
+					_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
+				end
 			end
-			if _G["EltruismPetEffect"] then
-				_G["EltruismPetEffect"]:SetAlpha(0)
-			end
-			if _G["EltruismPlayerPowerBarEffect"] then
-				_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
-			end
-			if _G["EltruismPetPowerBarEffect"] then
-				_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
+			if frame:GetName():match("Pet") then
+				if _G["EltruismPetEffect"] then
+					_G["EltruismPetEffect"]:SetAlpha(0)
+				end
+				if _G["EltruismPetPowerBarEffect"] then
+					_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
+				end
 			end
 		elseif endAlpha == 1 then
 			if frame.Portrait3D then
@@ -510,17 +514,21 @@ if E.Retail then
 				ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 				frame.FixRotationEltruism = true
 			end
-			if _G["EltruismPlayerEffect"] then
-				_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+			if frame:GetName():match("Player") then
+				if _G["EltruismPlayerEffect"] then
+					_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+				end
+				if _G["EltruismPlayerPowerBarEffect"] then
+					_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
+				end
 			end
-			if _G["EltruismPetEffect"] then
-				_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-			end
-			if _G["EltruismPlayerPowerBarEffect"] then
-				_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
-			end
-			if _G["EltruismPetPowerBarEffect"] then
-				_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
+			if frame:GetName():match("Pet") then
+				if _G["EltruismPetEffect"] then
+					_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+				end
+				if _G["EltruismPetPowerBarEffect"] then
+					_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
+				end
 			end
 		end
 	end)
@@ -530,17 +538,21 @@ if E.Retail then
 				frame.Portrait3D:Hide()
 				frame.FixRotationEltruism = false
 			end
-			if _G["EltruismPlayerEffect"] then
-				_G["EltruismPlayerEffect"]:SetAlpha(0)
+			if frame:GetName():match("Player") then
+				if _G["EltruismPlayerEffect"] then
+					_G["EltruismPlayerEffect"]:SetAlpha(0)
+				end
+				if _G["EltruismPlayerPowerBarEffect"] then
+					_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
+				end
 			end
-			if _G["EltruismPetEffect"] then
-				_G["EltruismPetEffect"]:SetAlpha(0)
-			end
-			if _G["EltruismPlayerPowerBarEffect"] then
-				_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
-			end
-			if _G["EltruismPetPowerBarEffect"] then
-				_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
+			if frame:GetName():match("Pet") then
+				if _G["EltruismPetEffect"] then
+					_G["EltruismPetEffect"]:SetAlpha(0)
+				end
+				if _G["EltruismPetPowerBarEffect"] then
+					_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
+				end
 			end
 		elseif endAlpha == 1 then
 			if frame.Portrait3D then
@@ -550,17 +562,21 @@ if E.Retail then
 					frame.FixRotationEltruism = true
 				end
 			end
-			if _G["EltruismPlayerEffect"] then
-				_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+			if frame:GetName():match("Player") then
+				if _G["EltruismPlayerEffect"] then
+					_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+				end
+				if _G["EltruismPlayerPowerBarEffect"] then
+					_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
+				end
 			end
-			if _G["EltruismPetEffect"] then
-				_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-			end
-			if _G["EltruismPlayerPowerBarEffect"] then
-				_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
-			end
-			if _G["EltruismPetPowerBarEffect"] then
-				_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
+			if frame:GetName():match("Pet") then
+				if _G["EltruismPetEffect"] then
+					_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+				end
+				if _G["EltruismPetPowerBarEffect"] then
+					_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
+				end
 			end
 		end
 	end)
