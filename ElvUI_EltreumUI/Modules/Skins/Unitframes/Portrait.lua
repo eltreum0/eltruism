@@ -565,7 +565,6 @@ if E.Retail then
 		end
 	end)
 
-
 	local UF = E:GetModule('UnitFrames')
 	local rad = rad
 	local unpack = unpack
@@ -669,5 +668,4 @@ if E.Retail then
 			portrait:Hide()
 		end
 	end
-
 end
