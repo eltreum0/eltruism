@@ -4,10 +4,11 @@ ___
 ### 3.5.5
 Added Class Colors to Party and Raid Borders\
 Added a few missing shadows\
+Added a temporary Model Alpha fix based on nihilistzsche's solution (ty nihilistzsche!), still waiting on Blizzard to fix it on their end\
 Updated Character Item Quality Texture to also change the item Border color to the Set Color\
 Updated Nameplate Gradient with a workaround fix for the Health Color flashing\
 Updated Target to not Reverse Health and Power\
-Removed Key Down CVar due to ElvUI fixing the issue\
+Removed Key Down CVar due to ElvUI fixing the issue
 ### 3.5.4
 Added a temporary option to change the Keypress CVar that is currently causing issues in Retail due to 10.0\
 Added transparency to Castbar Gradient which will now better follow ElvUI settings\
