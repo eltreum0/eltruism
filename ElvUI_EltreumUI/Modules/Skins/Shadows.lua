@@ -275,6 +275,11 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
+		if _G.LootHistoryFrame and _G.LootHistoryFrame.ResizeButton then
+			_G.LootHistoryFrame.ResizeButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.LootHistoryFrame.ResizeButton.shadow) end
+		end
+
 		if _G.ProfessionsFrame and _G.ProfessionsFrame.TabSystem then
 			for i = 1, _G.ProfessionsFrame.TabSystem:GetNumChildren() do
 				local tab = select(i, _G.ProfessionsFrame.TabSystem:GetChildren())
