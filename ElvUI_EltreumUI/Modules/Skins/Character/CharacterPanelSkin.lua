@@ -2125,6 +2125,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 							if isSetItem then
 								if E.db.ElvUI_EltreumUI.skins.itemsetcustomcolor then
 									r,g,b = E.db.ElvUI_EltreumUI.skins.itemsetcolor.r, E.db.ElvUI_EltreumUI.skins.itemsetcolor.g, E.db.ElvUI_EltreumUI.skins.itemsetcolor.b
+
 								else
 									r,g,b = P.ElvUI_EltreumUI.skins.itemsetcolor.r, P.ElvUI_EltreumUI.skins.itemsetcolor.g, P.ElvUI_EltreumUI.skins.itemsetcolor.b
 								end
@@ -2135,6 +2136,10 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 							r,g,b = _G.GetItemQualityColor(quality)
 						end
 						qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
+						local borderfix = _G["Character"..InvSlotName]
+						if borderfix.IconBorder then
+							borderfix.IconBorder:SetVertexColor(r, g, b)
+						end
 						qualityAnchor.Frame.Quality:SetAlpha(1)
 
 						if not E.Retail then
@@ -2206,6 +2211,9 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 end
 local refreshplayer = CreateFrame("FRAME")
 refreshplayer:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
+_G.CharacterFrame:HookScript("OnShow", function()
+	ElvUI_EltreumUI:PlayerItemQuality("player")
+end)
 --refreshplayer:RegisterEvent("UNIT_INVENTORY_CHANGED", "target") --need to test to see if too much cpu/memory (specially for pvp)
 refreshplayer:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:PlayerItemQuality("player")
@@ -2596,6 +2604,10 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									r,g,b = _G.GetItemQualityColor(quality)
 								end
 								qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
+								local borderfix = _G["Inspect"..InvSlotName]
+								if borderfix.IconBorder then
+									borderfix.IconBorder:SetVertexColor(r, g, b)
+								end
 								qualityAnchorInspect.Frame.Quality:SetAlpha(1)
 
 								if not E.Retail and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
