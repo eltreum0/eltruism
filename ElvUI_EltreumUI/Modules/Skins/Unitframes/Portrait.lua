@@ -483,3 +483,77 @@ shapeshiftcheck:SetScript("OnEvent", function(_,_,unit)
 		ElvUI_EltreumUI:DynamicUFPortraitRotation()
 	end
 end)
+
+--hoping this is a temporary fix and blizzard actually fixes models not inherithing the parent's alpha
+if E.Retail then
+	hooksecurefunc(E, "UIFrameFadeIn", function(_, frame,_, _, endAlpha)
+		if endAlpha == 0 then
+			if frame.Portrait3D then
+				frame.Portrait3D:Hide()
+			end
+			if _G["EltruismPlayerEffect"] then
+				_G["EltruismPlayerEffect"]:SetAlpha(0)
+			end
+			if _G["EltruismPetEffect"] then
+				_G["EltruismPetEffect"]:SetAlpha(0)
+			end
+			if _G["EltruismPlayerPowerBarEffect"] then
+				_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
+			end
+			if _G["EltruismPetPowerBarEffect"] then
+				_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
+			end
+		elseif endAlpha == 1 then
+			if frame.Portrait3D then
+				frame.Portrait3D:Show()
+			end
+			if _G["EltruismPlayerEffect"] then
+				_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+			end
+			if _G["EltruismPetEffect"] then
+				_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+			end
+			if _G["EltruismPlayerPowerBarEffect"] then
+				_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
+			end
+			if _G["EltruismPetPowerBarEffect"] then
+				_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
+			end
+		end
+	end)
+	hooksecurefunc(E, "UIFrameFadeOut", function(_, frame,_, _, endAlpha)
+		if endAlpha == 0 then
+			if frame.Portrait3D then
+				frame.Portrait3D:Hide()
+			end
+			if _G["EltruismPlayerEffect"] then
+				_G["EltruismPlayerEffect"]:SetAlpha(0)
+			end
+			if _G["EltruismPetEffect"] then
+				_G["EltruismPetEffect"]:SetAlpha(0)
+			end
+			if _G["EltruismPlayerPowerBarEffect"] then
+				_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
+			end
+			if _G["EltruismPetPowerBarEffect"] then
+				_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
+			end
+		elseif endAlpha == 1 then
+			if frame.Portrait3D then
+				frame.Portrait3D:Show()
+			end
+			if _G["EltruismPlayerEffect"] then
+				_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+			end
+			if _G["EltruismPetEffect"] then
+				_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+			end
+			if _G["EltruismPlayerPowerBarEffect"] then
+				_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
+			end
+			if _G["EltruismPetPowerBarEffect"] then
+				_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
+			end
+		end
+	end)
+end
