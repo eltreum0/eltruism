@@ -2426,6 +2426,11 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							_G.InspectModelFrame:HookScript("OnHide", function()
 								_G.InspectFrame:SetWidth(338)
 							end)
+
+							if _G.InspectPaperDollItemsFrame.InspectTalents then
+								_G.InspectPaperDollItemsFrame.InspectTalents:ClearAllPoints()
+								_G.InspectPaperDollItemsFrame.InspectTalents:SetPoint("RIGHT", _G.InspectFrame, "BOTTOMRIGHT", -5, 15)
+							end
 						end
 
 						if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
