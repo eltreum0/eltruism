@@ -2136,11 +2136,25 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 							r,g,b = _G.GetItemQualityColor(quality)
 						end
 						qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
-						local borderfix = _G["Character"..InvSlotName]
-						if borderfix.IconBorder then
-							borderfix.IconBorder:SetVertexColor(r, g, b)
-						end
 						qualityAnchor.Frame.Quality:SetAlpha(1)
+						if E.Retail then
+							local borderfix = _G["Character"..InvSlotName]
+							if borderfix.IconBorder then
+								borderfix.IconBorder:SetVertexColor(r, g, b)
+							end
+						else
+							if _G["Character"..InvSlotName] then
+								--_G["Inspect"..InvSlotName].backdrop.BottomEdge:SetColorTexture(r,g,b,1)
+								_G["Character"..InvSlotName].BottomEdge:Hide()
+								_G["Character"..InvSlotName].TopEdge:Hide()
+								_G["Character"..InvSlotName].RightEdge:Hide()
+								_G["Character"..InvSlotName].LeftEdge:Hide()
+								_G["Character"..InvSlotName].BottomLeftCorner:Hide()
+								_G["Character"..InvSlotName].BottomRightCorner:Hide()
+								_G["Character"..InvSlotName].TopLeftCorner:Hide()
+								_G["Character"..InvSlotName].TopRightCorner:Hide()
+							end
+						end
 
 						if not E.Retail then
 							--coloring ilvl based on the items they have
@@ -2604,11 +2618,25 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									r,g,b = _G.GetItemQualityColor(quality)
 								end
 								qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
-								local borderfix = _G["Inspect"..InvSlotName]
-								if borderfix.IconBorder then
-									borderfix.IconBorder:SetVertexColor(r, g, b)
-								end
 								qualityAnchorInspect.Frame.Quality:SetAlpha(1)
+								if E.Retail then
+									local borderfix = _G["Inspect"..InvSlotName]
+									if borderfix.IconBorder then
+										borderfix.IconBorder:SetVertexColor(r, g, b)
+									end
+								else
+									if _G["Inspect"..InvSlotName].backdrop then
+										--_G["Inspect"..InvSlotName].backdrop.BottomEdge:SetColorTexture(r,g,b,1)
+										_G["Inspect"..InvSlotName].backdrop.BottomEdge:Hide()
+										_G["Inspect"..InvSlotName].backdrop.TopEdge:Hide()
+										_G["Inspect"..InvSlotName].backdrop.RightEdge:Hide()
+										_G["Inspect"..InvSlotName].backdrop.LeftEdge:Hide()
+										_G["Inspect"..InvSlotName].backdrop.BottomLeftCorner:Hide()
+										_G["Inspect"..InvSlotName].backdrop.BottomRightCorner:Hide()
+										_G["Inspect"..InvSlotName].backdrop.TopLeftCorner:Hide()
+										_G["Inspect"..InvSlotName].backdrop.TopRightCorner:Hide()
+									end
+								end
 
 								if not E.Retail and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
 									--coloring ilvl based on the items they have
