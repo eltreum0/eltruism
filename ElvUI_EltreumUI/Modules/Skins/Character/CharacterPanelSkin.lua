@@ -2227,17 +2227,19 @@ local refreshplayer = CreateFrame("FRAME")
 refreshplayer:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
 refreshplayer:RegisterUnitEvent("UNIT_FLAGS", "player")
 refreshplayer:RegisterEvent("SPELL_UPDATE_COOLDOWN") --only out of combat
-_G.CharacterFrame:HookScript("OnShow", function(_,event)
-	if event == "SPELL_UPDATE_COOLDOWN" then
-		if not InCombatLockdown() then
+--refreshplayer:RegisterEvent("UNIT_INVENTORY_CHANGED", "target") --need to test to see if too much cpu/memory (specially for pvp)
+refreshplayer:SetScript("OnEvent", function(_,event)
+	if _G.CharacterFrame:IsShown() then
+		if event == "SPELL_UPDATE_COOLDOWN" then
+			if not InCombatLockdown() then
+				ElvUI_EltreumUI:PlayerItemQuality("player")
+			end
+		else
 			ElvUI_EltreumUI:PlayerItemQuality("player")
 		end
-	else
-		ElvUI_EltreumUI:PlayerItemQuality("player")
 	end
 end)
---refreshplayer:RegisterEvent("UNIT_INVENTORY_CHANGED", "target") --need to test to see if too much cpu/memory (specially for pvp)
-refreshplayer:SetScript("OnEvent", function()
+_G.CharacterFrame:HookScript("OnShow", function()
 	ElvUI_EltreumUI:PlayerItemQuality("player")
 end)
 
