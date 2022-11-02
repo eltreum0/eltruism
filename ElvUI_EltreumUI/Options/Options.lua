@@ -6460,428 +6460,443 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = LOOT,
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\loot',
+				childGroups = "tab",
 				order = 85,
 				args = {
-					header1 = {
+					loottext = {
 						order = 1,
-						type = "description",
-						name = "",
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					lootsetting = {
-						order = 2,
-						type = 'group',
-						inline = true,
-						name = L["Show a floating loot text"],
+						type = "group",
+						name = "LootText",
 						args = {
-							desc = {
-								type = 'toggle',
-								name = L["Enable"],
-								desc = L["Toggle On and Off"],
+							header1 = {
 								order = 1,
-								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.enable = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							addagaphere = {
-								order = 2,
 								type = "description",
 								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-							addanothergapforfun = {
-								order = 2,
-								type = "description",
-								name = "",
-							},
-							suboptions = {
+							lootsetting = {
 								order = 2,
 								type = 'group',
-								name = L["Choose which types of text:"],
-									args = {
-										yetanothergap = {
+								inline = true,
+								name = L["Show a floating loot text"],
+								args = {
+									desc = {
+										type = 'toggle',
+										name = L["Enable"],
+										desc = L["Toggle On and Off"],
+										order = 1,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									addagaphere = {
 										order = 2,
 										type = "description",
 										name = "",
+									},
+									addanothergapforfun = {
+										order = 2,
+										type = "description",
+										name = "",
+									},
+									suboptions = {
+										order = 2,
+										type = 'group',
+										name = L["Choose which types of text:"],
+											args = {
+												yetanothergap = {
+												order = 2,
+												type = "description",
+												name = "",
+												},
+												honor = {
+													type = 'toggle',
+													name = HONOR,
+													order = 5,
+													disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+													get = function() return E.db.ElvUI_EltreumUI.loot.loottext.honor end,
+													set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.honor = value end,
+												},
+												currency = {
+													type = 'toggle',
+													name = CURRENCY,
+													order = 5,
+													disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+													get = function() return E.db.ElvUI_EltreumUI.loot.loottext.currency end,
+													set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.currency = value end,
+												},
+												pet = {
+													type = 'toggle',
+													name = L["Pets"],
+													order = 5,
+													disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+													get = function() return E.db.ElvUI_EltreumUI.loot.loottext.pet end,
+													set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.pet = value end,
+												},
+												filterquality = {
+													order = 6,
+													type = 'select',
+													name = L["Minimum Loot Quality Filter"],
+													desc = L["Only items of this quality or better will be displayed"],
+													values = {
+														["0"] = ITEM_QUALITY0_DESC,
+														["1"] = ITEM_QUALITY1_DESC,
+														["2"] = ITEM_QUALITY2_DESC,
+														["3"] = ITEM_QUALITY3_DESC,
+														["4"] = ITEM_QUALITY4_DESC,
+													},
+													style = 'radio',
+													disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+													get = function() return E.db.ElvUI_EltreumUI.loot.loottext.quality end,
+													set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.quality = value end,
+												},
+											}
+									},
+									header1 = {
+										order = 3,
+										type = "description",
+										name = L["Change the scale of LootText"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									lootscale = {
+										type = 'range',
+										name = " ",
+										desc = L["Set the size of LootText"],
+										order = 4,
+										min = .1,
+										max = 1.5,
+										step = .05,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.scale end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.scale = value end,
+									},
+									lootscalereset = {
+										type = 'execute',
+										name = L["Reset Scale"],
+										desc = L["Return LootText to its default scale"],
+										order = 9,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										func = function() E.db.ElvUI_EltreumUI.loot.loottext.scale = 0.65 end,
+									},
+									header2 = {
+										order = 10,
+										type = "description",
+										name = L["Change the strata of the Loot Text"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									lootstrata = {
+										type = 'select',
+										name = " ",
+										desc = L["Set the level that LootText will be drawn to this"],
+										order = 11,
+										values = {
+											["BACKGROUND"] = L["Background"],
+											["LOW"] = L["Low"],
+											["MEDIUM"] = L["Medium"],
+											["HIGH"] = L["High"],
+											["DIALOG"] = L["Dialog"],
 										},
-										honor = {
-											type = 'toggle',
-											name = HONOR,
-											order = 5,
-											disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-											get = function() return E.db.ElvUI_EltreumUI.loot.loottext.honor end,
-											set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.honor = value end,
-										},
-										currency = {
-											type = 'toggle',
-											name = CURRENCY,
-											order = 5,
-											disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-											get = function() return E.db.ElvUI_EltreumUI.loot.loottext.currency end,
-											set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.currency = value end,
-										},
-										pet = {
-											type = 'toggle',
-											name = L["Pets"],
-											order = 5,
-											disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-											get = function() return E.db.ElvUI_EltreumUI.loot.loottext.pet end,
-											set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.pet = value end,
-										},
-										filterquality = {
-											order = 6,
-											type = 'select',
-											name = L["Minimum Loot Quality Filter"],
-											desc = L["Only items of this quality or better will be displayed"],
-											values = {
-												["0"] = ITEM_QUALITY0_DESC,
-												["1"] = ITEM_QUALITY1_DESC,
-												["2"] = ITEM_QUALITY2_DESC,
-												["3"] = ITEM_QUALITY3_DESC,
-												["4"] = ITEM_QUALITY4_DESC,
-											},
-											style = 'radio',
-											disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-											get = function() return E.db.ElvUI_EltreumUI.loot.loottext.quality end,
-											set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.quality = value end,
-										},
-									}
+										style = 'radio',
+										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.strata end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.strata = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									header99 = {
+										order = 12,
+										type = "description",
+										name = "",
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									lootscalex = {
+										type = 'range',
+										name = L["Change the Horizontal Position of LootText (Default = 0)"],
+										desc = L["Set X offset"],
+										order = 13,
+										min = -1000,
+										max = 1000,
+										step = 1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.xOffset end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.xOffset = value end,
+										--confirm = true,
+									},
+									lootscaley = {
+										type = 'range',
+										name = L["Change the Vertical Position of LootText (Default = 200)"],
+										desc = L["Set Y offset"],
+										order = 14,
+										min = -1000,
+										max = 1000,
+										step = 1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.yOffset end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.yOffset = value end,
+										--confirm = true,
+									},
+									header98 = {
+										order = 15,
+										type = "description",
+										name = "",
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									customfontlootgap = {
+										type = 'description',
+										name = '',
+										width = 'full',
+										order = 16,
+									},
+									customfontlootdesc = {
+										type = 'description',
+										name = L["Change the font of LootText to be the ElvUI Default Font found in General"],
+										width = 'full',
+										order = 17,
+									},
+									fontsize = {
+										type = 'range',
+										name = L["Font Size"],
+										order = 18,
+										min = 4,
+										max = 160,
+										step = 1,
+										--width = "single",
+										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontsize = value end,
+									},
+									customfontloot = {
+										type = 'toggle',
+										name = L["Use ElvUI General Font"],
+										desc = L["Change the font of LootText"],
+										width = 'full',
+										order = 19,
+										disabled = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg or E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable or not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsetting end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontsetting = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									customfontlootdmg = {
+										type = 'toggle',
+										name = L["Use ElvUI Damage Font"],
+										desc = L["Change the font of LootText"],
+										width = 'full',
+										order = 20,
+										disabled = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsetting or E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable or not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									customLSMfont = {
+										type = 'toggle',
+										name = L["Use Custom Font"],
+										desc = L["Change the font of LootText"],
+										width = 'full',
+										order = 21,
+										disabled = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg or E.db.ElvUI_EltreumUI.loot.loottext.fontsetting end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									sharedmediafontloot = {
+										order = 22,
+										type = 'select',
+										--width = "single",
+										dialogControl = 'LSM30_Font',
+										name = L["Font"],
+										desc = L["Choose a different font from the preselected ones"],
+										values = AceGUIWidgetLSMlists.font,
+										disabled = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg or E.db.ElvUI_EltreumUI.loot.loottext.fontsetting or not E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable end,
+										get = function()
+											return E.db.ElvUI_EltreumUI.loot.loottext.fontLSM
+										end,
+										set = function(self,fontvalue)
+											E.db.ElvUI_EltreumUI.loot.loottext.fontLSM = fontvalue
+										end,
+									},
+								},
 							},
-							header1 = {
-								order = 3,
+							header13 = {
+								order = 38,
 								type = "description",
-								name = L["Change the scale of LootText"],
+								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-							lootscale = {
-								type = 'range',
-								name = " ",
-								desc = L["Set the size of LootText"],
-								order = 4,
-								min = .1,
-								max = 1.5,
-								step = .05,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.scale end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.scale = value end,
-							},
-							lootscalereset = {
-								type = 'execute',
-								name = L["Reset Scale"],
-								desc = L["Return LootText to its default scale"],
-								order = 9,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-								func = function() E.db.ElvUI_EltreumUI.loot.loottext.scale = 0.65 end,
-							},
-							header2 = {
-								order = 10,
-								type = "description",
-								name = L["Change the strata of the Loot Text"],
+						},
+					},
+					fastloot = {
+						order = 2,
+						type = "group",
+						name = "Fast Loot",
+						args = {
+							fastlootenable = {
+								order = 39,
+								name = L["Enable Fast Loot"],
+								type = "toggle",
+								desc = L["Decrease the time it takes for auto loot to work, works with TSM"],
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								disabled = function() return E.db.ElvUI_EltreumUI.loot.fastlootfilter or E.db.ElvUI_EltreumUI.loot.lootwishlistfilter end,
+								get = function() return E.db.ElvUI_EltreumUI.loot.fastloot end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.loot.fastloot = value SetCVar('autoLootDefault', 1) E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							lootstrata = {
+							fastlootenablefilter = {
+								order = 40,
+								name = L["Enable Fast Loot with Loot Quality Filter"],
+								type = "toggle",
+								desc = L["Enable filtering item quality, items can still be looted by holding Shift or the mod key setup in Interface"],
+								width = 'full',
+								disabled = function() return E.db.ElvUI_EltreumUI.loot.fastloot or E.db.ElvUI_EltreumUI.loot.lootwishlistfilter end,
+								get = function() return E.db.ElvUI_EltreumUI.loot.fastlootfilter end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.loot.fastlootfilter = value SetCVar('autoLootDefault', 0) E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							lootwishlistfilter = {
+								order = 41,
+								name = L["Enable Fast Loot with Wishlist Filter"],
+								type = "toggle",
+								desc = L["Items not on the wishlist will not be looted, items can still be looted by holding Shift or the mod key setup in Interface"],
+								width = 'full',
+								disabled = function() return E.db.ElvUI_EltreumUI.loot.fastloot or E.db.ElvUI_EltreumUI.loot.fastlootfilter or #E.private.ElvUI_EltreumUI.wishlistID == 0 end,
+								get = function() return E.db.ElvUI_EltreumUI.loot.lootwishlistfilter end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.loot.lootwishlistfilter = value SetCVar('autoLootDefault', 0) E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							lootwishlistwarning = {
+								order = 42,
+								name = L["Enable Wishlist Loot Warning"],
+								type = "toggle",
+								desc = L["Show a toast if an item in the wishlist is looted"],
+								width = 'full',
+								disabled = function() return #E.private.ElvUI_EltreumUI.wishlistID == 0 end,
+								get = function() return E.db.ElvUI_EltreumUI.loot.lootwishlistwarning end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.loot.lootwishlistwarning = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							lootautoclose = {
+								order = 43,
+								name = L["Enable Automatically Closing Loot Window"],
+								type = "toggle",
+								desc = L["Loot Window will automatically close when using filters and the item desired is not found"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.loot.lootautoclose end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.loot.lootautoclose = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							lootconfirmbop = {
+								order = 43,
+								name = L["Enable Automatically Confirming Bind on Pickup"],
+								type = "toggle",
+								desc = L["Loot Window will automatically confirm looting Bind on Pickup items"],
+								width = 'full',
+								hidden = E.Retail,
+								get = function() return E.db.ElvUI_EltreumUI.loot.confirmbop end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.loot.confirmbop = value end,
+							},
+							lootscreenshot = {
+								order = 43,
+								name = L["Enable Screenshotting if an item from the wishlist is looted"],
+								type = "toggle",
+								desc = L["Automatically screenshot when you loot an item from the wishlist"],
+								width = 'full',
+								disabled = function() return #E.private.ElvUI_EltreumUI.wishlistID == 0 end,
+								get = function() return E.db.ElvUI_EltreumUI.loot.lootwishlistscreenshot end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.loot.lootwishlistscreenshot = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							fastlootenablefilterquality = {
+								order = 43,
 								type = 'select',
-								name = " ",
-								desc = L["Set the level that LootText will be drawn to this"],
-								order = 11,
+								name = L["Minimum Loot Quality Filter"],
+								desc = L["Only items of this quality or better will be looted when using Fast Loot Filter"],
 								values = {
-									["BACKGROUND"] = L["Background"],
-									["LOW"] = L["Low"],
-									["MEDIUM"] = L["Medium"],
-									["HIGH"] = L["High"],
-									["DIALOG"] = L["Dialog"],
+									["0"] = ITEM_QUALITY0_DESC,
+									["1"] = ITEM_QUALITY1_DESC,
+									["2"] = ITEM_QUALITY2_DESC,
+									["3"] = ITEM_QUALITY3_DESC,
+									["4"] = ITEM_QUALITY4_DESC,
 								},
 								style = 'radio',
-								disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.strata end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.strata = value E:StaticPopup_Show('CONFIG_RL') end,
+								disabled = function() return E.db.ElvUI_EltreumUI.loot.fastloot or not E.db.ElvUI_EltreumUI.loot.fastlootfilter or E.db.ElvUI_EltreumUI.loot.lootwishlistfilter end,
+								get = function() return E.db.ElvUI_EltreumUI.loot.fastlootquality end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.loot.fastlootquality = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							header99 = {
-								order = 12,
-								type = "description",
-								name = "",
+							soundscreenshot = {
+								order = 44,
+								name = L["Enable Playing a Sound if an item from the wishlist is looted"],
+								type = "toggle",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								disabled = function() return #E.private.ElvUI_EltreumUI.wishlistID == 0 end,
+								get = function() return E.db.ElvUI_EltreumUI.loot.lootwishlistsoundenable end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.loot.lootwishlistsoundenable = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							lootscalex = {
-								type = 'range',
-								name = L["Change the Horizontal Position of LootText (Default = 0)"],
-								desc = L["Set X offset"],
-								order = 13,
-								min = -1000,
-								max = 1000,
-								step = 1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.xOffset end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.xOffset = value end,
-								--confirm = true,
-							},
-							lootscaley = {
-								type = 'range',
-								name = L["Change the Vertical Position of LootText (Default = 200)"],
-								desc = L["Set Y offset"],
-								order = 14,
-								min = -1000,
-								max = 1000,
-								step = 1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.yOffset end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.yOffset = value end,
-								--confirm = true,
-							},
-							header98 = {
-								order = 15,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							customfontlootgap = {
-								type = 'description',
-								name = '',
-								width = 'full',
-								order = 16,
-							},
-							customfontlootdesc = {
-								type = 'description',
-								name = L["Change the font of LootText to be the ElvUI Default Font found in General"],
-								width = 'full',
-								order = 17,
-							},
-							fontsize = {
-								type = 'range',
-								name = L["Font Size"],
-								order = 18,
-								min = 4,
-								max = 160,
-								step = 1,
-								--width = "single",
-								disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontsize = value end,
-							},
-							customfontloot = {
-								type = 'toggle',
-								name = L["Use ElvUI General Font"],
-								desc = L["Change the font of LootText"],
-								width = 'full',
-								order = 19,
-								disabled = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg or E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable or not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsetting end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontsetting = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							customfontlootdmg = {
-								type = 'toggle',
-								name = L["Use ElvUI Damage Font"],
-								desc = L["Change the font of LootText"],
-								width = 'full',
-								order = 20,
-								disabled = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsetting or E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable or not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							customLSMfont = {
-								type = 'toggle',
-								name = L["Use Custom Font"],
-								desc = L["Change the font of LootText"],
-								width = 'full',
-								order = 21,
-								disabled = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg or E.db.ElvUI_EltreumUI.loot.loottext.fontsetting end,
-								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							sharedmediafontloot = {
-								order = 22,
+							sharedmediasoundwishlist = {
+								order = 45,
 								type = 'select',
-								--width = "single",
-								dialogControl = 'LSM30_Font',
-								name = L["Font"],
-								desc = L["Choose a different font from the preselected ones"],
-								values = AceGUIWidgetLSMlists.font,
-								disabled = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg or E.db.ElvUI_EltreumUI.loot.loottext.fontsetting or not E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable end,
-								get = function()
-									return E.db.ElvUI_EltreumUI.loot.loottext.fontLSM
+								width = "double",
+								dialogControl = 'LSM30_Sound',
+								name = L["Select a Sound"],
+								desc = L["Choose a Sound from SharedMedia files"],
+								values = AceGUIWidgetLSMlists.sound,
+								disabled = function() return not E.db.ElvUI_EltreumUI.loot.lootwishlistsoundenable or (#E.private.ElvUI_EltreumUI.wishlistID == 0) end,
+								get = function() return E.db.ElvUI_EltreumUI.loot.lootwishlistsound end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.loot.lootwishlistsound = key E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							lootwishlist = {
+								order = 94,
+								type = 'input',
+								name = L["Item Wishlist (type the Item ID)"],
+								desc = L["Items in your wishlist will display a warning when looted"],
+								width = 'double',
+								get = function() return E.private.ElvUI_EltreumUI.wishlistID end,
+								validate = function(_, value)
+									E.PopupDialogs["ELTRUISMINVALID"] = {
+										text = L["Invalid Item, you need to add an itemID which can be found in the tooltip or in Wowhead"],
+										button1 = OKAY,
+										timeout = 0,
+										whileDead = 1,
+										hideOnEscape = true,
+									}
+									if tonumber(value) ~= nil then
+										value = tonumber(value)
+										local item = Item:CreateFromItemID(value)
+										if item == nil then
+											return E:StaticPopup_Show('ELTRUISMINVALID') and false
+										elseif item:IsItemEmpty() then
+											return E:StaticPopup_Show('ELTRUISMINVALID') and false
+										else
+											return true
+										end
+									else
+										return E:StaticPopup_Show('ELTRUISMINVALID') and false
+									end
 								end,
-								set = function(self,fontvalue)
-									E.db.ElvUI_EltreumUI.loot.loottext.fontLSM = fontvalue
+								set = function(_, value)
+									value = tonumber(value)
+									local item = Item:CreateFromItemID(value)
+									if not item:IsItemEmpty() then
+										item:ContinueOnItemLoad(function()
+											local itemName = item:GetItemName()
+											local itemID = tonumber(value)
+											tinsert(E.private.ElvUI_EltreumUI.wishlistName, itemName)
+											tinsert(E.private.ElvUI_EltreumUI.wishlistID, itemID)
+										end)
+									end
+								end,
+							},
+							lootwishlistremove = {
+								order = 95,
+								type = 'select',
+								width = "double",
+								name = L["Remove item from Wishlist"],
+								desc = REMOVE,
+								values = E.private.ElvUI_EltreumUI.wishlistName,
+								get = function() return E.private.ElvUI_EltreumUI.wishlistName end,
+								set = function(_,value)
+									local item = tonumber(value)
+									tremove(E.private.ElvUI_EltreumUI.wishlistID, item)
+									tremove(E.private.ElvUI_EltreumUI.wishlistName, item)
 								end,
 							},
 						},
-					},
-					header13 = {
-						order = 38,
-						type = "description",
-						name = "",
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					fastlootenable = {
-						order = 39,
-						name = L["Enable Fast Loot"],
-						type = "toggle",
-						desc = L["Decrease the time it takes for auto loot to work, works with TSM"],
-						width = 'full',
-						disabled = function() return E.db.ElvUI_EltreumUI.loot.fastlootfilter or E.db.ElvUI_EltreumUI.loot.lootwishlistfilter end,
-						get = function() return E.db.ElvUI_EltreumUI.loot.fastloot end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.loot.fastloot = value SetCVar('autoLootDefault', 1) E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					fastlootenablefilter = {
-						order = 40,
-						name = L["Enable Fast Loot with Loot Quality Filter"],
-						type = "toggle",
-						desc = L["Enable filtering item quality, items can still be looted by holding Shift or the mod key setup in Interface"],
-						width = 'full',
-						disabled = function() return E.db.ElvUI_EltreumUI.loot.fastloot or E.db.ElvUI_EltreumUI.loot.lootwishlistfilter end,
-						get = function() return E.db.ElvUI_EltreumUI.loot.fastlootfilter end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.loot.fastlootfilter = value SetCVar('autoLootDefault', 0) E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					lootwishlistfilter = {
-						order = 41,
-						name = L["Enable Fast Loot with Wishlist Filter"],
-						type = "toggle",
-						desc = L["Items not on the wishlist will not be looted, items can still be looted by holding Shift or the mod key setup in Interface"],
-						width = 'full',
-						disabled = function() return E.db.ElvUI_EltreumUI.loot.fastloot or E.db.ElvUI_EltreumUI.loot.fastlootfilter or #E.private.ElvUI_EltreumUI.wishlistID == 0 end,
-						get = function() return E.db.ElvUI_EltreumUI.loot.lootwishlistfilter end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.loot.lootwishlistfilter = value SetCVar('autoLootDefault', 0) E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					lootwishlistwarning = {
-						order = 42,
-						name = L["Enable Wishlist Loot Warning"],
-						type = "toggle",
-						desc = L["Show a toast if an item in the wishlist is looted"],
-						width = 'full',
-						disabled = function() return #E.private.ElvUI_EltreumUI.wishlistID == 0 end,
-						get = function() return E.db.ElvUI_EltreumUI.loot.lootwishlistwarning end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.loot.lootwishlistwarning = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					lootautoclose = {
-						order = 43,
-						name = L["Enable Automatically Closing Loot Window"],
-						type = "toggle",
-						desc = L["Loot Window will automatically close when using filters and the item desired is not found"],
-						width = 'full',
-						get = function() return E.db.ElvUI_EltreumUI.loot.lootautoclose end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.loot.lootautoclose = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					lootconfirmbop = {
-						order = 43,
-						name = L["Enable Automatically Confirming Bind on Pickup"],
-						type = "toggle",
-						desc = L["Loot Window will automatically confirm looting Bind on Pickup items"],
-						width = 'full',
-						hidden = E.Retail,
-						get = function() return E.db.ElvUI_EltreumUI.loot.confirmbop end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.loot.confirmbop = value end,
-					},
-					lootscreenshot = {
-						order = 43,
-						name = L["Enable Screenshotting if an item from the wishlist is looted"],
-						type = "toggle",
-						desc = L["Automatically screenshot when you loot an item from the wishlist"],
-						width = 'full',
-						disabled = function() return #E.private.ElvUI_EltreumUI.wishlistID == 0 end,
-						get = function() return E.db.ElvUI_EltreumUI.loot.lootwishlistscreenshot end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.loot.lootwishlistscreenshot = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					fastlootenablefilterquality = {
-						order = 43,
-						type = 'select',
-						name = L["Minimum Loot Quality Filter"],
-						desc = L["Only items of this quality or better will be looted when using Fast Loot Filter"],
-						values = {
-							["0"] = ITEM_QUALITY0_DESC,
-							["1"] = ITEM_QUALITY1_DESC,
-							["2"] = ITEM_QUALITY2_DESC,
-							["3"] = ITEM_QUALITY3_DESC,
-							["4"] = ITEM_QUALITY4_DESC,
-						},
-						style = 'radio',
-						disabled = function() return E.db.ElvUI_EltreumUI.loot.fastloot or not E.db.ElvUI_EltreumUI.loot.fastlootfilter or E.db.ElvUI_EltreumUI.loot.lootwishlistfilter end,
-						get = function() return E.db.ElvUI_EltreumUI.loot.fastlootquality end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.loot.fastlootquality = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					soundscreenshot = {
-						order = 44,
-						name = L["Enable Playing a Sound if an item from the wishlist is looted"],
-						type = "toggle",
-						width = 'full',
-						disabled = function() return #E.private.ElvUI_EltreumUI.wishlistID == 0 end,
-						get = function() return E.db.ElvUI_EltreumUI.loot.lootwishlistsoundenable end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.loot.lootwishlistsoundenable = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					sharedmediasoundwishlist = {
-						order = 45,
-						type = 'select',
-						width = "double",
-						dialogControl = 'LSM30_Sound',
-						name = L["Select a Sound"],
-						desc = L["Choose a Sound from SharedMedia files"],
-						values = AceGUIWidgetLSMlists.sound,
-						disabled = function() return not E.db.ElvUI_EltreumUI.loot.lootwishlistsoundenable or (#E.private.ElvUI_EltreumUI.wishlistID == 0) end,
-						get = function() return E.db.ElvUI_EltreumUI.loot.lootwishlistsound end,
-						set = function(self,key) E.db.ElvUI_EltreumUI.loot.lootwishlistsound = key E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					lootwishlist = {
-						order = 94,
-						type = 'input',
-						name = L["Item Wishlist (type the Item ID)"],
-						desc = L["Items in your wishlist will display a warning when looted"],
-						width = 'double',
-						get = function() return E.private.ElvUI_EltreumUI.wishlistID end,
-						validate = function(_, value)
-							E.PopupDialogs["ELTRUISMINVALID"] = {
-								text = L["Invalid Item, you need to add an itemID which can be found in the tooltip or in Wowhead"],
-								button1 = OKAY,
-								timeout = 0,
-								whileDead = 1,
-								hideOnEscape = true,
-							}
-							if tonumber(value) ~= nil then
-								value = tonumber(value)
-								local item = Item:CreateFromItemID(value)
-								if item == nil then
-									return E:StaticPopup_Show('ELTRUISMINVALID') and false
-								elseif item:IsItemEmpty() then
-									return E:StaticPopup_Show('ELTRUISMINVALID') and false
-								else
-									return true
-								end
-							else
-								return E:StaticPopup_Show('ELTRUISMINVALID') and false
-							end
-						end,
-						set = function(_, value)
-							value = tonumber(value)
-							local item = Item:CreateFromItemID(value)
-							if not item:IsItemEmpty() then
-								item:ContinueOnItemLoad(function()
-									local itemName = item:GetItemName()
-									local itemID = tonumber(value)
-									tinsert(E.private.ElvUI_EltreumUI.wishlistName, itemName)
-									tinsert(E.private.ElvUI_EltreumUI.wishlistID, itemID)
-								end)
-							end
-						end,
-					},
-					lootwishlistremove = {
-						order = 95,
-						type = 'select',
-						width = "double",
-						name = L["Remove item from Wishlist"],
-						desc = REMOVE,
-						values = E.private.ElvUI_EltreumUI.wishlistName,
-						get = function() return E.private.ElvUI_EltreumUI.wishlistName end,
-						set = function(_,value)
-							local item = tonumber(value)
-							tremove(E.private.ElvUI_EltreumUI.wishlistID, item)
-							tremove(E.private.ElvUI_EltreumUI.wishlistName, item)
-						end,
 					},
 				},
 			},
