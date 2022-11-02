@@ -6527,6 +6527,23 @@ function ElvUI_EltreumUI:Configtable()
 											get = function() return E.db.ElvUI_EltreumUI.loot.loottext.pet end,
 											set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.pet = value end,
 										},
+										filterquality = {
+											order = 6,
+											type = 'select',
+											name = L["Minimum Loot Quality Filter"],
+											desc = L["Only items of this quality or better will be displayed"],
+											values = {
+												["0"] = ITEM_QUALITY0_DESC,
+												["1"] = ITEM_QUALITY1_DESC,
+												["2"] = ITEM_QUALITY2_DESC,
+												["3"] = ITEM_QUALITY3_DESC,
+												["4"] = ITEM_QUALITY4_DESC,
+											},
+											style = 'radio',
+											disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+											get = function() return E.db.ElvUI_EltreumUI.loot.loottext.quality end,
+											set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.quality = value end,
+										},
 									}
 							},
 							header1 = {
