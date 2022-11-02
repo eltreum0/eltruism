@@ -556,13 +556,31 @@ modelupdater:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player") --refresh every
 modelupdater:RegisterEvent("CINEMATIC_STOP") --cinematic might've caused it, so refresh everything
 modelupdater:SetScript("OnEvent", function(_, event)
 	ElvUI_EltreumUI:TargetTargetUFEffects()
-	if event == 'PLAYER_ENTERING_WORLD' or event == "PLAYER_FLAGS_CHANGED" or event == "CINEMATIC_STOP" then
-		ElvUI_EltreumUI:PlayerUFEffects()
-		ElvUI_EltreumUI:TargetUFEffects()
-		ElvUI_EltreumUI:PetUFEffects()
-		ElvUI_EltreumUI:CastbarEffects()
-	end
-	if event == "UNIT_PET" then
-		ElvUI_EltreumUI:PetUFEffects()
+	if E.Retail then
+		if event == 'PLAYER_ENTERING_WORLD' or event == "PLAYER_FLAGS_CHANGED" or event == "CINEMATIC_STOP" then
+			if _G["ElvUF_Player"]:GetAlpha() ~= 0 then
+				ElvUI_EltreumUI:PlayerUFEffects()
+			end
+			ElvUI_EltreumUI:TargetUFEffects()
+			if _G["ElvUF_Pet"]:GetAlpha() ~= 0 then
+				ElvUI_EltreumUI:PetUFEffects()
+			end
+			ElvUI_EltreumUI:CastbarEffects()
+		end
+		if event == "UNIT_PET" then
+			if _G["ElvUF_Pet"]:GetAlpha() ~= 0 then
+				ElvUI_EltreumUI:PetUFEffects()
+			end
+		end
+	else
+		if event == 'PLAYER_ENTERING_WORLD' or event == "PLAYER_FLAGS_CHANGED" or event == "CINEMATIC_STOP" then
+			ElvUI_EltreumUI:PlayerUFEffects()
+			ElvUI_EltreumUI:TargetUFEffects()
+			ElvUI_EltreumUI:PetUFEffects()
+			ElvUI_EltreumUI:CastbarEffects()
+		end
+		if event == "UNIT_PET" then
+			ElvUI_EltreumUI:PetUFEffects()
+		end
 	end
 end)
