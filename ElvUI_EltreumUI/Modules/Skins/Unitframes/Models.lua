@@ -552,12 +552,13 @@ local modelupdater = CreateFrame("FRAME")
 modelupdater:RegisterUnitEvent("UNIT_TARGET", "target") --update whenever the target changes target
 modelupdater:RegisterUnitEvent("UNIT_PET", "player") --refresh everything
 modelupdater:RegisterEvent("PLAYER_ENTERING_WORLD") --refresh everything
+modelupdater:RegisterEvent("PLAYER_REGEN_DISABLED")
 modelupdater:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player") --refresh everything
 modelupdater:RegisterEvent("CINEMATIC_STOP") --cinematic might've caused it, so refresh everything
 modelupdater:SetScript("OnEvent", function(_, event)
 	ElvUI_EltreumUI:TargetTargetUFEffects()
 	if E.Retail then
-		if event == 'PLAYER_ENTERING_WORLD' or event == "PLAYER_FLAGS_CHANGED" or event == "CINEMATIC_STOP" then
+		if event == 'PLAYER_ENTERING_WORLD' or event == "PLAYER_FLAGS_CHANGED" or event == "CINEMATIC_STOP" or event == "PLAYER_REGEN_DISABLED" then
 			if _G["ElvUF_Player"]:GetAlpha() ~= 0 then
 				ElvUI_EltreumUI:PlayerUFEffects()
 			end
