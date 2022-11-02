@@ -19,8 +19,10 @@ local UseContainerItem = _G.UseContainerItem --TODO UseContainerItem DRAGONFLIGH
 function ElvUI_EltreumUI:LoadCommands()
 	self:RegisterChatCommand('eltruism', 'RunCommands')
 	--add to moveui table
-	tinsert(E.ConfigModeLayouts, #(E.ConfigModeLayouts) + 1, "ELTREUMUI")
-	E.ConfigModeLocalizedStrings["ELTREUMUI"] = format("|cff82B4ff%s |r", "Eltruism")
+	if not self.ConfigModeAddedEltruism then
+		tinsert(E.ConfigModeLayouts, #(E.ConfigModeLayouts) + 1, "ELTREUMUI")
+		E.ConfigModeLocalizedStrings["ELTREUMUI"] = format("|cff82B4ff%s |r", "Eltruism")
+	end
 	if E.Retail then
 		if E.db.ElvUI_EltreumUI.waypoints.waytext.enable then
 			if not IsAddOnLoaded("TomTom") then
