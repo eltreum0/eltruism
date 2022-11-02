@@ -565,7 +565,7 @@ if E.Retail then
 			end
 			if frame:GetName():match("Player") then
 				if _G["EltruismPlayerEffect"] then
-					_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+					_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha or 0.5)
 				end
 				if _G["EltruismPlayerPowerBarEffect"] then
 					_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
@@ -573,7 +573,7 @@ if E.Retail then
 			end
 			if frame:GetName():match("Pet") then
 				if _G["EltruismPetEffect"] then
-					_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+					_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha or 0.5)
 				end
 				if _G["EltruismPetPowerBarEffect"] then
 					_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
@@ -631,7 +631,7 @@ if E.Retail then
 					ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 					if frame:GetName():match("Player") then
 						if _G["EltruismPlayerEffect"] then
-							_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+							_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha or 0.5)
 						end
 						if _G["EltruismPlayerPowerBarEffect"] then
 							_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
@@ -639,7 +639,7 @@ if E.Retail then
 					end
 					if frame:GetName():match("Pet") then
 						if _G["EltruismPetEffect"] then
-							_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+							_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha or 0.5)
 						end
 						if _G["EltruismPetPowerBarEffect"] then
 							_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
