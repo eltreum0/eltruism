@@ -1191,4 +1191,5 @@ L["Unitframe Aura Border Y offset"] = true
 L["Unitframes Debuff Aura Border X offset"] = true
 L["Unitframes Debuff Aura Border Y offset"] = true
 L["Add gradient to Details Bars"] = true
- L["Add Gradient to BigWigs Bars"] = true
+L["Add Gradient to BigWigs Bars"] = true
+L["Only items of this quality or better will be displayed"] = true
