@@ -413,6 +413,7 @@ P.ElvUI_EltreumUI = {
 
 	loot = {
 		loottext = {
+			quality = "0",
 			enable = false,
 			honor = true,
 			currency = true,

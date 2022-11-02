@@ -1316,6 +1316,8 @@ function ElvUI_EltreumUI:SetupCVars()
 
 		SetCVar('minimapTrackingShowAll', 1) --return old tracking on right click
 
+		SetCVar('WorldTextMinSize', 6)
+
 		--[[
 		SetCVar('findYourselfAnywhere', 0) --"Always Highlight your character"
 		SetCVar('findYourselfAnywhereOnlyInCombat', 0) --"Highlight your character only when in combat"

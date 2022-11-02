@@ -419,7 +419,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane, "BOTTOM", 0, -80)
 			CharacterFrame.EltruismExtraStatsFont:SetParent(CharacterStatsPane)
 
-			if IsAddOnLoaded('ElvUI_SLE') then
+			if IsAddOnLoaded('ElvUI_SLE') and not IsAddOnLoaded('DejaCharacterStats') then
+				if not E.db["sle"]["armory"]["character"]["enable"] then
+					return
+				end
+
 				--offense
 				CharacterStatsPane.OffenseCategory.backdrop:Hide()
 				if not CharacterStatsPane.OffenseCategory.Title:GetText():match("|r") then

@@ -214,10 +214,12 @@ function ElvUI_EltreumUI:LootText()
 					local lootName, _, rarity, _, _, _, _, _, _, lootTexture, _, _, _, _, _, _, _ = GetItemInfo(itemLink)
 					local lootQuantity = amount
 					local r, g, b, _ = GetItemQualityColor(rarity)
-					if lootQuantity >= 2 then
-						CombatText_AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, r, g, b)
-					else
-						CombatText_AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootName, CombatText_StandardScroll, r, g, b)
+					if rarity >= tonumber(E.db.ElvUI_EltreumUI.loot.loottext.quality) then
+						if lootQuantity >= 2 then
+							CombatText_AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, r, g, b)
+						else
+							CombatText_AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootName, CombatText_StandardScroll, r, g, b)
+						end
 					end
 				end
 			end

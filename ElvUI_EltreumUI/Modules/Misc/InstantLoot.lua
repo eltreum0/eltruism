@@ -34,7 +34,7 @@ local lootsoundthrottle = 0
 local WishlistItemFrame = CreateFrame("Frame", "EltruismWishlistItem", UIParent)
 WishlistItemFrame:SetPoint("TOP", UIParent, 0, -100)
 WishlistItemFrame:SetSize(418, 72)
-E:CreateMover(WishlistItemFrame, "MoverEltruismWishlist", "EltruismWishlist", nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,loottext')
+E:CreateMover(WishlistItemFrame, "MoverEltruismWishlist", "EltruismWishlist", nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,loottext,fastloot')
 
 WishlistItemFrame.Text = WishlistItemFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 WishlistItemFrame.Text:SetSize(800, 72)
