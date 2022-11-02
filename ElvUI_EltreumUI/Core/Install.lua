@@ -301,9 +301,7 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option1:SetText(L["Questie"])
 			end
 			_G.PluginInstallFrame.Desc2:SetText(L["Import DBM or BigWigs profiles for dungeons and raids. (Uses DBM English Calanon and Bigwigs Voice)"])
-			if E.Retail then
-				_G.PluginInstallFrame.Desc3:SetText(L["Import Method Raid Tools profile with raid cooldowns and other settings"])
-			elseif E.Wrath then
+			if E.Wrath then
 				if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
 					_G.PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladdy"])
 				elseif IsAddOnLoaded("Gladius") and IsAddOnLoaded("Gladdy") then
@@ -323,12 +321,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option3:Show()
 			_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupBW() end)
 			_G.PluginInstallFrame.Option3:SetText('BigWigs')
-			if E.Retail then
-				_G.PluginInstallFrame.Option4:Enable()
-				_G.PluginInstallFrame.Option4:Show()
-				_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupMRT() end)
-				_G.PluginInstallFrame.Option4:SetText(L["Method\nRaid Tools"])
-			elseif E.Wrath then
+			if E.Wrath then
 				_G.PluginInstallFrame.Option4:Enable()
 				_G.PluginInstallFrame.Option4:Show()
 				if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
@@ -371,17 +364,12 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option2:Disable()
 				_G.PluginInstallFrame.Option3:Disable()
 			end
-			if (not IsAddOnLoaded("MRT")) and E.Retail then
-				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-				_G.PluginInstallFrame.Desc3:SetText(L["Method Raid Tools"]..L[" is not installed or enabled"])
-				_G.PluginInstallFrame.Option4:Disable()
-			end
 			if not IsAddOnLoaded("Gladdy") and (E.Wrath) and not IsAddOnLoaded("Gladius") then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				_G.PluginInstallFrame.Desc3:SetText(L["Both Gladdy and Gladius are not installed or enabled"])
 				_G.PluginInstallFrame.Option4:Disable()
 			end
-			if E.Retail and ((not IsAddOnLoaded("MRT")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("GladiusEx"))) then
+			if E.Retail and ((not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("GladiusEx"))) then
 				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
 			if E.Classic and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs"))) then
