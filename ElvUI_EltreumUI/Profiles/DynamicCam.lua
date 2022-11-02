@@ -21,8 +21,8 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 						["test_cameraDynamicPitchBaseFovPadFlying"] = 0.9500000000000001,
 						["test_cameraDynamicPitchBaseFovPadDownScale"] = 1,
 						["test_cameraDynamicPitchBaseFovPad"] = 0.7000000000000001,
-						["cameraDistanceMaxZoomFactor"] = 2.6,
 						["test_cameraDynamicPitch"] = 1,
+						["cameraDistanceMaxZoomFactor"] = 2.6,
 						["test_cameraDynamicPitchSmartPivotCutoffDist"] = 0,
 					},
 					["reactiveZoomAddIncrementsAlways"] = 0,
@@ -40,20 +40,28 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 							["rotateBack"] = false,
 						},
 					},
-					["060"] = {
+					["005"] = {
 						["enabled"] = true,
 						["situationSettings"] = {
 							["cvars"] = {
-								["test_cameraDynamicPitch"] = 0,
 								["test_cameraOverShoulder"] = 0,
 							},
 						},
+						["viewZoom"] = {
+							["enabled"] = true,
+							["zoomMax"] = 20,
+							["zoomMin"] = 20,
+							["zoomType"] = "range",
+							["zoomValue"] = 20,
+							["zoomTransitionTime"] = 1.5,
+						},
 					},
-					["030"] = {
+					["020"] = {
 						["enabled"] = true,
 						["situationSettings"] = {
 							["cvars"] = {
 								["test_cameraOverShoulder"] = 0,
+								["test_cameraDynamicPitch"] = 0,
 							},
 						},
 					},
@@ -67,18 +75,18 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 						["viewZoom"] = {
 							["enabled"] = true,
 							["zoomMax"] = 20,
-							["zoomMin"] = 20,
-							["zoomType"] = "in",
-							["zoomValue"] = 15,
 							["zoomTransitionTime"] = 1.05,
+							["zoomType"] = "range",
+							["zoomValue"] = 15,
+							["zoomMin"] = 20,
 						},
 					},
 					["050"] = {
 						["enabled"] = true,
 						["situationSettings"] = {
 							["cvars"] = {
-								["test_cameraDynamicPitch"] = 0,
 								["test_cameraOverShoulder"] = 0,
+								["test_cameraDynamicPitch"] = 0,
 							},
 						},
 					},
@@ -95,18 +103,13 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 							["enabled"] = true,
 						},
 					},
-					["005"] = {
+					["060"] = {
 						["enabled"] = true,
 						["situationSettings"] = {
 							["cvars"] = {
 								["test_cameraOverShoulder"] = 0,
+								["test_cameraDynamicPitch"] = 0,
 							},
-						},
-						["viewZoom"] = {
-							["enabled"] = true,
-							["zoomType"] = "in",
-							["zoomValue"] = 20,
-							["zoomTransitionTime"] = 1.5,
 						},
 					},
 					["101"] = {
@@ -159,32 +162,6 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 							["enabled"] = true,
 						},
 					},
-					["020"] = {
-						["enabled"] = true,
-						["situationSettings"] = {
-							["cvars"] = {
-								["test_cameraDynamicPitch"] = 0,
-								["test_cameraOverShoulder"] = 0,
-							},
-						},
-					},
-					["100"] = {
-						["enabled"] = true,
-						["situationSettings"] = {
-							["cvars"] = {
-								["test_cameraDynamicPitch"] = 0,
-								["test_cameraTargetFocusInteractEnable"] = 0,
-								["test_cameraTargetFocusEnemyEnable"] = 0,
-							},
-						},
-						["viewZoom"] = {
-							["enabled"] = true,
-							["zoomTransitionTime"] = 0.75,
-							["zoomType"] = "out",
-							["zoomValue"] = 30,
-							["zoomTimeIsMax"] = true,
-						},
-					},
 					["200"] = {
 						["enabled"] = true,
 						["rotation"] = {
@@ -204,6 +181,31 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 							["enabled"] = true,
 							["zoomValue"] = 4,
 							["viewNumber"] = 3,
+						},
+					},
+					["100"] = {
+						["enabled"] = true,
+						["situationSettings"] = {
+							["cvars"] = {
+								["test_cameraDynamicPitch"] = 0,
+								["test_cameraTargetFocusInteractEnable"] = 0,
+								["test_cameraTargetFocusEnemyEnable"] = 0,
+							},
+						},
+						["viewZoom"] = {
+							["enabled"] = true,
+							["zoomTransitionTime"] = 0.75,
+							["zoomType"] = "out",
+							["zoomValue"] = 30,
+							["zoomTimeIsMax"] = true,
+						},
+					},
+					["030"] = {
+						["enabled"] = true,
+						["situationSettings"] = {
+							["cvars"] = {
+								["test_cameraOverShoulder"] = 0,
+							},
 						},
 					},
 				},
