@@ -1549,6 +1549,11 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 		end
+		if E.db["unitframe"]["units"]["targettarget"]["power"]["enable"] == false then
+			if _G["ElvUF_TargetTarget_HealthBar"] and _G["ElvUF_TargetTarget_HealthBar"].shadow then
+				_G["ElvUF_TargetTarget_HealthBar"].shadow:Show()
+			end
+		end
 		if E.db["unitframe"]["units"]["player"]["power"]["width"] ~= "spaced" and E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] == false then
 
 			if _G["ElvUF_Player_PowerBar"] and _G["ElvUF_Player_PowerBar"].shadow then
