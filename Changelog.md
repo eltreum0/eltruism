@@ -1,6 +1,12 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.5.5.1
+Added Lighweave and Darkglow Embroidery Enchants in Wrath\
+Added missing settings to ProjectAzilroka's Enhanced Friends List\
+Updated Quest Height to better apply Objective Tracker Height in Retail\
+Fixed a possible error with the fix for 3D Portrait Models\
+Fixed an issue where Target of Target Shadow would not display if power was disabled
 ### 3.5.5
 Added Class Colors to Party and Raid Borders\
 Added a few missing shadows\
