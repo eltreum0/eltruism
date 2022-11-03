@@ -288,6 +288,7 @@ function ElvUI_EltreumUI:Anchors()
 					end
 				end
 
+				Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 				ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 				ObjectiveTracker_UpdateHeight()
 
@@ -301,6 +302,9 @@ function ElvUI_EltreumUI:Anchors()
 				hooksecurefunc("ObjectiveTracker_UpdateHeight", function()
 					_G.ObjectiveTrackerFrame:ClearAllPoints()
 					_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
+					Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
+					ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
+					ObjectiveTrackerFrame:SetHeight(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight)
 				end)
 
 				--[[local questmonitor = CreateFrame("FRAME")
@@ -541,9 +545,15 @@ EltruismGameMenu:SetScript("OnEvent", function()
 
 	--use elvui moveui instead of blizzard edit mode
 	if _G.GameMenuButtonEditMode and E.db.ElvUI_EltreumUI.otherstuff.gamemenu then --TODO DRAGONFLIGHT
-		_G.GameMenuButtonEditMode:SetScript("OnClick", function()
-			E:ToggleMoveMode()
-			HideUIPanel(_G["GameMenuFrame"])
+		_G.GameMenuButtonEditMode:RegisterForClicks("AnyUp")
+		_G.GameMenuButtonEditMode:SetScript("OnClick", function(self, button)
+			if button == "LeftButton" then
+				E:ToggleMoveMode()
+				HideUIPanel(_G["GameMenuFrame"])
+			else
+				PlaySound(SOUNDKIT.IG_MAINMENU_OPTION);
+				ShowUIPanel(EditModeManagerFrame);
+			end
 		end)
 	end
 
