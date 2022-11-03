@@ -488,8 +488,9 @@ function ElvUI_EltreumUI:FixChatToggles()
 		local width = GetScreenWidth()
 		if E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] >= width then
 			E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2 + math.ceil(width - (buttonwidth * 2))
+			E:UpdateDataTexts()
 		end
-		--E:UpdateDataTexts()
+
 
 		--[[
 			_G.LeftChatToggleButton:SetPoint('TOPRIGHT', _G.DTPanelEltruismMover, 'TOPLEFT', 0, 0)
