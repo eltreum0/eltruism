@@ -559,17 +559,17 @@ modelupdater:SetScript("OnEvent", function(_, event)
 	ElvUI_EltreumUI:TargetTargetUFEffects()
 	if E.Retail then
 		if event == 'PLAYER_ENTERING_WORLD' or event == "PLAYER_FLAGS_CHANGED" or event == "CINEMATIC_STOP" or event == "PLAYER_REGEN_DISABLED" then
-			if _G["ElvUF_Player"]:GetAlpha() ~= 0 then
+			if _G["ElvUF_Player"] and _G["ElvUF_Player"]:GetAlpha() ~= 0 then
 				ElvUI_EltreumUI:PlayerUFEffects()
 			end
 			ElvUI_EltreumUI:TargetUFEffects()
-			if _G["ElvUF_Pet"]:GetAlpha() ~= 0 then
+			if _G["ElvUF_Pet"] and _G["ElvUF_Pet"]:GetAlpha() ~= 0 then
 				ElvUI_EltreumUI:PetUFEffects()
 			end
 			ElvUI_EltreumUI:CastbarEffects()
 		end
 		if event == "UNIT_PET" then
-			if _G["ElvUF_Pet"]:GetAlpha() ~= 0 then
+			if _G["ElvUF_Pet"] and _G["ElvUF_Pet"]:GetAlpha() ~= 0 then
 				ElvUI_EltreumUI:PetUFEffects()
 			end
 		end
