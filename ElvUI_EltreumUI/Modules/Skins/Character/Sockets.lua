@@ -81,6 +81,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[3859] = 63765, --springy-arachnoweave
 		[3756] = 57683, --fur-lining-attack-power
 		[3722] = 55642, --lightweave-embroidery
+		[3728] = 55769, --darkglow-embroidery
 
 		---- old list
 		[15] = 2831, -- Reinforced (+$k1 Armor)
