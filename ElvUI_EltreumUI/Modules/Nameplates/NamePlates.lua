@@ -726,6 +726,56 @@ function ElvUI_EltreumUI:NameplateRestedOverlaps()
 	end
 end
 
+--Class color the target, plus use unit's target directly
+local classcolorcast = {
+	["DEATHKNIGHT"]	= "FFC41E3A",
+	["DEMONHUNTER"]	= "FFA330C9",
+	["DRUID"] = "FFFF7C0A",
+	["HUNTER"] = "FFAAD372",
+	["MAGE"] = "FF3FC7EB",
+	["MONK"] = "FF00FF98",
+	["PALADIN"]	= "FFF48CBA",
+	["PRIEST"] = "FFFFFFFF",
+	["ROGUE"] = "FFFFF468",
+	["SHAMAN"] = "FF0070DD",
+	["WARLOCK"] = "FF8788EE",
+	["WARRIOR"] = "FFC69B6D",
+	["HOSTILE"] = "FFFF0000",
+	["UNFRIENDLY"] = "FFF26000",
+	["NEUTRAL"] = "FFE4E400",
+	["FRIENDLY"] = "FF33FF33",
+	["EVOKER"] = "FF33937F",
+}
+function NP:Castbar_PostCastStart(unit)
+	self:CheckInterrupt(unit)
+	local plate = self.__owner
+	local db = NP:PlateDB(plate)
+	if db.castbar and db.castbar.enable and db.castbar.displayTarget then
+		local frameType = plate.frameType
+		if frameType == 'PLAYER' or frameType == 'ENEMY_NPC' or frameType == 'FRIENDLY_NPC' then
+			if UnitExists(unit.."target") then
+				--self.Text:SetFont(E.LSM:Fetch('font', NP.db.font), 8, NP.db.fontOutline) --change size so it doesnt overlap the cast time print(NP.db.fontSize)
+				local spellName = E:ShortenString(self.spellName, 11)
+				if UnitIsPlayer(unit.."target") then
+					local _ , classes = UnitClass(unit.."target")
+					self.Text:SetText(spellName..' > '.."|c"..classcolorcast[classes]..UnitName(unit..'target').."|r")
+				else
+					local reaction = UnitReaction(unit.."target", "player")
+					if reaction >= 5 then
+						self.Text:SetText(spellName..' > '.."|c"..classcolorcast["FRIENDLY"]..UnitName(unit..'target').."|r")
+					elseif reaction == 4 then
+						self.Text:SetText(spellName..' > '.."|c"..classcolorcast["NEUTRAL"]..UnitName(unit..'target').."|r")
+					elseif reaction == 3 then
+						self.Text:SetText(spellName..' > '.."|c"..classcolorcast["UNFRIENDLY"]..UnitName(unit..'target').."|r")
+					elseif reaction == 2 or reaction == 1 then
+						self.Text:SetText(spellName..' > '.."|c"..classcolorcast["HOSTILE"]..UnitName(unit..'target').."|r")
+					end
+				end
+			end
+		end
+	end
+end
+
 local NP = E:GetModule('NamePlates')
 hooksecurefunc(NP, 'Initialize', function()
 	if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor then
