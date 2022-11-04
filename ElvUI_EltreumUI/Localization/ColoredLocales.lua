@@ -15,6 +15,7 @@ local classcolorsescape = {
 	["SHAMAN"] = "0070DD",
 	["WARLOCK"] = "8788EE",
 	["WARRIOR"] = "C69B6D",
+	["EVOKER"] = "33937F",
 }
 
 --Color Mod keys messages

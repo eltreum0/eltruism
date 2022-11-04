@@ -29,6 +29,7 @@ local classcolorsescape = {
 	["SHAMAN"] = "0070DD",
 	["WARLOCK"] = "8788EE",
 	["WARRIOR"] = "C69B6D",
+	["EVOKER"] = "33937F",
 }
 
 --Forked from Chat Loot Icons by Stanzilla which is Public Domain, modified to do more things
