@@ -79,9 +79,20 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[3290] = 52639, --spring-loaded-cloak-expander
 		[3729] = 55655, --eternal-belt-buckle
 		[3859] = 63765, --springy-arachnoweave
-		[3756] = 57683, --fur-lining-attack-power
 		[3722] = 55642, --lightweave-embroidery
 		[3728] = 55769, --darkglow-embroidery
+		[3730] = 55777, --swordguard-embroidery
+		[3840] = 44636, --enchant-ring-greater-spellpower
+		[3839] = 44645, --eenchant-ring-assault
+		[3791] = 59636, --enchant-ring-stamina
+		[3756] = 57683, --fur-lining-attack-power
+		[3757] = 57690, --fur-lining-stamina
+		[3758] = 57691, --fur-lining-spell-power
+		[3759] = 57692, --fur-lining-fire-resist
+		[3760] = 57694, --fur-lining-frost-resist
+		[3761] = 57696, --fur-lining-shadow-resist
+		[3762] = 57699, --fur-lining-nature-resist
+		[3763] = 57701, --fur-lining-arcane-resist
 
 		---- old list
 		[15] = 2831, -- Reinforced (+$k1 Armor)
