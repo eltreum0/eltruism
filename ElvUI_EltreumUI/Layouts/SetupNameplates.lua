@@ -666,7 +666,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["texture"]["enable"] = false
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["texture"]["texture"] = "Asphyxia-Norm"
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["healthThreshold"] = true
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["isTarget"] = true
+		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["isTarget"] = false
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["playerCanAttack"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["priority"] = 1
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.2
