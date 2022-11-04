@@ -267,8 +267,13 @@ function ElvUI_EltreumUI:Shadows()
 			_G.ExtraActionButton2,
 			_G.ExtraActionButton3,
 			_G.ChatFrame1EditBox,
+			_G.PVPReadyDialog,
+			_G.TimerTrackerTimer1StatusBar,
+			_G.TimerTrackerTimer2StatusBar,
+			_G.TimerTrackerTimer3StatusBar,
 			--_G.ImmersionFrame.TalkBox,
 		}
+
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then
 				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
