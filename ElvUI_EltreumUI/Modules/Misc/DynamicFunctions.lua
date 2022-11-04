@@ -72,6 +72,8 @@ function ElvUI_EltreumUI:ArenaBattlegroundGroupUnitframes()
 			E:UpdateUnitFrames()
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.arenaunitframes then
+			local UF = E:GetModule('UnitFrames')
+			UF:CreateAndUpdateUFGroup('arena', 5)
 			if instanceType == "arena" then
 				_G["ElvUF_Arena1"]:Hide()
 				_G["ElvUF_Arena2"]:Hide()
