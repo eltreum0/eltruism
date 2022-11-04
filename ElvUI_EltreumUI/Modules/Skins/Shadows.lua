@@ -281,6 +281,17 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
+		local timermonitor = CreateFrame("FRAME")
+		timermonitor:RegisterEvent("START_TIMER")
+		timermonitor:SetScript("OnEvent", function()
+			for _, b in pairs(_G.TimerTracker.timerList) do
+				if b.bar and not b.bar.shadow then
+					b.bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(b.bar.shadow) end
+				end
+			end
+		end)
+
 		if _G.LootHistoryFrame and _G.LootHistoryFrame.ResizeButton then
 			_G.LootHistoryFrame.ResizeButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.LootHistoryFrame.ResizeButton.shadow) end
