@@ -941,7 +941,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			--add effect to bar
 			if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect then
 				powerbareffect:Show()
-				powerbareffect:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
+				powerbareffect:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex or 133.6, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey or 6)
 				--powerbareffect:SetPoint("CENTER",EltreumPowerBar, "CENTER")
 				powerbareffect:SetAllPoints(EltreumPowerBar:GetStatusBarTexture())
 				if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
