@@ -29,14 +29,14 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 	targetcastbar = _G["ElvUF_Target_CastBar"]
 
 	--spark
-	if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable and E.private.unitframe.enable then
+	if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable and E.private.unitframe.enable and castbar then
 		castbar.Spark_:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
 		if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' then --flip otherwise it will look wrong
 			castbar.Spark_:SetTexCoord(1, 0, 0, 1)
 		end
 		castbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
 		castbar.Spark_:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
-		if UnitExists("target") then
+		if UnitExists("target") and targetcastbar then
 			targetcastbar.Spark_:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
 			targetcastbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
 			targetcastbar.Spark_:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
@@ -48,15 +48,15 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 
 	--gradient/texture
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
-		if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+		if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable and castbar then
 			castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
-			if UnitExists("target") then
+			if UnitExists("target") and targetcastbar then
 				targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
 			end
 		end
 
 		--player
-		if UnitExists("player") then
+		if UnitExists("player") and castbar then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 				if  E.db.unitframe.colors.transparentCastbar then
 					castbar.bg:SetVertexColor(0,0,0,0)
@@ -214,7 +214,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 		end
 
 		--target
-		if UnitExists("target") then
+		if UnitExists("target") and targetcastbar then
 			_, targetclass = UnitClass("target")
 			reactiontarget = UnitReaction("target", "player")
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
