@@ -70,8 +70,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
 	ElvUI_EltreumUI:DynamicSpellStealStyleFilter() -- toggles spellsteal filter for mages based on their level
 	ElvUI_EltreumUI:DynamicExperienceDatabar() --makes experience bar mouseover or not depending on current player level
 	ElvUI_EltreumUI:BlizzCombatText() --enables or disables blizzard's combat text depending on player setting in eltruism
-	ElvUI_EltreumUI:ArenaUnitframes() --hides elvui unitframes in arenas
-	ElvUI_EltreumUI:BattlegroundGroupUnitframes() --hides elvui unitframes in bgs
+	ElvUI_EltreumUI:ArenaBattlegroundGroupUnitframes() --hides elvui unitframes in bgs/arenas
 	ElvUI_EltreumUI:DynamicBuffs() --shows enemy player buffs on nameplates/unitframes if in arena/bgs, hides otherwise
 	ElvUI_EltreumUI:EnteringWorldCVars() --set cvars at the start
 	ElvUI_EltreumUI:RaidDeathGroupCheck() -- attempt at prevent CLEU tracking

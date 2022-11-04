@@ -43,45 +43,49 @@ function ElvUI_EltreumUI:CooldownColors()
 	end
 end
 
---hide raid/party frames in bgs bc of battlegroundenemies or similar
-function ElvUI_EltreumUI:BattlegroundGroupUnitframes()
-	if E.db.ElvUI_EltreumUI.unitframes.bgunitframes and E.private.unitframe.enable then
+--hide raid/party/arena frames in bgs/arenas bc of battlegroundenemies/gladiusEX or similar
+function ElvUI_EltreumUI:ArenaBattlegroundGroupUnitframes()
+	if E.private.unitframe.enable then
 		_, instanceType = IsInInstance()
-		if instanceType == "pvp" then
-			E.db["unitframe"]["units"]["party"]["visibility"] = "hide"
-			E.db["unitframe"]["units"]["raid1"]["visibility"] = "hide"
-			E.db["unitframe"]["units"]["raid2"]["visibility"] = "hide"
-			E.db["unitframe"]["units"]["raid3"]["visibility"] = "hide"
-		elseif E.Retail and IsAddOnLoaded('GladiusEx') and instanceType == "arena" then
-			E.db["unitframe"]["units"]["party"]["visibility"] = "hide"
-		else
-			E.db["unitframe"]["units"]["party"]["visibility"] = "[@raid6,exists][nogroup] hide;show"
-			E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
-			E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid21,noexists][@raid31,exists] hide;show"
-			E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid31,noexists] hide;show"
+		if E.db.ElvUI_EltreumUI.unitframes.bgunitframes then
+			if instanceType == "pvp" then
+				E.db["unitframe"]["units"]["party"]["visibility"] = "hide"
+				E.db["unitframe"]["units"]["raid1"]["visibility"] = "hide"
+				E.db["unitframe"]["units"]["raid2"]["visibility"] = "hide"
+				E.db["unitframe"]["units"]["raid3"]["visibility"] = "hide"
+			elseif instanceType == "arena" then
+				if (IsAddOnLoaded('GladiusEx') or IsAddOnLoaded("BattleGroundEnemies")) then
+					E.db["unitframe"]["units"]["party"]["visibility"] = "hide"
+				end
+				if E.db.ElvUI_EltreumUI.unitframes.arenaunitframes then
+					E.db["unitframe"]["units"]["arena"]["enable"] = false
+				end
+			else
+				E.db["unitframe"]["units"]["party"]["visibility"] = "[@raid6,exists][nogroup] hide;show"
+				E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
+				E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid21,noexists][@raid31,exists] hide;show"
+				E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid31,noexists] hide;show"
+				if E.db.ElvUI_EltreumUI.unitframes.arenaunitframes or IsAddOnLoaded("BattleGroundEnemies") then
+					E.db["unitframe"]["units"]["arena"]["enable"] = true
+				end
+			end
+			E:UpdateUnitFrames()
 		end
-
-		--E:StaggeredUpdateAll(nil, true)
-		E:UpdateUnitFrames()
-	end
-end
-
---hide elvui arena frames in arena bc of addons like gladius, but show in bgs bc of flag carriers
-function ElvUI_EltreumUI:ArenaUnitframes()
-	if E.db.ElvUI_EltreumUI.unitframes.arenaunitframes and E.private.unitframe.enable then
-		_, instanceType = IsInInstance()
-		E:Delay(1, function()
-			if instanceType == "arena" or (instanceType == "pvp" and IsAddOnLoaded("BattleGroundEnemies")) then
-				E.db["unitframe"]["units"]["arena"]["enable"] = false
+		if E.db.ElvUI_EltreumUI.unitframes.arenaunitframes then
+			if instanceType == "arena" then
 				_G["ElvUF_Arena1"]:Hide()
 				_G["ElvUF_Arena2"]:Hide()
 				_G["ElvUF_Arena3"]:Hide()
 				_G["ElvUF_Arena4"]:Hide()
 				_G["ElvUF_Arena5"]:Hide()
-			else
-				E.db["unitframe"]["units"]["arena"]["enable"] = true
+			elseif (instanceType == "pvp" and IsAddOnLoaded("BattleGroundEnemies")) then
+				_G["ElvUF_Arena1"]:Hide()
+				_G["ElvUF_Arena2"]:Hide()
+				_G["ElvUF_Arena3"]:Hide()
+				_G["ElvUF_Arena4"]:Hide()
+				_G["ElvUF_Arena5"]:Hide()
 			end
-		end)
+		end
 	end
 end
 
