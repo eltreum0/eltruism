@@ -54,7 +54,7 @@ function ElvUI_EltreumUI:ArenaBattlegroundGroupUnitframes()
 				E.db["unitframe"]["units"]["raid2"]["visibility"] = "hide"
 				E.db["unitframe"]["units"]["raid3"]["visibility"] = "hide"
 			elseif instanceType == "arena" then
-				if (IsAddOnLoaded('GladiusEx') or IsAddOnLoaded("BattleGroundEnemies")) then
+				if IsAddOnLoaded('GladiusEx') then
 					E.db["unitframe"]["units"]["party"]["visibility"] = "hide"
 				end
 				if E.db.ElvUI_EltreumUI.unitframes.arenaunitframes then
