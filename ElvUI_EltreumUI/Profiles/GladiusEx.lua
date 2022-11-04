@@ -471,6 +471,24 @@ function ElvUI_EltreumUI:GetGladiusExProfile()
 					},
 				},
 				["Clicks"] = {
+					["profiles"] = {
+						["Eltreum"] = {
+							["clickAttributes"] = {
+								["Right"] = {
+									["button"] = "2",
+									["macro"] = "",
+									["action"] = "focus",
+									["modifier"] = "alt-",
+								},
+								["Left"] = {
+									["button"] = "1",
+									["macro"] = "",
+									["action"] = "target",
+									["modifier"] = "alt-",
+								},
+							},
+						},
+					},
 				},
 				["Tags"] = {
 					["profiles"] = {
@@ -719,6 +737,24 @@ function ElvUI_EltreumUI:GetGladiusExProfile()
 					},
 				},
 				["party_Clicks"] = {
+					["profiles"] = {
+						["Eltreum"] = {
+							["clickAttributes"] = {
+								["Right"] = {
+									["button"] = "2",
+									["macro"] = "",
+									["action"] = "focus",
+									["modifier"] = "alt-",
+								},
+								["Left"] = {
+									["button"] = "1",
+									["macro"] = "",
+									["action"] = "target",
+									["modifier"] = "alt-",
+								},
+							},
+						},
+					},
 				},
 				["party_Auras"] = {
 					["profiles"] = {
@@ -792,7 +828,7 @@ function ElvUI_EltreumUI:GetGladiusExProfile()
 				},
 			},
 			["profileKeys"] = {
-				["Futuria - Stormrage"] = "Eltreum",
+				[E.mynameRealm] = "Eltreum"
 			},
 			["profiles"] = {
 				["Eltreum"] = {
