@@ -9,22 +9,29 @@ local UnitExists = _G.UnitExists
 local target3d = CreateFrame('PlayerModel', "EltruismNameplateModel")
 --function to set model settings
 local function SetNameplateModelSettings(nameplate)
+	if not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions then
+		return
+	end
 	target3d:ClearModel()
 	target3d:SetUnit(nameplate.unit)
-	target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.desaturation)
-	target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.paused)
+	target3d:SetDesaturation(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.desaturation or 0)
+	target3d:SetPaused(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.paused or false)
 	target3d:SetPortraitZoom(1) --allows the same cam as elvui UF
-	target3d:SetCamDistanceScale(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.CamDistanceScale)
-	target3d:SetViewTranslation(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ViewTranslationx*100,E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ViewTranslationy*100)
-	target3d:SetRotation(rad(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.Rotation))
+	target3d:SetCamDistanceScale(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.CamDistanceScale or 2)
+	target3d:SetViewTranslation((E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ViewTranslationx or 0) * 100, (E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ViewTranslationy or 0) * 100)
+	target3d:SetRotation(rad(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.Rotation or 0))
 	target3d:SetAlpha(0)
 	target3d:SetParent(nameplate.Health)
 	target3d:SetFrameLevel(nameplate.Health:GetFrameLevel())
-	target3d:SetSize(E.db.nameplates.plateSize.enemyWidth or P.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight)
+	if E.db.nameplates.plateSize and E.db.nameplates.plateSize.enemyWidth then
+		target3d:SetSize(E.db.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight or 14)
+	else
+		target3d:SetSize(P.nameplates.plateSize.enemyWidth, E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight or 14)
+	end
 	target3d:ClearAllPoints()
 	target3d:SetPoint("CENTER", nameplate.Health, "CENTER")
 	target3d:SetInside(nameplate.Health, 0, 0) --(obj, anchor, xOffset, yOffset, anchor2, noScale)
-	target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.modelalpha)
+	target3d:SetAlpha(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.modelalpha or 0.5)
 	--target3d:SetAnimation(3) --stand still
 	--target3d:FreezeAnimation(60, 0, 55) -- Freeze the talking animation at the frame 55
 	--target3d:SetFacing(-(math.pi/2)) --better than rotation?
