@@ -130,7 +130,7 @@ local raceBgs = {
 	["VoidElf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\VoidElf",
 	["Pandaren"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Pandaren",
 	["Worgen"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Worgen",
-	["Dracthyr"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Worgen", -- TODO
+	["Dracthyr"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Dracthyr", -- TODO
 }
 
 local classCrests = {
@@ -146,7 +146,7 @@ local classCrests = {
 	["MONK"] = "Artifacts-Monk-BG-rune",
 	["DRUID"] = "Artifacts-Druid-BG-rune",
 	["DEMONHUNTER"] = "Artifacts-DemonHunter-BG-rune",
-	["EVOKER"] = "Artifacts-DemonHunter-BG-rune", -- TODO
+	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Evoker\\evokercrest", -- TODO
 }
 
 local statgradients = {
@@ -1022,7 +1022,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			ClassCrestFrame:SetSize(256, 256)
 			ClassCrestFrame:SetPoint("CENTER", CharacterModelScene, 0, 50)
 			ClassCrestFrame:SetParent(CharacterFrame)
-			ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+			if not E.myclass == "EVOKER" then
+				ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+			else
+				ClassCrestFrameTexture:SetTexture(classCrests[E.myclass])
+			end
 			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
 			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
 		end
