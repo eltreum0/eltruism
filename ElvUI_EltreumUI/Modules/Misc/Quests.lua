@@ -31,7 +31,8 @@ function ElvUI_EltreumUI:QuestEncounter()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
 			if E.Retail then
 				--ObjectiveTracker_Collapse()
-				ObjectiveTrackerFrame:Hide()
+				--ObjectiveTrackerFrame:Hide()
+				ObjectiveTrackerFrame:SetAlpha(0)
 			elseif E.Classic then
 				_G.QuestWatchFrame:Hide()
 				if IsAddOnLoaded("Questie") then
@@ -50,7 +51,8 @@ function ElvUI_EltreumUI:QuestEncounterEnd()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
 			if E.Retail then
 				--ObjectiveTracker_Expand()
-				ObjectiveTrackerFrame:Show()
+				--ObjectiveTrackerFrame:Show()
+				ObjectiveTrackerFrame:SetAlpha(1)
 			elseif E.Classic then
 				_G.QuestWatchFrame:Show()
 				if IsAddOnLoaded("Questie") then
@@ -68,7 +70,8 @@ function ElvUI_EltreumUI:ArenaQuest()
 		local _, instanceType = IsInInstance()
 		if instanceType == "arena" or instanceType == "pvp" then
 			if E.Retail then
-				ObjectiveTrackerFrame:Hide()
+				--ObjectiveTrackerFrame:Hide()
+				ObjectiveTrackerFrame:SetAlpha(0)
 			elseif E.Classic then
 				_G.QuestWatchFrame:Hide()
 				if IsAddOnLoaded("Questie") then
@@ -81,7 +84,8 @@ function ElvUI_EltreumUI:ArenaQuest()
 			end
 		elseif instanceType == "none" then
 			if E.Retail then
-				ObjectiveTrackerFrame:Show()
+				--ObjectiveTrackerFrame:Show()
+				ObjectiveTrackerFrame:SetAlpha(1)
 			elseif E.Classic then
 				_G.QuestWatchFrame:Show()
 				if IsAddOnLoaded("Questie") then
