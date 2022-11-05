@@ -192,6 +192,7 @@ local playerclassv1 = {
 	["MONK"] = "Eltreum-Class-Monk",
 	["DRUID"] = "Eltreum-Class-Druid",
 	["DEMONHUNTER"] = "Eltreum-Class-DemonHunter",
+	["EVOKER"] = "Eltreum-Class-Evoker",
 }
 
 local playerclassv2 = {
@@ -207,6 +208,7 @@ local playerclassv2 = {
 	["MONK"] = "Eltreum-Class-MonkV2",
 	["DRUID"] = "Eltreum-Class-DruidV2",
 	["DEMONHUNTER"] = "Eltreum-Class-DemonHunterV2",
+	["EVOKER"] = "Eltreum-Class-EvokerV2",
 }
 
 local playerclassv3 = {
@@ -222,6 +224,7 @@ local playerclassv3 = {
 	["MONK"] = "Eltreum-Class-MonkV3",
 	["DRUID"] = "Eltreum-Class-DruidV3",
 	["DEMONHUNTER"] = "Eltreum-Class-DemonHunterV3",
+	["EVOKER"] = "Eltreum-Class-EvokerV3",
 }
 
 -- for rare nameplates
@@ -238,6 +241,7 @@ local rareclass = {
 	["MONK"] = "Eltreum-Class-Monk",
 	["DRUID"] = "Eltreum-Class-Druid",
 	["DEMONHUNTER"] = "Eltreum-Class-DemonHunter",
+	["EVOKER"] = "Eltreum-Class-Evoker",
 }
 
 local nameplateclasscolors

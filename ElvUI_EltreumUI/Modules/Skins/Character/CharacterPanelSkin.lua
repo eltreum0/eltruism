@@ -102,6 +102,7 @@ local classBgs = {
 	["MONK"] = "Interface\\Artifacts\\ArtifactUIMonk",
 	["DRUID"] = "Interface\\Artifacts\\ArtifactUIDruid",
 	["DEMONHUNTER"] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
+	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Evoker\\artifactuievoker",  -- TODO
 }
 
 --from 4k: height to 1920, resize to 1024x512, add 20 sharpen, set 30 bright 30 contrast, add vignette 0.35 (dont anymore), compress depending on size
@@ -129,6 +130,7 @@ local raceBgs = {
 	["VoidElf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\VoidElf",
 	["Pandaren"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Pandaren",
 	["Worgen"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Worgen",
+	["Dracthyr"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Dracthyr", -- TODO
 }
 
 local classCrests = {
@@ -144,6 +146,7 @@ local classCrests = {
 	["MONK"] = "Artifacts-Monk-BG-rune",
 	["DRUID"] = "Artifacts-Druid-BG-rune",
 	["DEMONHUNTER"] = "Artifacts-DemonHunter-BG-rune",
+	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Evoker\\evokercrest", -- TODO
 }
 
 local statgradients = {
@@ -159,6 +162,7 @@ local statgradients = {
 	["MONK"] = {r1 = 0, g1 = 0.97, b1 = 0.45, r2 = 0.22, g2 = 0.91, b2 = 0.7},
 	["DRUID"] = {r1 = 1, g1 = 0.24, b1 = 0, r2 = 1, g2 = 0.48, b2 = 0.04},
 	["DEMONHUNTER"] = {r1 = 0.56, g1 = 0.33, b1 = 0.77, r2 = 0.74, g2 = 0.19, b2 = 1},
+	["EVOKER"] = {r1 = 0.19, g1 = 0.46, b1 = 0.53, r2 = 0.2, g2 = 0.57, b2 = 0.50},
 }
 
 --https://wowpedia.fandom.com/wiki/InventorySlotId
@@ -1018,7 +1022,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			ClassCrestFrame:SetSize(256, 256)
 			ClassCrestFrame:SetPoint("CENTER", CharacterModelScene, 0, 50)
 			ClassCrestFrame:SetParent(CharacterFrame)
-			ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+			if not E.myclass == "EVOKER" then
+				ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+			else
+				ClassCrestFrameTexture:SetTexture(classCrests[E.myclass])
+			end
 			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
 			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
 		end

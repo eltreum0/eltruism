@@ -30,6 +30,7 @@ local classIcons = {
 	["MONK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Monk",
 	["DRUID"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Druid",
 	["DEMONHUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunter",
+	["EVOKER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/Evoker",
 }
 
 -- Alternate Class Icons by Releaf with borders
@@ -46,6 +47,7 @@ local classIconsReleafborder = {
 	["MONK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/MonkIconReleaf",
 	["DRUID"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DruidIconReleaf",
 	["DEMONHUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunterIconReleaf",
+	["EVOKER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/EvokerIconReleaf",
 }
 
 if E.Retail then

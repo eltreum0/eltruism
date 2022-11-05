@@ -431,10 +431,10 @@ function ElvUI_EltreumUI:EnchantScroll()
 			if _G.ProfessionsFrame then
 				--_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale)
 				_G.ProfessionsFrame:HookScript("OnEvent", function()
-					_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale)
+					_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale or 1)
 				end)
 				_G.ProfessionsFrame:HookScript("OnShow", function()
-					_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale)
+					_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale or 1)
 				end)
 			end
 		end
