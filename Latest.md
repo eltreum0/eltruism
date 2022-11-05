@@ -1,20 +1,16 @@
-### 3.5.5.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.5.6 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added Class Colors to Party and Raid Borders\
-Added a few missing shadows\
-Added a temporary Model Alpha fix based on nihilistzsche's solution (ty nihilistzsche!), still waiting on Blizzard to fix it on their end\
-Added missing Fur Lining enchant to Sockets & Enchants in Wrath\
-Added an option to filter items displayed in LootText by item quality\
-Added shadows to BigWigs Icons on the BigWigs Skin\
-Added missing settings to ProjectAzilroka's Enhanced Friends List\
-Added Lighweave and Darkglow Embroidery Enchants in Wrath\
-Updated Character Item Quality Texture to also change the item Border color to the Set Color\
-Updated Nameplate Gradient with a workaround fix for the Health Color flashing\
-Updated Target to not Reverse Health and Power\
-Updated DynamicCam Profile for Retail\
-Updated Loot options to split into separate tabs\
-Updated Quest Height to better apply Objective Tracker Height in Retail\
-Fixed [eltruism:leader] not displaying when the unit had assist and was a tank\
-Fixed a possible error with the fix for 3D Portrait Models\
-Fixed an issue where Target of Target Shadow would not display if power was disabled\
-Removed Key Down CVar due to ElvUI fixing the issue
+Added multiple checks for frames being loaded due to a change in the Retail API\
+Added various Evoker features such as backgrounds, crest and others\
+Added more missing enchants to Sockets in Wrath\
+Added more models to the Portrait Rotation Fix\
+Added more missing shadows\
+Updated ElvUI Nameplate Cast Target to shorten spell names as to not overlap the cast timer, and also color the target per class/reaction\
+Updated Gradient Nameplates to better detect Style Filters\
+Updated Combo Point Colors and Chi Colors\
+Updated Quest Hiding in Retail\
+Updated GladiusEX profile\
+Fixed an issue where Information Panel On Top didn't have the correct Portrait settings after the 3D Potrait fix\
+Fixed a possible issue when using borders with ElvUI action bars disabled\
+Fixed Rogue not auto opening the Order Hall\
+Fixed Arena Frames not Hiding
