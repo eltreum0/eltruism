@@ -797,7 +797,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["pet"]["health"]["colorHappiness"] = false
 	E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
 	E.db["unitframe"]["units"]["pet"]["buffs"]["anchorPoint"] = "TOP"
-	E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
+	E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
 	E.db["unitframe"]["units"]["pet"]["buffs"]["growthX"] = "LEFT"
@@ -806,11 +806,12 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = 2
 	E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 25
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOP"
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["attachTo"] = "BUFFS"
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["height"] = 25
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["sizeOverride"] = 25
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["yOffset"] = 1
-	E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
+	E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_DEBUFFS_ON_BUFFS"
 	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["color"]["b"] = 0
 	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["color"]["g"] = 0.50588235294118
 	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["color"]["r"] = 0.86274509803922

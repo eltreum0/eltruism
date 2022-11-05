@@ -747,9 +747,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["pet"]["health"]["colorPetByUnitClass"] = false
 	E.db["unitframe"]["units"]["pet"]["health"]["colorHappiness"] = false
 	E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
-	E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
+	E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["pet"]["buffs"]["anchorPoint"] = "TOP"
-	E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "DEBUFFS"
 	E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
@@ -759,6 +758,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = 2
 	E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 25
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOP"
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["attachTo"] = "BUFFS"
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["countFontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["height"] = 25
@@ -795,7 +795,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["pet"]["power"]["enable"] = true
 	E.db["unitframe"]["units"]["pet"]["power"]["text_format"] = ""
 	E.db["unitframe"]["units"]["pet"]["power"]["width"] = "inset"
-	E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
+	E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_DEBUFFS_ON_BUFFS"
 	E.db["unitframe"]["units"]["pet"]["width"] = 98
 	E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 98
 	if width == 1920 then

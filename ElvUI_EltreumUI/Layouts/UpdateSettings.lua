@@ -76,8 +76,10 @@ function ElvUI_EltreumUI:UpdateSettings()
 	E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect = true
 
 	if E.Retail then
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = true --while the issue is not resolved
 		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "NONE" --same
+		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = true --while the issue is not resolved
+		end
 	end
 
 	-- Skins
