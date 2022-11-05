@@ -13,6 +13,7 @@ local classtable = {
 	["MONK"] = "Eltreum-Class-Monk",
 	["DRUID"] = "Eltreum-Class-Druid",
 	["DEMONHUNTER"] = "Eltreum-Class-DemonHunter",
+	["EVOKER"] = "Eltreum-Class-Evoker",
 }
 
 -- WarpDeplete profile setup

@@ -18,6 +18,7 @@ local rareclass = {
 	["MONK"] = "Eltreum-Class-Monk",
 	["DRUID"] = "Eltreum-Class-Druid",
 	["DEMONHUNTER"] = "Eltreum-Class-DemonHunter",
+	["EVOKER"] = "Eltreum-Class-Evoker",
 }
 
 -- NamePlate Setup
