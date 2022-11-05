@@ -4,6 +4,7 @@ local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
 local strsplit = _G.strsplit
 local ipairs = _G.ipairs
+local tonumber = _G.tonumber
 local hooksecurefunc = _G.hooksecurefunc
 local pairs = _G.pairs
 local setmetatable = _G.setmetatable
@@ -253,13 +254,23 @@ function ElvUI_EltreumUI:Doom() --todo, setup options
 							DCPT:SetVertexColor(unpack(petOverlay))
 						end
 					end
-					local alpha = E.db.ElvUI_EltreumUI.skins.doom.maxAlpha or 0.7
+
+					--weird dlarge issue with alpha
+					local alpha, alphaHolder
+					if E.db.ElvUI_EltreumUI.skins.doom.maxAlpha then
+						alphaHolder = tonumber(E.db.ElvUI_EltreumUI.skins.doom.maxAlpha)
+					else
+						alphaHolder = 0.7
+					end
+					alpha = alphaHolder
 					if (runtimer < E.db.ElvUI_EltreumUI.skins.doom.fadeInTime) then
-						alpha = E.db.ElvUI_EltreumUI.skins.doom.maxAlpha * (runtimer / E.db.ElvUI_EltreumUI.skins.doom.fadeInTime)
+						alpha = alphaHolder * (runtimer / E.db.ElvUI_EltreumUI.skins.doom.fadeInTime)
+						if alpha < 0 then alpha = 0 end
 						if alpha > 1 then alpha = 1 end
 					elseif (runtimer >= E.db.ElvUI_EltreumUI.skins.doom.fadeInTime + E.db.ElvUI_EltreumUI.skins.doom.holdTime) then
-						alpha = E.db.ElvUI_EltreumUI.skins.doom.maxAlpha - ( E.db.ElvUI_EltreumUI.skins.doom.maxAlpha * ((runtimer - E.db.ElvUI_EltreumUI.skins.doom.holdTime - E.db.ElvUI_EltreumUI.skins.doom.fadeInTime) / E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime))
+						alpha = alphaHolder - ( alphaHolder * ((runtimer - E.db.ElvUI_EltreumUI.skins.doom.holdTime - E.db.ElvUI_EltreumUI.skins.doom.fadeInTime) / E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime))
 						if alpha < 0 then alpha = 0 end
+						if alpha > 1 then alpha = 1 end
 					end
 					DCP:SetAlpha(alpha)
 					DCP.shadow:SetAlpha(alpha)
