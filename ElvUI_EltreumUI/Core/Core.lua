@@ -299,6 +299,8 @@ function ElvUI_EltreumUI:Anchors()
 				_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
 				E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,general,blizzUIImprovements", nil, 'ElvUI_EltreumUI,quests')
 
+				ObjectiveTrackerFrame:UnregisterEvent("ADDON_ACTION_BLOCKED")
+
 				hooksecurefunc("ObjectiveTracker_UpdateHeight", function()
 					_G.ObjectiveTrackerFrame:ClearAllPoints()
 					_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
