@@ -80,7 +80,8 @@ function ElvUI_EltreumUI:PreviewDoom()
 end
 
 --Fork of discoteq's Doom Cooldown Pulse
-function ElvUI_EltreumUI:Doom() --todo, setup options
+function ElvUI_EltreumUI:Doom()
+	if IsAddOnLoaded("Doom_CooldownPulse") then return end
 	if E.db.ElvUI_EltreumUI.skins.doom.enable then
 
 		--set the general elvui font

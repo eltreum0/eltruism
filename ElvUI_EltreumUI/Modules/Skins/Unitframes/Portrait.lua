@@ -360,6 +360,7 @@ local modelsRotate = {
 	[799941] = true, --animated warrior isle of thunder
 	[123730] = true, --pink elekk
 	[4238520] = true, --Kalecgos humanoid
+	[669393] = true, -- Vol'jin Humanoid
 }
 
 --set portrait rotation based on target being npc or not

@@ -31,7 +31,8 @@ function ElvUI_EltreumUI:QuestEncounter()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
 			if E.Retail then
 				--ObjectiveTracker_Collapse()
-				ObjectiveTrackerFrame:Hide()
+				--ObjectiveTrackerFrame:Hide()
+				ObjectiveTrackerFrame:SetAlpha(0)
 			elseif E.Classic then
 				_G.QuestWatchFrame:Hide()
 				if IsAddOnLoaded("Questie") then
@@ -50,7 +51,8 @@ function ElvUI_EltreumUI:QuestEncounterEnd()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
 			if E.Retail then
 				--ObjectiveTracker_Expand()
-				ObjectiveTrackerFrame:Show()
+				--ObjectiveTrackerFrame:Show()
+				ObjectiveTrackerFrame:SetAlpha(1)
 			elseif E.Classic then
 				_G.QuestWatchFrame:Show()
 				if IsAddOnLoaded("Questie") then
@@ -68,7 +70,8 @@ function ElvUI_EltreumUI:ArenaQuest()
 		local _, instanceType = IsInInstance()
 		if instanceType == "arena" or instanceType == "pvp" then
 			if E.Retail then
-				ObjectiveTrackerFrame:Hide()
+				--ObjectiveTrackerFrame:Hide()
+				ObjectiveTrackerFrame:SetAlpha(0)
 			elseif E.Classic then
 				_G.QuestWatchFrame:Hide()
 				if IsAddOnLoaded("Questie") then
@@ -81,7 +84,8 @@ function ElvUI_EltreumUI:ArenaQuest()
 			end
 		elseif instanceType == "none" then
 			if E.Retail then
-				ObjectiveTrackerFrame:Show()
+				--ObjectiveTrackerFrame:Show()
+				ObjectiveTrackerFrame:SetAlpha(1)
 			elseif E.Classic then
 				_G.QuestWatchFrame:Show()
 				if IsAddOnLoaded("Questie") then
@@ -129,50 +133,29 @@ function ElvUI_EltreumUI:QuestCombatEnd()
 end
 
 --based on Rogue Door Opener by Burzolog
-local RogueOrderHallAutoOpen = CreateFrame("Frame", "EltruismRogueOrderHallAutoOpen")
-RogueOrderHallAutoOpen:Hide()
-RogueOrderHallAutoOpen:RegisterEvent("GOSSIP_SHOW")
 function ElvUI_EltreumUI:RogueAutoOpen()
-	if not IsAddOnLoaded("ElvUI_EltreumUI") then
-		return
-	elseif not E.private.ElvUI_EltreumUI then
-		return
-	elseif E.db.ElvUI_EltreumUI.quests == nil then
-		E.db.ElvUI_EltreumUI.quests = {
-			enable = true,
-			rogueopen = true,
-		}
-	end
 	if E.db.ElvUI_EltreumUI.quests.rogueopen then
-		local guid = UnitGUID("npc")
-		--ElvUI_EltreumUI:Print('got guid from npc')
+
+		--get guid
+		local guid = UnitGUID("target")
 		if not guid then
-			return nil
+			return
 		end
+
+		--to NPC_ID
 		local NPC_ID = tonumber(string.match(guid, "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
 
-		local function handle_NPC_Interaction()
-			local gossipInfoTable = C_GossipInfo.GetOptions()
-			if #gossipInfoTable ~= 2 then
-				--ElvUI_EltreumUI:Print('not the right amount of gossip')
+		--get gossip options
+		local gossipInfoTable = C_GossipInfo.GetOptions()
+
+		--only run on correct npcs
+		if NPC_ID == 97004 or NPC_ID == 96782 or NPC_ID == 93188 then
+			if IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown() then
 				return
-			end
-			--local gossipInfoTable = C_GossipInfo.GetOptions()
-			--[[if gossipInfoTable[1].type ~= "gossip" then
-				--ElvUI_EltreumUI:Print('not a gossip at first')
-				return
-			end]]
-			if NPC_ID == 97004 or NPC_ID == 96782 or NPC_ID == 93188 then
-				--ElvUI_EltreumUI:Print('its the right npc')
-				if IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown() then
-					--ElvUI_EltreumUI:Print('you hold a modifier key')
-					return
-				else
-					C_GossipInfo.SelectOption(1)
-				end
+			else
+				C_GossipInfo.SelectOption(gossipInfoTable[1].gossipOptionID)
 			end
 		end
-		RogueOrderHallAutoOpen:SetScript("OnEvent", handle_NPC_Interaction)
 	end
 end
 
