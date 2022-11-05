@@ -295,7 +295,11 @@ function ElvUI_EltreumUI:BorderAdjust()
 					end
 				end
 			end
-			E:UpdateActionBars()
+
+			if E.private.actionbar.enable then
+				E:UpdateActionBars()
+			end
+
 			--wrath shaman compatibility
 			if not (E.Wrath) then
 				E:UpdateMoverPositions()
