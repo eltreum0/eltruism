@@ -93,6 +93,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[3761] = 57696, --fur-lining-shadow-resist
 		[3762] = 57699, --fur-lining-nature-resist
 		[3763] = 57701, --fur-lining-arcane-resist
+		[3878] = 67839, --mind-amplification-dish
 
 		---- old list
 		[15] = 2831, -- Reinforced (+$k1 Armor)
