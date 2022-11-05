@@ -38,6 +38,7 @@ local racialMusic = {
 	["ZandalariTroll"] = 2844635,
 	["Vulpera"] = 3260632,
 	["MagharOrc"] = 2146630,
+	["Dracthyr"] = 4872480, --test
 }
 local classMusic = {
 	["WARRIOR"] = 1417334,
@@ -52,6 +53,7 @@ local classMusic = {
 	["MONK"] = 642138,
 	["DRUID"] = 1417312,
 	["DEMONHUNTER"] = 1417290,
+	["EVOKER"] = 4887975, --test
 }
 
 local wrathMusic ={
