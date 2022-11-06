@@ -348,6 +348,9 @@ local mailsoundframe = CreateFrame("FRAME")
 mailsoundframe:RegisterEvent("UPDATE_PENDING_MAIL")
 local mailthrottle = 0
 mailsoundframe:SetScript("OnEvent", function()
+	if not E.private.ElvUI_EltreumUI then return end
+	if not E.private.ElvUI_EltreumUI.install_version then return end
+	if not E.db.ElvUI_EltreumUI.otherstuff then return end
 	if HasNewMail() == true and E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable and not InCombatLockdown() and mailthrottle == 0 then
 
 		if E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" and E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice ~= nil then
