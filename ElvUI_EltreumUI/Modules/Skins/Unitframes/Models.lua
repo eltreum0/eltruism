@@ -47,6 +47,7 @@ if E.Retail then
 		["NPCUNFRIENDLY"] = 1965208,
 		["NPCHOSTILE"] = 235284,
 		["NPCNEUTRAL"] = 1306105,
+		["EVOKER"] = 130525,
 		---130623 --shadowmoon tbc w/ meteors
 		--130551, --icecrown very very blue
 		--130525, --hellfire
