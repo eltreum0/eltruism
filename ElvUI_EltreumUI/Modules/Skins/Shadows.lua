@@ -273,12 +273,16 @@ function ElvUI_EltreumUI:Shadows()
 			_G.TimerTrackerTimer3StatusBar,
 			--_G.ImmersionFrame.TalkBox,
 		}
-
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then
 				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
 			end
+		end
+
+		if _G.MovieFrame and _G.MovieFrame.CloseDialog then
+			_G.MovieFrame.CloseDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.MovieFrame.CloseDialog.shadow) end
 		end
 
 		local timermonitor = CreateFrame("FRAME")
