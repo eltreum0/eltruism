@@ -301,6 +301,8 @@ function ElvUI_EltreumUI:Anchors()
 
 				ObjectiveTrackerFrame:UnregisterEvent("ADDON_ACTION_BLOCKED")
 
+
+				ObjectiveTrackerFrame.SetPointBase = E.noop
 				hooksecurefunc("ObjectiveTracker_UpdateHeight", function()
 					_G.ObjectiveTrackerFrame:ClearAllPoints()
 					_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
