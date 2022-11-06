@@ -601,10 +601,12 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		--automatically set the execute % based on class
 		if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] and E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] then
 			if E.Retail then
-				if E.myclass == "WARRIOR" or E.myclass == "DEATHKNIGHT" then
-					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20
-				elseif E.myclass == "MAGE" or E.myclass == "ROGUE" then
-					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.30
+				if E.myclass == "WARRIOR" then
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20 --20% arms, 35% fury (with talent)
+				elseif E.myclass == "DEATHKNIGHT" then
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35 -- with soul reaper talent
+				elseif E.myclass == "MAGE" then
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.30 --30% fire, 35% arcane barrage (talent)
 				elseif E.myclass == "HUNTER" or E.myclass == "WARLOCK" or E.myclass == "PALADIN" or E.myclass == "PRIEST" then
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20
 				elseif E.myclass == "MONK" then
