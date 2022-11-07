@@ -1239,3 +1239,5 @@ L["Unitframes Debuff Aura Border Y offset"] = "Einheitsfenster Schwächungszaube
 L["Add gradient to Details Bars"] = "Fügt Farbverlauf zu Details Leisten hinzu"
 L["Add Gradient to BigWigs Bars"] = "Fügt Farbverlauf zu BigWigs Leisten hinzu"
 L["Only items of this quality or better will be displayed"] = "Nur Artikel dieser Qualität oder besser werden angezeigt"
+L["Objective Frame Anchor"] = true
+L["Reactivate the ElvUI Objective Frame Anchor and Mover"] = true

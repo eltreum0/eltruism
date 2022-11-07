@@ -1216,3 +1216,5 @@ L["Unitframes Debuff Aura Border Y offset"] = "Desplazamiento Y del borde del au
 L["Add gradient to Details Bars"] = "Añadir gradiente a las barras de Details"
 L["Add Gradient to BigWigs Bars"] = "Añadir degradado a las barras de BigWigs"
 L["Only items of this quality or better will be displayed"] = "Sólo se mostrarán los artículos de esta calidad o superior"
+L["Objective Frame Anchor"] = true
+L["Reactivate the ElvUI Objective Frame Anchor and Mover"] = true
