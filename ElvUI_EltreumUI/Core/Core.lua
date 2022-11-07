@@ -259,13 +259,6 @@ function ElvUI_EltreumUI:Anchors()
 
 	if E.Retail then
 		E:CreateMover(RaidBossEmoteFrame, "MoverRaidBossEmoteFrame", "Raid/Boss Emote Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
-		--E:CreateMover(BossBanner, "MoverBossBanner", "Boss Loot Banner", nil, nil, nil, "ALL,SOLO,ELTREUMUI") --doesnt work
-		--this doesnt seem to work well, rather if you set font size to like 200 it becomes less blurry, but if its 12 its very blurry
-		--[[if E.db.ElvUI_EltreumUI.skins.blizzframes.raidbossframe then
-			RaidWarningFrameSlot1:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
-			RaidWarningFrameSlot2:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
-			--RaidBossEmoteFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.raidbossframefontsize, E.db.general.fontStyle)
-		end]]
 
 		if E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss then
 			_G.BossBanner:UnregisterAllEvents()
@@ -302,7 +295,8 @@ function ElvUI_EltreumUI:Anchors()
 				ObjectiveTrackerFrame:UnregisterEvent("ADDON_ACTION_BLOCKED")
 
 
-				ObjectiveTrackerFrame.SetPointBase = E.noop
+				--ObjectiveTrackerFrame.SetPointBase = E.noop
+
 				hooksecurefunc("ObjectiveTracker_UpdateHeight", function()
 					_G.ObjectiveTrackerFrame:ClearAllPoints()
 					_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
