@@ -9201,6 +9201,7 @@ function ElvUI_EltreumUI:Configtable()
 						step = 1,
 						width = "double",
 						hidden = not E.Retail,
+						disabled = function() return not E.db.ElvUI_EltreumUI.quests.anchor end,
 						get = function()
 							if ObjectiveTrackerFrame then
 								return ObjectiveTrackerFrame.editModeHeight
