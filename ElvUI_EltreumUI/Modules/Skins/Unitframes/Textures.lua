@@ -272,4 +272,20 @@ hooksecurefunc(UF, 'Update_RaidFrames', ElvUI_EltreumUI.CustomTexture)
 hooksecurefunc(UF, "Configure_HealthBar", ElvUI_EltreumUI.CustomTexture)
 hooksecurefunc(UF, "LoadUnits", ElvUI_EltreumUI.CustomTexture)
 hooksecurefunc(UF, "Construct_UF", ElvUI_EltreumUI.CustomTexture)]]
-hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.CustomTexture)
+--hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.CustomTexture) --is causing "blinking"/"flashing" issues in 10.0
+
+--workaround the flashing texture bug
+function UF:Update_StatusBar(statusbar, texture)
+	if not statusbar then return end
+	if not texture then texture = E.LSM:Fetch('statusbar', UF.db.statusbar) end
+
+	if statusbar and statusbar:GetParent() and statusbar:GetParent():GetParent() and statusbar:GetParent():GetParent().unit then
+		ElvUI_EltreumUI:CustomTexture(statusbar:GetParent():GetParent().unit)
+	end
+
+	if statusbar:IsObjectType('StatusBar') then
+		statusbar:SetStatusBarTexture(texture)
+	elseif statusbar:IsObjectType('Texture') then
+		statusbar:SetTexture(texture)
+	end
+end
