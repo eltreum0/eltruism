@@ -669,6 +669,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["debuffs"]["maxTimeLeft"] = 5
 		E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["inCombat"] = true
 		E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["notTarget"] = true
+		E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["enable"] = false
 		--E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["requireTarget"] = true
 
 		-- Enemy is casting, draw attention to interrupt
