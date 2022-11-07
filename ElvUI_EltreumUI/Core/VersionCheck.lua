@@ -102,10 +102,13 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		return
 	end
 
-	if E.Retail and E.db.ElvUI_EltreumUI.unitframes.lightmode then --while the issue is not resolved
-		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "NONE"
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = true
-		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
+	if E.Retail then --while the blizzard issue with setstatusbartexture is not resolved
+		E.db.ElvUI_EltreumUI.nameplates.nptextureversion = "NONE"
+		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+			E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "NONE"
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = true
+			E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
+		end
 	end
 
 	if E.private.ElvUI_EltreumUI.install_version and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
