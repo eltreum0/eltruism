@@ -409,6 +409,7 @@ P.ElvUI_EltreumUI = {
 		questitemspacing = 2,
 		questorientation = "HORIZONTAL",
 		questitemsfade = false,
+		anchor = true,
 	},
 
 	loot = {
