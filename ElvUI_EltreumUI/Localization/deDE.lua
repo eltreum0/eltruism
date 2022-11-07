@@ -1241,3 +1241,6 @@ L["Add Gradient to BigWigs Bars"] = "Fügt Farbverlauf zu BigWigs Leisten hinzu"
 L["Only items of this quality or better will be displayed"] = "Nur Artikel dieser Qualität oder besser werden angezeigt"
 L["Objective Frame Anchor"] = true
 L["Reactivate the ElvUI Objective Frame Anchor and Mover"] = true
+L["Reset/Update ElvUI Settings"] = true
+L["Resets/Updates ElvUI Settings to Eltreum's Defaults"] = true
+L["Settings for ElvUI were updated."] = true

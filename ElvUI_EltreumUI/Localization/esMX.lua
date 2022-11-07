@@ -1218,3 +1218,6 @@ L["Add Gradient to BigWigs Bars"] = "Añadir degradado a las barras de BigWigs"
 L["Only items of this quality or better will be displayed"] = "Sólo se mostrarán los artículos de esta calidad o superior"
 L["Objective Frame Anchor"] = true
 L["Reactivate the ElvUI Objective Frame Anchor and Mover"] = true
+L["Reset/Update ElvUI Settings"] = true
+L["Resets/Updates ElvUI Settings to Eltreum's Defaults"] = true
+L["Settings for ElvUI were updated."] = true
