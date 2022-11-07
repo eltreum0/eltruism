@@ -295,7 +295,6 @@ function ElvUI_EltreumUI:Anchors()
 
 					ObjectiveTrackerFrame:UnregisterEvent("ADDON_ACTION_BLOCKED")
 
-
 					--ObjectiveTrackerFrame.SetPointBase = E.noop --causes issues for some people for some reason
 
 					hooksecurefunc("ObjectiveTracker_UpdateHeight", function()
