@@ -1,6 +1,9 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.5.6.1
+Added an option to disable the Objective Frame Anchor\
+Reverted the Objective Frame Taint Fix as it was causing problems for some but not all
 ### 3.5.6
 Added multiple checks for frames being loaded due to a change in the Retail API\
 Added various Evoker features such as backgrounds, crest and others\

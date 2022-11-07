@@ -1,7 +1,8 @@
-### 3.5.6 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.5.6.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
 Added multiple checks for frames being loaded due to a change in the Retail API\
 Added various Evoker features such as backgrounds, crest and others\
+Added an option to disable the Objective Frame Anchor\
 Added more missing enchants to Sockets in Wrath\
 Added more models to the Portrait Rotation Fix\
 Added a skin to Mythic Plus Key Timers\
@@ -19,4 +20,5 @@ Updated Pet debuffs and buffs positions\
 Fixed an issue where Information Panel On Top didn't have the correct Portrait settings after the 3D Portrait fix\
 Fixed a possible issue when using borders with ElvUI action bars disabled\
 Fixed Rogue not auto opening the Order Hall\
-Fixed Arena Frames not Hiding
+Fixed Arena Frames not Hiding\
+Reverted the Objective Frame Taint Fix as it was causing problems for some but not all
