@@ -1,5 +1,5 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file='UpdateSettings.lua'/>
+	<Script file='UpdateEltruismSettings.lua'/>
 	<Script file='LayoutGeneral.lua'/>
 	<Script file='LayoutHealer.lua'/>
 	<Script file='LayoutDPS.lua'/>

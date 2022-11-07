@@ -2,7 +2,7 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 --Settings that would be true but became false by default per request,
 --now a function that can be used to set them while importing the profiles
-function ElvUI_EltreumUI:UpdateSettings()
+function ElvUI_EltreumUI:UpdateEltruismSettings()
 
 	--to make sure everything resets during import
 	E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA = false
