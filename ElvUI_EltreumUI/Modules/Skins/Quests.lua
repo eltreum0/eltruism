@@ -414,7 +414,11 @@ function ElvUI_EltreumUI:SkinQuests()
 				hooksecurefunc(_G["SCENARIO_CONTENT_TRACKER_MODULE"], "Update", function ()
 					ScenarioObjectiveBlockBackground:SetParent(_G.ScenarioStageBlock)
 					ScenarioObjectiveBlockBackground:ClearAllPoints()
-					ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDungeonLine, "CENTER", -3, -47)
+					if _G.EltruismDungeonLine then
+						ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDungeonLine, "CENTER", -3, -47)
+					elseif _G.EltruismScenarioLine then
+						ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismScenarioLine, "CENTER", -3, -47)
+					end
 					ScenarioObjectiveBlockBackground:SetSize(243, 80)
 					ScenarioObjectiveBlockBackground:SetFrameLevel(3)
 					ScenarioObjectiveBlockBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI\\Code\\Media\\Textures\\White8x8.tga")
