@@ -670,6 +670,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["inCombat"] = true
 		E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["notTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["enable"] = false
+		E.db["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["enable"] = false
 		--E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["requireTarget"] = true
 
 		-- Enemy is casting, draw attention to interrupt
@@ -677,6 +678,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["b"] = 0.22745098039216
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["g"] = 0.11764705882353
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["r"] = 0.76862745098039
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["health"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["healthColor"]["r"] = 1
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["healthColor"]["g"] = 0
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["healthColor"]["b"] = 1
