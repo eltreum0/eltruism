@@ -169,6 +169,14 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Resets/Updates Eltruism Settings to Eltreum's Defaults"],
 								func = function() ElvUI_EltreumUI:UpdateEltruismSettings() E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							elvuisettings = {
+								order = 3,
+								type = 'execute',
+								name = L["Reset/Update ElvUI Settings"],
+								width = 'full',
+								desc = L["Resets/Updates ElvUI Settings to Eltreum's Defaults"],
+								func = function() ElvUI_EltreumUI:UpdateElvUISettings() end,
+							},
 						},
 					},
 					header6 = {
