@@ -24,7 +24,7 @@ local total, maxlevel = 0, 0
 local level, mainhand, offhand, ranged
 local linkloop, mainlevel, mainlink
 local offhandlink, offhandlevel, rangedlevel, rangedlink
-local spec, points, stats, number
+local spec, points
 local _, spent1, spent2, spent3, name, spent
 local linewidth1, linewidth2, linewidth3, linewidth4
 local texturefile, linewidthsle1, linewidthsle2
@@ -730,8 +730,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrame.EltruismClassResource2:SetText(combatText)
 				end
 
-				stats = {CharacterStatsPane:GetChildren()}
-				number = (#stats)
+				local number = CharacterStatsPane.statsFramePool:GetNumActive()
 				if E.db.ElvUI_EltreumUI.dev then
 					ElvUI_EltreumUI:Print("Number of stats: "..number)
 				end
@@ -739,26 +738,27 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				--CharacterFrame.EltruismSpeedDesc:SetText("Bewegungsgeschwindigkeit")
 				--CharacterFrame.EltruismClassResourceDesc:SetText("Energieregeneration")
 				--CharacterFrame.EltruismClassResourceDesc2:SetText("Regeneration")
-
-				--15 seems like the minimum now with the added stats
-				if number == 15 then
+				CharacterFrame.EltruismExtraStatsFont:ClearAllPoints()
+				if number <= 7 then
 					CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -90)
-				elseif number == 16 then
+				elseif number == 8 then
 					CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -100)
-				elseif number == 17 then
+				elseif number == 9 then
 					CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -110)
-				elseif number == 18 then
+				elseif number == 10 then
 					CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -120)
-				elseif number == 19 then
+				elseif number == 11 then
 					CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -130)
-				elseif number == 20 then
+				elseif number == 12 then
 					CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -140)
-				elseif number == 21 then
-					CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -140)
-				elseif number > 21 and number < 26 then
-					CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -115)
-				elseif number >= 26 then
-					CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -125)
+				elseif number == 13 then
+					CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -150)
+				elseif number == 14 then
+					CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -160)
+				elseif number > 15 and number < 20 then
+					CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -170)
+				elseif number >= 20 then
+					CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane.EnhancementsCategory.Title, "BOTTOM", 0, -180)
 				end
 
 				--numbers

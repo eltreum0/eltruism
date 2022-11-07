@@ -669,6 +669,8 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["debuffs"]["maxTimeLeft"] = 5
 		E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["inCombat"] = true
 		E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["notTarget"] = true
+		E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["enable"] = false
+		E.db["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["enable"] = false
 		--E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["requireTarget"] = true
 
 		-- Enemy is casting, draw attention to interrupt
@@ -676,13 +678,17 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["b"] = 0.22745098039216
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["g"] = 0.11764705882353
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["r"] = 0.76862745098039
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["healthColor"]["r"] = 1
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["healthColor"]["g"] = 0
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["healthColor"]["b"] = 1
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["color"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["color"]["g"] = 0
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["color"]["r"] = 0
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["enable"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["speed"] = 7
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["scale"] = 1.2
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["enable"] = false
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["texture"] = "Eltreum-Stripes"
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["alpha"] = 100
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["casting"]["interruptible"] = true
@@ -710,7 +716,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["playerCanAttack"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["priority"] = 1
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.2
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["DEATHKNIGHT"] = {}
+		--[[E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["DEATHKNIGHT"] = {}
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["DEATHKNIGHT"]["enabled"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["HUNTER"] = {}
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["HUNTER"]["enabled"] = true
@@ -756,7 +762,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARRIOR"]["specs"][71] = true
 			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARRIOR"]["specs"][72] = true
 			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARRIOR"]["specs"][73] = true
-		end
+		end]]
 
 		--fancy rares
 		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["health"] = true

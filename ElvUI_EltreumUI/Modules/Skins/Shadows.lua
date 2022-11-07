@@ -1016,6 +1016,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G["ElvUIStatusPlugins"],
 			_G["ElvUIVendorGraysFrame"],
 			_G["ElvUI_ContainerFrameContainerHolder"],
+			_G["ElvUI_AltPowerBar"],
 		}
 		for _, frame in pairs(GeneralElvUIFrames) do
 			if frame and not frame.shadow then

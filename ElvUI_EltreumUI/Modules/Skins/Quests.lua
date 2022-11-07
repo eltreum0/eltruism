@@ -442,6 +442,18 @@ function ElvUI_EltreumUI:SkinQuests()
 						_G.ScenarioStageBlock.Stage:SetShadowColor(0, 0, 0, 0.8)
 						_G.ScenarioStageBlock.Stage:SetShadowOffset(2, -1)
 					end
+					--m+ key block
+					if _G.ScenarioChallengeModeBlock:IsVisible() and not self.EltruismKeySkin then
+						S:HandleStatusBar(_G.ScenarioChallengeModeBlock.StatusBar)
+						S:HandleFrame(_G.ScenarioChallengeModeBlock)
+						if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+							if not _G.ScenarioChallengeModeBlock.shadow then
+								_G.ScenarioChallengeModeBlock:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ScenarioChallengeModeBlock.shadow) end
+							end
+						end
+						self.EltruismKeySkin = true
+					end
 				end)
 
 				--on mouse enter and leave

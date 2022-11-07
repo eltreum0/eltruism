@@ -33,9 +33,9 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 	if E.version < 12.99 then
 		E:StaticPopup_Show('ELVUIVERSIONCHECK')
 		ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
-	elseif E.version > 13.02 then
+	--[[elseif E.version > 13.02 then
 		E:StaticPopup_Show('ELVUIVERSIONCHECK2')
-		ElvUI_EltreumUI:Print("Your ElvUI version is newer than Eltruism, you might run into issues unless you update Eltruism!")
+		ElvUI_EltreumUI:Print("Your ElvUI version is newer than Eltruism, you might run into issues unless you update Eltruism!")]]
 	end
 end
 
@@ -102,10 +102,13 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		return
 	end
 
-	if E.Retail and E.db.ElvUI_EltreumUI.unitframes.lightmode then --while the issue is not resolved
-		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "NONE"
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = true
-		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
+	if E.Retail then --while the blizzard issue with setstatusbartexture is not resolved
+		E.db.ElvUI_EltreumUI.nameplates.nptextureversion = "NONE"
+		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+			E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "NONE"
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = true
+			E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
+		end
 	end
 
 	if E.private.ElvUI_EltreumUI.install_version and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
