@@ -298,8 +298,10 @@ function ElvUI_EltreumUI:Anchors()
 					--ObjectiveTrackerFrame.SetPointBase = E.noop --causes issues for some people for some reason
 
 					hooksecurefunc("ObjectiveTracker_UpdateHeight", function()
-						_G.ObjectiveTrackerFrame:ClearAllPoints()
-						_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
+						if not InCombatLockdown() then
+							_G.ObjectiveTrackerFrame:ClearAllPoints()
+							_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
+						end
 						Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 						ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 						ObjectiveTrackerFrame:SetHeight(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight)
