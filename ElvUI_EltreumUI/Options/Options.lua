@@ -11074,7 +11074,11 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = value end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = value
+									if E.Retail then
+										E:StaticPopup_Show('CONFIG_RL')
+									end
+								end,
 							},
 							enablegradient = {
 								order = 3,
