@@ -11148,12 +11148,15 @@ function ElvUI_EltreumUI:Configtable()
 									if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 										ElvUI_EltreumUI:LightMode()
 										E:StaggeredUpdateAll(nil, true)
+										E:StaticPopup_Show('CONFIG_RL')
 									elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
 										ElvUI_EltreumUI:DarkMode()
 										E:StaggeredUpdateAll(nil, true)
+										E:StaticPopup_Show('CONFIG_RL')
 									else
 										ElvUI_EltreumUI:LightMode()
 										E:StaggeredUpdateAll(nil, true)
+										E:StaticPopup_Show('CONFIG_RL')
 									end
 								end,
 								--confirm = true,
