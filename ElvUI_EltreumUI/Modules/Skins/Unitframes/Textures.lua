@@ -304,7 +304,7 @@ if E.Retail then
 		if not E.private.ElvUI_EltreumUI then return end
 		if not E.private.ElvUI_EltreumUI.install_version then return end
 		if not E.db.ElvUI_EltreumUI.unitframes then return end
-		if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+		if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications and (E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or (not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.uftextureversion ~= "NONE")) then
 			ElvUI_EltreumUI:CustomTexture("player")
 		else
 			test:UnregisterAllEvents()
