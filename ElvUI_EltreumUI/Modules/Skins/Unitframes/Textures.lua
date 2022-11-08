@@ -272,4 +272,44 @@ hooksecurefunc(UF, 'Update_RaidFrames', ElvUI_EltreumUI.CustomTexture)
 hooksecurefunc(UF, "Configure_HealthBar", ElvUI_EltreumUI.CustomTexture)
 hooksecurefunc(UF, "LoadUnits", ElvUI_EltreumUI.CustomTexture)
 hooksecurefunc(UF, "Construct_UF", ElvUI_EltreumUI.CustomTexture)]]
-hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.CustomTexture)
+--hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.CustomTexture) --is causing "blinking"/"flashing" issues in 10.0
+
+--workaround the flashing texture bug
+--[[function UF:Update_StatusBar(statusbar, texture)
+	if not statusbar then return end
+	if not texture then texture = E.LSM:Fetch('statusbar', UF.db.statusbar) end
+
+	if statusbar and statusbar:GetParent() and statusbar:GetParent():GetParent() and statusbar:GetParent():GetParent().unit then
+		ElvUI_EltreumUI:CustomTexture(statusbar:GetParent():GetParent().unit)
+	end
+
+	if statusbar:IsObjectType('StatusBar') then
+		statusbar:SetStatusBarTexture(texture)
+	elseif statusbar:IsObjectType('Texture') then
+		statusbar:SetTexture(texture)
+	end
+end]]
+
+if E.Retail then
+	local test = CreateFrame("FRAME")
+	test:RegisterEvent("PLAYER_TARGET_CHANGED")
+	test:RegisterEvent("GROUP_ROSTER_UPDATE")
+	test:RegisterEvent("PLAYER_ENTERING_WORLD")
+	test:RegisterEvent("UNIT_HEALTH")
+	test:RegisterUnitEvent("UNIT_TARGET", "target")
+	test:SetScript("OnEvent", function()
+		if not E.private.ElvUI_EltreumUI then
+			test:UnregisterAllEvents()
+		end
+		if not E.private.ElvUI_EltreumUI then return end
+		if not E.private.ElvUI_EltreumUI.install_version then return end
+		if not E.db.ElvUI_EltreumUI.unitframes then return end
+		if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications and (E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or (not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.uftextureversion ~= "NONE")) then
+			ElvUI_EltreumUI:CustomTexture("player")
+		else
+			test:UnregisterAllEvents()
+		end
+	end)
+else
+	hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.CustomTexture) --is causing "blinking"/"flashing" issues in 10.0
+end

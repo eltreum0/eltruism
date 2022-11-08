@@ -414,23 +414,25 @@ function ElvUI_EltreumUI:SkinQuests()
 				hooksecurefunc(_G["SCENARIO_CONTENT_TRACKER_MODULE"], "Update", function ()
 					ScenarioObjectiveBlockBackground:SetParent(_G.ScenarioStageBlock)
 					ScenarioObjectiveBlockBackground:ClearAllPoints()
-					--ScenarioObjectiveBlockBackground:SetAllPoints(_G.ScenarioStageBlock.NormalBG)
-					ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismScenarioLine, "CENTER", 5, -47)
-					ScenarioObjectiveBlockBackground:SetSize(250, 80)
-					ScenarioObjectiveBlockBackground:CreateBackdrop('Transparent')
+					if _G.EltruismDungeonLine then
+						ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDungeonLine, "CENTER", -3, -47)
+					elseif _G.EltruismScenarioLine then
+						ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismScenarioLine, "CENTER", -3, -47)
+					end
+					ScenarioObjectiveBlockBackground:SetSize(243, 80)
+					ScenarioObjectiveBlockBackground:SetFrameLevel(3)
 					ScenarioObjectiveBlockBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI\\Code\\Media\\Textures\\White8x8.tga")
-					ScenarioObjectiveBlockBackgroundTexture:SetColorTexture(0, 0, 0, 0.01)
-					ScenarioObjectiveBlockBackgroundTexture:SetAlpha(0.01)
-					ScenarioObjectiveBlockBackgroundTexture:SetAllPoints(_G.ScenarioStageBlock.NormalBG)
+					ScenarioObjectiveBlockBackgroundTexture:SetColorTexture(0, 0, 0, 0.5)
+					ScenarioObjectiveBlockBackgroundTexture:SetAllPoints(ScenarioObjectiveBlockBackground)
 					ScenarioObjectiveBlockBackground:Show()
 					ScenarioObjectiveBlockBackgroundTexture:Show()
 					if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow then
-						ScenarioObjectiveBlockBackground:CreateBackdrop('Transparent')
 						ScenarioObjectiveBlockBackground:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						if EnhancedShadows then EnhancedShadows:RegisterShadow(ScenarioObjectiveBlockBackground.shadow) end
 					end
 					_G.ScenarioStageBlock.NormalBG:Hide()
 					_G.ScenarioStageBlock.FinalBG:Hide()
+
 					--dungeon/raid/scenario name text
 					if _G.ScenarioStageBlock.Stage then
 						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
@@ -442,6 +444,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						_G.ScenarioStageBlock.Stage:SetShadowColor(0, 0, 0, 0.8)
 						_G.ScenarioStageBlock.Stage:SetShadowOffset(2, -1)
 					end
+
 					--m+ key block
 					if _G.ScenarioChallengeModeBlock:IsVisible() and not self.EltruismKeySkin then
 						S:HandleStatusBar(_G.ScenarioChallengeModeBlock.StatusBar)
