@@ -361,6 +361,11 @@ local modelsRotate = {
 	[123730] = true, --pink elekk
 	[4238520] = true, --Kalecgos humanoid
 	[669393] = true, -- Vol'jin Humanoid
+	[4206797] = true, --Dominated Saboteur
+	[4216963] = true, --Lihuvim
+	[4203840] = true, --Prototype of Renewal
+	[4222579] = true, --Unmade Steward Mechanical
+	[4207517] = true, --Prototype of Absolution
 }
 
 --set portrait rotation based on target being npc or not

@@ -54,26 +54,28 @@ hooksecurefunc(UF, "PostUpdateBar_AuraBars", ElvUI_EltreumUI.AuraBarGradient)
 
 --Aurabar Texture same as Unitframe
 function ElvUI_EltreumUI:AuraBarTexture(frame)
-	if frame and frame.AuraBars then
-		hooksecurefunc(frame.AuraBars, 'PostUpdateBar', function(_,_,bar)
-			if bar then
-				if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not bar.shadow then
-					bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					--if EnhancedShadows then EnhancedShadows:RegisterShadow(bar.shadow) end
-					bar.shadow:ClearAllPoints()
-					bar.shadow:SetPoint("TOPLEFT", bar.icon, "TOPLEFT", -3,3)
-					bar.shadow:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT",3,-3)
-				end
-				if bar.bg then
-					if E.db.unitframe.colors.transparentAurabars then
-						bar.bg:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-						--bar:SetAlpha(E.db.general.backdropfadecolor.a)
-						--bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars then
+		if frame and frame.AuraBars then
+			hooksecurefunc(frame.AuraBars, 'PostUpdateBar', function(_,_,bar)
+				if bar then
+					if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not bar.shadow then
+						bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						--if EnhancedShadows then EnhancedShadows:RegisterShadow(bar.shadow) end
+						bar.shadow:ClearAllPoints()
+						bar.shadow:SetPoint("TOPLEFT", bar.icon, "TOPLEFT", -3,3)
+						bar.shadow:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT",3,-3)
 					end
-					bar.backdrop:SetBackdropColor(0,0,0,0)
+					if bar.bg then
+						if E.db.unitframe.colors.transparentAurabars then
+							bar.bg:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+							--bar:SetAlpha(E.db.general.backdropfadecolor.a)
+							--bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+						end
+						bar.backdrop:SetBackdropColor(0,0,0,0)
+					end
 				end
-			end
-		end)
+			end)
+		end
 	end
 end
 hooksecurefunc(UF, "Construct_PlayerFrame", ElvUI_EltreumUI.AuraBarTexture)

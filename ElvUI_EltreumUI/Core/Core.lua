@@ -266,54 +266,58 @@ function ElvUI_EltreumUI:Anchors()
 		end
 
 		--from elvui
-		if E.db.ElvUI_EltreumUI.quests.anchor then
-			E:Delay(0, function()
-				if not _G["ObjectiveFrameHolder"] then --TODO DRAGONFLIGHT
-					local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
-					holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
-					holder:SetSize(130, 22)
+		if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
+			if E.db.ElvUI_EltreumUI.quests.anchor then
+				E:Delay(0, function()
+					if not _G["ObjectiveFrameHolder"] then --TODO DRAGONFLIGHT
+						local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
+						holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
+						holder:SetSize(130, 22)
 
-					local editMode = _G.EditModeManagerFrame
-					local registered = editMode.registeredSystemFrames
-					for i = #registered, 1, -1 do
-						local name = registered[i]:GetName()
-						if name == "ObjectiveTrackerFrame" then
-							tremove(editMode.registeredSystemFrames, i)
+						local editMode = _G.EditModeManagerFrame
+						local registered = editMode.registeredSystemFrames
+						for i = #registered, 1, -1 do
+							local name = registered[i]:GetName()
+							if name == "ObjectiveTrackerFrame" then
+								tremove(editMode.registeredSystemFrames, i)
+							end
 						end
-					end
 
-					Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
-					ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
-					ObjectiveTracker_UpdateHeight()
-
-					_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
-					_G.ObjectiveTrackerFrame:SetMovable(true)
-					_G.ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
-					_G.ObjectiveTrackerFrame:ClearAllPoints()
-					_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
-					E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,general,blizzUIImprovements", nil, 'ElvUI_EltreumUI,quests')
-
-					ObjectiveTrackerFrame:UnregisterEvent("ADDON_ACTION_BLOCKED")
-
-					--ObjectiveTrackerFrame.SetPointBase = E.noop --causes issues for some people for some reason
-
-					hooksecurefunc("ObjectiveTracker_UpdateHeight", function()
-						_G.ObjectiveTrackerFrame:ClearAllPoints()
-						_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
 						Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 						ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
-						ObjectiveTrackerFrame:SetHeight(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight)
-					end)
+						ObjectiveTracker_UpdateHeight()
 
-					--[[local questmonitor = CreateFrame("FRAME")
-					questmonitor:RegisterEvent("QUEST_LOG_UPDATE")
-					questmonitor:RegisterEvent("UPDATE_UI_WIDGET")
-					questmonitor:SetScript("OnEvent", function()
+						_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
+						_G.ObjectiveTrackerFrame:SetMovable(true)
+						_G.ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
 						_G.ObjectiveTrackerFrame:ClearAllPoints()
 						_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
-					end)]]
-				end
-			end)
+						E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,general,blizzUIImprovements", nil, 'ElvUI_EltreumUI,quests')
+
+						ObjectiveTrackerFrame:UnregisterEvent("ADDON_ACTION_BLOCKED")
+
+						--ObjectiveTrackerFrame.SetPointBase = E.noop --causes issues for some people for some reason
+
+						hooksecurefunc("ObjectiveTracker_UpdateHeight", function()
+							if not InCombatLockdown() then
+								_G.ObjectiveTrackerFrame:ClearAllPoints()
+								_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
+							end
+							Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
+							ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
+							ObjectiveTrackerFrame:SetHeight(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight)
+						end)
+
+						--[[local questmonitor = CreateFrame("FRAME")
+						questmonitor:RegisterEvent("QUEST_LOG_UPDATE")
+						questmonitor:RegisterEvent("UPDATE_UI_WIDGET")
+						questmonitor:SetScript("OnEvent", function()
+							_G.ObjectiveTrackerFrame:ClearAllPoints()
+							_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
+						end)]]
+					end
+				end)
+			end
 		end
 	end
 end
