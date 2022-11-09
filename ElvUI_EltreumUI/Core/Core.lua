@@ -505,39 +505,44 @@ function ElvUI_EltreumUI:FixChatToggles()
 	end
 end
 
-function ElvUI_EltreumUI:DeleteItem()
-	if E.db.ElvUI_EltreumUI.otherstuff.delete and not self.isDeleteHooked then
-		local throttle = 0
-		self.isDeleteHooked = true
-		local function resetthrottle()
-			throttle = 0
-		end
-		local function TypeDelete(self)
-			local itemLink = select(3, GetCursorInfo())
-			local lootName, _,_,_,_,_,_,_,_,lootTexture = GetItemInfo(itemLink)
-			if lootName == nil or lootTexture == nil then
-				return
-			else
-				local text = _G.StaticPopup1Text:GetText()
-				if not text:match("|T") then
-					local deletetext = string.gsub(text, lootName, "|T"..lootTexture..":".. 14 .."|t"..itemLink.."")
-					_G.StaticPopup1Text:SetText(deletetext)
-				end
-				self.editBox:SetText(DELETE_ITEM_CONFIRM_STRING) --from line 2028
-				if throttle == 0 then
-					throttle = 1
-					ElvUI_EltreumUI:Print("DELETE automatically typed")
-					C_Timer.After(1, resetthrottle)
-				end
-			end
-		end
-		hooksecurefunc(StaticPopupDialogs["DELETE_GOOD_ITEM"],"OnShow",function(self) --Interface/FrameXML/StaticPopup.lua line 1965/2074
-			TypeDelete(self)
-		end)
-		hooksecurefunc(StaticPopupDialogs["DELETE_GOOD_QUEST_ITEM"],"OnShow",function(self) --Interface/FrameXML/StaticPopup.lua line 2125
-			TypeDelete(self)
-		end)
-	end
+do
+    local throttle = 0
+    local function ClearThrottle()
+        throttle = 0
+    end
+
+    local function TypeDelete(self)
+        local _, _, itemLink = GetCursorInfo()
+        if not itemLink then return end
+
+        local lootName, _, _, _, _, _, _, _, _, lootTexture = GetItemInfo(itemLink)
+        if not (lootName and lootTexture) then return end
+
+        local text = _G.StaticPopup1Text:GetText()
+        if not text:match("|T") then
+            local deletetext = string.gsub(text, lootName, "|T"..lootTexture..":".. 14 .."|t"..itemLink.."")
+            _G.StaticPopup1Text:SetText(deletetext)
+        end
+
+        self.editBox:SetText(DELETE_ITEM_CONFIRM_STRING) --from line 2028
+
+        if throttle == 0 then
+            throttle = 1
+
+            ElvUI_EltreumUI:Print("DELETE automatically typed")
+
+            C_Timer.After(1, ClearThrottle)
+        end
+    end
+
+    local isDeleteHooked = false
+    function ElvUI_EltreumUI:DeleteItem()
+        if not isDeleteHooked and E.db.ElvUI_EltreumUI.otherstuff.delete then
+            hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM,"OnShow",TypeDelete) --Interface/FrameXML/StaticPopup.lua line 1965/2074
+            hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM,"OnShow",TypeDelete) --Interface/FrameXML/StaticPopup.lua line 2125
+            isDeleteHooked = true
+        end
+    end
 end
 
 --from elvui api
