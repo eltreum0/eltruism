@@ -953,7 +953,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["player"]["pvp"]["position"] = "CENTER"
 	E.db["unitframe"]["units"]["player"]["pvp"]["text_format"] = ""
 	E.db["unitframe"]["units"]["player"]["raidRoleIcons"]["xOffset"] = -1
-	E.db["unitframe"]["units"]["player"]["raidRoleIcons"]["yOffset"] = -4
+	E.db["unitframe"]["units"]["player"]["raidRoleIcons"]["yOffset"] = -2
 	E.db["unitframe"]["units"]["player"]["raidicon"]["attachTo"] = "RIGHT"
 	E.db["unitframe"]["units"]["player"]["raidicon"]["attachToObject"] = "Health"
 	E.db["unitframe"]["units"]["player"]["raidicon"]["size"] = 20
