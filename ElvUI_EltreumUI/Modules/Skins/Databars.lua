@@ -11,7 +11,7 @@ function ElvUI_EltreumUI:GradientDatabar()
 	databarXP = _G["ElvUI_ExperienceBar"]
 	if databarXP and E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP then
 		if E.Retail then
-			databarXP:GetStatusBarTexture():SetGradient("HORIZONTAL", {E.db.databars.colors.experience.r, E.db.databars.colors.experience.g, E.db.databars.colors.experience.b, E.db.databars.colors.experience.a}, {E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, E.db.databars.colors.experience.a})
+			databarXP:GetStatusBarTexture():SetGradient("HORIZONTAL", { r = E.db.databars.colors.experience.r, g  = E.db.databars.colors.experience.g, b = E.db.databars.colors.experience.b, a = E.db.databars.colors.experience.a}, { r = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, g = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, b = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, a = E.db.databars.colors.experience.a})
 		else
 			databarXP:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", E.db.databars.colors.experience.r, E.db.databars.colors.experience.g, E.db.databars.colors.experience.b, E.db.databars.colors.experience.a, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, E.db.databars.colors.experience.a)
 		end
@@ -27,7 +27,7 @@ function ElvUI_EltreumUI:GradientDatabar()
 		if color then
 			--databarRep:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", color.r, color.g, color.b, alpha or color.a or 1, color.r - 0.4, color.g - 0.1, color.b - 0.5, alpha or color.a or 1)
 			if E.Retail then
-				databarRep:GetStatusBarTexture():SetGradient("HORIZONTAL", {color.r, color.g, color.b, alpha or color.a or 1}, {color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r, color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g, color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b, alpha or color.a or 1})
+				databarRep:GetStatusBarTexture():SetGradient("HORIZONTAL", { r = color.r, g = color.g, b = color.b, a = alpha or color.a or 1}, {r =color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r,g= color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g,b= color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b,a= alpha or color.a or 1})
 			else
 				databarRep:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", color.r, color.g, color.b, alpha or color.a or 1, color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r, color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g, color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b, alpha or color.a or 1)
 			end
@@ -38,7 +38,7 @@ function ElvUI_EltreumUI:GradientDatabar()
 	databarHonor = _G["ElvUI_HonorBar"]
 	if databarHonor and E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor then
 		if E.Retail then
-			databarHonor:GetStatusBarTexture():SetGradient("HORIZONTAL", {E.db.databars.colors.honor.r, E.db.databars.colors.honor.g, E.db.databars.colors.honor.b, E.db.databars.colors.honor.a}, {E.db.databars.colors.honor.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.r, E.db.databars.colors.honor.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.g, E.db.databars.colors.honor.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b, E.db.databars.colors.honor.a})
+			databarHonor:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=E.db.databars.colors.honor.r,g= E.db.databars.colors.honor.g,b= E.db.databars.colors.honor.b,a= E.db.databars.colors.honor.a}, {r=E.db.databars.colors.honor.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.r,g=E.db.databars.colors.honor.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.g,b= E.db.databars.colors.honor.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b,a= E.db.databars.colors.honor.a})
 		else
 			databarHonor:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", E.db.databars.colors.honor.r, E.db.databars.colors.honor.g, E.db.databars.colors.honor.b, E.db.databars.colors.honor.a, E.db.databars.colors.honor.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.r, E.db.databars.colors.honor.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.g, E.db.databars.colors.honor.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b, E.db.databars.colors.honor.a)
 		end
@@ -63,7 +63,7 @@ function ElvUI_EltreumUI:GradientArcheology()
 			_G.ArcheologyDigsiteProgressBar.FillBar:SetSize(E.db.ElvUI_EltreumUI.otherstuff.archeology.sizex,E.db.ElvUI_EltreumUI.otherstuff.archeology.sizey)
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 				if E.Retail then
-					_G.ArcheologyDigsiteProgressBar.FillBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {E.db.ElvUI_EltreumUI.otherstuff.archeology.r1,E.db.ElvUI_EltreumUI.otherstuff.archeology.g1,E.db.ElvUI_EltreumUI.otherstuff.archeology.b1, 1}, {E.db.ElvUI_EltreumUI.otherstuff.archeology.r2,E.db.ElvUI_EltreumUI.otherstuff.archeology.g2,E.db.ElvUI_EltreumUI.otherstuff.archeology.b2, 1})
+					_G.ArcheologyDigsiteProgressBar.FillBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=E.db.ElvUI_EltreumUI.otherstuff.archeology.r1,g=E.db.ElvUI_EltreumUI.otherstuff.archeology.g1,b=E.db.ElvUI_EltreumUI.otherstuff.archeology.b1,a= 1}, {r=E.db.ElvUI_EltreumUI.otherstuff.archeology.r2,g=E.db.ElvUI_EltreumUI.otherstuff.archeology.g2,b=E.db.ElvUI_EltreumUI.otherstuff.archeology.b2,a= 1})
 				else
 					_G.ArcheologyDigsiteProgressBar.FillBar:GetStatusBarTexture():SetGradient("HORIZONTAL", E.db.ElvUI_EltreumUI.otherstuff.archeology.r1,E.db.ElvUI_EltreumUI.otherstuff.archeology.g1,E.db.ElvUI_EltreumUI.otherstuff.archeology.b1, E.db.ElvUI_EltreumUI.otherstuff.archeology.r2,E.db.ElvUI_EltreumUI.otherstuff.archeology.g2,E.db.ElvUI_EltreumUI.otherstuff.archeology.b2)
 				end

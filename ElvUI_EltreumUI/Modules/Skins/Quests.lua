@@ -325,7 +325,7 @@ function ElvUI_EltreumUI:SkinQuests()
 										module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
 									end
 								else
-									module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g,E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b, 1}, {E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b, 1})
+									module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r,g= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b,a= 1}, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,g=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b,a= 1})
 								end
 								module.Header.EltruismStatusLine:SetFrameLevel(1)
 								if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not module.Header.EltruismStatusLine.shadow then
