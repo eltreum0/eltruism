@@ -509,10 +509,12 @@ function ElvUI_EltreumUI:DeleteItem()
 	if E.db.ElvUI_EltreumUI.otherstuff.delete and not self.isDeleteHooked then
 		local throttle = 0
 		self.isDeleteHooked = true
+		local function resetthrottle()
+			throttle = 0
+		end
 		local function TypeDelete(self)
 			local itemLink = select(3, GetCursorInfo())
-			local lootName = select(1, GetItemInfo(itemLink))
-			local lootTexture = select(10, GetItemInfo(itemLink))
+			local lootName, _,_,_,_,_,_,_,_,lootTexture = GetItemInfo(itemLink)
 			if lootName == nil or lootTexture == nil then
 				return
 			else
@@ -525,9 +527,7 @@ function ElvUI_EltreumUI:DeleteItem()
 				if throttle == 0 then
 					throttle = 1
 					ElvUI_EltreumUI:Print("DELETE automatically typed")
-					C_Timer.After(1, function()
-						throttle = 0
-					end)
+					C_Timer.After(1, resetthrottle)
 				end
 			end
 		end
