@@ -101,7 +101,7 @@ local classBgs = {
 	["MONK"] = "Interface\\Artifacts\\ArtifactUIMonk",
 	["DRUID"] = "Interface\\Artifacts\\ArtifactUIDruid",
 	["DEMONHUNTER"] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
-	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Evoker\\artifactuievoker",  -- TODO
+	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Evoker\\artifactuievoker", -- TODO
 }
 
 --from 4k: height to 1920, resize to 1024x512, add 20 sharpen, set 30 bright 30 contrast, add vignette 0.35 (dont anymore), compress depending on size
@@ -764,7 +764,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterFrame.EltruismSpeed:SetPoint("TOP", CharacterFrame.EltruismExtraStatsFont, "BOTTOM", 60, -10)
 				CharacterFrame.EltruismSpeed:SetSize(50,5)
 				CharacterFrame.EltruismSpeed:SetJustifyH("RIGHT")
-				CharacterFrame.EltruismClassResource:SetPoint("TOP", CharacterFrame.EltruismSpeed, "BOTTOM",  0, -10)
+				CharacterFrame.EltruismClassResource:SetPoint("TOP", CharacterFrame.EltruismSpeed, "BOTTOM", 0, -10)
 				CharacterFrame.EltruismClassResource:SetSize(50,5)
 				CharacterFrame.EltruismClassResource:SetJustifyH("RIGHT")
 				CharacterFrame.EltruismClassResource2:SetPoint("TOP", CharacterFrame.EltruismClassResource, "BOTTOM", 0, -10)
@@ -2190,9 +2190,9 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 								qualitytable[4] = qualitytable[4] + 1
 							end
 							for k, v in pairs(qualitytable) do
-							    if qualitytable[k] > numberquality then
-							        maxquality, numberquality = k, v
-							    end
+								if qualitytable[k] > numberquality then
+									maxquality, numberquality = k, v
+								end
 							end
 							if _G.CharacterFrame.Text2 and _G.CharacterFrame.Text2:GetText() ~= nil then
 								local rc,gc,bc = _G.GetItemQualityColor(maxquality)
@@ -2689,9 +2689,9 @@ function ElvUI_EltreumUI:InspectBg(unit)
 										qualitytable[4] = qualitytable[4] + 1
 									end
 									for k, v in pairs(qualitytable) do
-									    if qualitytable[k] > numberquality then
-									        maxquality, numberquality = k, v
-									    end
+										if qualitytable[k] > numberquality then
+											maxquality, numberquality = k, v
+										end
 									end
 									if _G.InspectFrame.Ilvl then
 										if _G.InspectFrame.Ilvl:GetText() == nil then

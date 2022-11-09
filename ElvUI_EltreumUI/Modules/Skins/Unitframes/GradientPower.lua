@@ -159,7 +159,7 @@ function ElvUI_EltreumUI:GradientPower()--(unit,r,g,b)
 
 		--gradient additional power
 		if not isHooked then
-			Additionalframe =  _G["ElvUF_Player_AdditionalPowerBar"]
+			Additionalframe = _G["ElvUF_Player_AdditionalPowerBar"]
 			if Additionalframe then
 				hooksecurefunc(Additionalframe, "SetStatusBarColor", function(_,r,g,b) --i knew the vertex thing from details could be useful
 					if E.Retail then

@@ -554,33 +554,33 @@ E:AddTagInfo("eltruism:smartlevel", ElvUI_EltreumUI.Name, L["Shows level differe
 
 --ty a lot azilroka
 local stanceID = {
-    DEATHKNIGHT = {
-        [1] = not E.Retail and GetSpellInfo(48266),
-        [2] = not E.Retail and GetSpellInfo(48263),
-        [3] = not E.Retail and GetSpellInfo(48265),
-    },
-    PALADIN = {
-        [1] = E.Retail and GetSpellInfo(32223) or GetSpellInfo(465),
-        [2] = E.Retail and GetSpellInfo(465) or GetSpellInfo(7294),
-        [3] = E.Retail and GetSpellInfo(317920) or GetSpellInfo(19746),
-        [4] = E.Retail and GetSpellInfo(183435) or GetSpellInfo(19876),
-        [5] = not E.Retail and GetSpellInfo(19888),
-        [6] = not E.Retail and GetSpellInfo(19891),
-        [7] = not E.Retail and GetSpellInfo(32223),
-    },
-    WARRIOR = {
-        [1] = not E.Retail and GetSpellInfo(2457),
-        [2] = not E.Retail and GetSpellInfo(71),
-        [3] = not E.Retail and GetSpellInfo(2458),
-    }
+	DEATHKNIGHT = {
+		[1] = not E.Retail and GetSpellInfo(48266),
+		[2] = not E.Retail and GetSpellInfo(48263),
+		[3] = not E.Retail and GetSpellInfo(48265),
+	},
+	PALADIN = {
+		[1] = E.Retail and GetSpellInfo(32223) or GetSpellInfo(465),
+		[2] = E.Retail and GetSpellInfo(465) or GetSpellInfo(7294),
+		[3] = E.Retail and GetSpellInfo(317920) or GetSpellInfo(19746),
+		[4] = E.Retail and GetSpellInfo(183435) or GetSpellInfo(19876),
+		[5] = not E.Retail and GetSpellInfo(19888),
+		[6] = not E.Retail and GetSpellInfo(19891),
+		[7] = not E.Retail and GetSpellInfo(32223),
+	},
+	WARRIOR = {
+		[1] = not E.Retail and GetSpellInfo(2457),
+		[2] = not E.Retail and GetSpellInfo(71),
+		[3] = not E.Retail and GetSpellInfo(2458),
+	}
 }
 E:AddTag("eltruism:stance", 'UNIT_AURA', function(unit)
-    local stance = GetShapeshiftForm()
-    local stanceInfo = stanceID[E.myclass] and stanceID[E.myclass][stance]
+	local stance = GetShapeshiftForm()
+	local stanceInfo = stanceID[E.myclass] and stanceID[E.myclass][stance]
 
-    if stanceInfo then
-        return stanceInfo, tostring(stance)
-    end
+	if stanceInfo then
+		return stanceInfo, tostring(stance)
+	end
 end)
 E:AddTagInfo("eltruism:stance", ElvUI_EltreumUI.Name, L["Shows the current stance"])
 

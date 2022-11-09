@@ -77,7 +77,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 			elseif rightside[buttonname] then
 				button.eltruismilvl:SetPoint(E.db.ElvUI_EltreumUI.skins.ilvlanchor, E.db.ElvUI_EltreumUI.skins.ilvlanchorx, E.db.ElvUI_EltreumUI.skins.ilvlanchory)
 			elseif centereditem[buttonname] then
-				button.eltruismilvl:SetPoint(E.db.ElvUI_EltreumUI.skins.ilvlanchor, 0, 0) --E.db.ElvUI_EltreumUI.skins.ilvlanchory * 2.3)  --ends up overlapping with sockets/enchants
+				button.eltruismilvl:SetPoint(E.db.ElvUI_EltreumUI.skins.ilvlanchor, 0, 0) --E.db.ElvUI_EltreumUI.skins.ilvlanchory * 2.3) --ends up overlapping with sockets/enchants
 			end
 			button.eltruismilvl:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.ilvlfontsize, E.db.ElvUI_EltreumUI.skins.ilvlfontweight)
 			button.eltruismilvl:SetJustifyH('LEFT')

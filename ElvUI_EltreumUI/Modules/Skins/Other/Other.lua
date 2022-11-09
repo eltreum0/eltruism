@@ -127,7 +127,7 @@ function S:HandleMirrorTimer() --(timer, value, maxvalue, scale, paused, label)
 				local MirrorTimerAtlasCheck = {
 					["EXHAUSTION"] = "UI-CastingBar-Filling-Standard", --yellow
 					["BREATH"] = "UI-CastingBar-Filling-ApplyingCrafting", --changing talents (blue)
-					--["DEATH"] = "UI-CastingBar-Filling-Standard",  --same as EXHAUSTION
+					--["DEATH"] = "UI-CastingBar-Filling-Standard", --same as EXHAUSTION
 					["FEIGNDEATH"] = "UI-CastingBar-Filling-Channel", --green
 				}
 				if atlas == MirrorTimerAtlasCheck["EXHAUSTION"] then

@@ -878,7 +878,7 @@ function ElvUI_EltreumUI:AuraBorders(button)
 
 		local auraborder
 		if not _G["EltruismAuraBorder"..button:GetName()] then
-			auraborder =  CreateFrame("Frame", "EltruismAuraBorder"..button:GetName(), button, BackdropTemplateMixin and "BackdropTemplate")
+			auraborder = CreateFrame("Frame", "EltruismAuraBorder"..button:GetName(), button, BackdropTemplateMixin and "BackdropTemplate")
 		else
 			auraborder = _G["EltruismAuraBorder"..button:GetName()]
 		end
@@ -913,7 +913,7 @@ function ElvUI_EltreumUI:UFAuraBorders(button)
 
 		local auraborder
 		if not _G["EltruismAuraBorder"..button:GetName()] then
-			auraborder =  CreateFrame("Frame", "EltruismAuraBorder"..button:GetName(), button, BackdropTemplateMixin and "BackdropTemplate")
+			auraborder = CreateFrame("Frame", "EltruismAuraBorder"..button:GetName(), button, BackdropTemplateMixin and "BackdropTemplate")
 		else
 			auraborder = _G["EltruismAuraBorder"..button:GetName()]
 		end

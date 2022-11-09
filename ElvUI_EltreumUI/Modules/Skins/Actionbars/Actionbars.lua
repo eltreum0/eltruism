@@ -84,7 +84,7 @@ function ElvUI_EltreumUI:SkillGlow()
 				--set the sizes differently depending on type because blizz glow is not nice
 				if E.db.ElvUI_EltreumUI.glow.pixel or E.db.ElvUI_EltreumUI.glow.autocast then
 					totemglow1:SetAllPoints(_G["ElvUF_PlayerTotem2"])
-					totemglow2:SetAllPoints(_G["ElvUF_PlayerTotem1"])  --earth and fire got inverted
+					totemglow2:SetAllPoints(_G["ElvUF_PlayerTotem1"]) --earth and fire got inverted
 					totemglow3:SetAllPoints(_G["ElvUF_PlayerTotem3"])
 					totemglow4:SetAllPoints(_G["ElvUF_PlayerTotem4"])
 				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
@@ -286,7 +286,7 @@ function ElvUI_EltreumUI:SkillGlow()
 					[20909] = true,
 					[19306] = true,
 
-					--[[--exorcism  --different in wrath
+					--[[--exorcism --different in wrath
 					[27138] = true,
 					[10314] = true,
 					[10313] = true,

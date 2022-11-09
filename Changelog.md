@@ -864,7 +864,7 @@ Fixed a possible error when importing Dynamic Status Icons and Capping profiles\
 Fixed an error during install due to a database change in Windtools
 ___
 ### 3.0.6
-Added  tooltip header font setting due to ElvUI update\
+Added tooltip header font setting due to ElvUI update\
 Added Eltruism's logo to the options list\
 Added new media, including fonts and sounds\
 Updated Windtools profile and Shadow and Light profile due to new features introduced in Windtools\

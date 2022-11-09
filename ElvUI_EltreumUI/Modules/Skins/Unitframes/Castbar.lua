@@ -57,7 +57,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 		--player
 		if UnitExists("player") and castbar then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-				if  E.db.unitframe.colors.transparentCastbar then
+				if E.db.unitframe.colors.transparentCastbar then
 					castbar.bg:SetVertexColor(0,0,0,0)
 					castbar.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				end
@@ -217,7 +217,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 			_, targetclass = UnitClass("target")
 			reactiontarget = UnitReaction("target", "player")
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-				if  E.db.unitframe.colors.transparentCastbar then
+				if E.db.unitframe.colors.transparentCastbar then
 					targetcastbar.bg:SetVertexColor(0, 0, 0, 0)
 					targetcastbar.backdrop:SetBackdropColor(0, 0, 0, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				end
@@ -225,7 +225,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 					targetcastbar.backdrop:SetBackdropColor(E.db.unitframe.colors.castbar_backdrop.r,E.db.unitframe.colors.castbar_backdrop.g,E.db.unitframe.colors.castbar_backdrop.b,E.db.unitframe.colors.castbar_backdrop.a)
 					targetcastbar.bg:SetVertexColor(E.db.unitframe.colors.castbar_backdrop.r,E.db.unitframe.colors.castbar_backdrop.g,E.db.unitframe.colors.castbar_backdrop.b,E.db.unitframe.colors.castbar_backdrop.a)
 				end
-				if not  E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 					targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 				end
 				if (targetcastbar.notInterruptible) then --cant interrupt
