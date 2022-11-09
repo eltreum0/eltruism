@@ -111,6 +111,10 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		end]]
 	end
 
+	if E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA then
+		ElvUI_EltreumUI:Print("You are using WeakAuras mode for ActionBars. If you wish to stop using it, make sure to disable by typing /eltruism weakauras or disabling it in the options, failing to do can cause errors")
+	end
+
 	if E.private.ElvUI_EltreumUI.install_version and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
 		return
 	elseif E.private.ElvUI_EltreumUI.install_version < "2.9.3" then
