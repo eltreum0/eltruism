@@ -6,7 +6,6 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 local GetSpellInfo = _G.GetSpellInfo
 local GetItemInfo = _G.GetItemInfo
 local GetItemCount = _G.GetItemCount
-local CreateColor = _G.CreateColor
 local WideTradeSkill = CreateFrame("Frame")
 WideTradeSkill:RegisterEvent("PLAYER_ENTERING_WORLD")
 local WideTradeSkillEnchant = CreateFrame("Frame")
@@ -133,19 +132,19 @@ function S:HandleMirrorTimer() --(timer, value, maxvalue, scale, paused, label)
 				}
 				if atlas == MirrorTimerAtlasCheck["EXHAUSTION"] then
 					if E.Retail then
-						frame.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(1, 0.68, 0, alpha), CreateColor(1, 0.83, 0.25, alpha))
+						frame.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {1, 0.68, 0, alpha}, {1, 0.83, 0.25, alpha})
 					else
 						frame.StatusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", 1, 0.68, 0, alpha, 1, 0.83, 0.25, alpha)
 					end
 				elseif atlas == MirrorTimerAtlasCheck["BREATH"] then
 					if E.Retail then
-						frame.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(0, 0.33, 0.53, alpha), CreateColor(0.49, 0.87, 1, alpha))
+						frame.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {0, 0.33, 0.53, alpha}, {0.49, 0.87, 1, alpha})
 					else
 						frame.StatusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", 0, 0.33, 0.53, alpha, 0.49, 0.87, 1, alpha)
 					end
 				elseif atlas == MirrorTimerAtlasCheck["FEIGNDEATH"] then
 					if E.Retail then
-						frame.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(0.01, 0.6, 0.36, alpha), CreateColor(0, 1, 0.58, alpha))
+						frame.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {0.01, 0.6, 0.36, alpha}, {0, 1, 0.58, alpha})
 					else
 						frame.StatusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", 0.01, 0.6, 0.36, alpha, 0, 1, 0.58, alpha)
 					end
@@ -170,7 +169,7 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 					statusBar:HookScript("OnShow", function()
 						local r,g,b,a = statusBar:GetStatusBarColor()
 						if E.Retail then
-							statusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(r - 0.3, g - 0.3, b - 0.3, a), CreateColor(r + 0.2, g + 0.2, b + 0.2, a))
+							statusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r - 0.3, g - 0.3, b - 0.3, a}, {r + 0.2, g + 0.2, b + 0.2, a})
 						else
 							statusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r - 0.3, g - 0.3, b - 0.3, a, r + 0.2, g + 0.2, b + 0.2, a)
 						end
@@ -194,7 +193,7 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 					frame:HookScript("OnShow", function()
 						local r,g,b = frame.status:GetStatusBarColor()
 						if E.Retail then
-							frame.status:GetStatusBarTexture():SetGradient("HORIZONTAL", CreateColor(r - 0.5, g - 0.5, b - 0.5, 1), CreateColor(r + 0.3, g + 0.3, b + 0.3, 1))
+							frame.status:GetStatusBarTexture():SetGradient("HORIZONTAL", {r - 0.5, g - 0.5, b - 0.5, 1}, {r + 0.3, g + 0.3, b + 0.3, 1})
 						else
 							frame.status:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r - 0.5, g - 0.5, b - 0.5, 1, r + 0.3, g + 0.3, b + 0.3, 1)
 						end
