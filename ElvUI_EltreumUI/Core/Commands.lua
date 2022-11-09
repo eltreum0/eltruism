@@ -138,15 +138,18 @@ function ElvUI_EltreumUI:RunCommands(message)
 		end
 	elseif message == 'secretbgtest' then
 		local valuecolors = E:ClassColor(E.myclass, true)
-		ElvUI_EltreumUI:Print("Secret test background color, backdrop updated")
-		--E.db.general.backdropcolor.b = 0.10
-		--E.db.general.backdropcolor.g = 0.10
-		--E.db.general.backdropcolor.r = 0.10
-
-		E.db.general.backdropcolor.b = valuecolors.b*0.14
-		E.db.general.backdropcolor.g = valuecolors.g*0.14
-		E.db.general.backdropcolor.r = valuecolors.r*0.14
-		--E:UpdateBackdropColors()
+		ElvUI_EltreumUI:Print("Secret test class color background. Backdrop updated, type /eltruism secretbgtest again to disable")
+		if not E.db.ElvUI_EltreumUI.otherstuff.colorbg then
+			E.db.ElvUI_EltreumUI.otherstuff.colorbg = true
+			E.db.general.backdropcolor.b = valuecolors.b*0.2
+			E.db.general.backdropcolor.g = valuecolors.g*0.2
+			E.db.general.backdropcolor.r = valuecolors.r*0.2
+		else
+			E.db.general.backdropcolor.b = 0.098039215686275
+			E.db.general.backdropcolor.g = 0.098039215686275
+			E.db.general.backdropcolor.r = 0.098039215686275
+			E.db.ElvUI_EltreumUI.otherstuff.colorbg = false
+		end
 		E:UpdateMediaItems()
 	elseif message == 'modeldebug' then
 		if E.db.unitframe.units.target.portrait.enable and E.db.unitframe.units.target.portrait.style == "3D" and UnitExists("target") then

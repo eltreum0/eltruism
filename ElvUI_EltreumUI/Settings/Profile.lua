@@ -1197,5 +1197,6 @@ P.ElvUI_EltreumUI = {
 			sizey = 9,
 		},
 		taxiscale = 1,
+		colorbg = false,
 	},
 }
