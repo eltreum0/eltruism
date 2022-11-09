@@ -1,24 +1,17 @@
-### 3.5.6.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.5.7 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added multiple checks for frames being loaded due to a change in the Retail API\
-Added various Evoker features such as backgrounds, crest and others\
-Added an option to disable the Objective Frame Anchor\
-Added more missing enchants to Sockets in Wrath\
-Added more models to the Portrait Rotation Fix\
-Added a skin to Mythic Plus Key Timers\
-Added more missing shadows\
-Updated ElvUI Nameplate Cast Target to shorten spell names as to not overlap the cast timer, and also color the target per class/reaction\
-Updated Character Panel Skin in Retail with a new method to detect number of stats\
-Updated EltreumExecute Nameplate Style filters with new Execute thresholds\
-Updated Objective Frame mover adding more guards against taints\
-Updated Gradient Nameplates to better detect Style Filters\
-Updated Combo Point Colors and Chi Colors\
-Updated Quest Hiding in Retail\
-Updated GladiusEX profile\
-Updated German translations by DLarge\
-Updated Pet debuffs and buffs positions\
-Fixed an issue where Information Panel On Top didn't have the correct Portrait settings after the 3D Portrait fix\
-Fixed a possible issue when using borders with ElvUI action bars disabled\
-Fixed Rogue not auto opening the Order Hall\
-Fixed Arena Frames not Hiding\
-Reverted the Objective Frame Taint Fix as it was causing problems for some but not all
+Added a workaround fix for the Custom Textures issue in Retail, allowing the usage of Custom Textures again\
+Added fallback colors for Power Types that are not used in the Gradient Power function\
+Added a button in Eltruism > Installer to set general ElvUI settings\
+Added a few more missing models\
+Added a few missing shadows\
+Updated EltreumDebuff nameplate style filter to be disabled by default since when its empty it triggers everywhere, you can enable and add debuffs as needed and it will work correctly afterwards\
+Updated Gradient functions to use a different type of Color Mixin to decrease memory usage that was introduced in 10.0\
+Updated EltreumInterrupt nameplate style filter to use health color instead of texture due to an issue with Textures\
+Updated Objective Tracker Anchor to only run when other quest addons are not running\
+Updated Delete Item function following Simpy's recommendations\
+Updated German locale by DLarge\
+Fixed Quests Skin not fitting correctly and sometimes not showing depending on difficulty\
+Fixed a possible wrong color in the Interrupted Gradient CastBar in Classic/Wrath\
+Fixed Aurabars colors when Gradient Aurabars were disabled\
+Fixed a possible error with mail sound
