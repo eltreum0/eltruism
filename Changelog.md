@@ -12,6 +12,7 @@ Updated Gradient functions to use a different type of Color Mixin to decrease me
 Updated EltreumInterrupt nameplate style filter to use health color instead of texture due to an issue with Textures\
 Updated Objective Tracker Anchor to only run when other quest addons are not running\
 Updated Delete Item function following Simpy's recommendations\
+Updated files for new ElvUI oUF11\
 Updated German locale by DLarge\
 Fixed Quests Skin not fitting correctly and sometimes not showing depending on difficulty\
 Fixed a possible wrong color in the Interrupted Gradient CastBar in Classic/Wrath\
