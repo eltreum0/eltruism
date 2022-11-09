@@ -140,6 +140,14 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
+			if (arg == "Blizzard_BlackMarketUI") or IsAddOnLoaded("Blizzard_BlackMarketUI") then
+				_G.BlackMarketFrame:HookScript("OnShow", function()
+					if not _G.BlackMarketFrame.shadow then
+						_G.BlackMarketFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.BlackMarketFrame.shadow) end
+					end
+				end)
+			end
 			if (arg == "Blizzard_BindingUI") or IsAddOnLoaded("Blizzard_BindingUI") then
 				_G.KeyBindingFrame:HookScript("OnShow", function()
 					if not _G.KeyBindingFrame.shadow then
@@ -250,7 +258,6 @@ function ElvUI_EltreumUI:Shadows()
 			_G.EltruismClickCastingToggle,
 			_G.TradeFrame,
 			_G.AddonList,
-			_G.BlackMarketFrame,
 			_G.ChromieTimeFrame,
 			_G.VoidStorageFrame,
 			_G.BonusRollFrame,
