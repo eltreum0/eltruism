@@ -1026,6 +1026,7 @@ L["This allows you to zoom out further with the camera to increase the field of 
 L["Replace role icons with Eltruism role icons"] = "Troque os ícones de função de personagem com ícones do Eltruism"
 L["Model Alpha"] = "Transparência do Modelo"
 L["Desaturate"] = "Desaturação"
+L["Custom Class Colors"] = "Cores de Classe Personalizadas"
 L["Cooldown"] = "Recarga"
 L["Enable Cooldown Pulse"] = "Habilitar Pulso de Recarge"
 L["Show a Skill Pulse when its cooldown is ending"] = "Mostra um Pulso de Habilidade quando sua recarga esta acabando"
