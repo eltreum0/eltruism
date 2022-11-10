@@ -1,4 +1,4 @@
-All Rights Reserved unless otherwise explicitly stated.
+Eltruism All Rights Reserved unless otherwise explicitly stated.
 
 Copyright (c) 2021-20?? Eltreum
 
@@ -9,3 +9,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+
+All other libraries, codes and resources used have their licenses listed in the Licenses folder, and in Options\Options.lua for in-game listing.
