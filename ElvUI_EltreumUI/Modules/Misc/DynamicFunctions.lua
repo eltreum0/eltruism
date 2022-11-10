@@ -45,9 +45,9 @@ function ElvUI_EltreumUI:CooldownColors()
 	--leave it here for now
 	if E.db.ElvUI_EltreumUI.otherstuff.colorbg then
 		local valuecolors = E:ClassColor(E.myclass, true)
-		E.db.general.backdropcolor.b = valuecolors.b*0.2
-		E.db.general.backdropcolor.g = valuecolors.g*0.2
-		E.db.general.backdropcolor.r = valuecolors.r*0.2
+		E.db.general.backdropcolor.b = valuecolors.b*0.3
+		E.db.general.backdropcolor.g = valuecolors.g*0.3
+		E.db.general.backdropcolor.r = valuecolors.r*0.3
 		E:UpdateMediaItems()
 	end
 end

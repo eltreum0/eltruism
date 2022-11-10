@@ -137,18 +137,19 @@ function ElvUI_EltreumUI:RunCommands(message)
 			ElvUI_EltreumUI:GreyBg()
 		end
 	elseif message == 'secretbgtest' then
-		local valuecolors = E:ClassColor(E.myclass, true)
-		ElvUI_EltreumUI:Print("Secret test class color background. Backdrop updated, type /eltruism secretbgtest again to disable")
 		if not E.db.ElvUI_EltreumUI.otherstuff.colorbg then
+			local valuecolors = E:ClassColor(E.myclass, true)
 			E.db.ElvUI_EltreumUI.otherstuff.colorbg = true
-			E.db.general.backdropcolor.b = valuecolors.b*0.2
-			E.db.general.backdropcolor.g = valuecolors.g*0.2
-			E.db.general.backdropcolor.r = valuecolors.r*0.2
+			E.db.general.backdropcolor.b = valuecolors.b*0.3
+			E.db.general.backdropcolor.g = valuecolors.g*0.3
+			E.db.general.backdropcolor.r = valuecolors.r*0.3
+			ElvUI_EltreumUI:Print("Secret test class color background. Backdrop updated, type /eltruism secretbgtest again to disable")
 		else
 			E.db.general.backdropcolor.b = 0.098039215686275
 			E.db.general.backdropcolor.g = 0.098039215686275
 			E.db.general.backdropcolor.r = 0.098039215686275
 			E.db.ElvUI_EltreumUI.otherstuff.colorbg = false
+			ElvUI_EltreumUI:Print("Disabled Class Color background, using default background color instead.")
 		end
 		E:UpdateMediaItems()
 	elseif message == 'modeldebug' then
