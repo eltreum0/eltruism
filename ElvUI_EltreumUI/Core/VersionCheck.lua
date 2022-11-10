@@ -35,7 +35,7 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 		ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
 	elseif E.version ~= 13.00 then
 		E:StaticPopup_Show('ELVUIVERSIONCHECK2')
-		ElvUI_EltreumUI:Print("Your ElvUI version is newer than Eltruism, you might run into issues unless you update Eltruism!")]]
+		ElvUI_EltreumUI:Print("Your ElvUI version is newer than Eltruism, you might run into issues unless you update Eltruism!")
 	end
 end
 
