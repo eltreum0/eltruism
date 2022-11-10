@@ -301,6 +301,7 @@ if E.Retail then
 		test:RegisterEvent("PLAYER_TARGET_CHANGED")
 		test:RegisterEvent("GROUP_ROSTER_UPDATE")
 		test:RegisterEvent("PLAYER_ENTERING_WORLD")
+		test:RegisterEvent("PLAYER_ROLES_ASSIGNED")
 		test:RegisterEvent("LOADING_SCREEN_DISABLED")
 		test:RegisterEvent("CINEMATIC_STOP")
 		test:RegisterEvent("INSTANCE_GROUP_SIZE_CHANGED")
