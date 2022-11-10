@@ -601,7 +601,9 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 				for j = 1, group:GetNumChildren() do
 					groupbutton = select(j, group:GetChildren())
 					if groupbutton and groupbutton.Castbar then
-						groupbutton.Castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
+						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+							groupbutton.Castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
+						end
 						if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable then
 							groupbutton.Castbar.Spark_:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
 							if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' then --flip otherwise it will look wrong
