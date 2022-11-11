@@ -1244,3 +1244,5 @@ L["Reactivate the ElvUI Objective Frame Anchor and Mover"] = "Reaktiviere den El
 L["Reset/Update ElvUI Settings"] = "ElvUI Einstellungen zurücksetzen/aktualisieren"
 L["Resets/Updates ElvUI Settings to Eltreum's Defaults"] = "Setzt die ElvUI-Einstellungen auf die Standardeinstellungen von Eltreum zurück/aktualisiert sie"
 L["Settings for ElvUI were updated."] = "Einstellungen für ElvUI wurden aktualisiert."
+L["Displays unit name in gradient class color or reaction color"] = true
+L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"] = true
