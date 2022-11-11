@@ -572,7 +572,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 		EltruismMenuButton:SetSize(x,y)
 		EltruismMenuButton:SetScript("OnClick", function()
 			if not InCombatLockdown() then
-				E:ToggleOptionsUI()
+				E:ToggleOptions()
 				E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
 				HideUIPanel(_G["GameMenuFrame"])
 			end

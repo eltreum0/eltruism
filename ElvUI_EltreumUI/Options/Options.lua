@@ -119,7 +119,7 @@ for _, name in pairs(TRANSLATORS) do
 end
 local TRANSLATORS_STRING = tconcat(TRANSLATORS, '|n')
 
--- Eltruism ingame options Retail
+-- Eltruism ingame options
 function ElvUI_EltreumUI:Configtable()
 	-- Add Eltruism version on top of the ElvUI config
 	E.Options.name = E.Options.name .. " + " .. ElvUI_EltreumUI.Name .. format(" |cffffffff%s|r", ElvUI_EltreumUI.Version)
@@ -159,7 +159,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Launch Eltruism Installer"],
 								width = 'full',
 								desc = L["Launches the Eltruism install prompt"],
-								func = function() E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData) E:ToggleOptionsUI() end,
+								func = function() E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData) E:ToggleOptions() end,
 							},
 							eltruismsettings = {
 								order = 2,
@@ -8239,7 +8239,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								desc = L["Add debuffs to the Style Filter to make Nameplates with expiring Debuffs show full alpha and scale"],
 								disabled = function() return not E.global["nameplates"]["filters"]["EltreumRefreshDebuff"] end,
-								func = function() local C, L = unpack(E.OptionsUI) C:StyleFilterSetConfig("EltreumRefreshDebuff") E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'nameplates', "stylefilters", "triggers", "debuffs") end,
+								func = function() local C, L = unpack(E.Config) C:StyleFilterSetConfig("EltreumRefreshDebuff") E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'nameplates', "stylefilters", "triggers", "debuffs") end,
 							},
 						},
 					},
@@ -12506,7 +12506,7 @@ end
 --in case i split options into modules
 --[[
 tinsert(ElvUI_EltreumUI.Config, function()
-	E.Options.args.ElvUI_EltreumUI.args.NAMEOFOPTION = {
+	E.Config.args.ElvUI_EltreumUI.args.NAMEOFOPTION = {
 		type = 'group',
 		name = "SOME NAME HERE",
 		icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\aurafilter',
