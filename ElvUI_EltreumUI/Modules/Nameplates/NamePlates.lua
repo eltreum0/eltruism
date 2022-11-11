@@ -602,7 +602,11 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] and E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] then
 			if E.Retail then
 				if E.myclass == "WARRIOR" then
-					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20 --20% arms, 35% fury (with talent)
+					if IsPlayerSpell(206315) then --fury massacre talent
+						E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35
+					else
+						E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20
+					end
 				elseif E.myclass == "DEATHKNIGHT" then
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35 -- with soul reaper talent
 				elseif E.myclass == "MAGE" then
