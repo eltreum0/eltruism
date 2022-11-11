@@ -37,9 +37,12 @@ ElvUI_EltreumUI.CreditsList = {}
 ElvUI_EltreumUI.Config = {}
 ElvUI_EltreumUI.Name = '|cff82B4ffEltruism|r'
 
-function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD()
+function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
+	end
+	if initLogin or not ElvDB.EltruismDisabledAddOns then
+		ElvDB.EltruismDisabledAddOns = {}
 	end
 	if E.db.ElvUI_EltreumUI.deepLwarning then
 		if E.global.general.locale == "esMX" or E.global.general.locale == "esES" then

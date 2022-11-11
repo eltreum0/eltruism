@@ -18,6 +18,8 @@ local UseContainerItem = _G.UseContainerItem --TODO UseContainerItem DRAGONFLIGH
 -- Register on init
 function ElvUI_EltreumUI:LoadCommands()
 	self:RegisterChatCommand('eltruism', 'RunCommands')
+	self:RegisterChatCommand('eltruismdebug', 'DebugMode')
+
 	--add to moveui table
 	if not self.ConfigModeAddedEltruism then
 		tinsert(E.ConfigModeLayouts, #(E.ConfigModeLayouts) + 1, "ELTREUMUI")
@@ -176,12 +178,47 @@ function ElvUI_EltreumUI:RunCommands(message)
 		print("|cff82B4ff/eltruism color|r - Toggles unitframe between light and dark modes")
 		print("|cff82B4ff/eltruism gradient|r - Activates gradient mode")
 		print("|cff82B4ff/eltruism chat|r - Toggles chat between dark and transparent modes")
+		print("|cff82B4ff/eltruismdebug on/off|r - Toggles debug mode where addons will be disabled/enabled for troubleshooting")
 		print("|cff82B4ff/eltruism weakauras|r - Toggles actionbars to be similart o WeakAuras, will overwrite settings")
 	end
 end
 
---Adapted from Luckyone's +keys as requested by khornan
+--ty luckyone for allowing me to use this
+local AddOns = {
+	ElvUI = true,
+	ElvUI_Libraries = true,
+	ElvUI_Options = true,
+	ElvUI_EltreumUI = true,
+	AddOnSkins = true,
+	BugGrabber = true,
+	BugSack = true,
+}
+function ElvUI_EltreumUI:DebugMode(message)
+	local switch = strlower(message)
+	if switch == 'on' then
+		for i = 1, GetNumAddOns() do
+			local name = GetAddOnInfo(i)
+			if not AddOns[name] and E:IsAddOnEnabled(name) then
+				DisableAddOn(name, E.myname)
+				ElvDB.EltruismDisabledAddOns[name] = i
+			end
+		end
+		SetCVar('scriptErrors', 1)
+		ReloadUI()
+	elseif switch == 'off' then
+		if next(ElvDB.EltruismDisabledAddOns) then
+			for name in pairs(ElvDB.EltruismDisabledAddOns) do
+				EnableAddOn(name, E.myname)
+			end
+			wipe(ElvDB.EltruismDisabledAddOns)
+			ReloadUI()
+		end
+	else
+		ElvUI_EltreumUI:Print("Usage: /eltruismdebug on or /eltruismdebug off, to enable or disable debug mode")
+	end
+end
 
+--Adapted from Luckyone's +keys as requested by khornan
 -- keystone id tables and keys table with stored keys
 local ids = {
 	[138019] = true, -- Legion
@@ -193,7 +230,6 @@ local ids = {
 }
 local keys = {
 }
-
 function ElvUI_EltreumUI:Keys(event,message)
 	if E.Wrath or E.Classic then
 		return
