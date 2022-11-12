@@ -48,7 +48,7 @@ function UF:Configure_InfoPanel(frame)
 
 						frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
 						frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER+portrait.db.width, -(UF.SPACING*3))
-						frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT',  -UF.BORDER - UF.SPACING, db.infoPanel.height - (UF.BORDER/2))
+						frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height - (UF.BORDER/2))
 						frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER+portrait.db.width, db.infoPanel.height - (UF.BORDER/2))
 						frame.InfoPanel:SetSize(db.width-portrait.db.width,db.infoPanel.height)
 					elseif frame.ORIENTATION == 'RIGHT' then
@@ -84,7 +84,7 @@ function UF:Configure_InfoPanel(frame)
 
 						frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
 						frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', (UF.BORDER*1.5)+portrait.db.width, -(UF.SPACING*3))
-						frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT',  -UF.BORDER - UF.SPACING, db.infoPanel.height - (UF.BORDER/2))
+						frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height - (UF.BORDER/2))
 						frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', (UF.BORDER*1.5)+portrait.db.width, db.infoPanel.height - (UF.BORDER/2))
 						frame.InfoPanel:SetSize(db.width-portrait.db.width,db.infoPanel.height)
 					elseif frame.ORIENTATION == 'RIGHT' then

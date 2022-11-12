@@ -5,7 +5,6 @@ local EnhancedShadows = nil
 if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
 end
-local CreateColor = _G.CreateColor
 
 --gradient bigwigs bars
 function ElvUI_EltreumUI:EltruismBigWigs()
@@ -15,7 +14,7 @@ function ElvUI_EltreumUI:EltruismBigWigs()
 			self.candyBarBar:SetStatusBarColor(...)
 			local r,g,b = self.candyBarBar:GetStatusBarColor()
 			if E.Retail then
-				self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, CreateColor(r-0.4, g-0.4, b-0.4, 0.7), CreateColor(r, g, b, 0.7))
+				self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.4,g= g-0.4,b= b-0.4,a= 0.7}, {r=r,g= g,b= b,a= 0.7})
 			else
 				self.candyBarBar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.4, g-0.4, b-0.4, 0.7, r, g, b, 0.7)
 			end

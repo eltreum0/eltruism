@@ -1,11 +1,15 @@
-All Rights Reserved unless otherwise explicitly stated.
+## Eltruism
 
-Copyright (c) 2021-20?? Eltreum
+**Source**: [https://github.com/eltreum0/eltruism/tree/main/ElvUI_EltreumUI](https://github.com/eltreum0/eltruism/tree/main/ElvUI_EltreumUI)
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+```
+Copyright © 2009-2022 The contents of this addon, excluding third-party resources, are
+copyrighted to their authors with all rights reserved.
+Reference: https://github.com/tukui-org/ElvUI/blob/development/ElvUI/LICENSE.txt
+```
+
+## Third Party Embeds
+
+```
+References found in Licenses, in game listing in Options\Options.lua
+```

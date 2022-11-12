@@ -198,7 +198,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:2] 8;[bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
 		E.db["actionbar"]["bar4"]["paging"]["SHAMAN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[form:1] 7;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;[stance:1] 7;  [stance:2] 8; [stance:3] 9;"
+		E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;[stance:1] 7; [stance:2] 8; [stance:3] 9;"
 		E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11; [bonusbar:1] 7;"
 	end
 
@@ -905,6 +905,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["g"] = 1
 	E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["r"] = 1
 	E.db["unitframe"]["units"]["player"]["castbar"]["tickColor"]["a"] = 0.80000001192093
+	E.db["unitframe"]["units"]["player"]["castbar"]["timeToHold"] = 0.6
 	E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 136
 	E.db["unitframe"]["units"]["player"]["classbar"]["fill"] = "spaced"
 	E.db["unitframe"]["units"]["player"]["colorOverride"] = "FORCE_OFF"
@@ -953,7 +954,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["player"]["pvp"]["position"] = "CENTER"
 	E.db["unitframe"]["units"]["player"]["pvp"]["text_format"] = ""
 	E.db["unitframe"]["units"]["player"]["raidRoleIcons"]["xOffset"] = -1
-	E.db["unitframe"]["units"]["player"]["raidRoleIcons"]["yOffset"] = -4
+	E.db["unitframe"]["units"]["player"]["raidRoleIcons"]["yOffset"] = -2
 	E.db["unitframe"]["units"]["player"]["raidicon"]["attachTo"] = "RIGHT"
 	E.db["unitframe"]["units"]["player"]["raidicon"]["attachToObject"] = "Health"
 	E.db["unitframe"]["units"]["player"]["raidicon"]["size"] = 20
@@ -1248,6 +1249,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["target"]["castbar"]["iconSize"] = 29
 	E.db["unitframe"]["units"]["target"]["castbar"]["iconXOffset"] = 0
 	E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 243
+	E.db["unitframe"]["units"]["target"]["castbar"]["timeToHold"] = 1
 	E.db["unitframe"]["units"]["target"]["debuffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["target"]["debuffs"]["countFontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["target"]["debuffs"]["height"] = 25

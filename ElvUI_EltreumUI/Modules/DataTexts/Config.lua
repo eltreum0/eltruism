@@ -23,7 +23,7 @@ local function EltruismConfigOnClick(_, button)
 	if InCombatLockdown() then UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r") end
 	if not InCombatLockdown() then
 		if button == 'LeftButton' then
-			E:ToggleOptionsUI()
+			E:ToggleOptions()
 			E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
 		elseif button == 'RightButton' then
 			E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)

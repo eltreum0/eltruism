@@ -1,6 +1,35 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.5.8.1
+Fixed a Version Check Popup
+### 3.5.8
+Added custom textures to group units castbars\
+Added /eltruismdebug command, which will disable all addons besides ElvUI/Eltruism/Addonskins/BugSack in order to make it easier to troubleshoot errors, thank you Luckyone for allowing its usage\
+Added [name:eltruism:gradient] tag, which will turn names into a gradient text color based on class or reaction\
+Added [name:eltruism:gradientshort] tag, which do the same as [name:eltruism:gradient] but shorten names that have more than 16 characters\
+Added Chromie to Portrait Fix\
+Fixed an error with gradient castbars custom colors\
+Updated EltruismExecute nameplate style filter with a check for the player having talents in Retail\
+Updated multiple references to new ElvUI format (Elvui/ElvUI Options/ElvUI Libraries)\
+Updated BattleGroundEnemies profile to not overlap as much in 40man Battlegrounds
+### 3.5.7
+Added a workaround fix for the Custom Textures issue in Retail, allowing the usage of Custom Textures again\
+Added fallback colors for Power Types that are not used in the Gradient Power function\
+Added a button in Eltruism > Installer to set general ElvUI settings\
+Added a few more missing models\
+Added a few missing shadows\
+Updated EltreumDebuff nameplate style filter to be disabled by default since when its empty it triggers everywhere, you can enable and add debuffs as needed and it will work correctly afterwards\
+Updated Gradient functions to use a different type of Color Mixin to decrease memory usage that was introduced in 10.0\
+Updated EltreumInterrupt nameplate style filter to use health color instead of texture due to an issue with Textures\
+Updated Objective Tracker Anchor to only run when other quest addons are not running\
+Updated Delete Item function following Simpy's recommendations\
+Updated files for new ElvUI oUF11\
+Updated German locale by DLarge\
+Fixed Quests Skin not fitting correctly and sometimes not showing depending on difficulty\
+Fixed a possible wrong color in the Interrupted Gradient CastBar in Classic/Wrath\
+Fixed Aurabars colors when Gradient Aurabars were disabled\
+Fixed a possible error with mail sound
 ### 3.5.6.1
 Added an option to disable the Objective Frame Anchor\
 Reverted the Objective Frame Taint Fix as it was causing problems for some but not all
@@ -848,7 +877,7 @@ Fixed a possible error when importing Dynamic Status Icons and Capping profiles\
 Fixed an error during install due to a database change in Windtools
 ___
 ### 3.0.6
-Added  tooltip header font setting due to ElvUI update\
+Added tooltip header font setting due to ElvUI update\
 Added Eltruism's logo to the options list\
 Added new media, including fonts and sounds\
 Updated Windtools profile and Shadow and Light profile due to new features introduced in Windtools\

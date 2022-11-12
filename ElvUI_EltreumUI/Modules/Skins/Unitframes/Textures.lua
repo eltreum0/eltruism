@@ -47,7 +47,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name)
 		unitframe = _G["ElvUF_"..name]
 		if unitframe and unitframe.Health then
 			unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
-			if E.db.ElvUI_EltreumUI.unitframes.lightmode then ---TODO confirm this is fine for dark mode
+			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 				--unitframe.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				unitframe.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				unitframe.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
@@ -114,7 +114,7 @@ end
 
 --set the textures for group units
 function ElvUI_EltreumUI:ApplyGroupCustomTexture(button)
-	if E.db.ElvUI_EltreumUI.unitframes.lightmode then ---TODO confirm this is fine for dark mode
+	if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 		--button.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 		button.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 		button.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
@@ -293,6 +293,7 @@ end]]
 if E.Retail then
 	if not E.private.ElvUI_EltreumUI then return end
 	if not E.private.ElvUI_EltreumUI.install_version then return end
+	if not E.db.ElvUI_EltreumUI then return end
 	if not E.db.ElvUI_EltreumUI.unitframes then return end
 	if E.db.ElvUI_EltreumUI.unitframes.darkmode then
 		hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.CustomTexture) --is causing "blinking"/"flashing" issues in 10.0
@@ -301,8 +302,18 @@ if E.Retail then
 		test:RegisterEvent("PLAYER_TARGET_CHANGED")
 		test:RegisterEvent("GROUP_ROSTER_UPDATE")
 		test:RegisterEvent("PLAYER_ENTERING_WORLD")
+		test:RegisterEvent("PLAYER_ROLES_ASSIGNED")
+		test:RegisterEvent("LOADING_SCREEN_DISABLED")
+		test:RegisterEvent("CINEMATIC_STOP")
+		test:RegisterEvent("INSTANCE_GROUP_SIZE_CHANGED")
+		test:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 		--test:RegisterEvent("UNIT_HEALTH")
 		test:RegisterUnitEvent("UNIT_TARGET", "target")
+		test:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player")
+		test:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+		test:RegisterUnitEvent("UNIT_MODEL_CHANGED", "target")
+		test:RegisterUnitEvent("UNIT_PET", "player")
+		test:RegisterUnitEvent("UNIT_FLAGS", "player")
 		test:SetScript("OnEvent", function()
 			if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications and (E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or (not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.uftextureversion ~= "NONE") or (E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture)) then
 				ElvUI_EltreumUI:CustomTexture("player")

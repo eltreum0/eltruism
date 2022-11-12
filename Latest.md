@@ -1,24 +1,11 @@
-### 3.5.6.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.5.8.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added multiple checks for frames being loaded due to a change in the Retail API\
-Added various Evoker features such as backgrounds, crest and others\
-Added an option to disable the Objective Frame Anchor\
-Added more missing enchants to Sockets in Wrath\
-Added more models to the Portrait Rotation Fix\
-Added a skin to Mythic Plus Key Timers\
-Added more missing shadows\
-Updated ElvUI Nameplate Cast Target to shorten spell names as to not overlap the cast timer, and also color the target per class/reaction\
-Updated Character Panel Skin in Retail with a new method to detect number of stats\
-Updated EltreumExecute Nameplate Style filters with new Execute thresholds\
-Updated Objective Frame mover adding more guards against taints\
-Updated Gradient Nameplates to better detect Style Filters\
-Updated Combo Point Colors and Chi Colors\
-Updated Quest Hiding in Retail\
-Updated GladiusEX profile\
-Updated German translations by DLarge\
-Updated Pet debuffs and buffs positions\
-Fixed an issue where Information Panel On Top didn't have the correct Portrait settings after the 3D Portrait fix\
-Fixed a possible issue when using borders with ElvUI action bars disabled\
-Fixed Rogue not auto opening the Order Hall\
-Fixed Arena Frames not Hiding\
-Reverted the Objective Frame Taint Fix as it was causing problems for some but not all
+Added custom textures to group units castbars\
+Added /eltruismdebug command, which will disable all addons besides ElvUI/Eltruism/Addonskins/BugSack in order to make it easier to troubleshoot errors, thank you Luckyone for allowing its usage\
+Added [name:eltruism:gradient] tag, which will turn names into a gradient text color based on class or reaction\
+Added [name:eltruism:gradientshort] tag, which do the same as [name:eltruism:gradient] but shorten names that have more than 16 characters\
+Added Chromie to Portrait Fix\
+Fixed an error with gradient castbars custom colors\
+Updated EltruismExecute nameplate style filter with a check for the player having talents in Retail\
+Updated multiple references to new ElvUI format (Elvui/ElvUI Options/ElvUI Libraries)\
+Updated BattleGroundEnemies profile to not overlap as much in 40man Battlegrounds

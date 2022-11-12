@@ -30,10 +30,10 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 		whileDead = 1,
 		hideOnEscape = false,
 	}
-	if E.version < 12.99 then
+	if E.version < 13.01 then
 		E:StaticPopup_Show('ELVUIVERSIONCHECK')
 		ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
-	--[[elseif E.version > 13.02 then
+	--[[elseif E.version ~= 13.01 then
 		E:StaticPopup_Show('ELVUIVERSIONCHECK2')
 		ElvUI_EltreumUI:Print("Your ElvUI version is newer than Eltruism, you might run into issues unless you update Eltruism!")]]
 	end
@@ -109,6 +109,10 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = true
 			E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
 		end]]
+	end
+
+	if E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA then
+		ElvUI_EltreumUI:Print("You are using WeakAuras mode for ActionBars. If you wish to stop using it, make sure to disable by typing /eltruism weakauras or disabling it in the options, failing to do can cause errors")
 	end
 
 	if E.private.ElvUI_EltreumUI.install_version and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then

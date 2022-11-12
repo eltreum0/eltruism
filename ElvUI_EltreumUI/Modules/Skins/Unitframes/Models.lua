@@ -61,7 +61,7 @@ elseif E.Wrath then
 		["HUNTER"] = "environments/stars/hellfireskybox.m2",
 		["SHAMAN"] = "environments/stars/icecrownsky.m2",
 		["PRIEST"] = "spells/christmassnowrain.m2",
-		["DEATHKNIGHT"] = "spells/nefarianflamebreath.m2", --"spells/redradiationfog.m2", --"spells/frostbreath.m2",  --world/generic/passivedoodads/particleemitters/aurared.m2 , "environments/stars/bladesedgeskybox.m2"
+		["DEATHKNIGHT"] = "spells/nefarianflamebreath.m2", --"spells/redradiationfog.m2", --"spells/frostbreath.m2", --world/generic/passivedoodads/particleemitters/aurared.m2 , "environments/stars/bladesedgeskybox.m2"
 		["WARRIOR"] = "spells/flamebreath.m2", --spells/disarm_impact_chest.m2
 		["ROGUE"] = "environments/stars/shadowmoonillidan.m2",
 		["WARLOCK"] = "environments/stars/nagrandskybox.m2",

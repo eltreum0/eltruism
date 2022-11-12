@@ -18,6 +18,8 @@ local UseContainerItem = _G.UseContainerItem --TODO UseContainerItem DRAGONFLIGH
 -- Register on init
 function ElvUI_EltreumUI:LoadCommands()
 	self:RegisterChatCommand('eltruism', 'RunCommands')
+	self:RegisterChatCommand('eltruismdebug', 'DebugMode')
+
 	--add to moveui table
 	if not self.ConfigModeAddedEltruism then
 		tinsert(E.ConfigModeLayouts, #(E.ConfigModeLayouts) + 1, "ELTREUMUI")
@@ -59,7 +61,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 			CombatText_AddMessage("|T ".. 136176 ..":22:22:-11:-11:64:64:5:59:5:59|t|t  ".."Eltruism Loot is currently disabled!", CombatText_StandardScroll, 255, 255, 255)
 		end
 	elseif message == 'config' or message == 'options' or message == '' then
-		E:ToggleOptionsUI()
+		E:ToggleOptions()
 		E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
 	elseif message == 'dev' then
 		if E.db.ElvUI_EltreumUI.dev == false then
@@ -137,16 +139,20 @@ function ElvUI_EltreumUI:RunCommands(message)
 			ElvUI_EltreumUI:GreyBg()
 		end
 	elseif message == 'secretbgtest' then
-		local valuecolors = E:ClassColor(E.myclass, true)
-		ElvUI_EltreumUI:Print("Secret test background color, backdrop updated")
-		--E.db.general.backdropcolor.b = 0.10
-		--E.db.general.backdropcolor.g = 0.10
-		--E.db.general.backdropcolor.r = 0.10
-
-		E.db.general.backdropcolor.b = valuecolors.b*0.14
-		E.db.general.backdropcolor.g = valuecolors.g*0.14
-		E.db.general.backdropcolor.r = valuecolors.r*0.14
-		--E:UpdateBackdropColors()
+		if not E.db.ElvUI_EltreumUI.otherstuff.colorbg then
+			local valuecolors = E:ClassColor(E.myclass, true)
+			E.db.ElvUI_EltreumUI.otherstuff.colorbg = true
+			E.db.general.backdropcolor.b = valuecolors.b*0.3
+			E.db.general.backdropcolor.g = valuecolors.g*0.3
+			E.db.general.backdropcolor.r = valuecolors.r*0.3
+			ElvUI_EltreumUI:Print("Secret test class color background. Backdrop updated, type /eltruism secretbgtest again to disable")
+		else
+			E.db.general.backdropcolor.b = 0.098039215686275
+			E.db.general.backdropcolor.g = 0.098039215686275
+			E.db.general.backdropcolor.r = 0.098039215686275
+			E.db.ElvUI_EltreumUI.otherstuff.colorbg = false
+			ElvUI_EltreumUI:Print("Disabled Class Color background, using default background color instead.")
+		end
 		E:UpdateMediaItems()
 	elseif message == 'modeldebug' then
 		if E.db.unitframe.units.target.portrait.enable and E.db.unitframe.units.target.portrait.style == "3D" and UnitExists("target") then
@@ -172,12 +178,47 @@ function ElvUI_EltreumUI:RunCommands(message)
 		print("|cff82B4ff/eltruism color|r - Toggles unitframe between light and dark modes")
 		print("|cff82B4ff/eltruism gradient|r - Activates gradient mode")
 		print("|cff82B4ff/eltruism chat|r - Toggles chat between dark and transparent modes")
+		print("|cff82B4ff/eltruismdebug on/off|r - Toggles debug mode where addons will be disabled/enabled for troubleshooting")
 		print("|cff82B4ff/eltruism weakauras|r - Toggles actionbars to be similart o WeakAuras, will overwrite settings")
 	end
 end
 
---Adapted from Luckyone's +keys as requested by khornan
+--ty luckyone for allowing me to use this
+local AddOns = {
+	ElvUI = true,
+	ElvUI_Libraries = true,
+	ElvUI_Options = true,
+	ElvUI_EltreumUI = true,
+	AddOnSkins = true,
+	BugGrabber = true,
+	BugSack = true,
+}
+function ElvUI_EltreumUI:DebugMode(message)
+	local switch = strlower(message)
+	if switch == 'on' then
+		for i = 1, GetNumAddOns() do
+			local name = GetAddOnInfo(i)
+			if not AddOns[name] and E:IsAddOnEnabled(name) then
+				DisableAddOn(name, E.myname)
+				ElvDB.EltruismDisabledAddOns[name] = i
+			end
+		end
+		SetCVar('scriptErrors', 1)
+		ReloadUI()
+	elseif switch == 'off' then
+		if next(ElvDB.EltruismDisabledAddOns) then
+			for name in pairs(ElvDB.EltruismDisabledAddOns) do
+				EnableAddOn(name, E.myname)
+			end
+			wipe(ElvDB.EltruismDisabledAddOns)
+			ReloadUI()
+		end
+	else
+		ElvUI_EltreumUI:Print("Usage: /eltruismdebug on or /eltruismdebug off, to enable or disable debug mode")
+	end
+end
 
+--Adapted from Luckyone's +keys as requested by khornan
 -- keystone id tables and keys table with stored keys
 local ids = {
 	[138019] = true, -- Legion
@@ -189,7 +230,6 @@ local ids = {
 }
 local keys = {
 }
-
 function ElvUI_EltreumUI:Keys(event,message)
 	if E.Wrath or E.Classic then
 		return

@@ -302,7 +302,7 @@ function ElvUI_EltreumUI:CastCursor()
 
 				--set gradient on casts
 				if E.db.ElvUI_EltreumUI.cursors.cursorcast.gradient then
-					if frame:GetName() == 'EltruismCursorCast' then  --would likely be better to rewrite to use a mask instead of coords since that would also end up with better clipping, but would need a rework
+					if frame:GetName() == 'EltruismCursorCast' then --would likely be better to rewrite to use a mask instead of coords since that would also end up with better clipping, but would need a rework
 						tex:SetVertexColor(1, 1, 1)
 						if i == 1 then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then

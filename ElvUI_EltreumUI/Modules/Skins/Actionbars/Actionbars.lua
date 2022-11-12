@@ -1,6 +1,8 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local AB = E:GetModule('ActionBars')
-local LCG = E.Libs.CustomGlow
+--local LCG = E.Libs.CustomGlow
+local LCG = LibStub('LibCustomGlow-1.0')
+local customglow = LibStub("LibButtonGlow-1.0")
 local classcolor = E:ClassColor(E.myclass, true)
 local skillglowcolor
 local _G = _G
@@ -33,30 +35,30 @@ function ElvUI_EltreumUI:SkillGlow()
 		if E.Retail then
 			if not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 				if E.db.ElvUI_EltreumUI.glow.pixel then
-					function LCG.ShowOverlayGlow(button)
+					function customglow.ShowOverlayGlow(button)
 						if button:GetAttribute("type") == "action" then
 							LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
 						end
 					end
-					function LCG.HideOverlayGlow(button)
+					function customglow.HideOverlayGlow(button)
 						LCG.PixelGlow_Stop(button)
 					end
 				elseif E.db.ElvUI_EltreumUI.glow.autocast then
-					function LCG.ShowOverlayGlow(button)
+					function customglow.ShowOverlayGlow(button)
 						if button:GetAttribute("type") == "action" then
 							LCG.AutoCastGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 						end
 					end
-					function LCG.HideOverlayGlow(button)
+					function customglow.HideOverlayGlow(button)
 						LCG.AutoCastGlow_Stop(button)
 					end
 				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-					function LCG.ShowOverlayGlow(button)
+					function customglow.ShowOverlayGlow(button)
 						if button:GetAttribute("type") == "action" then
 							LCG.ButtonGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
 						end
 					end
-					function LCG.HideOverlayGlow(button)
+					function customglow.HideOverlayGlow(button)
 						LCG.ButtonGlow_Stop(button)
 					end
 				end
@@ -84,7 +86,7 @@ function ElvUI_EltreumUI:SkillGlow()
 				--set the sizes differently depending on type because blizz glow is not nice
 				if E.db.ElvUI_EltreumUI.glow.pixel or E.db.ElvUI_EltreumUI.glow.autocast then
 					totemglow1:SetAllPoints(_G["ElvUF_PlayerTotem2"])
-					totemglow2:SetAllPoints(_G["ElvUF_PlayerTotem1"])  --earth and fire got inverted
+					totemglow2:SetAllPoints(_G["ElvUF_PlayerTotem1"]) --earth and fire got inverted
 					totemglow3:SetAllPoints(_G["ElvUF_PlayerTotem3"])
 					totemglow4:SetAllPoints(_G["ElvUF_PlayerTotem4"])
 				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
@@ -286,7 +288,7 @@ function ElvUI_EltreumUI:SkillGlow()
 					[20909] = true,
 					[19306] = true,
 
-					--[[--exorcism  --different in wrath
+					--[[--exorcism --different in wrath
 					[27138] = true,
 					[10314] = true,
 					[10313] = true,

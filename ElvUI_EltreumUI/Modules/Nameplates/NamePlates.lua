@@ -2,7 +2,8 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
-local LCG = E.Libs.CustomGlow
+--local LCG = E.Libs.CustomGlow
+local LCG = LibStub('LibCustomGlow-1.0')
 local classcolor = E:ClassColor(E.myclass, true)
 local glowcolor
 local hooksecurefunc = _G.hooksecurefunc
@@ -51,11 +52,11 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 				button:Hide()
 			end]]
 			if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable then
-				button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
+				button.Icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 			end
-			button.cd:SetFrameStrata('DIALOG')
+			button.Cooldown:SetFrameStrata('DIALOG')
 			TimeSinceLastUpdate = 0
-			if not button.cd then
+			if not button.Cooldown then
 				if E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow then
 					if E.db.ElvUI_EltreumUI.glow.pixel then
 						LCG.PixelGlow_Stop(button)
@@ -66,7 +67,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 					end
 				end
 			else
-				button.cd:SetScript('OnUpdate', function(self, elapsed)
+				button.Cooldown:SetScript('OnUpdate', function(self, elapsed)
 					TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 					if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 						TimeSinceLastUpdate = 0
@@ -81,16 +82,16 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 						end
 
 						--print("np button spam "..math.random(1,99))
-						if button.cd.timer then
+						if button.Cooldown.timer then
 							if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
-								button.cd:SetSwipeColor(0, 0, 0, 0)
-								button.cd:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Testing")
+								button.Cooldown:SetSwipeColor(0, 0, 0, 0)
+								button.Cooldown:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Testing")
 							end
 							if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable then
-								button.cd.timer.text:ClearAllPoints()
-								button.cd.timer.text:SetPoint("TOP", button.icon, "TOP", 0, 5)
+								button.Cooldown.timer.text:ClearAllPoints()
+								button.Cooldown.timer.text:SetPoint("TOP", button.Icon, "TOP", 0, 5)
 							end
-							debufftime = tonumber(button.cd.timer.text:GetText())
+							debufftime = tonumber(button.Cooldown.timer.text:GetText())
 							if E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow then
 								if debufftime ~= nil and debufftime <= E.db.ElvUI_EltreumUI.glow.numberdebuff and debufftime > 0 then
 									if E.db.ElvUI_EltreumUI.glow.pixel then
@@ -112,7 +113,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 								end
 							end
 						else
-							if E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow and (button.cd == nil or button.cd.timer == nil) then
+							if E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow and (button.Cooldown == nil or button.Cooldown.timer == nil) then
 								if E.db.ElvUI_EltreumUI.glow.pixel then
 									LCG.PixelGlow_Stop(button)
 								elseif E.db.ElvUI_EltreumUI.glow.autocast then
@@ -125,10 +126,10 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 					end
 				end)
 			end
-			button.count:SetParent(button.cd)
+			button.Count:SetParent(button.Cooldown)
 			if E.Wrath or E.Wrath or E.Classic then
 				if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable then
-					button.count:Point('BOTTOMRIGHT', 2, -3) --elvui added a setting for it but its missing some things
+					button.Count:Point('BOTTOMRIGHT', 2, -3) --elvui added a setting for it but its missing some things
 				end
 			end
 		end
@@ -143,26 +144,26 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 		if not string.find(unit, "nameplate") then
 			return
 		else
-			button.icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
+			button.Icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 			TimeSinceLastUpdate = 0
-			button.cd:SetScript('OnUpdate', function(self, elapsed)
+			button.Cooldown:SetScript('OnUpdate', function(self, elapsed)
 				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 					TimeSinceLastUpdate = 0
-					if button.cd.timer then
+					if button.Cooldown.timer then
 						if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
-							button.cd:SetSwipeColor(0, 0, 0, 0)
-							button.cd:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Testing")
+							button.Cooldown:SetSwipeColor(0, 0, 0, 0)
+							button.Cooldown:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Testing")
 						end
-						button.cd:SetEdgeTexture("Interface\\Cooldown\\edge",1,1,1,1)
-						button.cd.timer.text:ClearAllPoints()
-						button.cd.timer.text:SetDrawLayer('OVERLAY',1)
-						button.cd.timer.text:Point("TOP", button.icon, "TOP", 0, 5)
+						button.Cooldown:SetEdgeTexture("Interface\\Cooldown\\edge",1,1,1,1)
+						button.Cooldown.timer.text:ClearAllPoints()
+						button.Cooldown.timer.text:SetDrawLayer('OVERLAY',1)
+						button.Cooldown.timer.text:Point("TOP", button.Icon, "TOP", 0, 5)
 					end
 				end
 			end)
-			button.count:SetParent(button.cd)
-			button.count:Point('BOTTOMRIGHT', 2, -3)
+			button.Count:SetParent(button.Cooldown)
+			button.Count:Point('BOTTOMRIGHT', 2, -3)
 		end
 	end
 	if UnitExists(unit) then
@@ -172,8 +173,8 @@ end
 
 function ElvUI_EltreumUI:Construct_Auras(nameplate)
 	if E.private.nameplates.enable and (E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable or E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow) then
-		nameplate.Buffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIconBuff
-		nameplate.Debuffs.PostUpdateIcon = ElvUI_EltreumUI.PostUpdateIconDebuff
+		nameplate.Buffs.PostUpdateButton = ElvUI_EltreumUI.PostUpdateIconBuff
+		nameplate.Debuffs.PostUpdateButton = ElvUI_EltreumUI.PostUpdateIconDebuff
 	end
 end
 hooksecurefunc(NP, "Construct_Auras", ElvUI_EltreumUI.Construct_Auras)
@@ -602,11 +603,19 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] and E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] then
 			if E.Retail then
 				if E.myclass == "WARRIOR" then
-					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20 --20% arms, 35% fury (with talent)
+					if IsPlayerSpell(206315) then --fury massacre talent
+						E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35
+					else
+						E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20
+					end
 				elseif E.myclass == "DEATHKNIGHT" then
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35 -- with soul reaper talent
 				elseif E.myclass == "MAGE" then
-					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.30 --30% fire, 35% arcane barrage (talent)
+					if IsPlayerSpell(384581) then --arcane bombarbment talent
+						E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35
+					else
+						E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.30
+					end
 				elseif E.myclass == "HUNTER" or E.myclass == "WARLOCK" or E.myclass == "PALADIN" or E.myclass == "PRIEST" then
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20
 				elseif E.myclass == "MONK" then

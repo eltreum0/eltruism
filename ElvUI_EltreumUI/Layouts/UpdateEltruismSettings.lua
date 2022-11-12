@@ -75,13 +75,6 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "V2"
 	E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect = true
 
-	if E.Retail then
-		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "NONE" --same
-		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = true --while the issue is not resolved
-		end
-	end
-
 	-- Skins
 	E.db.ElvUI_EltreumUI.skins.levelbossinstance = true
 	E.db.ElvUI_EltreumUI.skins.widertransmog = true

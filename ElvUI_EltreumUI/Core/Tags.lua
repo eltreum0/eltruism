@@ -554,33 +554,33 @@ E:AddTagInfo("eltruism:smartlevel", ElvUI_EltreumUI.Name, L["Shows level differe
 
 --ty a lot azilroka
 local stanceID = {
-    DEATHKNIGHT = {
-        [1] = not E.Retail and GetSpellInfo(48266),
-        [2] = not E.Retail and GetSpellInfo(48263),
-        [3] = not E.Retail and GetSpellInfo(48265),
-    },
-    PALADIN = {
-        [1] = E.Retail and GetSpellInfo(32223) or GetSpellInfo(465),
-        [2] = E.Retail and GetSpellInfo(465) or GetSpellInfo(7294),
-        [3] = E.Retail and GetSpellInfo(317920) or GetSpellInfo(19746),
-        [4] = E.Retail and GetSpellInfo(183435) or GetSpellInfo(19876),
-        [5] = not E.Retail and GetSpellInfo(19888),
-        [6] = not E.Retail and GetSpellInfo(19891),
-        [7] = not E.Retail and GetSpellInfo(32223),
-    },
-    WARRIOR = {
-        [1] = not E.Retail and GetSpellInfo(2457),
-        [2] = not E.Retail and GetSpellInfo(71),
-        [3] = not E.Retail and GetSpellInfo(2458),
-    }
+	DEATHKNIGHT = {
+		[1] = not E.Retail and GetSpellInfo(48266),
+		[2] = not E.Retail and GetSpellInfo(48263),
+		[3] = not E.Retail and GetSpellInfo(48265),
+	},
+	PALADIN = {
+		[1] = E.Retail and GetSpellInfo(32223) or GetSpellInfo(465),
+		[2] = E.Retail and GetSpellInfo(465) or GetSpellInfo(7294),
+		[3] = E.Retail and GetSpellInfo(317920) or GetSpellInfo(19746),
+		[4] = E.Retail and GetSpellInfo(183435) or GetSpellInfo(19876),
+		[5] = not E.Retail and GetSpellInfo(19888),
+		[6] = not E.Retail and GetSpellInfo(19891),
+		[7] = not E.Retail and GetSpellInfo(32223),
+	},
+	WARRIOR = {
+		[1] = not E.Retail and GetSpellInfo(2457),
+		[2] = not E.Retail and GetSpellInfo(71),
+		[3] = not E.Retail and GetSpellInfo(2458),
+	}
 }
 E:AddTag("eltruism:stance", 'UNIT_AURA', function(unit)
-    local stance = GetShapeshiftForm()
-    local stanceInfo = stanceID[E.myclass] and stanceID[E.myclass][stance]
+	local stance = GetShapeshiftForm()
+	local stanceInfo = stanceID[E.myclass] and stanceID[E.myclass][stance]
 
-    if stanceInfo then
-        return stanceInfo, tostring(stance)
-    end
+	if stanceInfo then
+		return stanceInfo, tostring(stance)
+	end
 end)
 E:AddTagInfo("eltruism:stance", ElvUI_EltreumUI.Name, L["Shows the current stance"])
 
@@ -851,70 +851,49 @@ E:AddTag("eltruism:pchpdeficit", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE", 
 end)
 E:AddTagInfo("eltruism:pchpdeficit", ElvUI_EltreumUI.Name, L["Displays current health percentage and health lost in shortvalue"])
 
---[[
---role icons
-local roleicons = {
-	[1] = {
-		["TANK"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga',
-		["HEALER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy.tga',
-		["DAMAGER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword.tga',
-	},
-	[2] ={
-		["TANK"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\Tank.tga',
-		["HEALER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\Healer.tga',
-		["DAMAGER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\DPS.tga',
-	},
-	[3] ={
-		["TANK"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\Tank.tga',
-		["HEALER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\Healer.tga',
-		["DAMAGER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\DPS.tga',
-	},
-	[3] = {
-		["TANK"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\Tank.tga',
-		["HEALER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\Healer.tga',
-		["DAMAGER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\DPS.tga',
-	},
-	[4] = {
-		["TANK"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Tank.tga',
-		["HEALER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Healer.tga',
-		["DAMAGER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\DPS.tga',
-	},
-	[5] = {
-		["TANK"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Tank.tga',
-		["HEALER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Healer.tga',
-		["DAMAGER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\DPS.tga',
-	},
-	[6] = {
-		["TANK"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Tank.tga',
-		["HEALER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer.tga',
-		["DAMAGER"] = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS.tga',
-	},
-}
-E:AddTag("eltruism:role", 'ROLE_CHANGED_INFORM PLAYER_ROLES_ASSIGNED TALENT_GROUP_ROLE_CHANGED', function(unit,_,args)
-	local iconnumber = strsplit(':', args or '')
-	if not unit then unit = "player" end
-	if unit then
-		if (E.Retail or E.Wrath) then
-			local role
-			if E.Retail then
-				local currentSpec = GetSpecialization()
-				if currentSpec then
-					role = GetSpecializationRole(currentSpec)
-				end
-			elseif E.Wrath then
-				role = GetTalentGroupRole(GetActiveTalentGroup())
-			end
-			if role then
-				if role == 'HEALER' then
-					return '|T'..roleicons[iconnumber]["HEALER"]..':0:0:0:0|t'
-				elseif role == 'DAMAGER' then
-					return '|T'..roleicons[iconnumber]["DAMAGER"]..':0:0:0:0|t'
-				elseif role == 'TANK' then
-					return '|T'..roleicons[iconnumber]["TANK"]..':0:0:0:0|t'
-				end
-			end
+--gradient name
+E:AddTag("name:eltruism:gradient", "UNIT_NAME_UPDATE", function(unit)
+	local name = UnitName(unit)
+	local _, unitClass = UnitClass(unit)
+
+	if UnitIsPlayer(unit) then
+		return ElvUI_EltreumUI:GradientName(name, unitClass)
+	elseif not UnitIsPlayer(unit) then
+		local reaction = UnitReaction(unit, "player")
+		if reaction >= 5 then
+			return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY")
+		elseif reaction == 4 then
+			return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL")
+		elseif reaction == 3 then
+			return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY")
+		elseif reaction == 2 or reaction == 1 then
+			return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE")
 		end
 	end
 end)
-E:AddTagInfo("eltruism:role", ElvUI_EltreumUI.Name, L["Displays current role"])
-]]
+E:AddTagInfo("name:eltruism:gradient", ElvUI_EltreumUI.Name, L["Displays unit name in gradient class color or reaction color"])
+
+--gradient name abbreviate
+E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit)
+	local name = UnitName(unit)
+	local _, unitClass = UnitClass(unit)
+	if name and string.len(name) > 16 then
+		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
+	end
+
+	if UnitIsPlayer(unit) then
+		return ElvUI_EltreumUI:GradientName(name, unitClass)
+	elseif not UnitIsPlayer(unit) then
+		local reaction = UnitReaction(unit, "player")
+		if reaction >= 5 then
+			return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY")
+		elseif reaction == 4 then
+			return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL")
+		elseif reaction == 3 then
+			return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY")
+		elseif reaction == 2 or reaction == 1 then
+			return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE")
+		end
+	end
+end)
+E:AddTagInfo("name:eltruism:gradientshort", ElvUI_EltreumUI.Name, L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
