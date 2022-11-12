@@ -1021,10 +1021,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			ClassCrestFrame:SetSize(256, 256)
 			ClassCrestFrame:SetPoint("CENTER", CharacterModelScene, 0, 50)
 			ClassCrestFrame:SetParent(CharacterFrame)
-			if not E.myclass == "EVOKER" then
-				ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
-			else
+			if E.myclass == "EVOKER" then
 				ClassCrestFrameTexture:SetTexture(classCrests[E.myclass])
+			else
+				ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
 			end
 			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
 			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
