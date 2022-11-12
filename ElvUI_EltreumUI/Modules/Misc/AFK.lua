@@ -122,6 +122,9 @@ end
 --add Eltruism logo to elvui afk screen
 local EltruismAFKLogo = CreateFrame("Frame", "EltruismAFKLogo", UIParent)
 local EltruismAFKLogoTexture = EltruismAFKLogo:CreateTexture()
+local EltruismAFKVignette = CreateFrame("Frame", "EltruismAFKVignette", UIParent)
+local EltruismAFKVignetteTexture = EltruismAFKVignette:CreateTexture()
+
 local EltruismAFKTop = CreateFrame('Frame', nil, EltruismAFKLogo)
 EltruismAFKLogo:Hide()
 function ElvUI_EltreumUI:AFKLogo()
@@ -132,6 +135,13 @@ function ElvUI_EltreumUI:AFKLogo()
 		EltruismAFKLogo:SetFrameStrata("DIALOG")
 		EltruismAFKLogoTexture:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohq")
 		EltruismAFKLogoTexture:SetAllPoints(EltruismAFKLogo)
+
+		EltruismAFKVignette:SetSize(E.screenWidth,E.screenHeight)
+		EltruismAFKVignette:SetAllPoints(_G.ElvUIAFKFrame)
+		EltruismAFKVignette:SetParent(_G.ElvUIAFKFrame)
+		EltruismAFKVignette:SetFrameStrata("BACKGROUND")
+		EltruismAFKVignetteTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\StealthOverlay.tga")
+		EltruismAFKVignetteTexture:SetAllPoints(EltruismAFKVignette)
 
 		EltruismAFKTop:SetFrameLevel(0)
 		EltruismAFKTop:SetTemplate('Transparent')
@@ -144,8 +154,10 @@ function ElvUI_EltreumUI:AFKLogo()
 			EltruismAFKLogo:SetParent(_G.ElvUIAFKFrame.bottom)
 			if UnitIsAFK("player") then
 				EltruismAFKLogo:Show()
+				EltruismAFKVignette:Show()
 			else
 				EltruismAFKLogo:Hide()
+				EltruismAFKVignette:Hide()
 			end
 		end
 	end
