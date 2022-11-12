@@ -278,6 +278,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G.TimerTrackerTimer1StatusBar,
 			_G.TimerTrackerTimer2StatusBar,
 			_G.TimerTrackerTimer3StatusBar,
+			_G.RaidUtility_ShowButton,
 			--_G.ImmersionFrame.TalkBox,
 		}
 		for _, frame in pairs(blizzardframes) do
