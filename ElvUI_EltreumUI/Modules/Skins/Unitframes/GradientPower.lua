@@ -242,8 +242,10 @@ function ElvUI_EltreumUI:GradientPower()--(unit,r,g,b)
 					group = select(i, headergroup:GetChildren())
 					for j = 1, group:GetNumChildren() do
 						groupbutton = select(j, group:GetChildren())
-						if groupbutton and groupbutton.unit then
-							ElvUI_EltreumUI:ApplyGroupGradientPower(groupbutton)
+						if groupbutton and groupbutton.Power and groupbutton.unit then
+							if groupbutton.Power:IsVisible() then
+								ElvUI_EltreumUI:ApplyGroupGradientPower(groupbutton)
+							end
 						end
 					end
 				end
