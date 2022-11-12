@@ -185,13 +185,13 @@ end
 
 --ty luckyone for allowing me to use this
 local AddOns = {
-	ElvUI = true,
-	ElvUI_Libraries = true,
-	ElvUI_Options = true,
-	ElvUI_EltreumUI = true,
-	AddOnSkins = true,
-	BugGrabber = true,
-	BugSack = true,
+	["ElvUI"] = true,
+	["ElvUI_Libraries"] = true,
+	["ElvUI_Options"] = true,
+	["ElvUI_EltreumUI"] = true,
+	["AddOnSkins"] = true,
+	["!BugGrabber"] = true,
+	["BugSack"] = true,
 }
 function ElvUI_EltreumUI:DebugMode(message)
 	local switch = strlower(message)
