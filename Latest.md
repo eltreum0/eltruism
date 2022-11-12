@@ -1,4 +1,4 @@
-### 3.5.8 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.5.8.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
 Added custom textures to group units castbars\
 Added /eltruismdebug command, which will disable all addons besides ElvUI/Eltruism/Addonskins/BugSack in order to make it easier to troubleshoot errors, thank you Luckyone for allowing its usage\

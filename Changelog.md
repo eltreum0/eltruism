@@ -1,6 +1,8 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.5.8.1
+Fixed a Version Check Popup
 ### 3.5.8
 Added custom textures to group units castbars\
 Added /eltruismdebug command, which will disable all addons besides ElvUI/Eltruism/Addonskins/BugSack in order to make it easier to troubleshoot errors, thank you Luckyone for allowing its usage\
