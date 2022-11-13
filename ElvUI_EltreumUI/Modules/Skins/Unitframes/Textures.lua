@@ -314,6 +314,7 @@ if E.Retail then
 		test:RegisterUnitEvent("UNIT_TARGET", "target")
 		test:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player")
 		test:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+		test:RegisterUnitEvent("UNIT_PORTRAIT_UPDATE", "player")
 		test:RegisterUnitEvent("UNIT_MODEL_CHANGED", "target")
 		test:RegisterUnitEvent("UNIT_PET", "player")
 		test:RegisterUnitEvent("UNIT_FLAGS", "player")
