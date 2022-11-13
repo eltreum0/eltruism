@@ -80,7 +80,7 @@ local classicMusic = {
 	["Troll"] = 8452,
 }
 
--- with the help of Repooc, Simpy, Nihilistzsche and Acidweb (not in order :D)
+-- with the help of Repooc, Simpy and Acidweb (not in order :D)
 local musicSettingLoadingIn = C_CVar.GetCVar('Sound_EnableMusic')
 local musicSetting = musicSettingLoadingIn
 local classicmusicstopper = nil

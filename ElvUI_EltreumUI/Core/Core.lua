@@ -211,18 +211,18 @@ function ElvUI_EltreumUI:Anchors()
 		--position the anchor around the place where the action bars would be
 		EltreumWAAnchor:Size(250, 70)
 		--E:CreateMover(parent, name, textString, overlay, snapoffset, postdrag, types, shouldDisable, configString, ignoreSizeChanged)
-		E:CreateMover(EltreumWAAnchor, "MoverEltruismWA", "EltruismWA", nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
+		E:CreateMover(EltreumWAAnchor, "MoverEltruismWA", "EltruismWA", nil, nil, nil, "ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
 		--do it again
 		EltreumWAAnchor2:SetParent(_G["ElvUF_Player"])
 		EltreumWAAnchor2:SetFrameStrata("BACKGROUND")
 		EltreumWAAnchor2:Size(250, 70)
-		E:CreateMover(EltreumWAAnchor2, "MoverEltruismWA2", "EltruismWA2", nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
+		E:CreateMover(EltreumWAAnchor2, "MoverEltruismWA2", "EltruismWA2", nil, nil, nil, "ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
 
 		--consumable weakauras, usually placed near player unitframe
 		EltruismWAConsumablesAnchor:SetParent(_G["ElvUF_Player"])
 		EltruismWAConsumablesAnchor:SetFrameStrata("BACKGROUND")
 		EltruismWAConsumablesAnchor:Size(270, 30)
-		E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", L["EltruismConsumablesWA"], nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
+		E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", L["EltruismConsumablesWA"], nil, nil, nil, "ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
 	end
 
 	E:CreateMover(RaidWarningFrame, "MoverRaidWarningFrame", "Raid Warning Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
