@@ -1485,6 +1485,8 @@ end
 function ElvUI_EltreumUI:NameplateCVars()
 	SetCVar('nameplateOtherBottomInset', 0.02)
 	SetCVar('nameplateOtherTopInset', 0.1)
+	SetCVar('nameplateLargeBottomInset', 0.02)
+	SetCVar('nameplateLargeTopInset', 0.1)
 	SetCVar('nameplateTargetRadialPosition', 1)
 	SetCVar('nameplateLargerScale', 1.2)
 	SetCVar('nameplateMinScale', 1)

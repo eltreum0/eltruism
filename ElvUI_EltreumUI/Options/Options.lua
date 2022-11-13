@@ -4481,7 +4481,7 @@ function ElvUI_EltreumUI:Configtable()
 						step = 0.01,
 						width = "full",
 						get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset = value SetCVar('nameplateOtherBottomInset', value) end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset = value SetCVar('nameplateOtherBottomInset', value) SetCVar('nameplateLargeBottomInset', value) end,
 					},
 					nameplateOtherTopInset = {
 						type = 'range',
@@ -4493,7 +4493,7 @@ function ElvUI_EltreumUI:Configtable()
 						step = 0.01,
 						width = "full",
 						get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset = value SetCVar('nameplateOtherTopInset', value) end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset = value SetCVar('nameplateOtherTopInset', value) SetCVar('nameplateLargeTopInset', value) end,
 					},
 					header3 = {
 						order = 6,
