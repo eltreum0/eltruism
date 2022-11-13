@@ -36,30 +36,12 @@ do
 								end
 								if row.minha_tabela and row.minha_tabela.name then
 									unitclass = row.minha_tabela:class() --from details api returns class of that row
-									if unitclass ~='UNKNOW' and classes[unitclass] and row.minha_tabela:guid() then
+									if unitclass ~='UNKNOW' and classes[unitclass] then
 										if E.Retail then
 											if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-												if not row.minha_tabela.EltruismGUID then
-													row.minha_tabela.EltruismGUID = row.minha_tabela:guid()
-												end
-												if row.minha_tabela.EltruismGUID ~= row.minha_tabela:guid() then
-													row.minha_tabela.EltruismGUID = row.minha_tabela:guid()
-													row.minha_tabela.EltruismMinColor, row.minha_tabela.EltruismMaxColor = ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass)
-												end
-												if not row.minha_tabela.EltruismMinColor then row.minha_tabela.EltruismMinColor = ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass) end
-												if not row.minha_tabela.EltruismMaxColor then _, row.minha_tabela.EltruismMaxColor = ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass) end
-												row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, row.minha_tabela.EltruismMinColor, row.minha_tabela.EltruismMaxColor)
+												row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
 											else
-												if not row.minha_tabela.EltruismGUID then
-													row.minha_tabela.EltruismGUID = row.minha_tabela:guid()
-												end
-												if row.minha_tabela.EltruismGUID ~= row.minha_tabela:guid() then
-													row.minha_tabela.EltruismGUID = row.minha_tabela:guid()
-													row.minha_tabela.EltruismMinColor, row.minha_tabela.EltruismMaxColor = ElvUI_EltreumUI:GradientColorsDetails(unitclass)
-												end
-												if not row.minha_tabela.EltruismMinColor then row.minha_tabela.EltruismMinColor = ElvUI_EltreumUI:GradientColorsDetails(unitclass) end
-												if not row.minha_tabela.EltruismMaxColor then _, row.minha_tabela.EltruismMaxColor = ElvUI_EltreumUI:GradientColorsDetails(unitclass) end
-												row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, row.minha_tabela.EltruismMinColor, row.minha_tabela.EltruismMaxColor)
+												row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
 											end
 										else
 											if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
