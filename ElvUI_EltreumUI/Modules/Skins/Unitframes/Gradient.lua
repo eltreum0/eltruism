@@ -520,67 +520,12 @@ do
 		if buttonclass and button.Health then
 			button.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
 			groupbar = ElvUI_EltreumUI:UnitframeClassTexture(buttonclass)
-
-			if not button.EltruismUNIT then
-				button.EltruismUNIT = button.unit
-			end
-			if not button.EltruismMinColor then
-				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-						button.EltruismMinColor = ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, false)
-					else
-						button.EltruismMinColor = ElvUI_EltreumUI:GradientColors(buttonclass, false, false)
-					end
-				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-						button.EltruismMinColor = ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, true)
-					else
-						button.EltruismMinColor = ElvUI_EltreumUI:GradientColors(buttonclass, false, true)
-					end
-				end
-			end
-			if not button.EltruismMaxColor then
-				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-						_, button.EltruismMaxColor = ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, false)
-					else
-						_, button.EltruismMaxColor = ElvUI_EltreumUI:GradientColors(buttonclass, false, false)
-					end
-				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-						_, button.EltruismMaxColor = ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, true)
-					else
-						_, button.EltruismMaxColor = ElvUI_EltreumUI:GradientColors(buttonclass, false, true)
-					end
-				end
-			end
-			if button.EltruismUNIT ~= button.unit then
-				button.Eltruism = button.unit
-				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-						button.EltruismMinColor = ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, false)
-						_, button.EltruismMaxColor = ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, false)
-					else
-						button.EltruismMinColor = ElvUI_EltreumUI:GradientColors(buttonclass, false, false)
-						_, button.EltruismMaxColor = ElvUI_EltreumUI:GradientColors(buttonclass, false, false)
-					end
-				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-						button.EltruismMinColor = ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, true)
-						_, button.EltruismMaxColor = ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, true)
-					else
-						button.EltruismMinColor = ElvUI_EltreumUI:GradientColors(buttonclass, false, true)
-						_, button.EltruismMaxColor = ElvUI_EltreumUI:GradientColors(buttonclass, false, true)
-					end
-				end
-			end
-
 			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-						button.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, button.EltruismMinColor, button.EltruismMaxColor)
+						button.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, false))
 					else
-						button.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, button.EltruismMinColor, button.EltruismMaxColor)
+						button.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, false, false))
 					end
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and button.Health.backdropTex then
@@ -597,13 +542,13 @@ do
 					end
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 						if E.Retail then
-							button.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, button.EltruismMinColor, button.EltruismMaxColor)
+							button.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, true))
 						else
 							button.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, true))
 						end
 					else
 						if E.Retail then
-							button.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, button.EltruismMinColor, button.EltruismMaxColor)
+							button.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, false, true))
 						else
 							button.Health.backdropTex:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, false, true))
 						end
