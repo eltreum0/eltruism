@@ -230,34 +230,22 @@ do
 			--group/raid unitframes
 			if IsInGroup() then
 				headergroup = nil
-				local check = nil
-				if _G["ElvUF_Raid1"] and _G["ElvUF_Raid1"]:IsShown() then
+				if _G["ElvUF_Raid1"] and _G["ElvUF_Raid1"]:IsShown() and E.db["unitframe"]["units"]["raid1"]["power"]["enable"] then
 					headergroup = _G["ElvUF_Raid1"]
-				elseif _G["ElvUF_Raid2"] and _G["ElvUF_Raid2"]:IsShown() then
+				elseif _G["ElvUF_Raid2"] and _G["ElvUF_Raid2"]:IsShown() and E.db["unitframe"]["units"]["raid2"]["power"]["enable"] then
 					headergroup = _G["ElvUF_Raid2"]
-				elseif _G["ElvUF_Raid3"] and _G["ElvUF_Raid3"]:IsShown() then
+				elseif _G["ElvUF_Raid3"] and _G["ElvUF_Raid3"]:IsShown() and E.db["unitframe"]["units"]["raid3"]["power"]["enable"] then
 					headergroup = _G["ElvUF_Raid3"]
-				elseif _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsShown() then
+				elseif _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsShown() and E.db["unitframe"]["units"]["party"]["power"]["enable"] then
 					headergroup = _G["ElvUF_Party"]
 				end
 				if headergroup ~= nil then
-					if headergroup == _G["ElvUF_Raid1"] and E.db["unitframe"]["units"]["raid1"]["power"]["enable"] then
-						check  = true
-					elseif headergroup == _G["ElvUF_Raid2"] and E.db["unitframe"]["units"]["raid2"]["power"]["enable"] then
-						check  = true
-					elseif headergroup == _G["ElvUF_Raid3"] and E.db["unitframe"]["units"]["raid3"]["power"]["enable"] then
-						check  = true
-					elseif headergroup == _G["ElvUF_Party"] and E.db["unitframe"]["units"]["party"]["power"]["enable"] then
-						check  = true
-					end
-					if check == true then
-						for i = 1, headergroup:GetNumChildren() do
-							group = select(i, headergroup:GetChildren())
-							for j = 1, group:GetNumChildren() do
-								groupbutton = select(j, group:GetChildren())
-								if groupbutton and groupbutton.Power and groupbutton.unit then
-									ElvUI_EltreumUI:ApplyGroupGradientPower(groupbutton)
-								end
+					for i = 1, headergroup:GetNumChildren() do
+						group = select(i, headergroup:GetChildren())
+						for j = 1, group:GetNumChildren() do
+							groupbutton = select(j, group:GetChildren())
+							if groupbutton and groupbutton.Power and groupbutton.unit then
+								ElvUI_EltreumUI:ApplyGroupGradientPower(groupbutton)
 							end
 						end
 					end
