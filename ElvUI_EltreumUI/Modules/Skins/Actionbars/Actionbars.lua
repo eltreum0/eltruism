@@ -37,28 +37,46 @@ function ElvUI_EltreumUI:SkillGlow()
 				if E.db.ElvUI_EltreumUI.glow.pixel then
 					function customglow.ShowOverlayGlow(button)
 						if button:GetAttribute("type") == "action" then
+							if button.__LBGoverlay then --TODO LBG workaround
+								button.__LBGoverlay:Hide()
+							end
 							LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
 						end
 					end
 					function customglow.HideOverlayGlow(button)
+						if button.__LBGoverlay then --TODO LBG workaround
+							button.__LBGoverlay:Hide()
+						end
 						LCG.PixelGlow_Stop(button)
 					end
 				elseif E.db.ElvUI_EltreumUI.glow.autocast then
 					function customglow.ShowOverlayGlow(button)
+						if button.__LBGoverlay then --TODO LBG workaround
+							button.__LBGoverlay:Hide()
+						end
 						if button:GetAttribute("type") == "action" then
 							LCG.AutoCastGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 						end
 					end
 					function customglow.HideOverlayGlow(button)
+						if button.__LBGoverlay then --TODO LBG workaround
+							button.__LBGoverlay:Hide()
+						end
 						LCG.AutoCastGlow_Stop(button)
 					end
 				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 					function customglow.ShowOverlayGlow(button)
+						if button.__LBGoverlay then --TODO LBG workaround
+							button.__LBGoverlay:Hide()
+						end
 						if button:GetAttribute("type") == "action" then
 							LCG.ButtonGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
 						end
 					end
 					function customglow.HideOverlayGlow(button)
+						if button.__LBGoverlay then --TODO LBG workaround
+							button.__LBGoverlay:Hide()
+						end
 						LCG.ButtonGlow_Stop(button)
 					end
 				end
