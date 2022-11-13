@@ -216,8 +216,6 @@ do
 				ElvUI_EltreumUI:ApplyUnitGradientPower("boss6", "Boss6")
 				ElvUI_EltreumUI:ApplyUnitGradientPower("boss7", "Boss7")
 				ElvUI_EltreumUI:ApplyUnitGradientPower("boss8", "Boss8")
-			end
-			if not E.Classic then
 				ElvUI_EltreumUI:ApplyUnitGradientPower("focus", "Focus")
 				ElvUI_EltreumUI:ApplyUnitGradientPower("focustarget", "FocusTarget")
 				ElvUI_EltreumUI:ApplyUnitGradientPower("arena1", "Arena1")
