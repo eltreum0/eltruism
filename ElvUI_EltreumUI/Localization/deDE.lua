@@ -1246,3 +1246,4 @@ L["Resets/Updates ElvUI Settings to Eltreum's Defaults"] = "Setzt die ElvUI Eins
 L["Settings for ElvUI were updated."] = "Einstellungen für ElvUI wurden aktualisiert."
 L["Displays unit name in gradient class color or reaction color"] = "Zeigt den Einheitennamen im Klassenfarbverlauf oder Reaktionsfarbe an"
 L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"] = "Zeigt den Einheitennamen im Klassenfarbverlauf oder Reaktionsfarbe an, kürzt über 16 Zeichen"
+L["Empowering Color"] = true --enpowering casts for evoker, refers to the spark color here

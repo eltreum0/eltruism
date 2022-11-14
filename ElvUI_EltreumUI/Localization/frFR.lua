@@ -1203,3 +1203,4 @@ L["Reactivate the ElvUI Objective Frame Anchor and Mover"] = "Réactiver l'Ancra
 L["Reset/Update ElvUI Settings"] = "Réinitialiser/Mettre à jour les paramètres d'ElvUI"
 L["Resets/Updates ElvUI Settings to Eltreum's Defaults"] = "Réinitialise/met à jour les paramètres d'ElvUI aux valeurs par défaut d'Eltreum"
 L["Settings for ElvUI were updated."] = "Les paramètres d'ElvUI ont été mis à jour."
+L["Empowering Color"] = true

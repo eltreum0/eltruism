@@ -1204,3 +1204,4 @@ L["Resets/Updates ElvUI Settings to Eltreum's Defaults"] = true
 L["Settings for ElvUI were updated."] = true
 L["Displays unit name in gradient class color or reaction color"] = true
 L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"] = true
+L["Empowering Color"] = true
