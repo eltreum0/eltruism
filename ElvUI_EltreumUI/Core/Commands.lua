@@ -302,9 +302,11 @@ keystone:SetScript("OnEvent", function(_,_,addon)
 				for bag = 0, NUM_BAG_SLOTS do
 					local bagSlots = GetContainerNumSlots(bag)
 					for slot = 1, bagSlots do
-						local _, _, _, itemID = select(7, GetContainerItemInfo(bag, slot))
-						if ids[itemID] then
-							UseContainerItem(bag, slot)
+						local containerInfo = GetContainerItemInfo(bag, slot)
+						if containerInfo and containerInfo.itemID then
+							if ids[containerInfo.itemID] then
+								UseContainerItem(bag, slot)
+							end
 						end
 					end
 				end
