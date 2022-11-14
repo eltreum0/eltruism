@@ -878,9 +878,9 @@ function ElvUI_EltreumUI:Shadows()
 			if _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton and not _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow then
 				_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton:CreateShadow()
 				_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:ClearAllPoints()
-				_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("TOPLEFT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "TOPLEFT", -1,1)
-				_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("BOTTOMRIGHT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "BOTTOMRIGHT", 1,-1)
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow) end
+				_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("TOPLEFT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "TOPLEFT", -2,2)
+				_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("BOTTOMRIGHT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "BOTTOMRIGHT", 2,-2)
+				--if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow) end
 			end
 
 			if E.private.actionbar.enable and E.db.ElvUI_EltreumUI.skins.shadow.actionbars then

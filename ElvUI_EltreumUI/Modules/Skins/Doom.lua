@@ -27,7 +27,7 @@ local GetActionInfo = _G.GetActionInfo
 local GetActionTexture = _G.GetActionTexture
 local GetInventoryItemID = _G.GetInventoryItemID
 local GetInventoryItemTexture = _G.GetInventoryItemTexture
-local GetContainerItemID = _G.GetContainerItemID --TODO GetContainerItemID DRAGONFLIGHT
+local GetContainerItemID = _G.GetContainerItemID
 local wasPreviewing = false
 local ignoredSpells
 local cooldowns, animating, watching = { }, { }, { }
@@ -351,20 +351,23 @@ function ElvUI_EltreumUI:Doom()
 				watching[itemID] = {GetTime(),"item",texture}
 			end
 		end)
-		--[[hooksecurefunc(C_Container, "UseContainerItem", function(bag,slot) --TODO UseContainerItem DRAGONFLIGHT
-			local itemID = C_Container.GetContainerItemID(bag, slot)
+		if E.Retail then
+			hooksecurefunc(C_Container, "UseContainerItem", function(bag,slot)
+				local itemID = C_Container.GetContainerItemID(bag, slot)
 
-			if (itemID) then
-				local texture = select(10, GetItemInfo(itemID))
-				watching[itemID] = {GetTime(),"item",texture}
-			end
-		end)]]
-		hooksecurefunc("UseContainerItem", function(bag,slot) --TODO UseContainerItem DRAGONFLIGHT
-			local itemID = GetContainerItemID(bag, slot)
-			if (itemID) then
-				local texture = select(10, GetItemInfo(itemID))
-				watching[itemID] = {GetTime(),"item",texture}
-			end
-		end)
+				if (itemID) then
+					local texture = select(10, GetItemInfo(itemID))
+					watching[itemID] = {GetTime(),"item",texture}
+				end
+			end)
+		else
+			hooksecurefunc("UseContainerItem", function(bag,slot)
+				local itemID = GetContainerItemID(bag, slot)
+				if (itemID) then
+					local texture = select(10, GetItemInfo(itemID))
+					watching[itemID] = {GetTime(),"item",texture}
+				end
+			end)
+		end
 	end
 end

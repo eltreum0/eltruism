@@ -7,13 +7,14 @@ local CombatText_AddMessage = _G.CombatText_AddMessage
 local CombatText_StandardScroll = _G.CombatText_StandardScroll
 local print = _G.print
 local strlower = _G.strlower
-local GetContainerNumSlots = _G.GetContainerNumSlots --TODO GetContainerNumSlots DRAGONFLIGHT
+local GetContainerNumSlots = E.Retail and C_Container.GetContainerNumSlots or _G.GetContainerNumSlots
+local GetContainerItemInfo = E.Retail and C_Container.GetContainerItemInfo or _G.GetContainerItemInfo
+local UseContainerItem = E.Retail and C_Container.UseContainerItem or _G.UseContainerItem
 local select = _G.select
-local GetContainerItemInfo = _G.GetContainerItemInfo --TODO GetContainerItemInfo DRAGONFLIGHT
 local C_Covenants = _G.C_Covenants
 local next = _G.next
 local SendChatMessage = _G.SendChatMessage
-local UseContainerItem = _G.UseContainerItem --TODO UseContainerItem DRAGONFLIGHT
+
 
 -- Register on init
 function ElvUI_EltreumUI:LoadCommands()
@@ -226,7 +227,7 @@ local ids = {
 	[180653] = true, -- Shadowlands
 	[151086] = true, -- Tournament
 	[187786] = true, -- Legion Timewalking
-	[186159] = true, -- TODO, confirm its Dragonflight
+	[186159] = true, -- Dragonflight
 }
 local keys = {
 }
@@ -241,9 +242,9 @@ function ElvUI_EltreumUI:Keys(event,message)
 
 	local function update()
 		for bag = 0, NUM_BAG_SLOTS do
-			local bagSlots = GetContainerNumSlots(bag)
+			local bagSlots = C_Container.GetContainerNumSlots(bag)
 			for slot = 1, bagSlots do
-				local itemLink, _, _, itemID = select(7, GetContainerItemInfo(bag, slot))
+				local itemLink, _, _, itemID = select(7, C_Container.GetContainerItemInfo(bag, slot))
 				if itemID and ids[itemID] then
 					keys[itemID] = itemLink
 				end

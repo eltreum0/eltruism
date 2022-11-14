@@ -14,17 +14,17 @@ local GameFontNormal = _G.GameFontNormal
 local GameTooltip = _G.GameTooltip
 local GetItemInfo = _G.GetItemInfo
 local ipairs = _G.ipairs
-local GetContainerNumSlots = _G.GetContainerNumSlots --TODO GetContainerNumSlots DRAGONFLIGHT
-local GetContainerItemLink = _G.GetContainerItemLink
+local GetContainerNumSlots = E.Retail and C_Container.GetContainerNumSlots or _G.GetContainerNumSlots
+local GetContainerItemLink = E.Retail and C_Container.GetContainerItemLink or _G.GetContainerItemLink
+local GetContainerItemQuestInfo = E.Retail and C_Container.GetContainerItemQuestInfo or _G.GetContainerItemQuestInfo
+local GetContainerItemInfo = E.Retail and C_Container.GetContainerItemInfo or _G.GetContainerItemInfo
+local GetContainerItemCooldown = E.Retail and C_Container.GetContainerItemCooldown or _G.GetContainerItemCooldown
 local tonumber = _G.tonumber
-local GetContainerItemQuestInfo = _G.GetContainerItemQuestInfo --TODO GetContainerItemQuestInfo DRAGONFLIGHT
-local GetContainerItemInfo = _G.GetContainerItemInfo
 local GetInventorySlotInfo = _G.GetInventorySlotInfo
 local GetInventoryItemLink = _G.GetInventoryItemLink
+local GetInventoryItemCooldown = _G.GetInventoryItemCooldown
 local GetBindingText = _G.GetBindingText
 local CooldownFrame_Set = _G.CooldownFrame_Set
-local GetContainerItemCooldown = _G.GetContainerItemCooldown --TODO GetContainerItemCooldown DRAGONFLIGHT
-local GetInventoryItemCooldown = _G.GetInventoryItemCooldown
 local _, instanceType
 local EnhancedShadows = nil
 if IsAddOnLoaded("ProjectAzilroka") then
@@ -460,7 +460,7 @@ function ElvUI_EltreumUI:QuestItem()
 						if EnhancedShadows then EnhancedShadows:RegisterShadow(b.shadow) end
 					end
 				end
-				b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square") --check 10.0 TODO
+				b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
 				b:RegisterForClicks("LeftButtonUp","RightButtonUp")
 				b:SetScript("OnEnter", function (self)
 					GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
@@ -571,7 +571,7 @@ function ElvUI_EltreumUI:QuestItem()
 				end
 				-- Scan Tip -- Az: any reason we cant just check for more or equal to 4 lines, or would some quest items fail that check?
 				EltruismQuestItemFrame.tip:ClearLines()
-				EltruismQuestItemFrame.tip:SetHyperlink(link) --TODO confirm working DRAGONFLIGHT
+				EltruismQuestItemFrame.tip:SetHyperlink(link)
 				local numLines = EltruismQuestItemFrame.tip:NumLines()
 				local line2 = (_G["EltruismQuestItemTipTextLeft2"]:GetText() or "")
 				if (numLines >= 3) and (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12 or line2 == ITEM_BIND_QUEST or line2 == GetZoneText()) and itemEquipLoc == "" then
@@ -613,8 +613,8 @@ function ElvUI_EltreumUI:QuestItem()
 							if not blocklist[itemId] then
 								local _, _, _, _, _, itemType, _, _, _, _, _, classID = GetItemInfo(link)
 								if E.Retail then
-									local isQuestItem, _, _ = GetContainerItemQuestInfo(bag,slot)
-									if isQuestItem or ((itemType == "Quest" or classID == 12) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
+									local questInfo = C_Container.GetContainerItemQuestInfo(bag,slot)
+									if questInfo.isQuestItem or ((itemType == "Quest" or classID == 12) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
 										local _, count = GetContainerItemInfo(bag,slot)
 										AddButton(index,bag,slot,link,itemId,count)
 										index = (index + 1)
