@@ -1229,15 +1229,10 @@ function ElvUI_EltreumUI:Shadows()
 
 			local elvuiframes = {
 				_G["ElvUF_TargetTarget_HealthBar"],
-				_G["ElvUF_TargetTarget_PowerBar"],
 				_G["ElvUF_TargetTargetTarget_HealthBar"],
-				_G["ElvUF_TargetTargetTarget_PowerBar"],
 				_G["ElvUF_Target_HealthBar"],
-				_G["ElvUF_Target_PowerBar"],
 				_G["ElvUF_Pet_HealthBar"],
 				_G["ElvUF_Player_HealthBar"],
-				_G["ElvUF_Player_PowerBar"],
-				_G["ElvUF_Player_Stagger"],
 				_G["ElvUF_Arena1"],
 				_G["ElvUF_Arena2"],
 				_G["ElvUF_Arena3"],
@@ -1259,6 +1254,22 @@ function ElvUI_EltreumUI:Shadows()
 						else
 							frame.shadow:Show()
 						end
+					end
+				end
+			end
+
+			local elvuiframeswithborders = {
+				_G["ElvUF_TargetTarget_PowerBar"],
+				_G["ElvUF_TargetTargetTarget_PowerBar"],
+				_G["ElvUF_Target_PowerBar"],
+				_G["ElvUF_Player_PowerBar"],
+				_G["ElvUF_Player_Stagger"],
+			}
+			for _, frame in pairs(elvuiframeswithborders) do
+				if frame then
+					if not frame.shadow then
+						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
 					end
 				end
 			end
