@@ -125,6 +125,14 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
+			if (arg == "Blizzard_ItemUpgradeUI") or IsAddOnLoaded("Blizzard_ItemUpgradeUI") then
+				_G.ItemUpgradeFrame:HookScript("OnShow", function()
+					if not _G.ItemUpgradeFrame.shadow then
+						_G.ItemUpgradeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ItemUpgradeFrame.shadow) end
+					end
+				end)
+			end
 			if (arg == "Blizzard_TradeSkillUI") or IsAddOnLoaded("Blizzard_TradeSkillUI") then
 				_G.TradeSkillFrame:HookScript("OnShow", function()
 					if E.Retail then
@@ -849,6 +857,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G.SpellBookFrame,
 				_G.FriendsFrame,
 				_G.MerchantFrame,
+				_G.MerchantFrameTab1.backdrop,
+				_G.MerchantFrameTab2.backdrop,
 				_G.MailFrame,
 				_G.HelpFrame.backdrop,
 				_G.WorldMapFrame.backdrop,
