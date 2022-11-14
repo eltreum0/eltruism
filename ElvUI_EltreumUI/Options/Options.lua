@@ -11345,11 +11345,28 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									local glowcustomcolor = E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor
-									glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+									glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b = r, g, b
+								end,
+							},
+							colorsparkempowering = {
+								order = 993,
+								type = 'color',
+								name = L["Empowering Color"],
+								disabled = not E.Retail,
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable end,
+								get = function()
+									local glowcustomcolor = E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor
+									local d = P.ElvUI_EltreumUI.unitframes.sparkcustomcolor
+									return glowcustomcolor.empoweringr, glowcustomcolor.empoweringg, glowcustomcolor.empoweringb, glowcustomcolor.a, d.empoweringr, d.empoweringg, d.empoweringb, d.a
+								end,
+								set = function(_, r, g, b, a)
+									local glowcustomcolor = E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor
+									glowcustomcolor.empoweringr, glowcustomcolor.empoweringg, glowcustomcolor.empoweringb = r, g, b
 								end,
 							},
 							sparktexture = {
-								order = 993,
+								order = 994,
 								type = 'select',
 								--width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -11364,7 +11381,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'range',
 								name = L["Width"],
 								desc = L["Set Width of the Spark (Default 3)"],
-								order = 994,
+								order = 995,
 								min = 1,
 								max = 20,
 								step = 1,
