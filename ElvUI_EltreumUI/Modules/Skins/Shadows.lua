@@ -860,6 +860,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G.MerchantFrameTab1.backdrop,
 				_G.MerchantFrameTab2.backdrop,
 				_G.MailFrame,
+				_G.MailFrameTab1.backdrop,
+				_G.MailFrameTab2.backdrop,
 				_G.HelpFrame.backdrop,
 				_G.WorldMapFrame.backdrop,
 				_G.WardrobeFrame, --weird
@@ -934,6 +936,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G.SpellBookFrame.backdrop,
 				_G.FriendsFrame.backdrop,
 				_G.MailFrame.backdrop,
+				_G.MailFrameTab1.backdrop,
+				_G.MailFrameTab2.backdrop,
 				_G.MerchantFrame.backdrop,
 				_G.WorldMapFrame,
 				--_G.WorldMapFrame.ScrollContainer,
