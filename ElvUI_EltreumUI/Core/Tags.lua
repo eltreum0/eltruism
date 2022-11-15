@@ -860,14 +860,16 @@ E:AddTag("name:eltruism:gradient", "UNIT_NAME_UPDATE", function(unit)
 		return ElvUI_EltreumUI:GradientName(name, unitClass)
 	elseif not UnitIsPlayer(unit) then
 		local reaction = UnitReaction(unit, "player")
-		if reaction >= 5 then
-			return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY")
-		elseif reaction == 4 then
-			return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL")
-		elseif reaction == 3 then
-			return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY")
-		elseif reaction == 2 or reaction == 1 then
-			return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE")
+		if reaction then
+			if reaction >= 5 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY")
+			elseif reaction == 4 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL")
+			elseif reaction == 3 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY")
+			elseif reaction == 2 or reaction == 1 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE")
+			end
 		end
 	end
 end)
@@ -885,14 +887,16 @@ E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit)
 		return ElvUI_EltreumUI:GradientName(name, unitClass)
 	elseif not UnitIsPlayer(unit) then
 		local reaction = UnitReaction(unit, "player")
-		if reaction >= 5 then
-			return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY")
-		elseif reaction == 4 then
-			return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL")
-		elseif reaction == 3 then
-			return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY")
-		elseif reaction == 2 or reaction == 1 then
-			return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE")
+		if reaction then
+			if reaction >= 5 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY")
+			elseif reaction == 4 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL")
+			elseif reaction == 3 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY")
+			elseif reaction == 2 or reaction == 1 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE")
+			end
 		end
 	end
 end)

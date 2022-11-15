@@ -47,7 +47,6 @@ local THANKYOU = {
 	'Pat',
 	'|cff00c0faBenik|r',
 	'|T136012:15:15:0:0:64:64:5:59:5:59|t |cff006fdcRubgrsch|r',
-	'|cff8788EENihilistzsche|r',
 	'|TInterface/AddOns/ElvUI/Core/Media/ChatLogos/Clover:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0ALuckyone|r Especially for allowing the usage of his installer/plugin as a model',
 	'|TInterface/AddOns/ElvUI_EltreumUI/Media/Textures/releaf:15:15:0:0:64:64:5:59:5:59|t |cffFF7D0AReleaf|r for the alternate class icons',
 	'|TInterface/AddOns/ElvUI_EltreumUI/Media/Textures/tukuidiscord:15:15:0:0:64:64:5:59:5:59|t Tukui Community for all the help and motivation',
@@ -4481,7 +4480,7 @@ function ElvUI_EltreumUI:Configtable()
 						step = 0.01,
 						width = "full",
 						get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset = value SetCVar('nameplateOtherBottomInset', value) end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset = value SetCVar('nameplateOtherBottomInset', value) SetCVar('nameplateLargeBottomInset', value) end,
 					},
 					nameplateOtherTopInset = {
 						type = 'range',
@@ -4493,7 +4492,7 @@ function ElvUI_EltreumUI:Configtable()
 						step = 0.01,
 						width = "full",
 						get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset = value SetCVar('nameplateOtherTopInset', value) end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset = value SetCVar('nameplateOtherTopInset', value) SetCVar('nameplateLargeTopInset', value) end,
 					},
 					header3 = {
 						order = 6,
@@ -7764,6 +7763,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'toggle',
 						name = L["Hide Right Chat Datatext out of Combat"],
 						width = 'full',
+						disabled = function() return not E.db.datatexts.panels.RightChatDataPanel.enable end,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow = value end,
 					},
@@ -7772,6 +7772,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'toggle',
 						name = L["Hide Left Chat Datatext out of Combat"],
 						width = 'full',
+						disabled = function() return not E.db.datatexts.panels.LeftChatDataPanel.enable end,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow = value end,
 					},
@@ -11344,11 +11345,28 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									local glowcustomcolor = E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor
-									glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+									glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b = r, g, b
+								end,
+							},
+							colorsparkempowering = {
+								order = 993,
+								type = 'color',
+								name = L["Empowering Color"],
+								disabled = not E.Retail,
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable end,
+								get = function()
+									local glowcustomcolor = E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor
+									local d = P.ElvUI_EltreumUI.unitframes.sparkcustomcolor
+									return glowcustomcolor.empoweringr, glowcustomcolor.empoweringg, glowcustomcolor.empoweringb, glowcustomcolor.a, d.empoweringr, d.empoweringg, d.empoweringb, d.a
+								end,
+								set = function(_, r, g, b, a)
+									local glowcustomcolor = E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor
+									glowcustomcolor.empoweringr, glowcustomcolor.empoweringg, glowcustomcolor.empoweringb = r, g, b
 								end,
 							},
 							sparktexture = {
-								order = 993,
+								order = 994,
 								type = 'select',
 								--width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -11363,7 +11381,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'range',
 								name = L["Width"],
 								desc = L["Set Width of the Spark (Default 3)"],
-								order = 994,
+								order = 995,
 								min = 1,
 								max = 20,
 								step = 1,

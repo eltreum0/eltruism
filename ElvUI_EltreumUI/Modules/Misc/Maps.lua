@@ -178,6 +178,8 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 			-- translate the message into numbers
 			local translatemsg = message:gsub("(%d)[%.,] (%d)", "%1 %2"):gsub("(%d)"..(tonumber("1.1") and "," or ".").."(%d)", "%1"..(tonumber("1.1") and "." or ",").."%2")
 
+			--wipe table just in case
+			wipe(coords)
 
 			--put the numbers into the table
 			for pattern in translatemsg:gmatch("%S+") do

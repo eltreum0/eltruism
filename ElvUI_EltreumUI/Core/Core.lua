@@ -211,18 +211,18 @@ function ElvUI_EltreumUI:Anchors()
 		--position the anchor around the place where the action bars would be
 		EltreumWAAnchor:Size(250, 70)
 		--E:CreateMover(parent, name, textString, overlay, snapoffset, postdrag, types, shouldDisable, configString, ignoreSizeChanged)
-		E:CreateMover(EltreumWAAnchor, "MoverEltruismWA", "EltruismWA", nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
+		E:CreateMover(EltreumWAAnchor, "MoverEltruismWA", "EltruismWA", nil, nil, nil, "ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
 		--do it again
 		EltreumWAAnchor2:SetParent(_G["ElvUF_Player"])
 		EltreumWAAnchor2:SetFrameStrata("BACKGROUND")
 		EltreumWAAnchor2:Size(250, 70)
-		E:CreateMover(EltreumWAAnchor2, "MoverEltruismWA2", "EltruismWA2", nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
+		E:CreateMover(EltreumWAAnchor2, "MoverEltruismWA2", "EltruismWA2", nil, nil, nil, "ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
 
 		--consumable weakauras, usually placed near player unitframe
 		EltruismWAConsumablesAnchor:SetParent(_G["ElvUF_Player"])
 		EltruismWAConsumablesAnchor:SetFrameStrata("BACKGROUND")
 		EltruismWAConsumablesAnchor:Size(270, 30)
-		E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", L["EltruismConsumablesWA"], nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
+		E:CreateMover(EltruismWAConsumablesAnchor, "MoverEltruismWAConsumables", L["EltruismConsumablesWA"], nil, nil, nil, "ELTREUMUI", nil, 'ElvUI_EltreumUI,weakauras')
 	end
 
 	E:CreateMover(RaidWarningFrame, "MoverRaidWarningFrame", "Raid Warning Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
@@ -267,9 +267,9 @@ function ElvUI_EltreumUI:Anchors()
 
 		--from elvui
 		if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
-			if E.db.ElvUI_EltreumUI.quests.anchor then
+			if E.db.ElvUI_EltreumUI.quests.anchor and not InCombatLockdown() then
 				E:Delay(0, function()
-					if not _G["ObjectiveFrameHolder"] then --TODO DRAGONFLIGHT
+					if not _G["ObjectiveFrameHolder"] then
 						local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
 						holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
 						holder:SetSize(130, 22)
@@ -551,7 +551,7 @@ EltruismGameMenu:RegisterEvent("PLAYER_ENTERING_WORLD")
 EltruismGameMenu:SetScript("OnEvent", function()
 
 	--use elvui moveui instead of blizzard edit mode
-	if _G.GameMenuButtonEditMode and E.db.ElvUI_EltreumUI.otherstuff.gamemenu then --TODO DRAGONFLIGHT
+	if _G.GameMenuButtonEditMode and E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
 		_G.GameMenuButtonEditMode:RegisterForClicks("AnyUp")
 		_G.GameMenuButtonEditMode:SetScript("OnClick", function(self, button)
 			if button == "LeftButton" then
@@ -597,7 +597,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 end)
 
 --make the video options movable because its annoying when adjusting settings
-local VideoOptionsFrame = _G.VideoOptionsFrame --TODO DRAGONFLIGHT
+local VideoOptionsFrame = _G.VideoOptionsFrame --Classic/Wrath
 if VideoOptionsFrame then
 	VideoOptionsFrame:SetMovable(true)
 	VideoOptionsFrame:EnableMouse(true)
@@ -605,6 +605,15 @@ if VideoOptionsFrame then
 	VideoOptionsFrame:SetScript("OnDragStart", VideoOptionsFrame.StartMoving)
 	VideoOptionsFrame:SetScript("OnDragStop", VideoOptionsFrame.StopMovingOrSizing)
 	VideoOptionsFrame:SetClampedToScreen(true)
+end
+local SettingsPanel = _G.SettingsPanel --Dragonflight
+if SettingsPanel then
+	SettingsPanel:SetMovable(true)
+	SettingsPanel:EnableMouse(true)
+	SettingsPanel:RegisterForDrag("LeftButton")
+	SettingsPanel:SetScript("OnDragStart", SettingsPanel.StartMoving)
+	SettingsPanel:SetScript("OnDragStop", SettingsPanel.StopMovingOrSizing)
+	SettingsPanel:SetClampedToScreen(true)
 end
 
 --click casting button toggle

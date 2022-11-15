@@ -125,6 +125,14 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
+			if (arg == "Blizzard_ItemUpgradeUI") or IsAddOnLoaded("Blizzard_ItemUpgradeUI") then
+				_G.ItemUpgradeFrame:HookScript("OnShow", function()
+					if not _G.ItemUpgradeFrame.shadow then
+						_G.ItemUpgradeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ItemUpgradeFrame.shadow) end
+					end
+				end)
+			end
 			if (arg == "Blizzard_TradeSkillUI") or IsAddOnLoaded("Blizzard_TradeSkillUI") then
 				_G.TradeSkillFrame:HookScript("OnShow", function()
 					if E.Retail then
@@ -278,6 +286,10 @@ function ElvUI_EltreumUI:Shadows()
 			_G.TimerTrackerTimer1StatusBar,
 			_G.TimerTrackerTimer2StatusBar,
 			_G.TimerTrackerTimer3StatusBar,
+			_G.RaidUtility_ShowButton,
+			_G.RaidUtilityPanel,
+			_G.RaidUtility_CloseButton,
+			_G.EditModeManagerFrame,
 			--_G.ImmersionFrame.TalkBox,
 		}
 		for _, frame in pairs(blizzardframes) do
@@ -332,6 +344,15 @@ function ElvUI_EltreumUI:Shadows()
 			if frame and frame.backdrop and not frame.backdrop.shadow then
 				frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.backdrop.shadow) end
+			end
+		end)
+
+		--elvui config shadows
+		hooksecurefunc(E, "ToggleOptions", function()
+			local frame = E:Config_GetWindow()
+			if frame and not frame.shadow then
+				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
 			end
 		end)
 
@@ -846,7 +867,11 @@ function ElvUI_EltreumUI:Shadows()
 				_G.SpellBookFrame,
 				_G.FriendsFrame,
 				_G.MerchantFrame,
+				_G.MerchantFrameTab1.backdrop,
+				_G.MerchantFrameTab2.backdrop,
 				_G.MailFrame,
+				_G.MailFrameTab1.backdrop,
+				_G.MailFrameTab2.backdrop,
 				_G.HelpFrame.backdrop,
 				_G.WorldMapFrame.backdrop,
 				_G.WardrobeFrame, --weird
@@ -875,9 +900,9 @@ function ElvUI_EltreumUI:Shadows()
 			if _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton and not _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow then
 				_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton:CreateShadow()
 				_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:ClearAllPoints()
-				_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("TOPLEFT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "TOPLEFT", -1,1)
-				_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("BOTTOMRIGHT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "BOTTOMRIGHT", 1,-1)
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow) end
+				_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("TOPLEFT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "TOPLEFT", -2,2)
+				_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("BOTTOMRIGHT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "BOTTOMRIGHT", 2,-2)
+				--if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow) end
 			end
 
 			if E.private.actionbar.enable and E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
@@ -921,6 +946,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G.SpellBookFrame.backdrop,
 				_G.FriendsFrame.backdrop,
 				_G.MailFrame.backdrop,
+				_G.MailFrameTab1.backdrop,
+				_G.MailFrameTab2.backdrop,
 				_G.MerchantFrame.backdrop,
 				_G.WorldMapFrame,
 				--_G.WorldMapFrame.ScrollContainer,
@@ -1216,15 +1243,10 @@ function ElvUI_EltreumUI:Shadows()
 
 			local elvuiframes = {
 				_G["ElvUF_TargetTarget_HealthBar"],
-				_G["ElvUF_TargetTarget_PowerBar"],
 				_G["ElvUF_TargetTargetTarget_HealthBar"],
-				_G["ElvUF_TargetTargetTarget_PowerBar"],
 				_G["ElvUF_Target_HealthBar"],
-				_G["ElvUF_Target_PowerBar"],
 				_G["ElvUF_Pet_HealthBar"],
 				_G["ElvUF_Player_HealthBar"],
-				_G["ElvUF_Player_PowerBar"],
-				_G["ElvUF_Player_Stagger"],
 				_G["ElvUF_Arena1"],
 				_G["ElvUF_Arena2"],
 				_G["ElvUF_Arena3"],
@@ -1246,6 +1268,22 @@ function ElvUI_EltreumUI:Shadows()
 						else
 							frame.shadow:Show()
 						end
+					end
+				end
+			end
+
+			local elvuiframeswithborders = {
+				_G["ElvUF_TargetTarget_PowerBar"],
+				_G["ElvUF_TargetTargetTarget_PowerBar"],
+				_G["ElvUF_Target_PowerBar"],
+				_G["ElvUF_Player_PowerBar"],
+				_G["ElvUF_Player_Stagger"],
+			}
+			for _, frame in pairs(elvuiframeswithborders) do
+				if frame then
+					if not frame.shadow then
+						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
 					end
 				end
 			end

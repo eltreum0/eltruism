@@ -101,7 +101,7 @@ local classBgs = {
 	["MONK"] = "Interface\\Artifacts\\ArtifactUIMonk",
 	["DRUID"] = "Interface\\Artifacts\\ArtifactUIDruid",
 	["DEMONHUNTER"] = "Interface\\Artifacts\\ArtifactUIDemonHunter",
-	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Evoker\\artifactuievoker", -- TODO
+	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Evoker\\artifactuievoker",
 }
 
 --from 4k: height to 1920, resize to 1024x512, add 20 sharpen, set 30 bright 30 contrast, add vignette 0.35 (dont anymore), compress depending on size
@@ -129,7 +129,7 @@ local raceBgs = {
 	["VoidElf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\VoidElf",
 	["Pandaren"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Pandaren",
 	["Worgen"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Worgen",
-	["Dracthyr"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Dracthyr", -- TODO
+	["Dracthyr"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Dracthyr",
 }
 
 local classCrests = {
@@ -145,7 +145,7 @@ local classCrests = {
 	["MONK"] = "Artifacts-Monk-BG-rune",
 	["DRUID"] = "Artifacts-Druid-BG-rune",
 	["DEMONHUNTER"] = "Artifacts-DemonHunter-BG-rune",
-	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Evoker\\evokercrest", -- TODO
+	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Evoker\\evokercrest",
 }
 
 local statgradients = {

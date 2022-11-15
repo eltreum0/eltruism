@@ -63,7 +63,7 @@ Fixed an issue where Target of Target Shadow would not display if power was disa
 ### 3.5.5
 Added Class Colors to Party and Raid Borders\
 Added a few missing shadows\
-Added a temporary Model Alpha fix based on nihilistzsche's solution (ty nihilistzsche!), still waiting on Blizzard to fix it on their end\
+Added a temporary Model Alpha fix, still waiting on Blizzard to fix it on their end\
 Added missing Fur Lining enchant to Sockets & Enchants in Wrath\
 Added an option to filter items displayed in LootText by item quality\
 Added shadows to BigWigs Icons on the BigWigs Skin\

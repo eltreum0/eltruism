@@ -239,9 +239,9 @@ function ElvUI_EltreumUI:SkinQuests()
 							if k.Header.MinimizeButton and not k.Header.MinimizeButton.shadow then
 								k.Header.MinimizeButton:CreateShadow()
 								k.Header.MinimizeButton.shadow:ClearAllPoints()
-								k.Header.MinimizeButton.shadow:SetPoint("TOPLEFT", k.Header.MinimizeButton.tex, "TOPLEFT", -1,1)
-								k.Header.MinimizeButton.shadow:SetPoint("BOTTOMRIGHT", k.Header.MinimizeButton.tex, "BOTTOMRIGHT", 1,-1)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(k.Header.MinimizeButton.shadow) end
+								k.Header.MinimizeButton.shadow:SetPoint("TOPLEFT", k.Header.MinimizeButton.tex, "TOPLEFT", -2,2)
+								k.Header.MinimizeButton.shadow:SetPoint("BOTTOMRIGHT", k.Header.MinimizeButton.tex, "BOTTOMRIGHT", 2,-2)
+								--if EnhancedShadows then EnhancedShadows:RegisterShadow(k.Header.MinimizeButton.shadow) end
 							end
 						end
 						if block.HeaderText then --quest title
