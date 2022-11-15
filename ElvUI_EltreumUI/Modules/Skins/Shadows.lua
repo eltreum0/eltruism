@@ -289,6 +289,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G.RaidUtility_ShowButton,
 			_G.RaidUtilityPanel,
 			_G.RaidUtility_CloseButton,
+			_G.EditModeManagerFrame,
 			--_G.ImmersionFrame.TalkBox,
 		}
 		for _, frame in pairs(blizzardframes) do
