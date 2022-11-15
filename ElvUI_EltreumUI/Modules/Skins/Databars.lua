@@ -7,10 +7,6 @@ local databarXP, databarRep, databarHonor
 
 --Databar gradient
 function ElvUI_EltreumUI:GradientDatabar()
-	if not E.db.ElvUI_EltreumUI then return end
-	if not E.db.ElvUI_EltreumUI.unitframes then return end
-	if not E.db.ElvUI_EltreumUI.unitframes.gradientmode then return end
-
 	--gradient xp
 	databarXP = _G["ElvUI_ExperienceBar"]
 	if databarXP and E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP then
