@@ -346,6 +346,15 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end)
 
+		--elvui config shadows
+		hooksecurefunc(E, "ToggleOptions", function()
+			local frame = E:Config_GetWindow()
+			if frame and not frame.shadow then
+				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+			end
+		end)
+
 		--mirror timer shadow
 		if not E.Retail then
 			for i = 1, _G.MIRRORTIMER_NUMTIMERS do
