@@ -653,8 +653,8 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["isTarget"] = true
 		--E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["requireTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["scale"] = 1.25
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "ElvUI Blank"
+		--E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
+		--E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "ElvUI Blank"
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["elite"] = true
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["minus"] = true
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["classification"]["normal"] = true
@@ -696,6 +696,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["texture"] = "Eltreum-Stripes"
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["alpha"] = 100
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["casting"]["interruptible"] = true
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["isNotTapDenied"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["inCombat"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["notTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["priority"] = 1
@@ -717,6 +718,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["texture"]["texture"] = "Asphyxia-Norm"
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["healthThreshold"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["isTarget"] = false
+		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["isNotTapDenied"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["playerCanAttack"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["priority"] = 1
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.2
