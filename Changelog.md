@@ -1,6 +1,16 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.5.9
+Added an option to customize the Evoker Empowered Castbar Spark\
+Added gradient power to group units (party/raid)\
+Added a few missing models to Portrait Fix\
+Added a few missing shadows\
+Added a vignette to AFK\
+Updated multiple references for 10.0.2\
+Updated German locale by Dlarge\
+Fixed a possible error in [eltruism:gradient] tag due to reactions\
+Fixed Class Crests not showing up
 ### 3.5.8.1
 Fixed a Version Check Popup
 ### 3.5.8

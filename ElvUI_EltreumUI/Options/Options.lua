@@ -11352,7 +11352,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 993,
 								type = 'color',
 								name = L["Empowering Color"],
-								disabled = not E.Retail,
+								hidden = not E.Retail,
 								hasAlpha = false,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable end,
 								get = function()
