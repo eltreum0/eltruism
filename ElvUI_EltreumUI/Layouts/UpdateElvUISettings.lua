@@ -44,5 +44,8 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 	E.db["unitframe"]["colors"]["classResources"]["comboPoints"][7]["g"] = 0.2549019753933
 	E.db["unitframe"]["colors"]["classResources"]["comboPoints"][7]["r"] = 1
 
+
+	E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
+
 	ElvUI_EltreumUI:Print(L["Settings for ElvUI were updated."])
 end
