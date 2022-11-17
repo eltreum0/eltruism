@@ -68,7 +68,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Wipe"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Wipe"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Wipe"]["profiles"]["Eltreum"] = {
-			["wipeSound"] = "Warcraft 3 - Night Elf Hero Dies",
+			["wipeSound"] = "AmanThul - Wipe",
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"]["Eltreum"] = {
@@ -182,7 +182,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Wipe"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Wipe"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Wipe"]["profiles"]["Eltreum"] = {
-			["wipeSound"] = "Warcraft 3 - Night Elf Hero Dies",
+			["wipeSound"] = "AmanThul - Wipe",
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"]["Eltreum"] = {
@@ -219,7 +219,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["showBar"] = true,
 		}
 
-		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Wipe"] = {["profiles"] = {["Eltreum"] = {["wipeSound"] = "Warcraft 3 - Night Elf Hero Dies",},},
+		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Wipe"] = {["profiles"] = {["Eltreum"] = {["wipeSound"] = "AmanThul - Wipe",},},
 		}
 
 		--set the profile
