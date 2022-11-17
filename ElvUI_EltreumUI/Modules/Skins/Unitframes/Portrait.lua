@@ -595,10 +595,6 @@ if E.Retail then
 		end
 	end)
 
-
-
-
-
 	--modify the position of the information panel
 	local allowedunits = {
 		['ElvUF_Player'] = true,
