@@ -1,11 +1,9 @@
-### 3.5.9 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.6.0 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added an option to customize the Evoker Empowered Castbar Spark\
-Added gradient power to group units (party/raid)\
-Added a few missing models to Portrait Fix\
-Added a few missing shadows\
-Added a vignette to AFK\
-Updated multiple references for 10.0.2\
-Updated German locale by Dlarge\
-Fixed a possible error in [eltruism:gradient] tag due to reactions\
-Fixed Class Crests not showing up
+Added Aman'Thul's Wipe Sound ("No! After all we have endured it must not end this way!")\
+Added Aman'Thul's Wipe sound to BigWigs wipe sound\
+Added gradient and custom textures to focus castbar (uses target settings)\
+Added shadows to focus castbar\
+Updated some nameplate style filters to require the nameplate to not be tap denied\
+Updated Evoker Crest\
+Updated Target Aurabars filters

@@ -1,6 +1,14 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.6.0
+Added Aman'Thul's Wipe Sound ("No! After all we have endured it must not end this way!")\
+Added Aman'Thul's Wipe sound to BigWigs wipe sound\
+Added gradient and custom textures to focus castbar (uses target settings)\
+Added shadows to focus castbar\
+Updated some nameplate style filters to require the nameplate to not be tap denied\
+Updated Evoker Crest\
+Updated Target Aurabars filters
 ### 3.5.9
 Added an option to customize the Evoker Empowered Castbar Spark\
 Added gradient power to group units (party/raid)\
