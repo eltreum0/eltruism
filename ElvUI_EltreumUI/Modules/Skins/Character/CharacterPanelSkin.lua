@@ -2458,7 +2458,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
 							E:Delay(0, function()
 								if not E.Retail then
-									if not _G.InspectNameText:GetText():match("|T") then
+									if _G.InspectNameText and _G.InspectNameText:GetText() and not _G.InspectNameText:GetText():match("|T") then
 										_G.InspectNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 										if string.len(_G.InspectNameText:GetText()) >= 6 then
 											if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectNameText:GetText():match("|r") then
@@ -2477,7 +2477,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 										_G.InspectNameText:SetDrawLayer("OVERLAY")
 									end
 								else
-									if not _G.InspectFrameTitleText:GetText():match("|T") then
+									if _G.InspectFrameTitleText and _G.InspectFrameTitleText:GetText() and not _G.InspectFrameTitleText:GetText():match("|T") then
 										_G.InspectFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 										if string.len(_G.InspectFrameTitleText:GetText()) >= 6 then
 											if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectFrameTitleText:GetText():match("|r") then
