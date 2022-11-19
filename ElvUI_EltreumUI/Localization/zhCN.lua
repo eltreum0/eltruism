@@ -1201,3 +1201,5 @@ L["Settings for ElvUI were updated."] = true
 L["Displays unit name in gradient class color or reaction color"] = true
 L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"] = true
 L["Empowering Color"] = true
+L["Automatically offset Player/Target Portrait"] = true
+L["Detects player and target's species and uses it to fix the offset of the 3D Portrait"] = true

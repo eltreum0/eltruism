@@ -1204,3 +1204,5 @@ L["Reset/Update ElvUI Settings"] = "Réinitialiser/Mettre à jour les paramètre
 L["Resets/Updates ElvUI Settings to Eltreum's Defaults"] = "Réinitialise/met à jour les paramètres d'ElvUI aux valeurs par défaut d'Eltreum"
 L["Settings for ElvUI were updated."] = "Les paramètres d'ElvUI ont été mis à jour."
 L["Empowering Color"] = true
+L["Automatically offset Player/Target Portrait"] = true
+L["Detects player and target's species and uses it to fix the offset of the 3D Portrait"] = true
