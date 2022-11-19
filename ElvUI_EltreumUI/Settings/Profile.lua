@@ -1130,6 +1130,7 @@ P.ElvUI_EltreumUI = {
 		bgunitframes = false,
 		arenaunitframes = false,
 		portraitfix = false,
+		portraitfixoffset = true,
 	},
 
 	otherstuff ={

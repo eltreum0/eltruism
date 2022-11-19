@@ -11274,6 +11274,16 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.portraitfix end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraitfix = value end,
 							},
+							portraitfixenableoffset = {
+								order = 109,
+								type = 'toggle',
+								width = "full",
+								name = L["Automatically offset Player/Target Portrait"],
+								desc = L["Detects player and target's species and uses it to fix the offset of the 3D Portrait"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.portraitfix end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset = value end,
+							},
 							infoPanelOnTopheader = {
 								order = 986,
 								type = "description",
