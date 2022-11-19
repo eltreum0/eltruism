@@ -16,8 +16,11 @@ function ElvUI_EltreumUI:SkinLevelUp()
 			--skin the toast popup for level
 			local EventToastManagerFrame = _G.EventToastManagerFrame
 			if EventToastManagerFrame then
-				EventToastManagerFrame.GLine:SetVertexColor(classcolor.r, classcolor.g, classcolor.b)
-				EventToastManagerFrame.GLine2:SetVertexColor(classcolor.r, classcolor.g, classcolor.b)
+				--EventToastManagerFrame.GLine:SetVertexColor(classcolor.r, classcolor.g, classcolor.b)
+				--EventToastManagerFrame.GLine2:SetVertexColor(classcolor.r, classcolor.g, classcolor.b)
+				EventToastManagerFrame.GLine:SetAlpha(0)
+				EventToastManagerFrame.GLine2:SetAlpha(0)
+
 				EventToastManagerFrame.StatusLine = CreateFrame("StatusBar", "EltruismEventToastLine", EventToastManagerFrame)
 				EventToastManagerFrame.StatusLine:SetSize(418, 3)
 				EventToastManagerFrame.StatusLine:SetPoint("TOP", EventToastManagerFrame, 0, -5)
