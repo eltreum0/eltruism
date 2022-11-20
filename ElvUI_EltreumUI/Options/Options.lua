@@ -9629,7 +9629,7 @@ function ElvUI_EltreumUI:Configtable()
 									headerroleiconcustomtankinput = {
 										order = 165,
 										type = 'input',
-										name = L["Tank"]..tostring(E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank),
+										name = L["Tank"],
 										desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
 										width = 'full',
 										disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype ~= 'CUSTOM' end,
