@@ -242,6 +242,23 @@ function ElvUI_EltreumUI:Anchors()
 		end
 	end
 
+	--fix tutorial frames getting in the way
+	if _G.TutorialMainFrame_Frame then
+		_G.TutorialMainFrame_Frame:Kill()
+	end
+	if _G.TutorialSingleKey_Frame then
+		_G.TutorialSingleKey_Frame:Kill()
+	end
+	if _G.TutorialWalk_Frame then
+		_G.TutorialWalk_Frame:Kill()
+	end
+	if _G.TutorialFrame then
+		_G.TutorialFrame:Kill()
+	end
+	if _G.TutorialKeyboardMouseFrame_Frame then
+		_G.TutorialKeyboardMouseFrame_Frame:Kill()
+	end
+
 	if not E.private.auras.enable and not InCombatLockdown() then --in case elvui's buffs are disabled
 		if _G.BuffFrame then
 			E:CreateMover(BuffFrame, 'BlizzardBuffsMover', L["Blizzard Buff Frame"], nil, nil, nil, "ALL,SOLO,ELTREUMUI")

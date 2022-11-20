@@ -3306,6 +3306,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 120,
 								type = "description",
 								name= L["Change the size of the World of Warcraft Cursor"],
+								hidden = E.Retail,
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -3314,6 +3315,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'select',
 								name = L["Select a size"],
 								desc = L["Choose this size"],
+								hidden = E.Retail,
 								values = {
 									["-1"] = L["Autodetect"],
 									["0"] = '32x32',
@@ -9627,7 +9629,7 @@ function ElvUI_EltreumUI:Configtable()
 									headerroleiconcustomtankinput = {
 										order = 165,
 										type = 'input',
-										name = L["Tank"]..tostring(E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank),
+										name = L["Tank"],
 										desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
 										width = 'full',
 										disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype ~= 'CUSTOM' end,

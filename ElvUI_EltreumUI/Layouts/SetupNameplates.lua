@@ -416,6 +416,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,TurtleBuffs,CastByNPC"
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["size"] = 25
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["yOffset"] = 8
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["maxDuration"] = 1200
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["anchorPoint"] = "TOP"
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["countFont"] = "Kimberley"
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["debuffs"]["countFontSize"] = 10

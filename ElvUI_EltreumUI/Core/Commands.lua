@@ -244,9 +244,14 @@ function ElvUI_EltreumUI:Keys(event,message)
 		for bag = 0, NUM_BAG_SLOTS do
 			local bagSlots = C_Container.GetContainerNumSlots(bag)
 			for slot = 1, bagSlots do
-				local itemLink, _, _, itemID = select(7, C_Container.GetContainerItemInfo(bag, slot))
-				if itemID and ids[itemID] then
-					keys[itemID] = itemLink
+				--local itemLink, _, _, itemID = select(7, C_Container.GetContainerItemInfo(bag, slot))
+				local containerInfo = C_Container.GetContainerItemInfo(bag, slot)
+				if containerInfo then
+					local itemLink = containerInfo.hyperlink
+					local itemID = containerInfo.itemID
+					if itemID and ids[itemID] then
+						keys[itemID] = itemLink
+					end
 				end
 			end
 		end
@@ -259,7 +264,7 @@ function ElvUI_EltreumUI:Keys(event,message)
 		local covenantData = covenantID and C_Covenants.GetCovenantData(covenantID)
 		local covenantName = ''
 		if covenantData then
-		covenantName = covenantData.name
+			covenantName = covenantData.name
 		end
 		if E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
 			for _, itemlink in next, keys do
