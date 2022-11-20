@@ -603,7 +603,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] and E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] then
 			if E.Retail then
 				if E.myclass == "WARRIOR" then
-					if IsPlayerSpell(206315) then --fury massacre talent
+					if IsPlayerSpell(206315) or IsPlayerSpell(281001) then -- massacre talent
 						E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35
 					else
 						E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20
