@@ -310,7 +310,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["actionbar"]["microbar"]["buttonSize"] = 22
 	E.db["actionbar"]["microbar"]["buttonSpacing"] = 0
 	E.db["actionbar"]["microbar"]["buttonsPerRow"] = 11
-	E.db["actionbar"]["microbar"]["enabled"] = true
+	E.db["actionbar"]["microbar"]["enabled"] = false
 	E.db["actionbar"]["microbar"]["visibility"] = "[combat] hide; show"
 	E.db["actionbar"]["microbar"]["mouseover"] = true
 	E.db["actionbar"]["noPowerColor"]["b"] = 0.29019607843137
@@ -462,7 +462,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["movers"]["LootFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-156"
 	E.db["movers"]["LossControlMover"] = "TOP,ElvUIParent,TOP,0,-317"
 	E.db["movers"]["MasterExperienceMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,515,-79"
-	E.db["movers"]["MicrobarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-412,23" --moved since it was overlapping with datatext
+	--E.db["movers"]["MicrobarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-412,23" --moved since it was overlapping with datatext
 	E.db["movers"]["MinimapButtonAnchor"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-223"
 	E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-3"
 	E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96"
