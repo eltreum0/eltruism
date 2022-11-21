@@ -620,6 +620,8 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20
 				elseif E.myclass == "MONK" then
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.15
+				elseif E.myclass == "ROGUE" and IsPlayerSpell(381798) then --zoldyck recipe
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.15
 				else
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.10
 				end
