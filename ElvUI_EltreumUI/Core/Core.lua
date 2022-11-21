@@ -325,6 +325,8 @@ function ElvUI_EltreumUI:Anchors()
 						--test nil function to prevent it firing and causing taints
 						--_G.ObjectiveTrackerFrame.ApplySystemAnchor = E.noop
 						_G.ObjectiveTrackerFrame.ApplySystemAnchor = nil
+						_G.ObjectiveTrackerFrame.AnchorSelectionFrame = nil
+						_G.ObjectiveTrackerFrame.SetPointOverride = nil
 						_G.MainMenuBar.ApplySystemAnchor = nil
 
 						_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
