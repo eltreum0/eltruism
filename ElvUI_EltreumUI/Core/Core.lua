@@ -282,7 +282,24 @@ function ElvUI_EltreumUI:Anchors()
 			E:DisableMover('BossBannerMover')
 		end
 
-		--from elvui
+		--based in elvui, attempt at preventing taints
+		local editMode = _G.EditModeManagerFrame
+		local registered = editMode.registeredSystemFrames
+		for i = #registered, 1, -1 do
+			local name = registered[i]:GetName()
+			if name == "ObjectiveTrackerFrame" and E.db.ElvUI_EltreumUI.quests.anchor then
+				tremove(editMode.registeredSystemFrames, i)
+			end
+			if E.private.actionbar.enable then
+				if name == "MainMenuBar" then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "ExtraAbilityContainer" then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+			end
+		end
+
 		if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 			if E.db.ElvUI_EltreumUI.quests.anchor and not InCombatLockdown() then
 				E:Delay(0, function()
@@ -290,18 +307,6 @@ function ElvUI_EltreumUI:Anchors()
 						local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
 						holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
 						holder:SetSize(130, 22)
-
-						local editMode = _G.EditModeManagerFrame
-						local registered = editMode.registeredSystemFrames
-						for i = #registered, 1, -1 do
-							local name = registered[i]:GetName()
-							if name == "ObjectiveTrackerFrame" then
-								tremove(editMode.registeredSystemFrames, i)
-							end
-							if name == "MainMenuBar" and E.private.actionbar.enable then
-								tremove(editMode.registeredSystemFrames, i)
-							end
-						end
 
 						Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 						ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
