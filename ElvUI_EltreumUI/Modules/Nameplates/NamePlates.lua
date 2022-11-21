@@ -603,7 +603,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] and E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] then
 			if E.Retail then
 				if E.myclass == "WARRIOR" then
-					if IsPlayerSpell(206315) then --fury massacre talent
+					if IsPlayerSpell(206315) or IsPlayerSpell(281001) then -- massacre talent
 						E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35
 					else
 						E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20
@@ -619,6 +619,8 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				elseif E.myclass == "HUNTER" or E.myclass == "WARLOCK" or E.myclass == "PALADIN" or E.myclass == "PRIEST" then
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20
 				elseif E.myclass == "MONK" then
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.15
+				elseif E.myclass == "ROGUE" and IsPlayerSpell(381798) then --zoldyck recipe
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.15
 				else
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.10

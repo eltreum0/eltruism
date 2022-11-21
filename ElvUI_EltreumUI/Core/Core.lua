@@ -282,7 +282,24 @@ function ElvUI_EltreumUI:Anchors()
 			E:DisableMover('BossBannerMover')
 		end
 
-		--from elvui
+		--based in elvui, attempt at preventing taints
+		local editMode = _G.EditModeManagerFrame
+		local registered = editMode.registeredSystemFrames
+		for i = #registered, 1, -1 do
+			local name = registered[i]:GetName()
+			if name == "ObjectiveTrackerFrame" and E.db.ElvUI_EltreumUI.quests.anchor then
+				tremove(editMode.registeredSystemFrames, i)
+			end
+			if E.private.actionbar.enable then
+				if name == "MainMenuBar" then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "ExtraAbilityContainer" then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+			end
+		end
+
 		if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 			if E.db.ElvUI_EltreumUI.quests.anchor and not InCombatLockdown() then
 				E:Delay(0, function()
@@ -291,18 +308,26 @@ function ElvUI_EltreumUI:Anchors()
 						holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
 						holder:SetSize(130, 22)
 
-						local editMode = _G.EditModeManagerFrame
-						local registered = editMode.registeredSystemFrames
-						for i = #registered, 1, -1 do
-							local name = registered[i]:GetName()
-							if name == "ObjectiveTrackerFrame" then
-								tremove(editMode.registeredSystemFrames, i)
-							end
-						end
-
 						Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 						ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 						ObjectiveTracker_UpdateHeight()
+
+
+						--[[local rightmanagedframes = {_G.UIParentRightManagedFrameContainer:GetChildren()}
+						for i = 1, _G.UIParentRightManagedFrameContainer:GetNumChildren() do
+							local name = rightmanagedframes[i]:GetName()
+							if name == "ObjectiveTrackerFrame" then
+								i = E.noop
+								tremove(_G.UIParentRightManagedFrameContainer, i)
+							end
+						end]]
+
+						--test nil function to prevent it firing and causing taints
+						--_G.ObjectiveTrackerFrame.ApplySystemAnchor = E.noop
+						_G.ObjectiveTrackerFrame.ApplySystemAnchor = nil
+						_G.ObjectiveTrackerFrame.AnchorSelectionFrame = nil
+						_G.ObjectiveTrackerFrame.SetPointOverride = nil
+						_G.MainMenuBar.ApplySystemAnchor = nil
 
 						_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
 						_G.ObjectiveTrackerFrame:SetMovable(true)

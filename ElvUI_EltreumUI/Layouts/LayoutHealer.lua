@@ -275,7 +275,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["actionbar"]["microbar"]["buttonSize"] = 22
 	E.db["actionbar"]["microbar"]["buttonSpacing"] = 0
 	E.db["actionbar"]["microbar"]["buttonsPerRow"] = 11
-	E.db["actionbar"]["microbar"]["enabled"] = true
+	E.db["actionbar"]["microbar"]["enabled"] = false
 	E.db["actionbar"]["microbar"]["visibility"] = "[combat] hide; show"
 	E.db["actionbar"]["microbar"]["mouseover"] = true
 
@@ -412,7 +412,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["movers"]["PowerWidgetMover"] = "TOP,ElvUIParent,TOP,0,-102"
 	E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-72"
 	E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
-	E.db["movers"]["MicrobarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,140,1"
+	--E.db["movers"]["MicrobarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,140,1"
 	if IsAddOnLoaded("ElvUI_SLE") then
 		E.db["movers"]["SLE_DataPanel_1_Mover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,202"
 		E.db["movers"]["SLE_FarmSeedMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,278"

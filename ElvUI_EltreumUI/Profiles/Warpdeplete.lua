@@ -34,7 +34,7 @@ function ElvUI_EltreumUI:GetWarpDepleteProfile()
 			["objectivesFont"] = E.db.general.font,
 			["keyDetailsFont"] = E.db.general.font,
 			["keyFont"] = E.db.general.font,
-			["prideGlowColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
+			--["prideGlowColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
 			--["showPrideGlow"] = false, --nvm still shows the annoying mdt popup even when disabled
 			["deathsFont"] = E.db.general.font,
 			["completedForcesColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),

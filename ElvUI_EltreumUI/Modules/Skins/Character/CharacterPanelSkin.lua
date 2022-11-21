@@ -397,14 +397,19 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 
 			--move the equipment manager to a nice position
-			if _G.PaperDollEquipmentManagerPane then
-				_G.PaperDollEquipmentManagerPane:ClearAllPoints()
-				_G.PaperDollEquipmentManagerPane:SetPoint("RIGHT", CharacterFrame, "RIGHT", -30, -20)
+			if _G.PaperDollFrame.EquipmentManagerPane then
+				_G.PaperDollFrame.EquipmentManagerPane:ClearAllPoints()
+				_G.PaperDollFrame.EquipmentManagerPane:SetPoint("RIGHT", CharacterFrame, "RIGHT", -30, -20)
+				_G.PaperDollFrame.EquipmentManagerPane.ScrollBox:ClearAllPoints()
+				_G.PaperDollFrame.EquipmentManagerPane.ScrollBox:SetPoint("TOP", _G.PaperDollFrame.EquipmentManagerPane, "TOP", 0, -30)
 			end
+
 			--move the titles panel to a nice position
-			if _G.PaperDollTitlesPane then
-				_G.PaperDollTitlesPane:ClearAllPoints()
-				_G.PaperDollTitlesPane:SetPoint("RIGHT", CharacterFrame, "RIGHT", -30, -20)
+			if _G.PaperDollFrame.TitleManagerPane then
+				_G.PaperDollFrame.TitleManagerPane:ClearAllPoints()
+				_G.PaperDollFrame.TitleManagerPane:SetPoint("RIGHT", CharacterFrame, "RIGHT", -40, -20)
+				_G.PaperDollFrame.TitleManagerPane.ScrollBox:ClearAllPoints()
+				_G.PaperDollFrame.TitleManagerPane.ScrollBox:SetPoint("RIGHT", CharacterFrame, "RIGHT", -40, -20)
 			end
 
 			if (not IsAddOnLoaded('DejaCharacterStats')) then
