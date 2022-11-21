@@ -327,6 +327,14 @@ function ElvUI_EltreumUI:Anchors()
 						_G.ObjectiveTrackerFrame.ApplySystemAnchor = nil
 						_G.ObjectiveTrackerFrame.AnchorSelectionFrame = nil
 						_G.ObjectiveTrackerFrame.SetPointOverride = nil
+						--[[_G.ObjectiveTrackerFrame.SnapToFrame = nil
+						_G.ObjectiveTrackerFrame.ClearAllPointsOverride = nil
+						--_G.ObjectiveTrackerFrame.SetPointBase = E.noop --causes issues for some people for some reason
+						--_G.ObjectiveTrackerFrame.ClearAllPointsBase = nil
+						local function returnfalse()
+							return false
+						end
+						_G.ObjectiveTrackerFrame.CanBeMoved = returnfalse()]]
 						_G.MainMenuBar.ApplySystemAnchor = nil
 
 						_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
@@ -335,28 +343,21 @@ function ElvUI_EltreumUI:Anchors()
 						_G.ObjectiveTrackerFrame:ClearAllPoints()
 						_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
 						E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,general,blizzUIImprovements", nil, 'ElvUI_EltreumUI,quests')
-
 						ObjectiveTrackerFrame:UnregisterEvent("ADDON_ACTION_BLOCKED")
 
-						--ObjectiveTrackerFrame.SetPointBase = E.noop --causes issues for some people for some reason
-
-						hooksecurefunc("ObjectiveTracker_UpdateHeight", function()
-							if not InCombatLockdown() then
-								_G.ObjectiveTrackerFrame:ClearAllPoints()
-								_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
-							end
+						local function SetObjectivePoint()
+							E:Delay(0, function()
+								if not InCombatLockdown() then
+									_G.ObjectiveTrackerFrame:ClearAllPoints()
+									_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
+								end
+							end)
 							Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 							ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 							ObjectiveTrackerFrame:SetHeight(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight)
-						end)
+						end
+						hooksecurefunc("ObjectiveTracker_UpdateHeight", SetObjectivePoint)
 
-						--[[local questmonitor = CreateFrame("FRAME")
-						questmonitor:RegisterEvent("QUEST_LOG_UPDATE")
-						questmonitor:RegisterEvent("UPDATE_UI_WIDGET")
-						questmonitor:SetScript("OnEvent", function()
-							_G.ObjectiveTrackerFrame:ClearAllPoints()
-							_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
-						end)]]
 					end
 				end)
 			end
