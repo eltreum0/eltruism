@@ -1,9 +1,15 @@
-### 3.6.0 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.6.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added Aman'Thul's Wipe Sound ("No! After all we have endured it must not end this way!")\
-Added Aman'Thul's Wipe sound to BigWigs wipe sound\
-Added gradient and custom textures to focus castbar (uses target settings)\
-Added shadows to focus castbar\
-Updated some nameplate style filters to require the nameplate to not be tap denied\
-Updated Evoker Crest\
-Updated Target Aurabars filters
+Added some tutorial frames to a kill list to prevent them from blocking some frames due to them overlapping while hidden\
+Added more workarounds for taints and placement of the objective tracker in Retail\
+Added more checks for talents to EltreumExecute Nameplate Style Filter\
+Added option to not change offset of 3D portraits\
+Added more missing shadows\
+Updated Cursor Size to only show in Wrath and Classic since Retail now has a Blizzard option for it\
+Updated Friendly NPC nameplate buff duration to set a time limit to buffs\
+Updated Method Raid Tools profile with new Raid Cooldowns in Retail\
+Updated German locale by DLarge\
+Updated WarpDeplete profile\
+Fixed Equipment Manager and Title Manager positions in Retail\
+Fixed !key and !keys commands due to container changes\
+Disabled MicroBar due to it causing some Taints
