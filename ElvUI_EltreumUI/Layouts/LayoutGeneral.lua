@@ -1460,6 +1460,11 @@ function ElvUI_EltreumUI:SetupCVars()
 
 		SetCVar('WorldTextMinSize', 6)
 
+		--new softtarget (only function if player enables interact with target option, which these cvars do not enable)
+		SetCVar('SoftTargetInteractArc', 2)
+		SetCVar('SoftTargetInteractRange', 30)
+		--SetCVar('SoftTargetInteract', 3) --3 enables, 0 disables
+
 		--[[
 		SetCVar('findYourselfAnywhere', 0) --"Always Highlight your character"
 		SetCVar('findYourselfAnywhereOnlyInCombat', 0) --"Highlight your character only when in combat"

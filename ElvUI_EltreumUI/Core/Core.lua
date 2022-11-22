@@ -293,6 +293,7 @@ function ElvUI_EltreumUI:Anchors()
 			if E.private.actionbar.enable then
 				if name == "MainMenuBar" then
 					tremove(editMode.registeredSystemFrames, i)
+					_G.MainMenuBar.ApplySystemAnchor = nil
 				end
 				if name == "ExtraAbilityContainer" then
 					tremove(editMode.registeredSystemFrames, i)
@@ -312,16 +313,6 @@ function ElvUI_EltreumUI:Anchors()
 						ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 						ObjectiveTracker_UpdateHeight()
 
-
-						--[[local rightmanagedframes = {_G.UIParentRightManagedFrameContainer:GetChildren()}
-						for i = 1, _G.UIParentRightManagedFrameContainer:GetNumChildren() do
-							local name = rightmanagedframes[i]:GetName()
-							if name == "ObjectiveTrackerFrame" then
-								i = E.noop
-								tremove(_G.UIParentRightManagedFrameContainer, i)
-							end
-						end]]
-
 						--test nil function to prevent it firing and causing taints
 						--_G.ObjectiveTrackerFrame.ApplySystemAnchor = E.noop
 						_G.ObjectiveTrackerFrame.ApplySystemAnchor = nil
@@ -335,7 +326,6 @@ function ElvUI_EltreumUI:Anchors()
 							return false
 						end
 						_G.ObjectiveTrackerFrame.CanBeMoved = returnfalse()]]
-						_G.MainMenuBar.ApplySystemAnchor = nil
 
 						_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
 						_G.ObjectiveTrackerFrame:SetMovable(true)
