@@ -438,26 +438,28 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 					--fix camera rotation by get the model id
 					if _G["ElvUF_Player"].Portrait3D then
 						playermodel = _G["ElvUF_Player"].Portrait3D:GetModelFileID()
-						if modelsRotate[playermodel]then
-							newrotation = 0
-						elseif playermodel == 926251 then
-							newrotation = 99
-						else
-							newrotation = 67--39
-						end
-						if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
-							if playermodel == 1273833 then
-								E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.59 --cat
-							elseif playermodel == 1505169 then
-								E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0.62 --bear
-							elseif playermodel == 4207724 then
-								E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0.5 --dracthyr
-							elseif druidfix[playermodel] or playermodel == 926251 then
-								E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.39 --other bears
-							elseif playermodel == 1043712 then
-								E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -1 --shaman raptor
+						if playermodel  then
+							if modelsRotate[playermodel]then
+								newrotation = 0
+							elseif playermodel == 926251 then
+								newrotation = 99
 							else
-								E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0
+								newrotation = 67--39
+							end
+							if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
+								if playermodel == 1273833 then
+									E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.59 --cat
+								elseif playermodel == 1505169 then
+									E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0.62 --bear
+								elseif playermodel == 4207724 then
+									E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0.5 --dracthyr
+								elseif druidfix[playermodel] or playermodel == 926251 then
+									E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.39 --other bears
+								elseif playermodel == 1043712 then
+									E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -1 --shaman raptor
+								else
+									E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0
+								end
 							end
 						end
 					end
@@ -471,7 +473,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 						E.db["unitframe"]["units"]["player"]["portrait"]["desaturation"] = 0
 					end
 
-					if newrotation ~= originalrotation then
+					if newrotation and newrotation ~= originalrotation then
 						E.db["unitframe"]["units"]["player"]["portrait"]["rotation"] = newrotation
 					end
 
@@ -500,6 +502,26 @@ end)
 
 --hoping this is a temporary fix and blizzard actually fixes models not inherithing the parent's alpha
 if E.Retail then
+
+	--fix alpha on login
+	local pewcheck = CreateFrame("FRAME")
+	pewcheck:RegisterEvent("PLAYER_ENTERING_WORLD")
+	pewcheck:SetScript("OnEvent",function()
+		if _G["ElvUF_Player"] and E.db.unitframe.units.player.fader.enable and E.db.unitframe.units.player.fader.minAlpha == 0 then
+			E:Delay(0, function()
+				if _G["ElvUF_Player"].Portrait3D then
+					_G["ElvUF_Player"].Portrait3D:Hide()
+				end
+				if _G["EltruismPlayerEffect"] then
+					_G["EltruismPlayerEffect"]:SetAlpha(0)
+				end
+				if _G["EltruismPlayerPowerBarEffect"] then
+					_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
+				end
+			end)
+		end
+	end)
+
 	hooksecurefunc(E, "UIFrameFadeIn", function(_, frame,_, _, endAlpha)
 		if frame and endAlpha then
 			if endAlpha == 0 then
