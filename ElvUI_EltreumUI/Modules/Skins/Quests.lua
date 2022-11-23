@@ -336,6 +336,16 @@ function ElvUI_EltreumUI:SkinQuests()
 							end
 						end
 					end
+
+					--add quest count
+					if _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.QuestHeader and _G.ObjectiveTrackerBlocksFrame.QuestHeader.Text then
+						local NumQuests = select(2, C_QuestLog.GetNumQuestLogEntries())
+						if (NumQuests >= (MAX_QUESTS - 5)) then
+							_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, QUESTS_LABEL))
+						--else
+						--	_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(QUESTS_LABEL)
+						end
+					end
 				end)
 
 				--skin the progress bars
@@ -694,9 +704,9 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				local NumQuests = select(2, GetNumQuestLogEntries())
 				if (NumQuests >= (MAX_QUESTS - 5)) then
-					QuestWatchFrameTitle:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, "Quests"))
+					QuestWatchFrameTitle:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, QUESTS_LABEL))
 				else
-					QuestWatchFrameTitle:SetText(format("%d/%d - %s", NumQuests, MAX_QUESTS, "Quests"))
+					QuestWatchFrameTitle:SetText(QUESTS_LABEL)
 				end
 				if (GetNumQuestWatches() == 0) then
 					_G.QuestWatchFrame.HeaderBar:SetAlpha(0)
@@ -903,9 +913,9 @@ function ElvUI_EltreumUI:SkinQuests()
 				local NumQuests = select(2, GetNumQuestLogEntries())
 
 				if (NumQuests >= (MAX_QUESTS - 5)) then
-					WatchFrameTitle:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, "Quests"))
+					WatchFrameTitle:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, QUESTS_LABEL))
 				else
-					WatchFrameTitle:SetText(format("%d/%d - %s", NumQuests, MAX_QUESTS, "Quests"))
+					WatchFrameTitle:SetText(QUESTS_LABEL)
 				end
 
 				if (GetNumQuestWatches() == 0) then
