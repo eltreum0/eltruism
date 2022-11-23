@@ -372,6 +372,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["bags"]["split"]["bagSpacing"] = 7
 		E.db["bags"]["transparent"] = true
 		E.db["bags"]["vendorGrays"]["enable"] = true
+		E.db["bags"]["split"]["bag5"] = true
+		E.db["bags"]["split"]["bagSpacing"] = 7
+		E.db["bags"]["split"]["player"] = true
 
 		-- Chat
 		E.db["chat"]["chatHistory"] = false
