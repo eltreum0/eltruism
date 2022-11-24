@@ -1883,14 +1883,14 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		if E.db["unitframe"]["units"]["player"]["classbar"]["detachFromFrame"] then
+		--[[if E.db["unitframe"]["units"]["player"]["classbar"]["detachFromFrame"] then
 			if _G["ElvUF_Player_ClassBar"].shadow then
 				_G["ElvUF_Player_ClassBar"].shadow:Show()
 			else
 				_G["ElvUF_Player_ClassBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvUF_Player_ClassBar"].shadow) end
 			end
-		end
+		end]]
 		if E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] then
 			if _G["ElvUF_Player_PowerBar"].shadow then
 				_G["ElvUF_Player_PowerBar"].shadow:Show()
