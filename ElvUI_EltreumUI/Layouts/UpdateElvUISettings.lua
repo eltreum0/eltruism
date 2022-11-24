@@ -44,9 +44,11 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 	E.db["unitframe"]["colors"]["classResources"]["comboPoints"][7]["g"] = 0.2549019753933
 	E.db["unitframe"]["colors"]["classResources"]["comboPoints"][7]["r"] = 1
 
-	E.db["bags"]["split"]["bag5"] = true
-	E.db["bags"]["split"]["bagSpacing"] = 7
-	E.db["bags"]["split"]["player"] = true
+	if E.Retail then
+		E.db["bags"]["split"]["bag5"] = true
+		E.db["bags"]["split"]["bagSpacing"] = 7
+		E.db["bags"]["split"]["player"] = true
+	end
 
 
 	E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
