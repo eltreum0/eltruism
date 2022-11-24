@@ -182,6 +182,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["tooltips"]["icon"] = false
 		E.private["WT"]["tooltips"]["objectiveProgress"] = false
 		E.private["WT"]["tooltips"]["progression"]["enable"] = true
+		E.private["WT"]["tooltips"]["progression"]["header"] = "TEXT"
 		E.private["WT"]["tooltips"]["progression"]["mythicDungeons"]["Algeth'ar Academy"] = true
 		E.private["WT"]["tooltips"]["progression"]["mythicDungeons"]["Court of Stars"] = true
 		E.private["WT"]["tooltips"]["progression"]["mythicDungeons"]["Grimrail Depot"] = false
