@@ -9,6 +9,10 @@ local PlayMusic = _G.PlayMusic
 local PlaySound = _G.PlaySound
 local StopMusic = _G.StopMusic
 local StopSound = _G.StopSound
+local EnhancedShadows = nil
+if IsAddOnLoaded("ProjectAzilroka") then
+	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
+end
 
 -- general alliance walk (legion) maybe human music idk
 --/script PlaySoundFile(1417250, "Dialog", true)
@@ -124,9 +128,25 @@ local EltruismAFKLogo = CreateFrame("Frame", "EltruismAFKLogo", UIParent)
 local EltruismAFKLogoTexture = EltruismAFKLogo:CreateTexture()
 local EltruismAFKVignette = CreateFrame("Frame", "EltruismAFKVignette", UIParent)
 local EltruismAFKVignetteTexture = EltruismAFKVignette:CreateTexture()
-
 local EltruismAFKTop = CreateFrame('Frame', nil, EltruismAFKLogo)
 EltruismAFKLogo:Hide()
+
+local classIcons = {
+	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/WarriorShadow",
+	["PALADIN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/PaladinShadow",
+	["HUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/HunterShadow",
+	["ROGUE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/RogueShadow",
+	["PRIEST"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/PriestShadow",
+	["DEATHKNIGHT"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DeathKnightShadow",
+	["SHAMAN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/ShamanShadow",
+	["MAGE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/MageShadow",
+	["WARLOCK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/WarlockShadow",
+	["MONK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/MonkShadow",
+	["DRUID"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DruidShadow",
+	["DEMONHUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunterShadow",
+	["EVOKER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/EvokerShadow",
+}
+
 function ElvUI_EltreumUI:AFKLogo()
 	if E.db.general.afk then
 		EltruismAFKLogo:SetSize(320, 80)
@@ -150,6 +170,16 @@ function ElvUI_EltreumUI:AFKLogo()
 		EltruismAFKTop:SetWidth(E.screenWidth*2)
 		EltruismAFKTop:SetHeight(E.screenHeight * 0.1)
 
+		--add shadows
+		if not EltruismAFKTop.shadow then
+			EltruismAFKTop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			if EnhancedShadows then EnhancedShadows:RegisterShadow(EltruismAFKTop.shadow) end
+		end
+		if _G.ElvUIAFKFrame and _G.ElvUIAFKFrame.bottom and not _G.ElvUIAFKFrame.bottom.shadow then
+			_G.ElvUIAFKFrame.bottom:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ElvUIAFKFrame.bottom.shadow) end
+		end
+
 		if E.db.ElvUI_EltreumUI.otherstuff.afklogo then
 			EltruismAFKLogo:SetParent(_G.ElvUIAFKFrame.bottom)
 			if UnitIsAFK("player") then
@@ -159,6 +189,16 @@ function ElvUI_EltreumUI:AFKLogo()
 				EltruismAFKLogo:Hide()
 				EltruismAFKVignette:Hide()
 			end
+
+			--change faction to class icon
+			_G.ElvUIAFKFrame.bottom.faction:Point('BOTTOMLEFT', _G.ElvUIAFKFrame.bottom, 'BOTTOMLEFT', 15, 30)
+			_G.ElvUIAFKFrame.bottom.faction:Size(64, 64)
+			_G.ElvUIAFKFrame.bottom.faction:SetTexture(classIcons[E.myclass])
+
+			--change name-realm to just name
+			_G.ElvUIAFKFrame.bottom.name:SetText(E.myname)
+			_G.ElvUIAFKFrame.bottom.name:Point('TOPLEFT', _G.ElvUIAFKFrame.bottom.faction, 'TOPRIGHT', 10, 10)
+
 		end
 	end
 end
