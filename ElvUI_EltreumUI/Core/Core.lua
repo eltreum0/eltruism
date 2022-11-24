@@ -275,7 +275,7 @@ function ElvUI_EltreumUI:Anchors()
 	end
 
 	if E.Retail then
-		E:CreateMover(RaidBossEmoteFrame, "MoverRaidBossEmoteFrame", "Raid/Boss Emote Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
+		E:CreateMover(_G.RaidBossEmoteFrame, "MoverRaidBossEmoteFrame", "Raid/Boss Emote Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
 
 		if E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss then
 			_G.BossBanner:UnregisterAllEvents()
