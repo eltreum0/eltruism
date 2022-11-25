@@ -53,6 +53,14 @@ end
 --gradient digsite and custom font stuff
 function ElvUI_EltreumUI:GradientArcheology()
 	if _G.ArcheologyDigsiteProgressBar then
+
+		_G.ArcheologyDigsiteProgressBar:HookScript("OnShow", function()
+			if not InCombatLockdown() then
+				_G.ArcheologyDigsiteProgressBar:ClearAllPoints()
+				_G.ArcheologyDigsiteProgressBar:SetPoint("CENTER", _G["EltruismArcheology"], "CENTER", 0, 0)
+			end
+		end)
+
 		if _G.ArcheologyDigsiteProgressBar.BarTitle then
 			_G.ArcheologyDigsiteProgressBar.BarTitle:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontsize, E.db.general.fontStyle)
 			local point, relativeTo, relativePoint, xOfs, yOfs = _G.ArcheologyDigsiteProgressBar.BarTitle:GetPoint()

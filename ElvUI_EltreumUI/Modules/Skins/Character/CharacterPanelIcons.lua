@@ -89,7 +89,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 				end
 			end
-		elseif E.Retail then
+		elseif E.Retail and not self.ischarpanelHooked then
 
 			hooksecurefunc('PaperDollFrame_SetLevel', function()
 				CharacterFrameTitleText:ClearAllPoints()
@@ -195,6 +195,8 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					end
 				end
 			end)
+
+			self.ischarpanelHooked = true
 		end
 	end
 end
