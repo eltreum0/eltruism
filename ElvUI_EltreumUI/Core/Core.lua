@@ -203,7 +203,7 @@ EltreumWAAnchor2:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 320)
 local EltruismWAConsumablesAnchor = CreateFrame("Frame", "EltruismConsumablesWA", UIParent)
 --postion the anchor right below the player unitframe
 EltruismWAConsumablesAnchor:SetPoint("LEFT", _G["ElvUF_Player"], 0, -75)
-
+--archeology mover
 local EltreumArcheologyAnchor = CreateFrame("Frame", "EltruismArcheology", UIParent)
 EltreumArcheologyAnchor:SetPoint("TOP", UIParent, "TOP", 0, -230)
 EltreumArcheologyAnchor:SetSize(200, 50)
