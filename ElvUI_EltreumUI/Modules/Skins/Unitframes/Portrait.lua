@@ -370,6 +370,7 @@ local modelsRotate = {
 	[3055446] = true, --Wrathion
 	[514985] = true, --Majordomo Staghelm
 	[122883] = true, --Akama
+	[852829] = true, --Echo of Y'Shaarj
 }
 
 --set portrait rotation based on target being npc or not
