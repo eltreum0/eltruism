@@ -1206,3 +1206,4 @@ L["Settings for ElvUI were updated."] = "Les paramètres d'ElvUI ont été mis �
 L["Empowering Color"] = true
 L["Automatically offset Player/Target Portrait"] = true
 L["Detects player and target's species and uses it to fix the offset of the 3D Portrait"] = true
+L["Font has been set."] = true --name of font shows up before "Font", example: "Arial Font has been set."

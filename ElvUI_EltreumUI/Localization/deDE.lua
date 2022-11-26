@@ -1249,3 +1249,4 @@ L["Displays unit name in gradient class color or reaction color, shortens over 1
 L["Empowering Color"] = "Verstärkte Funkenfarbe" --enpowering casts for evoker, refers to the spark color here
 L["Automatically offset Player/Target Portrait"] = "Spieler-/Zielporträt automatisch versetzen"
 L["Detects player and target's species and uses it to fix the offset of the 3D Portrait"] = "Erkennt die Spezies von Spieler und Ziel und verwendet sie, um den Versatz des 3D-Porträts zu korrigieren"
+L["Font has been set."] = true --name of font shows up before "Font", example: "Arial Font has been set."
