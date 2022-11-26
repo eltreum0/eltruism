@@ -186,6 +186,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 				end
 				return
 			else
+				if E.Retail and C_Map.GetBestMapForUnit('player') == 762 then return end
 				if E.db.ElvUI_EltreumUI.dev then
 					ElvUI_EltreumUI:Print("started quest automation")
 				end
