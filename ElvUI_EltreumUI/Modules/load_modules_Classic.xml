@@ -22,12 +22,7 @@
 	<Script file='Misc/Screenshot.lua'/>
 	<Script file='Nameplates/Nameplates.lua'/>
 	<Script file='Nameplates/PowerBar.lua'/>
-	<Script file='Fonts/CustomFont.lua'/>
-	<Script file='Fonts/CrystalzcuheiGBK.lua'/>
-	<Script file='Fonts/Exo2.lua'/>
-	<Script file='Fonts/Gotham.lua'/>
-	<Script file='Fonts/Kimberley.lua'/>
-	<Script file='Fonts/Roboto.lua'/>
+	<Script file='Fonts/SetupFont.lua'/>
 	<Script file='Fonts/OutlineDefault.lua'/>
 	<Script file='Fonts/OutlineCustom.lua'/>
 	<Include file='Skins\load_skins_classic.xml'/>

@@ -7250,7 +7250,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Kimberley',
 								desc = L["This will set all ElvUI fonts as Kimberley"],
-								func = function() ElvUI_EltreumUI:SetupFontsKimberley() E:StaggeredUpdateAll(nil, true) end,
+								func = function() ElvUI_EltreumUI:SetupFont("Kimberley") end,
 								confirm = true,
 							},
 							exo2 = {
@@ -7258,7 +7258,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Exo2',
 								desc = L["This will set all ElvUI fonts as Exo2"],
-								func = function() ElvUI_EltreumUI:SetupFontsExo2() E:StaggeredUpdateAll(nil, true) end,
+								func = function() ElvUI_EltreumUI:SetupFont("Exo2 Extra Bold") end,
 								confirm = true,
 							},
 							addagaphereforfonts = {
@@ -7272,7 +7272,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Gotham',
 								desc = L["This will set all ElvUI fonts as Gotham"],
-								func = function() ElvUI_EltreumUI:SetupFontsGotham() E:StaggeredUpdateAll(nil, true) end,
+								func = function() ElvUI_EltreumUI:SetupFont("GothamNarrow Black") end,
 								confirm = true,
 							},
 							roboto = {
@@ -7280,7 +7280,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Roboto',
 								desc = L["This will set all ElvUI fonts as Roboto"],
-								func = function() ElvUI_EltreumUI:SetupFontsRoboto() E:StaggeredUpdateAll(nil, true) end,
+								func = function() ElvUI_EltreumUI:SetupFont("Roboto") end,
 								confirm = true,
 							},
 							sharedmediafont = {
@@ -7296,7 +7296,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(self,fontvalue)
 									E.db.ElvUI_EltreumUI.otherstuff.fonts.playerfont = fontvalue
-									ElvUI_EltreumUI:SetupCustomFont(fontvalue)
+									ElvUI_EltreumUI:SetupFont(fontvalue, true)
 								end,
 							},
 							addagaphereforoutlines = {

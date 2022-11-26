@@ -5,7 +5,7 @@ local GetAddOnMetadata = _G.GetAddOnMetadata
 local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 local PA = _G.ProjectAzilroka
 
-function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
+function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	if not E.db.movers then E.db.movers = {} end
 		--nameplates
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = fontvalue
@@ -60,7 +60,7 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 		E.private["general"]["namefont"] = fontvalue
 		if E.Retail then
 			if IsAddOnLoaded('ProjectAzilroka') then
-				PA.db["stAddonManager"]["Font"] = fontvalue
+				_G.ProjectAzilroka.db["stAddonManager"]["Font"] = fontvalue
 			end
 			if IsAddOnLoaded("ElvUI_SLE") then
 				E.db["sle"]["armory"]["character"]["durability"]["font"] = fontvalue
@@ -905,7 +905,12 @@ function ElvUI_EltreumUI:SetupCustomFont(fontvalue)
 	end
 
 	E:StaggeredUpdateAll(nil, true)
-	ElvUI_EltreumUI:Print(L["Your custom font has been set."])
+
+	if custom then
+		ElvUI_EltreumUI:Print(L["Your custom font has been set."])
+	else
+		ElvUI_EltreumUI:Print(fontvalue.." "..L["Font has been set."])
+	end
 
 	ElvUI_EltreumUI:ResolutionOutline()
 end
