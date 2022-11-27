@@ -8,7 +8,7 @@ local Eltruismdpstargetdebuffs = "Blacklist,Personal,CCDebuffs"
 local Eltruismdpsplayerdebuffs = "Blacklist,blockNoDuration,Personal,nonPersonal"
 local Eltruismdpsplayerbuffs = "Blacklist,Personal,nonPersonal"
 local Eltruismdpsbossbuffs = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
-local Eltruismdpsbossdebuffs = "Blacklist,Personal,CCDebuffs"
+local Eltruismdpsbossdebuffs = "Blacklist,CCDebuffs,RaidDebuffs"
 local Eltruismdpsfocusbuffs = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
 local Eltruismdpsfocusdebuffs = "Blacklist,Personal,CCDebuffs"
 

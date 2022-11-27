@@ -84,7 +84,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = "Blacklist,Personal,nonPersonal"
 		E.db["unitframe"]["units"]["arena"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
 		E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
-		E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = "Blacklist,CCDebuffs,RaidDebuffs"
 		E.db["unitframe"]["units"]["raid1"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
 		E.db["unitframe"]["units"]["raid2"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
 		E.db["unitframe"]["units"]["raid3"]["debuffs"]["priority"] = "Blacklist,RaidDebuffs,Dispellable"
