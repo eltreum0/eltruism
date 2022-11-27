@@ -2832,7 +2832,7 @@ function ElvUI_EltreumUI:Configtable()
 						name = L["Enable !key and !keys chat command"],
 						width = 'full',
 						hidden = not E.Retail,
-						desc = L["Will link your key and covenant in guild or party chat"],
+						desc = L["Will link your key in guild or party chat"],
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mpluskeys end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mpluskeys = value E:StaticPopup_Show('CONFIG_RL') end,
 					},
