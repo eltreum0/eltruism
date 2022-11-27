@@ -452,6 +452,13 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 									else
 										C_GossipInfo.SelectOption(gossipInfoTable[1].gossipOptionID)
 									end
+								else
+									for i = 1, #gossipInfoTable do
+										local text = gossipInfoTable[i].name
+										if text and text:match("|cFF0000FF") then --quests are marked with a blue (Quests) text too
+											C_GossipInfo.SelectOption(gossipInfoTable[i].gossipOptionID)
+										end
+									end
 								end
 								--[[for i = 1, #gossipInfoTable do
 									if gossipInfoTable[i].type == "gossip" or gossipInfoTable[i].type == "chatbubble" then --and gossipInfoTable[i].type ~= "vendor" then --chatbubble is for sanctum stuff

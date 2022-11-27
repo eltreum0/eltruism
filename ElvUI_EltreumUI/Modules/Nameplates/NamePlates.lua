@@ -56,7 +56,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			end
 			button.Cooldown:SetFrameStrata('DIALOG')
 			TimeSinceLastUpdate = 0
-			if not button.Cooldown then
+			if not button.Cooldown or not button.Cooldown:IsShown() then
 				if E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow then
 					if E.db.ElvUI_EltreumUI.glow.pixel then
 						LCG.PixelGlow_Stop(button)
@@ -113,7 +113,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 								end
 							end
 						else
-							if E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow and (button.Cooldown == nil or button.Cooldown.timer == nil) then
+							if E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow and (button.Cooldown == nil or button.Cooldown.timer == nil or not button.Cooldown:IsShown()) then
 								if E.db.ElvUI_EltreumUI.glow.pixel then
 									LCG.PixelGlow_Stop(button)
 								elseif E.db.ElvUI_EltreumUI.glow.autocast then
