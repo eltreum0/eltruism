@@ -6,7 +6,12 @@ Added Quest Count to Retail Objective Frame (only shows up when quest log is nea
 Added shadows to Objective Frame Quest Item\
 Added a few models to portrait fix\
 Added Archeology Mover to Retail\
+Updated Nameplate Debuff Glow with more checks for Debuffs not having timers\
+Updated Dynamic Cam profile with missing raid camera reset in Retail\
+Updated Bonus Objective text color in the Quests Skin in Retail\
 Updated AFK function to show class icon instead of faction\
+Updated !key and !keys command to remove the covenant info\
+Updated Boss debuffs to remove personal debuffs\
 Updated ElvUI Bags to split the reagent bag\
 Updated German locale by Dlarge\
 Updated WindTools profile\
