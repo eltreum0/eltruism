@@ -1,17 +1,15 @@
-### 3.6.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.6.2 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added some tutorial frames to a kill list to prevent them from blocking some frames due to them overlapping while hidden\
-Added more workarounds for taints and placement of the objective tracker in Retail\
-Added more checks for talents to EltreumExecute Nameplate Style Filter\
-Added an option to change Low Latency CVars (Nvidia Reflex) in Retail\
-Added option to not change offset of 3D portraits\
-Added more missing shadows\
-Updated Cursor Size to only show in Wrath and Classic since Retail now has a Blizzard option for it\
-Updated Friendly NPC nameplate buff duration to set a time limit to buffs\
-Updated Method Raid Tools profile with new Raid Cooldowns in Retail\
-Updated 3D portrait fix to also fade when logging in\
-Updated German locale by DLarge\
-Updated WarpDeplete profile\
-Fixed Equipment Manager and Title Manager positions in Retail\
-Fixed !key and !keys commands due to container changes\
-Disabled MicroBar due to it causing some Taints
+Added Quest Count to Retail Objective Frame (only shows up when quest log is near full)\
+Added shadows to Objective Frame Quest Item\
+Added a few models to portrait fix\
+Added Archeology Mover to Retail\
+Updated AFK function to show class icon instead of faction\
+Updated ElvUI Bags to split the reagent bag\
+Updated German locale by Dlarge\
+Updated WindTools profile\
+Updated fonts functions\
+Fixed Unitframe castbar not correctly using unitframe skin when gradient was enabled\
+Fixed an issue with the Windtools message not properly going away in one case\
+Fixed Pandaria Scenarios missing the Blocks Skin\
+Fixed power shadows when using detached power
