@@ -1,8 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local AB = E:GetModule('ActionBars')
---local LCG = E.Libs.CustomGlow
-local LCG = LibStub('LibCustomGlow-1.0')
-local customglow = LibStub("LibButtonGlow-1.0")
+local LCG = E.Libs.CustomGlow
+--local LCG = LibStub('LibCustomGlow-1.0')
 local classcolor = E:ClassColor(E.myclass, true)
 local skillglowcolor
 local _G = _G
@@ -35,48 +34,30 @@ function ElvUI_EltreumUI:SkillGlow()
 		if E.Retail then
 			if not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 				if E.db.ElvUI_EltreumUI.glow.pixel then
-					function customglow.ShowOverlayGlow(button)
+					function LCG.ShowOverlayGlow(button)
 						if button:GetAttribute("type") == "action" then
-							if button.__LBGoverlay then --TODO LBG workaround
-								button.__LBGoverlay:Hide()
-							end
 							LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
 						end
 					end
-					function customglow.HideOverlayGlow(button)
-						if button.__LBGoverlay then --TODO LBG workaround
-							button.__LBGoverlay:Hide()
-						end
+					function LCG.HideOverlayGlow(button)
 						LCG.PixelGlow_Stop(button)
 					end
 				elseif E.db.ElvUI_EltreumUI.glow.autocast then
-					function customglow.ShowOverlayGlow(button)
-						if button.__LBGoverlay then --TODO LBG workaround
-							button.__LBGoverlay:Hide()
-						end
+					function LCG.ShowOverlayGlow(button)
 						if button:GetAttribute("type") == "action" then
 							LCG.AutoCastGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 						end
 					end
-					function customglow.HideOverlayGlow(button)
-						if button.__LBGoverlay then --TODO LBG workaround
-							button.__LBGoverlay:Hide()
-						end
+					function LCG.HideOverlayGlow(button)
 						LCG.AutoCastGlow_Stop(button)
 					end
 				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-					function customglow.ShowOverlayGlow(button)
-						if button.__LBGoverlay then --TODO LBG workaround
-							button.__LBGoverlay:Hide()
-						end
+					function LCG.ShowOverlayGlow(button)
 						if button:GetAttribute("type") == "action" then
 							LCG.ButtonGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
 						end
 					end
-					function customglow.HideOverlayGlow(button)
-						if button.__LBGoverlay then --TODO LBG workaround
-							button.__LBGoverlay:Hide()
-						end
+					function LCG.HideOverlayGlow(button)
 						LCG.ButtonGlow_Stop(button)
 					end
 				end

@@ -2,8 +2,8 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
---local LCG = E.Libs.CustomGlow
-local LCG = LibStub('LibCustomGlow-1.0')
+local LCG = E.Libs.CustomGlow
+--local LCG = LibStub('LibCustomGlow-1.0')
 local classcolor = E:ClassColor(E.myclass, true)
 local glowcolor
 local hooksecurefunc = _G.hooksecurefunc
@@ -608,8 +608,8 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					else
 						E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20
 					end
-				elseif E.myclass == "DEATHKNIGHT" then
-					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35 -- with soul reaper talent
+				elseif E.myclass == "DEATHKNIGHT" and IsPlayerSpell(343294) then --soul reaper
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35
 				elseif E.myclass == "MAGE" then
 					if IsPlayerSpell(384581) then --arcane bombarbment talent
 						E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35

@@ -2,8 +2,8 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local UF = E:GetModule('UnitFrames')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
---local LCG = E.Libs.CustomGlow
-local LCG = LibStub('LibCustomGlow-1.0')
+local LCG = E.Libs.CustomGlow
+--local LCG = LibStub('LibCustomGlow-1.0')
 
 --glow dispellable debuffs
 function ElvUI_EltreumUI:UFGlow(object, debuffType, _, wasFiltered)
