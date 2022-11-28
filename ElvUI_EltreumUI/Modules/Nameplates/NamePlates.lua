@@ -2,8 +2,8 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local _G = _G
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
---local LCG = E.Libs.CustomGlow
-local LCG = LibStub('LibCustomGlow-1.0')
+local LCG = E.Libs.CustomGlow
+--local LCG = LibStub('LibCustomGlow-1.0')
 local classcolor = E:ClassColor(E.myclass, true)
 local glowcolor
 local hooksecurefunc = _G.hooksecurefunc
