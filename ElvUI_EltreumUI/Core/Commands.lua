@@ -11,7 +11,6 @@ local GetContainerNumSlots = E.Retail and C_Container.GetContainerNumSlots or _G
 local GetContainerItemInfo = E.Retail and C_Container.GetContainerItemInfo or _G.GetContainerItemInfo
 local UseContainerItem = E.Retail and C_Container.UseContainerItem or _G.UseContainerItem
 local select = _G.select
-local C_Covenants = _G.C_Covenants
 local next = _G.next
 local SendChatMessage = _G.SendChatMessage
 
@@ -173,7 +172,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 			else
 				print("|cff82B4ff/eway and /ewaypoint|r - Sets a map waypoint with the supplied coordinates")
 			end
-			print("|cff82B4ff/!key and /!keys|r - Links your keystone and covenant in chat")
+			print("|cff82B4ff/!key and /!keys|r - Links your keystone in chat")
 		end
 		print("|cff82B4ff/eltruism background|r - Toggles chat between grey and black background colors for ElvUI")
 		print("|cff82B4ff/eltruism color|r - Toggles unitframe between light and dark modes")
@@ -259,17 +258,10 @@ function ElvUI_EltreumUI:Keys(event,message)
 	local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or (event == 'CHAT_MSG_PARTY_LEADER' and 'PARTY') or (event == 'CHAT_MSG_PARTY' and 'PARTY')
 	local function link(channel)
 		update()
-		-- Add covenant data
-		local covenantID = C_Covenants.GetActiveCovenantID()
-		local covenantData = covenantID and C_Covenants.GetCovenantData(covenantID)
-		local covenantName = ''
-		if covenantData then
-			covenantName = covenantData.name
-		end
 		if E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
 			for _, itemlink in next, keys do
-				message = ""..itemlink
-				SendChatMessage(message..(covenantName and (' ('..covenantName..')') or ''), channel)
+				message = itemlink
+				SendChatMessage(message, channel)
 			end
 		end
 	end

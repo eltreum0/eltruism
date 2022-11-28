@@ -1250,3 +1250,4 @@ L["Empowering Color"] = "Verstärkte Funkenfarbe" --enpowering casts for evoker,
 L["Automatically offset Player/Target Portrait"] = "Spieler-/Zielporträt automatisch versetzen"
 L["Detects player and target's species and uses it to fix the offset of the 3D Portrait"] = "Erkennt die Spezies von Spieler und Ziel und verwendet sie, um den Versatz des 3D-Porträts zu korrigieren"
 L["Font has been set."] = "Schriftart wurde festgelegt."
+L["Will link your key in guild or party chat"] = true --updated to remove the covenant reference
