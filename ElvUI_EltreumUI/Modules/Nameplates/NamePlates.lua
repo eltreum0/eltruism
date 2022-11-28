@@ -608,8 +608,8 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					else
 						E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.20
 					end
-				elseif E.myclass == "DEATHKNIGHT" then
-					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35 -- with soul reaper talent
+				elseif E.myclass == "DEATHKNIGHT" and IsPlayerSpell(343294) then --soul reaper
+					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35
 				elseif E.myclass == "MAGE" then
 					if IsPlayerSpell(384581) then --arcane bombarbment talent
 						E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35
