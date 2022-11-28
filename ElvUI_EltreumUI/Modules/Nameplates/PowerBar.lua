@@ -299,7 +299,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				end
 			end
 			powernumber, powertype = UnitPowerType("player")
-			if E.myclass == 'PALADIN' or E.myclass == 'MAGE' or E.myclass == 'WARLOCK' then
+			if E.myclass == 'PALADIN' or E.myclass == 'MAGE' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 					EltreumPowerBar:Show()
 					if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
@@ -319,7 +319,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						end
 					end
 					if E.Retail then
-						if E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' then
+						if E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
 							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
 								if _G["ElvNP_TargetClassPowerClassPower"] and _G["ElvNP_TargetClassPowerClassPower"]:IsShown() then
 									EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 23)
@@ -1036,7 +1036,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 			if E.Retail then
-				if E.myclass == 'MONK' or E.myclass == 'ROGUE' or E.myclass == 'DEATHKNIGHT' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' or E.myclass == 'DRUID' then
+				if E.myclass == 'MONK' or E.myclass == 'ROGUE' or E.myclass == 'DEATHKNIGHT' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' or E.myclass == 'DRUID' or E.myclass == 'EVOKER' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
 				elseif E.myclass == "MAGE" and id == 62 then --62 is arcane --E.myclass== 'MAGE' or
@@ -1085,7 +1085,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 					if id == 64 or id == 63 or id == 270 or id == 256 or id == 257 or id == 264 then
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
-					elseif id == 65 or id == 66 or id == 70 or id == 265 or id == 266 or id == 267 then --paladin specs bc of holy power and warlocks bc of soul shards
+					elseif id == 65 or id == 66 or id == 70 or id == 265 or id == 266 or id == 267 or E.myclass == 'EVOKER' then --paladin specs bc of holy power and warlocks bc of soul shards
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 					end
