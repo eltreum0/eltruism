@@ -30,7 +30,7 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 		whileDead = 1,
 		hideOnEscape = false,
 	}
-	if E.version < 13.06 then
+	if E.version < 13.07 then
 		E:StaticPopup_Show('ELVUIVERSIONCHECK')
 		ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
 	elseif E.version > 13.13 then
@@ -273,11 +273,11 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		end
 	elseif E.private.ElvUI_EltreumUI.install_version >= "3.3.3" and E.private.ElvUI_EltreumUI.install_version < "3.4.4" then
 		--fix the demonhunter paging
-		if E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] == "[vehicleui] 12; [overridebar] 14;[possessbar] 12[bonusbar:5] 11;;" then
-			E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12[bonusbar:5] 11;"
+		if E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] == "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;;" then
+			E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
 		end
-		if E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] == "[vehicleui] 12; [overridebar] 14;[possessbar] 12[bonusbar:5] 11;;" then
-			E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12[bonusbar:5] 11;"
+		if E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] == "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;;" then
+			E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
 		end
 	end
 

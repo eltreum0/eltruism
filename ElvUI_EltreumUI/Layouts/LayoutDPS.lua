@@ -103,7 +103,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["actionbar"]["bar1"]["paging"]["WARLOCK"] = ""
 	E.db["actionbar"]["bar1"]["paging"]["WARRIOR"] = ""
 	E.db["actionbar"]["bar1"]["paging"]["EVOKER"] = ""
-	E.db["actionbar"]["bar1"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["bar1"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["bar10"]["alpha"] = 1
 	E.db["actionbar"]["bar10"]["countFont"] = "Kimberley"
 	E.db["actionbar"]["bar10"]["countFontOutline"] = "THICKOUTLINE"
@@ -134,7 +134,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["actionbar"]["bar2"]["macroTextYOffset"] = 2
 	E.db["actionbar"]["bar2"]["macrotext"] = true
 	E.db["actionbar"]["bar2"]["paging"]["DRUID"] = ""
-	E.db["actionbar"]["bar2"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["bar2"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["bar3"]["alpha"] = 1
 	E.db["actionbar"]["bar3"]["buttonHeight"] = 30
 	E.db["actionbar"]["bar3"]["buttonSize"] = 35
@@ -152,7 +152,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["actionbar"]["bar3"]["macroTextYOffset"] = 2
 	E.db["actionbar"]["bar3"]["macrotext"] = true
 	E.db["actionbar"]["bar3"]["paging"]["DRUID"] = ""
-	E.db["actionbar"]["bar3"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["bar3"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["bar3"]["mouseover"] = false
 	E.db["actionbar"]["bar4"]["mouseover"] = false
 	E.db["actionbar"]["bar4"]["alpha"] = 1
@@ -175,7 +175,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 
 	if E.Retail then
 		E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16[bonusbar:5] 11;"
+		E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[vehicleui] 16; [overridebar] 18; [possessbar] 16; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["HUNTER"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["MAGE"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
@@ -189,7 +189,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["actionbar"]["bar4"]["paging"]["EVOKER"] = "[vehicleui] 16; [overridebar] 18; [possessbar] 16;[bonusbar:5] 11;[bonusbar:1] 7;"
 	else
 		E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12[bonusbar:5] 11;"
+		E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["HUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["MAGE"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
@@ -220,7 +220,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["actionbar"]["bar5"]["macroTextPosition"] = "BOTTOM"
 	E.db["actionbar"]["bar5"]["macroTextYOffset"] = 2
 	E.db["actionbar"]["bar5"]["macrotext"] = true
-	E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["bar6"]["alpha"] = 1
 	E.db["actionbar"]["bar6"]["buttonHeight"] = 24
 	E.db["actionbar"]["bar6"]["buttonSpacing"] = 3
@@ -253,7 +253,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["actionbar"]["bar7"]["macroTextPosition"] = "BOTTOM"
 	E.db["actionbar"]["bar7"]["macroTextYOffset"] = 2
 	E.db["actionbar"]["bar7"]["macrotext"] = true
-	E.db["actionbar"]["bar7"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["bar7"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["bar7"]["enabled"] = false
 	E.db["actionbar"]["bar8"]["alpha"] = 1
 	E.db["actionbar"]["bar8"]["buttonHeight"] = 30
@@ -268,7 +268,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["actionbar"]["bar8"]["macroTextPosition"] = "BOTTOM"
 	E.db["actionbar"]["bar8"]["macroTextYOffset"] = 2
 	E.db["actionbar"]["bar8"]["macrotext"] = true
-	E.db["actionbar"]["bar8"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["bar8"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["bar8"]["enabled"] = false
 	E.db["actionbar"]["bar9"]["alpha"] = 1
 	E.db["actionbar"]["bar9"]["countFont"] = "Kimberley"
@@ -280,7 +280,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["actionbar"]["bar9"]["macroTextPosition"] = "BOTTOM"
 	E.db["actionbar"]["bar9"]["macroTextYOffset"] = 2
 	E.db["actionbar"]["bar9"]["macrotext"] = true
-	E.db["actionbar"]["bar9"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["bar9"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["bar9"]["enabled"] = false
 	E.db["actionbar"]["barPet"]["backdrop"] = false
 	E.db["actionbar"]["barPet"]["backdropSpacing"] = 0
@@ -336,7 +336,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["actionbar"]["stanceBar"]["mouseover"] = false
 	end
 	E.db["actionbar"]["stanceBar"]["style"] = "classic"
-	E.db["actionbar"]["stanceBar"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["stanceBar"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["transparent"] = true
 	E.db["actionbar"]["useDrawSwipeOnCharges"] = true
 	E.db["actionbar"]["vehicleExitButton"]["hotkeyFont"] = "Kimberley"
@@ -503,7 +503,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 		E.db["actionbar"]["totemBar"]["font"] = "Kimberley"
 		E.db["actionbar"]["totemBar"]["spacing"] = 5
 		E.db["actionbar"]["totemBar"]["flyoutDirection"] = "DOWN"
-		E.db["actionbar"]["totemBar"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+		E.db["actionbar"]["totemBar"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	end
 	E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,329,-154"
 	if E.Retail then
