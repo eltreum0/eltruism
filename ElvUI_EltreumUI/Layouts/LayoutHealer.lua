@@ -104,12 +104,12 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["actionbar"]["bar1"]["paging"]["WARRIOR"] = ""
 	E.db["actionbar"]["bar1"]["paging"]["EVOKER"] = ""
 	E.db["actionbar"]["bar1"]["point"] = "TOPLEFT"
-	E.db["actionbar"]["bar1"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["bar1"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["bar10"]["countFont"] = "Kimberley"
 	E.db["actionbar"]["bar10"]["hotkeyFont"] = "Kimberley"
 	E.db["actionbar"]["bar10"]["macroFont"] = "Kimberley"
 	E.db["actionbar"]["bar10"]["point"] = "TOPLEFT"
-	E.db["actionbar"]["bar10"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["bar10"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["bar10"]["enabled"] = false
 	E.db["actionbar"]["bar2"]["buttonHeight"] = 25
 	E.db["actionbar"]["bar2"]["buttonSize"] = 30
@@ -121,7 +121,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["actionbar"]["bar2"]["keepSizeRatio"] = false
 	E.db["actionbar"]["bar2"]["macroFont"] = "Kimberley"
 	E.db["actionbar"]["bar2"]["point"] = "TOPLEFT"
-	E.db["actionbar"]["bar2"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["bar2"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["bar3"]["buttonsPerRow"] = 6
 	E.db["actionbar"]["bar3"]["buttonHeight"] = 25
 	E.db["actionbar"]["bar3"]["buttonSize"] = 30
@@ -132,7 +132,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["actionbar"]["bar3"]["keepSizeRatio"] = false
 	E.db["actionbar"]["bar3"]["macroFont"] = "Kimberley"
 	E.db["actionbar"]["bar3"]["point"] = "TOPLEFT"
-	E.db["actionbar"]["bar3"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["bar3"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["bar3"]["mouseover"] = false
 	E.db["actionbar"]["bar4"]["mouseover"] = false
 	E.db["actionbar"]["bar4"]["backdrop"] = false
@@ -188,7 +188,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["actionbar"]["bar5"]["enabled"] = true
 	E.db["actionbar"]["bar5"]["macroFont"] = "Kimberley"
 	E.db["actionbar"]["bar5"]["point"] = "TOPLEFT"
-	E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["bar5"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["bar6"]["alpha"] = 1
 	E.db["actionbar"]["bar6"]["buttonHeight"] = 24
 	E.db["actionbar"]["bar6"]["buttonSpacing"] = 0
@@ -216,19 +216,19 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["actionbar"]["bar7"]["hotkeyFont"] = "Kimberley"
 	E.db["actionbar"]["bar7"]["macroFont"] = "Kimberley"
 	E.db["actionbar"]["bar7"]["point"] = "TOPLEFT"
-	E.db["actionbar"]["bar7"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["bar7"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["bar7"]["enabled"] = false
 	E.db["actionbar"]["bar8"]["countFont"] = "Kimberley"
 	E.db["actionbar"]["bar8"]["hotkeyFont"] = "Kimberley"
 	E.db["actionbar"]["bar8"]["macroFont"] = "Kimberley"
 	E.db["actionbar"]["bar8"]["point"] = "TOPLEFT"
-	E.db["actionbar"]["bar8"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["bar8"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["bar8"]["enabled"] = false
 	E.db["actionbar"]["bar9"]["countFont"] = "Kimberley"
 	E.db["actionbar"]["bar9"]["hotkeyFont"] = "Kimberley"
 	E.db["actionbar"]["bar9"]["macroFont"] = "Kimberley"
 	E.db["actionbar"]["bar9"]["point"] = "TOPLEFT"
-	E.db["actionbar"]["bar9"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["bar9"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["bar9"]["enabled"] = false
 	E.db["actionbar"]["barPet"]["buttonHeight"] = 18
 	E.db["actionbar"]["barPet"]["buttonSize"] = 31
@@ -263,7 +263,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["actionbar"]["stanceBar"]["hotkeyFontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["stanceBar"]["inheritGlobalFade"] = true
 	E.db["actionbar"]["stanceBar"]["mouseover"] = E.Retail
-	E.db["actionbar"]["stanceBar"]["visibility"] = "[vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+	E.db["actionbar"]["stanceBar"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	E.db["actionbar"]["transparent"] = true
 	E.db["actionbar"]["useDrawSwipeOnCharges"] = true
 	E.db["actionbar"]["vehicleExitButton"]["hotkeyFont"] = "Kimberley"
@@ -437,7 +437,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["actionbar"]["totemBar"]["flyoutSpacing"] = 3
 		E.db["actionbar"]["totemBar"]["font"] = "Kimberley"
 		E.db["actionbar"]["totemBar"]["spacing"] = 5
-		E.db["actionbar"]["totemBar"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+		E.db["actionbar"]["totemBar"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 	end
 	E.db["movers"]["TorghastChoiceToggle"] = "BOTTOM,UIParent,BOTTOM,0,445"
 	E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,-1"

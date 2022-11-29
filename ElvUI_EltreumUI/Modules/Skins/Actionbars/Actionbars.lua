@@ -20,13 +20,6 @@ local GetPetActionInfo = _G.GetPetActionInfo
 
 -- Skill Glow
 function ElvUI_EltreumUI:SkillGlow()
-
-	--fix [bonusbar:5] 11; being forced always
-	--gsub(AB.barDefaults.bar1.conditions, '%[bonusbar:5%] 11;', ''); AB:PositionAndSizeBar('ElvUI_Bar1')
-	local fullConditions = (E.Retail or E.Wrath) and format('[overridebar] %d; [vehicleui][possessbar] %d;', GetOverrideBarIndex(), GetVehicleBarIndex()) or ''
-	AB.barDefaults.bar1.conditions = fullConditions..format('[shapeshift] %d; [bar:2] 2; [bar:3] 3; [bar:4] 4; [bar:5] 5; [bar:6] 6;', GetTempShapeshiftBarIndex())
-	AB:PositionAndSizeBar('bar1')
-
 	if not E.private.ElvUI_EltreumUI then
 		return
 	end
