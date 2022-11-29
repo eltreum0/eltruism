@@ -301,6 +301,12 @@ function ElvUI_EltreumUI:Anchors()
 					tremove(editMode.registeredSystemFrames, i)
 					_G.MainMenuBar.ApplySystemAnchor = nil
 				end
+				if name == "MultiBarBottomLeft" then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "MultiBarBottomRight" then
+					tremove(editMode.registeredSystemFrames, i)
+				end
 				if name == "ExtraAbilityContainer" then
 					tremove(editMode.registeredSystemFrames, i)
 				end
