@@ -1,6 +1,11 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.6.3
+Updated EltreumExecute Nameplate Style Filter to check for Death Knight's Soul Reaper talent\
+Updated Custom Glow due to it being re-added to ElvUI\
+Updated German locale by Dlarge\
+Fixed Evoker missing mana Nameplate Power Bar
 ### 3.6.2
 Added Quest Count to Retail Objective Frame (only shows up when quest log is near full)\
 Added shadows to Objective Frame Quest Item\
