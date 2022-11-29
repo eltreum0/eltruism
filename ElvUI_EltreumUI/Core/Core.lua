@@ -304,10 +304,12 @@ function ElvUI_EltreumUI:Anchors()
 				if name == "MultiBarBottomLeft" then
 					tremove(editMode.registeredSystemFrames, i)
 					_G.MultiBarBottomLeft.SetPointBase = E.noop
+					_G.MultiBarLeft.SetPointBase = E.noop
 				end
 				if name == "MultiBarBottomRight" then
 					tremove(editMode.registeredSystemFrames, i)
 					_G.MultiBarBottomRight.SetPointBase = E.noop
+					_G.MultiBarRight.SetPointBase = E.noop
 				end
 				if name == "ExtraAbilityContainer" then
 					tremove(editMode.registeredSystemFrames, i)
