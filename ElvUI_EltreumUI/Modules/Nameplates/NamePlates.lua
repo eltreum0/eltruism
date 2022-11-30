@@ -772,21 +772,21 @@ function NP:Castbar_PostCastStart(unit)
 		if frameType == 'PLAYER' or frameType == 'ENEMY_NPC' or frameType == 'FRIENDLY_NPC' then
 			if UnitExists(unit.."target") then
 				--self.Text:SetFont(E.LSM:Fetch('font', NP.db.font), 8, NP.db.fontOutline) --change size so it doesnt overlap the cast time print(NP.db.fontSize)
-				local spellName = E:ShortenString(self.spellName, 12)
+				local spellName = E:ShortenString(self.spellName, 11)
 				local targetname = E:ShortenString(UnitName(unit..'target'), 12)
 				if UnitIsPlayer(unit.."target") then
 					local _ , classes = UnitClass(unit.."target")
-					self.Text:SetText(spellName..'['.."|c"..classcolorcast[classes]..targetname.."|r]")
+					self.Text:SetText(spellName..' ['.."|c"..classcolorcast[classes]..targetname.."|r]")
 				else
 					local reaction = UnitReaction(unit.."target", "player")
 					if reaction >= 5 then
-						self.Text:SetText(spellName..'['.."|c"..classcolorcast["FRIENDLY"]..targetname.."|r]")
+						self.Text:SetText(spellName..' ['.."|c"..classcolorcast["FRIENDLY"]..targetname.."|r]")
 					elseif reaction == 4 then
-						self.Text:SetText(spellName..'['.."|c"..classcolorcast["NEUTRAL"]..targetname.."|r]")
+						self.Text:SetText(spellName..' ['.."|c"..classcolorcast["NEUTRAL"]..targetname.."|r]")
 					elseif reaction == 3 then
-						self.Text:SetText(spellName..'['.."|c"..classcolorcast["UNFRIENDLY"]..targetname.."|r]")
+						self.Text:SetText(spellName..' ['.."|c"..classcolorcast["UNFRIENDLY"]..targetname.."|r]")
 					elseif reaction == 2 or reaction == 1 then
-						self.Text:SetText(spellName..'['.."|c"..classcolorcast["HOSTILE"]..targetname.."|r]")
+						self.Text:SetText(spellName..' ['.."|c"..classcolorcast["HOSTILE"]..targetname.."|r]")
 					end
 				end
 			end
