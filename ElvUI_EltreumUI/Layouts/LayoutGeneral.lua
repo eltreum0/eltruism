@@ -103,6 +103,26 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
 		E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
 
+		--fix possible issue
+		E.db["unitframe"]["units"]["party"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["player"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["player"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["arena"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["focus"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["boss"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["raid1"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["raid2"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["raid3"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["party"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["tank"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["assist"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["target"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["pet"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["focustarget"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["arena"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["focus"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["boss"]["health"]["orientation"] = "HORIZONTAL"
+
 		-- unitframe colors
 		E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = valuecolors.b
 		E.db["unitframe"]["colors"]["auraBarBuff"]["g"] = valuecolors.g
