@@ -7,6 +7,26 @@ function ElvUI_EltreumUI:DarkMode()
 	if E.private.unitframe.enable then
 		if not E.db.movers then E.db.movers = {} end
 
+		--fix possible issue
+		E.db["unitframe"]["units"]["party"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["player"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["player"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["arena"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["focus"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["boss"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["raid1"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["raid2"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["raid3"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["party"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["tank"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["assist"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["target"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["pet"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["focustarget"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["arena"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["focus"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["boss"]["health"]["orientation"] = "HORIZONTAL"
+
 		--setup colors
 		E.db["unitframe"]["colors"]["healPrediction"]["healAbsorbs"]["a"] = 0.25
 		E.db["unitframe"]["colors"]["healPrediction"]["overabsorbs"]["a"] = 0.25
@@ -103,6 +123,27 @@ end
 function ElvUI_EltreumUI:LightMode()
 	if E.private.unitframe.enable then
 		if not E.db.movers then E.db.movers = {} end
+
+		--fix possible issue
+		E.db["unitframe"]["units"]["party"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["player"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["player"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["arena"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["focus"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["boss"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["raid1"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["raid2"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["raid3"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["party"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["tank"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["assist"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["target"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["pet"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["focustarget"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["arena"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["focus"]["health"]["orientation"] = "HORIZONTAL"
+		E.db["unitframe"]["units"]["boss"]["health"]["orientation"] = "HORIZONTAL"
+
 		--setup colors
 		E.db["unitframe"]["colors"]["healPrediction"]["absorbs"]["a"] = 0.5
 		E.db["unitframe"]["colors"]["healPrediction"]["healAbsorbs"]["a"] = 0.5

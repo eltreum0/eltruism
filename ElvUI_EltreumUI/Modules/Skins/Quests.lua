@@ -272,6 +272,10 @@ function ElvUI_EltreumUI:SkinQuests()
 							block.itemButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(block.itemButton.shadow) end
 						end
+						if block.groupFinderButton and E.db.ElvUI_EltreumUI.skins.shadow.enable then
+							block.groupFinderButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(block.groupFinderButton.shadow) end
+						end
 						local line = DEFAULT_OBJECTIVE_TRACKER_MODULE:GetLine(block, objectiveKey, lineType)
 						if ( line.Dash ) then
 							if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
