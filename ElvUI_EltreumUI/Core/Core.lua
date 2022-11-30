@@ -320,8 +320,49 @@ function ElvUI_EltreumUI:Anchors()
 				if name == "ExtraAbilityContainer" then
 					tremove(editMode.registeredSystemFrames, i)
 				end
+				if name == "EncounterBar" then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "StanceBar" then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "PetActionBar" then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "PossessActionBar" then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "MainMenuBarVehicleLeaveButton" then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "MultiBar5" then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "MultiBar6" then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "MultiBar7" then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+			end
+			if E.private.skins.blizzard.enable and E.private.skins.blizzard.loot then
+				if name == "LootFrame" then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+			end
+			if E.private.unitframe.enable then
+				if name == "CompactRaidFrameContainer" and E.private.unitframe.disabledBlizzardFrames.raid then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "ArenaEnemyFramesContainer" and E.private.unitframe.disabledBlizzardFrames.arena then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "BossTargetFrameContainer" and E.private.unitframe.disabledBlizzardFrames.boss then
+					tremove(editMode.registeredSystemFrames, i)
+				end
 			end
 		end
+
 
 		if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 			if E.db.ElvUI_EltreumUI.quests.anchor and not InCombatLockdown() then
