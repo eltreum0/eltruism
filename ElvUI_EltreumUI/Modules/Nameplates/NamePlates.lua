@@ -771,9 +771,10 @@ function NP:Castbar_PostCastStart(unit)
 		local frameType = plate.frameType
 		if frameType == 'PLAYER' or frameType == 'ENEMY_NPC' or frameType == 'FRIENDLY_NPC' then
 			if UnitExists(unit.."target") then
-				--self.Text:SetFont(E.LSM:Fetch('font', NP.db.font), 8, NP.db.fontOutline) --change size so it doesnt overlap the cast time print(NP.db.fontSize)
 				local spellName = E:ShortenString(self.spellName, 11)
 				local targetname = E:ShortenString(UnitName(unit..'target'), 12)
+				--local spellName = E:AbbreviateString(self.spellName)
+				--local targetname = E:AbbreviateString(UnitName(unit..'target'))
 				if UnitIsPlayer(unit.."target") then
 					local _ , classes = UnitClass(unit.."target")
 					self.Text:SetText(spellName..' ['.."|c"..classcolorcast[classes]..targetname.."|r]")
