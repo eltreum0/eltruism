@@ -675,7 +675,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		--E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["requireTarget"] = true
 
 		-- Enemy is casting, draw attention to interrupt
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["border"] = true
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["border"] = false
 		--E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["b"] = 0.22745098039216
 		--E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["g"] = 0.11764705882353
 		--E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["r"] = 0.76862745098039
