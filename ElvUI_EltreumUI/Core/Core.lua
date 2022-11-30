@@ -665,12 +665,14 @@ EltruismGameMenu:SetScript("OnEvent", function()
 	if _G.GameMenuButtonEditMode and E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
 		_G.GameMenuButtonEditMode:RegisterForClicks("AnyUp")
 		_G.GameMenuButtonEditMode:SetScript("OnClick", function(self, button)
-			if button == "LeftButton" then
-				E:ToggleMoveMode()
-				HideUIPanel(_G["GameMenuFrame"])
-			else
-				PlaySound(SOUNDKIT.IG_MAINMENU_OPTION);
-				ShowUIPanel(EditModeManagerFrame);
+			if not InCombatLockdown() then
+				if button == "LeftButton" then
+					E:ToggleMoveMode()
+					HideUIPanel(_G["GameMenuFrame"])
+				else
+					PlaySound(SOUNDKIT.IG_MAINMENU_OPTION);
+					ShowUIPanel(EditModeManagerFrame);
+				end
 			end
 		end)
 	end
