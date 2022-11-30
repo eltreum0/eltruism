@@ -1301,13 +1301,15 @@ function ElvUI_EltreumUI:Shadows()
 					if not (E.db.ElvUI_EltreumUI.borders.playerborder and E.db.ElvUI_EltreumUI.borders.borders) then
 						_G["ElvUF_Player"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						_G["ElvUF_Player"].shadow:ClearAllPoints()
-						_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player"] ,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
-						_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player"] ,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+						_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player"].Portrait,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+						_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_HealthBar"] ,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
 						if _G["ElvUF_Player_HealthBar"].shadow then
 							_G["ElvUF_Player_HealthBar"].shadow:Hide()
 						end
-						if _G["ElvUF_Player_PowerBar"].shadow then
-							_G["ElvUF_Player_PowerBar"].shadow:Hide()
+						if E.db["unitframe"]["units"]["player"]["power"]["width"] ~= "spaced" then
+							if _G["ElvUF_Player_PowerBar"].shadow then
+								_G["ElvUF_Player_PowerBar"].shadow:Hide()
+							end
 						end
 						if E.Retail then
 							if _G["ElvUF_Player_Stagger"] and _G["ElvUF_Player_Stagger"].shadow then
@@ -1329,13 +1331,15 @@ function ElvUI_EltreumUI:Shadows()
 					if not (E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.ElvUI_EltreumUI.borders.borders) then
 						_G["ElvUF_Target"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						_G["ElvUF_Target"].shadow:ClearAllPoints()
-						_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target"] ,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
-						_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target"] ,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+						_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target"].Portrait,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+						_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target_HealthBar"] ,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
 						if _G["ElvUF_Target_HealthBar"].shadow then
 							_G["ElvUF_Target_HealthBar"].shadow:Hide()
 						end
-						if _G["ElvUF_Target_PowerBar"].shadow then
-							_G["ElvUF_Target_PowerBar"].shadow:Hide()
+						if E.db["unitframe"]["units"]["target"]["power"]["width"] ~= "spaced" then
+							if _G["ElvUF_Target_PowerBar"].shadow then
+								_G["ElvUF_Target_PowerBar"].shadow:Hide()
+							end
 						end
 						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvUF_Target"].shadow) end
 					end
