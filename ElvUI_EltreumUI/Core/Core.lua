@@ -360,6 +360,21 @@ function ElvUI_EltreumUI:Anchors()
 				if name == "BossTargetFrameContainer" and E.private.unitframe.disabledBlizzardFrames.boss then
 					tremove(editMode.registeredSystemFrames, i)
 				end
+				if name == "PlayerFrame" and E.private.unitframe.disabledBlizzardFrames.player then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "TargetFrame" and E.private.unitframe.disabledBlizzardFrames.target then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "FocusFrame" and E.private.unitframe.disabledBlizzardFrames.focus then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "PartyFrame" and E.private.unitframe.disabledBlizzardFrames.party then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "PlayerCastingBarFrame" and E.private.unitframe.disabledBlizzardFrames.castbar then
+					tremove(editMode.registeredSystemFrames, i)
+				end
 			end
 		end
 
