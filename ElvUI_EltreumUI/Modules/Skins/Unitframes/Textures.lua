@@ -329,3 +329,18 @@ if E.Retail then
 else
 	hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.CustomTexture) --is causing "blinking"/"flashing" issues in 10.0
 end
+
+-- replace absorb texture with unitframe texture
+function UF:SetTexture_HealComm(obj, texture)
+	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+		obj.myBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+		obj.otherBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+		obj.absorbBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+		obj.healAbsorbBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+	else
+		obj.myBar:SetStatusBarTexture(texture)
+		obj.otherBar:SetStatusBarTexture(texture)
+		obj.absorbBar:SetStatusBarTexture(texture)
+		obj.healAbsorbBar:SetStatusBarTexture(texture)
+	end
+end
