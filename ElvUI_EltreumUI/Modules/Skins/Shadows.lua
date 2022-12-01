@@ -18,21 +18,36 @@ function ElvUI_EltreumUI:Shadows()
 		------------------------------------------------------------------------------------------------------blizzard frames
 		local EltruismBlizzShadows = CreateFrame("Frame")
 		EltruismBlizzShadows:RegisterEvent("ADDON_LOADED")
+		EltruismBlizzShadows:RegisterEvent("PLAYER_ENTERING_WORLD")
 		EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
+			if (arg == "Blizzard_ProfessionsCustomerOrders") or IsAddOnLoaded("Blizzard_ProfessionsCustomerOrders") then
+				if _G.ProfessionsCustomerOrdersFrame and not _G.ProfessionsCustomerOrdersFrame.shadow then
+					_G.ProfessionsCustomerOrdersFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ProfessionsCustomerOrdersFrame.shadow) end
+				end
+				if _G.ProfessionsCustomerOrdersFrameBrowseTab and _G.ProfessionsCustomerOrdersFrameBrowseTab.backdrop and not _G.ProfessionsCustomerOrdersFrameBrowseTab.backdrop.shadow then
+					_G.ProfessionsCustomerOrdersFrameBrowseTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ProfessionsCustomerOrdersFrameBrowseTab.backdrop.shadow) end
+				end
+				if _G.ProfessionsCustomerOrdersFrameOrdersTab and _G.ProfessionsCustomerOrdersFrameOrdersTab.backdrop and not _G.ProfessionsCustomerOrdersFrameOrdersTab.backdrop.shadow then
+					_G.ProfessionsCustomerOrdersFrameOrdersTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ProfessionsCustomerOrdersFrameOrdersTab.backdrop.shadow) end
+				end
+			end
 			if (arg == "Blizzard_GenericTraitUI") or IsAddOnLoaded("Blizzard_GenericTraitUI") then
-				if _G.GenericTraitFrame then
+				if _G.GenericTraitFrame and not _G.GenericTraitFrame.shadow then
 					_G.GenericTraitFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GenericTraitFrame.shadow) end
 				end
 			end
 			if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then
-				if _G.ClassTalentFrame then
+				if _G.ClassTalentFrame and not _G.ClassTalentFrame.shadow then
 					_G.ClassTalentFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClassTalentFrame.shadow) end
 					if _G.ClassTalentFrame.TabSystem then
 						for i = 1, _G.ClassTalentFrame.TabSystem:GetNumChildren() do
 							local tab = select(i, _G.ClassTalentFrame.TabSystem:GetChildren())
-							if tab and tab.backdrop then
+							if tab and tab.backdrop and not tab.backdrop.shadow then
 								tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								if EnhancedShadows then EnhancedShadows:RegisterShadow(tab.backdrop.shadow) end
 							end
@@ -45,13 +60,13 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 			if (arg == "Blizzard_OrderHallUI") or IsAddOnLoaded("Blizzard_OrderHallUI") then
-				if _G.OrderHallCommandBar then
+				if _G.OrderHallCommandBar and not _G.OrderHallCommandBar.shadow then
 					_G.OrderHallCommandBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.OrderHallCommandBar.shadow) end
 				end
 			end
 			if (arg == "Blizzard_ArchaeologyUI") or IsAddOnLoaded("Blizzard_ArchaeologyUI") then
-				if _G.ArcheologyDigsiteProgressBar then
+				if _G.ArcheologyDigsiteProgressBar and _G.ArcheologyDigsiteProgressBar.FillBar and not _G.ArcheologyDigsiteProgressBar.FillBar.shadow then
 					_G.ArcheologyDigsiteProgressBar.FillBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ArcheologyDigsiteProgressBar.FillBar.shadow) end
 				end
@@ -211,262 +226,9 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end)
 			end
-			if E.Retail then
-				if (arg == "Blizzard_AuctionHouseUI") or IsAddOnLoaded("Blizzard_AuctionHouseUI") then
-					if _G.AuctionHouseFrame then
-						_G.AuctionHouseFrame:HookScript("OnShow", function()
-							if _G.AuctionHouseFrame and not _G.AuctionHouseFrame.shadow then
-								_G.AuctionHouseFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionHouseFrame.shadow) end
-							end
-						end)
-					end
-				end
-			elseif E.Wrath or E.Classic then
-				if (arg == "Blizzard_AuctionUI") or IsAddOnLoaded("Blizzard_AuctionUI") then
-					_G.AuctionFrame:HookScript("OnShow", function()
-						if _G.AuctionFrame and _G.AuctionFrame.backdrop and not _G.AuctionFrame.backdrop.shadow then
-							_G.AuctionFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionFrame.backdrop.shadow) end
-						end
-					end)
-				end
-			end
-		end)
-
-		local blizzardframes = {
-			_G.GameMenuFrame,
-			_G.DropDownList1,
-			_G.DropDownList2,
-			_G.ReadyCheckFrame,
-			_G.StackSplitFrame,
-			_G.ChatConfigFrame,
-			_G.ShoppingTooltip1,
-			_G.ShoppingTooltip2,
-			_G.VideoOptionsFrame,
-			_G.InterfaceOptionsFrame,
-			_G.StaticPopup1, --seems like blizzard
-			_G.StaticPopup2, --seems like blizzard
-			_G.StaticPopup3, --seems like blizzard
-			_G.StaticPopup4, --seems like blizzard
-			_G.StaticPopup5, --seems like blizzard
-			_G.CharacterFrameTab1.backdrop,
-			_G.CharacterFrameTab2.backdrop,
-			_G.CharacterFrameTab3.backdrop,
-			_G.FriendsFrameTab1.backdrop,
-			_G.FriendsFrameTab2.backdrop,
-			_G.FriendsFrameTab3.backdrop,
-			_G.FriendsFrameTab4.backdrop,
-			_G.SpellBookFrameTabButton1.backdrop,
-			_G.SpellBookFrameTabButton2.backdrop,
-			_G.SpellBookFrameTabButton3.backdrop,
-			_G.ItemTextFrame.backdrop,
-			_G.GossipFrame.backdrop,
-			_G.BNToastFrame,
-			_G.TimeAlertFrame,
-			_G.ReportFrame,
-			_G.SpellBookSkillLineTab1,
-			_G.SpellBookSkillLineTab2,
-			_G.SpellBookSkillLineTab3,
-			_G.SpellBookSkillLineTab4,
-			_G.SpellBookSkillLineTab5,
-			_G.CliqueSpellTab,
-			_G.EltruismClickCastingToggle,
-			_G.TradeFrame,
-			_G.AddonList,
-			_G.VoidStorageFrame,
-			_G.BonusRollFrame,
-			_G.ItemRefTooltip,
-			_G.CinematicFrameCloseDialog,
-			_G.OrderHallCommandBar,
-			_G.ProfessionsFrame,
-			_G.GhostFrameContentsFrame,
-			_G.SettingsPanel,
-			_G.ExpansionLandingPage,
-			_G.OrderHallMissionFrame,
-			_G.LootHistoryFrame,
-			_G.ExtraActionButton1,
-			_G.ExtraActionButton2,
-			_G.ExtraActionButton3,
-			_G.ChatFrame1EditBox,
-			_G.PVPReadyDialog,
-			_G.TimerTrackerTimer1StatusBar,
-			_G.TimerTrackerTimer2StatusBar,
-			_G.TimerTrackerTimer3StatusBar,
-			_G.RaidUtility_ShowButton,
-			_G.RaidUtilityPanel,
-			_G.RaidUtility_CloseButton,
-			_G.EditModeManagerFrame,
-			--_G.ImmersionFrame.TalkBox,
-		}
-		for _, frame in pairs(blizzardframes) do
-			if frame and not frame.shadow then
-				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
-			end
-		end
-
-		if _G.MovieFrame and _G.MovieFrame.CloseDialog then
-			_G.MovieFrame.CloseDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.MovieFrame.CloseDialog.shadow) end
-		end
-
-		local timermonitor = CreateFrame("FRAME")
-		timermonitor:RegisterEvent("START_TIMER")
-		timermonitor:SetScript("OnEvent", function()
-			for _, b in pairs(_G.TimerTracker.timerList) do
-				if b.bar and not b.bar.shadow then
-					b.bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					if EnhancedShadows then EnhancedShadows:RegisterShadow(b.bar.shadow) end
-				end
-			end
-		end)
-
-		if _G.LootHistoryFrame and _G.LootHistoryFrame.ResizeButton then
-			_G.LootHistoryFrame.ResizeButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.LootHistoryFrame.ResizeButton.shadow) end
-		end
-
-		if _G.ProfessionsFrame and _G.ProfessionsFrame.TabSystem then
-			for i = 1, _G.ProfessionsFrame.TabSystem:GetNumChildren() do
-				local tab = select(i, _G.ProfessionsFrame.TabSystem:GetChildren())
-				if tab and tab.backdrop then
-					tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					if EnhancedShadows then EnhancedShadows:RegisterShadow(tab.backdrop.shadow) end
-				end
-			end
-			if _G.ProfessionsFrame.CraftingPage.CraftingOutputLog then
-				_G.ProfessionsFrame.CraftingPage.CraftingOutputLog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ProfessionsFrame.CraftingPage.CraftingOutputLog.shadow) end
-			end
-		end
-
-		--[[if _G.ImmersionFrame.TalkBox.shadow then --works but no guarantee they'll be using the layout/size/addonskins skin
-			_G.ImmersionFrame.TalkBox.shadow:ClearAllPoints()
-			_G.ImmersionFrame.TalkBox.shadow:SetPoint("TOPRIGHT", _G.ImmersionFrame.TalkBox, "TOPRIGHT", -5,-5)
-			_G.ImmersionFrame.TalkBox.shadow:SetPoint("BOTTOMLEFT", _G.ImmersionFrame.TalkBox, "BOTTOMLEFT",5,5)
-		end]]
-
-		hooksecurefunc(_G.AlertFrame, "AddAlertFrame", function(_,frame)
-			if frame and frame.backdrop and not frame.backdrop.shadow then
-				frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.backdrop.shadow) end
-			end
-		end)
-
-		--elvui config shadows
-		hooksecurefunc(E, "ToggleOptions", function()
-			local frame = E:Config_GetWindow()
-			if frame and not frame.shadow then
-				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
-			end
-		end)
-
-		--mirror timer shadow
-		if not E.Retail then
-			for i = 1, _G.MIRRORTIMER_NUMTIMERS do
-				local statusBar = _G['MirrorTimer'..i..'StatusBar']
-				if statusBar then
-					if not statusBar.shadow then
-						statusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(statusBar.shadow) end
-					end
-				end
-			end
-		else
-			for i = 1, _G.MIRRORTIMER_NUMTIMERS do
-				local statusBar = _G['MirrorTimer'..i]
-				if statusBar then
-					if not statusBar.shadow then
-						statusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(statusBar.shadow) end
-					end
-				end
-			end
-		end
-
-		if E.private["general"]["minimap"]["enable"] and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.minimapborder) and E.db.ElvUI_EltreumUI.skins.shadow.minimap then
-			local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
-			local Minimapsizex, Minimapsizey = _G["Minimap"]:GetSize()
-			MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
-			MinimapShadow:SetParent(_G["Minimap"])
-			if not (self.minimapIsSkinned) then
-				MinimapShadow:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				MinimapShadow:SetPoint("TOPRIGHT", _G["Minimap"] ,"TOPRIGHT", 0, 0)
-				MinimapShadow:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", 0, 0)
-				if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
-					MinimapShadow:SetPoint("BOTTOMLEFT", _G["Minimap"] ,"BOTTOMLEFT", 0, 0)
-				end
-				if IsAddOnLoaded("ElvUI_SLE") and E.private["sle"]["minimap"]["rectangle"] == true then --Shadow and Light Rectangle Minimap
-					if E.db.datatexts.panels.MinimapPanel.backdrop == true and E.db.datatexts.panels.MinimapPanel.enable == true then
-						MinimapShadow:SetPoint("TOPRIGHT", _G["Minimap"].backdrop ,"TOPRIGHT", 0, 0)
-						MinimapShadow:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", 0, 0)
-					elseif E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
-						MinimapShadow:SetPoint("TOPRIGHT", _G["Minimap"].backdrop ,"TOPRIGHT", 0, 0)
-						MinimapShadow:SetPoint("BOTTOMLEFT", _G["Minimap"].backdrop ,"BOTTOMLEFT", 0, 0)
-					end
-				elseif IsAddOnLoaded("ElvUI_WindTools") and E.db["WT"]["maps"]["rectangleMinimap"]["enable"] == true then --Windtools rectangle minimap
-					MinimapShadow:SetAllPoints(_G["Minimap"].backdrop)
-					if E.db.datatexts.panels.MinimapPanel.backdrop == true and E.db.datatexts.panels.MinimapPanel.enable == true then
-						if _G["MinimapPanel"] and not _G["MinimapPanel"].shadow then
-							_G["MinimapPanel"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["MinimapPanel"].shadow) end
-						end
-					end
-				end
-				MinimapShadow:Show()
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(MinimapShadow.shadow) end
-				self.minimapIsSkinned = true
-			end
-		end
-
-		if _G.GameTooltip and not _G.GameTooltip.shadow then
-			if E.private.tooltip.enable then
-				_G.GameTooltip:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GameTooltip.shadow) end
-			end
-		end
-
-		--finally fix gametooltip shadow
-		if _G.GameTooltipStatusBar and E.private.tooltip.enable then
-			_G.GameTooltipStatusBar:HookScript("OnShow", function()
-				if _G.GameTooltip.shadow then
-					if E.db.tooltip.healthBar.statusPosition == "TOP" then
-						_G.GameTooltip.shadow:ClearAllPoints()
-						_G.GameTooltip.shadow:SetPoint("BOTTOMLEFT", _G.GameTooltip,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
-						_G.GameTooltip.shadow:SetPoint("BOTTOMRIGHT", _G.GameTooltip,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
-						_G.GameTooltip.shadow:SetPoint("TOPLEFT", _G.GameTooltip,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.tooltip.healthBar.height+E.db.ElvUI_EltreumUI.skins.shadow.length)
-						_G.GameTooltip.shadow:SetPoint("TOPRIGHT", _G.GameTooltip,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.tooltip.healthBar.height+E.db.ElvUI_EltreumUI.skins.shadow.length)
-					elseif E.db.tooltip.healthBar.statusPosition == "BOTTOM" then
-						_G.GameTooltip.shadow:ClearAllPoints()
-						_G.GameTooltip.shadow:SetPoint("BOTTOMLEFT", _G.GameTooltip,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -(E.db.tooltip.healthBar.height+E.db.ElvUI_EltreumUI.skins.shadow.length))
-						_G.GameTooltip.shadow:SetPoint("BOTTOMRIGHT", _G.GameTooltip,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -(E.db.tooltip.healthBar.height+E.db.ElvUI_EltreumUI.skins.shadow.length))
-						_G.GameTooltip.shadow:SetPoint("TOPLEFT", _G.GameTooltip,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
-						_G.GameTooltip.shadow:SetPoint("TOPRIGHT", _G.GameTooltip,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
-					end
-					--if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GameTooltip.shadow) end
-				end
-			end)
-			_G.GameTooltipStatusBar:HookScript("OnHide", function()
-				if _G.GameTooltip.shadow then
-					_G.GameTooltip.shadow:ClearAllPoints()
-					_G.GameTooltip.shadow:SetPoint("BOTTOMLEFT", _G.GameTooltip,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
-					_G.GameTooltip.shadow:SetPoint("BOTTOMRIGHT", _G.GameTooltip,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
-					_G.GameTooltip.shadow:SetPoint("TOPLEFT", _G.GameTooltip,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
-					_G.GameTooltip.shadow:SetPoint("TOPRIGHT", _G.GameTooltip,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
-				end
-				--if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GameTooltip.shadow) end
-			end)
-		end
-
-		--blizzard stuff that loads addon later
-		local EltruismBlizzShadowsRetail = CreateFrame("Frame")
-		EltruismBlizzShadowsRetail:RegisterEvent("ADDON_LOADED")
-		EltruismBlizzShadowsRetail:SetScript("OnEvent", function(_, _, arg)
 			if E.private.skins.blizzard.enable then
-				if E.Retail then
-					if (arg == "Blizzard_TalentUI") or IsAddOnLoaded("Blizzard_TalentUI") then
+				if (arg == "Blizzard_TalentUI") or IsAddOnLoaded("Blizzard_TalentUI") then
+					if E.Retail then
 						_G.PlayerTalentFrame:HookScript("OnShow", function()
 							if not _G.PlayerTalentFrame.shadow then
 								_G.PlayerTalentFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -485,9 +247,7 @@ function ElvUI_EltreumUI:Shadows()
 								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerTalentFrameTab2.backdrop.shadow) end
 							end
 						end)
-					end
-				elseif not E.Retail then
-					if (arg == "Blizzard_TalentUI") or IsAddOnLoaded("Blizzard_TalentUI") then
+					else
 						_G.PlayerTalentFrame:HookScript("OnShow", function()
 							if _G.PlayerTalentFrame and _G.PlayerTalentFrame.backdrop and not _G.PlayerTalentFrame.backdrop.shadow then
 								_G.PlayerTalentFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -836,7 +596,254 @@ function ElvUI_EltreumUI:Shadows()
 					end)
 				end
 			end
+			if E.Retail then
+				if (arg == "Blizzard_AuctionHouseUI") or IsAddOnLoaded("Blizzard_AuctionHouseUI") then
+					if _G.AuctionHouseFrame then
+						_G.AuctionHouseFrame:HookScript("OnShow", function()
+							if _G.AuctionHouseFrame and not _G.AuctionHouseFrame.shadow then
+								_G.AuctionHouseFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionHouseFrame.shadow) end
+							end
+						end)
+					end
+				end
+			elseif E.Wrath or E.Classic then
+				if (arg == "Blizzard_AuctionUI") or IsAddOnLoaded("Blizzard_AuctionUI") then
+					_G.AuctionFrame:HookScript("OnShow", function()
+						if _G.AuctionFrame and _G.AuctionFrame.backdrop and not _G.AuctionFrame.backdrop.shadow then
+							_G.AuctionFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionFrame.backdrop.shadow) end
+						end
+					end)
+				end
+			end
 		end)
+
+		local blizzardframes = {
+			_G.GameMenuFrame,
+			_G.DropDownList1,
+			_G.DropDownList2,
+			_G.ReadyCheckFrame,
+			_G.StackSplitFrame,
+			_G.ChatConfigFrame,
+			_G.ShoppingTooltip1,
+			_G.ShoppingTooltip2,
+			_G.VideoOptionsFrame,
+			_G.InterfaceOptionsFrame,
+			_G.StaticPopup1, --seems like blizzard
+			_G.StaticPopup2, --seems like blizzard
+			_G.StaticPopup3, --seems like blizzard
+			_G.StaticPopup4, --seems like blizzard
+			_G.StaticPopup5, --seems like blizzard
+			_G.CharacterFrameTab1.backdrop,
+			_G.CharacterFrameTab2.backdrop,
+			_G.CharacterFrameTab3.backdrop,
+			_G.FriendsFrameTab1.backdrop,
+			_G.FriendsFrameTab2.backdrop,
+			_G.FriendsFrameTab3.backdrop,
+			_G.FriendsFrameTab4.backdrop,
+			_G.SpellBookFrameTabButton1.backdrop,
+			_G.SpellBookFrameTabButton2.backdrop,
+			_G.SpellBookFrameTabButton3.backdrop,
+			_G.ItemTextFrame.backdrop,
+			_G.GossipFrame.backdrop,
+			_G.BNToastFrame,
+			_G.TimeAlertFrame,
+			_G.ReportFrame,
+			_G.SpellBookSkillLineTab1,
+			_G.SpellBookSkillLineTab2,
+			_G.SpellBookSkillLineTab3,
+			_G.SpellBookSkillLineTab4,
+			_G.SpellBookSkillLineTab5,
+			_G.CliqueSpellTab,
+			_G.EltruismClickCastingToggle,
+			_G.TradeFrame,
+			_G.AddonList,
+			_G.VoidStorageFrame,
+			_G.BonusRollFrame,
+			_G.ItemRefTooltip,
+			_G.CinematicFrameCloseDialog,
+			_G.OrderHallCommandBar,
+			_G.ProfessionsFrame,
+			_G.GhostFrameContentsFrame,
+			_G.SettingsPanel,
+			_G.ExpansionLandingPage,
+			_G.OrderHallMissionFrame,
+			_G.LootHistoryFrame,
+			_G.ExtraActionButton1,
+			_G.ExtraActionButton2,
+			_G.ExtraActionButton3,
+			_G.ChatFrame1EditBox,
+			_G.PVPReadyDialog,
+			_G.TimerTrackerTimer1StatusBar,
+			_G.TimerTrackerTimer2StatusBar,
+			_G.TimerTrackerTimer3StatusBar,
+			_G.RaidUtility_ShowButton,
+			_G.RaidUtilityPanel,
+			_G.RaidUtility_CloseButton,
+			_G.EditModeManagerFrame,
+			--_G.ImmersionFrame.TalkBox,
+		}
+		for _, frame in pairs(blizzardframes) do
+			if frame and not frame.shadow then
+				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+			end
+		end
+
+		if _G.MovieFrame and _G.MovieFrame.CloseDialog then
+			_G.MovieFrame.CloseDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.MovieFrame.CloseDialog.shadow) end
+		end
+
+		local timermonitor = CreateFrame("FRAME")
+		timermonitor:RegisterEvent("START_TIMER")
+		timermonitor:SetScript("OnEvent", function()
+			for _, b in pairs(_G.TimerTracker.timerList) do
+				if b.bar and not b.bar.shadow then
+					b.bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(b.bar.shadow) end
+				end
+			end
+		end)
+
+		if _G.LootHistoryFrame and _G.LootHistoryFrame.ResizeButton then
+			_G.LootHistoryFrame.ResizeButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.LootHistoryFrame.ResizeButton.shadow) end
+		end
+
+		if _G.ProfessionsFrame and _G.ProfessionsFrame.TabSystem then
+			for i = 1, _G.ProfessionsFrame.TabSystem:GetNumChildren() do
+				local tab = select(i, _G.ProfessionsFrame.TabSystem:GetChildren())
+				if tab and tab.backdrop then
+					tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(tab.backdrop.shadow) end
+				end
+			end
+			if _G.ProfessionsFrame.CraftingPage.CraftingOutputLog then
+				_G.ProfessionsFrame.CraftingPage.CraftingOutputLog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ProfessionsFrame.CraftingPage.CraftingOutputLog.shadow) end
+			end
+		end
+
+		--[[if _G.ImmersionFrame.TalkBox.shadow then --works but no guarantee they'll be using the layout/size/addonskins skin
+			_G.ImmersionFrame.TalkBox.shadow:ClearAllPoints()
+			_G.ImmersionFrame.TalkBox.shadow:SetPoint("TOPRIGHT", _G.ImmersionFrame.TalkBox, "TOPRIGHT", -5,-5)
+			_G.ImmersionFrame.TalkBox.shadow:SetPoint("BOTTOMLEFT", _G.ImmersionFrame.TalkBox, "BOTTOMLEFT",5,5)
+		end]]
+
+		hooksecurefunc(_G.AlertFrame, "AddAlertFrame", function(_,frame)
+			if frame and frame.backdrop and not frame.backdrop.shadow then
+				frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.backdrop.shadow) end
+			end
+		end)
+
+		--elvui config shadows
+		hooksecurefunc(E, "ToggleOptions", function()
+			local frame = E:Config_GetWindow()
+			if frame and not frame.shadow then
+				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+			end
+		end)
+
+		--mirror timer shadow
+		if not E.Retail then
+			for i = 1, _G.MIRRORTIMER_NUMTIMERS do
+				local statusBar = _G['MirrorTimer'..i..'StatusBar']
+				if statusBar then
+					if not statusBar.shadow then
+						statusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(statusBar.shadow) end
+					end
+				end
+			end
+		else
+			for i = 1, _G.MIRRORTIMER_NUMTIMERS do
+				local statusBar = _G['MirrorTimer'..i]
+				if statusBar then
+					if not statusBar.shadow then
+						statusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(statusBar.shadow) end
+					end
+				end
+			end
+		end
+
+		if E.private["general"]["minimap"]["enable"] and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.minimapborder) and E.db.ElvUI_EltreumUI.skins.shadow.minimap then
+			local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
+			local Minimapsizex, Minimapsizey = _G["Minimap"]:GetSize()
+			MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
+			MinimapShadow:SetParent(_G["Minimap"])
+			if not (self.minimapIsSkinned) then
+				MinimapShadow:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				MinimapShadow:SetPoint("TOPRIGHT", _G["Minimap"] ,"TOPRIGHT", 0, 0)
+				MinimapShadow:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", 0, 0)
+				if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
+					MinimapShadow:SetPoint("BOTTOMLEFT", _G["Minimap"] ,"BOTTOMLEFT", 0, 0)
+				end
+				if IsAddOnLoaded("ElvUI_SLE") and E.private["sle"]["minimap"]["rectangle"] == true then --Shadow and Light Rectangle Minimap
+					if E.db.datatexts.panels.MinimapPanel.backdrop == true and E.db.datatexts.panels.MinimapPanel.enable == true then
+						MinimapShadow:SetPoint("TOPRIGHT", _G["Minimap"].backdrop ,"TOPRIGHT", 0, 0)
+						MinimapShadow:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", 0, 0)
+					elseif E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
+						MinimapShadow:SetPoint("TOPRIGHT", _G["Minimap"].backdrop ,"TOPRIGHT", 0, 0)
+						MinimapShadow:SetPoint("BOTTOMLEFT", _G["Minimap"].backdrop ,"BOTTOMLEFT", 0, 0)
+					end
+				elseif IsAddOnLoaded("ElvUI_WindTools") and E.db["WT"]["maps"]["rectangleMinimap"]["enable"] == true then --Windtools rectangle minimap
+					MinimapShadow:SetAllPoints(_G["Minimap"].backdrop)
+					if E.db.datatexts.panels.MinimapPanel.backdrop == true and E.db.datatexts.panels.MinimapPanel.enable == true then
+						if _G["MinimapPanel"] and not _G["MinimapPanel"].shadow then
+							_G["MinimapPanel"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["MinimapPanel"].shadow) end
+						end
+					end
+				end
+				MinimapShadow:Show()
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(MinimapShadow.shadow) end
+				self.minimapIsSkinned = true
+			end
+		end
+
+		if _G.GameTooltip and not _G.GameTooltip.shadow then
+			if E.private.tooltip.enable then
+				_G.GameTooltip:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GameTooltip.shadow) end
+			end
+		end
+
+		--finally fix gametooltip shadow
+		if _G.GameTooltipStatusBar and E.private.tooltip.enable then
+			_G.GameTooltipStatusBar:HookScript("OnShow", function()
+				if _G.GameTooltip.shadow then
+					if E.db.tooltip.healthBar.statusPosition == "TOP" then
+						_G.GameTooltip.shadow:ClearAllPoints()
+						_G.GameTooltip.shadow:SetPoint("BOTTOMLEFT", _G.GameTooltip,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+						_G.GameTooltip.shadow:SetPoint("BOTTOMRIGHT", _G.GameTooltip,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+						_G.GameTooltip.shadow:SetPoint("TOPLEFT", _G.GameTooltip,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.tooltip.healthBar.height+E.db.ElvUI_EltreumUI.skins.shadow.length)
+						_G.GameTooltip.shadow:SetPoint("TOPRIGHT", _G.GameTooltip,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.tooltip.healthBar.height+E.db.ElvUI_EltreumUI.skins.shadow.length)
+					elseif E.db.tooltip.healthBar.statusPosition == "BOTTOM" then
+						_G.GameTooltip.shadow:ClearAllPoints()
+						_G.GameTooltip.shadow:SetPoint("BOTTOMLEFT", _G.GameTooltip,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -(E.db.tooltip.healthBar.height+E.db.ElvUI_EltreumUI.skins.shadow.length))
+						_G.GameTooltip.shadow:SetPoint("BOTTOMRIGHT", _G.GameTooltip,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -(E.db.tooltip.healthBar.height+E.db.ElvUI_EltreumUI.skins.shadow.length))
+						_G.GameTooltip.shadow:SetPoint("TOPLEFT", _G.GameTooltip,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+						_G.GameTooltip.shadow:SetPoint("TOPRIGHT", _G.GameTooltip,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+					end
+					--if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GameTooltip.shadow) end
+				end
+			end)
+			_G.GameTooltipStatusBar:HookScript("OnHide", function()
+				if _G.GameTooltip.shadow then
+					_G.GameTooltip.shadow:ClearAllPoints()
+					_G.GameTooltip.shadow:SetPoint("BOTTOMLEFT", _G.GameTooltip,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+					_G.GameTooltip.shadow:SetPoint("BOTTOMRIGHT", _G.GameTooltip,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+					_G.GameTooltip.shadow:SetPoint("TOPLEFT", _G.GameTooltip,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+					_G.GameTooltip.shadow:SetPoint("TOPRIGHT", _G.GameTooltip,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+				end
+				--if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GameTooltip.shadow) end
+			end)
+		end
 
 		------------------------------------------------------------------------------------------------------version specific
 		if E.Retail then
