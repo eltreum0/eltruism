@@ -21,13 +21,35 @@ function ElvUI_EltreumUI:GradientDatabar()
 	databarRep = _G["ElvUI_ReputationBar"]
 	if databarRep and E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation then
 		local customColors = DB.db.colors.useCustomFactionColors
-		local _, reaction = GetWatchedFactionInfo()
-		local alpha = not customColors and DB.db.colors.reputationAlpha
-		local color = (customColors or reaction == 9) and DB.db.colors.factionColors[reaction] or _G.FACTION_BAR_COLORS[reaction] -- reaction 9 is Paragon
+		local _, reaction, factionID
+		if E.Retail then
+			 _, reaction, _, _, _, factionID = GetWatchedFactionInfo()
+			if factionID then
+				local info = factionID and C_GossipInfo.GetFriendshipReputation(factionID)
+				if info and info.friendshipFactionID then
+					local isMajorFaction = factionID and C_Reputation.IsMajorFaction(factionID)
+					if isMajorFaction then
+						local majorFactionData = C_MajorFactions.GetMajorFactionData(factionID)
+						local renownColor = DB.db.colors.factionColors[10]
+						local renownHex = E:RGBToHex(renownColor.r, renownColor.g, renownColor.b)
+						reaction = 10
+					end
+				end
+			end
+		else
+			_, reaction = GetWatchedFactionInfo()
+		end
+		local customReaction = reaction == 9 or reaction == 10 -- 9 is paragon, 10 is renown
+		local color = (customColors or customReaction) and DB.db.colors.factionColors[reaction] or _G.FACTION_BAR_COLORS[reaction]
+		local alpha = (customColors and color.a) or DB.db.colors.reputationAlpha
 		if color then
 			--databarRep:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", color.r, color.g, color.b, alpha or color.a or 1, color.r - 0.4, color.g - 0.1, color.b - 0.5, alpha or color.a or 1)
 			if E.Retail then
-				databarRep:GetStatusBarTexture():SetGradient("HORIZONTAL", { r = color.r, g = color.g, b = color.b, a = alpha or color.a or 1}, {r =color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r,g= color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g,b= color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b,a= alpha or color.a or 1})
+				if reaction == 10 then
+					databarRep:GetStatusBarTexture():SetGradient("HORIZONTAL", { r = color.r, g = color.g, b = color.b, a = alpha or color.a or 1}, {r =color.r - E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r,g= color.g - E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g,b= color.b - E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b,a= alpha or color.a or 1})
+				else
+					databarRep:GetStatusBarTexture():SetGradient("HORIZONTAL", { r = color.r, g = color.g, b = color.b, a = alpha or color.a or 1}, {r =color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r,g= color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g,b= color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b,a= alpha or color.a or 1})
+				end
 			else
 				databarRep:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", color.r, color.g, color.b, alpha or color.a or 1, color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r, color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g, color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b, alpha or color.a or 1)
 			end

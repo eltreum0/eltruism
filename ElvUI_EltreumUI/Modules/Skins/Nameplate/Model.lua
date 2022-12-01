@@ -44,6 +44,9 @@ local function SetNameplateModelSettings(nameplate)
 end
 
 function ElvUI_EltreumUI:NameplateModel(nameplate)
+	if not E.db.ElvUI_EltreumUI then return end
+	if not E.db.ElvUI_EltreumUI.nameplates then return end
+	if not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions then return end
 	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel then
 
 		if UnitExists("target") then

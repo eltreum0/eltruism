@@ -360,6 +360,21 @@ function ElvUI_EltreumUI:Anchors()
 				if name == "BossTargetFrameContainer" and E.private.unitframe.disabledBlizzardFrames.boss then
 					tremove(editMode.registeredSystemFrames, i)
 				end
+				if name == "PlayerFrame" and E.private.unitframe.disabledBlizzardFrames.player then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "TargetFrame" and E.private.unitframe.disabledBlizzardFrames.target then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "FocusFrame" and E.private.unitframe.disabledBlizzardFrames.focus then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "PartyFrame" and E.private.unitframe.disabledBlizzardFrames.party then
+					tremove(editMode.registeredSystemFrames, i)
+				end
+				if name == "PlayerCastingBarFrame" and E.private.unitframe.disabledBlizzardFrames.castbar then
+					tremove(editMode.registeredSystemFrames, i)
+				end
 			end
 		end
 
@@ -650,12 +665,14 @@ EltruismGameMenu:SetScript("OnEvent", function()
 	if _G.GameMenuButtonEditMode and E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
 		_G.GameMenuButtonEditMode:RegisterForClicks("AnyUp")
 		_G.GameMenuButtonEditMode:SetScript("OnClick", function(self, button)
-			if button == "LeftButton" then
-				E:ToggleMoveMode()
-				HideUIPanel(_G["GameMenuFrame"])
-			else
-				PlaySound(SOUNDKIT.IG_MAINMENU_OPTION);
-				ShowUIPanel(EditModeManagerFrame);
+			if not InCombatLockdown() then
+				if button == "LeftButton" then
+					E:ToggleMoveMode()
+					HideUIPanel(_G["GameMenuFrame"])
+				else
+					PlaySound(SOUNDKIT.IG_MAINMENU_OPTION);
+					ShowUIPanel(EditModeManagerFrame);
+				end
 			end
 		end)
 	end
