@@ -294,7 +294,9 @@ function ElvUI_EltreumUI:Anchors()
 		for i = #registered, 1, -1 do
 			local name = registered[i]:GetName()
 			if name == "ObjectiveTrackerFrame" and E.db.ElvUI_EltreumUI.quests.anchor then
-				tremove(editMode.registeredSystemFrames, i)
+				if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
+					tremove(editMode.registeredSystemFrames, i)
+				end
 			end
 			if E.private.actionbar.enable then
 				if name == "MainMenuBar" then
@@ -378,7 +380,6 @@ function ElvUI_EltreumUI:Anchors()
 			end
 		end
 
-
 		if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 			if E.db.ElvUI_EltreumUI.quests.anchor and not InCombatLockdown() then
 				E:Delay(0, function()
@@ -396,6 +397,8 @@ function ElvUI_EltreumUI:Anchors()
 						_G.ObjectiveTrackerFrame.ApplySystemAnchor = nil
 						_G.ObjectiveTrackerFrame.AnchorSelectionFrame = nil
 						_G.ObjectiveTrackerFrame.SetPointOverride = nil
+						_G.ObjectiveTrackerFrame.isRightManagedFrame = false
+						_G.ObjectiveTrackerFrame.breakSnappedFramesOnSave = false
 						--[[_G.ObjectiveTrackerFrame.SnapToFrame = nil
 						_G.ObjectiveTrackerFrame.ClearAllPointsOverride = nil
 						--_G.ObjectiveTrackerFrame.SetPointBase = E.noop --causes issues for some people for some reason
@@ -416,6 +419,8 @@ function ElvUI_EltreumUI:Anchors()
 						local function SetObjectivePoint()
 							E:Delay(0, function()
 								if not InCombatLockdown() then
+									_G.ObjectiveTrackerFrame.isRightManagedFrame = false
+									_G.ObjectiveTrackerFrame.breakSnappedFramesOnSave = false
 									_G.ObjectiveTrackerFrame:ClearAllPoints()
 									_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
 								end

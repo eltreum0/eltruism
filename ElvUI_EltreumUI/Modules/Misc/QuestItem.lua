@@ -614,7 +614,7 @@ function ElvUI_EltreumUI:QuestItem()
 								local _, _, _, _, _, itemType, _, _, _, _, _, classID = GetItemInfo(link)
 								if E.Retail then
 									local questInfo = C_Container.GetContainerItemQuestInfo(bag,slot)
-									if questInfo.isQuestItem or ((itemType == "Quest" or classID == 12) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
+									if ((questInfo.isQuestItem or (itemType == "Quest" or classID == 12)) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
 										local _, count = GetContainerItemInfo(bag,slot)
 										AddButton(index,bag,slot,link,itemId,count)
 										index = (index + 1)
