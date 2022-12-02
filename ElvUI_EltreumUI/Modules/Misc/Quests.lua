@@ -340,6 +340,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						[26673] = true, --magical kingdom of dalaran alliance free tp to dalaran
 						[29155] = true, --magical kingdom of dalaran horde free tp to dalaran
 						[29156] = true, --magical kingdom of dalaran free tp to dalaran
+						[196499] = true, --therazal, aiding the accord quest that drops scaling gear, so should be delayed
 					}
 					if ignoredNPCS[NPC_ID] then
 						if E.db.ElvUI_EltreumUI.dev then
