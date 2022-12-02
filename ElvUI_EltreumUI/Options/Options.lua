@@ -3383,7 +3383,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 13,
 								type = 'color',
 								name = L["Custom Color Cast"],
-								hasAlpha = false,
+								hasAlpha = true,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.cursors.cursor.enable) or E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor end,
 								get = function()
 									local cursorcast = E.db.ElvUI_EltreumUI.cursors.cursorcast
@@ -3392,7 +3392,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									local cursorcast = E.db.ElvUI_EltreumUI.cursors.cursorcast
-									cursorcast.r, cursorcast.g, cursorcast.b = r, g, b ElvUI_EltreumUI:CastCursor()
+									cursorcast.r, cursorcast.g, cursorcast.b, cursorcast.a = r, g, b, a ElvUI_EltreumUI:CastCursor()
 								end,
 							},
 							gradientcastcursor = {
@@ -3422,7 +3422,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 94,
 								type = 'color',
 								name = L["Custom Color GCD"],
-								hasAlpha = false,
+								hasAlpha = true,
 								disabled = function() return E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor or (not E.db.ElvUI_EltreumUI.cursors.cursor.enable ) end,
 								get = function()
 									local cursorgcd = E.db.ElvUI_EltreumUI.cursors.cursorgcd
@@ -3431,7 +3431,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									local cursorgcd = E.db.ElvUI_EltreumUI.cursors.cursorgcd
-									cursorgcd.r, cursorgcd.g, cursorgcd.b = r, g, b ElvUI_EltreumUI:CastCursor()
+									cursorgcd.r, cursorgcd.g, cursorgcd.b, cursorgcd.a = r, g, b, a ElvUI_EltreumUI:CastCursor()
 								end,
 							},
 							nicegap2 = {
@@ -3453,7 +3453,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 97,
 								type = 'color',
 								name = L["Custom Color Combat"],
-								hasAlpha = false,
+								hasAlpha = true,
 								disabled = function() return E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor or (not E.db.ElvUI_EltreumUI.cursors.cursor.enable) end,
 								get = function()
 									local cursorcursor = E.db.ElvUI_EltreumUI.cursors.cursorcursor
@@ -3462,7 +3462,7 @@ function ElvUI_EltreumUI:Configtable()
 								end,
 								set = function(_, r, g, b, a)
 									local cursorcursor = E.db.ElvUI_EltreumUI.cursors.cursorcursor
-									cursorcursor.r, cursorcursor.g, cursorcursor.b = r, g, b ElvUI_EltreumUI:CastCursor()
+									cursorcursor.r, cursorcursor.g, cursorcursor.b, cursorcursor.a = r, g, b, a ElvUI_EltreumUI:CastCursor()
 								end,
 							},
 						},

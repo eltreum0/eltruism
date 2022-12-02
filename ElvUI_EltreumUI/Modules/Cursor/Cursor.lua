@@ -107,7 +107,8 @@ function ElvUI_EltreumUI:CastCursor()
 			colorcast = {
 				r = E.db.ElvUI_EltreumUI.cursors.cursorcast.r,
 				g = E.db.ElvUI_EltreumUI.cursors.cursorcast.g,
-				b = E.db.ElvUI_EltreumUI.cursors.cursorcast.b
+				b = E.db.ElvUI_EltreumUI.cursors.cursorcast.b,
+				a = E.db.ElvUI_EltreumUI.cursors.cursorcast.a
 			}
 		end
 		if E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor then
@@ -117,7 +118,8 @@ function ElvUI_EltreumUI:CastCursor()
 			colorgcd = {
 				r = E.db.ElvUI_EltreumUI.cursors.cursorgcd.r,
 				g = E.db.ElvUI_EltreumUI.cursors.cursorgcd.g,
-				b = E.db.ElvUI_EltreumUI.cursors.cursorgcd.b
+				b = E.db.ElvUI_EltreumUI.cursors.cursorgcd.b,
+				a = E.db.ElvUI_EltreumUI.cursors.cursorgcd.a,
 			}
 		end
 		if E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor then
@@ -127,7 +129,8 @@ function ElvUI_EltreumUI:CastCursor()
 			colorcursor = {
 				r = E.db.ElvUI_EltreumUI.cursors.cursorcursor.r,
 				g = E.db.ElvUI_EltreumUI.cursors.cursorcursor.g,
-				b = E.db.ElvUI_EltreumUI.cursors.cursorcursor.b
+				b = E.db.ElvUI_EltreumUI.cursors.cursorcursor.b,
+				a = E.db.ElvUI_EltreumUI.cursors.cursorcursor.a
 			}
 		end
 
@@ -136,14 +139,14 @@ function ElvUI_EltreumUI:CastCursor()
 				radius = E.db.ElvUI_EltreumUI.cursors.cursorcast.radius,
 				sublayer = 1,
 				thickness = E.db.ElvUI_EltreumUI.cursors.cursorcast.thickness,
-				color = { colorcast.r, colorcast.g, colorcast.b },
+				color = { colorcast.r, colorcast.g, colorcast.b, colorcast.a },
 				texture = E.db.ElvUI_EltreumUI.cursors.cursor.ring,
 			},
 			gcd = {
 				radius = E.db.ElvUI_EltreumUI.cursors.cursorgcd.radius,
 				sublayer = 0,
 				thickness = E.db.ElvUI_EltreumUI.cursors.cursorgcd.thickness,
-				color = { colorgcd.r, colorgcd.g, colorgcd.b },
+				color = { colorgcd.r, colorgcd.g, colorgcd.b, colorgcd.a },
 				texture = E.db.ElvUI_EltreumUI.cursors.cursor.ring,
 			},
 			cursor = {
@@ -151,7 +154,7 @@ function ElvUI_EltreumUI:CastCursor()
 				sublayer = 0,
 				thickness = E.db.ElvUI_EltreumUI.cursors.cursorcursor.thickness,
 				combat = E.db.ElvUI_EltreumUI.cursors.cursor.combat,
-				color = { colorcursor.r, colorcursor.g, colorcursor.b },
+				color = { colorcursor.r, colorcursor.g, colorcursor.b, colorcursor.a },
 				texture = E.db.ElvUI_EltreumUI.cursors.cursor.ring,
 			},
 		}
@@ -303,7 +306,7 @@ function ElvUI_EltreumUI:CastCursor()
 				--set gradient on casts
 				if E.db.ElvUI_EltreumUI.cursors.cursorcast.gradient then
 					if frame:GetName() == 'EltruismCursorCast' then --would likely be better to rewrite to use a mask instead of coords since that would also end up with better clipping, but would need a rework
-						tex:SetVertexColor(1, 1, 1)
+						tex:SetVertexColor(1, 1, 1, a)
 						if i == 1 then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 								tex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass, false, false))
@@ -334,10 +337,10 @@ function ElvUI_EltreumUI:CastCursor()
 						--mask:SetAllPoints(tex)
 						--tex:AddMaskTexture(mask)
 					else
-						tex:SetVertexColor(r, g, b)
+						tex:SetVertexColor(r, g, b, a)
 					end
 				else
-					tex:SetVertexColor(r, g, b)
+					tex:SetVertexColor(r, g, b, a)
 				end
 
 				tex:SetTexCoord(unpack(QUAD_COORD_FULL[i]))
