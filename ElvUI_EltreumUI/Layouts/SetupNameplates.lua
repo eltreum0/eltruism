@@ -260,7 +260,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			end
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["showIcon"] = true
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["textPosition"] = "ONBAR"
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["timeToHold"] = 0.4
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["timeToHold"] = 0.6
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["yOffset"] = -14
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["textYOffset"] = -1
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["timeYOffset"] = -1
@@ -365,7 +365,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconOffsetY"] = -1
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["showIcon"] = true
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["textPosition"] = "ONBAR"
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["timeToHold"] = 0.4
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["timeToHold"] = 0.6
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["yOffset"] = -14
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["textYOffset"] = -1
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["timeYOffset"] = -1
@@ -398,7 +398,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["enable"] = false
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["font"] = "Kimberley"
-			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["timeToHold"] = 0.5
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["timeToHold"] = 0.6
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["castbar"]["displayTarget"] = true
 			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["enable"] = true
 			--E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["enable"] = false
@@ -539,7 +539,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			end
 			E.db["nameplates"]["units"]["PLAYER"]["castbar"]["fontOutline"] = "THICKOUTLINE"
 			E.db["nameplates"]["units"]["PLAYER"]["castbar"]["textPosition"] = "ONBAR"
-			E.db["nameplates"]["units"]["PLAYER"]["castbar"]["timeToHold"] = 0.5
+			E.db["nameplates"]["units"]["PLAYER"]["castbar"]["timeToHold"] = 0.6
 			E.db["nameplates"]["units"]["PLAYER"]["castbar"]["textXOffset"] = 0
 			E.db["nameplates"]["units"]["PLAYER"]["castbar"]["textYOffset"] = 0
 			E.db["nameplates"]["units"]["PLAYER"]["castbar"]["timeXOffset"] = 0

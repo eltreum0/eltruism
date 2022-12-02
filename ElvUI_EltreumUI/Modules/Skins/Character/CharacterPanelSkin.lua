@@ -2327,84 +2327,90 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									_G.InspectModelFrame:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 0)
 									_G.InspectMainHandSlot:ClearAllPoints()
 									_G.InspectMainHandSlot:SetPoint("CENTER", _G.InspectFrame, "CENTER", -52, -150)
-									_G.InspectModelFrame:HookScript("OnShow", function()
-										_G.InspectFrame:SetWidth(450)
-									end)
-									_G.InspectModelFrame:HookScript("OnHide", function()
-										_G.InspectFrame:SetWidth(384)
-									end)
+									if not self.EltruismInspectHook then
+										_G.InspectModelFrame:HookScript("OnShow", function()
+											_G.InspectFrame:SetWidth(450)
+										end)
+										_G.InspectModelFrame:HookScript("OnHide", function()
+											_G.InspectFrame:SetWidth(384)
+										end)
+										self.EltruismInspectHook = true
+									end
 
 									if E.Wrath then
-										_G.InspectTalentFrame:HookScript("OnShow", function()
-											if InCombatLockdown() then
-												UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
-											else
-												_G.InspectFrame:SetWidth(376)
-												if E.Wrath then
-													_G.InspectFrame:SetHeight(780)
+										if not self.EltruismInspectHookWrath then
+											_G.InspectTalentFrame:HookScript("OnShow", function()
+												if InCombatLockdown() then
+													UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
 												else
-													_G.InspectFrame:SetHeight(650)
-												end
-												_G.InspectTalentFrameTab2:ClearAllPoints()
-												_G.InspectTalentFrameTab2:SetPoint("TOP", _G.InspectTalentFrame, "TOP", 0, -50)
-												_G.InspectTalentFrameTab1:ClearAllPoints()
-												_G.InspectTalentFrameTab1:SetPoint("RIGHT", _G.InspectTalentFrameTab2, "LEFT", 0, 0)
-
-												_G.InspectTalentFrameScrollFrameScrollBar:SetAlpha(0)
-												_G.InspectTalentFrameScrollFrame:ClearAllPoints()
-												_G.InspectTalentFrameScrollFrame:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 12)
-												if E.Wrath then
-													_G.InspectTalentFrameScrollFrame:SetSize(300,720)
-												else
-													_G.InspectTalentFrameScrollFrame:SetSize(300,620)
-												end
-												E:Delay(0, function() _G.InspectTalentFrameScrollFrame:SetScale(0.75) end) --needs delay, maybe bc server response?
-
-												if E.Wrath then
-													_G.InspectTalentFramePointsBar:ClearAllPoints()
-													_G.InspectTalentFramePointsBar:SetPoint("BOTTOM", _G.InspectTalentFrame.backdrop, "BOTTOM", 0, 0)
-													_G.InspectTalentFrameSpentPointsText:SetJustifyH("LEFT")
-													_G.InspectTalentFrameTalentPointsText:SetJustifyH("RIGHT")
-												end
-
-												--kill stuff
-												_G.InspectTalentFrameCloseButton:Hide()
-												if _G.InspectTalentFrameBackgroundTopRight then
-													_G.InspectTalentFrameBackgroundTopRight:Kill()
-												end
-												if _G.InspectTalentFrameBackgroundBottomLeft then
-													_G.InspectTalentFrameBackgroundBottomLeft:Kill()
-												end
-												if _G.InspectTalentFrameBackgroundBottomRight then
-													_G.InspectTalentFrameBackgroundBottomRight:Kill()
-												end
-												--increase the size of the background
-												if _G.InspectTalentFrameBackgroundTopLeft then
+													_G.InspectFrame:SetWidth(376)
 													if E.Wrath then
-														if _G.InspectTalentFrameScrollFrame.backdrop then
-															_G.InspectTalentFrameScrollFrame.backdrop:Kill()
+														_G.InspectFrame:SetHeight(780)
+													else
+														_G.InspectFrame:SetHeight(650)
+													end
+													_G.InspectTalentFrameTab2:ClearAllPoints()
+													_G.InspectTalentFrameTab2:SetPoint("TOP", _G.InspectTalentFrame, "TOP", 0, -50)
+													_G.InspectTalentFrameTab1:ClearAllPoints()
+													_G.InspectTalentFrameTab1:SetPoint("RIGHT", _G.InspectTalentFrameTab2, "LEFT", 0, 0)
+
+													_G.InspectTalentFrameScrollFrameScrollBar:SetAlpha(0)
+													_G.InspectTalentFrameScrollFrame:ClearAllPoints()
+													_G.InspectTalentFrameScrollFrame:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 12)
+													if E.Wrath then
+														_G.InspectTalentFrameScrollFrame:SetSize(300,720)
+													else
+														_G.InspectTalentFrameScrollFrame:SetSize(300,620)
+													end
+													E:Delay(0, function() _G.InspectTalentFrameScrollFrame:SetScale(0.75) end) --needs delay, maybe bc server response?
+
+													if E.Wrath then
+														_G.InspectTalentFramePointsBar:ClearAllPoints()
+														_G.InspectTalentFramePointsBar:SetPoint("BOTTOM", _G.InspectTalentFrame.backdrop, "BOTTOM", 0, 0)
+														_G.InspectTalentFrameSpentPointsText:SetJustifyH("LEFT")
+														_G.InspectTalentFrameTalentPointsText:SetJustifyH("RIGHT")
+													end
+
+													--kill stuff
+													_G.InspectTalentFrameCloseButton:Hide()
+													if _G.InspectTalentFrameBackgroundTopRight then
+														_G.InspectTalentFrameBackgroundTopRight:Kill()
+													end
+													if _G.InspectTalentFrameBackgroundBottomLeft then
+														_G.InspectTalentFrameBackgroundBottomLeft:Kill()
+													end
+													if _G.InspectTalentFrameBackgroundBottomRight then
+														_G.InspectTalentFrameBackgroundBottomRight:Kill()
+													end
+													--increase the size of the background
+													if _G.InspectTalentFrameBackgroundTopLeft then
+														if E.Wrath then
+															if _G.InspectTalentFrameScrollFrame.backdrop then
+																_G.InspectTalentFrameScrollFrame.backdrop:Kill()
+															end
+															_G.InspectTalentFrameScrollFrame:SetScale(0.85)
+															_G.InspectTalentFrameBackgroundTopLeft:ClearAllPoints()
+															_G.InspectTalentFrameBackgroundTopLeft:SetParent(_G.InspectTalentFrame)
+															--_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 600)
+															_G.InspectTalentFrameBackgroundTopLeft:SetAllPoints(_G.InspectTalentFrameScrollFrame)
+															--_G.InspectTalentFrameBackgroundTopLeft:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 20)
+														elseif E.Classic then
+															_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 490)
 														end
-														_G.InspectTalentFrameScrollFrame:SetScale(0.85)
-														_G.InspectTalentFrameBackgroundTopLeft:ClearAllPoints()
-														_G.InspectTalentFrameBackgroundTopLeft:SetParent(_G.InspectTalentFrame)
-														--_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 600)
-														_G.InspectTalentFrameBackgroundTopLeft:SetAllPoints(_G.InspectTalentFrameScrollFrame)
-														--_G.InspectTalentFrameBackgroundTopLeft:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 20)
-													elseif E.Classic then
-														_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 490)
 													end
 												end
-											end
-										end)
+											end)
 
-										_G.InspectTalentFrame:HookScript("OnHide", function()
-											if InCombatLockdown() then
-												UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
-											else
-												_G.InspectFrame:SetHeight(512)
-												_G.InspectFrame:SetWidth(384)
-											end
-										end)
+											_G.InspectTalentFrame:HookScript("OnHide", function()
+												if InCombatLockdown() then
+													UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
+												else
+													_G.InspectFrame:SetHeight(512)
+													_G.InspectFrame:SetWidth(384)
+												end
+											end)
+											self.EltruismInspectHookWrath = true
+										end
 									end
 								end
 							end)
@@ -2438,12 +2444,15 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							--_G.InspectFrame.ItemLevelText:SetText(ElvUI_EltreumUI:GradientName(_G.InspectFrame.ItemLevelText:GetText(), englishClass))
 							--_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100)
 
-							_G.InspectModelFrame:HookScript("OnShow", function()
-								_G.InspectFrame:SetWidth(450)
-							end)
-							_G.InspectModelFrame:HookScript("OnHide", function()
-								_G.InspectFrame:SetWidth(338)
-							end)
+							if not self.EltruismInspectHookModel then
+								_G.InspectModelFrame:HookScript("OnShow", function()
+									_G.InspectFrame:SetWidth(450)
+								end)
+								_G.InspectModelFrame:HookScript("OnHide", function()
+									_G.InspectFrame:SetWidth(338)
+								end)
+								self.EltruismInspectHookmodel = true
+							end
 
 							if _G.InspectPaperDollItemsFrame.InspectTalents then
 								_G.InspectPaperDollItemsFrame.InspectTalents:ClearAllPoints()

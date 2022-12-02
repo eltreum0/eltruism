@@ -611,16 +611,16 @@ function ElvUI_EltreumUI:QuestItem()
 						local itemId = link and tonumber(link:match(ITEMID_PATTERN))
 						if (link) and (itemId) then
 							if not blocklist[itemId] then
-								local _, _, _, _, _, itemType, _, _, _, _, _, classID = GetItemInfo(link)
+								local _, _, _, _, _, itemType, itemSubType, _, _, _, _, classID = GetItemInfo(link)
 								if E.Retail then
 									local questInfo = C_Container.GetContainerItemQuestInfo(bag,slot)
-									if ((questInfo.isQuestItem or (itemType == "Quest" or classID == 12)) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
+									if ((questInfo.isQuestItem or (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12)) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
 										local _, count = GetContainerItemInfo(bag,slot)
 										AddButton(index,bag,slot,link,itemId,count)
 										index = (index + 1)
 									end
 								elseif E.Wrath or E.Classic then
-									if ((itemType == "Quest" or classID == 12) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
+									if ((itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
 										local _, count = GetContainerItemInfo(bag,slot)
 										AddButton(index,bag,slot,link,itemId,count)
 										index = (index + 1)
