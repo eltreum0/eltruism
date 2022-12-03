@@ -41,7 +41,7 @@ function ElvUI_EltreumUI:GradientDatabar()
 		end
 		local customReaction = reaction == 9 or reaction == 10 -- 9 is paragon, 10 is renown
 		local color = (customColors or customReaction) and DB.db.colors.factionColors[reaction] or _G.FACTION_BAR_COLORS[reaction]
-		local alpha = (customColors and color.a) or DB.db.colors.reputationAlpha
+		local alpha = (customColors and color.a) or DB.db.colors.reputationAlpha or 1
 		if color then
 			--databarRep:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", color.r, color.g, color.b, alpha or color.a or 1, color.r - 0.4, color.g - 0.1, color.b - 0.5, alpha or color.a or 1)
 			if E.Retail then
