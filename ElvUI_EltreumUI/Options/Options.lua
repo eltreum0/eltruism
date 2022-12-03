@@ -11559,6 +11559,18 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							pettexture = {
+								order = 108,
+								type = 'select',
+								width = "double",
+								dialogControl = 'LSM30_Statusbar',
+								name = L["Pet Texture"],
+								desc = L["Select a Texture"],
+								values = AceGUIWidgetLSMlists.statusbar,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+							},
 							headerclasses = {
 								order = 109,
 								type = "description",
