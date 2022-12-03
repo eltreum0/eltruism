@@ -20,6 +20,9 @@ function ElvUI_EltreumUI:GradientDatabar()
 	--gradient rep
 	databarRep = _G["ElvUI_ReputationBar"]
 	if databarRep and E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation then
+		if not DB.db then return end
+		if not DB.db.colors then return end
+
 		local customColors = DB.db.colors.useCustomFactionColors
 		local _, reaction, factionID
 		if E.Retail then
