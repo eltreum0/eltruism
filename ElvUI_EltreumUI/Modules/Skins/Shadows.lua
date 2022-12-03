@@ -39,6 +39,10 @@ function ElvUI_EltreumUI:Shadows()
 					_G.GenericTraitFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GenericTraitFrame.shadow) end
 				end
+				if _G.MajorFactionRenownFrame and not _G.MajorFactionRenownFrame.shadow then
+					_G.MajorFactionRenownFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.MajorFactionRenownFrame.shadow) end
+				end
 			end
 			if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then
 				if _G.ClassTalentFrame and not _G.ClassTalentFrame.shadow then
@@ -686,6 +690,8 @@ function ElvUI_EltreumUI:Shadows()
 			_G.RaidUtilityPanel,
 			_G.RaidUtility_CloseButton,
 			_G.EditModeManagerFrame,
+			_G.PVPMatchScoreboard,
+			_G.PVPMatchResults,
 			--_G.ImmersionFrame.TalkBox,
 		}
 		for _, frame in pairs(blizzardframes) do
