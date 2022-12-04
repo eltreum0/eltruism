@@ -1,6 +1,18 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.6.5
+Added alpha values to cursor colors\
+Added pet to custom textures\
+Added more shadows\
+Updated several castbars hold time to be 0.6s\
+Updated Details profile in Classic Era\
+Updated Pet buff/debuff sizes\
+Updated WindTools profile\
+Fixed a possible error with databars when the ElvUI database was not loaded or reaction was invalid\
+Fixed missing pet battle visibility for action bars\
+Fixed a focus shadow error in Classic Era\
+Fixed target castbar shadow
 ### 3.6.4
 Added multiple frames to the function to resolve possible taints\
 Added Therazal to ignored npcs for Quest Turn in\

@@ -804,12 +804,15 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 1
 	E.db["unitframe"]["units"]["pet"]["buffs"]["xOffset"] = 0
 	E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = 2
-	E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 25
+	E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 30
+	E.db["unitframe"]["units"]["pet"]["buffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["pet"]["buffs"]["height"] = 25
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOP"
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["attachTo"] = "BUFFS"
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["sizeOverride"] = 30
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["keepSizeRatio"] = false
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["height"] = 25
-	E.db["unitframe"]["units"]["pet"]["debuffs"]["sizeOverride"] = 25
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["yOffset"] = 1
 	E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_DEBUFFS_ON_BUFFS"
 	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["color"]["b"] = 0

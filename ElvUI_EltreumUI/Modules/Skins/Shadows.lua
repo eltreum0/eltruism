@@ -1447,7 +1447,7 @@ function ElvUI_EltreumUI:Shadows()
 
 			--focus castbar
 			if E.db.unitframe.units.focus.castbar.overlayOnFrame == "None" and E.db.unitframe.units.focus.castbar.icon then
-				if _G["ElvUF_Focus_CastBar"].shadow then
+				if _G["ElvUF_Focus_CastBar"] and _G["ElvUF_Focus_CastBar"].shadow then
 					if E.db["unitframe"]["units"]["focus"]["orientation"] == "RIGHT" then
 						if not E.db.unitframe.units.focus.castbar.iconAttached then
 							if E.db["unitframe"]["units"]["focus"]["castbar"]["iconAttachedTo"] == "Castbar" then
