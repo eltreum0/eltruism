@@ -756,7 +756,9 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 1
 	E.db["unitframe"]["units"]["pet"]["buffs"]["xOffset"] = 0
 	E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = 2
-	E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 25
+	E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 30
+	E.db["unitframe"]["units"]["pet"]["buffs"]["keepSizeRatio"] = false
+	E.db["unitframe"]["units"]["pet"]["buffs"]["height"] = 25
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOP"
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["attachTo"] = "BUFFS"
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["countFontOutline"] = "OUTLINE"
