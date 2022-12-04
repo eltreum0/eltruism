@@ -17,7 +17,7 @@ do
 	function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
 		if IsAddOnLoaded("ElvUI_mMediaTag") then
 			if E.db.mMediaTag.mCastbar.enable then
-				return _G.mMediaTag_interruptinTime or _G.mMediaTag_interruptOnCD
+				return _G.mMediaTag_interruptOnCD
 			end
 		else
 			return false
