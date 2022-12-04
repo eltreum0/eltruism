@@ -1072,7 +1072,7 @@ P.ElvUI_EltreumUI = {
 			targettexture = "Eltreum-Blank",
 			playertexture = "Eltreum-Blank",
 			targettargettexture = "Eltreum-Blank",
-
+			pettexture = "Eltreum-Blank",
 			targettargettargettexture = "Eltreum-Blank",
 
 			focustexture = "Eltreum-Blank",
