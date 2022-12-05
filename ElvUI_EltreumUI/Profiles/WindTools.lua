@@ -34,7 +34,9 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["maps"]["superTracker"]["waypointParse"]["command"] = false
 		E.private["WT"]["maps"]["superTracker"]["waypointParse"]["enable"] = false
 		E.private["WT"]["maps"]["superTracker"]["waypointParse"]["worldMapInput"] = false
-		E.private["WT"]["misc"]["lfgList"]["icon"]["leader"] = false
+		E.private["WT"]["misc"]["lfgList"]["enable"] = true
+		E.private["WT"]["misc"]["lfgList"]["icon"]["pack"] = "DEFAULT"
+		E.private["WT"]["misc"]["lfgList"]["icon"]["leader"] = true
 		E.private["WT"]["misc"]["lfgList"]["icon"]["pack"] = "DEFAULT"
 		E.private["WT"]["misc"]["lfgList"]["icon"]["reskin"] = false
 		E.private["WT"]["misc"]["lfgList"]["line"]["alpha"] = 0.94
@@ -42,8 +44,6 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["misc"]["guildNewsItemLevel"] = false
 		E.private["WT"]["maps"]["worldMap"]["scale"]["enable"] = false
 		E.private["WT"]["misc"]["autoScreenshot"] = false
-		E.private["WT"]["misc"]["lfgList"]["enable"] = false
-		E.private["WT"]["misc"]["lfgList"]["icon"]["pack"] = "DEFAULT"
 		--E.private["WT"]["misc"]["moveBlizzardFrames"] = false
 		E.private["WT"]["misc"]["moveSpeed"] = true
 		E.private["WT"]["misc"]["moveFrames"]["enable"] = false
