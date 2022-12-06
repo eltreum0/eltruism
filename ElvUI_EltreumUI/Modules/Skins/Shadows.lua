@@ -535,6 +535,14 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 				end
+				if (arg == "Blizzard_PlayerChoice") or IsAddOnLoaded("Blizzard_PlayerChoice") then
+					_G.PlayerChoiceFrame:HookScript("OnShow", function()
+						if not _G.PlayerChoiceFrame.shadow then
+							_G.PlayerChoiceFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerChoiceFrame.shadow) end
+						end
+					end)
+				end
 				if (arg == "Blizzard_VoidStorageUI") or IsAddOnLoaded("Blizzard_VoidStorageUI") then
 					_G.VoidStorageFrame:HookScript("OnShow", function()
 						if not _G.VoidStorageFrame.shadow then
@@ -701,7 +709,6 @@ function ElvUI_EltreumUI:Shadows()
 			_G.PVPMatchScoreboard,
 			_G.PVPMatchResults,
 			_G.MajorFactionRenownFrame,
-			_G.PlayerChoiceFrame,
 			--_G.ImmersionFrame.TalkBox,
 		}
 		for _, frame in pairs(blizzardframes) do
