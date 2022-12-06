@@ -535,6 +535,14 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 				end
+				if (arg == "Blizzard_PlayerChoice") or IsAddOnLoaded("Blizzard_PlayerChoice") then
+					_G.PlayerChoiceFrame:HookScript("OnShow", function()
+						if not _G.PlayerChoiceFrame.shadow then
+							_G.PlayerChoiceFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerChoiceFrame.shadow) end
+						end
+					end)
+				end
 				if (arg == "Blizzard_VoidStorageUI") or IsAddOnLoaded("Blizzard_VoidStorageUI") then
 					_G.VoidStorageFrame:HookScript("OnShow", function()
 						if not _G.VoidStorageFrame.shadow then
@@ -607,6 +615,18 @@ function ElvUI_EltreumUI:Shadows()
 							if _G.AuctionHouseFrame and not _G.AuctionHouseFrame.shadow then
 								_G.AuctionHouseFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionHouseFrame.shadow) end
+							end
+							if _G.AuctionHouseFrameBuyTab.backdrop and not _G.AuctionHouseFrameBuyTab.backdrop.shadow then
+								_G.AuctionHouseFrameBuyTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionHouseFrameBuyTab.backdrop.shadow) end
+							end
+							if _G.AuctionHouseFrameSellTab.backdrop and not _G.AuctionHouseFrameSellTab.backdrop.shadow then
+								_G.AuctionHouseFrameSellTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionHouseFrameSellTab.backdrop.shadow) end
+							end
+							if _G.AuctionHouseFrameAuctionsTab.backdrop and not _G.AuctionHouseFrameAuctionsTab.backdrop.shadow then
+								_G.AuctionHouseFrameAuctionsTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionHouseFrameAuctionsTab.backdrop.shadow) end
 							end
 						end)
 					end

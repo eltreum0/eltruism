@@ -34,6 +34,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["maps"]["superTracker"]["waypointParse"]["command"] = false
 		E.private["WT"]["maps"]["superTracker"]["waypointParse"]["enable"] = false
 		E.private["WT"]["maps"]["superTracker"]["waypointParse"]["worldMapInput"] = false
+		E.private["WT"]["maps"]["instanceDifficulty"]["enable"] = false
 		E.private["WT"]["misc"]["lfgList"]["enable"] = true
 		E.private["WT"]["misc"]["lfgList"]["icon"]["pack"] = "DEFAULT"
 		E.private["WT"]["misc"]["lfgList"]["icon"]["leader"] = true
