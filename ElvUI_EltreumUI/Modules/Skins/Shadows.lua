@@ -928,7 +928,6 @@ function ElvUI_EltreumUI:Shadows()
 				_G.PetStableFrame,
 				_G.TaxiFrame,
 				_G.TabardFrame,
-				--_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.backdrop,
 			}
 			for _, frame in pairs(retailframes) do
 				if frame and not frame.shadow then
@@ -944,6 +943,16 @@ function ElvUI_EltreumUI:Shadows()
 				_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("TOPLEFT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "TOPLEFT", -2,2)
 				_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("BOTTOMRIGHT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "BOTTOMRIGHT", 2,-2)
 				--if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow) end
+			end
+
+			if E.db.ElvUI_EltreumUI.skins.quests and E.private.skins.blizzard.objectiveTracker and E.private.skins.blizzard.enable then
+				if _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.ProfessionHeader and _G.ObjectiveTrackerBlocksFrame.ProfessionHeader.MinimizeButton and not _G.ObjectiveTrackerBlocksFrame.ProfessionHeader.MinimizeButton.shadow then
+					_G.ObjectiveTrackerBlocksFrame.ProfessionHeader.MinimizeButton:CreateShadow()
+					_G.ObjectiveTrackerBlocksFrame.ProfessionHeader.MinimizeButton.shadow:ClearAllPoints()
+					_G.ObjectiveTrackerBlocksFrame.ProfessionHeader.MinimizeButton.shadow:SetPoint("TOPLEFT", _G.ObjectiveTrackerBlocksFrame.ProfessionHeader.MinimizeButton.tex, "TOPLEFT", -2,2)
+					_G.ObjectiveTrackerBlocksFrame.ProfessionHeader.MinimizeButton.shadow:SetPoint("BOTTOMRIGHT", _G.ObjectiveTrackerBlocksFrame.ProfessionHeader.MinimizeButton.tex, "BOTTOMRIGHT", 2,-2)
+					--if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ObjectiveTrackerFrame.ProfessionHeader.MinimizeButton.shadow) end
+				end
 			end
 
 			if E.private.actionbar.enable and E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
