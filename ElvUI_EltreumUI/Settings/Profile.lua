@@ -1202,5 +1202,6 @@ P.ElvUI_EltreumUI = {
 		},
 		taxiscale = 1,
 		colorbg = false,
+		musicshuffle = false,
 	},
 }
