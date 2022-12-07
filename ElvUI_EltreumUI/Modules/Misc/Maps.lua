@@ -198,7 +198,7 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 				if #coords >=2 then
 					local x, y = 0,0
 					-- setup x coordinate
-					if string.match(coords[1], "%d+") then
+					if coords[1] and string.match(coords[1], "%d+") then
 						if string.len(coords[1]) == 3 then
 							x = (tonumber(coords[1])*0.001)
 						elseif string.len(coords[1]) == 2 then
@@ -212,7 +212,7 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 						end
 					end
 					-- setup y coordinate
-					if string.match(coords[2], "%d+") then
+					if coords[2] and string.match(coords[2], "%d+") then
 						if string.len(coords[2]) == 3 then
 							y = (tonumber(coords[2])*0.001)
 						elseif string.len(coords[2]) == 2 then
@@ -226,7 +226,7 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 						end
 					end
 					-- check if its numbers set the waypoint and print it otherwise error message
-					if string.match(coords[1], "%a+") or string.match(coords[2], "%a+") then
+					if (coords[1] and string.match(coords[1], "%a+")) or (coords[2] and string.match(coords[2], "%a+")) then
 						ElvUI_EltreumUI:Print(L["Unsupported format or Area does not support waypoints"])
 						wipe(coords)
 					elseif x == nil or y == nil then
