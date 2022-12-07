@@ -491,22 +491,6 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 					end
 					if block.currentLine then --this is the text
-						for _, line in pairs(block.lines) do
-							line.Text:SetTextColor(1, 1, 1)
-							line.Text.colorStyle = {r = mult * 1, g = mult * 1, b = mult * 1}
-							if ( line.Dash ) then
-								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-								else
-									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-								end
-							end
-						end
-					end
-				end
-
-				local function blockentertype2(block)
-					if block.currentLine then --this is the text
 						for objectiveKey, line in pairs(block.lines) do --Blizzard_ObjectiveTracker.lua#L458
 							if objectiveKey == 0 then --its the title
 								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
@@ -516,6 +500,9 @@ function ElvUI_EltreumUI:SkinQuests()
 								end
 							else -- its the subtext
 								line.Text:SetTextColor(1, 1, 1)
+								if line.Text.colorStyle then
+									line.Text.colorStyle = {r = mult * 1, g = mult * 1, b = mult * 1}
+								end
 							end
 							if ( line.Dash ) then
 								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
@@ -539,22 +526,6 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 					end
 					if block.currentLine then
-						for _, line in pairs(block.lines) do
-							line.Text:SetTextColor(mult, mult, mult)
-							line.Text.colorStyle = {r = mult, g = mult, b = mult}
-							if ( line.Dash ) then
-								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-								else
-									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-								end
-							end
-						end
-					end
-				end
-
-				local function blockexit2(block)
-					if block.currentLine then
 						for objectiveKey, line in pairs(block.lines) do --Blizzard_ObjectiveTracker.lua#L458
 							if objectiveKey == 0 then --its the title
 								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
@@ -564,6 +535,9 @@ function ElvUI_EltreumUI:SkinQuests()
 								end
 							else -- its the subtext
 								line.Text:SetTextColor(mult, mult, mult)
+								if line.Text.colorStyle then
+									line.Text.colorStyle = {r = mult, g = mult, b = mult}
+								end
 							end
 							if ( line.Dash ) then
 								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
@@ -586,11 +560,11 @@ function ElvUI_EltreumUI:SkinQuests()
 				end)
 
 				hooksecurefunc(WORLD_QUEST_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
-					blockentertype2(block)
+					blockenter(block)
 				end)
 
 				hooksecurefunc(WORLD_QUEST_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
-					blockexit2(block)
+					blockexit(block)
 				end)
 
 				hooksecurefunc(ACHIEVEMENT_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
@@ -602,11 +576,11 @@ function ElvUI_EltreumUI:SkinQuests()
 				end)
 
 				hooksecurefunc(BONUS_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
-					blockentertype2(block)
+					blockenter(block)
 				end)
 
 				hooksecurefunc(BONUS_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
-					blockexit2(block)
+					blockexit(block)
 				end)
 
 				hooksecurefunc(PROFESSION_RECIPE_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
@@ -616,9 +590,6 @@ function ElvUI_EltreumUI:SkinQuests()
 				hooksecurefunc(PROFESSION_RECIPE_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
 					blockexit(block)
 				end)
-
-
-
 			end
 		elseif E.Classic then
 			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
