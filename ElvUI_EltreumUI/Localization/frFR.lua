@@ -1211,3 +1211,7 @@ L["Detects player and target's species and uses it to fix the offset of the 3D P
 L["Font has been set."] = "La police de caractères a été définie." --name of font shows up before "Font", example: "Arial Font has been set."
 L["Will link your key in guild or party chat"] = "Liera votre clé dans le chat de guilde ou de partie" --updated to remove the covenant reference
 L["Pet Texture"] = "Texture du familier"
+L["Shuffle"] = true
+L["Randomize Music Order"] = true
+L["Shuffle List"] = true
+L["Split files with a comma, such as: file1.mp3,file2.mp3"] = true

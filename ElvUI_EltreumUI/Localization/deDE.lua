@@ -1252,3 +1252,7 @@ L["Detects player and target's species and uses it to fix the offset of the 3D P
 L["Font has been set."] = "Schriftart wurde festgelegt."
 L["Will link your key in guild or party chat"] = "Wird deinen Schlüssel im Gilden- oder Party Chat verlinken"
 L["Pet Texture"] = true
+L["Shuffle"] = true
+L["Randomize Music Order"] = true
+L["Shuffle List"] = true
+L["Split files with a comma, such as: file1.mp3,file2.mp3"] = true

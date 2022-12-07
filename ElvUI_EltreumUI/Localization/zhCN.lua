@@ -1206,3 +1206,7 @@ L["Detects player and target's species and uses it to fix the offset of the 3D P
 L["Font has been set."] = true --name of font shows up before "Font", example: "Arial Font has been set."
 L["Will link your key in guild or party chat"] = true --updated to remove the covenant reference
 L["Pet Texture"] = true
+L["Shuffle"] = true
+L["Randomize Music Order"] = true
+L["Shuffle List"] = true
+L["Split files with a comma, such as: file1.mp3,file2.mp3"] = true
