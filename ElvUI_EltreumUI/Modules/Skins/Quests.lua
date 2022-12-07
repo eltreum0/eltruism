@@ -228,6 +228,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					WORLD_QUEST_TRACKER_MODULE,
 					UI_WIDGET_TRACKER_MODULE,
 					CAMPAIGN_QUEST_TRACKER_MODULE,
+					PROFESSION_RECIPE_TRACKER_MODULE,
 				}
 				local mult = 0.85
 				for _, k in pairs(questmodules) do
@@ -398,6 +399,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				hooksecurefunc(CAMPAIGN_QUEST_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
 				hooksecurefunc(SCENARIO_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
 				hooksecurefunc(DEFAULT_OBJECTIVE_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
+				hooksecurefunc(_G.UI_WIDGET_TRACKER_MODULE,"AddProgressBar", EltreumSkinProgressBars)
 
 				hooksecurefunc(SCENARIO_CONTENT_TRACKER_MODULE, 'UpdateCriteria', function ()
 					if ScenarioObjectiveBlock then
