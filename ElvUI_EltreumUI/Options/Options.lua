@@ -2943,20 +2943,30 @@ function ElvUI_EltreumUI:Configtable()
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							combatpathtofile = {
-								order = 3,
+								order = 4,
 								type = 'group',
 								inline = true,
 								name = L["Name of file inside Interface\\Addons"],
 								args = {
 									howtomusic = {
-									order = 2,
-									type = "description",
-									name = L["Example: "].."mymusic.mp3",
+										order = 2,
+										type = "description",
+										name = L["Example: "].."mymusic.mp3",
 									},
 									somegap = {
 										order = 3,
 										type = "description",
 										name = "",
+									},
+									shuffle = {
+										order = 4,
+										type = 'toggle',
+										name = L["Shuffle"],
+										desc = L["Randomize Music Order"],
+										width = 'full',
+										disabled = function() return not E.private.ElvUI_EltreumUI.combatmusic.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.musicshuffle end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.musicshuffle = value E:StaticPopup_Show('PRIVATE_RL') end,
 									},
 									soundpath = {
 										order = 6,
@@ -2965,9 +2975,21 @@ function ElvUI_EltreumUI:Configtable()
 										name = '',
 										desc = '',
 										width = 'full',
+										hidden = E.db.ElvUI_EltreumUI.otherstuff.musicshuffle,
 										get = function() return E.private.ElvUI_EltreumUI.combatmusic.musicfile end,
 										set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.musicfile = value E:StaticPopup_Show('PRIVATE_RL') end,
-									}
+									},
+									soundpathshuffle = {
+										order = 8,
+										icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
+										type = 'input',
+										name = L["Shuffle List"],
+										desc = L["Split files with a comma, such as: file1.mp3,file2.mp3"],
+										width = 'full',
+										hidden = not E.db.ElvUI_EltreumUI.otherstuff.musicshuffle,
+										get = function() return E.private.ElvUI_EltreumUI.combatmusic.shufflelist end,
+										set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.shufflelist = value E:StaticPopup_Show('PRIVATE_RL') end,
+									},
 								}
 							},
 							header3 = {

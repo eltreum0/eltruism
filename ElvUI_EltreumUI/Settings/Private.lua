@@ -22,6 +22,7 @@ V.ElvUI_EltreumUI = {
 	combatmusic = {
 		enable = false,
 		musicfile = "None",
+		shufflelist =  "None",
 		bossmusic = false,
 		bossfile = "None",
 		disableinstance = false,

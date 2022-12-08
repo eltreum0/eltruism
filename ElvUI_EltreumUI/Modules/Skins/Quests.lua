@@ -228,6 +228,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					WORLD_QUEST_TRACKER_MODULE,
 					UI_WIDGET_TRACKER_MODULE,
 					CAMPAIGN_QUEST_TRACKER_MODULE,
+					PROFESSION_RECIPE_TRACKER_MODULE,
 				}
 				local mult = 0.85
 				for _, k in pairs(questmodules) do
@@ -398,6 +399,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				hooksecurefunc(CAMPAIGN_QUEST_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
 				hooksecurefunc(SCENARIO_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
 				hooksecurefunc(DEFAULT_OBJECTIVE_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
+				hooksecurefunc(_G.UI_WIDGET_TRACKER_MODULE,"AddProgressBar", EltreumSkinProgressBars)
 
 				hooksecurefunc(SCENARIO_CONTENT_TRACKER_MODULE, 'UpdateCriteria', function ()
 					if ScenarioObjectiveBlock then
@@ -478,8 +480,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 				end)
 
-				--on mouse enter and leave
-				hooksecurefunc(DEFAULT_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
+				local function blockenter(block)
 					if ( block.HeaderText ) then
 						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
 							block.HeaderText:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
@@ -490,9 +491,19 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 					end
 					if block.currentLine then --this is the text
-						for _, line in pairs(block.lines) do
-							line.Text:SetTextColor(1, 1, 1)
-							line.Text.colorStyle = {r = mult * 1, g = mult * 1, b = mult * 1}
+						for objectiveKey, line in pairs(block.lines) do --Blizzard_ObjectiveTracker.lua#L458
+							if objectiveKey == 0 then --its the title
+								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+									line.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								else
+									line.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
+							else -- its the subtext
+								line.Text:SetTextColor(1, 1, 1)
+								if line.Text.colorStyle then
+									line.Text.colorStyle = {r = mult * 1, g = mult * 1, b = mult * 1}
+								end
+							end
 							if ( line.Dash ) then
 								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
 									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
@@ -502,175 +513,83 @@ function ElvUI_EltreumUI:SkinQuests()
 							end
 						end
 					end
+				end
+
+				local function blockexit(block)
+					if ( block.HeaderText ) then
+						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+							block.HeaderText:SetTextColor(mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+							block.HeaderText.colorStyle = {r = mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, g = mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, b = mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb}
+						else
+							block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+							block.HeaderText.colorStyle = { r = mult * classcolor.r, g = mult * classcolor.g, b = mult * classcolor.b }
+						end
+					end
+					if block.currentLine then
+						for objectiveKey, line in pairs(block.lines) do --Blizzard_ObjectiveTracker.lua#L458
+							if objectiveKey == 0 then --its the title
+								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+									line.Text:SetTextColor(mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								else
+									line.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+								end
+							else -- its the subtext
+								line.Text:SetTextColor(mult, mult, mult)
+								if line.Text.colorStyle then
+									line.Text.colorStyle = {r = mult, g = mult, b = mult}
+								end
+							end
+							if ( line.Dash ) then
+								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								else
+									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
+							end
+						end
+					end
+				end
+
+				--on mouse enter and leave
+				hooksecurefunc(DEFAULT_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
+					blockenter(block)
 				end)
 
 				hooksecurefunc(DEFAULT_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
-					if ( block.HeaderText ) then
-						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-							block.HeaderText:SetTextColor(mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-							block.HeaderText.colorStyle = {r = mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, g = mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, b = mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb}
-						else
-							block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
-							block.HeaderText.colorStyle = { r = mult * classcolor.r, g = mult * classcolor.g, b = mult * classcolor.b }
-						end
-					end
-					if block.currentLine then
-						for _, line in pairs(block.lines) do
-							line.Text:SetTextColor(mult, mult, mult)
-							line.Text.colorStyle = {r = mult, g = mult, b = mult}
-							if ( line.Dash ) then
-								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-								else
-									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-								end
-							end
-						end
-					end
+					blockexit(block)
 				end)
 
 				hooksecurefunc(WORLD_QUEST_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
-					if block.currentLine then --this is the text
-						for objectiveKey, line in pairs(block.lines) do --Blizzard_ObjectiveTracker.lua#L458
-							if objectiveKey == 0 then --its the title
-								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-									line.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-								else
-									line.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-								end
-							else -- its the subtext
-								line.Text:SetTextColor(1, 1, 1)
-							end
-							if ( line.Dash ) then
-								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-								else
-									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-								end
-							end
-						end
-					end
+					blockenter(block)
 				end)
 
 				hooksecurefunc(WORLD_QUEST_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
-					if block.currentLine then
-						for objectiveKey, line in pairs(block.lines) do --Blizzard_ObjectiveTracker.lua#L458
-							if objectiveKey == 0 then --its the title
-								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-									line.Text:SetTextColor(mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-								else
-									line.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
-								end
-							else -- its the subtext
-								line.Text:SetTextColor(mult, mult, mult)
-							end
-							if ( line.Dash ) then
-								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-								else
-									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-								end
-							end
-						end
-					end
+					blockexit(block)
 				end)
 
 				hooksecurefunc(ACHIEVEMENT_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
-					if ( block.HeaderText ) then
-						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-							block.HeaderText:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-							block.HeaderText.colorStyle = {r = E.db.ElvUI_EltreumUI.skins.questsettings.customr, g = E.db.ElvUI_EltreumUI.skins.questsettings.customg, b = E.db.ElvUI_EltreumUI.skins.questsettings.customb}
-						else
-							block.HeaderText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-							block.HeaderText.colorStyle = {r = classcolor.r, g = classcolor.g, b = classcolor.b}
-						end
-					end
-					if block.currentLine then --this is the text
-						for _, line in pairs(block.lines) do
-							line.Text:SetTextColor(1, 1, 1)
-							line.Text.colorStyle = {r = mult * 1, g = mult * 1, b = mult * 1}
-							if ( line.Dash ) then
-								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-								else
-									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-								end
-							end
-						end
-					end
+					blockenter(block)
 				end)
 
 				hooksecurefunc(ACHIEVEMENT_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
-					if ( block.HeaderText ) then
-						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-							block.HeaderText:SetTextColor(mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-							block.HeaderText.colorStyle = {r = mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, g = mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, b = mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb}
-						else
-							block.HeaderText:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
-							block.HeaderText.colorStyle = { r = mult * classcolor.r, g = mult * classcolor.g, b = mult * classcolor.b }
-						end
-					end
-					if block.currentLine then
-						for _, line in pairs(block.lines) do
-							line.Text:SetTextColor(mult, mult, mult)
-							line.Text.colorStyle = {r = mult, g = mult, b = mult}
-							if ( line.Dash ) then
-								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-								else
-									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-								end
-							end
-						end
-					end
+					blockexit(block)
 				end)
 
 				hooksecurefunc(BONUS_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
-					if block.currentLine then --this is the text
-						for objectiveKey, line in pairs(block.lines) do --Blizzard_ObjectiveTracker.lua#L458
-							if objectiveKey == 0 then --its the title
-								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-									line.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-								else
-									line.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-								end
-							else -- its the subtext
-								line.Text:SetTextColor(1, 1, 1)
-							end
-							if ( line.Dash ) then
-								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-								else
-									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-								end
-							end
-						end
-					end
+					blockenter(block)
 				end)
 
 				hooksecurefunc(BONUS_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
-					if block.currentLine then
-						for objectiveKey, line in pairs(block.lines) do --Blizzard_ObjectiveTracker.lua#L458
-							if objectiveKey == 0 then --its the title
-								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-									line.Text:SetTextColor(mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-								else
-									line.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
-								end
-							else -- its the subtext
-								line.Text:SetTextColor(mult, mult, mult)
-							end
-							if ( line.Dash ) then
-								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-								else
-									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-								end
-							end
-						end
-					end
+					blockexit(block)
 				end)
 
+				hooksecurefunc(PROFESSION_RECIPE_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
+					blockenter(block)
+				end)
+
+				hooksecurefunc(PROFESSION_RECIPE_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
+					blockexit(block)
+				end)
 			end
 		elseif E.Classic then
 			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then

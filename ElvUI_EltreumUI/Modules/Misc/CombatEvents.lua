@@ -11,12 +11,18 @@ local dontstopboss = 0
 local soundfileboss
 local _, instanceType
 local soundfile
+local list = {}
 
 --play music during combat
 function ElvUI_EltreumUI:CombatMusic(event, event2)
 	if E.private.ElvUI_EltreumUI.combatmusic.enable and tostring(C_CVar.GetCVar('Sound_EnableMusic')) == '1' then
 		_, instanceType = IsInInstance()
 		soundfile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.musicfile
+		if E.db.ElvUI_EltreumUI.otherstuff.musicshuffle then
+			wipe(list)
+			list = {strsplit("," ,E.private.ElvUI_EltreumUI.combatmusic.shufflelist)}
+			soundfile = [[Interface\AddOns\]]..list[math.random(1,#list)]
+		end
 		if E.private.ElvUI_EltreumUI.combatmusic.disableinstance == false then
 			if event == 'PLAYER_REGEN_DISABLED' and event2 == nil and dontstopboss == 0 then
 				PlayMusic(soundfile)
