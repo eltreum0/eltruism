@@ -514,6 +514,9 @@ if E.Retail then
 	pewcheck:SetScript("OnEvent",function()
 		if _G["ElvUF_Player"] and E.db.unitframe.units.player.fader.enable and E.db.unitframe.units.player.fader.minAlpha == 0 then
 			E:Delay(0, function()
+				if _G["ElvUF_Player"].Portrait3D then
+					_G["ElvUF_Player"].Portrait3D:Hide()
+				end
 				if _G["EltruismPlayerEffect"] then
 					_G["EltruismPlayerEffect"]:SetAlpha(0)
 				end
@@ -527,6 +530,10 @@ if E.Retail then
 	hooksecurefunc(E, "UIFrameFadeIn", function(_, frame,_, _, endAlpha)
 		if frame and endAlpha then
 			if endAlpha == 0 then
+				if frame.Portrait3D then
+					frame.Portrait3D:Hide()
+					frame.FixRotationEltruism = false
+				end
 				if frame:GetName() ~= nil and frame:GetName():match("Player") then
 					if _G["EltruismPlayerEffect"] then
 						_G["EltruismPlayerEffect"]:SetAlpha(0)
@@ -544,6 +551,11 @@ if E.Retail then
 					end
 				end
 			elseif endAlpha == 1 then
+				if frame.Portrait3D then
+					frame.Portrait3D:Show()
+					ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
+					frame.FixRotationEltruism = true
+				end
 				if frame:GetName() ~= nil and frame:GetName():match("Player") then
 					if _G["EltruismPlayerEffect"] then
 						_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
@@ -566,6 +578,10 @@ if E.Retail then
 	hooksecurefunc(E, "UIFrameFadeOut", function(_, frame,_, _, endAlpha)
 		if frame and endAlpha then
 			if endAlpha == 0 then
+				if frame.Portrait3D then
+					frame.Portrait3D:Hide()
+					frame.FixRotationEltruism = false
+				end
 				if frame:GetName() ~= nil and frame:GetName():match("Player") then
 					if _G["EltruismPlayerEffect"] then
 						_G["EltruismPlayerEffect"]:SetAlpha(0)
@@ -583,6 +599,13 @@ if E.Retail then
 					end
 				end
 			elseif endAlpha == 1 then
+				if frame.Portrait3D then
+					frame.Portrait3D:Show()
+					if not frame.FixRotationEltruism then
+						ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
+						frame.FixRotationEltruism = true
+					end
+				end
 				if frame:GetName() ~= nil and frame:GetName():match("Player") then
 					if _G["EltruismPlayerEffect"] then
 						_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha or 0.5)
