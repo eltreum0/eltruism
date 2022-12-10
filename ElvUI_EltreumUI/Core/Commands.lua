@@ -174,12 +174,12 @@ function ElvUI_EltreumUI:RunCommands(message)
 			end
 			print("|cff82B4ff/!key and /!keys|r - Links your keystone in chat")
 		end
-		print("|cff82B4ff/eltruism background|r - Toggles chat between grey and black background colors for ElvUI")
+		print("|cff82B4ff/eltruism background|r - Toggles between grey and black background")
 		print("|cff82B4ff/eltruism color|r - Toggles unitframe between light and dark modes")
-		print("|cff82B4ff/eltruism gradient|r - Activates gradient mode")
+		print("|cff82B4ff/eltruism gradient|r - Toggles gradient mode")
 		print("|cff82B4ff/eltruism chat|r - Toggles chat between dark and transparent modes")
-		print("|cff82B4ff/eltruismdebug on/off|r - Toggles debug mode where addons will be disabled/enabled for troubleshooting")
-		print("|cff82B4ff/eltruism weakauras|r - Toggles actionbars to be similart o WeakAuras, will overwrite settings")
+		print("|cff82B4ff/eltruismdebug on/off|r - Toggles debug mode")
+		print("|cff82B4ff/eltruism weakauras|r - Toggles actionbars to be similar to WeakAuras, will overwrite settings")
 	end
 end
 
