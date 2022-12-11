@@ -175,15 +175,9 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 			end
 			local normal = (IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown())
 			if E.db.ElvUI_EltreumUI.quests.autoacceptinvert then
-				if E.db.ElvUI_EltreumUI.dev then
-					ElvUI_EltreumUI:Print("inverted the mod keys")
-				end
 				normal = not (IsShiftKeyDown() or IsControlKeyDown() or IsAltKeyDown())
 			end
 			if normal then
-				if E.db.ElvUI_EltreumUI.dev then
-					ElvUI_EltreumUI:Print("using normal keys")
-				end
 				return
 			else
 				if E.Retail and C_Map.GetBestMapForUnit('player') == 762 then return end
