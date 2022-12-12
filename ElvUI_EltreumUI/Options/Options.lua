@@ -4450,156 +4450,270 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = L["CVars"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cvar',
+				childGroups = "tab",
 				args = {
-					header = {
+					generalcvars = {
 						order = 1,
-						type = "description",
-						name = L["Customize CVars"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					cameraFOV = {
-						type = 'range',
-						name = L["Camera Field of View"],
-						desc = L["This allows you to zoom out further with the camera to increase the field of view."],
-						order = 2,
-						min = 50,
-						max = 90,
-						step = 1,
-						width = "full",
-						hidden = not E.Retail and not E.Wrath,
-						get = function() return E.db.ElvUI_EltreumUI.cvars.cameraFOV end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraFOV = value SetCVar('camerafov', value) end,
-					},
-					cameraDistanceMaxZoomFactor = {
-						type = 'range',
-						name = L["Camera Distance Max Zoom Factor"],
-						desc = L["Maximum Camera Zoom Out"],
-						order = 3,
-						min = 1,
-						max = function()
-							if not E.Wrath then
-								return 2.6
-							else
-								return 3.4
-							end
-						end,
-						step = 0.1,
-						width = "full",
-						get = function() return E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor = value SetCVar('cameraDistanceMaxZoomFactor', value) end,
-					},
-					header2 = {
-						order = 4,
-						type = "description",
-						name = "",
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					nameplateOtherBottomInset = {
-						type = 'range',
-						name = L["Nameplate Other Bottom Inset"],
-						desc = L["In screen % the inset from the Bottom"],
-						order = 5,
-						min = 0.01,
-						max = 1,
-						step = 0.01,
-						width = "full",
-						get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset = value SetCVar('nameplateOtherBottomInset', value) SetCVar('nameplateLargeBottomInset', value) end,
-					},
-					nameplateOtherTopInset = {
-						type = 'range',
-						name = L["Nameplate Other Top Inset"],
-						desc = L["In screen % the inset from the Top"],
-						order = 5,
-						min = 0.01,
-						max = 1,
-						step = 0.01,
-						width = "full",
-						get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset = value SetCVar('nameplateOtherTopInset', value) SetCVar('nameplateLargeTopInset', value) end,
-					},
-					header3 = {
-						order = 6,
-						type = "description",
-						name = L["Nameplate Target Radial Position"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					nameplateTargetRadialPosition = {
-						order = 7,
-						type = 'select',
-						name = " ",
-						desc = L["When target is off screen, position its nameplate radially around sides and bottom."],
-						width = "full",
-						values = {
-							["1"] = L["Target Only"],
-							["2"] = L["All in Combat"],
-						},
-						style = 'radio',
-						get = function() return C_CVar.GetCVar('nameplateTargetRadialPosition') end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition = value SetCVar('nameplateTargetRadialPosition', value) end,
-					},
-					headervideolatency = {
-						order = 8,
-						type = "description",
-						name = LOW_LATENCY_MODE or "",
-						width = 'full',
-						hidden = not E.Retail,
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					lowlatencycvar ={
-						order = 9,
-						type = 'select',
-						name = " ",
-						hidden = not E.Retail,
-						desc = OPTION_TOOLTIP_LOW_LATENCY_MODE or "",
-						width = "full",
-						values = {
-							["0"] = VIDEO_OPTIONS_DISABLED or "",
-							["1"] = VIDEO_OPTIONS_BUILTIN or "",
-							["2"] = VIDEO_OPTIONS_NVIDIA_REFLEX or "",
-							--["3"] = VIDEO_OPTIONS_NVIDIA_REFLEX_BOOST,
-						},
-						style = 'radio',
-						get = function() return C_CVar.GetCVar('LowLatencyMode') end,
-						set = function(_, value) local number = tonumber(value) SetCVar('LowLatencyMode', number) end,
-					},
-					header4 = {
-						order = 197,
-						type = "description",
-						name = L["Setup CVars"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					setup = {
-						order = 198,
 						type = 'group',
-						inline = true,
-						name = "",
+						name = L["General"],
 						args = {
-							generalVars = {
-								order = 1,
-								type = 'execute',
-								name = L["General CVars"],
+							header4 = {
+								order = 197,
+								type = "description",
+								name = L["Setup CVars"],
 								width = 'full',
-								func = function() ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() end,
-								confirm = true,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							setup = {
+								order = 198,
+								type = 'group',
+								inline = true,
+								name = "",
+								args = {
+									generalVars = {
+										order = 1,
+										type = 'execute',
+										name = L["General CVars"],
+										width = 'full',
+										func = function() ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() end,
+										confirm = true,
+									},
+								},
+							},
+							generalDesc = {
+								order = 199,
+								type = 'group',
+								inline = true,
+								name = L["It will set these CVars:"],
+								args = {
+									cvars = {
+										order = 1,
+										type = 'description',
+										fontSize = 'medium',
+										name = '- autoLootDefault 1\n- ShowClassColorInFriendlyNameplate 1\n- removeChatDelay 1\n- autoQuestWatch 1\n- cameraDistanceMaxZoomFactor 2.6\n- nameplateLargerScale 1.2\n- nameplateMaxDistance 60\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 0\n- nameplateOverlapH 0.8\n- nameplateOverlapV 1.1\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateShowFriendlyMinions 0\n- nameplateOtherBottomInset 0.02\n- nameplateOtherTopInset 0.1\n- nameplateTargetRadialPosition 1\n- nameplateTargetBehindMaxDistance 40\n- nameplateShowEnemies 1\n- nameplateShowFriends 1\n- UnitNameEnemyGuardianName 0\n- UnitNameEnemyMinionName 0\n- UnitNameEnemyPetName 0\n- UnitNameEnemyPlayerName 1\n- UnitNameEnemyTotemName 1\n- UnitNameFriendlyPetName 0\n- UnitNameNPC 1\n- statusTextDisplay BOTH\n- screenshotQuality 10\n- chatMouseScroll 1\n- wholeChatWindowClickable 0\n- showTutorials 0\n- UberTooltips 1\n- alwaysCompareItems 0\n- allowCompareWithToggle 1\n- instantQuestText 1\n- autoLootRate 1\n- showQuestTrackingTooltips 1\n- lootUnderMouse 1\n- equipmentManager 1\n- previewTalents 1\n- WorldTextMinSize 6',
+									},
+								},
 							},
 						},
 					},
-					generalDesc = {
-						order = 199,
+					customizecvars = {
+						order = 2,
 						type = 'group',
-						inline = true,
-						name = L["It will set these CVars:"],
+						name = L["Customize CVars"],
 						args = {
-							cvars = {
-								order = 1,
-								type = 'description',
-								fontSize = 'medium',
-								name = '- autoLootDefault 1\n- ShowClassColorInFriendlyNameplate 1\n- removeChatDelay 1\n- autoQuestWatch 1\n- cameraDistanceMaxZoomFactor 2.6\n- nameplateLargerScale 1.2\n- nameplateMaxDistance 60\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 0\n- nameplateOverlapH 0.8\n- nameplateOverlapV 1.1\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateShowFriendlyMinions 0\n- nameplateOtherBottomInset 0.02\n- nameplateOtherTopInset 0.1\n- nameplateTargetRadialPosition 1\n- nameplateTargetBehindMaxDistance 40\n- nameplateShowEnemies 1\n- nameplateShowFriends 1\n- UnitNameEnemyGuardianName 0\n- UnitNameEnemyMinionName 0\n- UnitNameEnemyPetName 0\n- UnitNameEnemyPlayerName 1\n- UnitNameEnemyTotemName 1\n- UnitNameFriendlyPetName 0\n- UnitNameNPC 1\n- statusTextDisplay BOTH\n- screenshotQuality 10\n- chatMouseScroll 1\n- wholeChatWindowClickable 0\n- showTutorials 0\n- UberTooltips 1\n- alwaysCompareItems 0\n- allowCompareWithToggle 1\n- instantQuestText 1\n- autoLootRate 1\n- showQuestTrackingTooltips 1\n- lootUnderMouse 1\n- equipmentManager 1\n- previewTalents 1\n- WorldTextMinSize 6',
+							headerblizzcombattext = {
+								order = 2,
+								type = "description",
+								name = L["Blizzard Floating Combat Text"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							blizzcombatexttoggle = {
+								order = 3,
+								name = L["Disable Combat Text"],
+								type = "toggle",
+								desc = L["Enable or disable Blizzard's default Floating Combat Text"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							blizzcombatextmana = {
+								order = 4,
+								name = L["Enable Resource Gains"],
+								type = "toggle",
+								desc = L["Enable or disable Blizzard's default Floating Combat Text for Mana/Rage/Energy and other resouces"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							restorecombatext = {
+								order = 5,
+								name = L["Restore All Blizzard Combat Text"],
+								type = 'execute',
+								width = 'full',
+								func = function() ElvUI_EltreumUI:RestoreBlizzCombatText() E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							headercameraFOV = {
+								order = 6,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							cameraFOV = {
+								type = 'range',
+								name = L["Camera Field of View"],
+								desc = L["This allows you to zoom out further with the camera to increase the field of view."],
+								order = 7,
+								min = 50,
+								max = 90,
+								step = 1,
+								width = "full",
+								hidden = not E.Retail and not E.Wrath,
+								get = function() return E.db.ElvUI_EltreumUI.cvars.cameraFOV end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraFOV = value SetCVar('camerafov', value) end,
+							},
+							cameraDistanceMaxZoomFactor = {
+								type = 'range',
+								name = L["Camera Distance Max Zoom Factor"],
+								desc = L["Maximum Camera Zoom Out"],
+								order = 8,
+								min = 1,
+								max = function()
+									if not E.Wrath then
+										return 2.6
+									else
+										return 3.4
+									end
+								end,
+								step = 0.1,
+								width = "full",
+								get = function() return E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor = value SetCVar('cameraDistanceMaxZoomFactor', value) end,
+							},
+							headerworldtext = {
+								order = 9,
+								type = "description",
+								name = L["Change the Scale of the World Text"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							worldtextscale = {
+								type = 'range',
+								name = L["Select the size of the World Text"],
+								desc = L["Such as the floating XP, floating reputation changes and others"],
+								order = 10,
+								min = 0.2,
+								max = 2,
+								step = 0.1,
+								width = "full",
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.worldtextscale end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldtextscale = value ElvUI_EltreumUI:WorldTextScale(value) end,
+							},
+							headernameplatetargetradialposition = {
+								order = 11,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							nameplateTargetRadialPosition = {
+								order = 12,
+								type = 'select',
+								name = L["Nameplate Target Radial Position"],
+								desc = L["When target is off screen, position its nameplate radially around sides and bottom."],
+								--width = "full",
+								values = {
+									["1"] = L["Target Only"],
+									["2"] = L["All in Combat"],
+								},
+								style = 'radio',
+								get = function() return C_CVar.GetCVar('nameplateTargetRadialPosition') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition = value SetCVar('nameplateTargetRadialPosition', value) end,
+							},
+							headernameplateotherinsets = {
+								order = 13,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							nameplateOtherBottomInset = {
+								type = 'range',
+								name = L["Nameplate Other Bottom Inset"],
+								desc = L["In screen % the inset from the Bottom"],
+								order = 14,
+								min = 0.01,
+								max = 1,
+								step = 0.01,
+								width = "full",
+								get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset = value SetCVar('nameplateOtherBottomInset', value) SetCVar('nameplateLargeBottomInset', value) end,
+							},
+							nameplateOtherTopInset = {
+								type = 'range',
+								name = L["Nameplate Other Top Inset"],
+								desc = L["In screen % the inset from the Top"],
+								order = 15,
+								min = 0.01,
+								max = 1,
+								step = 0.01,
+								width = "full",
+								get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset = value SetCVar('nameplateOtherTopInset', value) SetCVar('nameplateLargeTopInset', value) end,
+							},
+							headerFSR = {
+								order = 16,
+								type = "description",
+								name = L["AMD FSR"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							forceFSRon = {
+								order = 17,
+								type = 'toggle',
+								name = L["Enable AMD FSR even if not scaling"],
+								desc = L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"],
+								width = 'full',
+								get = function()
+									if C_CVar.GetCVar('ResampleAlwaysSharpen') == '0' then
+										return false
+									elseif C_CVar.GetCVar('ResampleAlwaysSharpen') == '1' then
+										return true
+									end
+								end,
+								set = function(_, value)
+									if value == true then
+								 		SetCVar('ResampleAlwaysSharpen', 1)
+								 	else
+								 		SetCVar('ResampleAlwaysSharpen', 0)
+								 	end
+								 end,
+							},
+							forceFSRsharpness = {
+								order = 18,
+								type = 'range',
+								name = RESAMPLE_QUALITY_FSR,
+								--desc = L["FSR Sharpness"],
+								min = 0,
+								max = 2,
+								step = 0.1,
+								width = "full",
+								disabled = function()
+									if C_CVar.GetCVar('ResampleAlwaysSharpen') == '1' then
+										return false
+									elseif C_CVar.GetCVar('ResampleAlwaysSharpen') == '0' then
+										return true
+									end
+								end,
+								hidden = E.Retail,
+								get = function() return tonumber(C_CVar.GetCVar('ResampleSharpness')) end,
+								set = function(_, value) SetCVar('ResampleSharpness', value) end,
+							},
+							headervideolatency = {
+								order = 19,
+								type = "description",
+								name = "",
+								width = 'full',
+								hidden = not E.Retail,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							lowlatencycvar ={
+								order = 20,
+								type = 'select',
+								name = LOW_LATENCY_MODE or "",
+								hidden = not E.Retail,
+								desc = OPTION_TOOLTIP_LOW_LATENCY_MODE or "",
+								--width = "full",
+								values = {
+									["0"] = VIDEO_OPTIONS_DISABLED or "",
+									["1"] = VIDEO_OPTIONS_BUILTIN or "",
+									["2"] = VIDEO_OPTIONS_NVIDIA_REFLEX or "",
+									--["3"] = VIDEO_OPTIONS_NVIDIA_REFLEX_BOOST,
+								},
+								style = 'radio',
+								get = function() return C_CVar.GetCVar('LowLatencyMode') end,
+								set = function(_, value) local number = tonumber(value) SetCVar('LowLatencyMode', number) end,
 							},
 						},
 					},
@@ -7456,54 +7570,6 @@ function ElvUI_EltreumUI:Configtable()
 									E:StaticPopup_Show('CONFIG_RL')
 								end,
 							},
-							headerFSR = {
-								order = 132,
-								type = "description",
-								name = L["AMD FSR"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							forceFSRon = {
-								order = 133,
-								type = 'toggle',
-								name = L["Enable AMD FSR even if not scaling"],
-								desc = L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"],
-								width = 'full',
-								get = function()
-									if C_CVar.GetCVar('ResampleAlwaysSharpen') == '0' then
-										return false
-									elseif C_CVar.GetCVar('ResampleAlwaysSharpen') == '1' then
-										return true
-									end
-								end,
-								set = function(_, value)
-									if value == true then
-								 		SetCVar('ResampleAlwaysSharpen', 1)
-								 	else
-								 		SetCVar('ResampleAlwaysSharpen', 0)
-								 	end
-								 end,
-							},
-							forceFSRsharpness = {
-								order = 134,
-								type = 'range',
-								name = RESAMPLE_QUALITY_FSR,
-								--desc = L["FSR Sharpness"],
-								min = 0,
-								max = 2,
-								step = 0.1,
-								width = "full",
-								disabled = function()
-									if C_CVar.GetCVar('ResampleAlwaysSharpen') == '1' then
-										return false
-									elseif C_CVar.GetCVar('ResampleAlwaysSharpen') == '0' then
-										return true
-									end
-								end,
-								hidden = E.Retail,
-								get = function() return tonumber(C_CVar.GetCVar('ResampleSharpness')) end,
-								set = function(_, value) SetCVar('ResampleSharpness', value) end,
-							},
 						},
 					},
 				},
@@ -7697,31 +7763,6 @@ function ElvUI_EltreumUI:Configtable()
 						width = 'full',
 						get = function() return E.db.ElvUI_EltreumUI.chat.rollsound end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.chat.rollsound = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\WillSmith-Ahaha.ogg", "Master") E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header9 = {
-						order = 35,
-						type = "description",
-						name = "",
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					worldtext = {
-						order = 36,
-						type = "description",
-						name = L["Change the Scale of the World Text"],
-						desc = L["Such as the floating XP, floating reputation changes and others"],
-						width = 'full',
-					},
-					worldtextscale = {
-						type = 'range',
-						name = L["Select the size of the World Text"],
-						order = 37,
-						min = 0.2,
-						max = 2,
-						step = 0.1,
-						width = "full",
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.worldtextscale end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldtextscale = value ElvUI_EltreumUI:WorldTextScale(value) end,
 					},
 					header10 = {
 						order = 47,
@@ -7918,38 +7959,6 @@ function ElvUI_EltreumUI:Configtable()
 						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end,
 						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume = value end,
-					},
-					header15 = {
-						order = 95,
-						type = "description",
-						name = L["Blizzard Floating Combat Text"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					blizzcombatexttoggle = {
-						order = 96,
-						name = L["Disable Combat Text"],
-						type = "toggle",
-						desc = L["Enable or disable Blizzard's default Floating Combat Text"],
-						width = 'full',
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					blizzcombatextmana = {
-						order = 97,
-						name = L["Enable Resource Gains"],
-						type = "toggle",
-						desc = L["Enable or disable Blizzard's default Floating Combat Text for Mana/Rage/Energy and other resouces"],
-						width = 'full',
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					restorecombatext = {
-						order = 98,
-						name = L["Restore All Blizzard Combat Text"],
-						type = 'execute',
-						width = 'full',
-						func = function() ElvUI_EltreumUI:RestoreBlizzCombatText() E:StaticPopup_Show('CONFIG_RL') end,
 					},
 					header16 = {
 						order = 198,
