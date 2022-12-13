@@ -45,6 +45,7 @@ local TeleportsItems = {
 	168807,--wormhole-generator-kultiras
 	168808,--wormhole-generator-zandalar
 	172924, --wormhole-generator-shadowlands
+	198156, --wyrmhole-dragonflight
 	32757, --blessed-medallion-of-karabor
 	40585, --signet-of-the-kirin-tor
 	40586, --band-of-the-kirin-tor
