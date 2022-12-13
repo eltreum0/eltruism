@@ -410,7 +410,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	end
 
 	E.db["movers"]["PowerWidgetMover"] = "TOP,ElvUIParent,TOP,0,-102"
-	E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-72"
+	E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-100"
 	E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
 	--E.db["movers"]["MicrobarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,140,1"
 	if IsAddOnLoaded("ElvUI_SLE") then

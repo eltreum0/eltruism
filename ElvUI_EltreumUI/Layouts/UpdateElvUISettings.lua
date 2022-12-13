@@ -50,6 +50,8 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 		E.db["bags"]["split"]["player"] = true
 	end
 
+	E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-100"
+
 
 	E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
 
