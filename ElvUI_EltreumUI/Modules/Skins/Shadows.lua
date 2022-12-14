@@ -538,6 +538,7 @@ function ElvUI_EltreumUI:Shadows()
 				if (arg == "Blizzard_PlayerChoice") or IsAddOnLoaded("Blizzard_PlayerChoice") then
 					_G.PlayerChoiceFrame:HookScript("OnShow", function()
 						if not _G.PlayerChoiceFrame.shadow then
+							_G.PlayerChoiceFrame:CreateBackdrop('Transparent')
 							_G.PlayerChoiceFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerChoiceFrame.shadow) end
 						end
