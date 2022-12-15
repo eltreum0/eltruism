@@ -466,6 +466,21 @@ function ElvUI_EltreumUI:SkinQuests()
 						_G.ScenarioStageBlock.Stage:SetShadowOffset(2, -1)
 					end
 
+					--tuskarr feast special case
+					if _G.ScenarioStageBlock.WidgetContainer and _G.ScenarioStageBlock.WidgetContainer:IsVisible() then
+						for i = 1, _G.ScenarioStageBlock.WidgetContainer:GetNumChildren() do
+							local v = select(i, _G.ScenarioStageBlock.WidgetContainer:GetChildren())
+							if v:GetName() ~= "BackModelScene" and v:GetName() ~= "FrontModelScene" then
+								for i =1, v:GetNumChildren() do
+									local k = select(i, v:GetChildren())
+									if k and k.Frame then
+										k.Frame:SetAlpha(0)
+									end
+								end
+							end
+						end
+					end
+
 					--m+ key block
 					if _G.ScenarioChallengeModeBlock:IsVisible() and not self.EltruismKeySkin then
 						S:HandleStatusBar(_G.ScenarioChallengeModeBlock.StatusBar)
