@@ -245,6 +245,18 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 				end
 			end
 
+			--tank targets
+			if _G["ElvUF_TankUnitButton1Target"] and _G["ElvUF_TankUnitButton1Target"]:IsShown() then
+				for i = 1, 8 do
+					local tanktargetmembers = {_G["ElvUF_TankUnitButton"..i.."Target"]}
+					for _, frame in pairs(tanktargetmembers) do
+						if frame and frame.Health then
+							ElvUI_EltreumUI:ApplyGroupCustomTexture(frame)
+						end
+					end
+				end
+			end
+
 			if headerassist ~= nil then
 				for i = 1, headerassist:GetNumChildren() do
 					assistbutton = select(i, headerassist:GetChildren())

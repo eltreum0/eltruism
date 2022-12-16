@@ -154,7 +154,7 @@ function ElvUI_EltreumUI:GetGladiusProfile()
 				["b"] = 0,
 			},
 			["trinketIconCrop"] = true,
-			["castBarTexture"] = "Eltreum-Elvui-Norm",
+			["castBarTexture"] = "ElvUI Norm1",
 			["auraVersion"] = 1,
 			["drTrackerAdjustSize"] = false,
 			["powerBarUseDefaultColorMana"] = true,
@@ -168,8 +168,8 @@ function ElvUI_EltreumUI:GetGladiusProfile()
 			},
 			["drTrackerSize"] = 40,
 			["drTrackerCooldown"] = true,
-			["healthBarTexture"] = "Eltreum-Elvui-Norm",
-			["powerBarTexture"] = "Eltreum-Elvui-Norm",
+			["healthBarTexture"] = "ElvUI Norm1",
+			["powerBarTexture"] = "ElvUI Norm1",
 			["dispellAttachTo"] = "Racial",
 			["castBarBackgroundColor"] = {
 				["a"] = 1,
@@ -183,7 +183,7 @@ function ElvUI_EltreumUI:GetGladiusProfile()
 			["y"] = {
 				["arena1"] = 576.0668358927651,
 			},
-			["targetBarTexture"] = "Eltreum-Elvui-Norm",
+			["targetBarTexture"] = "ElvUI Norm1",
 			["backgroundPadding"] = 0,
 			["targetBarAdjustWidth"] = false,
 			["targetBarAnchor"] = "LEFT",

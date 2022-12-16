@@ -538,6 +538,7 @@ function ElvUI_EltreumUI:Shadows()
 				if (arg == "Blizzard_PlayerChoice") or IsAddOnLoaded("Blizzard_PlayerChoice") then
 					_G.PlayerChoiceFrame:HookScript("OnShow", function()
 						if not _G.PlayerChoiceFrame.shadow then
+							_G.PlayerChoiceFrame:CreateBackdrop('Transparent')
 							_G.PlayerChoiceFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerChoiceFrame.shadow) end
 						end
@@ -1608,6 +1609,29 @@ function ElvUI_EltreumUI:Shadows()
 			for i = 1, 8 do
 				local tankmembers = {_G["ElvUF_TankUnitButton"..i]}
 				for _, frame in pairs(tankmembers) do
+					if not frame.shadow then
+						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
+							frame.shadow:ClearAllPoints()
+							frame.shadow:SetPoint("BOTTOMLEFT", frame.Power,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+							frame.shadow:SetPoint("BOTTOMRIGHT", frame.Power,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+							frame.shadow:SetPoint("TOPLEFT", frame.InfoPanel,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+							frame.shadow:SetPoint("TOPRIGHT", frame.InfoPanel,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+						end
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+					end
+					--[[for _, button in pairs(tankmembers) do
+						if not button.shadow then
+							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						end
+					end]]
+				end
+			end
+
+			--tank targets
+			for i = 1, 8 do
+				local tanktargetmembers = {_G["ElvUF_TankUnitButton"..i.."Target"]}
+				for _, frame in pairs(tanktargetmembers) do
 					if not frame.shadow then
 						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
