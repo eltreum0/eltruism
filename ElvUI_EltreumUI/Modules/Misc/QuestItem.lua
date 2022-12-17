@@ -757,6 +757,5 @@ function ElvUI_EltreumUI:QuestItem()
 		end
 	else
 		EltruismQuestItemFrame:UnregisterAllEvents()
-
 	end
 end
