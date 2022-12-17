@@ -36,26 +36,29 @@ end
 local EltruismQuestItemFrame = CreateFrame("Frame", "EltruismQuestItem", UIParent, BackdropTemplateMixin and "BackdropTemplate")	-- 9.0.1: Using BackdropTemplate
 EltruismQuestItemFrame:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, 34)
 E:CreateMover(EltruismQuestItemFrame, "MoverEltruismQuestItem", "EltruismQuestItemBar", nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,quests')
-
-EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_DELAYED")
---EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_COOLDOWN")
-EltruismQuestItemFrame:RegisterUnitEvent("UNIT_INVENTORY_CHANGED", "player")
-EltruismQuestItemFrame:RegisterEvent("QUEST_WATCH_UPDATE")
-EltruismQuestItemFrame:RegisterEvent("BAG_NEW_ITEMS_UPDATED")
-EltruismQuestItemFrame:RegisterEvent("MAIL_SUCCESS") -- when mailing quest items UNIT_INVENTORY_CHANGED does not fire
-EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED") -- Needed for items that starts a quest, when we accept it, update to remove the icon
-EltruismQuestItemFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-
---these were causing memory issues, exploding whenever a waypoint was set
---EltruismQuestItemFrame:RegisterEvent("QUEST_LOG_UPDATE") -- For when items get added/removed during quest
---EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
-
-
 EltruismQuestItemFrame.tip = CreateFrame("GameTooltip","EltruismQuestItemTip",nil,"GameTooltipTemplate")
 EltruismQuestItemFrame.tip:SetOwner(UIParent,"ANCHOR_NONE")
 EltruismQuestItemFrame.tip = CreateFrame("GameTooltip","EltruismQuestItem",nil,"GameTooltipTemplate")
 EltruismQuestItemFrame.tip:SetOwner(UIParent,"ANCHOR_NONE")
 EltruismQuestItemFrame.items = {}
+
+--Events
+
+--these events will fire correctly
+--ACTIONBAR_UPDATE_COOLDOWN,UNIT_INVENTORY_CHANGED,MAIL_SUCCESS
+EltruismQuestItemFrame:RegisterUnitEvent("UNIT_INVENTORY_CHANGED", "player")
+EltruismQuestItemFrame:RegisterEvent("MAIL_SUCCESS") -- when mailing quest items UNIT_INVENTORY_CHANGED does not fire
+
+--these events will simply request an update
+EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_DELAYED")
+--EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_COOLDOWN")
+EltruismQuestItemFrame:RegisterEvent("QUEST_WATCH_UPDATE")
+EltruismQuestItemFrame:RegisterEvent("BAG_NEW_ITEMS_UPDATED")
+EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED") -- Needed for items that starts a quest, when we accept it, update to remove the icon
+EltruismQuestItemFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+--these were causing memory issues, exploding whenever a waypoint was set
+--EltruismQuestItemFrame:RegisterEvent("QUEST_LOG_UPDATE") -- For when items get added/removed during quest
+--EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
 
 -- Constants
 local UPDATE_DELAY = 1.0 --was 0.5 but i think that might be too low
@@ -445,7 +448,7 @@ function ElvUI_EltreumUI:QuestItem()
 			-- OnClick
 			--local function Button_OnClick(self,button, down)
 			local function Button_OnClick(self, _, _)
-			--print(button,down)
+				--print(button,down)
 				-- Handle Modified Click
 				if (HandleModifiedItemClick(self.link)) then
 					return
@@ -606,8 +609,10 @@ function ElvUI_EltreumUI:QuestItem()
 				if (InCombatLockdown()) then
 					return
 				end
+
 				-- locals
 				local index = 1
+
 				-- Inventory
 				for bag = 0, NUM_BAG_SLOTS do
 					for slot = 1, GetContainerNumSlots(bag) do
@@ -634,6 +639,7 @@ function ElvUI_EltreumUI:QuestItem()
 						end
 					end
 				end
+
 				-- Equipped Items
 				for _, slotName in ipairs(slots) do
 					local slotId = GetInventorySlotInfo(slotName)
@@ -650,10 +656,12 @@ function ElvUI_EltreumUI:QuestItem()
 				for i = index, #self.items do
 					self.items[i]:Hide()
 				end
+
 				--update bind text
 				for i = 1, self.shownItems do
 					self.items[i].bind:SetText(GetBindingText(GetBindingKey("CLICK ".."EltruismQuestItem"..i..":LeftButton")))
 				end
+
 				-- Update Misc
 				self:UpdateCooldowns()
 			end
@@ -712,8 +720,10 @@ function ElvUI_EltreumUI:QuestItem()
 			EltruismQuestItemFrame:SetScript("OnEvent",function(self,event,...)
 				--print(event.." quest onevent spam "..math.random(1,99))
 				if (self[event]) then
+					--print("registered",event)
 					self[event](self,event,...)
 				else
+					--print("unregisteredevent",event)
 					self:RequestUpdate()
 				end
 			end)
