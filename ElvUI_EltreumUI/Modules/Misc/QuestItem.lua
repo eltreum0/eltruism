@@ -42,24 +42,6 @@ EltruismQuestItemFrame.tip = CreateFrame("GameTooltip","EltruismQuestItem",nil,"
 EltruismQuestItemFrame.tip:SetOwner(UIParent,"ANCHOR_NONE")
 EltruismQuestItemFrame.items = {}
 
---Events
-
---these events will fire correctly
---ACTIONBAR_UPDATE_COOLDOWN,UNIT_INVENTORY_CHANGED,MAIL_SUCCESS
-EltruismQuestItemFrame:RegisterUnitEvent("UNIT_INVENTORY_CHANGED", "player")
-EltruismQuestItemFrame:RegisterEvent("MAIL_SUCCESS") -- when mailing quest items UNIT_INVENTORY_CHANGED does not fire
-
---these events will simply request an update
-EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_DELAYED")
---EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_COOLDOWN")
-EltruismQuestItemFrame:RegisterEvent("QUEST_WATCH_UPDATE")
-EltruismQuestItemFrame:RegisterEvent("BAG_NEW_ITEMS_UPDATED")
-EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED") -- Needed for items that starts a quest, when we accept it, update to remove the icon
-EltruismQuestItemFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
---these were causing memory issues, exploding whenever a waypoint was set
---EltruismQuestItemFrame:RegisterEvent("QUEST_LOG_UPDATE") -- For when items get added/removed during quest
---EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
-
 -- Constants
 local UPDATE_DELAY = 1.0 --was 0.5 but i think that might be too low
 local ITEMID_PATTERN = "item:(%d+)"
@@ -309,11 +291,31 @@ local blocklist = {
 }
 
 function ElvUI_EltreumUI:QuestItem()
-	_, instanceType = IsInInstance()
 	if E.db.ElvUI_EltreumUI.quests.questitems then
+		_, instanceType = IsInInstance()
 		if instanceType ~= "none" then
 			EltruismQuestItemFrame:Hide()
+			EltruismQuestItemFrame:UnregisterAllEvents()
 		else
+			--Events
+			--these events will fire correctly
+			--ACTIONBAR_UPDATE_COOLDOWN,UNIT_INVENTORY_CHANGED,MAIL_SUCCESS
+			EltruismQuestItemFrame:RegisterUnitEvent("UNIT_INVENTORY_CHANGED", "player")
+			EltruismQuestItemFrame:RegisterEvent("MAIL_SUCCESS") -- when mailing quest items UNIT_INVENTORY_CHANGED does not fire
+
+			--these events will simply request an update
+			EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_DELAYED")
+			--EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_COOLDOWN")
+			EltruismQuestItemFrame:RegisterEvent("QUEST_WATCH_UPDATE")
+			EltruismQuestItemFrame:RegisterEvent("BAG_NEW_ITEMS_UPDATED")
+			EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED") -- Needed for items that starts a quest, when we accept it, update to remove the icon
+			--EltruismQuestItemFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+			--EltruismQuestItemFrame:RegisterEvent("UPDATE_BINDINGS")
+			EltruismQuestItemFrame:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN")
+			--these were causing memory issues, exploding whenever a waypoint was set
+			--EltruismQuestItemFrame:RegisterEvent("QUEST_LOG_UPDATE") -- For when items get added/removed during quest
+			EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
+
 			if not InCombatLockdown() then
 				EltruismQuestItemFrame:Show()
 			end
@@ -328,6 +330,7 @@ function ElvUI_EltreumUI:QuestItem()
 				EltruismQuestItemFrame:SetClampedToScreen(true)
 				EltruismQuestItemFrame:SetFrameStrata("MEDIUM")
 			end
+
 
 			--get the keybind
 			local bindingText1 = GetBindingKey("CLICK EltruismQuestItem1:LeftButton")
@@ -397,6 +400,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- update mover position
 			function EltruismQuestItemFrame:FixPosition()
+				--print("fixing position")
 				E:Delay(0, function()
 					if not InCombatLockdown() and _G["EltruismQuestItem1"] then
 						local point, relativeTo, relativePoint, xOfs, yOfs = EltruismQuestItemFrame:GetPoint()
@@ -437,6 +441,7 @@ function ElvUI_EltreumUI:QuestItem()
 				--print("quest item spam "..math.random(1,99))
 				self.updateTime = (self.updateTime + elapsed)
 				if (self.updateTime > UPDATE_DELAY) then
+					--print("setting onupdate to nil, updating buttons")
 					--print("updated in: ", self.updateTime)
 					self:SetScript("OnUpdate",nil)
 					self:UpdateButtons()
@@ -450,6 +455,7 @@ function ElvUI_EltreumUI:QuestItem()
 			local function Button_OnClick(self, _, _)
 				--print(button,down)
 				-- Handle Modified Click
+				--print("button_onclick")
 				if (HandleModifiedItemClick(self.link)) then
 					return
 				end
@@ -458,6 +464,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Make Loot Button
 			local function CreateItemButton()
+				--print("creatingitembutton")
 				local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"SecureActionButtonTemplate")
 				b:CreateBackdrop('Transparent')
 				b:SetSize(E.db.ElvUI_EltreumUI.quests.questitemsize,E.db.ElvUI_EltreumUI.quests.questitemsizey)
@@ -522,6 +529,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Add Button
 			local function AddButton(index,bag,slot,link,itemId,count)
+				--print("adding button")
 				local btn = EltruismQuestItemFrame.items[index] or CreateItemButton()
 				local _, _, _, _, _, _, _, _, _, itemTexture, _, _ = GetItemInfo(link)
 				--print(link,index)
@@ -568,6 +576,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Check Item -- Az: Some items which starts a quest, are not marked as "Quest" in itemType or itemSubType. Ex: item:17008
 			local function CheckItemTooltip(link,itemId)
+				--print("checking item tooltip")
 				local _, _, _, _, _, itemType, itemSubType, _, itemEquipLoc, _, _, classID = GetItemInfo(link)
 
 				-- Include predefinded items
@@ -576,8 +585,10 @@ function ElvUI_EltreumUI:QuestItem()
 						return 1
 					end
 				end
+
+				--old, was causing issues
 				-- Scan Tip -- Az: any reason we cant just check for more or equal to 4 lines, or would some quest items fail that check?
-				EltruismQuestItemFrame.tip:ClearLines()
+				--[[EltruismQuestItemFrame.tip:ClearLines()
 				EltruismQuestItemFrame.tip:SetHyperlink(link)
 				local numLines = EltruismQuestItemFrame.tip:NumLines()
 				local line2 = (_G["EltruismQuestItemTipTextLeft2"]:GetText() or "")
@@ -590,6 +601,11 @@ function ElvUI_EltreumUI:QuestItem()
 							end
 						end
 					end
+				end]]
+
+				--new
+				if (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12) and itemEquipLoc == "" and GetItemSpell(itemId) ~= nil then
+					return 1
 				end
 			end
 			--------------------------------------------------------------------------------------------------------
@@ -597,6 +613,7 @@ function ElvUI_EltreumUI:QuestItem()
 			--------------------------------------------------------------------------------------------------------
 			-- Request a Button Update
 			function EltruismQuestItemFrame:RequestUpdate()
+				--print("requesting update")
 				self.updateTime = 0
 				EltruismQuestItemFrame:SetScript("OnUpdate",OnUpdate)
 				--print("re quest item spam "..math.random(1,99))
@@ -605,6 +622,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Update Buttons
 			function EltruismQuestItemFrame:UpdateButtons()
+				--print("updating buttons function")
 				-- Check if we are locked by combat
 				if (InCombatLockdown()) then
 					return
@@ -668,6 +686,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Update Cooldowns
 			function EltruismQuestItemFrame:UpdateCooldowns()
+				--print("updating cooldowns function")
 				for i = 1, self.shownItems do
 					local bag, slot = self.items[i]:GetAttribute("bag"), self.items[i]:GetAttribute("slot")
 					if (bag) then
@@ -730,6 +749,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Update Cooldowns
 			function EltruismQuestItemFrame:ACTIONBAR_UPDATE_COOLDOWN(event)
+				--print("actionbar update cooldown")
 				if not self.shownItems then --added this check
 					self.shownItems = 0
 				end
@@ -740,6 +760,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Inventory Changed
 			function EltruismQuestItemFrame:UNIT_INVENTORY_CHANGED(event,unit)
+				--print("unit inventory changed")
 				if (unit == "player") then
 					self:RequestUpdate()
 					-- update mover position
@@ -749,6 +770,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Inventory might've changed because of mail
 			function EltruismQuestItemFrame:MAIL_SUCCESS(event)
+				--print("mail sucess")
 				self:RequestUpdate()
 				-- update mover position
 				EltruismQuestItemFrame:FixPosition()
