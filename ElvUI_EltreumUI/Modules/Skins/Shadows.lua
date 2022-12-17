@@ -670,7 +670,6 @@ function ElvUI_EltreumUI:Shadows()
 			_G.SpellBookFrameTabButton1.backdrop,
 			_G.SpellBookFrameTabButton2.backdrop,
 			_G.SpellBookFrameTabButton3.backdrop,
-			_G.ItemTextFrame.backdrop,
 			_G.GossipFrame.backdrop,
 			_G.BNToastFrame,
 			_G.TimeAlertFrame,
@@ -710,6 +709,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G.PVPMatchScoreboard,
 			_G.PVPMatchResults,
 			_G.MajorFactionRenownFrame,
+			_G.ItemTextFrame,
 			--_G.ImmersionFrame.TalkBox,
 			_G.ReadyStatus,
 		}
@@ -1009,6 +1009,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.PetStableFrame.backdrop,
 				_G.TaxiFrame.backdrop,
 				_G.TabardFrame.backdrop,
+				_G.ItemTextFrame.backdrop,
 			}
 			for _, frame in pairs(classicframes) do
 				if frame and not frame.shadow then
