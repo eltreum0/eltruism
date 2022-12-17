@@ -930,12 +930,21 @@ function ElvUI_EltreumUI:Shadows()
 				_G.PetStableFrame,
 				_G.TaxiFrame,
 				_G.TabardFrame,
+				_G.LossOfControlFrame,
 			}
 			for _, frame in pairs(retailframes) do
 				if frame and not frame.shadow then
 					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
 				end
+			end
+
+			--loss of control frame icon
+			if _G.LossOfControlFrame and _G.LossOfControlFrame.Icon and _G.LossOfControlFrame.shadow then
+				_G.LossOfControlFrame.shadow:ClearAllPoints()
+				_G.LossOfControlFrame.shadow:SetPoint("TOPLEFT", _G.LossOfControlFrame.Icon, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+				_G.LossOfControlFrame.shadow:SetPoint("BOTTOMRIGHT", _G.LossOfControlFrame.Icon, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.LossOfControlFrame.shadow) end
 			end
 
 			--main minimize button easier here
