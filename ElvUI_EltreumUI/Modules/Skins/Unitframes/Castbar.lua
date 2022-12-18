@@ -6,9 +6,9 @@ local UnitExists = _G.UnitExists
 local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
 local UnitIsPlayer = _G.UnitIsPlayer
-local targetcastbar,focuscastbar,castbar
-local reactiontarget,reactionfocus
-local _, targetclass, focusclass
+local targetcastbar,focuscastbar,castbar,petcastbar
+local reactiontarget,reactionfocus,reactionpet
+local _, targetclass, focusclass, petclass
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local headergroup,group,groupbutton
 
@@ -30,7 +30,7 @@ do
 			castbar = _G["ElvUF_Player_CastBar"]
 			targetcastbar = _G["ElvUF_Target_CastBar"]
 			focuscastbar = _G["ElvUF_Focus_CastBar"]
-
+			petcastbar = _G["ElvUF_Pet_CastBar"]
 			--spark
 			if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable and castbar then
 
@@ -76,6 +76,22 @@ do
 					focuscastbar.Spark_:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
 					if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' then --flip otherwise it will look wrong
 						focuscastbar.Spark_:SetTexCoord(1, 0, 0, 1)
+					end
+				end
+
+				if UnitExists("pet") and petcastbar then
+					petcastbar.Spark_:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
+					if petcastbar.empowering then
+						petcastbar.Spark_:SetBlendMode('ADD')
+						petcastbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.empoweringr, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.empoweringg, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.empoweringb, 1)
+					else
+						petcastbar.Spark_:SetBlendMode('BLEND')
+						petcastbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
+					end
+
+					petcastbar.Spark_:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
+					if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' then --flip otherwise it will look wrong
+						petcastbar.Spark_:SetTexCoord(1, 0, 0, 1)
 					end
 				end
 			end
@@ -991,6 +1007,378 @@ do
 					end
 				end
 
+				--pet
+				if UnitExists("pet") and petcastbar then
+					_, petclass = UnitClass("pet")
+					reactionpet = UnitReaction("pet", "player")
+					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+						if E.db.unitframe.colors.transparentCastbar then
+							petcastbar.bg:SetVertexColor(0, 0, 0, 0)
+							petcastbar.backdrop:SetBackdropColor(0, 0, 0, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+						end
+						if E.db.unitframe.colors.customcastbarbackdrop then
+							petcastbar.backdrop:SetBackdropColor(E.db.unitframe.colors.castbar_backdrop.r,E.db.unitframe.colors.castbar_backdrop.g,E.db.unitframe.colors.castbar_backdrop.b,E.db.unitframe.colors.castbar_backdrop.a)
+							petcastbar.bg:SetVertexColor(E.db.unitframe.colors.castbar_backdrop.r,E.db.unitframe.colors.castbar_backdrop.g,E.db.unitframe.colors.castbar_backdrop.b,E.db.unitframe.colors.castbar_backdrop.a)
+						end
+						--set textures
+						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+							petcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
+						elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+							petcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+						else
+							petcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+						end
+						if (petcastbar.notInterruptible) then --cant interrupt
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible then
+								if E.db.unitframe.units.pet.castbar.reverse then
+									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+										if E.Retail then
+											petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptiblecustom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptiblecustom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptiblecustom, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptiblecustom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptiblecustom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptiblecustom, a=1})
+										else
+											petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptiblecustom)
+										end
+									else
+										if E.Retail then
+											petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptible, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptible, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptible, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptible, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptible, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptible, a=1})
+										else
+											petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptible)
+										end
+									end
+								elseif not E.db.unitframe.units.pet.castbar.reverse then
+									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+										if E.Retail then
+											petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptiblecustom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptiblecustom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptiblecustom, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptiblecustom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptiblecustom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptiblecustom, a=1})
+										else
+											petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptiblecustom)
+										end
+									else
+										if E.Retail then
+											petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptible, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptible, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptible, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptible, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptible, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptible, a=1})
+										else
+											petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptible)
+										end
+									end
+								end
+							end
+						elseif (not petcastbar.notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt()) then --can interrupt
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbar then
+								if E.db.unitframe.units.pet.castbar.reverse then
+									if UnitIsPlayer("pet") then
+										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
+											if E.db.unitframe.colors.transparentCastbar then
+												if E.Retail then
+													petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+												else
+													petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+												end
+											else
+												if E.Retail then
+													petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom, a=1})
+												else
+													petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom)
+												end
+											end
+										elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
+											if E.db.unitframe.colors.transparentCastbar then
+												if E.Retail then
+													petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(petclass, true, true))
+												else
+													petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(petclass, true, true))
+												end
+											else
+												petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(petclass, true))
+											end
+										else
+											if E.db.unitframe.colors.transparentCastbar then
+												if E.Retail then
+													petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(petclass, true, true))
+												else
+													petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(petclass, true, true))
+												end
+											else
+												petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(petclass, true))
+											end
+										end
+									else
+										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
+											if E.db.unitframe.colors.transparentCastbar then
+												if E.Retail then
+													petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+												else
+													petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+												end
+											else
+												if E.Retail then
+													petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom, a=1})
+												else
+													petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom)
+												end
+											end
+										else
+											if E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarreactioninterruptable then
+												if E.db.unitframe.colors.transparentCastbar then
+													if E.Retail then
+														if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
+															if reactionpet >= 5 then
+																petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY",true, true))
+															elseif reactionpet == 4 then
+																petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL",true, true))
+															elseif reactionpet == 3 then
+																petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY",true, true))
+															elseif reactionpet <= 2 then
+																petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE",true, true))
+															end
+														else
+															if reactionpet >= 5 then
+																petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY",true, true))
+															elseif reactionpet == 4 then
+																petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL",true, true))
+															elseif reactionpet == 3 then
+																petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY",true, true))
+															elseif reactionpet <= 2 then
+																petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE",true, true))
+															end
+														end
+													else
+														if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
+															if reactionpet >= 5 then
+																petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY",true, true))
+															elseif reactionpet == 4 then
+																petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL",true, true))
+															elseif reactionpet == 3 then
+																petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY",true, true))
+															elseif reactionpet <= 2 then
+																petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE",true, true))
+															end
+														else
+															if reactionpet >= 5 then
+																petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY",true, true))
+															elseif reactionpet == 4 then
+																petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL",true, true))
+															elseif reactionpet == 3 then
+																petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY",true, true))
+															elseif reactionpet <= 2 then
+																petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE",true, true))
+															end
+														end
+													end
+												else
+													if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
+														if reactionpet >= 5 then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY",true))
+														elseif reactionpet == 4 then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL",true))
+														elseif reactionpet == 3 then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY",true))
+														elseif reactionpet <= 2 then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE",true))
+														end
+													else
+														if reactionpet >= 5 then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY",true))
+														elseif reactionpet == 4 then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL",true))
+														elseif reactionpet == 3 then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY",true))
+														elseif reactionpet <= 2 then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE",true))
+														end
+													end
+												end
+											else
+												if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+													if E.db.unitframe.colors.transparentCastbar then
+														if E.Retail then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptablecustom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptablecustom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptablecustom, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptablecustom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptablecustom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptablecustom, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+														else
+															petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+														end
+													else
+														if E.Retail then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptablecustom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptablecustom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptablecustom, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptablecustom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptablecustom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptablecustom, a=1})
+														else
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptablecustom)
+														end
+													end
+												else
+													if E.db.unitframe.colors.transparentCastbar then
+														if E.Retail then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptable, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptable, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptable, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptable, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptable, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptable, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+														else
+															petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptable, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptable, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+														end
+													else
+														if E.Retail then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptable, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptable, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptable, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptable, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptable, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptable, a=1})
+														else
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptable)
+														end
+													end
+												end
+											end
+										end
+									end
+								elseif not E.db.unitframe.units.pet.castbar.reverse then
+									if UnitIsPlayer("pet") then
+										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
+											if E.db.unitframe.colors.transparentCastbar then
+												if E.Retail then
+													petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+												else
+													petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+												end
+											else
+												if E.Retail then
+													petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom, a=1})
+												else
+													petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom)
+												end
+											end
+										elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
+											if E.db.unitframe.colors.transparentCastbar then
+												if E.Retail then
+													petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(petclass, false, true))
+												else
+													petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(petclass, false, true))
+												end
+											else
+												petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(petclass))
+											end
+										else
+											if E.db.unitframe.colors.transparentCastbar then
+												if E.Retail then
+													petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(petclass, false, true))
+												else
+													petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(petclass, false, true))
+												end
+											else
+												petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(petclass))
+											end
+										end
+									else
+										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
+											if E.db.unitframe.colors.transparentCastbar then
+												if E.Retail then
+													petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+												else
+													petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+												end
+											else
+												if E.Retail then
+													petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom, a=1})
+												else
+													petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom)
+												end
+											end
+										else
+											if E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarreactioninterruptable then
+												if E.db.unitframe.colors.transparentCastbar then
+													if E.Retail then
+														if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
+															if reactionpet >= 5 then
+																petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, true))
+															elseif reactionpet == 4 then
+																petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", false, true))
+															elseif reactionpet == 3 then
+																petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", false, true))
+															elseif reactionpet <= 2 then
+																petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", false, true))
+															end
+														else
+															if reactionpet >= 5 then
+																petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, true))
+															elseif reactionpet == 4 then
+																petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", false, true))
+															elseif reactionpet == 3 then
+																petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", false, true))
+															elseif reactionpet <= 2 then
+																petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, true))
+															end
+														end
+													else
+														if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
+															if reactionpet >= 5 then
+																petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, true))
+															elseif reactionpet == 4 then
+																petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", false, true))
+															elseif reactionpet == 3 then
+																petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", false, true))
+															elseif reactionpet <= 2 then
+																petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", false, true))
+															end
+														else
+															if reactionpet >= 5 then
+																petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, true))
+															elseif reactionpet == 4 then
+																petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", false, true))
+															elseif reactionpet == 3 then
+																petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", false, true))
+															elseif reactionpet <= 2 then
+																petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, true))
+															end
+														end
+													end
+												else
+													if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
+														if reactionpet >= 5 then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY"))
+														elseif reactionpet == 4 then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL"))
+														elseif reactionpet == 3 then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY"))
+														elseif reactionpet <= 2 then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE"))
+														end
+													else
+														if reactionpet >= 5 then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY"))
+														elseif reactionpet == 4 then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL"))
+														elseif reactionpet == 3 then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY"))
+														elseif reactionpet <= 2 then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE"))
+														end
+													end
+												end
+											else
+												if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+													if E.db.unitframe.colors.transparentCastbar then
+														if E.Retail then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptablecustom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptablecustom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptablecustom, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptablecustom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptablecustom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptablecustom, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+														else
+															petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+														end
+													else
+														if E.Retail then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptablecustom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptablecustom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptablecustom, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptablecustom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptablecustom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptablecustom, a=1})
+														else
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptablecustom)
+														end
+													end
+												else
+													if E.db.unitframe.colors.transparentCastbar then
+														if E.Retail then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptable, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptable, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptable, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptable, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptable, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptable, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+														else
+															petcastbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptable, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptable, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+														end
+													else
+														if E.Retail then
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptable, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptable, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptable, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptable, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptable, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptable, a=1})
+														else
+															petcastbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptable, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptable)
+														end
+													end
+												end
+											end
+										end
+									end
+								end
+							end
+						end
+					end
+				end
 			end
 
 			--group unit custom texture
