@@ -1,6 +1,10 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.6.7
+Added gradient to Pet Castbar\
+Added more shadows\
+Updated Quest Item Bar to improve performance and memory usage
 ### 3.6.6
 Added Gradient and Class Textures to Tank Targets\
 Added some compatibility checks with WindTools\
