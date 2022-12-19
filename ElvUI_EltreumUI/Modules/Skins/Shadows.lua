@@ -12,6 +12,10 @@ if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
 end
 local EltruismBlizzShadows = CreateFrame("Frame")
+local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
+local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
+local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
+local timermonitor = CreateFrame("FRAME")
 
 --Frame Shadows, turns out ElvUI includes the function
 function ElvUI_EltreumUI:Shadows()
@@ -632,7 +636,7 @@ function ElvUI_EltreumUI:Shadows()
 			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.MovieFrame.CloseDialog.shadow) end
 		end
 
-		local timermonitor = CreateFrame("FRAME")
+
 		timermonitor:RegisterEvent("START_TIMER")
 		timermonitor:SetScript("OnEvent", function()
 			for _, b in pairs(_G.TimerTracker.timerList) do
@@ -708,7 +712,7 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		if E.private["general"]["minimap"]["enable"] and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.minimapborder) and E.db.ElvUI_EltreumUI.skins.shadow.minimap then
-			local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
+
 			local Minimapsizex, Minimapsizey = _G["Minimap"]:GetSize()
 			MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
 			MinimapShadow:SetParent(_G["Minimap"])
@@ -1761,11 +1765,9 @@ function ElvUI_EltreumUI:Shadows()
 
 		--chat
 		if E.db.ElvUI_EltreumUI.skins.shadow.chat and not (E.db.ElvUI_EltreumUI.borders.chatborder and E.db.ElvUI_EltreumUI.borders.borders) then
-			local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
 			local rightsizex, rightsizey = _G["RightChatMover"]:GetSize()
 			RightChatShadow:SetSize(rightsizex, rightsizey)
 			RightChatShadow:SetParent(_G["RightChatPanel"].backdrop)
-			local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
 			local leftsizex, leftsizey = _G["LeftChatMover"]:GetSize()
 			LeftChatShadow:SetSize(leftsizex, leftsizey)
 			LeftChatShadow:SetParent(_G["LeftChatPanel"].backdrop)
