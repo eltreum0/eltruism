@@ -11,12 +11,12 @@ local EnhancedShadows = nil
 if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
 end
+local EltruismBlizzShadows = CreateFrame("Frame")
 
 --Frame Shadows, turns out ElvUI includes the function
 function ElvUI_EltreumUI:Shadows()
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 		------------------------------------------------------------------------------------------------------blizzard frames
-		local EltruismBlizzShadows = CreateFrame("Frame")
 		EltruismBlizzShadows:RegisterEvent("ADDON_LOADED")
 		EltruismBlizzShadows:RegisterEvent("PLAYER_ENTERING_WORLD")
 		EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
