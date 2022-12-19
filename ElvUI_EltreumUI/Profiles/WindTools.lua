@@ -38,8 +38,8 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["misc"]["lfgList"]["enable"] = true
 		E.private["WT"]["misc"]["lfgList"]["icon"]["pack"] = "DEFAULT"
 		E.private["WT"]["misc"]["lfgList"]["icon"]["leader"] = true
-		E.private["WT"]["misc"]["lfgList"]["icon"]["pack"] = "DEFAULT"
-		E.private["WT"]["misc"]["lfgList"]["icon"]["reskin"] = false
+		E.private["WT"]["misc"]["lfgList"]["icon"]["pack"] = "SPEC"
+		E.private["WT"]["misc"]["lfgList"]["icon"]["reskin"] = true
 		E.private["WT"]["misc"]["lfgList"]["line"]["alpha"] = 0.94
 		E.private["WT"]["misc"]["lfgList"]["line"]["tex"] = "ElvUI Norm1"
 		E.private["WT"]["misc"]["guildNewsItemLevel"] = false
