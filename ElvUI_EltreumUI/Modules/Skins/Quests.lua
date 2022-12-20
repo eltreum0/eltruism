@@ -351,7 +351,8 @@ function ElvUI_EltreumUI:SkinQuests()
 						local NumQuests = select(2, C_QuestLog.GetNumQuestLogEntries())
 						--if (NumQuests >= (MAX_QUESTS - 5)) then --global still returning 25
 						if (NumQuests >= 30) then
-							_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, QUESTS_LABEL))
+							--_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, QUESTS_LABEL))
+							_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, 35, QUESTS_LABEL))
 						--else
 						--	_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(QUESTS_LABEL)
 						end

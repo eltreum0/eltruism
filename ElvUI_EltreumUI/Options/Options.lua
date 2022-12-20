@@ -9330,7 +9330,7 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Error Frame Font Size"],
 								order = 4,
 								min = 8,
-								max = 36,
+								max = 60,
 								step = 1,
 								width = "double",
 								get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize end,

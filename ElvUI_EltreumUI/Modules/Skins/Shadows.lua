@@ -11,12 +11,16 @@ local EnhancedShadows = nil
 if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
 end
+local EltruismBlizzShadows = CreateFrame("Frame")
+local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
+local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
+local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
+local timermonitor = CreateFrame("FRAME")
 
 --Frame Shadows, turns out ElvUI includes the function
 function ElvUI_EltreumUI:Shadows()
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 		------------------------------------------------------------------------------------------------------blizzard frames
-		local EltruismBlizzShadows = CreateFrame("Frame")
 		EltruismBlizzShadows:RegisterEvent("ADDON_LOADED")
 		EltruismBlizzShadows:RegisterEvent("PLAYER_ENTERING_WORLD")
 		EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
@@ -76,570 +80,477 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 			if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
-				_G.MacroFrame:HookScript("OnShow", function()
-					if E.Retail or E.Wrath then
-						if not _G.MacroFrame.shadow then
-							_G.MacroFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.MacroFrame.shadow) end
-						end
-					elseif E.Classic then
-						if _G.MacroFrame and _G.MacroFrame.backdrop and not _G.MacroFrame.backdrop.shadow then
-							_G.MacroFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.MacroFrame.backdrop.shadow) end
-						end
+				if E.Retail or E.Wrath then
+					if not _G.MacroFrame.shadow then
+						_G.MacroFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.MacroFrame.shadow) end
 					end
-				end)
+				elseif E.Classic then
+					if _G.MacroFrame and _G.MacroFrame.backdrop and not _G.MacroFrame.backdrop.shadow then
+						_G.MacroFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.MacroFrame.backdrop.shadow) end
+					end
+				end
 			end
 			if (arg == "Blizzard_DeathRecap") or IsAddOnLoaded("Blizzard_DeathRecap") then
-				_G.DeathRecapFrame:HookScript("OnShow", function()
-					if not _G.DeathRecapFrame.shadow then
-						_G.DeathRecapFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.DeathRecapFrame.shadow) end
-					end
-				end)
+				if not _G.DeathRecapFrame.shadow then
+					_G.DeathRecapFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.DeathRecapFrame.shadow) end
+				end
 			end
 			if (arg == "Blizzard_FlightMap") or IsAddOnLoaded("Blizzard_FlightMap") then
-				_G.FlightMapFrame:HookScript("OnShow", function()
-					if not _G.FlightMapFrame.shadow then
-						_G.FlightMapFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.FlightMapFrame.shadow) end
-					end
-				end)
+				if not _G.FlightMapFrame.shadow then
+					_G.FlightMapFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.FlightMapFrame.shadow) end
+				end
 			end
 			if (arg == "Blizzard_GuildBankUI") or IsAddOnLoaded("Blizzard_GuildBankUI") then
-				_G.GuildBankFrame:HookScript("OnShow", function()
-					if E.Retail then
-						if not _G.GuildBankFrame.shadow then
-							_G.GuildBankFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GuildBankFrame.shadow) end
-						end
-					else
-						if not _G.GuildBankFrame.backdrop.shadow then
-							_G.GuildBankFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GuildBankFrame.backdrop.shadow) end
-						end
+				if E.Retail then
+					if not _G.GuildBankFrame.shadow then
+						_G.GuildBankFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GuildBankFrame.shadow) end
 					end
-				end)
+				else
+					if not _G.GuildBankFrame.backdrop.shadow then
+						_G.GuildBankFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GuildBankFrame.backdrop.shadow) end
+					end
+				end
 			end
 			if (arg == "Blizzard_TrainerUI") or IsAddOnLoaded("Blizzard_TrainerUI") then
-				_G.ClassTrainerFrame:HookScript("OnShow", function()
-					if E.Retail then
-						if not _G.ClassTrainerFrame.shadow then
-							_G.ClassTrainerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClassTrainerFrame.shadow) end
-						end
-					else
-						if not _G.ClassTrainerFrame.backdrop.shadow then
-							_G.ClassTrainerFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClassTrainerFrame.backdrop.shadow) end
-						end
+				if E.Retail then
+					if not _G.ClassTrainerFrame.shadow then
+						_G.ClassTrainerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClassTrainerFrame.shadow) end
 					end
-				end)
+				else
+					if not _G.ClassTrainerFrame.backdrop.shadow then
+						_G.ClassTrainerFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClassTrainerFrame.backdrop.shadow) end
+					end
+				end
 			end
 			if (arg == "Blizzard_ItemSocketingUI") or IsAddOnLoaded("Blizzard_ItemSocketingUI") then
-				_G.ItemSocketingFrame:HookScript("OnShow", function()
-					if not _G.ItemSocketingFrame.shadow then
-						_G.ItemSocketingFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ItemSocketingFrame.shadow) end
-					end
-				end)
+				if not _G.ItemSocketingFrame.shadow then
+					_G.ItemSocketingFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ItemSocketingFrame.shadow) end
+				end
 			end
 			if (arg == "Blizzard_ItemUpgradeUI") or IsAddOnLoaded("Blizzard_ItemUpgradeUI") then
-				_G.ItemUpgradeFrame:HookScript("OnShow", function()
-					if not _G.ItemUpgradeFrame.shadow then
-						_G.ItemUpgradeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ItemUpgradeFrame.shadow) end
-					end
-				end)
+				if not _G.ItemUpgradeFrame.shadow then
+					_G.ItemUpgradeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ItemUpgradeFrame.shadow) end
+				end
 			end
 			if (arg == "Blizzard_TradeSkillUI") or IsAddOnLoaded("Blizzard_TradeSkillUI") then
-				_G.TradeSkillFrame:HookScript("OnShow", function()
-					if E.Retail then
-						if not _G.TradeSkillFrame.shadow then
-							_G.TradeSkillFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.TradeSkillFrame.shadow) end
-						end
-					else
-						if not _G.TradeSkillFrame.backdrop.shadow then
-							_G.TradeSkillFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.TradeSkillFrame.backdrop.shadow) end
-						end
+				if E.Retail then
+					if not _G.TradeSkillFrame.shadow then
+						_G.TradeSkillFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.TradeSkillFrame.shadow) end
 					end
-				end)
+				else
+					if not _G.TradeSkillFrame.backdrop.shadow then
+						_G.TradeSkillFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.TradeSkillFrame.backdrop.shadow) end
+					end
+				end
 			end
 			if (arg == "Blizzard_ChromieTimeUI") or IsAddOnLoaded("Blizzard_ChromieTimetUI") then
-				_G.ChromieTimeFrame:HookScript("OnShow", function()
-					if not _G.ChromieTimeFrame.shadow then
-						_G.ChromieTimeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ChromieTimeFrame.shadow) end
-					end
-				end)
+				if not _G.ChromieTimeFrame.shadow then
+					_G.ChromieTimeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ChromieTimeFrame.shadow) end
+				end
 			end
 			if (arg == "Blizzard_BlackMarketUI") or IsAddOnLoaded("Blizzard_BlackMarketUI") then
-				_G.BlackMarketFrame:HookScript("OnShow", function()
-					if not _G.BlackMarketFrame.shadow then
-						_G.BlackMarketFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.BlackMarketFrame.shadow) end
-					end
-				end)
+				if not _G.BlackMarketFrame.shadow then
+					_G.BlackMarketFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.BlackMarketFrame.shadow) end
+				end
 			end
 			if (arg == "Blizzard_BindingUI") or IsAddOnLoaded("Blizzard_BindingUI") then
-				_G.KeyBindingFrame:HookScript("OnShow", function()
-					if not _G.KeyBindingFrame.shadow then
-						_G.KeyBindingFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.KeyBindingFrame.shadow) end
-					end
-				end)
+				if not _G.KeyBindingFrame.shadow then
+					_G.KeyBindingFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.KeyBindingFrame.shadow) end
+				end
 			end
 			if (arg == "Blizzard_InspectUI") or IsAddOnLoaded("Blizzard_InspectUI") then
-				_G.InspectFrame:HookScript("OnShow", function()
-					if E.Retail then
-						if _G.InspectFrame and not _G.InspectFrame.shadow then
-							_G.InspectFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrame.shadow) end
-						end
-						if _G.InspectFrameTab1 and _G.InspectFrameTab1.backdrop and not _G.InspectFrameTab1.backdrop.shadow then
-							_G.InspectFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab1.backdrop.shadow) end
-						end
-						if _G.InspectFrameTab2 and _G.InspectFrameTab2.backdrop and not _G.InspectFrameTab2.backdrop.shadow then
-							_G.InspectFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab2.backdrop.shadow) end
-						end
-						if _G.InspectFrameTab3 and _G.InspectFrameTab3.backdrop and not _G.InspectFrameTab3.backdrop.shadow then
-							_G.InspectFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab3.backdrop.shadow) end
-						end
-					else
-						if _G.InspectFrame and _G.InspectFrame.backdrop and not _G.InspectFrame.backdrop.shadow then
-							_G.InspectFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrame.backdrop.shadow) end
-						end
-						if _G.InspectFrameTab1 and _G.InspectFrameTab1.backdrop and not _G.InspectFrameTab1.backdrop.shadow then
-							_G.InspectFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab1.backdrop.shadow) end
-						end
-						if _G.InspectFrameTab2 and _G.InspectFrameTab2.backdrop and not _G.InspectFrameTab2.backdrop.shadow then
-							_G.InspectFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab2.backdrop.shadow) end
-						end
-						if _G.InspectFrameTab3 and _G.InspectFrameTab3.backdrop and not _G.InspectFrameTab3.backdrop.shadow then
-							_G.InspectFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab3.backdrop.shadow) end
-						end
+				if E.Retail then
+					if _G.InspectFrame and not _G.InspectFrame.shadow then
+						_G.InspectFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrame.shadow) end
 					end
-				end)
+					if _G.InspectFrameTab1 and _G.InspectFrameTab1.backdrop and not _G.InspectFrameTab1.backdrop.shadow then
+						_G.InspectFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab1.backdrop.shadow) end
+					end
+					if _G.InspectFrameTab2 and _G.InspectFrameTab2.backdrop and not _G.InspectFrameTab2.backdrop.shadow then
+						_G.InspectFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab2.backdrop.shadow) end
+					end
+					if _G.InspectFrameTab3 and _G.InspectFrameTab3.backdrop and not _G.InspectFrameTab3.backdrop.shadow then
+						_G.InspectFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab3.backdrop.shadow) end
+					end
+				else
+					if _G.InspectFrame and _G.InspectFrame.backdrop and not _G.InspectFrame.backdrop.shadow then
+						_G.InspectFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrame.backdrop.shadow) end
+					end
+					if _G.InspectFrameTab1 and _G.InspectFrameTab1.backdrop and not _G.InspectFrameTab1.backdrop.shadow then
+						_G.InspectFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab1.backdrop.shadow) end
+					end
+					if _G.InspectFrameTab2 and _G.InspectFrameTab2.backdrop and not _G.InspectFrameTab2.backdrop.shadow then
+						_G.InspectFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab2.backdrop.shadow) end
+					end
+					if _G.InspectFrameTab3 and _G.InspectFrameTab3.backdrop and not _G.InspectFrameTab3.backdrop.shadow then
+						_G.InspectFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.InspectFrameTab3.backdrop.shadow) end
+					end
+				end
 			end
 			if E.private.skins.blizzard.enable then
 				if (arg == "Blizzard_TalentUI") or IsAddOnLoaded("Blizzard_TalentUI") then
 					if E.Retail then
-						_G.PlayerTalentFrame:HookScript("OnShow", function()
-							if not _G.PlayerTalentFrame.shadow then
-								_G.PlayerTalentFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerTalentFrame.shadow) end
-							end
-						end)
-						_G.PlayerTalentFrameTab1:HookScript("OnShow", function()
-							if _G.PlayerTalentFrameTab1 and _G.PlayerTalentFrameTab1.backdrop and not _G.PlayerTalentFrameTab1.backdrop.shadow then
-								_G.PlayerTalentFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerTalentFrameTab1.backdrop.shadow) end
-							end
-						end)
-						_G.PlayerTalentFrameTab2:HookScript("OnShow", function()
-							if _G.PlayerTalentFrameTab2 and _G.PlayerTalentFrameTab2.backdrop and not _G.PlayerTalentFrameTab2.backdrop.shadow then
-								_G.PlayerTalentFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerTalentFrameTab2.backdrop.shadow) end
-							end
-						end)
+						if not _G.PlayerTalentFrame.shadow then
+							_G.PlayerTalentFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerTalentFrame.shadow) end
+						end
+						if _G.PlayerTalentFrameTab1 and _G.PlayerTalentFrameTab1.backdrop and not _G.PlayerTalentFrameTab1.backdrop.shadow then
+							_G.PlayerTalentFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerTalentFrameTab1.backdrop.shadow) end
+						end
+						if _G.PlayerTalentFrameTab2 and _G.PlayerTalentFrameTab2.backdrop and not _G.PlayerTalentFrameTab2.backdrop.shadow then
+							_G.PlayerTalentFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerTalentFrameTab2.backdrop.shadow) end
+						end
 					else
-						_G.PlayerTalentFrame:HookScript("OnShow", function()
-							if _G.PlayerTalentFrame and _G.PlayerTalentFrame.backdrop and not _G.PlayerTalentFrame.backdrop.shadow then
-								_G.PlayerTalentFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerTalentFrame.backdrop.shadow) end
-							end
-							if _G.PlayerTalentFrameTab1 and _G.PlayerTalentFrameTab1.backdrop and not _G.PlayerTalentFrameTab1.backdrop.shadow then
-								_G.PlayerTalentFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerTalentFrameTab1.backdrop.shadow) end
-							end
-							if _G.PlayerTalentFrameTab2 and _G.PlayerTalentFrameTab2.backdrop and not _G.PlayerTalentFrameTab2.backdrop.shadow then
-								_G.PlayerTalentFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerTalentFrameTab2.backdrop.shadow) end
-							end
-							if _G.PlayerTalentFrameTab3 and _G.PlayerTalentFrameTab3.backdrop and not _G.PlayerTalentFrameTab3.backdrop.shadow then
-								_G.PlayerTalentFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerTalentFrameTab3.backdrop.shadow) end
-							end
-							if _G.PlayerTalentFrameTab4 and _G.PlayerTalentFrameTab4.backdrop and not _G.PlayerTalentFrameTab4.backdrop.shadow then
-								_G.PlayerTalentFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerTalentFrameTab4.backdrop.shadow) end
-							end
-							if _G.PlayerSpecTab1 and not _G.PlayerSpecTab1.shadow then
-								_G.PlayerSpecTab1:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerSpecTab1.shadow) end
-							end
-							if _G.PlayerSpecTab2 and not _G.PlayerSpecTab2.shadow then
-								_G.PlayerSpecTab2:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerSpecTab2.shadow) end
-							end
-						end)
+						if _G.PlayerTalentFrame and _G.PlayerTalentFrame.backdrop and not _G.PlayerTalentFrame.backdrop.shadow then
+							_G.PlayerTalentFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerTalentFrame.backdrop.shadow) end
+						end
+						if _G.PlayerTalentFrameTab1 and _G.PlayerTalentFrameTab1.backdrop and not _G.PlayerTalentFrameTab1.backdrop.shadow then
+							_G.PlayerTalentFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerTalentFrameTab1.backdrop.shadow) end
+						end
+						if _G.PlayerTalentFrameTab2 and _G.PlayerTalentFrameTab2.backdrop and not _G.PlayerTalentFrameTab2.backdrop.shadow then
+							_G.PlayerTalentFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerTalentFrameTab2.backdrop.shadow) end
+						end
+						if _G.PlayerTalentFrameTab3 and _G.PlayerTalentFrameTab3.backdrop and not _G.PlayerTalentFrameTab3.backdrop.shadow then
+							_G.PlayerTalentFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerTalentFrameTab3.backdrop.shadow) end
+						end
+						if _G.PlayerTalentFrameTab4 and _G.PlayerTalentFrameTab4.backdrop and not _G.PlayerTalentFrameTab4.backdrop.shadow then
+							_G.PlayerTalentFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerTalentFrameTab4.backdrop.shadow) end
+						end
+						if _G.PlayerSpecTab1 and not _G.PlayerSpecTab1.shadow then
+							_G.PlayerSpecTab1:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerSpecTab1.shadow) end
+						end
+						if _G.PlayerSpecTab2 and not _G.PlayerSpecTab2.shadow then
+							_G.PlayerSpecTab2:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerSpecTab2.shadow) end
+						end
 					end
 				end
 				if (arg == "Blizzard_Calendar") or IsAddOnLoaded("Blizzard_Calendar") then
-					_G.CalendarFrame:HookScript("OnShow", function()
-						if not _G.CalendarFrame.shadow then
-							_G.CalendarFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CalendarFrame.shadow) end
-						end
-						if not _G.CalendarViewHolidayFrame.shadow then
-							_G.CalendarViewHolidayFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CalendarViewHolidayFrame.shadow) end
-						end
-					end)
+					if not _G.CalendarFrame.shadow then
+						_G.CalendarFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CalendarFrame.shadow) end
+					end
+					if not _G.CalendarViewHolidayFrame.shadow then
+						_G.CalendarViewHolidayFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CalendarViewHolidayFrame.shadow) end
+					end
 				end
 				if (arg == "Blizzard_Communities") or IsAddOnLoaded("Blizzard_Communities") then
 					if _G.CommunitiesFrame then
-						_G.CommunitiesFrame:HookScript("OnShow", function()
-							if not _G.CommunitiesFrame.shadow then
-								_G.CommunitiesFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.shadow) end
+						if not _G.CommunitiesFrame.shadow then
+							_G.CommunitiesFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.shadow) end
+						end
+						if _G.CommunitiesFrameTab1 and _G.CommunitiesFrameTab1.backdrop and not _G.CommunitiesFrameTab1.backdrop.shadow then
+							_G.CommunitiesFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab1.backdrop.shadow) end
+						end
+						if _G.CommunitiesFrameTab2 and _G.CommunitiesFrameTab2.backdrop and not _G.CommunitiesFrameTab2.backdrop.shadow then
+							_G.CommunitiesFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab2.backdrop.shadow) end
+						end
+						if _G.CommunitiesFrameTab3 and _G.CommunitiesFrameTab3.backdrop and not _G.CommunitiesFrameTab3.backdrop.shadow then
+							_G.CommunitiesFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab3.backdrop.shadow) end
+						end
+						if _G.CommunitiesFrameTab4 and _G.CommunitiesFrameTab4.backdrop and not _G.CommunitiesFrameTab4.backdrop.shadow then
+							_G.CommunitiesFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab4.backdrop.shadow) end
+						end
+						if _G.CommunitiesFrameTab5 and _G.CommunitiesFrameTab5.backdrop and not _G.CommunitiesFrameTab5.backdrop.shadow then
+							_G.CommunitiesFrameTab5.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab5.backdrop.shadow) end
+						end
+						if _G.CommunitiesFrame.ChatTab and _G.CommunitiesFrame.ChatTab.backdrop and not _G.CommunitiesFrame.ChatTab.backdrop.shadow then
+							_G.CommunitiesFrame.ChatTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.ChatTab.backdrop.shadow) end
+						end
+						if _G.CommunitiesFrame.RosterTab and _G.CommunitiesFrame.RosterTab.backdrop and not _G.CommunitiesFrame.RosterTab.backdrop.shadow then
+							_G.CommunitiesFrame.RosterTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.RosterTab.backdrop.shadow) end
+						end
+						if _G.CommunitiesFrame.GuildBenefitsTab and _G.CommunitiesFrame.GuildBenefitsTab.backdrop and not _G.CommunitiesFrame.GuildBenefitsTab.backdrop.shadow then
+							_G.CommunitiesFrame.GuildBenefitsTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.GuildBenefitsTab.backdrop.shadow) end
+						end
+						if _G.CommunitiesFrame.GuildInfoTab and _G.CommunitiesFrame.GuildInfoTab.backdrop and not _G.CommunitiesFrame.GuildInfoTab.backdrop.shadow then
+							_G.CommunitiesFrame.GuildInfoTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.GuildInfoTab.backdrop.shadow) end
+						end
+						if _G.ClubFinderGuildFinderFrame then
+							if _G.ClubFinderGuildFinderFrame.ClubFinderSearchTab and _G.ClubFinderGuildFinderFrame.ClubFinderSearchTab.backdrop and not _G.ClubFinderGuildFinderFrame.ClubFinderSearchTab.backdrop.shadow then
+								_G.ClubFinderGuildFinderFrame.ClubFinderSearchTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClubFinderGuildFinderFrame.ClubFinderSearchTab.backdrop.shadow) end
 							end
-							if _G.CommunitiesFrameTab1 and _G.CommunitiesFrameTab1.backdrop and not _G.CommunitiesFrameTab1.backdrop.shadow then
-								_G.CommunitiesFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab1.backdrop.shadow) end
+							if _G.ClubFinderGuildFinderFrame.ClubFinderPendingTab and _G.ClubFinderGuildFinderFrame.ClubFinderPendingTab.backdrop and not _G.ClubFinderGuildFinderFrame.ClubFinderPendingTab.backdrop.shadow then
+								_G.ClubFinderGuildFinderFrame.ClubFinderPendingTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClubFinderGuildFinderFrame.ClubFinderPendingTab.backdrop.shadow) end
 							end
-							if _G.CommunitiesFrameTab2 and _G.CommunitiesFrameTab2.backdrop and not _G.CommunitiesFrameTab2.backdrop.shadow then
-								_G.CommunitiesFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab2.backdrop.shadow) end
+						end
+						if _G.ClubFinderCommunityAndGuildFinderFrame then
+							if _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab and _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop and not _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop.shadow then
+								_G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop.shadow) end
 							end
-							if _G.CommunitiesFrameTab3 and _G.CommunitiesFrameTab3.backdrop and not _G.CommunitiesFrameTab3.backdrop.shadow then
-								_G.CommunitiesFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab3.backdrop.shadow) end
+							if _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderPendingTab and _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderPendingTab.backdrop and not _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderPendingTab.backdrop.shadow then
+								_G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderPendingTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderPendingTab.backdrop.shadow) end
 							end
-							if _G.CommunitiesFrameTab4 and _G.CommunitiesFrameTab4.backdrop and not _G.CommunitiesFrameTab4.backdrop.shadow then
-								_G.CommunitiesFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab4.backdrop.shadow) end
-							end
-							if _G.CommunitiesFrameTab5 and _G.CommunitiesFrameTab5.backdrop and not _G.CommunitiesFrameTab5.backdrop.shadow then
-								_G.CommunitiesFrameTab5.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrameTab5.backdrop.shadow) end
-							end
-							if _G.CommunitiesFrame.ChatTab and _G.CommunitiesFrame.ChatTab.backdrop and not _G.CommunitiesFrame.ChatTab.backdrop.shadow then
-								_G.CommunitiesFrame.ChatTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.ChatTab.backdrop.shadow) end
-							end
-							if _G.CommunitiesFrame.RosterTab and _G.CommunitiesFrame.RosterTab.backdrop and not _G.CommunitiesFrame.RosterTab.backdrop.shadow then
-								_G.CommunitiesFrame.RosterTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.RosterTab.backdrop.shadow) end
-							end
-							if _G.CommunitiesFrame.GuildBenefitsTab and _G.CommunitiesFrame.GuildBenefitsTab.backdrop and not _G.CommunitiesFrame.GuildBenefitsTab.backdrop.shadow then
-								_G.CommunitiesFrame.GuildBenefitsTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.GuildBenefitsTab.backdrop.shadow) end
-							end
-							if _G.CommunitiesFrame.GuildInfoTab and _G.CommunitiesFrame.GuildInfoTab.backdrop and not _G.CommunitiesFrame.GuildInfoTab.backdrop.shadow then
-								_G.CommunitiesFrame.GuildInfoTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.GuildInfoTab.backdrop.shadow) end
-							end
-							if _G.ClubFinderGuildFinderFrame then
-								if _G.ClubFinderGuildFinderFrame.ClubFinderSearchTab and _G.ClubFinderGuildFinderFrame.ClubFinderSearchTab.backdrop and not _G.ClubFinderGuildFinderFrame.ClubFinderSearchTab.backdrop.shadow then
-									_G.ClubFinderGuildFinderFrame.ClubFinderSearchTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClubFinderGuildFinderFrame.ClubFinderSearchTab.backdrop.shadow) end
-								end
-								if _G.ClubFinderGuildFinderFrame.ClubFinderPendingTab and _G.ClubFinderGuildFinderFrame.ClubFinderPendingTab.backdrop and not _G.ClubFinderGuildFinderFrame.ClubFinderPendingTab.backdrop.shadow then
-									_G.ClubFinderGuildFinderFrame.ClubFinderPendingTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClubFinderGuildFinderFrame.ClubFinderPendingTab.backdrop.shadow) end
-								end
-							end
-							if _G.ClubFinderCommunityAndGuildFinderFrame then
-								if _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab and _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop and not _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop.shadow then
-									_G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop.shadow) end
-								end
-								if _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderPendingTab and _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderPendingTab.backdrop and not _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderPendingTab.backdrop.shadow then
-									_G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderPendingTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderPendingTab.backdrop.shadow) end
-								end
-							end
-						end)
+						end
 					end
 				end
 				if (arg == "Blizzard_AchievementUI") or IsAddOnLoaded("Blizzard_AchievementUI") then
-					_G.AchievementFrame:HookScript("OnShow", function()
-						if E.Retail then
-							if _G.AchievementFrame and not _G.AchievementFrame.shadow then
-								_G.AchievementFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AchievementFrame.shadow) end
-							end
-						else
-							if _G.AchievementFrame and _G.AchievementFrame.backdrop and not _G.AchievementFrame.backdrop.shadow then
-								_G.AchievementFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AchievementFrame.backdrop.shadow) end
-							end
-						end
-
-					end)
-					_G.AchievementFrameTab1:HookScript("OnShow", function()
-						if _G.AchievementFrameTab1 and _G.AchievementFrameTab1.backdrop and not _G.AchievementFrameTab1.backdrop.shadow then
-							_G.AchievementFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AchievementFrameTab1.backdrop.shadow) end
-						end
-					end)
-					_G.AchievementFrameTab2:HookScript("OnShow", function()
-						if _G.AchievementFrameTab2 and _G.AchievementFrameTab2.backdrop and not _G.AchievementFrameTab2.backdrop.shadow then
-							_G.AchievementFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AchievementFrameTab2.backdrop.shadow) end
-						end
-					end)
 					if E.Retail then
-						_G.AchievementFrameTab3:HookScript("OnShow", function()
-							if _G.AchievementFrameTab3 and _G.AchievementFrameTab3.backdrop and not _G.AchievementFrameTab3.backdrop.shadow then
-								_G.AchievementFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AchievementFrameTab3.backdrop.shadow) end
-							end
-						end)
+						if _G.AchievementFrame and not _G.AchievementFrame.shadow then
+							_G.AchievementFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AchievementFrame.shadow) end
+						end
+						if _G.AchievementFrameTab3 and _G.AchievementFrameTab3.backdrop and not _G.AchievementFrameTab3.backdrop.shadow then
+							_G.AchievementFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AchievementFrameTab3.backdrop.shadow) end
+						end
+					else
+						if _G.AchievementFrame and _G.AchievementFrame.backdrop and not _G.AchievementFrame.backdrop.shadow then
+							_G.AchievementFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AchievementFrame.backdrop.shadow) end
+						end
+					end
+					if _G.AchievementFrameTab1 and _G.AchievementFrameTab1.backdrop and not _G.AchievementFrameTab1.backdrop.shadow then
+						_G.AchievementFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AchievementFrameTab1.backdrop.shadow) end
+					end
+					if _G.AchievementFrameTab2 and _G.AchievementFrameTab2.backdrop and not _G.AchievementFrameTab2.backdrop.shadow then
+						_G.AchievementFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AchievementFrameTab2.backdrop.shadow) end
 					end
 				end
 				if (arg == "Blizzard_GarrisonUI") or IsAddOnLoaded("Blizzard_GarrisonUI") then
 					if _G.GarrisonLandingPage then
-						_G.GarrisonLandingPage:HookScript("OnShow", function()
-							if not _G.GarrisonLandingPage.shadow then
-								_G.GarrisonLandingPage:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GarrisonLandingPage.shadow) end
-							end
-						end)
+						if not _G.GarrisonLandingPage.shadow then
+							_G.GarrisonLandingPage:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GarrisonLandingPage.shadow) end
+						end
 					end
 					if _G.CovenantMissionFrame then
-						_G.CovenantMissionFrame:HookScript("OnShow", function()
-							if not _G.CovenantMissionFrame.shadow then
-								_G.CovenantMissionFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantMissionFrame.shadow) end
-							end
-							if not _G.CovenantMissionFrameTab1.backdrop.shadow then
-								_G.CovenantMissionFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantMissionFrameTab1.backdrop.shadow) end
-							end
-							if not _G.CovenantMissionFrameTab2.backdrop.shadow then
-								_G.CovenantMissionFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantMissionFrameTab2.backdrop.shadow) end
-							end
-						end)
+						if not _G.CovenantMissionFrame.shadow then
+							_G.CovenantMissionFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantMissionFrame.shadow) end
+						end
+						if not _G.CovenantMissionFrameTab1.backdrop.shadow then
+							_G.CovenantMissionFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantMissionFrameTab1.backdrop.shadow) end
+						end
+						if not _G.CovenantMissionFrameTab2.backdrop.shadow then
+							_G.CovenantMissionFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantMissionFrameTab2.backdrop.shadow) end
+						end
 					end
 				end
 				if (arg == "Blizzard_CovenantSanctum") or IsAddOnLoaded("Blizzard_CovenantSanctum") then
 					if _G.CovenantSanctumFrame then
-						_G.CovenantSanctumFrame:HookScript("OnShow", function()
-							if not _G.CovenantSanctumFrame.shadow then
-								_G.CovenantSanctumFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantSanctumFrame.shadow) end
-							end
-						end)
+						if not _G.CovenantSanctumFrame.shadow then
+							_G.CovenantSanctumFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CovenantSanctumFrame.shadow) end
+						end
 					end
 				end
 				if (arg == "Blizzard_Soulbinds") or IsAddOnLoaded("Blizzard_Soulbinds") then
 					if _G.SoulbindViewer then
-						_G.SoulbindViewer:HookScript("OnShow", function()
-							if not _G.SoulbindViewer.shadow then
-								_G.SoulbindViewer:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.SoulbindViewer.shadow) end
-							end
-						end)
+						if not _G.SoulbindViewer.shadow then
+							_G.SoulbindViewer:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.SoulbindViewer.shadow) end
+						end
 					end
 				end
 				if (arg == "Blizzard_Collections") or IsAddOnLoaded("Blizzard_Collections") then
-					_G.CollectionsJournal:HookScript("OnShow", function()
-						if not _G.CollectionsJournal.shadow then
-							_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournal.shadow) end
-						end
-					end)
-					_G.CollectionsJournalTab1:HookScript("OnShow", function()
-						if _G.CollectionsJournalTab1 and _G.CollectionsJournalTab1.backdrop and not _G.CollectionsJournalTab1.backdrop.shadow then
-							_G.CollectionsJournalTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournalTab1.backdrop.shadow) end
-						end
-					end)
-					_G.CollectionsJournalTab2:HookScript("OnShow", function()
-						if _G.CollectionsJournalTab2 and _G.CollectionsJournalTab2.backdrop and not _G.CollectionsJournalTab2.backdrop.shadow then
-							_G.CollectionsJournalTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournalTab2.backdrop.shadow) end
-						end
-					end)
-					_G.CollectionsJournalTab3:HookScript("OnShow", function()
-						if _G.CollectionsJournalTab3 and _G.CollectionsJournalTab3.backdrop and not _G.CollectionsJournalTab3.backdrop.shadow then
-							_G.CollectionsJournalTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournalTab3.backdrop.shadow) end
-						end
-					end)
-					_G.CollectionsJournalTab4:HookScript("OnShow", function()
-						if _G.CollectionsJournalTab4 and _G.CollectionsJournalTab4.backdrop and not _G.CollectionsJournalTab4.backdrop.shadow then
-							_G.CollectionsJournalTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournalTab4.backdrop.shadow) end
-						end
-					end)
-					_G.CollectionsJournalTab5:HookScript("OnShow", function()
-						if _G.CollectionsJournalTab5 and _G.CollectionsJournalTab5.backdrop and not _G.CollectionsJournalTab5.backdrop.shadow then
-							_G.CollectionsJournalTab5.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournalTab5.backdrop.shadow) end
-						end
-					end)
-					_G.ToyBox:HookScript("OnShow", function()
-						if not _G.ToyBox.shadow then
-							_G.ToyBox:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ToyBox.shadow) end
-						end
-						if not _G.CollectionsJournal.shadow then
-							_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournal.shadow) end
-						end
-					end)
-					_G.HeirloomsJournal:HookScript("OnShow", function()
-						if not _G.HeirloomsJournal.shadow then
-							_G.HeirloomsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.HeirloomsJournal.shadow) end
-						end
-						if not _G.CollectionsJournal.shadow then
-							_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournal.shadow) end
-						end
-					end)
-					_G.PetJournal:HookScript("OnShow", function()
-						if not _G.PetJournal.shadow then
-							_G.PetJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PetJournal.shadow) end
-						end
-						if not _G.CollectionsJournal.shadow then
-							_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournal.shadow) end
-						end
-					end)
-					_G.WardrobeFrame:HookScript("OnShow", function()
-						if not _G.WardrobeFrame.shadow then
-							_G.WardrobeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.WardrobeFrame.shadow) end
-						end
-						if not _G.CollectionsJournal.shadow then
-							_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						end
-					end)
-					_G.MountJournal:HookScript("OnShow", function()
-						if not _G.CollectionsJournal.shadow then
-							_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournal.shadow) end
-						end
-					end)
+					if not _G.CollectionsJournal.shadow then
+						_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournal.shadow) end
+					end
+					if _G.CollectionsJournalTab1 and _G.CollectionsJournalTab1.backdrop and not _G.CollectionsJournalTab1.backdrop.shadow then
+						_G.CollectionsJournalTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournalTab1.backdrop.shadow) end
+					end
+					if _G.CollectionsJournalTab2 and _G.CollectionsJournalTab2.backdrop and not _G.CollectionsJournalTab2.backdrop.shadow then
+						_G.CollectionsJournalTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournalTab2.backdrop.shadow) end
+					end
+					if _G.CollectionsJournalTab3 and _G.CollectionsJournalTab3.backdrop and not _G.CollectionsJournalTab3.backdrop.shadow then
+						_G.CollectionsJournalTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournalTab3.backdrop.shadow) end
+					end
+					if _G.CollectionsJournalTab4 and _G.CollectionsJournalTab4.backdrop and not _G.CollectionsJournalTab4.backdrop.shadow then
+						_G.CollectionsJournalTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournalTab4.backdrop.shadow) end
+					end
+					if _G.CollectionsJournalTab5 and _G.CollectionsJournalTab5.backdrop and not _G.CollectionsJournalTab5.backdrop.shadow then
+						_G.CollectionsJournalTab5.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournalTab5.backdrop.shadow) end
+					end
+					if not _G.ToyBox.shadow then
+						_G.ToyBox:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ToyBox.shadow) end
+					end
+					if not _G.CollectionsJournal.shadow then
+						_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournal.shadow) end
+					end
+					if not _G.HeirloomsJournal.shadow then
+						_G.HeirloomsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.HeirloomsJournal.shadow) end
+					end
+					if not _G.CollectionsJournal.shadow then
+						_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournal.shadow) end
+					end
+					if not _G.PetJournal.shadow then
+						_G.PetJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PetJournal.shadow) end
+					end
+					if not _G.CollectionsJournal.shadow then
+						_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournal.shadow) end
+					end
+					if not _G.WardrobeFrame.shadow then
+						_G.WardrobeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.WardrobeFrame.shadow) end
+					end
+					if not _G.CollectionsJournal.shadow then
+						_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					end
+					if not _G.CollectionsJournal.shadow then
+						_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CollectionsJournal.shadow) end
+					end
 				end
 				if (arg == "Blizzard_PVPUI") or IsAddOnLoaded("Blizzard_PVPUI") then
-					_G.PVPUIFrame:HookScript("OnShow", function()
-						if not _G.PVPUIFrame.shadow then
-							_G.PVPUIFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PVPUIFrame.shadow) end
-						end
-					end)
+					if not _G.PVPUIFrame.shadow then
+						_G.PVPUIFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PVPUIFrame.shadow) end
+					end
 				end
 				if (arg == "Blizzard_PlayerChoice") or IsAddOnLoaded("Blizzard_PlayerChoice") then
-					_G.PlayerChoiceFrame:HookScript("OnShow", function()
-						if not _G.PlayerChoiceFrame.shadow then
-							_G.PlayerChoiceFrame:CreateBackdrop('Transparent')
-							_G.PlayerChoiceFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerChoiceFrame.shadow) end
-						end
-					end)
+					if not _G.PlayerChoiceFrame.shadow then
+						_G.PlayerChoiceFrame:CreateBackdrop('Transparent')
+						_G.PlayerChoiceFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PlayerChoiceFrame.shadow) end
+					end
 				end
 				if (arg == "Blizzard_VoidStorageUI") or IsAddOnLoaded("Blizzard_VoidStorageUI") then
-					_G.VoidStorageFrame:HookScript("OnShow", function()
-						if not _G.VoidStorageFrame.shadow then
-							_G.VoidStorageFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.VoidStorageFrame.shadow) end
-						end
-					end)
+					if not _G.VoidStorageFrame.shadow then
+						_G.VoidStorageFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.VoidStorageFrame.shadow) end
+					end
 				end
 				if (arg == "Blizzard_ChallengesUI") or IsAddOnLoaded("Blizzard_ChallengesUI") then
-					_G.PVEFrame:HookScript("OnShow", function()
-						if not _G.PVEFrame.shadow then
-							_G.PVEFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PVEFrame.shadow) end
-						end
-					end)
+					if not _G.PVEFrame.shadow then
+						_G.PVEFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PVEFrame.shadow) end
+					end
 				end
 				if (arg == "Blizzard_EncounterJournal") or IsAddOnLoaded("Blizzard_EncounterJournal") then
-					_G.EncounterJournal:HookScript("OnShow", function()
-						if not _G.EncounterJournal.shadow then
-							_G.EncounterJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournal.shadow) end
-						end
-						if not _G.EncounterJournalSuggestTab.backdrop.shadow then
-							_G.EncounterJournalSuggestTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalSuggestTab.backdrop.shadow) end
-						end
-						if not _G.EncounterJournalDungeonTab.backdrop.shadow then
-							_G.EncounterJournalDungeonTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalDungeonTab.backdrop.shadow) end
-						end
-						if not _G.EncounterJournalRaidTab.backdrop.shadow then
-							_G.EncounterJournalRaidTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalRaidTab.backdrop.shadow) end
-						end
-						if not _G.EncounterJournalLootJournalTab.backdrop.shadow then
-							_G.EncounterJournalLootJournalTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalLootJournalTab.backdrop.shadow) end
-						end
-						if not _G.EncounterJournalEncounterFrameInfoOverviewTab.shadow then
-							_G.EncounterJournalEncounterFrameInfoOverviewTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalEncounterFrameInfoOverviewTab.shadow) end
-						end
-						if not _G.EncounterJournalEncounterFrameInfoLootTab.shadow then
-							_G.EncounterJournalEncounterFrameInfoLootTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalEncounterFrameInfoLootTab.shadow) end
-						end
-						if not _G.EncounterJournalEncounterFrameInfoBossTab.shadow then
-							_G.EncounterJournalEncounterFrameInfoBossTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalEncounterFrameInfoBossTab.shadow) end
-						end
-						if not _G.EncounterJournalEncounterFrameInfoModelTab.shadow then
-							_G.EncounterJournalEncounterFrameInfoModelTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalEncounterFrameInfoModelTab.shadow) end
-						end
-					end)
+					if not _G.EncounterJournal.shadow then
+						_G.EncounterJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournal.shadow) end
+					end
+					if not _G.EncounterJournalSuggestTab.backdrop.shadow then
+						_G.EncounterJournalSuggestTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalSuggestTab.backdrop.shadow) end
+					end
+					if not _G.EncounterJournalDungeonTab.backdrop.shadow then
+						_G.EncounterJournalDungeonTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalDungeonTab.backdrop.shadow) end
+					end
+					if not _G.EncounterJournalRaidTab.backdrop.shadow then
+						_G.EncounterJournalRaidTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalRaidTab.backdrop.shadow) end
+					end
+					if not _G.EncounterJournalLootJournalTab.backdrop.shadow then
+						_G.EncounterJournalLootJournalTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalLootJournalTab.backdrop.shadow) end
+					end
+					if not _G.EncounterJournalEncounterFrameInfoOverviewTab.shadow then
+						_G.EncounterJournalEncounterFrameInfoOverviewTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalEncounterFrameInfoOverviewTab.shadow) end
+					end
+					if not _G.EncounterJournalEncounterFrameInfoLootTab.shadow then
+						_G.EncounterJournalEncounterFrameInfoLootTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalEncounterFrameInfoLootTab.shadow) end
+					end
+					if not _G.EncounterJournalEncounterFrameInfoBossTab.shadow then
+						_G.EncounterJournalEncounterFrameInfoBossTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalEncounterFrameInfoBossTab.shadow) end
+					end
+					if not _G.EncounterJournalEncounterFrameInfoModelTab.shadow then
+						_G.EncounterJournalEncounterFrameInfoModelTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalEncounterFrameInfoModelTab.shadow) end
+					end
 				end
 				if (arg == "Blizzard_WeeklyRewards") or IsAddOnLoaded("Blizzard_WeeklyRewards") then
-					_G.WeeklyRewardsFrame:HookScript("OnShow", function()
-						if not _G.WeeklyRewardsFrame.shadow then
-							_G.WeeklyRewardsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.WeeklyRewardsFrame.shadow) end
-						end
-					end)
+					if not _G.WeeklyRewardsFrame.shadow then
+						_G.WeeklyRewardsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.WeeklyRewardsFrame.shadow) end
+					end
 				end
 			end
 			if E.Retail then
 				if (arg == "Blizzard_AuctionHouseUI") or IsAddOnLoaded("Blizzard_AuctionHouseUI") then
 					if _G.AuctionHouseFrame then
-						_G.AuctionHouseFrame:HookScript("OnShow", function()
-							if _G.AuctionHouseFrame and not _G.AuctionHouseFrame.shadow then
-								_G.AuctionHouseFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionHouseFrame.shadow) end
-							end
-							if _G.AuctionHouseFrameBuyTab.backdrop and not _G.AuctionHouseFrameBuyTab.backdrop.shadow then
-								_G.AuctionHouseFrameBuyTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionHouseFrameBuyTab.backdrop.shadow) end
-							end
-							if _G.AuctionHouseFrameSellTab.backdrop and not _G.AuctionHouseFrameSellTab.backdrop.shadow then
-								_G.AuctionHouseFrameSellTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionHouseFrameSellTab.backdrop.shadow) end
-							end
-							if _G.AuctionHouseFrameAuctionsTab.backdrop and not _G.AuctionHouseFrameAuctionsTab.backdrop.shadow then
-								_G.AuctionHouseFrameAuctionsTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionHouseFrameAuctionsTab.backdrop.shadow) end
-							end
-						end)
+						if _G.AuctionHouseFrame and not _G.AuctionHouseFrame.shadow then
+							_G.AuctionHouseFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionHouseFrame.shadow) end
+						end
+						if _G.AuctionHouseFrameBuyTab.backdrop and not _G.AuctionHouseFrameBuyTab.backdrop.shadow then
+							_G.AuctionHouseFrameBuyTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionHouseFrameBuyTab.backdrop.shadow) end
+						end
+						if _G.AuctionHouseFrameSellTab.backdrop and not _G.AuctionHouseFrameSellTab.backdrop.shadow then
+							_G.AuctionHouseFrameSellTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionHouseFrameSellTab.backdrop.shadow) end
+						end
+						if _G.AuctionHouseFrameAuctionsTab.backdrop and not _G.AuctionHouseFrameAuctionsTab.backdrop.shadow then
+							_G.AuctionHouseFrameAuctionsTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionHouseFrameAuctionsTab.backdrop.shadow) end
+						end
 					end
 				end
 			elseif E.Wrath or E.Classic then
 				if (arg == "Blizzard_AuctionUI") or IsAddOnLoaded("Blizzard_AuctionUI") then
-					_G.AuctionFrame:HookScript("OnShow", function()
-						if _G.AuctionFrame and _G.AuctionFrame.backdrop and not _G.AuctionFrame.backdrop.shadow then
-							_G.AuctionFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionFrame.backdrop.shadow) end
-						end
-					end)
+					if _G.AuctionFrame and _G.AuctionFrame.backdrop and not _G.AuctionFrame.backdrop.shadow then
+						_G.AuctionFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionFrame.backdrop.shadow) end
+					end
 				end
 			end
 		end)
@@ -725,7 +636,7 @@ function ElvUI_EltreumUI:Shadows()
 			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.MovieFrame.CloseDialog.shadow) end
 		end
 
-		local timermonitor = CreateFrame("FRAME")
+
 		timermonitor:RegisterEvent("START_TIMER")
 		timermonitor:SetScript("OnEvent", function()
 			for _, b in pairs(_G.TimerTracker.timerList) do
@@ -801,7 +712,7 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		if E.private["general"]["minimap"]["enable"] and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.minimapborder) and E.db.ElvUI_EltreumUI.skins.shadow.minimap then
-			local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
+
 			local Minimapsizex, Minimapsizey = _G["Minimap"]:GetSize()
 			MinimapShadow:SetSize(Minimapsizex, Minimapsizey)
 			MinimapShadow:SetParent(_G["Minimap"])
@@ -1854,11 +1765,9 @@ function ElvUI_EltreumUI:Shadows()
 
 		--chat
 		if E.db.ElvUI_EltreumUI.skins.shadow.chat and not (E.db.ElvUI_EltreumUI.borders.chatborder and E.db.ElvUI_EltreumUI.borders.borders) then
-			local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
 			local rightsizex, rightsizey = _G["RightChatMover"]:GetSize()
 			RightChatShadow:SetSize(rightsizex, rightsizey)
 			RightChatShadow:SetParent(_G["RightChatPanel"].backdrop)
-			local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
 			local leftsizex, leftsizey = _G["LeftChatMover"]:GetSize()
 			LeftChatShadow:SetSize(leftsizex, leftsizey)
 			LeftChatShadow:SetParent(_G["LeftChatPanel"].backdrop)
