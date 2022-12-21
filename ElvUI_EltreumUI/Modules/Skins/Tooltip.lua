@@ -77,13 +77,22 @@ function ElvUI_EltreumUI:Tooltip(tt, unit)
 	--ilvl tooltip
 	if E.db.ElvUI_EltreumUI.skins.ilvltooltip then
 		if not E.Retail and not self.ilvlHook then
-			local _,itemLink,itemLevel, classID
+			local _,itemLink,itemLevel,classID,throttle
 			GameTooltip:HookScript("OnTooltipSetItem", function(tooltip)
+				for i = 1, GameTooltip:NumLines() do
+					local line = _G["GameTooltipTextLeft"..i]:GetText()
+					--print(line)
+					if line:match(ITEM_LEVEL) then
+						throttle = true
+					end
+				end
 				_, itemLink = tooltip:GetItem()
-				if (itemLink ~= nil) then
+				if not throttle and (itemLink ~= nil) then
 					_, _, _, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(itemLink)
 					if itemLevel and (classID == 2 or classID == 4)then
+						throttle = false
 						tooltip:AddLine(string.format(ITEM_LEVEL, itemLevel))
+						--tooltip:AppendText("("..itemLevel..")")
 					end
 				end
 			end)
