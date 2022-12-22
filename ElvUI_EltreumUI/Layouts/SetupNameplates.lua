@@ -785,10 +785,11 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumTotems"]["triggers"]["priority"] = 14
 
 		--hide np of dead targets
-		E.global["nameplates"]["filters"]["EltreumDeadNP"]["actions"]["hide"] = true
+		--E.global["nameplates"]["filters"]["EltreumDeadNP"]["actions"]["hide"] = true
+		E.global["nameplates"]["filters"]["EltreumDeadNP"]["actions"]["nameOnly"] = true
 		E.global["nameplates"]["filters"]["EltreumDeadNP"]["triggers"]["isDeadOrGhost"] = true
-		--E.global["nameplates"]["filters"]["EltreumDead"]["triggers"]["nameplateType"]["enable"] = true
-		--E.global["nameplates"]["filters"]["EltreumDead"]["triggers"]["nameplateType"]["enemyNPC"] = true
+		--E.global["nameplates"]["filters"]["EltreumDeadNP"]["triggers"]["nameplateType"]["enable"] = true
+		--E.global["nameplates"]["filters"]["EltreumDeadNP"]["triggers"]["nameplateType"]["enemyNPC"] = true
 
 		--E:StaggeredUpdateAll(nil, true)
 		E:UpdateNamePlates()
