@@ -613,7 +613,7 @@ end
 -- Style Filter Setup
 function ElvUI_EltreumUI:SetupStyleFilters()
 	if E.private["nameplates"]["enable"] == true then
-		for _, filterName in pairs({'EltreumTarget', 'EltreumInterrupt', 'EltreumExecute', 'EltreumRefreshDebuff', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems'}) do
+		for _, filterName in pairs({'EltreumTarget', 'EltreumInterrupt', 'EltreumExecute', 'EltreumRefreshDebuff', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems', 'EltreumDeadNP'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
@@ -723,53 +723,6 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["playerCanAttack"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["priority"] = 1
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.2
-		--[[E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["DEATHKNIGHT"] = {}
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["DEATHKNIGHT"]["enabled"] = true
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["HUNTER"] = {}
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["HUNTER"]["enabled"] = true
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["MAGE"] = {}
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["MAGE"]["enabled"] = true
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["MONK"] = {}
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["MONK"]["enabled"] = true
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["PALADIN"] = {}
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["PALADIN"]["enabled"] = true
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["PRIEST"] = {}
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["PRIEST"]["enabled"] = true
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["ROGUE"] = {}
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["ROGUE"]["enabled"] = true
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARLOCK"] = {}
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARLOCK"]["enabled"] = true
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARRIOR"] = {}
-		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARRIOR"]["enabled"] = true
-		if E.Retail then
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["DEATHKNIGHT"]["specs"] = {}
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["DEATHKNIGHT"]["specs"][252] = true
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["HUNTER"]["specs"] = {}
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["HUNTER"]["specs"][253] = true
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["HUNTER"]["specs"][254] = true
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["HUNTER"]["specs"][255] = true
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["MAGE"]["specs"] = {}
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["MAGE"]["specs"][63] = true
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["MONK"]["specs"] = {}
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["MONK"]["specs"][268] = true
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["MONK"]["specs"][269] = true
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["MONK"]["specs"][270] = true
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["PALADIN"]["specs"] = {}
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["PALADIN"]["specs"][65] = true
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["PALADIN"]["specs"][66] = true
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["PALADIN"]["specs"][70] = true
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["PRIEST"]["specs"] = {}
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["PRIEST"]["specs"][258] = true
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["ROGUE"]["specs"] = {}
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["ROGUE"]["specs"][259] = true
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARLOCK"]["specs"] = {}
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARLOCK"]["specs"][265] = true
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARLOCK"]["specs"][267] = true
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARRIOR"]["specs"] = {}
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARRIOR"]["specs"][71] = true
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARRIOR"]["specs"][72] = true
-			E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["class"]["WARRIOR"]["specs"][73] = true
-		end]]
 
 		--fancy rares
 		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["health"] = true
@@ -830,6 +783,13 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumTotems"]["triggers"]["notTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumTotems"]["triggers"]["playerCanAttack"] = true
 		E.global["nameplates"]["filters"]["EltreumTotems"]["triggers"]["priority"] = 14
+
+		--hide np of dead targets
+		--E.global["nameplates"]["filters"]["EltreumDeadNP"]["actions"]["hide"] = true
+		E.global["nameplates"]["filters"]["EltreumDeadNP"]["actions"]["nameOnly"] = true
+		E.global["nameplates"]["filters"]["EltreumDeadNP"]["triggers"]["isDeadOrGhost"] = true
+		--E.global["nameplates"]["filters"]["EltreumDeadNP"]["triggers"]["nameplateType"]["enable"] = true
+		--E.global["nameplates"]["filters"]["EltreumDeadNP"]["triggers"]["nameplateType"]["enemyNPC"] = true
 
 		--E:StaggeredUpdateAll(nil, true)
 		E:UpdateNamePlates()

@@ -1488,7 +1488,10 @@ function ElvUI_EltreumUI:SetupCVars()
 		--new softtarget (only function if player enables interact with target option, which these cvars do not enable)
 		SetCVar('SoftTargetInteractArc', 2)
 		SetCVar('SoftTargetInteractRange', 30)
-		--SetCVar('SoftTargetInteract', 3) --3 enables, 0 disables
+		SetCVar('SoftTargetIconGameObject', 1)
+		SetCVar('SoftTargetIconInteract', 1)
+		SetCVar('SoftTargetInteract', 3) --3 enables, 0 disables
+		SetCVar('SoftTargetNameplateInteract', 1)
 
 		--[[
 		SetCVar('findYourselfAnywhere', 0) --"Always Highlight your character"
