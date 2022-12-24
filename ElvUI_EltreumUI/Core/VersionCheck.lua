@@ -357,7 +357,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		end
 	elseif E.private.ElvUI_EltreumUI.install_version > "3.6.5" and E.private.ElvUI_EltreumUI.install_version < "3.6.8" then
 		--disable interrupt style filter inside raids due to the number of nameplates possibly causing issues, detected in razaghet fight during intermission where many adds spawn and cast, disabling solved the issue
-		if E.global["nameplates"]["filters"]["EltreumInterrupt"] then
+		if E.global["nameplates"]["filters"]["EltreumInterrupt"] and E.private.nameplates.enable then
 			E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceDifficulty"]["dungeon"]["heroic"] = true
 			E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceDifficulty"]["dungeon"]["mythic"] = true
 			E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceDifficulty"]["dungeon"]["mythic+"] = true
