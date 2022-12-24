@@ -115,6 +115,62 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		ElvUI_EltreumUI:Print("You are using WeakAuras mode for ActionBars. If you wish to stop using it, make sure to disable by typing /eltruism weakauras or disabling it in the options, failing to do can cause errors")
 	end
 
+	if E.db.ElvUI_EltreumUI.skins.doom.maxAlpha > 1 then --fix alpha values
+		E.db.ElvUI_EltreumUI.skins.doom.maxAlpha = (E.db.ElvUI_EltreumUI.skins.doom.maxAlpha/100)
+	end
+
+	--more long term checks, in case somehow people enable 2 settings when its not possible to do so. Maybe its a shared profile from another person? No idea how they manage to do this
+	if E.db.ElvUI_EltreumUI.modetexture then
+		E.db.ElvUI_EltreumUI.unitframes.darkpowercolor = true
+	end
+	if E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.darkmode then --convert the option
+		E.db.ElvUI_EltreumUI.unitframes.lightmode = false
+		E.db.ElvUI_EltreumUI.unitframes.darkmode = true
+	end
+	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.playerclass then
+		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = false
+		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.playerclass = true
+	end
+	if E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial and E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial then
+		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial = false
+		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial = true
+	end
+	if E.db.ElvUI_EltreumUI.glow.blizzard and E.db.ElvUI_EltreumUI.glow.pixel then
+		E.db.ElvUI_EltreumUI.glow.blizzard = false
+		E.db.ElvUI_EltreumUI.glow.pixel = true
+	elseif E.db.ElvUI_EltreumUI.glow.blizzard and E.db.ElvUI_EltreumUI.glow.autocast then
+		E.db.ElvUI_EltreumUI.glow.blizzard = false
+		E.db.ElvUI_EltreumUI.glow.autocast = true
+	elseif E.db.ElvUI_EltreumUI.glow.autocast and E.db.ElvUI_EltreumUI.glow.pixel then
+		E.db.ElvUI_EltreumUI.glow.autocast = false
+		E.db.ElvUI_EltreumUI.glow.pixel = true
+	elseif E.db.ElvUI_EltreumUI.glow.autocast and E.db.ElvUI_EltreumUI.glow.pixel and E.db.ElvUI_EltreumUI.glow.blizzard then
+		E.db.ElvUI_EltreumUI.glow.autocast = false
+		E.db.ElvUI_EltreumUI.glow.blizzard = false
+		E.db.ElvUI_EltreumUI.glow.pixel = true
+	end
+	if E.db.ElvUI_EltreumUI.skins.classiconsblizz and E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
+		E.db.ElvUI_EltreumUI.skins.classiconsblizz = false
+		E.db.ElvUI_EltreumUI.skins.classiconsreleaf = true
+	end
+	if E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly and E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly then
+		E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly = false
+		E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly = true
+	end
+	if E.db.ElvUI_EltreumUI.skins.playerdeath and (E.db.ElvUI_EltreumUI.skins.playerdeathgta or E.db.ElvUI_EltreumUI.skins.playerdeathcustom) then
+		E.db.ElvUI_EltreumUI.skins.playerdeath = false
+		E.db.ElvUI_EltreumUI.skins.playerdeathcustom = false
+	end
+	if E.db.ElvUI_EltreumUI.quests.questitemsbar1 and E.db.ElvUI_EltreumUI.quests.questitemsfade then
+		E.db.ElvUI_EltreumUI.quests.questitemsfade = false
+		E.db.ElvUI_EltreumUI.quests.questitemsbar1 = true
+	end
+	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture then
+		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = false
+		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = true
+	end
+
+	--changes only for my profiles
 	if E.private.ElvUI_EltreumUI.install_version and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
 		return
 	elseif E.private.ElvUI_EltreumUI.install_version < "2.9.3" then
@@ -301,7 +357,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		end
 	elseif E.private.ElvUI_EltreumUI.install_version > "3.6.5" and E.private.ElvUI_EltreumUI.install_version < "3.6.8" then
 		--disable interrupt style filter inside raids due to the number of nameplates possibly causing issues, detected in razaghet fight during intermission where many adds spawn and cast, disabling solved the issue
-		if E.global["nameplates"]["filters"]["EltreumInterrupt"] then
+		if E.global["nameplates"]["filters"]["EltreumInterrupt"] and E.private.nameplates.enable then
 			E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceDifficulty"]["dungeon"]["heroic"] = true
 			E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceDifficulty"]["dungeon"]["mythic"] = true
 			E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceDifficulty"]["dungeon"]["mythic+"] = true
@@ -313,57 +369,6 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceType"]["pvp"] = true
 			E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceType"]["scenario"] = true
 		end
-	end
-
-	--more long term checks, in case somehow people enable 2 settings when its not possible to do so. Maybe its a shared profile from another person? No idea how they manage to do this
-	if E.db.ElvUI_EltreumUI.modetexture then
-		E.db.ElvUI_EltreumUI.unitframes.darkpowercolor = true
-	end
-	if E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.darkmode then --convert the option
-		E.db.ElvUI_EltreumUI.unitframes.lightmode = false
-		E.db.ElvUI_EltreumUI.unitframes.darkmode = true
-	end
-	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.playerclass then
-		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = false
-		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.playerclass = true
-	end
-	if E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial and E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial then
-		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial = false
-		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial = true
-	end
-	if E.db.ElvUI_EltreumUI.glow.blizzard and E.db.ElvUI_EltreumUI.glow.pixel then
-		E.db.ElvUI_EltreumUI.glow.blizzard = false
-		E.db.ElvUI_EltreumUI.glow.pixel = true
-	elseif E.db.ElvUI_EltreumUI.glow.blizzard and E.db.ElvUI_EltreumUI.glow.autocast then
-		E.db.ElvUI_EltreumUI.glow.blizzard = false
-		E.db.ElvUI_EltreumUI.glow.autocast = true
-	elseif E.db.ElvUI_EltreumUI.glow.autocast and E.db.ElvUI_EltreumUI.glow.pixel then
-		E.db.ElvUI_EltreumUI.glow.autocast = false
-		E.db.ElvUI_EltreumUI.glow.pixel = true
-	elseif E.db.ElvUI_EltreumUI.glow.autocast and E.db.ElvUI_EltreumUI.glow.pixel and E.db.ElvUI_EltreumUI.glow.blizzard then
-		E.db.ElvUI_EltreumUI.glow.autocast = false
-		E.db.ElvUI_EltreumUI.glow.blizzard = false
-		E.db.ElvUI_EltreumUI.glow.pixel = true
-	end
-	if E.db.ElvUI_EltreumUI.skins.classiconsblizz and E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
-		E.db.ElvUI_EltreumUI.skins.classiconsblizz = false
-		E.db.ElvUI_EltreumUI.skins.classiconsreleaf = true
-	end
-	if E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly and E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly then
-		E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly = false
-		E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly = true
-	end
-	if E.db.ElvUI_EltreumUI.skins.playerdeath and (E.db.ElvUI_EltreumUI.skins.playerdeathgta or E.db.ElvUI_EltreumUI.skins.playerdeathcustom) then
-		E.db.ElvUI_EltreumUI.skins.playerdeath = false
-		E.db.ElvUI_EltreumUI.skins.playerdeathcustom = false
-	end
-	if E.db.ElvUI_EltreumUI.quests.questitemsbar1 and E.db.ElvUI_EltreumUI.quests.questitemsfade then
-		E.db.ElvUI_EltreumUI.quests.questitemsfade = false
-		E.db.ElvUI_EltreumUI.quests.questitemsbar1 = true
-	end
-	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture then
-		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = false
-		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = true
 	end
 end
 
