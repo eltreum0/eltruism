@@ -73,6 +73,7 @@ local DONATORS = {
 	'|cffB50909markpoops|r',
 	'|cffB50909Michael_|r',
 	'|cffB50909Morthart|r',
+	'|cffB50909Mr.Ditto|r',
 	'|cffB50909Nekator|r',
 	'|cffB50909Nyhilatiant|r',
 	'|cffB50909Oakshlam|r',
