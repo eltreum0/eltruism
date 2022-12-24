@@ -9,6 +9,7 @@
 ## OptionalDeps: NameplateSCT, Immersion, DynamicCam, ProjectAzilroka
 ## DefaultState: enabled
 ## X-Interface: 11403
+## X-Tukui-ProjectID: 49
 ## X-Curse-Project-ID: 459494
 ## X-Wago-ID: vEGPqEN1
 
