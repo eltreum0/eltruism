@@ -3096,7 +3096,7 @@ function ElvUI_EltreumUI:Configtable()
 						order = 4,
 						min = 0,
 						max = 1,
-						step = 0.1,
+						step = 0.01,
 						--width = "full",
 						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
 						get = function() return E.db.ElvUI_EltreumUI.skins.doom.maxAlpha end,
