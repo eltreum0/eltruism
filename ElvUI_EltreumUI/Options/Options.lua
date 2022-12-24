@@ -3095,7 +3095,7 @@ function ElvUI_EltreumUI:Configtable()
 						desc = L["Transparency of the Icon"],
 						order = 4,
 						min = 0,
-						max = 100,
+						max = 1,
 						step = 0.1,
 						--width = "full",
 						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
