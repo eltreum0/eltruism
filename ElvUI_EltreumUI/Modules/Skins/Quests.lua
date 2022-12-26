@@ -188,11 +188,6 @@ function ElvUI_EltreumUI:SkinQuests()
 				_G["GossipFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
 			end)
 		end
-		if _G["WorldMapFrame"] and E.Retail then
-			_G["WorldMapFrame"]:HookScript("OnShow", function()
-				_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.questsettings.questScale)
-			end)
-		end
 
 		if E.Retail then
 			-- and (not IsAddOnLoaded("ElvUI_WindTools"))

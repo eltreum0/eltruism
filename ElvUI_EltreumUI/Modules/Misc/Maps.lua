@@ -263,3 +263,14 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 		end
 	end
 end
+
+--scale the world map in retail
+function ElvUI_EltreumUI:WorldMapScale()
+	if E.db.ElvUI_EltreumUI.otherstuff.worldmapscale then
+		if _G["WorldMapFrame"] and E.Retail then
+			_G["WorldMapFrame"]:HookScript("OnShow", function()
+				_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
+			end)
+		end
+	end
+end

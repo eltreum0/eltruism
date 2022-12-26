@@ -7342,6 +7342,40 @@ function ElvUI_EltreumUI:Configtable()
 							end
 						end,
 					},
+					headerworldmapscale = {
+						order = 9,
+						type = "description",
+						name = "",
+						width = 'full',
+						hidden = not E.Retail,
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					wordlmapscaletoggle = {
+						type = 'toggle',
+						name = L["Enable World Map Scaling"],
+						order = 10,
+						--desc = "",
+						hidden = not E.Retail,
+						get = function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscale = value E:StaticPopup_Show('CONFIG_RL') end,
+					},
+					worldmapscalevalue = {
+						type = 'range',
+						name = E.NewSign..L["World Map Scale"],
+						order = 11,
+						min = 0.1,
+						max = 3,
+						step = 0.01,
+						hidden = not E.Retail,
+						--width = "double",
+						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end,
+						get = function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue = value
+							if _G["WorldMapFrame"] and E.Retail then
+								_G["WorldMapFrame"]:SetScale(value)
+							end
+						end,
+					},
 				},
 			},
 			media = {
@@ -10747,9 +10781,6 @@ function ElvUI_EltreumUI:Configtable()
 									end
 									if _G["GossipFrame"] then
 										_G["GossipFrame"]:SetScale(value)
-									end
-									if _G["WorldMapFrame"] and E.Retail then
-										_G["WorldMapFrame"]:SetScale(value)
 									end
 								end,
 							},

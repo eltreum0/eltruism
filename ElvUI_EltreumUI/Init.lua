@@ -97,6 +97,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
 		ElvUI_EltreumUI:GetSpec() --checks player spec
 		ElvUI_EltreumUI:SkinLevelUp() --skins level up toast
+		ElvUI_EltreumUI:WorldMapScale() -- set world map scale
 		if E.myclass == 'HUNTER' then
 			ElvUI_EltreumUI:ExpandedStable() --expands pet stable for hunters
 		end
