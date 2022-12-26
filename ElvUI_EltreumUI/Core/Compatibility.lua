@@ -195,7 +195,8 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			addonname = "WindTools"
 		end
 
-		if E.private.WT.maps.worldMap.scale.enable or E.private.WT.maps.worldMap.scale.enable == nil then
+		if E.db.ElvUI_EltreumUI.otherstuff.worldmapscale and (E.private.WT.maps.worldMap.scale.enable or E.private.WT.maps.worldMap.scale.enable == nil) then
+			E.db.ElvUI_EltreumUI.otherstuff.worldmapscale = true
 			E.private.WT.maps.worldMap.scale.enable = false
 			compatibilityran = true
 			addonname = "WindTools"
