@@ -1256,3 +1256,5 @@ L["Shuffle"] = "Zufällig"
 L["Randomize Music Order"] = "Zufällige Musikreihenfolge"
 L["Shuffle List"] = "Zufallsliste"
 L["Split files with a comma, such as: file1.mp3,file2.mp3"] = "Teiledie Dateien mit einem Komma, wie z. B.: Datei1.mp3,Datei2.mp3"
+L["Enable World Map Scaling"] = true
+L["World Map Scale"] = true
