@@ -374,6 +374,7 @@ local modelsRotate = {
 	[1269151] = true, --Cordana Felsong
 	[4218362] = true, --Alexstrasza the Life-Binder
 	[4218967] = true, --Nozdormu
+	[797415] = true,
 }
 
 --set portrait rotation based on target being npc or not
