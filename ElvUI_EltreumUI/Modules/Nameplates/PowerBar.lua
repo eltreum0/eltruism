@@ -65,8 +65,6 @@ local shamanhex = 0
 local shamanbolt = 8
 local shamanlavaburst = 10
 local huntersteadyshot = 0
-local mindblast = 6
-local mindflay = 12
 local druideclipse
 --local druidelunewarrior
 local costTable
@@ -99,10 +97,10 @@ function ElvUI_EltreumUI:PowerPrediction()
 		EltreumPowerPrediction:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
 		EltreumPowerPredictionIncoming:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
 
-		if IsPlayerSpell(193195) then --talent might be removed
+		--[[if IsPlayerSpell(193195) then --talent might be removed
 			mindblast = 9
 			mindflay = 22
-		end
+		end]]
 		if E.Retail then
 			druideclipse = C_UnitAuras.GetPlayerAuraBySpellID(48517) --might be removed in dragonflight
 			--druidelunewarrior = C_UnitAuras.GetPlayerAuraBySpellID(202425) --might be removed in dragonflight
@@ -138,10 +136,10 @@ function ElvUI_EltreumUI:PowerPrediction()
 			[202347] = 8, -- Stellar Flare
 
 			-- Shadow Priest
-			[8092] = mindblast, -- mind blast
+			[8092] = 6, -- mind blast
 			[34914] = 5, -- vampiric touch
-			[15407] = mindflay, -- mind flay, but is a channel so idc
-			[48045] = 6, -- per target, but is a channel so idc
+			[15407] = 12, -- mind flay, but is a channel so idc
+			--[48045] = 6, -- per target, but is a channel so idc
 			[263165] = 60, -- void torrent, but is a channel so idc
 			[263346] = 15, --dark void
 			[73510] = 4, --mind spike
