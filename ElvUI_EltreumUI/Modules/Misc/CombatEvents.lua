@@ -23,12 +23,12 @@ function ElvUI_EltreumUI:CombatMusic(event, event2)
 			list = {strsplit("," ,E.private.ElvUI_EltreumUI.combatmusic.shufflelist)}
 			soundfile = [[Interface\AddOns\]]..list[math.random(1,#list)]
 		end
-		if E.private.ElvUI_EltreumUI.combatmusic.disableinstance == false then
+		if not E.private.ElvUI_EltreumUI.combatmusic.disableinstance then
 			if event == 'PLAYER_REGEN_DISABLED' and event2 == nil and dontstopboss == 0 then
 				PlayMusic(soundfile)
 				dontstop = 1
 			end
-		elseif E.private.ElvUI_EltreumUI.combatmusic.disableinstance == true then
+		elseif E.private.ElvUI_EltreumUI.combatmusic.disableinstance then
 			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "pvp" or instanceType == "arena" then
 				return
 			elseif instanceType == "none" then
