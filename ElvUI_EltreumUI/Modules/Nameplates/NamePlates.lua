@@ -87,9 +87,9 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 								button.Cooldown:SetSwipeColor(0, 0, 0, 0)
 								button.Cooldown:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Testing")
 							end
-							if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable then
+							if E.db.ElvUI_EltreumUI.nameplates.auras.enable then --adjust nameplate buff/debuff position
 								button.Cooldown.timer.text:ClearAllPoints()
-								button.Cooldown.timer.text:SetPoint("TOP", button.Icon, "TOP", 0, 5)
+								button.Cooldown.timer.text:SetPoint("TOP", button.Icon, "TOP", E.db.ElvUI_EltreumUI.nameplates.auras.xOffset, E.db.ElvUI_EltreumUI.nameplates.auras.yOffset)
 							end
 							debufftime = tonumber(button.Cooldown.timer.text:GetText())
 							if E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow then

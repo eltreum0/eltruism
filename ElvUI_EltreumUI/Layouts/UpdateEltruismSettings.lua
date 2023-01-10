@@ -45,6 +45,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.restedoverlap = true
+	E.db.ElvUI_EltreumUI.nameplates.auras.enable = true
 
 	-- Unitframes
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture = "Asphyxia-Norm"

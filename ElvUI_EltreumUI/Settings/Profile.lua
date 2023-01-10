@@ -303,6 +303,11 @@ P.ElvUI_EltreumUI = {
 			enable = false,
 			npglow = false,
 		},
+		auras = {
+			enable = false,
+			xOffset = 0,
+			yOffset = 5,
+		},
 	},
 
 	glow = {
