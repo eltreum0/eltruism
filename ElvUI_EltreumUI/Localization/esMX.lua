@@ -1235,3 +1235,5 @@ L["Shuffle List"] = true
 L["Split files with a comma, such as: file1.mp3,file2.mp3"] = true
 L["Enable World Map Scaling"] = true
 L["World Map Scale"] = true
+L["Adjust the position of the text on Buffs/Debuffs"] = true
+L["Adjust Aura Position"] = true

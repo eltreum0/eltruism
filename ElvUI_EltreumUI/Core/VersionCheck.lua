@@ -335,7 +335,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		if E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] == "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;;" then
 			E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
 		end
-	elseif E.private.ElvUI_EltreumUI.install_version > "3.4.4" and E.private.ElvUI_EltreumUI.install_version < "3.6.5" then
+	elseif E.private.ElvUI_EltreumUI.install_version >= "3.4.4" and E.private.ElvUI_EltreumUI.install_version < "3.6.5" then
 		if E.db.actionbar.bar4.visibility == "[vehicleui] show; [overridebar] show; [possessbar] show; show;" then
 			E.db["actionbar"]["bar1"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 			E.db["actionbar"]["bar4"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
@@ -355,7 +355,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.db["actionbar"]["bar8"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 			E.db["actionbar"]["bar9"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 		end
-	elseif E.private.ElvUI_EltreumUI.install_version > "3.6.5" and E.private.ElvUI_EltreumUI.install_version < "3.6.8" then
+	elseif E.private.ElvUI_EltreumUI.install_version >= "3.6.5" and E.private.ElvUI_EltreumUI.install_version < "3.6.8" then
 		--disable interrupt style filter inside raids due to the number of nameplates possibly causing issues, detected in razaghet fight during intermission where many adds spawn and cast, disabling solved the issue
 		if E.global["nameplates"]["filters"]["EltreumInterrupt"] and E.private.nameplates.enable then
 			E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceDifficulty"]["dungeon"]["heroic"] = true
@@ -368,6 +368,10 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceType"]["party"] = true
 			E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceType"]["pvp"] = true
 			E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceType"]["scenario"] = true
+		end
+	elseif E.private.ElvUI_EltreumUI.install_version >= "3.6.8" and E.private.ElvUI_EltreumUI.install_version < "3.6.9" then
+		if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable then
+			E.db.ElvUI_EltreumUI.nameplates.auras.enable = true
 		end
 	end
 end
