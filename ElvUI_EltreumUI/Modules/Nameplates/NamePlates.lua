@@ -156,9 +156,12 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 							button.Cooldown:SetEdgeTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\Testing")
 						end
 						button.Cooldown:SetEdgeTexture("Interface\\Cooldown\\edge",1,1,1,1)
-						button.Cooldown.timer.text:ClearAllPoints()
-						button.Cooldown.timer.text:SetDrawLayer('OVERLAY',1)
-						button.Cooldown.timer.text:Point("TOP", button.Icon, "TOP", 0, 5)
+						if E.db.ElvUI_EltreumUI.nameplates.auras.enable then --adjust nameplate buff/debuff position
+							button.Cooldown.timer.text:ClearAllPoints()
+							button.Cooldown.timer.text:SetDrawLayer('OVERLAY',1)
+							button.Cooldown.timer.text:SetPoint("TOP", button.Icon, "TOP", E.db.ElvUI_EltreumUI.nameplates.auras.xOffset, E.db.ElvUI_EltreumUI.nameplates.auras.yOffset)
+						end
+
 					end
 				end
 			end)
