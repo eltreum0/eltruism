@@ -1208,6 +1208,7 @@ P.ElvUI_EltreumUI = {
 			sizey = 9,
 		},
 		taxiscale = 1,
+		bagscale = 1,
 		colorbg = false,
 		musicshuffle = false,
 	},

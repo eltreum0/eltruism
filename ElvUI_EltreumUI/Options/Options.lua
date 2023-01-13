@@ -9580,6 +9580,28 @@ function ElvUI_EltreumUI:Configtable()
 									end
 								end,
 							},
+							headerbagscale = {
+								order = 46,
+								type = "description",
+								name = L["Bags"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							bagscale = {
+								type = 'range',
+								name = E.NewSign..L["Scale"],
+								order = 47,
+								min = 0.1,
+								max = 4,
+								step = 0.01,
+								--width = "double",
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.bagscale end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bagscale = value
+									if _G["ElvUI_ContainerFrame"] then
+										_G["ElvUI_ContainerFrame"]:SetScale(value)
+									end
+								end,
+							},
 							expandedstable = {
 								order = 50,
 								type = "description",

@@ -34,6 +34,15 @@ function ElvUI_EltreumUI:TaxiScale()
 	end
 end
 
+--bag scale
+function ElvUI_EltreumUI:BagScale()
+	if _G["ElvUI_ContainerFrame"] then
+		_G["ElvUI_ContainerFrame"]:HookScript("OnShow", function()
+			_G["ElvUI_ContainerFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.bagscale)
+		end)
+	end
+end
+
 --add cardinal directions to minimap
 local Cardinals = CreateFrame("FRAME", "Eltruism Cardinal Directions")
 Cardinals:SetParent(Minimap)
