@@ -2521,13 +2521,13 @@ function ElvUI_EltreumUI:Configtable()
 							headerlineUFborder = {
 								order = 97,
 								type = "description",
-								name = E.NewSign..L["Unitframe Auras"],
+								name = L["Unitframe Auras"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							enableaurauf = {
 								type = 'toggle',
-								name = E.NewSign..L["Enable Unitframe Auras"],
+								name = L["Enable Unitframe Auras"],
 								width = "full",
 								order = 98,
 								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
@@ -2536,7 +2536,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							ufaurabordersizex = {
 								type = 'range',
-								name = E.NewSign..L["Unitframe Aura Border X offset"],
+								name = L["Unitframe Aura Border X offset"],
 								order = 99,
 								min = 1,
 								max = 100,
@@ -2548,7 +2548,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							ufaurabordersizey = {
 								type = 'range',
-								name = E.NewSign..L["Unitframe Aura Border Y offset"],
+								name = L["Unitframe Aura Border Y offset"],
 								order = 100,
 								min = 1,
 								max = 100,
@@ -2560,7 +2560,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							ufdebuffaurabordersizex = {
 								type = 'range',
-								name = E.NewSign..L["Unitframes Debuff Aura Border X offset"],
+								name = L["Unitframes Debuff Aura Border X offset"],
 								order = 101,
 								min = 1,
 								max = 100,
@@ -2572,7 +2572,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							ufdebuffaurabordersizey = {
 								type = 'range',
-								name = E.NewSign..L["Unitframes Debuff Aura Border Y offset"],
+								name = L["Unitframes Debuff Aura Border Y offset"],
 								order = 102,
 								min = 1,
 								max = 100,
@@ -7326,7 +7326,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					taxiscale = {
 						type = 'range',
-						name = E.NewSign..L["Flight Frame Scale"],
+						name = L["Flight Frame Scale"],
 						order = 8,
 						min = 0.1,
 						max = 3,
@@ -9484,7 +9484,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							professionscale = {
 								type = 'range',
-								name = E.NewSign..L["Scale"],
+								name = L["Scale"],
 								hidden = not E.Retail,
 								order = 38,
 								min = 0.2,
@@ -9567,7 +9567,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							retailtalentscale = {
 								type = 'range',
-								name = E.NewSign..L["Scale"],
+								name = L["Scale"],
 								hidden = not E.Retail,
 								order = 45,
 								min = 0.1,
@@ -10508,7 +10508,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							shadowsenablechat = {
 								order = 4,
-								name = E.NewSign..CHAT_LABEL,
+								name = CHAT_LABEL,
 								type = "toggle",
 								desc = L["Add Shadows to the Chat Frames"],
 								width = 'full',
