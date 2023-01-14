@@ -9,3 +9,4 @@ Neuropol - Free license available at https://www.dafont.com/neuropol-x.font
 Pepsi-Cyr-lat - MIT License by Dmitry Astakhov, available at https://fontlibrary.org/en/font/pepsi-cyr-lat
 Noto Sans - Open Font License available at https://fonts.google.com/noto/specimen/Noto+Sans
 Inter - Open Font License available at https://fonts.google.com/specimen/Inter
+Reckoner - Free license available at https://www.dafont.com/reckoner.font
