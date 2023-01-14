@@ -507,7 +507,7 @@ shapeshiftcheck:SetScript("OnEvent", function(_,_,unit)
 end)
 
 --hoping this is a temporary fix and blizzard actually fixes models not inherithing the parent's alpha
-if E.Retail then
+if E.Retail or E.Wrath then
 
 	--fix alpha on login
 	local pewcheck = CreateFrame("FRAME")

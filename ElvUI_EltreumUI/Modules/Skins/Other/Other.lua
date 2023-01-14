@@ -618,7 +618,7 @@ function ElvUI_EltreumUI:SkinMailZone()
 			_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
 			_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
 			if _G.OpenMailBodyText then
-				if E.Retail then
+				if E.Retail or E.Wrath then
 					if E.db.general.fontStyle == "NONE" then
 						_G.OpenMailBodyText:SetFont("P", E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, "")
 					else

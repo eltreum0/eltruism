@@ -305,7 +305,7 @@ end
 	end
 ]]
 
-if E.Retail then
+if E.Retail or E.Wrath then
 	if not E.private.ElvUI_EltreumUI then return end
 	if not E.private.ElvUI_EltreumUI.install_version then return end
 	if not E.db.ElvUI_EltreumUI then return end
@@ -313,28 +313,28 @@ if E.Retail then
 	if E.db.ElvUI_EltreumUI.unitframes.darkmode then
 		hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.CustomTexture) --is causing "blinking"/"flashing" issues in 10.0
 	else
-		local test = CreateFrame("FRAME")
-		test:RegisterEvent("PLAYER_TARGET_CHANGED")
-		test:RegisterEvent("GROUP_ROSTER_UPDATE")
-		test:RegisterEvent("PLAYER_ENTERING_WORLD")
-		test:RegisterEvent("PLAYER_ROLES_ASSIGNED")
-		test:RegisterEvent("LOADING_SCREEN_DISABLED")
-		test:RegisterEvent("CINEMATIC_STOP")
-		test:RegisterEvent("INSTANCE_GROUP_SIZE_CHANGED")
-		test:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-		--test:RegisterEvent("UNIT_HEALTH")
-		test:RegisterUnitEvent("UNIT_TARGET", "target")
-		test:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player")
-		test:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
-		test:RegisterUnitEvent("UNIT_PORTRAIT_UPDATE", "player")
-		test:RegisterUnitEvent("UNIT_MODEL_CHANGED", "target")
-		test:RegisterUnitEvent("UNIT_PET", "player")
-		test:RegisterUnitEvent("UNIT_FLAGS", "player")
-		test:SetScript("OnEvent", function()
-			if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications and (E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or (not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.uftextureversion ~= "NONE") or (E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture)) then
+		local antiflicker = CreateFrame("FRAME")
+		antiflicker:RegisterEvent("PLAYER_TARGET_CHANGED")
+		antiflicker:RegisterEvent("GROUP_ROSTER_UPDATE")
+		antiflicker:RegisterEvent("PLAYER_ENTERING_WORLD")
+		antiflicker:RegisterEvent("PLAYER_ROLES_ASSIGNED")
+		antiflicker:RegisterEvent("LOADING_SCREEN_DISABLED")
+		antiflicker:RegisterEvent("CINEMATIC_STOP")
+		antiflicker:RegisterEvent("INSTANCE_GROUP_SIZE_CHANGED")
+		antiflicker:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+		--antiflicker:RegisterEvent("UNIT_HEALTH")
+		antiflicker:RegisterUnitEvent("UNIT_TARGET", "target")
+		antiflicker:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player")
+		antiflicker:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+		antiflicker:RegisterUnitEvent("UNIT_PORTRAIT_UPDATE", "player")
+		antiflicker:RegisterUnitEvent("UNIT_MODEL_CHANGED", "target")
+		antiflicker:RegisterUnitEvent("UNIT_PET", "player")
+		antiflicker:RegisterUnitEvent("UNIT_FLAGS", "player")
+		antiflicker:SetScript("OnEvent", function()
+			if E.private.unitframe.enable and (E.db.ElvUI_EltreumUI.unitframes.UFmodifications ~= false) and (E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or (not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.uftextureversion ~= "NONE") or (E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture)) then
 				ElvUI_EltreumUI:CustomTexture("player")
 			else
-				test:UnregisterAllEvents()
+				antiflicker:UnregisterAllEvents()
 			end
 		end)
 	end

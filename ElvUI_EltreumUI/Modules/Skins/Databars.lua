@@ -10,7 +10,7 @@ function ElvUI_EltreumUI:GradientDatabar()
 	--gradient xp
 	databarXP = _G["ElvUI_ExperienceBar"]
 	if databarXP and E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP then
-		if E.Retail then
+		if E.Retail or E.Wrath then
 			databarXP:GetStatusBarTexture():SetGradient("HORIZONTAL", { r = E.db.databars.colors.experience.r, g = E.db.databars.colors.experience.g, b = E.db.databars.colors.experience.b, a = E.db.databars.colors.experience.a}, { r = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, g = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, b = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, a = E.db.databars.colors.experience.a})
 		else
 			databarXP:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", E.db.databars.colors.experience.r, E.db.databars.colors.experience.g, E.db.databars.colors.experience.b, E.db.databars.colors.experience.a, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, E.db.databars.colors.experience.a)
@@ -25,7 +25,7 @@ function ElvUI_EltreumUI:GradientDatabar()
 
 		local customColors = DB.db.colors.useCustomFactionColors
 		local _, reaction, factionID
-		if E.Retail then
+		if E.Retail or E.Wrath then
 			 _, reaction, _, _, _, factionID = GetWatchedFactionInfo()
 			if factionID then
 				local info = factionID and C_GossipInfo.GetFriendshipReputation(factionID)
@@ -48,7 +48,7 @@ function ElvUI_EltreumUI:GradientDatabar()
 			if color then
 				local alpha = (customColors and color.a) or DB.db.colors.reputationAlpha or 1
 				--databarRep:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", color.r, color.g, color.b, alpha or color.a or 1, color.r - 0.4, color.g - 0.1, color.b - 0.5, alpha or color.a or 1)
-				if E.Retail then
+				if E.Retail or E.Wrath then
 					if reaction == 10 then
 						databarRep:GetStatusBarTexture():SetGradient("HORIZONTAL", { r = color.r, g = color.g, b = color.b, a = alpha or color.a or 1}, {r =color.r - E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r,g= color.g - E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g,b= color.b - E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b,a= alpha or color.a or 1})
 					else
@@ -64,7 +64,7 @@ function ElvUI_EltreumUI:GradientDatabar()
 	--gradient honor
 	databarHonor = _G["ElvUI_HonorBar"]
 	if databarHonor and E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor then
-		if E.Retail then
+		if E.Retail or E.Wrath then
 			databarHonor:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=E.db.databars.colors.honor.r,g= E.db.databars.colors.honor.g,b= E.db.databars.colors.honor.b,a= E.db.databars.colors.honor.a}, {r=E.db.databars.colors.honor.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.r,g=E.db.databars.colors.honor.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.g,b= E.db.databars.colors.honor.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b,a= E.db.databars.colors.honor.a})
 		else
 			databarHonor:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", E.db.databars.colors.honor.r, E.db.databars.colors.honor.g, E.db.databars.colors.honor.b, E.db.databars.colors.honor.a, E.db.databars.colors.honor.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.r, E.db.databars.colors.honor.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.g, E.db.databars.colors.honor.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b, E.db.databars.colors.honor.a)

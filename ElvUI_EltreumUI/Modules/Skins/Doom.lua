@@ -16,7 +16,7 @@ local unpack = _G.unpack
 local GetSpellCooldown = _G.GetSpellCooldown
 local GetSpellInfo = _G.GetSpellInfo
 local GetSpellTexture = _G.GetSpellTexture
-local GetItemCooldown = _G.GetItemCooldown
+local GetItemCooldown = (E.Retail or E.Wrath) and C_Container.GetItemCooldown or _G.GetContainerItemCooldown
 local GetItemInfo = _G.GetItemInfo
 local GetPetActionCooldown = _G.GetPetActionCooldown
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
@@ -351,7 +351,7 @@ function ElvUI_EltreumUI:Doom()
 				watching[itemID] = {GetTime(),"item",texture}
 			end
 		end)
-		if E.Retail then
+		if E.Retail or E.Wrath then
 			hooksecurefunc(C_Container, "UseContainerItem", function(bag,slot)
 				local itemID = C_Container.GetContainerItemID(bag, slot)
 
