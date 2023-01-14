@@ -95,6 +95,8 @@ LSM:Register("font", "JosefinSans-Bold", [[Interface\Addons\ElvUI_EltreumUI\Medi
 LSM:Register("font", "Neuropol", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\neuropolxrg.ttf]])
 LSM:Register("font", "OptimusPrinceps", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\OptimusPrinceps.ttf]])
 LSM:Register("font", "Pricedown", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\pricedown.ttf]])
+LSM:Register("font", "Reckoner", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Reckoner.ttf]])
+LSM:Register("font", "Reckoner Bold", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Reckoner_Bold.ttf]])
 
 -- Sound
 LSM:Register("sound", "bruh", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\bruh.ogg]])
