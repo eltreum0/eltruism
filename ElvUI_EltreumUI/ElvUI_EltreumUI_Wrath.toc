@@ -1,4 +1,4 @@
-## Interface: 30400
+## Interface: 30401
 ## Author: Eltreum
 ## Version: 3.6.8
 ## Title: |cff1784d1ElvUI|r Eltruism Wrath
