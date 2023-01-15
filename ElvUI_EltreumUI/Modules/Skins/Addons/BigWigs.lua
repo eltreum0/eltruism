@@ -15,7 +15,7 @@ do
 			function candy.barPrototype:SetColor(...)
 				self.candyBarBar:SetStatusBarColor(...)
 				local r,g,b = self.candyBarBar:GetStatusBarColor()
-				if E.Retail then
+				if E.Retail or E.Wrath then
 					self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.4,g= g-0.4,b= b-0.4,a= 0.7}, {r=r,g= g,b= b,a= 0.7})
 				else
 					self.candyBarBar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.4, g-0.4, b-0.4, 0.7, r, g, b, 0.7)

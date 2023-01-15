@@ -320,7 +320,7 @@ do
 	--get the gradient colors
 	local bgfade
 	function ElvUI_EltreumUI:GradientColors(unitclass, invert, alpha, isBG)
-		if E.Retail then
+		if E.Retail or E.Wrath then
 			if unitclass then
 				if isBG then
 					bgfade = E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade
@@ -399,7 +399,7 @@ do
 
 	--get the custom gradient colors
 	function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, alpha, isBG)
-		if E.Retail then
+		if E.Retail or E.Wrath then
 			if unitclass then
 				if isBG then
 					bgfade = E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade
@@ -510,7 +510,7 @@ do
 
 	--different for details because bars smaller and different
 	function ElvUI_EltreumUI:GradientColorsDetails(unitclass)
-		if E.Retail then
+		if E.Retail or E.Wrath then
 			if unitclass then
 				if not unitframegradients[unitclass] then
 					return {r=unitframegradients["NPCNEUTRAL"].r1 - 0.2,g= unitframegradients["NPCNEUTRAL"].g1 - 0.2, b=unitframegradients["NPCNEUTRAL"].b1 - 0.2, a=0.9}, {r=unitframegradients["NPCNEUTRAL"].r2 + 0.2, g=unitframegradients["NPCNEUTRAL"].g2 + 0.2, b=unitframegradients["NPCNEUTRAL"].b2 + 0.2, a=0.9}
@@ -530,7 +530,7 @@ do
 	end
 
 	function ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass)
-		if E.Retail then
+		if E.Retail or E.Wrath then
 			if unitclass then
 				if not unitframegradients[unitclass] then
 					return {r=unitframecustomgradients["NPCNEUTRAL"].r1,g= unitframecustomgradients["NPCNEUTRAL"].g1,b= unitframecustomgradients["NPCNEUTRAL"].b1, a=0.9}, {r=unitframecustomgradients["NPCNEUTRAL"].r2,g= unitframecustomgradients["NPCNEUTRAL"].g2, b=unitframecustomgradients["NPCNEUTRAL"].b2, a=0.9}

@@ -14,10 +14,10 @@ local GetSpellInfo = _G.GetSpellInfo
 local GetSpellBaseCooldown = _G.GetSpellBaseCooldown
 local GetSpellCooldown = _G.GetSpellCooldown
 local GetInventoryItemLink = _G.GetInventoryItemLink
-local GetContainerItemLink = _G.GetContainerItemLink
+local GetContainerItemLink = (E.Retail or E.Wrath) and C_Container.GetContainerItemLink or _G.GetContainerItemLink
 local tonumber = _G.tonumber
 local GetItemInfo = _G.GetItemInfo
-local GetItemCooldown = _G.GetItemCooldown
+local GetItemCooldown = (E.Retail or E.Wrath) and C_Container.GetItemCooldown or _G.GetItemCooldown
 local GetPetActionCooldown = _G.GetPetActionCooldown
 local PlaySoundFile = _G.PlaySoundFile
 local start, duration, enabled
@@ -114,7 +114,7 @@ function ElvUI_EltreumUI:CooldownEnable()
 		ElvUI_EltreumUI:SecureHook("UseAction", "checkActionCooldown") --this enables tracking actions that are not macros
 	end
 
-	if E.Retail then
+	if E.Retail or E.Wrath then
 		if ElvUI_EltreumUI:IsHooked(C_Container, "UseContainerItem", "checkContainerItemCooldown") then
 			return
 		else

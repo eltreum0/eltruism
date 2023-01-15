@@ -7,12 +7,12 @@ local GetItemInfo = _G.GetItemInfo
 local GetItemInfoInstant = _G.GetItemInfoInstant
 local GetItemCount = _G.GetItemCount
 local format = _G.format
-local GetContainerItemID = _G.GetContainerItemID
+local GetContainerItemID = (E.Retail or E.Wrath) and C_Container.GetContainerItemID or _G.GetContainerItemID
 local GetInventoryItemCount = _G.GetInventoryItemCount
 local GetInventoryItemID = _G.GetInventoryItemID
-local ContainerIDToInventoryID = _G.ContainerIDToInventoryID
-local GetContainerNumSlots = _G.GetContainerNumSlots
-local GetContainerNumFreeSlots = _G.GetContainerNumFreeSlots
+local ContainerIDToInventoryID = (E.Retail or E.Wrath) and C_Container.ContainerIDToInventoryID or _G.ContainerIDToInventoryID
+local GetContainerNumSlots = (E.Retail or E.Wrath) and C_Container.GetContainerNumSlots or _G.GetContainerNumSlots
+local GetContainerNumFreeSlots = (E.Retail or E.Wrath) and C_Container.GetContainerNumFreeSlots or _G.GetContainerNumFreeSlots
 local GetItemQualityColor = _G.GetItemQualityColor
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
@@ -22,7 +22,6 @@ if not E.Retail then
 	local itemName = {}
 	local displayString = ''
 	local waitingItemID
-	local lastPanel
 	local function OnEvent(self, event, ...)
 		local name, count, itemID, itemEquipLoc
 		if event == 'GET_ITEM_INFO_RECEIVED' then
@@ -80,7 +79,6 @@ if not E.Retail then
 			waitingItemID = itemID
 			self:RegisterEvent('GET_ITEM_INFO_RECEIVED')
 		end
-		lastPanel = self
 	end
 	local itemCount = {}
 	local function OnEnter()
@@ -102,6 +100,22 @@ if not E.Retail then
 				end
 			end
 			DT.tooltip:AddLine(' ')
+		elseif E.myclass == "WARLOCK" then
+			wipe(itemCount)
+			DT.tooltip:AddLine(SOUL_SHARDS_POWER)
+			for i = 0, NUM_BAG_FRAMES do
+				for j = 1, GetContainerNumSlots(i) do
+					local itemID = GetContainerItemID(i, j)
+					if itemID and not itemCount[itemID] then
+						local name, _, quality, _, _, _, _, _, equipLoc, texture = GetItemInfo(itemID)
+						local count = GetItemCount(itemID)
+						if itemID == 6265 then
+							DT.tooltip:AddDoubleLine(strjoin('', format(iconString, texture), ' ', name), count, GetItemQualityColor(quality))
+							itemCount[itemID] = count
+						end
+					end
+				end
+			end
 		end
 		for i = 1, NUM_BAG_SLOTS do
 			local itemID = GetInventoryItemID('player', ContainerIDToInventoryID(i))
@@ -134,12 +148,10 @@ if not E.Retail then
 			end
 		end
 	end
-	local function ValueColorUpdate(hex)
+	local function ValueColorUpdate(self, hex)
 		displayString = strjoin('', '%s: ', hex, '%d|r')
-		if lastPanel ~= nil then
-			OnEvent(lastPanel)
-		end
+
+		OnEvent(self)
 	end
-	E.valueColorUpdateFuncs[ValueColorUpdate] = true
-	DT:RegisterDatatext("Eltruism Ammo", nil, {'BAG_UPDATE', 'UNIT_INVENTORY_CHANGED'}, OnEvent, nil, OnClick, OnEnter, nil, L["Eltruism Ammo"])
+	DT:RegisterDatatext("Eltruism Ammo", nil, {'BAG_UPDATE', 'UNIT_INVENTORY_CHANGED'}, OnEvent, nil, OnClick, OnEnter, nil, L["Eltruism Ammo"], nil, ValueColorUpdate)
 end

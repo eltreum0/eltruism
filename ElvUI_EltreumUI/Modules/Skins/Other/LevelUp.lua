@@ -34,17 +34,6 @@ function ElvUI_EltreumUI:SkinLevelUp()
 				--/script EventToastManagerFrame:Show()
 			end
 
-			--remove blizzard boss emote during raids/dungeons
-			if E.db.ElvUI_EltreumUI.skins.bossemote then
-				local RaidBossEmoteFrame = _G.RaidBossEmoteFrame
-				local _, instanceType = IsInInstance()
-				if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --fix for WQs that use the boss emote frame
-					RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_EMOTE")
-					RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_WHISPER")
-					RaidBossEmoteFrame:UnregisterEvent("CLEAR_BOSS_EMOTES")
-				end
-			end
-
 			--skin the boss loot banner
 			local BossBanner = _G.BossBanner
 			if BossBanner then
@@ -82,6 +71,18 @@ function ElvUI_EltreumUI:SkinLevelUp()
 			end
 		end
 	end
+
+	--remove blizzard boss emote during raids/dungeons
+	if E.db.ElvUI_EltreumUI.skins.bossemote and _G.RaidBossEmoteFrame then
+		local RaidBossEmoteFrame = _G.RaidBossEmoteFrame
+		local _, instanceType = IsInInstance()
+		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --fix for WQs that use the boss emote frame
+			RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_EMOTE")
+			RaidBossEmoteFrame:UnregisterEvent("RAID_BOSS_WHISPER")
+			RaidBossEmoteFrame:UnregisterEvent("CLEAR_BOSS_EMOTES")
+		end
+	end
+
 end
 
 --add one for classic/tbc as well, but for some reason doesnt really work inside a function, maybe because of the timer?

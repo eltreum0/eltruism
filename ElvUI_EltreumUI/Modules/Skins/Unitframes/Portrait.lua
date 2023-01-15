@@ -507,7 +507,7 @@ shapeshiftcheck:SetScript("OnEvent", function(_,_,unit)
 end)
 
 --hoping this is a temporary fix and blizzard actually fixes models not inherithing the parent's alpha
-if E.Retail then
+if E.Retail or E.Wrath then
 
 	--fix alpha on login
 	local pewcheck = CreateFrame("FRAME")
@@ -523,6 +523,27 @@ if E.Retail then
 				end
 				if _G["EltruismPlayerPowerBarEffect"] then
 					_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
+				end
+			end)
+		end
+	end)
+
+	--flags changed fix
+	local flagcheck = CreateFrame("FRAME")
+	flagcheck:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player") --model seems to update when flags are changed
+	flagcheck:SetScript("OnEvent",function()
+		if _G["ElvUF_Player"] and E.db.unitframe.units.player.fader.enable and E.db.unitframe.units.player.fader.minAlpha == 0 then
+			E:Delay(0, function()
+				if _G["ElvUF_Player"]:GetAlpha() == 0 then
+					if _G["ElvUF_Player"].Portrait3D then
+						_G["ElvUF_Player"].Portrait3D:Hide()
+					end
+					if _G["EltruismPlayerEffect"] then
+						_G["EltruismPlayerEffect"]:SetAlpha(0)
+					end
+					if _G["EltruismPlayerPowerBarEffect"] then
+						_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
+					end
 				end
 			end)
 		end
