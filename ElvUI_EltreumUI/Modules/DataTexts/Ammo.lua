@@ -100,6 +100,22 @@ if not E.Retail then
 				end
 			end
 			DT.tooltip:AddLine(' ')
+		elseif E.myclass == "WARLOCK" then
+			wipe(itemCount)
+			DT.tooltip:AddLine(SOUL_SHARDS_POWER)
+			for i = 0, NUM_BAG_FRAMES do
+				for j = 1, GetContainerNumSlots(i) do
+					local itemID = GetContainerItemID(i, j)
+					if itemID and not itemCount[itemID] then
+						local name, _, quality, _, _, _, _, _, equipLoc, texture = GetItemInfo(itemID)
+						local count = GetItemCount(itemID)
+						if itemID == 6265 then
+							DT.tooltip:AddDoubleLine(strjoin('', format(iconString, texture), ' ', name), count, GetItemQualityColor(quality))
+							itemCount[itemID] = count
+						end
+					end
+				end
+			end
 		end
 		for i = 1, NUM_BAG_SLOTS do
 			local itemID = GetInventoryItemID('player', ContainerIDToInventoryID(i))
