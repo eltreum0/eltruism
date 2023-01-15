@@ -74,6 +74,7 @@ function ElvUI_EltreumUI:SkinLevelUp()
 
 	--remove blizzard boss emote during raids/dungeons
 	if E.db.ElvUI_EltreumUI.skins.bossemote and _G.RaidBossEmoteFrame then
+		_G.RaidBossEmoteFrame:SetScale(E.db.ElvUI_EltreumUI.skins.blizzframes.bossScale)
 		local RaidBossEmoteFrame = _G.RaidBossEmoteFrame
 		local _, instanceType = IsInInstance()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --fix for WQs that use the boss emote frame
