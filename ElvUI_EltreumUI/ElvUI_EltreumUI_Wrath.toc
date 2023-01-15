@@ -8,7 +8,7 @@
 ## RequiredDeps: Blizzard_CombatText
 ## OptionalDeps: NameplateSCT, Immersion, DynamicCam, Gladius, Gladdy, ProjectAzilroka
 ## DefaultState: enabled
-## X-Interface: 30400
+## X-Interface: 30401
 ## X-Tukui-ProjectID: 10
 ## X-Curse-Project-ID: 459494
 ## X-Wago-ID: vEGPqEN1
