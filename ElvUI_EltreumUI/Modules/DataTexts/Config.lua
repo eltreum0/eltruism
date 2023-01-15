@@ -31,12 +31,8 @@ local function EltruismConfigOnClick(_, button)
 	end
 end
 
-local function EltruismConfigValueColorUpdate(hex)
+local function EltruismConfigValueColorUpdate(self,hex)
 	displayStringEltruismconfig = strjoin('', hex, '%s|r')
-
-	if lastPanelEltruismConfig then
-		EltruismConfigOnEvent(lastPanelEltruismConfig, 'ELVUI_COLOR_UPDATE')
-	end
+	if lastPanelEltruismConfig then EltruismConfigOnEvent(lastPanelEltruismConfig) end
 end
-E.valueColorUpdateFuncs[EltruismConfigValueColorUpdate] = true
 DT:RegisterDatatext('Eltruism', nil, nil, EltruismConfigOnEvent, nil, EltruismConfigOnClick, EltruismConfigOnEnter, nil, L["Eltruism Config"], nil, EltruismConfigValueColorUpdate)
