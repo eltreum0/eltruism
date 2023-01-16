@@ -1260,3 +1260,4 @@ L["Enable World Map Scaling"] = "Aktiviere Weltkarten Skalierung"
 L["World Map Scale"] = "Weltkarten Skalierung"
 L["Adjust the position of the text on Buffs/Debuffs"] = "Position des Textes auf Stärkungs-/Schwächungszauber anpassen"
 L["Adjust Aura Position"] = "Position des Textes auf Auren anpassen"
+L["Boss Banner Frame Scale"] = true

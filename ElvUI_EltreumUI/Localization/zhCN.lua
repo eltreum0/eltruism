@@ -1214,3 +1214,4 @@ L["Enable World Map Scaling"] = true
 L["World Map Scale"] = true
 L["Adjust the position of the text on Buffs/Debuffs"] = true
 L["Adjust Aura Position"] = true
+L["Boss Banner Frame Scale"] = true

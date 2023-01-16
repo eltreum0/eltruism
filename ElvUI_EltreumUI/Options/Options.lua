@@ -9412,13 +9412,39 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize = tonumber(value) E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							zoneenable = {
-								order = 34,
+								order = 5,
 								name = L["Enable for Zones, Mail and others"],
 								type = "toggle",
 								desc = L["Such as the Zones, Mail and others"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.skins.zones end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.zones = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							headerbossemotescale = {
+								order = 6,
+								type = "description",
+								name = "",
+								width = 'full',
+								hidden = E.Classic,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							bossemotescale = {
+								type = 'range',
+								name = L["Boss Banner Frame Scale"],
+								desc = L["Boss Banner Frame Scale"],
+								order = 7,
+								min = 0.2,
+								max = 3,
+								step = 0.01,
+								width = "double",
+								hidden = E.Classic,
+								disabled = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.bossScale end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.bossScale = tonumber(value)
+									if _G.RaidBossEmoteFrame then
+										_G.RaidBossEmoteFrame:SetScale(value)
+									end
+								 end,
 							},
 							headerhideblizz = {
 								order = 35,
