@@ -484,19 +484,19 @@ function ElvUI_EltreumUI:Shadows()
 						_G.EncounterJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournal.shadow) end
 					end
-					if not _G.EncounterJournalSuggestTab.backdrop.shadow then
+					if _G.EncounterJournalSuggestTab and _G.EncounterJournalSuggestTab.backdrop and not _G.EncounterJournalSuggestTab.backdrop.shadow then
 						_G.EncounterJournalSuggestTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalSuggestTab.backdrop.shadow) end
 					end
-					if not _G.EncounterJournalDungeonTab.backdrop.shadow then
+					if _G.EncounterJournalDungeonTab and _G.EncounterJournalDungeonTab.backdrop and not _G.EncounterJournalDungeonTab.backdrop.shadow then
 						_G.EncounterJournalDungeonTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalDungeonTab.backdrop.shadow) end
 					end
-					if not _G.EncounterJournalRaidTab.backdrop.shadow then
+					if _G.EncounterJournalRaidTab and _G.EncounterJournalRaidTab.backdrop and not _G.EncounterJournalRaidTab.backdrop.shadow then
 						_G.EncounterJournalRaidTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalRaidTab.backdrop.shadow) end
 					end
-					if not _G.EncounterJournalLootJournalTab.backdrop.shadow then
+					if _G.EncounterJournalLootJournalTab and _G.EncounterJournalLootJournalTab.backdrop and not _G.EncounterJournalLootJournalTab.backdrop.shadow then
 						_G.EncounterJournalLootJournalTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalLootJournalTab.backdrop.shadow) end
 					end
