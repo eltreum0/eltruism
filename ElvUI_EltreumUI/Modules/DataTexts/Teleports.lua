@@ -182,6 +182,7 @@ local displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Me
 local function EltruismTeleportsOnEvent(self)
 	local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
 	local start, duration = GetItemCooldown(6948)
+	if not start then return end
 	local cooldown = start + duration - GetTime()
 	if cooldown >= 2 then
 		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t |cffED7474"..GetBindLocation().."|r"
