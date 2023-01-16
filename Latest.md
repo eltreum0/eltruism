@@ -1,10 +1,22 @@
-### 3.6.8 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.6.9 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added SoftTarget Cvars to the Cvars list\
-Added EltreumDeadNP Style Filter for Soft Target Nameplates\
-Updated Max Quests value in Retail since the Global String was not updated by Blizzard yet\
-Updated EltreumInterrupt Style Filter to not run inside Raids\
-Updated Error Frame Font Max Size\
-Updated Shadows function\
-Fixed a possible issue with Cooldown due to Alpha values possibly being set above the max limit of 1\
-Fixed a double line issue with Item Level on Tooltips in Wrath
+Added tooltip for Warlock Soul Shards on the Ammo datatext in Wrath/Classic\
+Added options to customize the position of aura texts in nameplates\
+Added Withered sound ("One of the withered is running away!")\
+Added option to change the scale/size of the ElvUI bags\
+Added options to disable the World Map scaling\
+Added Boss Emote Block and Scale to Wrath\
+Added Nvidia Reflex options to Wrath\
+Added Reckoner font\
+Updated shadow priest's power prediction in Nameplate Power Bar\
+Updated Cooldown's alpha options to allow smaller increments\
+Updated Datatexts for new ElvUI format\
+Updated german locale by Dlarge\
+Updated for Wrath 3.4.1\
+Fixed a possible issue in loading screens with Cooldown and Teleports Datatext\
+Fixed Custom Glow options not being enabled if other Glow frames were enabled\
+Fixed a possible issue with Shadows in the Encounter Journal\
+Fixed a possible issue when ElvUI nameplates were disabled\
+Fixed the alpha od models when player status was changed\
+Fixed a possible issue with detached power shadows\
+Fixed a shadow mismatch in the castbars\
