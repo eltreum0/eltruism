@@ -11,12 +11,12 @@ Added Reckoner font\
 Updated shadow priest's power prediction in Nameplate Power Bar\
 Updated Cooldown's alpha options to allow smaller increments\
 Updated Datatexts for new ElvUI format\
-Updated german locale by Dlarge\
+Updated German locale by Dlarge\
 Updated for Wrath 3.4.1\
 Fixed a possible issue in loading screens with Cooldown and Teleports Datatext\
 Fixed Custom Glow options not being enabled if other Glow frames were enabled\
 Fixed a possible issue with Shadows in the Encounter Journal\
 Fixed a possible issue when ElvUI nameplates were disabled\
-Fixed the alpha od models when player status was changed\
+Fixed the alpha of models when player status was changed\
 Fixed a possible issue with detached power shadows\
 Fixed a shadow mismatch in the castbars
