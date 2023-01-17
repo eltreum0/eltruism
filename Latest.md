@@ -19,4 +19,4 @@ Fixed a possible issue with Shadows in the Encounter Journal\
 Fixed a possible issue when ElvUI nameplates were disabled\
 Fixed the alpha od models when player status was changed\
 Fixed a possible issue with detached power shadows\
-Fixed a shadow mismatch in the castbars\
+Fixed a shadow mismatch in the castbars
