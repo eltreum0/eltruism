@@ -231,35 +231,31 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 							end
 							CloseQuest()
 						else
-							if E.Retail then
-								if E.db.ElvUI_EltreumUI.dev then
-									ElvUI_EltreumUI:Print("not an auto accept quest")
-								end
-								if not E.db.ElvUI_EltreumUI.quests.acceptdaily then
-									if QuestIsDaily() then
-										if E.db.ElvUI_EltreumUI.dev then
-											ElvUI_EltreumUI:Print("its a daily quest")
-										end
-										return
-									elseif QuestIsWeekly() then
-										if E.db.ElvUI_EltreumUI.dev then
-											ElvUI_EltreumUI:Print("its a weekly quest")
-										end
-										return
-									else
-										AcceptQuest()
-										if E.db.ElvUI_EltreumUI.dev then
-											ElvUI_EltreumUI:Print("quest accepted")
-										end
+							if E.db.ElvUI_EltreumUI.dev then
+								ElvUI_EltreumUI:Print("not an auto accept quest")
+							end
+							if not E.db.ElvUI_EltreumUI.quests.acceptdaily then
+								if QuestIsDaily() then
+									if E.db.ElvUI_EltreumUI.dev then
+										ElvUI_EltreumUI:Print("its a daily quest")
 									end
+									return
+								elseif QuestIsWeekly() then
+									if E.db.ElvUI_EltreumUI.dev then
+										ElvUI_EltreumUI:Print("its a weekly quest")
+									end
+									return
 								else
 									AcceptQuest()
 									if E.db.ElvUI_EltreumUI.dev then
 										ElvUI_EltreumUI:Print("quest accepted")
 									end
 								end
-							elseif E.Wrath or E.Classic then
+							else
 								AcceptQuest()
+								if E.db.ElvUI_EltreumUI.dev then
+									ElvUI_EltreumUI:Print("quest accepted")
+								end
 							end
 						end
 					elseif E.Wrath or E.Classic then
@@ -344,7 +340,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						return
 					else
 						--https://wowpedia.fandom.com/wiki/Category:API_namespaces/C_GossipInfo
-						if E.Retail then
+						if E.Retail or E.Wrath then
 							local active = C_GossipInfo.GetActiveQuests()
 							local available = C_GossipInfo.GetAvailableQuests()
 							local notcomplete = 0
@@ -480,7 +476,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 									end
 								end
 							end
-						elseif E.Wrath or E.Classic then
+						elseif E.Classic then
 							if (GetNumGossipAvailableQuests() > 0) then
 								if E.db.ElvUI_EltreumUI.dev then
 									ElvUI_EltreumUI:Print("number of available quests > 0")
@@ -551,7 +547,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						end
 						return
 					else
-						if E.Retail then
+						if E.Retail or E.Wrath then
 							if C_GossipInfo.GetNumActiveQuests() == 0 then --maybe npc only has 1 quest, or its laurent from revendreth and it has a turn in with 0
 								if E.db.ElvUI_EltreumUI.dev then
 									ElvUI_EltreumUI:Print("unable to determine if quest completed, trying anyway")
@@ -575,7 +571,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 									CompleteQuest()
 								end
 							end
-						elseif E.Wrath or E.Classic then
+						elseif E.Classic then
 							if E.db.ElvUI_EltreumUI.dev then
 								ElvUI_EltreumUI:Print("tried to complete quest")
 							end
@@ -593,7 +589,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						end
 						return
 					else
-						if E.Retail then
+						if E.Retail or E.Wrath then
 							--[[local active = C_GossipInfo.GetActiveQuests()
 							local notcomplete = 0
 							local completed = 0
@@ -625,7 +621,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								end
 								GetQuestReward(GetNumQuestChoices())
 							end
-						elseif E.Wrath or E.Classic then
+						elseif E.Classic then
 							if GetNumQuestChoices() == 1 then
 								GetQuestReward(1)
 								if E.db.ElvUI_EltreumUI.dev then
