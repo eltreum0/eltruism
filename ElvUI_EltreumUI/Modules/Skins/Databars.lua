@@ -25,7 +25,7 @@ function ElvUI_EltreumUI:GradientDatabar()
 
 		local customColors = DB.db.colors.useCustomFactionColors
 		local _, reaction, factionID
-		if E.Retail or E.Wrath then
+		if E.Retail then
 			 _, reaction, _, _, _, factionID = GetWatchedFactionInfo()
 			if factionID then
 				local info = factionID and C_GossipInfo.GetFriendshipReputation(factionID)
@@ -97,7 +97,7 @@ function ElvUI_EltreumUI:GradientArcheology()
 		if _G.ArcheologyDigsiteProgressBar.FillBar then
 			_G.ArcheologyDigsiteProgressBar.FillBar:SetSize(E.db.ElvUI_EltreumUI.otherstuff.archeology.sizex,E.db.ElvUI_EltreumUI.otherstuff.archeology.sizey)
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-				if E.Retail then
+				if E.Retail or E.Wrath then
 					_G.ArcheologyDigsiteProgressBar.FillBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=E.db.ElvUI_EltreumUI.otherstuff.archeology.r1,g=E.db.ElvUI_EltreumUI.otherstuff.archeology.g1,b=E.db.ElvUI_EltreumUI.otherstuff.archeology.b1,a= 1}, {r=E.db.ElvUI_EltreumUI.otherstuff.archeology.r2,g=E.db.ElvUI_EltreumUI.otherstuff.archeology.g2,b=E.db.ElvUI_EltreumUI.otherstuff.archeology.b2,a= 1})
 				else
 					_G.ArcheologyDigsiteProgressBar.FillBar:GetStatusBarTexture():SetGradient("HORIZONTAL", E.db.ElvUI_EltreumUI.otherstuff.archeology.r1,E.db.ElvUI_EltreumUI.otherstuff.archeology.g1,E.db.ElvUI_EltreumUI.otherstuff.archeology.b1, E.db.ElvUI_EltreumUI.otherstuff.archeology.r2,E.db.ElvUI_EltreumUI.otherstuff.archeology.g2,E.db.ElvUI_EltreumUI.otherstuff.archeology.b2)

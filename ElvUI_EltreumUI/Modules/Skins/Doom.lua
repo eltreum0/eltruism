@@ -216,6 +216,7 @@ function ElvUI_EltreumUI:Doom()
 				end
 				for i,getCooldownDetails in pairs(cooldowns) do
 					local cooldown = getCooldownDetails()
+					if not cooldown.start then return end
 					local remaining = cooldown.duration-(GetTime()-cooldown.start)
 					if (remaining <= 0) then
 						tinsert(animating, {cooldown.texture,cooldown.isPet,cooldown.name})
