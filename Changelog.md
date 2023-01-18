@@ -20,6 +20,7 @@ Fixed Custom Glow options not being enabled if other Glow frames were enabled\
 Fixed a possible issue with Shadows in the Encounter Journal\
 Fixed a possible issue when ElvUI nameplates were disabled\
 Fixed the alpha of models when player status was changed\
+Fixed a possible error with Reputation Databars in Wrath\
 Fixed a possible issue with detached power shadows\
 Fixed a shadow mismatch in the castbars
 ### 3.6.8
