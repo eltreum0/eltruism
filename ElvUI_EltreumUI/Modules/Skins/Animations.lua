@@ -73,7 +73,7 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 			scaleOut:SetDuration(5)
 			scaleOut:SetStartDelay(0.1)
 			scaleOut:SetSmoothing("OUT")
-			if not E.Retail then
+			if E.Classic then
 				scaleOut:SetFromScale(1, 1)
 				scaleOut:SetToScale(2, 2)
 			else
