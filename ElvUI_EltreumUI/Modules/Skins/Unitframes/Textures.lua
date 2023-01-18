@@ -310,6 +310,7 @@ if E.Retail or E.Wrath then
 	if not E.private.ElvUI_EltreumUI.install_version then return end
 	if not E.db.ElvUI_EltreumUI then return end
 	if not E.db.ElvUI_EltreumUI.unitframes then return end
+	if not E.db.ElvUI_EltreumUI.unitframes.gradientmode then return end
 	if E.db.ElvUI_EltreumUI.unitframes.darkmode then
 		hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.CustomTexture) --is causing "blinking"/"flashing" issues in 10.0
 	else
