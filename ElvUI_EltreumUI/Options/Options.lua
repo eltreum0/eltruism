@@ -1382,8 +1382,6 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								--image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-
-
 							gap1 = {
 								order = 5,
 								type = "description",
@@ -7352,7 +7350,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					wordlmapscaletoggle = {
 						type = 'toggle',
-						name = L["Enable World Map Scaling"],
+						name = E.NewSign..L["Enable World Map Scaling"],
 						order = 10,
 						--desc = "",
 						hidden = not E.Retail,
@@ -8147,7 +8145,7 @@ function ElvUI_EltreumUI:Configtable()
 							headernpauras = {
 								order = 13,
 								type = "description",
-								name = L["Adjust Aura Position"],
+								name = E.NewSign..L["Adjust Aura Position"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -9430,7 +9428,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							bossemotescale = {
 								type = 'range',
-								name = L["Boss Banner Frame Scale"],
+								name = E.NewSign..L["Boss Banner Frame Scale"],
 								desc = L["Boss Banner Frame Scale"],
 								order = 7,
 								min = 0.2,
