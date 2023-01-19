@@ -239,7 +239,7 @@ function ElvUI_EltreumUI:Anchors()
 	else
 		E:CreateMover(UIErrorsFrame, "MoverUIERRORS", "UI Error Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
 		if E.db.ElvUI_EltreumUI.skins.blizzframes.errorframe then
-			if E.Retail and E.db.general.fontStyle == "NONE" then
+			if (E.Retail or E.Wrath) and E.db.general.fontStyle == "NONE" then
 				UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, "")
 			else
 				UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, E.db.general.fontStyle)
