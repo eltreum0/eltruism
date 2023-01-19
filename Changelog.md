@@ -1,6 +1,11 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.7.0
+Fixed possible errors in Wrath Mirror Timers due to the Gradient API change\
+Fixed a possible issue related to profiles and gradient mode\
+Fixed errors in Wrath Quest Auto Accept due to API changes\
+Fixed an error in Wrath due to Animation API changes
 ### 3.6.9
 Added tooltip for Warlock Soul Shards on the Ammo datatext in Wrath/Classic\
 Added options to customize the position of aura texts in nameplates\
