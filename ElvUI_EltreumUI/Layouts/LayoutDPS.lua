@@ -173,7 +173,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["actionbar"]["bar4"]["macroTextYOffset"] = 2
 	E.db["actionbar"]["bar4"]["macrotext"] = true
 
-	if E.Retail then
+	if E.Retail or E.Wrath then
 		E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[vehicleui] 16; [overridebar] 18; [possessbar] 16; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
