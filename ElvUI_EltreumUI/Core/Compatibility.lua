@@ -167,6 +167,14 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			compatibilityran = true
 			addonname = "MerathilisUI"
 		end
+
+		if (E.private.mui.skins.addonSkins.bw.queueTimer.enable or E.private.mui.skins.addonSkins.bw.enable) and E.db.ElvUI_EltreumUI.skins.bigwigs then
+			E.private.mui.skins.addonSkins.bw.queueTimer.enable = false
+			E.private.mui.skins.addonSkins.bw.enable = false
+			E.db.ElvUI_EltreumUI.skins.bigwigs = true
+			compatibilityran = true
+			addonname = "MerathilisUI"
+		end
 	end
 
 	if IsAddOnLoaded("ElvUI_WindTools") then
