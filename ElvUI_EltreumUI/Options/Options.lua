@@ -11751,6 +11751,7 @@ function ElvUI_EltreumUI:Configtable()
 								dialogControl = 'LSM30_Statusbar',
 								name = L["Boss Texture"],
 								desc = L["Select a Texture"],
+								hidden = E.Classic,
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture end,
