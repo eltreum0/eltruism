@@ -232,6 +232,10 @@ function ElvUI_EltreumUI:Anchors()
 
 	E:CreateMover(RaidWarningFrame, "MoverRaidWarningFrame", "Raid Warning Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
 
+	if _G["GhostFrame"] then
+		E:CreateMover(_G["GhostFrame"], "GhostFrameMover", "Ghost Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
+	end
+
 	--mover for UI errors frame
 	if E.db.ElvUI_EltreumUI.skins.blizzframes.hideerrorframe then
 		UIErrorsFrame:Clear()

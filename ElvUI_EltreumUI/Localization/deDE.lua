@@ -1261,3 +1261,6 @@ L["World Map Scale"] = "Weltkarten Skalierung"
 L["Adjust the position of the text on Buffs/Debuffs"] = "Position des Textes auf Stärkungs-/Schwächungszauber anpassen"
 L["Adjust Aura Position"] = "Position des Textes auf Auren anpassen"
 L["Boss Banner Frame Scale"] = true
+L["Boss Texture"] = true
+L["Disable Class Textures"] = true
+L["Use only textures sets for specific frames and not class specific textures"] = true

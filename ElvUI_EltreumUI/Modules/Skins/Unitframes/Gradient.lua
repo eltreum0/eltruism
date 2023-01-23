@@ -90,7 +90,7 @@ do
 						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 							if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
 								unitframe.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit))
-							else
+							elseif not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
 								unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
 							end
 						end
@@ -264,7 +264,7 @@ do
 										end
 									end
 								end
-							else
+							elseif not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
 								unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
 							end
 						end

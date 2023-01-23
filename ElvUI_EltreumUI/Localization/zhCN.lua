@@ -1215,3 +1215,6 @@ L["World Map Scale"] = true
 L["Adjust the position of the text on Buffs/Debuffs"] = true
 L["Adjust Aura Position"] = true
 L["Boss Banner Frame Scale"] = true
+L["Boss Texture"] = true
+L["Disable Class Textures"] = true
+L["Use only textures sets for specific frames and not class specific textures"] = true

@@ -1071,6 +1071,7 @@ P.ElvUI_EltreumUI = {
 		ufcustomtexture = {
 			enable = false,
 			classdetect = false,
+			noclasstexture = false,
 			castbartexture = "Eltreum-Blank",
 			backdroptexture = "Eltreum-Blank",
 			backdropalpha = 1,
@@ -1080,6 +1081,7 @@ P.ElvUI_EltreumUI = {
 			targettargettexture = "Eltreum-Blank",
 			pettexture = "Eltreum-Blank",
 			targettargettargettexture = "Eltreum-Blank",
+			bosstexture = "Eltreum-Blank",
 
 			focustexture = "Eltreum-Blank",
 			deathknighttexture = "Eltreum-Class-DeathKnightV2",

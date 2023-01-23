@@ -1238,3 +1238,6 @@ L["World Map Scale"] = "Escala del mapa mundial"
 L["Adjust the position of the text on Buffs/Debuffs"] = "Ajustar la posición del texto en Buffs/Debuffs"
 L["Adjust Aura Position"] = "Ajustar la posición del aura"
 L["Boss Banner Frame Scale"] = "Escala del marco del estandarte del jefe"
+L["Boss Texture"] = true
+L["Disable Class Textures"] = true
+L["Use only textures sets for specific frames and not class specific textures"] = true
