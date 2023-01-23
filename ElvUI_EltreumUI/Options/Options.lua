@@ -11642,7 +11642,7 @@ function ElvUI_EltreumUI:Configtable()
 						disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 						args = {
 							unitframesdesc = {
-								order = 102,
+								order = 12,
 								type = "description",
 								name = L["Customize Unitframe textures"],
 								desc = L["Choose custom textures for some unitframes"],
@@ -11650,7 +11650,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 							},
 							classdetect = {
-								order = 103,
+								order = 13,
 								name = L["Automatically Detect Classes for Player, Target, Target of Target and Focus"],
 								type = "toggle",
 								desc = L["Use the custom texture based on it's class instead of general texture for Player, Target, Target of Target and Focus"],
@@ -11660,7 +11660,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect = value end,
 							},
 							playertexture = {
-								order = 104,
+								order = 14,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -11672,7 +11672,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
 							castbartex = {
-								order = 105,
+								order = 15,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -11684,7 +11684,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
 							targettexture = {
-								order = 106,
+								order = 16,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -11696,7 +11696,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
 							targettargettexture = {
-								order = 107,
+								order = 17,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -11708,7 +11708,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
 							targettargettargettexture = {
-								order = 107,
+								order = 17,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -11720,7 +11720,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
 							focustexture = {
-								order = 108,
+								order = 18,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -11733,7 +11733,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
 							pettexture = {
-								order = 108,
+								order = 18,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -11743,6 +11743,18 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+							},
+							bosstexture = {
+								order = 19,
+								type = 'select',
+								width = "double",
+								dialogControl = 'LSM30_Statusbar',
+								name = L["Boss Texture"],
+								desc = L["Select a Texture"],
+								values = AceGUIWidgetLSMlists.statusbar,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
 							headerclasses = {
 								order = 109,
