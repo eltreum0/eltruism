@@ -232,8 +232,8 @@ function ElvUI_EltreumUI:Anchors()
 
 	E:CreateMover(RaidWarningFrame, "MoverRaidWarningFrame", "Raid Warning Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
 
-	if _G["GhostFrameContentsFrame"] then
-		E:CreateMover(_G["GhostFrameContentsFrame"], "GhostFrameMover", "Ghost Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
+	if _G["GhostFrame"] then
+		E:CreateMover(_G["GhostFrame"], "GhostFrameMover", "Ghost Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
 	end
 
 	--mover for UI errors frame
