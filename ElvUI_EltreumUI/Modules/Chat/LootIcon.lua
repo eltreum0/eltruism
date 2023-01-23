@@ -95,7 +95,7 @@ local function AddLootIcons(_, _, message, ...)
 			end]]
 			message = message:gsub("(|c%x+|Hitem:.-|h|r)", Icon)
 			return false, message, ...
-		elseif E.db.ElvUI_EltreumUI.chat.looticons and E.db.ElvUI_EltreumUI.chat.classcolorchat then
+		elseif E.db.ElvUI_EltreumUI.chat.looticons and E.db.ElvUI_EltreumUI.chat.classcolorchat and not E.db.chat.chatHistory then
 			if guid ~= nil then
 				local _, unitclass = GetPlayerInfoByGUID(guid)
 				local msg
@@ -111,7 +111,7 @@ local function AddLootIcons(_, _, message, ...)
 				message = message:gsub("(|c%x+|Hitem:.-|h|r)", Icon)
 				return false, message, ...
 			end
-		elseif not E.db.ElvUI_EltreumUI.chat.looticons and E.db.ElvUI_EltreumUI.chat.classcolorchat then
+		elseif not E.db.ElvUI_EltreumUI.chat.looticons and E.db.ElvUI_EltreumUI.chat.classcolorchat and not E.db.chat.chatHistory then
 			if guid ~= nil then
 				local _, unitclass = GetPlayerInfoByGUID(guid)
 				local msg
