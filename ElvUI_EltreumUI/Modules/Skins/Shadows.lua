@@ -1655,7 +1655,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G["ElvUF_Target"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvUF_Target"].shadow) end
 			end
-			if E.db["unitframe"]["units"]["target"]["power"]["width"] == "inset" then
+			if E.db["unitframe"]["units"]["target"]["power"]["width"] == "inset" or E.db["unitframe"]["units"]["target"]["power"]["width"] == "fill" then
 				if _G["ElvUF_Target"] and _G["ElvUF_Target"].shadow then
 					_G["ElvUF_Target"].shadow:ClearAllPoints()
 					_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -1682,7 +1682,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G["ElvUF_TargetTarget"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvUF_TargetTarget"].shadow) end
 			end
-			if E.db["unitframe"]["units"]["targettarget"]["power"]["width"] == "inset" then
+			if E.db["unitframe"]["units"]["targettarget"]["power"]["width"] == "inset" or E.db["unitframe"]["units"]["targettarget"]["power"]["width"] == "fill" then
 				if _G["ElvUF_TargetTarget"] and _G["ElvUF_TargetTarget"].shadow then
 					_G["ElvUF_TargetTarget"].shadow:ClearAllPoints()
 					_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -1715,11 +1715,16 @@ function ElvUI_EltreumUI:Shadows()
 				_G["ElvUF_Player"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvUF_Player"].shadow) end
 			end
-			if E.db["unitframe"]["units"]["player"]["power"]["width"] == "inset" then
+			if E.db["unitframe"]["units"]["player"]["power"]["width"] == "inset" or E.db["unitframe"]["units"]["player"]["power"]["width"] == "fill" then
 				if _G["ElvUF_Player"] and _G["ElvUF_Player"].shadow then
 					_G["ElvUF_Player"].shadow:ClearAllPoints()
 					_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
 					_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if _G["ElvUF_Player_ClassBar"]:IsShown() then
+						_G["ElvUF_Player"].shadow:ClearAllPoints()
+						_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length - (E.db["unitframe"]["units"]["player"]["classbar"]["height"]/2))
+						_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
+					end
 					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvUF_Player"].shadow) end
 				end
 			else
