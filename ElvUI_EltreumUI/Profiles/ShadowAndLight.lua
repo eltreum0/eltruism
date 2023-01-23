@@ -381,7 +381,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["unitframes"]["roleIcons"]["icons"] = "Eltruism"
 
 		--E.private["sle"]["unitframe"]["statusbarTextures"]["aura"] = true --old
-		E.db["sle"]["unitframe"]["statusbarTextures"]["aurabar"]["enable"] = true
+		E.db["sle"]["unitframe"]["statusbarTextures"]["aurabar"]["enable"] = false
 		E.db["sle"]["unitframe"]["statusbarTextures"]["aurabar"]["texture"] = "ElvUI Norm1"
 		E.db["sle"]["unitframe"]["statusbarTextures"]["castbar"]["enable"] = false
 		E.db["sle"]["unitframe"]["statusbarTextures"]["castbar"]["texture"] = "ElvUI Norm1"
