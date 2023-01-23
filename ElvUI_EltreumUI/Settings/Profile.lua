@@ -1071,6 +1071,7 @@ P.ElvUI_EltreumUI = {
 		ufcustomtexture = {
 			enable = false,
 			classdetect = false,
+			noclasstexture = false,
 			castbartexture = "Eltreum-Blank",
 			backdroptexture = "Eltreum-Blank",
 			backdropalpha = 1,

@@ -57,7 +57,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name)
 					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
 							unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit))
-						else
+						elseif not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
 							unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
 						end
 					end
@@ -88,7 +88,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name)
 									end
 								end
 							end
-						else
+						elseif not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
 							if not unit:match("boss") then
 								unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
 							else
