@@ -8492,6 +8492,7 @@ function ElvUI_EltreumUI:Configtable()
 										name = L["Font"],
 										desc = L["Choose a font for the Nameplate Powerbar Text"],
 										values = AceGUIWidgetLSMlists.font,
+										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function()
 											return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.font
 										end,
@@ -8508,6 +8509,7 @@ function ElvUI_EltreumUI:Configtable()
 										max = 36,
 										step = 1,
 										--width = "double",
+										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
 										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.fontsize end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplatepower.fontsize = tonumber(value) end,
 									},

@@ -130,12 +130,6 @@ do
 								nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
 							end
 							nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.unit)
-						elseif (not self.isTank or not self.offTank) then
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-								nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom("GOODTHREAT", false, false))
-							else
-								nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
-							end
 						end
 						Scale = self.isTank and db.badScale or db.goodScale
 					end
