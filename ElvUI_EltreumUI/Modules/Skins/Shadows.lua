@@ -516,6 +516,10 @@ function ElvUI_EltreumUI:Shadows()
 						_G.EncounterJournalEncounterFrameInfoModelTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalEncounterFrameInfoModelTab.shadow) end
 					end
+					if _G.EncounterJournalMonthlyActivitiesTab and _G.EncounterJournalMonthlyActivitiesTab.backdrop and not _G.EncounterJournalMonthlyActivitiesTab.backdrop.shadow then
+						_G.EncounterJournalMonthlyActivitiesTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalMonthlyActivitiesTab.backdrop.shadow) end
+					end
 				end
 				if (arg == "Blizzard_WeeklyRewards") or IsAddOnLoaded("Blizzard_WeeklyRewards") then
 					if not _G.WeeklyRewardsFrame.shadow then
