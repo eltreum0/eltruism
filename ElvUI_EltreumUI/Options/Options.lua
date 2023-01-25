@@ -77,6 +77,7 @@ local DONATORS = {
 	'|cffB50909Nekator|r',
 	'|cffB50909Nyhilatiant|r',
 	'|cffB50909Oakshlam|r',
+	'|cffB50909Smuve|r',
 	'|cffB50909Vxt|r',
 }
 
