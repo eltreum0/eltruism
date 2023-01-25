@@ -630,7 +630,6 @@ function ElvUI_EltreumUI:Shadows()
 			_G.PVPMatchScoreboard,
 			_G.PVPMatchResults,
 			_G.MajorFactionRenownFrame,
-			_G.ItemTextFrame,
 			--_G.ImmersionFrame.TalkBox,
 			_G.ReadyStatus,
 		}
@@ -646,6 +645,17 @@ function ElvUI_EltreumUI:Shadows()
 			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.MovieFrame.CloseDialog.shadow) end
 		end
 
+		if _G.ItemTextFrame then
+			if not E.Classic then
+				_G.ItemTextFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ItemTextFrame.shadow) end
+			else
+				if _G.ItemTextFrame.backdrop then
+					_G.ItemTextFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ItemTextFrame.backdrop.shadow) end
+				end
+			end
+		end
 
 		timermonitor:RegisterEvent("START_TIMER")
 		timermonitor:SetScript("OnEvent", function()
