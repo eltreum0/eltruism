@@ -63,6 +63,12 @@ function ElvUI_EltreumUI:Shadows()
 					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClassTalentLoadoutImportDialog.shadow) end
 				end
 			end
+			if (arg == "Blizzard_ItemInteractionUI") or IsAddOnLoaded("Blizzard_GenericTraitUI") then
+				if _G.ItemInteractionFrame and not _G.ItemInteractionFrame.shadow then
+					_G.ItemInteractionFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ItemInteractionFrame.shadow) end
+				end
+			end
 			if (arg == "Blizzard_OrderHallUI") or IsAddOnLoaded("Blizzard_OrderHallUI") then
 				if _G.OrderHallCommandBar and not _G.OrderHallCommandBar.shadow then
 					_G.OrderHallCommandBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
