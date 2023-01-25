@@ -5782,6 +5782,53 @@ function ElvUI_EltreumUI:Configtable()
 									E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptedcustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptedcustom = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
+							npcreactioncastbar = {
+								order = 22,
+								type = "description",
+								name = L["NPC Castbars (Interruptible)"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							npcgradientinterruptible1 = {
+								order = 23,
+								type = 'color',
+								name = L["Color 1"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable or E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarreactioninterruptable end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptable
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptable
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptable
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptablecustom, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptablecustom = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							npcgradientinterruptible2 = {
+								order = 24,
+								type = 'color',
+								name = L["Color 2"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable or E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarreactioninterruptable end,
+								get = function()
+									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptable
+									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptable
+									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptable
+									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptablecustom, 1, dr, dg, db, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptablecustom = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
+								end,
+							},
+							npcreactioncastbarenable = {
+								order = 25,
+								type = 'toggle',
+								name = L["Color by Reaction"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbar end,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarreactioninterruptable end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarreactioninterruptable = value end,
+							},
 						},
 					},
 					nameplate = {
@@ -6104,53 +6151,6 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							npcreactioncastbar = {
-								order = 80,
-								type = "description",
-								name = L["NPC Castbars (Interruptible)"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							npcgradientinterruptible1 = {
-								order = 81,
-								type = 'color',
-								name = L["Color 1"],
-								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable or E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarreactioninterruptable end,
-								get = function()
-									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptable
-									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptable
-									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptable
-									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptablecustom, 1, dr, dg, db, 1
-								end,
-								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1interruptablecustom = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
-								end,
-							},
-							npcgradientinterruptible2 = {
-								order = 82,
-								type = 'color',
-								name = L["Color 2"],
-								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable or E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarreactioninterruptable end,
-								get = function()
-									local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptable
-									local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptable
-									local db = P.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptable
-									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptablecustom, 1, dr, dg, db, 1
-								end,
-								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2interruptablecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2interruptablecustom = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
-								end,
-							},
-							npcreactioncastbarenable = {
-								order = 83,
-								type = 'toggle',
-								name = L["Color by Reaction"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbar end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarreactioninterruptable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarreactioninterruptable = value end,
 							},
 						},
 					},
