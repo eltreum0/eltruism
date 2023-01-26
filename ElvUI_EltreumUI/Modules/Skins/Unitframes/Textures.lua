@@ -57,7 +57,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name)
 					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
 							unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit))
-						elseif not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
+						else
 							unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
 						end
 					end
@@ -88,7 +88,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name)
 									end
 								end
 							end
-						elseif not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
+						else
 							if not unit:match("boss") then
 								unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
 							else
@@ -136,7 +136,9 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button)
 		groupbar = ElvUI_EltreumUI:UnitframeClassTexture(buttonclass)
 		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-				button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
+				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
+					button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
+				end
 			end
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
 				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
