@@ -6583,7 +6583,7 @@ function ElvUI_EltreumUI:Configtable()
 									E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
 							},
-							headerpain = {
+							--[[headerpain = {
 								order = 40,
 								type = "description",
 								name = POWER_TYPE_PAIN,
@@ -6624,7 +6624,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, r, g, b, a)
 									E.db.ElvUI_EltreumUI.unitframes.gradientmode.painR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.painG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.painB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate()
 								end,
-							},
+							},]]
 						},
 					},
 				},
