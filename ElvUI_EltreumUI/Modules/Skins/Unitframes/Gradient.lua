@@ -89,8 +89,10 @@ do
 					elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and unitframe.Health.backdropTex then
 						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 							if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
-								unitframe.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit))
-							elseif not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
+								if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
+									unitframe.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit))
+								end
+							else
 								unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
 							end
 						end
@@ -264,7 +266,7 @@ do
 										end
 									end
 								end
-							elseif not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
+							else
 								unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
 							end
 						end
@@ -530,7 +532,9 @@ do
 				end
 			elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and button.Health.backdropTex then
 				if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-					button.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
+					if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
+						button.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
+					end
 				end
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
 					if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then

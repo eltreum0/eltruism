@@ -63,6 +63,12 @@ function ElvUI_EltreumUI:Shadows()
 					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClassTalentLoadoutImportDialog.shadow) end
 				end
 			end
+			if (arg == "Blizzard_ItemInteractionUI") or IsAddOnLoaded("Blizzard_ItemInteractionUI") then
+				if _G.ItemInteractionFrame and not _G.ItemInteractionFrame.shadow then
+					_G.ItemInteractionFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ItemInteractionFrame.shadow) end
+				end
+			end
 			if (arg == "Blizzard_OrderHallUI") or IsAddOnLoaded("Blizzard_OrderHallUI") then
 				if _G.OrderHallCommandBar and not _G.OrderHallCommandBar.shadow then
 					_G.OrderHallCommandBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -516,6 +522,10 @@ function ElvUI_EltreumUI:Shadows()
 						_G.EncounterJournalEncounterFrameInfoModelTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalEncounterFrameInfoModelTab.shadow) end
 					end
+					if _G.EncounterJournalMonthlyActivitiesTab and _G.EncounterJournalMonthlyActivitiesTab.backdrop and not _G.EncounterJournalMonthlyActivitiesTab.backdrop.shadow then
+						_G.EncounterJournalMonthlyActivitiesTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.EncounterJournalMonthlyActivitiesTab.backdrop.shadow) end
+					end
 				end
 				if (arg == "Blizzard_WeeklyRewards") or IsAddOnLoaded("Blizzard_WeeklyRewards") then
 					if not _G.WeeklyRewardsFrame.shadow then
@@ -620,7 +630,6 @@ function ElvUI_EltreumUI:Shadows()
 			_G.PVPMatchScoreboard,
 			_G.PVPMatchResults,
 			_G.MajorFactionRenownFrame,
-			_G.ItemTextFrame,
 			--_G.ImmersionFrame.TalkBox,
 			_G.ReadyStatus,
 		}
@@ -636,6 +645,17 @@ function ElvUI_EltreumUI:Shadows()
 			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.MovieFrame.CloseDialog.shadow) end
 		end
 
+		if _G.ItemTextFrame then
+			if not E.Classic then
+				_G.ItemTextFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ItemTextFrame.shadow) end
+			else
+				if _G.ItemTextFrame.backdrop then
+					_G.ItemTextFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ItemTextFrame.backdrop.shadow) end
+				end
+			end
+		end
 
 		timermonitor:RegisterEvent("START_TIMER")
 		timermonitor:SetScript("OnEvent", function()
