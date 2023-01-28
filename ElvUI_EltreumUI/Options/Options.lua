@@ -8957,7 +8957,7 @@ function ElvUI_EltreumUI:Configtable()
 						width = 'full',
 						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
-					instancetextenable = {
+					autopcombatlog = {
 						type = 'toggle',
 						name = L["Enable Automatic Combat Log"],
 						width = "full",
