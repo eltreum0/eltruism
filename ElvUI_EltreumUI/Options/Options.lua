@@ -8196,7 +8196,6 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Show Blizzard Friendly Nameplates but Hide Healthbar"],
 								desc = L["Show Blizzard Friendly Nameplates but Hide Healthbar"],
 								width = 'full',
-								hidden = E.Retail,
 								disabled = function() return (E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly or E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly) end,
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames = value E:StaticPopup_Show('CONFIG_RL') end,

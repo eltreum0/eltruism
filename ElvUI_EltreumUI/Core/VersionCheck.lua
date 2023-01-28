@@ -169,9 +169,6 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = false
 		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = true
 	end
-	if E.Retail and E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames then --option was removed by blizzard in 10.0.5
-		E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames = false
-	end
 
 	--changes only for my profiles
 	if E.private.ElvUI_EltreumUI.install_version and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
