@@ -12,11 +12,6 @@ local function Update(self)
 
 	local classification = self.classification
 	if classification == 'elite' or classification == 'worldboss' then
-		--element:SetAtlas('nameplates-icon-elite-gold')
-		-- demo sett texture and custom colors
-		if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == nil then
-			E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite = "TYPE1"
-		end
 		if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == "TYPE1" then
 			element:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star.tga")
 		elseif E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == "TYPE2" then
@@ -28,11 +23,6 @@ local function Update(self)
 		element:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteR, E.db.ElvUI_EltreumUI.nameplates.classification.eliteG, E.db.ElvUI_EltreumUI.nameplates.classification.eliteB, 1)
 		element:Show()
 	elseif classification == 'rareelite' or classification == 'rare' then
-
-		if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == nil then
-			E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare = "TYPE1"
-		end
-
 		if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == "TYPE1" then
 			element:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star.tga")
 		elseif E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == "TYPE2" then
