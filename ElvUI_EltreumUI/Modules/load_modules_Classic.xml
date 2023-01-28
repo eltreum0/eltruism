@@ -22,6 +22,7 @@
 	<Script file='Misc/Screenshot.lua'/>
 	<Script file='Nameplates/Nameplates.lua'/>
 	<Script file='Nameplates/PowerBar.lua'/>
+	<Script file='Nameplates/ClassificationIcons.lua'/>
 	<Script file='Fonts/SetupFont.lua'/>
 	<Script file='Fonts/OutlineDefault.lua'/>
 	<Script file='Fonts/OutlineCustom.lua'/>
