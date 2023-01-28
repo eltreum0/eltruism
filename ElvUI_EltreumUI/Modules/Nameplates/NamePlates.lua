@@ -704,24 +704,10 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 				end
 			end
 		end
-		if E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames then
+		if not E.Retail and E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames then
 			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" or instanceType == "none" or mapID == 1662 or mapID == 582 or mapID == 590 then
-				if E.Retail then
-					C_CVar.RegisterCVar("nameplateShowOnlyNames")
-					hooksecurefunc(NamePlateDriverFrame, "UpdateNamePlateOptions", function()
-						if GetCVarBool("nameplateShowOnlyNames") then
-							TableUtil.TrySet(DefaultCompactNamePlateFrameSetUpOptions, "hideHealthbar")
-							TableUtil.TrySet(DefaultCompactNamePlateFrameSetUpOptions, "hideCastbar")
-							TableUtil.TrySet(DefaultCompactNamePlateFriendlyFrameOptions, "hideHealthbar")
-							TableUtil.TrySet(DefaultCompactNamePlateFriendlyFrameOptions, "hideCastbar")
-							TableUtil.TrySet(DefaultCompactNamePlateEnemyFrameOptions, "hideHealthbar")
-							TableUtil.TrySet(DefaultCompactNamePlateEnemyFrameOptions, "hideCastbar")
-						end
-					end)
-				else
-					if nameplateShowOnlyNames == "0" then
-						SetCVar("nameplateShowOnlyNames", 1)
-					end
+				if nameplateShowOnlyNames == "0" then
+					SetCVar("nameplateShowOnlyNames", 1)
 				end
 			end
 		end
