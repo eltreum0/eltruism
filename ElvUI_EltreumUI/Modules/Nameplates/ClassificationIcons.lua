@@ -1,6 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local oUF = E.oUF
 local NP = E:GetModule('NamePlates')
+local elementAdded = false
 
 --based on blinkii's idea
 local function Update(self)
@@ -91,10 +92,11 @@ local function Update_ClassificationIndicator(_, nameplate)
 		if not nameplate:IsElementEnabled('EltruismClassificationIndicator') then
 			nameplate:EnableElement('EltruismClassificationIndicator')
 		end
-
-		nameplate.EltruismClassificationIndicator:ClearAllPoints()
-		nameplate.EltruismClassificationIndicator:Size(db.size, db.size)
-		nameplate.EltruismClassificationIndicator:Point(E.InversePoints[db.position], nameplate, db.position, db.xOffset, db.yOffset)
+		if nameplate.EltruismClassificationIndicator then
+			nameplate.EltruismClassificationIndicator:ClearAllPoints()
+			nameplate.EltruismClassificationIndicator:Size(db.size, db.size)
+			nameplate.EltruismClassificationIndicator:Point(E.InversePoints[db.position], nameplate, db.position, db.xOffset, db.yOffset)
+		end
 
 		if nameplate:IsElementEnabled('ClassificationIndicator') then --hide elvui's icon if eltruism's is enabled
 			if nameplate.ClassificationIndicator then
@@ -118,7 +120,10 @@ function ElvUI_EltreumUI:NPClassificatioNIcon()
 		hooksecurefunc(NP, "StylePlate", StylePlate)
 
 		-- add it to ouf
-		oUF:AddElement('EltruismClassificationIndicator', Path, Enable, Disable)
+		if not elementAdded then
+			oUF:AddElement('EltruismClassificationIndicator', Path, Enable, Disable)
+			elementAdded = true
+		end
 	end
 end
 
