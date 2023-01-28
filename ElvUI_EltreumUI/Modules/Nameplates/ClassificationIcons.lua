@@ -17,6 +17,14 @@ local function Update(self)
 			element:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star.tga")
 		elseif E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == "TYPE2" then
 			element:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star2.tga")
+		elseif E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == "TYPE3" then
+			element:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star3.tga")
+		elseif E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == "TYPE4" then
+			element:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon.tga")
+		elseif E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == "TYPE5" then
+			element:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon2.tga")
+		elseif E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == "TYPE6" then
+			element:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\treasure.tga")
 		elseif E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == "CUSTOM" then
 			element:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customelite)
 		end
@@ -28,6 +36,14 @@ local function Update(self)
 			element:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star.tga")
 		elseif E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == "TYPE2" then
 			element:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star2.tga")
+		elseif E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == "TYPE3" then
+			element:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star3.tga")
+		elseif E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == "TYPE4" then
+			element:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon.tga")
+		elseif E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == "TYPE5" then
+			element:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon2.tga")
+		elseif E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == "TYPE6" then
+			element:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\treasure.tga")
 		elseif E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == "CUSTOM" then
 			element:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrare)
 		end
