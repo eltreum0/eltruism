@@ -313,14 +313,27 @@ P.ElvUI_EltreumUI = {
 			enable = false,
 			icontypeelite = "TYPE1",
 			icontyperare = "TYPE1",
+			icontyperareelite = "TYPE1",
+			icontypeboss = "TYPE1",
+
 			eliteR = 1,
 			eliteG = 1,
 			eliteB = 0,
+			bossR = 1,
+			bossG = 1,
+			bossB = 0,
+
 			rareR = 1,
 			rareG = 1,
 			rareB = 1,
+			rareeliteR = 1,
+			rareeliteG = 1,
+			rareeliteB = 1,
+
 			customelite = "",
+			customboss = "",
 			customrare = "",
+			customrareelite = "",
 		}
 	},
 
