@@ -309,6 +309,19 @@ P.ElvUI_EltreumUI = {
 			xOffset = 0,
 			yOffset = 5,
 		},
+		classification = {
+			enable = false,
+			icontypeelite = "TYPE1",
+			icontyperare = "TYPE1",
+			eliteR = 1,
+			eliteG = 1,
+			eliteB = 0,
+			rareR = 1,
+			rareG = 1,
+			rareB = 1,
+			customelite = "",
+			customrare = "",
+		}
 	},
 
 	glow = {
