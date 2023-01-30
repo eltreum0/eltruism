@@ -151,7 +151,7 @@ if not E.Retail then
 	local function ValueColorUpdate(self, hex)
 		displayString = strjoin('', '%s: ', hex, '%d|r')
 
-		OnEvent(self)
+		--OnEvent(self)
 	end
 	DT:RegisterDatatext("Eltruism Ammo", nil, {'BAG_UPDATE', 'UNIT_INVENTORY_CHANGED'}, OnEvent, nil, OnClick, OnEnter, nil, L["Eltruism Ammo"], nil, ValueColorUpdate)
 end
