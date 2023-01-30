@@ -450,7 +450,7 @@ function ElvUI_EltreumUI:SkillGlowPet()
 			skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 		end
 
-		if E.db.ElvUI_EltreumUI.glow.enablepet then
+		if E.db.ElvUI_EltreumUI.glow.enablepet and E.private.actionbar.enable then
 			for i = 1, NUM_PET_ACTION_SLOTS, 1 do
 				local _, _, _, _, _, autoCastEnabled, _ = GetPetActionInfo(i)
 				local buttonName = 'PetActionButton'..i
