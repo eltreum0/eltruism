@@ -9027,7 +9027,7 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare end,
 								set = function(_,value) E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare = value end,
 							},
-							headergap3 = {
+							headergap4 = {
 								order = 12,
 								type = "description",
 								name = L["Rare Elite"],
