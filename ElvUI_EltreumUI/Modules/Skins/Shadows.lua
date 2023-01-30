@@ -645,18 +645,6 @@ function ElvUI_EltreumUI:Shadows()
 			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.MovieFrame.CloseDialog.shadow) end
 		end
 
-		if _G.ItemTextFrame then
-			if not E.Classic then
-				_G.ItemTextFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ItemTextFrame.shadow) end
-			else
-				if _G.ItemTextFrame.backdrop then
-					_G.ItemTextFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ItemTextFrame.backdrop.shadow) end
-				end
-			end
-		end
-
 		timermonitor:RegisterEvent("START_TIMER")
 		timermonitor:SetScript("OnEvent", function()
 			for _, b in pairs(_G.TimerTracker.timerList) do
@@ -844,6 +832,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G.MerchantFrameTab1.backdrop,
 				_G.MerchantFrameTab2.backdrop,
 				_G.MailFrame,
+				_G.ItemTextFrame,
+				_G.OpenMailFrame,
 				_G.MailFrameTab1.backdrop,
 				_G.MailFrameTab2.backdrop,
 				_G.HelpFrame.backdrop,
@@ -938,6 +928,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.SpellBookFrame.backdrop,
 				_G.FriendsFrame.backdrop,
 				_G.MailFrame.backdrop,
+				_G.OpenMailFrame.backdrop,
 				_G.MailFrameTab1.backdrop,
 				_G.MailFrameTab2.backdrop,
 				_G.MerchantFrame.backdrop,
