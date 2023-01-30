@@ -81,6 +81,119 @@ local bossIDs = {
 	["181378"] = true,
 	["187967"] = true,
 	["190496"] = true,
+
+	--world bosses
+
+	--dragonflight
+	["193534"] = true, --strunraan
+	["193532"] = true, --bazual
+	["193535"] = true, --basrikron
+	["193533"] = true, --liskanoth
+
+	--shadowlands
+	["167524"] = true, --valinor
+	["182466"] = true, --antros
+	["178958"] = true, --morgeth
+	["167525"] = true, --mortanis
+	["167527"] = true, --oranomonos-the-everbranching
+	["167526"] = true, --nurgash-muckformed
+	["169035"] = true, --nathanos-blightcaller
+
+	--bfa
+	["154638"] = true, --grand-empress-shekzara
+	["160970"] = true, --vuklaz-the-earthbreaker
+	["152671"] = true, --wekemara
+	["152697"] = true, --ulmath
+	["148295"] = true, --ivus-the-decayed
+	["144946"] = true, --ivus-the-forest-lord
+	["138122"] = true, --dooms-howl
+	["137374"] = true, --the-lions-roar
+	["132701"] = true, --tzane
+	["132253"] = true, --jiarak
+	["138794"] = true, --dunegorger-kraulok
+	["140252"] = true, --hailstone-construct
+	["136385"] = true, --azurethos
+	["140163"] = true, --warbringer-yenajz
+
+	--legion
+	["109943"] = true, --ana-mouz
+	["121124"] = true, --apocron
+	["117239"] = true, --brutallus
+	["109331"] = true, --calamir
+	["110378"] = true, --drugon-the-frostblood
+	["99929"] = true, --flotsam
+	["108879"] = true, --humongris
+	["108829"] = true, --levantus
+	["117303"] = true, --malificus
+	["110321"] = true, --nazak-the-fiend
+	["107544"] = true, --nithogg
+	["108678"] = true, --sharthos
+	["117470"] = true, --sivash
+	["106981"] = true, --captain-hring
+	["106984"] = true, --soultrapper-mevra
+	["106982"] = true, --reaver-jdorn
+	["112350"] = true, --withered-jim
+
+	--wod
+	["81252"] = true, --drov-the-ruiner
+	["81535"] = true, --tarlna-the-ageless
+	["83746"] = true, --rukhmar
+	["94015"] = true, --supreme-lord-kazzak
+
+	--mop
+	["60491"] = true, --sha-of-anger
+	["62346"] = true, --galleon
+	["69099"] = true, --nalak
+	["69161"] = true, --oondasta
+	["72057"] = true, --ordos
+	["71952"] = true, --chi-ji
+	["71954"] = true, --niuzao
+	["71953"] = true, --xuen
+	["71955"] = true, --yulon
+
+	--cataclysm
+	["50063"] = true, --akmahat
+	["50056"] = true, --garr
+	["50089"] = true, --julak-doom
+	["50009"] = true, --mobus
+	["40728"] = true, --whale-shark
+	["50061"] = true, --xariona
+
+	--tbc
+	["18728"] = true, --doom-lord-kazzak
+	["17711"] = true, --doomwalker
+
+	--classic
+	["6109"] = true, --azuregos
+	["15205"] = true, --baron-kazum
+	["15305"] = true, --lord-skwol
+	["15204"] = true, --high-marshal-whirlaxis
+	["15203"] = true, --prince-skaldrenox
+	["14890"] = true, --taerar
+	["14887"] = true, --ysondre
+	["15491"] = true, --eranikus-tyrant-of-the-dream
+	["12397"] = true, --lord-kazzak
+	["15571"] = true, --maws
+	["15818"] = true, --lieutenant-general-nokhor
+	["7846"] = true, --teremus-the-devourer
+	["15625"] = true, --twilight-corrupter
+	["18338"] = true, --highlord-kruul
+	["14889"] = true, --emeriss
+	["14888"] = true, --lethon
+
+	--wow anniversary
+	["121820"] = true, --azuregos
+	["121913"] = true, --emeriss
+	["121821"] = true, --lethon
+	["121911"] = true, --taerar
+	["121912"] = true, --ysondre
+	["121818"] = true, --lord-kazzak
+	["167749"] = true, --doomwalker
+
+	--darkmoon
+	["58336"] = true, --darkmoon-rabbit
+	["71992"] = true, --moonfang
+	["15467"] = true, --omen
 }
 
 local textureDB = {
