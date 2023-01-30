@@ -5,51 +5,51 @@ local elementAdded = false
 
 --based on blinkii's idea
 local bossIDs = {
-    --DF
-    --AA
-    ["194181"] = true,
-    ["191736"] = true,
-    ["196482"] = true,
-    ["190609"] = true,
-    --BH
-    ["186122"] = true,
-    ["186124"] = true,
-    ["186125"] = true,
-    ["186120"] = true,
-    ["186121"] = true,
-    ["186116"] = true,
-    --HOF
-    ["189719"] = true,
-    ["189729"] = true,
-    ["189722"] = true,
-    ["189727"] = true,
-    --NEL
-    ["189901"] = true,
-    ["189478"] = true,
-    ["181861"] = true,
-    ["189340"] = true,
-    --RLP
-    ["188252"] = true,
-    ["189232"] = true,
-    ["190485"] = true,
+	--DF
+	--AA
+	["194181"] = true,
+	["191736"] = true,
+	["196482"] = true,
+	["190609"] = true,
+	--BH
+	["186122"] = true,
+	["186124"] = true,
+	["186125"] = true,
+	["186120"] = true,
+	["186121"] = true,
+	["186116"] = true,
+	--HOF
+	["189719"] = true,
+	["189729"] = true,
+	["189722"] = true,
+	["189727"] = true,
+	--NEL
+	["189901"] = true,
+	["189478"] = true,
+	["181861"] = true,
+	["189340"] = true,
+	--RLP
+	["188252"] = true,
+	["189232"] = true,
+	["190485"] = true,
 	["190484"] = true,
-    --TAV
-    ["186738"] = true,
-    ["186644"] = true,
-    ["186739"] = true,
-    ["199614"] = true,
-    --TNO
-    ["186615"] = true,
-    ["195723"] = true,
-    ["186338"] = true,
-    ["186151"] = true,
-    ["186616"] = true,
+	--TAV
+	["186738"] = true,
+	["186644"] = true,
+	["186739"] = true,
+	["199614"] = true,
+	--TNO
+	["186615"] = true,
+	["195723"] = true,
+	["186338"] = true,
+	["186151"] = true,
+	["186616"] = true,
 	["186339"] = true,
-    --ULD
-    ["184125"] = true,
-    ["184124"] = true,
-    ["184018"] = true,
-    ["184422"] = true,
+	--ULD
+	["184125"] = true,
+	["184124"] = true,
+	["184018"] = true,
+	["184422"] = true,
 	-- DF S1
 	--HOV
 	["95674"] = true,
@@ -202,7 +202,11 @@ local textureDB = {
 		["TYPE3"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star3.tga",
 		["TYPE4"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon.tga",
 		["TYPE5"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon2.tga",
-		["TYPE6"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\treasure.tga"
+		["TYPE6"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\treasure.tga",
+		["TYPE7"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star4.tga",
+		["TYPE8"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull.tga",
+		["TYPE9"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull2.tga",
+		["TYPE10"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull3.tga",
 	}
 
 local function Update(self)
