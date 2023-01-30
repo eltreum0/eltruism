@@ -8897,6 +8897,7 @@ function ElvUI_EltreumUI:Configtable()
 									["TYPE8"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull',':20:20'),
 									["TYPE9"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull2',':20:20'),
 									["TYPE10"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull3',':20:20'),
+									["TYPE11"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper',':20:20'),
 									["CUSTOM"] = 'Custom',
 								},
 								sorting = {
@@ -8910,6 +8911,7 @@ function ElvUI_EltreumUI:Configtable()
 									"TYPE8",
 									"TYPE9",
 									"TYPE10",
+									"TYPE11",
 									"CUSTOM",
 								},
 								style = 'radio',
@@ -8949,6 +8951,7 @@ function ElvUI_EltreumUI:Configtable()
 									["TYPE8"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull',':20:20'),
 									["TYPE9"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull2',':20:20'),
 									["TYPE10"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull3',':20:20'),
+									["TYPE11"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper',':20:20'),
 									["CUSTOM"] = 'Custom',
 								},
 								sorting = {
@@ -8962,6 +8965,7 @@ function ElvUI_EltreumUI:Configtable()
 									"TYPE8",
 									"TYPE9",
 									"TYPE10",
+									"TYPE11",
 									"CUSTOM",
 								},
 								style = 'radio',
@@ -9001,6 +9005,7 @@ function ElvUI_EltreumUI:Configtable()
 									["TYPE8"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull',':20:20'),
 									["TYPE9"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull2',':20:20'),
 									["TYPE10"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull3',':20:20'),
+									["TYPE11"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper',':20:20'),
 									["CUSTOM"] = 'Custom',
 								},
 								sorting = {
@@ -9014,6 +9019,7 @@ function ElvUI_EltreumUI:Configtable()
 									"TYPE8",
 									"TYPE9",
 									"TYPE10",
+									"TYPE11",
 									"CUSTOM",
 								},
 								style = 'radio',
@@ -9053,6 +9059,7 @@ function ElvUI_EltreumUI:Configtable()
 									["TYPE8"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull',':20:20'),
 									["TYPE9"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull2',':20:20'),
 									["TYPE10"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull3',':20:20'),
+									["TYPE11"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper',':20:20'),
 									["CUSTOM"] = 'Custom',
 								},
 								sorting = {
@@ -9066,6 +9073,7 @@ function ElvUI_EltreumUI:Configtable()
 									"TYPE8",
 									"TYPE9",
 									"TYPE10",
+									"TYPE11",
 									"CUSTOM",
 								},
 								style = 'radio',
