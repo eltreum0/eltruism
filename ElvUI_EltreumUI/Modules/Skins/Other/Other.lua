@@ -20,8 +20,9 @@ if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
 end
 
---flight master scale
-function ElvUI_EltreumUI:TaxiScale()
+--frame scaling
+function ElvUI_EltreumUI:FrameScales()
+	--flight master scale
 	if _G["TaxiFrame"] then
 		_G["TaxiFrame"]:HookScript("OnShow", function()
 			_G["TaxiFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.taxiscale)
@@ -32,13 +33,18 @@ function ElvUI_EltreumUI:TaxiScale()
 			_G["FlightMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.taxiscale)
 		end)
 	end
-end
 
---bag scale
-function ElvUI_EltreumUI:BagScale()
+	--bag scale
 	if _G["ElvUI_ContainerFrame"] then
 		_G["ElvUI_ContainerFrame"]:HookScript("OnShow", function()
 			_G["ElvUI_ContainerFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.bagscale)
+		end)
+	end
+
+	--bank scale
+	if _G["ElvUI_BankContainerFrame"] then
+		_G["ElvUI_BankContainerFrame"]:HookScript("OnShow", function()
+			_G["ElvUI_BankContainerFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.bankscale)
 		end)
 	end
 end
