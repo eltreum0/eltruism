@@ -122,8 +122,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	ElvUI_EltreumUI:GradientMirrorLoot() --gradient misc frames like breath/lootroll
 	ElvUI_EltreumUI:MinimapCardinalDirections() -- minimap cardinal directions
 	ElvUI_EltreumUI:AutoCombatLog() -- automatic combat logging inside instances + advanced log for warcraftlogs
-	ElvUI_EltreumUI:TaxiScale() -- change flight/taxi dialog scale
-	ElvUI_EltreumUI:BagScale() -- change the scale of the bags
+	ElvUI_EltreumUI:FrameScales() --misc frames scales
 	ElvUI_EltreumUI:NPClassificatioNIcon() -- add different elite/rare icons to np
 end
 

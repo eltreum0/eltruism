@@ -311,10 +311,10 @@ P.ElvUI_EltreumUI = {
 		},
 		classification = {
 			enable = false,
-			icontypeelite = "TYPE4",
-			icontyperare = "TYPE7",
-			icontyperareelite = "TYPE7",
-			icontypeboss = "TYPE16",
+			icontypeelite = "TYPE5",
+			icontyperare = "TYPE8",
+			icontyperareelite = "TYPE8",
+			icontypeboss = "TYPE17",
 
 			eliteR = 1,
 			eliteG = 0.70,
@@ -1237,6 +1237,7 @@ P.ElvUI_EltreumUI = {
 		},
 		taxiscale = 1,
 		bagscale = 1,
+		bankscale = 1,
 		colorbg = false,
 		musicshuffle = false,
 	},
