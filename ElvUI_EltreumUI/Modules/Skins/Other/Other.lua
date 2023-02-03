@@ -579,6 +579,25 @@ tradeskilloadmonitor:SetScript("OnEvent", function(_,_,arg)
 	end
 end)
 
+--frame that checks for taxi/flightmaster
+local taxiloadmonitor = CreateFrame("FRAME")
+taxiloadmonitor:RegisterEvent("PLAYER_ENTERING_WORLD")
+taxiloadmonitor:RegisterEvent("ADDON_LOADED")
+taxiloadmonitor:SetScript("OnEvent", function(_,_,arg)
+	if IsAddOnLoaded("Blizzard_FlightMap") or (arg == "Blizzard_FlightMap") or _G["FlightMapFrame"] then
+		taxiloadmonitor:UnregisterAllEvents()
+		if not E.private.ElvUI_EltreumUI then return end
+		if not E.db.ElvUI_EltreumUI then return end
+		if not E.db.ElvUI_EltreumUI.otherstuff then return end
+		if not E.db.ElvUI_EltreumUI.otherstuff.taxiscale then return end
+		if _G["FlightMapFrame"] then
+			_G["FlightMapFrame"]:HookScript("OnShow", function()
+				_G["FlightMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.taxiscale)
+			end)
+		end
+	end
+end)
+
 function ElvUI_EltreumUI:RetailTalentScale()
 	if _G.ClassTalentFrame then
 		_G.ClassTalentFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
