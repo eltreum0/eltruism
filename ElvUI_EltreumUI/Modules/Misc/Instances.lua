@@ -10,7 +10,7 @@ local C_ChallengeMode = _G.C_ChallengeMode
 local C_Timer = _G.C_Timer
 
 local instancedifficulty = CreateFrame("FRAME")
-instancedifficulty:SetSize(40, 40)
+instancedifficulty:SetSize(10, 10)
 instancedifficulty:SetPoint("CENTER", Minimap , -50, 50)
 instancedifficulty:SetParent(Minimap)
 instancedifficulty:Hide()
