@@ -1277,3 +1277,5 @@ L["Boss Icon"] = "Boss Symbol"
 L["Rare Elite"] = "Rar Elite"
 L["Rare Elite Color"] = "Rar Elite Farbe"
 L["Rare Elite Icon"] = "Rar Elite Symbol"
+L["Difficulty Specific Colors"] = true
+L["Use different colors per Difficulty"] = true
