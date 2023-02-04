@@ -12,8 +12,10 @@ local C_Timer = _G.C_Timer
 local instancedifficulty = CreateFrame("FRAME")
 instancedifficulty:SetSize(40, 40)
 instancedifficulty:SetPoint("CENTER", Minimap , -50, 50)
+instancedifficulty:SetParent(Minimap)
 instancedifficulty:Hide()
 instancedifficulty.Text = instancedifficulty:CreateFontString(nil,"ARTWORK")
+instancedifficulty.Text:SetPoint("CENTER", instancedifficulty)
 instancedifficulty:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 instancedifficulty:RegisterEvent("PLAYER_ENTERING_WORLD")
 if E.Retail then
@@ -21,8 +23,8 @@ if E.Retail then
 	instancedifficulty:RegisterEvent("PLAYER_DIFFICULTY_CHANGED")
 	instancedifficulty:RegisterEvent("GUILD_PARTY_STATE_UPDATED")
 end
-
 E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismInstanceDifficulty", nil, nil, nil, "ALL,SOLO,ELTREUMUI,PARTY,RAID", nil, 'ElvUI_EltreumUI,partyraidsettings')
+
 instancedifficulty:SetScript("OnEvent", function(_,event)
 	local _, instanceType = IsInInstance()
 	local mapID = WorldMapFrame:GetMapID()
@@ -31,10 +33,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 		instancedifficulty.Text:Show()
 		instancedifficulty.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.instances.fontsize, E.db.general.fontStyle)
 		instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.r, E.db.ElvUI_EltreumUI.skins.instances.g, E.db.ElvUI_EltreumUI.skins.instances.b)
-		instancedifficulty.Text:SetPoint("CENTER", _G["MoverEltruismInstanceDifficulty"])
-		instancedifficulty.Text:SetParent(Minimap)
 		local DifficultyID = select(3, GetInstanceInfo()) --https://wowpedia.fandom.com/wiki/DifficultyID
-
 
 		if DifficultyID == 1 then
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonNormal)
