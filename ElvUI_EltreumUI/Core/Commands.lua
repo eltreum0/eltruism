@@ -24,6 +24,7 @@ function ElvUI_EltreumUI:LoadCommands()
 	if not self.ConfigModeAddedEltruism then
 		tinsert(E.ConfigModeLayouts, #(E.ConfigModeLayouts) + 1, "ELTREUMUI")
 		E.ConfigModeLocalizedStrings["ELTREUMUI"] = format("|cff82B4ff%s |r", "Eltruism")
+		self.ConfigModeAddedEltruism = true
 	end
 	if E.Retail then
 		if E.db.ElvUI_EltreumUI.waypoints.waytext.enable then
