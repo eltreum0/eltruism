@@ -11777,14 +11777,12 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-
-
-
 							headeraltpower = {
 								order = 74,
 								type = "description",
 								name = "",
 								width = 'full',
+								hidden = not E.Retail,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							gradientaltpower = {
