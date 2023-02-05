@@ -393,7 +393,7 @@ P.ElvUI_EltreumUI = {
 			icontypeelite = "TYPE6",
 			icontyperare = "TYPE9",
 			icontyperareelite = "TYPE9",
-			icontypeboss = "TYPE18",
+			icontypeboss = "TYPE19",
 
 			eliteR = 1,
 			eliteG = 0.70,
