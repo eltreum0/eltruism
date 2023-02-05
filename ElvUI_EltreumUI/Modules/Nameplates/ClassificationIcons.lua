@@ -371,7 +371,7 @@ E:AddTag('eltruism:difficulty:icon', 'UNIT_NAME_UPDATE', function(unit)
 	--make sure its not a player as to not overwrite class colors
 	if not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
 		if UnitIsEnemy("player", unit) == true then
-			if classification == 'worldboss' or bossIDs[self.npcID] then
+			if classification == 'worldboss' or bossIDs[unitID] then
 				red = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR*255)
 				blue = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossB*255)
 				green = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossG*255)
