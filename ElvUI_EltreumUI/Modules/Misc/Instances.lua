@@ -28,6 +28,9 @@ end
 E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismInstanceDifficulty", nil, nil, nil, "ALL,SOLO,ELTREUMUI,PARTY,RAID", nil, 'ElvUI_EltreumUI,partyraidsettings')
 
 instancedifficulty:SetScript("OnEvent", function(_,event)
+	if not E.private.ElvUI_EltreumUI then return end
+	if not E.private.ElvUI_EltreumUI.install_version then return end
+
 	local _, instanceType = IsInInstance()
 	local mapID = WorldMapFrame:GetMapID()
 	if (instanceType == "raid" or instanceType == "party" or instanceType == "scenario") and E.db.ElvUI_EltreumUI.skins.instances.enable and not (mapID == 1662 or mapID == 582 or mapID == 590) then
