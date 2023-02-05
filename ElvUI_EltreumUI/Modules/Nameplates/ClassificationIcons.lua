@@ -375,10 +375,10 @@ E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 			blue = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossB*255)
 			green = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossG*255)
 			if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss == "CUSTOM" then
-				icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss..":0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+				icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
 				return icon
 			else
-				icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss]..":0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+				icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
 				return icon
 			end
 		elseif classification == 'elite' then
@@ -386,10 +386,10 @@ E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 			blue = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteB*255)
 			green = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteG*255)
 			if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == "CUSTOM" then
-				icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customelite..":0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+				icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customelite..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
 				return icon
 			else
-				icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite]..":0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+				icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
 				return icon
 			end
 		elseif classification == 'rareelite' then
@@ -397,10 +397,10 @@ E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 			blue = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteB*255)
 			green = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteG*255)
 			if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite == "CUSTOM" then
-				icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrareelite..":0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+				icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrareelite..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
 				return icon
 			else
-				icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite]..":0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+				icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
 				return icon
 			end
 		elseif classification == 'rare' then
@@ -408,10 +408,10 @@ E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 			blue = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.rareB*255)
 			green = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.rareG*255)
 			if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == "CUSTOM" then
-				icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrare..":0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+				icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrare..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
 				return icon
 			else
-				icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare]..":0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+				icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare]..":0:0:0:2:32:32:0:32:0:32:" .. red .. ":" .. green .. ":" .. blue .. "|t"
 				return icon
 			end
 		end
