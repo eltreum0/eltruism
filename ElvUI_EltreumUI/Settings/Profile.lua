@@ -168,7 +168,10 @@ P.ElvUI_EltreumUI = {
 			r = 0.90,
 			g = 0.72,
 			b = 0,
-			offset = -0.2,
+			redoffset = -0.2,
+			greenoffset = -0.2,
+			blueoffset = -0.2,
+
 			classcolor = true,
 			gradient = true,
 			difficultycolors = true,
