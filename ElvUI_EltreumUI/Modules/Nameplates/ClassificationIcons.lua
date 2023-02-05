@@ -362,7 +362,7 @@ end
 
 
 --Difficulty Icon for npcs
-E:AddTag('eltruism:difficulty:icon', 'UNIT_NAME_UPDATE', function(unit)
+E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 	local red,green,blue
 	local icon
 	local classification = UnitClassification(unit) -- "worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
@@ -419,4 +419,4 @@ E:AddTag('eltruism:difficulty:icon', 'UNIT_NAME_UPDATE', function(unit)
 		end
 	end
 end)
-E:AddTagInfo('eltruism:difficulty', ElvUI_EltreumUI.Name, L["Colors NPC name according to their difficulty compared to the player"])
+E:AddTagInfo('eltruism:classification', ElvUI_EltreumUI.Name, L["Shows an Icon for the classification of the unit"])
