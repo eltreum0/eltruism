@@ -55,5 +55,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 
 	E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
 
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[eltruism:classification][name]"
+
 	ElvUI_EltreumUI:Print(L["Settings for ElvUI were updated."])
 end

@@ -290,7 +290,8 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			else
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["fontOutline"] = "OUTLINE"
 			end
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[classification:icon][name]"
+			--E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[classification:icon][name]"
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[eltruism:classification][name]"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["position"] = "CENTER"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["yOffset"] = 15
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["portrait"]["height"] = 30
