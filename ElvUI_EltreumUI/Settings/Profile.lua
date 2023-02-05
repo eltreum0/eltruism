@@ -768,6 +768,12 @@ P.ElvUI_EltreumUI = {
 				g = -0.4,
 				b = -0.4,
 			},
+			gradientAltPower = false,
+			gradientAltPowercolors = {
+				r = -0.2,
+				g = -0.2,
+				b = -0.2,
+			},
 
 			enableplayer = true,
 			enabletarget = true,

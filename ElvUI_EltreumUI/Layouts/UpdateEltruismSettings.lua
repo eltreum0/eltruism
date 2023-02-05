@@ -63,6 +63,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP = true
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation = true
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor = true
+	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower = true
 	E.db.ElvUI_EltreumUI.unitframes.models.powerbar = true
 	E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.7
