@@ -51,7 +51,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.b)
 				end
 			end
-		elseif DifficultyID == 2 then
+		elseif DifficultyID == 2 or DifficultyID == 39 then
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroic)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
@@ -101,7 +101,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.r, E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.g, E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.b)
 				end
 			end
-		elseif DifficultyID == 23 then
+		elseif DifficultyID == 23 or DifficultyID == 40 then
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonMythic)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
@@ -142,7 +142,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.RaidColor.r, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.g, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.b)
 				end
 			end
-		elseif DifficultyID == 174 or DifficultyID == 15 or DifficultyID == 148 or DifficultyID == 175 or DifficultyID == 176 then
+		elseif DifficultyID == 174 or DifficultyID == 15 or DifficultyID == 148 or DifficultyID == 175 or DifficultyID == 176 or DifficultyID == 149 then
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.RaidHeroic)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
@@ -162,7 +162,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.r, E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.g, E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.b)
 				end
 			end
-		elseif DifficultyID == 7 or DifficultyID == 17 then
+		elseif DifficultyID == 7 or DifficultyID == 17 or DifficultyID == 151 then
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.RaidLFR)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
