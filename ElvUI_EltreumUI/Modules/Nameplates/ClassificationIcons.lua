@@ -325,7 +325,7 @@ local function Update_ClassificationIndicator(_, nameplate)
 		if not nameplate:IsElementEnabled('EltruismClassificationIndicator') then
 			nameplate:EnableElement('EltruismClassificationIndicator')
 		end
-		if nameplate.EltruismClassificationIndicator then
+		if nameplate.EltruismClassificationIndicator and nameplate:IsElementEnabled('ClassificationIndicator') then
 			nameplate.EltruismClassificationIndicator:ClearAllPoints()
 			nameplate.EltruismClassificationIndicator:Size(db.size, db.size)
 			nameplate.EltruismClassificationIndicator:Point(E.InversePoints[db.position], nameplate, db.position, db.xOffset, db.yOffset)
