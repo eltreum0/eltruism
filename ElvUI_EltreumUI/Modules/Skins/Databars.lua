@@ -109,26 +109,20 @@ end
 S:AddCallbackForAddon('Blizzard_ArchaeologyUI', "GradientArcheology", ElvUI_EltreumUI.GradientArcheology)
 
 --gradient Blizzard Alt Power
+local B = E:GetModule('Blizzard')
 function ElvUI_EltreumUI:BlizzardAltPower()
-	altpower = _G["ElvUI_AltPowerBar"]
+	altpower = B.AltPowerBar
 	if altpower then
 		altpower:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower then
 			if E.db.general.altPowerBar.statusBarColorGradient then
 				local power, maxPower = altpower.powerValue or 0, altpower.powerMaxValue or 0
 				local value = (maxPower > 0 and power / maxPower) or 0
-				if altpower.colorGradientValue ~= value then
-					altpower.colorGradientValue = value
-
-					local r, g, b = E:ColorGradient(value,0.8,0,0, 0.8,0.8,0, 0,0.8,0)
-					altpower:SetStatusBarColor(r, g, b)
-
-					if E.Retail or E.Wrath then
-						altpower:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r,g= g,b= b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r,g=g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.g,b= b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
-					else
-						altpower:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r, g, b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r, g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.g, b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-					end
-
+				local r, g, b = E:ColorGradient(value,0.8,0,0, 0.8,0.8,0, 0,0.8,0)
+				if E.Retail or E.Wrath then
+					altpower:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r,g= g,b= b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r,g=g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.g,b= b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+				else
+					altpower:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r, g, b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r, g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.g, b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				end
 			else
 				local color = E.db.general.altPowerBar.statusBarColor
@@ -141,5 +135,5 @@ function ElvUI_EltreumUI:BlizzardAltPower()
 		end
 	end
 end
-local B = E:GetModule('Blizzard')
 hooksecurefunc(B, 'UpdateAltPowerBarColors', ElvUI_EltreumUI.BlizzardAltPower)
+hooksecurefunc(B, 'UpdateAltPowerBar', ElvUI_EltreumUI.BlizzardAltPower)
