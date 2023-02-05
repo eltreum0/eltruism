@@ -417,10 +417,6 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		end
 		fixingold = true
 		E.private.ElvUI_EltreumUI.install_version = "3.7.1"
-	elseif E.private.ElvUI_EltreumUI.install_version >= "3.7.1" and E.private.ElvUI_EltreumUI.install_version < "3.7.2" then
- 		if E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] == "[classification:icon][name]" then
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[eltruism:classification][name]"
-		end
 	end
 end
 
