@@ -203,8 +203,10 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 				end
 			elseif E.db.ElvUI_EltreumUI.skins.instances.classcolor then --class color
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
-					textgradient = E:TextGradient(instancedifficulty.Text:GetText(), classcolors.r, classcolors.g, classcolors.b, classcolors.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, classcolors.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, classcolors.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset)
-					instancedifficulty.Text:SetText(textgradient)
+					if instancedifficulty.Text:GetText() ~= nil then
+						textgradient = E:TextGradient(instancedifficulty.Text:GetText(), classcolors.r, classcolors.g, classcolors.b, classcolors.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, classcolors.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, classcolors.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset)
+						instancedifficulty.Text:SetText(textgradient)
+					end
 				else
 					instancedifficulty.Text:SetTextColor(classcolors.r, classcolors.g, classcolors.b)
 				end
