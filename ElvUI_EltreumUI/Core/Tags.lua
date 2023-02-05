@@ -901,3 +901,5 @@ E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit)
 	end
 end)
 E:AddTagInfo("name:eltruism:gradientshort", ElvUI_EltreumUI.Name, L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
+
+--difficulty icon is on the classification file to avoid duplicating tables/info

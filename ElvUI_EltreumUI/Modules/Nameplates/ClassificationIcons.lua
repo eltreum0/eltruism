@@ -361,4 +361,62 @@ function ElvUI_EltreumUI:NPClassificatioNIcon()
 end
 
 
+--Difficulty Icon for npcs
+E:AddTag('eltruism:difficulty:icon', 'UNIT_NAME_UPDATE', function(unit)
+	local red,green,blue
+	local icon
+	local classification = UnitClassification(unit) -- "worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
+	local unitID = tonumber(string.match(UnitGUID(unit), "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
 
+	--make sure its not a player as to not overwrite class colors
+	if not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
+		if UnitIsEnemy("player", unit) == true then
+			if classification == 'worldboss' or bossIDs[self.npcID] then
+				red = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR*255)
+				blue = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossB*255)
+				green = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.bossG*255)
+				if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss == "CUSTOM" then
+					icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss..".tga:0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+					return icon
+				else
+					icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss]..":0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+					return icon
+				end
+			elseif classification == 'elite' then
+				red = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteR*255)
+				blue = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteB*255)
+				green = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteG*255)
+				if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == "CUSTOM" then
+					icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customelite..".tga:0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+					return icon
+				else
+					icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite]..":0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+					return icon
+				end
+			elseif classification == 'rareelite' then
+				red = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteR*255)
+				blue = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteB*255)
+				green = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteG*255)
+				if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite == "CUSTOM" then
+					icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrareelite..".tga:0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+					return icon
+				else
+					icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite]..":0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+					return icon
+				end
+			elseif classification == 'rare' then
+				red = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.rareR*255)
+				blue = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.rareB*255)
+				green = math.floor(E.db.ElvUI_EltreumUI.nameplates.classification.rareG*255)
+				if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == "CUSTOM" then
+					icon = "|T"..[[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrare..".tga:0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+					return icon
+				else
+					icon = "|T"..textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare]..":0:0:0:3:128:128:0:128:0:128:" .. red .. ":" .. green .. ":" .. blue .. "|t"
+					return icon
+				end
+			end
+		end
+	end
+end)
+E:AddTagInfo('eltruism:difficulty', ElvUI_EltreumUI.Name, L["Colors NPC name according to their difficulty compared to the player"])
