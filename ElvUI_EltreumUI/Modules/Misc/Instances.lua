@@ -183,8 +183,10 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 				end
 			end
 		else
-			ElvUI_EltreumUI:Print("Unknown instance type, please report in discord")
-			instancedifficulty.Text:SetText("Report this: "..DifficultyID)
+			if E.db.ElvUI_EltreumUI.dev then
+				ElvUI_EltreumUI:Print("Unknown instance type, please report in discord: "..DifficultyID)
+				instancedifficulty.Text:SetText("Report this: "..DifficultyID)
+			end
 		end
 
 		if not E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
