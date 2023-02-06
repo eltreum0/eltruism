@@ -85,6 +85,11 @@ local bossIDs = {
 	["187772"] = true, --opalfang
 	["187767"] = true, --embar-firepath
 
+	--storm fury bosses
+	["199502"] = true, --glakis-winters-wrath
+	["199667"] = true, --nimbulatus-storms-wrath
+	["199664"] = true, --seismodor-earths-wrath
+
 	--world bosses
 
 	--dragonflight
