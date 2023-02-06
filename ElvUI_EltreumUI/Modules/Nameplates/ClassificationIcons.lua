@@ -81,6 +81,9 @@ local bossIDs = {
 	["181378"] = true,
 	["187967"] = true,
 	["190496"] = true,
+	["187768"] = true, --dathea-stormlash
+	["187772"] = true, --opalfang
+	["187767"] = true, --embar-firepath
 
 	--world bosses
 
