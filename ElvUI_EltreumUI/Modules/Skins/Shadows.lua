@@ -175,6 +175,46 @@ function ElvUI_EltreumUI:Shadows()
 						_G.GuildBankFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GuildBankFrame.shadow) end
 					end
+					if not _G.GuildBankTab1.Button.shadow then
+						_G.GuildBankTab1.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GuildBankTab1.Button.shadow) end
+					end
+					if not _G.GuildBankTab2.Button.shadow then
+						_G.GuildBankTab2.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GuildBankTab2.Button.shadow) end
+					end
+					if not _G.GuildBankTab3.Button.shadow then
+						_G.GuildBankTab3.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GuildBankTab3.Button.shadow) end
+					end
+					if not _G.GuildBankTab4.Button.shadow then
+						_G.GuildBankTab4.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GuildBankTab4.Button.shadow) end
+					end
+					if not _G.GuildBankTab5.Button.shadow then
+						_G.GuildBankTab5.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GuildBankTab5.Button.shadow) end
+					end
+					if not _G.GuildBankTab6.Button.shadow then
+						_G.GuildBankTab6.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GuildBankTab6.Button.shadow) end
+					end
+					if not _G.GuildBankFrameTab1.backdrop.shadow then
+						_G.GuildBankFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GuildBankFrameTab1.backdrop.shadow) end
+					end
+					if not _G.GuildBankFrameTab2.backdrop.shadow then
+						_G.GuildBankFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GuildBankFrameTab2.backdrop.shadow) end
+					end
+					if not _G.GuildBankFrameTab3.backdrop.shadow then
+						_G.GuildBankFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GuildBankFrameTab3.backdrop.shadow) end
+					end
+					if not _G.GuildBankFrameTab4.backdrop.shadow then
+						_G.GuildBankFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GuildBankFrameTab4.backdrop.shadow) end
+					end
 				else
 					if not _G.GuildBankFrame.backdrop.shadow then
 						_G.GuildBankFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
