@@ -394,9 +394,9 @@ P.ElvUI_EltreumUI = {
 		classification = {
 			enable = false,
 			icontypeelite = "TYPE6",
-			icontyperare = "TYPE9",
-			icontyperareelite = "TYPE9",
-			icontypeboss = "TYPE19",
+			icontyperare = "TYPE10",
+			icontyperareelite = "TYPE10",
+			icontypeboss = "TYPE20",
 
 			eliteR = 1,
 			eliteG = 0.70,
