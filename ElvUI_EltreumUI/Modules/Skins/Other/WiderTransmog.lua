@@ -65,13 +65,13 @@ EltruismWiderTransmog:SetScript("OnEvent", function(_, _, arg)
 				WardrobeTransmogFrame.SecondaryHandEnchantButton:SetPoint("BOTTOM", WardrobeTransmogFrame.SecondaryHandButton, "BOTTOM", 0, -28)
 				UIPanelWindows["WardrobeFrame"].width = 1200
 
-				--WardrobeTransmogFrame.ItemsCollectionFrame.TopLeftCorner:Hide()
-				--WardrobeTransmogFrame.ItemsCollectionFrame.BottomRightCorner:Hide()
-				--WardrobeTransmogFrame.ItemsCollectionFrame.Center:Hide()
-				--WardrobeTransmogFrame.ItemsCollectionFrame.TopEdge:Hide()
-				--WardrobeTransmogFrame.ItemsCollectionFrame.BottomEdge:Hide()
-				--WardrobeTransmogFrame.ItemsCollectionFrame.RightEdge:Hide()
-				--WardrobeTransmogFrame.ItemsCollectionFrame.LeftEdge:Hide()
+				WardrobeCollectionFrame.ItemsCollectionFrame.TopLeftCorner:Hide()
+				WardrobeCollectionFrame.ItemsCollectionFrame.BottomRightCorner:Hide()
+				WardrobeCollectionFrame.ItemsCollectionFrame.Center:Hide()
+				WardrobeCollectionFrame.ItemsCollectionFrame.TopEdge:Hide()
+				WardrobeCollectionFrame.ItemsCollectionFrame.BottomEdge:Hide()
+				WardrobeCollectionFrame.ItemsCollectionFrame.RightEdge:Hide()
+				WardrobeCollectionFrame.ItemsCollectionFrame.LeftEdge:Hide()
 			end
 		end)
 	end
