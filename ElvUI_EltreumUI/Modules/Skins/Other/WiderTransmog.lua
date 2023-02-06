@@ -82,6 +82,13 @@ EltruismWiderTransmog:SetScript("OnEvent", function(_, _, arg)
 				WardrobeCollectionFrame.ItemsCollectionFrame.NineSlice.TopEdge:Hide()
 				WardrobeCollectionFrame.ItemsCollectionFrame.NineSlice.TopLeftCorner:Hide()
 				WardrobeCollectionFrame.ItemsCollectionFrame.NineSlice.TopRightCorner:Hide()
+				if WardrobeCollectionFrame.ItemsCollectionFrame.oborder then
+					WardrobeCollectionFrame.ItemsCollectionFrame.oborder:Hide()
+				end
+				if WardrobeCollectionFrame.ItemsCollectionFrame.iborder then
+					WardrobeCollectionFrame.ItemsCollectionFrame.iborder:Hide()
+				end
+
 			end
 		end)
 	end
