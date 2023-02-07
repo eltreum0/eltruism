@@ -168,7 +168,10 @@ P.ElvUI_EltreumUI = {
 			r = 0.90,
 			g = 0.72,
 			b = 0,
-			offset = -0.2,
+			redoffset = -0.2,
+			greenoffset = -0.2,
+			blueoffset = -0.2,
+
 			classcolor = true,
 			gradient = true,
 			difficultycolors = true,
@@ -391,9 +394,9 @@ P.ElvUI_EltreumUI = {
 		classification = {
 			enable = false,
 			icontypeelite = "TYPE6",
-			icontyperare = "TYPE9",
-			icontyperareelite = "TYPE9",
-			icontypeboss = "TYPE18",
+			icontyperare = "TYPE10",
+			icontyperareelite = "TYPE10",
+			icontypeboss = "TYPE20",
 
 			eliteR = 1,
 			eliteG = 0.70,
@@ -764,6 +767,12 @@ P.ElvUI_EltreumUI = {
 				r = -0.2,
 				g = -0.4,
 				b = -0.4,
+			},
+			gradientAltPower = false,
+			gradientAltPowercolors = {
+				r = -0.2,
+				g = -0.2,
+				b = -0.2,
 			},
 
 			enableplayer = true,
