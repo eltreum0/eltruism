@@ -377,7 +377,7 @@ E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 	local icon
 	local classification = UnitClassification(unit) -- "worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
 	if UnitGUID(unit) and string.match(UnitGUID(unit), "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)") then
-		local unitID = tonumber(string.match(UnitGUID(unit), "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
+		local unitID = (string.match(UnitGUID(unit), "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
 		--print(classification,unitID,UnitGUID(unit))
 		--make sure its not a player as to not overwrite class colors
 		if not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then

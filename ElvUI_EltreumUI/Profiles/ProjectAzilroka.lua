@@ -12,14 +12,14 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["QuestSounds"]["Enable"] = false
 	PA.db["FasterLoot"]["Enable"] = false
 	if E.Retail then
-		PA.db["SunsongRanchFarmer"]["Enable"] = false
+		--PA.db["SunsongRanchFarmer"]["Enable"] = false
 		PA.db["QuestSounds"]["Enable"] = true
 		PA.db["QuestSounds"]["ObjectiveCompleteID"] = "None"
 		PA.db["QuestSounds"]["ObjectiveProgressID"] = "None"
 		PA.db["QuestSounds"]["ObjectiveComplete"] = "None"
 		PA.db["QuestSounds"]["QuestCompleteID"] = "None"
 		PA.db["QuestSounds"]["ObjectiveProgress"] = "None"
-		PA.db["ReputationReward"]["Enable"] = false
+		--PA.db["ReputationReward"]["Enable"] = false
 		PA.db["TorghastBuffs"]["horizontalSpacing"] = 1
 		PA.db["TorghastBuffs"]["verticalSpacing"] = 1
 		PA.db["TorghastBuffs"]["size"] = 26
