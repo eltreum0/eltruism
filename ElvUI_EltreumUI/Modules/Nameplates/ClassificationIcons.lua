@@ -331,7 +331,7 @@ local function Update_ClassificationIndicator(_, nameplate)
 	 -- if db and db.enable and (nameplate.frameType == 'FRIENDLY_NPC' or nameplate.frameType == 'ENEMY_NPC') then
 
 	 -- only for demo
-	if db and (nameplate.frameType == 'FRIENDLY_NPC' or nameplate.frameType == 'ENEMY_NPC') then
+	if db and (nameplate.frameType == 'ENEMY_NPC') then
 		if not nameplate:IsElementEnabled('EltruismClassificationIndicator') then
 			nameplate:EnableElement('EltruismClassificationIndicator')
 		end
