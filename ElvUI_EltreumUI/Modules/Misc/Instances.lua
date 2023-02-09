@@ -48,7 +48,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonNormal)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
-					textgradient = (E:TextGradient(E.db.ElvUI_EltreumUI.skins.instances.DungeonNormal, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.b, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
+					textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.DungeonNormal, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.b, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
 					instancedifficulty.Text:SetText(textgradient)
 				else
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.b)
@@ -58,7 +58,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroic)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
-					textgradient = (E:TextGradient(E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroic, E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.b, E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
+					textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroic, E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.b, E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
 					instancedifficulty.Text:SetText(textgradient)
 				else
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.b)
@@ -68,7 +68,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.Raid10)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
-					textgradient = (E:TextGradient(E.db.ElvUI_EltreumUI.skins.instances.Raid10, E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.r, E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.g, E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.b, E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
+					textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.Raid10, E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.r, E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.g, E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.b, E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
 					instancedifficulty.Text:SetText(textgradient)
 				else
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.r, E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.g, E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.b)
@@ -78,7 +78,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.Raid25)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
-					textgradient = (E:TextGradient(E.db.ElvUI_EltreumUI.skins.instances.Raid25, E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.r, E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.g, E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.b, E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
+					textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.Raid25, E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.r, E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.g, E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.b, E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
 					instancedifficulty.Text:SetText(textgradient)
 				else
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.r, E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.g, E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.b)
@@ -88,7 +88,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.Raid10Heroic)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
-					textgradient = (E:TextGradient(E.db.ElvUI_EltreumUI.skins.instances.Raid10Heroic, E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.r, E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.g, E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.b, E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
+					textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.Raid10Heroic, E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.r, E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.g, E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.b, E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
 					instancedifficulty.Text:SetText(textgradient)
 				else
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.r, E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.g, E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.b)
@@ -98,28 +98,28 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.Raid25Heroic)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
-					textgradient = (E:TextGradient(E.db.ElvUI_EltreumUI.skins.instances.Raid25Heroic, E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.r, E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.g, E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.b, E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.b + E.db.ElvUI_EltreumUI.skins.instances.redoffset))
+					textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.Raid25Heroic, E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.r, E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.g, E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.b, E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.b + E.db.ElvUI_EltreumUI.skins.instances.redoffset))
 					instancedifficulty.Text:SetText(textgradient)
 				else
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.r, E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.g, E.db.ElvUI_EltreumUI.skins.instances.Raid25HeroicColor.b)
 				end
 			end
-		elseif DifficultyID == 23 or DifficultyID == 40 then
+		elseif DifficultyID == 23 or DifficultyID == 40 then --m0
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonMythic)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
-					textgradient = (E:TextGradient(E.db.ElvUI_EltreumUI.skins.instances.DungeonMythic, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicColor.b, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
+					textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.DungeonMythic, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicColor.b, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
 					instancedifficulty.Text:SetText(textgradient)
 				else
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicColor.b)
 				end
 			end
-		elseif DifficultyID == 8 then
+		elseif DifficultyID == 8 then --m+
 			local keylevel = C_ChallengeMode.GetActiveKeystoneInfo()
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlus.." +"..keylevel)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
-					textgradient = (E:TextGradient(E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlus.." +"..keylevel, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlusColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlusColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlusColor.b, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlusColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlusColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlusColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
+					textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlus.." +"..keylevel, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlusColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlusColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlusColor.b, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlusColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlusColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlusColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
 					instancedifficulty.Text:SetText(textgradient)
 				else
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlusColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlusColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonMythicPlusColor.b)
@@ -129,7 +129,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalker)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
-					textgradient = (E:TextGradient(E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalker, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.b, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
+					textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalker, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.b, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
 					instancedifficulty.Text:SetText(textgradient)
 				else
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.b)
@@ -139,7 +139,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.Raid)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
-					textgradient = (E:TextGradient(E.db.ElvUI_EltreumUI.skins.instances.Raid, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.r, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.g, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.b, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
+					textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.Raid, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.r, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.g, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.b, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
 					instancedifficulty.Text:SetText(textgradient)
 				else
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.RaidColor.r, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.g, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.b)
@@ -149,7 +149,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.RaidHeroic)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
-					textgradient = (E:TextGradient(E.db.ElvUI_EltreumUI.skins.instances.RaidHeroic, E.db.ElvUI_EltreumUI.skins.instances.RaidHeroicColor.r, E.db.ElvUI_EltreumUI.skins.instances.RaidHeroicColor.g, E.db.ElvUI_EltreumUI.skins.instances.RaidHeroicColor.b, E.db.ElvUI_EltreumUI.skins.instances.RaidHeroicColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.RaidHeroicColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.RaidHeroicColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
+					textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.RaidHeroic, E.db.ElvUI_EltreumUI.skins.instances.RaidHeroicColor.r, E.db.ElvUI_EltreumUI.skins.instances.RaidHeroicColor.g, E.db.ElvUI_EltreumUI.skins.instances.RaidHeroicColor.b, E.db.ElvUI_EltreumUI.skins.instances.RaidHeroicColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.RaidHeroicColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.RaidHeroicColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
 					instancedifficulty.Text:SetText(textgradient)
 				else
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.RaidHeroicColor.r, E.db.ElvUI_EltreumUI.skins.instances.RaidHeroicColor.g, E.db.ElvUI_EltreumUI.skins.instances.RaidHeroicColor.b)
@@ -159,7 +159,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.MythicRaid)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
-					textgradient = (E:TextGradient(E.db.ElvUI_EltreumUI.skins.instances.MythicRaid, E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.r, E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.g, E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.b, E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
+					textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.MythicRaid, E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.r, E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.g, E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.b, E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
 					instancedifficulty.Text:SetText(textgradient)
 				else
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.r, E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.g, E.db.ElvUI_EltreumUI.skins.instances.MythicRaidColor.b)
@@ -169,7 +169,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.RaidLFR)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
-					textgradient = (E:TextGradient(E.db.ElvUI_EltreumUI.skins.instances.RaidLFR, E.db.ElvUI_EltreumUI.skins.instances.RaidLFRColor.r, E.db.ElvUI_EltreumUI.skins.instances.RaidLFRColor.g, E.db.ElvUI_EltreumUI.skins.instances.RaidLFRColor.b, E.db.ElvUI_EltreumUI.skins.instances.RaidLFRColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.RaidLFRColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.RaidLFRColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
+					textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.RaidLFR, E.db.ElvUI_EltreumUI.skins.instances.RaidLFRColor.r, E.db.ElvUI_EltreumUI.skins.instances.RaidLFRColor.g, E.db.ElvUI_EltreumUI.skins.instances.RaidLFRColor.b, E.db.ElvUI_EltreumUI.skins.instances.RaidLFRColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.RaidLFRColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.RaidLFRColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
 					instancedifficulty.Text:SetText(textgradient)
 				else
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.RaidLFRColor.r, E.db.ElvUI_EltreumUI.skins.instances.RaidLFRColor.g, E.db.ElvUI_EltreumUI.skins.instances.RaidLFRColor.b)
@@ -179,7 +179,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalker)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
-					textgradient = (E:TextGradient(E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalker, E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.r, E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.g, E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.b, E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
+					textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalker, E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.r, E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.g, E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.b, E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
 					instancedifficulty.Text:SetText(textgradient)
 				else
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.r, E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.g, E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.b)
@@ -195,7 +195,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 		if not E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 			if not E.db.ElvUI_EltreumUI.skins.instances.classcolor then -- player set color
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
-					textgradient = E:TextGradient(instancedifficulty.Text:GetText(), E.db.ElvUI_EltreumUI.skins.instances.r, E.db.ElvUI_EltreumUI.skins.instances.g, E.db.ElvUI_EltreumUI.skins.instances.b, E.db.ElvUI_EltreumUI.skins.instances.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset)
+					textgradient = E:TextGradient(" "..instancedifficulty.Text:GetText(), E.db.ElvUI_EltreumUI.skins.instances.r, E.db.ElvUI_EltreumUI.skins.instances.g, E.db.ElvUI_EltreumUI.skins.instances.b, E.db.ElvUI_EltreumUI.skins.instances.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset)
 					instancedifficulty.Text:SetText(textgradient)
 
 				else
@@ -204,7 +204,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 			elseif E.db.ElvUI_EltreumUI.skins.instances.classcolor then --class color
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
 					if instancedifficulty.Text:GetText() ~= nil then
-						textgradient = E:TextGradient(instancedifficulty.Text:GetText(), classcolors.r, classcolors.g, classcolors.b, classcolors.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, classcolors.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, classcolors.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset)
+						textgradient = E:TextGradient(" "..instancedifficulty.Text:GetText(), classcolors.r, classcolors.g, classcolors.b, classcolors.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, classcolors.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, classcolors.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset)
 						instancedifficulty.Text:SetText(textgradient)
 					end
 				else
@@ -212,7 +212,6 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 				end
 			end
 		end
-
 
 		if E.Retail then
 			if _G["MiniMapInstanceDifficulty"] and (_G["MiniMapInstanceDifficulty"]:IsShown() == true or _G["MiniMapInstanceDifficulty"]:GetAlpha() == 1) then
