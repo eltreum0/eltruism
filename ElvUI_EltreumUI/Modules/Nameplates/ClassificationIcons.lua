@@ -236,7 +236,7 @@ local function Update(self)
 	end
 
 	if E.db.ElvUI_EltreumUI.dev then
-		ElvUI_EltreumUI:Print("npcID: ", self.npcID)
+		ElvUI_EltreumUI:Print("npcID: "..self.npcID)
 	end
 
 	local classification = self.classification
