@@ -338,7 +338,7 @@ if E.Retail or E.Wrath then
 		antiflicker:RegisterUnitEvent("UNIT_PET", "player")
 		antiflicker:RegisterUnitEvent("UNIT_FLAGS", "player")
 		antiflicker:SetScript("OnEvent", function()
-			if E.private.unitframe.enable and (E.db.ElvUI_EltreumUI.unitframes.UFmodifications ~= false) and (E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or (not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.uftextureversion ~= "NONE") or (E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture)) then
+			if E.private.unitframe.enable and (E.db.ElvUI_EltreumUI.unitframes.UFmodifications ~= false) and ((E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or (not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.uftextureversion ~= "NONE") or (E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture)) then
 				ElvUI_EltreumUI:CustomTexture("player")
 			else
 				antiflicker:UnregisterAllEvents()
