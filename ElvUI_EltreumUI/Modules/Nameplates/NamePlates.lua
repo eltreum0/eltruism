@@ -733,7 +733,7 @@ end
 
 --change vertical and horizontal offsets when resting/not resting
 function ElvUI_EltreumUI:NameplateRestedOverlaps()
-	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.restedoverlap then
+	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.restedoverlap and E.private.nameplates.enable then
 		if not InCombatLockdown() then
 			if IsResting() then
 				SetCVar("nameplateOverlapH", 0)

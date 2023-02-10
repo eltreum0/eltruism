@@ -8330,6 +8330,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Decrease Nameplate Overlap when Resting"],
 								desc = L["Toggle On and Off"],
 								width = 'full',
+								disabled = not E.private.nameplates.enable,
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.restedoverlap end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.restedoverlap = value end,
 							},
