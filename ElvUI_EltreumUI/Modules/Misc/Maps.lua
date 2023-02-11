@@ -46,12 +46,12 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 			EltruismAutopin:SetScript("OnEvent", function()
 				EltruismAutopin:UnregisterEvent("PLAYER_STARTED_MOVING")
 				local _, instanceType = IsInInstance()
-				if instanceType ~= "none" then
+				if instanceType ~= "none" then --clears waypoints inside instances
 					C_Map.ClearUserWaypoint()
-				elseif instanceType == "none" then
+				elseif instanceType == "none" then --is in the open world
 					--if event == "USER_WAYPOINT_UPDATED" and C_Map.HasUserWaypoint() == true then
 					if C_Map.HasUserWaypoint() == true then
-						C_Timer.After(0, function() C_SuperTrack.SetSuperTrackedUserWaypoint(true) end)
+						E:Delay(0, function() C_SuperTrack.SetSuperTrackedUserWaypoint(true) end)
 					end
 				end
 			end)
@@ -104,7 +104,7 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 						local seconds = 0
 						local minutes = 0
 						if not speed or speed == 0 then --might be dragonflying, calculate based on delta distance
-							C_Timer.After(1, function()
+							E:Delay(0, function()
 								local previousdistance = C_Navigation.GetDistance()
 								local speed = math.abs(distance - previousdistance)
 								--print(distance,previousdistance, speed)
