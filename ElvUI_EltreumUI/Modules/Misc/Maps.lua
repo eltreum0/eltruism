@@ -66,7 +66,7 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 		EltruismTimeToArriveParent:RegisterEvent("WAYPOINT_UPDATE")
 		EltruismTimeToArriveParent:RegisterEvent("SUPER_TRACKING_CHANGED")
 		--EltruismTimeToArriveParent:SetScript("OnEvent", function(_, event)
-			EltruismTimeToArriveParent:SetScript("OnEvent", function()
+		EltruismTimeToArriveParent:SetScript("OnEvent", function()
 			--print(event.."waypoint")
 			if C_Map.HasUserWaypoint() == true or C_SuperTrack.IsSuperTrackingAnything() == true then
 				--use throttled onupdate to udpate the text (once per second)
