@@ -73,17 +73,17 @@ local bossIDs = {
 	["56732"] = true,
 	["56439"] = true,
 	-- raid VOTI
-	["190245"] = true,
-	["184972"] = true,
-	["189492"] = true,
-	["189813"] = true,
-	["187771"] = true,
-	["181378"] = true,
-	["187967"] = true,
-	["190496"] = true,
-	["187768"] = true, --dathea-stormlash
-	["187772"] = true, --opalfang
-	["187767"] = true, --embar-firepath
+	["190245"] = true, --Broodkeeper-Diurna
+	["184972"] = true, --Eranog
+	["189492"] = true, --Raszageth
+	["189813"] = true, --Dathea-Ascended
+	["184986"] = true, --Kurog-Grimtotem
+	["187967"] = true, --Sennarth
+	["190496"] = true, --Terros
+	["187771"] = true, --Kadros-Icewrath
+	["187768"] = true, --Dathea-Stormlash
+	["187772"] = true, --Opalfang
+	["187767"] = true, --Embar-Firepath
 
 	--storm fury bosses
 	["199502"] = true, --glakis-winters-wrath
@@ -202,6 +202,15 @@ local bossIDs = {
 	["58336"] = true, --darkmoon-rabbit
 	["71992"] = true, --moonfang
 	["15467"] = true, --omen
+
+	--World Events
+
+	--Love is in the Air
+	["36296"] = true, --Apothecary Hummel <Crown Chemical Co.>
+	["36565"] = true, --Apothecary Baxter <Crown Chemical Co.>
+	["36272"] = true, --Apothecary Frye <Crown Chemical Co.>
+
+
 }
 
 local textureDB = {
