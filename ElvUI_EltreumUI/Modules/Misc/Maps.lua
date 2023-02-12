@@ -48,6 +48,7 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 			EltruismAutopin:SetScript("OnEvent", function()
 				EltruismAutopin:UnregisterEvent("PLAYER_STARTED_MOVING")
 				local _, instanceType = IsInInstance()
+				--print(instanceType,event,"autopin")
 				if instanceType ~= "none" then --clears waypoints inside instances
 					C_Map.ClearUserWaypoint()
 				elseif instanceType == "none" then --is in the open world
