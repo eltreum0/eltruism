@@ -218,6 +218,18 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 				ElvUI_EltreumUI:Print("Unknown instance type, please report in discord: "..DifficultyID)
 				instancedifficulty.Text:SetText("Report this: "..DifficultyID)
 				backuptext = ("Report this: "..DifficultyID)
+			else
+				instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.DungeonNormal)
+				backuptext = (E.db.ElvUI_EltreumUI.skins.instances.DungeonNormal)
+				if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
+					if E.db.ElvUI_EltreumUI.skins.instances.gradient then
+						textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.DungeonNormal, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.b, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
+						instancedifficulty.Text:SetText(textgradient)
+						backuptext = textgradient
+					else
+						instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonNormalColor.b)
+					end
+				end
 			end
 		end
 

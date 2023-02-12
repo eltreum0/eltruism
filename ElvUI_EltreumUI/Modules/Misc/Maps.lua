@@ -18,8 +18,10 @@ local UiMapPoint = _G.UiMapPoint
 
 --Conversion of Time to Arrive weakaura (new version)
 local EltruismAutopin = CreateFrame("Frame", "EltruismAutoPin")
+
 local EltruismTimeToArriveParent = CreateFrame("Frame", "EltruismTimeToArriveParent")
 EltruismTimeToArriveParent:RegisterEvent("PLAYER_ENTERING_WORLD")
+
 local EltruismTimeToArrive = CreateFrame("Frame", "EltruismTimeToArrive", UIParent)
 EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 EltruismTimeToArrive.TimeText:SetJustifyV("TOP")
@@ -46,6 +48,7 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 			EltruismAutopin:SetScript("OnEvent", function()
 				EltruismAutopin:UnregisterEvent("PLAYER_STARTED_MOVING")
 				local _, instanceType = IsInInstance()
+				--print(instanceType,event,"autopin")
 				if instanceType ~= "none" then --clears waypoints inside instances
 					C_Map.ClearUserWaypoint()
 				elseif instanceType == "none" then --is in the open world
@@ -67,8 +70,9 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 		EltruismTimeToArriveParent:RegisterEvent("SUPER_TRACKING_CHANGED")
 		--EltruismTimeToArriveParent:SetScript("OnEvent", function(_, event)
 		EltruismTimeToArriveParent:SetScript("OnEvent", function()
-			--print(event.."waypoint")
-			if C_Map.HasUserWaypoint() == true or C_SuperTrack.IsSuperTrackingAnything() == true then
+			local _, instanceType = IsInInstance()
+			--print(instanceType,event,"waypoint")
+			if (C_Map.HasUserWaypoint() == true or C_SuperTrack.IsSuperTrackingAnything() == true) and (instanceType == "none") then
 				--use throttled onupdate to udpate the text (once per second)
 				EltruismTimeToArrive:SetScript("OnUpdate", function(self, elapsed)
 					--print("onupdate spam"..math.random(1,99))
