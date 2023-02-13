@@ -1,6 +1,17 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.7.3
+Updated Tank and Assist shadows to update like Raid Shadows\
+Updated Rested Nameplates to only run with ElvUI Nameplates\
+Updated Classification Icons to only show on Enemies\
+Updated some Boss IDs for Classification Icons\
+Updated some Role Icons by Atwood\
+Fixed a possible issue with Custom Textures when the Database was not loaded\
+Fixed an issue where Waypoints were being cleared automatically\
+Fixed errors during install due to a change in ProjectAzilroka\
+Fixed Instance Gradient Text having incorrect colors\
+Fixed an error on some event instances
 ### 3.7.2
 Added Custom Classification Icons for Nameplates, showing different icons for Elites, Rares, Rare Elites, World Bosses and Dungeon Bosses\
 Added several more options to Instance Text, such as Difficulty Specific Colors and Gradient Colors\

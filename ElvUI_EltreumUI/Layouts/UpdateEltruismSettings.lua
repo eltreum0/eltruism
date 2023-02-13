@@ -24,6 +24,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture = "ElvUI Norm1"
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect = true
+	E.db.ElvUI_EltreumUI.nameplates.classification.enable = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = true
 
 	--power bar scaling issues
