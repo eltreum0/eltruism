@@ -742,10 +742,12 @@ function ElvUI_EltreumUI:Shadows()
 
 		timermonitor:RegisterEvent("START_TIMER")
 		timermonitor:SetScript("OnEvent", function()
-			for _, b in pairs(_G.TimerTracker.timerList) do
-				if b.bar and not b.bar.shadow then
-					b.bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					if EnhancedShadows then EnhancedShadows:RegisterShadow(b.bar.shadow) end
+			if _G.TimerTracker and _G.TimerTracker.timerList then
+				for _, b in pairs(_G.TimerTracker.timerList) do
+					if b.bar and not b.bar.shadow then
+						b.bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(b.bar.shadow) end
+					end
 				end
 			end
 		end)
