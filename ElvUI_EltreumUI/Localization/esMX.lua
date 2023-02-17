@@ -1256,3 +1256,4 @@ L["Rare Elite Color"] = "Color de élite raro"
 L["Rare Elite Icon"] = "Icono de élite raro"
 L["Difficulty Specific Colors"] = "Colores específicos por dificultad"
 L["Use different colors per Difficulty"] = "Usar diferentes colores por Dificultad"
+L["Requires ElvUI Nameplate Elite Icon"] = true
