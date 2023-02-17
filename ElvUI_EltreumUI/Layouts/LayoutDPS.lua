@@ -639,7 +639,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["boss"]["infoPanel"]["transparent"] = true
 	E.db["unitframe"]["units"]["boss"]["name"]["attachTextTo"] = "InfoPanel"
 	E.db["unitframe"]["units"]["boss"]["name"]["position"] = "LEFT"
-	E.db["unitframe"]["units"]["boss"]["name"]["text_format"] = "[namecolor][name]"
+	E.db["unitframe"]["units"]["boss"]["name"]["text_format"] = "[name:eltruism:gradient]"
 	E.db["unitframe"]["units"]["boss"]["portrait"]["enable"] = true
 	E.db["unitframe"]["units"]["boss"]["portrait"]["fullOverlay"] = true
 	E.db["unitframe"]["units"]["boss"]["portrait"]["overlay"] = true
@@ -681,7 +681,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["focus"]["debuffs"]["sizeOverride"] = 30
 	E.db["unitframe"]["units"]["focus"]["height"] = 35
 	E.db["unitframe"]["units"]["focus"]["infoPanel"]["enable"] = true
-	E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:class:player] [eltruism:raidmarker]"
+	E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:eltruism:gradientshort] [eltruism:class:player] [eltruism:raidmarker]"
 	E.db["unitframe"]["units"]["focus"]["power"]["attachTextTo"] = "Power"
 	E.db["unitframe"]["units"]["focus"]["power"]["height"] = 14
 	E.db["unitframe"]["units"]["focus"]["power"]["position"] = "RIGHT"
@@ -1189,7 +1189,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["tank"]["debuffs"]["sizeOverride"] = 20
 	E.db["unitframe"]["units"]["tank"]["fader"]["minAlpha"] = 0.5
 	E.db["unitframe"]["units"]["tank"]["height"] = 30
-	E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:long:status]"
+	E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:eltruism:gradientshort]"
 	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["font"] = "Kimberley"
 	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["fontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["fontSize"] = 14
@@ -1198,7 +1198,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["stack"]["xOffset"] = -3
 	E.db["unitframe"]["units"]["tank"]["targetsGroup"]["enable"] = false
 	E.db["unitframe"]["units"]["tank"]["targetsGroup"]["height"] = 30
-	E.db["unitframe"]["units"]["tank"]["targetsGroup"]["name"]["text_format"] = "[namecolor][name:abbrev]"
+	E.db["unitframe"]["units"]["tank"]["targetsGroup"]["name"]["text_format"] = "[name:eltruism:gradientshort]"
 	E.db["unitframe"]["units"]["tank"]["targetsGroup"]["raidicon"]["attachTo"] = "RIGHT"
 	E.db["unitframe"]["units"]["tank"]["targetsGroup"]["raidicon"]["size"] = 8
 	E.db["unitframe"]["units"]["tank"]["targetsGroup"]["raidicon"]["yOffset"] = 0

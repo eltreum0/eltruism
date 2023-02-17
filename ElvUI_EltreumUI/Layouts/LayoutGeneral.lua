@@ -723,7 +723,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 12,
-			["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+			["text_format"] = "[name:eltruism:gradientshort] [difficultycolor][smartlevel]",
 			["xOffset"] = 2,
 			["yOffset"] = -2,
 		}
@@ -782,7 +782,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["fontOutline"] = "THICKOUTLINE",
 				["justifyH"] = "RIGHT",
 				["size"] = 12,
-				["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+				["text_format"] = "[name:eltruism:gradientshort] [difficultycolor][smartlevel]",
 				["xOffset"] = 2,
 				["yOffset"] = 0
 			}
@@ -827,7 +827,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["fontOutline"] = "THICKOUTLINE",
 				["justifyH"] = "RIGHT",
 				["size"] = 12,
-				["text_format"] = "[namecolor][name:medium] [difficultycolor][smartlevel]",
+				["text_format"] = "[name:eltruism:gradientshort] [difficultycolor][smartlevel]",
 				["xOffset"] = 2,
 				["yOffset"] = 0
 			}
@@ -854,7 +854,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["fontOutline"] = "THICKOUTLINE",
 				["justifyH"] = "CENTER",
 				["size"] = 12,
-				["text_format"] = "[namecolor][name]",
+				["text_format"] = "[name:eltruism:gradient]",
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
@@ -866,7 +866,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["fontOutline"] = "THICKOUTLINE",
 				["justifyH"] = "CENTER",
 				["size"] = 12,
-				["text_format"] = "[namecolor][name][happiness:discord]",
+				["text_format"] = "[name:eltruism:gradient][happiness:discord]",
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
@@ -902,7 +902,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 16,
-			["text_format"] = "[namecolor][name] [eltruism:class:player] [eltruism:raidmarker]",
+			["text_format"] = "[name:eltruism:gradient] [eltruism:class:player] [eltruism:raidmarker]",
 			["xOffset"] = 2,
 			["yOffset"] = 0
 		}
@@ -982,7 +982,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 10,
-			["text_format"] = "[namecolor][name:eltruism:abbreviate]",
+			["text_format"] = "[name:eltruism:gradientshort]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -1040,7 +1040,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 10,
-			["text_format"] = "[namecolor][name:eltruism:abbreviate]",
+			["text_format"] = "[name:eltruism:gradientshort]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -1098,7 +1098,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 10,
-			["text_format"] = "[namecolor][name:eltruism:abbreviateshort]",
+			["text_format"] = "[name:eltruism:gradientshort]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -1157,7 +1157,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["fontOutline"] = "THICKOUTLINE",
 				["justifyH"] = "RIGHT",
 				["size"] = 16,
-				["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][name:eltruism:abbreviate]",
+				["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [name:eltruism:gradientshort]",
 				["xOffset"] = -2,
 				["yOffset"] = 0
 			}
@@ -1169,7 +1169,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["fontOutline"] = "THICKOUTLINE",
 				["justifyH"] = "RIGHT",
 				["size"] = 16,
-				["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [namecolor][eltruism:difficulty][name:eltruism:abbreviate]",
+				["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [eltruism:difficulty][name:eltruism:gradientshort]",
 				["xOffset"] = -2,
 				["yOffset"] = 0
 			}
@@ -1217,7 +1217,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 12,
-			["text_format"] = "[namecolor][name:abbrev]",
+			["text_format"] = "[name:eltruism:gradientshort]",
 			["xOffset"] = 0,
 			["yOffset"] = 3
 		}
