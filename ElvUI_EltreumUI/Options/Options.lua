@@ -8860,7 +8860,7 @@ function ElvUI_EltreumUI:Configtable()
 							enableeliterareicons = {
 								order = 2,
 								type = 'toggle',
-								name = L["Enable replacing Elite/Rare Icons"],
+								name = L["Enable replacing Elite/Rare Icons"].." - |cffFF0000"..L["Requires ElvUI Nameplate Elite Icon"].."|r",
 								desc = L["Adds different Rare/Elite Icons"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.enable end,
