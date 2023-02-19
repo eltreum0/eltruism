@@ -126,6 +126,7 @@ LSM:Register("sound", "Rules of Nature", [[Interface\Addons\ElvUI_EltreumUI\Medi
 LSM:Register("sound", "Oh no no no", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\ohnonono.ogg]])
 LSM:Register("sound", "Dispel Illusion", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\DispelIllusion.ogg]])
 LSM:Register("sound", "Withered Run Away", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\Withered.ogg]])
+LSM:Register("sound", "Overwatch - Death", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\OverwatchDeath.ogg]])
 
 --Warcraft 3 sounds
 LSM:Register("sound", "Warcraft 3 - Night Elf Ally Dies", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\WC3NightElfAllyHeroDies.ogg]])
