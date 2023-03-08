@@ -26,8 +26,17 @@ local function SkipInstallComplete()
 end
 
 --add some stuff to the installer
-local function ImproveInstall(installtype,mode)
-
+local function ImproveInstall(installtype,mode,null)
+	if null then
+		_G.PluginInstallFrame.Option1:SetScript('OnEnter', nil)
+		_G.PluginInstallFrame.Option1:SetScript('OnLeave', nil)
+		_G.PluginInstallFrame.Option2:SetScript('OnEnter', nil)
+		_G.PluginInstallFrame.Option2:SetScript('OnLeave', nil)
+		_G.PluginInstallFrame.Option3:SetScript('OnEnter', nil)
+		_G.PluginInstallFrame.Option3:SetScript('OnLeave', nil)
+		_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
+		_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
+	end
 	if not installtype and not mode then
 		--_G.PluginInstallFrame:SetSize(1024,512)
 		if not _G.PluginInstallFrame.gaptexture then
@@ -113,6 +122,18 @@ ElvUI_EltreumUI.InstallerData = {
 	Pages = {
 		[1] = function()
 			ImproveInstall()
+
+			--hide on other plugins
+			if _G.PluginInstallFrame then
+				_G.PluginInstallFrame:HookScript("OnShow", function()
+					if _G.PluginInstallFrame.Title then
+						if _G.PluginInstallFrame.Title:GetText() ~= ElvUI_EltreumUI.Name then
+							ImproveInstall(nil,nil,true)
+						end
+					end
+				end)
+			end
+
 			ElvUI_EltreumUI:HidePopups(0.1)
 			if not _G.PluginInstallFrame.shadow then
 				_G.PluginInstallFrame:CreateShadow()
