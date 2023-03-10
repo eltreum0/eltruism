@@ -3,6 +3,7 @@ The future is uncertain
 ___
 ### 3.7.4
 Added Previews During Install, simply mouse over the buttons to preview the profile\
+Added Borders to Blizzard Raid frames, which will use Raid1 Border Settings\
 Added an option to hide Chat during Boss Encounters\
 Added Overwatch Death/Kill Sound\
 Updated the version check function to check for wrong action bar offsets in Wrath\
@@ -12,6 +13,7 @@ Updated name tags to use the gradient names\
 Updated some Instance Text Colors\
 Updated Atwood icons\
 Fixed a possible error with Shadow and Light due to a database change in Shadow and Light\
+Fixed the Waypoint Time To Arrive showing wrong timers when dragonriding\
 Fixed a possible error with Mirror Timers in Wrath/Classic\
 Fixed a possible wrong text in  Heroic-10 Raids in Wrath
 ### 3.7.3
