@@ -239,6 +239,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["announcement"]["utility"]["spells"]["bots"]["text"] = "%player% summons %spell%!"
 		E.db["WT"]["announcement"]["utility"]["spells"]["feasts"]["text"] = "%player% sets down a %spell%!"
 		E.db["WT"]["announcement"]["utility"]["spells"]["toys"]["text"] = "%player% uses %spell%!"
+		E.db["WT"]["announcement"]["keystone"]["command"] = false
 
 		E.db["WT"]["combat"]["combatAlert"]["animation"] = false
 		E.db["WT"]["combat"]["combatAlert"]["enable"] = false
