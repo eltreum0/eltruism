@@ -107,8 +107,20 @@ local function ImproveInstall(installtype,mode,null)
 
 		if mode == "ENTERING" then
 			UIFrameFadeIn(_G.PluginInstallFrame.installpreview, 0.5, 0, 0.7)
+			UIFrameFadeOut(_G.PluginInstallTutorialImage, 0.5, 1, 0)
+			UIFrameFadeOut(_G.PluginInstallFrame.Desc1, 0.5, 1, 0)
+			UIFrameFadeOut(_G.PluginInstallFrame.Desc2, 0.5, 1, 0)
+			UIFrameFadeOut(_G.PluginInstallFrame.Desc3, 0.5, 1, 0)
+			UIFrameFadeOut(_G.PluginInstallFrame.Desc4, 0.5, 1, 0)
+			UIFrameFadeOut(_G.PluginInstallFrame.SubTitle, 0.5, 1, 0)
 		elseif mode == "LEAVING" then
 			UIFrameFadeOut(_G.PluginInstallFrame.installpreview, 0.5, 0.7, 0)
+			UIFrameFadeIn(_G.PluginInstallTutorialImage, 0.5, 0, 1)
+			UIFrameFadeIn(_G.PluginInstallFrame.Desc1, 0.5, 0, 1)
+			UIFrameFadeIn(_G.PluginInstallFrame.Desc2, 0.5, 0, 1)
+			UIFrameFadeIn(_G.PluginInstallFrame.Desc3, 0.5, 0, 1)
+			UIFrameFadeIn(_G.PluginInstallFrame.Desc4, 0.5, 0, 1)
+			UIFrameFadeIn(_G.PluginInstallFrame.SubTitle, 0.5, 0, 1)
 		end
 
 	end
