@@ -18,7 +18,8 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		--from old addonskins
 		local PallyPowerBlessingsFrame = _G.PallyPowerBlessingsFrame
 		PallyPowerBlessingsFrame:StripTextures()
-		PallyPowerBlessingsFrame:SetTemplate('Transparent', nil, true)
+		--PallyPowerBlessingsFrame:SetTemplate('Transparent', nil, true)
+		PallyPowerBlessingsFrame:SetTemplate("Transparent", E.media.normTex, true)
 		S:HandleCloseButton(_G.PallyPowerBlessingsFrameCloseButton)
 		S:HandleButton(_G.PallyPowerBlessingsFrameAutoAssign)
 		S:HandleButton(_G.PallyPowerBlessingsFrameClear)
@@ -33,7 +34,8 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		_G.L_DropDownList2:StripTextures()
 		_G.L_DropDownList2:SetTemplate('Default')]]
 
-		_G.PallyPowerAura:SetTemplate("Transparent", nil, true)
+		--_G.PallyPowerAura:SetTemplate("Transparent", nil, true)
+		_G.PallyPowerAura:SetTemplate("Transparent", E.media.normTex, true)
 		_G.PallyPowerAuraIcon:SetTexCoord(unpack(E.TexCoords))
 		if not _G.PallyPowerAura.shadow then
 			_G.PallyPowerAura:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -55,7 +57,8 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PallyPowerAura.shadow) end
 		end
 
-		_G.PallyPowerAuto:SetTemplate("Transparent", nil, true)
+		--_G.PallyPowerAuto:SetTemplate("Transparent", nil, true)
+		_G.PallyPowerAuto:SetTemplate("Transparent", E.media.normTex, true)
 		if not _G.PallyPowerAuto.shadow then
 			_G.PallyPowerAuto:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			if _G.PallyPowerAuto.shadow then
@@ -69,7 +72,8 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 			end
 		end
 
-		_G.PallyPowerRF:SetTemplate("Transparent", nil, true)
+		--_G.PallyPowerRF:SetTemplate("Transparent", nil, true)
+		_G.PallyPowerAuto:SetTemplate("Transparent", E.media.normTex, true)
 		_G.PallyPowerRFIcon:SetTexCoord(unpack(E.TexCoords))
 		_G.PallyPowerRFIconSeal:SetTexCoord(unpack(E.TexCoords))
 
@@ -106,7 +110,8 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		--update for new pallypower
 		for i = 1, PALLYPOWER_MAXCLASSES do
 			local button = PallyPower.classButtons[i]
-			button:SetTemplate("Transparent", nil, true)
+			--button:SetTemplate("Transparent", nil, true)
+			button:SetTemplate("Transparent", E.media.normTex, true)
 
 			--_G[button:GetName().."ClassIcon"]:SetTexCoord(unpack(E.TexCoords))
 			_G[button:GetName().."BuffIcon"]:SetTexCoord(unpack(E.TexCoords))
@@ -122,7 +127,8 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 			end
 
 			for j = 1, PALLYPOWER_MAXPERCLASS do
-				PallyPower.playerButtons[i][j]:SetTemplate("Transparent", nil, true)
+				--PallyPower.playerButtons[i][j]:SetTemplate("Transparent", nil, true)
+				PallyPower.playerButtons[i][j]:SetTemplate("Transparent", E.media.normTex, true)
 			end
 		end
 

@@ -25,6 +25,107 @@ local function SkipInstallComplete()
 	ReloadUI()
 end
 
+--add some stuff to the installer
+local function ImproveInstall(installtype,mode,null)
+	if null then
+		_G.PluginInstallFrame.Option1:SetScript('OnEnter', nil)
+		_G.PluginInstallFrame.Option1:SetScript('OnLeave', nil)
+		_G.PluginInstallFrame.Option2:SetScript('OnEnter', nil)
+		_G.PluginInstallFrame.Option2:SetScript('OnLeave', nil)
+		_G.PluginInstallFrame.Option3:SetScript('OnEnter', nil)
+		_G.PluginInstallFrame.Option3:SetScript('OnLeave', nil)
+		_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
+		_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
+	end
+	if not installtype and not mode then
+		--_G.PluginInstallFrame:SetSize(1024,512)
+		if not _G.PluginInstallFrame.gaptexture then
+			_G.PluginInstallFrame.gaptexture = _G.PluginInstallFrame:CreateTexture()
+			_G.PluginInstallFrame.gaptexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\square_mask.tga")
+			_G.PluginInstallFrame.gaptexture:SetVertexColor(0, 0, 0, 1)
+			_G.PluginInstallFrame.gaptexture:SetPoint("TOPLEFT", _G.PluginInstallFrame, "TOPRIGHT", 0, 0)
+			_G.PluginInstallFrame.gaptexture:SetPoint("BOTTOMLEFT", _G.PluginInstallFrame, "BOTTOMRIGHT",0,0)
+			_G.PluginInstallFrame.gaptexture:SetPoint("TOPRIGHT", _G.PluginInstallTitleFrame, "TOPLEFT",0,0)
+			_G.PluginInstallFrame.gaptexture:SetPoint("BOTTOMRIGHT", _G.PluginInstallTitleFrame, "BOTTOMLEFT",0,0)
+		end
+		if not _G.PluginInstallFrame.installpreview then
+			_G.PluginInstallFrame.installpreview = _G.PluginInstallFrame:CreateTexture("InstallTexturePreview")
+			_G.PluginInstallFrame.installpreview:SetAllPoints(_G.PluginInstallFrame)
+			_G.PluginInstallFrame.installpreview:SetTexCoord(0,0.72,0,1)
+		else
+			_G.PluginInstallFrame.installpreview:SetAllPoints(_G.PluginInstallFrame)
+			_G.PluginInstallFrame.installpreview:SetTexCoord(0,0.72,0,1)
+		end
+	else
+		if installtype == "dps" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\DPS.jpg")
+		elseif installtype == "healer" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\HEALER.jpg")
+		elseif installtype == "alternative" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\alternativeframes.jpg")
+		elseif installtype == "lightdark" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\lightdark.jpg")
+		elseif installtype == "gradient" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\gradient.jpg")
+		elseif installtype == "borders" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\borders.jpg")
+		elseif installtype == "backgroundcolors" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\backgroundcolors.jpg")
+		elseif installtype == "chattransparent" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\chattransparent.jpg")
+		elseif installtype == "chatdark" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\chatdark.jpg")
+		elseif installtype == "detailsspec" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\detailsspec.jpg")
+		elseif installtype == "detailsreleafalpha" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\detailsreleafalpha.jpg")
+		elseif installtype == "detailsreleafsolid" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\detailsreleafsolid.jpg")
+		elseif installtype == "gladiusEX" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\gladiusEX.jpg")
+		elseif installtype == "gladius" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\gladius.jpg")
+		elseif installtype == "gladdy" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\gladdy.jpg")
+		elseif installtype == "DBM" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\DBM.jpg")
+		elseif installtype == "BigWigs" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\BigWigs.jpg")
+		elseif installtype == "BattlegroundEnemies" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\BattlegroundEnemies.jpg")
+		elseif installtype == "Capping" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\Capping.jpg")
+		elseif installtype == "WarpDeplete" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\WarpDeplete.jpg")
+		elseif installtype == "NameplateSCT" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\NameplateSCT.jpg")
+		elseif installtype == "ElvUIFCT" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\ElvUIFCT.jpg")
+		elseif installtype == "Immersion" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\Immersion.jpg")
+		end
+
+		if mode == "ENTERING" then
+			UIFrameFadeIn(_G.PluginInstallFrame.installpreview, 0.5, 0, 0.7)
+			UIFrameFadeOut(_G.PluginInstallTutorialImage, 0.5, 1, 0)
+			UIFrameFadeOut(_G.PluginInstallFrame.Desc1, 0.5, 1, 0)
+			UIFrameFadeOut(_G.PluginInstallFrame.Desc2, 0.5, 1, 0)
+			UIFrameFadeOut(_G.PluginInstallFrame.Desc3, 0.5, 1, 0)
+			UIFrameFadeOut(_G.PluginInstallFrame.Desc4, 0.5, 1, 0)
+			UIFrameFadeOut(_G.PluginInstallFrame.SubTitle, 0.5, 1, 0)
+		elseif mode == "LEAVING" then
+			UIFrameFadeOut(_G.PluginInstallFrame.installpreview, 0.5, 0.7, 0)
+			UIFrameFadeIn(_G.PluginInstallTutorialImage, 0.5, 0, 1)
+			UIFrameFadeIn(_G.PluginInstallFrame.Desc1, 0.5, 0, 1)
+			UIFrameFadeIn(_G.PluginInstallFrame.Desc2, 0.5, 0, 1)
+			UIFrameFadeIn(_G.PluginInstallFrame.Desc3, 0.5, 0, 1)
+			UIFrameFadeIn(_G.PluginInstallFrame.Desc4, 0.5, 0, 1)
+			UIFrameFadeIn(_G.PluginInstallFrame.SubTitle, 0.5, 0, 1)
+		end
+
+	end
+end
+
 -- Installer Steps
 ElvUI_EltreumUI.InstallerData = {
 	Title = ElvUI_EltreumUI.Name,
@@ -32,16 +133,20 @@ ElvUI_EltreumUI.InstallerData = {
 	tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 	Pages = {
 		[1] = function()
-			ElvUI_EltreumUI:HidePopups(0.1)
-			if not _G.PluginInstallFrame.gaptexture then
-				_G.PluginInstallFrame.gaptexture = _G.PluginInstallFrame:CreateTexture()
-				_G.PluginInstallFrame.gaptexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\square_mask.tga")
-				_G.PluginInstallFrame.gaptexture:SetVertexColor(0, 0, 0, 1)
-				_G.PluginInstallFrame.gaptexture:SetPoint("TOPLEFT", _G.PluginInstallFrame, "TOPRIGHT", 0, 0)
-				_G.PluginInstallFrame.gaptexture:SetPoint("BOTTOMLEFT", _G.PluginInstallFrame, "BOTTOMRIGHT",0,0)
-				_G.PluginInstallFrame.gaptexture:SetPoint("TOPRIGHT", _G.PluginInstallTitleFrame, "TOPLEFT",0,0)
-				_G.PluginInstallFrame.gaptexture:SetPoint("BOTTOMRIGHT", _G.PluginInstallTitleFrame, "BOTTOMLEFT",0,0)
+			ImproveInstall()
+
+			--hide on other plugins
+			if _G.PluginInstallFrame then
+				_G.PluginInstallFrame:HookScript("OnShow", function()
+					if _G.PluginInstallFrame.Title then
+						if _G.PluginInstallFrame.Title:GetText() ~= ElvUI_EltreumUI.Name then
+							ImproveInstall(nil,nil,true)
+						end
+					end
+				end)
 			end
+
+			ElvUI_EltreumUI:HidePopups(0.1)
 			if not _G.PluginInstallFrame.shadow then
 				_G.PluginInstallFrame:CreateShadow()
 				_G.PluginInstallFrame.shadow:SetPoint("TOPLEFT", _G.PluginInstallFrame, "TOPLEFT",-3,3)
@@ -56,10 +161,11 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
 			_G.PluginInstallFrame.Option1:SetScript("OnClick", SkipInstallComplete)
+			_G.PluginInstallFrame.Option1:SetScript('OnEnter', nil)
+			_G.PluginInstallFrame.Option1:SetScript('OnLeave', nil)
 			_G.PluginInstallFrame.Option1:SetText(L["Skip Install"])
 		end,
 		[2] = function()
-
 			--for classic chat lfg
 			local lfg
 			if E.global.general.locale == "enUS" then
@@ -90,6 +196,7 @@ ElvUI_EltreumUI.InstallerData = {
 			else
 				_G.PluginInstallFrame.Desc3:SetText(L["Importance: "]..'|cFFFF0000'..L["Very High (but Optional)"]..'|r')
 			end
+
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function()
@@ -119,7 +226,10 @@ ElvUI_EltreumUI.InstallerData = {
 				ElvUI_EltreumUI:UpdateEltruismSettings()
 				PlaySound(888)
 			end)
+			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ImproveInstall("dps","ENTERING") end)
+			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING")end)
 			_G.PluginInstallFrame.Option1:SetText(L["DPS\nTank"])
+
 			_G.PluginInstallFrame.Option2:Enable()
 			_G.PluginInstallFrame.Option2:Show()
 			_G.PluginInstallFrame.Option2:SetScript('OnClick', function()
@@ -149,16 +259,17 @@ ElvUI_EltreumUI.InstallerData = {
 				ElvUI_EltreumUI:UpdateEltruismSettings()
 				PlaySound(888)
 			end)
+			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ImproveInstall("healer","ENTERING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option2:SetText(L["Healer"])
-			--_G.PluginInstallFrame.Option3:SetText(L["Automatic\nScale"])
-			--_G.PluginInstallFrame.Option3:Enable()
-			--_G.PluginInstallFrame.Option3:Show()
-			--_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AutoScale() end)
+
 			if E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
 				_G.PluginInstallFrame.Option3:SetText(L["Alternative\nFrames"])
 				_G.PluginInstallFrame.Option3:Enable()
 				_G.PluginInstallFrame.Option3:Show()
 				_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AlternativeGroupsDPS() end)
+				_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ImproveInstall("alternative","ENTERING") end)
+				_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			end
 		end,
 		[3] = function()
@@ -171,10 +282,14 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Desc2:SetText(L["You can switch to Light Mode or Gradient Mode by clicking the buttons below"])
 			_G.PluginInstallFrame.Desc3:SetText(L["You can customize the textures and colors in Eltruism > Unitframes"])
 			_G.PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
+
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:ColorModes() end)
+			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ImproveInstall("lightdark","ENTERING") end)
+			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option1:SetText(L["Light Mode"].."\n"..L["Dark Mode"])
+
 			_G.PluginInstallFrame.Option2:Enable()
 			_G.PluginInstallFrame.Option2:Show()
 			_G.PluginInstallFrame.Option2:SetScript('OnClick', function()
@@ -192,6 +307,9 @@ ElvUI_EltreumUI.InstallerData = {
 				end
 			end)
 			_G.PluginInstallFrame.Option2:SetText(L["Gradient Mode"])
+			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ImproveInstall("gradient","ENTERING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+
 			_G.PluginInstallFrame.Option3:Enable()
 			_G.PluginInstallFrame.Option3:Show()
 			_G.PluginInstallFrame.Option3:SetScript('OnClick', function()
@@ -199,10 +317,16 @@ ElvUI_EltreumUI.InstallerData = {
 				ElvUI_EltreumUI:AuraBorders()
 				ElvUI_EltreumUI:ShowHideBorders(true)
 			end)
+			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ImproveInstall("borders","ENTERING") end)
+			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option3:SetText(L["Borders"])
+
+
 			_G.PluginInstallFrame.Option4:Enable()
 			_G.PluginInstallFrame.Option4:Show()
 			_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:CheckBackground() end)
+			_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ImproveInstall("backgroundcolors","ENTERING") end)
+			_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option4:SetText(L["Background"].."\n"..L["Color"])
 		end,
 		[4] = function()
@@ -214,21 +338,29 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFont("Roboto") end)
+			_G.PluginInstallFrame.Option1:SetScript('OnEnter', nil)
+			_G.PluginInstallFrame.Option1:SetScript('OnLeave', nil)
 			_G.PluginInstallFrame.Option1:SetText('Roboto')
 			_G.PluginInstallOption1ButtonText:SetFont('Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\Roboto-Bold.TTF', 12, E.db.general.fontStyle)
 			_G.PluginInstallFrame.Option2:Show()
 			_G.PluginInstallFrame.Option2:Enable()
 			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFont("Exo2 Extra Bold") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnEnter', nil)
+			_G.PluginInstallFrame.Option2:SetScript('OnLeave', nil)
 			_G.PluginInstallFrame.Option2:SetText('Exo2')
 			_G.PluginInstallOption2ButtonText:SetFont('Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\Exo2-ExtraBold.TTF', 12, E.db.general.fontStyle)
 			_G.PluginInstallFrame.Option3:Show()
 			_G.PluginInstallFrame.Option3:Enable()
 			_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFont("GothamNarrow Black") end)
+			_G.PluginInstallFrame.Option3:SetScript('OnEnter', nil)
+			_G.PluginInstallFrame.Option3:SetScript('OnLeave', nil)
 			_G.PluginInstallFrame.Option3:SetText('Gotham')
 			_G.PluginInstallOption3ButtonText:SetFont('Interface\\addons\\ElvUI_EltreumUI\\Media\\Fonts\\GothamNarrowBlack.TTF', 12, E.db.general.fontStyle)
 			_G.PluginInstallFrame.Option4:Show()
 			_G.PluginInstallFrame.Option4:Enable()
 			_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupFont("AR CrystalzcuheiGBK Demibold") end)
+			_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
+			_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
 			_G.PluginInstallFrame.Option4:SetText('Crystalzcuhei')
 			_G.PluginInstallOption4ButtonText:SetFont("Fonts\\ARHei.TTF", 12, E.db.general.fontStyle)
 		end,
@@ -241,13 +373,19 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Desc1:SetText(L["Eltruism uses Transparent chat by default"])
 			_G.PluginInstallFrame.Desc2:SetText(L["You can switch to Dark Chat by clicking the buttons below"])
 			_G.PluginInstallFrame.Desc3:SetText(L["Importance: "]..'|cff82B4ff'..L["Optional"]..'|r')
+
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:TransparentChat() end)
+			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ImproveInstall("chattransparent","ENTERING") end)
+			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option1:SetText(L["Transparent\nChat"])
+
 			_G.PluginInstallFrame.Option2:Enable()
 			_G.PluginInstallFrame.Option2:Show()
 			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:DarkChat() end)
+			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ImproveInstall("chatdark","ENTERING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option2:SetText(L["Dark Chat"])
 		end,
 		[6] = function()
@@ -256,21 +394,30 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Desc2:SetText(L["You can right click the bottom right arrow to toggle the Details! Window"])
 			_G.PluginInstallFrame.Desc3:SetText(L["Remember to swap the second window to Healing Done or Tiny Threat"])
 			_G.PluginInstallFrame.Desc4:SetText(L["Choose the type of icons Details! will use:"])
+
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT() ElvUI_EltreumUI:GetASProfile() end)
+			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ImproveInstall("detailsspec","ENTERING") end)
+			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			if E.Retail then
 				_G.PluginInstallFrame.Option1:SetText('Spec')
 			elseif E.Classic or E.Wrath then
 				_G.PluginInstallFrame.Option1:SetText('Blizzard')
 			end
+
 			_G.PluginInstallFrame.Option2:Enable()
 			_G.PluginInstallFrame.Option2:Show()
 			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDTReleaf() ElvUI_EltreumUI:GetASProfile() end)
+			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ImproveInstall("detailsreleafalpha","ENTERING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option2:SetText('Releaf Alpha')
+
 			_G.PluginInstallFrame.Option3:Enable()
 			_G.PluginInstallFrame.Option3:Show()
 			_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDTReleafv3() ElvUI_EltreumUI:GetASProfile() end)
+			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ImproveInstall("detailsreleafsolid","ENTERING") end)
+			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option3:SetText('Releaf Solid')
 			if (not IsAddOnLoaded("Details")) then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
@@ -289,12 +436,16 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option1:Enable()
 				_G.PluginInstallFrame.Option1:Show()
 				_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupGladiusEx() end)
+				_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ImproveInstall("gladiusEX","ENTERING") end)
+				_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 				_G.PluginInstallFrame.Option1:SetText(L["GladiusEx"])
 			elseif E.Classic or E.Wrath then
 				_G.PluginInstallFrame.Desc1:SetText(L["Import Questie profile, which uses the DBM radar"])
 				_G.PluginInstallFrame.Option1:Enable()
 				_G.PluginInstallFrame.Option1:Show()
 				_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupQuestie() end)
+				_G.PluginInstallFrame.Option1:SetScript('OnEnter', nil)
+				_G.PluginInstallFrame.Option1:SetScript('OnLeave', nil)
 				_G.PluginInstallFrame.Option1:SetText(L["Questie"])
 			end
 			_G.PluginInstallFrame.Desc2:SetText(L["Import DBM or BigWigs profiles for dungeons and raids. (Uses DBM English Calanon and Bigwigs Voice)"])
@@ -310,28 +461,42 @@ ElvUI_EltreumUI.InstallerData = {
 				end
 			end
 			_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
+
 			_G.PluginInstallFrame.Option2:Enable()
 			_G.PluginInstallFrame.Option2:Show()
 			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDBM() end)
+			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ImproveInstall("DBM","ENTERING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option2:SetText('DBM')
+
 			_G.PluginInstallFrame.Option3:Enable()
 			_G.PluginInstallFrame.Option3:Show()
 			_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupBW() end)
+			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ImproveInstall("BigWigs","ENTERING") end)
+			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option3:SetText('BigWigs')
 			if E.Wrath then
 				_G.PluginInstallFrame.Option4:Enable()
 				_G.PluginInstallFrame.Option4:Show()
 				if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
 					_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
+					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ImproveInstall("gladdy","ENTERING") end)
+					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 					_G.PluginInstallFrame.Option4:SetText('Gladdy')
 				elseif IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
 					_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
+					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ImproveInstall("gladdy","ENTERING") end)
+					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 					_G.PluginInstallFrame.Option4:SetText('Gladdy')
 				elseif not IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
 					_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladius() end)
+					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ImproveInstall("gladius","ENTERING") end)
+					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 					_G.PluginInstallFrame.Option4:SetText('Gladius')
 				elseif not IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
 					_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
+					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ImproveInstall("gladdy","ENTERING") end)
+					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 					_G.PluginInstallFrame.Option4:SetText('Gladdy')
 				end
 			end
@@ -383,12 +548,13 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option1:Enable()
 				_G.PluginInstallFrame.Option1:Show()
 				_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() end)
+				_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ImproveInstall("BattlegroundEnemies","ENTERING") end)
+				_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 				_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
 			else
 				_G.PluginInstallFrame.Desc1:SetText(L["BattlegroundEnemies is not installed or enabled"])
 				_G.PluginInstallFrame.Option1:Disable()
 				_G.PluginInstallFrame.Option1:Show()
-				_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() end)
 				_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
 			end
 			if IsAddOnLoaded("Capping") then
@@ -396,12 +562,13 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option2:Enable()
 				_G.PluginInstallFrame.Option2:Show()
 				_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:GetCappingProfile() end)
+				_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ImproveInstall("Capping","ENTERING") end)
+				_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 				_G.PluginInstallFrame.Option2:SetText("Capping")
 			else
 				_G.PluginInstallFrame.Desc2:SetText(L["Capping is not installed or enabled"])
 				_G.PluginInstallFrame.Option2:Disable()
 				_G.PluginInstallFrame.Option2:Show()
-				_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:GetCappingProfile() end)
 				_G.PluginInstallFrame.Option2:SetText("Capping")
 			end
 			if E.Retail then
@@ -410,12 +577,13 @@ ElvUI_EltreumUI.InstallerData = {
 					_G.PluginInstallFrame.Option3:Enable()
 					_G.PluginInstallFrame.Option3:Show()
 					_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:GetWarpDepleteProfile() end)
+					_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ImproveInstall("WarpDeplete","ENTERING") end)
+					_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 					_G.PluginInstallFrame.Option3:SetText(L["WarpDeplete"])
 				else
 					_G.PluginInstallFrame.Desc3:SetText(L["WarpDeplete is not installed or enabled"])
 					_G.PluginInstallFrame.Option3:Disable()
 					_G.PluginInstallFrame.Option3:Show()
-					_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:GetWarpDepleteProfile() end)
 					_G.PluginInstallFrame.Option3:SetText(L["WarpDeplete"])
 				end
 			end
@@ -434,19 +602,31 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupNameplateSCT() end)
+			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ImproveInstall("NameplateSCT","ENTERING") end)
+			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option1:SetText('NameplateSCT')
+
 			_G.PluginInstallFrame.Option2:Enable()
 			_G.PluginInstallFrame.Option2:Show()
 			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupFCT() end)
+			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ImproveInstall("ElvUIFCT","ENTERING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option2:SetText('ElvUI FCT')
+
 			_G.PluginInstallFrame.Option3:Enable()
 			_G.PluginInstallFrame.Option3:Show()
 			_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupImmersion() end)
+			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ImproveInstall("Immersion","ENTERING") end)
+			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option3:SetText('Immersion')
+
 			_G.PluginInstallFrame.Option4:Enable()
 			_G.PluginInstallFrame.Option4:Show()
 			_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDynamicCam() end)
+			_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
+			_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
 			_G.PluginInstallFrame.Option4:SetText(L["DynamicCam"])
+
 			if (not IsAddOnLoaded("NameplateSCT")) and IsAddOnLoaded("ElvUI_FCT") then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				_G.PluginInstallFrame.Desc1:SetText(L["Import a profile for Simpy's ElvUI FCT configured for Eltruism"])
@@ -482,7 +662,9 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Desc1:SetText(L["Join the Discord if you have any questions or issues (English Support)"])
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
-			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/rBXNxUY6pk') 	end)
+			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/rBXNxUY6pk')  end)
+			_G.PluginInstallFrame.Option1:SetScript('OnEnter', nil)
+			_G.PluginInstallFrame.Option1:SetScript('OnLeave', nil)
 			_G.PluginInstallFrame.Option1:SetText('Discord')
 		end,
 		[11] = function()
@@ -494,6 +676,8 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', InstallComplete)
+			_G.PluginInstallFrame.Option1:SetScript('OnEnter', nil)
+			_G.PluginInstallFrame.Option1:SetScript('OnLeave', nil)
 			_G.PluginInstallFrame.Option1:SetText(L["Finished"])
 		end,
 	},

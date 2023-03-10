@@ -1,12 +1,17 @@
-### 3.7.3 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.7.4 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Updated Tank and Assist shadows to update like Raid Shadows\
-Updated Rested Nameplates to only run with ElvUI Nameplates\
-Updated Classification Icons to only show on Enemies\
-Updated some Boss IDs for Classification Icons\
-Updated some Role Icons by Atwood\
-Fixed a possible issue with Custom Textures when the Database was not loaded\
-Fixed an issue where Waypoints were being cleared automatically\
-Fixed errors during install due to a change in ProjectAzilroka\
-Fixed Instance Gradient Text having incorrect colors\
-Fixed an error on some event instances
+Added Previews During Install, simply mouse over the buttons to preview the profile\
+Added Borders to Blizzard Raid frames, which will use Raid1 Border Settings\
+Added an option to hide Chat during Boss Encounters\
+Added Overwatch Death/Kill Sound\
+Updated the version check function to check for wrong action bar offsets in Wrath\
+Updated Evoker's Class Icon to use the official Icon instead of the placeholder\
+Updated Pally Power Skin to use ElvUI's Primary Texture\
+Updated name tags to use the gradient names\
+Updated some Instance Text Colors\
+Updated Atwood icons\
+Fixed a possible error with Shadow and Light due to a database change in Shadow and Light\
+Fixed the Waypoint Time To Arrive showing wrong timers when dragonriding\
+Fixed a possible error with Mirror Timers in Wrath/Classic\
+Fixed a possible wrong text in  Heroic-10 Raids in Wrath
+

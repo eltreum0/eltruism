@@ -94,28 +94,28 @@ function ElvUI_EltreumUI:GetSLEProfile()
 
 		--- Media
 		E.db["sle"]["media"]["fonts"]["gossip"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["gossip"]["size"] = 11
+		E.db["sle"]["media"]["fonts"]["gossip"]["fontSize"] = 11
 		E.db["sle"]["media"]["fonts"]["mail"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["mail"]["outline"] = E.db.general.fontStyle
-		E.db["sle"]["media"]["fonts"]["mail"]["size"] = 11
+		E.db["sle"]["media"]["fonts"]["mail"]["fontOutline"] = E.db.general.fontStyle
+		E.db["sle"]["media"]["fonts"]["mail"]["fontSize"] = 11
 		E.db["sle"]["media"]["fonts"]["objective"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["objective"]["outline"] = E.db.general.fontStyle
-		E.db["sle"]["media"]["fonts"]["objective"]["size"] = 13
+		E.db["sle"]["media"]["fonts"]["objective"]["fontOutline"] = E.db.general.fontStyle
+		E.db["sle"]["media"]["fonts"]["objective"]["fontSize"] = 13
 		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["outline"] = E.db.general.fontStyle
-		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["size"] = 15
+		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["fontOutline"] = E.db.general.fontStyle
+		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["fontSize"] = 15
 		E.db["sle"]["media"]["fonts"]["pvp"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["pvp"]["outline"] = E.db.general.fontStyle
-		E.db["sle"]["media"]["fonts"]["pvp"]["size"] = 20
+		E.db["sle"]["media"]["fonts"]["pvp"]["fontOutline"] = E.db.general.fontStyle
+		E.db["sle"]["media"]["fonts"]["pvp"]["fontSize"] = 20
 		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["outline"] = E.db.general.fontStyle
-		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["size"] = 22
+		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["fontOutline"] = E.db.general.fontStyle
+		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["fontSize"] = 22
 		E.db["sle"]["media"]["fonts"]["subzone"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["subzone"]["outline"] = E.db.general.fontStyle
-		E.db["sle"]["media"]["fonts"]["subzone"]["size"] = 28
+		E.db["sle"]["media"]["fonts"]["subzone"]["fontOutline"] = E.db.general.fontStyle
+		E.db["sle"]["media"]["fonts"]["subzone"]["fontSize"] = 28
 		E.db["sle"]["media"]["fonts"]["zone"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["zone"]["outline"] = E.db.general.fontStyle
-		E.db["sle"]["media"]["fonts"]["zone"]["size"] = 48
+		E.db["sle"]["media"]["fonts"]["zone"]["fontOutline"] = E.db.general.fontStyle
+		E.db["sle"]["media"]["fonts"]["zone"]["fontSize"] = 48
 		-- Minimap
 		E.db["sle"]["minimap"]["coords"]["enable"] = true
 		E.db["sle"]["minimap"]["coords"]["font"] = E.db.general.font

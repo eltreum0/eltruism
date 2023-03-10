@@ -702,10 +702,14 @@ EltruismGameMenu:SetScript("OnEvent", function()
 
 		hooksecurefunc('GameMenuFrame_UpdateVisibleButtons', function ()
 			EltruismMenuButton:Point("TOP", GameMenuFrame.ElvUI, "BOTTOM", 0, -1)
-			if _G["GameMenu_SLEConfig"] and not _G["GameMenuReloadUI"] then
+			if _G["GameMenu_SLEConfig"] and not _G["GameMenuReloadUI"] and not  _G.TXUI_GAME_BUTTON then
 				EltruismMenuButton:Point("TOP", _G["GameMenu_SLEConfig"], "BOTTOM", 0, -1)
-			elseif _G["GameMenuReloadUI"] then
+			elseif _G["GameMenuReloadUI"] and not  _G.TXUI_GAME_BUTTON then
 				EltruismMenuButton:Point("TOP", _G["GameMenuReloadUI"], "BOTTOM", 0, -1)
+			elseif _G.TXUI_GAME_BUTTON then
+				EltruismMenuButton:Point("TOP", _G.TXUI_GAME_BUTTON, "BOTTOM", 0, -1)
+			elseif _G["GameMenuFrame"].GameMenu_TXUI then
+				EltruismMenuButton:Point("TOP", _G["GameMenuFrame"].GameMenu_TXUI, "BOTTOM", 0, -1)
 			end
 		end)
 
