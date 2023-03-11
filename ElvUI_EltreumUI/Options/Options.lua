@@ -12760,6 +12760,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Apply To All"],
 								--width = 'full',
 								confirm = true,
+								hidden = not E.Retail and not E.Wrath,
 								func = function()
 									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
 									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
@@ -12799,6 +12800,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Apply To All"],
 								--width = 'full',
 								confirm = true,
+								hidden = not E.Retail,
 								func = function()
 									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
 									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
