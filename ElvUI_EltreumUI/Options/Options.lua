@@ -12665,6 +12665,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Apply To All"],
 								--width = 'full',
 								confirm = true,
+								hidden = E.Classic,
 								func = function()
 									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
 									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
@@ -12722,6 +12723,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Apply To All"],
 								--width = 'full',
 								confirm = true,
+								hidden = E.Classic,
 								func = function()
 									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
 									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
