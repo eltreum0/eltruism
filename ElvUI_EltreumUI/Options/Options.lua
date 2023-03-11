@@ -140,7 +140,7 @@ function ElvUI_EltreumUI:Configtable()
 			installer = {
 				order = 7,
 				type = 'group',
-				name = L["Installer"],
+				name = "|cff82B4ff"..L["Installer"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\install',
 				args = {
 					header5 = {
@@ -380,7 +380,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			afk = {
 				type = 'group',
-				name = L["A.F.K"],
+				name = "|cff82B4ff"..L["A.F.K"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\afk',
 				order = 85,
 				args = {
@@ -449,7 +449,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			addonsprofiles = {
 				type = 'group',
-				name = L["Addons"],
+				name = "|cff82B4ff"..L["Addons"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\addon',
 				order = 85,
 				childGroups = "tab",
@@ -806,7 +806,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			aurafilters = {
 				type = 'group',
-				name = L["Aura Filters"],
+				name = "|cff82B4ff"..L["Aura Filters"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\aurafilter',
 				childGroups = "tab",
 				order = 85,
@@ -1122,7 +1122,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			borders = {
 				type = 'group',
-				name = L["Borders"],
+				name = "|cff82B4ff"..L["Borders"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\border',
 				order = 85,
 				childGroups = "tab",
@@ -2651,7 +2651,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			chat = {
 				type = 'group',
-				name = CHAT_LABEL,
+				name = "|cff82B4ff"..CHAT_LABEL,
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\chat',
 				order = 85,
 				args = {
@@ -2910,7 +2910,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			combatmusic = {
 				type = 'group',
-				name = L["Combat Music"],
+				name = "|cff82B4ff"..L["Combat Music"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
 				order = 85,
 				args = {
@@ -3053,7 +3053,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			cooldown = {
 				type = 'group',
-				name = L["Cooldown"],
+				name = "|cff82B4ff"..L["Cooldown"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cooldown',
 				order = 85,
 				args = {
@@ -3256,7 +3256,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			cursor = {
 				type = 'group',
-				name = L["Cursor"],
+				name = "|cff82B4ff"..L["Cursor"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cursor',
 				order = 85,
 				childGroups = "tab",
@@ -3778,7 +3778,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			customglow = {
 				type = 'group',
-				name = L["Custom Glow"],
+				name = "|cff82B4ff"..L["Custom Glow"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\customglow',
 				order = 85,
 				childGroups = "tab",
@@ -4468,7 +4468,7 @@ function ElvUI_EltreumUI:Configtable()
 			cvars = {
 				order = 85,
 				type = 'group',
-				name = L["CVars"],
+				name = "|cff82B4ff"..L["CVars"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cvar',
 				childGroups = "tab",
 				args = {
@@ -4741,7 +4741,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			gradient = {
 				type = 'group',
-				name = L["Gradient Colors"],
+				name = "|cff82B4ff"..L["Gradient Colors"],
 				order = 85,
 				childGroups = "tab",
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\gradient',
@@ -6651,7 +6651,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			loottext = {
 				type = 'group',
-				name = LOOT,
+				name = "|cff82B4ff"..LOOT,
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\loot',
 				childGroups = "tab",
 				order = 85,
@@ -7095,7 +7095,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			maps = {
 				type = 'group',
-				name = L["Maps"],
+				name = "|cff82B4ff"..L["Maps"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\map',
 				order = 85,
 				args = {
@@ -7399,7 +7399,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			media = {
 				type = 'group',
-				name = L["Media"],
+				name = "|cff82B4ff"..L["Media"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\media',
 				childGroups = "tab",
 				order = 85,
@@ -7646,7 +7646,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			misc = {
 				type = 'group',
-				name = L["Misc"],
+				name = "|cff82B4ff"..L["Misc"],
 				--childGroups = "tab",
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\misc',
 				order = 85,
@@ -8034,7 +8034,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			nameplates = {
 				type = 'group',
-				name = L["Nameplates"],
+				name = "|cff82B4ff"..L["Nameplates"],
 				order = 85,
 				childGroups = "tab",
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\nameplate',
@@ -9243,7 +9243,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			partyraidsettings = {
 				type = 'group',
-				name = L["Party/Raid"],
+				name = "|cff82B4ff"..L["Party/Raid"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\party',
 				childGroups = "tab",
 				order = 85,
@@ -9886,7 +9886,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			quests = {
 				type = 'group',
-				name = QUESTS_LABEL,
+				name = "|cff82B4ff"..QUESTS_LABEL,
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\quest',
 				order = 85,
 				args = {
@@ -10118,7 +10118,7 @@ function ElvUI_EltreumUI:Configtable()
 			skins = {
 				order = 85,
 				type = 'group',
-				name = L["Skins"],
+				name = "|cff82B4ff"..L["Skins"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\paint',
 				childGroups = "tab",
 				args = {
@@ -12081,7 +12081,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			unitframes = {
 				type = 'group',
-				name = L["Unitframes"],
+				name = "|cff82B4ff"..L["Unitframes"],
 				order = 85,
 				childGroups = "tab",
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\unitframes',
@@ -13985,7 +13985,7 @@ function ElvUI_EltreumUI:Configtable()
 			weakauras = {
 				type = 'group',
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras',
-				name = L["WeakAuras"],
+				name = "|cff82B4ff"..L["WeakAuras"],
 				order = 95,
 				args = {
 					header1 = {
@@ -14037,7 +14037,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			discord = {
 				type = 'group',
-				name = 'Discord',
+				name = "|cff82B4ff"..'Discord',
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\discord',
 				order = 96,
 				args = {
@@ -14068,7 +14068,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			credits = {
 				type = 'group',
-				name = L["Credits"],
+				name = "|cff82B4ff"..L["Credits"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\credits',
 				order = 97,
 				args = {
@@ -14152,7 +14152,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			support = {
 				type = 'group',
-				name = GAMEMENU_SUPPORT,
+				name = "|cff82B4ff"..GAMEMENU_SUPPORT,
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support',
 				order = 98,
 				args = {
