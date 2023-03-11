@@ -13723,7 +13723,13 @@ function ElvUI_EltreumUI:Configtable()
 								order = 4,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.unitframe end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.unitframe = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
+								set = function(_, value)
+									E.db.ElvUI_EltreumUI.unitframes.models.unitframe = value
+									ElvUI_EltreumUI:PlayerUFEffects()
+									ElvUI_EltreumUI:TargetUFEffects()
+									ElvUI_EltreumUI:TargetTargetUFEffects()
+									E.db.unitframe.colors.transparentHealth = true
+								end,
 							},
 							selectmodeltype = {
 								order = 6,
