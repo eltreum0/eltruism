@@ -642,6 +642,55 @@ function ElvUI_EltreumUI:SkinMailZone()
 			_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, E.db.general.fontStyle)
 			_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
 			_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
+
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+				_G.ZoneTextFrame:HookScript("OnUpdate", function()
+					if _G.ZoneTextString:GetText() ~= nil and not _G.ZoneTextString:GetText():match("|r|c") then
+						local r,g,b = _G.ZoneTextString:GetTextColor()
+						local r2 = r-0.3
+						if r2 < 0 then r2 = 0 end
+						local g2 = g-0.3
+						if g2 < 0 then g2 = 0 end
+						local b2 = b-0.3
+						if b2 < 0 then b2 = 0 end
+						_G.ZoneTextString:SetText(E:TextGradient(_G.ZoneTextString:GetText(), r, g, b, r2, g2, b2))
+					end
+					if _G.PVPInfoTextString:GetText() ~= nil and not _G.PVPInfoTextString:GetText():match("|r|c") then
+						local r,g,b = _G.PVPInfoTextString:GetTextColor()
+						local r2 = r-0.3
+						if r2 < 0 then r2 = 0 end
+						local g2 = g-0.3
+						if g2 < 0 then g2 = 0 end
+						local b2 = b-0.3
+						if b2 < 0 then b2 = 0 end
+						_G.PVPInfoTextString:SetText(E:TextGradient(_G.PVPInfoTextString:GetText(), r, g, b, r2, g2, b2))
+					end
+				end)
+
+				_G.SubZoneTextFrame:HookScript("OnUpdate", function()
+					if _G.SubZoneTextString:GetText() ~= nil and not _G.SubZoneTextString:GetText():match("|r|c") then
+						local r,g,b = _G.SubZoneTextString:GetTextColor()
+						local r2 = r-0.3
+						if r2 < 0 then r2 = 0 end
+						local g2 = g-0.3
+						if g2 < 0 then g2 = 0 end
+						local b2 = b-0.3
+						if b2 < 0 then b2 = 0 end
+						_G.SubZoneTextString:SetText(E:TextGradient(_G.SubZoneTextString:GetText(), r, g, b, r2, g2, b2))
+					end
+					if _G.PVPArenaTextString:GetText() ~= nil and not _G.PVPArenaTextString:GetText():match("|r|c") then
+						local r,g,b = _G.PVPArenaTextString:GetTextColor()
+						local r2 = r-0.3
+						if r2 < 0 then r2 = 0 end
+						local g2 = g-0.3
+						if g2 < 0 then g2 = 0 end
+						local b2 = b-0.3
+						if b2 < 0 then b2 = 0 end
+						_G.PVPArenaTextString:SetText(E:TextGradient(_G.PVPArenaTextString:GetText(), r, g, b, r2, g2, b2))
+					end
+				end)
+			end
+
 			if _G.OpenMailBodyText then
 				if E.Retail or E.Wrath then
 					if E.db.general.fontStyle == "NONE" then

@@ -299,6 +299,8 @@ function ElvUI_EltreumUI:Doom()
 				watching[spellID] = {GetTime(),"spell",spellID}
 				if (not self:IsMouseEnabled()) then
 					self:SetScript("OnUpdate", OnUpdate)
+				else
+					self:SetScript("OnUpdate", nil)
 				end
 			end
 		end
@@ -319,6 +321,8 @@ function ElvUI_EltreumUI:Doom()
 					end
 					if (not self:IsMouseEnabled()) then
 						self:SetScript("OnUpdate", OnUpdate)
+					else
+						self:SetScript("OnUpdate", nil)
 					end
 				end
 			end
@@ -352,6 +356,7 @@ function ElvUI_EltreumUI:Doom()
 				watching[itemID] = {GetTime(),"item",texture}
 			end
 		end)
+
 		if E.Retail or E.Wrath then
 			hooksecurefunc(C_Container, "UseContainerItem", function(bag,slot)
 				local itemID = C_Container.GetContainerItemID(bag, slot)

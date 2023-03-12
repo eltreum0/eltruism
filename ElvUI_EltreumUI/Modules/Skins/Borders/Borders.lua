@@ -303,19 +303,46 @@ function ElvUI_EltreumUI:Borders()
 					end
 				else
 					if _G["CompactRaidFrameContainer"] then
-						for l = 1, 8 do
-							for k = 1, 5 do
-								if _G["CompactRaidGroup"..l.."Member"..k] then
+						if _G["CompactRaidGroup1Member1"] and _G["CompactRaidGroup1Member1"]:IsVisible() then
+							for l = 1, 8 do
+								for k = 1, 5 do
+									if _G["CompactRaidGroup"..l.."Member"..k] then
+										local raid1border
+										if not _G["EltruismRaid1Group"..l.."Border"..k] then
+											raid1border = CreateFrame("Frame", "EltruismRaid1Group"..l.."Border"..k, _G["CompactRaidGroup"..k.."Member"..l], BackdropTemplateMixin and "BackdropTemplate")
+										else
+											raid1border = _G["EltruismRaid1Group"..l.."Border"..k]
+										end
+										table.insert(raid1borderholder, raid1border)
+										raid1border:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
+										raid1border:SetPoint("CENTER", _G["CompactRaidGroup"..l.."Member"..k], "CENTER")
+										raid1border:SetParent(_G["CompactRaidGroup"..l.."Member"..k])
+										raid1border:SetBackdrop({
+											edgeFile = bordertexture,
+											edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
+										})
+										if E.db.ElvUI_EltreumUI.borders.classcolor then
+											raid1border:SetBackdropBorderColor(1, 1, 1, 1)
+										else
+											raid1border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+										end
+										raid1border:SetFrameStrata("MEDIUM")
+									end
+								end
+							end
+						elseif _G["CompactRaidFrame1"] and _G["CompactRaidFrame1"]:IsVisible() then
+							for i = 1, 40 do
+								if _G["CompactRaidFrame"..i] then
 									local raid1border
-									if not _G["EltruismRaid1Group"..l.."Border"..k] then
-										raid1border = CreateFrame("Frame", "EltruismRaid1Group"..l.."Border"..k, _G["CompactRaidGroup"..k.."Member"..l], BackdropTemplateMixin and "BackdropTemplate")
+									if not _G["EltruismRaid1GroupBorder"..i] then
+										raid1border = CreateFrame("Frame", "EltruismRaid1GroupBorder"..i, _G["CompactRaidFrame"..i], BackdropTemplateMixin and "BackdropTemplate")
 									else
-										raid1border = _G["EltruismRaid1Group"..l.."Border"..k]
+										raid1border = _G["EltruismRaid1GroupBorder"..i]
 									end
 									table.insert(raid1borderholder, raid1border)
 									raid1border:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
-									raid1border:SetPoint("CENTER", _G["CompactRaidGroup"..l.."Member"..k], "CENTER")
-									raid1border:SetParent(_G["CompactRaidGroup"..l.."Member"..k])
+									raid1border:SetPoint("CENTER", _G["CompactRaidFrame"..i], "CENTER")
+									raid1border:SetParent(_G["CompactRaidFrame"..i])
 									raid1border:SetBackdrop({
 										edgeFile = bordertexture,
 										edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
@@ -1324,19 +1351,46 @@ end
 --regenerate blizz raid frame borders in case it didnt exist before
 function ElvUI_EltreumUI:RegenerateBlizzRaidBorders()
 	if _G["CompactRaidFrameContainer"] then
-		for l = 1, 8 do
-			for k = 1, 5 do
-				if _G["CompactRaidGroup"..l.."Member"..k] then
+		if _G["CompactRaidGroup1Member1"] and _G["CompactRaidGroup1Member1"]:IsVisible() then
+			for l = 1, 8 do
+				for k = 1, 5 do
+					if _G["CompactRaidGroup"..l.."Member"..k] then
+						local raid1border
+						if not _G["EltruismRaid1Group"..l.."Border"..k] then
+							raid1border = CreateFrame("Frame", "EltruismRaid1Group"..l.."Border"..k, _G["CompactRaidGroup"..k.."Member"..l], BackdropTemplateMixin and "BackdropTemplate")
+						else
+							raid1border = _G["EltruismRaid1Group"..l.."Border"..k]
+						end
+						table.insert(raid1borderholder, raid1border)
+						raid1border:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
+						raid1border:SetPoint("CENTER", _G["CompactRaidGroup"..l.."Member"..k], "CENTER")
+						raid1border:SetParent(_G["CompactRaidGroup"..l.."Member"..k])
+						raid1border:SetBackdrop({
+							edgeFile = bordertexture,
+							edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
+						})
+						if E.db.ElvUI_EltreumUI.borders.classcolor then
+							raid1border:SetBackdropBorderColor(1, 1, 1, 1)
+						else
+							raid1border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						end
+						raid1border:SetFrameStrata("MEDIUM")
+					end
+				end
+			end
+		elseif _G["CompactRaidFrame1"] and _G["CompactRaidFrame1"]:IsVisible() then
+			for i = 1, 40 do
+				if _G["CompactRaidFrame"..i] then
 					local raid1border
-					if not _G["EltruismRaid1Group"..l.."Border"..k] then
-						raid1border = CreateFrame("Frame", "EltruismRaid1Group"..l.."Border"..k, _G["CompactRaidGroup"..k.."Member"..l], BackdropTemplateMixin and "BackdropTemplate")
+					if not _G["EltruismRaid1Group".."Border"..i] then
+						raid1border = CreateFrame("Frame", "EltruismRaid1GroupBorder"..i, _G["CompactRaidFrame"..i], BackdropTemplateMixin and "BackdropTemplate")
 					else
-						raid1border = _G["EltruismRaid1Group"..l.."Border"..k]
+						raid1border = _G["EltruismRaid1Group".."Border"..i]
 					end
 					table.insert(raid1borderholder, raid1border)
 					raid1border:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
-					raid1border:SetPoint("CENTER", _G["CompactRaidGroup"..l.."Member"..k], "CENTER")
-					raid1border:SetParent(_G["CompactRaidGroup"..l.."Member"..k])
+					raid1border:SetPoint("CENTER", _G["CompactRaidFrame"..i], "CENTER")
+					raid1border:SetParent(_G["CompactRaidFrame"..i])
 					raid1border:SetBackdrop({
 						edgeFile = bordertexture,
 						edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
@@ -1352,7 +1406,6 @@ function ElvUI_EltreumUI:RegenerateBlizzRaidBorders()
 		end
 	end
 end
-
 
 --set class color to party/raid borders
 function ElvUI_EltreumUI:GroupBorderColorUpdate()
@@ -1386,17 +1439,35 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 				end
 			elseif not E.db.unitframe.units.raid1.enable and not E.private.unitframe.disabledBlizzardFrames.raid then
 				if _G["CompactRaidFrameContainer"] then
-					for k = 1, 8 do
-						for l = 1, 5 do
-							if _G["CompactRaidGroup"..k.."Member"..l] then
-								if _G["CompactRaidGroup"..k.."Member"..l].displayedUnit then
-									local _ , unitclass = UnitClass(_G["CompactRaidGroup"..k.."Member"..l].displayedUnit)
+					if _G["CompactRaidGroup1Member1"] and _G["CompactRaidGroup1Member1"]:IsVisible() then
+						for k = 1, 8 do
+							for l = 1, 5 do
+								if _G["CompactRaidGroup"..k.."Member"..l] then
+									if _G["CompactRaidGroup"..k.."Member"..l].displayedUnit then
+										local _ , unitclass = UnitClass(_G["CompactRaidGroup"..k.."Member"..l].displayedUnit)
+										if unitclass then
+											if _G["EltruismRaid1Group"..k.."Border"..l] then
+												_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
+											else
+												ElvUI_EltreumUI:RegenerateBlizzRaidBorders()
+												_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
+											end
+										end
+									end
+								end
+							end
+						end
+					elseif _G["CompactRaidFrame1"] and _G["CompactRaidFrame1"]:IsVisible() then
+						for i = 1, 40 do
+							if _G["CompactRaidFrame"..i] then
+								if _G["CompactRaidFrame"..i].displayedUnit then
+									local _ , unitclass = UnitClass(_G["CompactRaidFrame"..i].displayedUnit)
 									if unitclass then
-										if _G["EltruismRaid1Group"..k.."Border"..l] then
-											_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
+										if _G["EltruismRaid1GroupBorder"..i] then
+											_G["EltruismRaid1GroupBorder"..i]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
 										else
 											ElvUI_EltreumUI:RegenerateBlizzRaidBorders()
-											_G["EltruismRaid1Group"..k.."Border"..l]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
+											_G["EltruismRaid1GroupBorder"..i]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
 										end
 									end
 								end

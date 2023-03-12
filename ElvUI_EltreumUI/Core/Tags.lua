@@ -22,6 +22,7 @@ local UnitHealthMax = _G.UnitHealthMax
 local UnitIsGroupLeader = _G.UnitIsGroupLeader
 local UnitIsGroupAssistant = _G.UnitIsGroupAssistant
 local GetPartyAssignment = _G.GetPartyAssignment
+local Translit = E.Libs.Translit
 
 -- Name custom abbreviation by Azilroka
 E:AddTag("name:eltruism:abbreviate", "UNIT_NAME_UPDATE", function(unit)
@@ -901,5 +902,58 @@ E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit)
 	end
 end)
 E:AddTagInfo("name:eltruism:gradientshort", ElvUI_EltreumUI.Name, L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
+
+--gradient name translit
+E:AddTag("name:eltruism:gradienttranslit", "UNIT_NAME_UPDATE", function(unit)
+	local targetName = UnitName(unit)
+	local name = Translit:Transliterate(targetName)
+	local _, unitClass = UnitClass(unit)
+
+	if UnitIsPlayer(unit) then
+		return ElvUI_EltreumUI:GradientName(name, unitClass)
+	elseif not UnitIsPlayer(unit) then
+		local reaction = UnitReaction(unit, "player")
+		if reaction then
+			if reaction >= 5 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY")
+			elseif reaction == 4 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL")
+			elseif reaction == 3 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY")
+			elseif reaction == 2 or reaction == 1 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE")
+			end
+		end
+	end
+end)
+E:AddTagInfo("name:eltruism:gradienttranslit", ElvUI_EltreumUI.Name, L["Displays unit name in gradient class color or reaction color"])
+
+--gradient name abbreviate translit
+E:AddTag("name:eltruism:gradientshorttranslit", "UNIT_NAME_UPDATE", function(unit)
+	local targetName = UnitName(unit)
+	local name = Translit:Transliterate(targetName)
+	local _, unitClass = UnitClass(unit)
+	if name and string.len(name) > 16 then
+		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
+	end
+
+	if UnitIsPlayer(unit) then
+		return ElvUI_EltreumUI:GradientName(name, unitClass)
+	elseif not UnitIsPlayer(unit) then
+		local reaction = UnitReaction(unit, "player")
+		if reaction then
+			if reaction >= 5 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY")
+			elseif reaction == 4 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL")
+			elseif reaction == 3 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY")
+			elseif reaction == 2 or reaction == 1 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE")
+			end
+		end
+	end
+end)
+E:AddTagInfo("name:eltruism:gradientshorttranslit", ElvUI_EltreumUI.Name, L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
 
 --difficulty icon is on the classification file to avoid duplicating tables/info

@@ -140,7 +140,7 @@ function ElvUI_EltreumUI:Configtable()
 			installer = {
 				order = 7,
 				type = 'group',
-				name = L["Installer"],
+				name = "|cff82B4ff"..L["Installer"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\install',
 				args = {
 					header5 = {
@@ -380,7 +380,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			afk = {
 				type = 'group',
-				name = L["A.F.K"],
+				name = "|cff82B4ff"..L["A.F.K"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\afk',
 				order = 85,
 				args = {
@@ -449,7 +449,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			addonsprofiles = {
 				type = 'group',
-				name = L["Addons"],
+				name = "|cff82B4ff"..L["Addons"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\addon',
 				order = 85,
 				childGroups = "tab",
@@ -806,7 +806,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			aurafilters = {
 				type = 'group',
-				name = L["Aura Filters"],
+				name = "|cff82B4ff"..L["Aura Filters"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\aurafilter',
 				childGroups = "tab",
 				order = 85,
@@ -1122,7 +1122,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			borders = {
 				type = 'group',
-				name = L["Borders"],
+				name = "|cff82B4ff"..L["Borders"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\border',
 				order = 85,
 				childGroups = "tab",
@@ -2651,7 +2651,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			chat = {
 				type = 'group',
-				name = CHAT_LABEL,
+				name = "|cff82B4ff"..CHAT_LABEL,
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\chat',
 				order = 85,
 				args = {
@@ -2910,7 +2910,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			combatmusic = {
 				type = 'group',
-				name = L["Combat Music"],
+				name = "|cff82B4ff"..L["Combat Music"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
 				order = 85,
 				args = {
@@ -3053,7 +3053,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			cooldown = {
 				type = 'group',
-				name = L["Cooldown"],
+				name = "|cff82B4ff"..L["Cooldown"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cooldown',
 				order = 85,
 				args = {
@@ -3256,7 +3256,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			cursor = {
 				type = 'group',
-				name = L["Cursor"],
+				name = "|cff82B4ff"..L["Cursor"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cursor',
 				order = 85,
 				childGroups = "tab",
@@ -3778,7 +3778,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			customglow = {
 				type = 'group',
-				name = L["Custom Glow"],
+				name = "|cff82B4ff"..L["Custom Glow"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\customglow',
 				order = 85,
 				childGroups = "tab",
@@ -4468,7 +4468,7 @@ function ElvUI_EltreumUI:Configtable()
 			cvars = {
 				order = 85,
 				type = 'group',
-				name = L["CVars"],
+				name = "|cff82B4ff"..L["CVars"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cvar',
 				childGroups = "tab",
 				args = {
@@ -4741,7 +4741,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			gradient = {
 				type = 'group',
-				name = L["Gradient Colors"],
+				name = "|cff82B4ff"..L["Gradient Colors"],
 				order = 85,
 				childGroups = "tab",
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\gradient',
@@ -6651,7 +6651,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			loottext = {
 				type = 'group',
-				name = LOOT,
+				name = "|cff82B4ff"..LOOT,
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\loot',
 				childGroups = "tab",
 				order = 85,
@@ -7095,7 +7095,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			maps = {
 				type = 'group',
-				name = L["Maps"],
+				name = "|cff82B4ff"..L["Maps"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\map',
 				order = 85,
 				args = {
@@ -7399,7 +7399,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			media = {
 				type = 'group',
-				name = L["Media"],
+				name = "|cff82B4ff"..L["Media"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\media',
 				childGroups = "tab",
 				order = 85,
@@ -7646,7 +7646,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			misc = {
 				type = 'group',
-				name = L["Misc"],
+				name = "|cff82B4ff"..L["Misc"],
 				--childGroups = "tab",
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\misc',
 				order = 85,
@@ -8034,7 +8034,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			nameplates = {
 				type = 'group',
-				name = L["Nameplates"],
+				name = "|cff82B4ff"..L["Nameplates"],
 				order = 85,
 				childGroups = "tab",
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\nameplate',
@@ -9243,7 +9243,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			partyraidsettings = {
 				type = 'group',
-				name = L["Party/Raid"],
+				name = "|cff82B4ff"..L["Party/Raid"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\party',
 				childGroups = "tab",
 				order = 85,
@@ -9886,7 +9886,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			quests = {
 				type = 'group',
-				name = QUESTS_LABEL,
+				name = "|cff82B4ff"..QUESTS_LABEL,
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\quest',
 				order = 85,
 				args = {
@@ -10118,7 +10118,7 @@ function ElvUI_EltreumUI:Configtable()
 			skins = {
 				order = 85,
 				type = 'group',
-				name = L["Skins"],
+				name = "|cff82B4ff"..L["Skins"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\paint',
 				childGroups = "tab",
 				args = {
@@ -12081,7 +12081,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			unitframes = {
 				type = 'group',
-				name = L["Unitframes"],
+				name = "|cff82B4ff"..L["Unitframes"],
 				order = 85,
 				childGroups = "tab",
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\unitframes',
@@ -12518,8 +12518,24 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
-							castbartex = {
+							applytoall1 = {
 								order = 15,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
+								end,
+							},
+							castbartex = {
+								order = 16,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12530,8 +12546,24 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall2 = {
+								order = 17,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
+								end,
+							},
 							targettexture = {
-								order = 16,
+								order = 18,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12542,8 +12574,24 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall3 = {
+								order = 19,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
+								end,
+							},
 							targettargettexture = {
-								order = 17,
+								order = 20,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12554,8 +12602,24 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall4 = {
+								order = 21,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
+								end,
+							},
 							targettargettargettexture = {
-								order = 17,
+								order = 22,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12566,8 +12630,24 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall5 = {
+								order = 23,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
+								end,
+							},
 							focustexture = {
-								order = 18,
+								order = 24,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12579,8 +12659,25 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall6 = {
+								order = 25,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								hidden = E.Classic,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
+								end,
+							},
 							pettexture = {
-								order = 18,
+								order = 26,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12591,8 +12688,24 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall7 = {
+								order = 27,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
+								end,
+							},
 							bosstexture = {
-								order = 19,
+								order = 28,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12603,6 +12716,23 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+							},
+							applytoall8 = {
+								order = 29,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								hidden = E.Classic,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
+								end,
 							},
 							headerclasses = {
 								order = 109,
@@ -12624,8 +12754,35 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall9 = {
+								order = 111,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								hidden = not E.Retail and not E.Wrath,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+								end,
+							},
 							dhtexture = {
-								order = 110,
+								order = 112,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12637,8 +12794,35 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall10 = {
+								order = 113,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								hidden = not E.Retail,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+								end,
+							},
 							druidtexture = {
-								order = 110,
+								order = 114,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12649,8 +12833,34 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall11 = {
+								order = 115,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+								end,
+							},
 							huntertexture = {
-								order = 110,
+								order = 116,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12661,8 +12871,34 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall12 = {
+								order = 117,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+								end,
+							},
 							magetexture = {
-								order = 110,
+								order = 118,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12673,8 +12909,34 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall13 = {
+								order = 119,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+								end,
+							},
 							monktexture = {
-								order = 110,
+								order = 120,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12686,8 +12948,35 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall14 = {
+								order = 121,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								hidden = not E.Retail,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+								end,
+							},
 							evokertexture = {
-								order = 110,
+								order = 122,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12699,8 +12988,35 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall15 = {
+								order = 123,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								hidden = not E.Retail,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+								end,
+							},
 							paladintexture = {
-								order = 110,
+								order = 124,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12711,8 +13027,34 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall16 = {
+								order = 125,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+								end,
+							},
 							priesttexture = {
-								order = 110,
+								order = 126,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12723,8 +13065,34 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall17 = {
+								order = 127,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+								end,
+							},
 							roguetexture = {
-								order = 110,
+								order = 128,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12735,8 +13103,34 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall18 = {
+								order = 129,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+								end,
+							},
 							shamantexture = {
-								order = 110,
+								order = 130,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12747,8 +13141,35 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall19 = {
+								order = 131,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+								end,
+							},
 							warlocktexture = {
-								order = 110,
+								order = 132,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12759,8 +13180,34 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall20 = {
+								order = 133,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+								end,
+							},
 							warriortexture = {
-								order = 110,
+								order = 134,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12771,8 +13218,34 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall21 = {
+								order = 135,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+								end,
+							},
 							npcfriendlytexture = {
-								order = 111,
+								order = 136,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12783,8 +13256,34 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall22 = {
+								order = 137,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+								end,
+							},
 							npcneutraltexture = {
-								order = 111,
+								order = 138,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12795,8 +13294,34 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall23 = {
+								order = 139,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+								end,
+							},
 							npcunfriendlytexture = {
-								order = 111,
+								order = 140,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12807,8 +13332,34 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall24 = {
+								order = 141,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+								end,
+							},
 							npchostiletexture = {
-								order = 111,
+								order = 142,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12819,8 +13370,34 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
 							},
+							applytoall25 = {
+								order = 143,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+								end,
+							},
 							tappedtexture = {
-								order = 111,
+								order = 144,
 								type = 'select',
 								width = "double",
 								dialogControl = 'LSM30_Statusbar',
@@ -12830,6 +13407,32 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture end,
 								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+							},
+							applytoall26 = {
+								order = 145,
+								type = 'execute',
+								name = L["Apply To All"],
+								--width = 'full',
+								confirm = true,
+								func = function()
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+								end,
 							},
 						},
 					},
@@ -13120,7 +13723,13 @@ function ElvUI_EltreumUI:Configtable()
 								order = 4,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.unitframe end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.unitframe = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
+								set = function(_, value)
+									E.db.ElvUI_EltreumUI.unitframes.models.unitframe = value
+									ElvUI_EltreumUI:PlayerUFEffects()
+									ElvUI_EltreumUI:TargetUFEffects()
+									ElvUI_EltreumUI:TargetTargetUFEffects()
+									E.db.unitframe.colors.transparentHealth = true
+								end,
 							},
 							selectmodeltype = {
 								order = 6,
@@ -13382,7 +13991,7 @@ function ElvUI_EltreumUI:Configtable()
 			weakauras = {
 				type = 'group',
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras',
-				name = L["WeakAuras"],
+				name = "|cff82B4ff"..L["WeakAuras"],
 				order = 95,
 				args = {
 					header1 = {
@@ -13434,7 +14043,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			discord = {
 				type = 'group',
-				name = 'Discord',
+				name = "|cff82B4ff"..'Discord',
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\discord',
 				order = 96,
 				args = {
@@ -13465,7 +14074,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			credits = {
 				type = 'group',
-				name = L["Credits"],
+				name = "|cff82B4ff"..L["Credits"],
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\credits',
 				order = 97,
 				args = {
@@ -13549,7 +14158,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			support = {
 				type = 'group',
-				name = GAMEMENU_SUPPORT,
+				name = "|cff82B4ff"..GAMEMENU_SUPPORT,
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support',
 				order = 98,
 				args = {

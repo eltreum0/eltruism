@@ -207,6 +207,13 @@ function ElvUI_EltreumUI:CastCursor()
 			if visible then
 				if not next(ringsVisible) then
 					rootFrame:Show()
+					rootFrame:SetScript("OnUpdate", function(self)
+						--print("cursor spam "..math.random(1,99))
+						local x, y = GetCursorPosition()
+						local scaleDivisor = UIParent:GetEffectiveScale()
+						self:ClearAllPoints()
+						self:SetPoint( "CENTER", UIParent, "BOTTOMLEFT", (x / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx , (y / scaleDivisor) + E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety )
+					end )
 				end
 				ringsVisible[self] = true
 				self:Show()
@@ -214,6 +221,7 @@ function ElvUI_EltreumUI:CastCursor()
 				ringsVisible[self] = nil
 				if not next(ringsVisible) then
 					rootFrame:Hide()
+					rootFrame:SetScript("OnUpdate", nil)
 				end
 				self:Hide()
 			end
