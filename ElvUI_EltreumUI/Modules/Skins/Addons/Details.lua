@@ -152,21 +152,11 @@ do
 
 				_G.RightChatToggleButton:HookScript("OnClick" ,function(_,button)
 					if button == 'RightButton' then
-						if _G["DetailsBaseFrame1"]:IsShown() then
-							for i = 1, 3 do
-								if _G["DetailsBaseFrame"..i] then
-									_G["DetailsBaseFrame"..i]:Hide()
-									_G["DetailsRowFrame"..i]:Hide()
-								end
-							end
+						if embedpanel:IsShown() then
+							embedpanel:Hide()
 							_G["RightChatPanel"]:Show()
 						else
-							for i = 1, 3 do
-								if _G["DetailsBaseFrame"..i] then
-									_G["DetailsBaseFrame"..i]:Show()
-									_G["DetailsRowFrame"..i]:Show()
-								end
-							end
+							embedpanel:Show()
 							_G["RightChatPanel"]:Hide()
 						end
 					end
