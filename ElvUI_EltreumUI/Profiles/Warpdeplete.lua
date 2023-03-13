@@ -51,6 +51,7 @@ function ElvUI_EltreumUI:GetWarpDepleteProfile()
 			["timerRunningColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
 			["forcesFontSize"] = 18,
 			["forcesOverlayTextureColor"] = "ffffffff",
+			["insertKeystoneAutomatically"] = false,
 		}
 
 		ElvUI_EltreumUI:Print(L["WarpDeplete profile has been set."])
