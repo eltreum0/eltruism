@@ -8166,7 +8166,7 @@ function ElvUI_EltreumUI:Configtable()
 							headernpauras = {
 								order = 13,
 								type = "description",
-								name = E.NewSign..L["Adjust Aura Position"],
+								name = L["Adjust Aura Position"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
@@ -10079,7 +10079,7 @@ function ElvUI_EltreumUI:Configtable()
 						order = 102,
 						type = 'toggle',
 						width = 'full',
-						name = E.NewSign..L["Objective Frame Anchor"],
+						name = L["Objective Frame Anchor"],
 						desc = L["Reactivate the ElvUI Objective Frame Anchor and Mover"],
 						hidden = not E.Retail,
 						get = function() return E.db.ElvUI_EltreumUI.quests.anchor end,
@@ -10087,7 +10087,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					objectiveheight = {
 						type = 'range',
-						name = E.NewSign..L["Objective Frame Height"],
+						name = L["Objective Frame Height"],
 						desc = L["Height of the objective tracker. Increase size to be able to see more objectives."],
 						order = 103,
 						min = 100,
@@ -10180,7 +10180,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							bossemotescale = {
 								type = 'range',
-								name = E.NewSign..L["Boss Banner Frame Scale"],
+								name = L["Boss Banner Frame Scale"],
 								desc = L["Boss Banner Frame Scale"],
 								order = 7,
 								min = 0.2,
@@ -10365,7 +10365,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							bagscale = {
 								type = 'range',
-								name = E.NewSign..L["Scale"],
+								name = L["Scale"],
 								order = 47,
 								min = 0.1,
 								max = 4,
@@ -10387,7 +10387,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							bankscale = {
 								type = 'range',
-								name = E.NewSign..L["Scale"],
+								name = L["Scale"],
 								order = 49,
 								min = 0.1,
 								max = 4,
