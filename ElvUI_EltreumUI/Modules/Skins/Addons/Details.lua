@@ -122,7 +122,7 @@ do
 				end
 				if _G["DetailsBaseFrame1"] then
 					_G["DetailsBaseFrame1"]:ClearAllPoints()
-					_G["DetailsBaseFrame1"]:SetPoint("LEFT", embedpanel, "LEFT")
+					_G["DetailsBaseFrame1"]:SetPoint("LEFT", embedpanel, "LEFT",0,-10)
 				end
 
 				if E.db.ElvUI_EltreumUI.skins.detailsembedooc then
