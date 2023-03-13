@@ -4,9 +4,9 @@
 ## Title: |cff1784d1ElvUI|r Eltruism Classic
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
 ## Notes-deDE: Eltruism ist ein ElvUI Plugin mit Profilen und anderen Funktionen, die in ElvUI nicht verfügbar sind
-## Dependencies: ElvUI, AddOnSkins
+## Dependencies: ElvUI
 ## RequiredDeps: Blizzard_CombatText
-## OptionalDeps: NameplateSCT, Immersion, DynamicCam, ProjectAzilroka
+## OptionalDeps: NameplateSCT, Immersion, DynamicCam, ProjectAzilroka, AddOnSkins
 ## DefaultState: enabled
 ## X-Interface: 11403
 ## X-Tukui-ProjectID: 49

@@ -124,6 +124,14 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.skins.meetinghorn = true
 	E.db.ElvUI_EltreumUI.skins.pallypower = true
 	E.db.ElvUI_EltreumUI.skins.details = true
+	E.db.ElvUI_EltreumUI.skins.detailsembed = true
+	E.db.ElvUI_EltreumUI.skins.detailsembedooc = true
+	E.db.ElvUI_EltreumUI.skins.bugsack = true
+	E.db.ElvUI_EltreumUI.skins.clique = true
+	E.db.ElvUI_EltreumUI.skins.immersion = true
+	E.db.ElvUI_EltreumUI.skins.rarescanner = true
+	E.db.ElvUI_EltreumUI.skins.simulationcraft = true
+	E.db.ElvUI_EltreumUI.skins.warpdeplete = true
 
 	-- Borders
 	E.db.ElvUI_EltreumUI.borders.minimapborder = true

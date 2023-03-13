@@ -2,6 +2,10 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
+local EnhancedShadows = nil
+if IsAddOnLoaded("ProjectAzilroka") then
+	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
+end
 
 do
 
@@ -69,6 +73,101 @@ do
 					end
 				end
 			end)
+
+			--add a basic embed if addonskins is not loaded
+			local checkembed
+			if IsAddOnLoaded("AddOnSkins") or IsAddOnLoaded("ElvUI_MerathilisUI") then
+				if IsAddOnLoaded("AddOnSkins") then
+					local AS = unpack(AddOnSkins)
+					if not (AS.db["EmbedSystemDual"] or AS.db["EmbedSystem"]) then
+						checkembed = true
+					else
+						checkembed = false
+					end
+				else
+					checkembed = true
+				end
+				if IsAddOnLoaded("ElvUI_MerathilisUI") then
+					if not (E.private.mui.skins.embed or E.private.mui.skins.embed.enable) then
+						checkembed = true
+					else
+						checkembed = false
+					end
+				end
+			else
+				checkembed = true
+			end
+
+			if checkembed == true and E.db.ElvUI_EltreumUI.skins.detailsembed then
+				local embedpanel = CreateFrame("FRAME","EltruismDetailsEmbedPanel")
+				embedpanel:SetAllPoints(_G["RightChatPanel"])
+				embedpanel:SetParent(UIParent)
+				embedpanel:SetFrameStrata("BACKGROUND")
+
+				if E.db["chat"]["panelBackdrop"] == "RIGHT" or E.db["chat"]["panelBackdrop"] == "SHOWBOTH" then
+					S:HandleFrame(embedpanel)
+					if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+						if embedpanel and not embedpanel.shadow then
+							embedpanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(embedpanel.shadow) end
+						end
+					end
+				end
+
+				for i = 1, 3 do
+					if _G["DetailsBaseFrame"..i] then
+						_G["DetailsBaseFrame"..i]:SetParent(embedpanel)
+						_G["DetailsRowFrame"..i]:SetParent(embedpanel)
+					end
+				end
+				if _G["DetailsBaseFrame1"] then
+					_G["DetailsBaseFrame1"]:ClearAllPoints()
+					_G["DetailsBaseFrame1"]:SetPoint("LEFT", embedpanel, "LEFT",0,-10)
+				end
+
+				if E.db.ElvUI_EltreumUI.skins.detailsembedooc then
+					embedpanel:RegisterEvent("PLAYER_REGEN_ENABLED")
+					embedpanel:RegisterEvent("PLAYER_REGEN_DISABLED")
+				end
+				embedpanel:RegisterEvent("PLAYER_ENTERING_WORLD")
+
+				embedpanel:SetScript("OnEvent", function(_,event)
+					if event == "PLAYER_REGEN_DISABLED" then
+						if E.db.ElvUI_EltreumUI.skins.detailsembedooc then
+								embedpanel:Show()
+								_G["RightChatPanel"]:Hide()
+						end
+					elseif event == "PLAYER_REGEN_ENABLED" then
+						if E.db.ElvUI_EltreumUI.skins.detailsembedooc then
+							E:Delay(E.db.ElvUI_EltreumUI.skins.detailsdelay, function()
+								embedpanel:Hide()
+								_G["RightChatPanel"]:Show()
+							end)
+						end
+					elseif event == "PLAYER_ENTERING_WORLD" then
+						embedpanel:Hide()
+						_G["RightChatPanel"]:Show()
+					end
+				end)
+
+				_G.RightChatToggleButton:HookScript("OnClick" ,function(_,button)
+					if button == 'RightButton' then
+						if embedpanel:IsShown() then
+							embedpanel:Hide()
+							_G["RightChatPanel"]:Show()
+						else
+							embedpanel:Show()
+							_G["RightChatPanel"]:Hide()
+						end
+					end
+				end)
+
+				_G.RightChatToggleButton:HookScript('OnEnter', function()
+					_G.GameTooltip:AddDoubleLine(L["Right Click:"], L["Toggle Details"], 1, 1, 1)
+					_G.GameTooltip:Show()
+				end)
+			end
+
 		end
 	end
 	S:AddCallbackForAddon('Details', "EltruismDetails", ElvUI_EltreumUI.EltruismDetails)

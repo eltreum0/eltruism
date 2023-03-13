@@ -1,6 +1,6 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 local classcolor = E:ClassColor(E.myclass, true)
-local classtable = {
+--[[local classtable = {
 	["WARRIOR"] = "Eltreum-Class-Warrior",
 	["PALADIN"] = "Eltreum-Class-Paladin",
 	["HUNTER"] = "Eltreum-Class-Hunter",
@@ -14,7 +14,7 @@ local classtable = {
 	["DRUID"] = "Eltreum-Class-Druid",
 	["DEMONHUNTER"] = "Eltreum-Class-DemonHunter",
 	["EVOKER"] = "Eltreum-Class-Evoker",
-}
+}]]
 
 -- WarpDeplete profile setup
 function ElvUI_EltreumUI:GetWarpDepleteProfile()
@@ -26,7 +26,7 @@ function ElvUI_EltreumUI:GetWarpDepleteProfile()
 			["bar1TextureColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
 			["forcesFont"] = E.db.general.font,
 			["frameX"] = 0,
-			["completedObjectivesColor"] = not E.myclass == "PRIEST" and tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")) or tostring(E:RGBToHex(classcolor.r-0.3, classcolor.g-0.3, classcolor.b-0.3, "ff", "")),
+			["completedObjectivesColor"] = not E.myclass == "PRIEST" and tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")) or tostring(E:RGBToHex(classcolor.r-0.4, classcolor.g-0.4, classcolor.b-0.4, "ff", "")),
 			["keyDetailsFontSize"] = 14,
 			["timerFont"] = E.db.general.font,
 			["bar3Font"] = E.db.general.font,
@@ -43,14 +43,15 @@ function ElvUI_EltreumUI:GetWarpDepleteProfile()
 			["bar2Font"] = E.db.general.font,
 			["frameY"] = -92.44456481933594,
 			["forcesTextureColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
-			["bar1Texture"] = classtable[E.myclass],
-			["bar2Texture"] = classtable[E.myclass],
+			["bar1Texture"] = "ElvUI Norm1",
+			["bar2Texture"] = "ElvUI Norm1",
 			["forcesOverlayTexture"] = "Eltreum-Blank",
-			["bar3Texture"] = classtable[E.myclass],
-			["forcesTexture"] = classtable[E.myclass],
+			["bar3Texture"] = "ElvUI Norm1",
+			["forcesTexture"] = "Asphyxia-Norm",
 			["timerRunningColor"] = tostring(E:RGBToHex(classcolor.r, classcolor.g, classcolor.b, "ff", "")),
 			["forcesFontSize"] = 18,
 			["forcesOverlayTextureColor"] = "ffffffff",
+			["insertKeystoneAutomatically"] = false,
 		}
 
 		ElvUI_EltreumUI:Print(L["WarpDeplete profile has been set."])

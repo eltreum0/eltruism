@@ -771,12 +771,6 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		--[[if _G.ImmersionFrame.TalkBox.shadow then --works but no guarantee they'll be using the layout/size/addonskins skin
-			_G.ImmersionFrame.TalkBox.shadow:ClearAllPoints()
-			_G.ImmersionFrame.TalkBox.shadow:SetPoint("TOPRIGHT", _G.ImmersionFrame.TalkBox, "TOPRIGHT", -5,-5)
-			_G.ImmersionFrame.TalkBox.shadow:SetPoint("BOTTOMLEFT", _G.ImmersionFrame.TalkBox, "BOTTOMLEFT",5,5)
-		end]]
-
 		hooksecurefunc(_G.AlertFrame, "AddAlertFrame", function(_,frame)
 			if frame and frame.backdrop and not frame.backdrop.shadow then
 				frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
