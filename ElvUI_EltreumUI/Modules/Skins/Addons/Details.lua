@@ -101,13 +101,11 @@ do
 			if checkembed == true and E.db.ElvUI_EltreumUI.skins.detailsembed then
 				local embedpanel = CreateFrame("FRAME","EltruismDetailsEmbedPanel")
 				embedpanel:SetAllPoints(_G["RightChatPanel"])
+				embedpanel:SetParent(UIParent)
+				embedpanel:SetFrameStrata("BACKGROUND")
+
 				if E.db["chat"]["panelBackdrop"] == "RIGHT" or E.db["chat"]["panelBackdrop"] == "SHOWBOTH" then
 					S:HandleFrame(embedpanel)
-					embedpanel:SetAllPoints(_G["RightChatPanel"])
-					embedpanel:SetParent(UIParent)
-					print("6")
-					embedpanel:SetFrameStrata("BACKGROUND")
-
 					if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 						if embedpanel and not embedpanel.shadow then
 							embedpanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -116,19 +114,15 @@ do
 					end
 				end
 
-				if E.db["chat"]["panelBackdrop"] == "LEFT" then
-					embedpanel:SetAlpha(0)
-					print("4")
-				elseif E.db["chat"]["panelBackdrop"] == "HIDEBOTH" then
-					embedpanel:SetAlpha(0)
-					print("5")
-				end
-
 				for i = 1, 3 do
 					if _G["DetailsBaseFrame"..i] then
 						_G["DetailsBaseFrame"..i]:SetParent(embedpanel)
 						_G["DetailsRowFrame"..i]:SetParent(embedpanel)
 					end
+				end
+				if _G["DetailsBaseFrame1"] then
+					_G["DetailsBaseFrame1"]:ClearAllPoints()
+					_G["DetailsBaseFrame1"]:SetPoint("LEFT", embedpanel, "LEFT")
 				end
 
 				if E.db.ElvUI_EltreumUI.skins.detailsembedooc then
@@ -138,37 +132,19 @@ do
 				embedpanel:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 				embedpanel:SetScript("OnEvent", function(_,event)
-					print("7",embedpanel:IsVisible(),embedpanel:GetAlpha())
 					if event == "PLAYER_REGEN_DISABLED" then
-
 						if E.db.ElvUI_EltreumUI.skins.detailsembedooc then
-
 								embedpanel:Show()
-								print("1",embedpanel:IsVisible(),embedpanel:GetAlpha())
-								--[[for i = 1, 3 do
-									if _G["DetailsBaseFrame"..i] then
-										_G["DetailsBaseFrame"..i]:Show()
-										_G["DetailsRowFrame"..i]:Show()
-									end
-								end]]
 								_G["RightChatPanel"]:Hide()
 						end
 					elseif event == "PLAYER_REGEN_ENABLED" then
-						print("2")
 						if E.db.ElvUI_EltreumUI.skins.detailsembedooc then
 							E:Delay(E.db.ElvUI_EltreumUI.skins.detailsdelay, function()
 								embedpanel:Hide()
-								--[[for i = 1, 3 do
-									if _G["DetailsBaseFrame"..i] then
-										_G["DetailsBaseFrame"..i]:Hide()
-										_G["DetailsRowFrame"..i]:Hide()
-									end
-								end]]
 								_G["RightChatPanel"]:Show()
 							end)
 						end
 					elseif event == "PLAYER_ENTERING_WORLD" then
-						print("3")
 						embedpanel:Hide()
 						_G["RightChatPanel"]:Show()
 					end
