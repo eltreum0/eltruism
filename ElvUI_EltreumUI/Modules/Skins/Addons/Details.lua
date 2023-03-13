@@ -163,7 +163,7 @@ do
 				end)
 
 				_G.RightChatToggleButton:HookScript('OnEnter', function()
-					_G.GameTooltip:AddDoubleLine(L['Right Click:'], L['Toggle Details'], 1, 1, 1)
+					_G.GameTooltip:AddDoubleLine(L["Right Click:"], L["Toggle Details"], 1, 1, 1)
 					_G.GameTooltip:Show()
 				end)
 			end
