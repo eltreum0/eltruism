@@ -1234,3 +1234,5 @@ L["Use different colors per Difficulty"] = "Use cores diferentes por Dificuldade
 L["Requires ElvUI Nameplate Elite Icon"] = "Requer o ícone de elite nas placas de nomes do ElvUI"
 L["Hide Left Chat in Boss Encounters"] = "Ocultar painel de conversa esquerdo durante os encontros de chefes"
 L["Hide Right Chat in Boss Encounters"] = "Ocultar painel de conversa direito durante os encontros de chefes"
+L['Right Click:'] = true
+L['Toggle Details'] = true

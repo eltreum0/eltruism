@@ -1282,3 +1282,5 @@ L["Use different colors per Difficulty"] = "Benutze unterschiedliche Farben je n
 L["Requires ElvUI Nameplate Elite Icon"] = true
 L["Hide Left Chat in Boss Encounters"] = true
 L["Hide Right Chat in Boss Encounters"] = true
+L['Right Click:'] = true
+L['Toggle Details'] = true
