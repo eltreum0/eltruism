@@ -1,9 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file='Actionbars/Actionbars.lua'/>
-	<Script file='Addons/BigWigs.lua'/>
-	<Script file='Addons/Details.lua'/>
-	<Script file='Addons/MeetingHorn.lua'/>
-	<Script file='Addons/PallyPower.lua'/>
+	<Include file='Addons\load_addons.xml'/>
 	<Script file='Borders/Borders.lua'/>
 	<Script file='Borders/BorderAdjust.lua'/>
 	<Script file='Character/CharacterPanelIcons.lua'/>
