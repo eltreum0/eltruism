@@ -12023,7 +12023,7 @@ function ElvUI_EltreumUI:Configtable()
 							bugsackskin = {
 								order = 204,
 								type = 'toggle',
-								name = L["Skin BugSack"],
+								name = E.NewSign..L["Skin BugSack"],
 								width = "full",
 								get = function() return E.db.ElvUI_EltreumUI.skins.bugsack end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.bugsack = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -12038,7 +12038,7 @@ function ElvUI_EltreumUI:Configtable()
 							cliqueskin = {
 								order = 306,
 								type = 'toggle',
-								name = L["Skin Clique"],
+								name = E.NewSign..L["Skin Clique"],
 								width = "full",
 								get = function() return E.db.ElvUI_EltreumUI.skins.clique end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.clique = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -12072,7 +12072,7 @@ function ElvUI_EltreumUI:Configtable()
 							detailsembed = {
 								order = 410,
 								type = 'toggle',
-								name = L["Embed"],
+								name = E.NewSign..L["Embed"],
 								desc = L["Simple Right Chat Embed"],
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.details end,
@@ -12082,7 +12082,7 @@ function ElvUI_EltreumUI:Configtable()
 							detailsembedcombat = {
 								order = 411,
 								type = 'toggle',
-								name = L["Hide Out of Combat"],
+								name = E.NewSign..L["Hide Out of Combat"],
 								width = "full",
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.details or not E.db.ElvUI_EltreumUI.skins.detailsembed end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.detailsembedooc end,
@@ -12090,7 +12090,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							detailsdelay = {
 								type = 'range',
-								name = L["Out of Combat Delay"],
+								name = E.NewSign..L["Out of Combat Delay"],
 								order = 412,
 								min = 1,
 								max = 30,
@@ -12110,7 +12110,7 @@ function ElvUI_EltreumUI:Configtable()
 							immersionskin = {
 								order = 506,
 								type = 'toggle',
-								name = L["Skin Immersion"],
+								name = E.NewSign..L["Skin Immersion"],
 								width = "full",
 								get = function() return E.db.ElvUI_EltreumUI.skins.immersion end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.immersion = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -12161,7 +12161,7 @@ function ElvUI_EltreumUI:Configtable()
 							rarescannerskin = {
 								order = 801,
 								type = 'toggle',
-								name = L["Skin RareScanner"],
+								name = E.NewSign..L["Skin RareScanner"],
 								width = "full",
 								get = function() return E.db.ElvUI_EltreumUI.skins.rarescanner end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.rarescanner = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -12177,7 +12177,7 @@ function ElvUI_EltreumUI:Configtable()
 							simcskin = {
 								order = 901,
 								type = 'toggle',
-								name = L["Skin SimulationCraft"],
+								name = E.NewSign..L["Skin SimulationCraft"],
 								width = "full",
 								hidden = not E.Retail,
 								get = function() return E.db.ElvUI_EltreumUI.skins.simulationcraft end,
@@ -12194,7 +12194,7 @@ function ElvUI_EltreumUI:Configtable()
 							WarpDepleteskin = {
 								order = 1001,
 								type = 'toggle',
-								name = L["Skin WarpDeplete"],
+								name = E.NewSign..L["Skin WarpDeplete"],
 								width = "full",
 								hidden = not E.Retail,
 								get = function() return E.db.ElvUI_EltreumUI.skins.warpdeplete end,
