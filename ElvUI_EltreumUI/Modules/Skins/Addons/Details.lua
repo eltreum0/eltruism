@@ -136,17 +136,24 @@ do
 						if E.db.ElvUI_EltreumUI.skins.detailsembedooc then
 								embedpanel:Show()
 								_G["RightChatPanel"]:Hide()
+								E.db.ElvUI_EltreumUI.skins.detailsembedhidden = false
 						end
 					elseif event == "PLAYER_REGEN_ENABLED" then
 						if E.db.ElvUI_EltreumUI.skins.detailsembedooc then
 							E:Delay(E.db.ElvUI_EltreumUI.skins.detailsdelay, function()
 								embedpanel:Hide()
 								_G["RightChatPanel"]:Show()
+								E.db.ElvUI_EltreumUI.skins.detailsembedhidden = true
 							end)
 						end
 					elseif event == "PLAYER_ENTERING_WORLD" then
-						embedpanel:Hide()
-						_G["RightChatPanel"]:Show()
+						if E.db.ElvUI_EltreumUI.skins.detailsembedhidden then
+							embedpanel:Hide()
+							_G["RightChatPanel"]:Show()
+						else
+							embedpanel:Show()
+							_G["RightChatPanel"]:Hide()
+						end
 					end
 				end)
 
@@ -155,9 +162,11 @@ do
 						if embedpanel:IsShown() then
 							embedpanel:Hide()
 							_G["RightChatPanel"]:Show()
+							E.db.ElvUI_EltreumUI.skins.detailsembedhidden = true
 						else
 							embedpanel:Show()
 							_G["RightChatPanel"]:Hide()
+							E.db.ElvUI_EltreumUI.skins.detailsembedhidden = false
 						end
 					end
 				end)

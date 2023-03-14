@@ -152,6 +152,7 @@ P.ElvUI_EltreumUI = {
 		detailstextureoverwrite = true,
 		detailsembed = false,
 		detailsembedooc = false,
+		detailsembedhidden = true,
 		detailsdelay = 1,
 		bugsack = false,
 		clique = false,
