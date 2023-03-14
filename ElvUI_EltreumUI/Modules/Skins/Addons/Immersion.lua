@@ -46,6 +46,13 @@ function ElvUI_EltreumUI:EltruismImmersion()
 
 		--update buttons on events/show
 		local function updatebuttons()
+
+			--move so it doesnt overlap
+			if not InCombatLockdown() then
+				_G["ImmersionFrame"].TalkBox.Elements:ClearAllPoints()
+				_G["ImmersionFrame"].TalkBox.Elements:SetPoint("TOP", _G["ImmersionFrame"].TalkBox, "BOTTOM", 0, -10)
+			end
+
 			for _, v in pairs{_G["ImmersionFrame"].TitleButtons:GetChildren()} do
 				if v and not v.IsSkinned then
 					S:HandleButton(v)
@@ -66,10 +73,18 @@ function ElvUI_EltreumUI:EltruismImmersion()
 			for i = 1, 10 do
 				if _G["ImmersionQuestInfoItem" .. i] and not _G["ImmersionQuestInfoItem" .. i].IsSkinned then
 					_G["ImmersionQuestInfoItem" .. i].NameFrame:StripTextures()
+					_G["ImmersionQuestInfoItem" .. i]:CreateBackdrop('Transparent')
+					_G["ImmersionQuestInfoItem" .. i].backdrop:ClearAllPoints()
+					_G["ImmersionQuestInfoItem" .. i].backdrop:SetAllPoints(_G["ImmersionQuestInfoItem" .. i .."Name"])
+					_G["ImmersionQuestInfoItem" .. i].backdrop:SetAlpha(0.7) --transparent is setting alpha to 1 for some reason
 					_G["ImmersionQuestInfoItem" .. i].IsSkinned = true
 				end
 				if _G["ImmersionProgressItem" .. i] and not _G["ImmersionProgressItem" .. i].IsSkinned then
 					_G["ImmersionProgressItem" .. i].NameFrame:StripTextures()
+					_G["ImmersionProgressItem" .. i]:CreateBackdrop('Transparent')
+					_G["ImmersionProgressItem" .. i].backdrop:ClearAllPoints()
+					_G["ImmersionProgressItem" .. i].backdrop:SetAllPoints(_G["ImmersionProgressItem" .. i .."Name"])
+					_G["ImmersionProgressItem" .. i].backdrop:SetAlpha(0.7)
 					_G["ImmersionProgressItem" .. i].IsSkinned = true
 				end
 			end

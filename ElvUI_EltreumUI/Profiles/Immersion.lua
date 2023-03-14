@@ -12,7 +12,7 @@ function ElvUI_EltreumUI:GetImmersionProfile()
 		["enablenumbers"] = true,
 		["boxpoint"] = "Top",
 		["disableprogression"] = false,
-		["titleoffsetY"] = 267.253763880048,
+		["titleoffsetY"] = 113.8747863769531,
 		["hideui"] = false,
 		["titlescale"] = 1,
 		["delaydivisor"] = 40,
