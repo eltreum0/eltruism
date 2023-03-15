@@ -40,7 +40,9 @@ do
 		local backdropBorder = {
 			bgFile = "Interface\\Buttons\\WHITE8X8",
 			edgeFile = "Interface\\Buttons\\WHITE8X8",
-			tile = false, tileSize = 0, edgeSize = 1,
+			tile = false,
+			tileSize = 0,
+			edgeSize = 1,
 			insets = {left = 0, right = 0, top = 0, bottom = 0}
 		}
 
@@ -115,9 +117,5 @@ do
 		})
 	end
 	S:AddCallbackForAddon('BigWigs_Plugins', "EltruismBigWigsStyle", ElvUI_EltreumUI.BigWigsStyle)
-
-
-
-
 
 end
