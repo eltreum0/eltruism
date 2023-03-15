@@ -34,6 +34,90 @@ do
 		end
 	end
 	S:AddCallbackForAddon('BigWigs_Plugins', "EltruismBigWigs", ElvUI_EltreumUI.EltruismBigWigs)
-	--S:AddCallbackForAddon('Capping', "EltruismBigWigs", ElvUI_EltreumUI.EltruismBigWigs)
+
+	--from BigWigs's bars file, modified ElvUI Skin
+	function ElvUI_EltreumUI:BigWigsStyle()
+		local backdropBorder = {
+			bgFile = "Interface\\Buttons\\WHITE8X8",
+			edgeFile = "Interface\\Buttons\\WHITE8X8",
+			tile = false, tileSize = 0, edgeSize = 1,
+			insets = {left = 0, right = 0, top = 0, bottom = 0}
+		}
+
+		local function removeStyle(bar)
+			local bd = bar.candyBarBackdrop
+			bd:Hide()
+			if bd.iborder then
+				bd.iborder:Hide()
+				bd.oborder:Hide()
+			end
+
+			local tex = bar:Get("bigwigs:restoreicon")
+			if tex then
+				bar:SetIcon(tex)
+				bar:Set("bigwigs:restoreicon", nil)
+
+				local iconBd = bar.candyBarIconFrameBackdrop
+				iconBd:Hide()
+				if iconBd.iborder then
+					iconBd.iborder:Hide()
+					iconBd.oborder:Hide()
+				end
+			end
+		end
+
+		local function styleBar(bar)
+			local bd = bar.candyBarBackdrop
+
+			bd:SetTemplate("Transparent")
+			bd:SetOutside(bar)
+			if not E.PixelMode and bd.iborder then
+				bd.iborder:Show()
+				bd.oborder:Show()
+			end
+
+			local tex = bar:GetIcon()
+			if tex then
+				local icon = bar.candyBarIconFrame
+				bar:SetIcon(nil)
+				icon:SetTexture(tex)
+				icon:Show()
+				if bar.iconPosition == "RIGHT" then  --icon position
+					icon:SetPoint("BOTTOMLEFT", bar, "BOTTOMRIGHT", E.PixelMode and 1 or 5, 0)
+				else
+					icon:SetPoint("BOTTOMRIGHT", bar, "BOTTOMLEFT", E.PixelMode and -5 or -10, 0)
+				end
+				icon:SetSize(bar:GetHeight()*1.5, bar:GetHeight()*1.5) --icon size
+				bar:Set("bigwigs:restoreicon", tex)
+
+				local iconBd = bar.candyBarIconFrameBackdrop
+
+				iconBd:SetTemplate("Transparent")
+				iconBd:SetOutside(bar.candyBarIconFrame)
+				if not E.PixelMode and iconBd.iborder then
+					iconBd.iborder:Show()
+					iconBd.oborder:Show()
+				end
+				iconBd:Show()
+			end
+
+			bd:Show()
+		end
+
+		_G.BigWigsAPI:RegisterBarStyle("Eltruism", {
+			apiVersion = 1,
+			version = 10,
+			barSpacing = E.PixelMode and 20 or 15, --bar space
+			barHeight = 15,  --bar height
+			ApplyStyle = styleBar,
+			BarStopped = removeStyle,
+			GetStyleName = function() return "Eltruism" end,
+		})
+	end
+	S:AddCallbackForAddon('BigWigs_Plugins', "EltruismBigWigsStyle", ElvUI_EltreumUI.BigWigsStyle)
+
+
+
+
 
 end
