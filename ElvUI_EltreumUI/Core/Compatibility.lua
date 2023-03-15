@@ -273,6 +273,49 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			compatibilityran = true
 			addonname = "WindTools"
 		end
+
+		if E.db.ElvUI_EltreumUI.skins.bigwigs and (E.private.WT.skins.addons.bigWigs or E.private.WT.skins.addons.bigWigs == nil) then
+			E.private.WT.skins.addons.bigWigs = false
+			E.db.ElvUI_EltreumUI.skins.bigwigs = true
+			compatibilityran = true
+			addonname = "WindTools"
+		end
+
+		if E.db.ElvUI_EltreumUI.skins.bigwigs and (E.private.WT.skins.addons.bigWigsQueueTimer or E.private.WT.skins.addons.bigWigsQueueTimer == nil) then
+			E.private.WT.skins.addons.bigWigsQueueTimer = false
+			E.db.ElvUI_EltreumUI.skins.bigwigs = true
+			compatibilityran = true
+			addonname = "WindTools"
+		end
+
+		if E.db.ElvUI_EltreumUI.skins.bugsack and (E.private.WT.skins.addons.bugSack or E.private.WT.skins.addons.bugSack == nil) then
+			E.private.WT.skins.addons.bugSack = false
+			E.db.ElvUI_EltreumUI.skins.bugsack = true
+			compatibilityran = true
+			addonname = "WindTools"
+		end
+
+		if E.db.ElvUI_EltreumUI.skins.immersion and (E.private.WT.skins.addons.immersion or E.private.WT.skins.addons.immersion == nil) then
+			E.private.WT.skins.addons.immersion = false
+			E.db.ElvUI_EltreumUI.skins.immersion = true
+			compatibilityran = true
+			addonname = "WindTools"
+		end
+
+		if E.db.ElvUI_EltreumUI.skins.rarescanner and (E.private.WT.skins.addons.rareScanner or E.private.WT.skins.addons.rareScanner == nil) then
+			E.private.WT.skins.addons.rareScanner = false
+			E.db.ElvUI_EltreumUI.skins.rarescanner = true
+			compatibilityran = true
+			addonname = "WindTools"
+		end
+
+		if E.db.ElvUI_EltreumUI.skins.simulationcraft and (E.private.WT.skins.addons.simulationcraft or E.private.WT.skins.addons.simulationcraft == nil) then
+			E.private.WT.skins.addons.simulationcraft = false
+			E.db.ElvUI_EltreumUI.skins.simulationcraft = true
+			compatibilityran = true
+			addonname = "WindTools"
+		end
+
 	end
 
 	if IsAddOnLoaded("ElvUI_MerathilisUI") and IsAddOnLoaded("ElvUI_WindTools") and compatibilityran then
