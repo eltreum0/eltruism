@@ -79,10 +79,10 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"]["Eltreum"] = {
 			["BigWigsEmphasizeAnchor_y"] = 541,
 			["visibleBarLimit"] = 15,
-			["BigWigsAnchor_width"] = 382,
+			["BigWigsAnchor_width"] = 379,
 			["BigWigsAnchor_y"] = 160,
 			["emphasizeGrowup"] = true,
-			["BigWigsAnchor_x"] = 1090,
+			["BigWigsAnchor_x"] = 1093,
 			["spacing"] = 14,
 			["emphasizeTime"] = 10,
 			["barStyle"] = "AddOnSkins Half-Bar",
