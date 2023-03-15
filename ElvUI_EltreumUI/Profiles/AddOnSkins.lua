@@ -2,7 +2,6 @@ local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
 
 -- AddonSkins profile setup
 function ElvUI_EltreumUI:GetASProfile()
-	local width = GetPhysicalScreenSize()
 	local valuecolors = E:ClassColor(E.myclass, true)
 	if IsAddOnLoaded("AddOnSkins") then
 		local AS = unpack(AddOnSkins)
