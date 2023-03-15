@@ -118,6 +118,7 @@ do
 					if _G["DetailsBaseFrame"..i] then
 						_G["DetailsBaseFrame"..i]:SetParent(embedpanel)
 						_G["DetailsRowFrame"..i]:SetParent(embedpanel)
+						_G["Details_SwitchButtonFrame"..i]:SetParent(embedpanel)
 					end
 				end
 				if _G["DetailsBaseFrame1"] then
