@@ -175,6 +175,28 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			compatibilityran = true
 			addonname = "MerathilisUI"
 		end
+
+		if E.db.ElvUI_EltreumUI.skins.bugsack and (E.private.mui.skins.addonSkins.bs or E.private.mui.skins.addonSkins.bs == nil) then
+			E.private.mui.skins.addonSkins.bs = false
+			E.db.ElvUI_EltreumUI.skins.bugsack = true
+			compatibilityran = true
+			addonname = "MerathilisUI"
+		end
+
+		if E.db.ElvUI_EltreumUI.skins.clique and (E.private.mui.skins.addonSkins.cl or E.private.mui.skins.addonSkins.cl == nil) then
+			E.private.mui.skins.addonSkins.cl = false
+			E.db.ElvUI_EltreumUI.skins.clique = true
+			compatibilityran = true
+			addonname = "MerathilisUI"
+		end
+
+		if E.db.ElvUI_EltreumUI.skins.immersion and (E.private.mui.skins.addonSkins.imm or E.private.mui.skins.addonSkins.imm == nil) then
+			E.private.mui.skins.addonSkins.imm = false
+			E.db.ElvUI_EltreumUI.skins.immersion = true
+			compatibilityran = true
+			addonname = "MerathilisUI"
+		end
+
 	end
 
 	if IsAddOnLoaded("ElvUI_WindTools") then
