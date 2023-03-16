@@ -1,6 +1,7 @@
 local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
 local S = E:GetModule('Skins')
 local _G = _G
+local classcolor = E:ClassColor(E.myclass, true)
 local EnhancedShadows = nil
 if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
@@ -60,6 +61,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					v.Hilite:Hide()
 					v.Overlay:Hide()
 					v:StyleButton()
+					v.hover:SetVertexColor(classcolor.r, classcolor.b,classcolor.b, 0.7) --hover color
 					if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 						if v and not v.shadow then
 							v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
