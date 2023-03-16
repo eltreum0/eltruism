@@ -96,6 +96,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["outline"] = "OUTLINE",
 			["BigWigsEmphasizeAnchor_x"] = 928,
 			["texture"] = "ElvUI Norm1",
+			["outline"] = "OUTLINE",
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"]["Eltreum"] = {
