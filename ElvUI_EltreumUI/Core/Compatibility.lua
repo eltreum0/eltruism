@@ -28,12 +28,12 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			addonname = "MerathilisUI"
 		end
 
-		if E.db.ElvUI_EltreumUI.skins.statcolors and (E.db.mui.armory.stats.classColorGradient or E.db.mui.armory.stats.classColorGradient == nil) then
+		--[[if E.db.ElvUI_EltreumUI.skins.statcolors and (E.db.mui.armory.stats.classColorGradient or E.db.mui.armory.stats.classColorGradient == nil) then
 			E.db.mui.armory.stats.classColorGradient = false
 			E.db.ElvUI_EltreumUI.skins.statcolors = true
 			compatibilityran = true
 			addonname = "MerathilisUI"
-		end
+		end]]
 
 		if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable and (E.db.mui.nameplates.enhancedAuras.enable or E.db.mui.nameplates.enhancedAuras.enable == nil) then
 			E.db.mui.nameplates.enhancedAuras.enable = false
