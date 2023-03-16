@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
 local _G = _G
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
@@ -849,6 +849,13 @@ function ElvUI_EltreumUI:Shadows()
 			if E.private.tooltip.enable then
 				_G.GameTooltip:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GameTooltip.shadow) end
+			end
+		end
+
+		if _G.LibDBIconTooltip and not _G.LibDBIconTooltip.shadow then
+			if E.private.tooltip.enable then
+				_G.LibDBIconTooltip:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.LibDBIconTooltip.shadow) end
 			end
 		end
 

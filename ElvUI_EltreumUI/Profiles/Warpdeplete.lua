@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
 local classcolor = E:ClassColor(E.myclass, true)
 --[[local classtable = {
 	["WARRIOR"] = "Eltreum-Class-Warrior",

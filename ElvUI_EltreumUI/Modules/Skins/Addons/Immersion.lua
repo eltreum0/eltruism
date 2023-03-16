@@ -1,6 +1,7 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
 local S = E:GetModule('Skins')
 local _G = _G
+local classcolor = E:ClassColor(E.myclass, true)
 local EnhancedShadows = nil
 if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
@@ -60,6 +61,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					v.Hilite:Hide()
 					v.Overlay:Hide()
 					v:StyleButton()
+					v.hover:SetVertexColor(classcolor.r, classcolor.b,classcolor.b, 0.7) --hover color
 					if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 						if v and not v.shadow then
 							v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -76,7 +78,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					_G["ImmersionQuestInfoItem" .. i]:CreateBackdrop('Transparent')
 					_G["ImmersionQuestInfoItem" .. i].backdrop:ClearAllPoints()
 					_G["ImmersionQuestInfoItem" .. i].backdrop:SetAllPoints(_G["ImmersionQuestInfoItem" .. i .."Name"])
-					_G["ImmersionQuestInfoItem" .. i].backdrop:SetAlpha(0.7) --transparent is setting alpha to 1 for some reason
+					_G["ImmersionQuestInfoItem" .. i].backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
 					_G["ImmersionQuestInfoItem" .. i].IsSkinned = true
 				end
 				if _G["ImmersionProgressItem" .. i] and not _G["ImmersionProgressItem" .. i].IsSkinned then
@@ -84,7 +86,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					_G["ImmersionProgressItem" .. i]:CreateBackdrop('Transparent')
 					_G["ImmersionProgressItem" .. i].backdrop:ClearAllPoints()
 					_G["ImmersionProgressItem" .. i].backdrop:SetAllPoints(_G["ImmersionProgressItem" .. i .."Name"])
-					_G["ImmersionProgressItem" .. i].backdrop:SetAlpha(0.7)
+					_G["ImmersionProgressItem" .. i].backdrop:SetAlpha(0.5)
 					_G["ImmersionProgressItem" .. i].IsSkinned = true
 				end
 			end

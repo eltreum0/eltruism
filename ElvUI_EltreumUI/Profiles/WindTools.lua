@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
 
 local unitframegradients = {
 	["WARRIOR"] = {r1 = 0.42745098039216, g1 = 0.13725490196078, b1 = 0.090196078431373, r2 = 0.56470588235294, g2 = 0.43137254901961, b2 = 0.24705882352941},
@@ -69,6 +69,12 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["quest"]["objectiveTracker"]["cosmeticBar"]["color"]["gradientColor2"]["b"] = unitframegradients[E.myclass].b2
 		E.private["WT"]["quest"]["objectiveTracker"]["cosmeticBar"]["color"]["gradientColor2"]["g"] = unitframegradients[E.myclass].g2
 		E.private["WT"]["quest"]["objectiveTracker"]["cosmeticBar"]["color"]["gradientColor2"]["r"] = unitframegradients[E.myclass].r2
+		E.private["WT"]["skins"]["addons"]["bigWigs"] = false
+		E.private["WT"]["skins"]["addons"]["bigWigsQueueTimer"] = false
+		E.private["WT"]["skins"]["addons"]["bugSack"] = false
+		E.private["WT"]["skins"]["addons"]["immersion"] = false
+		E.private["WT"]["skins"]["addons"]["rareScanner"] = false
+		E.private["WT"]["skins"]["addons"]["simulationcraft"] = false
 		E.private["WT"]["skins"]["blizzard"]["achievements"] = false
 		E.private["WT"]["skins"]["blizzard"]["addonManager"] = false
 		E.private["WT"]["skins"]["blizzard"]["adventureMap"] = false
@@ -139,6 +145,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["skins"]["elvui"]["enable"] = false
 		E.private["WT"]["skins"]["errorMessage"]["size"] = 18
 		E.private["WT"]["skins"]["ime"]["label"]["name"] = E.db.general.font
+		E.private["WT"]["skins"]["removeParchment"] = false
 		E.private["WT"]["skins"]["shadow"] = false
 		E.private["WT"]["skins"]["widgets"]["button"]["enable"] = true
 		E.private["WT"]["skins"]["widgets"]["button"]["backdrop"]["classColor"] = true

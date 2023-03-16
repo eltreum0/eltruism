@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
 
 -- BigWigs profile setup
 function ElvUI_EltreumUI:GetBigWigsProfile()
@@ -79,13 +79,14 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"]["Eltreum"] = {
 			["BigWigsEmphasizeAnchor_y"] = 541,
 			["visibleBarLimit"] = 15,
-			["BigWigsAnchor_width"] = 382,
-			["BigWigsAnchor_y"] = 151,
+			["BigWigsAnchor_width"] = 379,
+			["BigWigsAnchor_y"] = 160,
 			["emphasizeGrowup"] = true,
-			["BigWigsAnchor_x"] = 1096,
+			["BigWigsAnchor_x"] = 1093,
 			["spacing"] = 14,
 			["emphasizeTime"] = 10,
-			["barStyle"] = "AddOnSkins Half-Bar",
+			--["barStyle"] = "AddOnSkins Half-Bar",
+			["barStyle"] = "Eltruism",
 			["BigWigsEmphasizeAnchor_height"] = 11,
 			["growup"] = true,
 			["BigWigsEmphasizeAnchor_width"] = 180,
@@ -95,6 +96,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["outline"] = "OUTLINE",
 			["BigWigsEmphasizeAnchor_x"] = 928,
 			["texture"] = "ElvUI Norm1",
+			["outline"] = "OUTLINE",
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"]["Eltreum"] = {
@@ -175,10 +177,11 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["fontSizeEmph"] = 12,
 			["BigWigsAnchor_x"] = 1094,
 			["spacing"] = 18,
-			["barStyle"] = "AddOnSkins Half-Bar",
+			["barStyle"] = "Eltruism",
+			--["barStyle"] = "AddOnSkins Half-Bar",
 			["growup"] = true,
 			["BigWigsEmphasizeAnchor_y"] = 595,
-			["texture"] = "Eltreum-Blank",
+			["texture"] = "ElvUI Norm1",
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Wipe"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Wipe"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Wipe"]["profiles"]["Eltreum"] = {
@@ -264,8 +267,9 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["BigWigsAnchor_y"] = 152,
 			["spacing"] = 13,
 			["BigWigsEmphasizeAnchor_y"] = 610,
-			["texture"] = "Eltreum-Blank",
-			["barStyle"] = "AddOnSkins Half-Bar",
+			["texture"] = "ElvUI Norm1",
+			--["barStyle"] = "AddOnSkins Half-Bar",
+			["barStyle"] = "Eltruism",
 			["BigWigsAnchor_x"] = 1100,
 			["fontSizeEmph"] = 11,
 			["BigWigsEmphasizeAnchor_x"] = 818,

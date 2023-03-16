@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
 local compatibilityran = false
 local addonname = "NAME"
 
@@ -28,12 +28,12 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			addonname = "MerathilisUI"
 		end
 
-		if E.db.ElvUI_EltreumUI.skins.statcolors and (E.db.mui.armory.stats.classColorGradient or E.db.mui.armory.stats.classColorGradient == nil) then
+		--[[if E.db.ElvUI_EltreumUI.skins.statcolors and (E.db.mui.armory.stats.classColorGradient or E.db.mui.armory.stats.classColorGradient == nil) then
 			E.db.mui.armory.stats.classColorGradient = false
 			E.db.ElvUI_EltreumUI.skins.statcolors = true
 			compatibilityran = true
 			addonname = "MerathilisUI"
-		end
+		end]]
 
 		if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable and (E.db.mui.nameplates.enhancedAuras.enable or E.db.mui.nameplates.enhancedAuras.enable == nil) then
 			E.db.mui.nameplates.enhancedAuras.enable = false
@@ -175,6 +175,28 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			compatibilityran = true
 			addonname = "MerathilisUI"
 		end
+
+		if E.db.ElvUI_EltreumUI.skins.bugsack and (E.private.mui.skins.addonSkins.bs or E.private.mui.skins.addonSkins.bs == nil) then
+			E.private.mui.skins.addonSkins.bs = false
+			E.db.ElvUI_EltreumUI.skins.bugsack = true
+			compatibilityran = true
+			addonname = "MerathilisUI"
+		end
+
+		if E.db.ElvUI_EltreumUI.skins.clique and (E.private.mui.skins.addonSkins.cl or E.private.mui.skins.addonSkins.cl == nil) then
+			E.private.mui.skins.addonSkins.cl = false
+			E.db.ElvUI_EltreumUI.skins.clique = true
+			compatibilityran = true
+			addonname = "MerathilisUI"
+		end
+
+		if E.db.ElvUI_EltreumUI.skins.immersion and (E.private.mui.skins.addonSkins.imm or E.private.mui.skins.addonSkins.imm == nil) then
+			E.private.mui.skins.addonSkins.imm = false
+			E.db.ElvUI_EltreumUI.skins.immersion = true
+			compatibilityran = true
+			addonname = "MerathilisUI"
+		end
+
 	end
 
 	if IsAddOnLoaded("ElvUI_WindTools") then
@@ -273,6 +295,49 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			compatibilityran = true
 			addonname = "WindTools"
 		end
+
+		if E.db.ElvUI_EltreumUI.skins.bigwigs and (E.private.WT.skins.addons.bigWigs or E.private.WT.skins.addons.bigWigs == nil) then
+			E.private.WT.skins.addons.bigWigs = false
+			E.db.ElvUI_EltreumUI.skins.bigwigs = true
+			compatibilityran = true
+			addonname = "WindTools"
+		end
+
+		if E.db.ElvUI_EltreumUI.skins.bigwigs and (E.private.WT.skins.addons.bigWigsQueueTimer or E.private.WT.skins.addons.bigWigsQueueTimer == nil) then
+			E.private.WT.skins.addons.bigWigsQueueTimer = false
+			E.db.ElvUI_EltreumUI.skins.bigwigs = true
+			compatibilityran = true
+			addonname = "WindTools"
+		end
+
+		if E.db.ElvUI_EltreumUI.skins.bugsack and (E.private.WT.skins.addons.bugSack or E.private.WT.skins.addons.bugSack == nil) then
+			E.private.WT.skins.addons.bugSack = false
+			E.db.ElvUI_EltreumUI.skins.bugsack = true
+			compatibilityran = true
+			addonname = "WindTools"
+		end
+
+		if E.db.ElvUI_EltreumUI.skins.immersion and (E.private.WT.skins.addons.immersion or E.private.WT.skins.addons.immersion == nil) then
+			E.private.WT.skins.addons.immersion = false
+			E.db.ElvUI_EltreumUI.skins.immersion = true
+			compatibilityran = true
+			addonname = "WindTools"
+		end
+
+		if E.db.ElvUI_EltreumUI.skins.rarescanner and (E.private.WT.skins.addons.rareScanner or E.private.WT.skins.addons.rareScanner == nil) then
+			E.private.WT.skins.addons.rareScanner = false
+			E.db.ElvUI_EltreumUI.skins.rarescanner = true
+			compatibilityran = true
+			addonname = "WindTools"
+		end
+
+		if E.db.ElvUI_EltreumUI.skins.simulationcraft and (E.private.WT.skins.addons.simulationcraft or E.private.WT.skins.addons.simulationcraft == nil) then
+			E.private.WT.skins.addons.simulationcraft = false
+			E.db.ElvUI_EltreumUI.skins.simulationcraft = true
+			compatibilityran = true
+			addonname = "WindTools"
+		end
+
 	end
 
 	if IsAddOnLoaded("ElvUI_MerathilisUI") and IsAddOnLoaded("ElvUI_WindTools") and compatibilityran then

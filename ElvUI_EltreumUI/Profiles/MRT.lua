@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
 
 -- Exorsus Raid Tools profile setup
 function ElvUI_EltreumUI:GetMRTProfile()

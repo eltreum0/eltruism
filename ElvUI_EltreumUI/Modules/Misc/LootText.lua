@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
 local _G = _G
 local Deformat = _G.LibStub("LibDeformat-3.0")
 local CreateFrame = _G.CreateFrame

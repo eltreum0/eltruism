@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
 local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
@@ -118,6 +118,7 @@ do
 					if _G["DetailsBaseFrame"..i] then
 						_G["DetailsBaseFrame"..i]:SetParent(embedpanel)
 						_G["DetailsRowFrame"..i]:SetParent(embedpanel)
+						_G["Details_SwitchButtonFrame"..i]:SetParent(embedpanel)
 					end
 				end
 				if _G["DetailsBaseFrame1"] then
