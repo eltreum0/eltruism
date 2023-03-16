@@ -643,7 +643,7 @@ function ElvUI_EltreumUI:SkinMailZone()
 			_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
 			_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
 
-			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not self.ZoneSkinned then
 				_G.ZoneTextFrame:HookScript("OnUpdate", function()
 					if _G.ZoneTextString:GetText() ~= nil and not _G.ZoneTextString:GetText():match("|r|c") then
 						local r,g,b = _G.ZoneTextString:GetTextColor()
@@ -689,6 +689,8 @@ function ElvUI_EltreumUI:SkinMailZone()
 						_G.PVPArenaTextString:SetText(E:TextGradient(_G.PVPArenaTextString:GetText(), r, g, b, r2, g2, b2))
 					end
 				end)
+
+				self.ZoneSkinned = true
 			end
 
 			if _G.OpenMailBodyText then
