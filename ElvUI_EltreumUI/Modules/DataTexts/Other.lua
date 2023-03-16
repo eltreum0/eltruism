@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
 local _G = _G
 local DT = E:GetModule("DataTexts")
 local GetCombatRatingBonus = _G.GetCombatRatingBonus

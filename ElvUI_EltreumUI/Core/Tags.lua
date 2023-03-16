@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
 local utf8sub = string.utf8sub
 local _G = _G
 local UnitName = _G.UnitName

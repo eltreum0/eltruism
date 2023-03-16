@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
 local _G = _G
 local unpack = _G.unpack
 local select = _G.select

@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack(select(2, ...))
+local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
 
 -- BigWigs profile setup
 function ElvUI_EltreumUI:GetBigWigsProfile()
