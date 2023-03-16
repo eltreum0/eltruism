@@ -852,6 +852,13 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
+		if _G.LibDBIconTooltip and not _G.LibDBIconTooltip.shadow then
+			if E.private.tooltip.enable then
+				_G.LibDBIconTooltip:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.LibDBIconTooltip.shadow) end
+			end
+		end
+
 		--finally fix gametooltip shadow
 		if _G.GameTooltipStatusBar and E.private.tooltip.enable then
 			_G.GameTooltipStatusBar:HookScript("OnShow", function()
