@@ -32,11 +32,19 @@ local id, currentSpec, speed, combatText, combat, regenRate, regenRateText
 local qualityAnchor,qualityAnchorInspect
 local CharacterModelScene = _G.CharacterModelScene
 local CharacterFrameTitleText = _G.CharacterFrameTitleText
-local slecheck = false
+local slecheckchar = false
+local slecheckattribute = false
+--local slecheckinspect = false
 if IsAddOnLoaded("ElvUI_SLE") then
 	if E.db["sle"]["armory"]["character"]["enable"] then
-		slecheck = true
+		slecheckchar = true
 	end
+	if E.db["sle"]["armory"]["stats"]["enable"] then
+		slecheckattribute = true
+	end
+	--[[if E.db["sle"]["armory"]["inspect"]["enable"] then
+		slecheckinspect = true
+	end]]
 end
 
 --improving character panel
@@ -433,7 +441,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane, "BOTTOM", 0, -85) --adjusts the eltruism stats portion
 			CharacterFrame.EltruismExtraStatsFont:SetParent(CharacterStatsPane)
 
-			if slecheck and not IsAddOnLoaded('DejaCharacterStats') then
+			if slecheckattribute and not IsAddOnLoaded('DejaCharacterStats') then
 
 				--offense
 				CharacterStatsPane.OffenseCategory.backdrop:Hide()
@@ -678,7 +686,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			CharacterFrame:HookScript("OnShow", function()
 				if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
-					if not slecheck then
+					if not slecheckattribute then
 						local bagilvl, equippedilvl = GetAverageItemLevel()
 						if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
 							local r, g, b
@@ -705,7 +713,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			--update stats and stats position
 			hooksecurefunc("PaperDollFrame_UpdateStats", function()
 				if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
-					if not slecheck then
+					if not slecheckattribute then
 						local bagilvl, equippedilvl = GetAverageItemLevel()
 						if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
 							local r, g, b
@@ -812,7 +820,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 
 			--statusbars
-			if slecheck then
+			if slecheckattribute then
 				linewidth1 = (( 300 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
 			else
 				linewidth1 = (( 193 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
@@ -828,7 +836,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1}, {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1})
 
-			if slecheck then
+			if slecheckattribute then
 				linewidth2 = (( 300 - CharacterStatsPane.AttributesCategory.Title:GetStringWidth())/2)
 			else
 				linewidth2 = (( 194 - CharacterStatsPane.AttributesCategory.Title:GetStringWidth())/2)
@@ -844,7 +852,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
 			CharacterStatsPane.AttributesCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1}, {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1})
 
-			if slecheck then
+			if slecheckattribute then
 				linewidth3 = (( 300 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
 			else
 				linewidth3 = (( 193 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
@@ -870,7 +878,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismExtraStats2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
 			CharacterFrame.EltruismExtraStats2:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1}, {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1})
 
-			if slecheck then
+			if slecheckattribute then
 				CharacterFrame.EltruismExtraStatsFont:Hide()
 				CharacterFrame.EltruismExtraStats:Hide()
 				CharacterFrame.EltruismExtraStats2:Hide()
@@ -920,7 +928,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						CharacterFrame.EltruismClassResourceDesc2:SetText(ElvUI_EltreumUI:GradientName(CharacterFrame.EltruismClassResourceDesc2:GetText(), E.myclass))
 					end
 				end
-				if slecheck then
+				if slecheckattribute then
 					if not CharacterStatsPane.OffenseCategory.Title:GetText():match("|r") then
 						CharacterStatsPane.OffenseCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.OffenseCategory.Title:GetText(), E.myclass))
 					end
@@ -933,7 +941,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		-- add and expand art
 		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-			if slecheck then
+			if slecheckchar then
 				if _G.PaperDollFrame.SLE_Armory_BG then
 					if _G.PaperDollFrame.SLE_Armory_BG:IsVisible() then
 						_G.PaperDollFrame.SLE_Armory_BG:Hide()
@@ -1049,7 +1057,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						end
 					end)
 					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
-						if not slecheck then
+						if not slecheckattribute then
 							local bagilvl, equippedilvl = GetAverageItemLevel()
 							if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
 								local r, g, b
@@ -1069,7 +1077,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 					end
-					if slecheck then
+					if slecheckchar then
 						if _G.PaperDollFrame.SLE_Armory_BG then
 							if _G.PaperDollFrame.SLE_Armory_BG:IsVisible() then
 								_G.PaperDollFrame.SLE_Armory_BG:Hide()
@@ -1094,7 +1102,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
 					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
-						if not slecheck then
+						if not slecheckattribute then
 							local bagilvl, equippedilvl = GetAverageItemLevel()
 							if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
 								local r, g, b
@@ -1123,7 +1131,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 					end
 					_G.CharacterModelFrameBackgroundOverlay:Hide()
-					if slecheck then
+					if slecheckchar then
 						if _G.PaperDollFrame.SLE_Armory_BG then
 							if _G.PaperDollFrame.SLE_Armory_BG:IsVisible() then
 								_G.PaperDollFrame.SLE_Armory_BG:Hide()
@@ -2091,7 +2099,7 @@ end
 
 --Player Item Quality Texture
 function ElvUI_EltreumUI:PlayerItemQuality(unit)
-	if slecheck then return end
+	if slecheckchar then return end
 	if E.db.ElvUI_EltreumUI.skins.itemquality and E.private.skins.blizzard.enable then
 		E:Delay(0, function()
 			for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
@@ -2599,7 +2607,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 
 			--add a texture based on quality too, tbc needed a timer
 			if E.db.ElvUI_EltreumUI.skins.itemquality then
-				if slecheck then return end
+				if slecheckattribute then return end
 				E:Delay(0, function()
 					for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 						qualityAnchorInspect = _G["Inspect"..InvSlotIdTable[InvSlotId]]
