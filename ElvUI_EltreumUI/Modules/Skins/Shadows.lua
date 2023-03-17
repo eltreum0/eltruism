@@ -725,6 +725,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G.PVPMatchScoreboard,
 			_G.PVPMatchResults,
 			_G.MajorFactionRenownFrame,
+			_G.SubscriptionInterstitialFrame,
 			--_G.ImmersionFrame.TalkBox,
 			_G.ReadyStatus,
 			_G.QuestFrame,
@@ -1518,7 +1519,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--focus castbar
-			if E.db.unitframe.units.focus.castbar.overlayOnFrame == "None" and E.db.unitframe.units.focus.castbar.icon then
+			if E.db.unitframe.units.focus.castbar.overlayOnFrame == "None" and E.db.unitframe.units.focus.castbar.icon and E.db.unitframe.units.focus.enable then
 				if _G["ElvUF_Focus_CastBar"] and _G["ElvUF_Focus_CastBar"].shadow then
 					if E.db["unitframe"]["units"]["focus"]["orientation"] == "RIGHT" then
 						if not E.db.unitframe.units.focus.castbar.iconAttached then
