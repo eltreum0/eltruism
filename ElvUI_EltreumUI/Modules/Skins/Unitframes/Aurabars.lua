@@ -12,7 +12,7 @@ do
 
 	--Gradient Aurabars
 	function ElvUI_EltreumUI:AuraBarGradient(unit, bar, _, _, _, _, debuffType, isStealable) --could use isStealable to add a glow or something
-		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and bar and unit then
 			--bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar)) --causes issues in 10.0, have to split
 			--[[if isStealable then --maybe later
 				LCG.PixelGlow_Start(bar, skillglowcolor, 7, 0.25, 14, 4, 3, 3, false, nil, 6)
