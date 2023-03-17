@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
+local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
@@ -727,6 +727,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G.MajorFactionRenownFrame,
 			--_G.ImmersionFrame.TalkBox,
 			_G.ReadyStatus,
+			_G.QuestFrame,
 		}
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then

@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
+local E, L, V, P, G = unpack(ElvUI)
 local compatibilityran = false
 local addonname = "NAME"
 

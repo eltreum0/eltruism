@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
+local E, L, V, P, G = unpack(ElvUI)
 local id, _, powertype,powernumber,tablepowernumber
 local _G = _G
 local CreateFrame = _G.CreateFrame

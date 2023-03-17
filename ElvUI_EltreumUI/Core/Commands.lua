@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
+local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local CreateFrame = _G.CreateFrame
@@ -161,6 +161,21 @@ function ElvUI_EltreumUI:RunCommands(message)
 		else
 			ElvUI_EltreumUI:Print("Target either doesn't exist or doesn't have 3D model portrait enabled")
 		end
+	elseif message == 'update' then
+		E.PopupDialogs["ELTRUISMSETTINGSWARNING"] = {
+			text = L["Resets/Updates Eltruism Settings to Eltreum's Defaults"],
+			OnAccept = function()
+				ElvUI_EltreumUI:UpdateEltruismSettings()
+				ReloadUI()
+			end,
+			--OnCancel = function() end,
+			button1 = ACCEPT,
+			button2 = CANCEL,
+			timeout = 0,
+			whileDead = 1,
+			hideOnEscape = false,
+		}
+		E:StaticPopup_Show('ELTRUISMSETTINGSWARNING')
 	else
 		ElvUI_EltreumUI:Print("|cff82B4ffYou have entered an unknown command, here's a list of commands you can use:|r")
 		print("|cff82B4ff/eltruism|r - Opens Eltruism Config")
@@ -180,6 +195,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 		print("|cff82B4ff/eltruism gradient|r - Toggles gradient mode")
 		print("|cff82B4ff/eltruism chat|r - Toggles chat between dark and transparent modes")
 		print("|cff82B4ff/eltruismdebug on/off|r - Toggles debug mode")
+		print("|cff82B4ff/eltruism update|r - Resets/Updates Eltruism Settings to Eltreum's Defaults")
 		print("|cff82B4ff/eltruism weakauras|r - Toggles actionbars to be similar to WeakAuras, will overwrite settings")
 	end
 end
