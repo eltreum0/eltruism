@@ -727,6 +727,7 @@ function ElvUI_EltreumUI:Shadows()
 			_G.MajorFactionRenownFrame,
 			--_G.ImmersionFrame.TalkBox,
 			_G.ReadyStatus,
+			_G.QuestFrame,
 		}
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then
