@@ -80,7 +80,11 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					_G["ImmersionQuestInfoItem" .. i].backdrop:SetAllPoints(_G["ImmersionQuestInfoItem" .. i .."Name"])
 					_G["ImmersionQuestInfoItem" .. i].backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
 					_G["ImmersionQuestInfoItem" .. i].IsSkinned = true
+				elseif not _G["ImmersionQuestInfoItem" .. i] then
+					break
 				end
+			end
+			for i = 1, 10 do
 				if _G["ImmersionProgressItem" .. i] and not _G["ImmersionProgressItem" .. i].IsSkinned then
 					_G["ImmersionProgressItem" .. i].NameFrame:StripTextures()
 					_G["ImmersionProgressItem" .. i]:CreateBackdrop('Transparent')
@@ -88,6 +92,8 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					_G["ImmersionProgressItem" .. i].backdrop:SetAllPoints(_G["ImmersionProgressItem" .. i .."Name"])
 					_G["ImmersionProgressItem" .. i].backdrop:SetAlpha(0.5)
 					_G["ImmersionProgressItem" .. i].IsSkinned = true
+				elseif not _G["ImmersionProgressItem" .. i] then
+					break
 				end
 			end
 		end
