@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
+local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 
 --sets action bars/powers to be similar to weakaura's layouts

@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
+local E, L, V, P, G = unpack(ElvUI)
 
 --profile updates, so that whole profile doesnt need to be reimported
 function ElvUI_EltreumUI:UpdateElvUISettings()

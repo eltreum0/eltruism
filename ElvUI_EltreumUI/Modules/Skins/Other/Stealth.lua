@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
+local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 local UIFrameFadeIn = _G.UIFrameFadeIn
 local UIFrameFadeOut = _G.UIFrameFadeOut

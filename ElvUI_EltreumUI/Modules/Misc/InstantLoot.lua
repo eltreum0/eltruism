@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
+local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
 local CreateFrame = _G.CreateFrame

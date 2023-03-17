@@ -1,4 +1,4 @@
-local ElvUI_EltreumUI, E, L, V, P, G = unpack((select(2, ...)))
+local E, L, V, P, G = unpack(ElvUI)
 
 --Based on ElvUI's and SLE's db convert
 function ElvUI_EltreumUI:DatabaseConversions(forced)
