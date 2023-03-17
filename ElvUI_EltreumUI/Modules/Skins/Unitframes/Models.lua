@@ -2,26 +2,22 @@ local E, L, V, P, G = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
---local UnitExists = _G.UnitExists
 local UnitClass = _G.UnitClass
 local UnitIsPlayer = _G.UnitIsPlayer
 local playereffect = CreateFrame("playermodel", "EltruismPlayerEffect")
 local targeteffect = CreateFrame("playermodel", "EltruismTargetEffect")
 local targettargeteffect = CreateFrame("playermodel", "EltruismTargetTargetEffect")
-local playerbar,targetbar
-local reaction
-local _, targetclass
-local targettargetbar
-local reactiontargettarget
-local targettargetclass
-local petbar
-local petpetbar
+local focuseffect = CreateFrame("playermodel", "EltruismFocusEffect")
 local peteffect = CreateFrame("playermodel", "EltruismPetEffect")
 local powerbareffectplayer = CreateFrame("PlayerModel", "EltruismPlayerPowerBarEffect")
 local powerbareffecttarget = CreateFrame("PlayerModel", "EltruismTargetPowerBarEffect")
 local powerbareffecttargettarget = CreateFrame("PlayerModel", "EltruismTargetTargetPowerBarEffect")
+local powerbareffectfocus = CreateFrame("PlayerModel", "EltruismFocusPowerBarEffect")
 local powerbareffectpet = CreateFrame("PlayerModel", "EltruismPetPowerBarEffect")
-local powerbar, targetpowerbar,targettargetpowerbar,petpowerbar
+local powerbar, targetpowerbar, targettargetpowerbar, petpowerbar
+local _, targetclass, targettargetbar, playerbar,targetbar, reactiontarget,reactionpet
+local reactiontargettarget, targettargetclass, petbar, petpetbar
+local focuspowerbar, focusbar, focusclass,reactionfocus
 local CreateVector3D = _G.CreateVector3D
 
 --models table, because each version has different texture paths
@@ -194,7 +190,7 @@ function ElvUI_EltreumUI:TargetUFEffects()
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
 			targetbar = _G["ElvUF_Target"]
-			reaction = UnitReaction("target", "player")
+			reactiontarget = UnitReaction("target", "player")
 			_, targetclass = UnitClass("target")
 
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
@@ -202,14 +198,14 @@ function ElvUI_EltreumUI:TargetUFEffects()
 				if UnitIsPlayer("target") and targetclass then
 					targeteffect:SetModel(classModels[targetclass])
 				else
-					if reaction then
-						if reaction >= 5 then
+					if reactiontarget then
+						if reactiontarget >= 5 then
 							targeteffect:SetModel(classModels["NPCFRIENDLY"])
-						elseif reaction == 4 then
+						elseif reactiontarget == 4 then
 							targeteffect:SetModel(classModels["NPCNEUTRAL"])
-						elseif reaction == 3 then
+						elseif reactiontarget == 3 then
 							targeteffect:SetModel(classModels["NPCUNFRIENDLY"])
-						elseif reaction == 2 or reaction == 1 then
+						elseif reactiontarget == 2 or reactiontarget == 1 then
 							targeteffect:SetModel(classModels["NPCHOSTILE"])
 						end
 					end
@@ -279,7 +275,7 @@ end
 hooksecurefunc(UF, "Construct_TargetFrame", ElvUI_EltreumUI.TargetUFEffects)
 hooksecurefunc(UF, "Update_TargetFrame", ElvUI_EltreumUI.TargetUFEffects)
 
---add effects to target
+--add effects to target of target
 function ElvUI_EltreumUI:TargetTargetUFEffects()
 	if E.private.unitframe.enable then
 		if not E.private.ElvUI_EltreumUI then
@@ -381,6 +377,113 @@ end
 hooksecurefunc(UF, "Construct_TargetTargetFrame", ElvUI_EltreumUI.TargetTargetUFEffects)
 hooksecurefunc(UF, "Update_TargetTargetFrame", ElvUI_EltreumUI.TargetTargetUFEffects)
 
+--add effects to focus
+function ElvUI_EltreumUI:FocusUFEffects()
+	if E.private.unitframe.enable then
+		if not E.private.ElvUI_EltreumUI then
+			return
+		elseif not E.private.ElvUI_EltreumUI.install_version then
+			return
+		elseif not E.db.ElvUI_EltreumUI then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes.models then
+			return
+		elseif not E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+			return
+		elseif E.Classic then
+			return
+		end
+		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
+			focusbar = _G["ElvUF_Focus"]
+			reactionfocus = UnitReaction("focus", "player")
+			_, focusclass = UnitClass("focus")
+
+			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
+				--focuseffect:ClearModel()
+				if UnitIsPlayer("focus") and focusclass then
+					focuseffect:SetModel(classModels[focusclass])
+				else
+					if reactionfocus then
+						if reactionfocus >= 5 then
+							focuseffect:SetModel(classModels["NPCFRIENDLY"])
+						elseif reactionfocus == 4 then
+							focuseffect:SetModel(classModels["NPCNEUTRAL"])
+						elseif reactionfocus == 3 then
+							focuseffect:SetModel(classModels["NPCUNFRIENDLY"])
+						elseif reactionfocus == 2 or reactionfocus == 1 then
+							focuseffect:SetModel(classModels["NPCHOSTILE"])
+						end
+					end
+				end
+			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CUSTOM" then
+				--focuseffect:ClearModel()
+				if E.Retail then
+					focuseffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
+				else
+					focuseffect:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
+				end
+			end
+
+			if focusbar then
+				focuseffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
+				focuseffect:SetParent(focusbar.Health)
+				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+					focuseffect:ClearAllPoints()
+					focuseffect:SetAllPoints(focusbar.Health:GetStatusBarTexture())
+					focuseffect:SetInside(focusbar.Health:GetStatusBarTexture(), 0, 0)
+					focuseffect:SetFrameLevel(focusbar.Health:GetFrameLevel())
+					focuseffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+				--elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
+				else
+					focuseffect:ClearAllPoints()
+					focuseffect:SetAllPoints(focusbar.Health)
+					focuseffect:SetInside(focusbar.Health, 0, 0)
+					focuseffect:SetFrameLevel(focusbar.Health:GetFrameLevel()-1)
+					focuseffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
+				end
+				--focuseffect:AddMaskTexture(focusbar.Health:GetStatusBarTexture())
+			end
+		end
+
+		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
+			focuspowerbar = _G["ElvUF_Focus_PowerBar"]
+			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
+				if E.Retail then
+					powerbareffectfocus:SetModel(1715069)
+					powerbareffectfocus:MakeCurrentCameraCustom()
+					powerbareffectfocus:SetTransform(CreateVector3D(-0.035, 0, 0), CreateVector3D(rad(270), 0, 0), 0.585)
+					powerbareffectfocus:SetPortraitZoom(1)
+					powerbareffectfocus:SetAlpha(0.4) --might do this
+				else
+					powerbareffectfocus:SetModel("spells/arcanepower_state_chest.m2")
+					powerbareffectfocus:SetPosition(1.2, 0, -0.5)
+					powerbareffectfocus:SetAlpha(0.8) --might do this
+				end
+			elseif E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "CUSTOM" then
+				if E.Retail then
+					powerbareffectfocus:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
+				else
+					powerbareffectfocus:SetModel(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
+				end
+			end
+			if focuspowerbar then
+				--powerbareffectfocus:SetAlpha(1)
+				powerbareffectfocus:ClearAllPoints()
+				powerbareffectfocus:SetAllPoints(focuspowerbar:GetStatusBarTexture())
+				powerbareffectfocus:SetFrameLevel(focuspowerbar:GetFrameLevel())
+				powerbareffectfocus:SetInside(focuspowerbar:GetStatusBarTexture(), 0, 0)
+				powerbareffectfocus:SetParent(focuspowerbar)
+			end
+		end
+	end
+end
+if E.Retail or E.Wrath then
+	hooksecurefunc(UF, "Construct_FocusFrame", ElvUI_EltreumUI.FocusUFEffects)
+	hooksecurefunc(UF, "Update_FocusFrame", ElvUI_EltreumUI.FocusUFEffects)
+end
+
 --add effects to pet
 function ElvUI_EltreumUI:PetUFEffects()
 	if E.private.unitframe.enable then
@@ -400,18 +503,18 @@ function ElvUI_EltreumUI:PetUFEffects()
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
 			petbar = _G["ElvUF_Pet"]
 			petpetbar = _G["ElvUF_PetPet"]
-			reaction = UnitReaction("pet", "player")
+			reactionpet = UnitReaction("pet", "player")
 
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
 				--peteffect:ClearModel()
-				if reaction then
-					if reaction >= 5 then
+				if reactionpet then
+					if reactionpet >= 5 then
 						peteffect:SetModel(classModels["NPCFRIENDLY"])
-					elseif reaction == 4 then
+					elseif reactionpet == 4 then
 						peteffect:SetModel(classModels["NPCNEUTRAL"])
-					elseif reaction == 3 then
+					elseif reactionpet == 3 then
 						peteffect:SetModel(classModels["NPCUNFRIENDLY"])
-					elseif reaction == 2 or reaction == 1 then
+					elseif reactionpet == 2 or reactionpet == 1 then
 						peteffect:SetModel(classModels["NPCHOSTILE"])
 					end
 				end
@@ -552,12 +655,14 @@ hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastbarEffects)
 local modelupdater = CreateFrame("FRAME")
 modelupdater:RegisterUnitEvent("UNIT_TARGET", "target") --update whenever the target changes target
 modelupdater:RegisterUnitEvent("UNIT_PET", "player") --refresh everything
+modelupdater:RegisterEvent("PLAYER_FOCUS_CHANGED")
 modelupdater:RegisterEvent("PLAYER_ENTERING_WORLD") --refresh everything
 modelupdater:RegisterEvent("PLAYER_REGEN_DISABLED")
 modelupdater:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player") --refresh everything
 modelupdater:RegisterEvent("CINEMATIC_STOP") --cinematic might've caused it, so refresh everything
 modelupdater:SetScript("OnEvent", function(_, event)
 	ElvUI_EltreumUI:TargetTargetUFEffects()
+	ElvUI_EltreumUI:FocusUFEffects()
 	if E.Retail then
 		if event == 'PLAYER_ENTERING_WORLD' or event == "PLAYER_FLAGS_CHANGED" or event == "CINEMATIC_STOP" or event == "PLAYER_REGEN_DISABLED" then
 			if _G["ElvUF_Player"] and _G["ElvUF_Player"]:GetAlpha() ~= 0 then
