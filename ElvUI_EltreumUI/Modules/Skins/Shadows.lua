@@ -2295,15 +2295,21 @@ end
 hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraShadows) --uf aura shadows
 
 --from elvui chat bubbles
+local TimeSinceLastUpdate = 0
+local ONUPDATE_INTERVAL = 0.1
 local M = E:GetModule('Misc')
 function ElvUI_EltreumUI:ChatBubblesShadows()
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and not self.ChatShadowsHooked then
-		M.BubbleFrame:HookScript("OnUpdate",function()
-			for _, frame in pairs(C_ChatBubbles.GetAllChatBubbles()) do
-				local holder = frame:GetChildren()
-				if holder and not holder:IsForbidden() and not frame.shadow then
-					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+		M.BubbleFrame:HookScript("OnUpdate",function(_,elapsed)
+			TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
+			if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
+				TimeSinceLastUpdate = 0
+				for _, frame in pairs(C_ChatBubbles.GetAllChatBubbles()) do
+					local holder = frame:GetChildren()
+					if holder and not holder:IsForbidden() and not frame.shadow then
+						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+					end
 				end
 			end
 		end)
