@@ -34,7 +34,7 @@ local CharacterModelScene = _G.CharacterModelScene
 local CharacterFrameTitleText = _G.CharacterFrameTitleText
 local slecheckchar = false
 local slecheckattribute = false
---local slecheckinspect = false
+local slecheckinspect = false
 if IsAddOnLoaded("ElvUI_SLE") then
 	if E.db["sle"]["armory"]["character"]["enable"] then
 		slecheckchar = true
@@ -42,9 +42,9 @@ if IsAddOnLoaded("ElvUI_SLE") then
 	if E.db["sle"]["armory"]["stats"]["enable"] then
 		slecheckattribute = true
 	end
-	--[[if E.db["sle"]["armory"]["inspect"]["enable"] then
+	if E.db["sle"]["armory"]["inspect"]["enable"] then
 		slecheckinspect = true
-	end]]
+	end
 end
 
 --improving character panel
@@ -2607,7 +2607,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 
 			--add a texture based on quality too, tbc needed a timer
 			if E.db.ElvUI_EltreumUI.skins.itemquality then
-				if slecheckattribute then return end
+				if slecheckinspect then return end
 				E:Delay(0, function()
 					for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 						qualityAnchorInspect = _G["Inspect"..InvSlotIdTable[InvSlotId]]
