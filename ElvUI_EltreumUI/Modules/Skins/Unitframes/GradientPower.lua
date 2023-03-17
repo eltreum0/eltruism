@@ -120,7 +120,7 @@ do
 				end
 
 			end
-			if unitframe.AlternativePower then
+			--[[if unitframe.AlternativePower then
 				local r,g,b = unitframe.AlternativePower:GetStatusBarColor()
 				if r ~= 1 and g ~= 1 and b ~= 1 then
 					if E.Retail or E.Wrath then
@@ -163,7 +163,7 @@ do
 						end
 					end
 				end
-			end
+			end]]
 		end
 	end
 
