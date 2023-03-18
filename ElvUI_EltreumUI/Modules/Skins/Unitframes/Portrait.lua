@@ -4,6 +4,10 @@ local CreateFrame = _G.CreateFrame
 local level, targetmodel, playermodel
 local UnitExists = _G.UnitExists
 local UnitIsDead = _G.UnitIsDead
+local hooksecurefunc = _G.hooksecurefunc
+local rad = _G.raid
+local unpack = _G.unpack
+local UnitClass = _G.UnitClass
 
 local druidfix = {
 	[1272625] = true, --""druidbear2_artifact1.m2",

@@ -16,6 +16,7 @@ local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
 local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
 local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
 local timermonitor = CreateFrame("FRAME")
+local select = _G.select
 
 --Frame Shadows, turns out ElvUI includes the function
 function ElvUI_EltreumUI:Shadows()

@@ -1,5 +1,8 @@
 local E, L, V, P, G = unpack(ElvUI)
 local classcolor = E:ClassColor(E.myclass, true)
+local _G  = _G
+local IsAddOnLoaded = _G.IsAddOnLoaded
+local tostring = _G.tostring
 
 -- WarpDeplete profile setup
 function ElvUI_EltreumUI:GetWarpDepleteProfile()

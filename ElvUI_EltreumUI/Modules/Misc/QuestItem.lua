@@ -25,6 +25,7 @@ local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetInventoryItemCooldown = _G.GetInventoryItemCooldown
 local GetBindingText = _G.GetBindingText
 local CooldownFrame_Set = _G.CooldownFrame_Set
+local IsAddOnLoaded = _G.IsAddOnLoaded
 local _, instanceType
 local EnhancedShadows = nil
 if IsAddOnLoaded("ProjectAzilroka") then

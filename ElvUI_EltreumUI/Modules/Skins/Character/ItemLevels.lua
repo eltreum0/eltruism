@@ -16,6 +16,7 @@ local GetDetailedItemLevelInfo = _G.GetDetailedItemLevelInfo
 local level
 local hooksecurefunc = _G.hooksecurefunc
 local C_Timer = _G.C_Timer
+local IsAddOnLoaded = _G.IsAddOnLoaded
 
 --Calculate ilvl and average ilvl of player items/inspect unit
 local EltruismInspectilvls = CreateFrame("Frame")

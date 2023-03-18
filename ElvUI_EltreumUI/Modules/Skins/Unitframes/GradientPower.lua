@@ -7,6 +7,7 @@ local unitframe, Additionalframe, isHooked, staggerframe, npstaggerframe,isHooke
 local UnitPowerTyp = _G.UnitPowerType
 local UnitExists = _G.UnitExists
 local headergroup, group, groupbutton
+local select = _G.select
 
 do
 

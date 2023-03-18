@@ -9,6 +9,8 @@ local PlayMusic = _G.PlayMusic
 local PlaySound = _G.PlaySound
 local StopMusic = _G.StopMusic
 local StopSound = _G.StopSound
+local tonumber = _G.tonumber
+local IsAddOnLoaded = _G.IsAddOnLoaded
 local EnhancedShadows = nil
 if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')

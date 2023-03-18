@@ -4,6 +4,9 @@ local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local tostring = _G.tostring
 local SetCVar = _G.SetCVar
+local math = _G.math
+local GetScreenWidth = _G.GetScreenWidth
+local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
 
 function ElvUI_EltreumUI:SetupGeneralLayout()
 	if not E.db.movers then E.db.movers = {} end

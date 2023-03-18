@@ -1,4 +1,7 @@
 local E, L, V, P, G = unpack(ElvUI)
+local _G  = _G
+local IsAddOnLoaded = _G.IsAddOnLoaded
+local LoadAddOn = _G.LoadAddOn
 
 -- Questie profile setup
 function ElvUI_EltreumUI:GetQuestieProfile()

@@ -15,6 +15,7 @@ local itemLevel
 local tt
 local _, itemQuality, classID
 local hex
+local GetPlayerInfoByGUID = _G.GetPlayerInfoByGUID
 
 local classcolorsescape = {
 	["DEATHKNIGHT"]	= "C41E3A",

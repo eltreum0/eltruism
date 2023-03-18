@@ -3,6 +3,7 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local EltruismExpandedTalents = CreateFrame("Frame")
+local LoadAddOn = _G.LoadAddOn
 
 function ElvUI_EltreumUI:ExpandedTalents()
 	--Reskin Blizzard Talent frame for TBC

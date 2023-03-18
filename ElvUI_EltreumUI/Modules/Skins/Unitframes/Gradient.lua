@@ -24,6 +24,7 @@ if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
 end
 local UnitIsCharmed = _G.UnitIsCharmed
+local pairs = _G.pairs
 
 do
 

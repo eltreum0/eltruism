@@ -1,6 +1,7 @@
 local E, L, V, P, G = unpack(ElvUI)
 local compatibilityran = false
 local addonname = "NAME"
+local IsAddOnLoaded = _G.IsAddOnLoaded
 
 --check for stuff that would cause problems
 function ElvUI_EltreumUI:CheckCompatibility()

@@ -24,11 +24,17 @@ local LoadAddOn = LoadAddOn
 local GameMenuFrame = _G.GameMenuFrame
 local UIErrorsFrame = _G.UIErrorsFrame
 local RaidWarningFrame = _G.RaidWarningFrame
+local tostring = _G.tostring
+local tremove = _G.tremove
+local GetScreenWidth = _G.GetScreenWidth
+local math = _G.math
+local PlaySound = _G.PlaySound
 local W
 local EnhancedShadows = nil
 if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
 end
+
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)

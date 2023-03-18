@@ -23,6 +23,17 @@ local UnitIsGroupLeader = _G.UnitIsGroupLeader
 local UnitIsGroupAssistant = _G.UnitIsGroupAssistant
 local GetPartyAssignment = _G.GetPartyAssignment
 local Translit = E.Libs.Translit
+local UnitHealth = _G.UnitHealth
+local UnitIsGhost = _G.UnitIsGhost
+local UnitIsDead = _G.UnitIsDead
+local UnitIsConnected = _G.UnitIsConnected
+local GetSpellInfo = _G.GetSpellInfo
+local strsplit = _G.strsplit
+local tonumber = _G.tonumber
+local DoEmote = _G.DoEmote
+local UnitIsUnit = _G.UnitIsUnit
+local UnitPowerMax = _G.UnitPowerMax
+local UnitPower = _G.UnitPower
 
 -- Name custom abbreviation by Azilroka
 E:AddTag("name:eltruism:abbreviate", "UNIT_NAME_UPDATE", function(unit)

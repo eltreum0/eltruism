@@ -25,6 +25,7 @@ local EnhancedShadows = nil
 if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
 end
+local format = _G.format
 
 function ElvUI_EltreumUI:SkinQuests()
 

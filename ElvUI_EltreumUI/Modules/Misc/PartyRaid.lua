@@ -10,6 +10,7 @@ local PlaySoundFile = _G.PlaySoundFile
 local GetInstanceInfo = _G.GetInstanceInfo
 local GetSpellTexture = _G.GetSpellTexture
 local GetSpellCharges = _G.GetSpellCharges
+local InCombatLockdown = _G.InCombatLockdown
 local _, instanceType
 local DifficultyID
 local ingroup

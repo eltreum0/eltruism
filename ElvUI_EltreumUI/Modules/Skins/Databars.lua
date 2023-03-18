@@ -4,6 +4,7 @@ local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local databarXP, databarRep, databarHonor,altpower
+local InCombatLockdown = _G.InCombatLockdown
 
 --Databar gradient
 function ElvUI_EltreumUI:GradientDatabar()

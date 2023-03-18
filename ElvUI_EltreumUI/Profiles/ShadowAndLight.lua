@@ -1,4 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI)
+local _G  = _G
+local IsAddOnLoaded = _G.IsAddOnLoaded
 
 --Setup Shadow & Light
 function ElvUI_EltreumUI:GetSLEProfile()

@@ -2,6 +2,12 @@ local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local TT = E:GetModule('Tooltip')
+local string = _G.string
+local UnitIsTapDenied = _G.UnitIsTapDenied
+local UnitPlayerControlled = _G.UnitPlayerControlled
+local UnitIsPlayer = _G.UnitIsPlayer
+local UnitClass = _G.UnitClass
+local UnitReaction = _G.UnitReaction
 
 --gradient tooltip health
 local function SetTooltipGradient(unit)

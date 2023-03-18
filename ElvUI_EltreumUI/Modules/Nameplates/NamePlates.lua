@@ -35,6 +35,10 @@ local instanceType
 local mapID
 local nameplateShowOnlyNames
 local nameplateShowFriends
+local UnitName = _G.UnitName
+local IsResting = _G.IsResting
+local IsPlayerSpell = _G.IsPlayerSpell
+local UnitIsUnit = _G.UnitIsUnit
 
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1

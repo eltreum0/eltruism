@@ -4,6 +4,7 @@ local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local UnitClass = _G.UnitClass
 local UnitIsPlayer = _G.UnitIsPlayer
+local CreateFrame = _G.CreateFrame
 local playereffect = CreateFrame("playermodel", "EltruismPlayerEffect")
 local targeteffect = CreateFrame("playermodel", "EltruismTargetEffect")
 local targettargeteffect = CreateFrame("playermodel", "EltruismTargetTargetEffect")
@@ -19,6 +20,8 @@ local _, targetclass, targettargetbar, playerbar,targetbar, reactiontarget,react
 local reactiontargettarget, targettargetclass, petbar, petpetbar
 local focuspowerbar, focusbar, focusclass,reactionfocus
 local CreateVector3D = _G.CreateVector3D
+local rad = _G.rad
+local UnitReaction = _G.UnitReaction
 
 --models table, because each version has different texture paths
 --its based on the color of the model, not the name/theme

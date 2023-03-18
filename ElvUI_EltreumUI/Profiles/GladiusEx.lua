@@ -1,4 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI)
+local _G  = _G
+local table = _G.table
 
 -- GladiusEx profile setup
 function ElvUI_EltreumUI:GetGladiusExProfile()
