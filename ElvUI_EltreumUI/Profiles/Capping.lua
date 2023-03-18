@@ -9,7 +9,6 @@ function ElvUI_EltreumUI:GetCappingProfile()
 			table.insert(CappingSettings.profileKeys, E.mynameRealm)
 			CappingSettings["profileKeys"][E.mynameRealm] = "Eltreum"
 		else
-			CappingSettings["profileKeys"][E.mynameRealm] = "Eltreum"
 			CappingSettings["profiles"]["Eltreum"] = {}
 			CappingSettings["profiles"]["Eltreum"] = {
 				["colorBarBackground"] = {
@@ -35,6 +34,7 @@ function ElvUI_EltreumUI:GetCappingProfile()
 				},
 				["growUp"] = true,
 			}
+			CappingSettings["profileKeys"][E.mynameRealm] = "Eltreum"
 		end
 
 		ElvUI_EltreumUI:Print(L["Capping profile has been set."])

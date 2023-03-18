@@ -8,7 +8,6 @@ function ElvUI_EltreumUI:GetGladiusProfile()
 		table.insert(Gladius2DB.profileKeys, E.mynameRealm)
 		Gladius2DB["profileKeys"][E.mynameRealm] = "Eltreum"
 	else
-		Gladius2DB["profileKeys"][E.mynameRealm] = "Eltreum"
 		Gladius2DB["profiles"]["Eltreum"] = {}
 		Gladius2DB["profiles"]["Eltreum"] = {
 			["targetBarWidth"] = 69,
@@ -188,5 +187,6 @@ function ElvUI_EltreumUI:GetGladiusProfile()
 			["targetBarAdjustWidth"] = false,
 			["targetBarAnchor"] = "LEFT",
 		}
+		Gladius2DB["profileKeys"][E.mynameRealm] = "Eltreum"
 	end
 end

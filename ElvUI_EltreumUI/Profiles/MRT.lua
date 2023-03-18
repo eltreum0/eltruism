@@ -2285,5 +2285,6 @@ function ElvUI_EltreumUI:GetMRTProfile()
 				},
 			}
 		end
+		VMRT["ProfileKeys"][key] = "Eltreum"
 	end
 end
