@@ -209,8 +209,6 @@ local bossIDs = {
 	["36296"] = true, --Apothecary Hummel <Crown Chemical Co.>
 	["36565"] = true, --Apothecary Baxter <Crown Chemical Co.>
 	["36272"] = true, --Apothecary Frye <Crown Chemical Co.>
-
-
 }
 
 local textureDB = {
@@ -378,7 +376,6 @@ function ElvUI_EltreumUI:NPClassificatioNIcon()
 		end
 	end
 end
-
 
 --Difficulty Icon for npcs
 E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
