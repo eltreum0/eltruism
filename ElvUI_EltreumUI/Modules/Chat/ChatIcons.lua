@@ -79,7 +79,6 @@ local MVPCharacters = {
 	["Shawøød-Antonidas"] = MVPIcon,
 	["Dewøød-Antonidas"] = MVPIcon,
 	["Farmwøød-Antonidas"] = MVPIcon,
-	["Evowøød-Antonidas"] = MVPIcon,
 }
 
 --Add Icons to chat messages

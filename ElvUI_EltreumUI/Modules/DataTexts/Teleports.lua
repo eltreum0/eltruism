@@ -77,7 +77,6 @@ local TeleportsItems = {
 	63378, --hellscreams-reach-tabard
 	63379, --baradins-wardens-tabard
 	28585, --ruby-slippers
-	32757, --blessed-medallion-of-karabor
 	37863, --direbrews-remote
 	43824,--the-schools-of-arcane-magic-mastery
 	50287, --boots-of-the-bay

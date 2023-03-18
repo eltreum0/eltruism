@@ -41,7 +41,6 @@ function ElvUI_EltreumUI:GetASProfile()
 		AS.db["DBMRadarTrans"] = true
 		AS.db["HideChatFrame"] = "ChatFrame4"
 		AS.db["TransparentEmbed"] = true
-		AS.db["EmbedSystemDual"] = true
 		AS.db["Immersion"] = true
 		AS.db["BugSack"] = true
 		if E.Retail then

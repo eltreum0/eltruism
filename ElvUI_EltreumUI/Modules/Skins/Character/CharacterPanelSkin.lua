@@ -380,11 +380,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		--expand and skin the panel
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then
-			--[[if IsAddOnLoaded("ElvUI_SLE") then
-				if E.db["sle"]["armory"]["character"]["enable"] then
-					return
-				end
-			end]]
 
 			--color the avg item level
 			CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradient('Horizontal', {r=classcolor.r,g= classcolor.g,b= classcolor.b,a= 0.4}, {r=classcolor.r,g= classcolor.g,b= classcolor.b,a= 0})

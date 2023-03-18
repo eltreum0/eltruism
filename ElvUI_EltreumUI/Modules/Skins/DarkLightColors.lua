@@ -398,7 +398,6 @@ function ElvUI_EltreumUI:GradientMode()
 				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:eltruism:abbreviate] [eltruism:IconOutline:player] [eltruism:raidmarker]"
 			end
 		end
-		E.db["unitframe"]["units"]["pet"]["health"]["colorPetByUnitClass"] = true
 		E.db["unitframe"]["units"]["pet"]["health"]["colorPetByUnitClass"] = false
 
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = true

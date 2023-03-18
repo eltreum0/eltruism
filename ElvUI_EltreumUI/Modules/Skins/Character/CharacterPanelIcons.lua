@@ -14,7 +14,6 @@ local ReputationFrame = _G.ReputationFrame
 local TokenFrame = _G.TokenFrame
 local string = _G.string
 local classsymbolonframe
-local CharacterFrameTitleText = _G.CharacterFrameTitleText
 local CharacterModelScene = _G.CharacterModelScene
 
 local classIcons = {

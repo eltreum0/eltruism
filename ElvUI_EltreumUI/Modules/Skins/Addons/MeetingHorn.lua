@@ -54,7 +54,6 @@ function ElvUI_EltreumUI:EltruismMeetingHorn()
 		--challenge
 		S:HandleFrame(f.MainPanel.Challenge)
 		S:HandleButton(f.MainPanel.Challenge.Body.Reward.Exchange)
-		S:HandleButton(f.MainPanel.Browser.Refresh)
 
 		--create
 		S:HandleFrame(f.MainPanel.Manage)
@@ -74,7 +73,6 @@ function ElvUI_EltreumUI:EltruismMeetingHorn()
 		f.MainPanel.Manage.Creator.CreateButton.RightSeparator:Hide()
 		f.MainPanel.Browser.RechargeBtn.RightSeparator:Hide()
 		f.MainPanel.Browser.RechargeBtn.LeftSeparator:Hide()
-		f.MainPanel.Manage.Creator.CreateButton.RightSeparator:Hide()
 		f.MainPanel.Manage.Creator.CloseButton.Texture:Hide()
 
 		--leader

@@ -146,7 +146,6 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.borders.auraborder = true
 	E.db.ElvUI_EltreumUI.borders.stanceborders = true
 	E.db.ElvUI_EltreumUI.borders.petactionborders = true
-	E.db.ElvUI_EltreumUI.borders.totembar = true
 
 	-- Glow
 	E.db.ElvUI_EltreumUI.glow.enable = true
@@ -172,13 +171,12 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.waypoints.waytext.enable = true
 
 	-- Quests
+	E.db.ElvUI_EltreumUI.quests.arena = true
 	if E.Retail then
 		E.db.ElvUI_EltreumUI.quests.enable = true
-		E.db.ElvUI_EltreumUI.quests.arena = true
 		E.db.ElvUI_EltreumUI.quests.rogueopen = true
 	elseif E.Wrath or E.Classic then
 		E.db.ElvUI_EltreumUI.quests.enable = false
-		E.db.ElvUI_EltreumUI.quests.arena = true
 	end
 	if E.Retail then
 		E.db.ElvUI_EltreumUI.quests.questitems = false
