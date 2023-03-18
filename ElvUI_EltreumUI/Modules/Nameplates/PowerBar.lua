@@ -297,16 +297,20 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				end
 			end
 			powernumber, powertype = UnitPowerType("player")
+			--set gradient if enabled
+			if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
+					EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
+				else
+					EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
+				end
+			end
+
+			--adjust position, show/hide, show colors depending on powertype if not gradient
 			if E.myclass == 'PALADIN' or E.myclass == 'MAGE' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 					EltreumPowerBar:Show()
-					if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-							EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-						else
-							EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-						end
-					else
+					if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 						EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
 					end
 					if E.Classic or E.Wrath then
@@ -375,13 +379,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						--EltreumPowerBar:SetValue(UnitPower('player', 0)) -- get mana for druid humanoid
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 							EltreumPowerBar:Show()
-							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-								else
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-								end
-							else
+							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 								EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
 							end
 							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -393,13 +391,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					elseif stance == 1 then --bear
 						if E.private.ElvUI_EltreumUI.nameplatepower.rage then
 							EltreumPowerBar:Show()
-							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-								else
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-								end
-							else
+							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 								EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.RAGE.r, E.db.unitframe.colors.power.RAGE.g, E.db.unitframe.colors.power.RAGE.b) --its rage so color it like rage
 							end
 							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -411,13 +403,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					elseif stance == 2 then --cat
 						if E.private.ElvUI_EltreumUI.nameplatepower.energy then
 							EltreumPowerBar:Show()
-							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-								else
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-								end
-							else
+							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 								EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.ENERGY.r, E.db.unitframe.colors.power.ENERGY.g, E.db.unitframe.colors.power.ENERGY.b) --its energy so color it like energy
 							end
 							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -434,13 +420,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					elseif stance == 3 then --3 is travel
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 							EltreumPowerBar:Show()
-							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-								else
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-								end
-							else
+							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 								EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
 							end
 							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -454,13 +434,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						if id == 103 then --moonkin
 							if E.private.ElvUI_EltreumUI.nameplatepower.astral then
 								EltreumPowerBar:Show()
-								if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-										EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-									else
-										EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-									end
-								else
+								if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 									EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.LUNAR_POWER.r, E.db.unitframe.colors.power.LUNAR_POWER.g, E.db.unitframe.colors.power.LUNAR_POWER.b) --its astral/lunar power
 								end
 								if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -472,13 +446,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						else --resto druid or other druid
 							if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 								EltreumPowerBar:Show()
-								if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-										EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-									else
-										EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-									end
-								else
+								if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 									EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
 								end
 								if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -491,13 +459,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					elseif stance == 5 or stance == 6 then
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 							EltreumPowerBar:Show()
-							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-								else
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-								end
-							else
+							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 								EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
 							end
 							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -512,13 +474,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					if stance == 0 then --humanoid
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 							EltreumPowerBar:Show()
-							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-								else
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-								end
-							else
+							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 								EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
 							end
 							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -530,13 +486,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					elseif stance == 1 then --bear
 						if E.private.ElvUI_EltreumUI.nameplatepower.rage then
 							EltreumPowerBar:Show()
-							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-								else
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-								end
-							else
+							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 								EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.RAGE.r, E.db.unitframe.colors.power.RAGE.g, E.db.unitframe.colors.power.RAGE.b) --its rage so color it like rage
 							end
 							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -549,13 +499,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					elseif stance == 2 then --aquatic
 						if E.private.ElvUI_EltreumUI.nameplatepower.energy then
 							EltreumPowerBar:Show()
-							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-								else
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-								end
-							else
+							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 								EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
 							end
 							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -567,13 +511,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					elseif stance == 3 then --3 cat in classic
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 							EltreumPowerBar:Show()
-							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-								else
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-								end
-							else
+							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 								EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.ENERGY.r, E.db.unitframe.colors.power.ENERGY.g, E.db.unitframe.colors.power.ENERGY.b) --its energy so color it like energy
 							end
 							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -592,13 +530,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					elseif stance == 4 or stance == 5 then --4 is travel in classic and 5 is moonkin/resto tree in classic
 						if E.private.ElvUI_EltreumUI.nameplatepower.astral then
 							EltreumPowerBar:Show()
-							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-								else
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-								end
-							else
+							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 								EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
 							end
 							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -612,13 +544,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			elseif E.myclass == 'WARRIOR' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.rage then
 					EltreumPowerBar:Show()
-					if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-							EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-						else
-							EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-						end
-					else
+					if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 						EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.RAGE.r, E.db.unitframe.colors.power.RAGE.g, E.db.unitframe.colors.power.RAGE.b) --its rage so color it like rage
 					end
 					if E.Retail then
@@ -638,13 +564,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			elseif E.myclass == 'ROGUE' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.energy then
 					EltreumPowerBar:Show()
-					if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-							EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-						else
-							EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-						end
-					else
+					if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 						EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.ENERGY.r, E.db.unitframe.colors.power.ENERGY.g, E.db.unitframe.colors.power.ENERGY.b) --its energy so color it like energy
 					end
 					if E.Retail then
@@ -674,13 +594,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			elseif E.myclass == 'MONK' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.energy then
 					EltreumPowerBar:Show()
-					if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-							EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-						else
-							EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-						end
-					else
+					if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 						EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.ENERGY.r, E.db.unitframe.colors.power.ENERGY.g, E.db.unitframe.colors.power.ENERGY.b) --its energy so color it like energy
 					end
 					if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -697,13 +611,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			elseif E.myclass == 'DEATHKNIGHT' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.runic then
 					EltreumPowerBar:Show()
-					if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-							EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-						else
-							EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-						end
-					else
+					if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 						EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.RUNIC_POWER.r, E.db.unitframe.colors.power.RUNIC_POWER.g, E.db.unitframe.colors.power.RUNIC_POWER.b) --its runic power
 					end
 					if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -720,13 +628,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				if E.Classic or E.Wrath then
 					if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 						EltreumPowerBar:Show()
-						if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-								EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-							else
-								EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-							end
-						else
+						if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 							EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
 						end
 						if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -738,13 +640,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				elseif E.Retail then
 					if E.private.ElvUI_EltreumUI.nameplatepower.focus then
 						EltreumPowerBar:Show()
-						if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-								EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-							else
-								EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-							end
-						else
+						if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 							EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.FOCUS.r, E.db.unitframe.colors.power.FOCUS.g, E.db.unitframe.colors.power.FOCUS.b) --its focus so color it like focus
 						end
 						if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -757,13 +653,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			elseif E.myclass == 'DEMONHUNTER' then
 				if E.private.ElvUI_EltreumUI.nameplatepower.fury then
 					EltreumPowerBar:Show()
-					if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-							EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-						else
-							EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-						end
-					else
+					if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 						EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.FURY.r, E.db.unitframe.colors.power.FURY.g, E.db.unitframe.colors.power.FURY.b) --its fury
 					end
 					if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -776,13 +666,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				if E.Classic or E.Wrath then
 					if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 						EltreumPowerBar:Show()
-						if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-								EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-							else
-								EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-							end
-						else
+						if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 							EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
 						end
 						if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -795,13 +679,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					if id == 258 then
 						if E.private.ElvUI_EltreumUI.nameplatepower.insanity then
 							EltreumPowerBar:Show()
-							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-								else
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-								end
-							else
+							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 								EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.INSANITY.r, E.db.unitframe.colors.power.INSANITY.g, E.db.unitframe.colors.power.INSANITY.b) --its insanity
 							end
 							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -813,13 +691,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					elseif id == 256 or id == 257 then
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 							EltreumPowerBar:Show()
-							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-								else
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-								end
-							else
+							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 								EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
 							end
 							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -830,13 +702,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						end
 					else --its a low level priest
 						EltreumPowerBar:Show()
-						if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-								EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-							else
-								EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-							end
-						else
+						if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 							EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
 						end
 						if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -850,13 +716,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				if E.Classic or E.Wrath then
 					if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 						EltreumPowerBar:Show()
-						if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-								EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-							else
-								EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-							end
-						else
+						if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 							EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
 						end
 						if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -869,13 +729,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					if id == 262 or id == 263 then
 						if E.private.ElvUI_EltreumUI.nameplatepower.maelstrom then
 							EltreumPowerBar:Show()
-							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-								else
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-								end
-							else
+							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 								EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MAELSTROM.r, E.db.unitframe.colors.power.MAELSTROM.g, E.db.unitframe.colors.power.MAELSTROM.b) --its maelstrom
 							end
 							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -887,13 +741,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					elseif id == 264 then
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 							EltreumPowerBar:Show()
-							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-								else
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-								end
-							else
+							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 								EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
 							end
 							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
@@ -905,13 +753,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					else --its a low level shaman
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 							EltreumPowerBar:Show()
-							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-								else
-									EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
-								end
-							else
+							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
 								EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
 							end
 							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
