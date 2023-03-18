@@ -79,15 +79,15 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["armory"]["stats"]["List"]["MANAREGEN"] = true
 		E.db["sle"]["armory"]["stats"]["List"]["POWER"] = true
 		E.db["sle"]["armory"]["stats"]["List"]["RUNE_REGEN"] = true
-		E.db["sle"]["armory"]["stats"]["catFonts"]["font"] = E.db.general.font
-		E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = E.db.general.fontStyle
+		E.db["sle"]["armory"]["stats"]["statLabels"]["font"] = E.db.general.font
+		E.db["sle"]["armory"]["stats"]["statLabels"]["outline"] = E.db.general.fontStyle
 		E.db["sle"]["armory"]["stats"]["decimals"] = false
 		E.db["sle"]["armory"]["stats"]["itemLevel"]["font"] = E.db.general.font
 		E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = E.db.general.fontStyle
 		E.db["sle"]["armory"]["stats"]["itemLevel"]["size"] = 20
-		E.db["sle"]["armory"]["stats"]["statFonts"]["font"] = E.db.general.font
-		E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = E.db.general.fontStyle
-		E.db["sle"]["armory"]["stats"]["statFonts"]["size"] = 10
+		E.db["sle"]["armory"]["stats"]["statHeaders"]["font"] = E.db.general.font
+		E.db["sle"]["armory"]["stats"]["statHeaders"]["outline"] = E.db.general.fontStyle
+		E.db["sle"]["armory"]["stats"]["statHeaders"]["size"] = 10
 
 		--bags
 		E.db["sle"]["bags"]["equipmentmanager"]["enable"] = true

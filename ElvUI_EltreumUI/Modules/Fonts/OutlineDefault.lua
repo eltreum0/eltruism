@@ -4,9 +4,9 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 
 function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	if IsAddOnLoaded("ElvUI_SLE") then
-		E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["armory"]["stats"]["statLabels"]["outline"] = "THICKOUTLINE"
 		E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "THICKOUTLINE"
-		E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = "THICKOUTLINE"
+		E.db["sle"]["armory"]["stats"]["statHeaders"]["outline"] = "THICKOUTLINE"
 		E.db["sle"]["media"]["fonts"]["mail"]["outline"] = "THICKOUTLINE"
 		E.db["sle"]["media"]["fonts"]["objective"]["outline"] = "THICKOUTLINE"
 		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["outline"] = "THICKOUTLINE"
