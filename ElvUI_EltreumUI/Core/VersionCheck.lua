@@ -102,15 +102,6 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		return
 	end
 
-	if E.Retail then --while the blizzard issue with setstatusbartexture is not resolved
-		E.db.ElvUI_EltreumUI.nameplates.nptextureversion = "NONE"
-		--[[if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-			E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "NONE"
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = true
-			E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
-		end]]
-	end
-
 	if E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA then
 		ElvUI_EltreumUI:Print("You are using WeakAuras mode for ActionBars. If you wish to stop using it, make sure to disable by typing /eltruism weakauras or disabling it in the options, failing to do can cause errors")
 	end
