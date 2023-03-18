@@ -594,7 +594,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["boss"]["spacing"] = 10
 	E.db["unitframe"]["units"]["boss"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 	E.db["unitframe"]["units"]["boss"]["buffIndicator"]["size"] = 15
-	E.db["unitframe"]["units"]["boss"]["buffIndicator"]["size"] = 15
 	E.db["unitframe"]["units"]["boss"]["buffs"]["anchorPoint"] = "TOPRIGHT"
 	E.db["unitframe"]["units"]["boss"]["buffs"]["attachTo"] = "DEBUFFS"
 	E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "Kimberley"
@@ -694,7 +693,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["party"]["buffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["party"]["buffs"]["countFontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["party"]["buffs"]["enable"] = false
-	E.db["unitframe"]["units"]["party"]["buffIndicator"]["size"] = 20
 	E.db["unitframe"]["units"]["party"]["buffs"]["countXOffset"] = 2
 	E.db["unitframe"]["units"]["party"]["buffs"]["countYOffset"] = -3
 	E.db["unitframe"]["units"]["party"]["buffs"]["durationPosition"] = "TOP"
@@ -1037,7 +1035,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["raid1"]["portrait"]["paused"] = true
 	E.db["unitframe"]["units"]["raid1"]["portrait"]["overlayAlpha"] = 0.6
 	E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
-	E.db["unitframe"]["units"]["raid1"]["power"]["enable"] = false
 	if not E.Retail then
 		E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid11,exists] hide;show"
 	end
@@ -1082,7 +1079,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["raid2"]["groupBy"] = "ROLE"
 	E.db["unitframe"]["units"]["raid2"]["groupSpacing"] = 6
 	E.db["unitframe"]["units"]["raid2"]["groupsPerRowCol"] = 4
-	E.db["unitframe"]["units"]["raid2"]["growthDirection"] = "DOWN_RIGHT"
 	E.db["unitframe"]["units"]["raid2"]["health"]["attachTextTo"] = "InfoPanel"
 	E.db["unitframe"]["units"]["raid2"]["health"]["position"] = "TOPRIGHT"
 	E.db["unitframe"]["units"]["raid2"]["health"]["text_format"] = ""

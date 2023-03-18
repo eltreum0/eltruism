@@ -9,7 +9,6 @@ function ElvUI_EltreumUI:GetGladdyProfile()
 			table.insert(GladdyXZ.profileKeys, E.mynameRealm)
 			GladdyXZ["profileKeys"][E.mynameRealm] = "Eltreum"
 		else
-			GladdyXZ["profileKeys"][E.mynameRealm] = "Eltreum"
 			GladdyXZ["profiles"]["Eltreum"] = {}
 			GladdyXZ["profiles"]["Eltreum"] = {
 				["healthBarBgColor"] = {
@@ -285,6 +284,7 @@ function ElvUI_EltreumUI:GetGladdyProfile()
 				["cooldown"] = false,
 				["drGrowDirection"] = "LEFT",
 			}
+			GladdyXZ["profileKeys"][E.mynameRealm] = "Eltreum"
 		end
 	end
 end

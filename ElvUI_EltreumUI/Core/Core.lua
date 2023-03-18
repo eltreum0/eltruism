@@ -82,9 +82,6 @@ function ElvUI_EltreumUI:HidePopups(delay)
 		if _G["ElvUI_StaticPopup4"] then
 			_G["ElvUI_StaticPopup4"]:Hide()
 		end
-		if _G["StreamOverlayWelcomeWindow"] then
-			_G["StreamOverlayWelcomeWindow"]:Hide()
-		end
 		if _G["DetailsWelcomeWindow"] then
 			_G["DetailsWelcomeWindow"]:Hide()
 		end

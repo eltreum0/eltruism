@@ -798,7 +798,6 @@ function NP:Castbar_PostCastStart(unit)
 	end
 end
 
-local NP = E:GetModule('NamePlates')
 hooksecurefunc(NP, 'Initialize', function()
 	if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor then
 		NP.multiplier = 0

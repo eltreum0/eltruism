@@ -1,20 +1,5 @@
 local E, L, V, P, G = unpack(ElvUI)
 local classcolor = E:ClassColor(E.myclass, true)
---[[local classtable = {
-	["WARRIOR"] = "Eltreum-Class-Warrior",
-	["PALADIN"] = "Eltreum-Class-Paladin",
-	["HUNTER"] = "Eltreum-Class-Hunter",
-	["ROGUE"] = "Eltreum-Class-Rogue",
-	["PRIEST"] = "Eltreum-Class-Priest",
-	["DEATHKNIGHT"] = "Eltreum-Class-DeathKnight",
-	["SHAMAN"] = "Eltreum-Class-Shaman",
-	["MAGE"] = "Eltreum-Class-Mage",
-	["WARLOCK"] = "Eltreum-Class-Warlock",
-	["MONK"] = "Eltreum-Class-Monk",
-	["DRUID"] = "Eltreum-Class-Druid",
-	["DEMONHUNTER"] = "Eltreum-Class-DemonHunter",
-	["EVOKER"] = "Eltreum-Class-Evoker",
-}]]
 
 -- WarpDeplete profile setup
 function ElvUI_EltreumUI:GetWarpDepleteProfile()

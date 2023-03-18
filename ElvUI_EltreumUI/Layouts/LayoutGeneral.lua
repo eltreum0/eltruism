@@ -106,21 +106,16 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		--fix possible issue
 		E.db["unitframe"]["units"]["party"]["health"]["orientation"] = "HORIZONTAL"
 		E.db["unitframe"]["units"]["player"]["health"]["orientation"] = "HORIZONTAL"
-		E.db["unitframe"]["units"]["player"]["health"]["orientation"] = "HORIZONTAL"
-		E.db["unitframe"]["units"]["arena"]["health"]["orientation"] = "HORIZONTAL"
 		E.db["unitframe"]["units"]["focus"]["health"]["orientation"] = "HORIZONTAL"
-		E.db["unitframe"]["units"]["boss"]["health"]["orientation"] = "HORIZONTAL"
 		E.db["unitframe"]["units"]["raid1"]["health"]["orientation"] = "HORIZONTAL"
 		E.db["unitframe"]["units"]["raid2"]["health"]["orientation"] = "HORIZONTAL"
 		E.db["unitframe"]["units"]["raid3"]["health"]["orientation"] = "HORIZONTAL"
-		E.db["unitframe"]["units"]["party"]["health"]["orientation"] = "HORIZONTAL"
 		E.db["unitframe"]["units"]["tank"]["health"]["orientation"] = "HORIZONTAL"
 		E.db["unitframe"]["units"]["assist"]["health"]["orientation"] = "HORIZONTAL"
 		E.db["unitframe"]["units"]["target"]["health"]["orientation"] = "HORIZONTAL"
 		E.db["unitframe"]["units"]["pet"]["health"]["orientation"] = "HORIZONTAL"
 		E.db["unitframe"]["units"]["focustarget"]["health"]["orientation"] = "HORIZONTAL"
 		E.db["unitframe"]["units"]["arena"]["health"]["orientation"] = "HORIZONTAL"
-		E.db["unitframe"]["units"]["focus"]["health"]["orientation"] = "HORIZONTAL"
 		E.db["unitframe"]["units"]["boss"]["health"]["orientation"] = "HORIZONTAL"
 
 		-- unitframe colors
@@ -188,9 +183,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["colors"]["classResources"]["comboPoints"][7]["g"] = 0.2549019753933
 		E.db["unitframe"]["colors"]["classResources"]["comboPoints"][7]["r"] = 1
 		E.db["unitframe"]["colors"]["classbackdrop"] = true
-		E.db["unitframe"]["colors"]["classpower_backdrop"]["b"] = 0
-		E.db["unitframe"]["colors"]["classpower_backdrop"]["g"] = 0
-		E.db["unitframe"]["colors"]["classpower_backdrop"]["r"] = 0
 		E.db["unitframe"]["colors"]["healthclass"] = false
 		E.db["unitframe"]["colors"]["customhealthbackdrop"] = false
 		E.db["unitframe"]["colors"]["health_backdrop"]["b"] = 0
@@ -394,7 +386,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["bags"]["vendorGrays"]["enable"] = true
 		if E.Retail then
 			E.db["bags"]["split"]["bag5"] = true
-			E.db["bags"]["split"]["bagSpacing"] = 7
 			E.db["bags"]["split"]["player"] = true
 		end
 
