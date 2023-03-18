@@ -73,25 +73,35 @@ function ElvUI_EltreumUI:EltruismImmersion()
 			end
 
 			for i = 1, 10 do
-				if _G["ImmersionQuestInfoItem" .. i] and not _G["ImmersionQuestInfoItem" .. i].IsSkinned then
+				if _G["ImmersionQuestInfoItem" .. i] then
 					_G["ImmersionQuestInfoItem" .. i].NameFrame:StripTextures()
 					_G["ImmersionQuestInfoItem" .. i]:CreateBackdrop('Transparent')
 					_G["ImmersionQuestInfoItem" .. i].backdrop:ClearAllPoints()
-					_G["ImmersionQuestInfoItem" .. i].backdrop:SetAllPoints(_G["ImmersionQuestInfoItem" .. i .."Name"])
+					_G["ImmersionQuestInfoItem" .. i].backdrop:SetPoint("TOPLEFT",_G["ImmersionQuestInfoItem" .. i .."Name"],"TOPLEFT",-1,0)
+					_G["ImmersionQuestInfoItem" .. i].backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionQuestInfoItem" .. i .."Name"],"BOTTOMRIGHT",2,-2)
 					_G["ImmersionQuestInfoItem" .. i].backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
-					_G["ImmersionQuestInfoItem" .. i].IsSkinned = true
+					if _G["ImmersionQuestInfoItem"..i].objectType and _G["ImmersionQuestInfoItem"..i].objectType == "item" then
+						local _, _, _, quality = GetQuestItemInfo(tostring(_G["ImmersionQuestInfoItem"..i].type), tonumber(_G["ImmersionQuestInfoItem" .. i]:GetID()))
+						local r,g,b = GetItemQualityColor(quality)
+						_G["ImmersionQuestInfoItem" .. i].backdrop:SetBackdropBorderColor(r, g, b)
+					end
 				elseif not _G["ImmersionQuestInfoItem" .. i] then
 					break
 				end
 			end
 			for i = 1, 10 do
-				if _G["ImmersionProgressItem" .. i] and not _G["ImmersionProgressItem" .. i].IsSkinned then
+				if _G["ImmersionProgressItem" .. i] then
 					_G["ImmersionProgressItem" .. i].NameFrame:StripTextures()
 					_G["ImmersionProgressItem" .. i]:CreateBackdrop('Transparent')
 					_G["ImmersionProgressItem" .. i].backdrop:ClearAllPoints()
-					_G["ImmersionProgressItem" .. i].backdrop:SetAllPoints(_G["ImmersionProgressItem" .. i .."Name"])
-					_G["ImmersionProgressItem" .. i].backdrop:SetAlpha(0.5)
-					_G["ImmersionProgressItem" .. i].IsSkinned = true
+					_G["ImmersionProgressItem" .. i].backdrop:SetPoint("TOPLEFT",_G["ImmersionProgressItem" .. i .."Name"],"TOPLEFT",-1,0)
+					_G["ImmersionProgressItem" .. i].backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionProgressItem" .. i .."Name"],"BOTTOMRIGHT",2,-2)
+					_G["ImmersionProgressItem" .. i].backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
+					if _G["ImmersionProgressItem"..i].objectType and _G["ImmersionProgressItem"..i].objectType == "item" then
+						local _, _, _, quality = GetQuestItemInfo(tostring(_G["ImmersionProgressItem"..i].type), tonumber(_G["ImmersionProgressItem" .. i]:GetID()))
+						local r,g,b = GetItemQualityColor(quality)
+						_G["ImmersionProgressItem" .. i].backdrop:SetBackdropBorderColor(r, g, b)
+					end
 				elseif not _G["ImmersionProgressItem" .. i] then
 					break
 				end
