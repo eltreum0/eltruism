@@ -25,16 +25,9 @@ function ElvUI_EltreumUI:EltruismImmersion()
 		end
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 			for _, frame in pairs(frames) do
-				if not E.Classic then
-					if frame and not frame.shadow then
-						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
-					end
-				else
-					if frame and frame.backdrop and not frame.backdrop.shadow then
-						frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.backdrop.shadow) end
-					end
+				if frame and not frame.shadow then
+					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
 				end
 			end
 		end
@@ -82,7 +75,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					_G["ImmersionQuestInfoItem" .. i].NameFrame:StripTextures()
 					_G["ImmersionQuestInfoItem" .. i].NameFrame:CreateBackdrop('Transparent')
 					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:ClearAllPoints()
-					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionQuestInfoItem" .. i .."Name"],"TOPLEFT",-4,1)
+					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionQuestInfoItem" .. i .."Name"],"TOPLEFT",-3,1)
 					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionQuestInfoItem" .. i .."Name"],"BOTTOMRIGHT",-5,-2)
 					--_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetOutside(_G["ImmersionQuestInfoItem" .. i .."Name"])
 					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
@@ -100,7 +93,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					_G["ImmersionProgressItem" .. i].NameFrame:StripTextures()
 					_G["ImmersionProgressItem" .. i].NameFrame:CreateBackdrop('Transparent')
 					_G["ImmersionProgressItem" .. i].NameFrame.backdrop:ClearAllPoints()
-					_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionProgressItem" .. i .."Name"],"TOPLEFT",-4,1)
+					_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionProgressItem" .. i .."Name"],"TOPLEFT",-3,1)
 					_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionProgressItem" .. i .."Name"],"BOTTOMRIGHT",-5,-2)
 					--_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetOutside(_G["ImmersionProgressItem" .. i .."Name"])
 					_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
