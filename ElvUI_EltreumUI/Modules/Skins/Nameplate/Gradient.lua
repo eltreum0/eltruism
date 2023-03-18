@@ -309,7 +309,8 @@ do
 		end
 		if HealthTexture then
 			local tx = E.LSM:Fetch('statusbar', NP.db.statusbar)
-			frame.Health:SetStatusBarTexture(tx)
+			--frame.Health:SetStatusBarTexture(tx)
+			frame.Health.barTexture:SetTexture(tx)
 		end
 	end
 
@@ -441,7 +442,8 @@ do
 			local tx = E.LSM:Fetch('statusbar', actions.texture.texture)
 			c.HealthTexture = true
 
-			frame.Health:SetStatusBarTexture(tx)
+			--frame.Health:SetStatusBarTexture(tx)
+			frame.Health.barTexture:SetTexture(tx)
 
 			if HealthFlash then
 				frame.HealthFlashTexture:SetTexture(tx)
