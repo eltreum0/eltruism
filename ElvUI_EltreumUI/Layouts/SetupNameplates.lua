@@ -670,7 +670,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["g"] = 0
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["r"] = 1
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["a"] = 0.7
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["health"] = false
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["healthColor"]["r"] = 1
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["healthColor"]["g"] = 0
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["healthColor"]["b"] = 1
@@ -680,7 +680,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["enable"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["speed"] = 7
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["scale"] = 1.2
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["enable"] = false
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["enable"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["texture"] = "Eltreum-Stripes"
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["alpha"] = 100
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["casting"]["interruptible"] = true
@@ -702,7 +702,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		-- Enemy at execute range, general range bc different classes have different hp% executes
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["g"] = 0
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["health"] = true
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["health"] = false
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["b"] = 1
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["g"] = 0
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["r"] = 0.65
@@ -712,7 +712,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["enable"] = false
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["speed"] = 7
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["scale"] = 1.25
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["texture"]["enable"] = false
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["texture"]["enable"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["texture"]["texture"] = "Asphyxia-Norm"
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["healthThreshold"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["isTarget"] = false
@@ -723,10 +723,10 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 
 		--fancy rares
 		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["b"] = valuecolors.b
-		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["g"] = valuecolors.g
-		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["r"] = valuecolors.r
-		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["enable"] = false
+		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["b"] = 1
+		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["g"] = 1
+		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["r"] = 1
+		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["enable"] = true
 		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
 		E.global["nameplates"]["filters"]["EltreumRare"]["triggers"]["classification"]["rare"] = true
 		E.global["nameplates"]["filters"]["EltreumRare"]["triggers"]["classification"]["rareelite"] = true
