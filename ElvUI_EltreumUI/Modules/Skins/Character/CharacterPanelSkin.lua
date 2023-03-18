@@ -376,6 +376,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		end
 	end
 
+	if IsAddOnLoaded("Pawn") then
+		if _G["PawnUI_InventoryPawnButton"] then
+			_G["PawnUI_InventoryPawnButton"]:SetFrameStrata("DIALOG")
+		end
+	end
+
 	if E.Retail then
 
 		--expand and skin the panel
