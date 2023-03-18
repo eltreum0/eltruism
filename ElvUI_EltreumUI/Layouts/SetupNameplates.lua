@@ -277,7 +277,6 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["yOffset"] = -13
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["level"]["format"] = ""
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["font"] = "Kimberley"
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["fontOutline"] = "THICKOUTLINE"
 			if width == 3840 then
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["fontOutline"] = "THICKOUTLINE"
 			else
@@ -311,14 +310,8 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["position"] = "CENTER"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["yOffset"] = 0
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["xOffset"] = -55
-			if E.Classic or E.Wrath then
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = true
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["format"] = "[threat:percent]"
-			elseif E.Retail then
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = true
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["format"] = "[threat:percent]"
-			end
-
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = true
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["format"] = "[threat:percent]"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["anchorPoint"] = "TOP"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["attachTo"] = "DEBUFFS"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["countFont"] = "Kimberley"
@@ -606,7 +599,7 @@ end
 
 -- Style Filter Setup
 function ElvUI_EltreumUI:SetupStyleFilters()
-	if E.private["nameplates"]["enable"] == true then
+	if E.private.nameplates.enable then
 		for _, filterName in pairs({'EltreumTarget', 'EltreumInterrupt', 'EltreumExecute', 'EltreumRefreshDebuff', 'EltreumSpellsteal', 'EltreumRare', 'EltreumHideNP', 'EltreumRestedNP', 'EltreumLevel', 'EltreumTotems', 'EltreumDeadNP'}) do
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
