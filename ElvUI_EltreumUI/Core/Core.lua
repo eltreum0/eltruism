@@ -48,61 +48,41 @@ function ElvUI_EltreumUI:HidePopups(delay)
 		DisableAddOn("Details_Streamer")
 	end
 	C_Timer.After(delay, function()
-		if _G["StreamOverlayWelcomeWindow"] then
-			_G["StreamOverlayWelcomeWindow"]:Hide()
+		if IsAddOnLoaded("Details") and _G['_detalhes'] then
+			_G['_detalhes'].is_first_run = false
+			_G['_detalhes']:DisablePlugin ("DETAILS_PLUGIN_STREAM_OVERLAY")
+			_G['_detalhes']:DisablePlugin ("Details_Streamer")
+			_G['_detalhes']:SetTutorialCVar ("STREAMER_PLUGIN_FIRSTRUN", true)
+			if _G["DetailsWelcomeWindow"] then
+				_G["DetailsWelcomeWindow"]:Hide()
+			end
+			if _G["DetailsNewsWindow"] then
+				_G["DetailsNewsWindow"]:Hide()
+			end
+			if _G["StreamOverlayWelcomeWindow"] then
+				_G["StreamOverlayWelcomeWindow"]:Hide()
+			end
+			if _G["DetailsBaseFrame1"] then
+				_G["DetailsBaseFrame1"]:Hide()
+			end
+			if _G["DetailsProfilerProfileConfirmButton"] then
+				local a = _G["DetailsProfilerProfileConfirmButton"]:GetParent()
+				a:Hide()
+			end
 		end
-		if _G["DetailsBaseFrame1"] then
-			_G["DetailsBaseFrame1"]:Hide()
+		for i = 1, 4 do
+			if _G["StaticPopup"..i] then
+				_G["StaticPopup"..i]:Hide()
+			end
+			if _G["ElvUI_StaticPopup"..i] then
+				_G["ElvUI_StaticPopup"..i]:Hide()
+			end
 		end
-		if _G["DetailsProfilerProfileConfirmButton"] then
-			local a = _G["DetailsProfilerProfileConfirmButton"]:GetParent()
-			a:Hide()
-		end
-		if _G["StaticPopup1"] then
-			_G["StaticPopup1"]:Hide()
-		end
-		if _G["StaticPopup2"] then
-			_G["StaticPopup2"]:Hide()
-		end
-		if _G["StaticPopup3"] then
-			_G["StaticPopup3"]:Hide()
-		end
-		if _G["StaticPopup4"] then
-			_G["StaticPopup4"]:Hide()
-		end
-		if _G["ElvUI_StaticPopup1"] then
-			_G["ElvUI_StaticPopup1"]:Hide()
-		end
-		if _G["ElvUI_StaticPopup2"] then
-			_G["ElvUI_StaticPopup2"]:Hide()
-		end
-		if _G["ElvUI_StaticPopup3"] then
-			_G["ElvUI_StaticPopup3"]:Hide()
-		end
-		if _G["ElvUI_StaticPopup4"] then
-			_G["ElvUI_StaticPopup4"]:Hide()
-		end
-		if _G["DetailsWelcomeWindow"] then
-			_G["DetailsWelcomeWindow"]:Hide()
-		end
-		if _G["DetailsNewsWindow"] then
-			_G["DetailsNewsWindow"]:Hide()
-		end
-		--if IsAddOnLoaded("Details") then
-			--_detalhes:DisablePlugin ("DETAILS_PLUGIN_STREAM_OVERLAY")
-			--_detalhes:DisablePlugin ("Details_Streamer")
-		--end
 		if _G["CappingFrame"] then
 			_G["CappingFrame"]:Hide()
 		end
 		if IsAddOnLoaded("GladiusEx") then
 			GladiusEx:HideFrames()
-			--[[if _G["GladiusExPartyFrame"] then
-				_G["GladiusExPartyFrame"]:Hide()
-			end
-			if _G["GladiusExArenaFrame"] then
-				_G["GladiusExArenaFrame"]:Hide()
-			end]]
 		end
 		if IsAddOnLoaded("Gladius") then
 			if _G["GladiusButtonFramearena1"] then
