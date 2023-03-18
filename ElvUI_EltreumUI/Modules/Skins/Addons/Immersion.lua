@@ -77,8 +77,9 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					_G["ImmersionQuestInfoItem" .. i].NameFrame:StripTextures()
 					_G["ImmersionQuestInfoItem" .. i].NameFrame:CreateBackdrop('Transparent')
 					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:ClearAllPoints()
-					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionQuestInfoItem" .. i .."Name"],"TOPLEFT",-2,2)
-					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionQuestInfoItem" .. i .."Name"],"BOTTOMRIGHT",2,-2)
+					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionQuestInfoItem" .. i .."Name"],"TOPLEFT",-5,1)
+					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionQuestInfoItem" .. i .."Name"],"BOTTOMRIGHT",-5,-2)
+					--_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetOutside(_G["ImmersionQuestInfoItem" .. i .."Name"])
 					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
 					if _G["ImmersionQuestInfoItem"..i].objectType and _G["ImmersionQuestInfoItem"..i].objectType == "item" then
 						local _, _, _, quality = GetQuestItemInfo(tostring(_G["ImmersionQuestInfoItem"..i].type), tonumber(_G["ImmersionQuestInfoItem" .. i]:GetID()))
@@ -94,8 +95,9 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					_G["ImmersionProgressItem" .. i].NameFrame:StripTextures()
 					_G["ImmersionProgressItem" .. i].NameFrame:CreateBackdrop('Transparent')
 					_G["ImmersionProgressItem" .. i].NameFrame.backdrop:ClearAllPoints()
-					_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionProgressItem" .. i .."Name"],"TOPLEFT",-5,2)
+					_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionProgressItem" .. i .."Name"],"TOPLEFT",-5,1)
 					_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionProgressItem" .. i .."Name"],"BOTTOMRIGHT",-5,-2)
+					--_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetOutside(_G["ImmersionProgressItem" .. i .."Name"])
 					_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
 					if _G["ImmersionProgressItem"..i].objectType and _G["ImmersionProgressItem"..i].objectType == "item" then
 						local _, _, _, quality = GetQuestItemInfo(tostring(_G["ImmersionProgressItem"..i].type), tonumber(_G["ImmersionProgressItem" .. i]:GetID()))
