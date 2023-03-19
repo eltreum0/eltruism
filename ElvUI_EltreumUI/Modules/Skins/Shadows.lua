@@ -618,6 +618,18 @@ function ElvUI_EltreumUI:Shadows()
 						_G.AuctionFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionFrame.backdrop.shadow) end
 					end
+					if _G.AuctionFrameTab1 and _G.AuctionFrameTab1.backdrop and not _G.AuctionFrameTab1.backdrop.shadow then
+						_G.AuctionFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionFrameTab1.backdrop.shadow) end
+					end
+					if _G.AuctionFrameTab2 and _G.AuctionFrameTab2.backdrop and not _G.AuctionFrameTab2.backdrop.shadow then
+						_G.AuctionFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionFrameTab2.backdrop.shadow) end
+					end
+					if _G.AuctionFrameTab3 and _G.AuctionFrameTab3.backdrop and not _G.AuctionFrameTab3.backdrop.shadow then
+						_G.AuctionFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionFrameTab3.backdrop.shadow) end
+					end
 				end
 			end
 		end)
