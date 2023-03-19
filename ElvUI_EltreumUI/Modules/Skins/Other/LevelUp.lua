@@ -31,6 +31,17 @@ function ElvUI_EltreumUI:SkinLevelUp()
 				EventToastManagerFrame.StatusLine2:SetPoint("BOTTOM", EventToastManagerFrame, 0, 0)
 				EventToastManagerFrame.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
 				EventToastManagerFrame.StatusLine2:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
+
+				hooksecurefunc(_G.EventToastManagerFrame,"DisplayToast", function(self)
+					if self.currentDisplayingToast then
+						self.currentDisplayingToast.Title:SetShadowColor(0, 0, 0, 0.8)
+						self.currentDisplayingToast.Title:SetShadowOffset(2, -2)
+						--self.currentDisplayingToast.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 30, E.db.general.fontStyle) --font size doesnt adjust so it kinda breaks level up
+						self.currentDisplayingToast.SubTitle:SetShadowColor(0, 0, 0, 0.8)
+						self.currentDisplayingToast.SubTitle:SetShadowOffset(2, -2)
+						--self.currentDisplayingToast.SubTitle:SetFont(E.LSM:Fetch("font", E.db.general.font), 17, E.db.general.fontStyle) --font size doesnt adjust so it kinda breaks level up
+					end
+				end)
 				--/script EventToastManagerFrame:Show()
 			end
 
@@ -64,9 +75,11 @@ function ElvUI_EltreumUI:SkinLevelUp()
 				BossBanner.Title:SetTextColor(1, 1, 1, 1)
 				BossBanner.Title:SetShadowColor(0, 0, 0, 0.8)
 				BossBanner.Title:SetShadowOffset(2, -1)
+				BossBanner.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 30, E.db.general.fontStyle)
 				BossBanner.SubTitle:SetTextColor(1, 1, 1, 1)
 				BossBanner.SubTitle:SetShadowColor(0, 0, 0, 0.8)
 				BossBanner.SubTitle:SetShadowOffset(2, -1)
+				BossBanner.SubTitle:SetFont(E.LSM:Fetch("font", E.db.general.font), 17, E.db.general.fontStyle)
 				--/script BossBanner:Show()
 			end
 		end
