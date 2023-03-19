@@ -503,7 +503,7 @@ function ElvUI_EltreumUI:Configtable()
 							shadowandlight = {
 								order = 5,
 								type = 'execute',
-								name = E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0),
+								name = "|cff9482c9S|r|cff8c8ac9h|r|cff8591c9a|r|cff809bc9d|r|cff7fa6c9o|r|cff7eb2c9w|r |cff6fcac1a|r|cff5de7b8n|r|cff4bfdaed|r |cff3cfda2L|r|cff2cfd97i|r|cff20fd7bg|r|cff16fd55h|r|cff0cfd2ft|r",
 								desc = L["Reset to Eltruism defaults."],
 								confirm = true,
 								width = 'double',
@@ -521,7 +521,7 @@ function ElvUI_EltreumUI:Configtable()
 							windtools = {
 								order = 7,
 								type = 'execute',
-								name = "|cff45aaf2W|r|cff4795efi|r|cff4a80ecn|r|cff498aedd|r|cff469ff0T|r|cff60b1e8o|r|cff98c0d5o|r|cffc1ccc6l|r|cffc1ccc6s|r",
+								name = "|cff5385edW|r|cff5094eai|r|cff4da4e7n|r|cff4ab4e4d|r|cff47c0e1T|r|cff44cbdfo|r|cff41d7ddo|r|cff41d7ddl|r|cff41d7dds|r",
 								desc = L["Reset to Eltruism defaults."],
 								confirm = true,
 								width = 'double',
