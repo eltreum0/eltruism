@@ -98,10 +98,10 @@ do
 					checkembed = true
 				end
 				if IsAddOnLoaded("ElvUI_MerathilisUI") then
-					if not (E.private.mui.skins.embed or E.private.mui.skins.embed.enable) then
-						checkembed = true
-					else
+					if E.private.mui.skins.embed.enable then
 						checkembed = false
+					else
+						checkembed = true
 					end
 				end
 			else
