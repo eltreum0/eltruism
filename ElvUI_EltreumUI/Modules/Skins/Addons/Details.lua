@@ -160,6 +160,9 @@ do
 							_G["RightChatPanel"]:Hide()
 						end
 					end
+					if not E.db.ElvUI_EltreumUI.skins.detailsembedooc then
+						embedpanel:UnregisterAllEvents()
+					end
 				end)
 
 				_G.RightChatToggleButton:HookScript("OnClick" ,function(_,button)

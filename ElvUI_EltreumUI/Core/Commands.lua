@@ -176,6 +176,14 @@ function ElvUI_EltreumUI:RunCommands(message)
 			hideOnEscape = false,
 		}
 		E:StaticPopup_Show('ELTRUISMSETTINGSWARNING')
+	elseif message == 'detailshide' then
+		if not E.db.ElvUI_EltreumUI.skins.detailsembedooc then
+			E.db.ElvUI_EltreumUI.skins.detailsembedooc = true
+			ElvUI_EltreumUI:Print("Details Hiding out of Combat Enabled")
+		else
+			E.db.ElvUI_EltreumUI.skins.detailsembedooc = false
+			ElvUI_EltreumUI:Print("Details Hiding out of Combat Disabled")
+		end
 	else
 		ElvUI_EltreumUI:Print("|cff82B4ffYou have entered an unknown command, here's a list of commands you can use:|r")
 		print("|cff82B4ff/eltruism|r - Opens Eltruism Config")
