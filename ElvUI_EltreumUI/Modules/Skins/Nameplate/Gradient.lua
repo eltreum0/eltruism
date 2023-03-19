@@ -12,6 +12,7 @@ local UnitPlayerControlled = _G.UnitPlayerControlled
 local UnitCanAttack = _G.UnitCanAttack
 local UnitGUID = _G.UnitGUID
 local UnitIsDead = _G.UnitIsDead
+local wipe = _G.wipe
 
 do
 
@@ -309,7 +310,8 @@ do
 		end
 		if HealthTexture then
 			local tx = E.LSM:Fetch('statusbar', NP.db.statusbar)
-			frame.Health:SetStatusBarTexture(tx)
+			--frame.Health:SetStatusBarTexture(tx)
+			frame.Health.barTexture:SetTexture(tx)
 		end
 	end
 
@@ -441,7 +443,8 @@ do
 			local tx = E.LSM:Fetch('statusbar', actions.texture.texture)
 			c.HealthTexture = true
 
-			frame.Health:SetStatusBarTexture(tx)
+			--frame.Health:SetStatusBarTexture(tx)
+			frame.Health.barTexture:SetTexture(tx)
 
 			if HealthFlash then
 				frame.HealthFlashTexture:SetTexture(tx)

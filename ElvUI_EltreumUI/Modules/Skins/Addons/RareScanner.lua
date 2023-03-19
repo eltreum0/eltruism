@@ -1,6 +1,7 @@
 local E, L, V, P, G = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
+local IsAddOnLoaded = _G.IsAddOnLoaded
 local EnhancedShadows = nil
 if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
@@ -31,6 +32,23 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 
 			_G["scanner_button"].IsSkinned = true
 		end
+
+		hooksecurefunc(scanner_button,"ShowButton",function()
+			if _G["LootBar"] then
+				for _, v in pairs{_G["LootBar"]:GetChildren()} do
+					if v and v.Icon and not v.EltruismSkin then
+						--v.Icon:SetTexCoord(unpack(E.TexCoords))
+						S:HandleFrame(v)
+						if not v.shadow then
+							v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(v.shadow) end
+						end
+						v.EltruismSkin = true
+					end
+				end
+			end
+		end)
+
 	end
 end
 S:AddCallbackForAddon('RareScanner', "EltruismRareScanner", ElvUI_EltreumUI.EltruismRareScanner)

@@ -1,6 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file='Actionbars/Actionbars.lua'/>
 	<Include file='Addons\load_addons.xml'/>
+	<Script file='Addons/WarpDeplete.lua'/>
 	<Script file='Borders/Borders.lua'/>
 	<Script file='Borders/BorderAdjust.lua'/>
 	<Script file='Character/CharacterPanelIcons.lua'/>

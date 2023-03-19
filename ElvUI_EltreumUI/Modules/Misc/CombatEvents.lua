@@ -6,6 +6,9 @@ local PlayMusic = _G.PlayMusic
 local tostring = _G.tostring
 local StopMusic = _G.StopMusic
 local Minimap = _G.Minimap
+local wipe = _G.wipe
+local math = _G.math
+local strsplit = _G.strsplit
 local dontstop = 0
 local dontstopboss = 0
 local soundfileboss

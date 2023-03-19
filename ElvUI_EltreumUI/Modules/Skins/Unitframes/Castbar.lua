@@ -11,6 +11,7 @@ local reactiontarget,reactionfocus,reactionpet
 local _, targetclass, focusclass, petclass
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local headergroup,group,groupbutton
+local select = _G.select
 
 do
 

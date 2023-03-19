@@ -4,6 +4,7 @@ local string = _G.string
 local OKAY = _G.OKAY
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local fixingold = false
+local pairs = _G.pairs
 
 function ElvUI_EltreumUI:VersionCheckInit()
 	if E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version then
@@ -100,15 +101,6 @@ end
 function ElvUI_EltreumUI:OldVersionCheck()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
-	end
-
-	if E.Retail then --while the blizzard issue with setstatusbartexture is not resolved
-		E.db.ElvUI_EltreumUI.nameplates.nptextureversion = "NONE"
-		--[[if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-			E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "NONE"
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = true
-			E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
-		end]]
 	end
 
 	if E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA then

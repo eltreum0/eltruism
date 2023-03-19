@@ -35,6 +35,10 @@ local instanceType
 local mapID
 local nameplateShowOnlyNames
 local nameplateShowFriends
+local UnitName = _G.UnitName
+local IsResting = _G.IsResting
+local IsPlayerSpell = _G.IsPlayerSpell
+local UnitIsUnit = _G.UnitIsUnit
 
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1
@@ -437,11 +441,11 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		--color rares according to class
 		if E.global.nameplates.filters.EltreumRare and (E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate) then
 			E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = (rareclass[E.myclass])
-			E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["enable"] = false
+			E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["enable"] = true
 			E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["health"] = true
-			E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["b"] = classcolor.b
-			E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["g"] = classcolor.g
-			E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["r"] = classcolor.r
+			E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["b"] = 1
+			E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["g"] = 1
+			E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["r"] = 1
 		end
 
 		--target's class color texture

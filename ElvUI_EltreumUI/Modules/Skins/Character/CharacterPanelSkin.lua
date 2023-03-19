@@ -32,6 +32,10 @@ local id, currentSpec, speed, combatText, combat, regenRate, regenRateText
 local qualityAnchor,qualityAnchorInspect
 local CharacterModelScene = _G.CharacterModelScene
 local CharacterFrameTitleText = _G.CharacterFrameTitleText
+local pairs = _G.pairs
+local string = _G.string
+local InCombatLockdown = _G.InCombatLockdown
+local format = _G.format
 local slecheckchar = false
 local slecheckattribute = false
 local slecheckinspect = false
@@ -373,6 +377,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		end
 		if _G["CharacterModelScene"] then
 			_G["CharacterModelScene"]:SetIgnoreParentScale(false)
+		end
+	end
+
+	if IsAddOnLoaded("Pawn") then
+		if _G["PawnUI_InventoryPawnButton"] then
+			_G["PawnUI_InventoryPawnButton"]:SetFrameStrata("DIALOG")
 		end
 	end
 

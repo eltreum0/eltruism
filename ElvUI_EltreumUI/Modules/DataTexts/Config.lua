@@ -4,6 +4,7 @@ local DT = E:GetModule("DataTexts")
 local InCombatLockdown = _G.InCombatLockdown
 local UIErrorsFrame = _G.UIErrorsFrame
 local ERR_NOT_IN_COMBAT = _G.ERR_NOT_IN_COMBAT
+local strjoin = _G.strjoin
 
 local lastPanelEltruismConfig
 local displayStringEltruismconfig = ''

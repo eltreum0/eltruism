@@ -2,6 +2,7 @@ local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local C_CVar = _G.C_CVar
+local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
 
 function ElvUI_EltreumUI:SetupLayoutHealer()
 	if not E.db.movers then E.db.movers = {} end

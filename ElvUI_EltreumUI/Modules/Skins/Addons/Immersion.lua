@@ -2,6 +2,11 @@ local E, L, V, P, G = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
+local pairs = _G.pairs
+local tostring = _G.tostring
+local tonumber = _G.tonumber
+local InCombatLockdown = _G.InCombatLockdown
+local IsAddOnLoaded = _G.IsAddOnLoaded
 local EnhancedShadows = nil
 if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
@@ -20,16 +25,9 @@ function ElvUI_EltreumUI:EltruismImmersion()
 		end
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 			for _, frame in pairs(frames) do
-				if not E.Classic then
-					if frame and not frame.shadow then
-						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
-					end
-				else
-					if frame and frame.backdrop and not frame.backdrop.shadow then
-						frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.backdrop.shadow) end
-					end
+				if frame and not frame.shadow then
+					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
 				end
 			end
 		end
@@ -61,7 +59,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					v.Hilite:Hide()
 					v.Overlay:Hide()
 					v:StyleButton()
-					v.hover:SetVertexColor(classcolor.r, classcolor.b,classcolor.b, 0.7) --hover color
+					v.hover:SetVertexColor(classcolor.r, classcolor.g,classcolor.b, 0.7) --hover color
 					if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 						if v and not v.shadow then
 							v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -73,25 +71,37 @@ function ElvUI_EltreumUI:EltruismImmersion()
 			end
 
 			for i = 1, 10 do
-				if _G["ImmersionQuestInfoItem" .. i] and not _G["ImmersionQuestInfoItem" .. i].IsSkinned then
+				if _G["ImmersionQuestInfoItem" .. i] then
 					_G["ImmersionQuestInfoItem" .. i].NameFrame:StripTextures()
-					_G["ImmersionQuestInfoItem" .. i]:CreateBackdrop('Transparent')
-					_G["ImmersionQuestInfoItem" .. i].backdrop:ClearAllPoints()
-					_G["ImmersionQuestInfoItem" .. i].backdrop:SetAllPoints(_G["ImmersionQuestInfoItem" .. i .."Name"])
-					_G["ImmersionQuestInfoItem" .. i].backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
-					_G["ImmersionQuestInfoItem" .. i].IsSkinned = true
+					_G["ImmersionQuestInfoItem" .. i].NameFrame:CreateBackdrop('Transparent')
+					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:ClearAllPoints()
+					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionQuestInfoItem" .. i .."Name"],"TOPLEFT",-3,1)
+					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionQuestInfoItem" .. i .."Name"],"BOTTOMRIGHT",-5,-2)
+					--_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetOutside(_G["ImmersionQuestInfoItem" .. i .."Name"])
+					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
+					if _G["ImmersionQuestInfoItem"..i].objectType and _G["ImmersionQuestInfoItem"..i].objectType == "item" then
+						local _, _, _, quality = GetQuestItemInfo(tostring(_G["ImmersionQuestInfoItem"..i].type), tonumber(_G["ImmersionQuestInfoItem" .. i]:GetID()))
+						local r,g,b = GetItemQualityColor(quality)
+						_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetBackdropBorderColor(r, g, b)
+					end
 				elseif not _G["ImmersionQuestInfoItem" .. i] then
 					break
 				end
 			end
 			for i = 1, 10 do
-				if _G["ImmersionProgressItem" .. i] and not _G["ImmersionProgressItem" .. i].IsSkinned then
+				if _G["ImmersionProgressItem" .. i] then
 					_G["ImmersionProgressItem" .. i].NameFrame:StripTextures()
-					_G["ImmersionProgressItem" .. i]:CreateBackdrop('Transparent')
-					_G["ImmersionProgressItem" .. i].backdrop:ClearAllPoints()
-					_G["ImmersionProgressItem" .. i].backdrop:SetAllPoints(_G["ImmersionProgressItem" .. i .."Name"])
-					_G["ImmersionProgressItem" .. i].backdrop:SetAlpha(0.5)
-					_G["ImmersionProgressItem" .. i].IsSkinned = true
+					_G["ImmersionProgressItem" .. i].NameFrame:CreateBackdrop('Transparent')
+					_G["ImmersionProgressItem" .. i].NameFrame.backdrop:ClearAllPoints()
+					_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionProgressItem" .. i .."Name"],"TOPLEFT",-3,1)
+					_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionProgressItem" .. i .."Name"],"BOTTOMRIGHT",-5,-2)
+					--_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetOutside(_G["ImmersionProgressItem" .. i .."Name"])
+					_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
+					if _G["ImmersionProgressItem"..i].objectType and _G["ImmersionProgressItem"..i].objectType == "item" then
+						local _, _, _, quality = GetQuestItemInfo(tostring(_G["ImmersionProgressItem"..i].type), tonumber(_G["ImmersionProgressItem" .. i]:GetID()))
+						local r,g,b = GetItemQualityColor(quality)
+						_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetBackdropBorderColor(r, g, b)
+					end
 				elseif not _G["ImmersionProgressItem" .. i] then
 					break
 				end

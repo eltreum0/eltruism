@@ -36,7 +36,7 @@ function ElvUI_EltreumUI:CursorInit()
 	end
 end
 
-local cursorframe = CreateFrame("Frame", "EltruismCursor")
+local cursorframe = CreateFrame("Frame", "EltruismCursorSetup")
 local rootFrame = CreateFrame("Frame", "EltruismCursorRoot", UIParent)
 local Cast = CreateFrame("Frame", "EltruismCursorCast", rootFrame)
 local GCD = CreateFrame("Frame", "EltruismCursorGCD", rootFrame)
@@ -471,10 +471,8 @@ function ElvUI_EltreumUI:CastCursor()
 				--print('cursorframe loaded')
 				collectgarbage()
 				ResetCPUUsage()
-				cursorframe:UnregisterEvent("PLAYER_STARTED_MOVING")
+				cursorframe:UnregisterAllEvents()
 				cursorframe:SetScript("OnEvent", nil)
-				cursorframe:SetPoint("Center", UIParent, "Center")
-				cursorframe:Hide()
 				Cursor.db = Defaults.cursor
 				Cast.db = Defaults.cast
 				GCD.db = Defaults.gcd

@@ -1,4 +1,7 @@
 local E, L, V, P, G = unpack(ElvUI)
+local _G  = _G
+local IsAddOnLoaded = _G.IsAddOnLoaded
+local LoadAddOn = _G.LoadAddOn
 
 -- BigWigs profile setup
 function ElvUI_EltreumUI:GetBigWigsProfile()
@@ -83,15 +86,16 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["BigWigsAnchor_y"] = 160,
 			["emphasizeGrowup"] = true,
 			["BigWigsAnchor_x"] = 1093,
-			["spacing"] = 14,
+			["spacing"] = 15,
 			["emphasizeTime"] = 10,
+			["emphasizeGrowup"] = true,
 			--["barStyle"] = "AddOnSkins Half-Bar",
 			["barStyle"] = "Eltruism",
-			["BigWigsEmphasizeAnchor_height"] = 11,
+			["BigWigsEmphasizeAnchor_height"] = 15,
 			["growup"] = true,
 			["BigWigsEmphasizeAnchor_width"] = 180,
 			["fontName"] = E.db.general.font,
-			["BigWigsAnchor_height"] = 10,
+			["BigWigsAnchor_height"] = 15,
 			["visibleBarLimitEmph"] = 6,
 			["outline"] = "OUTLINE",
 			["BigWigsEmphasizeAnchor_x"] = 928,
@@ -116,6 +120,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"]["Eltreum"] = {
+			["outline"] = "OUTLINE",
 			["emphFontName"] = E.db.general.font,
 			["emphPosition"] = {
 				"TOP", -- [1]
@@ -124,6 +129,8 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				-160, -- [4]
 			},
 			["fontName"] = E.db.general.font,
+			["growUpwards"] = false,
+			["emphOutline"] = "OUTLINE",
 			["normalPosition"] = {
 				nil, -- [1]
 				nil, -- [2]
@@ -165,23 +172,27 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"]["Eltreum"] = {
-			["outline"] = "OUTLINE",
-			["fontSize"] = 13,
-			["BigWigsEmphasizeAnchor_height"] = 8,
-			["BigWigsEmphasizeAnchor_width"] = 162,
-			["BigWigsAnchor_width"] = 385,
-			["BigWigsAnchor_y"] = 168,
-			["fontName"] = E.db.general.font,
-			["BigWigsAnchor_height"] = 8,
-			["BigWigsEmphasizeAnchor_x"] = 819,
-			["fontSizeEmph"] = 12,
-			["BigWigsAnchor_x"] = 1094,
-			["spacing"] = 18,
-			["barStyle"] = "Eltruism",
+			["BigWigsEmphasizeAnchor_y"] = 541,
+			["visibleBarLimit"] = 15,
+			["BigWigsAnchor_width"] = 379,
+			["BigWigsAnchor_y"] = 160,
+			["emphasizeGrowup"] = true,
+			["BigWigsAnchor_x"] = 1093,
+			["spacing"] = 15,
+			["emphasizeTime"] = 10,
+			["emphasizeGrowup"] = true,
 			--["barStyle"] = "AddOnSkins Half-Bar",
+			["barStyle"] = "Eltruism",
+			["BigWigsEmphasizeAnchor_height"] = 15,
 			["growup"] = true,
-			["BigWigsEmphasizeAnchor_y"] = 595,
+			["BigWigsEmphasizeAnchor_width"] = 180,
+			["fontName"] = E.db.general.font,
+			["BigWigsAnchor_height"] = 15,
+			["visibleBarLimitEmph"] = 6,
+			["outline"] = "OUTLINE",
+			["BigWigsEmphasizeAnchor_x"] = 928,
 			["texture"] = "ElvUI Norm1",
+			["outline"] = "OUTLINE",
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Wipe"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Wipe"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Wipe"]["profiles"]["Eltreum"] = {
@@ -189,11 +200,12 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"]["Eltreum"] = {
-			["posx"] = 1073,
-			["posy"] = 500,
+			["posx"] = 386,
+			["posy"] = 121,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Messages"]["profiles"]["Eltreum"] = {
+			["outline"] = "OUTLINE",
 			["emphFontName"] = E.db.general.font,
 			["emphPosition"] = {
 				"TOP", -- [1]
@@ -203,6 +215,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			},
 			["fontName"] = E.db.general.font,
 			["growUpwards"] = false,
+			["emphOutline"] = "OUTLINE",
 			["normalPosition"] = {
 				nil, -- [1]
 				nil, -- [2]
@@ -212,10 +225,15 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"]["Eltreum"] = {
-			["posx"] = 1080,
-			["posy"] = 650,
+			["fontSize"] = 16,
 			["fontName"] = E.db.general.font,
-			["width"] = 140,
+			["width"] = 135,
+			["objects"] = {
+				["background"] = false,
+			},
+			["posy"] = 121,
+			["height"] = 93,
+			["posx"] = 928,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"]["Eltreum"] = {
@@ -243,7 +261,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_AutoReply"]["profiles"]["Eltreum"] = {
 			["disabled"] = false,
 			["exitCombat"] = 4,
-			["mode"] = 3,
+			["mode"] = 4,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Countdown"]["profiles"]["Eltreum"] = {
@@ -252,28 +270,33 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_InfoBox"]["profiles"]["Eltreum"] = {
-			["posx"] = 180,
-			["posy"] = 754,
+			["posx"] = 386,
+			["posy"] = 121,
 		}
 
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"]["Eltreum"] = {
-			["outline"] = "OUTLINE",
-			["BigWigsAnchor_width"] = 378,
-			["BigWigsEmphasizeAnchor_height"] = 9,
-			["growup"] = true,
-			["fontName"] = E.db.general.font,
-			["BigWigsAnchor_height"] = 12,
-			["BigWigsAnchor_y"] = 152,
-			["spacing"] = 13,
-			["BigWigsEmphasizeAnchor_y"] = 610,
-			["texture"] = "ElvUI Norm1",
+			["BigWigsEmphasizeAnchor_y"] = 541,
+			["visibleBarLimit"] = 15,
+			["BigWigsAnchor_width"] = 379,
+			["BigWigsAnchor_y"] = 160,
+			["emphasizeGrowup"] = true,
+			["BigWigsAnchor_x"] = 1093,
+			["spacing"] = 15,
+			["emphasizeTime"] = 10,
+			["emphasizeGrowup"] = true,
 			--["barStyle"] = "AddOnSkins Half-Bar",
 			["barStyle"] = "Eltruism",
-			["BigWigsAnchor_x"] = 1100,
-			["fontSizeEmph"] = 11,
-			["BigWigsEmphasizeAnchor_x"] = 818,
-			["BigWigsEmphasizeAnchor_width"] = 162,
+			["BigWigsEmphasizeAnchor_height"] = 15,
+			["growup"] = true,
+			["BigWigsEmphasizeAnchor_width"] = 180,
+			["fontName"] = E.db.general.font,
+			["BigWigsAnchor_height"] = 15,
+			["visibleBarLimitEmph"] = 6,
+			["outline"] = "OUTLINE",
+			["BigWigsEmphasizeAnchor_x"] = 928,
+			["texture"] = "ElvUI Norm1",
+			["outline"] = "OUTLINE",
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"]["Eltreum"] = {
@@ -283,9 +306,13 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Proximity"]["profiles"]["Eltreum"] = {
 			["fontSize"] = 16,
 			["fontName"] = E.db.general.font,
-			["width"] = 140,
-			["posy"] = 740,
-			["posx"] = 296,
+			["width"] = 135,
+			["objects"] = {
+				["background"] = false,
+			},
+			["posy"] = 121,
+			["height"] = 93,
+			["posx"] = 928,
 		}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"] = BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"] or {}
 		BigWigsClassicDB["namespaces"]["BigWigs_Plugins_Pull"]["profiles"]["Eltreum"] = {
@@ -300,7 +327,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 				"TOP", -- [1]
 				"TOP", -- [2]
 				nil, -- [3]
-				-6, -- [4]
+				-160, -- [4]
 			},
 			["fontName"] = E.db.general.font,
 			["growUpwards"] = false,

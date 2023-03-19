@@ -12,9 +12,9 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 		_G.ProjectAzilroka.db["stAddonManager"]["FontFlag"] = fontStyle
 	end
 	if IsAddOnLoaded("ElvUI_SLE") then
-		E.db["sle"]["armory"]["stats"]["catFonts"]["outline"] = fontStyle
+		E.db["sle"]["armory"]["stats"]["statLabels"]["outline"] = fontStyle
 		E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = fontStyle
-		E.db["sle"]["armory"]["stats"]["statFonts"]["outline"] = fontStyle
+		E.db["sle"]["armory"]["stats"]["statHeaders"]["outline"] = fontStyle
 		E.db["sle"]["media"]["fonts"]["mail"]["outline"] = fontStyle
 		E.db["sle"]["media"]["fonts"]["objective"]["outline"] = fontStyle
 		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["outline"] = fontStyle

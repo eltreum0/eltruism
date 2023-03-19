@@ -14,13 +14,14 @@ local GetSpellInfo = _G.GetSpellInfo
 local GetSpellBaseCooldown = _G.GetSpellBaseCooldown
 local GetSpellCooldown = _G.GetSpellCooldown
 local GetInventoryItemLink = _G.GetInventoryItemLink
-local GetContainerItemLink = (E.Retail or E.Wrath) and C_Container.GetContainerItemLink or _G.GetContainerItemLink
+local GetContainerItemLink = (E.Retail or E.Wrath) and _G.C_Container.GetContainerItemLink or _G.GetContainerItemLink
 local tonumber = _G.tonumber
 local GetItemInfo = _G.GetItemInfo
-local GetItemCooldown = (E.Retail or E.Wrath) and C_Container.GetItemCooldown or _G.GetItemCooldown
+local GetItemCooldown = (E.Retail or E.Wrath) and _G.C_Container.GetItemCooldown or _G.GetItemCooldown
 local GetPetActionCooldown = _G.GetPetActionCooldown
 local PlaySoundFile = _G.PlaySoundFile
 local start, duration, enabled
+local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
 
 --onupdate things
 local NormalUpdateDelay = 1 --1.0/10 -- update while hidden

@@ -4,6 +4,7 @@ local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local CreateFrame = _G.CreateFrame
 local UnitExists = _G.UnitExists
+local rad = _G.rad
 
 --Adds a model of the Target to the Target nameplate
 local target3d = CreateFrame('PlayerModel', "EltruismNameplateModel")

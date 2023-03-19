@@ -176,6 +176,25 @@ function ElvUI_EltreumUI:RunCommands(message)
 			hideOnEscape = false,
 		}
 		E:StaticPopup_Show('ELTRUISMSETTINGSWARNING')
+	elseif message == 'detailshide' then
+		if not E.db.ElvUI_EltreumUI.skins.detailsembedooc then
+			E.db.ElvUI_EltreumUI.skins.detailsembedooc = true
+			ElvUI_EltreumUI:EltruismDetails()
+			ElvUI_EltreumUI:Print("Details Hiding out of Combat Enabled")
+		else
+			E.db.ElvUI_EltreumUI.skins.detailsembedooc = false
+			ElvUI_EltreumUI:Print("Details Hiding out of Combat Disabled")
+		end
+	elseif message == 'autoadjust' then
+		if (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
+			if not E.db.ElvUI_EltreumUI.borders.borderautoadjust then
+				E.db.ElvUI_EltreumUI.borders.borderautoadjust = true
+				ElvUI_EltreumUI:Print("Borders Autoadjust enabled")
+			else
+				E.db.ElvUI_EltreumUI.borders.borderautoadjust = false
+				ElvUI_EltreumUI:Print("Borders Autoadjust disabled")
+			end
+		end
 	else
 		ElvUI_EltreumUI:Print("|cff82B4ffYou have entered an unknown command, here's a list of commands you can use:|r")
 		print("|cff82B4ff/eltruism|r - Opens Eltruism Config")
@@ -196,6 +215,10 @@ function ElvUI_EltreumUI:RunCommands(message)
 		print("|cff82B4ff/eltruism chat|r - Toggles chat between dark and transparent modes")
 		print("|cff82B4ff/eltruismdebug on/off|r - Toggles debug mode")
 		print("|cff82B4ff/eltruism update|r - Resets/Updates Eltruism Settings to Eltreum's Defaults")
+		print("|cff82B4ff/eltruism detailshide|r - Toggles Details hiding out of combat")
+		if (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
+			print("|cff82B4ff/eltruism autoadjust|r - Toggles Borders automatically adjusting the layout")
+		end
 		print("|cff82B4ff/eltruism weakauras|r - Toggles actionbars to be similar to WeakAuras, will overwrite settings")
 	end
 end

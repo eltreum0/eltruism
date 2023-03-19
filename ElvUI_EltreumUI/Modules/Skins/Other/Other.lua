@@ -15,6 +15,7 @@ local dontexpandanymore = 0
 local skillbutton,skillTitle
 local vellumbutton,disenchantbutton,tradeskilloadmonitor
 local classcolor = E:ClassColor(E.myclass, true)
+local string = _G.string
 local EnhancedShadows = nil
 if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')

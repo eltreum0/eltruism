@@ -11,6 +11,7 @@ local COMBAT_HONOR_GAIN = _G.COMBAT_HONOR_GAIN
 local PVP_CONQUEST = _G.PVP_CONQUEST
 local CURRENCY = _G.CURRENCY
 local STAT_CATEGORY_ENHANCEMENTS = _G.STAT_CATEGORY_ENHANCEMENTS
+local CR_HASTE_SPELL = _G.CR_HASTE_SPELL
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------spell haste datatext
 local function EltruismSpellHasteDatatext(dt)
 	local spellhaste = GetCombatRatingBonus(CR_HASTE_SPELL)

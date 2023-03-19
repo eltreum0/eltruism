@@ -1,4 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI)
+local _G = _G
+local pairs = _G.pairs
 
 --Based on ElvUI's and SLE's db convert
 function ElvUI_EltreumUI:DatabaseConversions(forced)

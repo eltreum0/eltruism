@@ -1,4 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI)
+local _G = _G
+local IsAddOnLoaded = _G.IsAddOnLoaded
 
 --Settings that would be true but became false by default per request,
 --now a function that can be used to set them while importing the profiles

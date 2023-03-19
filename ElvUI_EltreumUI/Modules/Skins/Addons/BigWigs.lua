@@ -113,7 +113,7 @@ do
 			barHeight = 15,  --bar height
 			ApplyStyle = styleBar,
 			BarStopped = removeStyle,
-			GetStyleName = function() return "Eltruism" end,
+			GetStyleName = function() return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:14:14:0:0|t |cff82B4ffEltruism|r" end,
 		})
 	end
 	S:AddCallbackForAddon('BigWigs_Plugins', "EltruismBigWigsStyle", ElvUI_EltreumUI.BigWigsStyle)

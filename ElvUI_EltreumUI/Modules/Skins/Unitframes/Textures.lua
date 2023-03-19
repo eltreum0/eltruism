@@ -17,6 +17,8 @@ local headerraidpet = nil
 local group, groupbutton, tankbutton, assistbutton, raidpetbutton,partypetbutton
 local IsInGroup = _G.IsInGroup
 local UnitIsCharmed = _G.UnitIsCharmed
+local pairs = _G.pairs
+local CreateFrame = _G.CreateFrame
 
 --set the textures for single units
 function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name)
@@ -293,6 +295,7 @@ end
 	hooksecurefunc(UF, "LoadUnits", ElvUI_EltreumUI.CustomTexture)
 	hooksecurefunc(UF, "Construct_UF", ElvUI_EltreumUI.CustomTexture)]]
 	--hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.CustomTexture) --is causing "blinking"/"flashing" issues in 10.0
+	--hooksecurefunc(UF, "Style", ElvUI_EltreumUI.CustomTexture) --old target of target hook
 
 	--workaround the flashing texture bug
 	--[[function UF:Update_StatusBar(statusbar, texture)

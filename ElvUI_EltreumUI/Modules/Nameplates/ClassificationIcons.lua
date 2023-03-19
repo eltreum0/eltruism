@@ -2,6 +2,14 @@ local E, L, V, P, G = unpack(ElvUI)
 local oUF = E.oUF
 local NP = E:GetModule('NamePlates')
 local elementAdded = false
+local _G = _G
+local math = _G.math
+local string = _G.string
+local UnitCanAttack = _G.UnitCanAttack
+local UnitIsPlayer = _G.UnitIsPlayer
+local UnitGUID = _G.UnitGUID
+local UnitClassification = _G.UnitClassification
+local hooksecurefunc = _G.hooksecurefunc
 
 --based on blinkii's idea
 local bossIDs = {
@@ -209,8 +217,6 @@ local bossIDs = {
 	["36296"] = true, --Apothecary Hummel <Crown Chemical Co.>
 	["36565"] = true, --Apothecary Baxter <Crown Chemical Co.>
 	["36272"] = true, --Apothecary Frye <Crown Chemical Co.>
-
-
 }
 
 local textureDB = {
@@ -378,7 +384,6 @@ function ElvUI_EltreumUI:NPClassificatioNIcon()
 		end
 	end
 end
-
 
 --Difficulty Icon for npcs
 E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
