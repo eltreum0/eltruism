@@ -21,6 +21,8 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			addonname = "MerathilisUI"
 		end
 
+		--E.private["mui"]["skins"]["blizzard"]["character"] = false --makes it so the icon overwrites eltruism's
+
 		if (E.db.ElvUI_EltreumUI.skins.expandarmorybg or E.db.ElvUI_EltreumUI.skins.classicarmory) and (E.db.mui.armory.inspect.enable or E.db.mui.armory.inspect.enable == nil) then
 			E.db.mui.armory.inspect.enable = false
 			E.db.ElvUI_EltreumUI.skins.expandarmorybg = true
