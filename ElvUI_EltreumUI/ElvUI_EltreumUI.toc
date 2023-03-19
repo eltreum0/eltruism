@@ -1,7 +1,7 @@
 ## Interface: 100005
 ## Author: Eltreum
 ## Version: 3.7.4
-## Title: |cff1784d1ElvUI|r Eltruism
+## Title: |cff1784d1ElvUI|r E|cffeff5ffl|r|cffdfecfft|r|cffd0e2ffr|r|cffc0d9ffu|r|cffb0d0ffi|r|cffa1c6ffs|r|cff91bdffm|r
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
 ## Notes-deDE: Eltruism ist ein ElvUI Plugin mit Profilen und anderen Funktionen, die in ElvUI nicht verfügbar sind
 ## Dependencies: ElvUI

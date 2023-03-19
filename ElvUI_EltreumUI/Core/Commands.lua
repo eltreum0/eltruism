@@ -24,7 +24,7 @@ function ElvUI_EltreumUI:LoadCommands()
 	if not self.ConfigModeAddedEltruism then
 		tinsert(E.ConfigModeLayouts, #(E.ConfigModeLayouts) + 1, "ELTREUMUI")
 		--E.ConfigModeLocalizedStrings["ELTREUMUI"] = format("|cff82B4ff%s |r", "Eltruism")
-		E.ConfigModeLocalizedStrings["ELTREUMUI"] = E:TextGradient("Eltruism", 0.40, 0.50, 0.85, 0.70, 0.75, 0.94)
+		E.ConfigModeLocalizedStrings["ELTREUMUI"] = E:TextGradient("Eltruism", 1, 1, 1, 0.50, 0.70, 1)
 		self.ConfigModeAddedEltruism = true
 	end
 	if E.Retail then
