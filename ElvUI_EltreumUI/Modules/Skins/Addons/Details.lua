@@ -8,6 +8,8 @@ local next = _G.next
 local InCombatLockdown = _G.InCombatLockdown
 local embedpanel
 local EnhancedShadows = nil
+local DetailsHooked = false
+local RightChatDetailsHook = false
 if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
 end
@@ -33,7 +35,7 @@ do
 	--Details gradient, inspired by aftermathh's edit but had to delve deeper into it, too many things going on there
 	function ElvUI_EltreumUI:EltruismDetails()
 		if E.db.ElvUI_EltreumUI.skins.details then
-			if not self.DetailsHooked then
+			if not DetailsHooked then
 				local Details = _G.Details
 				local unitclass
 				hooksecurefunc(Details, "InstanceRefreshRows", function(instancia)
@@ -79,7 +81,7 @@ do
 						end
 					end
 				end)
-				self.DetailsHooked = true
+				DetailsHooked = true
 			end
 
 			--add a basic embed if addonskins is not loaded
@@ -177,7 +179,7 @@ do
 					end
 				end)
 
-				if not self.RightChatDetailsHook then
+				if not RightChatDetailsHook then
 					_G.RightChatToggleButton:HookScript("OnClick" ,function(_,button)
 						if button == 'RightButton' then
 							if embedpanel:IsShown() then
@@ -197,7 +199,7 @@ do
 						_G.GameTooltip:Show()
 					end)
 
-					self.RightChatDetailsHook = true
+					RightChatDetailsHook = true
 				end
 			end
 
