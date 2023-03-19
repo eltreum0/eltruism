@@ -27,7 +27,8 @@ _G["BINDING_NAME_CLICK EltruismQuestItem12:LeftButton"] = "Quest Item 12"
 ElvUI_EltreumUI.Version = GetAddOnMetadata(addon, 'Version')
 ElvUI_EltreumUI.CreditsList = {}
 ElvUI_EltreumUI.Config = {}
-ElvUI_EltreumUI.Name = '|cff82B4ffEltruism|r'
+--ElvUI_EltreumUI.Name = '|cff82B4ffEltruism|r'
+ElvUI_EltreumUI.Name = E:TextGradient("Eltruism", 0.40, 0.50, 0.85, 0.70, 0.75, 0.94)
 
 function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	if not E.private.ElvUI_EltreumUI.install_version then

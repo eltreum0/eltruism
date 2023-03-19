@@ -38,7 +38,8 @@ end
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
-	print('|cff82B4ffEltruism|r: '..msg)
+	--print('|cff82B4ffEltruism|r: '..msg)
+	print(E:TextGradient("Eltruism", 0.40, 0.50, 0.85, 0.70, 0.75, 0.94)..': '..msg)
 end
 
 --hide popups during install
