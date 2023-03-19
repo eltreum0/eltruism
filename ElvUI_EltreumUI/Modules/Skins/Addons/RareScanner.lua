@@ -38,7 +38,7 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 				for _, v in pairs{_G["LootBar"]:GetChildren()} do
 					if v and v.Icon and not v.EltruismSkin then
 						--v.Icon:SetTexCoord(unpack(E.TexCoords))
-						S:HandleButton(v)
+						S:HandleFrame(v)
 						if not v.shadow then
 							v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(v.shadow) end
