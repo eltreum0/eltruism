@@ -40,13 +40,13 @@ local slecheckchar = false
 local slecheckattribute = false
 local slecheckinspect = false
 if IsAddOnLoaded("ElvUI_SLE") then
-	if E.db["sle"]["armory"]["character"]["enable"] then
+	if E.db.sle.armory.character.enable then
 		slecheckchar = true
 	end
-	if E.db["sle"]["armory"]["stats"]["enable"] then
+	if E.db.sle.armory.stats.enable then
 		slecheckattribute = true
 	end
-	if E.db["sle"]["armory"]["inspect"]["enable"] then
+	if E.db.sle.armory.inspect.enable then
 		slecheckinspect = true
 	end
 end
