@@ -179,6 +179,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 	elseif message == 'detailshide' then
 		if not E.db.ElvUI_EltreumUI.skins.detailsembedooc then
 			E.db.ElvUI_EltreumUI.skins.detailsembedooc = true
+			ElvUI_EltreumUI:EltruismDetails()
 			ElvUI_EltreumUI:Print("Details Hiding out of Combat Enabled")
 		else
 			E.db.ElvUI_EltreumUI.skins.detailsembedooc = false
