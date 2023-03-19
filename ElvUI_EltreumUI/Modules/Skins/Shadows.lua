@@ -400,6 +400,10 @@ function ElvUI_EltreumUI:Shadows()
 								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClubFinderGuildFinderFrame.ClubFinderPendingTab.backdrop.shadow) end
 							end
 						end
+						if _G.CommunitiesFrame.RecruitmentDialog and not _G.CommunitiesFrame.RecruitmentDialog.shadow then
+							_G.CommunitiesFrame.RecruitmentDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.RecruitmentDialog.shadow) end
+						end
 						if _G.ClubFinderCommunityAndGuildFinderFrame then
 							if _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab and _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop and not _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop.shadow then
 								_G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -410,6 +414,16 @@ function ElvUI_EltreumUI:Shadows()
 								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderPendingTab.backdrop.shadow) end
 							end
 						end
+					end
+				end
+				if (arg == "Blizzard_GuildControlUI") or IsAddOnLoaded("Blizzard_GuildControlUI") then
+					if _G.CommunitiesGuildLogFrame and not _G.CommunitiesGuildLogFrame.shadow then
+						_G.CommunitiesGuildLogFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesGuildLogFrame.shadow) end
+					end
+					if _G.GuildControlUI and not _G.GuildControlUI.shadow then
+						_G.GuildControlUI:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GuildControlUI.shadow) end
 					end
 				end
 				if (arg == "Blizzard_AchievementUI") or IsAddOnLoaded("Blizzard_AchievementUI") then
