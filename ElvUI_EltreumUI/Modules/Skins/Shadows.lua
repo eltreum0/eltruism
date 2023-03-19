@@ -751,6 +751,18 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end)
 
+		--statusreport
+		hooksecurefunc(E, "ShowStatusReport", function()
+			if _G["ElvUIStatusReport"] and not _G["ElvUIStatusReport"].shadow then
+				_G["ElvUIStatusReport"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvUIStatusReport"].shadow) end
+			end
+			if _G["ElvUIStatusPlugins"] and not _G["ElvUIStatusPlugins"].shadow then
+				_G["ElvUIStatusPlugins"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvUIStatusPlugins"].shadow) end
+			end
+		end)
+
 		--mirror timer shadow
 		if not E.Retail then
 			for i = 1, _G.MIRRORTIMER_NUMTIMERS do
@@ -1092,8 +1104,6 @@ function ElvUI_EltreumUI:Shadows()
 			_G["ElvUI_ReputationBar"],
 			_G["ElvUI_ExperienceBar"],
 			_G["ElvUI_ThreatBar"],
-			_G["ElvUIStatusReport"],
-			_G["ElvUIStatusPlugins"],
 			_G["ElvUIVendorGraysFrame"],
 			_G["ElvUI_ContainerFrameContainerHolder"],
 			_G["ElvUI_AltPowerBar"],
