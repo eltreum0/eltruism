@@ -400,6 +400,10 @@ function ElvUI_EltreumUI:Shadows()
 								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClubFinderGuildFinderFrame.ClubFinderPendingTab.backdrop.shadow) end
 							end
 						end
+						if _G.CommunitiesFrame.RecruitmentDialog and not _G.CommunitiesFrame.RecruitmentDialog.shadow then
+							_G.CommunitiesFrame.RecruitmentDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.RecruitmentDialog.shadow) end
+						end
 						if _G.ClubFinderCommunityAndGuildFinderFrame then
 							if _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab and _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop and not _G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop.shadow then
 								_G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderSearchTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -410,6 +414,16 @@ function ElvUI_EltreumUI:Shadows()
 								if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ClubFinderCommunityAndGuildFinderFrame.ClubFinderPendingTab.backdrop.shadow) end
 							end
 						end
+					end
+				end
+				if (arg == "Blizzard_GuildControlUI") or IsAddOnLoaded("Blizzard_GuildControlUI") then
+					if _G.CommunitiesGuildLogFrame and not _G.CommunitiesGuildLogFrame.shadow then
+						_G.CommunitiesGuildLogFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesGuildLogFrame.shadow) end
+					end
+					if _G.GuildControlUI and not _G.GuildControlUI.shadow then
+						_G.GuildControlUI:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GuildControlUI.shadow) end
 					end
 				end
 				if (arg == "Blizzard_AchievementUI") or IsAddOnLoaded("Blizzard_AchievementUI") then
@@ -618,6 +632,18 @@ function ElvUI_EltreumUI:Shadows()
 						_G.AuctionFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionFrame.backdrop.shadow) end
 					end
+					if _G.AuctionFrameTab1 and _G.AuctionFrameTab1.backdrop and not _G.AuctionFrameTab1.backdrop.shadow then
+						_G.AuctionFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionFrameTab1.backdrop.shadow) end
+					end
+					if _G.AuctionFrameTab2 and _G.AuctionFrameTab2.backdrop and not _G.AuctionFrameTab2.backdrop.shadow then
+						_G.AuctionFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionFrameTab2.backdrop.shadow) end
+					end
+					if _G.AuctionFrameTab3 and _G.AuctionFrameTab3.backdrop and not _G.AuctionFrameTab3.backdrop.shadow then
+						_G.AuctionFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.AuctionFrameTab3.backdrop.shadow) end
+					end
 				end
 			end
 		end)
@@ -748,6 +774,18 @@ function ElvUI_EltreumUI:Shadows()
 			if frame and not frame.shadow then
 				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+			end
+		end)
+
+		--statusreport
+		hooksecurefunc(E, "ShowStatusReport", function()
+			if _G["ElvUIStatusReport"] and not _G["ElvUIStatusReport"].shadow then
+				_G["ElvUIStatusReport"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvUIStatusReport"].shadow) end
+			end
+			if _G["ElvUIStatusPlugins"] and not _G["ElvUIStatusPlugins"].shadow then
+				_G["ElvUIStatusPlugins"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvUIStatusPlugins"].shadow) end
 			end
 		end)
 
@@ -1092,8 +1130,6 @@ function ElvUI_EltreumUI:Shadows()
 			_G["ElvUI_ReputationBar"],
 			_G["ElvUI_ExperienceBar"],
 			_G["ElvUI_ThreatBar"],
-			_G["ElvUIStatusReport"],
-			_G["ElvUIStatusPlugins"],
 			_G["ElvUIVendorGraysFrame"],
 			_G["ElvUI_ContainerFrameContainerHolder"],
 			_G["ElvUI_AltPowerBar"],
