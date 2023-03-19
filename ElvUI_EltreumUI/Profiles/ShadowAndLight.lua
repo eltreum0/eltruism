@@ -12,6 +12,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.global["sle"]["advanced"]["optionsLimits"] = true
 		E.private["sle"]["install_complete"] = "4.41"
 		-- Private DB
+		E.private["sle"]["media"]["enable"] = false
 		E.private["sle"]["module"]["blizzmove"]["enable"] = false
 		E.private["sle"]["module"]["screensaver"] = true
 		E.private["sle"]["professions"]["deconButton"]["enable"] = true
