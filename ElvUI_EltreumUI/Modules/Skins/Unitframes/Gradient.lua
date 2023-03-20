@@ -569,7 +569,7 @@ do
 		end
 	end
 
-	function ElvUI_EltreumUI:GradientUF(unit)
+	function ElvUI_EltreumUI:GradientUF(unit,forced)
 		if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 
 			--main issue = the toggle for some units like boss and arena wont work bc it checks for boss1,boss2... instead of just boss
@@ -600,7 +600,7 @@ do
 			end
 
 			--group/raid unitframes
-			if IsInGroup() and UnitExists(unit) and (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
+			if (IsInGroup() or forced) and UnitExists(unit) and (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
 				headergroup = nil
 				if _G["ElvUF_Raid1"] and _G["ElvUF_Raid1"]:IsShown() then
 					headergroup = _G["ElvUF_Raid1"]
@@ -695,5 +695,11 @@ do
 		end
 	end
 	hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientUF)
+
+	--allows previews to show custom textures and gradients
+	hooksecurefunc(UF, "ToggleForceShowGroupFrames", function(_,group)
+		ElvUI_EltreumUI:CustomTexture("player",true)
+		ElvUI_EltreumUI:GradientUF("player",true)
+	end)
 
 end
