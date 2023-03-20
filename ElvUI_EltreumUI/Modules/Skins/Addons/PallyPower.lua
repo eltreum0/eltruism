@@ -37,7 +37,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		--_G.PallyPowerAura:SetTemplate("Transparent", nil, true)
 		_G.PallyPowerAura:SetTemplate("Transparent", E.media.normTex, true)
 		_G.PallyPowerAuraIcon:SetTexCoord(unpack(E.TexCoords))
-		if not _G.PallyPowerAura.shadow then
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G.PallyPowerAura.shadow then
 			_G.PallyPowerAura:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			if _G.PallyPowerAura.shadow then
 				_G.PallyPowerAura.shadow:ClearAllPoints()
@@ -59,7 +59,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 
 		--_G.PallyPowerAuto:SetTemplate("Transparent", nil, true)
 		_G.PallyPowerAuto:SetTemplate("Transparent", E.media.normTex, true)
-		if not _G.PallyPowerAuto.shadow then
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G.PallyPowerAuto.shadow then
 			_G.PallyPowerAuto:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			if _G.PallyPowerAuto.shadow then
 				_G.PallyPowerAuto.shadow:ClearAllPoints()
@@ -77,7 +77,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		_G.PallyPowerRFIcon:SetTexCoord(unpack(E.TexCoords))
 		_G.PallyPowerRFIconSeal:SetTexCoord(unpack(E.TexCoords))
 
-		if not _G.PallyPowerRF.shadow then
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G.PallyPowerRF.shadow then
 			_G.PallyPowerRF:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			if _G.PallyPowerRF.shadow then
 				_G.PallyPowerRF.shadow:ClearAllPoints()
@@ -90,7 +90,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 			end
 		end
 		--because we need 2 shadows
-		if not _G.PallyPowerAnchor.shadow and _G.PallyPowerRFIcon:GetTexture() ~= nil then
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G.PallyPowerAnchor.shadow and _G.PallyPowerRFIcon:GetTexture() ~= nil then
 			_G.PallyPowerAnchor:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			if _G.PallyPowerAnchor.shadow then
 				_G.PallyPowerAnchor.shadow:ClearAllPoints()
@@ -115,7 +115,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 
 			--_G[button:GetName().."ClassIcon"]:SetTexCoord(unpack(E.TexCoords))
 			_G[button:GetName().."BuffIcon"]:SetTexCoord(unpack(E.TexCoords))
-			if not button.shadow then
+			if E.db.ElvUI_EltreumUI.skins.shadow.enable and not button.shadow then
 				button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				button.shadow:ClearAllPoints()
 				button.shadow:SetPoint("BOTTOMLEFT", _G[button:GetName().."BuffIcon"],"BOTTOMLEFT", -3, -3)
@@ -136,7 +136,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 			for j = 1, 8 do
 				if _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"] then
 					_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"]:SetTexCoord(unpack(E.TexCoords))
-					if not _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow then
+					if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow then
 						_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:ClearAllPoints()
 						_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:SetPoint("BOTTOMLEFT", _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"],"BOTTOMLEFT", -3, -3)
@@ -175,7 +175,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		for i = 1, PALLYPOWER_MAXCLASSES do
 			if _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"] then
 				_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"]:SetTexCoord(unpack(E.TexCoords))
-				if not _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow then
+				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow then
 					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow:ClearAllPoints()
 					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow:SetPoint("BOTTOMLEFT", _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"],"BOTTOMLEFT", -3, -3)
@@ -190,7 +190,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 			for j = 1, 8 do
 				if _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"] then
 					_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"]:SetTexCoord(unpack(E.TexCoords))
-					if not _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow then
+					if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow then
 						if _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"]:GetTexture() ~= nil then
 							_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:ClearAllPoints()
@@ -204,15 +204,17 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 					end
 					_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i]:HookScript("OnClick", function()
 						E:Delay(0, function()
-							if _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"]:GetTexture() ~= nil then
-								_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:Show()
-								if _G.PallyPowerAura.shadow then
-									_G.PallyPowerAura.shadow:Show()
-								end
-							else
-								_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:Hide()
-								if _G.PallyPowerAura.shadow then
-									_G.PallyPowerAura.shadow:Hide()
+							if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+								if _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"]:GetTexture() ~= nil then
+									_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:Show()
+									if _G.PallyPowerAura.shadow then
+										_G.PallyPowerAura.shadow:Show()
+									end
+								else
+									_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:Hide()
+									if _G.PallyPowerAura.shadow then
+										_G.PallyPowerAura.shadow:Hide()
+									end
 								end
 							end
 						end)
@@ -222,7 +224,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		end
 
 		--add shadow
-		if not PallyPowerBlessingsFrame.shadow then
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not PallyPowerBlessingsFrame.shadow then
 			PallyPowerBlessingsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			if EnhancedShadows then EnhancedShadows:RegisterShadow(PallyPowerBlessingsFrame.shadow) end
 		end
@@ -413,12 +415,16 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		shadowupdate:RegisterEvent("ZONE_CHANGED_INDOORS")
 		shadowupdate:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 		shadowupdate:SetScript("OnEvent",function()
-			UpdateShadows()
+			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+				UpdateShadows()
+			end
 		end)
 
 		if _G.PallyPowerC10 then
 			_G.PallyPowerC10:HookScript("OnShow", function()
-				UpdateShadows()
+				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+					UpdateShadows()
+				end
 			end)
 		end
 
@@ -447,17 +453,19 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 			end
 		end
 
-		_G.PallyPowerBlessingsFrame:HookScript("OnShow", function()
-			toggle()
-		end)
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+			_G.PallyPowerBlessingsFrame:HookScript("OnShow", function()
+				toggle()
+			end)
 
-		_G.PallyPowerBlessingsFrameClear:HookScript("OnClick", function()
-			toggle()
-		end)
+			_G.PallyPowerBlessingsFrameClear:HookScript("OnClick", function()
+				toggle()
+			end)
 
-		_G.PallyPowerBlessingsFrameAutoAssign:HookScript("OnClick", function()
-			toggle()
-		end)
+			_G.PallyPowerBlessingsFrameAutoAssign:HookScript("OnClick", function()
+				toggle()
+			end)
+		end
 
 		--crop icon
 		if _G["PallyPowerAutoIcon"] then

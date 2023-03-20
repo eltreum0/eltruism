@@ -26,9 +26,11 @@ function ElvUI_EltreumUI:EltruismMeetingHorn()
 		S:HandleFrame(f.MainPanel)
 		f.MainPanel:SetTemplate('Transparent', nil, true)
 
-		if not f.MainPanel.shadow then
-			f.MainPanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			if EnhancedShadows then EnhancedShadows:RegisterShadow(f.MainPanel.shadow) end
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+			if not f.MainPanel.shadow then
+				f.MainPanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(f.MainPanel.shadow) end
+			end
 		end
 
 		if f.MainPanel.PortraitFrame then

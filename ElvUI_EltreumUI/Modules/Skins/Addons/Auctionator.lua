@@ -24,7 +24,7 @@ function ElvUI_EltreumUI:EltruismAuctionator()
 									if v:IsObjectType('Button') then
 										if v.tabHeader then
 											S:HandleTab(v)
-											if v.backdrop and not v.backdrop.shadow then
+											if E.db.ElvUI_EltreumUI.skins.shadow.enable and v.backdrop and not v.backdrop.shadow then
 												v.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 												if EnhancedShadows then EnhancedShadows:RegisterShadow(v.backdrop.shadow) end
 											end
@@ -44,7 +44,7 @@ function ElvUI_EltreumUI:EltruismAuctionator()
 						for i = 4, 8 do
 							if _G["AuctionFrameTab"..i] then
 								S:HandleTab(_G["AuctionFrameTab"..i])
-								if _G["AuctionFrameTab"..i].backdrop and not _G["AuctionFrameTab"..i].backdrop.shadow then
+								if E.db.ElvUI_EltreumUI.skins.shadow.enable and _G["AuctionFrameTab"..i].backdrop and not _G["AuctionFrameTab"..i].backdrop.shadow then
 									_G["AuctionFrameTab"..i].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 									if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["AuctionFrameTab"..i].backdrop.shadow) end
 								end
