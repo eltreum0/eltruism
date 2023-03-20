@@ -130,16 +130,19 @@ do
 					S:HandleStatusBar(frame)
 					local width = _G.LFGDungeonReadyPopup:GetWidth()
 					frame:SetWidth(width)
-					frame:SetHeight(20)
+					frame:SetHeight(18)
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 						frame:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass, false, false))
 					else
 						frame:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass, false, false))
 					end
 					frame.text:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
-					if not frame.shadow then
-						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+					if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs then
+						frame:SetWidth(width-2)
+						if not frame.shadow then
+							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+						end
 					end
 				end
 			end)
