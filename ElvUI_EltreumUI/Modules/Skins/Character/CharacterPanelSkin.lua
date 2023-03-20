@@ -43,7 +43,7 @@ if IsAddOnLoaded("ElvUI_SLE") then
 	if E.db.sle.armory.character.enable then
 		slecheckchar = true
 	end
-	if E.db.sle.armory.stats.enable then
+	if E.private.sle.armory.stats.enable then
 		slecheckattribute = true
 	end
 	if E.db.sle.armory.inspect.enable then
