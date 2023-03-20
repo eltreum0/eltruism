@@ -12,7 +12,7 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.global["sle"]["advanced"]["optionsLimits"] = true
 		E.private["sle"]["install_complete"] = "4.41"
 		-- Private DB
-		E.private["sle"]["media"]["enable"] = false
+		E.private["sle"]["media"]["enable"] = true
 		E.private["sle"]["module"]["blizzmove"]["enable"] = false
 		E.private["sle"]["module"]["screensaver"] = true
 		E.private["sle"]["professions"]["deconButton"]["enable"] = true
@@ -119,6 +119,12 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["media"]["fonts"]["zone"]["font"] = E.db.general.font
 		E.db["sle"]["media"]["fonts"]["zone"]["fontOutline"] = E.db.general.fontStyle
 		E.db["sle"]["media"]["fonts"]["zone"]["fontSize"] = 48
+		E.db["sle"]["media"]["fonts"]["scenarioStage"]["HeaderText"]["font"] = E.db.general.font
+		E.db["sle"]["media"]["fonts"]["scenarioStage"]["HeaderText"]["fontSize"] = 16
+		E.db["sle"]["media"]["fonts"]["scenarioStage"]["HeaderText"]["fontOutline"] = E.db.general.fontStyle
+		E.db["sle"]["media"]["fonts"]["scenarioStage"]["TimerText"]["font"] = E.db.general.font
+		E.db["sle"]["media"]["fonts"]["scenarioStage"]["TimerText"]["fontSize"] = 22
+		E.db["sle"]["media"]["fonts"]["scenarioStage"]["TimerText"]["fontOutline"] = E.db.general.fontStyle
 		-- Minimap
 		E.db["sle"]["minimap"]["coords"]["enable"] = true
 		E.db["sle"]["minimap"]["coords"]["font"] = E.db.general.font
