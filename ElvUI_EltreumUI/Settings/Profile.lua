@@ -802,20 +802,6 @@ P.ElvUI_EltreumUI = {
 
 			--extra for new function
 			enablepet = true,
-			enablearena1 = true,
-			enablearena2 = true,
-			enablearena3 = true,
-			enablearena4 = true,
-			enablearena5 = true,
-			enableboss1 = true,
-			enableboss2 = true,
-			enableboss3 = true,
-			enableboss4 = true,
-			enableboss5 = true,
-			enableboss6 = true,
-			enableboss7 = true,
-			enableboss8 = true,
-
 			enableplayercastbar = false,
 			enableplayercastbarnoninterruptible = false,
 			enableplayercastbarinterrupted = false,

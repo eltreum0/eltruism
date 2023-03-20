@@ -142,7 +142,7 @@ function ElvUI_EltreumUI:Configtable()
 			installer = {
 				order = 7,
 				type = 'group',
-				name = E:TextGradient(L["Installer"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["Installer"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\install',
 				args = {
 					header5 = {
@@ -382,7 +382,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			afk = {
 				type = 'group',
-				name = E:TextGradient(L["A.F.K"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["A.F.K"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\afk',
 				order = 85,
 				args = {
@@ -451,7 +451,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			addonsprofiles = {
 				type = 'group',
-				name = E:TextGradient(L["Addons"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["Addons"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\addon',
 				order = 85,
 				childGroups = "tab",
@@ -503,7 +503,7 @@ function ElvUI_EltreumUI:Configtable()
 							shadowandlight = {
 								order = 5,
 								type = 'execute',
-								name = E:TextGradient(L["Shadow and Light"], 0.2,0,0.6,0.2,0.2,0.8,0.2,1,0),
+								name = "|cff9482c9S|r|cff8c8ac9h|r|cff8591c9a|r|cff809bc9d|r|cff7fa6c9o|r|cff7eb2c9w|r |cff6fcac1a|r|cff5de7b8n|r|cff4bfdaed|r |cff3cfda2L|r|cff2cfd97i|r|cff20fd7bg|r|cff16fd55h|r|cff0cfd2ft|r",
 								desc = L["Reset to Eltruism defaults."],
 								confirm = true,
 								width = 'double',
@@ -521,7 +521,7 @@ function ElvUI_EltreumUI:Configtable()
 							windtools = {
 								order = 7,
 								type = 'execute',
-								name = "|cff45aaf2W|r|cff4795efi|r|cff4a80ecn|r|cff498aedd|r|cff469ff0T|r|cff60b1e8o|r|cff98c0d5o|r|cffc1ccc6l|r|cffc1ccc6s|r",
+								name = "|cff5385edW|r|cff5094eai|r|cff4da4e7n|r|cff4ab4e4d|r|cff47c0e1T|r|cff44cbdfo|r|cff41d7ddo|r|cff41d7ddl|r|cff41d7dds|r",
 								desc = L["Reset to Eltruism defaults."],
 								confirm = true,
 								width = 'double',
@@ -808,7 +808,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			aurafilters = {
 				type = 'group',
-				name = E:TextGradient(L["Aura Filters"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["Aura Filters"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\aurafilter',
 				childGroups = "tab",
 				order = 85,
@@ -1124,7 +1124,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			borders = {
 				type = 'group',
-				name = E:TextGradient(L["Borders"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["Borders"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\border',
 				order = 85,
 				childGroups = "tab",
@@ -2653,7 +2653,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			chat = {
 				type = 'group',
-				name = E:TextGradient(CHAT_LABEL, 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(CHAT_LABEL, 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\chat',
 				order = 85,
 				args = {
@@ -2912,7 +2912,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			combatmusic = {
 				type = 'group',
-				name = E:TextGradient(L["Combat Music"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["Combat Music"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
 				order = 85,
 				args = {
@@ -3055,7 +3055,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			cooldown = {
 				type = 'group',
-				name = E:TextGradient(L["Cooldown"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["Cooldown"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cooldown',
 				order = 85,
 				args = {
@@ -3258,7 +3258,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			cursor = {
 				type = 'group',
-				name = E:TextGradient(L["Cursor"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["Cursor"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cursor',
 				order = 85,
 				childGroups = "tab",
@@ -3780,7 +3780,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			customglow = {
 				type = 'group',
-				name = E:TextGradient(L["Custom Glow"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["Custom Glow"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\customglow',
 				order = 85,
 				childGroups = "tab",
@@ -4470,7 +4470,7 @@ function ElvUI_EltreumUI:Configtable()
 			cvars = {
 				order = 85,
 				type = 'group',
-				name = E:TextGradient(L["CVars"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["CVars"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cvar',
 				childGroups = "tab",
 				args = {
@@ -4743,7 +4743,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			gradient = {
 				type = 'group',
-				name = E:TextGradient(L["Gradient Colors"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["Gradient Colors"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				order = 85,
 				childGroups = "tab",
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\gradient',
@@ -6653,7 +6653,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			loottext = {
 				type = 'group',
-				name = E:TextGradient(LOOT, 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(LOOT, 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\loot',
 				childGroups = "tab",
 				order = 85,
@@ -7097,7 +7097,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			maps = {
 				type = 'group',
-				name = E:TextGradient(L["Maps"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["Maps"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\map',
 				order = 85,
 				args = {
@@ -7401,7 +7401,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			media = {
 				type = 'group',
-				name = E:TextGradient(L["Media"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["Media"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\media',
 				childGroups = "tab",
 				order = 85,
@@ -7648,7 +7648,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			misc = {
 				type = 'group',
-				name = E:TextGradient(L["Misc"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["Misc"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				--childGroups = "tab",
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\misc',
 				order = 85,
@@ -8036,7 +8036,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			nameplates = {
 				type = 'group',
-				name = E:TextGradient(L["Nameplates"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["Nameplates"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				order = 85,
 				childGroups = "tab",
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\nameplate',
@@ -9245,7 +9245,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			partyraidsettings = {
 				type = 'group',
-				name = E:TextGradient(L["Party/Raid"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["Party/Raid"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\party',
 				childGroups = "tab",
 				order = 85,
@@ -9888,7 +9888,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			quests = {
 				type = 'group',
-				name = E:TextGradient(QUESTS_LABEL, 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(QUESTS_LABEL, 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\quest',
 				order = 85,
 				args = {
@@ -10129,7 +10129,7 @@ function ElvUI_EltreumUI:Configtable()
 			skins = {
 				order = 85,
 				type = 'group',
-				name = E:TextGradient(L["Skins"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["Skins"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\paint',
 				childGroups = "tab",
 				args = {
@@ -12217,7 +12217,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			unitframes = {
 				type = 'group',
-				name = E:TextGradient(L["Unitframes"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["Unitframes"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				order = 85,
 				childGroups = "tab",
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\unitframes',
@@ -12652,7 +12652,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall1 = {
 								order = 15,
@@ -12680,7 +12680,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall2 = {
 								order = 17,
@@ -12708,7 +12708,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall3 = {
 								order = 19,
@@ -12736,7 +12736,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall4 = {
 								order = 21,
@@ -12764,7 +12764,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall5 = {
 								order = 23,
@@ -12793,7 +12793,7 @@ function ElvUI_EltreumUI:Configtable()
 								hidden = E.Classic,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall6 = {
 								order = 25,
@@ -12822,7 +12822,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall7 = {
 								order = 27,
@@ -12851,7 +12851,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall8 = {
 								order = 29,
@@ -12888,7 +12888,7 @@ function ElvUI_EltreumUI:Configtable()
 								hidden = not E.Retail and not E.Wrath,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall9 = {
 								order = 111,
@@ -12928,7 +12928,7 @@ function ElvUI_EltreumUI:Configtable()
 								hidden = not E.Retail,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall10 = {
 								order = 113,
@@ -12967,7 +12967,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall11 = {
 								order = 115,
@@ -13005,7 +13005,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall12 = {
 								order = 117,
@@ -13043,7 +13043,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall13 = {
 								order = 119,
@@ -13082,7 +13082,7 @@ function ElvUI_EltreumUI:Configtable()
 								hidden = not E.Retail,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall14 = {
 								order = 121,
@@ -13122,7 +13122,7 @@ function ElvUI_EltreumUI:Configtable()
 								hidden = not E.Retail,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall15 = {
 								order = 123,
@@ -13161,7 +13161,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall16 = {
 								order = 125,
@@ -13199,7 +13199,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall17 = {
 								order = 127,
@@ -13237,7 +13237,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall18 = {
 								order = 129,
@@ -13275,7 +13275,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall19 = {
 								order = 131,
@@ -13314,7 +13314,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall20 = {
 								order = 133,
@@ -13352,7 +13352,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall21 = {
 								order = 135,
@@ -13390,7 +13390,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall22 = {
 								order = 137,
@@ -13428,7 +13428,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall23 = {
 								order = 139,
@@ -13466,7 +13466,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall24 = {
 								order = 141,
@@ -13504,7 +13504,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall25 = {
 								order = 143,
@@ -13542,7 +13542,7 @@ function ElvUI_EltreumUI:Configtable()
 								values = AceGUIWidgetLSMlists.statusbar,
 								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = key ElvUI_EltreumUI:GradientColorTableUpdate() ElvUI_EltreumUI:CustomTexture() end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 							applytoall26 = {
 								order = 145,
@@ -13656,17 +13656,7 @@ function ElvUI_EltreumUI:Configtable()
 								hidden = not (E.Retail or E.Wrath),
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss end,
-								set = function(_, value)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss1 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss2 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss3 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss4 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss5 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss6 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss7 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss8 = value
-								end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss = value end,
 							},
 							enablearena = {
 								order = 2,
@@ -13677,14 +13667,7 @@ function ElvUI_EltreumUI:Configtable()
 								hidden = E.Classic,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena end,
-								set = function(_, value)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena1 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena2 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena3 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena4 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena5 = value
-								end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena = value end,
 							},
 							enablegroupunits = {
 								order = 2,
@@ -14127,7 +14110,7 @@ function ElvUI_EltreumUI:Configtable()
 			weakauras = {
 				type = 'group',
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras',
-				name = E:TextGradient(L["WeakAuras"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				order = 95,
 				args = {
 					header1 = {
@@ -14179,7 +14162,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			discord = {
 				type = 'group',
-				name = E:TextGradient("Discord", 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient("Discord", 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\discord',
 				order = 96,
 				args = {
@@ -14210,7 +14193,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			credits = {
 				type = 'group',
-				name = E:TextGradient(L["Credits"], 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(L["Credits"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\credits',
 				order = 97,
 				args = {
@@ -14294,7 +14277,7 @@ function ElvUI_EltreumUI:Configtable()
 			},
 			support = {
 				type = 'group',
-				name = E:TextGradient(GAMEMENU_SUPPORT, 1, 1, 1, 0.50, 0.70, 1),
+				name = E:TextGradient(GAMEMENU_SUPPORT, 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support',
 				order = 98,
 				args = {

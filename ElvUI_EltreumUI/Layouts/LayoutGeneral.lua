@@ -1391,6 +1391,20 @@ function ElvUI_EltreumUI:SetupDataText()
 	E.db["datatexts"]["panels"]["EltruismTime"][1] = "Time"
 	E.db["datatexts"]["panels"]["EltruismTime"]["enable"] = true
 
+	E.db["datatexts"]["panels"]["EltruismDataText"]["battleground"] = true
+	E.db["datatexts"]["battlePanel"]["EltruismDataText"][1] = "PvP: Kills"
+	E.db["datatexts"]["battlePanel"]["EltruismDataText"][2] = "PvP: Deaths"
+	if E.Retail then
+		E.db["datatexts"]["battlePanel"]["EltruismDataText"][3] = "PvP: Objectives"
+	else
+		E.db["datatexts"]["battlePanel"]["EltruismDataText"][3] = "PvP: Damage Done"
+	end
+	E.db["datatexts"]["battlePanel"]["EltruismDataText"][4] = "Eltruism Stats 1"
+	E.db["datatexts"]["battlePanel"]["EltruismDataText"][5] = ""
+	E.db["datatexts"]["battlePanel"]["EltruismDataText"][6] = "Eltruism Stats 2"
+	E.db["datatexts"]["battlePanel"]["EltruismDataText"][7] = "System"
+	E.db["datatexts"]["battlePanel"]["EltruismDataText"][8] = "Combat"
+	E.db["datatexts"]["battlePanel"]["EltruismDataText"][9] = "PvP: Honor Gained"
 
 	--hide other panels since now its in one panel
 	E.db["datatexts"]["panels"]["LeftChatDataPanel"]["enable"] = false

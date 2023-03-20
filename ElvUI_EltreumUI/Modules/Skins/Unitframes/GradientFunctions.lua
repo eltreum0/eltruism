@@ -294,6 +294,10 @@ do
 			RAID_CLASS_COLORS["DEMONHUNTER"].b = unitframecustomgradients["DEMONHUNTER"].b1
 			RAID_CLASS_COLORS["DEMONHUNTER"].colorSrt = E:RGBToHex(unitframecustomgradients["DEMONHUNTER"].r1,unitframecustomgradients["DEMONHUNTER"].g1,unitframecustomgradients["DEMONHUNTER"].b1, "ff")
 		end]]
+
+		--to make the previews update
+		ElvUI_EltreumUI:CustomTexture("player",true)
+		ElvUI_EltreumUI:GradientUF("player",true)
 	end
 	local colorupdateframe = CreateFrame("FRAME")
 	colorupdateframe:RegisterEvent("PLAYER_ENTERING_WORLD")

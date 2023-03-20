@@ -21,7 +21,7 @@ local pairs = _G.pairs
 local CreateFrame = _G.CreateFrame
 
 --set the textures for single units
-function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name)
+function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture)
 	_, classunit = UnitClass(unit)
 	reaction = UnitReaction(unit, "player")
 	if UnitExists(unit) then
@@ -60,7 +60,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name)
 						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
 							unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit))
 						else
-							unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
+							unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unittexture.."texture"]))
 						end
 					end
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
@@ -91,11 +91,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name)
 								end
 							end
 						else
-							if not unit:match("boss") then
-								unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
-							else
-								unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"]["bosstexture"]))
-							end
+							unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unittexture.."texture"]))
 						end
 					end
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
@@ -160,15 +156,15 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button)
 	end
 end
 
-function ElvUI_EltreumUI:CustomTexture(unit)
+function ElvUI_EltreumUI:CustomTexture(unit,forced)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 
 		--main issue = the toggle for some units like boss and arena wont work bc it checks for boss1,boss2... instead of just boss
-		ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Player")
-		ElvUI_EltreumUI:ApplyUnitCustomTexture("target", "Target")
-		ElvUI_EltreumUI:ApplyUnitCustomTexture("targettarget", "TargetTarget")
-		ElvUI_EltreumUI:ApplyUnitCustomTexture("targettargettarget", "TargetTargetTarget")
-		ElvUI_EltreumUI:ApplyUnitCustomTexture("pet", "Pet")
+		ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Player","player")
+		ElvUI_EltreumUI:ApplyUnitCustomTexture("target", "Target","target")
+		ElvUI_EltreumUI:ApplyUnitCustomTexture("targettarget", "TargetTarget","targettarget")
+		ElvUI_EltreumUI:ApplyUnitCustomTexture("targettargettarget", "TargetTargetTarget","targettargettarget")
+		ElvUI_EltreumUI:ApplyUnitCustomTexture("pet", "Pet","pet")
 
 		if E.Retail or E.Wrath then
 			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss1", "Boss1", "boss")
@@ -182,7 +178,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 		end
 		if not E.Classic then
 			ElvUI_EltreumUI:ApplyUnitCustomTexture("focus", "Focus", "focus")
-			ElvUI_EltreumUI:ApplyUnitCustomTexture("focustarget", "FocusTarget", "focustarget")
+			ElvUI_EltreumUI:ApplyUnitCustomTexture("focustarget", "FocusTarget", "focus")
 			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena1", "Arena1", "arena")
 			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena2", "Arena2", "arena")
 			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena3", "Arena3", "arena")
@@ -191,7 +187,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 		end
 
 		--group/raid unitframes
-		if IsInGroup() and UnitExists(unit) and (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
+		if (IsInGroup() or forced) and UnitExists(unit) and (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
 			headergroup = nil
 			if _G["ElvUF_Raid1"] and _G["ElvUF_Raid1"]:IsShown() then
 				headergroup = _G["ElvUF_Raid1"]

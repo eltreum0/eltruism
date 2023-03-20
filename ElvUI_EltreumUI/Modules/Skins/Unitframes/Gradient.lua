@@ -29,7 +29,7 @@ local pairs = _G.pairs
 do
 
 	--set the textures or gradients for single units
-	function ElvUI_EltreumUI:ApplyUnitGradient(unit,name)
+	function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unittexture)
 		_, classunit = UnitClass(unit)
 		reaction = UnitReaction(unit, "player")
 		if UnitExists(unit) then
@@ -64,7 +64,7 @@ do
 				end
 				if UnitIsPlayer(unit) and not UnitIsCharmed(unit) then
 					if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unittexture] then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
 									if unit == "target" then
@@ -94,10 +94,10 @@ do
 									unitframe.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit))
 								end
 							else
-								unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
+								unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unittexture.."texture"]))
 							end
 						end
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unittexture] then
 							if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
 									unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
@@ -154,7 +154,7 @@ do
 					end
 				else
 					if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unittexture] then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
 								if unit == "target" then
 									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
@@ -268,10 +268,10 @@ do
 									end
 								end
 							else
-								unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unit.."texture"]))
+								unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unittexture.."texture"]))
 							end
 						end
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unittexture] then
 							if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
 									unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
@@ -569,15 +569,15 @@ do
 		end
 	end
 
-	function ElvUI_EltreumUI:GradientUF(unit)
+	function ElvUI_EltreumUI:GradientUF(unit,forced)
 		if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 
 			--main issue = the toggle for some units like boss and arena wont work bc it checks for boss1,boss2... instead of just boss
-			ElvUI_EltreumUI:ApplyUnitGradient("player", "Player")
-			ElvUI_EltreumUI:ApplyUnitGradient("target", "Target")
-			ElvUI_EltreumUI:ApplyUnitGradient("targettarget", "TargetTarget")
-			ElvUI_EltreumUI:ApplyUnitGradient("targettargettarget", "TargetTargetTarget")
-			ElvUI_EltreumUI:ApplyUnitGradient("pet", "Pet")
+			ElvUI_EltreumUI:ApplyUnitGradient("player", "Player", "player")
+			ElvUI_EltreumUI:ApplyUnitGradient("target", "Target", "target")
+			ElvUI_EltreumUI:ApplyUnitGradient("targettarget", "TargetTarget", "targettarget")
+			ElvUI_EltreumUI:ApplyUnitGradient("targettargettarget", "TargetTargetTarget", "targettargettarget")
+			ElvUI_EltreumUI:ApplyUnitGradient("pet", "Pet", "pet")
 
 			if E.Retail or E.Wrath then
 				ElvUI_EltreumUI:ApplyUnitGradient("boss1", "Boss1", "boss")
@@ -600,7 +600,7 @@ do
 			end
 
 			--group/raid unitframes
-			if IsInGroup() and UnitExists(unit) and (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
+			if (IsInGroup() or forced) and UnitExists(unit) and (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
 				headergroup = nil
 				if _G["ElvUF_Raid1"] and _G["ElvUF_Raid1"]:IsShown() then
 					headergroup = _G["ElvUF_Raid1"]
@@ -695,5 +695,11 @@ do
 		end
 	end
 	hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientUF)
+
+	--allows previews to show custom textures and gradients
+	hooksecurefunc(UF, "ToggleForceShowGroupFrames", function(_,group)
+		ElvUI_EltreumUI:CustomTexture("player",true)
+		ElvUI_EltreumUI:GradientUF("player",true)
+	end)
 
 end

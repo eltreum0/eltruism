@@ -60,6 +60,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					v.Overlay:Hide()
 					v:StyleButton()
 					v.hover:SetVertexColor(classcolor.r, classcolor.g,classcolor.b, 0.7) --hover color
+					v.pushed:SetColorTexture(classcolor.r, classcolor.g,classcolor.b, 0.8) --pushed color
 					if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 						if v and not v.shadow then
 							v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -82,7 +83,9 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					if _G["ImmersionQuestInfoItem"..i].objectType and _G["ImmersionQuestInfoItem"..i].objectType == "item" then
 						local _, _, _, quality = GetQuestItemInfo(tostring(_G["ImmersionQuestInfoItem"..i].type), tonumber(_G["ImmersionQuestInfoItem" .. i]:GetID()))
 						local r,g,b = GetItemQualityColor(quality)
-						_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetBackdropBorderColor(r, g, b)
+						--_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetBackdropBorderColor(r, g, b)
+						_G["ImmersionQuestInfoItem" .. i].Name:SetTextColor(r, g, b)
+						_G["ImmersionQuestInfoItem" .. i].Name:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 					end
 				elseif not _G["ImmersionQuestInfoItem" .. i] then
 					break
@@ -100,7 +103,9 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					if _G["ImmersionProgressItem"..i].objectType and _G["ImmersionProgressItem"..i].objectType == "item" then
 						local _, _, _, quality = GetQuestItemInfo(tostring(_G["ImmersionProgressItem"..i].type), tonumber(_G["ImmersionProgressItem" .. i]:GetID()))
 						local r,g,b = GetItemQualityColor(quality)
-						_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetBackdropBorderColor(r, g, b)
+						--_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetBackdropBorderColor(r, g, b)
+						_G["ImmersionProgressItem" .. i].Name:SetTextColor(r, g, b)
+						_G["ImmersionProgressItem" .. i].Name:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 					end
 				elseif not _G["ImmersionProgressItem" .. i] then
 					break
