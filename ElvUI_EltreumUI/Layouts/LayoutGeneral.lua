@@ -1394,7 +1394,11 @@ function ElvUI_EltreumUI:SetupDataText()
 	E.db["datatexts"]["panels"]["EltruismDataText"]["battleground"] = true
 	E.db["datatexts"]["battlePanel"]["EltruismDataText"][1] = "PvP: Kills"
 	E.db["datatexts"]["battlePanel"]["EltruismDataText"][2] = "PvP: Deaths"
-	E.db["datatexts"]["battlePanel"]["EltruismDataText"][3] = "PvP: Objectives"
+	if E.Retail then
+		E.db["datatexts"]["battlePanel"]["EltruismDataText"][3] = "PvP: Objectives"
+	else
+		E.db["datatexts"]["battlePanel"]["EltruismDataText"][3] = "PvP: Damage Done"
+	end
 	E.db["datatexts"]["battlePanel"]["EltruismDataText"][4] = "Eltruism Stats 1"
 	E.db["datatexts"]["battlePanel"]["EltruismDataText"][5] = ""
 	E.db["datatexts"]["battlePanel"]["EltruismDataText"][6] = "Eltruism Stats 2"
