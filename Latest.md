@@ -11,12 +11,12 @@ Added shadows to LBIcon Tooltips\
 Added shadows to Chat Bubbles\
 Added Embed to Details\
 Added models to Focus\
+Updated Eltruism to no longer require AddOnSkins, using AddOnSkins is still highly recommended\
 Updated Nameplate Profiles and Style Filters to re-add Textures and change colors\
 Updated Install, which should better hide other addon frames that can be imported\
 Updated Shadow and Light profile to accommodate to new database references\
 Updated Teleports Datatext to hide the Cypher when not in the Maw\
 Updated Castbar Latency Texture to use Unitframe Textures\
-Updated Eltruism to no longer require AddOnSkins\
 Updated Boss Banner and Level Up fonts\
 Updated German translation by Dlarge\
 Updated WarpDeplete profile\
