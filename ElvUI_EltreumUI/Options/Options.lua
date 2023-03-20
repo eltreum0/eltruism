@@ -13656,17 +13656,7 @@ function ElvUI_EltreumUI:Configtable()
 								hidden = not (E.Retail or E.Wrath),
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss end,
-								set = function(_, value)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss1 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss2 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss3 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss4 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss5 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss6 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss7 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss8 = value
-								end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss = value end,
 							},
 							enablearena = {
 								order = 2,
@@ -13677,14 +13667,7 @@ function ElvUI_EltreumUI:Configtable()
 								hidden = E.Classic,
 								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena end,
-								set = function(_, value)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena1 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena2 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena3 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena4 = value
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena5 = value
-								end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena = value end,
 							},
 							enablegroupunits = {
 								order = 2,
