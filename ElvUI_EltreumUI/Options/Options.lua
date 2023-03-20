@@ -3209,7 +3209,7 @@ function ElvUI_EltreumUI:Configtable()
 							local Voices = {}
 							for i, v in pairs(C_VoiceChat.GetTtsVoices()) do
 								--Voices[i] = v.name
-								Voices[i] = v.voiceID
+								Voices[v.voiceID] = v.name
 							end
 							return Voices
 						end,
@@ -8002,7 +8002,8 @@ function ElvUI_EltreumUI:Configtable()
 						function()
 							local Voices = {}
 							for i, v in pairs(C_VoiceChat.GetTtsVoices()) do
-								Voices[i] = v.voiceID
+								--Voices[i] = v.voiceID
+								Voices[v.voiceID] = v.name
 							end
 							return Voices
 						end,
