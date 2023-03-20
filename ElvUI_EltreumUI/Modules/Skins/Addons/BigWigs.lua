@@ -119,4 +119,32 @@ do
 	end
 	S:AddCallbackForAddon('BigWigs_Plugins', "EltruismBigWigsStyle", ElvUI_EltreumUI.BigWigsStyle)
 
+	--so queue timer doesnt use candybar...
+	--from bigwigs core.lua line 90, seems like bigwigs exposes frames being created
+	--then on line 1259 of loader.lua
+	--public:SendMessage("BigWigs_FrameCreated", timerBar, "QueueTimer")
+	function ElvUI_EltreumUI:BigWigsQueue()
+		if E.db.ElvUI_EltreumUI.skins.bigwigs then
+			_G.BigWigsLoader.RegisterMessage("Eltruism","BigWigs_FrameCreated", function(_, frame, bar)
+				if bar == "QueueTimer" then
+					S:HandleStatusBar(frame)
+					local width = _G.LFGDungeonReadyPopup:GetWidth()
+					frame:SetWidth(width)
+					frame:SetHeight(20)
+					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+						frame:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass, false, false))
+					else
+						frame:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass, false, false))
+					end
+					frame.text:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+					if not frame.shadow then
+						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+					end
+				end
+			end)
+		end
+	end
+	S:AddCallbackForAddon('BigWigs', "EltruismBigWigsQueue", ElvUI_EltreumUI.BigWigsQueue)
+
 end
