@@ -39,7 +39,9 @@ local format = _G.format
 local slecheckchar = false
 local slecheckattribute = false
 local slecheckinspect = false
-if IsAddOnLoaded("ElvUI_SLE") then
+
+local function SLArmoryCheck()
+	if not IsAddOnLoaded("ElvUI_SLE") then return end
 	if E.db.sle.armory.character.enable then
 		slecheckchar = true
 	end
@@ -368,6 +370,7 @@ end
 
 --expanded armory
 function ElvUI_EltreumUI:ExpandedCharacterStats()
+	SLArmoryCheck()
 	if not E.private.skins.blizzard.enable then return end
 
 	if not InCombatLockdown() then
@@ -2104,6 +2107,7 @@ end
 
 --Player Item Quality Texture
 function ElvUI_EltreumUI:PlayerItemQuality(unit)
+	SLArmoryCheck()
 	if slecheckchar then return end
 	if E.db.ElvUI_EltreumUI.skins.itemquality and E.private.skins.blizzard.enable then
 		E:Delay(0, function()
@@ -2612,6 +2616,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 
 			--add a texture based on quality too, tbc needed a timer
 			if E.db.ElvUI_EltreumUI.skins.itemquality then
+				SLArmoryCheck()
 				if slecheckinspect then return end
 				E:Delay(0, function()
 					for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
