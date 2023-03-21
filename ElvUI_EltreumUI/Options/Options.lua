@@ -9264,7 +9264,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(L["Party/Raid"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\party',
-				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\party:0:0:0:0|t '..L["Play sounds when party members die, show ressurection timers and change instance texts"],
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\party:0:0:0:0|t '..L["Play sounds when party members die, show resurrection timers and change instance texts"],
 				childGroups = "tab",
 				order = 85,
 				args = {
@@ -9321,7 +9321,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 10,
 								type = "toggle",
 								name = L["Show a Battle Resurrection Count and Cooldown Frame"],
-								desc = L["Enables a frame that shows a cooldown and count for battle ressurections while in an instance that has them"],
+								desc = L["Enables a frame that shows a cooldown and count for battle resurrections while in an instance that has them"],
 								width = 'full',
 								hidden = not E.Retail,
 								get = function() return E.db.ElvUI_EltreumUI.otherstuff.bres end,
@@ -14303,7 +14303,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(GAMEMENU_SUPPORT, 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support',
-				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support:0:0:0:0|t '..L["Direct links to Github, CurseForge, Wago and Tukui"],
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support:0:0:0:0|t '..L["Direct links to GitHub, CurseForge, Wago and Tukui"],
 				order = 98,
 				args = {
 					gitlink = {
