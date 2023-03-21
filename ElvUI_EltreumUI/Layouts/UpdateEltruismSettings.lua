@@ -41,13 +41,12 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames = false -- turns out blizzard fakes the nameplates and alphas the helthbar, causing huge performance costs
 	E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly = false -- and this one is the same but with health so make this one off as well
 	E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly = true --so hide it instead
-	E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable = true
-	E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow = true
 	E.db.ElvUI_EltreumUI.nameplates.nptextureversion = "V2"
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel = true
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.restedoverlap = true
+	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow = true
 	E.db.ElvUI_EltreumUI.nameplates.auras.enable = true
 
 	-- Unitframes

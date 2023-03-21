@@ -671,8 +671,9 @@ EltruismGameMenu:SetScript("OnEvent", function()
 	end
 
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu and isMenuExpanded == false then
-		--EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:14:14:0:0:64:64:5:59:5:59|t".. ElvUI_EltreumUI.Name)
-		EltruismMenuButton:SetText(ElvUI_EltreumUI.Name)
+		--EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64:5:59:5:59|t".. ElvUI_EltreumUI.Name) -- old 32x32 icon
+		EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64|t".. ElvUI_EltreumUI.Name) --new 64x64 icon
+		--EltruismMenuButton:SetText(ElvUI_EltreumUI.Name)
 		S:HandleButton(EltruismMenuButton)
 		local x, y = _G["GameMenuButtonLogout"]:GetSize()
 		EltruismMenuButton:SetSize(x,y)

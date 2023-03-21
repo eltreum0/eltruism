@@ -55,13 +55,10 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			--[[if button.caster ~= "player" then
 				button:Hide()
 			end]]
-			if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable then
-				button.Icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
-			end
 			button.Cooldown:SetFrameStrata('DIALOG')
 			TimeSinceLastUpdate = 0
 			if not button.Cooldown or not button.Cooldown:IsShown() then
-				if E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow then
+				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow then
 					if E.db.ElvUI_EltreumUI.glow.pixel then
 						LCG.PixelGlow_Stop(button)
 					elseif E.db.ElvUI_EltreumUI.glow.autocast then
@@ -96,7 +93,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 								button.Cooldown.timer.text:SetPoint("TOP", button.Icon, "TOP", E.db.ElvUI_EltreumUI.nameplates.auras.xOffset, E.db.ElvUI_EltreumUI.nameplates.auras.yOffset)
 							end
 							debufftime = tonumber(button.Cooldown.timer.text:GetText())
-							if E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow then
+							if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow then
 								if debufftime ~= nil and debufftime <= E.db.ElvUI_EltreumUI.glow.numberdebuff and debufftime > 0 then
 									if E.db.ElvUI_EltreumUI.glow.pixel then
 										LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
@@ -117,7 +114,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 								end
 							end
 						else
-							if E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow and (button.Cooldown == nil or button.Cooldown.timer == nil or not button.Cooldown:IsShown()) then
+							if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and (button.Cooldown == nil or button.Cooldown.timer == nil or not button.Cooldown:IsShown()) then
 								if E.db.ElvUI_EltreumUI.glow.pixel then
 									LCG.PixelGlow_Stop(button)
 								elseif E.db.ElvUI_EltreumUI.glow.autocast then
@@ -131,11 +128,6 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 				end)
 			end
 			button.Count:SetParent(button.Cooldown)
-			if E.Wrath or E.Wrath or E.Classic then
-				if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable then
-					button.Count:Point('BOTTOMRIGHT', 2, -3) --elvui added a setting for it but its missing some things
-				end
-			end
 		end
 	end
 	if UnitExists(unit) then
@@ -148,7 +140,6 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 		if not string.find(unit, "nameplate") then
 			return
 		else
-			button.Icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 			TimeSinceLastUpdate = 0
 			button.Cooldown:SetScript('OnUpdate', function(self, elapsed)
 				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
@@ -170,7 +161,6 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 				end
 			end)
 			button.Count:SetParent(button.Cooldown)
-			button.Count:Point('BOTTOMRIGHT', 2, -3)
 		end
 	end
 	if UnitExists(unit) then
@@ -179,7 +169,7 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 end
 
 function ElvUI_EltreumUI:Construct_Auras(nameplate)
-	if E.private.nameplates.enable and (E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable or E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow) then
+	if E.private.nameplates.enable and (E.db.ElvUI_EltreumUI.nameplates.auras.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow) then
 		nameplate.Buffs.PostUpdateButton = ElvUI_EltreumUI.PostUpdateIconBuff
 		nameplate.Debuffs.PostUpdateButton = ElvUI_EltreumUI.PostUpdateIconDebuff
 	end

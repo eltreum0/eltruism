@@ -434,7 +434,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PaperDollFrame.TitleManagerPane.ScrollBox:SetPoint("RIGHT", CharacterFrame, "RIGHT", -40, -20)
 			end
 
-			if (not IsAddOnLoaded('DejaCharacterStats')) then
+			if not slecheckattribute and (not IsAddOnLoaded('DejaCharacterStats')) then
 				CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
 				CharacterStatsPane.ItemLevelCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 
@@ -457,11 +457,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						CharacterStatsPane.OffenseCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.OffenseCategory.Title:GetText(), E.myclass))
 					else --if E.db.ElvUI_EltreumUI.skins.statcolors then
-						CharacterStatsPane.OffenseCategory.Title:SetText(CharacterStatsPane.OffenseCategory.Title:GetText())
+						--CharacterStatsPane.OffenseCategory.Title:SetText(CharacterStatsPane.OffenseCategory.Title:GetText())
 						CharacterStatsPane.OffenseCategory.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
-				CharacterStatsPane.OffenseCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
+				--CharacterStatsPane.OffenseCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 
 				--statusbars
 				linewidthsle1 = (( 300 - CharacterStatsPane.OffenseCategory.Title:GetStringWidth())/2)
@@ -482,11 +482,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						CharacterStatsPane.DefenseCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.DefenseCategory.Title:GetText(), E.myclass))
 					else --if E.db.ElvUI_EltreumUI.skins.statcolors then
-						CharacterStatsPane.DefenseCategory.Title:SetText(CharacterStatsPane.DefenseCategory.Title:GetText())
+						--CharacterStatsPane.DefenseCategory.Title:SetText(CharacterStatsPane.DefenseCategory.Title:GetText())
 						CharacterStatsPane.DefenseCategory.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
 				end
-				CharacterStatsPane.DefenseCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
+				--CharacterStatsPane.DefenseCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 
 				--statusbars
 				linewidthsle2 = (( 300 - CharacterStatsPane.DefenseCategory.Title:GetStringWidth())/2)
@@ -925,11 +925,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			hooksecurefunc('PaperDollFrame_SetLabelAndText', function(statFrame, label)
 				if ( statFrame.Label ) then
 					local text = statFrame.Label:GetText()
-					statFrame.Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+					if not slecheckattribute then
+						statFrame.Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+					end
 					if not statFrame.Label:GetText():match("|r") then
 						statFrame.Label:SetText(ElvUI_EltreumUI:GradientName(text, E.myclass))
 					end
-					if statFrame.Value then
+					if not slecheckattribute and statFrame.Value then
 						statFrame.Value:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					end
 				end

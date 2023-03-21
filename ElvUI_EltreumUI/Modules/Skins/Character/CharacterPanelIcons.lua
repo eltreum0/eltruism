@@ -89,7 +89,6 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				end
 			end
 		elseif E.Retail and not self.ischarpanelHooked then
-
 			hooksecurefunc('PaperDollFrame_SetLevel', function()
 				CharacterFrameTitleText:ClearAllPoints()
 				CharacterFrameTitleText:SetPoint('TOP', CharacterModelScene, 0, 50)

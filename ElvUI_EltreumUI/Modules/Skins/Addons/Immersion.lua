@@ -14,6 +14,7 @@ end
 
 --skin immersion
 function ElvUI_EltreumUI:EltruismImmersion()
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end
 	if E.db.ElvUI_EltreumUI.skins.immersion then
 		local frames = {
 			_G["ImmersionFrame"].TalkBox.BackgroundFrame,
@@ -80,7 +81,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionQuestInfoItem" .. i .."Name"],"BOTTOMRIGHT",-5,-2)
 					--_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetOutside(_G["ImmersionQuestInfoItem" .. i .."Name"])
 					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
-					if _G["ImmersionQuestInfoItem"..i].objectType and _G["ImmersionQuestInfoItem"..i].objectType == "item" then
+					if _G["ImmersionQuestInfoItem"..i].objectType and _G["ImmersionQuestInfoItem"..i].objectType == "item" and _G["ImmersionQuestInfoItem" .. i].Name:GetText() ~= nil then
 						local _, _, _, quality = GetQuestItemInfo(tostring(_G["ImmersionQuestInfoItem"..i].type), tonumber(_G["ImmersionQuestInfoItem" .. i]:GetID()))
 						local r,g,b = GetItemQualityColor(quality)
 						--_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetBackdropBorderColor(r, g, b)

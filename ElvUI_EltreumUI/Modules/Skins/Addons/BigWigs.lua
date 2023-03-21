@@ -138,7 +138,7 @@ do
 					end
 					frame.text:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 					if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs then
-						frame:SetWidth(width-2)
+						frame:SetWidth(width-1)
 						if not frame.shadow then
 							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end

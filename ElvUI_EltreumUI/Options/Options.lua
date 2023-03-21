@@ -144,6 +144,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(L["Installer"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\install',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\install:0:0:0:0|t '..L["Install, Reinstall or Update various parts of Eltruism"],
 				args = {
 					header5 = {
 						order = 1,
@@ -384,6 +385,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(L["A.F.K"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\afk',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\afk:0:0:0:0|t '..L["Enhance the AFK screen"],
 				order = 85,
 				args = {
 					header1 = {
@@ -453,6 +455,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(L["Addons"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\addon',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\addon:0:0:0:0|t '..L["Install or update other Addon profiles"],
 				order = 85,
 				childGroups = "tab",
 				args = {
@@ -810,6 +813,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(L["Aura Filters"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\aurafilter',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\aurafilter:0:0:0:0|t '..L["Choose to show all debuffs/buffs or use default Filters"],
 				childGroups = "tab",
 				order = 85,
 				args = {
@@ -1126,6 +1130,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(L["Borders"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\border',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\border:0:0:0:0|t '..L["Add Borders to frames and customize them"],
 				order = 85,
 				childGroups = "tab",
 				args = {
@@ -2655,6 +2660,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(CHAT_LABEL, 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\chat',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\chat:0:0:0:0|t '..L["Enhance Chat Functionality"],
 				order = 85,
 				args = {
 					header0 = {
@@ -2914,6 +2920,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(L["Combat Music"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music:0:0:0:0|t '..L["Play custom music during fights and boss fights"],
 				order = 85,
 				args = {
 					header1 = {
@@ -3057,6 +3064,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(L["Cooldown"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cooldown',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cooldown:0:0:0:0|t '..L["Show a pulsing cooldown and let it speak the spell name"],
 				order = 85,
 				args = {
 					header1 = {
@@ -3209,7 +3217,7 @@ function ElvUI_EltreumUI:Configtable()
 							local Voices = {}
 							for i, v in pairs(C_VoiceChat.GetTtsVoices()) do
 								--Voices[i] = v.name
-								Voices[i] = v.voiceID
+								Voices[v.voiceID] = v.name
 							end
 							return Voices
 						end,
@@ -3260,6 +3268,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(L["Cursor"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cursor',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cursor:0:0:0:0|t '..L["Attach Rings to the Cursor that will show Castbars, GCDs and can also show the cooldown of skills you attempt to use"],
 				order = 85,
 				childGroups = "tab",
 				args = {
@@ -3782,6 +3791,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(L["Custom Glow"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\customglow',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\customglow:0:0:0:0|t '..L["Fully customize how action bars glow and add glows to debuffs on unitframes"],
 				order = 85,
 				childGroups = "tab",
 				args = {
@@ -3828,8 +3838,8 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Enable on Nameplate"],
 								desc = L["Add a glow when buffs or debuffs are expiring on nameplates"],
 								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow = value end,
+								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow = value end,
 							},
 							debuffduration = {
 								type = 'range',
@@ -3840,7 +3850,7 @@ function ElvUI_EltreumUI:Configtable()
 								max = 30,
 								step = 1,
 								width = "double",
-								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.numberdebuff end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.glow.numberdebuff = value end,
 							},
@@ -3914,7 +3924,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Autocast"],
 								order = 100,
 								desc = L["Adds an autocast style glow using class color"],
-								disabled = function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.pixel or E.db.ElvUI_EltreumUI.glow.blizzard end,
+								disabled = function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.pixel or E.db.ElvUI_EltreumUI.glow.blizzard end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.autocast end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.glow.autocast = value end,
 							},
@@ -3923,7 +3933,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Pixel"],
 								order = 101,
 								desc = L["Adds a pixel style glow using class color"],
-								disabled = function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.blizzard end,
+								disabled = function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.blizzard end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.pixel end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.glow.pixel = value end,
 							},
@@ -3932,7 +3942,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = 'Blizzard',
 								order = 102,
 								desc = L["Adds a Blizzard style glow using class color"],
-								disabled = function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.pixel end,
+								disabled = function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.pixel end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.blizzard end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.glow.blizzard = value end,
 							},
@@ -3957,7 +3967,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						name = L["Glow Colors"],
 						order = 2,
-						disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end,
+						disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end,
 						args = {
 							headerline1 = {
 								order = 1,
@@ -4035,7 +4045,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Use Class Colors"],
 								order = 9,
 								desc = L["Toggle Class Colored glows"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.colorclassnp end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.glow.colorclassnp = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -4044,7 +4054,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Custom Color"],
 								hasAlpha = false,
-								disabled = function() return E.db.ElvUI_EltreumUI.glow.colorclassnp or not E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow end,
+								disabled = function() return E.db.ElvUI_EltreumUI.glow.colorclassnp or not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow end,
 								get = function()
 									local glowcustomcolornp = E.db.ElvUI_EltreumUI.glow.glowcustomcolornp
 									local d = P.ElvUI_EltreumUI.glow.glowcustomcolornp
@@ -4201,7 +4211,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						name = L["Pixel Glow"],
 						order = 3,
-						disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end,
+						disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end,
 						args = {
 							headerline1 = {
 								order = 1,
@@ -4339,7 +4349,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						name = L["Autocast Glow"],
 						order = 3,
-						disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end,
+						disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end,
 						args = {
 							headerline1 = {
 								order = 1,
@@ -4442,7 +4452,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						name = L["Blizzard Glow"],
 						order = 3,
-						disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end,
+						disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end,
 						args = {
 							headerline2 = {
 								order = 93,
@@ -4472,6 +4482,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(L["CVars"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cvar',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cvar:0:0:0:0|t '..L["Customize Blizzard's Hidden Settings"],
 				childGroups = "tab",
 				args = {
 					generalcvars = {
@@ -4747,6 +4758,7 @@ function ElvUI_EltreumUI:Configtable()
 				order = 85,
 				childGroups = "tab",
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\gradient',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\gradient:0:0:0:0|t '..L["Customize Gradient Colors"],
 				args = {
 					class = {
 						order = 1,
@@ -6655,6 +6667,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(LOOT, 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\loot',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\loot:0:0:0:0|t '..L["Add a scrolling loot text that will show items that you loot, filter which items you can loot, enable fast looting and create your own item wishlist"],
 				childGroups = "tab",
 				order = 85,
 				args = {
@@ -7099,6 +7112,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(L["Maps"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\map',
+				desc = E.Retail and '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\map:0:0:0:0|t '..L["Add a time to arrive to waypoints, cardinal directions and more"] or 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\map'..L["Add cardinal directions, change map scale and more"],
 				order = 85,
 				args = {
 					header1 = {
@@ -7403,6 +7417,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(L["Media"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\media',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\media:0:0:0:0|t '..L["Change Fonts, Font Outlines and Action Paging"],
 				childGroups = "tab",
 				order = 85,
 				args = {
@@ -7649,8 +7664,8 @@ function ElvUI_EltreumUI:Configtable()
 			misc = {
 				type = 'group',
 				name = E:TextGradient(L["Misc"], 0.50, 0.70, 1, 0.67, 0.95, 1),
-				--childGroups = "tab",
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\misc',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\misc:0:0:0:0|t '..L["Various miscellaneous features such as death animations, stealth texture, mail sound, /roll sounds and more"],
 				order = 85,
 				args = {
 					header0 = {
@@ -8002,7 +8017,8 @@ function ElvUI_EltreumUI:Configtable()
 						function()
 							local Voices = {}
 							for i, v in pairs(C_VoiceChat.GetTtsVoices()) do
-								Voices[i] = v.voiceID
+								--Voices[i] = v.voiceID
+								Voices[v.voiceID] = v.name
 							end
 							return Voices
 						end,
@@ -8040,6 +8056,7 @@ function ElvUI_EltreumUI:Configtable()
 				order = 85,
 				childGroups = "tab",
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\nameplate',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\nameplate:0:0:0:0|t '..L["Enhance ElvUI Nameplates with options for gradient, size, textures, models, behavior and more"],
 				args = {
 					general = {
 						order = 1,
@@ -8256,22 +8273,6 @@ function ElvUI_EltreumUI:Configtable()
 								desc = L["Automatically hide the Classbar if the Target is Friendly, show if it is an enemy"],
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide = value end,
-							},
-							header3 = {
-								order = 911,
-								type = "description",
-								name = L["Wide nameplate debuffs and buffs"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							verywidenameplate = {
-								order = 912,
-								type = 'toggle',
-								name = L["Make Buffs and Debuffs Wide on Nameplates"],
-								desc = L["Toggle On and Off"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable = value end,
 							},
 							headerhideswipe = {
 								order = 913,
@@ -9247,6 +9248,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(L["Party/Raid"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\party',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\party:0:0:0:0|t '..L["Play sounds when party members die, show resurrection timers and change instance texts"],
 				childGroups = "tab",
 				order = 85,
 				args = {
@@ -9303,7 +9305,7 @@ function ElvUI_EltreumUI:Configtable()
 								order = 10,
 								type = "toggle",
 								name = L["Show a Battle Resurrection Count and Cooldown Frame"],
-								desc = L["Enables a frame that shows a cooldown and count for battle ressurections while in an instance that has them"],
+								desc = L["Enables a frame that shows a cooldown and count for battle resurrections while in an instance that has them"],
 								width = 'full',
 								hidden = not E.Retail,
 								get = function() return E.db.ElvUI_EltreumUI.otherstuff.bres end,
@@ -9890,6 +9892,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(QUESTS_LABEL, 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\quest',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\quest:0:0:0:0|t '..L["Automate Quests and Gossip, add a Quest Item Bar, hide Quests during Boss fights and more"],
 				order = 85,
 				args = {
 					headergaphere112 = {
@@ -10131,6 +10134,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(L["Skins"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\paint',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\paint:0:0:0:0|t '..L["Add several skins to World of Warcraft, such as Quests, Character Frame, Shadows, other Addons, Role Icons and more"],
 				childGroups = "tab",
 				args = {
 					general = {
@@ -12221,6 +12225,7 @@ function ElvUI_EltreumUI:Configtable()
 				order = 85,
 				childGroups = "tab",
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\unitframes',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\unitframes:0:0:0:0|t '..L["Add Gradient, Custom Textures, Models, change fill orientation and more"],
 				args = {
 					general = {
 						type = 'group',
@@ -14111,6 +14116,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras',
 				name = E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1),
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras:0:0:0:0|t '..L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's movers to move them"],
 				order = 95,
 				args = {
 					header1 = {
@@ -14164,6 +14170,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient("Discord", 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\discord',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\discord:0:0:0:0|t '..L["Join the Discord for faster support and to report any issues you might encounter"],
 				order = 96,
 				args = {
 					logodiscord = {
@@ -14195,6 +14202,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(L["Credits"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\credits',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\credits:0:0:0:0|t '..L["Credits and Licenses"],
 				order = 97,
 				args = {
 					author = {
@@ -14279,6 +14287,7 @@ function ElvUI_EltreumUI:Configtable()
 				type = 'group',
 				name = E:TextGradient(GAMEMENU_SUPPORT, 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support:0:0:0:0|t '..L["Direct links to GitHub, CurseForge, Wago and Tukui"],
 				order = 98,
 				args = {
 					gitlink = {

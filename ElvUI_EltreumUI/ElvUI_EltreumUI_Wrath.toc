@@ -6,7 +6,7 @@
 ## Notes-deDE: Eltruism ist ein ElvUI Plugin mit Profilen und anderen Funktionen, die in ElvUI nicht verfügbar sind
 ## Dependencies: ElvUI
 ## RequiredDeps: Blizzard_CombatText
-## OptionalDeps: NameplateSCT, Immersion, DynamicCam, Gladius, Gladdy, ProjectAzilroka, AddOnSkins
+## OptionalDeps: ProjectAzilroka, AddOnSkins
 ## DefaultState: enabled
 ## X-Interface: 30401
 ## X-Tukui-ProjectID: 10

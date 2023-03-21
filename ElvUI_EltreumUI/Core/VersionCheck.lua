@@ -31,12 +31,39 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 		whileDead = 1,
 		hideOnEscape = false,
 	}
-	if E.version < 13.27 then
+	E.PopupDialogs["GAMEVERSIONCHECKHIGHER"] = {
+		text = L["Your World of Warcraft version is higher than expected for Eltruism, please update Eltruism or you might run into issues.\n|cffFF0000(You are likely having errors right now!)|r"],
+		button1 = OKAY,
+		timeout = 0,
+		whileDead = 1,
+		hideOnEscape = false,
+	}
+	E.PopupDialogs["GAMEVERSIONCHECKLOWER"] = {
+		text = L["Your World of Warcraft version is older than Eltruism, you might run into issues!"],
+		button1 = OKAY,
+		timeout = 0,
+		whileDead = 1,
+		hideOnEscape = false,
+	}
+
+	--elvui check
+	if E.version < 13.28 then
 		E:StaticPopup_Show('ELVUIVERSIONCHECK')
-		ElvUI_EltreumUI:Print("Your ElvUI version is out of date, please update to avoid issues!")
+		ElvUI_EltreumUI:Print(L["Your ElvUI version is out of date, please update to avoid issues!"])
 	elseif E.version > 13.35 then
 		E:StaticPopup_Show('ELVUIVERSIONCHECK2')
-		ElvUI_EltreumUI:Print("Your ElvUI version is newer than Eltruism, you might run into issues unless you update Eltruism!")
+		ElvUI_EltreumUI:Print(L["Your ElvUI version is higher than expected for Eltruism, please update Eltruism or you might run into issues.\n|cffFF0000(You are likely having errors right now!)|r"])
+	end
+
+	--game version check
+	local requiredversion = tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-Interface'))
+	local currentversion = tonumber(select(4,GetBuildInfo()))
+	if requiredversion > currentversion then
+		E:StaticPopup_Show('GAMEVERSIONCHECKHIGHER')
+		ElvUI_EltreumUI:Print(L["Your World of Warcraft version is higher than expected for Eltruism, please update Eltruism or you might run into issues.\n|cffFF0000(You are likely having errors right now!)|r"])
+	elseif currentversion > requiredversion then
+		E:StaticPopup_Show('GAMEVERSIONCHECKLOWER')
+		ElvUI_EltreumUI:Print(L["Your World of Warcraft version is older than Eltruism, you might run into issues!"])
 	end
 end
 
@@ -369,12 +396,6 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		end
 		fixingold = true
 		E.private.ElvUI_EltreumUI.install_version = "3.6.8"
-	elseif E.private.ElvUI_EltreumUI.install_version >= "3.6.8" and E.private.ElvUI_EltreumUI.install_version < "3.6.9" then
-		if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable then
-			E.db.ElvUI_EltreumUI.nameplates.auras.enable = true
-		end
-		fixingold = true
-		E.private.ElvUI_EltreumUI.install_version = "3.6.9"
 	elseif E.private.ElvUI_EltreumUI.install_version >= "3.6.9" and E.private.ElvUI_EltreumUI.install_version < "3.7.3" then
 		if E.Wrath then --long term paging fix due to ulduar changes
 			if E.db.actionbar.bar1.visibility == "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show" then
