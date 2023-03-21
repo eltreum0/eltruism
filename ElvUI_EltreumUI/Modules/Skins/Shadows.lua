@@ -390,6 +390,10 @@ function ElvUI_EltreumUI:Shadows()
 							_G.CommunitiesFrame.GuildInfoTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.GuildInfoTab.backdrop.shadow) end
 						end
+						if _G.CommunitiesFrame.GuildMemberDetailFrame and not _G.CommunitiesFrame.GuildMemberDetailFrame.shadow then
+							_G.CommunitiesFrame.GuildMemberDetailFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.CommunitiesFrame.GuildMemberDetailFrame.shadow) end
+						end
 						if _G.ClubFinderGuildFinderFrame then
 							if _G.ClubFinderGuildFinderFrame.ClubFinderSearchTab and _G.ClubFinderGuildFinderFrame.ClubFinderSearchTab.backdrop and not _G.ClubFinderGuildFinderFrame.ClubFinderSearchTab.backdrop.shadow then
 								_G.ClubFinderGuildFinderFrame.ClubFinderSearchTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
