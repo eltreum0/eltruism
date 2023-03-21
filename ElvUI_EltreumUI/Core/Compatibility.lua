@@ -1,18 +1,20 @@
 local E, L, V, P, G = unpack(ElvUI)
 local compatibilityran = false
 local addonname = "NAME"
+local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
+local GetAddOnInfo = _G.GetAddOnInfo
+local select = _G.select
 
 --check for stuff that would cause problems
 function ElvUI_EltreumUI:CheckCompatibility()
 	if IsAddOnLoaded("ElvUI_MerathilisUI") then
+
 		if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and (E.db.mui.armory.character.classIcon or E.db.mui.armory.character.classIcon == nil) then
 			E.db.mui.armory.character.classIcon = false
 			E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel = true
 			compatibilityran = true
 			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-
-
 		end
 
 		if (E.db.ElvUI_EltreumUI.skins.expandarmorybg or E.db.ElvUI_EltreumUI.skins.classicarmory) and (E.db.mui.armory.character.enable or E.db.mui.armory.character.enable == nil) then
@@ -33,13 +35,6 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
 		end
 
-		--[[if E.db.ElvUI_EltreumUI.skins.statcolors and (E.db.mui.armory.stats.classColorGradient or E.db.mui.armory.stats.classColorGradient == nil) then
-			E.db.mui.armory.stats.classColorGradient = false
-			E.db.ElvUI_EltreumUI.skins.statcolors = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end]]
-
 		if E.db.mui.nameplates.gradient or E.db.mui.nameplates.gradient == nil then
 			E.db.mui.nameplates.gradient = false
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
@@ -53,13 +48,6 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			compatibilityran = true
 			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
 		end
-
-		--[[if E.db.ElvUI_EltreumUI.skins.instances.enable and E.db.mui.maps.minimap.instanceDifficulty.enable then
-			E.db.mui.maps.minimap.instanceDifficulty.enable = false
-			E.db.ElvUI_EltreumUI.skins.instances.enable = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end]]
 
 		if E.db.ElvUI_EltreumUI.skins.doom.enable and (E.db.mui.cooldownFlash.enable or E.db.mui.cooldownFlash.enable == nil) then
 			E.db.mui.cooldownFlash.enable = false
