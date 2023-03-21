@@ -14,6 +14,7 @@ end
 
 --skin immersion
 function ElvUI_EltreumUI:EltruismImmersion()
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end
 	if E.db.ElvUI_EltreumUI.skins.immersion then
 		local frames = {
 			_G["ImmersionFrame"].TalkBox.BackgroundFrame,
