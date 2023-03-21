@@ -40,13 +40,6 @@ function ElvUI_EltreumUI:CheckCompatibility()
 			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
 		end]]
 
-		if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable and (E.db.mui.nameplates.enhancedAuras.enable or E.db.mui.nameplates.enhancedAuras.enable == nil) then
-			E.db.mui.nameplates.enhancedAuras.enable = false
-			E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
 		if E.db.mui.nameplates.gradient or E.db.mui.nameplates.gradient == nil then
 			E.db.mui.nameplates.gradient = false
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
