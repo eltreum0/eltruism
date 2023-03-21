@@ -8284,7 +8284,7 @@ function ElvUI_EltreumUI:Configtable()
 							verywidenameplate = {
 								order = 912,
 								type = 'toggle',
-								name = L["Make Buffs and Debuffs Wide on Nameplates"],
+								name = L["Adjust Buffs/Debuffs Timer Positions"],
 								desc = L["Toggle On and Off"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable end,
