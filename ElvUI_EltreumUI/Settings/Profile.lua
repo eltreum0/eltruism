@@ -373,6 +373,7 @@ P.ElvUI_EltreumUI = {
 			restedoverlap = false,
 			hideSwipe = false,
 			hidedebuffsnontarget = false,
+			npglow = false,
 		},
 		nptextureversion = "V1",
 		nameplatelevel = false,
@@ -395,10 +396,6 @@ P.ElvUI_EltreumUI = {
 			disablefriendly = false,
 			friendlynames = false,
 			hidefriendly = false,
-		},
-		widenameplate = {
-			enable = false,
-			npglow = false,
 		},
 		auras = {
 			enable = false,

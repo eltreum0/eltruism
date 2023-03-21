@@ -3838,8 +3838,8 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Enable on Nameplate"],
 								desc = L["Add a glow when buffs or debuffs are expiring on nameplates"],
 								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow = value end,
+								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow = value end,
 							},
 							debuffduration = {
 								type = 'range',
@@ -3850,7 +3850,7 @@ function ElvUI_EltreumUI:Configtable()
 								max = 30,
 								step = 1,
 								width = "double",
-								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.numberdebuff end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.glow.numberdebuff = value end,
 							},
@@ -3924,7 +3924,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Autocast"],
 								order = 100,
 								desc = L["Adds an autocast style glow using class color"],
-								disabled = function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.pixel or E.db.ElvUI_EltreumUI.glow.blizzard end,
+								disabled = function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.pixel or E.db.ElvUI_EltreumUI.glow.blizzard end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.autocast end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.glow.autocast = value end,
 							},
@@ -3933,7 +3933,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Pixel"],
 								order = 101,
 								desc = L["Adds a pixel style glow using class color"],
-								disabled = function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.blizzard end,
+								disabled = function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.blizzard end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.pixel end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.glow.pixel = value end,
 							},
@@ -3942,7 +3942,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = 'Blizzard',
 								order = 102,
 								desc = L["Adds a Blizzard style glow using class color"],
-								disabled = function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.pixel end,
+								disabled = function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.pixel end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.blizzard end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.glow.blizzard = value end,
 							},
@@ -3967,7 +3967,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						name = L["Glow Colors"],
 						order = 2,
-						disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end,
+						disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end,
 						args = {
 							headerline1 = {
 								order = 1,
@@ -4045,7 +4045,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Use Class Colors"],
 								order = 9,
 								desc = L["Toggle Class Colored glows"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow end,
 								get = function() return E.db.ElvUI_EltreumUI.glow.colorclassnp end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.glow.colorclassnp = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -4054,7 +4054,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'color',
 								name = L["Custom Color"],
 								hasAlpha = false,
-								disabled = function() return E.db.ElvUI_EltreumUI.glow.colorclassnp or not E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow end,
+								disabled = function() return E.db.ElvUI_EltreumUI.glow.colorclassnp or not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow end,
 								get = function()
 									local glowcustomcolornp = E.db.ElvUI_EltreumUI.glow.glowcustomcolornp
 									local d = P.ElvUI_EltreumUI.glow.glowcustomcolornp
@@ -4211,7 +4211,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						name = L["Pixel Glow"],
 						order = 3,
-						disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end,
+						disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end,
 						args = {
 							headerline1 = {
 								order = 1,
@@ -4349,7 +4349,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						name = L["Autocast Glow"],
 						order = 3,
-						disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end,
+						disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end,
 						args = {
 							headerline1 = {
 								order = 1,
@@ -4452,7 +4452,7 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						name = L["Blizzard Glow"],
 						order = 3,
-						disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.widenameplate.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end,
+						disabled = function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end,
 						args = {
 							headerline2 = {
 								order = 93,
@@ -8280,15 +8280,6 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Wide nameplate debuffs and buffs"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							verywidenameplate = {
-								order = 912,
-								type = 'toggle',
-								name = L["Adjust Buffs/Debuffs Timer Positions"],
-								desc = L["Toggle On and Off"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable = value end,
 							},
 							headerhideswipe = {
 								order = 913,

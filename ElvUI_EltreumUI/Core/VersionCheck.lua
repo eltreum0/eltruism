@@ -386,12 +386,6 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		end
 		fixingold = true
 		E.private.ElvUI_EltreumUI.install_version = "3.6.8"
-	elseif E.private.ElvUI_EltreumUI.install_version >= "3.6.8" and E.private.ElvUI_EltreumUI.install_version < "3.6.9" then
-		if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable then
-			E.db.ElvUI_EltreumUI.nameplates.auras.enable = true
-		end
-		fixingold = true
-		E.private.ElvUI_EltreumUI.install_version = "3.6.9"
 	elseif E.private.ElvUI_EltreumUI.install_version >= "3.6.9" and E.private.ElvUI_EltreumUI.install_version < "3.7.3" then
 		if E.Wrath then --long term paging fix due to ulduar changes
 			if E.db.actionbar.bar1.visibility == "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show" then
