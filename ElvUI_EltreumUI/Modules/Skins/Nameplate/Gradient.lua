@@ -1,6 +1,4 @@
-local addon, Engine = ...
 local E, L, V, P, G = unpack(ElvUI)
-local ElvUI_EltreumUI = E:GetModule(addon)
 local NP = E:GetModule('NamePlates')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc

@@ -7,7 +7,6 @@ local _G = _G
 ElvUI_EltreumUI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0', 'AceConsole-3.0')
 local L = E.Libs.ACL:GetLocale("ElvUI", E.global.general.locale)
 local GetAddOnMetadata = _G.GetAddOnMetadata
-local ElvUI_EltreumUI = E:GetModule(addon)
 
 --Binding
 _G.BINDING_HEADER_ELTRUISM = GetAddOnMetadata(..., 'Title')

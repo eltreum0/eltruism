@@ -1,6 +1,4 @@
-local addon, Engine = ...
 local E, L, V, P, G = unpack(ElvUI)
-local ElvUI_EltreumUI = E:GetModule(addon)
 local _G = _G
 local tinsert = _G.table.insert
 local tconcat = _G.table.concat

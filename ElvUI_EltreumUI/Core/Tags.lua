@@ -1,6 +1,4 @@
-local addon, Engine = ...
 local E, L, V, P, G = unpack(ElvUI)
-local ElvUI_EltreumUI = E:GetModule(addon)
 local utf8sub = string.utf8sub
 local _G = _G
 local UnitName = _G.UnitName

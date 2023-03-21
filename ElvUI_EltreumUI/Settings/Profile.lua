@@ -1,6 +1,4 @@
-local addon, Engine = ...
 local E, L, V, P, G = unpack(ElvUI)
-local ElvUI_EltreumUI = E:GetModule(addon)
 
 -- Eltreum UI Profile DB
 P.ElvUI_EltreumUI = {
