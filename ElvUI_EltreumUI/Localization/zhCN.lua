@@ -1260,3 +1260,4 @@ L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's mo
 L["Join the Discord for faster support and to report any issues you might encounter"] = true
 L["Credits and Licenses"] = true
 L["Direct links to GitHub, CurseForge, Wago and Tukui"] = true
+L["Your World of Warcraft version is older than Eltruism, you might run into issues!"] = true

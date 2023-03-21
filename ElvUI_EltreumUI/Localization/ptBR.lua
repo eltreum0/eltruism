@@ -1266,3 +1266,4 @@ L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's mo
 L["Join the Discord for faster support and to report any issues you might encounter"] = "Junte-se ao Discord para um suporte mais rápido e para relatar quaisquer problemas que você possa encontrar"
 L["Credits and Licenses"] = "Créditos e Licenças"
 L["Direct links to GitHub, CurseForge, Wago and Tukui"] = "Links diretos para GitHub, CurseForge, Wago e Tukui"
+L["Your World of Warcraft version is older than Eltruism, you might run into issues!"] = "Sua versão do World of Warcraft é mais antiga que Eltruism, você pode ter problemas!"
