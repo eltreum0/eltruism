@@ -14,22 +14,16 @@ local allowedunits = {
 	['ElvUF_Pet'] = true,
 	['ElvUF_TargetTargetTarget'] = true,
 }
-function UF:Configure_InfoPanel(frame)
+local function Configure_InfoPanel(_, frame)
 	local db = frame.db
+	local isShown = frame.USE_INFO_PANEL
 
-	if frame.USE_INFO_PANEL then
-		frame.InfoPanel:Show()
+	frame.InfoPanel:SetShown(isShown)
+
+	if isShown then
 		frame.InfoPanel:ClearAllPoints()
 
-		local allowed = false
-
-		if E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
-			allowed = true
-		else
-			if allowedunits[tostring(frame:GetName())] then
-				allowed = true
-			end
-		end
+		local allowed = (E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes or allowedunits[tostring(frame:GetName())]) and true or false
 
 		--print(E.private["general"]["pixelPerfect"],E.db["unitframe"]["thinBorders"])
 		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.infopanelontop and allowed then
@@ -137,6 +131,7 @@ function UF:Configure_InfoPanel(frame)
 		frame.InfoPanel:Hide()
 	end
 end
+hooksecurefunc(UF, 'Configure_InfoPanel', Configure_InfoPanel)
 
 function ElvUI_EltreumUI:SkinPortrait(frame)
 	local db = frame.db
