@@ -1,4 +1,6 @@
+local addon, Engine = ...
 local E, L, V, P, G = unpack(ElvUI)
+local ElvUI_EltreumUI = E:GetModule(addon)
 local AB = E:GetModule('ActionBars')
 local LCG = E.Libs.CustomGlow
 --local LCG = LibStub('LibCustomGlow-1.0')

@@ -1,4 +1,6 @@
+local addon, Engine = ...
 local E, L, V, P, G = unpack(ElvUI)
+local ElvUI_EltreumUI = E:GetModule(addon)
 local _G = _G
 local S = E:GetModule('Skins')
 local CreateFrame = _G.CreateFrame

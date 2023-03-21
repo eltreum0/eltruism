@@ -1,4 +1,6 @@
+local addon, Engine = ...
 local E, L, V, P, G = unpack(ElvUI)
+local ElvUI_EltreumUI = E:GetModule(addon)
 
 --profile updates, so that whole profile doesnt need to be reimported
 function ElvUI_EltreumUI:UpdateElvUISettings()

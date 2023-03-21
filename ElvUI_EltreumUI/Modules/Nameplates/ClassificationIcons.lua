@@ -1,4 +1,6 @@
+local addon, Engine = ...
 local E, L, V, P, G = unpack(ElvUI)
+local ElvUI_EltreumUI = E:GetModule(addon)
 local oUF = E.oUF
 local NP = E:GetModule('NamePlates')
 local elementAdded = false

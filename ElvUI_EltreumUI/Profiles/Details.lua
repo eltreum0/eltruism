@@ -1,4 +1,6 @@
+local addon, Engine = ...
 local E, L, V, P, G = unpack(ElvUI)
+local ElvUI_EltreumUI = E:GetModule(addon)
 local _G = _G
 
 -- i use the details import string because details does not like having its saved variables imported like other addons

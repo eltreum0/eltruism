@@ -1,4 +1,6 @@
+local addon, Engine = ...
 local E, L, V, P, G = unpack(ElvUI)
+local ElvUI_EltreumUI = E:GetModule(addon)
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local C_CVar = _G.C_CVar

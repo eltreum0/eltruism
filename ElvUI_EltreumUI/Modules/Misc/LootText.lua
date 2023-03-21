@@ -1,4 +1,6 @@
+local addon, Engine = ...
 local E, L, V, P, G = unpack(ElvUI)
+local ElvUI_EltreumUI = E:GetModule(addon)
 local _G = _G
 local Deformat = _G.LibStub("LibDeformat-3.0")
 local CreateFrame = _G.CreateFrame
