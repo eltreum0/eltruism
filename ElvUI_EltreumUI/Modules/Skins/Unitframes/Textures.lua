@@ -47,7 +47,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture)
 			end
 		end
 		unitframe = _G["ElvUF_"..name]
-		if unitframe and unitframe.Health then
+		if unitframe and unitframe.Health and unitframe.Health:GetStatusBarTexture() ~= nil then
 			unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
 			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 				--unitframe.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
@@ -58,15 +58,15 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
-							unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit))
+							unitframe.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit))
 						else
-							unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unittexture.."texture"]))
+							unitframe.Health:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unittexture.."texture"]))
 						end
 					end
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
 						if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 							if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
-								unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+								unitframe.Health:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 							end
 						end
 					end
@@ -76,28 +76,28 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture)
 					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
 							if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
-								unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("TAPPED"))
+								unitframe.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("TAPPED"))
 							else
 								if reaction then
 									if reaction >= 5 then
-										unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCFRIENDLY"))
+										unitframe.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCFRIENDLY"))
 									elseif reaction == 4 then
-										unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCNEUTRAL"))
+										unitframe.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCNEUTRAL"))
 									elseif reaction == 3 then
-										unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCUNFRIENDLY"))
+										unitframe.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCUNFRIENDLY"))
 									elseif reaction <= 2 then
-										unitframe.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCHOSTILE"))
+										unitframe.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("NPCHOSTILE"))
 									end
 								end
 							end
 						else
-							unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unittexture.."texture"]))
+							unitframe.Health:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unittexture.."texture"]))
 						end
 					end
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unit] then
 						if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 							if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
-								unitframe.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+								unitframe.Health:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 							end
 						end
 					end
@@ -106,7 +106,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture)
 			if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 					if E.db.ElvUI_EltreumUI.unitframes.uftextureversion ~= "NONE" then
-						unitframe.Health:SetStatusBarTexture(namebar)
+						unitframe.Health:GetStatusBarTexture():SetTexture(namebar)
 					end
 				end
 			end
@@ -135,13 +135,13 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button)
 		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
-					button.Health:SetStatusBarTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
+					button.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
 				end
 			end
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
 				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 					if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
-						button.Health:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+						button.Health:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 					end
 				end
 			end
@@ -149,7 +149,7 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button)
 		if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 				if E.db.ElvUI_EltreumUI.unitframes.uftextureversion ~= "NONE" then
-					button.Health:SetStatusBarTexture(groupbar)
+					button.Health:GetStatusBarTexture():SetTexture(groupbar)
 				end
 			end
 		end
@@ -281,6 +281,8 @@ function ElvUI_EltreumUI:CustomTexture(unit,forced)
 		end
 	end
 end
+hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.CustomTexture) --WAS causing "blinking"/"flashing" issues in 10.0
+hooksecurefunc(UF, "Style", ElvUI_EltreumUI.CustomTexture) --old target of target hook
 
 --[[
 	hooksecurefunc(UF, "Update_StatusBars", ElvUI_EltreumUI.CustomTexture)
@@ -289,12 +291,11 @@ end
 	hooksecurefunc(UF, 'Update_RaidFrames', ElvUI_EltreumUI.CustomTexture)
 	hooksecurefunc(UF, "Configure_HealthBar", ElvUI_EltreumUI.CustomTexture)
 	hooksecurefunc(UF, "LoadUnits", ElvUI_EltreumUI.CustomTexture)
-	hooksecurefunc(UF, "Construct_UF", ElvUI_EltreumUI.CustomTexture)]]
-	--hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.CustomTexture) --is causing "blinking"/"flashing" issues in 10.0
-	--hooksecurefunc(UF, "Style", ElvUI_EltreumUI.CustomTexture) --old target of target hook
+	hooksecurefunc(UF, "Construct_UF", ElvUI_EltreumUI.CustomTexture)
+
 
 	--workaround the flashing texture bug
-	--[[function UF:Update_StatusBar(statusbar, texture)
+	function UF:Update_StatusBar(statusbar, texture)
 		if not statusbar then return end
 		if not texture then texture = E.LSM:Fetch('statusbar', UF.db.statusbar) end
 
@@ -309,8 +310,7 @@ end
 		end
 	end
 ]]
-
-if E.Retail or E.Wrath then
+--[[if E.Retail or E.Wrath then
 	if not E.private.ElvUI_EltreumUI then return end
 	if not E.private.ElvUI_EltreumUI.install_version then return end
 	if not E.db.ElvUI_EltreumUI then return end
@@ -346,7 +346,7 @@ if E.Retail or E.Wrath then
 	end
 else
 	hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.CustomTexture) --is causing "blinking"/"flashing" issues in 10.0
-end
+end]]
 
 -- replace absorb texture with unitframe texture
 function UF:SetTexture_HealComm(obj, texture)
