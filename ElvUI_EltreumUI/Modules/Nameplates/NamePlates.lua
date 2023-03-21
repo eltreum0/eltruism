@@ -55,9 +55,6 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			--[[if button.caster ~= "player" then
 				button:Hide()
 			end]]
-			if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable then
-				button.Icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
-			end
 			button.Cooldown:SetFrameStrata('DIALOG')
 			TimeSinceLastUpdate = 0
 			if not button.Cooldown or not button.Cooldown:IsShown() then
@@ -131,11 +128,6 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 				end)
 			end
 			button.Count:SetParent(button.Cooldown)
-			if E.Wrath or E.Wrath or E.Classic then
-				if E.db.ElvUI_EltreumUI.nameplates.widenameplate.enable then
-					button.Count:Point('BOTTOMRIGHT', 2, -3) --elvui added a setting for it but its missing some things
-				end
-			end
 		end
 	end
 	if UnitExists(unit) then
@@ -148,7 +140,6 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 		if not string.find(unit, "nameplate") then
 			return
 		else
-			button.Icon:SetTexCoord(0.07, 0.93, 0.21, 0.79)
 			TimeSinceLastUpdate = 0
 			button.Cooldown:SetScript('OnUpdate', function(self, elapsed)
 				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
@@ -170,7 +161,6 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 				end
 			end)
 			button.Count:SetParent(button.Cooldown)
-			button.Count:Point('BOTTOMRIGHT', 2, -3)
 		end
 	end
 	if UnitExists(unit) then
