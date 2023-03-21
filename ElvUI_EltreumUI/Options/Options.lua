@@ -8274,13 +8274,6 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide = value end,
 							},
-							header3 = {
-								order = 911,
-								type = "description",
-								name = L["Wide nameplate debuffs and buffs"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
 							headerhideswipe = {
 								order = 913,
 								type = 'description',
