@@ -349,7 +349,7 @@ else
 end]]
 
 -- replace absorb texture with unitframe texture
-function UF:SetTexture_HealComm(obj, texture)
+function ElvUI_EltreumUI:SetTexture_HealComm(obj, texture)
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		obj.myBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 		obj.otherBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
@@ -362,3 +362,5 @@ function UF:SetTexture_HealComm(obj, texture)
 		obj.healAbsorbBar:SetStatusBarTexture(texture)
 	end
 end
+hooksecurefunc(UF, "SetTexture_HealComm", ElvUI_EltreumUI.SetTexture_HealComm)
+
