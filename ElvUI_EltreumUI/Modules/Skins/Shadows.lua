@@ -2301,16 +2301,27 @@ local TimeSinceLastUpdate = 0
 local ONUPDATE_INTERVAL = 0.1
 local M = E:GetModule('Misc')
 function ElvUI_EltreumUI:ChatBubblesShadows()
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable and not self.ChatShadowsHooked and E.private.general.chatBubbles == "backdrop" then
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and not self.ChatShadowsHooked and E.private.general.chatBubbles == "backdrop" or E.private.general.chatBubbles == "backdrop_noborder" then
 		M.BubbleFrame:HookScript("OnUpdate",function(_,elapsed)
 			TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 			if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 				TimeSinceLastUpdate = 0
 				for _, frame in pairs(C_ChatBubbles.GetAllChatBubbles()) do
 					local holder = frame:GetChildren()
-					if holder and not holder:IsForbidden() and not frame.shadow then
-						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+					if holder and not holder:IsForbidden() then
+						if E.private.general.chatBubbles == "backdrop" then
+							if not frame.shadow then
+								frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+							end
+						elseif E.private.general.chatBubbles == "backdrop_noborder" then
+							if not holder.shadow then
+								holder:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								holder.shadow:ClearAllPoints()
+								holder.shadow:SetPoint("TOPLEFT", holder.Center, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+								holder.shadow:SetPoint("BOTTOMRIGHT", holder.Center, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+							end
+						end
 					end
 				end
 			end
