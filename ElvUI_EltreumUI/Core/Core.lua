@@ -777,6 +777,26 @@ if E.Retail then
 	end)
 end
 
+--shadow and light compatibility check
+function ElvUI_EltreumUI:SLCheck(setting)
+	if not IsAddOnLoaded("ElvUI_SLE") or not setting then return false end
+	if setting == 'char' and E.db.sle.armory.character.enable then
+		return true
+	end
+	if setting == 'stats' and E.private.sle.armory.stats.enable then
+		return true
+	end
+	if setting == 'inspect' and E.db.sle.armory.inspect.enable then
+		return true
+	end
+	if setting == 'media' and E.private.sle.media.enable then
+		return true
+	end
+
+	return false
+end
+
+
 --for fps testing
 --[[
 local framerate = CreateFrame("Frame", nil, UIParent)

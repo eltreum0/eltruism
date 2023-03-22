@@ -36,24 +36,6 @@ local pairs = _G.pairs
 local string = _G.string
 local InCombatLockdown = _G.InCombatLockdown
 local format = _G.format
-local slecheckchar = false
-local slecheckattribute = false
-local slecheckinspect = false
-
-function ElvUI_EltreumUI:SLArmoryCheck(setting)
-	if not IsAddOnLoaded("ElvUI_SLE") or not setting then return false end
-	if setting == 'char' and E.db.sle.armory.character.enable then
-		return true
-	end
-	if setting == 'stats' and E.private.sle.armory.stats.enable then
-		return true
-	end
-	if setting == 'inspect' and E.db.sle.armory.inspect.enable then
-		return true
-	end
-
-	return false
-end
 
 --improving character panel
 local CharacterFrame = _G.CharacterFrame
@@ -437,7 +419,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 
 			-- if not slecheckattribute and (not IsAddOnLoaded('DejaCharacterStats')) then
-			if not ElvUI_EltreumUI:SLArmoryCheck('stats') and (not IsAddOnLoaded('DejaCharacterStats')) then
+			if not ElvUI_EltreumUI:SLCheck(setting) and (not IsAddOnLoaded('DejaCharacterStats')) then
 				CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
 				CharacterStatsPane.ItemLevelCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 
@@ -452,7 +434,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane, "BOTTOM", 0, -85) --adjusts the eltruism stats portion
 			CharacterFrame.EltruismExtraStatsFont:SetParent(CharacterStatsPane)
 
-			if ElvUI_EltreumUI:SLArmoryCheck('stats') and not IsAddOnLoaded('DejaCharacterStats') then
+			if ElvUI_EltreumUI:SLCheck(setting) and not IsAddOnLoaded('DejaCharacterStats') then
 
 				--offense
 				CharacterStatsPane.OffenseCategory.backdrop:Hide()
@@ -701,7 +683,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			CharacterFrame:HookScript("OnShow", function()
 				if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
-					if not ElvUI_EltreumUI:SLArmoryCheck('stats') then
+					if not ElvUI_EltreumUI:SLCheck(setting) then
 						local bagilvl, equippedilvl = GetAverageItemLevel()
 						if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
 							local r, g, b
@@ -728,7 +710,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			--update stats and stats position
 			hooksecurefunc("PaperDollFrame_UpdateStats", function()
 				if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
-					if not ElvUI_EltreumUI:SLArmoryCheck('stats') then
+					if not ElvUI_EltreumUI:SLCheck(setting) then
 						local bagilvl, equippedilvl = GetAverageItemLevel()
 						if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
 							local r, g, b
@@ -835,7 +817,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 
 			--statusbars
-			if ElvUI_EltreumUI:SLArmoryCheck('stats') then
+			if ElvUI_EltreumUI:SLCheck(setting) then
 				linewidth1 = (( 300 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
 			else
 				linewidth1 = (( 193 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
@@ -851,7 +833,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1}, {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1})
 
-			if ElvUI_EltreumUI:SLArmoryCheck('stats') then
+			if ElvUI_EltreumUI:SLCheck(setting) then
 				linewidth2 = (( 300 - CharacterStatsPane.AttributesCategory.Title:GetStringWidth())/2)
 			else
 				linewidth2 = (( 194 - CharacterStatsPane.AttributesCategory.Title:GetStringWidth())/2)
@@ -867,7 +849,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
 			CharacterStatsPane.AttributesCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1}, {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1})
 
-			if ElvUI_EltreumUI:SLArmoryCheck('stats') then
+			if ElvUI_EltreumUI:SLCheck(setting) then
 				linewidth3 = (( 300 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
 			else
 				linewidth3 = (( 193 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
@@ -893,7 +875,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismExtraStats2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
 			CharacterFrame.EltruismExtraStats2:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1}, {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1})
 
-			if ElvUI_EltreumUI:SLArmoryCheck('stats') then
+			if ElvUI_EltreumUI:SLCheck(setting) then
 				CharacterFrame.EltruismExtraStatsFont:Hide()
 				CharacterFrame.EltruismExtraStats:Hide()
 				CharacterFrame.EltruismExtraStats2:Hide()
@@ -928,13 +910,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			hooksecurefunc('PaperDollFrame_SetLabelAndText', function(statFrame, label)
 				if ( statFrame.Label ) then
 					local text = statFrame.Label:GetText()
-					if not ElvUI_EltreumUI:SLArmoryCheck('stats') then
+					if not ElvUI_EltreumUI:SLCheck(setting) then
 						statFrame.Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					end
 					if not statFrame.Label:GetText():match("|r") then
 						statFrame.Label:SetText(ElvUI_EltreumUI:GradientName(text, E.myclass))
 					end
-					if not ElvUI_EltreumUI:SLArmoryCheck('stats') and statFrame.Value then
+					if not ElvUI_EltreumUI:SLCheck(setting) and statFrame.Value then
 						statFrame.Value:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 					end
 				end
@@ -950,7 +932,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						CharacterFrame.EltruismClassResourceDesc2:SetText(ElvUI_EltreumUI:GradientName(CharacterFrame.EltruismClassResourceDesc2:GetText(), E.myclass))
 					end
 				end
-				if ElvUI_EltreumUI:SLArmoryCheck('stats') then
+				if ElvUI_EltreumUI:SLCheck(setting) then
 					if not CharacterStatsPane.OffenseCategory.Title:GetText():match("|r") then
 						CharacterStatsPane.OffenseCategory.Title:SetText(ElvUI_EltreumUI:GradientName(CharacterStatsPane.OffenseCategory.Title:GetText(), E.myclass))
 					end
@@ -1079,7 +1061,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						end
 					end)
 					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
-						if not ElvUI_EltreumUI:SLArmoryCheck('stats') then
+						if not ElvUI_EltreumUI:SLCheck(setting) then
 							local bagilvl, equippedilvl = GetAverageItemLevel()
 							if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
 								local r, g, b
@@ -1124,7 +1106,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
 					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
-						if not ElvUI_EltreumUI:SLArmoryCheck('stats') then
+						if not ElvUI_EltreumUI:SLCheck(setting) then
 							local bagilvl, equippedilvl = GetAverageItemLevel()
 							if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
 								local r, g, b
