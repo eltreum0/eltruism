@@ -6,7 +6,7 @@ local IsInInstance = _G.IsInInstance
 local C_Map = _G.C_Map
 local C_Timer = _G.C_Timer
 local C_SuperTrack = _G.C_SuperTrack
-local SuperTrackedFrame = _G.SuperTrackedFrame
+local SuperTrackedFrameMixin = _G.SuperTrackedFrameMixin
 local GetUnitSpeed = _G.GetUnitSpeed
 local C_Navigation = _G.C_Navigation
 local math = _G.math
@@ -82,7 +82,7 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 
 						--remove max distance
 						do
-							function SuperTrackedFrame:GetTargetAlphaBaseValue()
+							function SuperTrackedFrameMixin:GetTargetAlphaBaseValue()
 								local d = C_Navigation.GetDistance()
 								if (d >= 10 ) then
 									if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance then

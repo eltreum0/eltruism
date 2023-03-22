@@ -33,7 +33,8 @@ Fixed gradient tag not applying when using the Media functions to apply fonts\
 Fixed an error when MerathilisUI was enabled due to a database change\
 Fixed a possible error when Focus Unitframe was disabled\
 Fixed Focus Target having incorrect custom textures\
-Fixed an Issue when changing Zones
+Fixed an Issue when changing Zones\
+Fixed Waypoints not working in Retail, do note that there seems to be a cap for max distance currently and workarounds are being researched
 ### 3.7.4
 Added Previews During Install, simply mouse over the buttons to preview the profile\
 Added [name:eltruism:gradienttranslit], [name:eltruism:gradientshorttranslit] tags\

@@ -626,7 +626,7 @@ end)
 
 function ElvUI_EltreumUI:SkinMailZone()
 	if E.db.ElvUI_EltreumUI.skins.zones then
-		if not IsAddOnLoaded("ElvUI_SLE") then
+		if not ElvUI_EltreumUI:SLCheck("media") then
 			--[[hooksecurefunc("SetZoneText", function()
 				ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, E.db.general.fontStyle)
 				SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, E.db.general.fontStyle)
