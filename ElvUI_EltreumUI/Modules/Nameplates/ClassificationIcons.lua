@@ -256,8 +256,7 @@ local function Update(self)
 
 	local classification = self.classification
 	local frameType = self.frameType
-
-	if frameType == 'ENEMY_NPC' then
+	if frameType and frameType == 'ENEMY_NPC' then
 		if classification == 'worldboss' or bossIDs[self.npcID] then
 			if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss == "CUSTOM" then
 				element:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss)
@@ -294,6 +293,8 @@ local function Update(self)
 
 			element:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.rareR, E.db.ElvUI_EltreumUI.nameplates.classification.rareG, E.db.ElvUI_EltreumUI.nameplates.classification.rareB, 1)
 			element:Show()
+		else
+			element:Hide()
 		end
 	else
 		element:Hide()
