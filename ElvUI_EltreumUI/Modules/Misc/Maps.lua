@@ -72,6 +72,13 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 		EltruismTimeToArriveParent:SetScript("OnEvent", function()
 			local _, instanceType = IsInInstance()
 			--print(instanceType,event,"waypoint")
+			if C_SuperTrack.IsSuperTrackingQuest() then --dont overwrite quest
+				C_SuperTrack.SetSuperTrackedUserWaypoint(false)
+			else
+				if (C_Map.HasUserWaypoint() == true or C_SuperTrack.IsSuperTrackingAnything() == true) then
+					C_SuperTrack.SetSuperTrackedUserWaypoint(true)
+				end
+			end
 			if (C_Map.HasUserWaypoint() == true or C_SuperTrack.IsSuperTrackingAnything() == true) and (instanceType == "none") then
 				--use throttled onupdate to udpate the text (once per second)
 				EltruismTimeToArrive:SetScript("OnUpdate", function(self, elapsed)
