@@ -299,11 +299,13 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			end
 			powernumber, powertype = UnitPowerType("player")
 			--set gradient if enabled
-			if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
-					EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
-				else
-					EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
+			if powertype then
+				if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
+					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
+						EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
+					else
+						EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
+					end
 				end
 			end
 

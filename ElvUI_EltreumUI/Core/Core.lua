@@ -593,12 +593,14 @@ function ElvUI_EltreumUI:FixChatToggles()
 
 		--fix if the value changed since install
 		local buttonwidth = _G.RightChatToggleButton:GetWidth()
-		local width = GetPhysicalScreenSize()
-		if E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] >= width then
-			E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2 + math.ceil(width - (buttonwidth * 2))
-			E:UpdateDataTexts()
+		--local width = GetPhysicalScreenSize()
+		local width = ceil(E.screenWidth)
+		if E.global["datatexts"]["customPanels"]["EltruismDataText"] then
+			if E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] >= width then
+				E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2 + math.ceil(width - (buttonwidth * 2))
+				E:UpdateDataTexts()
+			end
 		end
-
 
 		--[[
 			_G.LeftChatToggleButton:SetPoint('TOPRIGHT', _G.DTPanelEltruismMover, 'TOPLEFT', 0, 0)

@@ -1342,7 +1342,8 @@ function ElvUI_EltreumUI:SetupDataText()
 	E.global["datatexts"]["customPanels"]["EltruismTime"]["width"] = 120
 
 	local buttonwidth = _G.RightChatToggleButton:GetWidth()
-	local width = GetPhysicalScreenSize()
+	--local width = GetPhysicalScreenSize()
+	local width = ceil(E.screenWidth)
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2 + math.ceil(width - (buttonwidth * 2))
 
 	--scale stuff for 4k

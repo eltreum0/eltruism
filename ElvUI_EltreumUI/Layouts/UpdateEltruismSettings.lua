@@ -122,6 +122,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.skins.colormodkey = true
 
 	E.db.ElvUI_EltreumUI.skins.bigwigs = true
+	E.db.ElvUI_EltreumUI.skins.shadow.bigwigs = true
 	E.db.ElvUI_EltreumUI.skins.meetinghorn = true
 	E.db.ElvUI_EltreumUI.skins.pallypower = true
 	E.db.ElvUI_EltreumUI.skins.details = true

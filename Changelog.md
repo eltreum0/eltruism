@@ -1,6 +1,14 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.7.5.2
+Updated some functions to better hook into ElvUI (thanks Repooc)\
+Fixed Datatexts using incorrect dimensions due to GetScreenWidth() returning a dimension based on UI scale instead of actual Screen Width\
+Fixed Zone Texts not being skinned when Shadow & Light was loaded\
+Fixed Chat Shadows depending on ElvUI setting\
+Fixed an issue with the Objective Frame mover when reloading in combat
+### 3.7.5.1
+Fixed Waypoints not working in Retail, do note that there seems to be a cap for max distance currently and workarounds are being researched
 ### 3.7.5
 Added Skin to SimulationCraft, WarpDeplete, RareScanner, Immersion, BugSack and Clique\
 Added an option to toggle Keybind text on the Quest Item Bar\

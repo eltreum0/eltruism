@@ -15,6 +15,7 @@ local tonumber = _G.tonumber
 local table = _G.table
 local wipe = _G.wipe
 local UiMapPoint = _G.UiMapPoint
+local SuperTrackedFrame = _G.SuperTrackedFrame
 
 --Conversion of Time to Arrive weakaura (new version)
 local EltruismAutopin = CreateFrame("Frame", "EltruismAutoPin")
@@ -72,6 +73,13 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 		EltruismTimeToArriveParent:SetScript("OnEvent", function()
 			local _, instanceType = IsInInstance()
 			--print(instanceType,event,"waypoint")
+			if C_SuperTrack.IsSuperTrackingQuest() then --dont overwrite quest
+				C_SuperTrack.SetSuperTrackedUserWaypoint(false)
+			else
+				if (C_Map.HasUserWaypoint() == true or C_SuperTrack.IsSuperTrackingAnything() == true) then
+					C_SuperTrack.SetSuperTrackedUserWaypoint(true)
+				end
+			end
 			if (C_Map.HasUserWaypoint() == true or C_SuperTrack.IsSuperTrackingAnything() == true) and (instanceType == "none") then
 				--use throttled onupdate to udpate the text (once per second)
 				EltruismTimeToArrive:SetScript("OnUpdate", function(self, elapsed)
@@ -82,7 +90,7 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 
 						--remove max distance
 						do
-							function SuperTrackedFrameMixin:GetTargetAlphaBaseValue()
+							function SuperTrackedFrame:GetTargetAlphaBaseValue()
 								local d = C_Navigation.GetDistance()
 								if (d >= 10 ) then
 									if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance then
