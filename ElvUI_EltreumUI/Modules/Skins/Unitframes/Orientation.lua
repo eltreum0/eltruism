@@ -3,8 +3,10 @@ local UF = E:GetModule('UnitFrames')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 
+--TODO trim this
+
 --Unitframe Backdrop Texture/Alpha/Fill Direction
-function UF:ToggleTransparentStatusBar(isTransparent, statusBar, backdropTex, adjustBackdropPoints, invertColors, reverseFill)
+function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, backdropTex, adjustBackdropPoints, invertColors, reverseFill)
 	statusBar.isTransparent = isTransparent
 	statusBar.invertColors = invertColors
 	statusBar.backdropTex = backdropTex
@@ -65,3 +67,4 @@ function UF:ToggleTransparentStatusBar(isTransparent, statusBar, backdropTex, ad
 		end
 	end
 end
+hooksecurefunc(UF,"ToggleTransparentStatusBar", ElvUI_EltreumUI.ToggleTransparentStatusBar)
