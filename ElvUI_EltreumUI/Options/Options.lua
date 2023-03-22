@@ -1264,6 +1264,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Action Bar 1"],
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									bar1enable = {
 										type = 'toggle',
@@ -1307,6 +1308,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Action Bar 2"],
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									bar2enable = {
 										type = 'toggle',
@@ -1350,6 +1352,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Action Bar 3"],
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									bar3enable = {
 										type = 'toggle',
@@ -1393,6 +1396,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Action Bar 4"],
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									bar4enable = {
 										type = 'toggle',
@@ -1436,6 +1440,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Action Bar 5"],
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									bar5enable = {
 										type = 'toggle',
@@ -1479,6 +1484,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Action Bar 6"],
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									bar6enable = {
 										type = 'toggle',
@@ -1523,6 +1529,7 @@ function ElvUI_EltreumUI:Configtable()
 								hidden = not E.Wrath,
 								name = L["Shaman Totem Bar"],
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									totemenable = {
 										type = 'toggle',
@@ -1582,6 +1589,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Stance Bar"],
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									stanceenable = {
 										type = 'toggle',
@@ -1637,6 +1645,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Pet Action Bar"],
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									petactionenable = {
 										type = 'toggle',
@@ -1745,6 +1754,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.unitframe.units.player.enable or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Player Border"],
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									barplayer = {
 										type = 'toggle',
@@ -1828,6 +1838,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.unitframe.units.target.enable or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Target Border"],
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									bartarget = {
 										type = 'toggle',
@@ -1911,6 +1922,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.unitframe.units.targettarget.enable or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Target of Target Border"],
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									bartargettarget = {
 										type = 'toggle',
@@ -1954,6 +1966,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.unitframe.units.party.enable or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Party Border"],
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									barparty = {
 										type = 'toggle',
@@ -1997,6 +2010,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Raid1 Border"],
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									barraid = {
 										type = 'toggle',
@@ -2040,6 +2054,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.unitframe.units.raid2.enable or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Raid2 Border"],
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									barraid2 = {
 										type = 'toggle',
@@ -2083,6 +2098,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.unitframe.units.raid3.enable or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Raid3 Border"],
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									barraid3 = {
 										type = 'toggle',
@@ -2127,6 +2143,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Focus Border"],
 								hidden = E.Classic,
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									barfocus= {
 										type = 'toggle',
@@ -2231,6 +2248,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Focus Target Border"],
 								hidden = E.Classic,
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									barfocustarget = {
 										type = 'toggle',
@@ -2291,6 +2309,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Boss Border"],
 								hidden = not (E.Retail or E.Wrath),
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									barboss= {
 										type = 'toggle',
@@ -2350,6 +2369,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.unitframe.units.pet.enable or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Pet Border"],
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									petenable = {
 										type = 'toggle',
@@ -2473,6 +2493,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = MINIMAP_LABEL,
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									enableminimap = {
 										type = 'toggle',
@@ -2535,6 +2556,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = AURAS,
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									enableaura = {
 										type = 'toggle',
@@ -2694,6 +2716,7 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = BINDING_HEADER_CHAT,
 								childGroups = "tab",
+								width = 'full',
 								args = {
 									enablechat = {
 										type = 'toggle',
@@ -4337,11 +4360,11 @@ function ElvUI_EltreumUI:Configtable()
 				},
 			},
 			cvars = {
-				order = 85,
 				type = 'group',
 				name = E:TextGradient(L["CVars"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cvar',
 				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cvar:0:0:0:0|t '..L["Customize Blizzard's Hidden Settings"],
+				order = 85,
 				childGroups = "tab",
 				args = {
 					generalcvars = {
@@ -4388,224 +4411,259 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						},
 					},
-					customizecvars = {
+					othercvars = {
 						order = 2,
 						type = 'group',
-						name = L["Customize CVars"],
+						--inline = true,
+						name = L["Other CVars"],
+						--childGroups = "tab",
 						args = {
-							headerblizzcombattext = {
+							blizzcombattext = {
 								order = 2,
-								type = "description",
-								name = L["Blizzard Floating Combat Text"],
+								type = 'group',
+								--inline = true,
+								name = L["Combat Text"],
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							blizzcombatexttoggle = {
-								order = 3,
-								name = L["Disable Combat Text"],
-								type = "toggle",
-								desc = L["Enable or disable Blizzard's default Floating Combat Text"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							blizzcombatextmana = {
-								order = 4,
-								name = L["Enable Resource Gains"],
-								type = "toggle",
-								desc = L["Enable or disable Blizzard's default Floating Combat Text for Mana/Rage/Energy and other resouces"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							restorecombatext = {
-								order = 5,
-								name = L["Restore All Blizzard Combat Text"],
-								type = 'execute',
-								width = 'full',
-								func = function() ElvUI_EltreumUI:RestoreBlizzCombatText() E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							headercameraFOV = {
-								order = 6,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							cameraFOV = {
-								type = 'range',
-								name = L["Camera Field of View"],
-								desc = L["This allows you to zoom out further with the camera to increase the field of view."],
-								order = 7,
-								min = 50,
-								max = 90,
-								step = 1,
-								width = "full",
-								hidden = not E.Retail and not E.Wrath,
-								get = function() return E.db.ElvUI_EltreumUI.cvars.cameraFOV end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraFOV = value SetCVar('camerafov', value) end,
-							},
-							cameraDistanceMaxZoomFactor = {
-								type = 'range',
-								name = L["Camera Distance Max Zoom Factor"],
-								desc = L["Maximum Camera Zoom Out"],
-								order = 8,
-								min = 1,
-								max = function()
-									if not E.Wrath then
-										return 2.6
-									else
-										return 3.4
-									end
-								end,
-								step = 0.1,
-								width = "full",
-								get = function() return E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor = value SetCVar('cameraDistanceMaxZoomFactor', value) end,
-							},
-							headerworldtext = {
-								order = 9,
-								type = "description",
-								name = L["Change the Scale of the World Text"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							worldtextscale = {
-								type = 'range',
-								name = L["Select the size of the World Text"],
-								desc = L["Such as the floating XP, floating reputation changes and others"],
-								order = 10,
-								min = 0.2,
-								max = 2,
-								step = 0.1,
-								width = "full",
-								get = function() return E.db.ElvUI_EltreumUI.otherstuff.worldtextscale end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldtextscale = value ElvUI_EltreumUI:WorldTextScale(value) end,
-							},
-							headernameplatetargetradialposition = {
-								order = 11,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							nameplateTargetRadialPosition = {
-								order = 12,
-								type = 'select',
-								name = L["Nameplate Target Radial Position"],
-								desc = L["When target is off screen, position its nameplate radially around sides and bottom."],
-								--width = "full",
-								values = {
-									["1"] = L["Target Only"],
-									["2"] = L["All in Combat"],
+								childGroups = "tab",
+								args = {
+									headerblizzcombattext = {
+										order = 2,
+										type = "description",
+										name = L["Blizzard Floating Combat Text"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									blizzcombatexttoggle = {
+										order = 3,
+										name = L["Disable Combat Text"],
+										type = "toggle",
+										desc = L["Enable or disable Blizzard's default Floating Combat Text"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									blizzcombatextmana = {
+										order = 4,
+										name = L["Enable Resource Gains"],
+										type = "toggle",
+										desc = L["Enable or disable Blizzard's default Floating Combat Text for Mana/Rage/Energy and other resouces"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									restorecombatext = {
+										order = 5,
+										name = L["Restore All Blizzard Combat Text"],
+										type = 'execute',
+										width = 'full',
+										func = function() ElvUI_EltreumUI:RestoreBlizzCombatText() E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									headerworldtext = {
+										order = 9,
+										type = "description",
+										name = L["Change the Scale of the World Text"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									worldtextscale = {
+										type = 'range',
+										name = L["Select the size of the World Text"],
+										desc = L["Such as the floating XP, floating reputation changes and others"],
+										order = 10,
+										min = 0.2,
+										max = 2,
+										step = 0.1,
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.worldtextscale end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldtextscale = value ElvUI_EltreumUI:WorldTextScale(value) end,
+									},
 								},
-								style = 'radio',
-								get = function() return C_CVar.GetCVar('nameplateTargetRadialPosition') end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition = value SetCVar('nameplateTargetRadialPosition', value) end,
 							},
-							headernameplateotherinsets = {
-								order = 13,
-								type = "description",
-								name = "",
+							camera = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								name = L["Camera"],
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							nameplateOtherBottomInset = {
-								type = 'range',
-								name = L["Nameplate Other Bottom Inset"],
-								desc = L["In screen % the inset from the Bottom"],
-								order = 14,
-								min = 0.01,
-								max = 1,
-								step = 0.01,
-								width = "full",
-								get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset = value SetCVar('nameplateOtherBottomInset', value) SetCVar('nameplateLargeBottomInset', value) end,
-							},
-							nameplateOtherTopInset = {
-								type = 'range',
-								name = L["Nameplate Other Top Inset"],
-								desc = L["In screen % the inset from the Top"],
-								order = 15,
-								min = 0.01,
-								max = 1,
-								step = 0.01,
-								width = "full",
-								get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset = value SetCVar('nameplateOtherTopInset', value) SetCVar('nameplateLargeTopInset', value) end,
-							},
-							headerFSR = {
-								order = 16,
-								type = "description",
-								name = L["AMD FSR"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							forceFSRon = {
-								order = 17,
-								type = 'toggle',
-								name = L["Enable AMD FSR even if not scaling"],
-								desc = L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"],
-								width = 'full',
-								get = function()
-									if C_CVar.GetCVar('ResampleAlwaysSharpen') == '0' then
-										return false
-									elseif C_CVar.GetCVar('ResampleAlwaysSharpen') == '1' then
-										return true
-									end
-								end,
-								set = function(_, value)
-									if value == true then
-								 		SetCVar('ResampleAlwaysSharpen', 1)
-								 	else
-								 		SetCVar('ResampleAlwaysSharpen', 0)
-								 	end
-								 end,
-							},
-							forceFSRsharpness = {
-								order = 18,
-								type = 'range',
-								name = RESAMPLE_QUALITY_FSR,
-								--desc = L["FSR Sharpness"],
-								min = 0,
-								max = 2,
-								step = 0.1,
-								width = "full",
-								disabled = function()
-									if C_CVar.GetCVar('ResampleAlwaysSharpen') == '1' then
-										return false
-									elseif C_CVar.GetCVar('ResampleAlwaysSharpen') == '0' then
-										return true
-									end
-								end,
-								hidden = E.Retail,
-								get = function() return tonumber(C_CVar.GetCVar('ResampleSharpness')) end,
-								set = function(_, value) SetCVar('ResampleSharpness', value) end,
-							},
-							headervideolatency = {
-								order = 19,
-								type = "description",
-								name = "",
-								width = 'full',
-								hidden = E.Classic,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							lowlatencycvar ={
-								order = 20,
-								type = 'select',
-								name = LOW_LATENCY_MODE or "Low Latency Mode",
-								hidden = E.Classic,
-								desc = OPTION_TOOLTIP_LOW_LATENCY_MODE or "Allows the game to use various techniques to reduce input latency",
-								--width = "full",
-								values = {
-									["0"] = VIDEO_OPTIONS_DISABLED or "Disabled",
-									["1"] = VIDEO_OPTIONS_BUILTIN or "Built-in",
-									["2"] = VIDEO_OPTIONS_NVIDIA_REFLEX or "NVIDIA Reflex",
-									--["3"] = VIDEO_OPTIONS_NVIDIA_REFLEX_BOOST,
+								childGroups = "tab",
+								args = {
+									headercameraFOV = {
+										order = 6,
+										type = "description",
+										name = "",
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									cameraFOV = {
+										type = 'range',
+										name = L["Camera Field of View"],
+										desc = L["This allows you to zoom out further with the camera to increase the field of view."],
+										order = 7,
+										min = 50,
+										max = 90,
+										step = 1,
+										width = "full",
+										hidden = not E.Retail and not E.Wrath,
+										get = function() return E.db.ElvUI_EltreumUI.cvars.cameraFOV end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraFOV = value SetCVar('camerafov', value) end,
+									},
+									cameraDistanceMaxZoomFactor = {
+										type = 'range',
+										name = L["Camera Distance Max Zoom Factor"],
+										desc = L["Maximum Camera Zoom Out"],
+										order = 8,
+										min = 1,
+										max = function()
+											if not E.Wrath then
+												return 2.6
+											else
+												return 3.4
+											end
+										end,
+										step = 0.1,
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor = value SetCVar('cameraDistanceMaxZoomFactor', value) end,
+									},
 								},
-								style = 'radio',
-								get = function() return C_CVar.GetCVar('LowLatencyMode') end,
-								set = function(_, value) local number = tonumber(value) SetCVar('LowLatencyMode', number) end,
+							},
+							nameplates = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								name = L["Nameplates"],
+								width = 'full',
+								childGroups = "tab",
+								args = {
+									nameplateTargetRadialPosition = {
+										order = 12,
+										type = 'select',
+										name = L["Nameplate Target Radial Position"],
+										desc = L["When target is off screen, position its nameplate radially around sides and bottom."],
+										--width = "full",
+										values = {
+											["1"] = L["Target Only"],
+											["2"] = L["All in Combat"],
+										},
+										style = 'radio',
+										get = function() return C_CVar.GetCVar('nameplateTargetRadialPosition') end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition = value SetCVar('nameplateTargetRadialPosition', value) end,
+									},
+									headernameplateotherinsets = {
+										order = 13,
+										type = "description",
+										name = "",
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									nameplateOtherBottomInset = {
+										type = 'range',
+										name = L["Nameplate Other Bottom Inset"],
+										desc = L["In screen % the inset from the Bottom"],
+										order = 14,
+										min = 0.01,
+										max = 1,
+										step = 0.01,
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset = value SetCVar('nameplateOtherBottomInset', value) SetCVar('nameplateLargeBottomInset', value) end,
+									},
+									nameplateOtherTopInset = {
+										type = 'range',
+										name = L["Nameplate Other Top Inset"],
+										desc = L["In screen % the inset from the Top"],
+										order = 15,
+										min = 0.01,
+										max = 1,
+										step = 0.01,
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset = value SetCVar('nameplateOtherTopInset', value) SetCVar('nameplateLargeTopInset', value) end,
+									},
+								},
+							},
+							graphics = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								name = L["Graphics"],
+								width = 'full',
+								childGroups = "tab",
+								args = {
+									headerFSR = {
+										order = 16,
+										type = "description",
+										name = L["AMD FSR"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									forceFSRon = {
+										order = 17,
+										type = 'toggle',
+										name = L["Enable AMD FSR even if not scaling"],
+										desc = L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"],
+										width = 'full',
+										get = function()
+											if C_CVar.GetCVar('ResampleAlwaysSharpen') == '0' then
+												return false
+											elseif C_CVar.GetCVar('ResampleAlwaysSharpen') == '1' then
+												return true
+											end
+										end,
+										set = function(_, value)
+											if value == true then
+												SetCVar('ResampleAlwaysSharpen', 1)
+											else
+												SetCVar('ResampleAlwaysSharpen', 0)
+											end
+										 end,
+									},
+									forceFSRsharpness = {
+										order = 18,
+										type = 'range',
+										name = RESAMPLE_QUALITY_FSR,
+										--desc = L["FSR Sharpness"],
+										min = 0,
+										max = 2,
+										step = 0.1,
+										width = "full",
+										disabled = function()
+											if C_CVar.GetCVar('ResampleAlwaysSharpen') == '1' then
+												return false
+											elseif C_CVar.GetCVar('ResampleAlwaysSharpen') == '0' then
+												return true
+											end
+										end,
+										hidden = E.Retail,
+										get = function() return tonumber(C_CVar.GetCVar('ResampleSharpness')) end,
+										set = function(_, value) SetCVar('ResampleSharpness', value) end,
+									},
+									headervideolatency = {
+										order = 19,
+										type = "description",
+										name = "",
+										width = 'full',
+										hidden = E.Classic,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									lowlatencycvar ={
+										order = 20,
+										type = 'select',
+										name = LOW_LATENCY_MODE or "Low Latency Mode",
+										hidden = E.Classic,
+										desc = OPTION_TOOLTIP_LOW_LATENCY_MODE or "Allows the game to use various techniques to reduce input latency",
+										--width = "full",
+										values = {
+											["0"] = VIDEO_OPTIONS_DISABLED or "Disabled",
+											["1"] = VIDEO_OPTIONS_BUILTIN or "Built-in",
+											["2"] = VIDEO_OPTIONS_NVIDIA_REFLEX or "NVIDIA Reflex",
+											--["3"] = VIDEO_OPTIONS_NVIDIA_REFLEX_BOOST,
+										},
+										style = 'radio',
+										get = function() return C_CVar.GetCVar('LowLatencyMode') end,
+										set = function(_, value) local number = tonumber(value) SetCVar('LowLatencyMode', number) end,
+									},
+								},
 							},
 						},
 					},
@@ -4617,257 +4675,297 @@ function ElvUI_EltreumUI:Configtable()
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\chat',
 				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\chat:0:0:0:0|t '..L["Enhance Chat Functionality"],
 				order = 85,
+				childGroups = "tab",
 				args = {
-					header0 = {
+					chatenable = {
 						order = 1,
-						type = "description",
+						type = "group",
+						inline = true,
 						name = "",
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						args = {
+							chatfadeenable = {
+								order = 2,
+								type = 'toggle',
+								name = L["Enable ElvUI Chat modifications"],
+								width = 'full',
+								desc = L["Enable adding more functions to ElvUI Chat"],
+								get = function() return E.db.ElvUI_EltreumUI.chat.enable end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+						}
 					},
-					chatfadeenable = {
+					general = {
 						order = 2,
-						type = 'toggle',
-						name = L["Enable ElvUI Chat modifications"],
-						width = 'full',
-						desc = L["Enable adding more functions to ElvUI Chat"],
-						get = function() return E.db.ElvUI_EltreumUI.chat.enable end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+						type = 'group',
+						--inline = true,
+						name = L["General"],
+						childGroups = "tab",
+						args = {
+							headerkeys = {
+								order = 189,
+								type = "description",
+								name = L["!key Chat Command"],
+								width = 'full',
+								hidden = not E.Retail,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							mpluskeys = {
+								order = 190,
+								type = 'toggle',
+								name = L["Enable !key and !keys chat command"],
+								width = 'full',
+								hidden = not E.Retail,
+								desc = L["Will link your key in guild or party chat"],
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.mpluskeys end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mpluskeys = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header8 = {
+								order = 191,
+								type = "description",
+								name = L["Enhance Item Links in Chat"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							chatlooticons = {
+								order = 192,
+								type = 'toggle',
+								name = L["Enable Chat Icons"],
+								width = 'full',
+								desc = L["Toggle the option on"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.looticons end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.looticons = value end,
+							},
+							chatitemlevels = {
+								order = 193,
+								type = 'toggle',
+								name = L["Enable Item Levels"],
+								width = 'full',
+								desc = L["Toggle the option on"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable or not E.db.ElvUI_EltreumUI.chat.looticons end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.itemlevels end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.itemlevels = value end,
+							},
+							header9 = {
+								order = 194,
+								type = "description",
+								name = L["Customize the Chat tabs"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							darkchat = {
+								order = 195,
+								type = 'execute',
+								name = L["Dark Chat"],
+								--width = 'double',
+								func = function() ElvUI_EltreumUI:DarkChat() E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							lightchat = {
+								order = 196,
+								type = 'execute',
+								name = L["Transparent Chat"],
+								--width = 'double',
+								func = function() ElvUI_EltreumUI:TransparentChat() E:StaticPopup_Show('CONFIG_RL') end,
+							},
+						},
 					},
-					header1 = {
+					fade = {
 						order = 3,
-						type = "description",
-						name = L["Add mouse over to the left chat panel"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					leftmouseover = {
-						order = 5,
-						type = 'toggle',
-						name = L["Left Chat Mouse Over"],
-						desc = L["Toggle the option"],
-						width = 'full',
+						type = 'group',
+						--inline = true,
 						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.leftmouseover end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftmouseover = value E:StaticPopup_Show('CONFIG_RL') end,
+						name = L["Fade"],
+						childGroups = "tab",
+						args = {
+							header1 = {
+								order = 3,
+								type = "description",
+								name = L["Add mouse over to the left chat panel"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							leftmouseover = {
+								order = 5,
+								type = 'toggle',
+								name = L["Left Chat Mouse Over"],
+								desc = L["Toggle the option"],
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.leftmouseover end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftmouseover = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header2 = {
+								order = 6,
+								type = "description",
+								name = L["Add a fade to the left chat panel, controlled by ElvUI Chat > Text Fade > Inactivity Timer"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							leftfade = {
+								order = 7,
+								type = 'toggle',
+								name = L["Left Inactivity Fader"],
+								width = 'full',
+								desc = L["Toggle the option"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.leftfader end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftfader = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header3 = {
+								order = 8,
+								type = "description",
+								name = L["Add mouse over to the left chat panel"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							rightmouseover = {
+								order = 9,
+								type = 'toggle',
+								name = L["Right Chat Mouse Over"],
+								desc = L["Toggle the option"],
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.rightmouseover end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightmouseover = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header4 = {
+								order = 10,
+								type = "description",
+								name = L["Add a fade to the right chat panel, controlled by ElvUI Chat > Text Fade > Inactivity Timer"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							rightfade = {
+								order = 11,
+								type = 'toggle',
+								name = L["Right Inactivity Fader"],
+								desc = L["Toggle the option"],
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.rightfader end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightfader = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header6 = {
+								order = 85,
+								type = "description",
+								name = L["Invert left mouse click so that chat starts faded and mouse click will make it stop fading"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							invertmouse = {
+								order = 86,
+								type = 'toggle',
+								name = L["Invert Mouse Click"],
+								width = 'full',
+								desc = L["Toggle the option on"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.invertclick end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.invertclick = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+						},
 					},
-					header2 = {
-						order = 6,
-						type = "description",
-						name = L["Add a fade to the left chat panel, controlled by ElvUI Chat > Text Fade > Inactivity Timer"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					leftfade = {
-						order = 7,
-						type = 'toggle',
-						name = L["Left Inactivity Fader"],
-						width = 'full',
-						desc = L["Toggle the option"],
+					combathide = {
+						order = 3,
+						type = 'group',
+						--inline = true,
 						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.leftfader end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftfader = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header3 = {
-						order = 8,
-						type = "description",
-						name = L["Add mouse over to the left chat panel"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					rightmouseover = {
-						order = 9,
-						type = 'toggle',
-						name = L["Right Chat Mouse Over"],
-						desc = L["Toggle the option"],
-						width = 'full',
-						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.rightmouseover end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightmouseover = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header4 = {
-						order = 10,
-						type = "description",
-						name = L["Add a fade to the right chat panel, controlled by ElvUI Chat > Text Fade > Inactivity Timer"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					rightfade = {
-						order = 11,
-						type = 'toggle',
-						name = L["Right Inactivity Fader"],
-						desc = L["Toggle the option"],
-						width = 'full',
-						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.rightfader end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightfader = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header5 = {
-						order = 12,
-						type = "description",
 						name = L["Combat Hide"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						childGroups = "tab",
+						args = {
+							header5 = {
+								order = 12,
+								type = "description",
+								name = L["Combat Hide"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							leftcombathide = {
+								order = 13,
+								type = 'toggle',
+								name = L["Hide Left Chat in Combat"],
+								width = 'full',
+								desc = L["Toggle the option"],
+								disabled = function() return E.db.ElvUI_EltreumUI.chat.leftbosshide or not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.leftcombathide end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftcombathide = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							leftbosshide = {
+								order = 14,
+								type = 'toggle',
+								name = L["Hide Left Chat in Boss Encounters"],
+								width = 'full',
+								desc = L["Toggle the option"],
+								disabled = function() return E.db.ElvUI_EltreumUI.chat.leftcombathide or not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.leftbosshide end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftbosshide = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							rightcombathide = {
+								order = 15,
+								type = 'toggle',
+								name = L["Hide Right Chat in Combat"],
+								width = 'full',
+								desc = L["Toggle the option"],
+								disabled = function() return E.db.ElvUI_EltreumUI.chat.rightbosshide or not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.rightcombathide end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightcombathide = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							rightbosshide = {
+								order = 16,
+								type = 'toggle',
+								name = L["Hide Right Chat in Boss Encounters"],
+								width = 'full',
+								desc = L["Toggle the option"],
+								disabled = function() return E.db.ElvUI_EltreumUI.chat.rightcombathide or not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.rightbosshide end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightbosshide = value E:StaticPopup_Show('CONFIG_RL') end,
+							},								},
 					},
-					leftcombathide = {
-						order = 13,
-						type = 'toggle',
-						name = L["Hide Left Chat in Combat"],
-						width = 'full',
-						desc = L["Toggle the option"],
-						disabled = function() return E.db.ElvUI_EltreumUI.chat.leftbosshide or not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.leftcombathide end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftcombathide = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					leftbosshide = {
-						order = 14,
-						type = 'toggle',
-						name = L["Hide Left Chat in Boss Encounters"],
-						width = 'full',
-						desc = L["Toggle the option"],
-						disabled = function() return E.db.ElvUI_EltreumUI.chat.leftcombathide or not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.leftbosshide end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftbosshide = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					rightcombathide = {
-						order = 15,
-						type = 'toggle',
-						name = L["Hide Right Chat in Combat"],
-						width = 'full',
-						desc = L["Toggle the option"],
-						disabled = function() return E.db.ElvUI_EltreumUI.chat.rightbosshide or not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.rightcombathide end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightcombathide = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					rightbosshide = {
-						order = 16,
-						type = 'toggle',
-						name = L["Hide Right Chat in Boss Encounters"],
-						width = 'full',
-						desc = L["Toggle the option"],
-						disabled = function() return E.db.ElvUI_EltreumUI.chat.rightcombathide or not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.rightbosshide end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightbosshide = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header6 = {
-						order = 85,
-						type = "description",
-						name = L["Invert left mouse click so that chat starts faded and mouse click will make it stop fading"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					invertmouse = {
-						order = 86,
-						type = 'toggle',
-						name = L["Invert Mouse Click"],
-						width = 'full',
-						desc = L["Toggle the option on"],
+					color = {
+						order = 3,
+						type = 'group',
+						--inline = true,
 						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.invertclick end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.invertclick = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header7 = {
-						order = 87,
-						type = "description",
-						name = L["Add color to some chat messages"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					colorsysmsgs = {
-						order = 88,
-						type = 'toggle',
-						name = L["Enable on System Messages"],
-						width = 'full',
-						desc = L["Toggle the option on"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.colorsysmsg end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.colorsysmsg = value end,
-					},
-					classcolormsgs = {
-						order = 89,
-						type = 'toggle',
-						name = L["Enable on Chat Messages"],
-						width = 'double',
-						desc = L["Toggle the option on"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.classcolorchat end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.classcolorchat = value end,
-					},
-					classcolormsgscustom = {
-						order = 90,
-						type = 'toggle',
-						name = L["Custom Color"],
-						--width = 'double',
-						desc = L["Toggle the option on"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable or not E.db.ElvUI_EltreumUI.chat.classcolorchat end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.classcolorchatcustom end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.classcolorchatcustom = value end,
-					},
-					headerkeys = {
-						order = 189,
-						type = "description",
-						name = L["!key Chat Command"],
-						width = 'full',
-						hidden = not E.Retail,
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					mpluskeys = {
-						order = 190,
-						type = 'toggle',
-						name = L["Enable !key and !keys chat command"],
-						width = 'full',
-						hidden = not E.Retail,
-						desc = L["Will link your key in guild or party chat"],
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mpluskeys end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mpluskeys = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header8 = {
-						order = 191,
-						type = "description",
-						name = L["Enhance Item Links in Chat"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					chatlooticons = {
-						order = 192,
-						type = 'toggle',
-						name = L["Enable Chat Icons"],
-						width = 'full',
-						desc = L["Toggle the option on"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.looticons end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.looticons = value end,
-					},
-					chatitemlevels = {
-						order = 193,
-						type = 'toggle',
-						name = L["Enable Item Levels"],
-						width = 'full',
-						desc = L["Toggle the option on"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable or not E.db.ElvUI_EltreumUI.chat.looticons end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.itemlevels end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.itemlevels = value end,
-					},
-					header9 = {
-						order = 194,
-						type = "description",
-						name = L["Customize the Chat tabs"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					darkchat = {
-						order = 195,
-						type = 'execute',
-						name = L["Dark Chat"],
-						--width = 'double',
-						func = function() ElvUI_EltreumUI:DarkChat() E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					lightchat = {
-						order = 196,
-						type = 'execute',
-						name = L["Transparent Chat"],
-						--width = 'double',
-						func = function() ElvUI_EltreumUI:TransparentChat() E:StaticPopup_Show('CONFIG_RL') end,
+						name = L["Color"],
+						childGroups = "tab",
+						args = {
+							header7 = {
+								order = 87,
+								type = "description",
+								name = L["Add color to some chat messages"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							colorsysmsgs = {
+								order = 88,
+								type = 'toggle',
+								name = L["Enable on System Messages"],
+								width = 'full',
+								desc = L["Toggle the option on"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.colorsysmsg end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.colorsysmsg = value end,
+							},
+							classcolormsgs = {
+								order = 89,
+								type = 'toggle',
+								name = L["Enable on Chat Messages"],
+								width = 'double',
+								desc = L["Toggle the option on"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.classcolorchat end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.classcolorchat = value end,
+							},
+							classcolormsgscustom = {
+								order = 90,
+								type = 'toggle',
+								name = L["Custom Color"],
+								--width = 'double',
+								desc = L["Toggle the option on"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable or not E.db.ElvUI_EltreumUI.chat.classcolorchat end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.classcolorchatcustom end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.classcolorchatcustom = value end,
+							},
+						},
 					},
 				},
 			},
@@ -4879,18 +4977,12 @@ function ElvUI_EltreumUI:Configtable()
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\gradient',
 				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\gradient:0:0:0:0|t '..L["Customize Gradient Colors"],
 				args = {
-					class = {
+					colorsenable = {
 						order = 1,
-						type = 'group',
-						name = L["Custom Class Colors"],
+						type = "group",
+						inline = true,
+						name = "",
 						args = {
-							headernp = {
-								order = 1,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
 							enablecustomcolornp = {
 								order = 2,
 								type = 'toggle',
@@ -4901,15 +4993,8 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
-							headeruf = {
-								order = 3,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
 							enablecustomcoloruf = {
-								order = 4,
+								order = 2,
 								type = 'toggle',
 								name = L["Unitframe Custom Color"],
 								desc = L["Enable Custom Colors for Unitframes"],
@@ -4918,6 +5003,13 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
+						}
+					},
+					class = {
+						order = 2,
+						type = 'group',
+						name = L["Custom Class Colors"],
+						args = {
 							header2 = {
 								order = 64,
 								type = "description",
@@ -5679,7 +5771,7 @@ function ElvUI_EltreumUI:Configtable()
 						},
 					},
 					unitframe = {
-						order = 2,
+						order = 3,
 						type = 'group',
 						name = L["Unitframe Colors"],
 						args = {
@@ -5985,7 +6077,7 @@ function ElvUI_EltreumUI:Configtable()
 						},
 					},
 					nameplate = {
-						order = 3,
+						order = 4,
 						type = 'group',
 						name = L["Nameplate Colors"],
 						args = {
@@ -6308,7 +6400,7 @@ function ElvUI_EltreumUI:Configtable()
 						},
 					},
 					power = {
-						order = 4,
+						order = 5,
 						type = 'group',
 						name = L["Power Colors"],
 						args = {
@@ -6795,16 +6887,9 @@ function ElvUI_EltreumUI:Configtable()
 						type = "group",
 						name = "LootText",
 						args = {
-							header1 = {
-								order = 1,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
 							lootsetting = {
-								order = 2,
-								type = 'group',
+								order = 1,
+								type = "group",
 								inline = true,
 								name = L["Show a floating loot text"],
 								args = {
@@ -6816,69 +6901,72 @@ function ElvUI_EltreumUI:Configtable()
 										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.enable end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.enable = value E:StaticPopup_Show('CONFIG_RL') end,
 									},
-									addagaphere = {
-										order = 2,
-										type = "description",
-										name = "",
+								}
+							},
+							types = {
+								order = 2,
+								type = 'group',
+								name = L["Text Types"],
+								childGroups = "tab",
+								width = 'full',
+								args = {
+									honor = {
+										type = 'toggle',
+										name = HONOR,
+										order = 5,
+										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.honor end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.honor = value end,
 									},
-									addanothergapforfun = {
-										order = 2,
-										type = "description",
-										name = "",
+									currency = {
+										type = 'toggle',
+										name = CURRENCY,
+										order = 5,
+										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.currency end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.currency = value end,
 									},
-									suboptions = {
-										order = 2,
-										type = 'group',
-										name = L["Choose which types of text:"],
-											args = {
-												yetanothergap = {
-												order = 2,
-												type = "description",
-												name = "",
-												},
-												honor = {
-													type = 'toggle',
-													name = HONOR,
-													order = 5,
-													disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-													get = function() return E.db.ElvUI_EltreumUI.loot.loottext.honor end,
-													set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.honor = value end,
-												},
-												currency = {
-													type = 'toggle',
-													name = CURRENCY,
-													order = 5,
-													disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-													get = function() return E.db.ElvUI_EltreumUI.loot.loottext.currency end,
-													set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.currency = value end,
-												},
-												pet = {
-													type = 'toggle',
-													name = L["Pets"],
-													order = 5,
-													disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-													get = function() return E.db.ElvUI_EltreumUI.loot.loottext.pet end,
-													set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.pet = value end,
-												},
-												filterquality = {
-													order = 6,
-													type = 'select',
-													name = L["Minimum Loot Quality Filter"],
-													desc = L["Only items of this quality or better will be displayed"],
-													values = {
-														["0"] = ITEM_QUALITY0_DESC,
-														["1"] = ITEM_QUALITY1_DESC,
-														["2"] = ITEM_QUALITY2_DESC,
-														["3"] = ITEM_QUALITY3_DESC,
-														["4"] = ITEM_QUALITY4_DESC,
-													},
-													style = 'radio',
-													disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-													get = function() return E.db.ElvUI_EltreumUI.loot.loottext.quality end,
-													set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.quality = value end,
-												},
-											}
+									pet = {
+										type = 'toggle',
+										name = L["Pets"],
+										order = 5,
+										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.pet end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.pet = value end,
 									},
+								},
+							},
+							filter = {
+								order = 3,
+								type = 'group',
+								name = L["Filter"],
+								childGroups = "tab",
+								args = {
+									filterquality = {
+										order = 6,
+										type = 'select',
+										name = L["Minimum Loot Quality Filter"],
+										desc = L["Only items of this quality or better will be displayed"],
+										values = {
+											["0"] = ITEM_QUALITY0_DESC,
+											["1"] = ITEM_QUALITY1_DESC,
+											["2"] = ITEM_QUALITY2_DESC,
+											["3"] = ITEM_QUALITY3_DESC,
+											["4"] = ITEM_QUALITY4_DESC,
+										},
+										style = 'radio',
+										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.quality end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.quality = value end,
+									},
+								},
+							},
+							scale = {
+								order = 4,
+								type = 'group',
+								name = L["Scale"],
+								childGroups = "tab",
+								args = {
 									header1 = {
 										order = 3,
 										type = "description",
@@ -6908,6 +6996,14 @@ function ElvUI_EltreumUI:Configtable()
 										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
 										func = function() E.db.ElvUI_EltreumUI.loot.loottext.scale = 0.65 end,
 									},
+								},
+							},
+							strata = {
+								order = 4,
+								type = 'group',
+								name = L["Strata"],
+								childGroups = "tab",
+								args = {
 									header2 = {
 										order = 10,
 										type = "description",
@@ -6932,6 +7028,14 @@ function ElvUI_EltreumUI:Configtable()
 										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.strata end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.strata = value E:StaticPopup_Show('CONFIG_RL') end,
 									},
+								},
+							},
+							position = {
+								order = 4,
+								type = 'group',
+								name = L["Position"],
+								childGroups = "tab",
+								args = {
 									header99 = {
 										order = 12,
 										type = "description",
@@ -6967,36 +7071,45 @@ function ElvUI_EltreumUI:Configtable()
 										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.yOffset = value end,
 										--confirm = true,
 									},
-									header98 = {
-										order = 15,
+								},
+							},
+							fonts = {
+								order = 4,
+								type = 'group',
+								name = L["Fonts"],
+								childGroups = "tab",
+								args = {
+									header = {
+										order = 1,
 										type = "description",
 										name = "",
 										width = 'full',
 										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
-									customfontlootgap = {
-										type = 'description',
-										name = '',
+									fontsize = {
+										type = 'range',
+										name = L["Font Size"],
+										order = 2,
+										min = 4,
+										max = 160,
+										step = 1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontsize = value end,
+									},
+									header2 = {
+										order = 3,
+										type = "description",
+										name = "",
 										width = 'full',
-										order = 16,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
 									customfontlootdesc = {
 										type = 'description',
 										name = L["Change the font of LootText to be the ElvUI Default Font found in General"],
 										width = 'full',
-										order = 17,
-									},
-									fontsize = {
-										type = 'range',
-										name = L["Font Size"],
-										order = 18,
-										min = 4,
-										max = 160,
-										step = 1,
-										--width = "single",
-										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsize end,
-										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontsize = value end,
+										order = 4,
 									},
 									customfontloot = {
 										type = 'toggle',
@@ -7045,13 +7158,6 @@ function ElvUI_EltreumUI:Configtable()
 										end,
 									},
 								},
-							},
-							header13 = {
-								order = 38,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 						},
 					},
