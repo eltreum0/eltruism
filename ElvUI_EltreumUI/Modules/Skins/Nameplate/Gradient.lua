@@ -21,7 +21,7 @@ do
 		nameplate, db = self.__owner, NP.db.threat
 		sf = NP:StyleFilterChanges(nameplate)
 		if status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) and not sf.HealthColor then
-			NP:Health_SetColors(nameplate, true)
+			--NP:Health_SetColors(nameplate, true)
 
 			-- if gradient use gradient mode
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
