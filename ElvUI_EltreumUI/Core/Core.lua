@@ -26,7 +26,6 @@ local UIErrorsFrame = _G.UIErrorsFrame
 local RaidWarningFrame = _G.RaidWarningFrame
 local tostring = _G.tostring
 local tremove = _G.tremove
-local GetScreenWidth = _G.GetScreenWidth
 local math = _G.math
 local PlaySound = _G.PlaySound
 local W
@@ -594,7 +593,7 @@ function ElvUI_EltreumUI:FixChatToggles()
 
 		--fix if the value changed since install
 		local buttonwidth = _G.RightChatToggleButton:GetWidth()
-		local width = GetScreenWidth()
+		local width = GetPhysicalScreenSize()
 		if E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] >= width then
 			E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2 + math.ceil(width - (buttonwidth * 2))
 			E:UpdateDataTexts()
@@ -776,6 +775,26 @@ if E.Retail then
 		_G["ClickBindingFrame"]:SetPoint("LEFT", _G["SpellBookFrame"], "RIGHT", 50, -37)
 	end)
 end
+
+--shadow and light compatibility check
+function ElvUI_EltreumUI:SLCheck(setting)
+	if not IsAddOnLoaded("ElvUI_SLE") or not setting then return false end
+	if setting == 'char' and E.db.sle.armory.character.enable then
+		return true
+	end
+	if setting == 'stats' and E.private.sle.armory.stats.enable then
+		return true
+	end
+	if setting == 'inspect' and E.db.sle.armory.inspect.enable then
+		return true
+	end
+	if setting == 'media' and E.private.sle.media.enable then
+		return true
+	end
+
+	return false
+end
+
 
 --for fps testing
 --[[

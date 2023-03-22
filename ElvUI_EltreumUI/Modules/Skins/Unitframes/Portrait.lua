@@ -671,7 +671,7 @@ if E.Retail or E.Wrath then
 	local CreateFrame = CreateFrame
 	local CLASS_ICON_TCOORDS = CLASS_ICON_TCOORDS
 	local classIcon = [[Interface\WorldStateFrame\Icons-Classes]]
-	function UF:Configure_Portrait(frame)
+	function UF:Configure_Portrait(frame) --TODO recheck this
 		local last = frame.Portrait
 		if last then
 			last:Hide()

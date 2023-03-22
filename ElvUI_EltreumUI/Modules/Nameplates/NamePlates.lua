@@ -760,7 +760,7 @@ local classcolorcast = {
 	["FRIENDLY"] = "FF33FF33",
 	["EVOKER"] = "FF33937F",
 }
-function NP:Castbar_PostCastStart(unit)
+function ElvUI_EltreumUI:Castbar_PostCastStart(unit)
 	self:CheckInterrupt(unit)
 	local plate = self.__owner
 	local db = NP:PlateDB(plate)
@@ -791,6 +791,7 @@ function NP:Castbar_PostCastStart(unit)
 		end
 	end
 end
+hooksecurefunc(NP, 'Castbar_PostCastStart', ElvUI_EltreumUI.Castbar_PostCastStart)
 
 hooksecurefunc(NP, 'Initialize', function()
 	if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor then
