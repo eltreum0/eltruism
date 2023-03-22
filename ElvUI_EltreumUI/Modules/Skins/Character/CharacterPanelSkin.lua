@@ -945,7 +945,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		-- add and expand art
 		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-			if ElvUI_EltreumUI:SLArmoryCheck('char') then
+			if ElvUI_EltreumUI:SLCheck('char') then
 				if _G.PaperDollFrame.SLE_Armory_BG then
 					if _G.PaperDollFrame.SLE_Armory_BG:IsVisible() then
 						_G.PaperDollFrame.SLE_Armory_BG:Hide()
@@ -1081,7 +1081,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
 						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 					end
-					if ElvUI_EltreumUI:SLArmoryCheck('char') then
+					if ElvUI_EltreumUI:SLCheck('char') then
 						if _G.PaperDollFrame.SLE_Armory_BG then
 							if _G.PaperDollFrame.SLE_Armory_BG:IsVisible() then
 								_G.PaperDollFrame.SLE_Armory_BG:Hide()
@@ -1135,7 +1135,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
 					end
 					_G.CharacterModelFrameBackgroundOverlay:Hide()
-					if ElvUI_EltreumUI:SLArmoryCheck('char') then
+					if ElvUI_EltreumUI:SLCheck('char') then
 						if _G.PaperDollFrame.SLE_Armory_BG then
 							if _G.PaperDollFrame.SLE_Armory_BG:IsVisible() then
 								_G.PaperDollFrame.SLE_Armory_BG:Hide()
@@ -1997,8 +1997,7 @@ end
 
 --Player Item Quality Texture
 function ElvUI_EltreumUI:PlayerItemQuality(unit)
-	SLArmoryCheck()
-	if ElvUI_EltreumUI:SLArmoryCheck('char') then return end
+	if ElvUI_EltreumUI:SLCheck('char') then return end
 	if E.db.ElvUI_EltreumUI.skins.itemquality and E.private.skins.blizzard.enable then
 		E:Delay(0, function()
 			for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
@@ -2506,8 +2505,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 
 			--add a texture based on quality too, tbc needed a timer
 			if E.db.ElvUI_EltreumUI.skins.itemquality then
-				SLArmoryCheck()
-				if ElvUI_EltreumUI:SLArmoryCheck('inspect') then return end
+				if ElvUI_EltreumUI:SLCheck('inspect') then return end
 				E:Delay(0, function()
 					for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 						qualityAnchorInspect = _G["Inspect"..InvSlotIdTable[InvSlotId]]
