@@ -61,6 +61,27 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 			end)
 		end
 
+		--remove max distance
+		do
+			function SuperTrackedFrame:GetTargetAlphaBaseValue()
+				local d = C_Navigation.GetDistance()
+				if (d >= 10 ) then
+					if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance then
+						if d <= E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance then
+							return 1
+						elseif d > E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance then
+							return 0
+						end
+					else
+						return 1
+					end
+				else
+					C_Map.ClearUserWaypoint()
+					return 0
+				end
+			end
+		end
+
 		SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 		SuperTrackedFrame.DistanceText:SetTextColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB)
 		EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
@@ -87,27 +108,6 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 					TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 					if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 						TimeSinceLastUpdate = 0
-
-						--remove max distance
-						do
-							function SuperTrackedFrame:GetTargetAlphaBaseValue()
-								local d = C_Navigation.GetDistance()
-								if (d >= 10 ) then
-									if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance then
-										if d <= E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance then
-											return 1
-										elseif d > E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance then
-											return 0
-										end
-									else
-										return 1
-									end
-								else
-									C_Map.ClearUserWaypoint()
-									return 0
-								end
-							end
-						end
 
 						--calculate time to arrive
 						local speed = GetUnitSpeed("player") or GetUnitSpeed("vehicle")
