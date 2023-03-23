@@ -457,6 +457,9 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 									if NPC_ID == 153897 then
 										return
 									elseif gossipInfoTable[1].name:match("|cFFFF0000") then
+										if E.db.ElvUI_EltreumUI.dev then
+											ElvUI_EltreumUI:Print("red gossip found, returning")
+										end
 										return
 									else
 										if E.db.ElvUI_EltreumUI.dev then
