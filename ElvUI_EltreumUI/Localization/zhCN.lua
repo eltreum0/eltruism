@@ -1288,3 +1288,4 @@ L["Armory"] = true
 L["Archeology"] = true
 L["Other AddOns"] = true
 L["Power Bar"] = true
+L["Graphics"] = true
