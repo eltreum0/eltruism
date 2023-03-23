@@ -967,4 +967,105 @@ E:AddTag("name:eltruism:gradientshorttranslit", "UNIT_NAME_UPDATE", function(uni
 end)
 E:AddTagInfo("name:eltruism:gradientshorttranslit", ElvUI_EltreumUI.Name, L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
 
+--from elvui, modified for gradient
+do
+	local function GetTitleNPC(unit, custom)
+		if UnitIsPlayer(unit) or (E.Wrath and UnitAffectingCombat('player') and IsInInstance()) then return end
+
+		E.ScanTooltip:SetOwner(_G.UIParent, 'ANCHOR_NONE')
+		E.ScanTooltip:SetUnit(unit)
+		E.ScanTooltip:Show()
+
+		-- similar to TT.GetLevelLine
+		local ttLine = _G[format('ElvUI_ScanTooltipTextLeft%d', GetCVarBool('colorblindmode') and 3 or 2)]
+		local ttText = ttLine and ttLine:GetText()
+		local ttLower = ttText and strlower(ttText)
+
+		if ttLower and not strfind(ttLower, LEVEL) then
+			local reaction = UnitReaction(unit, "player")
+			if reaction then
+				if not custom then
+					if reaction >= 5 then
+						ttText = ElvUI_EltreumUI:GradientName(ttText, "NPCFRIENDLY")
+					elseif reaction == 4 then
+						ttText = ElvUI_EltreumUI:GradientName(ttText, "NPCNEUTRAL")
+					elseif reaction == 3 then
+						ttText = ElvUI_EltreumUI:GradientName(ttText, "NPCUNFRIENDLY")
+					elseif reaction == 2 or reaction == 1 then
+						ttText = ElvUI_EltreumUI:GradientName(ttText, "NPCHOSTILE")
+					end
+					return ttText
+				else
+					ttText = format(custom, ttText)
+					if reaction >= 5 then
+						ttText = ElvUI_EltreumUI:GradientName(ttText, "NPCFRIENDLY")
+					elseif reaction == 4 then
+						ttText = ElvUI_EltreumUI:GradientName(ttText, "NPCNEUTRAL")
+					elseif reaction == 3 then
+						ttText = ElvUI_EltreumUI:GradientName(ttText, "NPCUNFRIENDLY")
+					elseif reaction == 2 or reaction == 1 then
+						ttText = ElvUI_EltreumUI:GradientName(ttText, "NPCHOSTILE")
+					end
+					return ttText
+				end
+			end
+		end
+	end
+	E.TagFunctions.GetTitleNPC = GetTitleNPC
+
+	E:AddTag('eltruismnpctitle', 'UNIT_NAME_UPDATE', function(unit)
+		return GetTitleNPC(unit)
+	end)
+	E:AddTagInfo("eltruismnpctitle", ElvUI_EltreumUI.Name, L["Displays NPC title in gradient"])
+
+	E:AddTag('eltruismnpctitle:brackets', 'UNIT_NAME_UPDATE', function(unit)
+		return GetTitleNPC(unit, '<%s>')
+	end)
+	E:AddTagInfo("eltruismnpctitle:brackets", ElvUI_EltreumUI.Name, L["Displays NPC title in gradient with brackets"])
+end
+
+E:AddTag('eltruismname:title', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
+	local name = UnitName(unit)
+	local _, unitClass = UnitClass(unit)
+
+	if UnitIsPlayer(unit) then
+		return ElvUI_EltreumUI:GradientName(UnitPVPName(unit), unitClass)
+	elseif not UnitIsPlayer(unit) then
+		local reaction = UnitReaction(unit, "player")
+		if reaction then
+			if reaction >= 5 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY")
+			elseif reaction == 4 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL")
+			elseif reaction == 3 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY")
+			elseif reaction == 2 or reaction == 1 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE")
+			end
+		end
+	end
+end)
+E:AddTagInfo("eltruismname:title", ElvUI_EltreumUI.Name, L["Displays name and title"])
+
+E:AddTag('eltruismguild:brackets', 'PLAYER_GUILD_UPDATE', function(unit)
+	local guildName = GetGuildInfo(unit)
+	if guildName then
+		local _, unitClass = UnitClass(unit)
+		guildName = format('<%s>', guildName)
+		return ElvUI_EltreumUI:GradientName(guildName, unitClass)
+	end
+end)
+E:AddTagInfo("eltruismname:title", ElvUI_EltreumUI.Name, L["Displays the guild name with brackets in gradient"])
+
+E:AddTag('eltruismrealm:dash', 'UNIT_NAME_UPDATE', function(unit)
+	local _, realm = UnitName(unit)
+	if realm and (realm ~= '' and realm ~= E.myrealm) then
+		return format('-%s', realm)
+	elseif realm ~= '' then
+		return realm
+	end
+end)
+E:AddTagInfo("eltruismname:title", ElvUI_EltreumUI.Name, L["Displays the server name with a dash in gradient"])
+
+
 --difficulty icon is on the classification file to avoid duplicating tables/info
