@@ -720,7 +720,6 @@ function ElvUI_EltreumUI:Shadows()
 			_G.SubscriptionInterstitialFrame,
 			--_G.ImmersionFrame.TalkBox,
 			_G.ReadyStatus,
-			_G.QuestFrame,
 		}
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then
@@ -956,6 +955,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.TaxiFrame,
 				_G.TabardFrame,
 				_G.LossOfControlFrame,
+				_G.QuestFrame,
 			}
 			for _, frame in pairs(retailframes) do
 				if frame and not frame.shadow then
@@ -1024,7 +1024,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
-			--tbc/classic frames
+			--wrath/classic frames
 			local classicframes = {
 				_G.HelpFrame,
 				_G.QuestLogFrame.backdrop,
@@ -1045,6 +1045,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.TaxiFrame.backdrop,
 				_G.TabardFrame.backdrop,
 				_G.ItemTextFrame.backdrop,
+				_G.QuestFrame.backdrop,
 			}
 			for _, frame in pairs(classicframes) do
 				if frame and not frame.shadow then
