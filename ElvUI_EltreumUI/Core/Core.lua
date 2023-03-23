@@ -797,6 +797,16 @@ function ElvUI_EltreumUI:SLCheck(setting)
 	return false
 end
 
+--check for blinkii's kick on cd function
+function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
+	if IsAddOnLoaded("ElvUI_mMediaTag") then
+		if E.db.mMediaTag.mCastbar.enable then
+			return _G.mMediaTag_interruptOnCD
+		end
+	else
+		return false
+	end
+end
 
 --for fps testing
 --[[
