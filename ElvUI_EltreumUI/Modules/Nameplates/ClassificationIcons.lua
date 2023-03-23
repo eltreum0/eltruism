@@ -250,49 +250,54 @@ local function Update(self)
 		element:PreUpdate()
 	end
 
-	if E.db.ElvUI_EltreumUI.dev then
-		ElvUI_EltreumUI:Print("npcID: "..self.npcID)
-	end
-
 	local classification = self.classification
-	if classification == 'worldboss' or bossIDs[self.npcID] then
-		if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss == "CUSTOM" then
-			element:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss)
-		else
-			element:SetTexture(textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss])
-		end
-		-- color
-		element:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR, E.db.ElvUI_EltreumUI.nameplates.classification.bossG, E.db.ElvUI_EltreumUI.nameplates.classification.bossB, 1)
-		element:Show()
-	elseif classification == 'elite' then
-		if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == "CUSTOM" then
-			element:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customelite)
-		else
-			element:SetTexture(textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite])
-		end
-		-- color
-		element:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteR, E.db.ElvUI_EltreumUI.nameplates.classification.eliteG, E.db.ElvUI_EltreumUI.nameplates.classification.eliteB, 1)
-		element:Show()
-	elseif classification == 'rareelite' then
-		if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite == "CUSTOM" then
-			element:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrareelite)
-		else
-			element:SetTexture(textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite])
-		end
-		element:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteR, E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteG, E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteB, 1)
-		--element:SetAtlas('nameplates-icon-elite-silver')
-		element:Show()
-	elseif classification == 'rare' then
-		if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == "CUSTOM" then
-			element:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrare)
-		else
-			element:SetTexture(textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare])
-		end
+	local frameType = self.frameType
+	if frameType and frameType == 'ENEMY_NPC' then
+		if classification == 'worldboss' or bossIDs[self.npcID] then
+			if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss == "CUSTOM" then
+				element:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss)
+			else
+				element:SetTexture(textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss])
+			end
+			-- color
+			element:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR, E.db.ElvUI_EltreumUI.nameplates.classification.bossG, E.db.ElvUI_EltreumUI.nameplates.classification.bossB, 1)
+			element:Show()
+		elseif classification == 'elite' then
+			if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite == "CUSTOM" then
+				element:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customelite)
+			else
+				element:SetTexture(textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite])
+			end
+			-- color
+			element:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteR, E.db.ElvUI_EltreumUI.nameplates.classification.eliteG, E.db.ElvUI_EltreumUI.nameplates.classification.eliteB, 1)
+			element:Show()
+		elseif classification == 'rareelite' then
+			if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite == "CUSTOM" then
+				element:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrareelite)
+			else
+				element:SetTexture(textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite])
+			end
+			element:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteR, E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteG, E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteB, 1)
+			--element:SetAtlas('nameplates-icon-elite-silver')
+			element:Show()
+		elseif classification == 'rare' then
+			if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare == "CUSTOM" then
+				element:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrare)
+			else
+				element:SetTexture(textureDB[E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare])
+			end
 
-		element:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.rareR, E.db.ElvUI_EltreumUI.nameplates.classification.rareG, E.db.ElvUI_EltreumUI.nameplates.classification.rareB, 1)
-		element:Show()
+			element:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.rareR, E.db.ElvUI_EltreumUI.nameplates.classification.rareG, E.db.ElvUI_EltreumUI.nameplates.classification.rareB, 1)
+			element:Show()
+		else
+			element:Hide()
+		end
 	else
 		element:Hide()
+	end
+
+	if E.db.ElvUI_EltreumUI.dev then
+		ElvUI_EltreumUI:Print("npcID: "..self.npcID,classification,frameType)
 	end
 
 	if element.PostUpdate then
