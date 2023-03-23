@@ -1,6 +1,14 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.7.6
+Added multiple tabs to options, revamping many to make them easier to read\
+Fixed issues with Nameplates flashing due to a change in the functions\
+Fixed an issue with Quest Accept frame shadows in Wrath/Classic\
+Fixed Classification Icons sometimes showing on non Enemy NPCs\
+Fixed profile install missing BigWigs shadows setting\
+Fixed issues with Shadow and Light's Armory mode\
+Fixed Max Distance for Waypoints in Retail
 ### 3.7.5.2
 Updated some functions to better hook into ElvUI (thanks Repooc)\
 Fixed Datatexts using incorrect dimensions due to GetScreenWidth() returning a dimension based on UI scale instead of actual Screen Width\
