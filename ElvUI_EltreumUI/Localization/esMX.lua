@@ -1321,3 +1321,5 @@ L["Archeology"] = "Arqueología"
 L["Other AddOns"] = "Otros complementos"
 L["Power Bar"] = "Barra de energía"
 L["Graphics"] = "Gráficos"
+L["Icons"] = true
+L["Miscellaneous"] = true

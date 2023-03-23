@@ -447,4 +447,4 @@ E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 		end
 	end
 end)
-E:AddTagInfo('eltruism:classification', ElvUI_EltreumUI.Name, L["Shows an Icon for the classification of the unit"])
+E:AddTagInfo('eltruism:classification', ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows an Icon for the classification of the unit"])
