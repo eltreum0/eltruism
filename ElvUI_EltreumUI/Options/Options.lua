@@ -296,7 +296,7 @@ function ElvUI_EltreumUI:Configtable()
 							header1 = {
 								order = 1,
 								type = "description",
-								name = L["Reinstall"]..CHAT_LABEL,
+								name = L["Reinstall"].." "..CHAT_LABEL,
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
