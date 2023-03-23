@@ -145,38 +145,53 @@ function ElvUI_EltreumUI:Configtable()
 				name = E:TextGradient(L["Installer"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\install',
 				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\install:0:0:0:0|t '..L["Install, Reinstall or Update various parts of Eltruism"],
+				childGroups = "tab",
 				args = {
-					header5 = {
-						order = 1,
-						type = "description",
-						name = L["Eltruism Installer"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
 					install = {
 						order = 2,
 						type = 'group',
-						inline = true,
-						name = "",
+						--inline = true,
+						name = L["Eltruism Installer"],
 						args = {
-							pluginagain = {
+							header1 = {
 								order = 1,
+								type = "description",
+								name = L["Eltruism Installer"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							pluginagain = {
+								order = 2,
 								type = 'execute',
 								name = L["Launch Eltruism Installer"],
 								width = 'full',
 								desc = L["Launches the Eltruism install prompt"],
 								func = function() E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData) E:ToggleOptions() end,
 							},
+							header2 = {
+								order = 3,
+								type = "description",
+								name = L["Eltruism Settings"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
 							eltruismsettings = {
-								order = 2,
+								order = 4,
 								type = 'execute',
 								name = L["Reset/Update Eltruism Settings"],
 								width = 'full',
 								desc = L["Resets/Updates Eltruism Settings to Eltreum's Defaults"],
 								func = function() ElvUI_EltreumUI:UpdateEltruismSettings() E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							header3 = {
+								order = 5,
+								type = "description",
+								name = L["ElvUI Settings"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
 							elvuisettings = {
-								order = 3,
+								order = 6,
 								type = 'execute',
 								name = L["Reset/Update ElvUI Settings"],
 								width = 'full',
@@ -185,28 +200,35 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						},
 					},
-					header6 = {
-						order = 3,
-						type = "description",
-						name = L["Nameplates"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
 					resetnameplates = {
 						order = 4,
 						type = 'group',
-						inline = true,
-						name = "",
+						--inline = true,
+						name = L["Nameplates"],
 						args = {
-							nameplatereset = {
+							header1 = {
 								order = 1,
+								type = "description",
+								name = L["Reset Nameplates"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							nameplatereset = {
+								order = 2,
 								type = 'execute',
 								name = L["Reset nameplates to Eltruism settings"],
 								width = 'full',
 								func = function() ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end,
 							},
-							nameplatestylefilter = {
+							header2 = {
 								order = 2,
+								type = "description",
+								name = L["Reset Style Filters"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							nameplatestylefilter = {
+								order = 3,
 								type = 'execute',
 								name = L["Reset Nameplate Style Filters"],
 								width = 'full',
@@ -214,21 +236,72 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						},
 					},
-					header7 = {
-						order = 5,
-						type = "description",
-						name = CHAT_LABEL,
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					resetchat = {
-						order = 6,
+					resetlayout = {
+						order = 8,
 						type = 'group',
-						inline = true,
-						name = "",
+						--inline = true,
+						name = L["Layouts"],
 						args = {
-							resetchatagain = {
+							header1 = {
 								order = 1,
+								type = "description",
+								name = L["Reinstall DPS Layout"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							resetdps = {
+								order = 2,
+								type = 'execute',
+								name = L["Reset layout to Eltruism DPS/Tank"],
+								width = 'full',
+								func = function() E.data:SetProfile('Eltreum DPS/Tank ('..E.mynameRealm..')') ElvUI_EltreumUI:SetupGeneralLayout() ElvUI_EltreumUI:SetupLayoutDPS() end,
+							},
+							header2 = {
+								order = 3,
+								type = "description",
+								name = L["Reinstall Healer Layout"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							resethealer = {
+								order = 4,
+								type = 'execute',
+								name = L["Reset layout to Eltruism Healer"],
+								width = 'full',
+								func = function() E.data:SetProfile('Eltreum Healer ('..E.mynameRealm..')') ElvUI_EltreumUI:SetupGeneralLayout() ElvUI_EltreumUI:SetupLayoutHealer() end,
+							},
+							header3 = {
+								order = 5,
+								type = "description",
+								name = L["Reinstall Eltruism Datatext"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							resetoradddatatext = {
+								order = 6,
+								type = 'execute',
+								name = L["Reset/Add Eltruism Datatext Panel"],
+								width = 'full',
+								func = function() ElvUI_EltreumUI:SetupDataText() E:UpdateMoverPositions() end,
+							},
+						},
+					},
+					general = {
+						order = 22,
+						type = 'group',
+						name = L["General"],
+						width = "full",
+						--inline = true,
+						args = {
+							header1 = {
+								order = 1,
+								type = "description",
+								name = L["Reinstall"].." "..CHAT_LABEL,
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							resetchat = {
+								order = 2,
 								type = 'execute',
 								name = L["Reset Chat to ElvUI Settings"],
 								width = 'full',
@@ -265,59 +338,15 @@ function ElvUI_EltreumUI:Configtable()
 									end
 								end,
 							},
-						},
-					},
-					header8 = {
-						order = 7,
-						type = "description",
-						name = L["Layouts"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					resetlayout = {
-						order = 8,
-						type = 'group',
-						inline = true,
-						name = "",
-						args = {
-							resetdps = {
-								order = 1,
-								type = 'execute',
-								name = L["Reset layout to Eltruism DPS/Tank"],
+							header2 = {
+								order = 3,
+								type = "description",
+								name = L["Skip Plugins"],
 								width = 'full',
-								func = function() E.data:SetProfile('Eltreum DPS/Tank ('..E.mynameRealm..')') ElvUI_EltreumUI:SetupGeneralLayout() ElvUI_EltreumUI:SetupLayoutDPS() end,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-							resethealer = {
-								order = 1,
-								type = 'execute',
-								name = L["Reset layout to Eltruism Healer"],
-								width = 'full',
-								func = function() E.data:SetProfile('Eltreum Healer ('..E.mynameRealm..')') ElvUI_EltreumUI:SetupGeneralLayout() ElvUI_EltreumUI:SetupLayoutHealer() end,
-							},
-							resetoradddatatext = {
-								order = 2,
-								type = 'execute',
-								name = L["Reset/Add Eltruism Datatext Panel"],
-								width = 'full',
-								func = function() ElvUI_EltreumUI:SetupDataText() E:UpdateMoverPositions() end,
-							},
-						},
-					},
-					header9 = {
-						order = 9,
-						type = "description",
-						name = L["Skip Plugins"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					skipplugin = {
-						order = 10,
-						type = 'group',
-						inline = true,
-						name = "",
-						args = {
-							resethealer = {
-								order = 1,
+							skipplugin = {
+								order = 4,
 								type = 'execute',
 								name = L["Skip Plugins install message"],
 								desc = L["Make the warnings to install profiles for other plugins stop"],
@@ -328,23 +357,15 @@ function ElvUI_EltreumUI:Configtable()
 									E.private.ElvUI_EltreumUI.isInstalled.projectazilroka = true
 								end,
 							},
-						},
-					},
-					headerdb = {
-						order = 11,
-						type = "description",
-						name = L["Database Check"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					databasecheck = {
-						order = 12,
-						type = 'group',
-						inline = true,
-						name = "",
-						args = {
-							resethealer = {
-								order = 1,
+							header3 = {
+								order = 5,
+								type = "description",
+								name = L["Database Check"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							databasecheck= {
+								order = 6,
 								type = 'execute',
 								name = L["Run Database Check"],
 								desc = L["Perform a Database Check if you are updating from a very old version as some settings have changed places and the Database Check will convert them"],
@@ -352,24 +373,15 @@ function ElvUI_EltreumUI:Configtable()
 								confirm = true,
 								func = function() ElvUI_EltreumUI:DatabaseConversions(true) end,
 							},
-						},
-					},
-					header10 = {
-						order = 21,
-						type = "description",
-						name = L["Clear Details! Damage Meter tables to free up memory"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					detailstable = {
-						order = 22,
-						type = 'group',
-						name = "",
-						width = "full",
-						inline = true,
-						args = {
+							header4 = {
+								order = 7,
+								type = "description",
+								name = L["Clear Details! Damage Meter tables to free up memory"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
 							detailstableexecute = {
-								order = 12,
+								order = 8,
 								type = 'execute',
 								name = L["Clear Details Tables"],
 								desc = L["Set Details tables to be empty"],
@@ -477,7 +489,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = '|cff16C3F2AddOn|r|cFFFFFFFFSkins|r',
 								desc = L["Reset to Eltruism defaults."],
 								confirm = true,
-								width = 'double',
+								width = 'full',
 								func = function() ElvUI_EltreumUI:AddonSetupAS() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header2 = {
@@ -492,7 +504,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = '|cFF16C3F2Project|r|cFFFFFFFFAzilroka|r',
 								desc = L["Reset to Eltruism defaults."],
 								confirm = true,
-								width = 'double',
+								width = 'full',
 								func = function() ElvUI_EltreumUI:AddonSetupPA() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header3 = {
@@ -509,7 +521,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = "|cff9482c9S|r|cff8c8ac9h|r|cff8591c9a|r|cff809bc9d|r|cff7fa6c9o|r|cff7eb2c9w|r |cff6fcac1a|r|cff5de7b8n|r|cff4bfdaed|r |cff3cfda2L|r|cff2cfd97i|r|cff20fd7bg|r|cff16fd55h|r|cff0cfd2ft|r",
 								desc = L["Reset to Eltruism defaults."],
 								confirm = true,
-								width = 'double',
+								width = 'full',
 								hidden = not E.Retail,
 								func = function() ElvUI_EltreumUI:GetSLEProfile() E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -527,7 +539,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = "|cff5385edW|r|cff5094eai|r|cff4da4e7n|r|cff4ab4e4d|r|cff47c0e1T|r|cff44cbdfo|r|cff41d7ddo|r|cff41d7ddl|r|cff41d7dds|r",
 								desc = L["Reset to Eltruism defaults."],
 								confirm = true,
-								width = 'double',
+								width = 'full',
 								hidden = not E.Retail,
 								func = function() ElvUI_EltreumUI:GetWindToolsProfile() E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -544,7 +556,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = '|cFF16C3F2Dynamic Status |r|cFFFFFFFFIcons|r',
 								desc = L["Reset to Eltruism defaults."],
 								confirm = true,
-								width = 'double',
+								width = 'full',
 								func = function() ElvUI_EltreumUI:SetupDynamicStatusIcons() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 						},
@@ -566,7 +578,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'BigWigs',
 								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
+								width = 'full',
 								func = function() ElvUI_EltreumUI:AddonSetupBW() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header2 = {
@@ -580,7 +592,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'DBM',
 								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
+								width = 'full',
 								func = function() ElvUI_EltreumUI:AddonSetupDBM() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header4 = {
@@ -595,7 +607,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Method Raid Tools',
 								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
+								width = 'full',
 								func = function() ElvUI_EltreumUI:AddonSetupMRT() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 						},
@@ -617,7 +629,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Dynamic Cam',
 								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
+								width = 'full',
 								func = function() ElvUI_EltreumUI:AddonSetupDynamicCam() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header2 = {
@@ -631,7 +643,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Immersion',
 								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
+								width = 'full',
 								func = function() ElvUI_EltreumUI:AddonSetupImmersion() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header3 = {
@@ -645,7 +657,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'WarpDeplete',
 								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
+								width = 'full',
 								hidden = not E.Retail,
 								func = function() ElvUI_EltreumUI:GetWarpDepleteProfile() E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -660,7 +672,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Questie',
 								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
+								width = 'full',
 								hidden = E.Retail,
 								func = function() ElvUI_EltreumUI:AddonSetupQuestie() E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -676,7 +688,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'BattleGroundEnemies',
 								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
+								width = 'full',
 								func = function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header6 = {
@@ -690,7 +702,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Capping',
 								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
+								width = 'full',
 								func = function() ElvUI_EltreumUI:GetCappingProfile() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header7 = {
@@ -704,7 +716,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Gladius Ex',
 								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
+								width = 'full',
 								hidden = not E.Retail,
 								func = function() ElvUI_EltreumUI:AddonSetupGladiusEx() E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -713,7 +725,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Gladddy',
 								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
+								width = 'full',
 								hidden = E.Retail or E.Classic,
 								func = function() ElvUI_EltreumUI:SetupGladdy() E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -729,7 +741,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'Gladius',
 								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
+								width = 'full',
 								hidden = E.Retail or E.Classic,
 								func = function() ElvUI_EltreumUI:SetupGladius() E:StaticPopup_Show('CONFIG_RL') end,
 							},
@@ -745,7 +757,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'NameplateSCT',
 								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
+								width = 'full',
 								func = function() ElvUI_EltreumUI:AddonSetupNameplateSCT() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header9 = {
@@ -759,7 +771,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = 'ElvUI Floating Combat Text',
 								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
+								width = 'full',
 								func = function() ElvUI_EltreumUI:AddonSetupFCT() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header10 = {
@@ -774,7 +786,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = L["Details v1 - Blizzard Flat Icons"],
 								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
+								width = 'full',
 								func = function() ElvUI_EltreumUI:AddonSetupDT() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header11 = {
@@ -788,7 +800,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = L["Details v2 - Releaf Transparent Icons"],
 								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
+								width = 'full',
 								func = function() ElvUI_EltreumUI:AddonSetupDTReleaf() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header12 = {
@@ -802,7 +814,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = L["Details v3 - Releaf Solid Icons"],
 								desc = L["Reset to Eltruism defaults."],
-								width = 'double',
+								width = 'full',
 								func = function() ElvUI_EltreumUI:AddonSetupDTReleafv3() E:StaticPopup_Show('CONFIG_RL') end,
 							},
 						},
@@ -840,7 +852,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["All Player Buffs"],
 										desc = L["Set filters to show more buffs on Player"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupBuffs('player', 'Everything') end,
 									},
 									playeralldebuffs = {
@@ -848,7 +860,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["All Player Debuffs"],
 										desc = L["Set filters to show more debuffs on Player"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupDebuffs('player', 'Everything') end,
 									},
 									headerline2 = {
@@ -863,7 +875,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["Eltruism Player Buffs"],
 										desc = L["Set filters to be Eltruism defaults on Player"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupBuffs('player', 'Eltruism') end,
 									},
 									playerEltruismdebuffs = {
@@ -871,7 +883,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["Eltruism Player Debuffs"],
 										desc = L["Set filters to be Eltruism defaults on Player"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupDebuffs('player', 'Eltruism') end,
 									},
 								},
@@ -901,7 +913,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["All Target Debuffs"],
 										desc = L["Set filters to show more debuffs on Target"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupDebuffs('target', 'Everything') end,
 									},
 									targetallbuffs = {
@@ -909,7 +921,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["All Target Buffs"],
 										desc = L["Set filters to show more buffs on Target"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupBuffs('target', 'Everything') end,
 									},
 									headerline2 = {
@@ -924,7 +936,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["Eltruism Target Debuffs"],
 										desc = L["Set filters to be Eltruism defaults on Target"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupDebuffs('target', 'Eltruism') end,
 									},
 									targetEltruismbuffs = {
@@ -932,7 +944,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["Eltruism Target Buffs"],
 										desc = L["Set filters to be Eltruism defaults on Target"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupBuffs('target', 'Eltruism') end,
 									},
 								},
@@ -963,7 +975,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["All Focus Buffs"],
 										desc = L["Set filters to show more buffs on Focus"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupBuffs('focus', 'Everything') end,
 									},
 									focusalldebuffs = {
@@ -971,7 +983,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["All Focus Debuffs"],
 										desc = L["Set filters to show more debuffs on Focus"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupDebuffs('focus', 'Everything') end,
 									},
 									headerline2 = {
@@ -986,7 +998,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["Eltruism Focus Buffs"],
 										desc = L["Set filters to be Eltruism defaults on Focus"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupBuffs('focus', 'Eltruism') end,
 									},
 									focusEltruismdebuffs = {
@@ -994,7 +1006,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["Eltruism Focus Debuffs"],
 										desc = L["Set filters to be Eltruism defaults on Focus"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupDebuffs('focus', 'Eltruism') end,
 									},
 								},
@@ -1025,7 +1037,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["All Boss Buffs"],
 										desc = L["Set filters to show more buffs on Boss"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupBuffs('boss', 'Everything') end,
 									},
 									bossalldebuffs = {
@@ -1033,7 +1045,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["All Boss Debuffs"],
 										desc = L["Set filters to show more debuffs on Boss"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupDebuffs('boss', 'Everything') end,
 									},
 									headerline2 = {
@@ -1048,7 +1060,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["Eltruism Boss Buffs"],
 										desc = L["Set filters to be Eltruism defaults on Boss"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupBuffs('boss', 'Eltruism') end,
 									},
 									bossEltruismdebuffs = {
@@ -1056,7 +1068,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["Eltruism Boss Debuffs"],
 										desc = L["Set filters to be Eltruism defaults on Boss"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupDebuffs('boss', 'Eltruism') end,
 									},
 								},
@@ -1086,7 +1098,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["All Nameplate Buffs"],
 										desc = L["Set filters to show more buffs on Nameplates"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupBuffs('nameplate', 'Everything') end,
 									},
 									nameplatealldebuffs = {
@@ -1094,7 +1106,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["All Nameplate Debuffs"],
 										desc = L["Set filters to show more debuffs on Nameplates"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupDebuffs('nameplate', 'Everything') end,
 									},
 									headerline2 = {
@@ -1109,7 +1121,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["Eltruism Nameplate Buffs"],
 										desc = L["Set filters to be Eltruism defaults on Nameplates"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupBuffs('nameplate', 'Eltruism') end,
 									},
 									nameplateEltruismdebuffs = {
@@ -1117,7 +1129,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'execute',
 										name = L["Eltruism Nameplate Debuffs"],
 										desc = L["Set filters to be Eltruism defaults on Nameplates"],
-										width = 'double',
+										width = 'full',
 										func = function() ElvUI_EltreumUI:SetupDebuffs('nameplate', 'Eltruism') end,
 									},
 								},
@@ -1207,172 +1219,6 @@ function ElvUI_EltreumUI:Configtable()
 									customcolorborders.r, customcolorborders.g, customcolorborders.b = r, g, b E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:Borders()
 								end,
 							},
-							headerline3 = {
-								order = 97,
-								type = "description",
-								name = L["Change the size of the borders:"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							borderABsize = {
-								type = 'range',
-								name = L["Actionbar Thickness"],
-								order = 98,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders or not E.private.actionbar.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.baredgesize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.baredgesize = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderUFsize = {
-								type = 'range',
-								name = L["Unitframe Thickness"],
-								order = 99,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders or not E.private.unitframe.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.playertargetsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.playertargetsize = value ElvUI_EltreumUI:Borders() end,
-							},
-							bordergroupUFsize = {
-								type = 'range',
-								name = L["Group Unitframe Thickness"],
-								order = 99,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders or not E.private.unitframe.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.groupsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.groupsize = value ElvUI_EltreumUI:Borders() end,
-							},
-							bordercastbarsize = {
-								type = 'range',
-								name = L["Castbar Thickness"],
-								order = 99,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders or not E.private.unitframe.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.playertargetcastsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.playertargetcastsize = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderpetsize = {
-								type = 'range',
-								name = L["Pet Thickness"],
-								order = 99,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders or not E.private.unitframe.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.petsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.petsize = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderfocussize = {
-								type = 'range',
-								name = L["Focus Thickness"],
-								order = 99,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								hidden = E.Classic,
-								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders or not E.private.unitframe.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.focussize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.focussize = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderbosssize = {
-								type = 'range',
-								name = L["Boss Thickness"],
-								order = 99,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								hidden = not (E.Retail or E.Wrath),
-								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders or not E.private.unitframe.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bosssize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bosssize = value ElvUI_EltreumUI:Borders() end,
-							},
-							bordertotemsize = {
-								type = 'range',
-								name = L["Shaman Totem Thickness"],
-								order = 99,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								hidden = not E.Wrath,
-								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.totemedgesize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.totemedgesize = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderaurasize = {
-								type = 'range',
-								name = L["Aura Thickness"],
-								order = 100,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.aurasize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasize = value ElvUI_EltreumUI:AuraBorders() end,
-							},
-							borderchatsize = {
-								type = 'range',
-								name = L["Chat Thickness"],
-								order = 101,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.chatsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.chatsize = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderminimapsize = {
-								type = 'range',
-								name = L["Minimap Thickness"],
-								order = 102,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.minimapsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.minimapsize = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderstancesize = {
-								type = 'range',
-								name = L["Stance Bar Thickness"],
-								order = 102,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.stanceedgesize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.stanceedgesize = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderpetabsize = {
-								type = 'range',
-								name = L["Pet Action Bar Thickness"],
-								order = 102,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.petactionedgesize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.petactionedgesize = value ElvUI_EltreumUI:Borders() end,
-							},
 						},
 					},
 					actionbarsborders = {
@@ -1381,378 +1227,472 @@ function ElvUI_EltreumUI:Configtable()
 						--inline = true,
 						disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 						name = L["ActionBars"],
-						childGroups = "tab",
+						--childGroups = "tab",
 						args = {
-							gap0 = {
+							borderABsize = {
 								order = 1,
-								type = "description",
+								type = "group",
+								inline = true,
 								name = L["(All settings require a reload)"],
-								width = 'full',
-								--image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									headerbordersize = {
+										order = 1,
+										type = "description",
+										name = L["Change the size of the borders:"],
+										width = 'full',
+										--image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									ABsize = {
+										type = 'range',
+										name = L["Actionbar Thickness"],
+										order = 2,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										--inline = true,
+										disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders or not E.private.actionbar.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.baredgesize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.baredgesize = value ElvUI_EltreumUI:Borders() end,
+									},
+								}
 							},
-							gap1 = {
-								order = 5,
-								type = "description",
+							actionbar1 = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Action Bar 1"],
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									bar1enable = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 6,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar1.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar1borders end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar1borders = value ElvUI_EltreumUI:Borders() end,
+									},
+									bar1xsize = {
+										type = 'range',
+										name = L["Bar 1 X offset"],
+										order = 7,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar1.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar1xborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar1xborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									bar1ysize = {
+										type = 'range',
+										name = L["Bar 1 Y offset"],
+										order = 7,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar1.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar1yborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar1yborder = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							bar1enable = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 6,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar1.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar1borders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar1borders = value ElvUI_EltreumUI:Borders() end,
-							},
-							bar1xsize = {
-								type = 'range',
-								name = L["Bar 1 X offset"],
-								order = 7,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar1.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar1xborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar1xborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							bar1ysize = {
-								type = 'range',
-								name = L["Bar 1 Y offset"],
-								order = 7,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar1.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar1yborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar1yborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							gap2 = {
-								order = 8,
-								type = "description",
+							actionbar2 = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Action Bar 2"],
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									bar2enable = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 9,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar2.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar2borders end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar2borders = value ElvUI_EltreumUI:Borders() end,
+									},
+									bar2xsize = {
+										type = 'range',
+										name = L["Bar 2 X offset"],
+										order = 10,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar2.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar2xborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar2xborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									bar2ysize = {
+										type = 'range',
+										name = L["Bar 2 Y offset"],
+										order = 10,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar2.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar2yborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar2yborder = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							bar2enable = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 9,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar2.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar2borders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar2borders = value ElvUI_EltreumUI:Borders() end,
-							},
-							bar2xsize = {
-								type = 'range',
-								name = L["Bar 2 X offset"],
-								order = 10,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar2.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar2xborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar2xborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							bar2ysize = {
-								type = 'range',
-								name = L["Bar 2 Y offset"],
-								order = 10,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar2.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar2yborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar2yborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							gap3 = {
-								order = 11,
-								type = "description",
+							actionbar3 = {
+								order = 3,
+								type = 'group',
+								--inline = true,
+								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Action Bar 3"],
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									bar3enable = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 12,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar3.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar3borders end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar3borders = value ElvUI_EltreumUI:Borders() end,
+									},
+									bar3xsize = {
+										type = 'range',
+										name = L["Bar 3 X offset"],
+										order = 13,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar3.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar3xborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar3xborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									bar3ysize = {
+										type = 'range',
+										name = L["Bar 3 Y offset"],
+										order = 13,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar3.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar3yborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar3yborder = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							bar3enable = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 12,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar3.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar3borders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar3borders = value ElvUI_EltreumUI:Borders() end,
-							},
-							bar3xsize = {
-								type = 'range',
-								name = L["Bar 3 X offset"],
-								order = 13,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar3.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar3xborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar3xborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							bar3ysize = {
-								type = 'range',
-								name = L["Bar 3 Y offset"],
-								order = 13,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar3.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar3yborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar3yborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							gap4 = {
-								order = 14,
-								type = "description",
+							actionbar4 = {
+								order = 4,
+								type = 'group',
+								--inline = true,
+								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Action Bar 4"],
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									bar4enable = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 15,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar4.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar4borders end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar4borders = value ElvUI_EltreumUI:Borders() end,
+									},
+									bar4xsize = {
+										type = 'range',
+										name = L["Bar 4 X offset"],
+										order = 16,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar4.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar4xborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar4xborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									bar4ysize = {
+										type = 'range',
+										name = L["Bar 4 Y offset"],
+										order = 16,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar4.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar4yborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar4yborder = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							bar4enable = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 15,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar4.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar4borders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar4borders = value ElvUI_EltreumUI:Borders() end,
-							},
-							bar4xsize = {
-								type = 'range',
-								name = L["Bar 4 X offset"],
-								order = 16,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar4.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar4xborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar4xborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							bar4ysize = {
-								type = 'range',
-								name = L["Bar 4 Y offset"],
-								order = 16,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar4.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar4yborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar4yborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							gap5 = {
-								order = 17,
-								type = "description",
+							actionbar5 = {
+								order = 5,
+								type = 'group',
+								--inline = true,
+								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Action Bar 5"],
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									bar5enable = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 18,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar5.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar5borders end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar5borders = value ElvUI_EltreumUI:Borders() end,
+									},
+									bar5xsize = {
+										type = 'range',
+										name = L["Bar 5 X offset"],
+										order = 19,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar5.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar5xborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar5xborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									bar5ysize = {
+										type = 'range',
+										name = L["Bar 5 Y offset"],
+										order = 19,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar5.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar5yborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar5yborder = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							bar5enable = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 18,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar5.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar5borders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar5borders = value ElvUI_EltreumUI:Borders() end,
-							},
-							bar5xsize = {
-								type = 'range',
-								name = L["Bar 5 X offset"],
-								order = 19,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar5.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar5xborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar5xborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							bar5ysize = {
-								type = 'range',
-								name = L["Bar 5 Y offset"],
-								order = 19,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar5.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar5yborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar5yborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							gap6 = {
-								order = 20,
-								type = "description",
+							actionbar6 = {
+								order = 6,
+								type = 'group',
+								--inline = true,
+								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Action Bar 6"],
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									bar6enable = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 21,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar6.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar6borders end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar6borders = value ElvUI_EltreumUI:Borders() end,
+									},
+									bar6xsize = {
+										type = 'range',
+										name = L["Bar 6 X offset"],
+										order = 22,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar6.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar6xborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar6xborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									bar6ysize = {
+										type = 'range',
+										name = L["Bar 6 Y offset"],
+										order = 22,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar6.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bar6yborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar6yborder = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							bar6enable = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 21,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar6.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar6borders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar6borders = value ElvUI_EltreumUI:Borders() end,
-							},
-							bar6xsize = {
-								type = 'range',
-								name = L["Bar 6 X offset"],
-								order = 22,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar6.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar6xborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar6xborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							bar6ysize = {
-								type = 'range',
-								name = L["Bar 6 Y offset"],
-								order = 22,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar6.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bar6yborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bar6yborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							gap7totem = {
-								order = 23,
-								type = "description",
+							totem = {
+								order = 7,
+								type = 'group',
+								--inline = true,
+								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
+								hidden = not E.Wrath,
 								name = L["Shaman Totem Bar"],
+								childGroups = "tab",
 								width = 'full',
-								hidden = not E.Wrath,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									totemenable = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 1,
+										width = "full",
+										hidden = not E.Wrath,
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.totembar end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.totembar = value ElvUI_EltreumUI:Borders() end,
+									},
+									bordertotemsize = {
+										type = 'range',
+										name = L["Shaman Totem Thickness"],
+										order = 2,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										hidden = not E.Wrath,
+										disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.totemedgesize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.totemedgesize = value ElvUI_EltreumUI:Borders() end,
+									},
+									totemxsize = {
+										type = 'range',
+										name = L["Totem X offset"],
+										order = 25,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										hidden = not E.Wrath,
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar6.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.totemxborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.totemxborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									totemysize = {
+										type = 'range',
+										name = L["Totem Y offset"],
+										order = 25,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										hidden = not E.Wrath,
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar6.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.totemyborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.totemyborder = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							totemenable = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 24,
-								width = "full",
-								hidden = not E.Wrath,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.totembar end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.totembar = value ElvUI_EltreumUI:Borders() end,
-							},
-							totemxsize = {
-								type = 'range',
-								name = L["Totem X offset"],
-								order = 25,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								hidden = not E.Wrath,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar6.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.totemxborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.totemxborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							totemysize = {
-								type = 'range',
-								name = L["Totem Y offset"],
-								order = 25,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								hidden = not E.Wrath,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar6.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.totemyborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.totemyborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							gap8 = {
-								order = 26,
-								type = "description",
+							stance = {
+								order = 8,
+								type = 'group',
+								--inline = true,
+								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Stance Bar"],
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									stanceenable = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.stanceborders end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.stanceborders = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderstancesize = {
+										type = 'range',
+										name = L["Stance Bar Thickness"],
+										order = 2,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.stanceedgesize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.stanceedgesize = value ElvUI_EltreumUI:Borders() end,
+									},
+									stancexsize = {
+										type = 'range',
+										name = L["Stance X offset"],
+										order = 28,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.stanceBar.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.stancexborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.stancexborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									stanceysize = {
+										type = 'range',
+										name = L["Stance Y offset"],
+										order = 28,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.stanceBar.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.stanceyborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.stanceyborder = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							stanceenable = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 27,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.stanceborders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.stanceborders = value ElvUI_EltreumUI:Borders() end,
-							},
-							stancexsize = {
-								type = 'range',
-								name = L["Stance X offset"],
-								order = 28,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.stanceBar.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.stancexborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.stancexborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							stanceysize = {
-								type = 'range',
-								name = L["Stance Y offset"],
-								order = 28,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.stanceBar.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.stanceyborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.stanceyborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							gap9 = {
-								order = 29,
-								type = "description",
+							pet = {
+								order = 9,
+								type = 'group',
+								--inline = true,
+								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Pet Action Bar"],
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							petactionenable = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 30,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.petactionborders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.petactionborders = value ElvUI_EltreumUI:Borders() end,
-							},
-							petactionxsize = {
-								type = 'range',
-								name = L["Pet Action Bar X offset"],
-								order = 31,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.barPet.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.petactionxborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.petactionxborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							petactionysize = {
-								type = 'range',
-								name = L["Pet Action Bar Y offset"],
-								order = 31,
-								min = 1,
-								max = 200,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.barPet.enabled end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.petactionyborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.petactionyborder = value ElvUI_EltreumUI:Borders() end,
+								args = {
+									petactionenable = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.petactionborders end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.petactionborders = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderpetabsize = {
+										type = 'range',
+										name = L["Pet Action Bar Thickness"],
+										order = 2,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.petactionedgesize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.petactionedgesize = value ElvUI_EltreumUI:Borders() end,
+									},
+									petactionxsize = {
+										type = 'range',
+										name = L["Pet Action Bar X offset"],
+										order = 31,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.barPet.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.petactionxborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.petactionxborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									petactionysize = {
+										type = 'range',
+										name = L["Pet Action Bar Y offset"],
+										order = 31,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.barPet.enabled end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.petactionyborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.petactionyborder = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
 						},
 					},
@@ -1762,588 +1702,721 @@ function ElvUI_EltreumUI:Configtable()
 						name = L["Unitframes"],
 						order = 2,
 						args = {
-							gap0 = {
+							header = {
 								order = 1,
-								type = "description",
-								name = L["(All settings require a reload)"],
-								width = 'full',
+								type = "group",
+								inline = true,
+								name = L["Change the size of the borders:"],
 								--image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									borderUFsize = {
+										type = 'range',
+										name = L["Unitframe Thickness"],
+										order = 99,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders or not E.private.unitframe.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.playertargetsize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.playertargetsize = value ElvUI_EltreumUI:Borders() end,
+									},
+									bordergroupUFsize = {
+										type = 'range',
+										name = L["Group Unitframe Thickness"],
+										order = 99,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders or not E.private.unitframe.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.groupsize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.groupsize = value ElvUI_EltreumUI:Borders() end,
+									},
+									bordercastbarsize = {
+										type = 'range',
+										name = L["Castbar Thickness"],
+										order = 99,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders or not E.private.unitframe.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.playertargetcastsize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.playertargetcastsize = value ElvUI_EltreumUI:Borders() end,
+									},
+								}
 							},
-							gapplayer = {
+							player = {
 								order = 2,
-								type = "description",
+								type = 'group',
+								--inline = true,
+								disabled = function() return not E.db.unitframe.units.player.enable or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Player Border"],
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									barplayer = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 3,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.player.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.playerborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.playerborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderxplayer = {
+										type = 'range',
+										name = L["Border X offset"],
+										order = 4,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.playerborder or not E.db.unitframe.units.player.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.xplayer end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.xplayer = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderyplayer = {
+										type = 'range',
+										name = L["Border Y offset"],
+										order = 4,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.playerborder or not E.db.unitframe.units.player.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.yplayer end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.yplayer = value ElvUI_EltreumUI:Borders() end,
+									},
+									gapplayercast = {
+										order = 5,
+										type = "description",
+										name = L["Player Castbar Border"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									barcastplayer = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 6,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.player.castbar.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.playercastborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.playercastborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderxcastplayer = {
+										type = 'range',
+										name = L["Border X offset"],
+										order = 7,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.playercastborder or not E.db.unitframe.units.player.castbar.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.xplayercast end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.xplayercast = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderycastplayer = {
+										type = 'range',
+										name = L["Border Y offset"],
+										order = 7,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.playercastborder or not E.db.unitframe.units.player.castbar.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.yplayercast end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.yplayercast = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							barplayer = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 3,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.player.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.playerborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.playerborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderxplayer = {
-								type = 'range',
-								name = L["Border X offset"],
-								order = 4,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.player.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.xplayer end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xplayer = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderyplayer = {
-								type = 'range',
-								name = L["Border Y offset"],
-								order = 4,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.player.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.yplayer end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.yplayer = value ElvUI_EltreumUI:Borders() end,
-							},
-							gapplayercast = {
-								order = 5,
-								type = "description",
-								name = L["Player Castbar Border"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							barcastplayer = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 6,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.player.castbar.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.playercastborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.playercastborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderxcastplayer = {
-								type = 'range',
-								name = L["Border X offset"],
-								order = 7,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.player.castbar.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.xplayercast end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xplayercast = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderycastplayer = {
-								type = 'range',
-								name = L["Border Y offset"],
-								order = 7,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.player.castbar.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.yplayercast end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.yplayercast = value ElvUI_EltreumUI:Borders() end,
-							},
-							gaptarget = {
-								order = 29,
-								type = "description",
+							target = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								disabled = function() return not E.db.unitframe.units.target.enable or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Target Border"],
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									bartarget = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 30,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.target.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.targetborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.targetborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderxtarget = {
+										type = 'range',
+										name = L["Border X offset"],
+										order = 31,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.targetborder or not E.db.unitframe.units.target.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.xtarget end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.xtarget = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderytarget = {
+										type = 'range',
+										name = L["Border Y offset"],
+										order = 31,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.targetborder or not E.db.unitframe.units.target.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.ytarget end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.ytarget = value ElvUI_EltreumUI:Borders() end,
+									},
+									gaptargetcast = {
+										order = 32,
+										type = "description",
+										name = L["Target Castbar Border"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									bartargetcast = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 33,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.target.castbar.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.targetcastborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.targetcastborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderxcasttarget = {
+										type = 'range',
+										name = L["Border X offset"],
+										order = 34,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.targetcastborder or not E.db.unitframe.units.target.castbar.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.xcasttarget end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.xcasttarget = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderycasttarget = {
+										type = 'range',
+										name = L["Border Y offset"],
+										order = 34,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.targetcastborder or not E.db.unitframe.units.target.castbar.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.ycasttarget end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.ycasttarget = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							bartarget = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 30,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.target.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.targetborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.targetborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderxtarget = {
-								type = 'range',
-								name = L["Border X offset"],
-								order = 31,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.target.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.xtarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xtarget = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderytarget = {
-								type = 'range',
-								name = L["Border Y offset"],
-								order = 31,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.target.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.ytarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ytarget = value ElvUI_EltreumUI:Borders() end,
-							},
-							gaptargetcast = {
-								order = 32,
-								type = "description",
-								name = L["Target Castbar Border"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							bartargetcast = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 33,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.target.castbar.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.targetcastborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.targetcastborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderxcasttarget = {
-								type = 'range',
-								name = L["Border X offset"],
-								order = 34,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.target.castbar.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.xcasttarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xcasttarget = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderycasttarget = {
-								type = 'range',
-								name = L["Border Y offset"],
-								order = 34,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.target.castbar.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.ycasttarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ycasttarget = value ElvUI_EltreumUI:Borders() end,
-							},
-							gaptargettarget = {
-								order = 35,
-								type = "description",
+							targettarget = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								disabled = function() return not E.db.unitframe.units.targettarget.enable or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Target of Target Border"],
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									bartargettarget = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 36,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.targettarget.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.targettargetborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.targettargetborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderxtargettarget = {
+										type = 'range',
+										name = L["Border X offset"],
+										order = 37,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.targettargetborder or not E.db.unitframe.units.targettarget.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.xtargettarget end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.xtargettarget = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderytargettarget = {
+										type = 'range',
+										name = L["Border Y offset"],
+										order = 38,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.targettargetborder or not E.db.unitframe.units.targettarget.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.ytargettarget end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.ytargettarget = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							bartargettarget = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 36,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.targettarget.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.targettargetborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.targettargetborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderxtargettarget = {
-								type = 'range',
-								name = L["Border X offset"],
-								order = 37,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.targettarget.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.xtargettarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xtargettarget = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderytargettarget = {
-								type = 'range',
-								name = L["Border Y offset"],
-								order = 38,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.targettarget.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.ytargettarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ytargettarget = value ElvUI_EltreumUI:Borders() end,
-							},
-							gapparty = {
-								order = 39,
-								type = "description",
+							party = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								disabled = function() return not E.db.unitframe.units.party.enable or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Party Border"],
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									barparty = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 40,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.party.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.partyborders end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.partyborders = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderxparty = {
+										type = 'range',
+										name = L["Border X offset"],
+										order = 41,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.partyborders or not E.db.unitframe.units.party.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.partysizex end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.partysizex = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderyparty = {
+										type = 'range',
+										name = L["Border Y offset"],
+										order = 42,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.partyborders or not E.db.unitframe.units.party.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.partysizey end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.partysizey = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							barparty = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 40,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.party.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.partyborders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.partyborders = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderxparty = {
-								type = 'range',
-								name = L["Border X offset"],
-								order = 41,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.party.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.partysizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.partysizex = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderyparty = {
-								type = 'range',
-								name = L["Border Y offset"],
-								order = 42,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.party.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.partysizey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.partysizey = value ElvUI_EltreumUI:Borders() end,
-							},
-							gapraid = {
-								order = 43,
-								type = "description",
+							raid1 = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Raid1 Border"],
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									barraid = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 44,
+										width = "full",
+										disabled = function() return (not E.db.ElvUI_EltreumUI.borders.borders and not E.db.unitframe.units.raid1.enable) or (not E.db.ElvUI_EltreumUI.borders.borders and not E.private.unitframe.disabledBlizzardFrames.raid) end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.raidborders end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidborders = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderxraid = {
+										type = 'range',
+										name = L["Border X offset"],
+										order = 45,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return (not E.db.ElvUI_EltreumUI.borders.raidborders and not E.db.unitframe.units.raid1.enable) or (not E.db.ElvUI_EltreumUI.borders.raidborders and not E.private.unitframe.disabledBlizzardFrames.raid) end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.raidsizex end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidsizex = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderyraid = {
+										type = 'range',
+										name = L["Border Y offset"],
+										order = 46,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return (not E.db.ElvUI_EltreumUI.borders.raidborders and not E.db.unitframe.units.raid1.enable) or (not E.db.ElvUI_EltreumUI.borders.raidborders and not E.private.unitframe.disabledBlizzardFrames.raid) end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.raidsizey end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidsizey = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							barraid = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 44,
-								width = "full",
-								disabled = function() return (not E.db.ElvUI_EltreumUI.borders.borders and not E.db.unitframe.units.raid1.enable) or (not E.db.ElvUI_EltreumUI.borders.borders and not E.private.unitframe.disabledBlizzardFrames.raid) end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.raidborders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidborders = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderxraid = {
-								type = 'range',
-								name = L["Border X offset"],
-								order = 45,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return (not E.db.ElvUI_EltreumUI.borders.borders and not E.db.unitframe.units.raid1.enable) or (not E.db.ElvUI_EltreumUI.borders.borders and not E.private.unitframe.disabledBlizzardFrames.raid) end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.raidsizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidsizex = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderyraid = {
-								type = 'range',
-								name = L["Border Y offset"],
-								order = 46,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return (not E.db.ElvUI_EltreumUI.borders.borders and not E.db.unitframe.units.raid1.enable) or (not E.db.ElvUI_EltreumUI.borders.borders and not E.private.unitframe.disabledBlizzardFrames.raid) end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.raidsizey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raidsizey = value ElvUI_EltreumUI:Borders() end,
-							},
-							gapraid2 = {
-								order = 47,
-								type = "description",
+							raid2 = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								disabled = function() return not E.db.unitframe.units.raid2.enable or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Raid2 Border"],
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									barraid2 = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 48,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid2.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.raid2borders end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid2borders = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderxraid2 = {
+										type = 'range',
+										name = L["Border X offset"],
+										order = 49,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.raid2borders or not E.db.unitframe.units.raid2.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.raid2sizex end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid2sizex = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderyraid2 = {
+										type = 'range',
+										name = L["Border Y offset"],
+										order = 50,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.raid2borders or not E.db.unitframe.units.raid2.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.raid2sizey end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid2sizey = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							barraid2 = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 48,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid2.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.raid2borders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid2borders = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderxraid2 = {
-								type = 'range',
-								name = L["Border X offset"],
-								order = 49,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid2.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.raid2sizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid2sizex = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderyraid2 = {
-								type = 'range',
-								name = L["Border Y offset"],
-								order = 50,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid2.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.raid2sizey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid2sizey = value ElvUI_EltreumUI:Borders() end,
-							},
-							gapraid40 = {
-								order = 51,
-								type = "description",
+							raid3 = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								disabled = function() return not E.db.unitframe.units.raid3.enable or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Raid3 Border"],
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									barraid3 = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 52,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid3.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.raid40borders end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40borders = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderxraid3 = {
+										type = 'range',
+										name = L["Border X offset"],
+										order = 53,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.raid40borders or not E.db.unitframe.units.raid3.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.raid40sizex end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40sizex = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderyraid3 = {
+										type = 'range',
+										name = L["Border Y offset"],
+										order = 54,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.raid40borders or not E.db.unitframe.units.raid3.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.raid40sizey end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40sizey = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							barraid40 = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 52,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid3.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.raid40borders end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40borders = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderxraid40 = {
-								type = 'range',
-								name = L["Border X offset"],
-								order = 53,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid3.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.raid40sizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40sizex = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderyraid40 = {
-								type = 'range',
-								name = L["Border Y offset"],
-								order = 54,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.raid3.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.raid40sizey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.raid40sizey = value ElvUI_EltreumUI:Borders() end,
-							},
-							gapfocus = {
-								order = 55,
-								type = "description",
+							focus = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								disabled = function() return not E.db.unitframe.units.focus.enable or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Focus Border"],
+								hidden = E.Classic,
+								childGroups = "tab",
 								width = 'full',
-								hidden = E.Classic,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									barfocus= {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 1,
+										width = "full",
+										hidden = E.Classic,
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focus.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.focusborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.focusborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderfocussize = {
+										type = 'range',
+										name = L["Focus Thickness"],
+										order = 11,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										hidden = E.Classic,
+										disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.private.unitframe.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.focussize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.focussize = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderxfocus = {
+										type = 'range',
+										name = L["Border X offset"],
+										order = 12,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										hidden = E.Classic,
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focus.enable or not E.db.ElvUI_EltreumUI.borders.focusborder end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.xfocus end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.xfocus = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderyfocus = {
+										type = 'range',
+										name = L["Border Y offset"],
+										order = 13,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										hidden = E.Classic,
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focus.enable or not E.db.ElvUI_EltreumUI.borders.focusborder end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.yfocus end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.yfocus = value ElvUI_EltreumUI:Borders() end,
+									},
+									gapfocuscast = {
+										order = 21,
+										type = "description",
+										name = L["Focus Castbar Border"],
+										width = 'full',
+										hidden = E.Classic,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									barfocuscast = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 22,
+										width = "full",
+										hidden = E.Classic,
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focus.enable or not E.db.unitframe.units.focus.castbar.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.focuscastborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.focuscastborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderxcastfocus = {
+										type = 'range',
+										name = L["Border X offset"],
+										order = 23,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										hidden = E.Classic,
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.focuscastborder or not E.db.unitframe.units.focus.enable or not E.db.unitframe.units.focus.castbar.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.xcastfocus end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.xcastfocus = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderycastfocus = {
+										type = 'range',
+										name = L["Border Y offset"],
+										order = 24,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										hidden = E.Classic,
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.focuscastborder or not E.db.unitframe.units.focus.enable or not E.db.unitframe.units.focus.castbar.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.ycastfocus end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.ycastfocus = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							barfocus= {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 56,
-								width = "full",
-								hidden = E.Classic,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focus.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.focusborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.focusborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderxfocus = {
-								type = 'range',
-								name = L["Border X offset"],
-								order = 57,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								hidden = E.Classic,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focus.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.xfocus end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xfocus = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderyfocus = {
-								type = 'range',
-								name = L["Border Y offset"],
-								order = 58,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								hidden = E.Classic,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focus.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.yfocus end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.yfocus = value ElvUI_EltreumUI:Borders() end,
-							},
-							gapfocuscast = {
-								order = 59,
-								type = "description",
-								name = L["Focus Castbar Border"],
-								width = 'full',
-								hidden = E.Classic,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							barfocuscast = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 60,
-								width = "full",
-								hidden = E.Classic,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focus.enable or not E.db.unitframe.units.focus.castbar.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.focuscastborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.focuscastborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderxcastfocus = {
-								type = 'range',
-								name = L["Border X offset"],
-								order = 61,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								hidden = E.Classic,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focus.enable or not E.db.unitframe.units.focus.castbar.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.xcastfocus end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xcastfocus = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderycastfocus = {
-								type = 'range',
-								name = L["Border Y offset"],
-								order = 62,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								hidden = E.Classic,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focus.enable or not E.db.unitframe.units.focus.castbar.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.ycastfocus end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ycastfocus = value ElvUI_EltreumUI:Borders() end,
-							},
-							gapfocustarget = {
-								order = 63,
-								type = "description",
+							focustarget = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focustarget.enable end,
 								name = L["Focus Target Border"],
+								hidden = E.Classic,
+								childGroups = "tab",
 								width = 'full',
-								hidden = E.Classic,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									barfocustarget = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 1,
+										width = "full",
+										hidden = E.Classic,
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focustarget.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.focustargetborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.focustargetborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderfocussize = {
+										type = 'range',
+										name = L["Focus Thickness"],
+										order = 2,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										hidden = E.Classic,
+										disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.private.unitframe.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.focussize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.focussize = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderxfocustarget = {
+										type = 'range',
+										name = L["Border X offset"],
+										order = 3,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										hidden = E.Classic,
+										disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.private.unitframe.enable or not E.db.unitframe.units.focustarget.enable or not E.db.ElvUI_EltreumUI.borders.focustargetborder end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.xfocustarget end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.xfocustarget = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderyfocustarget = {
+										type = 'range',
+										name = L["Border Y offset"],
+										order = 4,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										hidden = E.Classic,
+										disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.private.unitframe.enable or not E.db.unitframe.units.focustarget.enable or not E.db.ElvUI_EltreumUI.borders.focustargetborder end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.yfocustarget end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.yfocustarget = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							barfocustarget = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 64,
-								width = "full",
-								hidden = E.Classic,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focustarget.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.focustargetborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.focustargetborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderxfocustarget = {
-								type = 'range',
-								name = L["Border X offset"],
-								order = 65,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								hidden = E.Classic,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focustarget.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.xfocustarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xfocustarget = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderyfocustarget = {
-								type = 'range',
-								name = L["Border Y offset"],
-								order = 66,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								hidden = E.Classic,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.focus.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.yfocustarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.yfocustarget = value ElvUI_EltreumUI:Borders() end,
-							},
-							gapboss = {
-								order = 95,
-								type = "description",
+							boss = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								disabled = function() return not E.db.unitframe.units.boss.enable or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Boss Border"],
+								hidden = not (E.Retail or E.Wrath),
+								childGroups = "tab",
 								width = 'full',
-								hidden = not (E.Retail or E.Wrath),
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									barboss= {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 96,
+										width = "full",
+										hidden = not (E.Retail or E.Wrath),
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.boss.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bossborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bossborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderbosssize = {
+										type = 'range',
+										name = L["Boss Thickness"],
+										order = 99,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										hidden = not (E.Retail or E.Wrath),
+										disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.bossborder or not E.private.unitframe.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.bosssize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.bosssize = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderxboss = {
+										type = 'range',
+										name = L["Border X offset"],
+										order = 197,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										hidden = not (E.Retail or E.Wrath),
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.bossborder or not E.db.unitframe.units.boss.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.xboss end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.xboss = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderyboss = {
+										type = 'range',
+										name = L["Border Y offset"],
+										order = 198,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										hidden = not (E.Retail or E.Wrath),
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.bossborder or not E.db.unitframe.units.boss.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.yboss end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.yboss = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							barboss= {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 96,
-								width = "full",
-								hidden = not (E.Retail or E.Wrath),
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.boss.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.bossborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.bossborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderxboss = {
-								type = 'range',
-								name = L["Border X offset"],
-								order = 97,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								hidden = not (E.Retail or E.Wrath),
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.boss.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.xboss end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xboss = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderyboss = {
-								type = 'range',
-								name = L["Border Y offset"],
-								order = 98,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								hidden = not (E.Retail or E.Wrath),
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.boss.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.yboss end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.yboss = value ElvUI_EltreumUI:Borders() end,
-							},
-							gappet = {
-								order = 100,
-								type = "description",
+							pet = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								disabled = function() return not E.db.unitframe.units.pet.enable or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Pet Border"],
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							petenable = {
-								type = 'toggle',
-								name = L["Enable"],
-								order = 101,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.pet.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.petborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.petborder = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderxpet = {
-								type = 'range',
-								name = L["Border X offset"],
-								order = 102,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.pet.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.petsizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.petsizex = value ElvUI_EltreumUI:Borders() end,
-							},
-							borderypet = {
-								type = 'range',
-								name = L["Border Y offset"],
-								order = 102,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.pet.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.petsizey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.petsizey = value ElvUI_EltreumUI:Borders() end,
+								args = {
+									petenable = {
+										type = 'toggle',
+										name = L["Enable"],
+										order = 1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.unitframe.units.pet.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.petborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.petborder = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderpetsize = {
+										type = 'range',
+										name = L["Pet Thickness"],
+										order = 99,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.petborder or not E.db.unitframe.units.pet.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.petsize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.petsize = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderxpet = {
+										type = 'range',
+										name = L["Border X offset"],
+										order = 102,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.petborder or not E.db.unitframe.units.pet.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.petsizex end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.petsizex = value ElvUI_EltreumUI:Borders() end,
+									},
+									borderypet = {
+										type = 'range',
+										name = L["Border Y offset"],
+										order = 102,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.petborder or not E.db.unitframe.units.pet.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.petsizey end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.petsizey = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
 						},
 					},
@@ -2353,13 +2426,6 @@ function ElvUI_EltreumUI:Configtable()
 						name = L["Nameplate"],
 						order = 3,
 						args = {
-							gap0 = {
-								order = 1,
-								type = "description",
-								name = L["(All settings require a reload)"],
-								width = 'full',
-								--image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
 							gappowerbar = {
 								order = 35,
 								type = "description",
@@ -2384,7 +2450,7 @@ function ElvUI_EltreumUI:Configtable()
 								max = 200,
 								step = 0.1,
 								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.private.ElvUI_EltreumUI.nameplatepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.powerbarborder or not E.private.ElvUI_EltreumUI.nameplatepower end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.powerbarsize end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.powerbarsize = value ElvUI_EltreumUI:Borders() end,
 							},
@@ -2396,7 +2462,7 @@ function ElvUI_EltreumUI:Configtable()
 								max = 800,
 								step = 0.1,
 								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.private.ElvUI_EltreumUI.nameplatepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.powerbarborder or not E.private.ElvUI_EltreumUI.nameplatepower end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.xpowerbar end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.xpowerbar = value ElvUI_EltreumUI:Borders() end,
 							},
@@ -2408,7 +2474,7 @@ function ElvUI_EltreumUI:Configtable()
 								max = 800,
 								step = 0.1,
 								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.private.ElvUI_EltreumUI.nameplatepower end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.borders.powerbarborder or not E.private.ElvUI_EltreumUI.nameplatepower end,
 								get = function() return E.db.ElvUI_EltreumUI.borders.ypowerbar end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ypowerbar = value ElvUI_EltreumUI:Borders() end,
 							},
@@ -2420,500 +2486,311 @@ function ElvUI_EltreumUI:Configtable()
 						disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 						order = 4,
 						args = {
-							headerline1 = {
-								order = 1,
-								type = "description",
-								name = MINIMAP_LABEL,
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							enableminimap = {
-								type = 'toggle',
-								name = L["Enable"].." "..MINIMAP_LABEL,
-								width = "full",
+							minimap = {
 								order = 2,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.minimapborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.minimapborder = value E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:Borders() end,
+								type = 'group',
+								--inline = true,
+								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
+								name = MINIMAP_LABEL,
+								childGroups = "tab",
+								width = 'full',
+								args = {
+									enableminimap = {
+										type = 'toggle',
+										name = L["Enable"].." "..MINIMAP_LABEL,
+										width = "full",
+										order = 1,
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.minimapborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.minimapborder = value E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:Borders() end,
+									},
+									headerbordersize = {
+										order = 2,
+										type = "description",
+										name = L["Change the size of the borders:"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									borderminimapsize = {
+										type = 'range',
+										name = L["Minimap Thickness"],
+										order = 3,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.minimapborder end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.minimapsize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.minimapsize = value ElvUI_EltreumUI:Borders() end,
+									},
+									mapbordersizex = {
+										type = 'range',
+										name = MINIMAP_LABEL.." "..L["Border X offset"],
+										order = 3,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.minimapborder end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.minimapsizex end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.minimapsizex = value ElvUI_EltreumUI:Borders() end,
+									},
+									mapbordersizey = {
+										type = 'range',
+										name = MINIMAP_LABEL.." "..L["Border Y offset"],
+										order = 4,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.minimapborder end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.minimapsizey end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.minimapsizey = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
-							mapbordersizex = {
-								type = 'range',
-								name = MINIMAP_LABEL.." "..L["Border X offset"],
-								order = 3,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.minimapborder end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.minimapsizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.minimapsizex = value ElvUI_EltreumUI:Borders() end,
-							},
-							mapbordersizey = {
-								type = 'range',
-								name = MINIMAP_LABEL.." "..L["Border Y offset"],
-								order = 4,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.minimapborder end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.minimapsizey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.minimapsizey = value ElvUI_EltreumUI:Borders() end,
-							},
-							headerline2 = {
-								order = 91,
-								type = "description",
+							aura = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = AURAS,
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									enableaura = {
+										type = 'toggle',
+										name = L["Enable"].." "..AURAS,
+										width = "full",
+										order = 1,
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.auraborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.auraborder = value E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:AuraBorders() end,
+									},
+									borderaurasize = {
+										type = 'range',
+										name = L["Aura Thickness"],
+										order = 2,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.aurasize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasize = value ElvUI_EltreumUI:AuraBorders() end,
+									},
+									aurabordersizex = {
+										type = 'range',
+										name = L["Aura Border X offset"],
+										order = 93,
+										min = 1,
+										max = 100,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborder end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.aurasizex end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasizex = value ElvUI_EltreumUI:AuraBorders() end,
+									},
+									aurabordersizey = {
+										type = 'range',
+										name = L["Aura Border Y offset"],
+										order = 94,
+										min = 1,
+										max = 100,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborder end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.aurasizey end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasizey = value ElvUI_EltreumUI:AuraBorders() end,
+									},
+									debuffaurabordersizex = {
+										type = 'range',
+										name = L["Debuff Aura Border X offset"],
+										order = 95,
+										min = 1,
+										max = 100,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborder end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.debuffaurasizex end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.debuffaurasizex = value ElvUI_EltreumUI:AuraBorders() end,
+									},
+									debuffaurabordersizey = {
+										type = 'range',
+										name = L["Debuff Aura Border Y offset"],
+										order = 96,
+										min = 1,
+										max = 100,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborder end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.debuffaurasizey end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.debuffaurasizey = value ElvUI_EltreumUI:AuraBorders() end,
+									},
+								},
 							},
-							enableaura = {
-								type = 'toggle',
-								name = L["Enable"].." "..AURAS,
-								width = "full",
-								order = 92,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.auraborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.auraborder = value E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:AuraBorders() end,
-							},
-							aurabordersizex = {
-								type = 'range',
-								name = L["Aura Border X offset"],
-								order = 93,
-								min = 1,
-								max = 100,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborder end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.aurasizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasizex = value ElvUI_EltreumUI:AuraBorders() end,
-							},
-							aurabordersizey = {
-								type = 'range',
-								name = L["Aura Border Y offset"],
-								order = 94,
-								min = 1,
-								max = 100,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborder end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.aurasizey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasizey = value ElvUI_EltreumUI:AuraBorders() end,
-							},
-							debuffaurabordersizex = {
-								type = 'range',
-								name = L["Debuff Aura Border X offset"],
-								order = 95,
-								min = 1,
-								max = 100,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborder end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.debuffaurasizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.debuffaurasizex = value ElvUI_EltreumUI:AuraBorders() end,
-							},
-							debuffaurabordersizey = {
-								type = 'range',
-								name = L["Debuff Aura Border Y offset"],
-								order = 96,
-								min = 1,
-								max = 100,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborder end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.debuffaurasizey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.debuffaurasizey = value ElvUI_EltreumUI:AuraBorders() end,
-							},
-							headerlineUFborder = {
-								order = 97,
-								type = "description",
+							ufauras = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Unitframe Auras"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							enableaurauf = {
-								type = 'toggle',
-								name = L["Enable Unitframe Auras"],
 								width = "full",
-								order = 98,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.auraborderuf end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.auraborderuf = value E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:UFAuraBorders() end,
+								childGroups = "tab",
+								args = {
+									enableaurauf = {
+										type = 'toggle',
+										name = L["Enable Unitframe Auras"],
+										width = "full",
+										order = 1,
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.auraborderuf end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.auraborderuf = value E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:UFAuraBorders() end,
+									},
+									borderaurasize = {
+										type = 'range',
+										name = L["Aura Thickness"],
+										order = 2,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.aurasize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.aurasize = value ElvUI_EltreumUI:AuraBorders() end,
+									},
+									ufaurabordersizex = {
+										type = 'range',
+										name = L["Unitframe Aura Border X offset"],
+										order = 99,
+										min = 1,
+										max = 100,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborderuf end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.ufbuffsizex end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.ufbuffsizex = value ElvUI_EltreumUI:UFAuraBorders() end,
+									},
+									ufaurabordersizey = {
+										type = 'range',
+										name = L["Unitframe Aura Border Y offset"],
+										order = 100,
+										min = 1,
+										max = 100,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborderuf end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.ufbuffsizey end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.ufbuffsizey = value ElvUI_EltreumUI:UFAuraBorders() end,
+									},
+									ufdebuffaurabordersizex = {
+										type = 'range',
+										name = L["Unitframes Debuff Aura Border X offset"],
+										order = 101,
+										min = 1,
+										max = 100,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborderuf end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.ufdebuffsizex end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.ufdebuffsizex = value ElvUI_EltreumUI:UFAuraBorders() end,
+									},
+									ufdebuffaurabordersizey = {
+										type = 'range',
+										name = L["Unitframes Debuff Aura Border Y offset"],
+										order = 102,
+										min = 1,
+										max = 100,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborderuf end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.ufdebuffsizey end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.ufdebuffsizey = value ElvUI_EltreumUI:UFAuraBorders() end,
+									},
+								},
 							},
-							ufaurabordersizex = {
-								type = 'range',
-								name = L["Unitframe Aura Border X offset"],
-								order = 99,
-								min = 1,
-								max = 100,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborderuf end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.ufbuffsizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ufbuffsizex = value ElvUI_EltreumUI:UFAuraBorders() end,
-							},
-							ufaurabordersizey = {
-								type = 'range',
-								name = L["Unitframe Aura Border Y offset"],
-								order = 100,
-								min = 1,
-								max = 100,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborderuf end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.ufbuffsizey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ufbuffsizey = value ElvUI_EltreumUI:UFAuraBorders() end,
-							},
-							ufdebuffaurabordersizex = {
-								type = 'range',
-								name = L["Unitframes Debuff Aura Border X offset"],
-								order = 101,
-								min = 1,
-								max = 100,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborderuf end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.ufdebuffsizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ufdebuffsizex = value ElvUI_EltreumUI:UFAuraBorders() end,
-							},
-							ufdebuffaurabordersizey = {
-								type = 'range',
-								name = L["Unitframes Debuff Aura Border Y offset"],
-								order = 102,
-								min = 1,
-								max = 100,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.auraborderuf end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.ufdebuffsizey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.ufdebuffsizey = value ElvUI_EltreumUI:UFAuraBorders() end,
-							},
-							headerline3 = {
-								order = 195,
-								type = "description",
+							chat = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								disabled = function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = BINDING_HEADER_CHAT,
+								childGroups = "tab",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							enablechat = {
-								type = 'toggle',
-								name = L["Enable"].." "..BINDING_HEADER_CHAT,
-								width = "full",
-								order = 196,
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.chatborder end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.chatborder = value E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:Borders() end,
-							},
-							leftchatbordersizex = {
-								type = 'range',
-								name = L["Left Chat Border X offset"],
-								order = 197,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.leftchatborderx end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.leftchatborderx = value ElvUI_EltreumUI:Borders() end,
-							},
-							leftchatbordersizey = {
-								type = 'range',
-								name = L["Left Chat Border Y offset"],
-								order = 198,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.leftchatbordery end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.leftchatbordery = value ElvUI_EltreumUI:Borders() end,
-							},
-							rightchatbordersizex = {
-								type = 'range',
-								name = L["Right Chat Border X offset"],
-								order = 199,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.rightchatborderx end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.rightchatborderx = value ElvUI_EltreumUI:Borders() end,
-							},
-							rightchatbordersizey = {
-								type = 'range',
-								name = L["Right Chat Border Y offset"],
-								order = 200,
-								min = 1,
-								max = 800,
-								step = 0.1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
-								get = function() return E.db.ElvUI_EltreumUI.borders.rightchatbordery end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.borders.rightchatbordery = value ElvUI_EltreumUI:Borders() end,
+								args = {
+									enablechat = {
+										type = 'toggle',
+										name = L["Enable"].." "..BINDING_HEADER_CHAT,
+										width = "full",
+										order = 1,
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.chatborder end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.chatborder = value E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:Borders() end,
+									},
+									borderchatsize = {
+										type = 'range',
+										name = L["Chat Thickness"],
+										order = 2,
+										min = 1,
+										max = 200,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.chatborder end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.chatsize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.chatsize = value ElvUI_EltreumUI:Borders() end,
+									},
+									leftchatbordersizex = {
+										type = 'range',
+										name = L["Left Chat Border X offset"],
+										order = 197,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.chatborder end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.leftchatborderx end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.leftchatborderx = value ElvUI_EltreumUI:Borders() end,
+									},
+									leftchatbordersizey = {
+										type = 'range',
+										name = L["Left Chat Border Y offset"],
+										order = 198,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.chatborder end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.leftchatbordery end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.leftchatbordery = value ElvUI_EltreumUI:Borders() end,
+									},
+									rightchatbordersizex = {
+										type = 'range',
+										name = L["Right Chat Border X offset"],
+										order = 199,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.chatborder end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.rightchatborderx end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.rightchatborderx = value ElvUI_EltreumUI:Borders() end,
+									},
+									rightchatbordersizey = {
+										type = 'range',
+										name = L["Right Chat Border Y offset"],
+										order = 200,
+										min = 1,
+										max = 800,
+										step = 0.1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.ElvUI_EltreumUI.borders.chatborder end,
+										get = function() return E.db.ElvUI_EltreumUI.borders.rightchatbordery end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.borders.rightchatbordery = value ElvUI_EltreumUI:Borders() end,
+									},
+								},
 							},
 						},
 					}
-				},
-			},
-			chat = {
-				type = 'group',
-				name = E:TextGradient(CHAT_LABEL, 0.50, 0.70, 1, 0.67, 0.95, 1),
-				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\chat',
-				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\chat:0:0:0:0|t '..L["Enhance Chat Functionality"],
-				order = 85,
-				args = {
-					header0 = {
-						order = 1,
-						type = "description",
-						name = "",
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					chatfadeenable = {
-						order = 2,
-						type = 'toggle',
-						name = L["Enable ElvUI Chat modifications"],
-						width = 'full',
-						desc = L["Enable adding more functions to ElvUI Chat"],
-						get = function() return E.db.ElvUI_EltreumUI.chat.enable end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.enable = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header1 = {
-						order = 3,
-						type = "description",
-						name = L["Add mouse over to the left chat panel"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					leftmouseover = {
-						order = 5,
-						type = 'toggle',
-						name = L["Left Chat Mouse Over"],
-						desc = L["Toggle the option"],
-						width = 'full',
-						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.leftmouseover end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftmouseover = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header2 = {
-						order = 6,
-						type = "description",
-						name = L["Add a fade to the left chat panel, controlled by ElvUI Chat > Text Fade > Inactivity Timer"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					leftfade = {
-						order = 7,
-						type = 'toggle',
-						name = L["Left Inactivity Fader"],
-						width = 'full',
-						desc = L["Toggle the option"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.leftfader end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftfader = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header3 = {
-						order = 8,
-						type = "description",
-						name = L["Add mouse over to the left chat panel"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					rightmouseover = {
-						order = 9,
-						type = 'toggle',
-						name = L["Right Chat Mouse Over"],
-						desc = L["Toggle the option"],
-						width = 'full',
-						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.rightmouseover end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightmouseover = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header4 = {
-						order = 10,
-						type = "description",
-						name = L["Add a fade to the right chat panel, controlled by ElvUI Chat > Text Fade > Inactivity Timer"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					rightfade = {
-						order = 11,
-						type = 'toggle',
-						name = L["Right Inactivity Fader"],
-						desc = L["Toggle the option"],
-						width = 'full',
-						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.rightfader end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightfader = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header5 = {
-						order = 12,
-						type = "description",
-						name = L["Combat Hide"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					leftcombathide = {
-						order = 13,
-						type = 'toggle',
-						name = L["Hide Left Chat in Combat"],
-						width = 'full',
-						desc = L["Toggle the option"],
-						disabled = function() return E.db.ElvUI_EltreumUI.chat.leftbosshide or not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.leftcombathide end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftcombathide = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					leftbosshide = {
-						order = 14,
-						type = 'toggle',
-						name = L["Hide Left Chat in Boss Encounters"],
-						width = 'full',
-						desc = L["Toggle the option"],
-						disabled = function() return E.db.ElvUI_EltreumUI.chat.leftcombathide or not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.leftbosshide end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftbosshide = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					rightcombathide = {
-						order = 15,
-						type = 'toggle',
-						name = L["Hide Right Chat in Combat"],
-						width = 'full',
-						desc = L["Toggle the option"],
-						disabled = function() return E.db.ElvUI_EltreumUI.chat.rightbosshide or not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.rightcombathide end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightcombathide = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					rightbosshide = {
-						order = 16,
-						type = 'toggle',
-						name = L["Hide Right Chat in Boss Encounters"],
-						width = 'full',
-						desc = L["Toggle the option"],
-						disabled = function() return E.db.ElvUI_EltreumUI.chat.rightcombathide or not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.rightbosshide end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightbosshide = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header6 = {
-						order = 85,
-						type = "description",
-						name = L["Invert left mouse click so that chat starts faded and mouse click will make it stop fading"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					invertmouse = {
-						order = 86,
-						type = 'toggle',
-						name = L["Invert Mouse Click"],
-						width = 'full',
-						desc = L["Toggle the option on"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.invertclick end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.invertclick = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header7 = {
-						order = 87,
-						type = "description",
-						name = L["Add color to some chat messages"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					colorsysmsgs = {
-						order = 88,
-						type = 'toggle',
-						name = L["Enable on System Messages"],
-						width = 'full',
-						desc = L["Toggle the option on"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.colorsysmsg end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.colorsysmsg = value end,
-					},
-					classcolormsgs = {
-						order = 89,
-						type = 'toggle',
-						name = L["Enable on Chat Messages"],
-						width = 'double',
-						desc = L["Toggle the option on"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.classcolorchat end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.classcolorchat = value end,
-					},
-					classcolormsgscustom = {
-						order = 90,
-						type = 'toggle',
-						name = L["Custom Color"],
-						--width = 'double',
-						desc = L["Toggle the option on"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable or not E.db.ElvUI_EltreumUI.chat.classcolorchat end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.classcolorchatcustom end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.classcolorchatcustom = value end,
-					},
-					headerkeys = {
-						order = 189,
-						type = "description",
-						name = L["!key Chat Command"],
-						width = 'full',
-						hidden = not E.Retail,
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					mpluskeys = {
-						order = 190,
-						type = 'toggle',
-						name = L["Enable !key and !keys chat command"],
-						width = 'full',
-						hidden = not E.Retail,
-						desc = L["Will link your key in guild or party chat"],
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mpluskeys end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mpluskeys = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header8 = {
-						order = 191,
-						type = "description",
-						name = L["Enhance Item Links in Chat"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					chatlooticons = {
-						order = 192,
-						type = 'toggle',
-						name = L["Enable Chat Icons"],
-						width = 'full',
-						desc = L["Toggle the option on"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.looticons end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.looticons = value end,
-					},
-					chatitemlevels = {
-						order = 193,
-						type = 'toggle',
-						name = L["Enable Item Levels"],
-						width = 'full',
-						desc = L["Toggle the option on"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable or not E.db.ElvUI_EltreumUI.chat.looticons end,
-						get = function() return E.db.ElvUI_EltreumUI.chat.itemlevels end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.itemlevels = value end,
-					},
-					header9 = {
-						order = 194,
-						type = "description",
-						name = L["Customize the Chat tabs"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					darkchat = {
-						order = 195,
-						type = 'execute',
-						name = L["Dark Chat"],
-						--width = 'double',
-						func = function() ElvUI_EltreumUI:DarkChat() E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					lightchat = {
-						order = 196,
-						type = 'execute',
-						name = L["Transparent Chat"],
-						--width = 'double',
-						func = function() ElvUI_EltreumUI:TransparentChat() E:StaticPopup_Show('CONFIG_RL') end,
-					},
 				},
 			},
 			combatmusic = {
@@ -2922,22 +2799,17 @@ function ElvUI_EltreumUI:Configtable()
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music',
 				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music:0:0:0:0|t '..L["Play custom music during fights and boss fights"],
 				order = 85,
+				childGroups = "tab",
 				args = {
-					header1 = {
+					combat = {
 						order = 1,
-						type = "description",
-						name = L["Play music during combat"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					moremusicsettings = {
-						order = 2,
 						type = 'group',
-						inline = true,
-						name = "",
+						--inline = true,
+						name = L["Combat Music"],
+						childGroups = "tab",
 						args = {
 							enable = {
-								order = 1,
+								order = 2,
 								type = 'toggle',
 								name = L["Enable Combat Music"],
 								desc = L["Enable music during combat"],
@@ -2945,17 +2817,8 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.private.ElvUI_EltreumUI.combatmusic.enable end,
 								set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.enable = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},
-							enableboss = {
-								order = 1,
-								type = 'toggle',
-								name = L["Enable Boss Music"],
-								desc = L["Enable music during combat"],
-								width = 'full',
-								get = function() return E.private.ElvUI_EltreumUI.combatmusic.bossmusic end,
-								set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossmusic = value E:StaticPopup_Show('PRIVATE_RL') end,
-							},
 							instancemusic = {
-								order = 2,
+								order = 3,
 								type = 'toggle',
 								name = L["Disable Combat Music in Instances"],
 								desc = L["Disable music during combat in instances"],
@@ -2965,14 +2828,14 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.disableinstance = value E:StaticPopup_Show('PRIVATE_RL') end,
 							},
 							header2 = {
-								order = 2,
+								order = 4,
 								type = "description",
 								name = L["Normal Combat Music"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							combatpathtofile = {
-								order = 4,
+								order = 5,
 								type = 'group',
 								inline = true,
 								name = L["Name of file inside Interface\\Addons"],
@@ -3021,15 +2884,33 @@ function ElvUI_EltreumUI:Configtable()
 									},
 								}
 							},
-							header3 = {
-								order = 6,
+						},
+					},
+					boss = {
+						order = 2,
+						type = 'group',
+						--inline = true,
+						name = L["Boss Music"],
+						childGroups = "tab",
+						args = {
+							enableboss = {
+								order = 1,
+								type = 'toggle',
+								name = L["Enable Boss Music"],
+								desc = L["Enable music during combat"],
+								width = 'full',
+								get = function() return E.private.ElvUI_EltreumUI.combatmusic.bossmusic end,
+								set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossmusic = value E:StaticPopup_Show('PRIVATE_RL') end,
+							},
+							header = {
+								order = 2,
 								type = "description",
 								name = L["Boss Combat Music"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							bosspathtofile = {
-								order = 7,
+								order = 4,
 								type = 'group',
 								inline = true,
 								name = L["Name of file inside Interface\\Addons"],
@@ -3055,733 +2936,6 @@ function ElvUI_EltreumUI:Configtable()
 										set = function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossfile = value E:StaticPopup_Show('PRIVATE_RL') end,
 									}
 								}
-							},
-						},
-					},
-				},
-			},
-			cooldown = {
-				type = 'group',
-				name = E:TextGradient(L["Cooldown"], 0.50, 0.70, 1, 0.67, 0.95, 1),
-				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cooldown',
-				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cooldown:0:0:0:0|t '..L["Show a pulsing cooldown and let it speak the spell name"],
-				order = 85,
-				args = {
-					header1 = {
-						order = 1,
-						type = "description",
-						name = L["Cooldown"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					enable = {
-						order = 2,
-						type = 'toggle',
-						name = L["Enable Cooldown Pulse"],
-						desc = L["Show a Skill Pulse when its cooldown is ending"],
-						width = 'full',
-						get = function() return E.db.ElvUI_EltreumUI.skins.doom.enable end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.enable = value ElvUI_EltreumUI:Doom() E:StaticPopup_Show('PRIVATE_RL') end,
-					},
-					showSpellName = {
-						order = 3,
-						type = 'toggle',
-						name = L["Show Spell Name"],
-						desc = L["Displays a Text with the name of the spell"],
-						width = 'full',
-						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.skins.doom.showSpellName end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.showSpellName = value ElvUI_EltreumUI:Doom() E:StaticPopup_Show('PRIVATE_RL') end,
-					},
-					fadeInTime = {
-						type = 'range',
-						name = L["Fade In Time"],
-						desc = L["Time it takes for the icon to fade in"],
-						order = 4,
-						min = 0,
-						max = 5,
-						step = 0.1,
-						--width = "full",
-						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.skins.doom.fadeInTime end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.fadeInTime = value ElvUI_EltreumUI:Doom() end,
-					},
-					fadeOutTime = {
-						type = 'range',
-						name = L["Fade Out Time"],
-						desc = L["Time it takes for the icon to fade out"],
-						order = 4,
-						min = 0,
-						max = 5,
-						step = 0.1,
-						--width = "full",
-						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime = value ElvUI_EltreumUI:Doom() end,
-					},
-					maxAlpha = {
-						type = 'range',
-						name = L["Alpha"],
-						desc = L["Transparency of the Icon"],
-						order = 4,
-						min = 0,
-						max = 1,
-						step = 0.01,
-						--width = "full",
-						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.skins.doom.maxAlpha end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.maxAlpha = value ElvUI_EltreumUI:Doom() end,
-					},
-					animScale = {
-						type = 'range',
-						name = L["Animation Scale"],
-						desc = L["Animation will scale to this size"],
-						order = 4,
-						min = 0,
-						max = 5,
-						step = 0.1,
-						--width = "full",
-						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.skins.doom.animScale end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.animScale = value ElvUI_EltreumUI:Doom() end,
-					},
-					iconSize = {
-						type = 'range',
-						name = L["Icon Size"],
-						desc = L["Size of the Icon"],
-						order = 4,
-						min = 6,
-						max = 200,
-						step = 0.1,
-						--width = "full",
-						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.skins.doom.iconSize end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.iconSize = value ElvUI_EltreumUI:Doom() end,
-					},
-					holdTime = {
-						type = 'range',
-						name = L["Hold Time"],
-						desc = L["How long the Icon will appear"],
-						order = 4,
-						min = 0,
-						max = 5,
-						step = 0.1,
-						--width = "full",
-						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.skins.doom.holdTime end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.holdTime = value ElvUI_EltreumUI:Doom() end,
-					},
-					graceperiod = {
-						type = 'range',
-						name = L["Minimum Cooldown Length"],
-						desc = L["Cooldowns must be longer than this to show up"],
-						order = 4,
-						min = 0,
-						max = 120,
-						step = 1,
-						--width = "full",
-						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.skins.doom.graceperiod end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.graceperiod = value ElvUI_EltreumUI:Doom() end,
-					},
-					doomignored = {
-						order = 5,
-						type = 'input',
-						name = L["Ignored Spells, use a comma to separate spells"],
-						desc = L["List of spells ignored, use a comma to separate spells"],
-						width = 'full',
-						get = function() return E.private.ElvUI_EltreumUI.doomignored end,
-						set = function(_, value) E.private.ElvUI_EltreumUI.doomignored = value ElvUI_EltreumUI:Doom() E:StaticPopup_Show('PRIVATE_RL') end,
-					},
-					ttsvoice = {
-						order = 80,
-						type = "description",
-						name = L["Text to Speech"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					ttsvoicetoggle = {
-						type = 'toggle',
-						name = L["Enable"],
-						order = 81,
-						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.skins.doom.tts end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.tts = value ElvUI_EltreumUI:Doom() end,
-					},
-					ttsvoiceselect = {
-						type = 'select',
-						name= L["Text to Speech Config"],
-						order = 82,
-						values =
-						function()
-							local Voices = {}
-							for i, v in pairs(C_VoiceChat.GetTtsVoices()) do
-								--Voices[i] = v.name
-								Voices[v.voiceID] = v.name
-							end
-							return Voices
-						end,
-						validate = function(_, value)
-							if tonumber(value) ~= nil then
-								return true
-							else
-								return false
-							end
-						end,
-						--[[sorting = function()
-							return sort(Voices, SortList)
-						end,]]
-						style = 'radio',
-						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable or not E.db.ElvUI_EltreumUI.skins.doom.tts end,
-						get = function() return E.db.ElvUI_EltreumUI.skins.doom.ttsvoice end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.ttsvoice = tonumber(value) C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume) end,
-					},
-					volume = {
-						type = 'range',
-						name = VOLUME,
-						order = 103,
-						min = 1,
-						max = 100,
-						step = 1,
-						width = "full",
-						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable or not E.db.ElvUI_EltreumUI.skins.doom.tts end,
-						get = function() return E.db.ElvUI_EltreumUI.skins.doom.ttsvolume end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.ttsvolume = value end,
-					},
-					previewgap = {
-						order = 104,
-						type = "description",
-						name = PREVIEW,
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					preview ={
-						order = 105,
-						type = "execute",
-						name = PREVIEW,
-						width = 'full',
-						func = function() ElvUI_EltreumUI:PreviewDoom() end,
-					},
-				},
-			},
-			cursor = {
-				type = 'group',
-				name = E:TextGradient(L["Cursor"], 0.50, 0.70, 1, 0.67, 0.95, 1),
-				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cursor',
-				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cursor:0:0:0:0|t '..L["Attach Rings to the Cursor that will show Castbars, GCDs and can also show the cooldown of skills you attempt to use"],
-				order = 85,
-				childGroups = "tab",
-				args = {
-					cursorgeneral = {
-						order = 1,
-						type = 'group',
-						name= L["General"],
-						args = {
-							header = {
-								order = 1,
-								type = "description",
-								name= "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							enable = {
-								order = 1,
-								type = 'toggle',
-								name = L["Enable cursor rings for Casts, GCD and Combat"],
-								desc = L["Add a rings around the mouse cursor for GCD, casts and combat"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.enable = value end,
-							},
-							enablecombat = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable cursor only during combat"],
-								desc = L["Cursor will only show during combat"],
-								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.combat end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.combat = value E:StaticPopup_Show('PRIVATE_RL') end,
-							},
-							enablecd = {
-								order = 3,
-								type = 'toggle',
-								name = L["Enable cooldown tracking"],
-								desc = L["Add a cooldown icon when trying to use skills that are on cooldown, and a cooldown flash when they are ready"],
-								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.cooldown end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.cooldown = value E:StaticPopup_Show('PRIVATE_RL') end,
-							},
-							enablepetcd = {
-								order = 4,
-								type = 'toggle',
-								name = L["Enable pet cooldown tracking"],
-								desc = L["Add a cooldown icon when trying to use skills that are on cooldown, and a cooldown flash when they are ready"],
-								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.petcooldown end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.petcooldown = value E:StaticPopup_Show('PRIVATE_RL') end,
-							},
-							header99 = {
-								order = 97,
-								type = "description",
-								name= L["Cooldown Sound"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							enablecdsound = {
-								order = 98,
-								type = 'toggle',
-								name = L["Play a Sound when attempting to use a skill that is on cooldown."],
-								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.cooldown end,
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.cooldownsound end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.cooldownsound = value
-									if value == true then
-										SetCVar('Sound_EnableErrorSpeech', 0)
-									else
-										SetCVar('Sound_EnableErrorSpeech', 1)
-									end
-									E:StaticPopup_Show('PRIVATE_RL') end,
-							},
-							cdsound = {
-								order = 99,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Sound',
-								name = L["Select a Sound"],
-								desc = L["Choose a Sound from SharedMedia files"],
-								values = AceGUIWidgetLSMlists.sound,
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.cooldownfile end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.cooldownsound or not E.db.ElvUI_EltreumUI.cursors.cursor.cooldown end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.cursors.cursor.cooldownfile = key E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							header1 = {
-								order = 120,
-								type = "description",
-								name= L["Change the size of the World of Warcraft Cursor"],
-								hidden = E.Retail,
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							setsize = {
-								order = 121,
-								type = 'select',
-								name = L["Select a size"],
-								desc = L["Choose this size"],
-								hidden = E.Retail,
-								values = {
-									["-1"] = L["Autodetect"],
-									["0"] = '32x32',
-									["1"] = '48x48',
-									["2"] = '64x64',
-									["3"] = '128x128',
-								},
-								style = 'radio',
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.size end,
-								set = function(_, value) ElvUI_EltreumUI:CursorSize(value) end,
-							},
-							headerhardwarecursor = {
-								order = 122,
-								type = "description",
-								name= L["Attempt to fix Cursor Lag"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							fixlag = {
-								order = 123,
-								type = 'select',
-								name = " ",
-								desc = L["Software cursor is how the cursor was before Battle for Azeroth, Hardware cursor is faster but will cause problems with addons that attach to it"],
-								--width = 'full',
-								values = {
-									["0"] = L["Software Cursor"],
-									["1"] = L["Hardware Cursor"],
-								},
-								style = 'radio',
-								get = function() return C_CVar.GetCVar('HardwareCursor') end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.fixlag = value SetCVar('HardwareCursor', value) end,
-							},
-						},
-					},
-					cursorcolors = {
-						order = 6,
-						type = 'group',
-						name = L["Cursor Colors"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
-						args = {
-							nicegap17 = {
-								order = 11,
-								type = "description",
-								name = L["Cursor Colors "]..'|cffff0000('..L["Requires a Reload"]..")|r",
-								width = 'full',
-							},
-							header12 = {
-								order = 11,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							castclasscolor = {
-								type = 'toggle',
-								name = L["Class Colored Casts"],
-								order = 12,
-								desc = L["Use Class Colors for Cast"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor = value ElvUI_EltreumUI:CastCursor() end,
-							},
-							colorcast = {
-								order = 13,
-								type = 'color',
-								name = L["Custom Color Cast"],
-								hasAlpha = true,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.cursors.cursor.enable) or E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor end,
-								get = function()
-									local cursorcast = E.db.ElvUI_EltreumUI.cursors.cursorcast
-									local d = P.ElvUI_EltreumUI.cursors.cursorcast
-									return cursorcast.r, cursorcast.g, cursorcast.b, cursorcast.a, d.r, d.g, d.b, d.a
-								end,
-								set = function(_, r, g, b, a)
-									local cursorcast = E.db.ElvUI_EltreumUI.cursors.cursorcast
-									cursorcast.r, cursorcast.g, cursorcast.b, cursorcast.a = r, g, b, a ElvUI_EltreumUI:CastCursor()
-								end,
-							},
-							gradientcastcursor = {
-								type = 'toggle',
-								name = L["Gradient"],
-								order = 14,
-								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable or not E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor end,
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorcast.gradient end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcast.gradient = value ElvUI_EltreumUI:CastCursor() end,
-							},
-							nicegap1 = {
-								order = 92,
-								type = "description",
-								name = "",
-								width = 'full',
-							},
-							gcdclasscolor = {
-								type = 'toggle',
-								name = L["Class Colored GCD"],
-								order = 93,
-								desc = L["Use Class Colors for GCD"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor = value ElvUI_EltreumUI:CastCursor() end,
-							},
-							colorgcd = {
-								order = 94,
-								type = 'color',
-								name = L["Custom Color GCD"],
-								hasAlpha = true,
-								disabled = function() return E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor or (not E.db.ElvUI_EltreumUI.cursors.cursor.enable ) end,
-								get = function()
-									local cursorgcd = E.db.ElvUI_EltreumUI.cursors.cursorgcd
-									local d = P.ElvUI_EltreumUI.cursors.cursorgcd
-									return cursorgcd.r, cursorgcd.g, cursorgcd.b, cursorgcd.a, d.r, d.g, d.b, d.a
-								end,
-								set = function(_, r, g, b, a)
-									local cursorgcd = E.db.ElvUI_EltreumUI.cursors.cursorgcd
-									cursorgcd.r, cursorgcd.g, cursorgcd.b, cursorgcd.a = r, g, b, a ElvUI_EltreumUI:CastCursor()
-								end,
-							},
-							nicegap2 = {
-								order = 95,
-								type = "description",
-								name = "",
-								width = 'full',
-							},
-							cursorcursorclasscolor = {
-								type = 'toggle',
-								name = L["Class Colored Combat"],
-								order = 96,
-								desc = L["Use Class Colors for Cursor"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor = value ElvUI_EltreumUI:CastCursor() end,
-							},
-							cursorcursorcolor = {
-								order = 97,
-								type = 'color',
-								name = L["Custom Color Combat"],
-								hasAlpha = true,
-								disabled = function() return E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor or (not E.db.ElvUI_EltreumUI.cursors.cursor.enable) end,
-								get = function()
-									local cursorcursor = E.db.ElvUI_EltreumUI.cursors.cursorcursor
-									local d = P.ElvUI_EltreumUI.cursors.cursorcursor
-									return cursorcursor.r, cursorcursor.g, cursorcursor.b, cursorcursor.a, d.r, d.g, d.b, d.a
-								end,
-								set = function(_, r, g, b, a)
-									local cursorcursor = E.db.ElvUI_EltreumUI.cursors.cursorcursor
-									cursorcursor.r, cursorcursor.g, cursorcursor.b, cursorcursor.a = r, g, b, a ElvUI_EltreumUI:CastCursor()
-								end,
-							},
-						},
-					},
-					cursortype = {
-						order = 7,
-						type = 'group',
-						name = L["Cursor Type"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
-						args = {
-							topbar = {
-								order = 0,
-								type = "description",
-								name = L["Choose a type of cursor by clicking it"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							gap = {
-								order = 1,
-								type = "description",
-								name = "",
-								width = 'full',
-							},
-							gap2 = {
-								order = 2,
-								type = "description",
-								name = "",
-								width = 'full',
-							},
-							gap3 = {
-								order = 3,
-								type = "description",
-								name = "",
-								width = 'full',
-							},
-							currentring = {
-								order = 5,
-								type = 'description',
-								name = function() return L["Currently selected cursor: "]..ElvUI_EltreumUI:CurrentTypeofCursor() end,
-								desc = L["Choose a type of cursor by clicking it"],
-							},
-							showring1 = {
-								order = 90,
-								type = "execute",
-								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring1',
-								name = L["Type 1"],
-								desc = L["The Cursor will use this type as its texture"],
-								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring1.tga' ElvUI_EltreumUI:CastCursor() end,
-							},
-							showring2 = {
-								order = 91,
-								type = "execute",
-								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring2',
-								name = L["Type 2"],
-								desc = 'The Cursor will use this type as its texture',
-								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring2.tga' ElvUI_EltreumUI:CastCursor() end,
-							},
-							showring3 = {
-								order = 92,
-								type = "execute",
-								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3',
-								name = L["Type 3"],
-								desc = L["The Cursor will use this type as its texture"],
-								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga' ElvUI_EltreumUI:CastCursor() end,
-							},
-							showring4 = {
-								order = 93,
-								type = "execute",
-								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring4',
-								name = L["Type 4"],
-								desc = L["The Cursor will use this type as its texture"],
-								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring4.tga' ElvUI_EltreumUI:CastCursor() end,
-							},
-							showring5 = {
-								order = 94,
-								type = "execute",
-								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring5',
-								name = L["Type 5"],
-								desc = L["The Cursor will use this type as its texture"],
-								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring5.tga' ElvUI_EltreumUI:CastCursor() end,
-							},
-							showring6 = {
-								order = 95,
-								type = "execute",
-								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring6',
-								name = L["Type 6"],
-								desc = L["The Cursor will use this type as its texture"],
-								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring6.tga' ElvUI_EltreumUI:CastCursor() end,
-							},
-							showring7 = {
-								order = 96,
-								type = "execute",
-								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring7',
-								name = L["Type 7"],
-								desc = L["The Cursor will use this type as its texture"],
-								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring7.tga' ElvUI_EltreumUI:CastCursor() end,
-							},
-							showring8 = {
-								order = 97,
-								type = "execute",
-								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring8',
-								name = L["Type 8"],
-								desc = L["The Cursor will use this type as its texture"],
-								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring8.tga' ElvUI_EltreumUI:CastCursor() end,
-							},
-							showring9 = {
-								order = 98,
-								type = "execute",
-								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring9',
-								name = L["Type 9"],
-								desc = L["The Cursor will use this type as its texture"],
-								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring9.tga' ElvUI_EltreumUI:CastCursor() end,
-							},
-							showring10 = {
-								order = 99,
-								type = "execute",
-								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring10',
-								name = L["Type 10"],
-								desc = L["The Cursor will use this type as its texture"],
-								confirm = true,
-								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring10.tga' ElvUI_EltreumUI:CastCursor() end,
-							},
-						},
-					},
-					cursorsize = {
-						order = 3,
-						type = 'group',
-						name = L["Cursor Sizes"],
-						disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
-						args = {
-							header1 = {
-								order = 18,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							nicegap3 = {
-								order = 18,
-								type = "description",
-								name = L["Cursor Sizes "]..'|cffff0000('..L["Requires a Reload"]..")|r",
-								width = 'full',
-							},
-							castradius = {
-								type = 'range',
-								name = L["Cast Radius (Default: 25)"],
-								desc = L["Set the radius of the cast cursor"],
-								order = 19,
-								min = 10,
-								max = 50,
-								step = 1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorcast.radius end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcast.radius = value ElvUI_EltreumUI:CastCursor() end,
-							},
-							castthickness = {
-								type = 'range',
-								name = L["Cast Thickness (Default: 5)"],
-								desc = L["Set the radius of the cast cursor"],
-								order = 19,
-								min = 1,
-								max = 10,
-								step = 1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorcast.thickness end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcast.thickness = value ElvUI_EltreumUI:CastCursor() end,
-							},
-							gcdradius = {
-								type = 'range',
-								name = L["GCD Radius (Default: 20)"],
-								desc = L["Set the radius of the gcd cursor"],
-								order = 19,
-								min = 10,
-								max = 50,
-								step = 1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorgcd.radius end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorgcd.radius = value ElvUI_EltreumUI:CastCursor() end,
-							},
-							gcdthickness = {
-								type = 'range',
-								name = L["GCD Thickness (Default: 5)"],
-								desc = L["Set the thickness of the gcd cursor"],
-								order = 19,
-								min = 1,
-								max = 10,
-								step = 1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorgcd.thickness end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorgcd.thickness = value ElvUI_EltreumUI:CastCursor() end,
-							},
-							cursorcursorradius = {
-								type = 'range',
-								name = L["Combat Cursor Radius (Default: 15)"],
-								desc = L["Set the radius of the combat cursor"],
-								order = 19,
-								min = 10,
-								max = 50,
-								step = 1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorcursor.radius end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcursor.radius = value ElvUI_EltreumUI:CastCursor() end,
-							},
-							cursorcursorthickness = {
-								type = 'range',
-								name = L["Combat Cursor Thickness (Default: 5)"],
-								desc = L["Set the thickness of the combat cursor"],
-								order = 19,
-								min = 1,
-								max = 10,
-								step = 1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorcursor.thickness end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcursor.thickness = value ElvUI_EltreumUI:CastCursor() end,
-							},
-							header2 = {
-								order = 20,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							nicegap4 = {
-								order = 21,
-								type = "description",
-								name = L["Cursor Position"],
-								width = 'full',
-							},
-							coooldownx = {
-								type = 'range',
-								name = L["Set X offset"],
-								order = 22,
-								min = -200,
-								max = 200,
-								step = 1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable or not E.db.ElvUI_EltreumUI.cursors.cursor.cooldown end,
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx = value end,
-							},
-							coooldowny = {
-								type = 'range',
-								name = L["Set Y offset"],
-								order = 22,
-								min = -200,
-								max = 200,
-								step = 1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable or not E.db.ElvUI_EltreumUI.cursors.cursor.cooldown end,
-								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety = value end,
 							},
 						},
 					},
@@ -4477,12 +3631,740 @@ function ElvUI_EltreumUI:Configtable()
 					},
 				},
 			},
-			cvars = {
+			cooldown = {
+				type = 'group',
+				name = E:TextGradient(L["Cooldown"], 0.50, 0.70, 1, 0.67, 0.95, 1),
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cooldown',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cooldown:0:0:0:0|t '..L["Show a pulsing cooldown and let it speak the spell name"],
 				order = 85,
+				args = {
+					header1 = {
+						order = 1,
+						type = "description",
+						name = L["Cooldown"],
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					enable = {
+						order = 2,
+						type = 'toggle',
+						name = L["Enable Cooldown Pulse"],
+						desc = L["Show a Skill Pulse when its cooldown is ending"],
+						width = 'full',
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.enable = value ElvUI_EltreumUI:Doom() E:StaticPopup_Show('PRIVATE_RL') end,
+					},
+					showSpellName = {
+						order = 3,
+						type = 'toggle',
+						name = L["Show Spell Name"],
+						desc = L["Displays a Text with the name of the spell"],
+						width = 'full',
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.showSpellName end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.showSpellName = value ElvUI_EltreumUI:Doom() E:StaticPopup_Show('PRIVATE_RL') end,
+					},
+					fadeInTime = {
+						type = 'range',
+						name = L["Fade In Time"],
+						desc = L["Time it takes for the icon to fade in"],
+						order = 4,
+						min = 0,
+						max = 5,
+						step = 0.1,
+						--width = "full",
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.fadeInTime end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.fadeInTime = value ElvUI_EltreumUI:Doom() end,
+					},
+					fadeOutTime = {
+						type = 'range',
+						name = L["Fade Out Time"],
+						desc = L["Time it takes for the icon to fade out"],
+						order = 4,
+						min = 0,
+						max = 5,
+						step = 0.1,
+						--width = "full",
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime = value ElvUI_EltreumUI:Doom() end,
+					},
+					maxAlpha = {
+						type = 'range',
+						name = L["Alpha"],
+						desc = L["Transparency of the Icon"],
+						order = 4,
+						min = 0,
+						max = 1,
+						step = 0.01,
+						--width = "full",
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.maxAlpha end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.maxAlpha = value ElvUI_EltreumUI:Doom() end,
+					},
+					animScale = {
+						type = 'range',
+						name = L["Animation Scale"],
+						desc = L["Animation will scale to this size"],
+						order = 4,
+						min = 0,
+						max = 5,
+						step = 0.1,
+						--width = "full",
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.animScale end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.animScale = value ElvUI_EltreumUI:Doom() end,
+					},
+					iconSize = {
+						type = 'range',
+						name = L["Icon Size"],
+						desc = L["Size of the Icon"],
+						order = 4,
+						min = 6,
+						max = 200,
+						step = 0.1,
+						--width = "full",
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.iconSize end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.iconSize = value ElvUI_EltreumUI:Doom() end,
+					},
+					holdTime = {
+						type = 'range',
+						name = L["Hold Time"],
+						desc = L["How long the Icon will appear"],
+						order = 4,
+						min = 0,
+						max = 5,
+						step = 0.1,
+						--width = "full",
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.holdTime end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.holdTime = value ElvUI_EltreumUI:Doom() end,
+					},
+					graceperiod = {
+						type = 'range',
+						name = L["Minimum Cooldown Length"],
+						desc = L["Cooldowns must be longer than this to show up"],
+						order = 4,
+						min = 0,
+						max = 120,
+						step = 1,
+						--width = "full",
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.graceperiod end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.graceperiod = value ElvUI_EltreumUI:Doom() end,
+					},
+					doomignored = {
+						order = 5,
+						type = 'input',
+						name = L["Ignored Spells, use a comma to separate spells"],
+						desc = L["List of spells ignored, use a comma to separate spells"],
+						width = 'full',
+						get = function() return E.private.ElvUI_EltreumUI.doomignored end,
+						set = function(_, value) E.private.ElvUI_EltreumUI.doomignored = value ElvUI_EltreumUI:Doom() E:StaticPopup_Show('PRIVATE_RL') end,
+					},
+					ttsvoice = {
+						order = 80,
+						type = "description",
+						name = L["Text to Speech"],
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					ttsvoicetoggle = {
+						type = 'toggle',
+						name = L["Enable"],
+						order = 81,
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.tts end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.tts = value ElvUI_EltreumUI:Doom() end,
+					},
+					ttsvoiceselect = {
+						type = 'select',
+						name= L["Text to Speech Config"],
+						order = 82,
+						values =
+						function()
+							local Voices = {}
+							for i, v in pairs(C_VoiceChat.GetTtsVoices()) do
+								--Voices[i] = v.name
+								Voices[v.voiceID] = v.name
+							end
+							return Voices
+						end,
+						validate = function(_, value)
+							if tonumber(value) ~= nil then
+								return true
+							else
+								return false
+							end
+						end,
+						--[[sorting = function()
+							return sort(Voices, SortList)
+						end,]]
+						style = 'radio',
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable or not E.db.ElvUI_EltreumUI.skins.doom.tts end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.ttsvoice end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.ttsvoice = tonumber(value) C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume) end,
+					},
+					volume = {
+						type = 'range',
+						name = VOLUME,
+						order = 103,
+						min = 1,
+						max = 100,
+						step = 1,
+						width = "full",
+						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable or not E.db.ElvUI_EltreumUI.skins.doom.tts end,
+						get = function() return E.db.ElvUI_EltreumUI.skins.doom.ttsvolume end,
+						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.ttsvolume = value end,
+					},
+					previewgap = {
+						order = 104,
+						type = "description",
+						name = PREVIEW,
+						width = 'full',
+						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+					},
+					preview ={
+						order = 105,
+						type = "execute",
+						name = PREVIEW,
+						width = 'full',
+						func = function() ElvUI_EltreumUI:PreviewDoom() end,
+					},
+				},
+			},
+			cursor = {
+				type = 'group',
+				name = E:TextGradient(L["Cursor"], 0.50, 0.70, 1, 0.67, 0.95, 1),
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cursor',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cursor:0:0:0:0|t '..L["Attach Rings to the Cursor that will show Castbars, GCDs and can also show the cooldown of skills you attempt to use"],
+				order = 85,
+				childGroups = "tab",
+				args = {
+					cursorgeneral = {
+						order = 1,
+						type = 'group',
+						name= L["General"],
+						args = {
+							header = {
+								order = 1,
+								type = "description",
+								name= "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							enable = {
+								order = 1,
+								type = 'toggle',
+								name = L["Enable cursor rings for Casts, GCD and Combat"],
+								desc = L["Add a rings around the mouse cursor for GCD, casts and combat"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.enable = value end,
+							},
+							enablecombat = {
+								order = 2,
+								type = 'toggle',
+								name = L["Enable cursor only during combat"],
+								desc = L["Cursor will only show during combat"],
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.combat end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.combat = value E:StaticPopup_Show('PRIVATE_RL') end,
+							},
+							enablecd = {
+								order = 3,
+								type = 'toggle',
+								name = L["Enable cooldown tracking"],
+								desc = L["Add a cooldown icon when trying to use skills that are on cooldown, and a cooldown flash when they are ready"],
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.cooldown end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.cooldown = value E:StaticPopup_Show('PRIVATE_RL') end,
+							},
+							enablepetcd = {
+								order = 4,
+								type = 'toggle',
+								name = L["Enable pet cooldown tracking"],
+								desc = L["Add a cooldown icon when trying to use skills that are on cooldown, and a cooldown flash when they are ready"],
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.petcooldown end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.petcooldown = value E:StaticPopup_Show('PRIVATE_RL') end,
+							},
+							header99 = {
+								order = 97,
+								type = "description",
+								name= L["Cooldown Sound"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							enablecdsound = {
+								order = 98,
+								type = 'toggle',
+								name = L["Play a Sound when attempting to use a skill that is on cooldown."],
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.cooldown end,
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.cooldownsound end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.cooldownsound = value
+									if value == true then
+										SetCVar('Sound_EnableErrorSpeech', 0)
+									else
+										SetCVar('Sound_EnableErrorSpeech', 1)
+									end
+									E:StaticPopup_Show('PRIVATE_RL') end,
+							},
+							cdsound = {
+								order = 99,
+								type = 'select',
+								width = "double",
+								dialogControl = 'LSM30_Sound',
+								name = L["Select a Sound"],
+								desc = L["Choose a Sound from SharedMedia files"],
+								values = AceGUIWidgetLSMlists.sound,
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.cooldownfile end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.cooldownsound or not E.db.ElvUI_EltreumUI.cursors.cursor.cooldown end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.cursors.cursor.cooldownfile = key E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header1 = {
+								order = 120,
+								type = "description",
+								name= L["Change the size of the World of Warcraft Cursor"],
+								hidden = E.Retail,
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							setsize = {
+								order = 121,
+								type = 'select',
+								name = L["Select a size"],
+								desc = L["Choose this size"],
+								hidden = E.Retail,
+								values = {
+									["-1"] = L["Autodetect"],
+									["0"] = '32x32',
+									["1"] = '48x48',
+									["2"] = '64x64',
+									["3"] = '128x128',
+								},
+								style = 'radio',
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.size end,
+								set = function(_, value) ElvUI_EltreumUI:CursorSize(value) end,
+							},
+							headerhardwarecursor = {
+								order = 122,
+								type = "description",
+								name= L["Attempt to fix Cursor Lag"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							fixlag = {
+								order = 123,
+								type = 'select',
+								name = " ",
+								desc = L["Software cursor is how the cursor was before Battle for Azeroth, Hardware cursor is faster but will cause problems with addons that attach to it"],
+								--width = 'full',
+								values = {
+									["0"] = L["Software Cursor"],
+									["1"] = L["Hardware Cursor"],
+								},
+								style = 'radio',
+								get = function() return C_CVar.GetCVar('HardwareCursor') end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.fixlag = value SetCVar('HardwareCursor', value) end,
+							},
+						},
+					},
+					cursorsize = {
+						order = 3,
+						type = 'group',
+						name = L["Cursor Sizes"],
+						disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
+						args = {
+							header1 = {
+								order = 18,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							nicegap3 = {
+								order = 18,
+								type = "description",
+								name = L["Cursor Sizes "]..'|cffff0000('..L["Requires a Reload"]..")|r",
+								width = 'full',
+							},
+							castradius = {
+								type = 'range',
+								name = L["Cast Radius (Default: 25)"],
+								desc = L["Set the radius of the cast cursor"],
+								order = 19,
+								min = 10,
+								max = 50,
+								step = 1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorcast.radius end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcast.radius = value ElvUI_EltreumUI:CastCursor() end,
+							},
+							castthickness = {
+								type = 'range',
+								name = L["Cast Thickness (Default: 5)"],
+								desc = L["Set the radius of the cast cursor"],
+								order = 19,
+								min = 1,
+								max = 10,
+								step = 1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorcast.thickness end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcast.thickness = value ElvUI_EltreumUI:CastCursor() end,
+							},
+							gcdradius = {
+								type = 'range',
+								name = L["GCD Radius (Default: 20)"],
+								desc = L["Set the radius of the gcd cursor"],
+								order = 19,
+								min = 10,
+								max = 50,
+								step = 1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorgcd.radius end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorgcd.radius = value ElvUI_EltreumUI:CastCursor() end,
+							},
+							gcdthickness = {
+								type = 'range',
+								name = L["GCD Thickness (Default: 5)"],
+								desc = L["Set the thickness of the gcd cursor"],
+								order = 19,
+								min = 1,
+								max = 10,
+								step = 1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorgcd.thickness end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorgcd.thickness = value ElvUI_EltreumUI:CastCursor() end,
+							},
+							cursorcursorradius = {
+								type = 'range',
+								name = L["Combat Cursor Radius (Default: 15)"],
+								desc = L["Set the radius of the combat cursor"],
+								order = 19,
+								min = 10,
+								max = 50,
+								step = 1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorcursor.radius end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcursor.radius = value ElvUI_EltreumUI:CastCursor() end,
+							},
+							cursorcursorthickness = {
+								type = 'range',
+								name = L["Combat Cursor Thickness (Default: 5)"],
+								desc = L["Set the thickness of the combat cursor"],
+								order = 19,
+								min = 1,
+								max = 10,
+								step = 1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorcursor.thickness end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcursor.thickness = value ElvUI_EltreumUI:CastCursor() end,
+							},
+						},
+					},
+					cursorposition = {
+						order = 4,
+						type = 'group',
+						name = L["Cursor Position"],
+						disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
+						args = {
+							nicegap4 = {
+								order = 21,
+								type = "description",
+								name = L["Cursor Position"]..'|cffff0000('..L["Requires a Reload"]..")|r",
+								width = 'full',
+							},
+							coooldownx = {
+								type = 'range',
+								name = L["Set X offset"],
+								order = 22,
+								min = -200,
+								max = 200,
+								step = 1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable or not E.db.ElvUI_EltreumUI.cursors.cursor.cooldown end,
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx = value end,
+							},
+							coooldowny = {
+								type = 'range',
+								name = L["Set Y offset"],
+								order = 22,
+								min = -200,
+								max = 200,
+								step = 1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable or not E.db.ElvUI_EltreumUI.cursors.cursor.cooldown end,
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety = value end,
+							},
+						},
+					},
+					cursorcolors = {
+						order = 6,
+						type = 'group',
+						name = L["Cursor Colors"],
+						disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
+						args = {
+							nicegap17 = {
+								order = 11,
+								type = "description",
+								name = L["Cursor Colors "]..'|cffff0000('..L["Requires a Reload"]..")|r",
+								width = 'full',
+							},
+							header12 = {
+								order = 11,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							castclasscolor = {
+								type = 'toggle',
+								name = L["Class Colored Casts"],
+								order = 12,
+								desc = L["Use Class Colors for Cast"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor = value ElvUI_EltreumUI:CastCursor() end,
+							},
+							colorcast = {
+								order = 13,
+								type = 'color',
+								name = L["Custom Color Cast"],
+								hasAlpha = true,
+								disabled = function() return (not E.db.ElvUI_EltreumUI.cursors.cursor.enable) or E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor end,
+								get = function()
+									local cursorcast = E.db.ElvUI_EltreumUI.cursors.cursorcast
+									local d = P.ElvUI_EltreumUI.cursors.cursorcast
+									return cursorcast.r, cursorcast.g, cursorcast.b, cursorcast.a, d.r, d.g, d.b, d.a
+								end,
+								set = function(_, r, g, b, a)
+									local cursorcast = E.db.ElvUI_EltreumUI.cursors.cursorcast
+									cursorcast.r, cursorcast.g, cursorcast.b, cursorcast.a = r, g, b, a ElvUI_EltreumUI:CastCursor()
+								end,
+							},
+							gradientcastcursor = {
+								type = 'toggle',
+								name = L["Gradient"],
+								order = 14,
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable or not E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor end,
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorcast.gradient end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcast.gradient = value ElvUI_EltreumUI:CastCursor() end,
+							},
+							nicegap1 = {
+								order = 92,
+								type = "description",
+								name = "",
+								width = 'full',
+							},
+							gcdclasscolor = {
+								type = 'toggle',
+								name = L["Class Colored GCD"],
+								order = 93,
+								desc = L["Use Class Colors for GCD"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor = value ElvUI_EltreumUI:CastCursor() end,
+							},
+							colorgcd = {
+								order = 94,
+								type = 'color',
+								name = L["Custom Color GCD"],
+								hasAlpha = true,
+								disabled = function() return E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor or (not E.db.ElvUI_EltreumUI.cursors.cursor.enable ) end,
+								get = function()
+									local cursorgcd = E.db.ElvUI_EltreumUI.cursors.cursorgcd
+									local d = P.ElvUI_EltreumUI.cursors.cursorgcd
+									return cursorgcd.r, cursorgcd.g, cursorgcd.b, cursorgcd.a, d.r, d.g, d.b, d.a
+								end,
+								set = function(_, r, g, b, a)
+									local cursorgcd = E.db.ElvUI_EltreumUI.cursors.cursorgcd
+									cursorgcd.r, cursorgcd.g, cursorgcd.b, cursorgcd.a = r, g, b, a ElvUI_EltreumUI:CastCursor()
+								end,
+							},
+							nicegap2 = {
+								order = 95,
+								type = "description",
+								name = "",
+								width = 'full',
+							},
+							cursorcursorclasscolor = {
+								type = 'toggle',
+								name = L["Class Colored Combat"],
+								order = 96,
+								desc = L["Use Class Colors for Cursor"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor = value ElvUI_EltreumUI:CastCursor() end,
+							},
+							cursorcursorcolor = {
+								order = 97,
+								type = 'color',
+								name = L["Custom Color Combat"],
+								hasAlpha = true,
+								disabled = function() return E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor or (not E.db.ElvUI_EltreumUI.cursors.cursor.enable) end,
+								get = function()
+									local cursorcursor = E.db.ElvUI_EltreumUI.cursors.cursorcursor
+									local d = P.ElvUI_EltreumUI.cursors.cursorcursor
+									return cursorcursor.r, cursorcursor.g, cursorcursor.b, cursorcursor.a, d.r, d.g, d.b, d.a
+								end,
+								set = function(_, r, g, b, a)
+									local cursorcursor = E.db.ElvUI_EltreumUI.cursors.cursorcursor
+									cursorcursor.r, cursorcursor.g, cursorcursor.b, cursorcursor.a = r, g, b, a ElvUI_EltreumUI:CastCursor()
+								end,
+							},
+						},
+					},
+					cursortype = {
+						order = 7,
+						type = 'group',
+						name = L["Cursor Type"],
+						disabled = function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end,
+						args = {
+							topbar = {
+								order = 0,
+								type = "description",
+								name = L["Choose a type of cursor by clicking it"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gap = {
+								order = 1,
+								type = "description",
+								name = "",
+								width = 'full',
+							},
+							gap2 = {
+								order = 2,
+								type = "description",
+								name = "",
+								width = 'full',
+							},
+							gap3 = {
+								order = 3,
+								type = "description",
+								name = "",
+								width = 'full',
+							},
+							currentring = {
+								order = 5,
+								type = 'description',
+								name = function() return L["Currently selected cursor: "]..ElvUI_EltreumUI:CurrentTypeofCursor() end,
+								desc = L["Choose a type of cursor by clicking it"],
+							},
+							showring1 = {
+								order = 90,
+								type = "execute",
+								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring1',
+								name = L["Type 1"],
+								desc = L["The Cursor will use this type as its texture"],
+								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring1.tga' ElvUI_EltreumUI:CastCursor() end,
+							},
+							showring2 = {
+								order = 91,
+								type = "execute",
+								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring2',
+								name = L["Type 2"],
+								desc = 'The Cursor will use this type as its texture',
+								confirm = true,
+								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring2.tga' ElvUI_EltreumUI:CastCursor() end,
+							},
+							showring3 = {
+								order = 92,
+								type = "execute",
+								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3',
+								name = L["Type 3"],
+								desc = L["The Cursor will use this type as its texture"],
+								confirm = true,
+								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga' ElvUI_EltreumUI:CastCursor() end,
+							},
+							showring4 = {
+								order = 93,
+								type = "execute",
+								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring4',
+								name = L["Type 4"],
+								desc = L["The Cursor will use this type as its texture"],
+								confirm = true,
+								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring4.tga' ElvUI_EltreumUI:CastCursor() end,
+							},
+							showring5 = {
+								order = 94,
+								type = "execute",
+								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring5',
+								name = L["Type 5"],
+								desc = L["The Cursor will use this type as its texture"],
+								confirm = true,
+								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring5.tga' ElvUI_EltreumUI:CastCursor() end,
+							},
+							showring6 = {
+								order = 95,
+								type = "execute",
+								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring6',
+								name = L["Type 6"],
+								desc = L["The Cursor will use this type as its texture"],
+								confirm = true,
+								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring6.tga' ElvUI_EltreumUI:CastCursor() end,
+							},
+							showring7 = {
+								order = 96,
+								type = "execute",
+								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring7',
+								name = L["Type 7"],
+								desc = L["The Cursor will use this type as its texture"],
+								confirm = true,
+								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring7.tga' ElvUI_EltreumUI:CastCursor() end,
+							},
+							showring8 = {
+								order = 97,
+								type = "execute",
+								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring8',
+								name = L["Type 8"],
+								desc = L["The Cursor will use this type as its texture"],
+								confirm = true,
+								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring8.tga' ElvUI_EltreumUI:CastCursor() end,
+							},
+							showring9 = {
+								order = 98,
+								type = "execute",
+								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring9',
+								name = L["Type 9"],
+								desc = L["The Cursor will use this type as its texture"],
+								confirm = true,
+								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring9.tga' ElvUI_EltreumUI:CastCursor() end,
+							},
+							showring10 = {
+								order = 99,
+								type = "execute",
+								image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring10',
+								name = L["Type 10"],
+								desc = L["The Cursor will use this type as its texture"],
+								confirm = true,
+								func = function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring10.tga' ElvUI_EltreumUI:CastCursor() end,
+							},
+						},
+					},
+				},
+			},
+			cvars = {
 				type = 'group',
 				name = E:TextGradient(L["CVars"], 0.50, 0.70, 1, 0.67, 0.95, 1),
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cvar',
 				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cvar:0:0:0:0|t '..L["Customize Blizzard's Hidden Settings"],
+				order = 85,
 				childGroups = "tab",
 				args = {
 					generalcvars = {
@@ -4529,224 +4411,559 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						},
 					},
-					customizecvars = {
+					othercvars = {
 						order = 2,
 						type = 'group',
-						name = L["Customize CVars"],
+						--inline = true,
+						name = L["Other CVars"],
+						--childGroups = "tab",
 						args = {
-							headerblizzcombattext = {
+							blizzcombattext = {
 								order = 2,
+								type = 'group',
+								--inline = true,
+								name = L["Combat Text"],
+								width = 'full',
+								childGroups = "tab",
+								args = {
+									headerblizzcombattext = {
+										order = 2,
+										type = "description",
+										name = L["Blizzard Floating Combat Text"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									blizzcombatexttoggle = {
+										order = 3,
+										name = L["Disable Combat Text"],
+										type = "toggle",
+										desc = L["Enable or disable Blizzard's default Floating Combat Text"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									blizzcombatextmana = {
+										order = 4,
+										name = L["Enable Resource Gains"],
+										type = "toggle",
+										desc = L["Enable or disable Blizzard's default Floating Combat Text for Mana/Rage/Energy and other resouces"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									restorecombatext = {
+										order = 5,
+										name = L["Restore All Blizzard Combat Text"],
+										type = 'execute',
+										width = 'full',
+										func = function() ElvUI_EltreumUI:RestoreBlizzCombatText() E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									headerworldtext = {
+										order = 9,
+										type = "description",
+										name = L["Change the Scale of the World Text"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									worldtextscale = {
+										type = 'range',
+										name = L["Select the size of the World Text"],
+										desc = L["Such as the floating XP, floating reputation changes and others"],
+										order = 10,
+										min = 0.2,
+										max = 2,
+										step = 0.1,
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.worldtextscale end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldtextscale = value ElvUI_EltreumUI:WorldTextScale(value) end,
+									},
+								},
+							},
+							camera = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								name = L["Camera"],
+								width = 'full',
+								childGroups = "tab",
+								args = {
+									headercameraFOV = {
+										order = 6,
+										type = "description",
+										name = "",
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									cameraFOV = {
+										type = 'range',
+										name = L["Camera Field of View"],
+										desc = L["This allows you to zoom out further with the camera to increase the field of view."],
+										order = 7,
+										min = 50,
+										max = 90,
+										step = 1,
+										width = "full",
+										hidden = not E.Retail and not E.Wrath,
+										get = function() return E.db.ElvUI_EltreumUI.cvars.cameraFOV end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraFOV = value SetCVar('camerafov', value) end,
+									},
+									cameraDistanceMaxZoomFactor = {
+										type = 'range',
+										name = L["Camera Distance Max Zoom Factor"],
+										desc = L["Maximum Camera Zoom Out"],
+										order = 8,
+										min = 1,
+										max = function()
+											if not E.Wrath then
+												return 2.6
+											else
+												return 3.4
+											end
+										end,
+										step = 0.1,
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor = value SetCVar('cameraDistanceMaxZoomFactor', value) end,
+									},
+								},
+							},
+							nameplates = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								name = L["Nameplates"],
+								width = 'full',
+								childGroups = "tab",
+								args = {
+									nameplateTargetRadialPosition = {
+										order = 12,
+										type = 'select',
+										name = L["Nameplate Target Radial Position"],
+										desc = L["When target is off screen, position its nameplate radially around sides and bottom."],
+										--width = "full",
+										values = {
+											["1"] = L["Target Only"],
+											["2"] = L["All in Combat"],
+										},
+										style = 'radio',
+										get = function() return C_CVar.GetCVar('nameplateTargetRadialPosition') end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition = value SetCVar('nameplateTargetRadialPosition', value) end,
+									},
+									headernameplateotherinsets = {
+										order = 13,
+										type = "description",
+										name = "",
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									nameplateOtherBottomInset = {
+										type = 'range',
+										name = L["Nameplate Other Bottom Inset"],
+										desc = L["In screen % the inset from the Bottom"],
+										order = 14,
+										min = 0.01,
+										max = 1,
+										step = 0.01,
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset = value SetCVar('nameplateOtherBottomInset', value) SetCVar('nameplateLargeBottomInset', value) end,
+									},
+									nameplateOtherTopInset = {
+										type = 'range',
+										name = L["Nameplate Other Top Inset"],
+										desc = L["In screen % the inset from the Top"],
+										order = 15,
+										min = 0.01,
+										max = 1,
+										step = 0.01,
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset = value SetCVar('nameplateOtherTopInset', value) SetCVar('nameplateLargeTopInset', value) end,
+									},
+								},
+							},
+							graphics = {
+								order = 2,
+								type = 'group',
+								--inline = true,
+								name = L["Graphics"],
+								width = 'full',
+								childGroups = "tab",
+								args = {
+									headerFSR = {
+										order = 16,
+										type = "description",
+										name = L["AMD FSR"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									forceFSRon = {
+										order = 17,
+										type = 'toggle',
+										name = L["Enable AMD FSR even if not scaling"],
+										desc = L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"],
+										width = 'full',
+										get = function()
+											if C_CVar.GetCVar('ResampleAlwaysSharpen') == '0' then
+												return false
+											elseif C_CVar.GetCVar('ResampleAlwaysSharpen') == '1' then
+												return true
+											end
+										end,
+										set = function(_, value)
+											if value == true then
+												SetCVar('ResampleAlwaysSharpen', 1)
+											else
+												SetCVar('ResampleAlwaysSharpen', 0)
+											end
+										 end,
+									},
+									forceFSRsharpness = {
+										order = 18,
+										type = 'range',
+										name = RESAMPLE_QUALITY_FSR,
+										--desc = L["FSR Sharpness"],
+										min = 0,
+										max = 2,
+										step = 0.1,
+										width = "full",
+										disabled = function()
+											if C_CVar.GetCVar('ResampleAlwaysSharpen') == '1' then
+												return false
+											elseif C_CVar.GetCVar('ResampleAlwaysSharpen') == '0' then
+												return true
+											end
+										end,
+										hidden = E.Retail,
+										get = function() return tonumber(C_CVar.GetCVar('ResampleSharpness')) end,
+										set = function(_, value) SetCVar('ResampleSharpness', value) end,
+									},
+									headervideolatency = {
+										order = 19,
+										type = "description",
+										name = "",
+										width = 'full',
+										hidden = E.Classic,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									lowlatencycvar ={
+										order = 20,
+										type = 'select',
+										name = LOW_LATENCY_MODE or "Low Latency Mode",
+										hidden = E.Classic,
+										desc = OPTION_TOOLTIP_LOW_LATENCY_MODE or "Allows the game to use various techniques to reduce input latency",
+										--width = "full",
+										values = {
+											["0"] = VIDEO_OPTIONS_DISABLED or "Disabled",
+											["1"] = VIDEO_OPTIONS_BUILTIN or "Built-in",
+											["2"] = VIDEO_OPTIONS_NVIDIA_REFLEX or "NVIDIA Reflex",
+											--["3"] = VIDEO_OPTIONS_NVIDIA_REFLEX_BOOST,
+										},
+										style = 'radio',
+										get = function() return C_CVar.GetCVar('LowLatencyMode') end,
+										set = function(_, value) local number = tonumber(value) SetCVar('LowLatencyMode', number) end,
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+			chat = {
+				type = 'group',
+				name = E:TextGradient(CHAT_LABEL, 0.50, 0.70, 1, 0.67, 0.95, 1),
+				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\chat',
+				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\chat:0:0:0:0|t '..L["Enhance Chat Functionality"],
+				order = 85,
+				childGroups = "tab",
+				args = {
+					chatenable = {
+						order = 1,
+						type = "group",
+						inline = true,
+						name = "",
+						args = {
+							chatfadeenable = {
+								order = 2,
+								type = 'toggle',
+								name = L["Enable ElvUI Chat modifications"],
+								width = 'full',
+								desc = L["Enable adding more functions to ElvUI Chat"],
+								get = function() return E.db.ElvUI_EltreumUI.chat.enable end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+						}
+					},
+					general = {
+						order = 2,
+						type = 'group',
+						--inline = true,
+						name = L["General"],
+						childGroups = "tab",
+						args = {
+							headerkeys = {
+								order = 189,
 								type = "description",
-								name = L["Blizzard Floating Combat Text"],
+								name = L["!key Chat Command"],
+								width = 'full',
+								hidden = not E.Retail,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							mpluskeys = {
+								order = 190,
+								type = 'toggle',
+								name = L["Enable !key and !keys chat command"],
+								width = 'full',
+								hidden = not E.Retail,
+								desc = L["Will link your key in guild or party chat"],
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.mpluskeys end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mpluskeys = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header8 = {
+								order = 191,
+								type = "description",
+								name = L["Enhance Item Links in Chat"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-							blizzcombatexttoggle = {
-								order = 3,
-								name = L["Disable Combat Text"],
-								type = "toggle",
-								desc = L["Enable or disable Blizzard's default Floating Combat Text"],
+							chatlooticons = {
+								order = 192,
+								type = 'toggle',
+								name = L["Enable Chat Icons"],
 								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = value E:StaticPopup_Show('CONFIG_RL') end,
+								desc = L["Toggle the option on"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.looticons end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.looticons = value end,
 							},
-							blizzcombatextmana = {
-								order = 4,
-								name = L["Enable Resource Gains"],
-								type = "toggle",
-								desc = L["Enable or disable Blizzard's default Floating Combat Text for Mana/Rage/Energy and other resouces"],
+							chatitemlevels = {
+								order = 193,
+								type = 'toggle',
+								name = L["Enable Item Levels"],
 								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana = value E:StaticPopup_Show('CONFIG_RL') end,
+								desc = L["Toggle the option on"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable or not E.db.ElvUI_EltreumUI.chat.looticons end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.itemlevels end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.itemlevels = value end,
 							},
-							restorecombatext = {
-								order = 5,
-								name = L["Restore All Blizzard Combat Text"],
+							header9 = {
+								order = 194,
+								type = "description",
+								name = L["Customize the Chat tabs"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							darkchat = {
+								order = 195,
 								type = 'execute',
-								width = 'full',
-								func = function() ElvUI_EltreumUI:RestoreBlizzCombatText() E:StaticPopup_Show('CONFIG_RL') end,
+								name = L["Dark Chat"],
+								--width = 'double',
+								func = function() ElvUI_EltreumUI:DarkChat() E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							headercameraFOV = {
+							lightchat = {
+								order = 196,
+								type = 'execute',
+								name = L["Transparent Chat"],
+								--width = 'double',
+								func = function() ElvUI_EltreumUI:TransparentChat() E:StaticPopup_Show('CONFIG_RL') end,
+							},
+						},
+					},
+					fade = {
+						order = 3,
+						type = 'group',
+						--inline = true,
+						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+						name = L["Fade"],
+						childGroups = "tab",
+						args = {
+							header1 = {
+								order = 3,
+								type = "description",
+								name = L["Add mouse over to the left chat panel"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							leftmouseover = {
+								order = 5,
+								type = 'toggle',
+								name = L["Left Chat Mouse Over"],
+								desc = L["Toggle the option"],
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.leftmouseover end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftmouseover = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header2 = {
 								order = 6,
 								type = "description",
-								name = "",
+								name = L["Add a fade to the left chat panel, controlled by ElvUI Chat > Text Fade > Inactivity Timer"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-							cameraFOV = {
-								type = 'range',
-								name = L["Camera Field of View"],
-								desc = L["This allows you to zoom out further with the camera to increase the field of view."],
+							leftfade = {
 								order = 7,
-								min = 50,
-								max = 90,
-								step = 1,
-								width = "full",
-								hidden = not E.Retail and not E.Wrath,
-								get = function() return E.db.ElvUI_EltreumUI.cvars.cameraFOV end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraFOV = value SetCVar('camerafov', value) end,
-							},
-							cameraDistanceMaxZoomFactor = {
-								type = 'range',
-								name = L["Camera Distance Max Zoom Factor"],
-								desc = L["Maximum Camera Zoom Out"],
-								order = 8,
-								min = 1,
-								max = function()
-									if not E.Wrath then
-										return 2.6
-									else
-										return 3.4
-									end
-								end,
-								step = 0.1,
-								width = "full",
-								get = function() return E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor = value SetCVar('cameraDistanceMaxZoomFactor', value) end,
-							},
-							headerworldtext = {
-								order = 9,
-								type = "description",
-								name = L["Change the Scale of the World Text"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							worldtextscale = {
-								type = 'range',
-								name = L["Select the size of the World Text"],
-								desc = L["Such as the floating XP, floating reputation changes and others"],
-								order = 10,
-								min = 0.2,
-								max = 2,
-								step = 0.1,
-								width = "full",
-								get = function() return E.db.ElvUI_EltreumUI.otherstuff.worldtextscale end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldtextscale = value ElvUI_EltreumUI:WorldTextScale(value) end,
-							},
-							headernameplatetargetradialposition = {
-								order = 11,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							nameplateTargetRadialPosition = {
-								order = 12,
-								type = 'select',
-								name = L["Nameplate Target Radial Position"],
-								desc = L["When target is off screen, position its nameplate radially around sides and bottom."],
-								--width = "full",
-								values = {
-									["1"] = L["Target Only"],
-									["2"] = L["All in Combat"],
-								},
-								style = 'radio',
-								get = function() return C_CVar.GetCVar('nameplateTargetRadialPosition') end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition = value SetCVar('nameplateTargetRadialPosition', value) end,
-							},
-							headernameplateotherinsets = {
-								order = 13,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							nameplateOtherBottomInset = {
-								type = 'range',
-								name = L["Nameplate Other Bottom Inset"],
-								desc = L["In screen % the inset from the Bottom"],
-								order = 14,
-								min = 0.01,
-								max = 1,
-								step = 0.01,
-								width = "full",
-								get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset = value SetCVar('nameplateOtherBottomInset', value) SetCVar('nameplateLargeBottomInset', value) end,
-							},
-							nameplateOtherTopInset = {
-								type = 'range',
-								name = L["Nameplate Other Top Inset"],
-								desc = L["In screen % the inset from the Top"],
-								order = 15,
-								min = 0.01,
-								max = 1,
-								step = 0.01,
-								width = "full",
-								get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset = value SetCVar('nameplateOtherTopInset', value) SetCVar('nameplateLargeTopInset', value) end,
-							},
-							headerFSR = {
-								order = 16,
-								type = "description",
-								name = L["AMD FSR"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							forceFSRon = {
-								order = 17,
 								type = 'toggle',
-								name = L["Enable AMD FSR even if not scaling"],
-								desc = L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"],
+								name = L["Left Inactivity Fader"],
 								width = 'full',
-								get = function()
-									if C_CVar.GetCVar('ResampleAlwaysSharpen') == '0' then
-										return false
-									elseif C_CVar.GetCVar('ResampleAlwaysSharpen') == '1' then
-										return true
-									end
-								end,
-								set = function(_, value)
-									if value == true then
-								 		SetCVar('ResampleAlwaysSharpen', 1)
-								 	else
-								 		SetCVar('ResampleAlwaysSharpen', 0)
-								 	end
-								 end,
+								desc = L["Toggle the option"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.leftfader end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftfader = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							forceFSRsharpness = {
-								order = 18,
-								type = 'range',
-								name = RESAMPLE_QUALITY_FSR,
-								--desc = L["FSR Sharpness"],
-								min = 0,
-								max = 2,
-								step = 0.1,
-								width = "full",
-								disabled = function()
-									if C_CVar.GetCVar('ResampleAlwaysSharpen') == '1' then
-										return false
-									elseif C_CVar.GetCVar('ResampleAlwaysSharpen') == '0' then
-										return true
-									end
-								end,
-								hidden = E.Retail,
-								get = function() return tonumber(C_CVar.GetCVar('ResampleSharpness')) end,
-								set = function(_, value) SetCVar('ResampleSharpness', value) end,
-							},
-							headervideolatency = {
-								order = 19,
+							header3 = {
+								order = 8,
 								type = "description",
-								name = "",
+								name = L["Add mouse over to the left chat panel"],
 								width = 'full',
-								hidden = E.Classic,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-							lowlatencycvar ={
-								order = 20,
-								type = 'select',
-								name = LOW_LATENCY_MODE or "Low Latency Mode",
-								hidden = E.Classic,
-								desc = OPTION_TOOLTIP_LOW_LATENCY_MODE or "Allows the game to use various techniques to reduce input latency",
-								--width = "full",
-								values = {
-									["0"] = VIDEO_OPTIONS_DISABLED or "Disabled",
-									["1"] = VIDEO_OPTIONS_BUILTIN or "Built-in",
-									["2"] = VIDEO_OPTIONS_NVIDIA_REFLEX or "NVIDIA Reflex",
-									--["3"] = VIDEO_OPTIONS_NVIDIA_REFLEX_BOOST,
-								},
-								style = 'radio',
-								get = function() return C_CVar.GetCVar('LowLatencyMode') end,
-								set = function(_, value) local number = tonumber(value) SetCVar('LowLatencyMode', number) end,
+							rightmouseover = {
+								order = 9,
+								type = 'toggle',
+								name = L["Right Chat Mouse Over"],
+								desc = L["Toggle the option"],
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.rightmouseover end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightmouseover = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header4 = {
+								order = 10,
+								type = "description",
+								name = L["Add a fade to the right chat panel, controlled by ElvUI Chat > Text Fade > Inactivity Timer"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							rightfade = {
+								order = 11,
+								type = 'toggle',
+								name = L["Right Inactivity Fader"],
+								desc = L["Toggle the option"],
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.rightfader end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightfader = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header6 = {
+								order = 85,
+								type = "description",
+								name = L["Invert left mouse click so that chat starts faded and mouse click will make it stop fading"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							invertmouse = {
+								order = 86,
+								type = 'toggle',
+								name = L["Invert Mouse Click"],
+								width = 'full',
+								desc = L["Toggle the option on"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.invertclick end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.invertclick = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+						},
+					},
+					combathide = {
+						order = 3,
+						type = 'group',
+						--inline = true,
+						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+						name = L["Combat Hide"],
+						childGroups = "tab",
+						args = {
+							header5 = {
+								order = 12,
+								type = "description",
+								name = L["Combat Hide"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							leftcombathide = {
+								order = 13,
+								type = 'toggle',
+								name = L["Hide Left Chat in Combat"],
+								width = 'full',
+								desc = L["Toggle the option"],
+								disabled = function() return E.db.ElvUI_EltreumUI.chat.leftbosshide or not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.leftcombathide end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftcombathide = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							leftbosshide = {
+								order = 14,
+								type = 'toggle',
+								name = L["Hide Left Chat in Boss Encounters"],
+								width = 'full',
+								desc = L["Toggle the option"],
+								disabled = function() return E.db.ElvUI_EltreumUI.chat.leftcombathide or not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.leftbosshide end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.leftbosshide = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							rightcombathide = {
+								order = 15,
+								type = 'toggle',
+								name = L["Hide Right Chat in Combat"],
+								width = 'full',
+								desc = L["Toggle the option"],
+								disabled = function() return E.db.ElvUI_EltreumUI.chat.rightbosshide or not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.rightcombathide end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightcombathide = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							rightbosshide = {
+								order = 16,
+								type = 'toggle',
+								name = L["Hide Right Chat in Boss Encounters"],
+								width = 'full',
+								desc = L["Toggle the option"],
+								disabled = function() return E.db.ElvUI_EltreumUI.chat.rightcombathide or not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.rightbosshide end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.rightbosshide = value E:StaticPopup_Show('CONFIG_RL') end,
+							},								},
+					},
+					color = {
+						order = 3,
+						type = 'group',
+						--inline = true,
+						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+						name = L["Color"],
+						childGroups = "tab",
+						args = {
+							header7 = {
+								order = 87,
+								type = "description",
+								name = L["Add color to some chat messages"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							colorsysmsgs = {
+								order = 88,
+								type = 'toggle',
+								name = L["Enable on System Messages"],
+								width = 'full',
+								desc = L["Toggle the option on"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.colorsysmsg end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.colorsysmsg = value end,
+							},
+							classcolormsgs = {
+								order = 89,
+								type = 'toggle',
+								name = L["Enable on Chat Messages"],
+								width = 'double',
+								desc = L["Toggle the option on"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.classcolorchat end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.classcolorchat = value end,
+							},
+							classcolormsgscustom = {
+								order = 90,
+								type = 'toggle',
+								name = L["Custom Color"],
+								--width = 'double',
+								desc = L["Toggle the option on"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable or not E.db.ElvUI_EltreumUI.chat.classcolorchat end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.classcolorchatcustom end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.classcolorchatcustom = value end,
 							},
 						},
 					},
@@ -4760,18 +4977,12 @@ function ElvUI_EltreumUI:Configtable()
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\gradient',
 				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\gradient:0:0:0:0|t '..L["Customize Gradient Colors"],
 				args = {
-					class = {
+					colorsenable = {
 						order = 1,
-						type = 'group',
-						name = L["Custom Class Colors"],
+						type = "group",
+						inline = true,
+						name = "",
 						args = {
-							headernp = {
-								order = 1,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
 							enablecustomcolornp = {
 								order = 2,
 								type = 'toggle',
@@ -4782,15 +4993,8 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
-							headeruf = {
-								order = 3,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
 							enablecustomcoloruf = {
-								order = 4,
+								order = 2,
 								type = 'toggle',
 								name = L["Unitframe Custom Color"],
 								desc = L["Enable Custom Colors for Unitframes"],
@@ -4799,6 +5003,13 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
+						}
+					},
+					class = {
+						order = 2,
+						type = 'group',
+						name = L["Custom Class Colors"],
+						args = {
 							header2 = {
 								order = 64,
 								type = "description",
@@ -5560,7 +5771,7 @@ function ElvUI_EltreumUI:Configtable()
 						},
 					},
 					unitframe = {
-						order = 2,
+						order = 3,
 						type = 'group',
 						name = L["Unitframe Colors"],
 						args = {
@@ -5866,7 +6077,7 @@ function ElvUI_EltreumUI:Configtable()
 						},
 					},
 					nameplate = {
-						order = 3,
+						order = 4,
 						type = 'group',
 						name = L["Nameplate Colors"],
 						args = {
@@ -6189,7 +6400,7 @@ function ElvUI_EltreumUI:Configtable()
 						},
 					},
 					power = {
-						order = 4,
+						order = 5,
 						type = 'group',
 						name = L["Power Colors"],
 						args = {
@@ -6676,16 +6887,9 @@ function ElvUI_EltreumUI:Configtable()
 						type = "group",
 						name = "LootText",
 						args = {
-							header1 = {
-								order = 1,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
 							lootsetting = {
-								order = 2,
-								type = 'group',
+								order = 1,
+								type = "group",
 								inline = true,
 								name = L["Show a floating loot text"],
 								args = {
@@ -6697,69 +6901,72 @@ function ElvUI_EltreumUI:Configtable()
 										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.enable end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.enable = value E:StaticPopup_Show('CONFIG_RL') end,
 									},
-									addagaphere = {
-										order = 2,
-										type = "description",
-										name = "",
+								}
+							},
+							types = {
+								order = 2,
+								type = 'group',
+								name = L["Text Types"],
+								childGroups = "tab",
+								width = 'full',
+								args = {
+									honor = {
+										type = 'toggle',
+										name = HONOR,
+										order = 5,
+										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.honor end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.honor = value end,
 									},
-									addanothergapforfun = {
-										order = 2,
-										type = "description",
-										name = "",
+									currency = {
+										type = 'toggle',
+										name = CURRENCY,
+										order = 5,
+										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.currency end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.currency = value end,
 									},
-									suboptions = {
-										order = 2,
-										type = 'group',
-										name = L["Choose which types of text:"],
-											args = {
-												yetanothergap = {
-												order = 2,
-												type = "description",
-												name = "",
-												},
-												honor = {
-													type = 'toggle',
-													name = HONOR,
-													order = 5,
-													disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-													get = function() return E.db.ElvUI_EltreumUI.loot.loottext.honor end,
-													set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.honor = value end,
-												},
-												currency = {
-													type = 'toggle',
-													name = CURRENCY,
-													order = 5,
-													disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-													get = function() return E.db.ElvUI_EltreumUI.loot.loottext.currency end,
-													set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.currency = value end,
-												},
-												pet = {
-													type = 'toggle',
-													name = L["Pets"],
-													order = 5,
-													disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-													get = function() return E.db.ElvUI_EltreumUI.loot.loottext.pet end,
-													set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.pet = value end,
-												},
-												filterquality = {
-													order = 6,
-													type = 'select',
-													name = L["Minimum Loot Quality Filter"],
-													desc = L["Only items of this quality or better will be displayed"],
-													values = {
-														["0"] = ITEM_QUALITY0_DESC,
-														["1"] = ITEM_QUALITY1_DESC,
-														["2"] = ITEM_QUALITY2_DESC,
-														["3"] = ITEM_QUALITY3_DESC,
-														["4"] = ITEM_QUALITY4_DESC,
-													},
-													style = 'radio',
-													disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-													get = function() return E.db.ElvUI_EltreumUI.loot.loottext.quality end,
-													set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.quality = value end,
-												},
-											}
+									pet = {
+										type = 'toggle',
+										name = L["Pets"],
+										order = 5,
+										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.pet end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.pet = value end,
 									},
+								},
+							},
+							filter = {
+								order = 3,
+								type = 'group',
+								name = L["Filter"],
+								childGroups = "tab",
+								args = {
+									filterquality = {
+										order = 6,
+										type = 'select',
+										name = L["Minimum Loot Quality Filter"],
+										desc = L["Only items of this quality or better will be displayed"],
+										values = {
+											["0"] = ITEM_QUALITY0_DESC,
+											["1"] = ITEM_QUALITY1_DESC,
+											["2"] = ITEM_QUALITY2_DESC,
+											["3"] = ITEM_QUALITY3_DESC,
+											["4"] = ITEM_QUALITY4_DESC,
+										},
+										style = 'radio',
+										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.quality end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.quality = value end,
+									},
+								},
+							},
+							scale = {
+								order = 4,
+								type = 'group',
+								name = L["Scale"],
+								childGroups = "tab",
+								args = {
 									header1 = {
 										order = 3,
 										type = "description",
@@ -6789,6 +6996,14 @@ function ElvUI_EltreumUI:Configtable()
 										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
 										func = function() E.db.ElvUI_EltreumUI.loot.loottext.scale = 0.65 end,
 									},
+								},
+							},
+							strata = {
+								order = 4,
+								type = 'group',
+								name = L["Strata"],
+								childGroups = "tab",
+								args = {
 									header2 = {
 										order = 10,
 										type = "description",
@@ -6813,6 +7028,14 @@ function ElvUI_EltreumUI:Configtable()
 										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.strata end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.strata = value E:StaticPopup_Show('CONFIG_RL') end,
 									},
+								},
+							},
+							position = {
+								order = 4,
+								type = 'group',
+								name = L["Position"],
+								childGroups = "tab",
+								args = {
 									header99 = {
 										order = 12,
 										type = "description",
@@ -6848,36 +7071,45 @@ function ElvUI_EltreumUI:Configtable()
 										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.yOffset = value end,
 										--confirm = true,
 									},
-									header98 = {
-										order = 15,
+								},
+							},
+							fonts = {
+								order = 4,
+								type = 'group',
+								name = L["Fonts"],
+								childGroups = "tab",
+								args = {
+									header = {
+										order = 1,
 										type = "description",
 										name = "",
 										width = 'full',
 										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
-									customfontlootgap = {
-										type = 'description',
-										name = '',
+									fontsize = {
+										type = 'range',
+										name = L["Font Size"],
+										order = 2,
+										min = 4,
+										max = 160,
+										step = 1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontsize = value end,
+									},
+									header2 = {
+										order = 3,
+										type = "description",
+										name = "",
 										width = 'full',
-										order = 16,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
 									customfontlootdesc = {
 										type = 'description',
 										name = L["Change the font of LootText to be the ElvUI Default Font found in General"],
 										width = 'full',
-										order = 17,
-									},
-									fontsize = {
-										type = 'range',
-										name = L["Font Size"],
-										order = 18,
-										min = 4,
-										max = 160,
-										step = 1,
-										--width = "single",
-										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
-										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsize end,
-										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontsize = value end,
+										order = 4,
 									},
 									customfontloot = {
 										type = 'toggle',
@@ -6926,13 +7158,6 @@ function ElvUI_EltreumUI:Configtable()
 										end,
 									},
 								},
-							},
-							header13 = {
-								order = 38,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 						},
 					},
@@ -7114,173 +7339,244 @@ function ElvUI_EltreumUI:Configtable()
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\map',
 				desc = E.Retail and '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\map:0:0:0:0|t '..L["Add a time to arrive to waypoints, cardinal directions and more"] or 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\map'..L["Add cardinal directions, change map scale and more"],
 				order = 85,
+				childGroups = "tab",
 				args = {
-					header1 = {
+					general = {
 						order = 1,
-						type = "description",
-						name = "",
-						width = 'full',
-						hidden = not E.Retail,
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						type = 'group',
+						name= L["General"],
+						args = {
+							headertaxiscale = {
+								order = 7,
+								type = "description",
+								name = L["Flight Frame"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							taxiscale = {
+								type = 'range',
+								name = L["Flight Frame Scale"],
+								order = 8,
+								min = 0.1,
+								max = 3,
+								step = 0.01,
+								width = "double",
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.taxiscale end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.taxiscale = value
+									if _G["TaxiFrame"] then
+										_G["TaxiFrame"]:SetScale(value)
+									end
+									if _G["FlightMapFrame"] then
+										_G["FlightMapFrame"]:SetScale(value)
+									end
+								end,
+							},
+							headerworldmapscale = {
+								order = 9,
+								type = "description",
+								name = L["WORLD_MAP"],
+								width = 'full',
+								hidden = not E.Retail,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							wordlmapscaletoggle = {
+								type = 'toggle',
+								name = E.NewSign..L["Enable World Map Scaling"],
+								order = 10,
+								--desc = "",
+								width = 'full',
+								hidden = not E.Retail,
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscale = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							worldmapscalevalue = {
+								type = 'range',
+								name = E.NewSign..L["World Map Scale"],
+								order = 11,
+								min = 0.1,
+								max = 3,
+								step = 0.01,
+								hidden = not E.Retail,
+								width = "double",
+								disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end,
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue = value
+									if _G["WorldMapFrame"] and E.Retail then
+										_G["WorldMapFrame"]:SetScale(value)
+									end
+								end,
+							},
+						},
 					},
-					waypointetasetting = {
+					eta = {
 						order = 2,
 						type = 'group',
-						inline = true,
+						name= L["Time to Arrive"],
 						hidden = not E.Retail,
-						name = L["Add a time to arrive below the waypoint"],
 						args = {
-							explainer = {
+							header1 = {
 								order = 1,
 								type = "description",
-								name = L["The time will be calculated based on player speed and distance"],
+								name = "",
+								width = 'full',
+								hidden = not E.Retail,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-							explainer2 = {
+							waypointetasetting = {
 								order = 2,
-								type = "description",
-								name = L["If the player is not moving then *** will show up since time cannot be calculated"],
-							},
-							explainer3 = {
-								order = 3,
-								type = "description",
-								name = L["If you move away from the waypoint the time will just increase"],
-							},
-							explainer4 = {
-								order = 4,
-								type = "description",
-								name = '',
-							},
-							enable = {
-								order = 5,
-								type = 'toggle',
-								name = L["Enable ETA"],
-								desc = L["Add an ETA to waypoints"],
-								get = function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							enableautopin = {
-								order = 7,
-								type = 'toggle',
-								name = L["Enable Autopin"],
-								desc = L["Automatically pin the Waypoint"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							enablelimit = {
-								order = 9,
-								type = 'toggle',
-								name = L["Limit Max Distance"],
-								hidden = function() if E.Retail then return false else return true end end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance or not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance = value end,
-							},
-							etacolor = {
-								order = 10,
-								type = 'color',
-								name = L["Text Color"],
-								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB, 1, P.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, P.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, P.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB, 1 end,
-								set = function(_, r, g, b, a) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB = r, g, b E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							enablelimitd = {
-								type = 'range',
-								name = L["Max Distance"],
-								order = 11,
-								min = 200,
-								max = 10000,
-								step = 10,
-								width = "full",
-								hidden = function() if E.Retail then return false else return true end end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance or not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance = value end,
+								type = 'group',
+								inline = true,
+								hidden = not E.Retail,
+								name = L["Add a time to arrive below the waypoint"],
+								args = {
+									explainer = {
+										order = 1,
+										type = "description",
+										name = L["The time will be calculated based on player speed and distance"],
+										width = 'full',
+									},
+									explainer2 = {
+										order = 2,
+										type = "description",
+										name = L["If the player is not moving then *** will show up since time cannot be calculated"],
+											width = 'full',
+									},
+									explainer3 = {
+										order = 3,
+										type = "description",
+										name = L["If you move away from the waypoint the time will just increase"],
+										width = 'full',
+									},
+									explainer4 = {
+										order = 4,
+										type = "description",
+										width = 'full',
+										name = '',
+									},
+									enable = {
+										order = 5,
+										type = 'toggle',
+										name = L["Enable ETA"],
+										desc = L["Add an ETA to waypoints"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									enableautopin = {
+										order = 7,
+										type = 'toggle',
+										name = L["Enable Autopin"],
+										desc = L["Automatically pin the Waypoint"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									enablelimit = {
+										order = 9,
+										type = 'toggle',
+										name = L["Limit Max Distance"],
+										hidden = function() if E.Retail then return false else return true end end,
+										disabled = function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance or not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance = value end,
+									},
+									header1 = {
+										order = 1,
+										type = "description",
+										name = "",
+										width = 'full',
+										hidden = not E.Retail,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									etacolor = {
+										order = 10,
+										type = 'color',
+										name = L["Text Color"],
+										width = 'full',
+										hasAlpha = false,
+										disabled = function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB, 1, P.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, P.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, P.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB, 1 end,
+										set = function(_, r, g, b, a) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB = r, g, b E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									enablelimitd = {
+										type = 'range',
+										name = L["Max Distance"],
+										order = 11,
+										min = 200,
+										max = 10000,
+										step = 10,
+										width = "double",
+										hidden = function() if E.Retail then return false else return true end end,
+										disabled = function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance or not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance = value end,
+									},
+								},
 							},
 						},
-					},
-					header2 = {
-						order = 3,
-						type = "description",
-						name = "",
-						width = 'full',
-						hidden = not E.Retail,
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 					},
 					waytext = {
-						order = 4,
+						order = 3,
 						type = 'group',
-						inline = true,
 						hidden = not E.Retail,
-						name = L["Enable the /way and /waypoint commands"],
+						name= L["Chat Command"],
 						args = {
-							explainer = {
-								order = 1,
-								type = "description",
-								name = L["You can type /way or /waypoint"],
-							},
-							explainer2 = {
-								order = 2,
-								type = "description",
-								name = L["Use formats such as:"],
-							},
-							explainer3 = {
+							header2 = {
 								order = 3,
 								type = "description",
-								name = L["XX YY, XX.XX YY.YY, XX,XX YY,YY and XXX YYY"],
+								name = "",
+								width = 'full',
+								hidden = not E.Retail,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-							explainer4 = {
+							waytext = {
 								order = 4,
-								type = "description",
-								name = L["Other Formats can end up causing errors"],
-							},
-							enable = {
-								order = 5,
-								type = 'toggle',
-								name = L["Enable"],
-								desc = L["Enable the /way and /waypoint commands"],
-								get = function() return E.db.ElvUI_EltreumUI.waypoints.waytext.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.waypoints.waytext.enable = value end,
+								type = 'group',
+								inline = true,
+								hidden = not E.Retail,
+								name = L["Enable the /way and /waypoint commands"],
+								args = {
+									explainer = {
+										order = 1,
+										type = "description",
+										width = 'full',
+										name = L["You can type /way or /waypoint"],
+									},
+									explainer2 = {
+										order = 2,
+										type = "description",
+										width = 'full',
+										name = L["Use formats such as:"],
+									},
+									explainer3 = {
+										order = 3,
+										type = "description",
+										width = 'full',
+										name = L["XX YY, XX.XX YY.YY, XX,XX YY,YY and XXX YYY"],
+									},
+									explainer4 = {
+										order = 4,
+										type = "description",
+										width = 'full',
+										name = L["Other Formats can end up causing errors"],
+									},
+									enable = {
+										order = 5,
+										type = 'toggle',
+										name = L["Enable"],
+										desc = L["Enable the /way and /waypoint commands"],
+										get = function() return E.db.ElvUI_EltreumUI.waypoints.waytext.enable end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.waypoints.waytext.enable = value end,
+									},
+								},
 							},
 						},
 					},
-					header3 = {
-						order = 5,
-						type = "description",
-						name = "",
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					mapcombathide = {
-						order = 6,
+					cardinal = {
+						order = 4,
 						type = 'group',
-						inline = true,
-						name = L["Minimap"],
+						name= L["Cardinal Directions"],
 						args = {
-							explainer4 = {
-								order = 4,
-								type = "description",
-								name = L["Hide Minimap while in Combat"],
-								width = "full",
-							},
-							enable = {
-								order = 5,
-								type = 'toggle',
-								name = L["Enable"],
-								desc = L["Automatically hide the Minimap in combat"],
-								get = function() return E.db.ElvUI_EltreumUI.otherstuff.mapcombathide end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mapcombathide = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							enableaurapos = {
-								order = 6,
-								type = 'toggle',
-								name = L["Adjust Auras Position"],
-								desc = L["Automatically move auras to the Top Right when minimap is hidden"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mapcombathide end,
-								get = function() return E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
 							header3cardinal = {
 								order = 7,
 								type = "description",
@@ -7305,31 +7601,37 @@ function ElvUI_EltreumUI:Configtable()
 								min = -50,
 								max = 50,
 								step = 1,
-								--width = "double",
+								width = 'double',
 								disabled = function() return C_CVar.GetCVar("rotateMinimap") == "1" or not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset = value ElvUI_EltreumUI:MinimapCardinalDirections() end,
 							},
+							linebreak = {
+								order = 10,
+								type = "description",
+								name = "",
+								width = 'full',
+							},
 							fontsize = {
 								type = 'range',
 								name = L["Font Size"],
-								order = 10,
+								order = 11,
 								min = 4,
 								max = 30,
 								step = 1,
-								--width = "single",
+								width = 'double',
 								disabled = function() return C_CVar.GetCVar("rotateMinimap") == "1" or not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize = value ElvUI_EltreumUI:MinimapCardinalDirections() end,
 							},
 							linebreak = {
-								order = 11,
+								order = 12,
 								type = "description",
 								name = "",
 								width = 'full',
 							},
 							cardinalclasscolor = {
-								order = 12,
+								order = 13,
 								type = 'toggle',
 								name = L["Use Class Colors"],
 								--width = "full",
@@ -7338,7 +7640,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor = value ElvUI_EltreumUI:MinimapCardinalDirections() end,
 							},
 							cardinalcustomcolor = {
-								order = 13,
+								order = 14,
 								type = 'color',
 								name = L["Custom Color"],
 								hasAlpha = false,
@@ -7352,64 +7654,51 @@ function ElvUI_EltreumUI:Configtable()
 							},
 						},
 					},
-					headertaxiscale = {
-						order = 7,
-						type = "description",
-						name = "",
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					taxiscale = {
-						type = 'range',
-						name = L["Flight Frame Scale"],
-						order = 8,
-						min = 0.1,
-						max = 3,
-						step = 0.01,
-						--width = "double",
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.taxiscale end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.taxiscale = value
-							if _G["TaxiFrame"] then
-								_G["TaxiFrame"]:SetScale(value)
-							end
-							if _G["FlightMapFrame"] then
-								_G["FlightMapFrame"]:SetScale(value)
-							end
-						end,
-					},
-					headerworldmapscale = {
-						order = 9,
-						type = "description",
-						name = "",
-						width = 'full',
-						hidden = not E.Retail,
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					wordlmapscaletoggle = {
-						type = 'toggle',
-						name = E.NewSign..L["Enable World Map Scaling"],
-						order = 10,
-						--desc = "",
-						hidden = not E.Retail,
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscale = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					worldmapscalevalue = {
-						type = 'range',
-						name = E.NewSign..L["World Map Scale"],
-						order = 11,
-						min = 0.1,
-						max = 3,
-						step = 0.01,
-						hidden = not E.Retail,
-						--width = "double",
-						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end,
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue = value
-							if _G["WorldMapFrame"] and E.Retail then
-								_G["WorldMapFrame"]:SetScale(value)
-							end
-						end,
+					hiding = {
+						order = 5,
+						type = 'group',
+						name= L["Combat Hide"],
+						args = {
+							header3 = {
+								order = 5,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							mapcombathide = {
+								order = 6,
+								type = 'group',
+								inline = true,
+								name = L["Minimap"],
+								args = {
+									explainer4 = {
+										order = 4,
+										type = "description",
+										name = L["Hide Minimap while in Combat"],
+										width = "full",
+									},
+									enable = {
+										order = 5,
+										type = 'toggle',
+										name = L["Enable"],
+										desc = L["Automatically hide the Minimap in combat"],
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.mapcombathide end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mapcombathide = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									enableaurapos = {
+										order = 6,
+										type = 'toggle',
+										name = L["Adjust Auras Position"],
+										desc = L["Automatically move auras to the Top Right when minimap is hidden"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mapcombathide end,
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+
+								},
+							},
+						},
 					},
 				},
 			},
@@ -7667,386 +7956,409 @@ function ElvUI_EltreumUI:Configtable()
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\misc',
 				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\misc:0:0:0:0|t '..L["Various miscellaneous features such as death animations, stealth texture, mail sound, /roll sounds and more"],
 				order = 85,
+				childGroups = "tab",
 				args = {
-					header0 = {
+					general = {
 						order = 1,
-						type = "description",
-						name = L["Show Eltruism Game Menu Button"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					gamemenu = {
-						type = 'toggle',
-						name = L["Enable"],
-						order = 2,
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.gamemenu end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.gamemenu = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header1 = {
-						order = 3,
-						type = "description",
-						name = L["Show Buffs in Arena and hide them outside (will overwrite Eltruism default settings)"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					arenabuffs = {
-						type = 'toggle',
-						name = L["Enable"],
-						order = 4,
-						get = function() return E.db.ElvUI_EltreumUI.unitframes.arenabuffs end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.arenabuffs = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header2 = {
-						order = 5,
-						type = "description",
-						hidden = E.Classic,
-						name = function()
-							if E.Retail then
-								return L["Hide Arena Frames in Arena due to Gladius/GladiusEX or another addon"]
-							else
-								return L["Hide Arena Frames in Arena due to Gladius/Gladdy or another addon"]
-							end
-						end,
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					arenaUF = {
-						type = 'toggle',
-						name = L["Enable"],
-						hidden = E.Classic,
-						order = 6,
-						get = function() return E.db.ElvUI_EltreumUI.unitframes.arenaunitframes end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.arenaunitframes = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header3 = {
-						order = 7,
-						type = "description",
-						name = L["Hide Raid Unitframes in battlegrounds due to addons like Battleground Enemies"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					bgUF = {
-						type = 'toggle',
-						name = L["Enable"],
-						order = 8,
-						get = function() return E.db.ElvUI_EltreumUI.unitframes.bgunitframes end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.bgunitframes = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header4 = {
-						order = 9,
-						type = "description",
-						name = "",
-						width = 'full',
-						hidden = not E.Retail,
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					rogueorderhallautoopen = {
-						order = 10,
-						type = "description",
-						hidden = not E.Retail,
-						name = L["Auto open the Rogue Order Hall, to avoid opening hold CTRL or SHIFT or ALT while talking to the NPC"],
-						width = "full",
-					},
-					rogueenable = {
-						order = 11,
-						type = 'toggle',
-						name = L["Enable"],
-						desc = L["Enable the Rogue Order Hall Auto Open"],
-						hidden = not E.Retail,
-						get = function() return E.db.ElvUI_EltreumUI.quests.rogueopen end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.quests.rogueopen = value end,
-					},
-					header5 = {
-						order = 12,
-						type = "description",
-						name = "",
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					xpdatabar = {
-						order = 13,
-						type = "toggle",
-						name = L["Dynamically toggle the mouseover of the Experience Bar"],
-						desc = L["Shows XP bar when below max level, makes it mouseover when max level"],
-						width = 'full',
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header6 = {
-						order = 26,
-						type = "description",
-						name = "",
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					combatextindicator = {
-						order = 27,
-						type = "toggle",
-						name = L["Enable Entering/Leaving Combat Indicator Texts"],
-						desc = L["Adds a +Combat and -Combat for when entering and leaving combat"],
-						width = 'full',
-						get = function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicator end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicator = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header7 = {
-						order = 28,
-						type = "description",
-						name = "",
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					darksouls = {
-						order = 29,
-						type = "toggle",
-						name = L["Enable a Dark Souls death animation"],
-						desc = L["Plays an animation when you die"],
-						width = 'full',
-						disabled = function() return E.db.ElvUI_EltreumUI.skins.playerdeathgta or E.db.ElvUI_EltreumUI.skins.playerdeathcustom end,
-						get = function() return E.db.ElvUI_EltreumUI.skins.playerdeath end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeath = value end,
-					},
-					gta = {
-						order = 29,
-						type = "toggle",
-						name = L["Enable a GTA death animation"],
-						desc = L["Plays an animation when you die"],
-						width = 'full',
-						disabled = function() return E.db.ElvUI_EltreumUI.skins.playerdeath or E.db.ElvUI_EltreumUI.skins.playerdeathcustom end,
-						get = function() return E.db.ElvUI_EltreumUI.skins.playerdeathgta end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeathgta = value end,
-					},
-					customdeath = {
-						order = 30,
-						type = "toggle",
-						name = L["Enable a Custom death animation"],
-						desc = L["Plays an animation when you die"],
-						width = 'full',
-						disabled = function() return E.db.ElvUI_EltreumUI.skins.playerdeathgta or E.db.ElvUI_EltreumUI.skins.playerdeath end,
-						get = function() return E.db.ElvUI_EltreumUI.skins.playerdeathcustom end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeathcustom = value end,
-					},
-					customdeathtext = {
-						order = 31,
-						type = 'input',
-						name = L["Custom Death Text"],
-						desc = L["The text displayed when you die using the custom text option"],
-						--width = 'double',
-						disabled = function() return E.db.ElvUI_EltreumUI.skins.playerdeathgta or E.db.ElvUI_EltreumUI.skins.playerdeath or (not E.db.ElvUI_EltreumUI.skins.playerdeathcustom) end,
-						get = function() return E.db.ElvUI_EltreumUI.skins.playerdeathcustomtext end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeathcustomtext = tostring(value) E:StaticPopup_Show('PRIVATE_RL') end,
-					},
-					header8 = {
-						order = 33,
-						type = "description",
-						name = "",
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					rollsound = {
-						order = 34,
-						type = "toggle",
-						name = L["Add Sounds to /roll when someone gets a 1 or a 100"],
-						desc = L["Plays a sound if someone rolls 1 or 100 out 100"],
-						width = 'full',
-						get = function() return E.db.ElvUI_EltreumUI.chat.rollsound end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.chat.rollsound = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\WillSmith-Ahaha.ogg", "Master") E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header10 = {
-						order = 47,
-						type = "description",
-						name = "",
-						width = 'full',
-						hidden = not E.Retail,
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					hidetalkdesc = {
-						order = 48,
-						type = "description",
-						name = L["Hide Talking Head"],
-						hidden = not E.Retail,
-						width = 'full',
-					},
-					hidetalkenable = {
-						order = 49,
-						name = L["Enable"],
-						type = "toggle",
-						hidden = not E.Retail,
-						desc = L["Prevent Blizzard's Talking Head from appearing"],
-						width = 'full',
-						get = function() return E.db.ElvUI_EltreumUI.skins.hidetalkinghead end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.hidetalkinghead = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header11 = {
-						order = 50,
-						type = "description",
-						name = "",
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					autossdesc = {
-						order = 51,
-						type = "description",
-						name = L["Automatically take Screenshots"],
-						width = 'full',
-					},
-					autossenable = {
-						order = 52,
-						name = L["Enable"],
-						type = "toggle",
-						desc = L["Automatically take Screenshots such as when leveling up"],
-						width = 'full',
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.screenshot end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.screenshot = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					header12 = {
-						order = 53,
-						type = "description",
-						name = L["Stealth"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					stealthframeoptions = {
-						order = 54,
-						type = 'toggle',
-						name = L["Add a vignette effect while in stealth"],
-						width = 'full',
-						desc = L["Turn the effect on"],
-						get = function() return E.db.ElvUI_EltreumUI.skins.stealtheffect end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.skins.stealtheffect = value end,
-					},
-					header13 = {
-						order = 55,
-						type = "description",
-						name = L["Item Deletion"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					autotypedelete = {
-						order = 56,
-						type = 'toggle',
-						name = L["Automatically type DELETE on the popup"],
-						width = 'full',
-						desc = L["Will not delete the item, will simply type DELETE instead you needing to type it"],
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.delete end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.delete = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					headerdatatexthiding = {
-						order = 57,
-						type = "description",
-						name = L["Datatext Hiding"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					rightchatdatatexthide = {
-						order = 58,
-						type = 'toggle',
-						name = L["Hide Right Chat Datatext out of Combat"],
-						width = 'full',
-						disabled = function() return not E.db.datatexts.panels.RightChatDataPanel.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow = value end,
-					},
-					leftchatdatatexthide = {
-						order = 58,
-						type = 'toggle',
-						name = L["Hide Left Chat Datatext out of Combat"],
-						width = 'full',
-						disabled = function() return not E.db.datatexts.panels.LeftChatDataPanel.enable end,
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow = value end,
-					},
-					header14 = {
-						order = 88,
-						type = "description",
-						name = L["Play a Sound when receiving mail"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					enablesoundmail = {
-						type = 'toggle',
-						name = L["Enable"],
-						width = "full",
-						order = 89,
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable = value end,
-					},
-					mailsoundselect = {
-						type = 'select',
-						name= "",
-						order = 90,
-						values = {
-							["tts"] = L["Text to Speech"],
-							["sharedmedia"] = CUSTOM,
+						type = 'group',
+						name= L["General"],
+						args = {
+							header0 = {
+								order = 1,
+								type = "description",
+								name = L["Show Eltruism Game Menu Button"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							gamemenu = {
+								type = 'toggle',
+								name = L["Enable"],
+								order = 2,
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.gamemenu end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.gamemenu = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header4 = {
+								order = 9,
+								type = "description",
+								name = "",
+								width = 'full',
+								hidden = not E.Retail,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							rogueorderhallautoopen = {
+								order = 10,
+								type = "description",
+								hidden = not E.Retail,
+								name = L["Auto open the Rogue Order Hall, to avoid opening hold CTRL or SHIFT or ALT while talking to the NPC"],
+								width = "full",
+							},
+							rogueenable = {
+								order = 11,
+								type = 'toggle',
+								name = L["Enable"],
+								desc = L["Enable the Rogue Order Hall Auto Open"],
+								hidden = not E.Retail,
+								get = function() return E.db.ElvUI_EltreumUI.quests.rogueopen end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.quests.rogueopen = value end,
+							},
+
+							header8 = {
+								order = 33,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							rollsound = {
+								order = 34,
+								type = "toggle",
+								name = L["Add Sounds to /roll when someone gets a 1 or a 100"],
+								desc = L["Plays a sound if someone rolls 1 or 100 out 100"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.chat.rollsound end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.rollsound = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\WillSmith-Ahaha.ogg", "Master") E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header10 = {
+								order = 47,
+								type = "description",
+								name = "",
+								width = 'full',
+								hidden = not E.Retail,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							hidetalkdesc = {
+								order = 48,
+								type = "description",
+								name = L["Hide Talking Head"],
+								hidden = not E.Retail,
+								width = 'full',
+							},
+							hidetalkenable = {
+								order = 49,
+								name = L["Enable"],
+								type = "toggle",
+								hidden = not E.Retail,
+								desc = L["Prevent Blizzard's Talking Head from appearing"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.skins.hidetalkinghead end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.hidetalkinghead = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header11 = {
+								order = 50,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							autossdesc = {
+								order = 51,
+								type = "description",
+								name = L["Automatically take Screenshots"],
+								width = 'full',
+							},
+							autossenable = {
+								order = 52,
+								name = L["Enable"],
+								type = "toggle",
+								desc = L["Automatically take Screenshots such as when leveling up"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.screenshot end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.screenshot = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header12 = {
+								order = 53,
+								type = "description",
+								name = L["Stealth"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							stealthframeoptions = {
+								order = 54,
+								type = 'toggle',
+								name = L["Add a vignette effect while in stealth"],
+								width = 'full',
+								desc = L["Turn the effect on"],
+								get = function() return E.db.ElvUI_EltreumUI.skins.stealtheffect end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.stealtheffect = value end,
+							},
+							header13 = {
+								order = 55,
+								type = "description",
+								name = L["Item Deletion"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							autotypedelete = {
+								order = 56,
+								type = 'toggle',
+								name = L["Automatically type DELETE on the popup"],
+								width = 'full',
+								desc = L["Will not delete the item, will simply type DELETE instead you needing to type it"],
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.delete end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.delete = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header14 = {
+								order = 88,
+								type = "description",
+								name = L["Play a Sound when receiving mail"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							enablesoundmail = {
+								type = 'toggle',
+								name = L["Enable"],
+								width = "full",
+								order = 89,
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable = value end,
+							},
+							mailsoundselect = {
+								type = 'select',
+								name= "",
+								order = 90,
+								values = {
+									["tts"] = L["Text to Speech"],
+									["sharedmedia"] = CUSTOM,
+								},
+								style = 'radio',
+								disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable end,
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype = value end,
+							},
+							sharedmediasoundmail = {
+								order = 91,
+								type = 'select',
+								width = "double",
+								dialogControl = 'LSM30_Sound',
+								name = L["Select a Sound"],
+								desc = L["Choose a Sound from SharedMedia files"],
+								values = AceGUIWidgetLSMlists.sound,
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsound end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" end,
+								set = function(self,key) E.db.ElvUI_EltreumUI.otherstuff.mailsound = key E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							soundmailtts = {
+								type = 'input',
+								name = L["Text to Speech announcement"],
+								width = "full",
+								order = 92,
+								disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "sharedmedia" end,
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext end,
+								set = function(_, value)
+									E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext = tostring(value)
+									if E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice ~= nil then
+										C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, tostring(value) , Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
+									end
+								end,
+							},
+							ttsvoiceselect = {
+								type = 'select',
+								name= L["Text to Speech Config"],
+								order = 93,
+								values =
+								function()
+									local Voices = {}
+									for i, v in pairs(C_VoiceChat.GetTtsVoices()) do
+										--Voices[i] = v.voiceID
+										Voices[v.voiceID] = v.name
+									end
+									return Voices
+								end,
+								validate = function(_, value)
+									if tonumber(value) ~= nil then
+										return true
+									else
+										return false
+									end
+								end,
+								style = 'radio',
+								disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end,
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice = tonumber(value)
+									C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
+								end,
+							},
+							volume = {
+								type = 'range',
+								name = VOLUME,
+								order = 94,
+								min = 1,
+								max = 100,
+								step = 1,
+								width = "full",
+								disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end,
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume = value end,
+							},
 						},
-						style = 'radio',
-						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable end,
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype = value end,
 					},
-					sharedmediasoundmail = {
-						order = 91,
-						type = 'select',
-						width = "double",
-						dialogControl = 'LSM30_Sound',
-						name = L["Select a Sound"],
-						desc = L["Choose a Sound from SharedMedia files"],
-						values = AceGUIWidgetLSMlists.sound,
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsound end,
-						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" end,
-						set = function(self,key) E.db.ElvUI_EltreumUI.otherstuff.mailsound = key E:StaticPopup_Show('CONFIG_RL') end,
+					combat = {
+						order = 2,
+						type = 'group',
+						name= L["Combat"],
+						args = {
+							header1 = {
+								order = 3,
+								type = "description",
+								name = L["Show Buffs in Arena and hide them outside (will overwrite Eltruism default settings)"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							arenabuffs = {
+								type = 'toggle',
+								name = L["Enable"],
+								order = 4,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.arenabuffs end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.arenabuffs = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header2 = {
+								order = 5,
+								type = "description",
+								hidden = E.Classic,
+								name = function()
+									if E.Retail then
+										return L["Hide Arena Frames in Arena due to Gladius/GladiusEX or another addon"]
+									else
+										return L["Hide Arena Frames in Arena due to Gladius/Gladdy or another addon"]
+									end
+								end,
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							arenaUF = {
+								type = 'toggle',
+								name = L["Enable"],
+								hidden = E.Classic,
+								order = 6,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.arenaunitframes end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.arenaunitframes = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header3 = {
+								order = 7,
+								type = "description",
+								name = L["Hide Raid Unitframes in battlegrounds due to addons like Battleground Enemies"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							bgUF = {
+								type = 'toggle',
+								name = L["Enable"],
+								order = 8,
+								get = function() return E.db.ElvUI_EltreumUI.unitframes.bgunitframes end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.bgunitframes = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header6 = {
+								order = 26,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							combatextindicator = {
+								order = 27,
+								type = "toggle",
+								name = L["Enable Entering/Leaving Combat Indicator Texts"],
+								desc = L["Adds a +Combat and -Combat for when entering and leaving combat"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicator end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicator = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							header7 = {
+								order = 28,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							darksouls = {
+								order = 29,
+								type = "toggle",
+								name = L["Enable a Dark Souls death animation"],
+								desc = L["Plays an animation when you die"],
+								width = 'full',
+								disabled = function() return E.db.ElvUI_EltreumUI.skins.playerdeathgta or E.db.ElvUI_EltreumUI.skins.playerdeathcustom end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.playerdeath end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeath = value end,
+							},
+							gta = {
+								order = 29,
+								type = "toggle",
+								name = L["Enable a GTA death animation"],
+								desc = L["Plays an animation when you die"],
+								width = 'full',
+								disabled = function() return E.db.ElvUI_EltreumUI.skins.playerdeath or E.db.ElvUI_EltreumUI.skins.playerdeathcustom end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.playerdeathgta end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeathgta = value end,
+							},
+							customdeath = {
+								order = 30,
+								type = "toggle",
+								name = L["Enable a Custom death animation"],
+								desc = L["Plays an animation when you die"],
+								width = 'full',
+								disabled = function() return E.db.ElvUI_EltreumUI.skins.playerdeathgta or E.db.ElvUI_EltreumUI.skins.playerdeath end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.playerdeathcustom end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeathcustom = value end,
+							},
+							customdeathtext = {
+								order = 31,
+								type = 'input',
+								name = L["Custom Death Text"],
+								desc = L["The text displayed when you die using the custom text option"],
+								--width = 'double',
+								disabled = function() return E.db.ElvUI_EltreumUI.skins.playerdeathgta or E.db.ElvUI_EltreumUI.skins.playerdeath or (not E.db.ElvUI_EltreumUI.skins.playerdeathcustom) end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.playerdeathcustomtext end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeathcustomtext = tostring(value) E:StaticPopup_Show('PRIVATE_RL') end,
+							},
+						},
 					},
-					soundmailtts = {
-						type = 'input',
-						name = L["Text to Speech announcement"],
-						width = "full",
-						order = 92,
-						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "sharedmedia" end,
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext end,
-						set = function(_, value)
-							E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext = tostring(value)
-							if E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice ~= nil then
-								C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, tostring(value) , Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
-							end
-						end,
-					},
-					ttsvoiceselect = {
-						type = 'select',
-						name= L["Text to Speech Config"],
-						order = 93,
-						values =
-						function()
-							local Voices = {}
-							for i, v in pairs(C_VoiceChat.GetTtsVoices()) do
-								--Voices[i] = v.voiceID
-								Voices[v.voiceID] = v.name
-							end
-							return Voices
-						end,
-						validate = function(_, value)
-							if tonumber(value) ~= nil then
-								return true
-							else
-								return false
-							end
-						end,
-						style = 'radio',
-						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end,
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice = tonumber(value)
-							C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
-						end,
-					},
-					volume = {
-						type = 'range',
-						name = VOLUME,
-						order = 94,
-						min = 1,
-						max = 100,
-						step = 1,
-						width = "full",
-						disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end,
-						get = function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume = value end,
+					datatexts = {
+						order = 3,
+						type = 'group',
+						name= L["DataTexts"],
+						args = {
+							header5 = {
+								order = 12,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							xpdatabar = {
+								order = 13,
+								type = "toggle",
+								name = L["Dynamically toggle the mouseover of the Experience Bar"],
+								desc = L["Shows XP bar when below max level, makes it mouseover when max level"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							headerdatatexthiding = {
+								order = 57,
+								type = "description",
+								name = L["Datatext Hiding"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							rightchatdatatexthide = {
+								order = 58,
+								type = 'toggle',
+								name = L["Hide Right Chat Datatext out of Combat"],
+								width = 'full',
+								disabled = function() return not E.db.datatexts.panels.RightChatDataPanel.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow = value end,
+							},
+							leftchatdatatexthide = {
+										order = 58,
+										type = 'toggle',
+										name = L["Hide Left Chat Datatext out of Combat"],
+										width = 'full',
+										disabled = function() return not E.db.datatexts.panels.LeftChatDataPanel.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow = value end,
+									},
+						},
 					},
 				},
 			},
@@ -8062,343 +8374,384 @@ function ElvUI_EltreumUI:Configtable()
 						order = 1,
 						type = 'group',
 						name = L["General"],
+						childGroups = "tab",
 						args = {
-							header = {
+							general= {
 								order = 1,
-								type = "description",
-								name = L["Class Colored Nameplate Options"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								type = "group",
+								childGroups = "tab",
+								name = L["Misc"],
+								args = {
+									header33 = {
+										order = 909,
+										type = "description",
+										name = L["Smart Classbar"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									classbarautohide = {
+										order = 910,
+										type = 'toggle',
+										name = L["Enable Smart Classbar"],
+										desc = L["Automatically hide the Classbar if the Target is Friendly, show if it is an enemy"],
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide = value end,
+									},
+									headerhideswipe = {
+										order = 913,
+										type = 'description',
+										name = L["Hide Cooldown Swipe"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									hidecdswipenp = {
+										order = 914,
+										type = 'toggle',
+										name = L["Hide Cooldown Swipe on Buffs and Debuffs"],
+										desc = L["Toggle On and Off"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									headerhidenontarget = {
+										order = 915,
+										type = 'description',
+										name = L["Hide Debuffs on Non Target"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									hidenontargetdebuffs = {
+										order = 916,
+										type = 'toggle',
+										name = L["Hide Debuffs on Non Targeted Nameplates, show when Targeted"],
+										desc = L["Toggle On and Off"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hidedebuffsnontarget end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hidedebuffsnontarget = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									header4 = {
+										order = 1911,
+										type = "description",
+										name = L["Enemy Nameplate Level"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									dynamiclevel = {
+										order = 1912,
+										type = 'toggle',
+										name = L["Hide level on enemy nameplates when you are max level"],
+										desc = L["Toggle On and Off"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatelevel end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplatelevel = value end,
+									},
+									header5 = {
+										order = 1913,
+										type = "description",
+										name = L["Automatically Hide NPC Names"],
+										width = 'full',
+										hidden = not E.Retail,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									hidenpcname = {
+										order = 1914,
+										type = 'toggle',
+										name = L["Hide NPC Names when they are too far away to have Nameplates"],
+										desc = L["Toggle On and Off"],
+										width = 'full',
+										hidden = not E.Retail,
+										get = function() return E.db.ElvUI_EltreumUI.cvars.autohidenpcname end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.cvars.autohidenpcname = value end,
+									},
+									headerrested = {
+										order = 1915,
+										type = "description",
+										name = L["Rested Nameplates"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									restednp = {
+										order = 1916,
+										type = 'toggle',
+										name = L["Decrease Nameplate Overlap when Resting"],
+										desc = L["Toggle On and Off"],
+										width = 'full',
+										disabled = not E.private.nameplates.enable,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.restedoverlap end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.restedoverlap = value end,
+									},
+									headerrestore = {
+										order = 1917,
+										type = "description",
+										name = L["Restore Hidden Names"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									restorenames = {
+										order = 1918,
+										type = 'execute',
+										name = function()
+											if E.Retail then
+												return L["Restore Unit Names hidden by Hide NPC Names"]
+											else
+												return L["Restore Unit Names Hidden during install"]
+											end
+										end,
+										width = 'full',
+										desc = function()
+											if E.Retail then
+												return L["Use this button to restore names should you have disabled the Hide NPC Names option"]
+											else
+												return L["Use this button to restore names"]
+											end
+										end,
+										func = function() ElvUI_EltreumUI:RestoreNameplateNames() end,
+									},
+									headerdebufffilter = {
+										order = 1919,
+										type = "description",
+										name = "",
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									nameplaterefreshdebufffilter = {
+										order = 1920,
+										type = 'execute',
+										name = L["Manage Debuff Style Filter"],
+										width = 'full',
+										desc = L["Add debuffs to the Style Filter to make Nameplates with expiring Debuffs show full alpha and scale"],
+										disabled = function() return not E.global["nameplates"]["filters"]["EltreumRefreshDebuff"] end,
+										func = function() local C, L = unpack(E.Config) C:StyleFilterSetConfig("EltreumRefreshDebuff") E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'nameplates', "stylefilters", "triggers", "debuffs") end,
+									},
+								}
 							},
-							classhover = {
-								order = 2,
-								type = 'toggle',
-								name = L["Hover"],
-								width = 'double',
-								desc = L["Change the color of the hover to be class colored"],
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow = value ElvUI_EltreumUI:SetStyleFilters() end,
-							},
-							classborder = {
+							classtextures = {
 								order = 3,
-								type = 'toggle',
-								name = L["Border"],
-								width = 'double',
-								desc = L["Change the color of the border glow to be class bordered in nameplates"],
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate = value ElvUI_EltreumUI:SetStyleFilters() end,
+								type = "group",
+								childGroups = "tab",
+								name = L["Class Textures"],
+								args = {
+									header = {
+										order = 1,
+										type = "description",
+										name = L["Class Colored Nameplate Options"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									classhover = {
+										order = 2,
+										type = 'toggle',
+										name = L["Hover"],
+										width = 'double',
+										desc = L["Change the color of the hover to be class colored"],
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow = value ElvUI_EltreumUI:SetStyleFilters() end,
+									},
+									classborder = {
+										order = 3,
+										type = 'toggle',
+										name = L["Border"],
+										width = 'double',
+										desc = L["Change the color of the border glow to be class bordered in nameplates"],
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate = value ElvUI_EltreumUI:SetStyleFilters() end,
+									},
+									classtexture = {
+										order = 4,
+										type = 'toggle',
+										name = L["Player Class Texture"],
+										width = 'double',
+										desc = L["Change the texture of the nameplate to be a class gradient of the player's class"],
+										disabled = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = value ElvUI_EltreumUI:SetStyleFilters() end,
+									},
+									targetclasstexture = {
+										order = 4,
+										type = 'toggle',
+										name = L["Target Class Texture"],
+										width = 'double',
+										desc = L["Change the texture of the nameplate to be a class gradient of the target's class"],
+										disabled = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = value ElvUI_EltreumUI:SetStyleFilters() end,
+									},
+									headernptextv = {
+										order = 5,
+										type = "description",
+										name= L["Nameplate Texture Version"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									textureselect = {
+										type = 'select',
+										name= "",
+										order = 6,
+										values = {
+											["V1"] = L["Version 1"],
+											["V2"] = L["Version 2"],
+											["V3"] = L["Version 3"],
+											["NONE"] = L["None"],
+										},
+										style = 'radio',
+										disabled = function() return (not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture) end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nptextureversion end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nptextureversion = value end,
+									},
+								}
 							},
-							classtexture = {
-								order = 4,
-								type = 'toggle',
-								name = L["Player Class Texture"],
-								width = 'double',
-								desc = L["Change the texture of the nameplate to be a class gradient of the player's class"],
-								disabled = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = value ElvUI_EltreumUI:SetStyleFilters() end,
+							healthheight = {
+								order = 2,
+								type = "group",
+								childGroups = "tab",
+								name = L["Health Height"],
+								args = {
+									headernpheight = {
+										order = 7,
+										type = "description",
+										name= L["Custom Health Height"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									enableCustomHealthHeight = {
+										order = 8,
+										type = 'toggle',
+										name = L["Enable Custom Health Heights"],
+										desc = L["Changes Nameplate Health Height depending on conditions"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									enableCustomHealthHeightelvui = {
+										order = 8,
+										type = 'toggle',
+										name = L["Use ElvUI Health Heights"],
+										desc = L["Use ElvUI Nameplate Health Heights when targeted or in combat"],
+										width = 'full',
+										disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight = value end,
+									},
+									enableCustomHealthHeightnocombat = {
+										type = 'range',
+										name = L["Out of Combat/Not Targeted"],
+										desc = L["Choose the Health Height for Nameplates not in combat or not targeted"],
+										order = 12,
+										min = 1,
+										max = 40,
+										step = 1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.outofcombatHeight end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.outofcombatHeight = value end,
+									},
+									enableCustomHealthHeightincombat = {
+										type = 'range',
+										name = L["In Combat/Targeted"],
+										desc = L["Choose the Health Height for Nameplates that are in combat or targeted"],
+										order = 12,
+										min = 1,
+										max = 40,
+										step = 1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight = value end,
+									},
+								}
 							},
-							targetclasstexture = {
-								order = 4,
-								type = 'toggle',
-								name = L["Target Class Texture"],
-								width = 'double',
-								desc = L["Change the texture of the nameplate to be a class gradient of the target's class"],
-								disabled = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = value ElvUI_EltreumUI:SetStyleFilters() end,
-							},
-							headernptextv = {
+							auratext = {
 								order = 5,
-								type = "description",
-								name= L["Nameplate Texture Version"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								type = "group",
+								childGroups = "tab",
+								name = L["Aura Text"],
+								args = {
+									headernpauras = {
+										order = 13,
+										type = "description",
+										name = L["Adjust Aura Position"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									npauraposenable = {
+										order = 14,
+										type = 'toggle',
+										name = L["Enable"],
+										desc = L["Adjust the position of the text on Buffs/Debuffs"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.auras.enable end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.auras.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									npaurahorizontaloffset = {
+										type = 'range',
+										name = L["X-Offset"],
+										order = 15,
+										min = 0,
+										max = 20,
+										step = 1,
+										--width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.auras.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.auras.xOffset end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.auras.xOffset = value end,
+									},
+									npauraverticaloffset = {
+										type = 'range',
+										name = L["Y-Offset"],
+										order = 15,
+										min = 0,
+										max = 20,
+										step = 1,
+										--width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.auras.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.auras.yOffset end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.auras.yOffset = value end,
+									},
+								}
 							},
-							textureselect = {
-								type = 'select',
-								name= "",
-								order = 6,
-								values = {
-									["V1"] = L["Version 1"],
-									["V2"] = L["Version 2"],
-									["V3"] = L["Version 3"],
-									["NONE"] = L["None"],
-								},
-								style = 'radio',
-								disabled = function() return (not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture) end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.nptextureversion end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nptextureversion = value end,
-							},
-							headernpheight = {
-								order = 7,
-								type = "description",
-								name= L["Custom Health Height"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							enableCustomHealthHeight = {
-								order = 8,
-								type = 'toggle',
-								name = L["Enable Custom Health Heights"],
-								desc = L["Changes Nameplate Health Height depending on conditions"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							enableCustomHealthHeightelvui = {
-								order = 8,
-								type = 'toggle',
-								name = L["Use ElvUI Health Heights"],
-								desc = L["Use ElvUI Nameplate Health Heights when targeted or in combat"],
-								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight = value end,
-							},
-							enableCustomHealthHeightnocombat = {
-								type = 'range',
-								name = L["Out of Combat/Not Targeted"],
-								desc = L["Choose the Health Height for Nameplates not in combat or not targeted"],
-								order = 12,
-								min = 1,
-								max = 40,
-								step = 1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.outofcombatHeight end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.outofcombatHeight = value end,
-							},
-							enableCustomHealthHeightincombat = {
-								type = 'range',
-								name = L["In Combat/Targeted"],
-								desc = L["Choose the Health Height for Nameplates that are in combat or targeted"],
-								order = 12,
-								min = 1,
-								max = 40,
-								step = 1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight = value end,
-							},
-							headernpauras = {
-								order = 13,
-								type = "description",
-								name = L["Adjust Aura Position"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							npauraposenable = {
-								order = 14,
-								type = 'toggle',
-								name = L["Enable"],
-								desc = L["Adjust the position of the text on Buffs/Debuffs"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.auras.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.auras.enable = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							npaurahorizontaloffset = {
-								type = 'range',
-								name = L["X-Offset"],
-								order = 15,
-								min = 0,
-								max = 20,
-								step = 1,
-								--width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.auras.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.auras.xOffset end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.auras.xOffset = value end,
-							},
-							npauraverticaloffset = {
-								type = 'range',
-								name = L["Y-Offset"],
-								order = 15,
-								min = 0,
-								max = 20,
-								step = 1,
-								--width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.auras.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.auras.yOffset end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.auras.yOffset = value end,
-							},
-							header2 = {
-								order = 905,
-								type = "description",
-								name = L["Control how Blizzard Friendly Nameplates behave"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							hidehealthinsideinstances = {
-								order = 906,
-								type = 'toggle',
-								name = L["Show Blizzard Friendly Nameplates but Hide Healthbar"],
-								desc = L["Show Blizzard Friendly Nameplates but Hide Healthbar"],
-								width = 'full',
-								disabled = function() return (E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly or E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly) end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							nofriendlyinstances = {
-								order = 907,
-								type = 'toggle',
-								name = L["Hide Blizzard Friendly Nameplates inside Instances"],
-								desc = L["Hide Blizzard Friendly Nameplates inside Instances"],
-								width = 'full',
-								disabled = function() return (E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames or E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly) end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							dontshowfriendlyatall = {
-								order = 908,
-								type = 'toggle',
-								name = L["Hide Blizzard Friendly Nameplates everywhere"],
-								desc = L["Hide Blizzard Friendly Nameplates everywhere"],
-								width = 'full',
-								disabled = function() return (E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames or E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly) end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							header33 = {
-								order = 909,
-								type = "description",
-								name = L["Smart Classbar"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							classbarautohide = {
-								order = 910,
-								type = 'toggle',
-								name = L["Enable Smart Classbar"],
-								desc = L["Automatically hide the Classbar if the Target is Friendly, show if it is an enemy"],
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide = value end,
-							},
-							headerhideswipe = {
-								order = 913,
-								type = 'description',
-								name = L["Hide Cooldown Swipe"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							hidecdswipenp = {
-								order = 914,
-								type = 'toggle',
-								name = L["Hide Cooldown Swipe on Buffs and Debuffs"],
-								desc = L["Toggle On and Off"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							headerhidenontarget = {
-								order = 915,
-								type = 'description',
-								name = L["Hide Debuffs on Non Target"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							hidenontargetdebuffs = {
-								order = 916,
-								type = 'toggle',
-								name = L["Hide Debuffs on Non Targeted Nameplates, show when Targeted"],
-								desc = L["Toggle On and Off"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hidedebuffsnontarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hidedebuffsnontarget = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							header4 = {
-								order = 1911,
-								type = "description",
-								name = L["Enemy Nameplate Level"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							dynamiclevel = {
-								order = 1912,
-								type = 'toggle',
-								name = L["Hide level on enemy nameplates when you are max level"],
-								desc = L["Toggle On and Off"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatelevel end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplatelevel = value end,
-							},
-							header5 = {
-								order = 1913,
-								type = "description",
-								name = L["Automatically Hide NPC Names"],
-								width = 'full',
-								hidden = not E.Retail,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							hidenpcname = {
-								order = 1914,
-								type = 'toggle',
-								name = L["Hide NPC Names when they are too far away to have Nameplates"],
-								desc = L["Toggle On and Off"],
-								width = 'full',
-								hidden = not E.Retail,
-								get = function() return E.db.ElvUI_EltreumUI.cvars.autohidenpcname end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.cvars.autohidenpcname = value end,
-							},
-							headerrested = {
-								order = 1915,
-								type = "description",
-								name = L["Rested Nameplates"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							restednp = {
-								order = 1916,
-								type = 'toggle',
-								name = L["Decrease Nameplate Overlap when Resting"],
-								desc = L["Toggle On and Off"],
-								width = 'full',
-								disabled = not E.private.nameplates.enable,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.restedoverlap end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.restedoverlap = value end,
-							},
-							headerrestore = {
-								order = 1917,
-								type = "description",
-								name = L["Restore Hidden Names"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							restorenames = {
-								order = 1918,
-								type = 'execute',
-								name = function()
-									if E.Retail then
-										return L["Restore Unit Names hidden by Hide NPC Names"]
-									else
-										return L["Restore Unit Names Hidden during install"]
-									end
-								end,
-								width = 'full',
-								desc = function()
-									if E.Retail then
-										return L["Use this button to restore names should you have disabled the Hide NPC Names option"]
-									else
-										return L["Use this button to restore names"]
-									end
-								end,
-								func = function() ElvUI_EltreumUI:RestoreNameplateNames() end,
-							},
-							headerdebufffilter = {
-								order = 1919,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							nameplaterefreshdebufffilter = {
-								order = 1920,
-								type = 'execute',
-								name = L["Manage Debuff Style Filter"],
-								width = 'full',
-								desc = L["Add debuffs to the Style Filter to make Nameplates with expiring Debuffs show full alpha and scale"],
-								disabled = function() return not E.global["nameplates"]["filters"]["EltreumRefreshDebuff"] end,
-								func = function() local C, L = unpack(E.Config) C:StyleFilterSetConfig("EltreumRefreshDebuff") E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'nameplates', "stylefilters", "triggers", "debuffs") end,
+							blizzfriendly = {
+								order = 4,
+								type = "group",
+								childGroups = "tab",
+								name = L["Friendly Nameplates"],
+								args = {
+									header2 = {
+										order = 905,
+										type = "description",
+										name = L["Control how Blizzard Friendly Nameplates behave"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									hidehealthinsideinstances = {
+										order = 906,
+										type = 'toggle',
+										name = L["Show Blizzard Friendly Nameplates but Hide Healthbar"],
+										desc = L["Show Blizzard Friendly Nameplates but Hide Healthbar"],
+										width = 'full',
+										disabled = function() return (E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly or E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly) end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									nofriendlyinstances = {
+										order = 907,
+										type = 'toggle',
+										name = L["Hide Blizzard Friendly Nameplates inside Instances"],
+										desc = L["Hide Blizzard Friendly Nameplates inside Instances"],
+										width = 'full',
+										disabled = function() return (E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames or E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly) end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									dontshowfriendlyatall = {
+										order = 908,
+										type = 'toggle',
+										name = L["Hide Blizzard Friendly Nameplates everywhere"],
+										desc = L["Hide Blizzard Friendly Nameplates everywhere"],
+										width = 'full',
+										disabled = function() return (E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.friendlynames or E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly) end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+								}
 							},
 						},
 					},
@@ -8407,16 +8760,9 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						name= L["Nameplate Power Bar"],
 						args = {
-							header5 = {
-								order = 10,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							nameplatepower = {
-								order = 11,
-								type = 'group',
+							enable = {
+								order = 1,
+								type = "group",
 								inline = true,
 								name = L["Nameplate Power Bar"],
 								args = {
@@ -8439,6 +8785,14 @@ function ElvUI_EltreumUI:Configtable()
 										get = function() return E.private.ElvUI_EltreumUI.nameplatepower.adjust end,
 										set = function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.adjust = value E:StaticPopup_Show('PRIVATE_RL') end,
 									},
+								}
+							},
+							position = {
+								order = 1,
+								type = "group",
+								name = L["Position"],
+								childGroups = "tab",
+								args = {
 									header998747 = {
 										order = 3,
 										type = "description",
@@ -8469,6 +8823,14 @@ function ElvUI_EltreumUI:Configtable()
 										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy = value end,
 									},
+								}
+							},
+							size = {
+								order = 1,
+								type = "group",
+								name = L["Size"],
+								childGroups = "tab",
+								args = {
 									header98879 = {
 										order = 6,
 										type = "description",
@@ -8502,102 +8864,14 @@ function ElvUI_EltreumUI:Configtable()
 										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey = value end,
 									},
-									header998 = {
-										order = 9,
-										type = "description",
-										name = L["Nameplate Powerbar Appearance"],
-										width = 'full',
-										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-									},
-									nameplatepowerfont = {
-										order = 10,
-										type = 'select',
-										-- width = "double",
-										dialogControl = 'LSM30_Font',
-										name = L["Font"],
-										desc = L["Choose a font for the Nameplate Powerbar Text"],
-										values = AceGUIWidgetLSMlists.font,
-										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
-										get = function()
-											return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.font
-										end,
-										set = function(self,fontvalue)
-											E.db.ElvUI_EltreumUI.nameplates.nameplatepower.font = fontvalue
-										end,
-									},
-									nameplatepowerfontsize = {
-										type = 'range',
-										name = L["Font Size"],
-										desc = L["Nameplate Powerbar Font Size"],
-										order = 11,
-										min = 8,
-										max = 36,
-										step = 1,
-										--width = "double",
-										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
-										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.fontsize end,
-										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplatepower.fontsize = tonumber(value) end,
-									},
-									powerbarbackgroundcolor = {
-										order = 12,
-										type = 'color',
-										name = L["Background Color"],
-										hasAlpha = true,
-										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
-										get = function()
-											local customcolorpowerbar = E.db.ElvUI_EltreumUI.nameplates.nameplatepower
-											local d = P.ElvUI_EltreumUI.nameplates.nameplatepower
-											return customcolorpowerbar.r, customcolorpowerbar.g, customcolorpowerbar.b, customcolorpowerbar.a, d.r, d.g, d.b, d.a
-										end,
-										set = function(_, r, g, b, a)
-											local customcolorpowerbar = E.db.ElvUI_EltreumUI.nameplates.nameplatepower
-											customcolorpowerbar.r, customcolorpowerbar.g, customcolorpowerbar.b, customcolorpowerbar.a = r, g, b, a
-										end,
-									},
-									sharedmediatexture = {
-										order = 13,
-										type = 'select',
-										--width = "double",
-										dialogControl = 'LSM30_Statusbar',
-										name = L["Choose the Power Bar Texture"],
-										desc = L["Select a Texture"],
-										values = AceGUIWidgetLSMlists.statusbar,
-										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
-										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture end,
-										set = function(self,key) E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture = key end,
-									},
-									modeleffect = {
-										type = 'toggle',
-										name = L["Effect"],
-										desc = L["Add an Effect"],
-										order = 14,
-										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
-										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect end,
-										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect = value end,
-									},
-									powerbargradient = {
-										type = 'toggle',
-										name = L["Gradient"],
-										desc = L["Gradient Colors"],
-										order = 15,
-										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
-										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient end,
-										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = value end,
-									},
-									opengradientcolors = {
-										order = 16,
-										type = 'execute',
-										name = L["Colors"],
-										width = 'full',
-										desc = L["Customize Colors"],
-										func = function()
-											if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
-												E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'unitframe','allColorsGroup','classResourceGroup')
-											else
-												E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI', "gradient", "power")
-											end
-										end,
-									},
+								}
+							},
+							powertypes = {
+								order = 1,
+								type = "group",
+								name = L["Types"],
+								childGroups = "tab",
+								args = {
 									header9987 = {
 										order = 101,
 										type = "description",
@@ -8699,6 +8973,114 @@ function ElvUI_EltreumUI:Configtable()
 										get = function() return E.private.ElvUI_EltreumUI.nameplatepower.focus end,
 										set = function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.focus = value E:StaticPopup_Show('PRIVATE_RL') end,
 									},
+								}
+							},
+							appearance = {
+								order = 1,
+								type = 'group',
+								name = L["Appearance"],
+								childGroups = "tab",
+								args = {
+									header998 = {
+										order = 9,
+										type = "description",
+										name = L["Nameplate Powerbar Appearance"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									nameplatepowerfont = {
+										order = 10,
+										type = 'select',
+										width = 'full',
+										dialogControl = 'LSM30_Font',
+										name = L["Font"],
+										desc = L["Choose a font for the Nameplate Powerbar Text"],
+										values = AceGUIWidgetLSMlists.font,
+										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
+										get = function()
+											return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.font
+										end,
+										set = function(self,fontvalue)
+											E.db.ElvUI_EltreumUI.nameplates.nameplatepower.font = fontvalue
+										end,
+									},
+									nameplatepowerfontsize = {
+										type = 'range',
+										name = L["Font Size"],
+										desc = L["Nameplate Powerbar Font Size"],
+										order = 11,
+										min = 8,
+										max = 36,
+										step = 1,
+										width = 'full',
+										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.fontsize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplatepower.fontsize = tonumber(value) end,
+									},
+									powerbarbackgroundcolor = {
+										order = 12,
+										type = 'color',
+										name = L["Background Color"],
+										width = 'full',
+										hasAlpha = true,
+										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
+										get = function()
+											local customcolorpowerbar = E.db.ElvUI_EltreumUI.nameplates.nameplatepower
+											local d = P.ElvUI_EltreumUI.nameplates.nameplatepower
+											return customcolorpowerbar.r, customcolorpowerbar.g, customcolorpowerbar.b, customcolorpowerbar.a, d.r, d.g, d.b, d.a
+										end,
+										set = function(_, r, g, b, a)
+											local customcolorpowerbar = E.db.ElvUI_EltreumUI.nameplates.nameplatepower
+											customcolorpowerbar.r, customcolorpowerbar.g, customcolorpowerbar.b, customcolorpowerbar.a = r, g, b, a
+										end,
+									},
+									sharedmediatexture = {
+										order = 13,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Choose the Power Bar Texture"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture = key end,
+									},
+									modeleffect = {
+										type = 'toggle',
+										name = L["Effect"],
+										desc = L["Add an Effect"],
+										width = 'full',
+										order = 14,
+										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect = value end,
+									},
+									powerbargradient = {
+										type = 'toggle',
+										name = L["Gradient"],
+										desc = L["Gradient Colors"],
+										width = 'full',
+										order = 15,
+										disabled = function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = value end,
+									},
+									opengradientcolors = {
+										order = 16,
+										type = 'execute',
+										name = L["Colors"],
+										width = 'full',
+										desc = L["Customize Colors"],
+										func = function()
+											if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
+												E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'unitframe','allColorsGroup','classResourceGroup')
+											else
+												E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI', "gradient", "power")
+											end
+										end,
+									},
+
 								}
 							},
 						},
@@ -8873,372 +9255,413 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						name = E.NewSign..L["Classification"],
 						args = {
-							header = {
+							enable = {
 								order = 1,
-								type = "description",
-								name = L["Custom Icons"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							enableeliterareicons = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable replacing Elite/Rare Icons"].." - |cffFF0000"..L["Requires ElvUI Nameplate Elite Icon"].."|r",
-								desc = L["Adds different Rare/Elite Icons"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.classification.enable = value ElvUI_EltreumUI:NPClassificatioNIcon() end,
-							},
-							headergap0 = {
-								order = 3,
-								type = "description",
-								name = L["Boss"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							bosscolor = {
-								order = 4,
-								type = 'color',
-								name = L["Boss Color"],
-								hasAlpha = false,
-								width = "full",
-								disabled = function() return (not E.db.ElvUI_EltreumUI.nameplates.classification.enable) end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.bossR, E.db.ElvUI_EltreumUI.nameplates.classification.bossG, E.db.ElvUI_EltreumUI.nameplates.classification.bossB, 1, P.ElvUI_EltreumUI.nameplates.classification.bossR, P.ElvUI_EltreumUI.nameplates.classification.bossG, P.ElvUI_EltreumUI.nameplates.classification.bossB, 1 end,
-								set = function(_, r, g, b, a) E.db.ElvUI_EltreumUI.nameplates.classification.bossR, E.db.ElvUI_EltreumUI.nameplates.classification.bossG, E.db.ElvUI_EltreumUI.nameplates.classification.bossB = r, g, b end,
-							},
-							bossiconpick = {
-								order = 5,
-								type = 'select',
-								name = L["Boss Icon"],
-								values = {
-									["TYPE1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star',':20:20'),
-									["TYPE2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star2',':20:20'),
-									["TYPE3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star3',':20:20'),
-									["TYPE4"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star4',':20:20'),
-									["TYPE5"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star5',':20:20'),
-									["TYPE6"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star6',':20:20'),
-									["TYPE7"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star7',':20:20'),
-									["TYPE8"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon',':20:20'),
-									["TYPE9"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon2',':20:20'),
-									["TYPE10"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\treasure',':20:20'),
-									["TYPE11"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull',':20:20'),
-									["TYPE12"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull2',':20:20'),
-									["TYPE13"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull3',':20:20'),
-									["TYPE14"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull4',':20:20'),
-									["TYPE15"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull5',':20:20'),
-									["TYPE16"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull6',':20:20'),
-									["TYPE17"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull7',':20:20'),
-									["TYPE18"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull8',':20:20'),
-									["TYPE19"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull9',':20:20'),
-									["TYPE20"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper',':20:20'),
-									["TYPE21"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper2',':20:20'),
-									["CUSTOM"] = 'Custom',
-								},
-								sorting = {
-									"TYPE1",
-									"TYPE2",
-									"TYPE3",
-									"TYPE4",
-									"TYPE5",
-									"TYPE6",
-									"TYPE7",
-									"TYPE8",
-									"TYPE9",
-									"TYPE10",
-									"TYPE11",
-									"TYPE12",
-									"TYPE13",
-									"TYPE14",
-									"TYPE15",
-									"TYPE16",
-									"TYPE17",
-									"TYPE18",
-									"TYPE19",
-									"TYPE20",
-									"TYPE21",
-									"CUSTOM",
-								},
-								style = 'radio',
-								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss end,
-								set = function(_,value) E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss = value end,
-							},
-							headergap1 = {
-								order = 6,
-								type = "description",
-								name = L["Elite"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							elitecolor = {
-								order = 7,
-								type = 'color',
-								name = L["Elite Color"],
-								hasAlpha = false,
-								width = "full",
-								disabled = function() return (not E.db.ElvUI_EltreumUI.nameplates.classification.enable) end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.eliteR, E.db.ElvUI_EltreumUI.nameplates.classification.eliteG, E.db.ElvUI_EltreumUI.nameplates.classification.eliteB, 1, P.ElvUI_EltreumUI.nameplates.classification.eliteR, P.ElvUI_EltreumUI.nameplates.classification.eliteG, P.ElvUI_EltreumUI.nameplates.classification.eliteB, 1 end,
-								set = function(_, r, g, b, a) E.db.ElvUI_EltreumUI.nameplates.classification.eliteR, E.db.ElvUI_EltreumUI.nameplates.classification.eliteG, E.db.ElvUI_EltreumUI.nameplates.classification.eliteB = r, g, b end,
-							},
-							eliteiconpick = {
-								order = 8,
-								type = 'select',
-								name = L["Elite Icon"],
-								values = {
-									["TYPE1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star',':20:20'),
-									["TYPE2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star2',':20:20'),
-									["TYPE3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star3',':20:20'),
-									["TYPE4"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star4',':20:20'),
-									["TYPE5"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star5',':20:20'),
-									["TYPE6"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star6',':20:20'),
-									["TYPE7"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star7',':20:20'),
-									["TYPE8"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon',':20:20'),
-									["TYPE9"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon2',':20:20'),
-									["TYPE10"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\treasure',':20:20'),
-									["TYPE11"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull',':20:20'),
-									["TYPE12"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull2',':20:20'),
-									["TYPE13"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull3',':20:20'),
-									["TYPE14"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull4',':20:20'),
-									["TYPE15"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull5',':20:20'),
-									["TYPE16"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull6',':20:20'),
-									["TYPE17"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull7',':20:20'),
-									["TYPE18"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull8',':20:20'),
-									["TYPE19"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull9',':20:20'),
-									["TYPE20"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper',':20:20'),
-									["TYPE21"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper2',':20:20'),
-									["CUSTOM"] = 'Custom',
-								},
-								sorting = {
-									"TYPE1",
-									"TYPE2",
-									"TYPE3",
-									"TYPE4",
-									"TYPE5",
-									"TYPE6",
-									"TYPE7",
-									"TYPE8",
-									"TYPE9",
-									"TYPE10",
-									"TYPE11",
-									"TYPE12",
-									"TYPE13",
-									"TYPE14",
-									"TYPE15",
-									"TYPE16",
-									"TYPE17",
-									"TYPE18",
-									"TYPE19",
-									"TYPE20",
-									"TYPE21",
-									"CUSTOM",
-								},
-								style = 'radio',
-								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite end,
-								set = function(_,value) E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite = value end,
-							},
-							headergap2 = {
-								order = 9,
-								type = "description",
-								name = L["Rare"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							rarecolor = {
-								order = 10,
-								type = 'color',
-								name = L["Rare Color"],
-								hasAlpha = false,
-								width = "full",
-								disabled = function() return (not E.db.ElvUI_EltreumUI.nameplates.classification.enable) end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.rareR, E.db.ElvUI_EltreumUI.nameplates.classification.rareG, E.db.ElvUI_EltreumUI.nameplates.classification.rareB, 1, P.ElvUI_EltreumUI.nameplates.classification.rareR, P.ElvUI_EltreumUI.nameplates.classification.rareG, P.ElvUI_EltreumUI.nameplates.classification.rareB, 1 end,
-								set = function(_, r, g, b, a) E.db.ElvUI_EltreumUI.nameplates.classification.rareR, E.db.ElvUI_EltreumUI.nameplates.classification.rareG, E.db.ElvUI_EltreumUI.nameplates.classification.rareB = r, g, b end,
-							},
-							rareiconpick = {
-								order = 11,
-								type = 'select',
-								name = L["Rare Icon"],
-								values = {
-									["TYPE1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star',':20:20'),
-									["TYPE2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star2',':20:20'),
-									["TYPE3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star3',':20:20'),
-									["TYPE4"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star4',':20:20'),
-									["TYPE5"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star5',':20:20'),
-									["TYPE6"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star6',':20:20'),
-									["TYPE7"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star7',':20:20'),
-									["TYPE8"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon',':20:20'),
-									["TYPE9"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon2',':20:20'),
-									["TYPE10"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\treasure',':20:20'),
-									["TYPE11"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull',':20:20'),
-									["TYPE12"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull2',':20:20'),
-									["TYPE13"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull3',':20:20'),
-									["TYPE14"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull4',':20:20'),
-									["TYPE15"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull5',':20:20'),
-									["TYPE16"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull6',':20:20'),
-									["TYPE17"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull7',':20:20'),
-									["TYPE18"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull8',':20:20'),
-									["TYPE19"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull9',':20:20'),
-									["TYPE20"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper',':20:20'),
-									["TYPE21"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper2',':20:20'),
-									["CUSTOM"] = 'Custom',
-								},
-								sorting = {
-									"TYPE1",
-									"TYPE2",
-									"TYPE3",
-									"TYPE4",
-									"TYPE5",
-									"TYPE6",
-									"TYPE7",
-									"TYPE8",
-									"TYPE9",
-									"TYPE10",
-									"TYPE11",
-									"TYPE12",
-									"TYPE13",
-									"TYPE14",
-									"TYPE15",
-									"TYPE16",
-									"TYPE17",
-									"TYPE18",
-									"TYPE19",
-									"TYPE20",
-									"TYPE21",
-									"CUSTOM",
-								},
-								style = 'radio',
-								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare end,
-								set = function(_,value) E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare = value end,
-							},
-							headergap4 = {
-								order = 12,
-								type = "description",
-								name = L["Rare Elite"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							rareelitecolor = {
-								order = 13,
-								type = 'color',
-								name = L["Rare Elite Color"],
-								hasAlpha = false,
-								width = "full",
-								disabled = function() return (not E.db.ElvUI_EltreumUI.nameplates.classification.enable) end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteR, E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteG, E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteB, 1, P.ElvUI_EltreumUI.nameplates.classification.rareeliteR, P.ElvUI_EltreumUI.nameplates.classification.rareeliteG, P.ElvUI_EltreumUI.nameplates.classification.rareeliteB, 1 end,
-								set = function(_, r, g, b, a) E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteR, E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteG, E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteB = r, g, b end,
-							},
-							rareeliteiconpick = {
-								order = 14,
-								type = 'select',
-								name = L["Rare Elite Icon"],
-								values = {
-									["TYPE1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star',':20:20'),
-									["TYPE2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star2',':20:20'),
-									["TYPE3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star3',':20:20'),
-									["TYPE4"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star4',':20:20'),
-									["TYPE5"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star5',':20:20'),
-									["TYPE6"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star6',':20:20'),
-									["TYPE7"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star7',':20:20'),
-									["TYPE8"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon',':20:20'),
-									["TYPE9"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon2',':20:20'),
-									["TYPE10"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\treasure',':20:20'),
-									["TYPE11"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull',':20:20'),
-									["TYPE12"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull2',':20:20'),
-									["TYPE13"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull3',':20:20'),
-									["TYPE14"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull4',':20:20'),
-									["TYPE15"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull5',':20:20'),
-									["TYPE16"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull6',':20:20'),
-									["TYPE17"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull7',':20:20'),
-									["TYPE18"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull8',':20:20'),
-									["TYPE19"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull9',':20:20'),
-									["TYPE20"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper',':20:20'),
-									["TYPE21"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper2',':20:20'),
-									["CUSTOM"] = 'Custom',
-								},
-								sorting = {
-									"TYPE1",
-									"TYPE2",
-									"TYPE3",
-									"TYPE4",
-									"TYPE5",
-									"TYPE6",
-									"TYPE7",
-									"TYPE8",
-									"TYPE9",
-									"TYPE10",
-									"TYPE11",
-									"TYPE12",
-									"TYPE13",
-									"TYPE14",
-									"TYPE15",
-									"TYPE16",
-									"TYPE17",
-									"TYPE18",
-									"TYPE19",
-									"TYPE20",
-									"TYPE21",
-									"CUSTOM",
-								},
-								style = 'radio',
-								disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite end,
-								set = function(_,value) E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite = value end,
-							},
-							headergap3 = {
-								order = 15,
-								type = "description",
-								name = L["Custom"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							customicons = {
-								order = 16,
-								type = 'group',
+								type = "group",
 								inline = true,
-								name = L["Name of file inside Interface\\Addons"],
+								name = L["Custom Icons"],
 								args = {
-									bossicon = {
-										order = 164,
-										type = 'input',
+									enableeliterareicons = {
+										order = 2,
+										type = 'toggle',
+										name = L["Enable replacing Elite/Rare Icons"].." - |cffFF0000"..L["Requires ElvUI Nameplate Elite Icon"].."|r",
+										desc = L["Adds different Rare/Elite Icons"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.enable end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.classification.enable = value ElvUI_EltreumUI:NPClassificatioNIcon() end,
+									},
+								}
+							},
+							boss = {
+								order = 2,
+								type = "group",
+								name = L["Boss"],
+								childGroups = "tab",
+								args = {
+									headergap0 = {
+										order = 3,
+										type = "description",
 										name = L["Boss"],
-										desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
 										width = 'full',
-										disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable or E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss ~= 'CUSTOM' end,
-										get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.customboss end,
-										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.classification.customboss = value end,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
-									eliteicon = {
-										order = 165,
-										type = 'input',
+									bosscolor = {
+										order = 4,
+										type = 'color',
+										name = L["Boss Color"],
+										hasAlpha = false,
+										width = "full",
+										disabled = function() return (not E.db.ElvUI_EltreumUI.nameplates.classification.enable) end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.bossR, E.db.ElvUI_EltreumUI.nameplates.classification.bossG, E.db.ElvUI_EltreumUI.nameplates.classification.bossB, 1, P.ElvUI_EltreumUI.nameplates.classification.bossR, P.ElvUI_EltreumUI.nameplates.classification.bossG, P.ElvUI_EltreumUI.nameplates.classification.bossB, 1 end,
+										set = function(_, r, g, b, a) E.db.ElvUI_EltreumUI.nameplates.classification.bossR, E.db.ElvUI_EltreumUI.nameplates.classification.bossG, E.db.ElvUI_EltreumUI.nameplates.classification.bossB = r, g, b end,
+									},
+									bossiconpick = {
+										order = 5,
+										type = 'select',
+										name = L["Boss Icon"],
+										values = {
+											["TYPE1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star',':20:20'),
+											["TYPE2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star2',':20:20'),
+											["TYPE3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star3',':20:20'),
+											["TYPE4"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star4',':20:20'),
+											["TYPE5"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star5',':20:20'),
+											["TYPE6"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star6',':20:20'),
+											["TYPE7"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star7',':20:20'),
+											["TYPE8"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon',':20:20'),
+											["TYPE9"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon2',':20:20'),
+											["TYPE10"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\treasure',':20:20'),
+											["TYPE11"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull',':20:20'),
+											["TYPE12"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull2',':20:20'),
+											["TYPE13"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull3',':20:20'),
+											["TYPE14"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull4',':20:20'),
+											["TYPE15"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull5',':20:20'),
+											["TYPE16"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull6',':20:20'),
+											["TYPE17"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull7',':20:20'),
+											["TYPE18"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull8',':20:20'),
+											["TYPE19"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull9',':20:20'),
+											["TYPE20"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper',':20:20'),
+											["TYPE21"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper2',':20:20'),
+											["CUSTOM"] = 'Custom',
+										},
+										sorting = {
+											"TYPE1",
+											"TYPE2",
+											"TYPE3",
+											"TYPE4",
+											"TYPE5",
+											"TYPE6",
+											"TYPE7",
+											"TYPE8",
+											"TYPE9",
+											"TYPE10",
+											"TYPE11",
+											"TYPE12",
+											"TYPE13",
+											"TYPE14",
+											"TYPE15",
+											"TYPE16",
+											"TYPE17",
+											"TYPE18",
+											"TYPE19",
+											"TYPE20",
+											"TYPE21",
+											"CUSTOM",
+										},
+										style = 'radio',
+										disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss end,
+										set = function(_,value) E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss = value end,
+									},
+								}
+							},
+							elite = {
+								order = 2,
+								type = "group",
+								name = L["Elite"],
+								childGroups = "tab",
+								args = {
+									headergap1 = {
+										order = 6,
+										type = "description",
 										name = L["Elite"],
-										desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
 										width = 'full',
-										disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable or E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite ~= 'CUSTOM' end,
-										get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.customelite end,
-										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.classification.customelite = value end,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
-									rareicon = {
-										order = 166,
-										type = 'input',
+									elitecolor = {
+										order = 7,
+										type = 'color',
+										name = L["Elite Color"],
+										hasAlpha = false,
+										width = "full",
+										disabled = function() return (not E.db.ElvUI_EltreumUI.nameplates.classification.enable) end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.eliteR, E.db.ElvUI_EltreumUI.nameplates.classification.eliteG, E.db.ElvUI_EltreumUI.nameplates.classification.eliteB, 1, P.ElvUI_EltreumUI.nameplates.classification.eliteR, P.ElvUI_EltreumUI.nameplates.classification.eliteG, P.ElvUI_EltreumUI.nameplates.classification.eliteB, 1 end,
+										set = function(_, r, g, b, a) E.db.ElvUI_EltreumUI.nameplates.classification.eliteR, E.db.ElvUI_EltreumUI.nameplates.classification.eliteG, E.db.ElvUI_EltreumUI.nameplates.classification.eliteB = r, g, b end,
+									},
+									eliteiconpick = {
+										order = 8,
+										type = 'select',
+										name = L["Elite Icon"],
+										values = {
+											["TYPE1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star',':20:20'),
+											["TYPE2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star2',':20:20'),
+											["TYPE3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star3',':20:20'),
+											["TYPE4"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star4',':20:20'),
+											["TYPE5"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star5',':20:20'),
+											["TYPE6"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star6',':20:20'),
+											["TYPE7"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star7',':20:20'),
+											["TYPE8"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon',':20:20'),
+											["TYPE9"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon2',':20:20'),
+											["TYPE10"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\treasure',':20:20'),
+											["TYPE11"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull',':20:20'),
+											["TYPE12"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull2',':20:20'),
+											["TYPE13"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull3',':20:20'),
+											["TYPE14"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull4',':20:20'),
+											["TYPE15"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull5',':20:20'),
+											["TYPE16"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull6',':20:20'),
+											["TYPE17"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull7',':20:20'),
+											["TYPE18"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull8',':20:20'),
+											["TYPE19"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull9',':20:20'),
+											["TYPE20"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper',':20:20'),
+											["TYPE21"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper2',':20:20'),
+											["CUSTOM"] = 'Custom',
+										},
+										sorting = {
+											"TYPE1",
+											"TYPE2",
+											"TYPE3",
+											"TYPE4",
+											"TYPE5",
+											"TYPE6",
+											"TYPE7",
+											"TYPE8",
+											"TYPE9",
+											"TYPE10",
+											"TYPE11",
+											"TYPE12",
+											"TYPE13",
+											"TYPE14",
+											"TYPE15",
+											"TYPE16",
+											"TYPE17",
+											"TYPE18",
+											"TYPE19",
+											"TYPE20",
+											"TYPE21",
+											"CUSTOM",
+										},
+										style = 'radio',
+										disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite end,
+										set = function(_,value) E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite = value end,
+									},
+								}
+							},
+							rare = {
+								order = 2,
+								type = "group",
+								name = L["Rare"],
+								childGroups = "tab",
+								args = {
+									headergap2 = {
+										order = 9,
+										type = "description",
 										name = L["Rare"],
-										desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
 										width = 'full',
-										disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable or E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare ~= 'CUSTOM' end,
-										get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.customrare end,
-										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.classification.customrare = value end,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
-									rareeliteicon = {
-										order = 167,
-										type = 'input',
+									rarecolor = {
+										order = 10,
+										type = 'color',
+										name = L["Rare Color"],
+										hasAlpha = false,
+										width = "full",
+										disabled = function() return (not E.db.ElvUI_EltreumUI.nameplates.classification.enable) end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.rareR, E.db.ElvUI_EltreumUI.nameplates.classification.rareG, E.db.ElvUI_EltreumUI.nameplates.classification.rareB, 1, P.ElvUI_EltreumUI.nameplates.classification.rareR, P.ElvUI_EltreumUI.nameplates.classification.rareG, P.ElvUI_EltreumUI.nameplates.classification.rareB, 1 end,
+										set = function(_, r, g, b, a) E.db.ElvUI_EltreumUI.nameplates.classification.rareR, E.db.ElvUI_EltreumUI.nameplates.classification.rareG, E.db.ElvUI_EltreumUI.nameplates.classification.rareB = r, g, b end,
+									},
+									rareiconpick = {
+										order = 11,
+										type = 'select',
+										name = L["Rare Icon"],
+										values = {
+											["TYPE1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star',':20:20'),
+											["TYPE2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star2',':20:20'),
+											["TYPE3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star3',':20:20'),
+											["TYPE4"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star4',':20:20'),
+											["TYPE5"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star5',':20:20'),
+											["TYPE6"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star6',':20:20'),
+											["TYPE7"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star7',':20:20'),
+											["TYPE8"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon',':20:20'),
+											["TYPE9"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon2',':20:20'),
+											["TYPE10"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\treasure',':20:20'),
+											["TYPE11"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull',':20:20'),
+											["TYPE12"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull2',':20:20'),
+											["TYPE13"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull3',':20:20'),
+											["TYPE14"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull4',':20:20'),
+											["TYPE15"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull5',':20:20'),
+											["TYPE16"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull6',':20:20'),
+											["TYPE17"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull7',':20:20'),
+											["TYPE18"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull8',':20:20'),
+											["TYPE19"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull9',':20:20'),
+											["TYPE20"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper',':20:20'),
+											["TYPE21"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper2',':20:20'),
+											["CUSTOM"] = 'Custom',
+										},
+										sorting = {
+											"TYPE1",
+											"TYPE2",
+											"TYPE3",
+											"TYPE4",
+											"TYPE5",
+											"TYPE6",
+											"TYPE7",
+											"TYPE8",
+											"TYPE9",
+											"TYPE10",
+											"TYPE11",
+											"TYPE12",
+											"TYPE13",
+											"TYPE14",
+											"TYPE15",
+											"TYPE16",
+											"TYPE17",
+											"TYPE18",
+											"TYPE19",
+											"TYPE20",
+											"TYPE21",
+											"CUSTOM",
+										},
+										style = 'radio',
+										disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare end,
+										set = function(_,value) E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare = value end,
+									},
+								}
+							},
+							rareelite = {
+								order = 2,
+								type = "group",
+								name = L["Rare Elite"],
+								childGroups = "tab",
+								args = {
+									headergap4 = {
+										order = 12,
+										type = "description",
 										name = L["Rare Elite"],
-										desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
 										width = 'full',
-										disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable or E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite ~= 'CUSTOM' end,
-										get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.customrareelite end,
-										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.classification.customrareelite = value end,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
-								},
+									rareelitecolor = {
+										order = 13,
+										type = 'color',
+										name = L["Rare Elite Color"],
+										hasAlpha = false,
+										width = "full",
+										disabled = function() return (not E.db.ElvUI_EltreumUI.nameplates.classification.enable) end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteR, E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteG, E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteB, 1, P.ElvUI_EltreumUI.nameplates.classification.rareeliteR, P.ElvUI_EltreumUI.nameplates.classification.rareeliteG, P.ElvUI_EltreumUI.nameplates.classification.rareeliteB, 1 end,
+										set = function(_, r, g, b, a) E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteR, E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteG, E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteB = r, g, b end,
+									},
+									rareeliteiconpick = {
+										order = 14,
+										type = 'select',
+										name = L["Rare Elite Icon"],
+										values = {
+											["TYPE1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star',':20:20'),
+											["TYPE2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star2',':20:20'),
+											["TYPE3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star3',':20:20'),
+											["TYPE4"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star4',':20:20'),
+											["TYPE5"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star5',':20:20'),
+											["TYPE6"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star6',':20:20'),
+											["TYPE7"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\star7',':20:20'),
+											["TYPE8"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon',':20:20'),
+											["TYPE9"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\dragon2',':20:20'),
+											["TYPE10"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\treasure',':20:20'),
+											["TYPE11"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull',':20:20'),
+											["TYPE12"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull2',':20:20'),
+											["TYPE13"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull3',':20:20'),
+											["TYPE14"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull4',':20:20'),
+											["TYPE15"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull5',':20:20'),
+											["TYPE16"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull6',':20:20'),
+											["TYPE17"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull7',':20:20'),
+											["TYPE18"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull8',':20:20'),
+											["TYPE19"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull9',':20:20'),
+											["TYPE20"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper',':20:20'),
+											["TYPE21"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper2',':20:20'),
+											["CUSTOM"] = 'Custom',
+										},
+										sorting = {
+											"TYPE1",
+											"TYPE2",
+											"TYPE3",
+											"TYPE4",
+											"TYPE5",
+											"TYPE6",
+											"TYPE7",
+											"TYPE8",
+											"TYPE9",
+											"TYPE10",
+											"TYPE11",
+											"TYPE12",
+											"TYPE13",
+											"TYPE14",
+											"TYPE15",
+											"TYPE16",
+											"TYPE17",
+											"TYPE18",
+											"TYPE19",
+											"TYPE20",
+											"TYPE21",
+											"CUSTOM",
+										},
+										style = 'radio',
+										disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite end,
+										set = function(_,value) E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite = value end,
+									},
+								}
+							},
+							custom = {
+								order = 2,
+								type = "group",
+								name = L["Custom"],
+								childGroups = "tab",
+								args = {
+									headergap3 = {
+										order = 15,
+										type = "description",
+										name = L["Custom Icons"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									customicons = {
+										order = 16,
+										type = 'group',
+										inline = true,
+										name = L["Name of file inside Interface\\Addons"],
+										args = {
+											bossicon = {
+												order = 164,
+												type = 'input',
+												name = L["Boss"],
+												desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
+												width = 'full',
+												disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable or E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss ~= 'CUSTOM' end,
+												get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.customboss end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.classification.customboss = value end,
+											},
+											eliteicon = {
+												order = 165,
+												type = 'input',
+												name = L["Elite"],
+												desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
+												width = 'full',
+												disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable or E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite ~= 'CUSTOM' end,
+												get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.customelite end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.classification.customelite = value end,
+											},
+											rareicon = {
+												order = 166,
+												type = 'input',
+												name = L["Rare"],
+												desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
+												width = 'full',
+												disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable or E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare ~= 'CUSTOM' end,
+												get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.customrare end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.classification.customrare = value end,
+											},
+											rareeliteicon = {
+												order = 167,
+												type = 'input',
+												name = L["Rare Elite"],
+												desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
+												width = 'full',
+												disabled = function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable or E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite ~= 'CUSTOM' end,
+												get = function() return E.db.ElvUI_EltreumUI.nameplates.classification.customrareelite end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.classification.customrareelite = value end,
+											},
+										},
+									},
+								}
 							},
 						},
 					}
@@ -9894,238 +10317,260 @@ function ElvUI_EltreumUI:Configtable()
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\quest',
 				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\quest:0:0:0:0|t '..L["Automate Quests and Gossip, add a Quest Item Bar, hide Quests during Boss fights and more"],
 				order = 85,
+				childGroups = "tab",
 				args = {
-					headergaphere112 = {
+					general = {
+						type = 'group',
+						name = L["General"],
 						order = 1,
-						type = "description",
-						name = "",
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						args = {
+							headergaphere9487 = {
+								order = 95,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							questsettings = {
+								order = 96,
+								type = 'toggle',
+								name = L["Collapse Quests during Encounters/Boss Fights"],
+								desc = L["Collapse Quests when the boss fight starts"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.quests.enable end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.quests.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							headergaphere2 = {
+								order = 97,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							questcombatsettings = {
+								order = 98,
+								type = 'toggle',
+								name = L["Collapse Quests during any combat event"],
+								desc = L["Collapse Quests when you enter combat"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.quests.combatenable end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.quests.combatenable = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							headergaphere3 = {
+								order = 99,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							arenaquestsettings = {
+								order = 100,
+								type = 'toggle',
+								width = 'full',
+								name = L["Hide Quests during Battlegrounds and Arenas"],
+								desc = L["Hide Quests during Battlegrounds and Arenas"],
+								get = function() return E.db.ElvUI_EltreumUI.quests.arena end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.quests.arena = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							headergaphere4 = {
+								order = 101,
+								type = "description",
+								name = "",
+								width = 'full',
+								hidden = not E.Retail,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							objectiveanchor = {
+								order = 102,
+								type = 'toggle',
+								width = 'full',
+								name = L["Objective Frame Anchor"],
+								desc = L["Reactivate the ElvUI Objective Frame Anchor and Mover"],
+								hidden = not E.Retail,
+								get = function() return E.db.ElvUI_EltreumUI.quests.anchor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.quests.anchor = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							objectiveheight = {
+								type = 'range',
+								name = L["Objective Frame Height"],
+								desc = L["Height of the objective tracker. Increase size to be able to see more objectives."],
+								order = 103,
+								min = 100,
+								max = 900,
+								step = 1,
+								width = "double",
+								hidden = not E.Retail,
+								disabled = function() return not E.db.ElvUI_EltreumUI.quests.anchor end,
+								get = function()
+									if ObjectiveTrackerFrame then
+										return ObjectiveTrackerFrame.editModeHeight
+									else
+										return 1
+									end
+								end,
+								set = function(_, value)
+									if ObjectiveTrackerFrame then
+										E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight = value
+										ObjectiveTrackerFrame.editModeHeight = value
+										Enum.EditModeObjectiveTrackerSetting.Height = value
+										ObjectiveTrackerFrame:SetHeight(value)
+										ObjectiveTracker_UpdateHeight()
+									end
+								end,
+							},
+						},
+					},
+					questitem = {
+						type = 'group',
+						name = L["Quest Item Bar"],
+						order = 2,
+						args = {
+							headergaphereitembar = {
+								order = 4,
+								type = "description",
+								name = L["Quest Item Bar"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							questitembar = {
+								order = 5,
+								type = 'toggle',
+								name = L["Enable Quest Item Bar"],
+								desc = L["Add a Quest Item bar, keybind can be changed in Keybinds > ElvUI Eltruism"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.quests.questitems end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.quests.questitems = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							questitembarab1 = {
+								order = 6,
+								type = 'toggle',
+								name = L["Quest Item Bar follows visibility settings for ElvUI Action Bar 1"],
+								desc = L["The Quest Item Bar will appear only when ElvUI Action Bar 1 appears, following its settings"],
+								width = 'full',
+								disabled = function() return (not E.db.ElvUI_EltreumUI.quests.questitems) or E.db.ElvUI_EltreumUI.quests.questitemsfade end,
+								get = function() return E.db.ElvUI_EltreumUI.quests.questitemsbar1 end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.quests.questitemsbar1 = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							questitembarmouseover = {
+								order = 7,
+								type = 'toggle',
+								name = L["Quest Item Bar Button Mouse Over"],
+								desc = L["Each Button in the Quest Item Bar will appear only if the cursor is over it"],
+								width = 'full',
+								disabled = function() return (not E.db.ElvUI_EltreumUI.quests.questitems) or E.db.ElvUI_EltreumUI.quests.questitemsbar1 end,
+								get = function() return E.db.ElvUI_EltreumUI.quests.questitemsfade end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.quests.questitemsfade = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							questitembarkeybind = {
+								order = 8,
+								type = 'toggle',
+								name = L["Keybind Text"],
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.quests.questitems end,
+								get = function() return E.db.ElvUI_EltreumUI.quests.showkeybind end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.quests.showkeybind = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							questiconsizes = {
+								order = 78,
+								type = "description",
+								name = L["Quest Item Bar Button Size"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							questitemsbarsizex = {
+								type = 'range',
+								name = L["Width"],
+								desc = L["Change the size of the button on the Quest Item Bar"],
+								order = 79,
+								min = 10,
+								max = 100,
+								step = 1,
+								width = "double",
+								disabled = function() return not E.db.ElvUI_EltreumUI.quests.questitems end,
+								get = function() return E.db.ElvUI_EltreumUI.quests.questitemsize end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.quests.questitemsize = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							questitemsbarsizey = {
+								type = 'range',
+								name = L["Height"],
+								desc = L["Change the size of the button on the Quest Item Bar"],
+								order = 79,
+								min = 10,
+								max = 100,
+								step = 1,
+								width = "double",
+								disabled = function() return not E.db.ElvUI_EltreumUI.quests.questitems end,
+								get = function() return E.db.ElvUI_EltreumUI.quests.questitemsizey end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.quests.questitemsizey = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							questitemspacing = {
+								type = 'range',
+								name = L["Button Spacing"],
+								desc = L["The spacing between buttons."],
+								order = 80,
+								min = 0,
+								max = 20,
+								step = 1,
+								width = "double",
+								disabled = function() return not E.db.ElvUI_EltreumUI.quests.questitems end,
+								get = function() return E.db.ElvUI_EltreumUI.quests.questitemspacing end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.quests.questitemspacing = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							setorientation = {
+								type = 'select',
+								name = L["Bar Direction"],
+								order = 82,
+								values = {
+									["HORIZONTAL"] = L["Horizontal"],
+									["VERTICAL"] = L["Vertical"],
+								},
+								style = 'radio',
+								disabled = function() return not E.db.ElvUI_EltreumUI.quests.questitems end,
+								get = function() return E.db.ElvUI_EltreumUI.quests.questorientation end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.quests.questorientation = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+						},
 					},
 					autoaccept = {
-						order = 2,
-						type = 'toggle',
-						name = L["Enable Automatically accepting/turning in Quests when not holding CTRL/SHIFT/ALT"],
-						desc = L["You will automatically accept and turn in quests that do not require gold, are not weekly and are not daily"],
-						width = 'full',
-						get = function() return E.db.ElvUI_EltreumUI.quests.autoaccept end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.quests.autoaccept = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					autoacceptdailyweekly = {
+						type = 'group',
+						name = L["Auto Accept"],
 						order = 3,
-						type = 'toggle',
-						name = L["Accept Daily and Weekly quests"],
-						desc = L["You will also automatically accept Daily and Weekly Quests"],
-						width = 'full',
-						get = function() return E.db.ElvUI_EltreumUI.quests.acceptdaily end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.quests.acceptdaily = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					autoacceptinvert = {
-						order = 3,
-						type = 'toggle',
-						name = L["Invert CTRL/SHIFT/ALT"],
-						desc = L["You will only accept and turn in quests if you hold CTRL/SHIFT/ALT while talking to the NPC"],
-						width = 'full',
-						get = function() return E.db.ElvUI_EltreumUI.quests.autoacceptinvert end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.quests.autoacceptinvert = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					headergaphereitembar = {
-						order = 4,
-						type = "description",
-						name = L["Quest Item Bar"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					questitembar = {
-						order = 5,
-						type = 'toggle',
-						name = L["Enable Quest Item Bar"],
-						desc = L["Add a Quest Item bar, keybind can be changed in Keybinds > ElvUI Eltruism"],
-						width = 'full',
-						get = function() return E.db.ElvUI_EltreumUI.quests.questitems end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.quests.questitems = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					questitembarab1 = {
-						order = 6,
-						type = 'toggle',
-						name = L["Quest Item Bar follows visibility settings for ElvUI Action Bar 1"],
-						desc = L["The Quest Item Bar will appear only when ElvUI Action Bar 1 appears, following its settings"],
-						width = 'full',
-						disabled = function() return (not E.db.ElvUI_EltreumUI.quests.questitems) or E.db.ElvUI_EltreumUI.quests.questitemsfade end,
-						get = function() return E.db.ElvUI_EltreumUI.quests.questitemsbar1 end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.quests.questitemsbar1 = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					questitembarmouseover = {
-						order = 7,
-						type = 'toggle',
-						name = L["Quest Item Bar Button Mouse Over"],
-						desc = L["Each Button in the Quest Item Bar will appear only if the cursor is over it"],
-						width = 'full',
-						disabled = function() return (not E.db.ElvUI_EltreumUI.quests.questitems) or E.db.ElvUI_EltreumUI.quests.questitemsbar1 end,
-						get = function() return E.db.ElvUI_EltreumUI.quests.questitemsfade end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.quests.questitemsfade = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					questitembarkeybind = {
-						order = 8,
-						type = 'toggle',
-						name = L["Keybind Text"],
-						width = 'full',
-						disabled = function() return not E.db.ElvUI_EltreumUI.quests.questitems end,
-						get = function() return E.db.ElvUI_EltreumUI.quests.showkeybind end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.quests.showkeybind = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					questiconsizes = {
-						order = 78,
-						type = "description",
-						name = L["Quest Item Bar Button Size"],
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					questitemsbarsizex = {
-						type = 'range',
-						name = L["Width"],
-						desc = L["Change the size of the button on the Quest Item Bar"],
-						order = 79,
-						min = 10,
-						max = 100,
-						step = 1,
-						width = "double",
-						disabled = function() return not E.db.ElvUI_EltreumUI.quests.questitems end,
-						get = function() return E.db.ElvUI_EltreumUI.quests.questitemsize end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.quests.questitemsize = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					questitemsbarsizey = {
-						type = 'range',
-						name = L["Height"],
-						desc = L["Change the size of the button on the Quest Item Bar"],
-						order = 79,
-						min = 10,
-						max = 100,
-						step = 1,
-						width = "double",
-						disabled = function() return not E.db.ElvUI_EltreumUI.quests.questitems end,
-						get = function() return E.db.ElvUI_EltreumUI.quests.questitemsizey end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.quests.questitemsizey = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					questitemspacing = {
-						type = 'range',
-						name = L["Button Spacing"],
-						desc = L["The spacing between buttons."],
-						order = 80,
-						min = 0,
-						max = 20,
-						step = 1,
-						width = "double",
-						disabled = function() return not E.db.ElvUI_EltreumUI.quests.questitems end,
-						get = function() return E.db.ElvUI_EltreumUI.quests.questitemspacing end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.quests.questitemspacing = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					setorientation = {
-						type = 'select',
-						name = L["Bar Direction"],
-						order = 82,
-						values = {
-							["HORIZONTAL"] = L["Horizontal"],
-							["VERTICAL"] = L["Vertical"],
+						args = {
+							headergaphere112 = {
+								order = 1,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							autoaccept = {
+								order = 2,
+								type = 'toggle',
+								name = L["Enable Automatically accepting/turning in Quests when not holding CTRL/SHIFT/ALT"],
+								desc = L["You will automatically accept and turn in quests that do not require gold, are not weekly and are not daily"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.quests.autoaccept end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.quests.autoaccept = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							autoacceptdailyweekly = {
+								order = 3,
+								type = 'toggle',
+								name = L["Accept Daily and Weekly quests"],
+								desc = L["You will also automatically accept Daily and Weekly Quests"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.quests.acceptdaily end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.quests.acceptdaily = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							autoacceptinvert = {
+								order = 3,
+								type = 'toggle',
+								name = L["Invert CTRL/SHIFT/ALT"],
+								desc = L["You will only accept and turn in quests if you hold CTRL/SHIFT/ALT while talking to the NPC"],
+								width = 'full',
+								get = function() return E.db.ElvUI_EltreumUI.quests.autoacceptinvert end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.quests.autoacceptinvert = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
 						},
-						style = 'radio',
-						disabled = function() return not E.db.ElvUI_EltreumUI.quests.questitems end,
-						get = function() return E.db.ElvUI_EltreumUI.quests.questorientation end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.quests.questorientation = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					headergaphere9487 = {
-						order = 95,
-						type = "description",
-						name = "",
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					questsettings = {
-						order = 96,
-						type = 'toggle',
-						name = L["Collapse Quests during Encounters/Boss Fights"],
-						desc = L["Collapse Quests when the boss fight starts"],
-						width = 'full',
-						get = function() return E.db.ElvUI_EltreumUI.quests.enable end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.quests.enable = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					headergaphere2 = {
-						order = 97,
-						type = "description",
-						name = "",
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					questcombatsettings = {
-						order = 98,
-						type = 'toggle',
-						name = L["Collapse Quests during any combat event"],
-						desc = L["Collapse Quests when you enter combat"],
-						width = 'full',
-						get = function() return E.db.ElvUI_EltreumUI.quests.combatenable end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.quests.combatenable = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					headergaphere3 = {
-						order = 99,
-						type = "description",
-						name = "",
-						width = 'full',
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					arenaquestsettings = {
-						order = 100,
-						type = 'toggle',
-						width = 'full',
-						name = L["Hide Quests during Battlegrounds and Arenas"],
-						desc = L["Hide Quests during Battlegrounds and Arenas"],
-						get = function() return E.db.ElvUI_EltreumUI.quests.arena end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.quests.arena = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					headergaphere4 = {
-						order = 101,
-						type = "description",
-						name = "",
-						width = 'full',
-						hidden = not E.Retail,
-						image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-					},
-					objectiveanchor = {
-						order = 102,
-						type = 'toggle',
-						width = 'full',
-						name = L["Objective Frame Anchor"],
-						desc = L["Reactivate the ElvUI Objective Frame Anchor and Mover"],
-						hidden = not E.Retail,
-						get = function() return E.db.ElvUI_EltreumUI.quests.anchor end,
-						set = function(_, value) E.db.ElvUI_EltreumUI.quests.anchor = value E:StaticPopup_Show('CONFIG_RL') end,
-					},
-					objectiveheight = {
-						type = 'range',
-						name = L["Objective Frame Height"],
-						desc = L["Height of the objective tracker. Increase size to be able to see more objectives."],
-						order = 103,
-						min = 100,
-						max = 900,
-						step = 1,
-						width = "double",
-						hidden = not E.Retail,
-						disabled = function() return not E.db.ElvUI_EltreumUI.quests.anchor end,
-						get = function()
-							if ObjectiveTrackerFrame then
-								return ObjectiveTrackerFrame.editModeHeight
-							else
-								return 1
-							end
-						end,
-						set = function(_, value)
-							if ObjectiveTrackerFrame then
-								E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight = value
-								ObjectiveTrackerFrame.editModeHeight = value
-								Enum.EditModeObjectiveTrackerSetting.Height = value
-								ObjectiveTrackerFrame:SetHeight(value)
-								ObjectiveTracker_UpdateHeight()
-							end
-						end,
 					},
 				},
 			},
@@ -10141,488 +10586,513 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						name = L["General"],
 						order = 1,
+						childGroups = "tab",
 						args = {
-							header11 = {
-								order = 1,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							zonetext = {
-								order = 2,
-								type = "description",
-								name = L["Make more texts use ElvUI font settings"],
-								width = 'full',
-							},
-							errorenable = {
-								order = 3,
-								name = L["Enable for Error Frame"],
-								type = "toggle",
-								desc = L["Enable for Error Frame"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.errorframe end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.errorframe = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							errorsize = {
-								type = 'range',
-								name = L["Error Frame Font Size"],
-								desc = L["Error Frame Font Size"],
-								order = 4,
-								min = 8,
-								max = 60,
-								step = 1,
-								width = "double",
-								get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize = tonumber(value) E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							zoneenable = {
-								order = 5,
-								name = L["Enable for Zones, Mail and others"],
-								type = "toggle",
-								desc = L["Such as the Zones, Mail and others"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.skins.zones end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.zones = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							headerbossemotescale = {
-								order = 6,
-								type = "description",
-								name = "",
-								width = 'full',
-								hidden = E.Classic,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							bossemotescale = {
-								type = 'range',
-								name = L["Boss Banner Frame Scale"],
-								desc = L["Boss Banner Frame Scale"],
-								order = 7,
-								min = 0.2,
-								max = 3,
-								step = 0.01,
-								width = "double",
-								hidden = E.Classic,
-								disabled = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.bossScale end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.bossScale = tonumber(value)
-									if _G.RaidBossEmoteFrame then
-										_G.RaidBossEmoteFrame:SetScale(value)
-									end
-								 end,
-							},
-							headerhideblizz = {
-								order = 35,
-								type = "description",
-								name = L["Hide Blizzard Frames"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							hideerrorframe = {
-								order = 36,
-								name = L["Hide Error Frame"],
-								type = "toggle",
-								desc = L["Hide the Red Error Text"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hideerrorframe end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hideerrorframe = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							hidezonetext = {
-								order = 36,
-								name = L["Hide Zone Text"],
-								type = "toggle",
-								desc = L["Hide the text that appears when changing zones"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hidezone end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hidezone = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							hidealertframe = {
-								order = 36,
-								name = L["Hide Alert Frame"],
-								desc = L["Hide the Alert Frame that appears when looting a rare item or earning an achievement"],
-								type = "toggle",
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hidealert end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hidealert = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							hidebossbannerframe = {
-								order = 36,
-								name = L["Hide Boss Banner Frame"],
-								desc = L["Hide the boss banner that appears when killing a raid boss or completing a Mythic+ dungeon"],
-								type = "toggle",
-								width = 'full',
-								hidden = not E.Retail,
-								get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							professionskins = {
-								order = 37,
-								type = "description",
-								name = L["Skin Profession Frame"],
-								--hidden = E.Retail,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = 'full',
-							},
-							professionenable = {
-								order = 38,
-								name = L["Enable"],
-								type = "toggle",
-								desc = L["Skin the Profession/Tradeskill Frame"],
-								--hidden = E.Retail,
-								--width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.skins.professions end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.professions = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							professionscale = {
-								type = 'range',
-								name = L["Scale"],
-								hidden = not E.Retail,
-								order = 38,
-								min = 0.2,
-								max = 1.3,
-								step = 0.01,
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.professions end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.professionscale end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.professionscale = value _G.ProfessionsFrame:SetScale(value) end,
-							},
-							header64546 = {
-								order = 39,
-								type = "description",
-								name = L["Add a Level Up toast"],
-								hidden = E.Retail,
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							skinenable = {
-								order = 40,
-								type = 'toggle',
-								name = L["Enable"],
-								desc = L["Enable a toast showing up when you level up"],
-								hidden = E.Retail,
-								get = function() return E.db.ElvUI_EltreumUI.skins.levelbossinstance end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.levelbossinstance = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							levelBosskins = {
-								order = 41,
-								type = "description",
-								hidden = not E.Retail,
-								name = L["Skin Level Up, Boss Loot and Instance Entrance frames to be class colored"],
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
-							},
-							skinenableboss = {
-								order = 42,
-								type = 'toggle',
-								name = L["Enable"],
-								hidden = not E.Retail,
-								desc = L["Enable the Skins"],
-								get = function() return E.db.ElvUI_EltreumUI.skins.levelbossinstance end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.levelbossinstance = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							tbctalentinfo = {
-								order = 43,
-								type = "description",
-								name = L["Expand the Talents to show the entire tree"],
-								hidden = E.Retail,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
-							},
-							tbctalents = {
-								order = 44,
-								type = 'toggle',
-								name = L["Expanded Talents"],
-								desc = L["Expand Talents to cover the full tree"],
-								hidden = E.Retail,
-								get = function() return E.db.ElvUI_EltreumUI.skins.tbctalents end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.tbctalents = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							talentscale = {
-								type = 'range',
-								name = L["Scale"],
-								hidden = E.Retail,
-								order = 45,
-								min = 0.1,
-								max = 2,
-								step = 0.01,
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.tbctalents end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.expandedtalentscale end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandedtalentscale = value _G.PlayerTalentFrame:SetScale(value) end,
-							},
-							retailtalentinfo = {
-								order = 43,
-								type = "description",
-								name = L["Talents"],
-								hidden = not E.Retail,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
-							},
-							retailtalentscale = {
-								type = 'range',
-								name = L["Scale"],
-								hidden = not E.Retail,
-								order = 45,
-								min = 0.1,
-								max = 1.3,
-								step = 0.01,
-								get = function() return E.db.ElvUI_EltreumUI.skins.expandedtalentscale end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandedtalentscale = value
-									if _G.ClassTalentFrame then
-										_G.ClassTalentFrame:SetScale(value)
-									end
-								end,
-							},
-							headerbagscale = {
-								order = 46,
-								type = "description",
-								name = L["Bags"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							bagscale = {
-								type = 'range',
-								name = L["Scale"],
-								order = 47,
-								min = 0.1,
-								max = 4,
-								step = 0.01,
-								--width = "double",
-								get = function() return E.db.ElvUI_EltreumUI.otherstuff.bagscale end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bagscale = value
-									if _G["ElvUI_ContainerFrame"] then
-										_G["ElvUI_ContainerFrame"]:SetScale(value)
-									end
-								end,
-							},
-							headerbankscale = {
-								order = 48,
-								type = "description",
-								name = L["Bank"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							bankscale = {
-								type = 'range',
-								name = L["Scale"],
-								order = 49,
-								min = 0.1,
-								max = 4,
-								step = 0.01,
-								--width = "double",
-								get = function() return E.db.ElvUI_EltreumUI.otherstuff.bankscale end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bankscale = value
-									if _G["ElvUI_BankContainerFrame"] then
-										_G["ElvUI_BankContainerFrame"]:SetScale(value)
-									end
-								end,
-							},
-							expandedstable = {
-								order = 50,
-								type = "description",
-								hidden = not E.Retail,
-								name = L["Expand Hunter Stables to show all pets and improve search"],
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
-							},
-							stableenable = {
-								order = 51,
-								type = 'toggle',
-								name = L["Enable"],
-								hidden = not E.Retail,
-								desc = L["Enable the Expanded Stable"],
-								get = function() return E.db.ElvUI_EltreumUI.skins.expandedstable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandedstable = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							header79745 = {
-								order = 52,
-								type = "description",
-								name = "",
-								width = 'full',
-								hidden = E.Classic,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							raidbossemoteframe = {
-								order = 53,
-								type = "description",
-								hidden = E.Classic,
-								name = L["Remove Blizzard's Boss Emote Frame"],
-								width = "full",
-							},
-							removebossemote = {
-								order = 54,
-								type = 'toggle',
-								name = L["Enable"],
-								hidden = E.Classic,
-								desc = L["Enable removing the Alert Frame that can show up in the middle of the screen"],
-								get = function() return E.db.ElvUI_EltreumUI.skins.bossemote end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.bossemote = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							header8897 = {
-								order = 55,
-								type = "description",
-								name = "",
-								width = 'full',
-								hidden = not E.Retail,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							widertransmog = {
-								order = 56,
-								type = "description",
-								hidden = not E.Retail,
-								name = L["Expand Transmog Window to better show your character"],
-								width = "full",
-							},
-							widetransmogenable = {
-								order = 57,
-								type = 'toggle',
-								name = L["Enable"],
-								desc = L["Enable the Wider Transmog Window"],
-								hidden = not E.Retail,
-								get = function() return E.db.ElvUI_EltreumUI.skins.widertransmog end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.widertransmog = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							headerhidekeypressab = {
-								order = 94,
-								type = "description",
-								name = L["Hide Actionbar Button Press"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							hideABkeypress = {
-								order = 95,
-								type = 'toggle',
-								name = L["Enable"],
-								get = function() return E.db.ElvUI_EltreumUI.skins.hideABkeypress end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.hideABkeypress = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							gapabcolor = {
-								order = 96,
-								type = "description",
-								name = L["Color Modifier Keys"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							colorabtext = {
-								order = 97,
-								type = 'toggle',
-								name = L["Enable"],
-								width = 'full',
-								desc = L["Add Class Color to Modifier Keys like ALT and CTRL on the ActionBars"],
-								get = function() return E.db.ElvUI_EltreumUI.skins.colormodkey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.colormodkey = value end,
-							},
-							cdcolorheader = {
-								order = 98,
-								type = "description",
-								name = L["Class Colored Cooldowns"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							cdclasscolor = {
-								order = 99,
-								type = 'toggle',
-								name = L["Enable"],
-								width = 'full',
-								desc = L["Sets Cooldowns to be Class Colored"],
-								get = function() return E.db.ElvUI_EltreumUI.skins.classcolorcooldowns end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classcolorcooldowns = value ElvUI_EltreumUI:CooldownColors() end,
-							},
-							headerilvltooltip = {
-								order = 100,
-								type = "description",
-								name = L["Item Level on Tooltip"],
-								width = 'full',
-								hidden = E.Retail,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							ilvltooltip = {
-								order = 101,
-								type = 'toggle',
-								name = L["Enable"],
-								width = 'full',
-								desc = L["Shows Item Level on Tooltips"],
-								hidden = E.Retail,
-								get = function() return E.db.ElvUI_EltreumUI.skins.ilvltooltip end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvltooltip = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							headerroleicon = {
-								order = 161,
-								type = "description",
-								name = L["Replace role icons with Eltruism role icons"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							roleiconsenable = {
-								order = 162,
-								type = 'toggle',
-								name = L["Enable Eltruism Icons"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							roleiconpick = {
-								order = 163,
-								type = 'select',
-								name = "",
-								values = {
-									["ELTRUISM"] = "Eltruism "..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield',':20:20'),
-									["ATWOODELVUI"] = 'Atwood ElvUI '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\Tank',':20:20'),
-									["ATWOODGLOW"] = 'Atwood Glow '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\Tank',':20:20'),
-									["ATWOODGRAVED"] = 'Atwood '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\Tank',':20:20'),
-									["ATWOODGREY"] = 'Atwood Grey '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Tank',':20:20'),
-									["ATWOODWHITE"] = 'Atwood White '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Tank',':20:20'),
-									["RELEAF"] = 'Releaf '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Tank',':20:20'),
-									["CUSTOM"] = 'Custom',
-								},
-								sorting = {
-									"ELTRUISM",
-									"ATWOODELVUI",
-									"ATWOODGLOW",
-									"ATWOODGRAVED",
-									"ATWOODGREY",
-									"ATWOODWHITE",
-									"RELEAF",
-									"CUSTOM"
-								},
-								style = 'radio',
-								disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons end,
-								get = function() return E.db.ElvUI_EltreumUI.otherstuff.roleiconstype end,
-								set = function(_,value) E.db.ElvUI_EltreumUI.otherstuff.roleiconstype = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							customroleicons = {
-								order = 197,
+							roleicons = {
 								type = 'group',
-								inline = true,
-								name = L["Name of file inside Interface\\Addons"],
+								name = L["Role Icons"],
+								order = 1,
 								args = {
-									headerroleiconcustomtankinput = {
-										order = 165,
-										type = 'input',
-										name = L["Tank"],
-										desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
+									headerroleicon = {
+										order = 161,
+										type = "description",
+										name = L["Replace role icons with Eltruism role icons"],
 										width = 'full',
-										disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype ~= 'CUSTOM' end,
-										get = function() return E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank end,
-										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank = value E:StaticPopup_Show('CONFIG_RL') end,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
-									headerroleiconcustomhealerinput = {
-										order = 167,
-										type = 'input',
-										name = L["Healer"],
-										desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
+									roleiconsenable = {
+										order = 162,
+										type = 'toggle',
+										name = L["Enable Eltruism Icons"],
 										width = 'full',
-										disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype ~= 'CUSTOM' end,
-										get = function() return E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer end,
-										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer = value E:StaticPopup_Show('CONFIG_RL') end,
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons = value E:StaticPopup_Show('CONFIG_RL') end,
 									},
-									headerroleiconcustomdpsinput = {
-										order = 169,
-										type = 'input',
-										name = L["DPS"],
-										desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
+									roleiconpick = {
+										order = 163,
+										type = 'select',
+										name = "",
+										values = {
+											["ELTRUISM"] = "Eltruism "..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield',':20:20'),
+											["ATWOODELVUI"] = 'Atwood ElvUI '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\Tank',':20:20'),
+											["ATWOODGLOW"] = 'Atwood Glow '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\Tank',':20:20'),
+											["ATWOODGRAVED"] = 'Atwood '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\Tank',':20:20'),
+											["ATWOODGREY"] = 'Atwood Grey '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Tank',':20:20'),
+											["ATWOODWHITE"] = 'Atwood White '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Tank',':20:20'),
+											["RELEAF"] = 'Releaf '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Tank',':20:20'),
+											["CUSTOM"] = 'Custom',
+										},
+										sorting = {
+											"ELTRUISM",
+											"ATWOODELVUI",
+											"ATWOODGLOW",
+											"ATWOODGRAVED",
+											"ATWOODGREY",
+											"ATWOODWHITE",
+											"RELEAF",
+											"CUSTOM"
+										},
+										style = 'radio',
+										disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons end,
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.roleiconstype end,
+										set = function(_,value) E.db.ElvUI_EltreumUI.otherstuff.roleiconstype = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									customroleicons = {
+										order = 197,
+										type = 'group',
+										inline = true,
+										name = L["Name of file inside Interface\\Addons"],
+										args = {
+											headerroleiconcustomtankinput = {
+												order = 165,
+												type = 'input',
+												name = L["Tank"],
+												desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
+												width = 'full',
+												disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype ~= 'CUSTOM' end,
+												get = function() return E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											headerroleiconcustomhealerinput = {
+												order = 167,
+												type = 'input',
+												name = L["Healer"],
+												desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
+												width = 'full',
+												disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype ~= 'CUSTOM' end,
+												get = function() return E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											headerroleiconcustomdpsinput = {
+												order = 169,
+												type = 'input',
+												name = L["DPS"],
+												desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
+												width = 'full',
+												disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype ~= 'CUSTOM' end,
+												get = function() return E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+										},
+									},
+								},
+							},
+							blizzard = {
+								type = 'group',
+								name = L["Blizzard"],
+								order = 1,
+								args = {
+									header11 = {
+										order = 1,
+										type = "description",
+										name = "",
 										width = 'full',
-										disabled = function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype ~= 'CUSTOM' end,
-										get = function() return E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps end,
-										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps = value E:StaticPopup_Show('CONFIG_RL') end,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									zonetext = {
+										order = 2,
+										type = "description",
+										name = L["Make more texts use ElvUI font settings"],
+										width = 'full',
+									},
+									errorenable = {
+										order = 3,
+										name = L["Enable for Error Frame"],
+										type = "toggle",
+										desc = L["Enable for Error Frame"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.errorframe end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.errorframe = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									errorsize = {
+										type = 'range',
+										name = L["Error Frame Font Size"],
+										desc = L["Error Frame Font Size"],
+										order = 4,
+										min = 8,
+										max = 60,
+										step = 1,
+										width = "double",
+										get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize = tonumber(value) E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									zoneenable = {
+										order = 5,
+										name = L["Enable for Zones, Mail and others"],
+										type = "toggle",
+										desc = L["Such as the Zones, Mail and others"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.skins.zones end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.zones = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									headerbossemotescale = {
+										order = 6,
+										type = "description",
+										name = "",
+										width = 'full',
+										hidden = E.Classic,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									bossemotescale = {
+										type = 'range',
+										name = L["Boss Banner Frame Scale"],
+										desc = L["Boss Banner Frame Scale"],
+										order = 7,
+										min = 0.2,
+										max = 3,
+										step = 0.01,
+										width = "double",
+										hidden = E.Classic,
+										disabled = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.bossScale end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.bossScale = tonumber(value)
+											if _G.RaidBossEmoteFrame then
+												_G.RaidBossEmoteFrame:SetScale(value)
+											end
+										 end,
+									},
+									headerhideblizz = {
+										order = 35,
+										type = "description",
+										name = L["Hide Blizzard Frames"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									hideerrorframe = {
+										order = 36,
+										name = L["Hide Error Frame"],
+										type = "toggle",
+										desc = L["Hide the Red Error Text"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hideerrorframe end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hideerrorframe = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									hidezonetext = {
+										order = 36,
+										name = L["Hide Zone Text"],
+										type = "toggle",
+										desc = L["Hide the text that appears when changing zones"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hidezone end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hidezone = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									hidealertframe = {
+										order = 36,
+										name = L["Hide Alert Frame"],
+										desc = L["Hide the Alert Frame that appears when looting a rare item or earning an achievement"],
+										type = "toggle",
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hidealert end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hidealert = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									hidebossbannerframe = {
+										order = 36,
+										name = L["Hide Boss Banner Frame"],
+										desc = L["Hide the boss banner that appears when killing a raid boss or completing a Mythic+ dungeon"],
+										type = "toggle",
+										width = 'full',
+										hidden = not E.Retail,
+										get = function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									professionskins = {
+										order = 37,
+										type = "description",
+										name = L["Skin Profession Frame"],
+										--hidden = E.Retail,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = 'full',
+									},
+									professionenable = {
+										order = 38,
+										name = L["Enable"],
+										type = "toggle",
+										desc = L["Skin the Profession/Tradeskill Frame"],
+										--hidden = E.Retail,
+										--width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.skins.professions end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.professions = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									professionscale = {
+										type = 'range',
+										name = L["Scale"],
+										hidden = not E.Retail,
+										order = 38,
+										min = 0.2,
+										max = 1.3,
+										step = 0.01,
+										width = 'double',
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.professions end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.professionscale end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.professionscale = value _G.ProfessionsFrame:SetScale(value) end,
+									},
+									levelBosskins = {
+										order = 41,
+										type = "description",
+										hidden = not E.Retail,
+										name = L["Skin Level Up, Boss Loot and Instance Entrance frames to be class colored"],
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									skinenableboss = {
+										order = 42,
+										type = 'toggle',
+										name = L["Enable"],
+										hidden = not E.Retail,
+										desc = L["Enable the Skins"],
+										get = function() return E.db.ElvUI_EltreumUI.skins.levelbossinstance end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.levelbossinstance = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									tbctalentinfo = {
+										order = 43,
+										type = "description",
+										name = L["Expand the Talents to show the entire tree"],
+										hidden = E.Retail,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									tbctalents = {
+										order = 44,
+										type = 'toggle',
+										name = L["Expanded Talents"],
+										desc = L["Expand Talents to cover the full tree"],
+										hidden = E.Retail,
+										get = function() return E.db.ElvUI_EltreumUI.skins.tbctalents end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.tbctalents = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									talentscale = {
+										type = 'range',
+										name = L["Scale"],
+										hidden = E.Retail,
+										order = 45,
+										min = 0.1,
+										max = 2,
+										step = 0.01,
+										width = 'double',
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.tbctalents end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.expandedtalentscale end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandedtalentscale = value _G.PlayerTalentFrame:SetScale(value) end,
+									},
+									retailtalentinfo = {
+										order = 43,
+										type = "description",
+										name = L["Talents"],
+										hidden = not E.Retail,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									retailtalentscale = {
+										type = 'range',
+										name = L["Scale"],
+										hidden = not E.Retail,
+										order = 45,
+										min = 0.1,
+										max = 1.3,
+										step = 0.01,
+										width = 'double',
+										get = function() return E.db.ElvUI_EltreumUI.skins.expandedtalentscale end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandedtalentscale = value
+											if _G.ClassTalentFrame then
+												_G.ClassTalentFrame:SetScale(value)
+											end
+										end,
+									},
+									headerbagscale = {
+										order = 46,
+										type = "description",
+										name = L["Bags"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									bagscale = {
+										type = 'range',
+										name = L["Scale"],
+										order = 47,
+										min = 0.1,
+										max = 4,
+										step = 0.01,
+										width = 'double',
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.bagscale end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bagscale = value
+											if _G["ElvUI_ContainerFrame"] then
+												_G["ElvUI_ContainerFrame"]:SetScale(value)
+											end
+										end,
+									},
+									headerbankscale = {
+										order = 48,
+										type = "description",
+										name = L["Bank"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									bankscale = {
+										type = 'range',
+										name = L["Scale"],
+										order = 49,
+										min = 0.1,
+										max = 4,
+										step = 0.01,
+										width = 'double',
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.bankscale end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bankscale = value
+											if _G["ElvUI_BankContainerFrame"] then
+												_G["ElvUI_BankContainerFrame"]:SetScale(value)
+											end
+										end,
+									},
+									header79745 = {
+										order = 52,
+										type = "description",
+										name = "",
+										width = 'full',
+										hidden = E.Classic,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									raidbossemoteframe = {
+										order = 53,
+										type = "description",
+										hidden = E.Classic,
+										name = L["Remove Blizzard's Boss Emote Frame"],
+										width = "full",
+									},
+									removebossemote = {
+										order = 54,
+										type = 'toggle',
+										name = L["Enable"],
+										hidden = E.Classic,
+										desc = L["Enable removing the Alert Frame that can show up in the middle of the screen"],
+										get = function() return E.db.ElvUI_EltreumUI.skins.bossemote end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.bossemote = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									header8897 = {
+										order = 55,
+										type = "description",
+										name = "",
+										width = 'full',
+										hidden = not E.Retail,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									widertransmog = {
+										order = 56,
+										type = "description",
+										hidden = not E.Retail,
+										name = L["Expand Transmog Window to better show your character"],
+										width = "full",
+									},
+									widetransmogenable = {
+										order = 57,
+										type = 'toggle',
+										name = L["Enable"],
+										desc = L["Enable the Wider Transmog Window"],
+										hidden = not E.Retail,
+										get = function() return E.db.ElvUI_EltreumUI.skins.widertransmog end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.widertransmog = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									headerilvltooltip = {
+										order = 100,
+										type = "description",
+										name = L["Item Level on Tooltip"],
+										width = 'full',
+										hidden = E.Retail,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									ilvltooltip = {
+										order = 101,
+										type = 'toggle',
+										name = L["Enable"],
+										width = 'full',
+										desc = L["Shows Item Level on Tooltips"],
+										hidden = E.Retail,
+										get = function() return E.db.ElvUI_EltreumUI.skins.ilvltooltip end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvltooltip = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+								},
+							},
+							misc = {
+								type = 'group',
+								name = L["Misc"],
+								order = 1,
+								args = {
+									header64546 = {
+										order = 39,
+										type = "description",
+										name = L["Add a Level Up toast"],
+										hidden = E.Retail,
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									skinenable = {
+										order = 40,
+										type = 'toggle',
+										name = L["Enable"],
+										desc = L["Enable a toast showing up when you level up"],
+										hidden = E.Retail,
+										get = function() return E.db.ElvUI_EltreumUI.skins.levelbossinstance end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.levelbossinstance = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									expandedstable = {
+										order = 50,
+										type = "description",
+										hidden = not E.Retail,
+										name = L["Expand Hunter Stables to show all pets and improve search"],
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									stableenable = {
+										order = 51,
+										type = 'toggle',
+										name = L["Enable"],
+										hidden = not E.Retail,
+										desc = L["Enable the Expanded Stable"],
+										get = function() return E.db.ElvUI_EltreumUI.skins.expandedstable end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandedstable = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									headerhidekeypressab = {
+										order = 94,
+										type = "description",
+										name = L["Hide Actionbar Button Press"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									hideABkeypress = {
+										order = 95,
+										type = 'toggle',
+										name = L["Enable"],
+										get = function() return E.db.ElvUI_EltreumUI.skins.hideABkeypress end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.hideABkeypress = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									gapabcolor = {
+										order = 96,
+										type = "description",
+										name = L["Color Modifier Keys"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									colorabtext = {
+										order = 97,
+										type = 'toggle',
+										name = L["Enable"],
+										width = 'full',
+										desc = L["Add Class Color to Modifier Keys like ALT and CTRL on the ActionBars"],
+										get = function() return E.db.ElvUI_EltreumUI.skins.colormodkey end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.colormodkey = value end,
+									},
+									cdcolorheader = {
+										order = 98,
+										type = "description",
+										name = L["Class Colored Cooldowns"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									cdclasscolor = {
+										order = 99,
+										type = 'toggle',
+										name = L["Enable"],
+										width = 'full',
+										desc = L["Sets Cooldowns to be Class Colored"],
+										get = function() return E.db.ElvUI_EltreumUI.skins.classcolorcooldowns end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.classcolorcooldowns = value ElvUI_EltreumUI:CooldownColors() end,
 									},
 								},
 							},
@@ -10631,639 +11101,692 @@ function ElvUI_EltreumUI:Configtable()
 					character = {
 						type = 'group',
 						name = L["Character"],
+						childGroups = "tab",
 						order = 2,
 						args = {
-							headersocket = {
+							characterpanel = {
+								type = 'group',
+								name = L["Panel"],
 								order = 1,
-								type = "description",
-								name = L["Sockets and Enchants"],
-								hidden = E.Retail,
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								childGroups = "tab",
+								args = {
+									icons = {
+										type = 'group',
+										name = L["Class Icons"],
+										order = 1,
+										args = {
+											header85 = {
+												order = 238,
+												type = "description",
+												name = "",
+												width = 'full',
+												image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+											},
+											iconsoncharacter = {
+												order = 239,
+												type = 'toggle',
+												name = L["Add Class Icons to Character Panel"],
+												width = 'full',
+												desc = L["Enable this option"],
+												get = function() return E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											blizzicons = {
+												order = 240,
+												type = 'toggle',
+												name = L["Use Blizzard Icons"],
+												width = 'full',
+												desc = L["Enable Blizzard Icons"],
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel or E.db.ElvUI_EltreumUI.skins.classiconsreleaf end,
+												get = function() return E.db.ElvUI_EltreumUI.skins.classiconsblizz end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.classiconsblizz = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											releaficons= {
+												order = 241,
+												type = 'toggle',
+												name = L["Use Blizzard Icons colored by Releaf"],
+												width = 'full',
+												desc = L["Enable Releaf Icons"],
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel or E.db.ElvUI_EltreumUI.skins.classiconsblizz end,
+												get = function() return E.db.ElvUI_EltreumUI.skins.classiconsreleaf end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.classiconsreleaf = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+										},
+									},
+									socketsenchants = {
+										type = 'group',
+										name = L["Sockets/Enchants/Ilvl"],
+										hidden = E.Retail,
+										order = 1,
+										args = {
+											headersocket = {
+												order = 1,
+												type = "description",
+												name = L["Sockets and Enchants"],
+												hidden = E.Retail,
+												width = 'full',
+												image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+											},
+											anchorgapheresocket = {
+												order = 2,
+												type = "description",
+												name = "",
+												width = 'full',
+												hidden = E.Retail,
+											},
+											socketsonchar = {
+												order = 3,
+												type = 'toggle',
+												name = L["Add Sockets and Enchants to the Character Panel"],
+												width = 'full',
+												hidden = E.Retail,
+												desc = L["Enable this option"],
+												get = function() return E.db.ElvUI_EltreumUI.skins.sockets end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.sockets = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											socketsoninspect = {
+												order = 4,
+												type = 'toggle',
+												name = L["Add Sockets and Enchants to the Inspect Frame"],
+												width = 'full',
+												hidden = E.Retail,
+												desc = L["Enable this option"],
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.sockets end,
+												get = function() return E.db.ElvUI_EltreumUI.skins.socketsinspect end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.socketsinspect = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											headerfirst = {
+												order = 80,
+												type = "description",
+												name = L["Item Levels"],
+												hidden = E.Retail,
+												width = 'full',
+												image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+											},
+											anchorgaphere = {
+												order = 81,
+												type = "description",
+												name = "",
+												hidden = E.Retail,
+												width = 'full',
+											},
+											skincharpanel = {
+												order = 82,
+												type = 'toggle',
+												name = L["Add Item Levels to the Character Panel"],
+												hidden = E.Retail,
+												width = 'full',
+												desc = L["Enable this option"],
+												get = function() return E.db.ElvUI_EltreumUI.skins.ilvls end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvls = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											inspectilvl = {
+												order = 82,
+												type = 'toggle',
+												name = L["Add Item Levels to the Inspect Panel"],
+												hidden = E.Retail,
+												width = 'full',
+												desc = L["Enable this option"],
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvls end,
+												get = function() return E.db.ElvUI_EltreumUI.skins.ilvlsinspect end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvlsinspect = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											header831 = {
+												order = 83,
+												type = "description",
+												hidden = E.Retail,
+												name = "",
+												width = 'full',
+												image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+											},
+											ilvlanchor = {
+												order = 84,
+												type = 'select',
+												name = L["Ilvl Anchor Point"],
+												desc = L["Choose where the Ilvl will be attach to on the items"],
+												hidden = E.Retail,
+												values = {
+													["CENTER"] = "Center",
+													["LEFT"] = 'Left',
+													["RIGHT"] = 'Right',
+													["TOP"] = 'Top',
+													["TOPLEFT"] = 'Top Left',
+													["TOPRIGHT"] = 'Top Right',
+													["BOTTOM"] = 'Bottom',
+													["BOTTOMLEFT"] = 'Bottom Left',
+													["BOTTOMRIGHT"] = 'Bottom Right',
+												},
+												style = 'radio',
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvls end,
+												get = function() return E.db.ElvUI_EltreumUI.skins.ilvlanchor end,
+												set = function(_,value) E.db.ElvUI_EltreumUI.skins.ilvlanchor = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											ilvlfontx = {
+												type = 'range',
+												name = L["Ilvl Font X Offset"],
+												hidden = E.Retail,
+												order = 85,
+												min = -100,
+												max = 100,
+												step = 1,
+												--width = "double",
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvls end,
+												get = function() return E.db.ElvUI_EltreumUI.skins.ilvlanchorx end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvlanchorx = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											ilvlfonty = {
+												type = 'range',
+												name = L["Ilvl Font Y Offset"],
+												hidden = E.Retail,
+												order = 86,
+												min = -100,
+												max = 100,
+												step = 1,
+												--width = "double",
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvls end,
+												get = function() return E.db.ElvUI_EltreumUI.skins.ilvlanchory end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvlanchory = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											header838 = {
+												order = 117,
+												type = "description",
+												hidden = E.Retail,
+												name = "",
+												width = 'full',
+												image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+											},
+											ilvlfontweight = {
+												order = 118,
+												type = 'select',
+												name = L["Ilvl Font Outline"],
+												desc = L["Choose the Ilvl font outline"],
+												hidden = E.Retail,
+												values = {
+													["OUTLINE"] = "Outline",
+													["THICKOUTLINE"] = 'Thick Outline',
+													["MONOCHROME"] = 'Monochrome',
+												},
+												style = 'radio',
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvls end,
+												get = function() return E.db.ElvUI_EltreumUI.skins.ilvlfontweight end,
+												set = function(_,value) E.db.ElvUI_EltreumUI.skins.ilvlfontweight = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											header840 = {
+												order = 119,
+												type = "description",
+												hidden = E.Retail,
+												name = "",
+												width = 'full',
+												image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+											},
+											ilvlfontsize = {
+												type = 'range',
+												name = L["Ilvl Font Size"],
+												desc = L["Change the Ilvl font size"],
+												hidden = E.Retail,
+												order = 120,
+												min = 4,
+												max = 72,
+												step = 1,
+												width = "full",
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvls end,
+												get = function() return E.db.ElvUI_EltreumUI.skins.ilvlfontsize end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvlfontsize = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+										},
+									},
+									armory = {
+										type = 'group',
+										name = L["Armory"],
+										order = 1,
+										args = {
+											header844 = {
+												order = 121,
+												type = "description",
+												name = L["Character Panel"],
+												width = 'full',
+												image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+											},
+											expandart = {
+												order = 122,
+												type = 'toggle',
+												name = L["Expand Character Art"],
+												width = 'full',
+												desc = L["Enable this option"],
+												get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybg = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											expandamoryclassic = {
+												order = 123,
+												type = 'toggle',
+												name = L["Expand Character Panel"],
+												width = 'full',
+												desc = L["Enable this option"],
+												get = function() return E.db.ElvUI_EltreumUI.skins.classicarmory end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.classicarmory = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											expandartcrest = {
+												order = 124,
+												type = 'toggle',
+												name = L["Add Crest to Character Panel"],
+												width = 'full',
+												desc = L["Enable this option"],
+												get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorycrest end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorycrest = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											gapalphaart = {
+												order = 125,
+												type = "description",
+												name = "",
+												width = 'full',
+											},
+											expandartalpha = {
+												type = 'range',
+												name = L["Art Alpha"],
+												desc = L["Change the transparency of the Art"],
+												order = 126,
+												min = 0.01,
+												max = 1,
+												step = 0.01,
+												--width = "double",
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
+												get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha = value _G["EltruismCharacterBG"]:SetAlpha(value) end,
+											},
+											armorybgtextureselect = {
+												order = 127,
+												type = 'select',
+												name = L["Background Texture Type"],
+												desc = L["Choose between a Class, Race or Custom Background"],
+												--width = "double",
+												values = {
+													["CLASS"] = CLASS,
+													["RACE"] = RACE,
+													["RAGNAROS"] = L["Ragnaros"],
+													["SPACECLOUD"] = L["SpaceCloud"],
+													["RAVNYR"] = L["Ravnyr"],
+													["BLACK"] = L["Black"],
+													["CUSTOM"] = CUSTOM,
+												},
+												sorting = {
+													"CLASS",
+													"RACE",
+													"RAGNAROS",
+													"SPACECLOUD",
+													"RAVNYR",
+													"BLACK",
+													"CUSTOM"
+												},
+												style = 'radio',
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
+												get = function() return E.db.ElvUI_EltreumUI.skins.armorybgtype end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.armorybgtype = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
+											},
+											bgcustomtexture = {
+												order = 128,
+												type = 'input',
+												name = L["Name of file inside Interface\\Addons"],
+												desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
+												width = 'double',
+												disabled = function() return E.db.ElvUI_EltreumUI.skins.armorybgtype ~= "CUSTOM" end,
+												get = function() return E.private.ElvUI_EltreumUI.skins.armorybgtexture end,
+												set = function(_, value) E.private.ElvUI_EltreumUI.skins.armorybgtexture = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
+											},
+											expandvignetteenable = {
+												order = 129,
+												type = 'toggle',
+												name = L["Add a Vignette over the Character Art"],
+												width = 'full',
+												desc = L["Enable this option"],
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
+												get = function() return E.db.ElvUI_EltreumUI.skins.armoryvignette end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryvignette = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
+											},
+											expandvignettealpha = {
+												type = 'range',
+												name = L["Vignette Alpha"],
+												desc = L["Change the transparency of the Vignette"],
+												order = 130,
+												min = 0.01,
+												max = 1,
+												step = 0.01,
+												width = "double",
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg or not E.db.ElvUI_EltreumUI.skins.armoryvignette end,
+												get = function() return E.db.ElvUI_EltreumUI.skins.armoryvignettealpha end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryvignettealpha = value _G["EltruismCharacterBGVignette"]:SetAlpha(value) end,
+											},
+											headerequipandbagilvl = {
+												order = 159,
+												type = "description",
+												name = "",
+												width = 'full',
+												hidden = not E.Retail,
+												image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+											},
+											equipandbagilvlenable = {
+												order = 160,
+												name = L["Enable Comparing Equipped and Bag Ilvl"],
+												type = "toggle",
+												width = 'full',
+												hidden = not E.Retail,
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.classicarmory end,
+												get = function() return E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											equipandbagilvlenablecustomcolor = {
+												order = 161,
+												name = L["Enable Custom Colors"],
+												type = "toggle",
+												width = 'full',
+												hidden = not E.Retail,
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable or not E.db.ElvUI_EltreumUI.skins.classicarmory end,
+												get = function() return E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom = value E:StaticPopup_Show('CONFIG_RL') end,
+											},
+											equipandbagilvlenablecustomcolor1 = {
+												order = 162,
+												type = 'color',
+												name = L["Bad Color"],
+												hasAlpha = false,
+												hidden = not E.Retail,
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom or not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable or not E.db.ElvUI_EltreumUI.skins.classicarmory end,
+												get = function()
+													local dr = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR
+													local dg = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG
+													local db = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB
+													return E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, 1, dr, dg, db, 1
+												end,
+												set = function(_, r, g, b, a)
+													E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB = r, g, b
+												end,
+											},
+											equipandbagilvlenablecustomcolor2 = {
+												order = 163,
+												type = 'color',
+												name = L["Medium Color"],
+												hasAlpha = false,
+												hidden = not E.Retail,
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom or not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable or not E.db.ElvUI_EltreumUI.skins.classicarmory end,
+												get = function()
+													local dr = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR
+													local dg = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG
+													local db = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB
+													return E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, 1, dr, dg, db, 1
+												end,
+												set = function(_, r, g, b, a)
+													E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB = r, g, b
+												end,
+											},
+											equipandbagilvlenablecustomcolor3 = {
+												order = 164,
+												type = 'color',
+												name = L["Good Color"],
+												hasAlpha = false,
+												hidden = not E.Retail,
+												disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom or not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable or not E.db.ElvUI_EltreumUI.skins.classicarmory end,
+												get = function()
+													local dr = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR
+													local dg = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG
+													local db = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB
+													return E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB, 1, dr, dg, db, 1
+												end,
+												set = function(_, r, g, b, a)
+													E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB = r, g, b
+												end,
+											},
+											header834gap = {
+												order = 245,
+												type = "description",
+												name = "",
+												width = 'full',
+												image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+											},
+											characterpanelscale = {
+												type = 'range',
+												name = L["Character Panel Scale"],
+												desc = L["Change the size of the Character Panel"],
+												order = 246,
+												min = 0.2,
+												max = 2,
+												step = 0.01,
+												width = 'full',
+												get = function() return E.db.ElvUI_EltreumUI.skins.characterpanelscale end,
+												set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterpanelscale = value
+													_G["CharacterFrame"]:SetScale(value)
+													if _G["CharacterModelFrame"] then
+														_G["CharacterModelFrame"]:SetIgnoreParentScale(false)
+													else
+														_G["CharacterModelScene"]:SetIgnoreParentScale(false)
+													end
+												end,
+											},
+										},
+									},
+								},
 							},
-							anchorgapheresocket = {
-								order = 2,
-								type = "description",
-								name = "",
-								width = 'full',
-								hidden = E.Retail,
-							},
-							socketsonchar = {
-								order = 3,
-								type = 'toggle',
-								name = L["Add Sockets and Enchants to the Character Panel"],
-								width = 'full',
-								hidden = E.Retail,
-								desc = L["Enable this option"],
-								get = function() return E.db.ElvUI_EltreumUI.skins.sockets end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.sockets = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							socketsoninspect = {
+							model = {
+								type = 'group',
+								name = L["Model"],
 								order = 4,
-								type = 'toggle',
-								name = L["Add Sockets and Enchants to the Inspect Frame"],
-								width = 'full',
-								hidden = E.Retail,
-								desc = L["Enable this option"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.sockets end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.socketsinspect end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.socketsinspect = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							headerfirst = {
-								order = 80,
-								type = "description",
-								name = L["Item Levels"],
-								hidden = E.Retail,
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							anchorgaphere = {
-								order = 81,
-								type = "description",
-								name = "",
-								hidden = E.Retail,
-								width = 'full',
-							},
-							skincharpanel = {
-								order = 82,
-								type = 'toggle',
-								name = L["Add Item Levels to the Character Panel"],
-								hidden = E.Retail,
-								width = 'full',
-								desc = L["Enable this option"],
-								get = function() return E.db.ElvUI_EltreumUI.skins.ilvls end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvls = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							inspectilvl = {
-								order = 82,
-								type = 'toggle',
-								name = L["Add Item Levels to the Inspect Panel"],
-								hidden = E.Retail,
-								width = 'full',
-								desc = L["Enable this option"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvls end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.ilvlsinspect end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvlsinspect = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							header831 = {
-								order = 83,
-								type = "description",
-								hidden = E.Retail,
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							ilvlanchor = {
-								order = 84,
-								type = 'select',
-								name = L["Ilvl Anchor Point"],
-								desc = L["Choose where the Ilvl will be attach to on the items"],
-								hidden = E.Retail,
-								values = {
-									["CENTER"] = "Center",
-									["LEFT"] = 'Left',
-									["RIGHT"] = 'Right',
-									["TOP"] = 'Top',
-									["TOPLEFT"] = 'Top Left',
-									["TOPRIGHT"] = 'Top Right',
-									["BOTTOM"] = 'Bottom',
-									["BOTTOMLEFT"] = 'Bottom Left',
-									["BOTTOMRIGHT"] = 'Bottom Right',
+								childGroups = "tab",
+								args = {
+									gapmodelcam1 = {
+										order = 147,
+										type = "description",
+										name = L["Character Model"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									modelcamzoom = {
+										type = 'range',
+										name = L["Character Model Zoom"],
+										order = 148,
+										min = -2,
+										max = 2,
+										step = 0.01,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
+										get = function()
+											if E.Retail then
+												return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail
+											else
+												return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic
+											end
+										end,
+										set = function(_, value)
+											if E.Retail then
+												E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail = value
+											else
+												E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic = value
+											end
+										end,
+									},
+									modelcamx = {
+										type = 'range',
+										name = L["Character Model X Offset"],
+										order = 149,
+										min = -2,
+										max = 2,
+										step = 0.01,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
+										get = function()
+											if E.Retail then
+												return E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail
+											else
+												return E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic
+											end
+										end,
+										set = function(_, value)
+											if E.Retail then
+												E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail = value
+											else
+												E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic = value
+											end
+										end,
+									},
+									modelcamy = {
+										type = 'range',
+										name = L["Character Model Y Offset"],
+										order = 150,
+										min = -2,
+										max = 2,
+										step = 0.01,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
+										get = function()
+											if E.Retail then
+												return E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail
+											else
+												return E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic
+											end
+										end,
+										set = function(_, value)
+											if E.Retail then
+												E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail = value
+											else
+												E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic = value
+											end
+										end,
+									},
 								},
-								style = 'radio',
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvls end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.ilvlanchor end,
-								set = function(_,value) E.db.ElvUI_EltreumUI.skins.ilvlanchor = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							ilvlfontx = {
-								type = 'range',
-								name = L["Ilvl Font X Offset"],
-								hidden = E.Retail,
-								order = 85,
-								min = -100,
-								max = 100,
-								step = 1,
-								--width = "double",
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvls end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.ilvlanchorx end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvlanchorx = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							ilvlfonty = {
-								type = 'range',
-								name = L["Ilvl Font Y Offset"],
-								hidden = E.Retail,
-								order = 86,
-								min = -100,
-								max = 100,
-								step = 1,
-								--width = "double",
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvls end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.ilvlanchory end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvlanchory = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							header838 = {
-								order = 117,
-								type = "description",
-								hidden = E.Retail,
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							ilvlfontweight = {
-								order = 118,
-								type = 'select',
-								name = L["Ilvl Font Outline"],
-								desc = L["Choose the Ilvl font outline"],
-								hidden = E.Retail,
-								values = {
-									["OUTLINE"] = "Outline",
-									["THICKOUTLINE"] = 'Thick Outline',
-									["MONOCHROME"] = 'Monochrome',
+							itemquality = {
+								type = 'group',
+								name = L["Item Quality"],
+								order = 3,
+								args = {
+									headeritemq1823col = {
+										order = 153,
+										type = "description",
+										name = "",
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									itemqualitycolors = {
+										order = 154,
+										type = 'toggle',
+										name = L["Add Item Quality Texture"],
+										width = 'full',
+										desc = L["Enable this option"],
+										get = function() return E.db.ElvUI_EltreumUI.skins.itemquality end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.itemquality = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									colorsetsdifferently = {
+										order = 156,
+										type = 'toggle',
+										name = L["Add Item Set Colors"],
+										width = 'double',
+										desc = L["Enable this option"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.itemquality end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.itemsetenable end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.itemsetenable = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									itemsetcustomcolor = {
+										order = 157,
+										name = L["Enable Custom Set Colors"],
+										type = "toggle",
+										width = 'double',
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.itemsetenable or not E.db.ElvUI_EltreumUI.skins.itemquality end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.itemsetcustomcolor end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.itemsetcustomcolor = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									itemsetcustomcolor1 = {
+										order = 158,
+										type = 'color',
+										name = L["Color"],
+										hasAlpha = false,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.itemsetenable or not E.db.ElvUI_EltreumUI.skins.itemquality or not E.db.ElvUI_EltreumUI.skins.itemsetcustomcolor end,
+										get = function()
+											local dr = P.ElvUI_EltreumUI.skins.itemsetcolor.r
+											local dg = P.ElvUI_EltreumUI.skins.itemsetcolor.g
+											local db = P.ElvUI_EltreumUI.skins.itemsetcolor.b
+											return E.db.ElvUI_EltreumUI.skins.itemsetcolor.r, E.db.ElvUI_EltreumUI.skins.itemsetcolor.g, E.db.ElvUI_EltreumUI.skins.itemsetcolor.b, 1, dr, dg, db, 1
+										end,
+										set = function(_, r, g, b, a)
+											E.db.ElvUI_EltreumUI.skins.itemsetcolor.r, E.db.ElvUI_EltreumUI.skins.itemsetcolor.g, E.db.ElvUI_EltreumUI.skins.itemsetcolor.b = r, g, b
+										end,
+									},
 								},
-								style = 'radio',
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvls end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.ilvlfontweight end,
-								set = function(_,value) E.db.ElvUI_EltreumUI.skins.ilvlfontweight = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							header840 = {
-								order = 119,
-								type = "description",
-								hidden = E.Retail,
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							ilvlfontsize = {
-								type = 'range',
-								name = L["Ilvl Font Size"],
-								desc = L["Change the Ilvl font size"],
-								hidden = E.Retail,
-								order = 120,
-								min = 4,
-								max = 72,
-								step = 1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvls end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.ilvlfontsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvlfontsize = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							header844 = {
-								order = 121,
-								type = "description",
-								name = L["Character Panel"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							expandart = {
-								order = 122,
-								type = 'toggle',
-								name = L["Expand Character Art"],
-								width = 'full',
-								desc = L["Enable this option"],
-								get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybg = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							expandamoryclassic = {
-								order = 123,
-								type = 'toggle',
-								name = L["Expand Character Panel"],
-								width = 'full',
-								desc = L["Enable this option"],
-								get = function() return E.db.ElvUI_EltreumUI.skins.classicarmory end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classicarmory = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							expandartcrest = {
-								order = 124,
-								type = 'toggle',
-								name = L["Add Crest to Character Panel"],
-								width = 'full',
-								desc = L["Enable this option"],
-								get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorycrest end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorycrest = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							gapalphaart = {
-								order = 125,
-								type = "description",
-								name = "",
-								width = 'full',
-							},
-							expandartalpha = {
-								type = 'range',
-								name = L["Art Alpha"],
-								desc = L["Change the transparency of the Art"],
-								order = 126,
-								min = 0.01,
-								max = 1,
-								step = 0.01,
-								--width = "double",
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha = value _G["EltruismCharacterBG"]:SetAlpha(value) end,
-							},
-							armorybgtextureselect = {
-								order = 127,
-								type = 'select',
-								name = L["Background Texture Type"],
-								desc = L["Choose between a Class, Race or Custom Background"],
-								--width = "double",
-								values = {
-									["CLASS"] = CLASS,
-									["RACE"] = RACE,
-									["RAGNAROS"] = L["Ragnaros"],
-									["SPACECLOUD"] = L["SpaceCloud"],
-									["RAVNYR"] = L["Ravnyr"],
-									["BLACK"] = L["Black"],
-									["CUSTOM"] = CUSTOM,
+							stats = {
+								type = 'group',
+								name = L["Stats"],
+								order = 2,
+								args = {
+									header843stats = {
+										order = 151,
+										type = "description",
+										name = "",
+										width = 'full',
+										hidden = E.Retail,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									autoarmorystats = {
+										order = 152,
+										type = 'toggle',
+										name = L["Automatically swap the Character Stats to your main ones"],
+										width = 'full',
+										hidden = E.Retail,
+										desc = L["Enable this option"],
+										get = function() return E.db.ElvUI_EltreumUI.skins.classicarmoryautostats end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.classicarmoryautostats = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									headerstat5 = {
+										order = 233,
+										type = "description",
+										name = "",
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									statcolors = {
+										order = 234,
+										type = 'toggle',
+										name = function()
+											if E.Retail then
+												return L["Add Class Gradient Colors to Stats"]
+											else
+												return L["Add Class Colors to Text"]
+											end
+										end,
+										width = 'full',
+										desc = L["Enable this option"],
+										get = function() return E.db.ElvUI_EltreumUI.skins.statcolors end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.statcolors = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									othergradientcolors = {
+										order = 235,
+										type = 'toggle',
+										name = function()
+											if E.Retail then
+												return L["Add Class Gradient Colors to Other Texts"]
+											else
+												return L["Add Class Gradient Colors to Text"]
+											end
+										end,
+										width = 'full',
+										desc = L["Enable this option"],
+										get = function() return E.db.ElvUI_EltreumUI.skins.characterskingradients end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterskingradients = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									gapfontsize1 = {
+										order = 236,
+										type = "description",
+										name = "",
+										width = 'full',
+									},
+									characterpanelfontsize = {
+										type = 'range',
+										name = L["Font Size"],
+										order = 237,
+										min = 8,
+										max = 40,
+										step = 1,
+										width = "double",
+										get = function() return E.db.ElvUI_EltreumUI.skins.armoryfontsize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryfontsize = value ElvUI_EltreumUI:ExpandedCharacterStats() PaperDollFrame_UpdateStats() end,
+									},
 								},
-								sorting = {
-									"CLASS",
-									"RACE",
-									"RAGNAROS",
-									"SPACECLOUD",
-									"RAVNYR",
-									"BLACK",
-									"CUSTOM"
-								},
-								style = 'radio',
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.armorybgtype end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armorybgtype = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
-							},
-							bgcustomtexture = {
-								order = 128,
-								type = 'input',
-								name = L["Name of file inside Interface\\Addons"],
-								desc = L["Example: "].."mytexture.tga or mytexture or mytexture.jpg",
-								width = 'double',
-								disabled = function() return E.db.ElvUI_EltreumUI.skins.armorybgtype ~= "CUSTOM" end,
-								get = function() return E.private.ElvUI_EltreumUI.skins.armorybgtexture end,
-								set = function(_, value) E.private.ElvUI_EltreumUI.skins.armorybgtexture = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
-							},
-							expandvignetteenable = {
-								order = 129,
-								type = 'toggle',
-								name = L["Add a Vignette over the Character Art"],
-								width = 'full',
-								desc = L["Enable this option"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.armoryvignette end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryvignette = value ElvUI_EltreumUI:ExpandedCharacterStats() end,
-							},
-							expandvignettealpha = {
-								type = 'range',
-								name = L["Vignette Alpha"],
-								desc = L["Change the transparency of the Vignette"],
-								order = 130,
-								min = 0.01,
-								max = 1,
-								step = 0.01,
-								--width = "double",
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg or not E.db.ElvUI_EltreumUI.skins.armoryvignette end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.armoryvignettealpha end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryvignettealpha = value _G["EltruismCharacterBGVignette"]:SetAlpha(value) end,
-							},
-							header834gap = {
-								order = 145,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							characterpanelscale = {
-								type = 'range',
-								name = L["Character Panel Scale"],
-								desc = L["Change the size of the Character Panel"],
-								order = 146,
-								min = 0.2,
-								max = 2,
-								step = 0.01,
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.skins.characterpanelscale end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterpanelscale = value
-									_G["CharacterFrame"]:SetScale(value)
-									if _G["CharacterModelFrame"] then
-										_G["CharacterModelFrame"]:SetIgnoreParentScale(false)
-									else
-										_G["CharacterModelScene"]:SetIgnoreParentScale(false)
-									end
-								end,
-							},
-							gapmodelcam1 = {
-								order = 147,
-								type = "description",
-								name = L["Character Model"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							modelcamzoom = {
-								type = 'range',
-								name = L["Character Model Zoom"],
-								order = 148,
-								min = -2,
-								max = 2,
-								step = 0.01,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
-								get = function()
-									if E.Retail then
-										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail
-									else
-										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic
-									end
-								end,
-								set = function(_, value)
-									if E.Retail then
-										E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail = value
-									else
-										E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic = value
-									end
-								end,
-							},
-							modelcamx = {
-								type = 'range',
-								name = L["Character Model X Offset"],
-								order = 149,
-								min = -2,
-								max = 2,
-								step = 0.01,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
-								get = function()
-									if E.Retail then
-										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail
-									else
-										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic
-									end
-								end,
-								set = function(_, value)
-									if E.Retail then
-										E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail = value
-									else
-										E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic = value
-									end
-								end,
-							},
-							modelcamy = {
-								type = 'range',
-								name = L["Character Model Y Offset"],
-								order = 150,
-								min = -2,
-								max = 2,
-								step = 0.01,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end,
-								get = function()
-									if E.Retail then
-										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail
-									else
-										return E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic
-									end
-								end,
-								set = function(_, value)
-									if E.Retail then
-										E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail = value
-									else
-										E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic = value
-									end
-								end,
-							},
-							header843stats = {
-								order = 151,
-								type = "description",
-								name = "",
-								width = 'full',
-								hidden = E.Retail,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							autoarmorystats = {
-								order = 152,
-								type = 'toggle',
-								name = L["Automatically swap the Character Stats to your main ones"],
-								width = 'full',
-								hidden = E.Retail,
-								desc = L["Enable this option"],
-								get = function() return E.db.ElvUI_EltreumUI.skins.classicarmoryautostats end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classicarmoryautostats = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							headeritemq1823col = {
-								order = 153,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							itemqualitycolors = {
-								order = 154,
-								type = 'toggle',
-								name = L["Add Item Quality Texture"],
-								width = 'full',
-								desc = L["Enable this option"],
-								get = function() return E.db.ElvUI_EltreumUI.skins.itemquality end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.itemquality = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							colorsetsdifferently = {
-								order = 156,
-								type = 'toggle',
-								name = L["Add Item Set Colors"],
-								width = 'double',
-								desc = L["Enable this option"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.itemquality end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.itemsetenable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.itemsetenable = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							itemsetcustomcolor = {
-								order = 157,
-								name = L["Enable Custom Set Colors"],
-								type = "toggle",
-								width = 'double',
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.itemsetenable or not E.db.ElvUI_EltreumUI.skins.itemquality end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.itemsetcustomcolor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.itemsetcustomcolor = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							itemsetcustomcolor1 = {
-								order = 158,
-								type = 'color',
-								name = L["Color"],
-								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.itemsetenable or not E.db.ElvUI_EltreumUI.skins.itemquality or not E.db.ElvUI_EltreumUI.skins.itemsetcustomcolor end,
-								get = function()
-									local dr = P.ElvUI_EltreumUI.skins.itemsetcolor.r
-									local dg = P.ElvUI_EltreumUI.skins.itemsetcolor.g
-									local db = P.ElvUI_EltreumUI.skins.itemsetcolor.b
-									return E.db.ElvUI_EltreumUI.skins.itemsetcolor.r, E.db.ElvUI_EltreumUI.skins.itemsetcolor.g, E.db.ElvUI_EltreumUI.skins.itemsetcolor.b, 1, dr, dg, db, 1
-								end,
-								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.skins.itemsetcolor.r, E.db.ElvUI_EltreumUI.skins.itemsetcolor.g, E.db.ElvUI_EltreumUI.skins.itemsetcolor.b = r, g, b
-								end,
-							},
-							headerequipandbagilvl = {
-								order = 159,
-								type = "description",
-								name = "",
-								width = 'full',
-								hidden = not E.Retail,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							equipandbagilvlenable = {
-								order = 160,
-								name = L["Enable Comparing Equipped and Bag Ilvl"],
-								type = "toggle",
-								width = 'full',
-								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.classicarmory end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							equipandbagilvlenablecustomcolor = {
-								order = 161,
-								name = L["Enable Custom Colors"],
-								type = "toggle",
-								width = 'full',
-								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable or not E.db.ElvUI_EltreumUI.skins.classicarmory end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							equipandbagilvlenablecustomcolor1 = {
-								order = 162,
-								type = 'color',
-								name = L["Bad Color"],
-								hasAlpha = false,
-								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom or not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable or not E.db.ElvUI_EltreumUI.skins.classicarmory end,
-								get = function()
-									local dr = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR
-									local dg = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG
-									local db = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB
-									return E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, 1, dr, dg, db, 1
-								end,
-								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB = r, g, b
-								end,
-							},
-							equipandbagilvlenablecustomcolor2 = {
-								order = 163,
-								type = 'color',
-								name = L["Medium Color"],
-								hasAlpha = false,
-								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom or not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable or not E.db.ElvUI_EltreumUI.skins.classicarmory end,
-								get = function()
-									local dr = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR
-									local dg = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG
-									local db = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB
-									return E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, 1, dr, dg, db, 1
-								end,
-								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB = r, g, b
-								end,
-							},
-							equipandbagilvlenablecustomcolor3 = {
-								order = 164,
-								type = 'color',
-								name = L["Good Color"],
-								hasAlpha = false,
-								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom or not E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable or not E.db.ElvUI_EltreumUI.skins.classicarmory end,
-								get = function()
-									local dr = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR
-									local dg = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG
-									local db = P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB
-									return E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB, 1, dr, dg, db, 1
-								end,
-								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB = r, g, b
-								end,
-							},
-							headerstat5 = {
-								order = 233,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							statcolors = {
-								order = 234,
-								type = 'toggle',
-								name = function()
-									if E.Retail then
-										return L["Add Class Gradient Colors to Stats"]
-									else
-										return L["Add Class Colors to Text"]
-									end
-								end,
-								width = 'full',
-								desc = L["Enable this option"],
-								get = function() return E.db.ElvUI_EltreumUI.skins.statcolors end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.statcolors = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							othergradientcolors = {
-								order = 235,
-								type = 'toggle',
-								name = function()
-									if E.Retail then
-										return L["Add Class Gradient Colors to Other Texts"]
-									else
-										return L["Add Class Gradient Colors to Text"]
-									end
-								end,
-								width = 'full',
-								desc = L["Enable this option"],
-								get = function() return E.db.ElvUI_EltreumUI.skins.characterskingradients end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.characterskingradients = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							gapfontsize1 = {
-								order = 236,
-								type = "description",
-								name = "",
-								width = 'full',
-							},
-							characterpanelfontsize = {
-								type = 'range',
-								name = L["Font Size"],
-								order = 237,
-								min = 8,
-								max = 40,
-								step = 1,
-								--width = "double",
-								get = function() return E.db.ElvUI_EltreumUI.skins.armoryfontsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.armoryfontsize = value ElvUI_EltreumUI:ExpandedCharacterStats() PaperDollFrame_UpdateStats() end,
-							},
-							header85 = {
-								order = 238,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							iconsoncharacter = {
-								order = 239,
-								type = 'toggle',
-								name = L["Add Class Icons to Character Panel"],
-								width = 'full',
-								desc = L["Enable this option"],
-								get = function() return E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							blizzicons = {
-								order = 240,
-								type = 'toggle',
-								name = L["Use Blizzard Icons"],
-								width = 'full',
-								desc = L["Enable Blizzard Icons"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel or E.db.ElvUI_EltreumUI.skins.classiconsreleaf end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.classiconsblizz end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classiconsblizz = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							releaficons= {
-								order = 241,
-								type = 'toggle',
-								name = L["Use Blizzard Icons colored by Releaf"],
-								width = 'full',
-								desc = L["Enable Releaf Icons"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel or E.db.ElvUI_EltreumUI.skins.classiconsblizz end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.classiconsreleaf end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.classiconsreleaf = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 						},
 					},
@@ -11413,7 +11936,7 @@ function ElvUI_EltreumUI:Configtable()
 								min = 1,
 								max = 10,
 								step = 1,
-								--width = "double",
+								width = "double",
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.length end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.length = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -11423,578 +11946,624 @@ function ElvUI_EltreumUI:Configtable()
 					quests = {
 						type = 'group',
 						name = L["Quests"],
+						childGroups = "tab",
 						order = 2,
 						args = {
-							questskinsheader = {
+							objectiveframe = {
+								type = 'group',
+								name = L["Objective Frame"],
 								order = 1,
-								type = "description",
-								name = L["Skin Objective Frame"],
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = 'full',
+								args = {
+									questskinsheader = {
+										order = 1,
+										type = "description",
+										name = L["Skin Objective Frame"],
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = 'full',
+									},
+									questenableskin = {
+										order = 2,
+										name = L["Enable Skin"],
+										type = "toggle",
+										desc = L["Skin the Objective/Quest Frame"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.skins.quests end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.quests = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									questenableshadow = {
+										order = 4,
+										name = L["Enable Shadows"],
+										type = "toggle",
+										--width = 'full',
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									retailprogressheader = {
+										order = 5,
+										type = "description",
+										name = "",
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										hidden = not E.Retail,
+										width = 'full',
+									},
+									retailprogressbartexture = {
+										order = 5,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Choose the Progress Bar Texture"],
+										desc = L["Select a Texture"],
+										hidden = not E.Retail,
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.queststatusbartexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.skins.queststatusbartexture = key E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									lineheader1 = {
+										order = 6,
+										type = "description",
+										name = L["Line"],
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = 'full',
+									},
+									linetexture = {
+										order = 7,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Line Texture"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.texture end,
+										set = function(_,key) E.db.ElvUI_EltreumUI.skins.questsettings.texture = key E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									linesizex = {
+										type = 'range',
+										name = L["Line Width"],
+										order = 8,
+										min = 1,
+										max = 400,
+										step = 1,
+										width = "double",
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.sizex end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.sizex = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									linesizey = {
+										type = 'range',
+										name = L["Line Height"],
+										order = 9,
+										min = 1,
+										max = 80,
+										step = 1,
+										width = "double",
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.sizey end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.sizey = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									linebuttonsize = {
+										type = 'range',
+										name = L["Button Size"],
+										order = 10,
+										min = 4,
+										max = 40,
+										step = 1,
+										hidden = E.Retail,
+										width = "double",
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									linecustomcolorenable = {
+										order = 11,
+										name = L["Enable Custom Colors"],
+										type = "toggle",
+										width = 'full',
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									customcolorsline1 = {
+										order = 12,
+										type = 'color',
+										name = L["Custom Color"].."1",
+										hasAlpha = false,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor or not E.db.ElvUI_EltreumUI.skins.quests end,
+										get = function()
+											return E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b, 1, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b, 1
+										end,
+										set = function(_, r, g, b, a)
+											E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+										end,
+									},
+									customcolorsline2 = {
+										order = 12,
+										type = 'color',
+										name = L["Custom Color"].."2",
+										hasAlpha = false,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor or not E.db.ElvUI_EltreumUI.skins.quests end,
+										get = function()
+											return E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b, 1, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b, 1
+										end,
+										set = function(_, r, g, b, a)
+											E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+										end,
+									},
+									questskinslinetextureheader1 = {
+										order = 91,
+										type = "description",
+										name = L["Text"],
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = 'full',
+									},
+									customcolorenable = {
+										order = 92,
+										name = L["Enable Custom Colors"],
+										type = "toggle",
+										width = 'full',
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.customcolor end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.customcolor = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									customcolorstext = {
+										order = 93,
+										type = 'color',
+										name = L["Custom Color"],
+										hasAlpha = false,
+										width = 'full',
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.questsettings.customcolor or not E.db.ElvUI_EltreumUI.skins.quests end,
+										get = function()
+											return E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb, 1, P.ElvUI_EltreumUI.skins.questsettings.customr, P.ElvUI_EltreumUI.skins.questsettings.customg, P.ElvUI_EltreumUI.skins.questsettings.customb, 1
+										end,
+										set = function(_, r, g, b, a)
+											E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb = r, g, b E:StaticPopup_Show('CONFIG_RL')
+										end,
+									},
+									fontsize = {
+										type = 'range',
+										name = L["Font Size"],
+										order = 94,
+										min = 6,
+										max = 80,
+										step = 1,
+										width = "double",
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.fontSize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.fontSize = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+								},
 							},
-							questenableskin = {
-								order = 2,
-								name = L["Enable Skin"],
-								type = "toggle",
-								desc = L["Skin the Objective/Quest Frame"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.skins.quests end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.quests = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							questskinsheader2 = {
-								order = 3,
-								type = "description",
-								name = "",
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = 'full',
-							},
-							showwowhead = {
-								order = 3,
-								name = L["Enable Wowhead Button on Quest Log"],
-								type = "toggle",
-								desc = L["Show a button for Wowhead quest links"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.skins.questswowhead end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questswowhead = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							questskinsheader3 = {
-								order = 4,
-								type = "description",
-								name = "",
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = 'full',
-							},
-							questenableshadow = {
-								order = 4,
-								name = L["Enable Shadows"],
-								type = "toggle",
-								--width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							retailprogressheader = {
-								order = 5,
-								type = "description",
-								name = "",
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								hidden = not E.Retail,
-								width = 'full',
-							},
-							retailprogressbartexture = {
-								order = 5,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Choose the Progress Bar Texture"],
-								desc = L["Select a Texture"],
-								hidden = not E.Retail,
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.queststatusbartexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.skins.queststatusbartexture = key E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							lineheader1 = {
-								order = 6,
-								type = "description",
-								name = L["Line"],
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = 'full',
-							},
-							linetexture = {
-								order = 7,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Line Texture"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.texture end,
-								set = function(_,key) E.db.ElvUI_EltreumUI.skins.questsettings.texture = key E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							linesizex = {
-								type = 'range',
-								name = L["Line Width"],
-								order = 8,
-								min = 1,
-								max = 400,
-								step = 1,
-								width = "double",
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.sizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.sizex = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							linesizey = {
-								type = 'range',
-								name = L["Line Height"],
-								order = 9,
-								min = 1,
-								max = 80,
-								step = 1,
-								width = "double",
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.sizey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.sizey = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							linebuttonsize = {
-								type = 'range',
-								name = L["Button Size"],
-								order = 10,
-								min = 4,
-								max = 40,
-								step = 1,
-								hidden = E.Retail,
-								width = "double",
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							linecustomcolorenable = {
-								order = 11,
-								name = L["Enable Custom Colors"],
-								type = "toggle",
-								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							customcolorsline1 = {
-								order = 12,
-								type = 'color',
-								name = L["Custom Color"].."1",
-								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor or not E.db.ElvUI_EltreumUI.skins.quests end,
-								get = function()
-									return E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b, 1, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b, 1
-								end,
-								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b = r, g, b E:StaticPopup_Show('CONFIG_RL')
-								end,
-							},
-							customcolorsline2 = {
-								order = 12,
-								type = 'color',
-								name = L["Custom Color"].."2",
-								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor or not E.db.ElvUI_EltreumUI.skins.quests end,
-								get = function()
-									return E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b, 1, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g, P.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b, 1
-								end,
-								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b = r, g, b E:StaticPopup_Show('CONFIG_RL')
-								end,
-							},
-							questskinslinetextureheader1 = {
-								order = 91,
-								type = "description",
-								name = L["Text"],
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = 'full',
-							},
-							customcolorenable = {
-								order = 92,
-								name = L["Enable Custom Colors"],
-								type = "toggle",
-								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.customcolor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.customcolor = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							customcolorstext = {
-								order = 93,
-								type = 'color',
-								name = L["Custom Color"],
-								hasAlpha = false,
-								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.questsettings.customcolor or not E.db.ElvUI_EltreumUI.skins.quests end,
-								get = function()
-									return E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb, 1, P.ElvUI_EltreumUI.skins.questsettings.customr, P.ElvUI_EltreumUI.skins.questsettings.customg, P.ElvUI_EltreumUI.skins.questsettings.customb, 1
-								end,
-								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb = r, g, b E:StaticPopup_Show('CONFIG_RL')
-								end,
-							},
-							fontsize = {
-								type = 'range',
-								name = L["Font Size"],
-								order = 94,
-								min = 6,
-								max = 80,
-								step = 1,
-								--width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.fontSize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.fontSize = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							questscaleheader = {
-								order = 95,
-								type = "description",
-								name = "",
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = 'full',
-							},
-							questscale = {
-								type = 'range',
-								order = 96,
-								name = L["Quest Detail Scale"],
-								min = 0.01,
-								max = 3,
-								step = 0.01,
-								--width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.questScale end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.questScale = value
-									if _G["QuestFrame"] then
-										_G["QuestFrame"]:SetScale(value)
-									end
-									if _G["QuestLogDetailFrame"] then
-										_G["QuestLogDetailFrame"]:SetScale(value)
-									end
-									if _G["QuestLogFrame"] then
-										_G["QuestLogFrame"]:SetScale(value)
-									end
-									if _G["GossipFrame"] then
-										_G["GossipFrame"]:SetScale(value)
-									end
-								end,
+							general = {
+								type = 'group',
+								name = L["General"],
+								order = 1,
+								args = {
+									questskinsheader2 = {
+										order = 3,
+										type = "description",
+										name = "",
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = 'full',
+									},
+									showwowhead = {
+										order = 3,
+										name = L["Enable Wowhead Button on Quest Log"],
+										type = "toggle",
+										desc = L["Show a button for Wowhead quest links"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.skins.questswowhead end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.questswowhead = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									questscaleheader = {
+										order = 95,
+										type = "description",
+										name = "",
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = 'full',
+									},
+									questscale = {
+										type = 'range',
+										order = 96,
+										name = L["Quest Detail Scale"],
+										min = 0.01,
+										max = 3,
+										step = 0.01,
+										width = "double",
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.quests end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.questsettings.questScale end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.questScale = value
+											if _G["QuestFrame"] then
+												_G["QuestFrame"]:SetScale(value)
+											end
+											if _G["QuestLogDetailFrame"] then
+												_G["QuestLogDetailFrame"]:SetScale(value)
+											end
+											if _G["QuestLogFrame"] then
+												_G["QuestLogFrame"]:SetScale(value)
+											end
+											if _G["GossipFrame"] then
+												_G["GossipFrame"]:SetScale(value)
+											end
+										end,
+									},
+								},
 							},
 						},
 					},
 					databars = {
 						type = 'group',
 						name = L["DataBars"],
+						childGroups = "tab",
 						order = 5,
 						args = {
-							header8898 = {
-								order = 58,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							experience = {
+								type = 'group',
+								name = L["Experience"],
+								order = 1,
+								args = {
+									header8898 = {
+										order = 58,
+										type = "description",
+										name = "",
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									gradientxp = {
+										order = 59,
+										type = "description",
+										name = L["Add a gradient color to the Experience Bar"],
+										width = "full",
+									},
+									gradientxpenable = {
+										order = 60,
+										type = 'toggle',
+										name = L["Enable"],
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									gradientxpcolor = {
+										order = 61,
+										type = 'color',
+										name = L["Color"],
+										hasAlpha = false,
+										width = 'full',
+										desc = L["This is the second color on the Experience Bar, the first can be found in ElvUI Databars section"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP end,
+										get = function()
+											return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, 1, P.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, P.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, P.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, 1
+										end,
+										set = function(_, r, g, b, a)
+											E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+										end,
+									},
+								},
 							},
-							gradientxp = {
-								order = 59,
-								type = "description",
-								name = L["Add a gradient color to the Experience Bar"],
-								width = "full",
+							reputation = {
+								type = 'group',
+								name = L["Reputation"],
+								order = 1,
+								args = {
+									header8898rep = {
+										order = 62,
+										type = "description",
+										name = "",
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									gradientrep = {
+										order = 63,
+										type = "description",
+										name = L["Add a gradient color to the Reputation Bar"],
+										width = "full",
+									},
+									gradientrepenable = {
+										order = 64,
+										type = 'toggle',
+										name = L["Enable"],
+										width = 'full',
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									repred = {
+										type = 'range',
+										name = L["Red"],
+										order = 65,
+										min = -1,
+										max = 1,
+										step = 0.01,
+										desc = L["This is how much the color will gain or lose this value"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									repgreen = {
+										type = 'range',
+										name = L["Green"],
+										order = 66,
+										min = -1,
+										max = 1,
+										step = 0.01,
+										desc = L["This is how much the color will gain or lose this value"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									repblue = {
+										type = 'range',
+										name = L["Blue"],
+										order = 67,
+										min = -1,
+										max = 1,
+										step = 0.01,
+										desc = L["This is how much the color will gain or lose this value"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+								},
 							},
-							gradientxpenable = {
-								order = 60,
-								type = 'toggle',
-								name = L["Enable"],
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP = value E:StaticPopup_Show('CONFIG_RL') end,
+							honor = {
+								type = 'group',
+								name = L["Honor"],
+								order = 1,
+								args = {
+									header8898honor = {
+										order = 68,
+										type = "description",
+										name = "",
+										width = 'full',
+										hidden = not E.Retail,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									gradienthonor = {
+										order = 69,
+										type = "description",
+										name = L["Add a gradient color to the Honor Bar"],
+										width = "full",
+										hidden = not E.Retail,
+									},
+									gradienthonorenable = {
+										order = 70,
+										type = 'toggle',
+										name = L["Enable"],
+										width = 'full',
+										hidden = not E.Retail,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									honorred = {
+										type = 'range',
+										name = L["Red"],
+										order = 71,
+										min = -1,
+										max = 1,
+										step = 0.01,
+										hidden = not E.Retail,
+										desc = L["This is how much the color will gain or lose this value"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.r end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.r = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									honorgreen = {
+										type = 'range',
+										name = L["Green"],
+										order = 72,
+										min = -1,
+										max = 1,
+										step = 0.01,
+										hidden = not E.Retail,
+										desc = L["This is how much the color will gain or lose this value"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.g end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.g = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									honorblue = {
+										type = 'range',
+										name = L["Blue"],
+										order = 73,
+										min = -1,
+										max = 1,
+										step = 0.01,
+										hidden = not E.Retail,
+										desc = L["This is how much the color will gain or lose this value"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+								},
 							},
-							gradientxpcolor = {
-								order = 61,
-								type = 'color',
-								name = L["Color"],
-								hasAlpha = false,
-								width = 'full',
-								desc = L["This is the second color on the Experience Bar, the first can be found in ElvUI Databars section"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP end,
-								get = function()
-									return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, 1, P.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, P.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, P.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, 1
-								end,
-								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
-								end,
-							},
-							header8898rep = {
-								order = 62,
-								type = "description",
-								name = "",
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							gradientrep = {
-								order = 63,
-								type = "description",
-								name = L["Add a gradient color to the Reputation Bar"],
-								width = "full",
-							},
-							gradientrepenable = {
-								order = 64,
-								type = 'toggle',
-								name = L["Enable"],
-								width = 'full',
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							repred = {
-								type = 'range',
-								name = L["Red"],
-								order = 65,
-								min = -1,
-								max = 1,
-								step = 0.01,
-								desc = L["This is how much the color will gain or lose this value"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							repgreen = {
-								type = 'range',
-								name = L["Green"],
-								order = 66,
-								min = -1,
-								max = 1,
-								step = 0.01,
-								desc = L["This is how much the color will gain or lose this value"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							repblue = {
-								type = 'range',
-								name = L["Blue"],
-								order = 67,
-								min = -1,
-								max = 1,
-								step = 0.01,
-								desc = L["This is how much the color will gain or lose this value"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							header8898honor = {
-								order = 68,
-								type = "description",
-								name = "",
-								width = 'full',
+							altpower = {
+								type = 'group',
+								name = L["Alternative Power"],
 								hidden = not E.Retail,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								order = 1,
+								args = {
+									headeraltpower = {
+										order = 74,
+										type = "description",
+										name = "",
+										width = 'full',
+										hidden = not E.Retail,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									gradientaltpower = {
+										order = 74,
+										type = "description",
+										name = L["Add a gradient color to the Alt Power Bar"],
+										width = "full",
+										hidden = not E.Retail,
+									},
+									gradientAltPowerenable = {
+										order = 75,
+										type = 'toggle',
+										name = L["Enable"],
+										width = 'full',
+										hidden = not E.Retail,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									AltPowerred = {
+										type = 'range',
+										name = L["Red"],
+										order = 76,
+										min = -1,
+										max = 1,
+										step = 0.01,
+										hidden = not E.Retail,
+										desc = L["This is how much the color will gain or lose this value"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									AltPowergreen = {
+										type = 'range',
+										name = L["Green"],
+										order = 77,
+										min = -1,
+										max = 1,
+										step = 0.01,
+										hidden = not E.Retail,
+										desc = L["This is how much the color will gain or lose this value"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.g end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.g = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									AltPowerblue = {
+										type = 'range',
+										name = L["Blue"],
+										order = 78,
+										min = -1,
+										max = 1,
+										step = 0.01,
+										hidden = not E.Retail,
+										desc = L["This is how much the color will gain or lose this value"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.b end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.b = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+								},
 							},
-							gradienthonor = {
-								order = 69,
-								type = "description",
-								name = L["Add a gradient color to the Honor Bar"],
-								width = "full",
+							archeology = {
+								type = 'group',
+								name = L["Archeology"],
+								order = 1,
 								hidden = not E.Retail,
-							},
-							gradienthonorenable = {
-								order = 70,
-								type = 'toggle',
-								name = L["Enable"],
-								width = 'full',
-								hidden = not E.Retail,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							honorred = {
-								type = 'range',
-								name = L["Red"],
-								order = 71,
-								min = -1,
-								max = 1,
-								step = 0.01,
-								hidden = not E.Retail,
-								desc = L["This is how much the color will gain or lose this value"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.r end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.r = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							honorgreen = {
-								type = 'range',
-								name = L["Green"],
-								order = 72,
-								min = -1,
-								max = 1,
-								step = 0.01,
-								hidden = not E.Retail,
-								desc = L["This is how much the color will gain or lose this value"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.g end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.g = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							honorblue = {
-								type = 'range',
-								name = L["Blue"],
-								order = 73,
-								min = -1,
-								max = 1,
-								step = 0.01,
-								hidden = not E.Retail,
-								desc = L["This is how much the color will gain or lose this value"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							headeraltpower = {
-								order = 74,
-								type = "description",
-								name = "",
-								width = 'full',
-								hidden = not E.Retail,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							gradientaltpower = {
-								order = 74,
-								type = "description",
-								name = L["Add a gradient color to the Alt Power Bar"],
-								width = "full",
-								hidden = not E.Retail,
-							},
-							gradientAltPowerenable = {
-								order = 75,
-								type = 'toggle',
-								name = L["Enable"],
-								width = 'full',
-								hidden = not E.Retail,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							AltPowerred = {
-								type = 'range',
-								name = L["Red"],
-								order = 76,
-								min = -1,
-								max = 1,
-								step = 0.01,
-								hidden = not E.Retail,
-								desc = L["This is how much the color will gain or lose this value"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							AltPowergreen = {
-								type = 'range',
-								name = L["Green"],
-								order = 77,
-								min = -1,
-								max = 1,
-								step = 0.01,
-								hidden = not E.Retail,
-								desc = L["This is how much the color will gain or lose this value"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.g end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.g = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							AltPowerblue = {
-								type = 'range',
-								name = L["Blue"],
-								order = 78,
-								min = -1,
-								max = 1,
-								step = 0.01,
-								hidden = not E.Retail,
-								desc = L["This is how much the color will gain or lose this value"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.b end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.b = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							header8898digsite = {
-								order = 174,
-								type = "description",
-								name = "",
-								width = 'full',
-								hidden = not E.Retail,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							gradientdigsite = {
-								order = 175,
-								type = "description",
-								name = L["Gradient Archeology Digsite Bar"],
-								width = "full",
-								hidden = not E.Retail,
-							},
-							digsitewidth = {
-								type = 'range',
-								name = L["Width"],
-								order = 176,
-								min = 10,
-								max = 600,
-								step = 1,
-								hidden = not E.Retail,
-								--width = "double",
-								get = function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.sizex end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.sizex = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							digsiteheight = {
-								type = 'range',
-								name = L["Height"],
-								order = 176,
-								min = 5,
-								max = 400,
-								step = 1,
-								hidden = not E.Retail,
-								--width = "double",
-								get = function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.sizey end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.sizey = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							digsitegap = {
-								order = 177,
-								type = "description",
-								name = "",
-								width = 'full',
-								hidden = not E.Retail,
-							},
-							gradientdigcolor1 = {
-								order = 177,
-								type = 'color',
-								name = L["Color 1"],
-								hasAlpha = false,
-								--width = 'full',
-								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function()
-									return E.db.ElvUI_EltreumUI.otherstuff.archeology.r1, E.db.ElvUI_EltreumUI.otherstuff.archeology.g1, E.db.ElvUI_EltreumUI.otherstuff.archeology.b1, 1, P.ElvUI_EltreumUI.otherstuff.archeology.r1, P.ElvUI_EltreumUI.otherstuff.archeology.g1, P.ElvUI_EltreumUI.otherstuff.archeology.b1, 1
-								end,
-								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.otherstuff.archeology.r1, E.db.ElvUI_EltreumUI.otherstuff.archeology.g1, E.db.ElvUI_EltreumUI.otherstuff.archeology.b1 = r, g, b E:StaticPopup_Show('CONFIG_RL')
-								end,
-							},
-							gradientdigcolor2 = {
-								order = 178,
-								type = 'color',
-								name = L["Color 2"],
-								hasAlpha = false,
-								--width = 'full',
-								hidden = not E.Retail,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function()
-									return E.db.ElvUI_EltreumUI.otherstuff.archeology.r2, E.db.ElvUI_EltreumUI.otherstuff.archeology.g2, E.db.ElvUI_EltreumUI.otherstuff.archeology.b2, 1, P.ElvUI_EltreumUI.otherstuff.archeology.r2, P.ElvUI_EltreumUI.otherstuff.archeology.g2, P.ElvUI_EltreumUI.otherstuff.archeology.b2, 1
-								end,
-								set = function(_, r, g, b, a)
-									E.db.ElvUI_EltreumUI.otherstuff.archeology.r2, E.db.ElvUI_EltreumUI.otherstuff.archeology.g2, E.db.ElvUI_EltreumUI.otherstuff.archeology.b2 = r, g, b E:StaticPopup_Show('CONFIG_RL')
-								end,
-							},
-							digsitefontsize = {
-								type = 'range',
-								name = L["Font Size"],
-								order = 179,
-								min = 4,
-								max = 40,
-								step = 1,
-								width = "full",
-								hidden = not E.Retail,
-								get = function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontsize end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontsize = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							digsiteoffsetx = {
-								type = 'range',
-								name = L["Text X offset"],
-								order = 180,
-								min = -100,
-								max = 100,
-								step = 1,
-								width = "full",
-								hidden = not E.Retail,
-								get = function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							digsiteoffsety = {
-								type = 'range',
-								name = L["Text Y offset"],
-								order = 180,
-								min = -100,
-								max = 100,
-								step = 1,
-								width = "full",
-								hidden = not E.Retail,
-								get = function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety = value E:StaticPopup_Show('CONFIG_RL') end,
+								args = {
+									header8898digsite = {
+										order = 174,
+										type = "description",
+										name = "",
+										width = 'full',
+										hidden = not E.Retail,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									gradientdigsite = {
+										order = 175,
+										type = "description",
+										name = L["Gradient Archeology Digsite Bar"],
+										width = "full",
+										hidden = not E.Retail,
+									},
+									digsitewidth = {
+										type = 'range',
+										name = L["Width"],
+										order = 176,
+										min = 10,
+										max = 600,
+										step = 1,
+										hidden = not E.Retail,
+										--width = "double",
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.sizex end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.sizex = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									digsiteheight = {
+										type = 'range',
+										name = L["Height"],
+										order = 176,
+										min = 5,
+										max = 400,
+										step = 1,
+										hidden = not E.Retail,
+										--width = "double",
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.sizey end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.sizey = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									digsitegap = {
+										order = 177,
+										type = "description",
+										name = "",
+										width = 'full',
+										hidden = not E.Retail,
+									},
+									gradientdigcolor1 = {
+										order = 177,
+										type = 'color',
+										name = L["Color 1"],
+										hasAlpha = false,
+										--width = 'full',
+										hidden = not E.Retail,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function()
+											return E.db.ElvUI_EltreumUI.otherstuff.archeology.r1, E.db.ElvUI_EltreumUI.otherstuff.archeology.g1, E.db.ElvUI_EltreumUI.otherstuff.archeology.b1, 1, P.ElvUI_EltreumUI.otherstuff.archeology.r1, P.ElvUI_EltreumUI.otherstuff.archeology.g1, P.ElvUI_EltreumUI.otherstuff.archeology.b1, 1
+										end,
+										set = function(_, r, g, b, a)
+											E.db.ElvUI_EltreumUI.otherstuff.archeology.r1, E.db.ElvUI_EltreumUI.otherstuff.archeology.g1, E.db.ElvUI_EltreumUI.otherstuff.archeology.b1 = r, g, b E:StaticPopup_Show('CONFIG_RL')
+										end,
+									},
+									gradientdigcolor2 = {
+										order = 178,
+										type = 'color',
+										name = L["Color 2"],
+										hasAlpha = false,
+										--width = 'full',
+										hidden = not E.Retail,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function()
+											return E.db.ElvUI_EltreumUI.otherstuff.archeology.r2, E.db.ElvUI_EltreumUI.otherstuff.archeology.g2, E.db.ElvUI_EltreumUI.otherstuff.archeology.b2, 1, P.ElvUI_EltreumUI.otherstuff.archeology.r2, P.ElvUI_EltreumUI.otherstuff.archeology.g2, P.ElvUI_EltreumUI.otherstuff.archeology.b2, 1
+										end,
+										set = function(_, r, g, b, a)
+											E.db.ElvUI_EltreumUI.otherstuff.archeology.r2, E.db.ElvUI_EltreumUI.otherstuff.archeology.g2, E.db.ElvUI_EltreumUI.otherstuff.archeology.b2 = r, g, b E:StaticPopup_Show('CONFIG_RL')
+										end,
+									},
+									digsitefontsize = {
+										type = 'range',
+										name = L["Font Size"],
+										order = 179,
+										min = 4,
+										max = 40,
+										step = 1,
+										width = "full",
+										hidden = not E.Retail,
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontsize end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontsize = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									digsiteoffsetx = {
+										type = 'range',
+										name = L["Text X offset"],
+										order = 180,
+										min = -100,
+										max = 100,
+										step = 1,
+										width = "full",
+										hidden = not E.Retail,
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									digsiteoffsety = {
+										type = 'range',
+										name = L["Text Y offset"],
+										order = 180,
+										min = -100,
+										max = 100,
+										step = 1,
+										width = "full",
+										hidden = not E.Retail,
+										get = function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+								},
 							},
 						},
 					},
@@ -12002,218 +12571,240 @@ function ElvUI_EltreumUI:Configtable()
 						type = 'group',
 						name = L["Addons"],
 						order = 6,
+						childGroups = "tab",
 						args = {
-							gap1 = {
-								order = 101,
-								type = "description",
-								name = "BigWigs",
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
-							},
 							bigwigs = {
-								order = 101,
-								type = 'toggle',
-								name = L["Skin BigWigs"],
-								desc = L["Add Gradient to BigWigs Bars"],
-								width = "full",
-								get = function() return E.db.ElvUI_EltreumUI.skins.bigwigs end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.bigwigs = value E:StaticPopup_Show('CONFIG_RL') end,
+								type = 'group',
+								name = "BigWigs",
+								order = 1,
+								args = {
+									gap1 = {
+										order = 101,
+										type = "description",
+										name = "BigWigs",
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									bigwigs = {
+										order = 101,
+										type = 'toggle',
+										name = L["Skin BigWigs"],
+										desc = L["Add Gradient to BigWigs Bars"],
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.skins.bigwigs end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.bigwigs = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									bigwigsshadows = {
+										order = 102,
+										type = 'toggle',
+										name = L["Shadows"],
+										desc = L["Add Shadows to BigWigs Bars"],
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.bigwigs = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+								},
 							},
-							bigwigsshadows = {
-								order = 102,
-								type = 'toggle',
-								name = L["Shadows"],
-								desc = L["Add Shadows to BigWigs Bars"],
-								width = "full",
-								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.bigwigs = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							gap2 = {
-								order = 203,
-								type = "description",
-								name = "BugSack",
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
-							},
-							bugsackskin = {
-								order = 204,
-								type = 'toggle',
-								name = E.NewSign..L["Skin BugSack"],
-								width = "full",
-								get = function() return E.db.ElvUI_EltreumUI.skins.bugsack end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.bugsack = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							gap3 = {
-								order = 305,
-								type = "description",
-								name = "Clique",
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
-							},
-							cliqueskin = {
-								order = 306,
-								type = 'toggle',
-								name = E.NewSign..L["Skin Clique"],
-								width = "full",
-								get = function() return E.db.ElvUI_EltreumUI.skins.clique end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.clique = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							gap4 = {
-								order = 407,
-								type = "description",
+							details = {
+								type = 'group',
 								name = "Details",
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
+								order = 1,
+								args = {
+									gap4 = {
+										order = 407,
+										type = "description",
+										name = "Details",
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									detailsskin = {
+										order = 408,
+										type = 'toggle',
+										name = L["Skin Details"],
+										desc = L["Add gradient to Details Bars"],
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.skins.details end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.details = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									detailsskintexture = {
+										order = 409,
+										type = 'toggle',
+										name = L["Replace Texture"],
+										desc = L["Replace Details Bar Texture"],
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.details end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.detailstextureoverwrite end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.detailstextureoverwrite = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									detailsembed = {
+										order = 410,
+										type = 'toggle',
+										name = E.NewSign..L["Embed"],
+										desc = L["Simple Right Chat Embed"],
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.details end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.detailsembed end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.detailsembed = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									detailsembedcombat = {
+										order = 411,
+										type = 'toggle',
+										name = E.NewSign..L["Hide Out of Combat"],
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.details or not E.db.ElvUI_EltreumUI.skins.detailsembed end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.detailsembedooc end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.detailsembedooc = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									detailsdelay = {
+										type = 'range',
+										name = E.NewSign..L["Out of Combat Delay"],
+										order = 412,
+										min = 1,
+										max = 30,
+										step = 1,
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.details or not E.db.ElvUI_EltreumUI.skins.detailsembed or not E.db.ElvUI_EltreumUI.skins.detailsembedooc end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.detailsdelay end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.detailsdelay = value end,
+									},
+								},
 							},
-							detailsskin = {
-								order = 408,
-								type = 'toggle',
-								name = L["Skin Details"],
-								desc = L["Add gradient to Details Bars"],
-								width = "full",
-								get = function() return E.db.ElvUI_EltreumUI.skins.details end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.details = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							detailsskintexture = {
-								order = 409,
-								type = 'toggle',
-								name = L["Replace Texture"],
-								desc = L["Replace Details Bar Texture"],
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.details end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.detailstextureoverwrite end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.detailstextureoverwrite = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							detailsembed = {
-								order = 410,
-								type = 'toggle',
-								name = E.NewSign..L["Embed"],
-								desc = L["Simple Right Chat Embed"],
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.details end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.detailsembed end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.detailsembed = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							detailsembedcombat = {
-								order = 411,
-								type = 'toggle',
-								name = E.NewSign..L["Hide Out of Combat"],
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.details or not E.db.ElvUI_EltreumUI.skins.detailsembed end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.detailsembedooc end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.detailsembedooc = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							detailsdelay = {
-								type = 'range',
-								name = E.NewSign..L["Out of Combat Delay"],
-								order = 412,
-								min = 1,
-								max = 30,
-								step = 1,
-								width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.details or not E.db.ElvUI_EltreumUI.skins.detailsembed or not E.db.ElvUI_EltreumUI.skins.detailsembedooc end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.detailsdelay end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.detailsdelay = value end,
-							},
-							gap5 = {
-								order = 505,
-								type = "description",
-								name = "Immersion",
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
-							},
-							immersionskin = {
-								order = 506,
-								type = 'toggle',
-								name = E.NewSign..L["Skin Immersion"],
-								width = "full",
-								get = function() return E.db.ElvUI_EltreumUI.skins.immersion end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.immersion = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							gap6 = {
-								order = 600,
-								type = "description",
-								name = "MeetingHorn",
-								hidden = E.Retail,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
-							},
-							meetinghorn = {
-								order = 601,
-								type = 'toggle',
-								name = L["Skin MeetingHorn"],
-								desc = L["Skin MeetingHorn"],
-								hidden = E.Retail,
-								width = "full",
-								get = function() return E.db.ElvUI_EltreumUI.skins.meetinghorn end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.meetinghorn = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							gap7 = {
-								order = 700,
-								type = "description",
-								name = "PallyPower",
-								hidden = E.Retail,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
-							},
-							pallypower = {
-								order = 701,
-								type = 'toggle',
-								name = L["Skin PallyPower"],
-								desc = L["Skin PallyPower"],
-								hidden = E.Retail,
-								width = "full",
-								get = function() return E.db.ElvUI_EltreumUI.skins.pallypower end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.pallypower = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							gap8 = {
-								order = 800,
-								type = "description",
-								name = "RareScanner",
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
-							},
-							rarescannerskin = {
-								order = 801,
-								type = 'toggle',
-								name = E.NewSign..L["Skin RareScanner"],
-								width = "full",
-								get = function() return E.db.ElvUI_EltreumUI.skins.rarescanner end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.rarescanner = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							gap9 = {
-								order = 900,
-								type = "description",
-								name = "SimulationCraft",
-								hidden = not E.Retail,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
-							},
-							simcskin = {
-								order = 901,
-								type = 'toggle',
-								name = E.NewSign..L["Skin SimulationCraft"],
-								width = "full",
-								hidden = not E.Retail,
-								get = function() return E.db.ElvUI_EltreumUI.skins.simulationcraft end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.simulationcraft = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							gap10 = {
-								order = 1000,
-								type = "description",
-								name = "WarpDeplete",
-								hidden = not E.Retail,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
-							},
-							WarpDepleteskin = {
-								order = 1001,
-								type = 'toggle',
-								name = E.NewSign..L["Skin WarpDeplete"],
-								width = "full",
-								hidden = not E.Retail,
-								get = function() return E.db.ElvUI_EltreumUI.skins.warpdeplete end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.warpdeplete = value E:StaticPopup_Show('CONFIG_RL') end,
+							other = {
+								type = 'group',
+								name = L["Other AddOns"],
+								order = 1,
+								args = {
+									gap2 = {
+										order = 203,
+										type = "description",
+										name = "BugSack",
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									bugsackskin = {
+										order = 204,
+										type = 'toggle',
+										name = E.NewSign..L["Skin BugSack"],
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.skins.bugsack end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.bugsack = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									gap3 = {
+										order = 305,
+										type = "description",
+										name = "Clique",
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									cliqueskin = {
+										order = 306,
+										type = 'toggle',
+										name = E.NewSign..L["Skin Clique"],
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.skins.clique end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.clique = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									gap5 = {
+										order = 505,
+										type = "description",
+										name = "Immersion",
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									immersionskin = {
+										order = 506,
+										type = 'toggle',
+										name = E.NewSign..L["Skin Immersion"],
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.skins.immersion end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.immersion = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									gap6 = {
+										order = 600,
+										type = "description",
+										name = "MeetingHorn",
+										hidden = E.Retail,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									meetinghorn = {
+										order = 601,
+										type = 'toggle',
+										name = L["Skin MeetingHorn"],
+										desc = L["Skin MeetingHorn"],
+										hidden = E.Retail,
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.skins.meetinghorn end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.meetinghorn = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									gap7 = {
+										order = 700,
+										type = "description",
+										name = "PallyPower",
+										hidden = E.Retail,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									pallypower = {
+										order = 701,
+										type = 'toggle',
+										name = L["Skin PallyPower"],
+										desc = L["Skin PallyPower"],
+										hidden = E.Retail,
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.skins.pallypower end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.pallypower = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									gap8 = {
+										order = 800,
+										type = "description",
+										name = "RareScanner",
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									rarescannerskin = {
+										order = 801,
+										type = 'toggle',
+										name = E.NewSign..L["Skin RareScanner"],
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.skins.rarescanner end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.rarescanner = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									gap9 = {
+										order = 900,
+										type = "description",
+										name = "SimulationCraft",
+										hidden = not E.Retail,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									simcskin = {
+										order = 901,
+										type = 'toggle',
+										name = E.NewSign..L["Skin SimulationCraft"],
+										width = "full",
+										hidden = not E.Retail,
+										get = function() return E.db.ElvUI_EltreumUI.skins.simulationcraft end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.simulationcraft = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									gap10 = {
+										order = 1000,
+										type = "description",
+										name = "WarpDeplete",
+										hidden = not E.Retail,
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									WarpDepleteskin = {
+										order = 1001,
+										type = 'toggle',
+										name = E.NewSign..L["Skin WarpDeplete"],
+										width = "full",
+										hidden = not E.Retail,
+										get = function() return E.db.ElvUI_EltreumUI.skins.warpdeplete end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.warpdeplete = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+								},
 							},
 						},
 					},
@@ -12227,10 +12818,11 @@ function ElvUI_EltreumUI:Configtable()
 				icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\unitframes',
 				desc = '|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\unitframes:0:0:0:0|t '..L["Add Gradient, Custom Textures, Models, change fill orientation and more"],
 				args = {
-					general = {
-						type = 'group',
-						name = L["General"],
+					enable = {
 						order = 1,
+						type = "group",
+						inline = true,
+						name = "",
 						args = {
 							enableUFmod = {
 								order = 1,
@@ -12241,1872 +12833,2012 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.UFmodifications = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							uftypeselect = {
-								type = "description",
-								name = "",--L["Choose between custom textures or gradient mode"],
-								order = 2,
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+						}
+					},
+					general = {
+						type = 'group',
+						name = L["General"],
+						childGroups = "tab",
+						order = 1,
+						args = {
+							enable = {
+								order = 1,
+								type = "group",
+								inline = true,
+								name = "",
+								args = {
+									unitframesenable = {
+										order = 3,
+										name = L["Enable Custom Textures"],
+										type = "toggle",
+										desc = L["Requires Light Mode Enabled"],
+										width = 'full',
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = value
+											if E.Retail then
+												E:StaticPopup_Show('CONFIG_RL')
+											end
+										end,
+									},
+									enablegradient = {
+										order = 3,
+										type = 'toggle',
+										name = L["Enable Gradient (Requires Dark or Light Modes)"],
+										desc = L["Enable Gradient colors for Health"],
+										width = 'full',
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									enablepower = {
+										order = 4,
+										type = 'toggle',
+										name = L["Enable Gradient Power"],
+										desc = L["Enable Gradient Power Colors"],
+										width = 'full',
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									enableaurabars = {
+										order = 5,
+										type = 'toggle',
+										name = L["Enable Gradient Aurabars"],
+										desc = L["Enable Gradient Aurabars"],
+										width = 'full',
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+								}
 							},
-							unitframesenable = {
-								order = 3,
-								name = L["Enable Custom Textures"],
-								type = "toggle",
-								desc = L["Requires Light Mode Enabled"],
-								width = 'full',
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = value
-									if E.Retail then
-										E:StaticPopup_Show('CONFIG_RL')
-									end
-								end,
-							},
-							enablegradient = {
-								order = 3,
-								type = 'toggle',
-								name = L["Enable Gradient (Requires Dark or Light Modes)"],
-								desc = L["Enable Gradient colors for Health"],
-								width = 'full',
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							enablepower = {
+							fillorientation = {
+								type = 'group',
+								name = L["Fill Orientation"],
 								order = 4,
-								type = 'toggle',
-								name = L["Enable Gradient Power"],
-								desc = L["Enable Gradient Power Colors"],
-								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							enableaurabars = {
-								order = 5,
-								type = 'toggle',
-								name = L["Enable Gradient Aurabars"],
-								desc = L["Enable Gradient Aurabars"],
-								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							darklightmode = {
-								order = 96,
-								type = "description",
-								name = L["Change the look of frames to Dark or Light mode"],
-								width = "full",
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							dark = {
-								order = 97,
-								type = 'toggle',
-								name = L["Dark Mode"],
-								width = 'full',
-								desc = L["This will set colors to black with class colors when losing health"],
-								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.lightmode or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.darkmode end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.darkmode = value end,
-							},
-							light = {
-								order = 97,
-								type = 'toggle',
-								name = L["Light Mode"],
-								width = 'full',
-								desc = L["This will set colors to class based with black backgrounds when losing health"],
-								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.darkmode or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.lightmode end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.lightmode = value end,
-							},
-							applymode = {
-								order = 98,
-								type = 'execute',
-								name = L["Apply"],
-								--width = 'full',
-								desc = L["Apply the mode selected"],
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications) end,
-								func = function()
-									if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-										ElvUI_EltreumUI:LightMode()
-										E:StaggeredUpdateAll(nil, true)
-										E:StaticPopup_Show('CONFIG_RL')
-									elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-										ElvUI_EltreumUI:DarkMode()
-										E:StaggeredUpdateAll(nil, true)
-										E:StaticPopup_Show('CONFIG_RL')
-									else
-										ElvUI_EltreumUI:LightMode()
-										E:StaggeredUpdateAll(nil, true)
-										E:StaticPopup_Show('CONFIG_RL')
-									end
-								end,
-								--confirm = true,
-							},
-							headeruftextv = {
-								order = 99,
-								type = "description",
-								name= L["Light Mode Texture Version"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							textureselect = {
-								type = 'select',
-								name= "",
-								order = 100,
-								values = {
-									["V1"] = L["Version 1"],
-									["V2"] = L["Version 2"],
-									["V3"] = L["Version 3"],
-									["NONE"] = L["None"],
+								args = {
+									headerorientation = {
+										order = 101,
+										type = "description",
+										name = L["Unitframe Fill Orientation"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									setorientation = {
+										type = 'select',
+										name = "",
+										order = 102,
+										values = {
+											["HORIZONTAL"] = L["Horizontal"],
+											["VERTICAL"] = L["Vertical"],
+										},
+										style = 'radio',
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.UForientation end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.UForientation = value end,
+									},
 								},
-								style = 'radio',
-								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.lightmode end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.uftextureversion end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.uftextureversion = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							headerorientation = {
-								order = 101,
-								type = "description",
-								name = L["Unitframe Fill Orientation"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							setorientation = {
-								type = 'select',
-								name = "",
-								order = 102,
-								values = {
-									["HORIZONTAL"] = L["Horizontal"],
-									["VERTICAL"] = L["Vertical"],
+							appearance = {
+								type = 'group',
+								name = L["Appearance"],
+								order = 2,
+								args = {
+									darklightmode = {
+										order = 96,
+										type = "description",
+										name = L["Change the look of frames to Dark or Light mode"],
+										width = "full",
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									dark = {
+										order = 97,
+										type = 'toggle',
+										name = L["Dark Mode"],
+										width = 'full',
+										desc = L["This will set colors to black with class colors when losing health"],
+										disabled = function() return E.db.ElvUI_EltreumUI.unitframes.lightmode or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.darkmode end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.darkmode = value end,
+									},
+									light = {
+										order = 97,
+										type = 'toggle',
+										name = L["Light Mode"],
+										width = 'full',
+										desc = L["This will set colors to class based with black backgrounds when losing health"],
+										disabled = function() return E.db.ElvUI_EltreumUI.unitframes.darkmode or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.lightmode end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.lightmode = value end,
+									},
+									applymode = {
+										order = 98,
+										type = 'execute',
+										name = L["Apply"],
+										--width = 'full',
+										desc = L["Apply the mode selected"],
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications) end,
+										func = function()
+											if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+												ElvUI_EltreumUI:LightMode()
+												E:StaggeredUpdateAll(nil, true)
+												E:StaticPopup_Show('CONFIG_RL')
+											elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
+												ElvUI_EltreumUI:DarkMode()
+												E:StaggeredUpdateAll(nil, true)
+												E:StaticPopup_Show('CONFIG_RL')
+											else
+												ElvUI_EltreumUI:LightMode()
+												E:StaggeredUpdateAll(nil, true)
+												E:StaticPopup_Show('CONFIG_RL')
+											end
+										end,
+										--confirm = true,
+									},
+									headeruftextv = {
+										order = 99,
+										type = "description",
+										name= L["Light Mode Texture Version"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									textureselect = {
+										type = 'select',
+										name= "",
+										order = 100,
+										values = {
+											["V1"] = L["Version 1"],
+											["V2"] = L["Version 2"],
+											["V3"] = L["Version 3"],
+											["NONE"] = L["None"],
+										},
+										style = 'radio',
+										disabled = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.lightmode end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.uftextureversion end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.uftextureversion = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									darkpowerdesc = {
+										order = 989,
+										type = "description",
+										name = L["Change the Class Power background"],
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									darkpowerenable = {
+										order = 990,
+										type = 'toggle',
+										width = "full",
+										name = L["Dark Power Background"],
+										desc = L["Sets Class Power backgrounds to be black"],
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.darkpowercolor end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.darkpowercolor = value end,
+									},
 								},
-								style = 'radio',
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.UForientation end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.UForientation = value end,
 							},
-							headerufbackdrop = {
-								order = 103,
-								type = "description",
+							backdrops = {
+								type = 'group',
 								name = L["Backdrops"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								order = 4,
+								args = {
+									headerufbackdrop = {
+										order = 103,
+										type = "description",
+										name = L["Backdrops"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									backdrophide = {
+										order = 104,
+										type = 'toggle',
+										width = "full",
+										name = L["Hide Backdrop"],
+										desc = L["Sets the Backdrop as Transparent/Hidden"],
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									ufbackdropTex = {
+										order = 105,
+										type = 'select',
+										--width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Backdrop Texture"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture = key end,
+									},
+									ufbackdropTexalpha = {
+										type = 'range',
+										name = L["Backdrop Alpha"],
+										desc = L["Change the transparency of the backdrop"],
+										order = 106,
+										min = 0,
+										max = 1,
+										step = 0.01,
+										--width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = value end,
+									},
+									powerbgfade = {
+										type = 'range',
+										name = L["Gradient Power Backdrop"],
+										desc = L["Change how much the Gradient Power Backdrop will Fade"],
+										order = 106,
+										min = 0,
+										max = 1,
+										step = 0.01,
+										--width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or E.db.unitframe.colors.custompowerbackdrop end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade = value end,
+									},
+								},
 							},
-							backdrophide = {
-								order = 104,
-								type = 'toggle',
-								width = "full",
-								name = L["Hide Backdrop"],
-								desc = L["Sets the Backdrop as Transparent/Hidden"],
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden = value E:StaticPopup_Show('CONFIG_RL') end,
+							portrait = {
+								type = 'group',
+								name = L["Portrait"],
+								order = 4,
+								args = {
+									portraitfix = {
+										order = 107,
+										type = "description",
+										name = L["Target Portrait Fix"],
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									portraitfixenable = {
+										order = 108,
+										type = 'toggle',
+										width = "full",
+										name = L["Automatically rotate Target Portrait"],
+										desc = L["Detects target's species and uses it to fix the rotation of the Target's 3D Portrait"],
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.portraitfix end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraitfix = value end,
+									},
+									portraitfixenableoffset = {
+										order = 109,
+										type = 'toggle',
+										width = "full",
+										name = L["Automatically offset Player/Target Portrait"],
+										desc = L["Detects player and target's species and uses it to fix the offset of the 3D Portrait"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.portraitfix end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset = value end,
+									},
+								},
 							},
-							ufbackdropTex = {
-								order = 105,
-								type = 'select',
-								--width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Backdrop Texture"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture = key end,
-							},
-							ufbackdropTexalpha = {
-								type = 'range',
-								name = L["Backdrop Alpha"],
-								desc = L["Change the transparency of the backdrop"],
-								order = 106,
-								min = 0,
-								max = 1,
-								step = 0.01,
-								--width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = value end,
-							},
-							powerbgfade = {
-								type = 'range',
-								name = L["Gradient Power Backdrop"],
-								desc = L["Change how much the Gradient Power Backdrop will Fade"],
-								order = 106,
-								min = 0,
-								max = 1,
-								step = 0.01,
-								--width = "full",
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or E.db.unitframe.colors.custompowerbackdrop end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade = value end,
-							},
-							portraitfix = {
-								order = 107,
-								type = "description",
-								name = L["Target Portrait Fix"],
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
-							},
-							portraitfixenable = {
-								order = 108,
-								type = 'toggle',
-								width = "full",
-								name = L["Automatically rotate Target Portrait"],
-								desc = L["Detects target's species and uses it to fix the rotation of the Target's 3D Portrait"],
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.portraitfix end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraitfix = value end,
-							},
-							portraitfixenableoffset = {
-								order = 109,
-								type = 'toggle',
-								width = "full",
-								name = L["Automatically offset Player/Target Portrait"],
-								desc = L["Detects player and target's species and uses it to fix the offset of the 3D Portrait"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.portraitfix end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset = value end,
-							},
-							infoPanelOnTopheader = {
-								order = 986,
-								type = "description",
+							infopanel = {
+								type = 'group',
 								name = L["Information Panel"],
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
+								order = 4,
+								args = {
+									infoPanelOnTopheader = {
+										order = 986,
+										type = "description",
+										name = L["Information Panel"],
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									infoPanelOnTop = {
+										order = 987,
+										type = 'toggle',
+										width = "full",
+										name = L["Enable Information Panel on Top"],
+										desc = L["Sets Information panel to be on Top instead of Bottom of the unitframe"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.infopanelontop end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.infopanelontop = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									infoPanelOnTopall = {
+										order = 988,
+										type = 'toggle',
+										width = "full",
+										name = L["Enable on All Unitframes"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.infopanelontop end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+								},
 							},
-							infoPanelOnTop = {
-								order = 987,
-								type = 'toggle',
-								width = "full",
-								name = L["Enable Information Panel on Top"],
-								desc = L["Sets Information panel to be on Top instead of Bottom of the unitframe"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.infopanelontop end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.infopanelontop = value E:StaticPopup_Show('CONFIG_RL') end,
+							spark = {
+								type = 'group',
+								name = L["Castbar Spark"],
+								order = 4,
+								args = {
+									castbarspark = {
+										order = 991,
+										type = "description",
+										name = L["Customize the player castbar spark"],
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									castbarsparkenable = {
+										order = 992,
+										type = 'toggle',
+										name = L["Enable"],
+										width = "full",
+										desc = L["Customize Player CastBar Spark"],
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									colorspark = {
+										order = 993,
+										type = 'color',
+										name = L["Custom Color"],
+										hasAlpha = false,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable end,
+										get = function()
+											local glowcustomcolor = E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor
+											local d = P.ElvUI_EltreumUI.unitframes.sparkcustomcolor
+											return glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b, glowcustomcolor.a, d.r, d.g, d.b, d.a
+										end,
+										set = function(_, r, g, b, a)
+											local glowcustomcolor = E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor
+											glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b = r, g, b
+										end,
+									},
+									colorsparkempowering = {
+										order = 993,
+										type = 'color',
+										name = L["Empowering Color"],
+										hidden = not E.Retail,
+										hasAlpha = false,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable end,
+										get = function()
+											local glowcustomcolor = E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor
+											local d = P.ElvUI_EltreumUI.unitframes.sparkcustomcolor
+											return glowcustomcolor.empoweringr, glowcustomcolor.empoweringg, glowcustomcolor.empoweringb, glowcustomcolor.a, d.empoweringr, d.empoweringg, d.empoweringb, d.a
+										end,
+										set = function(_, r, g, b, a)
+											local glowcustomcolor = E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor
+											glowcustomcolor.empoweringr, glowcustomcolor.empoweringg, glowcustomcolor.empoweringb = r, g, b
+										end,
+									},
+									sparktexture = {
+										order = 994,
+										type = 'select',
+										--width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Spark Texture"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture = key end,
+									},
+									sparkwidth = {
+										type = 'range',
+										name = L["Width"],
+										desc = L["Set Width of the Spark (Default 3)"],
+										order = 995,
+										min = 1,
+										max = 20,
+										step = 1,
+										--width = "double",
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+								},
 							},
-							infoPanelOnTopall = {
-								order = 988,
-								type = 'toggle',
-								width = "full",
-								name = L["Enable on All Unitframes"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.infopanelontop end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							darkpowerdesc = {
-								order = 989,
-								type = "description",
-								name = L["Change the Class Power background"],
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
-							},
-							darkpowerenable = {
-								order = 990,
-								type = 'toggle',
-								width = "full",
-								name = L["Dark Power Background"],
-								desc = L["Sets Class Power backgrounds to be black"],
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.darkpowercolor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.darkpowercolor = value end,
-							},
-							castbarspark = {
-								order = 991,
-								type = "description",
-								name = L["Customize the player castbar spark"],
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = "full",
-							},
-							castbarsparkenable = {
-								order = 992,
-								type = 'toggle',
-								name = L["Enable"],
-								width = "full",
-								desc = L["Customize Player CastBar Spark"],
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							colorspark = {
-								order = 993,
-								type = 'color',
-								name = L["Custom Color"],
-								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable end,
-								get = function()
-									local glowcustomcolor = E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor
-									local d = P.ElvUI_EltreumUI.unitframes.sparkcustomcolor
-									return glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b, glowcustomcolor.a, d.r, d.g, d.b, d.a
-								end,
-								set = function(_, r, g, b, a)
-									local glowcustomcolor = E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor
-									glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b = r, g, b
-								end,
-							},
-							colorsparkempowering = {
-								order = 993,
-								type = 'color',
-								name = L["Empowering Color"],
-								hidden = not E.Retail,
-								hasAlpha = false,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable end,
-								get = function()
-									local glowcustomcolor = E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor
-									local d = P.ElvUI_EltreumUI.unitframes.sparkcustomcolor
-									return glowcustomcolor.empoweringr, glowcustomcolor.empoweringg, glowcustomcolor.empoweringb, glowcustomcolor.a, d.empoweringr, d.empoweringg, d.empoweringb, d.a
-								end,
-								set = function(_, r, g, b, a)
-									local glowcustomcolor = E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor
-									glowcustomcolor.empoweringr, glowcustomcolor.empoweringg, glowcustomcolor.empoweringb = r, g, b
-								end,
-							},
-							sparktexture = {
-								order = 994,
-								type = 'select',
-								--width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Spark Texture"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture = key end,
-							},
-							sparkwidth = {
-								type = 'range',
-								name = L["Width"],
-								desc = L["Set Width of the Spark (Default 3)"],
-								order = 995,
-								min = 1,
-								max = 20,
-								step = 1,
-								--width = "double",
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width = value E:StaticPopup_Show('CONFIG_RL') end,
-							},
-							headergaphere = {
-								order = 1995,
-								type = "description",
-								name = L["Alternative unitframe layouts"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							layoutdescriptiongap = {
-								order = 1996,
-								type = 'description',
-								name = "",
-								width = "full",
-							},
-							layoutdescription = {
-								order = 1997,
-								type = 'description',
-								fontSize = 'medium',
-								name = L["DPS/Tank layouts were created with pure dps classes in mind, if you play a class with more raid cooldowns like a Shaman, Druid or Paladin you might want to use the alternative layout in order to make it easier for you to use your cooldowns on the members of your group"],
-							},
-							alternativegroups = {
-								order = 1998,
-								type = 'execute',
-								name = L["Alternative Layout"],
-								func = function() ElvUI_EltreumUI:AlternativeGroupsDPS() end,
-							},
-							originalgroups = {
-								order = 1999,
-								type = 'execute',
-								name = L["Original Layout"],
-								func = function() ElvUI_EltreumUI:OriginalGroupsDPS() end,
+							layout = {
+								type = 'group',
+								name = L["Layout"],
+								order = 3,
+								args = {
+									headergaphere = {
+										order = 1995,
+										type = "description",
+										name = L["Alternative unitframe layouts"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									layoutdescriptiongap = {
+										order = 1996,
+										type = 'description',
+										name = "",
+										width = "full",
+									},
+									layoutdescription = {
+										order = 1997,
+										type = 'description',
+										fontSize = 'medium',
+										name = L["DPS/Tank layouts were created with pure dps classes in mind, if you play a class with more raid cooldowns like a Shaman, Druid or Paladin you might want to use the alternative layout in order to make it easier for you to use your cooldowns on the members of your group"],
+									},
+									alternativegroups = {
+										order = 1998,
+										type = 'execute',
+										name = L["Alternative Layout"],
+										func = function() ElvUI_EltreumUI:AlternativeGroupsDPS() end,
+									},
+									originalgroups = {
+										order = 1999,
+										type = 'execute',
+										name = L["Original Layout"],
+										func = function() ElvUI_EltreumUI:OriginalGroupsDPS() end,
+									},
+								},
 							},
 						},
 					},
 					textures = {
 						type = 'group',
 						name = L["Textures"],
+						childGroups = "tab",
+						desc = L["Choose custom textures for some unitframes"],
 						order = 2,
 						disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
 						args = {
-							unitframesdesc = {
+							enable = {
 								order = 1,
-								type = "description",
-								name = L["Customize Unitframe textures"],
-								desc = L["Choose custom textures for some unitframes"],
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-								width = 'full',
+								type = "group",
+								inline = true,
+								name = "",
+								args = {
+									unitframesdesc = {
+										order = 1,
+										type = "description",
+										name = L["Customize Unitframe textures"],
+										width = 'full',
+									},
+									classdetect = {
+										order = 2,
+										name = L["Automatically Detect Classes for Player, Target, Target of Target and Focus"],
+										type = "toggle",
+										desc = L["Use the custom texture based on it's class instead of general texture for Player, Target, Target of Target and Focus"],
+										width = 'full',
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect = value end,
+									},
+									noclasstexture = {
+										order = 3,
+										name = L["Disable Class Textures"],
+										type = "toggle",
+										desc = L["Use only textures sets for specific frames and not class specific textures"],
+										width = 'full',
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture = value end,
+									},
+								}
 							},
-							classdetect = {
-								order = 2,
-								name = L["Automatically Detect Classes for Player, Target, Target of Target and Focus"],
-								type = "toggle",
-								desc = L["Use the custom texture based on it's class instead of general texture for Player, Target, Target of Target and Focus"],
-								width = 'full',
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect = value end,
+							unitframes = {
+								type = 'group',
+								name = L["UnitFrames"],
+								order = 4,
+								args = {
+									playertexture = {
+										order = 14,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Player Texture"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall1 = {
+										order = 15,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
+										end,
+									},
+									castbartex = {
+										order = 16,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Player Castbar Texture"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall2 = {
+										order = 17,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
+										end,
+									},
+									targettexture = {
+										order = 18,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Target Texture"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall3 = {
+										order = 19,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
+										end,
+									},
+									targettargettexture = {
+										order = 20,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Target of Target Texture"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall4 = {
+										order = 21,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
+										end,
+									},
+									targettargettargettexture = {
+										order = 22,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Target of Target of Target Texture"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall5 = {
+										order = 23,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
+										end,
+									},
+									focustexture = {
+										order = 24,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Focus Texture"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										hidden = E.Classic,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall6 = {
+										order = 25,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										hidden = E.Classic,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
+										end,
+									},
+									pettexture = {
+										order = 26,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Pet Texture"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall7 = {
+										order = 27,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
+										end,
+									},
+									bosstexture = {
+										order = 28,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Boss Texture"],
+										desc = L["Select a Texture"],
+										hidden = E.Classic,
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall8 = {
+										order = 29,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										hidden = E.Classic,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
+										end,
+									},
+								},
 							},
-							noclasstexture = {
-								order = 3,
-								name = L["Disable Class Textures"],
-								type = "toggle",
-								desc = L["Use only textures sets for specific frames and not class specific textures"],
-								width = 'full',
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture = value end,
-							},
-							playertexture = {
-								order = 14,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Player Texture"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall1 = {
-								order = 15,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture
-								end,
-							},
-							castbartex = {
-								order = 16,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Player Castbar Texture"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall2 = {
-								order = 17,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture
-								end,
-							},
-							targettexture = {
-								order = 18,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Target Texture"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall3 = {
-								order = 19,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture
-								end,
-							},
-							targettargettexture = {
-								order = 20,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Target of Target Texture"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall4 = {
-								order = 21,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture
-								end,
-							},
-							targettargettargettexture = {
-								order = 22,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Target of Target of Target Texture"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall5 = {
-								order = 23,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture
-								end,
-							},
-							focustexture = {
-								order = 24,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Focus Texture"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								hidden = E.Classic,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall6 = {
-								order = 25,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								hidden = E.Classic,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture
-								end,
-							},
-							pettexture = {
-								order = 26,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Pet Texture"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall7 = {
-								order = 27,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture
-								end,
-							},
-							bosstexture = {
-								order = 28,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Boss Texture"],
-								desc = L["Select a Texture"],
-								hidden = E.Classic,
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall8 = {
-								order = 29,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								hidden = E.Classic,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.playertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.targettargettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.focustexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.pettexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.bosstexture
-								end,
-							},
-							headerclasses = {
-								order = 109,
-								type = "description",
-								name = L["Class Textures"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							dktexture = {
-								order = 110,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Death Knight"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								hidden = not E.Retail and not E.Wrath,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall9 = {
-								order = 111,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								hidden = not E.Retail and not E.Wrath,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
-								end,
-							},
-							dhtexture = {
-								order = 112,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Demon Hunter"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								hidden = not E.Retail,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall10 = {
-								order = 113,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								hidden = not E.Retail,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
-								end,
-							},
-							druidtexture = {
-								order = 114,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Druid"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall11 = {
-								order = 115,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
-								end,
-							},
-							huntertexture = {
-								order = 116,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Hunter"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall12 = {
-								order = 117,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
-								end,
-							},
-							magetexture = {
-								order = 118,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Mage"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall13 = {
-								order = 119,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
-								end,
-							},
-							monktexture = {
-								order = 120,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Monk"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								hidden = not E.Retail,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall14 = {
-								order = 121,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								hidden = not E.Retail,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
-								end,
-							},
-							evokertexture = {
-								order = 122,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Evoker"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								hidden = not E.Retail,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall15 = {
-								order = 123,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								hidden = not E.Retail,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
-								end,
-							},
-							paladintexture = {
-								order = 124,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Paladin"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall16 = {
-								order = 125,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
-								end,
-							},
-							priesttexture = {
-								order = 126,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Priest"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall17 = {
-								order = 127,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
-								end,
-							},
-							roguetexture = {
-								order = 128,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Rogue"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall18 = {
-								order = 129,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
-								end,
-							},
-							shamantexture = {
-								order = 130,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Shaman"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall19 = {
-								order = 131,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
-								end,
-							},
-							warlocktexture = {
-								order = 132,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Warlock"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall20 = {
-								order = 133,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
-								end,
-							},
-							warriortexture = {
-								order = 134,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Warrior"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall21 = {
-								order = 135,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
-								end,
-							},
-							npcfriendlytexture = {
-								order = 136,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Friendly NPC"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall22 = {
-								order = 137,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
-								end,
-							},
-							npcneutraltexture = {
-								order = 138,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Neutral NPC"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall23 = {
-								order = 139,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
-								end,
-							},
-							npcunfriendlytexture = {
-								order = 140,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Unfriendly NPC"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall24 = {
-								order = 141,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
-								end,
-							},
-							npchostiletexture = {
-								order = 142,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Hostile NPC"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall25 = {
-								order = 143,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
-								end,
-							},
-							tappedtexture = {
-								order = 144,
-								type = 'select',
-								width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Tapped NPC"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							applytoall26 = {
-								order = 145,
-								type = 'execute',
-								name = L["Apply To All"],
-								--width = 'full',
-								confirm = true,
-								func = function()
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
-									E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
-								end,
+							classes = {
+								type = 'group',
+								name = L["Classes"],
+								order = 5,
+								args = {
+									headerclasses = {
+										order = 109,
+										type = "description",
+										name = L["Class Textures"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									dktexture = {
+										order = 110,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Death Knight"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										hidden = not E.Retail and not E.Wrath,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall9 = {
+										order = 111,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										hidden = not E.Retail and not E.Wrath,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture
+										end,
+									},
+									dhtexture = {
+										order = 112,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Demon Hunter"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										hidden = not E.Retail,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall10 = {
+										order = 113,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										hidden = not E.Retail,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture
+										end,
+									},
+									druidtexture = {
+										order = 114,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Druid"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall11 = {
+										order = 115,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture
+										end,
+									},
+									huntertexture = {
+										order = 116,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Hunter"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall12 = {
+										order = 117,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture
+										end,
+									},
+									magetexture = {
+										order = 118,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Mage"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall13 = {
+										order = 119,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture
+										end,
+									},
+									monktexture = {
+										order = 120,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Monk"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										hidden = not E.Retail,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall14 = {
+										order = 121,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										hidden = not E.Retail,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture
+										end,
+									},
+									evokertexture = {
+										order = 122,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Evoker"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										hidden = not E.Retail,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall15 = {
+										order = 123,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										hidden = not E.Retail,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture
+										end,
+									},
+									paladintexture = {
+										order = 124,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Paladin"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall16 = {
+										order = 125,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture
+										end,
+									},
+									priesttexture = {
+										order = 126,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Priest"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall17 = {
+										order = 127,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture
+										end,
+									},
+									roguetexture = {
+										order = 128,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Rogue"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall18 = {
+										order = 129,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture
+										end,
+									},
+									shamantexture = {
+										order = 130,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Shaman"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall19 = {
+										order = 131,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture
+										end,
+									},
+									warlocktexture = {
+										order = 132,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Warlock"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall20 = {
+										order = 133,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture
+										end,
+									},
+									warriortexture = {
+										order = 134,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Warrior"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall21 = {
+										order = 135,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture
+										end,
+									},
+									npcfriendlytexture = {
+										order = 136,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Friendly NPC"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall22 = {
+										order = 137,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly
+										end,
+									},
+									npcneutraltexture = {
+										order = 138,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Neutral NPC"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall23 = {
+										order = 139,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral
+										end,
+									},
+									npcunfriendlytexture = {
+										order = 140,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Unfriendly NPC"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall24 = {
+										order = 141,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly
+										end,
+									},
+									npchostiletexture = {
+										order = 142,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Hostile NPC"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall25 = {
+										order = 143,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile
+										end,
+									},
+									tappedtexture = {
+										order = 144,
+										type = 'select',
+										width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Tapped NPC"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable) or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture = key ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									applytoall26 = {
+										order = 145,
+										type = 'execute',
+										name = L["Apply To All"],
+										--width = 'full',
+										confirm = true,
+										func = function()
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.deathknighttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.demonhuntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.evokertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.druidtexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.huntertexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.magetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.monktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.paladintexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.priesttexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.roguetexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.shamantexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warlocktexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.warriortexture = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcneutral = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npcunfriendly = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+											E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.npchostile = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.tappedtexture
+										end,
+									},
+								},
 							},
 						},
 					},
 					gradient = {
 						type = "group",
 						name = L["Gradient"],
+						childGroups = "tab",
 						order = 3,
 						disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
 						args = {
-							header1 = {
+							unitframes = {
+								type = 'group',
+								name = L["UnitFrames"],
 								order = 1,
-								type = "description",
-								name = L["Gradient Colors"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+								args = {
+									header1 = {
+										order = 1,
+										type = "description",
+										name = L["Gradient Colors"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									enableplayer = {
+										order = 2,
+										type = 'toggle',
+										name = L["Enable for Player"],
+										desc = L["Enable Gradient colors for Health"],
+										width = 'full',
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayer end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayer = value end,
+									},
+									enabletarget = {
+										order = 2,
+										type = 'toggle',
+										name = L["Enable for Target"],
+										desc = L["Enable Gradient colors for Health"],
+										width = 'full',
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletarget end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletarget = value end,
+									},
+									enabletargettarget = {
+										order = 2,
+										type = 'toggle',
+										name = L["Enable for Target of Target"],
+										desc = L["Enable Gradient colors for Health"],
+										width = 'full',
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargettarget end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargettarget = value end,
+									},
+									enabletargettargettarget = {
+										order = 2,
+										type = 'toggle',
+										name = L["Enable for Target of Target of Target"],
+										desc = L["Enable Gradient colors for Health"],
+										width = 'full',
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargettargettarget end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargettargettarget = value end,
+									},
+									enablefocus = {
+										order = 2,
+										type = 'toggle',
+										name = L["Enable for Focus"],
+										desc = L["Enable Gradient colors for Health"],
+										width = 'full',
+										hidden = E.Classic,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablefocus end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablefocus = value end,
+									},
+									enablefocustarget = {
+										order = 2,
+										type = 'toggle',
+										name = L["Enable for Focus Target"],
+										desc = L["Enable Gradient colors for Health"],
+										width = 'full',
+										hidden = E.Classic,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablefocustarget end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablefocustarget = value end,
+									},
+									enableboss = {
+										order = 2,
+										type = 'toggle',
+										name = L["Enable for Boss"],
+										desc = L["Enable Gradient colors for Health"],
+										width = 'full',
+										hidden = not (E.Retail or E.Wrath),
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss = value end,
+									},
+									enablearena = {
+										order = 2,
+										type = 'toggle',
+										name = L["Enable for Arena"],
+										desc = L["Enable Gradient colors for Health"],
+										width = 'full',
+										hidden = E.Classic,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena = value end,
+									},
+									enablegroupunits = {
+										order = 2,
+										type = 'toggle',
+										name = L["Enable for Group Units"],
+										desc = L["Enable Gradient colors for Health"],
+										width = 'full',
+										--disabled = function() return true end,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits = value end,
+									},
+									enablecastbargradient = {
+										order = 2,
+										type = 'toggle',
+										name = L["Enable for Player Castbar"],
+										desc = L["Enable Gradient colors for Player Castbar"],
+										width = 'full',
+										--disabled = function() return true end,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbar end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbar = value end,
+									},
+									enablecastbargradientnoninterruptplayer = {
+										order = 2,
+										type = 'toggle',
+										name = L["Enable for Player Castbar (Non Interruptible)"],
+										desc = L["Enable Gradient colors for Player Castbar (Non Interruptible)"],
+										width = 'full',
+										--disabled = function() return true end,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbarnoninterruptible end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbarnoninterruptible = value end,
+									},
+									enablecastbargradientinterruptedplayer = {
+										order = 2,
+										type = 'toggle',
+										name = L["Enable for Player Castbar (Interrupted)"],
+										desc = L["Enable Gradient colors for Player Castbar (Interrupted)"],
+										width = 'full',
+										--disabled = function() return true end,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbarinterrupted end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbarinterrupted = value end,
+									},
+									enabletargetcastbargradient = {
+										order = 2,
+										type = 'toggle',
+										name = L["Enable for Target Castbar"],
+										desc = L["Enable Gradient colors for Target Castbar"],
+										width = 'full',
+										--disabled = function() return true end,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbar end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbar = value end,
+									},
+									enablecastbargradientnoninterrupttarget = {
+										order = 2,
+										type = 'toggle',
+										name = L["Enable for Target Castbar (Non Interruptible)"],
+										desc = L["Enable Gradient colors for Target Castbar (Non Interruptible)"],
+										width = 'full',
+										--disabled = function() return true end,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible = value end,
+									},
+									enablecastbargradientinterruptedtarget = {
+										order = 2,
+										type = 'toggle',
+										name = L["Enable for Target Castbar (Interrupted)"],
+										desc = L["Enable Gradient colors for Target Castbar (Interrupted)"],
+										width = 'full',
+										--disabled = function() return true end,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarinterrupted end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarinterrupted = value end,
+									},
+								},
 							},
-							enableplayer = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable for Player"],
-								desc = L["Enable Gradient colors for Health"],
-								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayer end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayer = value end,
-							},
-							enabletarget = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable for Target"],
-								desc = L["Enable Gradient colors for Health"],
-								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletarget = value end,
-							},
-							enabletargettarget = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable for Target of Target"],
-								desc = L["Enable Gradient colors for Health"],
-								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargettarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargettarget = value end,
-							},
-							enabletargettargettarget = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable for Target of Target of Target"],
-								desc = L["Enable Gradient colors for Health"],
-								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargettargettarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargettargettarget = value end,
-							},
-							enablefocus = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable for Focus"],
-								desc = L["Enable Gradient colors for Health"],
-								width = 'full',
-								hidden = E.Classic,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablefocus end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablefocus = value end,
-							},
-							enablefocustarget = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable for Focus Target"],
-								desc = L["Enable Gradient colors for Health"],
-								width = 'full',
-								hidden = E.Classic,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablefocustarget end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablefocustarget = value end,
-							},
-							enableboss = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable for Boss"],
-								desc = L["Enable Gradient colors for Health"],
-								width = 'full',
-								hidden = not (E.Retail or E.Wrath),
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableboss = value end,
-							},
-							enablearena = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable for Arena"],
-								desc = L["Enable Gradient colors for Health"],
-								width = 'full',
-								hidden = E.Classic,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablearena = value end,
-							},
-							enablegroupunits = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable for Group Units"],
-								desc = L["Enable Gradient colors for Health"],
-								width = 'full',
-								--disabled = function() return true end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits = value end,
-							},
-							enablecastbargradient = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable for Player Castbar"],
-								desc = L["Enable Gradient colors for Player Castbar"],
-								width = 'full',
-								--disabled = function() return true end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbar end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbar = value end,
-							},
-							enablecastbargradientnoninterruptplayer = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable for Player Castbar (Non Interruptible)"],
-								desc = L["Enable Gradient colors for Player Castbar (Non Interruptible)"],
-								width = 'full',
-								--disabled = function() return true end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbarnoninterruptible end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbarnoninterruptible = value end,
-							},
-							enablecastbargradientinterruptedplayer = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable for Player Castbar (Interrupted)"],
-								desc = L["Enable Gradient colors for Player Castbar (Interrupted)"],
-								width = 'full',
-								--disabled = function() return true end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbarinterrupted end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbarinterrupted = value end,
-							},
-							enabletargetcastbargradient = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable for Target Castbar"],
-								desc = L["Enable Gradient colors for Target Castbar"],
-								width = 'full',
-								--disabled = function() return true end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbar end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbar = value end,
-							},
-							enablecastbargradientnoninterrupttarget = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable for Target Castbar (Non Interruptible)"],
-								desc = L["Enable Gradient colors for Target Castbar (Non Interruptible)"],
-								width = 'full',
-								--disabled = function() return true end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible = value end,
-							},
-							enablecastbargradientinterruptedtarget = {
-								order = 2,
-								type = 'toggle',
-								name = L["Enable for Target Castbar (Interrupted)"],
-								desc = L["Enable Gradient colors for Target Castbar (Interrupted)"],
-								width = 'full',
-								--disabled = function() return true end,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarinterrupted end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarinterrupted = value end,
-							},
-							enablecustomcolor = {
-								order = 3,
-								type = 'toggle',
-								name = L["Custom Color"],
-								desc = L["Enable Custom Colors"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
-							},
-							opengradientcolors = {
-								order = 4,
-								type = 'execute',
+							colors = {
+								type = 'group',
 								name = L["Colors"],
-								width = 'full',
-								desc = L["Customize Colors"],
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								func = function() E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI', "gradient", "class") end,
+								order = 3,
+								args = {
+									enablecustomcolor = {
+										order = 3,
+										type = 'toggle',
+										name = L["Custom Color"],
+										desc = L["Enable Custom Colors"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
+									opengradientcolors = {
+										order = 4,
+										type = 'execute',
+										name = L["Colors"],
+										width = 'full',
+										desc = L["Customize Colors"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										func = function() E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI', "gradient", "class") end,
+									},
+								},
 							},
-							gradientorientation = {
-								type = 'select',
+							orientation = {
+								type = 'group',
 								name = L["Gradient Orientation"],
-								desc = L["Choose the direction of the gradient"],
-								order = 5,
-								values = {
-									["HORIZONTAL"] = L["Horizontal"],
-									["VERTICAL"] = L["Vertical"],
+								order = 1,
+								args = {
+									gradientorientation = {
+										type = 'select',
+										name = L["Gradient Orientation"],
+										desc = L["Choose the direction of the gradient"],
+										order = 5,
+										values = {
+											["HORIZONTAL"] = L["Horizontal"],
+											["VERTICAL"] = L["Vertical"],
+										},
+										style = 'radio',
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation = value end,
+									},
+									gradientorientationPower = {
+										type = 'select',
+										name = L["Gradient Power Orientation"],
+										desc = L["Choose the direction of the gradient"],
+										order = 6,
+										values = {
+											["HORIZONTAL"] = L["Horizontal"],
+											["VERTICAL"] = L["Vertical"],
+										},
+										style = 'radio',
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower = value end,
+									},
 								},
-								style = 'radio',
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation = value end,
 							},
-							gradientorientationPower = {
-								type = 'select',
-								name = L["Gradient Power Orientation"],
-								desc = L["Choose the direction of the gradient"],
-								order = 6,
-								values = {
-									["HORIZONTAL"] = L["Horizontal"],
-									["VERTICAL"] = L["Vertical"],
+							texture = {
+								type = 'group',
+								name = L["Texture"],
+								order = 4,
+								args = {
+									gradienttexture = {
+										order = 7,
+										type = 'select',
+										--width = "double",
+										dialogControl = 'LSM30_Statusbar',
+										name = L["Gradient Texture"],
+										desc = L["Select a Texture"],
+										values = AceGUIWidgetLSMlists.statusbar,
+										disabled = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture end,
+										set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture = key ElvUI_EltreumUI:CustomTexture() end,
+									},
+									useelvUFtexture = {
+										order = 8,
+										type = 'toggle',
+										width = "double",
+										name = L["Use ElvUI Unitframe Texture"],
+										desc = L["Uses ElvUI Unitframe Statusbar texture instead"],
+										disabled = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									},
 								},
-								style = 'radio',
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower = value end,
-							},
-							gradienttexture = {
-								order = 7,
-								type = 'select',
-								--width = "double",
-								dialogControl = 'LSM30_Statusbar',
-								name = L["Gradient Texture"],
-								desc = L["Select a Texture"],
-								values = AceGUIWidgetLSMlists.statusbar,
-								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture end,
-								set = function(self,key) E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture = key ElvUI_EltreumUI:CustomTexture() end,
-							},
-							useelvUFtexture = {
-								order = 8,
-								type = 'toggle',
-								width = "double",
-								name = L["Use ElvUI Unitframe Texture"],
-								desc = L["Uses ElvUI Unitframe Statusbar texture instead"],
-								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 							},
 						}
 					},
 					models = {
 						type = "group",
 						name = L["Models"],
+						childGroups = "tab",
 						order = 4,
 						disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 						args = {
-							header1 = {
+							warning = {
 								order = 1,
-								type = "description",
-								name = "|cffFF0000WARNING:|r"..L[" This can be a very demanding feature, it's not recommended to use models for performance."],
-								width = 'full',
+								type = "group",
+								inline = true,
+								name = "",
+								args = {
+									header1 = {
+										order = 1,
+										type = "description",
+										name = "|cffFF0000WARNING:|r"..L[" This can be a very demanding feature, it's not recommended to use models for performance."],
+										width = 'full',
+									},
+								}
 							},
-							header2 = {
-								order = 3,
-								type = "description",
-								name = L["Unitframe Models"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							modelenable = {
-								type = 'toggle',
-								name = L["Enable Models/Effects"],
-								desc = L["Enable adding models as effects on unitframes"],
-								order = 4,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.unitframe end,
-								set = function(_, value)
-									E.db.ElvUI_EltreumUI.unitframes.models.unitframe = value
-									ElvUI_EltreumUI:PlayerUFEffects()
-									ElvUI_EltreumUI:TargetUFEffects()
-									ElvUI_EltreumUI:TargetTargetUFEffects()
-									E.db.unitframe.colors.transparentHealth = true
-								end,
-							},
-							selectmodeltype = {
-								order = 6,
-								type = 'select',
-								name = L["Choose between Class Based Models or a Custom Model"],
-								values = {
-									["CLASS"] = CLASS,
-									["CUSTOM"] = CUSTOM,
-								},
-								style = 'radio',
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.models.unitframe or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltype end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.modeltype = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
-							},
-							custommodelpath = {
-								order = 7,
-								type = 'input',
-								name = function()
-									if E.Retail then
-										return L["Type the Model ID, such as 165575"]
-									else
-										return L["Type the Model Path, such as spells/arcanebreath.m2"]
-									end
-								end,
-								width = 'full',
-								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltype == 'CLASS' or not E.db.ElvUI_EltreumUI.unitframes.models.unitframe or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								validate = function(_, value)
-									E.PopupDialogs["ELTRUISMINVALIDMODEL"] = {
-										text = L["Invalid Model, you need to add a Model ID/Path"],
-										button1 = OKAY,
-										timeout = 0,
-										whileDead = 1,
-										hideOnEscape = true,
-									}
-									if E.Retail then
-										if tonumber(value) ~= nil then
-											return true
-										else
-											return E:StaticPopup_Show('ELTRUISMINVALIDMODEL') and false
-										end
-									else
-										return true
-									end
-								end,
-								get = function()
-									if E.Retail then
-										return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
-									else
-										return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
-									end
-								end,
-								set = function(_, value)
-									if E.Retail then
-										E.db.ElvUI_EltreumUI.unitframes.models.custommodel = tonumber(value)
-									else
-										E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic = tostring(value)
-									end
+							unitframes = {
+								type = 'group',
+								name = L["UnitFrames"],
+								order = 1,
+								args = {
+									header2 = {
+										order = 3,
+										type = "description",
+										name = L["Unitframe Models"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									modelenable = {
+										type = 'toggle',
+										name = L["Enable Models/Effects"],
+										desc = L["Enable adding models as effects on unitframes"],
+										order = 4,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.models.unitframe end,
+										set = function(_, value)
+											E.db.ElvUI_EltreumUI.unitframes.models.unitframe = value
+											ElvUI_EltreumUI:PlayerUFEffects()
+											ElvUI_EltreumUI:TargetUFEffects()
+											ElvUI_EltreumUI:TargetTargetUFEffects()
+											E.db.unitframe.colors.transparentHealth = true
+										end,
+									},
+									selectmodeltype = {
+										order = 6,
+										type = 'select',
+										name = L["Choose between Class Based Models or a Custom Model"],
+										values = {
+											["CLASS"] = CLASS,
+											["CUSTOM"] = CUSTOM,
+										},
+										style = 'radio',
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.models.unitframe or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltype end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.modeltype = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
+									},
+									custommodelpath = {
+										order = 7,
+										type = 'input',
+										name = function()
+											if E.Retail then
+												return L["Type the Model ID, such as 165575"]
+											else
+												return L["Type the Model Path, such as spells/arcanebreath.m2"]
+											end
+										end,
+										width = 'full',
+										disabled = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltype == 'CLASS' or not E.db.ElvUI_EltreumUI.unitframes.models.unitframe or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										validate = function(_, value)
+											E.PopupDialogs["ELTRUISMINVALIDMODEL"] = {
+												text = L["Invalid Model, you need to add a Model ID/Path"],
+												button1 = OKAY,
+												timeout = 0,
+												whileDead = 1,
+												hideOnEscape = true,
+											}
+											if E.Retail then
+												if tonumber(value) ~= nil then
+													return true
+												else
+													return E:StaticPopup_Show('ELTRUISMINVALIDMODEL') and false
+												end
+											else
+												return true
+											end
+										end,
+										get = function()
+											if E.Retail then
+												return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodel)
+											else
+												return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic)
+											end
+										end,
+										set = function(_, value)
+											if E.Retail then
+												E.db.ElvUI_EltreumUI.unitframes.models.custommodel = tonumber(value)
+											else
+												E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassic = tostring(value)
+											end
 
-									ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects()
-								end,
-							},
-							ufmodelalpha = {
-								type = 'range',
-								name = L["Light Mode Alpha"],
-								order = 80,
-								min = 0,
-								max = 1,
-								step = 0.01,
-								width = "double",
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.models.unitframe or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.ufalpha end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.ufalpha = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
-							},
-							ufmodelalphadark = {
-								type = 'range',
-								name = L["Dark Mode Alpha"],
-								order = 81,
-								min = 0,
-								max = 1,
-								step = 0.01,
-								width = "double",
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.models.unitframe or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
-							},
-							ufmodeldesaturation = {
-								type = 'range',
-								name = L["Desaturation"],
-								order = 82,
-								min = 0,
-								max = 1,
-								step = 0.01,
-								width = "double",
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.models.unitframe or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
-							},
-							headercast = {
-								order = 120,
-								type = "description",
-								name = L["Castbar Models"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							castbarmodeleffect = {
-								type = 'toggle',
-								name = L["Enable Models/Effects"],
-								desc = L["Enable adding models as effects on Castbars"],
-								order = 121,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.castbar end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.castbar = value ElvUI_EltreumUI:CastbarEffects() end,
-							},
-							selectmodeltypecast = {
-								order = 122,
-								type = 'select',
-								name = L["Choose between a Default Model or a Custom Model"],
-								values = {
-									["DEFAULT"] = L["Default"],
-									["CUSTOM"] = CUSTOM,
+											ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects()
+										end,
+									},
+									ufmodelalpha = {
+										type = 'range',
+										name = L["Light Mode Alpha"],
+										order = 80,
+										min = 0,
+										max = 1,
+										step = 0.01,
+										width = "double",
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.models.unitframe or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.models.ufalpha end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.ufalpha = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
+									},
+									ufmodelalphadark = {
+										type = 'range',
+										name = L["Dark Mode Alpha"],
+										order = 81,
+										min = 0,
+										max = 1,
+										step = 0.01,
+										width = "double",
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.models.unitframe or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
+									},
+									ufmodeldesaturation = {
+										type = 'range',
+										name = L["Desaturation"],
+										order = 82,
+										min = 0,
+										max = 1,
+										step = 0.01,
+										width = "double",
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.models.unitframe or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation = value ElvUI_EltreumUI:PlayerUFEffects() ElvUI_EltreumUI:TargetUFEffects() ElvUI_EltreumUI:TargetTargetUFEffects() end,
+									},
 								},
-								sorting = {
-									"DEFAULT",
-									"CUSTOM",
+							},
+							castbar = {
+								type = 'group',
+								name = L["Cast Bar"],
+								order = 2,
+								args = {
+									headercast = {
+										order = 120,
+										type = "description",
+										name = L["Castbar Models"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									castbarmodeleffect = {
+										type = 'toggle',
+										name = L["Enable Models/Effects"],
+										desc = L["Enable adding models as effects on Castbars"],
+										order = 121,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.models.castbar end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.castbar = value ElvUI_EltreumUI:CastbarEffects() end,
+									},
+									selectmodeltypecast = {
+										order = 122,
+										type = 'select',
+										name = L["Choose between a Default Model or a Custom Model"],
+										values = {
+											["DEFAULT"] = L["Default"],
+											["CUSTOM"] = CUSTOM,
+										},
+										sorting = {
+											"DEFAULT",
+											"CUSTOM",
+										},
+										style = 'radio',
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.models.castbar) end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltypecast end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.modeltypecast = value ElvUI_EltreumUI:CastbarEffects() end,
+									},
+									custommodelpathcast = {
+										order = 123,
+										type = 'input',
+										name = function()
+											if E.Retail then
+												return L["Type the Model ID, such as 165821"]
+											else
+												return L["Type the Model Path, such as spells/corruption_impactdot_med_base.m2"]
+											end
+										end,
+										width = 'full',
+										disabled = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltypecast == "DEFAULT" or (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.models.castbar) end,
+										validate = function(_, value)
+											E.PopupDialogs["ELTRUISMINVALIDMODELCAST"] = {
+												text = L["Invalid Model, you need to add a Model ID/Path"],
+												button1 = OKAY,
+												timeout = 0,
+												whileDead = 1,
+												hideOnEscape = true,
+											}
+											if E.Retail then
+												if tonumber(value) ~= nil then
+													return true
+												else
+													return E:StaticPopup_Show('ELTRUISMINVALIDMODELCAST') and false
+												end
+											else
+												return true
+											end
+										end,
+										get = function()
+											if E.Retail then
+												return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodelcast)
+											else
+												return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassiccast)
+											end
+										end,
+										set = function(_, value)
+											if E.Retail then
+												E.db.ElvUI_EltreumUI.unitframes.models.custommodelcast = tonumber(value)
+											else
+												E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassiccast = tostring(value)
+											end
+											ElvUI_EltreumUI:CastbarEffects()
+										end,
+									},
 								},
-								style = 'radio',
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.models.castbar) end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltypecast end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.modeltypecast = value ElvUI_EltreumUI:CastbarEffects() end,
 							},
-							custommodelpathcast = {
-								order = 123,
-								type = 'input',
-								name = function()
-									if E.Retail then
-										return L["Type the Model ID, such as 165821"]
-									else
-										return L["Type the Model Path, such as spells/corruption_impactdot_med_base.m2"]
-									end
-								end,
-								width = 'full',
-								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltypecast == "DEFAULT" or (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.models.castbar) end,
-								validate = function(_, value)
-									E.PopupDialogs["ELTRUISMINVALIDMODELCAST"] = {
-										text = L["Invalid Model, you need to add a Model ID/Path"],
-										button1 = OKAY,
-										timeout = 0,
-										whileDead = 1,
-										hideOnEscape = true,
-									}
-									if E.Retail then
-										if tonumber(value) ~= nil then
-											return true
-										else
-											return E:StaticPopup_Show('ELTRUISMINVALIDMODELCAST') and false
-										end
-									else
-										return true
-									end
-								end,
-								get = function()
-									if E.Retail then
-										return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodelcast)
-									else
-										return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassiccast)
-									end
-								end,
-								set = function(_, value)
-									if E.Retail then
-										E.db.ElvUI_EltreumUI.unitframes.models.custommodelcast = tonumber(value)
-									else
-										E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassiccast = tostring(value)
-									end
-									ElvUI_EltreumUI:CastbarEffects()
-								end,
-							},
-							headerpower = {
-								order = 124,
-								type = "description",
-								name = L["Power Bar Models"],
-								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
-							},
-							powerbarmodeleffect = {
-								type = 'toggle',
-								name = L["Enable Models/Effects"],
-								order = 125,
-								disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.powerbar end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.powerbar = value ElvUI_EltreumUI:PlayerUFEffects() end,
-							},
-							selectmodeltypepower = {
-								order = 126,
-								type = 'select',
-								name = L["Choose between a Default Model or a Custom Model"],
-								values = {
-									["DEFAULT"] = L["Default"],
-									["CUSTOM"] = CUSTOM,
+							powerbar = {
+								type = 'group',
+								name = L["Power Bar"],
+								order = 3,
+								args = {
+									headerpower = {
+										order = 124,
+										type = "description",
+										name = L["Power Bar Models"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									powerbarmodeleffect = {
+										type = 'toggle',
+										name = L["Enable Models/Effects"],
+										order = 125,
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.models.powerbar end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.powerbar = value ElvUI_EltreumUI:PlayerUFEffects() end,
+									},
+									selectmodeltypepower = {
+										order = 126,
+										type = 'select',
+										name = L["Choose between a Default Model or a Custom Model"],
+										values = {
+											["DEFAULT"] = L["Default"],
+											["CUSTOM"] = CUSTOM,
+										},
+										sorting = {
+											"DEFAULT",
+											"CUSTOM",
+										},
+										style = 'radio',
+										disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.models.powerbar) end,
+										get = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower = value ElvUI_EltreumUI:PlayerUFEffects() end,
+									},
+									custommodelpathpower = {
+										order = 127,
+										type = 'input',
+										name = function()
+											if E.Retail then
+												return L["Type the Model ID, such as 165821"]
+											else
+												return L["Type the Model Path, such as spells/corruption_impactdot_med_base.m2"]
+											end
+										end,
+										width = 'full',
+										disabled = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" or (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.models.powerbar) end,
+										validate = function(_, value)
+											E.PopupDialogs["ELTRUISMINVALIDMODELPOWER"] = {
+												text = L["Invalid Model, you need to add a Model ID/Path"],
+												button1 = OKAY,
+												timeout = 0,
+												whileDead = 1,
+												hideOnEscape = true,
+											}
+											if E.Retail then
+												if tonumber(value) ~= nil then
+													return true
+												else
+													return E:StaticPopup_Show('ELTRUISMINVALIDMODELPOWER') and false
+												end
+											else
+												return true
+											end
+										end,
+										get = function()
+											if E.Retail then
+												return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
+											else
+												return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
+											end
+										end,
+										set = function(_, value)
+											if E.Retail then
+												E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower = tonumber(value)
+											else
+												E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower = tostring(value)
+											end
+											ElvUI_EltreumUI:PlayerUFEffects()
+										end,
+									},
 								},
-								sorting = {
-									"DEFAULT",
-									"CUSTOM",
-								},
-								style = 'radio',
-								disabled = function() return (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.models.powerbar) end,
-								get = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower = value ElvUI_EltreumUI:PlayerUFEffects() end,
-							},
-							custommodelpathpower = {
-								order = 127,
-								type = 'input',
-								name = function()
-									if E.Retail then
-										return L["Type the Model ID, such as 165821"]
-									else
-										return L["Type the Model Path, such as spells/corruption_impactdot_med_base.m2"]
-									end
-								end,
-								width = 'full',
-								disabled = function() return E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" or (not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.models.powerbar) end,
-								validate = function(_, value)
-									E.PopupDialogs["ELTRUISMINVALIDMODELPOWER"] = {
-										text = L["Invalid Model, you need to add a Model ID/Path"],
-										button1 = OKAY,
-										timeout = 0,
-										whileDead = 1,
-										hideOnEscape = true,
-									}
-									if E.Retail then
-										if tonumber(value) ~= nil then
-											return true
-										else
-											return E:StaticPopup_Show('ELTRUISMINVALIDMODELPOWER') and false
-										end
-									else
-										return true
-									end
-								end,
-								get = function()
-									if E.Retail then
-										return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower)
-									else
-										return tostring(E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower)
-									end
-								end,
-								set = function(_, value)
-									if E.Retail then
-										E.db.ElvUI_EltreumUI.unitframes.models.custommodelpower = tonumber(value)
-									else
-										E.db.ElvUI_EltreumUI.unitframes.models.custommodelclassicpower = tostring(value)
-									end
-									ElvUI_EltreumUI:PlayerUFEffects()
-								end,
 							},
 						},
 					},

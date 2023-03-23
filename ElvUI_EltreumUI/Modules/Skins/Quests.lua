@@ -216,6 +216,13 @@ function ElvUI_EltreumUI:SkinQuests()
 					ObjectiveTrackerBonusBannerFrame.Icon3:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-icon
 				end
 
+				local questside
+				if _G.ObjectiveFrameMover then
+					questside = _G.ObjectiveFrameMover:GetPoint()
+				else
+					questside = "RIGHT"
+				end
+
 				--Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua
 				local questmodules = {
 					QUEST_TRACKER_MODULE,
@@ -266,9 +273,15 @@ function ElvUI_EltreumUI:SkinQuests()
 								block.currentLine.Text:SetWordWrap(true)
 							end
 						end
-						if block.itemButton and E.db.ElvUI_EltreumUI.skins.shadow.enable then
-							block.itemButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(block.itemButton.shadow) end
+						if block.itemButton then
+							if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+								block.itemButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if EnhancedShadows then EnhancedShadows:RegisterShadow(block.itemButton.shadow) end
+							end
+							if questside:match("RIGHT") then
+								block.itemButton:ClearAllPoints()
+								block.itemButton:SetPoint("TOPLEFT", block.HeaderText, "TOPLEFT", -60, -3)
+							end
 						end
 						if block.groupFinderButton and E.db.ElvUI_EltreumUI.skins.shadow.enable then
 							block.groupFinderButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
