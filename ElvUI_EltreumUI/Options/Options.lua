@@ -55,6 +55,7 @@ local THANKYOU = {
 	'|cff8E44ADB|r|cff2ECC71lin|r|cff3498DBkii|r',
 	'|cff960000Atwood|r - for some of the role icons',
 	'|cffB50909Dlarge|r - for the German localization',
+	'|cff33937Ffang2hou|r - for the compatibility function',
 }
 
 local DONATORS = {
