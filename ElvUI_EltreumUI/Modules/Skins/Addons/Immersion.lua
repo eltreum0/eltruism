@@ -18,6 +18,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 	if not E.db.general.font then return end
 	if not E.db.general.fontSize then return end
 	if not E.db.general.fontStyle then return end
+	if not E.LSM:Fetch("font", E.db.general.font) then return end
 	if E.db.ElvUI_EltreumUI.skins.immersion then
 		local frames = {
 			_G["ImmersionFrame"].TalkBox.BackgroundFrame,
