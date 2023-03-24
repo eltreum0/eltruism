@@ -141,6 +141,110 @@ local eltruismdif = {
 	["5"] = "|cFFFF0000",
 }
 
+--Flipped Icons
+local reverseclassIcons = {
+	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["HUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["ROGUE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\RogueReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["PRIEST"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PriestReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DEATHKNIGHT"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnightReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["SHAMAN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["MAGE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MageReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["WARLOCK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarlockReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["MONK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MonkReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DRUID"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DruidReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunterReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\EvokerReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+}
+
+--Flipped Class Icons
+local reverseclassIconsBlizzard = {
+	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warrior.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Paladin.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["HUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Hunter.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["ROGUE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Rogue.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["PRIEST"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Priest.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DEATHKNIGHT"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnight.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["SHAMAN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Shaman.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["MAGE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Mage.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["WARLOCK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warlock.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["MONK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Monk.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DRUID"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Druid.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunter.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Evoker.tga:0:0:0:0:64:64:64:0:0:64|t",
+}
+
+--Flipped Alternate Class Icons by Releaf with borders
+local reverseclassIconsReleafborder = {
+	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorIconReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinIconReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["HUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterIconReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["ROGUE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\RogueIconReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["PRIEST"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PriestIconReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DEATHKNIGHT"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnightIconReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["SHAMAN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanIconReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["MAGE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MageIconReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["WARLOCK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarlockIconReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["MONK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MonkIconReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DRUID"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DruidIconReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunterIconReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\EvokerIconReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
+}
+
+--Flipped Class Icons by Blizz with borders
+local reverseclassIconsOutline = {
+	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorShadow.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinShadow.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["HUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterShadow.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["ROGUE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\RogueShadow.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["PRIEST"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PriestShadow.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DEATHKNIGHT"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnightShadow.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["SHAMAN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanShadow.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["MAGE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MageShadow.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["WARLOCK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarlockShadow.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["MONK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MonkShadow.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DRUID"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DruidShadow.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunterShadow.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\EvokerShadow.tga:0:0:0:0:64:64:64:0:0:64|t",
+}
+
+--Flipped Class Icons by Releaf with borders
+local reverseclassIconsOutlineReleaf = {
+	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warrior1.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Paladin1.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["HUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Hunter1.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["ROGUE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Rogue1.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["PRIEST"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Priest1.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DEATHKNIGHT"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnight1.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["SHAMAN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Shaman1.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["MAGE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Mage1.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["WARLOCK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warlock1.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["MONK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Monk1.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DRUID"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Druid1.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunter1.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Evoker1.tga:0:0:0:0:64:64:64:0:0:64|t",
+}
+
+--level difference table based on blizzard's
+local eltruismdif = {
+	["-9"] = "|cFF808080",
+	["-8"] = "|cFF008000",
+	["-7"] = "|cFF008000",
+	["-6"] = "|cFF008000",
+	["-5"] = "|cFF008000",
+	["-4"] = "|cFF008000",
+	["-3"] = "|cFF008000",
+	["-2"] = "|cFFFFFF00",
+	["-1"] = "|cFFFFFF00",
+	["0"] = "|cFFFFFF00",
+	["1"] = "|cFFFFFF00",
+	["2"] = "|cFFFFFF00",
+	["3"] = "|cFFFFA500",
+	["4"] = "|cFFA50000",
+	["5"] = "|cFFFF0000",
+}
+
 --from elvui, modified for gradient
 do
 	local function EltruismGetTitleNPC(unit, custom)
@@ -589,6 +693,101 @@ E:AddTag("eltruism:ReleafIconOutline:player", "UNIT_NAME_UPDATE", function(unit)
 	return icon
 end)
 E:AddTagInfo("eltruism:ReleafIconOutline:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "Shows Class Icons with Outlines by Releaf on Player targets")
+
+--show class icons on all targets
+E:AddTag("eltruism:reverseclass:all", "UNIT_NAME_UPDATE", function(unit)
+	local icon
+	local _ , classes = UnitClass(unit)
+	icon = reverseclassIcons[classes]
+	return icon
+end)
+E:AddTagInfo('eltruism:reverseclass:all', ElvUI_EltreumUI.Name.." "..L["Icons"], L["Shows Flipped Class Icons recolored by Releaf on all targets"])
+
+--show class icons only on players, ty repooc!
+E:AddTag("eltruism:reverseclass:player", "UNIT_NAME_UPDATE", function(unit)
+	if not UnitIsPlayer(unit) then return end
+	local icon
+	local _ , classes = UnitClass(unit)
+	icon = reverseclassIcons[classes]
+	return icon
+end)
+E:AddTagInfo('eltruism:reverseclass:player', ElvUI_EltreumUI.Name.." "..L["Icons"], L["Shows Flipped Class Icons recolored by Releaf on Player targets"])
+
+--alternate class icons on all targets
+E:AddTag("eltruism:reverseblizz:all", "UNIT_NAME_UPDATE", function(unit)
+	local icon
+	local _ , classes = UnitClass(unit)
+	icon = reverseclassIconsBlizzard[classes]
+	return icon
+end)
+E:AddTagInfo('eltruism:reverseblizz:all', ElvUI_EltreumUI.Name.." "..L["Icons"], L["Shows Flipped Class Icons by Blizzard on all targets"])
+
+--alternate class icons on players
+E:AddTag("eltruism:reverseblizz:player", "UNIT_NAME_UPDATE", function(unit)
+	if not UnitIsPlayer(unit) then return end
+	local icon
+	local _ , classes = UnitClass(unit)
+	icon = reverseclassIconsBlizzard[classes]
+	return icon
+end)
+E:AddTagInfo('eltruism:reverseblizz:player', ElvUI_EltreumUI.Name.." "..L["Icons"], L["Shows Flipped Class Icons by Blizzard only on Player targets"])
+
+--alternate class icons on all targets
+E:AddTag("eltruism:reverseReleafBorder:all", "UNIT_NAME_UPDATE", function(unit)
+	local icon
+	local _ , classes = UnitClass(unit)
+	icon = reverseclassIconsReleafborder[classes]
+	return icon
+end)
+E:AddTagInfo('eltruism:reverseReleafBorder:all', ElvUI_EltreumUI.Name.." "..L["Icons"], L["Shows Flipped Class Icons with borders recolored by Releaf on all targets"])
+
+--alternate class icons on players
+E:AddTag("eltruism:reverseReleafBorder:player", "UNIT_NAME_UPDATE", function(unit)
+	if not UnitIsPlayer(unit) then return end
+	local icon
+	local _ , classes = UnitClass(unit)
+	icon = reverseclassIconsReleafborder[classes]
+	return icon
+end)
+E:AddTagInfo('eltruism:reverseReleafBorder:player', ElvUI_EltreumUI.Name.." "..L["Icons"], L["Shows Flipped Class Icons with borders recolored by Releaf on Player targets"])
+
+--class icons with outlines on all targets
+E:AddTag("eltruism:reverseIconOutline:all", "UNIT_NAME_UPDATE", function(unit)
+	local icon
+	local _ , classes = UnitClass(unit)
+	icon = reverseclassIconsOutline[classes]
+	return icon
+end)
+E:AddTagInfo("eltruism:reverseIconOutline:all", ElvUI_EltreumUI.Name.." "..L["Icons"], "Shows Flipped Class Icons with Outlines all targets")
+
+--class icons with otlines on players
+E:AddTag("eltruism:reverseIconOutline:player", "UNIT_NAME_UPDATE", function(unit)
+	if not UnitIsPlayer(unit) then return end
+	local icon
+	local _ , classes = UnitClass(unit)
+	icon = reverseclassIconsOutline[classes]
+	return icon
+end)
+E:AddTagInfo("eltruism:reverseIconOutline:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "Shows Flipped Class Icons with Outlines on Player targets")
+
+--class icons with outlines on all targets
+E:AddTag("eltruism:reverseReleafIconOutline:all", "UNIT_NAME_UPDATE", function(unit)
+	local icon
+	local _ , classes = UnitClass(unit)
+	icon = reverseclassIconsOutlineReleaf[classes]
+	return icon
+end)
+E:AddTagInfo("eltruism:reverseReleafIconOutline:all", ElvUI_EltreumUI.Name.." "..L["Icons"], "Shows Flipped Class Icons with Outlines by Releaf all targets")
+
+--class icons with otlines on players
+E:AddTag("eltruism:reverseReleafIconOutline:player", "UNIT_NAME_UPDATE", function(unit)
+	if not UnitIsPlayer(unit) then return end
+	local icon
+	local _ , classes = UnitClass(unit)
+	icon = reverseclassIconsOutlineReleaf[classes]
+	return icon
+end)
+E:AddTagInfo("eltruism:reverseReleafIconOutline:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "Shows Flipped Class Icons with Outlines by Releaf on Player targets")
 
 -- Releaf Logo
 E:AddTag("releaf", "UNIT_NAME_UPDATE", function()

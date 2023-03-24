@@ -509,6 +509,10 @@ function ElvUI_EltreumUI:PreviewGlow()
 		skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 	end
 
+	if not EltruismGlowPreview.shadow then
+		EltruismGlowPreview:CreateShadow()
+	end
+
 	if EltruismGlowPreview:IsShown() then
 		LCG.PixelGlow_Stop(EltruismGlowPreview)
 		LCG.AutoCastGlow_Stop(EltruismGlowPreview)
