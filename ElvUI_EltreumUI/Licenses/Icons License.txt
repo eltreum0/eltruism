@@ -65,3 +65,5 @@ Icons that belong to Icons8, linked below:
 <a target="_blank" href="https://icons8.com/icon/107509/grim-reaper">Grim Reaper</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 
 <a target="_blank" href="https://icons8.com/icon/81053/gold-bars">Gold Bars</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+
+<a target="_blank" href="https://icons8.com/icon/32445/sorting-arrows-horizontal">Sorting Arrows Horizontal</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
