@@ -15,6 +15,9 @@ end
 --skin immersion
 function ElvUI_EltreumUI:EltruismImmersion()
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end
+	if not E.db.general.font then return end
+	if not E.db.general.fontSize then return end
+	if not E.db.general.fontStyle then return end
 	if E.db.ElvUI_EltreumUI.skins.immersion then
 		local frames = {
 			_G["ImmersionFrame"].TalkBox.BackgroundFrame,
@@ -27,6 +30,9 @@ function ElvUI_EltreumUI:EltruismImmersion()
 
 		if _G["ImmersionFrame"].TalkBox.ProgressionBar then
 			S:HandleStatusBar(_G["ImmersionFrame"].TalkBox.ProgressionBar)
+			local width, height = _G["ImmersionFrame"].TalkBox.ProgressionBar:GetSize()
+			_G["ImmersionFrame"].TalkBox.ProgressionBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(E.myclass, false, false))
+			_G["ImmersionFrame"].TalkBox.ProgressionBar:SetSize(width,height+5)
 		end
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
