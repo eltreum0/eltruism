@@ -258,6 +258,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 
 	--Nameplates
 	CheckMerathilisUI(L["Gradient Nameplate\nHealth/CastBar/Threat"], L["Gradient Nameplate Health"], "db.ElvUI_EltreumUI.unitframes.gradientmode.npenable", "db.mui.nameplates.gradient")
+	CheckMerathilisUI(L["Gradient Nameplate\nHealth/CastBar/Threat"], L["Castbar Shield"], "db.ElvUI_EltreumUI.unitframes.gradientmode.npenable", "db.mui.nameplates.castbarShield")
 
 	--Cooldown
 	CheckMerathilisUI(L["Cooldown Pulse\n(Includes TTS)"], L["Cooldown Pulse"], "db.ElvUI_EltreumUI.skins.doom.enable", "db.mui.cooldownFlash.enable")
