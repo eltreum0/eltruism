@@ -1,6 +1,16 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.7.7
+Added detection for where the Objective Frame is in Retail and used it to move the Quest Button\
+Added several gradient name tags, such as title, guild, realm and more\
+Updated gradient Nameplates to check for MmediaTag's Kick on cd function\
+Updated listing of Tags in ElvUI to show different tag categories\
+Updated Quest Autoaccept to avoid Red Gossip texts (skip texts)\
+Updated Shadow and Light profile's AFK settings\
+Updated Waypoint ETA to decrease memory usage\
+Updated German locale by Dlarge\
+Fixed an issue where quests could become unclickable due to Waypoints in Retail
 ### 3.7.6
 Added multiple tabs to options, revamping many to make them easier to read\
 Fixed issues with Nameplates flashing due to a change in the functions\

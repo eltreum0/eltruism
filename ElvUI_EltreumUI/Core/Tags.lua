@@ -34,6 +34,8 @@ local DoEmote = _G.DoEmote
 local UnitIsUnit = _G.UnitIsUnit
 local UnitPowerMax = _G.UnitPowerMax
 local UnitPower = _G.UnitPower
+local IsPlayerSpell = _G.IsPlayerSpell
+local GetSpecialization = _G.GetSpecialization
 
 -- Alternate Class Icons by Releaf
 local classIcons = {
@@ -141,7 +143,7 @@ local eltruismdif = {
 
 --from elvui, modified for gradient
 do
-	local function GetTitleNPC(unit, custom)
+	local function EltruismGetTitleNPC(unit, custom)
 		if UnitIsPlayer(unit) or (E.Wrath and UnitAffectingCombat('player') and IsInInstance()) then return end
 
 		E.ScanTooltip:SetOwner(_G.UIParent, 'ANCHOR_NONE')
@@ -153,7 +155,7 @@ do
 		local ttText = ttLine and ttLine:GetText()
 		local ttLower = ttText and strlower(ttText)
 
-		if ttLower and not strfind(ttLower, LEVEL) then
+		if ttLower and not ttLower:match(LEVEL) and not ttText:match(LEVEL) then
 			local reaction = UnitReaction(unit, "player")
 			if reaction then
 				if not custom then
@@ -183,18 +185,60 @@ do
 			end
 		end
 	end
-	E.TagFunctions.GetTitleNPC = GetTitleNPC
 
 	E:AddTag('eltruismnpctitle', 'UNIT_NAME_UPDATE', function(unit)
-		return GetTitleNPC(unit)
+		return EltruismGetTitleNPC(unit)
 	end)
 	E:AddTagInfo("eltruismnpctitle", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays NPC title in gradient"])
 
 	E:AddTag('eltruismnpctitle:brackets', 'UNIT_NAME_UPDATE', function(unit)
-		return GetTitleNPC(unit, '<%s>')
+		return EltruismGetTitleNPC(unit, '<%s>')
 	end)
 	E:AddTagInfo("eltruismnpctitle:brackets", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays NPC title in gradient with brackets"])
 end
+
+--because retail paladin is now more complex
+local function retailPaladin(number)
+	if GetSpecialization() == (2 or 1) then
+		if IsPlayerSpell(385639) then
+			if number == 1 then
+				return GetSpellInfo(32223)
+			elseif number == 2 then
+				return GetSpellInfo(465)
+			elseif number == 3 then
+				return GetSpellInfo(317920)
+			elseif number == 4 then
+				return GetSpellInfo(183435)
+			end
+		else
+			if number == 1 then
+				return GetSpellInfo(465)
+			elseif number == 2 then
+				return GetSpellInfo(317920)
+			end
+		end
+	else
+		if IsPlayerSpell(385633) then
+			if number == 1 then
+				return GetSpellInfo(32223)
+			elseif number == 2 then
+				return GetSpellInfo(465)
+			elseif number == 3 then
+				return GetSpellInfo(183435)
+			elseif number == 4 then
+				return GetSpellInfo(317920)
+			end
+		else
+			if number == 1 then
+				return GetSpellInfo(32223)
+			elseif number == 2 then
+				return GetSpellInfo(183435)
+			end
+		end
+	end
+end
+
+local stanceBackup = 0 --store previous stance to force refresh it
 
 --ty a lot azilroka
 local stanceID = {
@@ -204,10 +248,10 @@ local stanceID = {
 		[3] = not E.Retail and GetSpellInfo(48265),
 	},
 	PALADIN = {
-		[1] = E.Retail and GetSpellInfo(32223) or GetSpellInfo(465),
-		[2] = E.Retail and GetSpellInfo(465) or GetSpellInfo(7294),
-		[3] = E.Retail and GetSpellInfo(317920) or GetSpellInfo(19746),
-		[4] = E.Retail and GetSpellInfo(183435) or GetSpellInfo(19876),
+		[1] = (E.Retail and retailPaladin(1)) or GetSpellInfo(465),
+		[2] = (E.Retail and retailPaladin(2)) or GetSpellInfo(7294),
+		[3] = (E.Retail and retailPaladin(3)) or GetSpellInfo(19746),
+		[4] = (E.Retail and retailPaladin(4)) or GetSpellInfo(19746),
 		[5] = not E.Retail and GetSpellInfo(19888),
 		[6] = not E.Retail and GetSpellInfo(19891),
 		[7] = not E.Retail and GetSpellInfo(32223),
@@ -218,6 +262,32 @@ local stanceID = {
 		[3] = not E.Retail and GetSpellInfo(2458),
 	}
 }
+
+--because in retail talent changes can occur more freely and change known stances, refresh table
+local function refreshstance()
+	stanceBackup = 0
+	stanceID = {
+		DEATHKNIGHT = {
+			[1] = not E.Retail and GetSpellInfo(48266),
+			[2] = not E.Retail and GetSpellInfo(48263),
+			[3] = not E.Retail and GetSpellInfo(48265),
+		},
+		PALADIN = {
+			[1] = (E.Retail and retailPaladin(1)) or GetSpellInfo(465),
+			[2] = (E.Retail and retailPaladin(2)) or GetSpellInfo(7294),
+			[3] = (E.Retail and retailPaladin(3)) or GetSpellInfo(19746),
+			[4] = (E.Retail and retailPaladin(4)) or GetSpellInfo(27151),
+			[5] = not E.Retail and GetSpellInfo(19888),
+			[6] = not E.Retail and GetSpellInfo(19891),
+			[7] = not E.Retail and GetSpellInfo(32223),
+		},
+		WARRIOR = {
+			[1] = not E.Retail and GetSpellInfo(2457),
+			[2] = not E.Retail and GetSpellInfo(71),
+			[3] = not E.Retail and GetSpellInfo(2458),
+		}
+	}
+end
 
 local classcolorcast = {
 	["DEATHKNIGHT"]	= "FFC41E3A",
@@ -980,7 +1050,9 @@ E:AddTagInfo("eltruism:smartlevel", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"
 E:AddTag("eltruism:stance", 'UNIT_AURA', function(unit)
 	local stance = GetShapeshiftForm()
 	local stanceInfo = stanceID[E.myclass] and stanceID[E.myclass][stance]
-
+	if stanceBackup ~= stance then
+		refreshstance()
+	end
 	if stanceInfo then
 		return stanceInfo, tostring(stance)
 	end
@@ -1078,3 +1150,11 @@ E:AddTag("eltruism:lowhealth", "UNIT_HEALTH UNIT_MAXHEALTH", function(unit,_,arg
 	end
 end)
 E:AddTagInfo("eltruism:lowhealth", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Plays a voiced emote when you have low health. Usage: [eltruism:lowhealth{1}] as an example of 1%"])
+
+E:AddTag("eltruism:healermana", 'UNIT_POWER_FREQUENT UNIT_MAXPOWER', function(unit)
+	local role = UnitGroupRolesAssigned(unit)
+	if role and role == 'HEALER' then
+		return math.floor((UnitPower(unit, Enum.PowerType.Mana)/UnitPowerMax(unit, Enum.PowerType.Mana))*100)
+	end
+end)
+E:AddTagInfo("eltruism:healermana", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows mana if the unit is a healer"])

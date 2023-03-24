@@ -1,383 +1,306 @@
 local E, L, V, P, G = unpack(ElvUI)
+local S = E:GetModule('Skins')
 local compatibilityran = false
 local addonname = "NAME"
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local GetAddOnInfo = _G.GetAddOnInfo
 local select = _G.select
+local gsub = _G.gsub
+local ipairs = _G.ipairs
+local type = _G.type
+local format = _G.format
+local CreateFrame = _G.CreateFrame
+local strsplit = _G.strsplit
+local strlen = _G.strlen
+local classcolor = E:ClassColor(E.myclass, true)
 
---check for stuff that would cause problems
+--adapted from windtools with authorization from fang2hou, ty again fang
+
+local function ConstructCompatibilityFrame()
+	local frame = CreateFrame("Frame", "EltruismCompatibilityFrame", E.UIParent)
+	frame:SetSize(550, 500)
+	frame:SetPoint("CENTER")
+	--frame:CreateBackdrop("Transparent")
+	S:HandleFrame(frame)
+	frame.numModules = 0
+	frame:Hide()
+	frame:SetScript("OnHide", function()
+		if frame.configChanged then
+			E:StaticPopup_Show("PRIVATE_RL")
+		end
+	end)
+	if not frame.shadow then
+		frame:CreateShadow()
+	end
+
+	frame:SetFrameStrata("TOOLTIP")
+	frame:SetFrameLevel(9000)
+
+	local close = CreateFrame("Button", nil, frame, "UIPanelCloseButton, BackdropTemplate")
+	close:SetScript("OnClick", function() frame:Hide() end)
+	close:SetPoint("TOPRIGHT", frame, "TOPRIGHT")
+	close:SetFrameLevel(frame:GetFrameLevel() + 1)
+	S:HandleCloseButton(close)
+
+	local title = frame:CreateFontString(nil, "ARTWORK")
+	title:FontTemplate()
+	title:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
+	title:SetText(select(2,GetAddOnInfo("ElvUI_EltreumUI")).." "..L["Compatibility Check"])
+	title:SetPoint("TOP", frame, "TOP", 0, -10)
+
+	local desc = frame:CreateFontString(nil, "ARTWORK")
+	desc:FontTemplate()
+	desc:SetJustifyH("CENTER")
+	desc:SetWidth(420)
+	desc:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
+	desc:SetText(L["AddOns that do the same thing can cause issues, to prevent errors you should pick between them below. Choose what you prefer!"])
+	desc:SetPoint("TOP", frame, "TOP", 0, -40)
+
+	local largeTip = frame:CreateFontString(nil, "ARTWORK")
+	largeTip:FontTemplate()
+	largeTip:SetJustifyH("CENTER")
+	largeTip:SetWidth(500)
+	largeTip:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
+	largeTip:SetText("|c"..E:RGBToHex(classcolor.r,classcolor.g,classcolor.b, 'ff')..L["Choose the option you would like to |cff1784d1use|r"].."|r")
+	largeTip:SetPoint("TOP", desc, "BOTTOM", 0, -10)
+
+	local bottomDesc = frame:CreateFontString(nil, "ARTWORK")
+	bottomDesc:FontTemplate()
+	bottomDesc:SetJustifyH("CENTER")
+	bottomDesc:SetWidth(530)
+	bottomDesc:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
+	bottomDesc:SetText(E.NewSign ..format(L["If you find the %s option has issues, alert me via Discord or GitHub issue."], select(2,GetAddOnInfo("ElvUI_EltreumUI"))))
+	bottomDesc:SetPoint("BOTTOM", frame, "BOTTOM", 0, 10)
+
+	local completeButton = CreateFrame("Button", "EltruismCompatibilityFrameCompleteButton", frame, "UIPanelButtonTemplate, BackdropTemplate")
+	completeButton.Text:SetText(L["Complete"])
+	completeButton.Text:SetJustifyH("CENTER")
+	completeButton.Text:SetJustifyV("CENTER")
+	completeButton.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
+	completeButton:SetSize(350, 35)
+	completeButton:SetPoint("BOTTOM", bottomDesc, "TOP", 0, 10)
+	S:HandleButton(completeButton)
+	completeButton:SetScript("OnClick",function() frame:Hide() end)
+
+	local scrollFrameParent = CreateFrame("ScrollFrame", "EltruismCompatibilityFrameScrollFrameParent", frame, "UIPanelScrollFrameTemplate")
+	scrollFrameParent:CreateBackdrop("Transparent")
+	scrollFrameParent:SetPoint("TOPLEFT", largeTip, "BOTTOMLEFT", 0, -10)
+	scrollFrameParent:SetPoint("RIGHT", frame, "RIGHT", -32, 0)
+	scrollFrameParent:SetPoint("BOTTOM", completeButton, "TOP", 0, 10)
+	S:HandleScrollBar(scrollFrameParent.ScrollBar)
+	local scrollFrame = CreateFrame("Frame", "EltruismCompatibilityFrameScrollFrame", scrollFrameParent)
+	scrollFrame:SetSize(scrollFrameParent:GetSize())
+	scrollFrameParent:SetScrollChild(scrollFrame)
+	frame.scrollFrameParent = scrollFrameParent
+	frame.scrollFrame = scrollFrame
+end
+
+local function AddButtonToCompatibilityFrame(data)
+	_G["EltruismCompatibilityFrame"].numModules = _G["EltruismCompatibilityFrame"].numModules + 1
+
+	local leftButton = CreateFrame("Button","EltruismCompatibilityFrameLeftButton" .. _G["EltruismCompatibilityFrame"].numModules,_G["EltruismCompatibilityFrame"].scrollFrame,"UIPanelButtonTemplate, BackdropTemplate")
+	leftButton.Text:SetText(format("%s\n%s", data.module1, data.plugin1))
+	leftButton.Text:SetJustifyH("CENTER")
+	leftButton.Text:SetJustifyV("CENTER")
+	leftButton.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
+	leftButton:SetSize(220, 40)
+	leftButton:SetPoint("TOPLEFT", _G["EltruismCompatibilityFrame"].scrollFrame, "TOPLEFT", 5, -_G["EltruismCompatibilityFrame"].numModules * 50 + 45)
+	S:HandleButton(leftButton)
+	leftButton:SetScript("OnClick",function(self)
+		data.func1()
+		_G["EltruismCompatibilityFrame"].configChanged = true
+		local name = gsub(self:GetName(), "LeftButton", "MiddleTexture")
+		if _G[name] then
+			_G[name]:SetTexture(E.Media.Textures.ArrowUp)
+			_G[name]:SetRotation(S.ArrowRotation.left)
+			_G[name]:SetVertexColor(0.27, 0.50, 0.70)
+		end
+	end)
+
+	local middleTexture = _G["EltruismCompatibilityFrame"].scrollFrame:CreateTexture("EltruismCompatibilityFrameMiddleTexture" .. _G["EltruismCompatibilityFrame"].numModules, "ARTWORK")
+	middleTexture:SetPoint("CENTER")
+	middleTexture:SetSize(20, 20)
+	middleTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Icons\\choice.tga")
+	middleTexture:SetVertexColor(1, 1, 1)
+	middleTexture:SetPoint("CENTER", _G["EltruismCompatibilityFrame"].scrollFrame, "TOP", 0, -_G["EltruismCompatibilityFrame"].numModules * 50 + 25)
+
+	local rightButton = CreateFrame("Button","EltruismCompatibilityFrameRightButton" .. _G["EltruismCompatibilityFrame"].numModules,_G["EltruismCompatibilityFrame"].scrollFrame,"UIPanelButtonTemplate, BackdropTemplate")
+	rightButton.Text:SetText(format("%s\n%s", data.module2, data.plugin2))
+
+	rightButton.Text:SetJustifyH("CENTER")
+	rightButton.Text:SetJustifyV("CENTER")
+	rightButton.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
+	rightButton:SetSize(220, 40)
+	rightButton:SetPoint("TOPRIGHT", _G["EltruismCompatibilityFrame"].scrollFrame, "TOPRIGHT", -5, -_G["EltruismCompatibilityFrame"].numModules * 50 + 45)
+	S:HandleButton(rightButton)
+	rightButton:SetScript("OnClick",function(self)
+		data.func2()
+		_G["EltruismCompatibilityFrame"].configChanged = true
+		local name = gsub(self:GetName(), "RightButton", "MiddleTexture")
+		if _G[name] then
+			_G[name]:SetTexture(E.Media.Textures.ArrowUp)
+			_G[name]:SetRotation(S.ArrowRotation.right)
+			_G[name]:SetVertexColor(1, 0.20, 0.10)
+		end
+	end)
+end
+
+local function GetDatabaseRealValue(path)
+	local accessTable, accessKey, accessValue = nil, nil, E
+
+	for _, key in ipairs {strsplit(".", path)} do
+		if key and strlen(key) > 0 then
+			if accessValue and accessValue[key] ~= nil then
+				if type(accessValue[key]) == "boolean" then
+					accessTable = accessValue
+					accessKey = key
+				end
+				accessValue = accessValue[key]
+			elseif accessValue[key] == nil then --its the default value so not exported/present
+				accessTable = true
+				accessKey = key
+			else
+				if E.db.ElvUI_EltreumUI.dev then
+					ElvUI_EltreumUI:Print("[Compatibility] database path not found\n" .. path)
+				end
+				return
+			end
+		end
+	end
+
+	return accessTable, accessKey, accessValue
+end
+
+local function GetCheckCompatibilityFunction(targetAddonName, targetAddonLocales,isToggleInstead)
+	if not IsAddOnLoaded(targetAddonName) then
+		return E.noop
+	end
+
+	if not isToggleInstead then
+		return function(myModuleName, targetAddonModuleName, myDB, targetAddonDB)
+			if not (myDB and targetAddonDB and type(myDB) == "string" and type(targetAddonDB) == "string") then
+				return
+			end
+			local myTable, myKey, myValue = GetDatabaseRealValue(myDB)
+			local targetTable, targetKey, targetValue = GetDatabaseRealValue(targetAddonDB)
+			if myValue == true and targetValue == true then
+				AddButtonToCompatibilityFrame({
+					module1 = myModuleName,
+					plugin1 = select(2,GetAddOnInfo("ElvUI_EltreumUI")),
+					func1 = function()
+						myTable[myKey] = true
+						targetTable[targetKey] = false
+					end,
+					module2 = targetAddonModuleName,
+					plugin2 = targetAddonLocales,
+					func2 = function()
+						myTable[myKey] = false
+						targetTable[targetKey] = true
+					end
+				})
+			end
+		end
+	else
+		return function(myModuleName, targetAddon, myDB)
+			if not (myDB and targetAddonName) then
+				return
+			end
+			local myTable, myKey, myValue = GetDatabaseRealValue(myDB)
+			if myValue == true and IsAddOnLoaded(targetAddonName) then
+				AddButtonToCompatibilityFrame({
+					module1 = myModuleName,
+					plugin1 = select(2,GetAddOnInfo("ElvUI_EltreumUI")),
+					func1 = function()
+						myTable[myKey] = true
+						DisableAddOn(targetAddonName)
+					end,
+					module2 = "AddOn:",
+					plugin2 = select(2,GetAddOnInfo(targetAddonName)),
+					func2 = function()
+						myTable[myKey] = false
+						EnableAddOn(targetAddonName)
+					end
+				})
+			end
+		end
+	end
+end
+
 function ElvUI_EltreumUI:CheckCompatibility()
-	if IsAddOnLoaded("ElvUI_MerathilisUI") then
 
-		if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and (E.db.mui.armory.character.classIcon or E.db.mui.armory.character.classIcon == nil) then
-			E.db.mui.armory.character.classIcon = false
-			E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
+	ConstructCompatibilityFrame()
 
-		if (E.db.ElvUI_EltreumUI.skins.expandarmorybg or E.db.ElvUI_EltreumUI.skins.classicarmory) and (E.db.mui.armory.character.enable or E.db.mui.armory.character.enable == nil) then
-			E.db.mui.armory.character.enable = false
-			E.db.ElvUI_EltreumUI.skins.expandarmorybg = true
-			E.db.ElvUI_EltreumUI.skins.classicarmory = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
+	--ElvUI plugins
+	local CheckMerathilisUI = GetCheckCompatibilityFunction("ElvUI_MerathilisUI", select(2,GetAddOnInfo("ElvUI_MerathilisUI")),false)
+	local CheckWindTools = GetCheckCompatibilityFunction("ElvUI_WindTools", select(2,GetAddOnInfo("ElvUI_WindTools")),false)
 
-		--E.private["mui"]["skins"]["blizzard"]["character"] = false --makes it so the icon overwrites eltruism's
+	--other addons that are disable/enable
+	local CheckDeja = GetCheckCompatibilityFunction("DejaCharacterStats", select(2,GetAddOnInfo("DejaCharacterStats")),true)
+	local CheckKaliel = GetCheckCompatibilityFunction("!KalielsTracker", select(2,GetAddOnInfo("!KalielsTracker")),true)
+	local CheckWabbit = GetCheckCompatibilityFunction("Who Framed Watcher Wabbit", select(2,GetAddOnInfo("Who Framed Watcher Wabbit")),true)
+	local CheckCQL = GetCheckCompatibilityFunction("ClassicQuestLog", select(2,GetAddOnInfo("ClassicQuestLog")),true)
+	local CheckSorha = GetCheckCompatibilityFunction("SorhaQuestLog", select(2,GetAddOnInfo("SorhaQuestLog")),true)
+	local CheckDoom = GetCheckCompatibilityFunction("Doom_CooldownPulse", select(2,GetAddOnInfo("Doom_CooldownPulse")),true)
 
-		if (E.db.ElvUI_EltreumUI.skins.expandarmorybg or E.db.ElvUI_EltreumUI.skins.classicarmory) and (E.db.mui.armory.inspect.enable or E.db.mui.armory.inspect.enable == nil) then
-			E.db.mui.armory.inspect.enable = false
-			E.db.ElvUI_EltreumUI.skins.expandarmorybg = true
-			E.db.ElvUI_EltreumUI.skins.classicarmory = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
+	--Merathilis UI
+	CheckMerathilisUI(L["Customizeable Class Icons"], L["Class Icons"], "db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel", "db.mui.armory.character.classIcon")
+	CheckMerathilisUI(L["Character Panel Stats/Art"], L["Character Panel"], "db.ElvUI_EltreumUI.skins.classicarmory", "db.mui.armory.character.enable")
+	CheckMerathilisUI(L["Gradient Nameplate\nHealth/CastBar/Threat"], L["Gradient Nameplate Health"], "db.ElvUI_EltreumUI.unitframes.gradientmode.npenable", "db.mui.nameplates.gradient")
+	CheckMerathilisUI(L["Custom Role Icons"], L["Role Icons"], "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "db.mui.unitframes.roleIcons.enable")
+	CheckMerathilisUI(L["Cooldown Pulse\n(Includes TTS)"], L["Cooldown Pulse"], "db.ElvUI_EltreumUI.skins.doom.enable", "db.mui.cooldownFlash.enable")
+	CheckMerathilisUI(format("%s\n%s", L["Waypoints"], L["Autopin, Time to Arrive"]), format("%s\n%s", L["Waypoints"], L["Autopin"]), "db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable", "db.mui.maps.superTracker.enable")
+	CheckMerathilisUI(format("%s\n%s", L["Waypoints"], L["Chat Command"]), format("%s\n%s", L["Waypoints"], L["Chat Command"]), "db.ElvUI_EltreumUI.waypoints.waytext.enable", "db.mui.mapssuperTracker.waypointParse.enable")
+	CheckMerathilisUI(L["CastBar Custom Spark/Texture"], L["CastBar"], "db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable", "db.mui.unitframes.castbar.spark.enable")
+	CheckMerathilisUI(L["Combat Alert"], L["Combat Alert"], "db.ElvUI_EltreumUI.loot.loottext.combatindicator", "db.mui.CombatAlert.enable")
+	CheckMerathilisUI(L["Unitframe/Chat Role Icons"], L["Chat Role Icons"], "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "db.mui.chat.roleIcons.enable")
+	CheckMerathilisUI(L["Chat Loot Icons"], L["Chat Link Icons"], "db.ElvUI_EltreumUI.chat.looticons", "db.mui.chat.chatLink.enable")
+	CheckMerathilisUI(L["Quests Skin"], L["Quests Skin"], "db.ElvUI_EltreumUI.skins.quests", "db.mui.blizzard.objectiveTracker.enable")
+	CheckMerathilisUI(L["Gradient Zone/Mail/Quest Text"], L["Zone Text"], "db.ElvUI_EltreumUI.skins.zones", "db.mui.media.zoneText.enable")
+	CheckMerathilisUI(L["Gradient Zone/Mail/Quest Text"], L["Mail Text"], "db.ElvUI_EltreumUI.skins.zones", "db.mui.media.miscText.mail.enable")
+	CheckMerathilisUI(L["Custom Power Models"], L["Quest Text"], "db.ElvUI_EltreumUI.unitframes.models.powerbar", "db.mui.unitframes.power.enable")
+	CheckMerathilisUI(L["Custom Gradient Details"], L["Gradient Details"], "db.ElvUI_EltreumUI.skins.details", "db.mui.skins.addonSkins.dt")
+	CheckMerathilisUI(L["Gradient BigWigs"], L["BigWigs"], "db.ElvUI_EltreumUI.skins.bigwigs", "private.mui.skins.addonSkins.bw.enable")
+	CheckMerathilisUI(L["Gradient BigWigs"], L["BigWigs Queue Timer"], "db.ElvUI_EltreumUI.skins.bigwigs", "private.mui.skins.addonSkins.bw.queueTimer.enable")
+	CheckMerathilisUI(L["BugSack"], L["BugSack"], "db.ElvUI_EltreumUI.skins.bugsack", "db.mui.skins.addonSkins.bs")
+	CheckMerathilisUI(L["Clique"], L["Clique"], "db.ElvUI_EltreumUI.skins.clique", "db.mui.skins.addonSkins.cl")
+	CheckMerathilisUI(L["Immersion"], L["Immersion"], "db.ElvUI_EltreumUI.skins.immersion", "db.mui.skins.addonSkins.imm")
 
-		if E.db.mui.nameplates.gradient or E.db.mui.nameplates.gradient == nil then
-			E.db.mui.nameplates.gradient = false
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
+	--WindTools
+	CheckWindTools(format("%s\n%s", L["Waypoints"], L["Autopin, Time to Arrive"]), format("%s\n%s", L["Waypoints"], L["Autopin"]), "db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable", "private.WT.maps.superTracker.enable")
+	CheckWindTools(format("%s\n%s", L["Waypoints"], L["Chat Command"]), format("%s\n%s", L["Waypoints"], L["Chat Command"]), "db.ElvUI_EltreumUI.waypoints.waytext.enable", "private.WT.maps.superTracker.waypointParse.enable")
+	CheckWindTools(format("%s\n%s", L["Quests Skin"], L["And Mover"]), L["Quests Skin"], "db.ElvUI_EltreumUI.skins.quests", "private.WT.quest.objectiveTracker.enable")
+	CheckWindTools(L["Map Scale"], L["Map Scale"], "db.ElvUI_EltreumUI.otherstuff.worldmapscale", "private.WT.maps.worldMap.scale.enable")
+	CheckWindTools(L["Shadows"], L["Shadows"], "db.ElvUI_EltreumUI.skins.shadow.enable", "private.WT.skins.shadow")
+	CheckWindTools(L["Unitframe/Chat Role Icons"], L["Unitframe Role Icons"], "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "private.WT.unitFrames.roleIcon.enable")
+	CheckWindTools(L["Combat Alert"], L["Combat Alert"], "db.ElvUI_EltreumUI.loot.loottext.combatindicator", "db.WT.combat.combatAlert.text")
+	CheckWindTools(L["Keystone Link/Autoinsert"], L["Keystone Autoinsert"], "db.ElvUI_EltreumUI.otherstuff.mpluskeys", "db.WT.combat.quickKeystone.enable")
+	CheckWindTools(L["Fast Loot"], L["Fast Loot"], "db.ElvUI_EltreumUI.loot.fastloot", "db.WT.item.fastLoot.enable")
+	CheckWindTools(L["Type Delete"], L["Type Delete"], "db.ElvUI_EltreumUI.otherstuff.delete", "db.WT.item.delete.enable")
+	CheckWindTools(L["Quest Autoaccept"], L["Quest Autoaccept"], "db.ElvUI_EltreumUI.quests.autoaccept", "db.WT.quest.turnIn.enable")
+	CheckWindTools(L["Chat Loot Item Level"], L["Chat Loot Item Level"], "db.ElvUI_EltreumUI.chat.itemlevels", "db.WT.social.chatLink.level")
+	CheckWindTools(L["Chat Loot Icons"], L["Chat Loot Icons"], "db.ElvUI_EltreumUI.chat.looticons", "db.WT.social.chatLink.icon")
+	CheckWindTools(L["Gradient BigWigs"], L["BigWigs"], "db.ElvUI_EltreumUI.skins.bigwigs", "private.WT.skins.addons.bigWigs")
+	CheckWindTools(L["Gradient BigWigs"], L["BigWigs Queue Timer"], "db.ElvUI_EltreumUI.skins.bigwigs", "private.WT.skins.addons.bigWigsQueueTimer")
+	CheckWindTools(L["BugSack"], L["BugSack"], "db.ElvUI_EltreumUI.skins.bugsack", "private.WT.skins.addons.bugSack")
+	CheckWindTools(L["Immersion"], L["Immersion"], "db.ElvUI_EltreumUI.skins.immersion", "private.WT.skins.addons.immersion")
+	CheckWindTools(L["RareScanner"], L["RareScanner"], "db.ElvUI_EltreumUI.skins.rarescanner", "private.WT.skins.addons.rareScanner")
+	CheckWindTools(L["SimulationCraft"], L["SimulationCraft"], "db.ElvUI_EltreumUI.skins.simulationcraft", "private.WT.skins.addons.simulationcraft")
 
-		if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons and (E.db.mui.unitframes.roleIcons.enable or E.db.mui.unitframes.roleIcons.enable == nil) then
-			E.db.mui.unitframes.roleIcons.enable = false
-			E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
+	--other addons that are a disable/enable deal due to not being elvui plugins
+	CheckDeja(L["Character Panel Stats/Art"], L["DejaCharacterStats"], "db.ElvUI_EltreumUI.skins.classicarmory", "DejaCharacterStats")
+	CheckKaliel(L["Quests Skin"], L["!KalielsTracker"], "db.ElvUI_EltreumUI.skins.quests", "!KalielsTracker")
+	CheckWabbit(L["Quests Skin"], L["Who Framed Watcher Wabbit"], "db.ElvUI_EltreumUI.skins.quests", "Who Framed Watcher Wabbit")
+	CheckCQL(L["Quests Skin"], L["ClassicQuestLog"], "db.ElvUI_EltreumUI.skins.quests", "ClassicQuestLog")
+	CheckSorha(L["Quests Skin"], L["SorhaQuestLog"], "db.ElvUI_EltreumUI.skins.quests", "SorhaQuestLog")
+	CheckDoom(L["Cooldown"], L["Doom_CooldownPulse"], "db.ElvUI_EltreumUI.skins.doom.enable", "Doom_CooldownPulse")
 
-		if E.db.ElvUI_EltreumUI.skins.doom.enable and (E.db.mui.cooldownFlash.enable or E.db.mui.cooldownFlash.enable == nil) then
-			E.db.mui.cooldownFlash.enable = false
-			E.db.ElvUI_EltreumUI.skins.doom.enable = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable and (E.db.mui.maps.superTracker.enable or E.db.mui.maps.superTracker.enable == nil) then
-			E.db.mui.maps.superTracker.enable = false
-			E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin and (E.db.mui.maps.superTracker.autoTrackWaypoint or E.db.mui.maps.superTracker.autoTrackWaypoint == nil) then
-			E.db.mui.maps.superTracker.autoTrackWaypoint = false
-			E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable and (E.db.mui.unitframes.castbar.spark.enable or E.db.mui.unitframes.castbar.spark.enable == nil) then
-			E.db.mui.unitframes.castbar.spark.enable = false
-			E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture and (E.db.mui.unitframes.castbar.enable or E.db.mui.unitframes.castbar.enable == nil) then
-			E.db.mui.unitframes.castbar.enable = false
-			E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if E.db.ElvUI_EltreumUI.loot.loottext.combatindicator and (E.db.mui.CombatAlert.enable or E.db.mui.CombatAlert.enable == nil) then
-			E.db.mui.CombatAlert.enable = false
-			E.db.ElvUI_EltreumUI.loot.loottext.combatindicator = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons and (E.db.mui.chat.roleIcons.enable or E.db.mui.chat.roleIcons.enable == nil) then
-			E.db.mui.chat.roleIcons.enable = false
-			E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if E.db.ElvUI_EltreumUI.chat.looticons and (E.db.mui.chat.chatLink.enable or E.db.mui.chat.chatLink.enable == nil) then
-			E.db.mui.chat.chatLink.enable = false
-			E.db.ElvUI_EltreumUI.chat.looticons = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if E.db.ElvUI_EltreumUI.skins.quests and (E.db.mui.blizzard.objectiveTracker.enable or E.db.mui.blizzard.objectiveTracker.enable == nil) then
-			E.db.mui.blizzard.objectiveTracker.enable = false
-			E.db.ElvUI_EltreumUI.skins.quests = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if E.db.ElvUI_EltreumUI.skins.zones and (E.db.mui.media.zoneText.enable or E.db.mui.media.zoneText.enable == nil) then
-			E.db.mui.media.zoneText.enable = false
-			E.db.ElvUI_EltreumUI.skins.zones = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if E.db.ElvUI_EltreumUI.skins.zones and (E.db.mui.media.miscText.mail.enable or E.db.mui.media.miscText.mail.enable == nil) then
-			E.db.mui.media.miscText.mail.enable = false
-			E.db.ElvUI_EltreumUI.skins.zones = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if E.db.ElvUI_EltreumUI.skins.zones and (E.db.mui.media.miscText.gossip.enable or E.db.mui.media.miscText.gossip.enable == nil) then
-			E.db.mui.media.miscText.gossip.enable = false
-			E.db.ElvUI_EltreumUI.skins.zones = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if E.db.ElvUI_EltreumUI.skins.zones and (E.db.mui.media.miscText.questFontSuperHuge.enable or E.db.mui.media.miscText.questFontSuperHuge.enable == nil) then
-			E.db.mui.media.miscText.questFontSuperHuge.enable = false
-			E.db.ElvUI_EltreumUI.skins.zones = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if E.db.mui.unitframes.power.enable or E.db.mui.unitframes.power.enable == nil then
-			E.db.mui.unitframes.power.enable = false
-			E.db.ElvUI_EltreumUI.unitframes.models.powerbar = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if E.private.mui.skins.addonSkins.dt or E.private.mui.skins.addonSkins.dt == nil then
-			E.private.mui.skins.addonSkins.dt = false
-			E.db.ElvUI_EltreumUI.skins.details = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if (E.private.mui.skins.addonSkins.bw.queueTimer.enable or E.private.mui.skins.addonSkins.bw.enable) and E.db.ElvUI_EltreumUI.skins.bigwigs then
-			E.private.mui.skins.addonSkins.bw.queueTimer.enable = false
-			E.private.mui.skins.addonSkins.bw.enable = false
-			E.db.ElvUI_EltreumUI.skins.bigwigs = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if E.db.ElvUI_EltreumUI.skins.bugsack and (E.private.mui.skins.addonSkins.bs or E.private.mui.skins.addonSkins.bs == nil) then
-			E.private.mui.skins.addonSkins.bs = false
-			E.db.ElvUI_EltreumUI.skins.bugsack = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if E.db.ElvUI_EltreumUI.skins.clique and (E.private.mui.skins.addonSkins.cl or E.private.mui.skins.addonSkins.cl == nil) then
-			E.private.mui.skins.addonSkins.cl = false
-			E.db.ElvUI_EltreumUI.skins.clique = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-		if E.db.ElvUI_EltreumUI.skins.immersion and (E.private.mui.skins.addonSkins.imm or E.private.mui.skins.addonSkins.imm == nil) then
-			E.private.mui.skins.addonSkins.imm = false
-			E.db.ElvUI_EltreumUI.skins.immersion = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI"))
-		end
-
-	end
-
-	if IsAddOnLoaded("ElvUI_WindTools") then
-		if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable and (E.private.WT.maps.superTracker.enable or E.private.WT.maps.superTracker.enable == nil) then
-			E.private.WT.maps.superTracker.enable = false
-			E.private.WT.maps.superTracker.noUnit = false
-			E.private.WT.maps.superTracker.waypointParse.command = false
-			E.private.WT.maps.superTracker.waypointParse.enable = false
-			E.private.WT.maps.superTracker.waypointParse.worldMapInput = false
-			E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if E.db.ElvUI_EltreumUI.skins.quests and (E.private.WT.quest.objectiveTracker.enable or E.private.WT.quest.objectiveTracker.enable == nil) then
-			E.private.WT.quest.objectiveTracker.enable = false
-			E.db.ElvUI_EltreumUI.skins.quests = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin and (E.private.WT.maps.superTracker.autoTrackWaypoint or E.private.WT.maps.superTracker.autoTrackWaypoint == nil) then
-			E.private.WT.maps.superTracker.autoTrackWaypoint = false
-			E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if E.db.ElvUI_EltreumUI.otherstuff.worldmapscale and (E.private.WT.maps.worldMap.scale.enable or E.private.WT.maps.worldMap.scale.enable == nil) then
-			E.db.ElvUI_EltreumUI.otherstuff.worldmapscale = true
-			E.private.WT.maps.worldMap.scale.enable = false
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if E.db.ElvUI_EltreumUI.skins.shadow.enable and (E.private.WT.skins.shadow or E.private.WT.skins.shadow == nil) then
-			E.private.WT.skins.shadow = false
-			E.db.ElvUI_EltreumUI.skins.shadow.enable = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons and (E.private.WT.unitFrames.roleIcon.enable or E.private.WT.unitFrames.roleIcon.enable == nil) then
-			E.private.WT.unitFrames.roleIcon.enable = false
-			E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if E.db.ElvUI_EltreumUI.loot.loottext.combatindicator and (E.db.WT.combat.combatAlert.text or E.db.WT.combat.combatAlert.text == nil) then
-			E.db.WT.combat.combatAlert.text = false
-			E.db.ElvUI_EltreumUI.loot.loottext.combatindicator = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if E.db.ElvUI_EltreumUI.otherstuff.mpluskeys and (E.db.WT.combat.quickKeystone.enable or E.db.WT.combat.quickKeystone.enable == nil) then
-			E.db.WT.combat.quickKeystone.enable = false
-			E.db.ElvUI_EltreumUI.otherstuff.mpluskeys = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if (E.db.ElvUI_EltreumUI.loot.fastloot or E.db.ElvUI_EltreumUI.loot.lootwishlistwarning or E.db.ElvUI_EltreumUI.loot.fastlootfilter or E.db.ElvUI_EltreumUI.loot.lootwishlistfilter) and (E.db.WT.item.fastLoot.enable or E.db.WT.item.fastLoot.enable == nil) then
-			E.db.WT.item.fastLoot.enable = false
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if E.db.ElvUI_EltreumUI.otherstuff.delete and (E.db.WT.item.delete.enable or E.db.WT.item.delete.enable == nil) then
-			E.db.WT.item.delete.enable = false
-			E.db.ElvUI_EltreumUI.otherstuff.delete = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if E.db.ElvUI_EltreumUI.quests.autoaccept and (E.db.WT.quest.turnIn.enable or E.db.WT.quest.turnIn.enable == nil) then
-			E.db.WT.quest.turnIn.enable = false
-			E.db.ElvUI_EltreumUI.quests.autoaccept = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if E.db.ElvUI_EltreumUI.chat.itemlevels and (E.db.WT.social.chatLink.level or E.db.WT.social.chatLink.level == nil) then
-			E.db.WT.social.chatLink.level = false
-			E.db.ElvUI_EltreumUI.chat.itemlevels = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if E.db.ElvUI_EltreumUI.chat.looticons and (E.db.WT.social.chatLink.icon or E.db.WT.social.chatLink.icon == nil) then
-			E.db.WT.social.chatLink.icon = false
-			E.db.WT.social.chatLink.enable = false
-			E.db.WT.social.chatText.enable = false
-			E.db.ElvUI_EltreumUI.chat.looticons = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if E.db.ElvUI_EltreumUI.skins.bigwigs and (E.private.WT.skins.addons.bigWigs or E.private.WT.skins.addons.bigWigs == nil) then
-			E.private.WT.skins.addons.bigWigs = false
-			E.db.ElvUI_EltreumUI.skins.bigwigs = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if E.db.ElvUI_EltreumUI.skins.bigwigs and (E.private.WT.skins.addons.bigWigsQueueTimer or E.private.WT.skins.addons.bigWigsQueueTimer == nil) then
-			E.private.WT.skins.addons.bigWigsQueueTimer = false
-			E.db.ElvUI_EltreumUI.skins.bigwigs = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if E.db.ElvUI_EltreumUI.skins.bugsack and (E.private.WT.skins.addons.bugSack or E.private.WT.skins.addons.bugSack == nil) then
-			E.private.WT.skins.addons.bugSack = false
-			E.db.ElvUI_EltreumUI.skins.bugsack = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if E.db.ElvUI_EltreumUI.skins.immersion and (E.private.WT.skins.addons.immersion or E.private.WT.skins.addons.immersion == nil) then
-			E.private.WT.skins.addons.immersion = false
-			E.db.ElvUI_EltreumUI.skins.immersion = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if E.db.ElvUI_EltreumUI.skins.rarescanner and (E.private.WT.skins.addons.rareScanner or E.private.WT.skins.addons.rareScanner == nil) then
-			E.private.WT.skins.addons.rareScanner = false
-			E.db.ElvUI_EltreumUI.skins.rarescanner = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-		if E.db.ElvUI_EltreumUI.skins.simulationcraft and (E.private.WT.skins.addons.simulationcraft or E.private.WT.skins.addons.simulationcraft == nil) then
-			E.private.WT.skins.addons.simulationcraft = false
-			E.db.ElvUI_EltreumUI.skins.simulationcraft = true
-			compatibilityran = true
-			addonname = select(2,GetAddOnInfo("ElvUI_WindTools"))
-		end
-
-	end
-
-	if IsAddOnLoaded("ElvUI_MerathilisUI") and IsAddOnLoaded("ElvUI_WindTools") and compatibilityran then
-		addonname = select(2,GetAddOnInfo("ElvUI_MerathilisUI")).."and"..select(2,GetAddOnInfo("ElvUI_WindTools"))
-	end
-
-	--[[
-
-	if IsAddOnLoaded("DejaCharacterStats") then
-		addonname = select(2,GetAddOnInfo("DejaCharacterStats"))
-		compatibilityran = true
-	end
-
-	if IsAddOnLoaded("TomTom") then
-		addonname =  select(2,GetAddOnInfo("TomTom"))
-		compatibilityran = true
-	end
-
-	if IsAddOnLoaded("!KalielsTracker") then
-		addonname =  select(2,GetAddOnInfo("!KalielsTracker"))
-		compatibilityran = true
-	end
-
-	if IsAddOnLoaded("SorhaQuestLog") then
-		addonname =  select(2,GetAddOnInfo("SorhaQuestLog"))
-		compatibilityran = true
-	end
-
-	if IsAddOnLoaded("ClassicQuestLog") then
-		addonname =  select(2,GetAddOnInfo("ClassicQuestLog"))
-		compatibilityran = true
-	end
-
-	if IsAddOnLoaded("Who Framed Watcher Wabbit?") then
-		addonname =  select(2,GetAddOnInfo("Who Framed Watcher Wabbit?"))
-		compatibilityran = true
-	end
-
-	if IsAddOnLoaded("Doom_CooldownPulse") then
-		addonname =  select(2,GetAddOnInfo("Doom_CooldownPulse"))
-		compatibilityran = true
-	end
-
-	]]
-
-	E.PopupDialogs["ELTRUISMCOMPATIBILITYFIX"] = {
-		text = "|cffFF0000"..L["WARNING"]..":|r "..addonname..L[" was detected. To prevent issues some settings were changed."],
-		button1 = OKAY,
-		timeout = 0,
-		whileDead = 1,
-		hideOnEscape = false,
-	}
-
-	if addonname ~= "NAME" and compatibilityran == true then
-		E:StaticPopup_Show('ELTRUISMCOMPATIBILITYFIX')
+	if _G["EltruismCompatibilityFrame"].numModules > 0 then
+		_G["EltruismCompatibilityFrame"]:Show()
+		E:Delay(2, function()
+			if _G["MERCompatibilityFrame"] then
+				_G["MERCompatibilityFrame"]:Hide()
+			end
+		end)
 	end
 end

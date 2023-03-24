@@ -15,16 +15,6 @@ local select = _G.select
 
 do
 
-	function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
-		if IsAddOnLoaded("ElvUI_mMediaTag") then
-			if E.db.mMediaTag.mCastbar.enable then
-				return _G.mMediaTag_interruptOnCD
-			end
-		else
-			return false
-		end
-	end
-
 	--elvui castbar texture/gradient
 	function ElvUI_EltreumUI:CastBarTextureGradient()
 		if E.private.unitframe.enable then
