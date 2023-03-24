@@ -143,7 +143,7 @@ local eltruismdif = {
 
 --from elvui, modified for gradient
 do
-	local function GetTitleNPC(unit, custom)
+	local function EltruismGetTitleNPC(unit, custom)
 		if UnitIsPlayer(unit) or (E.Wrath and UnitAffectingCombat('player') and IsInInstance()) then return end
 
 		E.ScanTooltip:SetOwner(_G.UIParent, 'ANCHOR_NONE')
@@ -155,7 +155,7 @@ do
 		local ttText = ttLine and ttLine:GetText()
 		local ttLower = ttText and strlower(ttText)
 
-		if ttLower and not strfind(ttLower, LEVEL) then
+		if ttLower and not ttLower:match(LEVEL) and not ttText:match(LEVEL) then
 			local reaction = UnitReaction(unit, "player")
 			if reaction then
 				if not custom then
@@ -185,15 +185,14 @@ do
 			end
 		end
 	end
-	E.TagFunctions.GetTitleNPC = GetTitleNPC
 
 	E:AddTag('eltruismnpctitle', 'UNIT_NAME_UPDATE', function(unit)
-		return GetTitleNPC(unit)
+		return EltruismGetTitleNPC(unit)
 	end)
 	E:AddTagInfo("eltruismnpctitle", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays NPC title in gradient"])
 
 	E:AddTag('eltruismnpctitle:brackets', 'UNIT_NAME_UPDATE', function(unit)
-		return GetTitleNPC(unit, '<%s>')
+		return EltruismGetTitleNPC(unit, '<%s>')
 	end)
 	E:AddTagInfo("eltruismnpctitle:brackets", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays NPC title in gradient with brackets"])
 end
