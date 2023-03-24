@@ -24,6 +24,9 @@ function ElvUI_EltreumUI:EltruismImmersion()
 		for _, v in pairs(frames) do
 			S:HandleFrame(v)
 		end
+
+		S:HandleStatusBar(_G["ImmersionFrame"].TalkBox.ProgressionBar)
+
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 			for _, frame in pairs(frames) do
 				if frame and not frame.shadow then
