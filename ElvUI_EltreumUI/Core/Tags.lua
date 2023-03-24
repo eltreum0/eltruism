@@ -200,7 +200,6 @@ end
 
 --because retail paladin is now more complex
 local function retailPaladin(number)
-	print(GetSpecialization(),number)
 	if GetSpecialization() == (2 or 1) then
 		if IsPlayerSpell(385639) then
 			if number == 1 then
