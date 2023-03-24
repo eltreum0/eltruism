@@ -277,7 +277,7 @@ local function refreshstance()
 			[1] = (E.Retail and retailPaladin(1)) or GetSpellInfo(465),
 			[2] = (E.Retail and retailPaladin(2)) or GetSpellInfo(7294),
 			[3] = (E.Retail and retailPaladin(3)) or GetSpellInfo(19746),
-			[4] = (E.Retail and retailPaladin(4)) or GetSpellInfo(19746),
+			[4] = (E.Retail and retailPaladin(4)) or GetSpellInfo(27151),
 			[5] = not E.Retail and GetSpellInfo(19888),
 			[6] = not E.Retail and GetSpellInfo(19891),
 			[7] = not E.Retail and GetSpellInfo(32223),
@@ -1151,3 +1151,11 @@ E:AddTag("eltruism:lowhealth", "UNIT_HEALTH UNIT_MAXHEALTH", function(unit,_,arg
 	end
 end)
 E:AddTagInfo("eltruism:lowhealth", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Plays a voiced emote when you have low health. Usage: [eltruism:lowhealth{1}] as an example of 1%"])
+
+E:AddTag("eltruism:healermana", 'UNIT_POWER_FREQUENT UNIT_MAXPOWER', function(unit)
+	local role = UnitGroupRolesAssigned(unit)
+	if role and role == 'HEALER' then
+		return math.floor((UnitPower(unit, Enum.PowerType.Mana)/UnitPowerMax(unit, Enum.PowerType.Mana))*100)
+	end
+end)
+E:AddTagInfo("eltruism:healermana", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows mana if the unit is a healer"])
