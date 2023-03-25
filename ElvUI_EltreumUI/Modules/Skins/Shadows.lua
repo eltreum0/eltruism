@@ -2297,6 +2297,7 @@ function ElvUI_EltreumUI:NameplateShadows(nameplate)
 		end
 	end
 end
+hooksecurefunc(NP, 'StylePlate', ElvUI_EltreumUI.NameplateShadows) --nameplate shadows
 
 function ElvUI_EltreumUI:Construct_AuraIcon(button)
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.npauras then
@@ -2306,6 +2307,7 @@ function ElvUI_EltreumUI:Construct_AuraIcon(button)
 		end
 	end
 end
+hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) --nameplate buffs/debuffs shadows
 
 function ElvUI_EltreumUI:AuraShadows(button)
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) and not IsAddOnLoaded("Masque") then
@@ -2315,6 +2317,7 @@ function ElvUI_EltreumUI:AuraShadows(button)
 		end
 	end
 end
+hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
 
 function ElvUI_EltreumUI:UFAuraShadows(button)
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.ufaura and not IsAddOnLoaded("Masque") then
@@ -2324,6 +2327,7 @@ function ElvUI_EltreumUI:UFAuraShadows(button)
 		end
 	end
 end
+hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraShadows) --uf aura shadows
 
 --from elvui chat bubbles
 local TimeSinceLastUpdate = 0
@@ -2358,26 +2362,4 @@ function ElvUI_EltreumUI:ChatBubblesShadows()
 		self.ChatShadowsHooked = true
 	end
 end
-
-function ElvUI_EltreumUI:SetupShadows()
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable then
-		ElvUI_EltreumUI:Shadows() --adds shadows to frames
-		if not IsAddOnLoaded("Masque") then
-			if E.db.ElvUI_EltreumUI.skins.shadow.ufaura then
-				hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraShadows) --uf aura shadows
-			end
-			if E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) then
-				hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
-			end
-		end
-		if E.private.nameplates.enable then
-			hooksecurefunc(NP, 'StylePlate', ElvUI_EltreumUI.NameplateShadows) --nameplate shadows
-			if E.db.ElvUI_EltreumUI.skins.shadow.npauras then
-				hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) --nameplate buffs/debuffs shadows
-			end
-		end
-		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not self.ChatShadowsHooked and E.private.general.chatBubbles == "backdrop" or E.private.general.chatBubbles == "backdrop_noborder" then
-			hooksecurefunc(M, "LoadChatBubbles", ElvUI_EltreumUI.ChatBubblesShadows) --chat bubble shadows
-		end
-	end
-end
+hooksecurefunc(M, "LoadChatBubbles", ElvUI_EltreumUI.ChatBubblesShadows)
