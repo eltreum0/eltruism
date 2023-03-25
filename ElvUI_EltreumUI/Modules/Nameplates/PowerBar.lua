@@ -1,4 +1,5 @@
 local E, L, V, P, G = unpack(ElvUI)
+local S = E:GetModule('Skins')
 local id, _, powertype,powernumber,tablepowernumber
 local _G = _G
 local CreateFrame = _G.CreateFrame
@@ -231,23 +232,10 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			EltreumPowerBar:SetMinMaxValues(0, UnitPowerMax("player"))
 			EltreumPowerBar:SetValue(UnitPower("player")) --try to make it not be full always at the start
 
-			--[[if not UnitPower("player") then
-				return
-			elseif UnitPower("player") >= 1000000000000 then
-				ret = placeValue:format(UnitPower("player") * 0.000000000001) .. " T" -- trillion
-			elseif UnitPower("player") >= 1000000000 then
-				ret = placeValue:format(UnitPower("player") * 0.000000001) .. " B" -- billion
-			elseif UnitPower("player") >= 1000000 then
-				ret = placeValue:format(UnitPower("player") * 0.000001) .. " M" -- million
-			elseif UnitPower("player") >= 1000 then
-				ret = placeValue:format(UnitPower("player") * 0.001) .. "k" -- thousand
-			else
-				ret = UnitPower("player") -- hundreds
-			end]]
-
 			if not isSetup then
 				EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.font), E.db.ElvUI_EltreumUI.nameplates.nameplatepower.fontsize, E.db.general.fontStyle)
 				EltreumPowerBar:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
+				S:HandleStatusBar(EltreumPowerBar)
 				EltreumPowerBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture))
 				EltreumPowerBar:SetFrameStrata("MEDIUM")
 				EltreumPowerBar.bg:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex + 1 , E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey + 1 )
@@ -259,8 +247,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				end
 				isSetup = true
 			end
-
-			--EltreumPowerBar.Text:SetText(ret)	--this is an actual number not string
 
 			--update power prediction
 			EltreumPowerPrediction:SetMinMaxValues(0, UnitPowerMax("player"))
@@ -287,6 +273,9 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			--set gradient if enabled
 			if powertype then
 				if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
+					if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower then --the error on reload is because the db unloads before this apparently, so value returns as nil
+						E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower = "HORIZONTAL"
+					end
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
 						EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColorsCustom(powertype, false, false))
 					else
