@@ -311,7 +311,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					for i = 1, #modules do
 						local module = modules[i]
 						if module and module.Header and module.Header.Text then --the big type of quest
-							if not IsAddOnLoaded("ElvUI_SLE") then
+							if not ElvUI_EltreumUI:SLCheck('quest') then
 								module.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize*1.5, E.db.general.fontStyle)
 							end
 							if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
@@ -323,12 +323,7 @@ function ElvUI_EltreumUI:SkinQuests()
 							module.Header.Text:SetShadowOffset(2, -1)
 
 							--create the lines
-							if not module.Header.EltruismStatusLine then
-								if IsAddOnLoaded("ElvUI_SLE") then
-									if E.private["sle"]["skins"]["objectiveTracker"]["enable"] then
-										return
-									end
-								end
+							if not module.Header.EltruismStatusLine and not ElvUI_EltreumUI:SLCheck('quest') then
 								if module.Header.Text and module.Header.Text:GetText() ~= nil then
 									module.Header.EltruismStatusLine = CreateFrame("StatusBar", "Eltruism"..module.Header.Text:GetText().."Line", module.Header)
 								else
@@ -402,6 +397,9 @@ function ElvUI_EltreumUI:SkinQuests()
 						--progressBar:SetBackdropColor(0, 0, 0, 1)
 						--progressBar.Bar.backdrop:SetBackdropBorderColor(0, 0, 0, 1)
 						progressBar.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.queststatusbartexture))
+						hooksecurefunc(progressBar.Bar, "SetStatusBarColor", function(_, r, g, b)
+							progressBar.Bar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= E.db.general.backdropfadecolor.a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= E.db.general.backdropfadecolor.a})
+						end)
 						progressBar.EltruismSkin = true
 					end
 				end

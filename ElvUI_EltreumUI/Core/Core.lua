@@ -793,6 +793,9 @@ function ElvUI_EltreumUI:SLCheck(setting)
 	if setting == 'media' and E.private.sle.media.enable then
 		return true
 	end
+	if setting == 'quest' and E.private.sle.skins.objectiveTracker.enable then
+		return true
+	end
 
 	return false
 end
