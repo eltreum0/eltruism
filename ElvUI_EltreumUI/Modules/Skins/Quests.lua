@@ -368,9 +368,8 @@ function ElvUI_EltreumUI:SkinQuests()
 				local function EltreumSkinProgressBars(_, _, line)
 					local progressBar = line and line.ProgressBar
 					local bar = progressBar and progressBar.Bar
-					if not bar or progressBar.EltruismSkin then
-						return
-					else
+					if not bar then return end
+					if not progressBar.EltruismSkin then
 						if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow then
 							bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(bar.shadow) end
