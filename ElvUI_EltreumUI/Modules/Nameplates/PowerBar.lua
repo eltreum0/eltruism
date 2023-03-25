@@ -231,7 +231,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			EltreumPowerBar:SetMinMaxValues(0, UnitPowerMax("player"))
 			EltreumPowerBar:SetValue(UnitPower("player")) --try to make it not be full always at the start
 
-			if not UnitPower("player") then
+			--[[if not UnitPower("player") then
 				return
 			elseif UnitPower("player") >= 1000000000000 then
 				ret = placeValue:format(UnitPower("player") * 0.000000000001) .. " T" -- trillion
@@ -243,7 +243,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				ret = placeValue:format(UnitPower("player") * 0.001) .. "k" -- thousand
 			else
 				ret = UnitPower("player") -- hundreds
-			end
+			end]]
 
 			if not isSetup then
 				EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.font), E.db.ElvUI_EltreumUI.nameplates.nameplatepower.fontsize, E.db.general.fontStyle)
@@ -254,10 +254,13 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				EltreumPowerBar.bg:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.r, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.g, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.b, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.a) -- background color
 				EltreumPowerPrediction:SetFrameStrata("HIGH")
 				EltreumPowerPredictionIncoming:SetFrameStrata("HIGH")
+				if not E.private.nameplates.enable then -- no elvui np then the position needs to be manual
+					E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition = true
+				end
 				isSetup = true
 			end
 
-			EltreumPowerBar.Text:SetText(ret)	--this is an actual number not string
+			--EltreumPowerBar.Text:SetText(ret)	--this is an actual number not string
 
 			--update power prediction
 			EltreumPowerPrediction:SetMinMaxValues(0, UnitPowerMax("player"))
