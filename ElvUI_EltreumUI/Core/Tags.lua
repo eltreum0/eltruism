@@ -589,10 +589,12 @@ E:AddTagInfo("eltruismguild:brackets", ElvUI_EltreumUI.Name.." "..L["Names"], L[
 
 E:AddTag('eltruismrealm:dash', 'UNIT_NAME_UPDATE', function(unit)
 	local _, realm = UnitName(unit)
+	local _, unitClass = UnitClass(unit)
 	if realm and (realm ~= '' and realm ~= E.myrealm) then
-		return format('-%s', realm)
+		realm = format('-%s', realm)
+		return ElvUI_EltreumUI:GradientName(realm, unitClass)
 	elseif realm ~= '' then
-		return realm
+		return ElvUI_EltreumUI:GradientName(realm, unitClass)
 	end
 end)
 E:AddTagInfo("eltruismname:title", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the server name with a dash in gradient"])
