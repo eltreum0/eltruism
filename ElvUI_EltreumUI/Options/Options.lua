@@ -55,7 +55,7 @@ local THANKYOU = {
 	'|cff8E44ADB|r|cff2ECC71lin|r|cff3498DBkii|r',
 	'|cff960000Atwood|r - for some of the role icons',
 	'|cffB50909Dlarge|r - for the German localization',
-	'|cff33937Ffang2hou|r - for the compatibility function',
+	'|cff33937FFang2hou|r - for the compatibility function',
 }
 
 local DONATORS = {
@@ -72,7 +72,7 @@ local DONATORS = {
 	'|cffB50909Jazz|r',
 	'|cffB50909Jiberish|r',
 	'|cffB50909Madlampy|r',
-	'|cffB50909markpoops|r',
+	'|cffB50909Markpoops|r',
 	'|cffB50909Michael_|r',
 	'|cffB50909Morthart|r',
 	'|cffB50909Mr.Ditto|r',
