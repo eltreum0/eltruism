@@ -147,21 +147,21 @@ function ElvUI_EltreumUI:SkinPortrait(frame)
 					if E.db.unitframe.thinBorders then
 						portrait:SetPoint("BOTTOMLEFT", portrait.backdrop, "BOTTOMLEFT", 0, 1-(UF.BORDER/2))
 						portrait:SetPoint("BOTTOMRIGHT", portrait.backdrop, "BOTTOMRIGHT", 0, 1-(UF.BORDER/2))
-						portrait:SetPoint("TOPRIGHT", portrait.backdrop, "TOPRIGHT", 0, db.infoPanel.height)
-						portrait:SetPoint("TOPLEFT", portrait.backdrop, "TOPLEFT", 0, db.infoPanel.height)
+						portrait:SetPoint("TOPRIGHT", portrait.backdrop, "TOPRIGHT", 0, db.infoPanel.height-1)
+						portrait:SetPoint("TOPLEFT", portrait.backdrop, "TOPLEFT", 0, db.infoPanel.height-1)
 					else
-						portrait:SetPoint("BOTTOMLEFT", portrait.backdrop, "BOTTOMLEFT", 0, -(1/2))
+						portrait:SetPoint("BOTTOMLEFT", portrait.backdrop, "BOTTOMLEFT", -1, -(1/2))
 						portrait:SetPoint("BOTTOMRIGHT", portrait.backdrop, "BOTTOMRIGHT", 0, -(1/2))
-						portrait:SetPoint("TOPRIGHT", portrait.backdrop, "TOPRIGHT", 0, db.infoPanel.height+(UF.BORDER/1.5))
-						portrait:SetPoint("TOPLEFT", portrait.backdrop, "TOPLEFT", 0, db.infoPanel.height+(UF.BORDER/1.5))
+						portrait:SetPoint("TOPRIGHT", portrait.backdrop, "TOPRIGHT", 0, db.infoPanel.height+(UF.BORDER/1.5)-1)
+						portrait:SetPoint("TOPLEFT", portrait.backdrop, "TOPLEFT", -1, db.infoPanel.height+(UF.BORDER/1.5)-1)
 					end
 				elseif portrait.db.style == 'Class' then
 					portrait:ClearAllPoints()
 					if E.db.unitframe.thinBorders then
 						portrait:SetPoint("BOTTOMRIGHT", frame, "BOTTOMLEFT", 0, db.infoPanel.height-(UF.BORDER/2))
 						portrait:SetPoint("BOTTOMLEFT", frame, "BOTTOMRIGHT", 0+portrait.db.width, db.infoPanel.height-(UF.BORDER/2))
-						portrait:SetPoint("TOPRIGHT", frame, "TOPLEFT", 0, db.infoPanel.height)
-						portrait:SetPoint("TOPLEFT", frame, "TOPLEFT", 0+portrait.db.width, db.infoPanel.height)
+						portrait:SetPoint("TOPRIGHT", frame, "TOPLEFT", 0, db.infoPanel.height-1)
+						portrait:SetPoint("TOPLEFT", frame, "TOPLEFT", 0+portrait.db.width, db.infoPanel.height-1)
 					else
 						portrait:SetPoint("BOTTOMRIGHT", frame, "BOTTOMLEFT", UF.BORDER, db.infoPanel.height+(UF.BORDER/4)+1)
 						portrait:SetPoint("BOTTOMLEFT", frame, "BOTTOMRIGHT", UF.BORDER+portrait.db.width, db.infoPanel.height+(UF.BORDER/4)+1)
@@ -182,8 +182,8 @@ function ElvUI_EltreumUI:SkinPortrait(frame)
 					else
 						portrait:SetPoint("BOTTOMLEFT", portrait.backdrop, "BOTTOMLEFT", 0, -(1/2))
 						portrait:SetPoint("BOTTOMRIGHT", portrait.backdrop, "BOTTOMRIGHT", 0, -(1/2))
-						portrait:SetPoint("TOPRIGHT", portrait.backdrop, "TOPRIGHT", 0, db.infoPanel.height+(UF.BORDER*1.2))
-						portrait:SetPoint("TOPLEFT", portrait.backdrop, "TOPLEFT", 0, db.infoPanel.height+(UF.BORDER*1.2))
+						portrait:SetPoint("TOPRIGHT", portrait.backdrop, "TOPRIGHT", 0, db.infoPanel.height+(UF.BORDER*1.2)-0.5)
+						portrait:SetPoint("TOPLEFT", portrait.backdrop, "TOPLEFT", 0, db.infoPanel.height+(UF.BORDER*1.2)-0.5)
 					end
 				elseif portrait.db.style == 'Class' then
 					portrait:ClearAllPoints()
@@ -204,23 +204,6 @@ function ElvUI_EltreumUI:SkinPortrait(frame)
 				end
 			end
 		end
-		--from actionbar trim
-		--[[local left, right, top, bottom = unpack(E.TexCoords)
-
-		local width, height = portrait.db.width, 15+12+55--?
-		local ratio = width / height
-
-		--print(portrait.db.width,portrait.db.height,ratio)
-		if ratio > 1 then
-			local trimAmount = (1 - (1 / ratio)) * 0.5
-			top = top + trimAmount
-			bottom = bottom - trimAmount
-		else
-			local trimAmount = (1 - ratio) * 0.5
-			left = left + trimAmount
-			right = right - trimAmount
-		end
-		portrait:SetTexCoord(left, right, top, bottom)]]
 	end
 end
 hooksecurefunc(UF, "Configure_Portrait", ElvUI_EltreumUI.SkinPortrait)
