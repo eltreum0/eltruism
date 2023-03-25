@@ -2246,6 +2246,7 @@ end
 --benik's version
 function ElvUI_EltreumUI:NameplateShadows(nameplate)
 	if E.private.nameplates.enable and E.db.ElvUI_EltreumUI.skins.shadow.enable then
+
 		if E.db.ElvUI_EltreumUI.skins.shadow.nameplates then
 			if nameplate.Health.backdrop and not nameplate.Health.backdrop.shadow then
 				nameplate.Health.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
