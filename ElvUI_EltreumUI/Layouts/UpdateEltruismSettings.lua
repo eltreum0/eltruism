@@ -30,11 +30,13 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = true
 
 	--power bar scaling issues
-	--local width = GetPhysicalScreenSize()
-	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex = 133.6
-	--if width == 1920 na then
-	--	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex = 127.8
-	--end
+	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex = 133.5
+
+	--nameplate shadows (test)
+	E.db.ElvUI_EltreumUI.skins.shadow.nameplates = true
+	E.db.ElvUI_EltreumUI.skins.shadow.nppower = true
+	E.db.ElvUI_EltreumUI.skins.shadow.npcastbar = true
+	E.db.ElvUI_EltreumUI.skins.shadow.npportraits = true
 
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.a = 1
 	E.db.ElvUI_EltreumUI.nameplates.nameplatelevel = true
