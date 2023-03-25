@@ -109,7 +109,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	if E.db.ElvUI_EltreumUI.dev then --load dev tools if user enables
 		ElvUI_EltreumUI:DevTools()
 	end
-	ElvUI_EltreumUI:Shadows() --adds shadows to frames
+	ElvUI_EltreumUI:SetupShadows() --setup shadows
 	ElvUI_EltreumUI:PlayerItemQuality("player") --add item quality texture to character panel skin
 	ElvUI_EltreumUI:CooldownColors() --changes cooldown colors to be class colored
 	ElvUI_EltreumUI:GradientMirrorLoot() --gradient misc frames like breath/lootroll
