@@ -5,10 +5,28 @@ local IsAddOnLoaded = _G.IsAddOnLoaded
 local EltruismExpandedTalents = CreateFrame("Frame")
 local LoadAddOn = _G.LoadAddOn
 
+--Reskin Blizzard Talent frame
 function ElvUI_EltreumUI:ExpandedTalents()
-	--Reskin Blizzard Talent frame for TBC
-	if E.Wrath or E.Classic then
-		if E.db.ElvUI_EltreumUI.skins.tbctalents and not E.private.skins.blizzard.enable == false then
+	if E.Retail then
+		EltruismExpandedTalents:RegisterEvent("ADDON_LOADED")
+		EltruismExpandedTalents:RegisterEvent("PLAYER_ENTERING_WORLD")
+		EltruismExpandedTalents:RegisterEvent("PLAYER_STARTED_MOVING")
+		EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
+			if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then
+				EltruismExpandedTalents:UnregisterAllEvents()
+				local function adjustscale()
+					_G.ClassTalentFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
+				end
+				_G.ClassTalentFrame:HookScript("OnShow", function()
+					adjustscale()
+				end)
+				_G.ClassTalentFrame:HookScript("OnEvent", function()
+					adjustscale()
+				end)
+			end
+		end)
+	else
+		if E.db.ElvUI_EltreumUI.skins.tbctalents and E.private.skins.blizzard.enable then
 			EltruismExpandedTalents:RegisterEvent("ADDON_LOADED")
 			EltruismExpandedTalents:RegisterEvent("PLAYER_ENTERING_WORLD")
 			EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
