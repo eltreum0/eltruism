@@ -58,6 +58,10 @@ function ElvUI_EltreumUI:EltruismImmersion()
 
 		--update buttons on events/show
 		local function updatebuttons()
+			if not E.db.general.font then return end
+			if not E.db.general.fontSize then return end
+			if not E.db.general.fontStyle then return end
+			if not E.LSM:Fetch("font", E.db.general.font) then return end
 
 			--move so it doesnt overlap
 			if not InCombatLockdown() then
