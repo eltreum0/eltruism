@@ -36,6 +36,8 @@ local UnitPowerMax = _G.UnitPowerMax
 local UnitPower = _G.UnitPower
 local IsPlayerSpell = _G.IsPlayerSpell
 local GetSpecialization = _G.GetSpecialization
+local GetShapeshiftFormInfo = _G.GetShapeshiftFormInfo
+local select = _G.select
 
 -- Alternate Class Icons by Releaf
 local classIcons = {
@@ -352,10 +354,10 @@ local stanceID = {
 		[3] = not E.Retail and GetSpellInfo(48265),
 	},
 	PALADIN = {
-		[1] = (E.Retail and retailPaladin(1)) or GetSpellInfo(465),
-		[2] = (E.Retail and retailPaladin(2)) or GetSpellInfo(7294),
-		[3] = (E.Retail and retailPaladin(3)) or GetSpellInfo(19746),
-		[4] = (E.Retail and retailPaladin(4)) or GetSpellInfo(19746),
+		[1] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))) or GetSpellInfo(465),
+		[2] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))) or GetSpellInfo(7294),
+		[3] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))) or GetSpellInfo(19746),
+		[4] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))) or GetSpellInfo(19746),
 		[5] = not E.Retail and GetSpellInfo(19888),
 		[6] = not E.Retail and GetSpellInfo(19891),
 		[7] = not E.Retail and GetSpellInfo(32223),
@@ -377,10 +379,10 @@ local function refreshstance()
 			[3] = not E.Retail and GetSpellInfo(48265),
 		},
 		PALADIN = {
-			[1] = (E.Retail and retailPaladin(1)) or GetSpellInfo(465),
-			[2] = (E.Retail and retailPaladin(2)) or GetSpellInfo(7294),
-			[3] = (E.Retail and retailPaladin(3)) or GetSpellInfo(19746),
-			[4] = (E.Retail and retailPaladin(4)) or GetSpellInfo(27151),
+			[1] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))) or GetSpellInfo(465),
+			[2] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))) or GetSpellInfo(7294),
+			[3] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))) or GetSpellInfo(19746),
+			[4] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))) or GetSpellInfo(19746),
 			[5] = not E.Retail and GetSpellInfo(19888),
 			[6] = not E.Retail and GetSpellInfo(19891),
 			[7] = not E.Retail and GetSpellInfo(32223),
