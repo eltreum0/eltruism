@@ -55,9 +55,9 @@ function ElvUI_EltreumUI:Shadows()
 							_G.PerksProgramFrame.FooterFrame.PurchaseButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PerksProgramFrame.FooterFrame.PurchaseButton.shadow) end
 						end
-						if _G.PerksProgramFrame.FooterFrame.ToggleHideArmor and not _G.PerksProgramFrame.FooterFrame.ToggleHideArmor.shadow then
-							_G.PerksProgramFrame.FooterFrame.ToggleHideArmor:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PerksProgramFrame.FooterFrame.ToggleHideArmor.shadow) end
+						if _G.PerksProgramFrame.FooterFrame.ToggleHideArmor.backdrop and not _G.PerksProgramFrame.FooterFrame.ToggleHideArmor.backdrop.shadow then
+							_G.PerksProgramFrame.FooterFrame.ToggleHideArmor.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PerksProgramFrame.FooterFrame.ToggleHideArmor.backdrop.shadow) end
 						end
 						if _G.PerksProgramFrame.FooterFrame.LeaveButton and not _G.PerksProgramFrame.FooterFrame.LeaveButton.shadow then
 							_G.PerksProgramFrame.FooterFrame.LeaveButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)

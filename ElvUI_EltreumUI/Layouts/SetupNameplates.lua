@@ -245,7 +245,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["fontSize"] = 10
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["displayTarget"] = true
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["height"] = 12
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetX"] = -3
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetX"] = -4
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetY"] = -1
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconPosition"] = "LEFT"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 31
@@ -349,7 +349,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			if width == 1920 then
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 32
 			end
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconOffsetX"] = -3
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconOffsetX"] = -4
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconOffsetY"] = -1
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["showIcon"] = true
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["textPosition"] = "ONBAR"
