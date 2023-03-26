@@ -18,6 +18,7 @@
 	<Script file='Other/Stealth.lua'/>
 	<Script file='Unitframes/GradientFunctions.lua'/>
 	<Script file='Unitframes/Aurabars.lua'/>
+	<Script file='Unitframes/Blizzard.lua'/>
 	<Script file='Unitframes/Castbar.lua'/>
 	<Script file='Unitframes/DispelGlow.lua'/>
 	<Script file='Unitframes/Gradient.lua'/>

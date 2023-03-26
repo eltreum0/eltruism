@@ -298,6 +298,9 @@ do
 		--to make the previews update
 		ElvUI_EltreumUI:CustomTexture("player",true)
 		ElvUI_EltreumUI:GradientUF("player",true)
+		if not E.private.unitframe.disabledBlizzardFrames.raid then
+			ElvUI_EltreumUI:BlizzardTexturesGradient()
+		end
 	end
 	local colorupdateframe = CreateFrame("FRAME")
 	colorupdateframe:RegisterEvent("PLAYER_ENTERING_WORLD")
