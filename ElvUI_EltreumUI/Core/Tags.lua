@@ -303,47 +303,6 @@ do
 	E:AddTagInfo("eltruismnpctitle:brackets", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays NPC title in gradient with brackets"])
 end
 
---because retail paladin is now more complex
-local function retailPaladin(number)
-	if GetSpecialization() == (2 or 1) then
-		if IsPlayerSpell(385639) then
-			if number == 1 then
-				return GetSpellInfo(32223)
-			elseif number == 2 then
-				return GetSpellInfo(465)
-			elseif number == 3 then
-				return GetSpellInfo(317920)
-			elseif number == 4 then
-				return GetSpellInfo(183435)
-			end
-		else
-			if number == 1 then
-				return GetSpellInfo(465)
-			elseif number == 2 then
-				return GetSpellInfo(317920)
-			end
-		end
-	else
-		if IsPlayerSpell(385633) then
-			if number == 1 then
-				return GetSpellInfo(32223)
-			elseif number == 2 then
-				return GetSpellInfo(465)
-			elseif number == 3 then
-				return GetSpellInfo(317920)
-			elseif number == 4 then
-				return GetSpellInfo(183435)
-			end
-		else
-			if number == 1 then
-				return GetSpellInfo(32223)
-			elseif number == 2 then
-				return GetSpellInfo(183435)
-			end
-		end
-	end
-end
-
 local stanceBackup = 0 --store previous stance to force refresh it
 
 --ty a lot azilroka
