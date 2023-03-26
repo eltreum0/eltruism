@@ -47,6 +47,7 @@ do
 		["INSANITY"] = {r1 = 0.50, g1 = 0.25, b1 = 1, r2 = 0.70, g2 = 0, b2 = 1}, --INSANITY
 		["FURY"] = {r1 = 0.79, g1 = 0.26, b1 = 1, r2 = 1, g2 = 0, b2 = 0.95}, --FURY
 		["PAIN"] = {r1 = 1, g1 = 0.61, b1 = 0, r2 = 1, g2 = 0.30, b2 = 0}, --PAIN
+		["ELTRUISM"] = {r1 = 0.50, g1 = 0.70, b1 = 1,r2 = 0.67, g2 = 0.95, b2 = 1} --addon gradient
 	}
 	local unitframecustomgradients = {
 		["WARRIOR"] = {r1 = 0.42745098039216, g1 = 0.13725490196078, b1 = 0.090196078431373, r2 = 0.56470588235294, g2 = 0.43137254901961, b2 = 0.24705882352941},
@@ -87,6 +88,7 @@ do
 		["INSANITY"] = {r1 = 0.50, g1 = 0.25, b1 = 1, r2 = 0.70, g2 = 0, b2 = 1}, --INSANITY
 		["FURY"] = {r1 = 0.79, g1 = 0.26, b1 = 1, r2 = 1, g2 = 0, b2 = 0.95}, --FURY
 		["PAIN"] = {r1 = 1, g1 = 0.61, b1 = 0, r2 = 1, g2 = 0.30, b2 = 0}, --PAIN
+		["ELTRUISM"] = {r1 = 0.50, g1 = 0.70, b1 = 1,r2 = 0.67, g2 = 0.95, b2 = 1} --addon gradient
 	}
 	local unitframeclass = {
 		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga",
@@ -187,6 +189,7 @@ do
 			["INSANITY"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityB2}, --INSANITY
 			["FURY"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyB2}, --FURY
 			["PAIN"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painB2}, --PAIN
+			["ELTRUISM"] = {r1 = 0.50, g1 = 0.70, b1 = 1,r2 = 0.67, g2 = 0.95, b2 = 1} --addon gradient
 		}
 		if E.db.ElvUI_EltreumUI.unitframes.uftextureversion == "V2" then
 			unitframeclass = {
