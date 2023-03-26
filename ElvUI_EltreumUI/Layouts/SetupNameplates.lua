@@ -248,14 +248,14 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetX"] = -4
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetY"] = -1
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconPosition"] = "LEFT"
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 31
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 32
 			if width == 1920 then
 				E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 32
 			end
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["showIcon"] = true
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["textPosition"] = "ONBAR"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["timeToHold"] = 0.6
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["yOffset"] = -17
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["yOffset"] = -18
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["textYOffset"] = -1
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["timeYOffset"] = -1
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["eliteIcon"]["position"] = "LEFT"
@@ -345,7 +345,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["fontSize"] = 10
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["height"] = 12
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconPosition"] = "LEFT"
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 31
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 32
 			if width == 1920 then
 				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 32
 			end
@@ -354,7 +354,7 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["showIcon"] = true
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["textPosition"] = "ONBAR"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["timeToHold"] = 0.6
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["yOffset"] = -17
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["yOffset"] = -18
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["textYOffset"] = -1
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["timeYOffset"] = -1
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["height"] = 14
