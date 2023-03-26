@@ -1167,11 +1167,11 @@ function ElvUI_EltreumUI:Shadows()
 		--action bars
 		if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") and E.db.ElvUI_EltreumUI.skins.shadow.actionbars and not IsAddOnLoaded("Masque") then
 			--elvui action bars
-			for i = 1, 10 do
+			for i = 1, 15 do
 				for k = 1, 12 do
 					local slots = {_G["ElvUI_Bar"..i..'Button'..k]}
 					for _, button in pairs(slots) do
-						if not button.shadow and not (E.db.ElvUI_EltreumUI.borders.borders and E.db["ElvUI_EltreumUI"]["borders"]["bar"..i.."borders"]) then
+						if button and not button.shadow and not (E.db.ElvUI_EltreumUI.borders.borders and E.db["ElvUI_EltreumUI"]["borders"]["bar"..i.."borders"]) then
 							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							if EnhancedShadows then EnhancedShadows:RegisterShadow(button.shadow) end
 						end
