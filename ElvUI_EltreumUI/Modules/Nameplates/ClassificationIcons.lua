@@ -320,7 +320,7 @@ local function Enable(self)
 		element.ForceUpdate = ForceUpdate
 
 		if element:IsObjectType('Texture') and not element:GetTexture() then
-			element:SetTexture([[Interface\TARGETINGFRAME\Nameplates]])
+			element:SetTexture([[Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo]])
 		end
 
 		self:RegisterEvent('UNIT_CLASSIFICATION_CHANGED', Path)
