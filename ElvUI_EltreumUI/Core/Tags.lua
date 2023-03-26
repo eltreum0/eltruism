@@ -328,9 +328,9 @@ local function retailPaladin(number)
 			elseif number == 2 then
 				return GetSpellInfo(465)
 			elseif number == 3 then
-				return GetSpellInfo(183435)
-			elseif number == 4 then
 				return GetSpellInfo(317920)
+			elseif number == 4 then
+				return GetSpellInfo(183435)
 			end
 		else
 			if number == 1 then
