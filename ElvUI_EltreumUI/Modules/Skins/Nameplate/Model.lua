@@ -50,8 +50,8 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 	if not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions then return end
 	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel then
 
-		if UnitExists("target") then
-			if nameplate and nameplate.unit then
+		if UnitExists("target")then
+			if nameplate and nameplate.unit and UnitIsUnit(nameplate.unit,"target") then
 				ElvUI_EltreumUI:NameplateCustomOptions(nameplate) --testing sending unit to other function
 				if nameplate.Health and nameplate.Health:IsVisible() then
 
@@ -78,6 +78,9 @@ function ElvUI_EltreumUI:NameplateModel(nameplate)
 					target3d:ClearAllPoints()
 					target3d:SetAlpha(0)
 				end
+			else
+				target3d:ClearAllPoints()
+				target3d:SetAlpha(0)
 			end
 		else
 			target3d:ClearAllPoints()
