@@ -155,7 +155,7 @@ function ElvUI_EltreumUI:AFKLogo()
 		EltruismAFKLogo:ClearAllPoints()
 		EltruismAFKLogo:SetPoint("TOP", UIParent, "TOP", 0, -10)
 		EltruismAFKLogo:SetFrameStrata("DIALOG")
-		EltruismAFKLogoTexture:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohq")
+		EltruismAFKLogoTexture:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohqbw")
 		EltruismAFKLogoTexture:SetAllPoints(EltruismAFKLogo)
 
 		EltruismAFKVignette:SetSize(E.screenWidth,E.screenHeight)
@@ -191,6 +191,10 @@ function ElvUI_EltreumUI:AFKLogo()
 				EltruismAFKLogo:Hide()
 				EltruismAFKVignette:Hide()
 			end
+
+			_G.ElvUIAFKFrame.bottom.LogoTop:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors(E.myclass, false, false))
+			_G.ElvUIAFKFrame.bottom.LogoBottom:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors(E.myclass, false, false))
+			EltruismAFKLogoTexture:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors("ELTRUISM", false, false))
 
 			--change faction to class icon
 			_G.ElvUIAFKFrame.bottom.faction:Point('BOTTOMLEFT', _G.ElvUIAFKFrame.bottom, 'BOTTOMLEFT', 15, 30)
