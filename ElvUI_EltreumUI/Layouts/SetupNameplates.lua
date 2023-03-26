@@ -245,17 +245,17 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["fontSize"] = 10
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["displayTarget"] = true
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["height"] = 12
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetX"] = -1
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetX"] = -3
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetY"] = -1
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconPosition"] = "LEFT"
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 28
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 31
 			if width == 1920 then
-				E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 29
+				E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 32
 			end
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["showIcon"] = true
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["textPosition"] = "ONBAR"
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["timeToHold"] = 0.6
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["yOffset"] = -14
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["yOffset"] = -17
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["textYOffset"] = -1
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["timeYOffset"] = -1
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["eliteIcon"]["position"] = "LEFT"
@@ -345,16 +345,16 @@ function ElvUI_EltreumUI:SetupNamePlates(addon)
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["fontSize"] = 10
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["height"] = 12
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconPosition"] = "LEFT"
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 28
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 31
 			if width == 1920 then
-				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 29
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 32
 			end
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconOffsetX"] = -1
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconOffsetX"] = -3
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconOffsetY"] = -1
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["showIcon"] = true
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["textPosition"] = "ONBAR"
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["timeToHold"] = 0.6
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["yOffset"] = -14
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["yOffset"] = -17
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["textYOffset"] = -1
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["timeYOffset"] = -1
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["health"]["height"] = 14
@@ -710,7 +710,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		-- Enemy at execute range, general range bc different classes have different hp% executes
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["g"] = 0
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["health"] = false
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["health"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["b"] = 1
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["g"] = 0
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["r"] = 0.65

@@ -2246,6 +2246,7 @@ end
 --benik's version
 function ElvUI_EltreumUI:NameplateShadows(nameplate)
 	if E.private.nameplates.enable and E.db.ElvUI_EltreumUI.skins.shadow.enable then
+
 		if E.db.ElvUI_EltreumUI.skins.shadow.nameplates then
 			if nameplate.Health.backdrop and not nameplate.Health.backdrop.shadow then
 				nameplate.Health.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -2261,6 +2262,14 @@ function ElvUI_EltreumUI:NameplateShadows(nameplate)
 			if _G["ElvNP_TargetClassPowerClassPower"] and not _G["ElvNP_TargetClassPowerClassPower"].shadow then
 				_G["ElvNP_TargetClassPowerClassPower"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvNP_TargetClassPowerClassPower"].shadow) end
+			end
+			if _G["ElvNP_TargetClassPowerRunes"] and not _G["ElvNP_TargetClassPowerRunes"].shadow then
+				_G["ElvNP_TargetClassPowerRunes"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvNP_TargetClassPowerRunes"].shadow) end
+			end
+			if _G["ElvNP_TargetClassPowerStagger"] and not _G["ElvNP_TargetClassPowerStagger"].shadow then
+				_G["ElvNP_TargetClassPowerStagger"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ElvNP_TargetClassPowerStagger"].shadow) end
 			end
 			if _G["EltruismPowerBar"] and not _G["EltruismPowerBar"].shadow then
 				_G["EltruismPowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)

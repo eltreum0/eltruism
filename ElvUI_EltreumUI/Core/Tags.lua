@@ -36,6 +36,8 @@ local UnitPowerMax = _G.UnitPowerMax
 local UnitPower = _G.UnitPower
 local IsPlayerSpell = _G.IsPlayerSpell
 local GetSpecialization = _G.GetSpecialization
+local GetShapeshiftFormInfo = _G.GetShapeshiftFormInfo
+local select = _G.select
 
 -- Alternate Class Icons by Releaf
 local classIcons = {
@@ -301,47 +303,6 @@ do
 	E:AddTagInfo("eltruismnpctitle:brackets", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays NPC title in gradient with brackets"])
 end
 
---because retail paladin is now more complex
-local function retailPaladin(number)
-	if GetSpecialization() == (2 or 1) then
-		if IsPlayerSpell(385639) then
-			if number == 1 then
-				return GetSpellInfo(32223)
-			elseif number == 2 then
-				return GetSpellInfo(465)
-			elseif number == 3 then
-				return GetSpellInfo(317920)
-			elseif number == 4 then
-				return GetSpellInfo(183435)
-			end
-		else
-			if number == 1 then
-				return GetSpellInfo(465)
-			elseif number == 2 then
-				return GetSpellInfo(317920)
-			end
-		end
-	else
-		if IsPlayerSpell(385633) then
-			if number == 1 then
-				return GetSpellInfo(32223)
-			elseif number == 2 then
-				return GetSpellInfo(465)
-			elseif number == 3 then
-				return GetSpellInfo(183435)
-			elseif number == 4 then
-				return GetSpellInfo(317920)
-			end
-		else
-			if number == 1 then
-				return GetSpellInfo(32223)
-			elseif number == 2 then
-				return GetSpellInfo(183435)
-			end
-		end
-	end
-end
-
 local stanceBackup = 0 --store previous stance to force refresh it
 
 --ty a lot azilroka
@@ -352,10 +313,10 @@ local stanceID = {
 		[3] = not E.Retail and GetSpellInfo(48265),
 	},
 	PALADIN = {
-		[1] = (E.Retail and retailPaladin(1)) or GetSpellInfo(465),
-		[2] = (E.Retail and retailPaladin(2)) or GetSpellInfo(7294),
-		[3] = (E.Retail and retailPaladin(3)) or GetSpellInfo(19746),
-		[4] = (E.Retail and retailPaladin(4)) or GetSpellInfo(19746),
+		[1] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))) or GetSpellInfo(465),
+		[2] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))) or GetSpellInfo(7294),
+		[3] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))) or GetSpellInfo(19746),
+		[4] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))) or GetSpellInfo(19746),
 		[5] = not E.Retail and GetSpellInfo(19888),
 		[6] = not E.Retail and GetSpellInfo(19891),
 		[7] = not E.Retail and GetSpellInfo(32223),
@@ -377,10 +338,10 @@ local function refreshstance()
 			[3] = not E.Retail and GetSpellInfo(48265),
 		},
 		PALADIN = {
-			[1] = (E.Retail and retailPaladin(1)) or GetSpellInfo(465),
-			[2] = (E.Retail and retailPaladin(2)) or GetSpellInfo(7294),
-			[3] = (E.Retail and retailPaladin(3)) or GetSpellInfo(19746),
-			[4] = (E.Retail and retailPaladin(4)) or GetSpellInfo(27151),
+			[1] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))) or GetSpellInfo(465),
+			[2] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))) or GetSpellInfo(7294),
+			[3] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))) or GetSpellInfo(19746),
+			[4] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))) or GetSpellInfo(19746),
 			[5] = not E.Retail and GetSpellInfo(19888),
 			[6] = not E.Retail and GetSpellInfo(19891),
 			[7] = not E.Retail and GetSpellInfo(32223),
@@ -589,10 +550,14 @@ E:AddTagInfo("eltruismguild:brackets", ElvUI_EltreumUI.Name.." "..L["Names"], L[
 
 E:AddTag('eltruismrealm:dash', 'UNIT_NAME_UPDATE', function(unit)
 	local _, realm = UnitName(unit)
-	if realm and (realm ~= '' and realm ~= E.myrealm) then
-		return format('-%s', realm)
-	elseif realm ~= '' then
-		return realm
+	local _, unitClass = UnitClass(unit)
+	if realm and unitClass then
+		if realm ~= '' then
+			if realm ~= E.myrealm then
+				realm = format('-%s', realm)
+				return ElvUI_EltreumUI:GradientName(realm, unitClass)
+			end
+		end
 	end
 end)
 E:AddTagInfo("eltruismname:title", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the server name with a dash in gradient"])

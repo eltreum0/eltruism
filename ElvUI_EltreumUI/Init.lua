@@ -117,6 +117,9 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	ElvUI_EltreumUI:AutoCombatLog() -- automatic combat logging inside instances + advanced log for warcraftlogs
 	ElvUI_EltreumUI:FrameScales() --misc frames scales
 	ElvUI_EltreumUI:NPClassificatioNIcon() -- add different elite/rare icons to np
+	if not E.private.unitframe.disabledBlizzardFrames.raid then -- blizzard raid textures/gradient
+		ElvUI_EltreumUI:BlizzardTexturesGradient()
+	end
 end
 
 function ElvUI_EltreumUI:Initialize()
@@ -205,6 +208,9 @@ function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
 	end
 	if E.db.ElvUI_EltreumUI.borders.borders then
 		ElvUI_EltreumUI:GroupBorderColorUpdate()
+	end
+	if not E.private.unitframe.disabledBlizzardFrames.raid then -- blizzard raid textures/gradient
+		ElvUI_EltreumUI:BlizzardTexturesGradient()
 	end
 end
 

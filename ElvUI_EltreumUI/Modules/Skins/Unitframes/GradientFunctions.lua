@@ -47,6 +47,7 @@ do
 		["INSANITY"] = {r1 = 0.50, g1 = 0.25, b1 = 1, r2 = 0.70, g2 = 0, b2 = 1}, --INSANITY
 		["FURY"] = {r1 = 0.79, g1 = 0.26, b1 = 1, r2 = 1, g2 = 0, b2 = 0.95}, --FURY
 		["PAIN"] = {r1 = 1, g1 = 0.61, b1 = 0, r2 = 1, g2 = 0.30, b2 = 0}, --PAIN
+		["ELTRUISM"] = {r1 = 0.50, g1 = 0.70, b1 = 1,r2 = 0.67, g2 = 0.95, b2 = 1} --addon gradient
 	}
 	local unitframecustomgradients = {
 		["WARRIOR"] = {r1 = 0.42745098039216, g1 = 0.13725490196078, b1 = 0.090196078431373, r2 = 0.56470588235294, g2 = 0.43137254901961, b2 = 0.24705882352941},
@@ -87,6 +88,7 @@ do
 		["INSANITY"] = {r1 = 0.50, g1 = 0.25, b1 = 1, r2 = 0.70, g2 = 0, b2 = 1}, --INSANITY
 		["FURY"] = {r1 = 0.79, g1 = 0.26, b1 = 1, r2 = 1, g2 = 0, b2 = 0.95}, --FURY
 		["PAIN"] = {r1 = 1, g1 = 0.61, b1 = 0, r2 = 1, g2 = 0.30, b2 = 0}, --PAIN
+		["ELTRUISM"] = {r1 = 0.50, g1 = 0.70, b1 = 1,r2 = 0.67, g2 = 0.95, b2 = 1} --addon gradient
 	}
 	local unitframeclass = {
 		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-WA.tga",
@@ -187,6 +189,7 @@ do
 			["INSANITY"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityB2}, --INSANITY
 			["FURY"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyB2}, --FURY
 			["PAIN"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painB2}, --PAIN
+			["ELTRUISM"] = {r1 = 0.50, g1 = 0.70, b1 = 1,r2 = 0.67, g2 = 0.95, b2 = 1} --addon gradient
 		}
 		if E.db.ElvUI_EltreumUI.unitframes.uftextureversion == "V2" then
 			unitframeclass = {
@@ -298,6 +301,9 @@ do
 		--to make the previews update
 		ElvUI_EltreumUI:CustomTexture("player",true)
 		ElvUI_EltreumUI:GradientUF("player",true)
+		if not E.private.unitframe.disabledBlizzardFrames.raid then
+			ElvUI_EltreumUI:BlizzardTexturesGradient()
+		end
 	end
 	local colorupdateframe = CreateFrame("FRAME")
 	colorupdateframe:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -334,15 +340,15 @@ do
 				if not unitframegradients[unitclass] then
 					if invert then
 						if alpha then
-							return {r=unitframegradients["MANA"].r2 - bgfade,g= unitframegradients["MANA"].g2 - bgfade,b= unitframegradients["MANA"].b2 - bgfade,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=unitframegradients["MANA"].r1 - bgfade, g=unitframegradients["MANA"].g1 - bgfade, b=unitframegradients["MANA"].b1 - bgfade,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}
+							return {r=unitframegradients["ELTRUISM"].r2 - bgfade,g= unitframegradients["ELTRUISM"].g2 - bgfade,b= unitframegradients["ELTRUISM"].b2 - bgfade,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=unitframegradients["ELTRUISM"].r1 - bgfade, g=unitframegradients["ELTRUISM"].g1 - bgfade, b=unitframegradients["ELTRUISM"].b1 - bgfade,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}
 						else
-							return {r=unitframegradients["MANA"].r2 - bgfade,g= unitframegradients["MANA"].g2 - bgfade,b= unitframegradients["MANA"].b2 - bgfade,a= 1}, {r=unitframegradients["MANA"].r1 - bgfade, g=unitframegradients["MANA"].g1 - bgfade,b= unitframegradients["MANA"].b1 - bgfade, a=1}
+							return {r=unitframegradients["ELTRUISM"].r2 - bgfade,g= unitframegradients["ELTRUISM"].g2 - bgfade,b= unitframegradients["ELTRUISM"].b2 - bgfade,a= 1}, {r=unitframegradients["ELTRUISM"].r1 - bgfade, g=unitframegradients["ELTRUISM"].g1 - bgfade,b= unitframegradients["ELTRUISM"].b1 - bgfade, a=1}
 						end
 					else
 						if alpha then
-							return {r=unitframegradients["MANA"].r1 - bgfade,g= unitframegradients["MANA"].g1 - bgfade,b= unitframegradients["MANA"].b1 - bgfade,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=unitframegradients["MANA"].r2 - bgfade, g=unitframegradients["MANA"].g2 - bgfade,b= unitframegradients["MANA"].b2 - bgfade, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}
+							return {r=unitframegradients["ELTRUISM"].r1 - bgfade,g= unitframegradients["ELTRUISM"].g1 - bgfade,b= unitframegradients["ELTRUISM"].b1 - bgfade,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=unitframegradients["ELTRUISM"].r2 - bgfade, g=unitframegradients["ELTRUISM"].g2 - bgfade,b= unitframegradients["ELTRUISM"].b2 - bgfade, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}
 						else
-							return {r=unitframegradients["MANA"].r1 - bgfade,g= unitframegradients["MANA"].g1 - bgfade,b= unitframegradients["MANA"].b1 - bgfade,a= 1}, {r=unitframegradients["MANA"].r2 - bgfade, g=unitframegradients["MANA"].g2 - bgfade, b=unitframegradients["MANA"].b2 - bgfade,a= 1}
+							return {r=unitframegradients["ELTRUISM"].r1 - bgfade,g= unitframegradients["ELTRUISM"].g1 - bgfade,b= unitframegradients["ELTRUISM"].b1 - bgfade,a= 1}, {r=unitframegradients["ELTRUISM"].r2 - bgfade, g=unitframegradients["ELTRUISM"].g2 - bgfade, b=unitframegradients["ELTRUISM"].b2 - bgfade,a= 1}
 						end
 					end
 				else
@@ -371,15 +377,15 @@ do
 				if not unitframegradients[unitclass] then
 					if invert then
 						if alpha then
-							return unitframegradients["MANA"].r2 - bgfade, unitframegradients["MANA"].g2 - bgfade, unitframegradients["MANA"].b2 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframegradients["MANA"].r1 - bgfade, unitframegradients["MANA"].g1 - bgfade, unitframegradients["MANA"].b1 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+							return unitframegradients["ELTRUISM"].r2 - bgfade, unitframegradients["ELTRUISM"].g2 - bgfade, unitframegradients["ELTRUISM"].b2 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframegradients["ELTRUISM"].r1 - bgfade, unitframegradients["ELTRUISM"].g1 - bgfade, unitframegradients["ELTRUISM"].b1 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
 						else
-							return unitframegradients["MANA"].r2 - bgfade, unitframegradients["MANA"].g2 - bgfade, unitframegradients["MANA"].b2 - bgfade, unitframegradients["MANA"].r1 - bgfade, unitframegradients["MANA"].g1 - bgfade, unitframegradients["MANA"].b1 - bgfade
+							return unitframegradients["ELTRUISM"].r2 - bgfade, unitframegradients["ELTRUISM"].g2 - bgfade, unitframegradients["ELTRUISM"].b2 - bgfade, unitframegradients["ELTRUISM"].r1 - bgfade, unitframegradients["ELTRUISM"].g1 - bgfade, unitframegradients["ELTRUISM"].b1 - bgfade
 						end
 					else
 						if alpha then
-							return unitframegradients["MANA"].r1 - bgfade, unitframegradients["MANA"].g1 - bgfade, unitframegradients["MANA"].b1 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframegradients["MANA"].r2 - bgfade, unitframegradients["MANA"].g2 - bgfade, unitframegradients["MANA"].b2 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+							return unitframegradients["ELTRUISM"].r1 - bgfade, unitframegradients["ELTRUISM"].g1 - bgfade, unitframegradients["ELTRUISM"].b1 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframegradients["ELTRUISM"].r2 - bgfade, unitframegradients["ELTRUISM"].g2 - bgfade, unitframegradients["ELTRUISM"].b2 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
 						else
-							return unitframegradients["MANA"].r1 - bgfade, unitframegradients["MANA"].g1 - bgfade, unitframegradients["MANA"].b1 - bgfade, unitframegradients["MANA"].r2 - bgfade, unitframegradients["MANA"].g2 - bgfade, unitframegradients["MANA"].b2 - bgfade
+							return unitframegradients["ELTRUISM"].r1 - bgfade, unitframegradients["ELTRUISM"].g1 - bgfade, unitframegradients["ELTRUISM"].b1 - bgfade, unitframegradients["ELTRUISM"].r2 - bgfade, unitframegradients["ELTRUISM"].g2 - bgfade, unitframegradients["ELTRUISM"].b2 - bgfade
 						end
 					end
 				else
@@ -413,15 +419,15 @@ do
 				if not unitframecustomgradients[unitclass] then
 					if invert then
 						if alpha then
-							return {r=unitframecustomgradients["MANA"].r2 - bgfade,g= unitframecustomgradients["MANA"].g2 - bgfade,b= unitframecustomgradients["MANA"].b2 - bgfade,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=unitframecustomgradients["MANA"].r1 - bgfade,g= unitframecustomgradients["MANA"].g1 - bgfade,b= unitframecustomgradients["MANA"].b1 - bgfade,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}
+							return {r=unitframecustomgradients["ELTRUISM"].r2 - bgfade,g= unitframecustomgradients["ELTRUISM"].g2 - bgfade,b= unitframecustomgradients["ELTRUISM"].b2 - bgfade,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=unitframecustomgradients["ELTRUISM"].r1 - bgfade,g= unitframecustomgradients["ELTRUISM"].g1 - bgfade,b= unitframecustomgradients["ELTRUISM"].b1 - bgfade,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}
 						else
-							return {r=unitframecustomgradients["MANA"].r2 - bgfade,g= unitframecustomgradients["MANA"].g2 - bgfade,b= unitframecustomgradients["MANA"].b2 - bgfade,a= 1}, {r=unitframecustomgradients["MANA"].r1 - bgfade,g= unitframecustomgradients["MANA"].g1 - bgfade,b= unitframecustomgradients["MANA"].b1 - bgfade,a= 1}
+							return {r=unitframecustomgradients["ELTRUISM"].r2 - bgfade,g= unitframecustomgradients["ELTRUISM"].g2 - bgfade,b= unitframecustomgradients["ELTRUISM"].b2 - bgfade,a= 1}, {r=unitframecustomgradients["ELTRUISM"].r1 - bgfade,g= unitframecustomgradients["ELTRUISM"].g1 - bgfade,b= unitframecustomgradients["ELTRUISM"].b1 - bgfade,a= 1}
 						end
 					else
 						if alpha then
-							return {r=unitframecustomgradients["MANA"].r1 - bgfade,g= unitframecustomgradients["MANA"].g1 - bgfade,b= unitframecustomgradients["MANA"].b1 - bgfade,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=unitframecustomgradients["MANA"].r2 - bgfade,g= unitframecustomgradients["MANA"].g2 - bgfade,b= unitframecustomgradients["MANA"].b2 - bgfade,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}
+							return {r=unitframecustomgradients["ELTRUISM"].r1 - bgfade,g= unitframecustomgradients["ELTRUISM"].g1 - bgfade,b= unitframecustomgradients["ELTRUISM"].b1 - bgfade,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=unitframecustomgradients["ELTRUISM"].r2 - bgfade,g= unitframecustomgradients["ELTRUISM"].g2 - bgfade,b= unitframecustomgradients["ELTRUISM"].b2 - bgfade,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}
 						else
-							return {r=unitframecustomgradients["MANA"].r1 - bgfade,g= unitframecustomgradients["MANA"].g1 - bgfade,b= unitframecustomgradients["MANA"].b1 - bgfade,a= 1}, {r=unitframecustomgradients["MANA"].r2 - bgfade,g= unitframecustomgradients["MANA"].g2 - bgfade,b= unitframecustomgradients["MANA"].b2 - bgfade,a= 1}
+							return {r=unitframecustomgradients["ELTRUISM"].r1 - bgfade,g= unitframecustomgradients["ELTRUISM"].g1 - bgfade,b= unitframecustomgradients["ELTRUISM"].b1 - bgfade,a= 1}, {r=unitframecustomgradients["ELTRUISM"].r2 - bgfade,g= unitframecustomgradients["ELTRUISM"].g2 - bgfade,b= unitframecustomgradients["ELTRUISM"].b2 - bgfade,a= 1}
 						end
 					end
 				else
@@ -450,15 +456,15 @@ do
 				if not unitframecustomgradients[unitclass] then
 					if invert then
 						if alpha then
-							return unitframecustomgradients["MANA"].r2 - bgfade, unitframecustomgradients["MANA"].g2 - bgfade, unitframecustomgradients["MANA"].b2 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframecustomgradients["MANA"].r1 - bgfade, unitframecustomgradients["MANA"].g1 - bgfade, unitframecustomgradients["MANA"].b1 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+							return unitframecustomgradients["ELTRUISM"].r2 - bgfade, unitframecustomgradients["ELTRUISM"].g2 - bgfade, unitframecustomgradients["ELTRUISM"].b2 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframecustomgradients["ELTRUISM"].r1 - bgfade, unitframecustomgradients["ELTRUISM"].g1 - bgfade, unitframecustomgradients["ELTRUISM"].b1 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
 						else
-							return unitframecustomgradients["MANA"].r2 - bgfade, unitframecustomgradients["MANA"].g2 - bgfade, unitframecustomgradients["MANA"].b2 - bgfade, unitframecustomgradients["MANA"].r1 - bgfade, unitframecustomgradients["MANA"].g1 - bgfade, unitframecustomgradients["MANA"].b1 - bgfade
+							return unitframecustomgradients["ELTRUISM"].r2 - bgfade, unitframecustomgradients["ELTRUISM"].g2 - bgfade, unitframecustomgradients["ELTRUISM"].b2 - bgfade, unitframecustomgradients["ELTRUISM"].r1 - bgfade, unitframecustomgradients["ELTRUISM"].g1 - bgfade, unitframecustomgradients["ELTRUISM"].b1 - bgfade
 						end
 					else
 						if alpha then
-							return unitframecustomgradients["MANA"].r1 - bgfade, unitframecustomgradients["MANA"].g1 - bgfade, unitframecustomgradients["MANA"].b1 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframecustomgradients["MANA"].r2 - bgfade, unitframecustomgradients["MANA"].g2 - bgfade, unitframecustomgradients["MANA"].b2 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+							return unitframecustomgradients["ELTRUISM"].r1 - bgfade, unitframecustomgradients["ELTRUISM"].g1 - bgfade, unitframecustomgradients["ELTRUISM"].b1 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, unitframecustomgradients["ELTRUISM"].r2 - bgfade, unitframecustomgradients["ELTRUISM"].g2 - bgfade, unitframecustomgradients["ELTRUISM"].b2 - bgfade, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
 						else
-							return unitframecustomgradients["MANA"].r1 - bgfade, unitframecustomgradients["MANA"].g1 - bgfade, unitframecustomgradients["MANA"].b1 - bgfade, unitframecustomgradients["MANA"].r2 - bgfade, unitframecustomgradients["MANA"].g2 - bgfade, unitframecustomgradients["MANA"].b2 - bgfade
+							return unitframecustomgradients["ELTRUISM"].r1 - bgfade, unitframecustomgradients["ELTRUISM"].g1 - bgfade, unitframecustomgradients["ELTRUISM"].b1 - bgfade, unitframecustomgradients["ELTRUISM"].r2 - bgfade, unitframecustomgradients["ELTRUISM"].g2 - bgfade, unitframecustomgradients["ELTRUISM"].b2 - bgfade
 						end
 					end
 				else
@@ -485,13 +491,13 @@ do
 		local text
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 			if not unitframecustomgradients[unitclass] then
-				text = E:TextGradient(name, unitframecustomgradients["MANA"].r1, unitframecustomgradients["MANA"].g1, unitframecustomgradients["MANA"].b1, unitframecustomgradients["MANA"].r2, unitframecustomgradients["MANA"].g2, unitframecustomgradients["MANA"].b2)
+				text = E:TextGradient(name, unitframecustomgradients["ELTRUISM"].r1, unitframecustomgradients["ELTRUISM"].g1, unitframecustomgradients["ELTRUISM"].b1, unitframecustomgradients["ELTRUISM"].r2, unitframecustomgradients["ELTRUISM"].g2, unitframecustomgradients["ELTRUISM"].b2)
 			else
 				text = E:TextGradient(name, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2)
 			end
 		else
 			if not unitframegradients[unitclass] then
-				text = E:TextGradient(name, unitframegradients["MANA"].r1, unitframegradients["MANA"].g1, unitframegradients["MANA"].b1, unitframegradients["MANA"].r2, unitframegradients["MANA"].g2, unitframegradients["MANA"].b2)
+				text = E:TextGradient(name, unitframegradients["ELTRUISM"].r1, unitframegradients["ELTRUISM"].g1, unitframegradients["ELTRUISM"].b1, unitframegradients["ELTRUISM"].r2, unitframegradients["ELTRUISM"].g2, unitframegradients["ELTRUISM"].b2)
 			else
 				text = E:TextGradient(name, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2)
 			end
