@@ -1336,3 +1336,5 @@ L["Fast Loot"] = "Butin rapide"
 L["Auto Type Delete"] = "Type automatique Supprimer"
 L["Quest Autoaccept"] = "Acceptation automatique des quêtes"
 L["Chat Loot Item Level"] = "Niveau de l'objet de butin du chat"
+L["Emphasize"] = "Mise en évidence" --from bigwigs
+L["Normal"] = true
