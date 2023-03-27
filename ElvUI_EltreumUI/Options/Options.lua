@@ -12601,22 +12601,23 @@ function ElvUI_EltreumUI:Configtable()
 										name = L["Shadows"],
 										desc = L["Add Shadows to BigWigs Bars"],
 										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigs end,
 										get = function() return E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.bigwigs = value E:StaticPopup_Show('CONFIG_RL') end,
 									},
 									enablecustomcolor = {
 										order = 103,
 										type = 'toggle',
-										name = L["Custom Color"],
+										name = E.NewSign..L["Custom Color"],
 										desc = L["Enable Custom Colors"],
-										disabled = function() return not E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigs end,
 										get = function() return E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor = value end,
 									},
 									header2 = {
 										order = 104,
 										type = "description",
-										name = L["Normal"],
+										name = E.NewSign..L["Normal"],
 										width = 'full',
 										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
@@ -12625,7 +12626,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'color',
 										name = L["Color 1"],
 										hasAlpha = false,
-										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor or not E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor or not E.db.ElvUI_EltreumUI.skins.bigwigs end,
 										get = function()
 											local dr = P.ElvUI_EltreumUI.skins.bigwigscustomnormalr1
 											local dg = P.ElvUI_EltreumUI.skins.bigwigscustomnormalg1
@@ -12641,7 +12642,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'color',
 										name = L["Color 2"],
 										hasAlpha = false,
-										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor or not E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor or not E.db.ElvUI_EltreumUI.skins.bigwigs end,
 										get = function()
 											local dr = P.ElvUI_EltreumUI.skins.bigwigscustomnormalr2
 											local dg = P.ElvUI_EltreumUI.skins.bigwigscustomnormalg2
@@ -12655,7 +12656,7 @@ function ElvUI_EltreumUI:Configtable()
 									header3 = {
 										order = 107,
 										type = "description",
-										name = L["Emphasize"],
+										name = E.NewSign..L["Emphasize"],
 										width = 'full',
 										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
@@ -12664,7 +12665,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'color',
 										name = L["Color 1"],
 										hasAlpha = false,
-										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor or not E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor or not E.db.ElvUI_EltreumUI.skins.bigwigs end,
 										get = function()
 											local dr = P.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr1
 											local dg = P.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg1
@@ -12680,7 +12681,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'color',
 										name = L["Color 2"],
 										hasAlpha = false,
-										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor or not E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor or not E.db.ElvUI_EltreumUI.skins.bigwigs end,
 										get = function()
 											local dr = P.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr2
 											local dg = P.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg2
