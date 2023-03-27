@@ -720,6 +720,16 @@ function ElvUI_EltreumUI:Shadows()
 			_G.SubscriptionInterstitialFrame,
 			--_G.ImmersionFrame.TalkBox,
 			_G.ReadyStatus,
+			_G.QuickKeybindTooltip,
+			_G.WorldMapTooltip,
+			_G.ReputationParagonTooltip,
+			_G.EmbeddedItemTooltip,
+			_G.AutoCompleteBox,
+			_G.ItemRefTooltip,
+			_G.ItemRefShoppingTooltip1,
+			_G.ItemRefShoppingTooltip2,
+			_G.FriendsTooltip,
+			_G.AddFriendFrame,
 		}
 		for _, frame in pairs(blizzardframes) do
 			if frame and not frame.shadow then
@@ -931,6 +941,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.TokenFrame,
 				_G.SpellBookFrame,
 				_G.FriendsFrame,
+				_G.RecruitAFriendRewardsFrame,
 				_G.MerchantFrame,
 				_G.MerchantFrameTab1.backdrop,
 				_G.MerchantFrameTab2.backdrop,
@@ -1138,6 +1149,8 @@ function ElvUI_EltreumUI:Shadows()
 			_G["ElvUIVendorGraysFrame"],
 			_G["ElvUI_ContainerFrameContainerHolder"],
 			_G["ElvUI_AltPowerBar"],
+			_G["ElvUISpellBookTooltip"],
+			_G["ElvUIConfigTooltip"],
 		}
 		for _, frame in pairs(GeneralElvUIFrames) do
 			if frame and not frame.shadow then
