@@ -599,31 +599,6 @@ taxiloadmonitor:SetScript("OnEvent", function(_,_,arg)
 	end
 end)
 
-function ElvUI_EltreumUI:RetailTalentScale()
-	if _G.ClassTalentFrame then
-		_G.ClassTalentFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
-		_G.ClassTalentFrame:HookScript("OnShow", function()
-			_G.ClassTalentFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
-		end)
-	end
-end
-
---frame that checks for new talent
-local retailtalentmonitor = CreateFrame("FRAME")
-retailtalentmonitor:RegisterEvent("PLAYER_ENTERING_WORLD")
-retailtalentmonitor:RegisterEvent("ADDON_LOADED")
-retailtalentmonitor:SetScript("OnEvent", function(_,_,arg)
-	if not E.Retail then retailtalentmonitor:UnregisterAllEvents() end
-	if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then
-		if not E.private.ElvUI_EltreumUI then return end
-		if not E.db.ElvUI_EltreumUI then return end
-		if not E.db.ElvUI_EltreumUI.skins then return end
-		if not E.db.ElvUI_EltreumUI.skins.expandedtalentscale then return end
-		ElvUI_EltreumUI:RetailTalentScale()
-		retailtalentmonitor:UnregisterAllEvents()
-	end
-end)
-
 function ElvUI_EltreumUI:SkinMailZone()
 	if E.db.ElvUI_EltreumUI.skins.zones then
 		if not ElvUI_EltreumUI:SLCheck("media") then

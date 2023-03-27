@@ -1,6 +1,7 @@
 local E, L, V, P, G = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
+local tostring = _G.tostring
 local EnhancedShadows = nil
 local IsAddOnLoaded = _G.IsAddOnLoaded
 if IsAddOnLoaded("ProjectAzilroka") then
@@ -16,11 +17,65 @@ do
 			function candy.barPrototype:SetColor(...)
 				self.candyBarBar:SetStatusBarColor(...)
 				local r,g,b = self.candyBarBar:GetStatusBarColor()
-				if E.Retail or E.Wrath then
-					self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.4,g= g-0.4,b= b-0.4,a= 0.7}, {r=r+0.2,g=g+0.2,b=b+0.2,a= 0.7})
+				if E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor then
+					local bigwigstype
+					if E.Retail then
+						bigwigstype = BigWigs3DB
+					else
+						bigwigstype = BigWigsClassicDB
+					end
+					local currentprofile = bigwigstype["profileKeys"][E.mynameRealm]
+					local r1,g1,b1
+
+					--so there is something strange going on where if not converted to string the values are not equal, guess wow drops some decimal places and rounds them differently so tostring is used to avoid that issue
+					r = tostring(r)
+					g = tostring(g)
+					b = tostring(b)
+					if currentprofile ~= "Default" then
+						r1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][1])
+						g1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][2])
+						b1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][3])
+					else
+						if r ~= tostring(0.25098040699959) and g ~= tostring(0.32941177487373) and b ~= tostring(0.678431391716) then
+							r1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][1])
+							g1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][2])
+							b1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][3])
+						else
+							r1 = tostring(0.25098040699959)
+							g1 = tostring(0.32941177487373)
+							b1 = tostring(0.678431391716)
+						end
+					end
+					local r2 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][1])
+					local g2 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][2])
+					local b2 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][3])
+					if (r == r1 and g == g1 and b == b1) then -- its normal bar
+						if E.Retail or E.Wrath then
+							self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr1,g= E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg1,b= E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb1,a= 0.7}, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr2,g=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg2,b=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb2,a= 0.7})
+						else
+							self.candyBarBar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr1, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg1, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb1, 0.7, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr2, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg2, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb2, 0.7)
+						end
+					elseif (r == r2 and g == g2 and b == b2) then --its emphasized bar]
+						if E.Retail or E.Wrath then
+							self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr1,g= E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg1,b= E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb1,a= 0.7}, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr2,g=E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg2,b=E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb2,a= 0.7})
+						else
+							self.candyBarBar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr1, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg2, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb2, 0.7, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr2, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg2, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb2, 0.7)
+						end
+					else -- its something else
+						if E.Retail or E.Wrath then
+							self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.4,g= g-0.4,b= b-0.4,a= 0.7}, {r=r+0.2,g=g+0.2,b=b+0.2,a= 0.7})
+						else
+							self.candyBarBar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.4, g-0.4, b-0.4, 0.7, r+0.2, g+0.2, b+0.2, 0.7)
+						end
+					end
 				else
-					self.candyBarBar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.4, g-0.4, b-0.4, 0.7, r+0.2, g+0.2, b+0.2, 0.7)
+					if E.Retail or E.Wrath then
+						self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.4,g= g-0.4,b= b-0.4,a= 0.7}, {r=r+0.2,g=g+0.2,b=b+0.2,a= 0.7})
+					else
+						self.candyBarBar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.4, g-0.4, b-0.4, 0.7, r+0.2, g+0.2, b+0.2, 0.7)
+					end
 				end
+
 				if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs then
 					if not self.candyBarBar.shadow then
 						self.candyBarBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)

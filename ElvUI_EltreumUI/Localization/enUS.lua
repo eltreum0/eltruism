@@ -1326,3 +1326,5 @@ L["Fast Loot"] = true
 L["Auto Type Delete"] = true
 L["Quest Autoaccept"] = true
 L["Chat Loot Item Level"] = true
+L["Emphasize"] = true
+L["Normal"] = true

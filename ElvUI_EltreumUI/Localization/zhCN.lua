@@ -1324,3 +1324,5 @@ L["Fast Loot"] = true
 L["Auto Type Delete"] = true
 L["Quest Autoaccept"] = true
 L["Chat Loot Item Level"] = true
+L["Emphasize"] = "醒目" --from bigwigs
+L["Normal"] = "普通" --from bigwigs

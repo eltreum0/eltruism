@@ -10615,11 +10615,11 @@ function ElvUI_EltreumUI:Configtable()
 										name = "",
 										values = {
 											["ELTRUISM"] = "Eltruism "..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield',':20:20'),
-											["ATWOODELVUI"] = 'Atwood ElvUI '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\Tank',':20:20'),
-											["ATWOODGLOW"] = 'Atwood Glow '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\Tank',':20:20'),
+											["ATWOODELVUI"] = 'ElvUI '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\Tank',':20:20'),
+											["ATWOODGLOW"] = 'Glow '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\Tank',':20:20'),
 											["ATWOODGRAVED"] = 'Atwood '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\Tank',':20:20'),
-											["ATWOODGREY"] = 'Atwood Grey '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Tank',':20:20'),
-											["ATWOODWHITE"] = 'Atwood White '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Tank',':20:20'),
+											["ATWOODGREY"] = 'Grey '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Tank',':20:20'),
+											["ATWOODWHITE"] = 'White '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Tank',':20:20'),
 											["RELEAF"] = 'Releaf '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Tank',':20:20'),
 											["CUSTOM"] = 'Custom',
 										},
@@ -12601,8 +12601,96 @@ function ElvUI_EltreumUI:Configtable()
 										name = L["Shadows"],
 										desc = L["Add Shadows to BigWigs Bars"],
 										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigs end,
 										get = function() return E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.bigwigs = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									enablecustomcolor = {
+										order = 103,
+										type = 'toggle',
+										name = E.NewSign..L["Custom Color"],
+										desc = L["Enable Custom Colors"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigs end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor = value end,
+									},
+									header2 = {
+										order = 104,
+										type = "description",
+										name = E.NewSign..L["Normal"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									normal1 = {
+										order = 105,
+										type = 'color',
+										name = L["Color 1"],
+										hasAlpha = false,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor or not E.db.ElvUI_EltreumUI.skins.bigwigs end,
+										get = function()
+											local dr = P.ElvUI_EltreumUI.skins.bigwigscustomnormalr1
+											local dg = P.ElvUI_EltreumUI.skins.bigwigscustomnormalg1
+											local db = P.ElvUI_EltreumUI.skins.bigwigscustomnormalb1
+											return E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr1, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg1, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb1, 1, dr, dg, db, 1
+										end,
+										set = function(_, r, g, b, a)
+											E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr1, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg1, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb1 = r, g, b
+										end,
+									},
+									normal2 = {
+										order = 106,
+										type = 'color',
+										name = L["Color 2"],
+										hasAlpha = false,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor or not E.db.ElvUI_EltreumUI.skins.bigwigs end,
+										get = function()
+											local dr = P.ElvUI_EltreumUI.skins.bigwigscustomnormalr2
+											local dg = P.ElvUI_EltreumUI.skins.bigwigscustomnormalg2
+											local db = P.ElvUI_EltreumUI.skins.bigwigscustomnormalb2
+											return E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr2, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg2, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb2, 1, dr, dg, db, 1
+										end,
+										set = function(_, r, g, b, a)
+											E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr2, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg2, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb2 = r, g, b
+										end,
+									},
+									header3 = {
+										order = 107,
+										type = "description",
+										name = E.NewSign..L["Emphasize"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									emphasize1 = {
+										order = 108,
+										type = 'color',
+										name = L["Color 1"],
+										hasAlpha = false,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor or not E.db.ElvUI_EltreumUI.skins.bigwigs end,
+										get = function()
+											local dr = P.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr1
+											local dg = P.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg1
+											local db = P.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb1
+											return E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr1, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg1, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb1, 1, dr, dg, db, 1
+										end,
+										set = function(_, r, g, b, a)
+											E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr1, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg1, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb1 = r, g, b
+										end,
+									},
+									emphasize2 = {
+										order = 109,
+										type = 'color',
+										name = L["Color 2"],
+										hasAlpha = false,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor or not E.db.ElvUI_EltreumUI.skins.bigwigs end,
+										get = function()
+											local dr = P.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr2
+											local dg = P.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg2
+											local db = P.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb2
+											return E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr2, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg2, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb2, 1, dr, dg, db, 1
+										end,
+										set = function(_, r, g, b, a)
+											E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr2, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg2, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb2 = r, g, b
+										end,
 									},
 								},
 							},

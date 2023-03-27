@@ -1380,3 +1380,5 @@ L["Fast Loot"] = "Schnelles Looten"
 L["Auto Type Delete"] = "Löschen Autoschreiben"
 L["Quest Autoaccept"] = "Quests Auto Akzeptieren"
 L["Chat Loot Item Level"] = "Chat Beute Gegenstandsstufe"
+L["Emphasize"] = "Hervorheben" --from bigwigs
+L["Normal"] = true
