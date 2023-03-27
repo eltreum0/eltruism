@@ -12604,6 +12604,93 @@ function ElvUI_EltreumUI:Configtable()
 										get = function() return E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.bigwigs = value E:StaticPopup_Show('CONFIG_RL') end,
 									},
+									enablecustomcolor = {
+										order = 103,
+										type = 'toggle',
+										name = L["Custom Color"],
+										desc = L["Enable Custom Colors"],
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor = value end,
+									},
+									header2 = {
+										order = 104,
+										type = "description",
+										name = L["Normal"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									normal1 = {
+										order = 105,
+										type = 'color',
+										name = L["Color 1"],
+										hasAlpha = false,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor or not E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
+										get = function()
+											local dr = P.ElvUI_EltreumUI.skins.bigwigscustomnormalr1
+											local dg = P.ElvUI_EltreumUI.skins.bigwigscustomnormalg1
+											local db = P.ElvUI_EltreumUI.skins.bigwigscustomnormalb1
+											return E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr1, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg1, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb1, 1, dr, dg, db, 1
+										end,
+										set = function(_, r, g, b, a)
+											E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr1, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg1, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb1 = r, g, b
+										end,
+									},
+									normal2 = {
+										order = 106,
+										type = 'color',
+										name = L["Color 2"],
+										hasAlpha = false,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor or not E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
+										get = function()
+											local dr = P.ElvUI_EltreumUI.skins.bigwigscustomnormalr2
+											local dg = P.ElvUI_EltreumUI.skins.bigwigscustomnormalg2
+											local db = P.ElvUI_EltreumUI.skins.bigwigscustomnormalb2
+											return E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr2, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg2, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb2, 1, dr, dg, db, 1
+										end,
+										set = function(_, r, g, b, a)
+											E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr2, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg2, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb2 = r, g, b
+										end,
+									},
+									header3 = {
+										order = 107,
+										type = "description",
+										name = L["Emphasize"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									emphasize1 = {
+										order = 108,
+										type = 'color',
+										name = L["Color 1"],
+										hasAlpha = false,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor or not E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
+										get = function()
+											local dr = P.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr1
+											local dg = P.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg1
+											local db = P.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb1
+											return E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr1, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg1, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb1, 1, dr, dg, db, 1
+										end,
+										set = function(_, r, g, b, a)
+											E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr1, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg1, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb1 = r, g, b
+										end,
+									},
+									emphasize2 = {
+										order = 109,
+										type = 'color',
+										name = L["Color 2"],
+										hasAlpha = false,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor or not E.db.ElvUI_EltreumUI.skins.shadow.bigwigs end,
+										get = function()
+											local dr = P.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr2
+											local dg = P.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg2
+											local db = P.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb2
+											return E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr2, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg2, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb2, 1, dr, dg, db, 1
+										end,
+										set = function(_, r, g, b, a)
+											E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr2, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg2, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb2 = r, g, b
+										end,
+									},
 								},
 							},
 							details = {
