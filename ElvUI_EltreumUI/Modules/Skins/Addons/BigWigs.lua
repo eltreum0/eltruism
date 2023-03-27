@@ -16,24 +16,22 @@ do
 			function candy.barPrototype:SetColor(...)
 				self.candyBarBar:SetStatusBarColor(...)
 				local r,g,b = self.candyBarBar:GetStatusBarColor()
-
-				local bigwigstype
-				if E.Retail then
-					bigwigstype = BigWigs3DB
-				else
-					bigwigstype = BigWigsClassicDB
-				end
-				local currentprofile = bigwigstype["profileKeys"][E.mynameRealm]
-
-				local r1 = bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][1]
-				local g1 = bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][2]
-				local b1 = bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][3]
-
-				local r2 = bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][1]
-				local g2 = bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][2]
-				local b2 = bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][3]
-
 				if E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor then
+					local bigwigstype
+					if E.Retail then
+						bigwigstype = BigWigs3DB
+					else
+						bigwigstype = BigWigsClassicDB
+					end
+					local currentprofile = bigwigstype["profileKeys"][E.mynameRealm]
+
+					local r1 = bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][1]
+					local g1 = bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][2]
+					local b1 = bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][3]
+
+					local r2 = bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][1]
+					local g2 = bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][2]
+					local b2 = bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][3]
 					if r == r1 and g == g1 and b == b1 then -- its normal bar
 						if E.Retail or E.Wrath then
 							self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr1,g= E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg1,b= E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb1,a= 0.7}, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr2,g=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg2,b=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb2,a= 0.7})
