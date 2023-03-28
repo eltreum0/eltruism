@@ -155,7 +155,7 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 			end
 		end
 	end
-	E:StaggeredUpdateAll(nil, true)
+	E:StaggeredUpdateAll()
 	ElvUI_EltreumUI:Print(L["Buff filters were setup"])
 end
 
@@ -255,6 +255,6 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 			end
 		end
 	end
-	E:StaggeredUpdateAll(nil, true)
+	E:StaggeredUpdateAll()
 	ElvUI_EltreumUI:Print(L["Debuff filters were setup"])
 end

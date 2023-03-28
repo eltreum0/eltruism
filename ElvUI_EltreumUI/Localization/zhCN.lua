@@ -1326,3 +1326,4 @@ L["Quest Autoaccept"] = true
 L["Chat Loot Item Level"] = true
 L["Emphasize"] = "醒目" --from bigwigs
 L["Normal"] = "普通" --from bigwigs
+L["MAP_SEARCHER_TOOLTIP_TITLE"] = "RareScanner 搜索器" -- from rarescanner locales

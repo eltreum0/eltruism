@@ -1258,6 +1258,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["targettarget"]["raidicon"]["yOffset"] = 0
 	E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = "Kimberley"
 
-	E:StaggeredUpdateAll(nil, true)
+	E:StaggeredUpdateAll()
 	ElvUI_EltreumUI:Print(L["Healer Layout has been set."])
 end

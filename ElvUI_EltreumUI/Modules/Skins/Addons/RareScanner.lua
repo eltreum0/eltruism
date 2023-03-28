@@ -44,6 +44,43 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 			_G["scanner_button"].IsSkinned = true
 		end
 
+		local f = LibStub("AceAddon-3.0"):GetAddon("RareScanner")
+
+		-- the search box is not named, use get children
+		for _, v in pairs({_G["WorldMapFrame"]:GetChildren()}) do
+			if v and v:GetObjectType() == "Frame" and v.EditBox and v.relativeFrame then
+				S:HandleEditBox(v)
+
+				--add shadows too
+				if not v.shadow then
+					v:CreateShadow()
+				end
+
+				--elvui didnt get rid of the blizzard texture
+				for _, j in pairs({v.EditBox:GetRegions()}) do
+					if j:GetObjectType() == "Texture" and j:GetTexture() then
+						j:SetTexture(nil)
+					end
+				end
+
+				--move because map should be clean
+				v:ClearAllPoints()
+				v:SetPoint("BOTTOM", _G["WorldMapFrame"].ScrollContainer, "TOP", -30, 37)
+
+				--adjust size so its not too big
+				local width,height = v:GetSize()
+				v:SetSize(width*1.25,height/1.25)
+
+				--add a description so people dont wonder what it is
+				local Desc = v:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+				Desc:SetFont(E.media.normFont, 10, E.db.general.fontStyle)
+				Desc:SetTextColor(1, 1, 1)
+				Desc:SetText(L["MAP_SEARCHER_TOOLTIP_TITLE"])
+				Desc:SetPoint("RIGHT", v, "LEFT", 0, 0)
+				break
+			end
+		end
+
 		--hooksecurefunc(scanner_button,"ShowButton",function()
 		hooksecurefunc(scanner_button.LootBar.itemFramesPool,"ShowIfReady",function() --item delay so hook later function
 			E:Delay(0, function()
