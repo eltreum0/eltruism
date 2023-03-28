@@ -683,10 +683,14 @@ function ElvUI_EltreumUI:SkinQuests()
 			_G.QuestWatchFrame.HeaderBar:SetPoint("TOP", _G.QuestWatchFrameMover, "TOP", 40, 0)
 			_G.QuestWatchFrame.HeaderBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.questsettings.texture))
 			--_G.QuestWatchFrame.HeaderBar:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b)
-			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-				_G.QuestWatchFrame.HeaderBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass))
+			if not E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor then
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+					_G.QuestWatchFrame.HeaderBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass))
+				else
+					_G.QuestWatchFrame.HeaderBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
+				end
 			else
-				_G.QuestWatchFrame.HeaderBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
+				_G.QuestWatchFrame.HeaderBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r,E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g,E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b,E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b)
 			end
 			if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not _G["EltruismQuestLine"].shadow then
 				_G.QuestWatchFrame.HeaderBar:CreateBackdrop('Transparent')
