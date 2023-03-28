@@ -1325,6 +1325,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["targettargettarget"]["power"]["enable"] = false
 	E.db["unitframe"]["units"]["targettargettarget"]["power"]["text_format"] = "[power:current:shortvalue]"
 
-	E:StaggeredUpdateAll(nil, true)
+	E:StaggeredUpdateAll()
 	ElvUI_EltreumUI:Print(L["DPS/Tank Layout has been set."])
 end

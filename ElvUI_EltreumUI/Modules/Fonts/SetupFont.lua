@@ -903,7 +903,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		ElvFCT["unitframes"]["frames"]["Arena"]["critFont"] = fontvalue
 	end
 
-	E:StaggeredUpdateAll(nil, true)
+	E:StaggeredUpdateAll()
 
 	if custom then
 		ElvUI_EltreumUI:Print(L["Your custom font has been set."])

@@ -800,7 +800,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		--E.global["nameplates"]["filters"]["EltreumDeadNP"]["triggers"]["nameplateType"]["enable"] = true
 		--E.global["nameplates"]["filters"]["EltreumDeadNP"]["triggers"]["nameplateType"]["enemyNPC"] = true
 
-		--E:StaggeredUpdateAll(nil, true)
+		--E:StaggeredUpdateAll()
 		E:UpdateNamePlates()
 		ElvUI_EltreumUI:Print(L["NamePlate Style Filters were set."])
 	end
