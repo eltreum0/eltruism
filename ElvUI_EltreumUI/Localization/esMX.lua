@@ -1358,3 +1358,4 @@ L["Quest Autoaccept"] = "Autoaceptación de misiones"
 L["Chat Loot Item Level"] = true
 L["Emphasize"] = "Enfatizar" --from bigwigs
 L["Normal"] = true
+L["MAP_SEARCHER_TOOLTIP_TITLE"] = "Buscador de RareScanner" -- from rarescanner locales

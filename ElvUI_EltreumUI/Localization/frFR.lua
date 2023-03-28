@@ -1338,3 +1338,4 @@ L["Quest Autoaccept"] = "Acceptation automatique des quêtes"
 L["Chat Loot Item Level"] = "Niveau de l'objet de butin du chat"
 L["Emphasize"] = "Mise en évidence" --from bigwigs
 L["Normal"] = true
+L["MAP_SEARCHER_TOOLTIP_TITLE"] = "Recherche RareScanner" -- from rarescanner locales
