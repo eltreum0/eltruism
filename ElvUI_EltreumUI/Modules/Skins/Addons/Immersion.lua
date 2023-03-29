@@ -11,6 +11,8 @@ local EnhancedShadows = nil
 if IsAddOnLoaded("ProjectAzilroka") then
 	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
 end
+local GetQuestItemInfo = _G.GetQuestItemInfo
+local GetItemQualityColor = _G.GetItemQualityColor
 
 --skin immersion
 function ElvUI_EltreumUI:EltruismImmersion()
@@ -105,8 +107,6 @@ function ElvUI_EltreumUI:EltruismImmersion()
 						_G["ImmersionQuestInfoItem" .. i].Name:SetTextColor(r, g, b)
 						_G["ImmersionQuestInfoItem" .. i].Name:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 					end
-				elseif not _G["ImmersionQuestInfoItem" .. i] then
-					break
 				end
 			end
 			for i = 1, 10 do
@@ -125,8 +125,6 @@ function ElvUI_EltreumUI:EltruismImmersion()
 						_G["ImmersionProgressItem" .. i].Name:SetTextColor(r, g, b)
 						_G["ImmersionProgressItem" .. i].Name:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 					end
-				elseif not _G["ImmersionProgressItem" .. i] then
-					break
 				end
 			end
 		end
