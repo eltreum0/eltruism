@@ -59,9 +59,6 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		E.private["general"]["dmgfont"] = fontvalue
 		E.private["general"]["namefont"] = fontvalue
 		if E.Retail then
-			if IsAddOnLoaded('ProjectAzilroka') then
-				_G.ProjectAzilroka.db["stAddonManager"]["Font"] = fontvalue
-			end
 			if IsAddOnLoaded("ElvUI_SLE") then
 				E.db["sle"]["armory"]["character"]["durability"]["font"] = fontvalue
 				E.db["sle"]["armory"]["character"]["enchant"]["font"] = fontvalue
@@ -1012,6 +1009,17 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	end
 	if IsAddOnLoaded('NameplateSCT') then
 		NameplateSCTDB["global"]["font"] = fontvalue
+	end
+
+	if IsAddOnLoaded('ProjectAzilroka') then
+		_G.ProjectAzilroka.db["stAddonManager"]["Font"] = fontvalue
+	end
+
+	if IsAddOnLoaded("Questie") then
+		QuestieConfig["global"]["trackerFontObjective"] = E.db.general.font
+		QuestieConfig["global"]["trackerFontZone"] = E.db.general.font
+		QuestieConfig["global"]["trackerFontHeader"] = E.db.general.font
+		QuestieConfig["global"]["trackerFontQuest"] = E.db.general.font
 	end
 
 	E:StaggeredUpdateAll()
