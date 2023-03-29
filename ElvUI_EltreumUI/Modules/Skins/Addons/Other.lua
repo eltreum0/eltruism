@@ -12,7 +12,7 @@ end
 local tabSkinned = false
 
 --simple tab skin
-function ElvUI_EltreumUI:EltruismAuctionator()
+function ElvUI_EltreumUI:EltruismAuction()
 	if E.private.skins.blizzard.enable then
 		if E.Retail then
 			_G["AuctionHouseFrame"]:HookScript("OnShow",function()
@@ -57,7 +57,16 @@ function ElvUI_EltreumUI:EltruismAuctionator()
 		end
 	end
 end
---S:AddCallbackForAddon('Auctionator', "EltruismAuctionator", ElvUI_EltreumUI.EltruismAuctionator)
---S:AddCallbackForAddon('TradeSkillMaster', "EltruismAuctionator", ElvUI_EltreumUI.EltruismAuctionator)
-S:AddCallbackForAddon('Blizzard_AuctionHouseUI', "EltruismAuctionator", ElvUI_EltreumUI.EltruismAuctionator)
-S:AddCallbackForAddon('Blizzard_AuctionUI', "EltruismAuctionator", ElvUI_EltreumUI.EltruismAuctionator)
+S:AddCallbackForAddon('Blizzard_AuctionHouseUI', "EltruismAuctionator", ElvUI_EltreumUI.EltruismAuction)
+S:AddCallbackForAddon('Blizzard_AuctionUI', "EltruismAuctionator", ElvUI_EltreumUI.EltruismAuction)
+
+function ElvUI_EltreumUI:EltruismScrap()
+	if _G["MerchantFrameSecureTab0"] then
+		S:HandleTab(_G["MerchantFrameSecureTab0"])
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and _G["MerchantFrameSecureTab0"].backdrop and not _G["MerchantFrameSecureTab0"].backdrop.shadow then
+			_G["MerchantFrameSecureTab0"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["MerchantFrameSecureTab0"].backdrop.shadow) end
+		end
+	end
+end
+S:AddCallbackForAddon('Scrap_Merchant', "EltruismScrap", ElvUI_EltreumUI.EltruismScrap)
