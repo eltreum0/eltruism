@@ -1922,8 +1922,8 @@ function ElvUI_EltreumUI:Configtable()
 								--inline = true,
 								disabled = function() return not E.db.unitframe.units.targettarget.enable or not E.db.ElvUI_EltreumUI.borders.borders end,
 								name = L["Target of Target Border"],
+								width = "full",
 								childGroups = "tab",
-								width = 'full',
 								args = {
 									bartargettarget = {
 										type = 'toggle',
@@ -3804,6 +3804,7 @@ function ElvUI_EltreumUI:Configtable()
 							return sort(Voices, SortList)
 						end,]]
 						style = 'radio',
+						width = 'full',
 						disabled = function() return not E.db.ElvUI_EltreumUI.skins.doom.enable or not E.db.ElvUI_EltreumUI.skins.doom.tts end,
 						get = function() return E.db.ElvUI_EltreumUI.skins.doom.ttsvoice end,
 						set = function(_, value) E.db.ElvUI_EltreumUI.skins.doom.ttsvoice = tonumber(value) C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume) end,
@@ -8156,6 +8157,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'select',
 								name= L["Text to Speech Config"],
 								order = 93,
+								width = "full",
 								values =
 								function()
 									local Voices = {}
@@ -8394,6 +8396,7 @@ function ElvUI_EltreumUI:Configtable()
 										order = 910,
 										type = 'toggle',
 										name = L["Enable Smart Classbar"],
+										width = 'full',
 										desc = L["Automatically hide the Classbar if the Target is Friendly, show if it is an enemy"],
 										get = function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide = value end,
@@ -9274,7 +9277,7 @@ function ElvUI_EltreumUI:Configtable()
 								}
 							},
 							boss = {
-								order = 2,
+								order = 5,
 								type = "group",
 								name = L["Boss"],
 								childGroups = "tab",
@@ -9438,7 +9441,7 @@ function ElvUI_EltreumUI:Configtable()
 								}
 							},
 							rare = {
-								order = 2,
+								order = 3,
 								type = "group",
 								name = L["Rare"],
 								childGroups = "tab",
@@ -9520,7 +9523,7 @@ function ElvUI_EltreumUI:Configtable()
 								}
 							},
 							rareelite = {
-								order = 2,
+								order = 4,
 								type = "group",
 								name = L["Rare Elite"],
 								childGroups = "tab",
@@ -9602,7 +9605,7 @@ function ElvUI_EltreumUI:Configtable()
 								}
 							},
 							custom = {
-								order = 2,
+								order = 6,
 								type = "group",
 								name = L["Custom"],
 								childGroups = "tab",
@@ -14676,6 +14679,7 @@ function ElvUI_EltreumUI:Configtable()
 										name = L["Enable Models/Effects"],
 										desc = L["Enable adding models as effects on unitframes"],
 										order = 4,
+										width = 'full',
 										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 										get = function() return E.db.ElvUI_EltreumUI.unitframes.models.unitframe end,
 										set = function(_, value)
@@ -14801,6 +14805,7 @@ function ElvUI_EltreumUI:Configtable()
 										name = L["Enable Models/Effects"],
 										desc = L["Enable adding models as effects on Castbars"],
 										order = 121,
+										width = 'full',
 										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 										get = function() return E.db.ElvUI_EltreumUI.unitframes.models.castbar end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.castbar = value ElvUI_EltreumUI:CastbarEffects() end,
@@ -14886,6 +14891,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'toggle',
 										name = L["Enable Models/Effects"],
 										order = 125,
+										width = 'full',
 										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
 										get = function() return E.db.ElvUI_EltreumUI.unitframes.models.powerbar end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.models.powerbar = value ElvUI_EltreumUI:PlayerUFEffects() end,
