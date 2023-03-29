@@ -1010,6 +1010,9 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		ElvFCT["unitframes"]["frames"]["Arena"]["font"] = fontvalue
 		ElvFCT["unitframes"]["frames"]["Arena"]["critFont"] = fontvalue
 	end
+	if IsAddOnLoaded('NameplateSCT') then
+		NameplateSCTDB["global"]["font"] = fontvalue
+	end
 
 	E:StaggeredUpdateAll()
 

@@ -283,6 +283,10 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 		end
 	end
 
+	if IsAddOnLoaded('NameplateSCT') then
+		NameplateSCTDB["global"]["fontFlag"] = fontStyle
+	end
+
 	if E.db["datatexts"]["panels"]["EltruismTime"] and E.db["datatexts"]["panels"]["EltruismTime"]["enable"] then
 		E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["fontOutline"] = fontStyle
 	end
