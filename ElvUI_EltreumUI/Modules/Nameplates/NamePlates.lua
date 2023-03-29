@@ -529,7 +529,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					--print(id)
 					if E.myclass == 'DEATHKNIGHT' then
 						_G["ElvNP_TargetClassPowerRunes"]:Show()
-					elseif E.myclass == 'PALADIN ' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
+					elseif E.myclass == 'PALADIN' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
 						_G["ElvNP_TargetClassPowerClassPower"]:Show()
 					elseif E.myclass == 'DRUID' then
 						stance = GetShapeshiftForm()
@@ -567,7 +567,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				if E.Retail then
 					if E.myclass == 'DEATHKNIGHT' then
 						_G["ElvNP_TargetClassPowerRunes"]:Hide()
-					elseif E.myclass == 'PALADIN ' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
+					elseif E.myclass == 'PALADIN' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
 						_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 					elseif E.myclass == 'DRUID' then
 							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
