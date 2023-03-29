@@ -2148,7 +2148,7 @@ ___
 Added a function to play a sound when someone dies
 ___
 ### v1.1.0
-Healer profile was changed
+Healer profile was changed\
 Additional Media
 ___
 ### v1.0.0
