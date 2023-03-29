@@ -5,6 +5,10 @@ local OKAY = _G.OKAY
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local fixingold = false
 local pairs = _G.pairs
+local GetAddOnMetadata = _G.C_AddOns and _G.C_AddOns.GetAddOnMetadata or _G.GetAddOnMetadata
+local tonumber = _G.tonumber
+local select = _G.select
+local GetBuildInfo = _G.GetBuildInfo
 
 function ElvUI_EltreumUI:VersionCheckInit()
 	if E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version then

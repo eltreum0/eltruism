@@ -1,7 +1,7 @@
 local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
-local GetAddOnMetadata = _G.GetAddOnMetadata
+local GetAddOnMetadata = _G.C_AddOns and _G.C_AddOns.GetAddOnMetadata or _G.GetAddOnMetadata
 local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 local PA = _G.ProjectAzilroka
 
