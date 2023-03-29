@@ -284,15 +284,21 @@ end
 
 --turns out classic has the functions to get number of points on talent trees
 function ElvUI_EltreumUI:GetPlayerSpec()
-	_, _, spent1 = _G.GetTalentTabInfo(1)
-	_, _, spent2 = _G.GetTalentTabInfo(2)
-	_, _, spent3 = _G.GetTalentTabInfo(3)
+	--reset variables
+	spent1 = 0
+	spent2 = 0
+	spent3 = 0
+	name = ""
+	spent = 0
+	points = 0
+	spec = ""
 
+	spent1 = select(3,_G.GetTalentTabInfo(1))
+	spent2 = select(3,_G.GetTalentTabInfo(2))
+	spent3 = select(3,_G.GetTalentTabInfo(3))
 	for i=1, _G.GetNumTalentTabs() do
 		name, _, spent = _G.GetTalentTabInfo(i)
-		--print(spent..name.." 1")
 		if spent > 0 and (not points or spent > points) then
-			--print(spec..points.." 2")
 			spec, points = name, spent
 		end
 	end

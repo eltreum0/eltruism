@@ -44,6 +44,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			ElvUI_EltreumUI:GetWindToolsProfile()
 		end
 
+		--tag update rate
+		E.db["general"]["tagUpdateRate"] = 0.25 --test 0.5, default is 0.25
+
 		-- AB Conversion
 		E.db["convertPages"] = true
 
