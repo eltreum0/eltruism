@@ -72,7 +72,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 			end
 		end
 
-		--_G.PallyPowerRF:SetTemplate("Transparent", nil, true)
+		_G.PallyPowerRF:SetTemplate("Transparent", E.media.normTex, true)
 		_G.PallyPowerAuto:SetTemplate("Transparent", E.media.normTex, true)
 		_G.PallyPowerRFIcon:SetTexCoord(unpack(E.TexCoords))
 		_G.PallyPowerRFIconSeal:SetTexCoord(unpack(E.TexCoords))
