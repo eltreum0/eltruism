@@ -1383,3 +1383,6 @@ L["Chat Loot Item Level"] = "Chat Beute Gegenstandsstufe"
 L["Emphasize"] = "Hervorheben" --from bigwigs
 L["Normal"] = true
 L["MAP_SEARCHER_TOOLTIP_TITLE"] = "RareScanner Suche" -- from rarescanner locales
+L["Add Shadows to the Unitframes"] = true
+L["Add Shadows to Tooltips"] = true
+L["Add Shadows to general Blizzard/ElvUI frames"] = true

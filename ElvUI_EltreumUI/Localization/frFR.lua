@@ -1339,3 +1339,6 @@ L["Chat Loot Item Level"] = "Niveau de l'objet de butin du chat"
 L["Emphasize"] = "Mise en évidence" --from bigwigs
 L["Normal"] = true
 L["MAP_SEARCHER_TOOLTIP_TITLE"] = "Recherche RareScanner" -- from rarescanner locales
+L["Add Shadows to the Unitframes"] = true
+L["Add Shadows to Tooltips"] = true
+L["Add Shadows to general Blizzard/ElvUI frames"] = true
