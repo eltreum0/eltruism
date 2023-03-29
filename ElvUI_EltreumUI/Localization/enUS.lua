@@ -1329,3 +1329,6 @@ L["Chat Loot Item Level"] = true
 L["Emphasize"] = true
 L["Normal"] = true
 L["MAP_SEARCHER_TOOLTIP_TITLE"] = "RareScanner searcher" -- from rarescanner locales
+L["Add Shadows to the Unitframes"] = true
+L["Add Shadows to Tooltips"] = true
+L["Add Shadows to general Blizzard/ElvUI frames"] = true

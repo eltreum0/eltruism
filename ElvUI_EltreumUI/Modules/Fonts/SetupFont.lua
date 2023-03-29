@@ -1,7 +1,7 @@
 local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
-local GetAddOnMetadata = _G.GetAddOnMetadata
+local GetAddOnMetadata = _G.C_AddOns and _G.C_AddOns.GetAddOnMetadata or _G.GetAddOnMetadata
 local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 local PA = _G.ProjectAzilroka
 
@@ -204,546 +204,6 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		E.db["tooltip"]["healthBar"]["font"] = fontvalue
 		E.db["tooltip"]["headerFont"] = fontvalue
 
-		-- Custom Text: Party
-		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 16,
-			["text_format"] = "[eltruism:raidmarker] [health:current:shortvalue]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"] = {
-			["attachTextTo"] = "InfoPanel",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "LEFT",
-			["size"] = 12,
-			["text_format"] = "[name:eltruism:gradientshort] [difficultycolor][smartlevel]",
-			["xOffset"] = 2,
-			["yOffset"] = -2,
-		}
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"] = {
-			["attachTextTo"] = "Power",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 11,
-			["text_format"] = "[powercolor][power:current:shortvalue]",
-			["xOffset"] = 0,
-			["yOffset"] = -1,
-		}
-		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = false,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 40,
-			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
-		if E.Retail then
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = false,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 11,
-			["text_format"] = "||cffFFFF00[absorbs]||r ",
-			["xOffset"] = 6,
-			["yOffset"] = 0
-			}
-		end
-
-		-- Custom Text: Arena
-		E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
-		if E.Retail or E.Wrath then
-			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] = {
-				["attachTextTo"] = "Health",
-				["enable"] = true,
-				["font"] = fontvalue,
-				["fontOutline"] = "OUTLINE",
-				["justifyH"] = "LEFT",
-				["size"] = 16,
-				["text_format"] = "[health:current:shortvalue]",
-				["xOffset"] = 0,
-				["yOffset"] = 0
-			}
-			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"] = {
-				["attachTextTo"] = "Health",
-				["enable"] = true,
-				["font"] = fontvalue,
-				["fontOutline"] = "THICKOUTLINE",
-				["justifyH"] = "RIGHT",
-				["size"] = 12,
-				["text_format"] = "[name:eltruism:gradientshort] [difficultycolor][smartlevel]",
-				["xOffset"] = 2,
-				["yOffset"] = 0
-			}
-			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"] = {
-				["attachTextTo"] = "Power",
-				["enable"] = true,
-				["font"] = fontvalue,
-				["fontOutline"] = "THICKOUTLINE",
-				["justifyH"] = "LEFT",
-				["size"] = 11,
-				["text_format"] = "[powercolor][power:current:shortvalue]",
-				["xOffset"] = 1,
-				["yOffset"] = -1
-			}
-		elseif E.Classic then
-			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] = {
-				["attachTextTo"] = "Health",
-				["enable"] = false,
-				["font"] = fontvalue,
-				["fontOutline"] = "OUTLINE",
-				["justifyH"] = "LEFT",
-				["size"] = 16,
-				["text_format"] = "[health:current:shortvalue]",
-				["xOffset"] = 0,
-				["yOffset"] = 0
-			}
-			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"] = {
-				["attachTextTo"] = "Health",
-				["enable"] = false,
-				["font"] = fontvalue,
-				["fontOutline"] = "THICKOUTLINE",
-				["justifyH"] = "RIGHT",
-				["size"] = 12,
-				["text_format"] = "[name:eltruism:gradientshort] [difficultycolor][smartlevel]",
-				["xOffset"] = 2,
-				["yOffset"] = 0
-			}
-			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"] = {
-				["attachTextTo"] = "Power",
-				["enable"] = false,
-				["font"] = fontvalue,
-				["fontOutline"] = "THICKOUTLINE",
-				["justifyH"] = "LEFT",
-				["size"] = 11,
-				["text_format"] = "[powercolor][power:current:shortvalue]",
-				["xOffset"] = 1,
-				["yOffset"] = -1
-			}
-		end
-		E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = false,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 40,
-			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
-			["xOffset"] = -50,
-			["yOffset"] = 0
-		}
-
-		-- Custom Text: Pet
-		if E.Retail then
-			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
-				["attachTextTo"] = "Health",
-				["enable"] = true,
-				["font"] = fontvalue,
-				["fontOutline"] = "THICKOUTLINE",
-				["justifyH"] = "CENTER",
-				["size"] = 12,
-				["text_format"] = "[name:eltruism:gradient]",
-				["xOffset"] = 0,
-				["yOffset"] = 0
-			}
-		elseif E.Wrath or E.Classic then
-			E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
-			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
-				["attachTextTo"] = "Health",
-				["enable"] = true,
-				["font"] = fontvalue,
-				["fontOutline"] = "THICKOUTLINE",
-				["justifyH"] = "CENTER",
-				["size"] = 12,
-				["text_format"] = "[name:eltruism:gradient][happiness:discord]",
-				["xOffset"] = 0,
-				["yOffset"] = 0
-			}
-		end
-		-- Custom Text: Player
-		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-		if E.Retail then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 12,
-			["text_format"] = "||cffFFFF00[absorbs]||r ",
-			["xOffset"] = 0,
-			["yOffset"] = 15
-			}
-		end
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 14,
-			["text_format"] = "[health:current-percent:shortvalue]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "LEFT",
-			["size"] = 16,
-			["text_format"] = "[name:eltruism:gradient] [eltruism:class:player] [eltruism:raidmarker]",
-			["xOffset"] = 2,
-			["yOffset"] = 0
-		}
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] = {
-			["attachTextTo"] = "Power",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 10,
-			["text_format"] = "[powercolor][power:current:shortvalue]",
-			["xOffset"] = 0,
-			["yOffset"] = -1
-		}
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPvP"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 15,
-			["text_format"] = "[mouseover]||cFFB04F4F[pvptimer]||r",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
-		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = false,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 27,
-			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
-			["xOffset"] = 50,
-			["yOffset"] = 0
-		}
-
-		-- Custom Text: Raid1
-		E.db["unitframe"]["units"]["raid1"]["customTexts"] = E.db["unitframe"]["units"]["raid1"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumGroup"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = false,
-			["font"] = fontvalue,
-			["fontOutline"] = "NONE",
-			["justifyH"] = "LEFT",
-			["size"] = 8,
-			["text_format"] = " Group [group]",
-			["xOffset"] = 37,
-			["yOffset"] = 10
-		}
-		if E.Retail then
-			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Absorb"] = {
-				["attachTextTo"] = "Health",
-				["enable"] = false,
-				["font"] = fontvalue,
-				["fontOutline"] = "THICKOUTLINE",
-				["justifyH"] = "CENTER",
-				["size"] = 10,
-				["text_format"] = "||cffFFFF00[absorbs]||r",
-				["xOffset"] = 45,
-				["yOffset"] = 0
-			}
-		end
-		E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Health"]= {
-			["attachTextTo"] = "InfoPanel",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 10,
-			["text_format"] = "[health:current:shortvalue]",
-			["xOffset"] = 0,
-			["yOffset"] = -1
-		}
-		E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Name"] = {
-			["attachTextTo"] = "InfoPanel",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "LEFT",
-			["size"] = 10,
-			["text_format"] = "[name:eltruism:gradientshort]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
-		E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumStatus"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = false,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 25,
-			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
-
-		-- Custom Text: Raid2
-		E.db["unitframe"]["units"]["raid2"]["customTexts"] = E.db["unitframe"]["units"]["raid2"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumGroup"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = false,
-			["font"] = fontvalue,
-			["fontOutline"] = "NONE",
-			["justifyH"] = "LEFT",
-			["size"] = 8,
-			["text_format"] = " Group [group]",
-			["xOffset"] = 37,
-			["yOffset"] = 10
-		}
-		if E.Retail then
-			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Absorb"] = {
-				["attachTextTo"] = "Health",
-				["enable"] = false,
-				["font"] = fontvalue,
-				["fontOutline"] = "THICKOUTLINE",
-				["justifyH"] = "CENTER",
-				["size"] = 10,
-				["text_format"] = "||cffFFFF00[absorbs]||r",
-				["xOffset"] = 45,
-				["yOffset"] = 0
-			}
-		end
-		E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Health"]= {
-			["attachTextTo"] = "InfoPanel",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 10,
-			["text_format"] = "[health:current:shortvalue]",
-			["xOffset"] = 0,
-			["yOffset"] = -1
-		}
-		E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Name"] = {
-			["attachTextTo"] = "InfoPanel",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "LEFT",
-			["size"] = 10,
-			["text_format"] = "[name:eltruism:gradientshort]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
-		E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumStatus"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = false,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 25,
-			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
-
-		-- Custom Text: Raid3
-		E.db["unitframe"]["units"]["raid3"]["customTexts"] = E.db["unitframe"]["units"]["raid3"]["customTexts"] or {}
-		if E.Retail then
-			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Absorb"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = false,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 10,
-			["text_format"] = "||cffFFFF00[absorbs]||r",
-			["xOffset"] = 37,
-			["yOffset"] = 12
-			}
-		end
-		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumGroup"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = false,
-			["font"] = fontvalue,
-			["fontOutline"] = "NONE",
-			["justifyH"] = "LEFT",
-			["size"] = 8,
-			["text_format"] = " Group [group]",
-			["xOffset"] = 40,
-			["yOffset"] = 12
-		}
-		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Health"] = {
-			["attachTextTo"] = "InfoPanel",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 10,
-			["text_format"] = "[health:current:shortvalue]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
-		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Name"] = {
-			["attachTextTo"] = "InfoPanel",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "LEFT",
-			["size"] = 10,
-			["text_format"] = "[name:eltruism:gradientshort]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
-		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumStatus"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = false,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 20,
-			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
-
-		-- Custom Text: Target
-		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-		if E.Retail then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 12,
-			["text_format"] = "||cffFFFF00[absorbs]||r",
-			["xOffset"] = 0,
-			["yOffset"] = 15
-			}
-		end
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "LEFT",
-			["size"] = 14,
-			["text_format"] = "[health:current-percent:shortvalue]",
-			["xOffset"] = 2,
-			["yOffset"] = 0
-		}
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 16,
-			["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [eltruism:difficulty][name:eltruism:gradientshort]",
-			["xOffset"] = -2,
-			["yOffset"] = 0
-		}
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] = {
-			["attachTextTo"] = "Power",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "LEFT",
-			["size"] = 10,
-			["text_format"] = "[powercolor][power:current:shortvalue]",
-			["xOffset"] = 2,
-			["yOffset"] = -1
-		}
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetofTarget"] = {
-			["attachTextTo"] = "Frame",
-			["enable"] = false,
-			["font"] = fontvalue,
-			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 10,
-			["text_format"] = "Target: [eltruism:targetcast]",
-			["xOffset"] = -5,
-			["yOffset"] = -14
-		}
-		E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = false,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 27,
-			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
-			["xOffset"] = -50,
-			["yOffset"] = 0
-		}
-
-		-- Custom Text: TargetTarget
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"] = E.db["unitframe"]["units"]["targettarget"]["customTexts"] or {}
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = false,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "LEFT",
-			["size"] = 11,
-			["text_format"] = "[health:current:shortvalue]",
-			["xOffset"] = 2,
-			["yOffset"] = 3
-		}
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "OUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 12,
-			["text_format"] = "[name:eltruism:gradientshort]",
-			["xOffset"] = 0,
-			["yOffset"] = 3
-		}
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] = {
-			["attachTextTo"] = "Power",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "RIGHT",
-			["size"] = 9,
-			["text_format"] = "[powercolor][power:current:shortvalue]",
-			["xOffset"] = 0,
-			["yOffset"] = -1
-		}
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = fontvalue,
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 15,
-			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
-			["xOffset"] = 0,
-			["yOffset"] = 22
-		}
-
 		--ActionBars
 		E.db["actionbar"]["bar1"]["countFont"] = fontvalue
 		E.db["actionbar"]["bar1"]["hotkeyFont"] = fontvalue
@@ -822,38 +282,686 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		E.db["unitframe"]["units"]["targettargettarget"]["buffs"]["countFont"] = fontvalue
 		E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = fontvalue
 
-	--fix for dark/light mode
-	if E.db.ElvUI_EltreumUI.unitframes.lightmode == false then
-		if E.Classic or E.Wrath then
-			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name:eltruism:gradient][happiness:discord]"
-		elseif E.Retail then
-			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name:eltruism:gradient]"
+		-- Custom Text: Party
+		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
+		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"] then
+			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "RIGHT",
+				["size"] = 16,
+				["text_format"] = "[eltruism:raidmarker] [health:current:shortvalue]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
 		end
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name:eltruism:gradient] [eltruism:class:player] [eltruism:raidmarker]"
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [eltruism:difficulty][name:eltruism:gradientshort]"
-			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:eltruism:gradient]"
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:eltruism:gradientshort]"
-		if E.Retail or E.Wrath then
-			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:eltruism:gradientshort] [eltruism:class:player] [eltruism:raidmarker]"
+		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"] then
+			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"] = {
+				["attachTextTo"] = "InfoPanel",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "LEFT",
+				["size"] = 12,
+				["text_format"] = "[name:eltruism:gradientshort] [difficultycolor][smartlevel]",
+				["xOffset"] = 2,
+				["yOffset"] = -2,
+			}
 		end
-	elseif E.db.ElvUI_EltreumUI.unitframes.lightmode == true then
-		if E.Classic or E.Wrath then
-			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
-		elseif E.Retail then
-			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
+		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"] then
+			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"] = {
+				["attachTextTo"] = "Power",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "RIGHT",
+				["size"] = 11,
+				["text_format"] = "[powercolor][power:current:shortvalue]",
+				["xOffset"] = 0,
+				["yOffset"] = -1,
+			}
 		end
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
-			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
-		if E.Retail or E.Wrath then
-			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:eltruism:gradientshort] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"] then
+			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = false,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 40,
+				["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
 		end
-	end
+		if E.Retail then
+			if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] then
+				E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] = {
+					["attachTextTo"] = "Health",
+					["enable"] = false,
+					["font"] = fontvalue,
+					["fontOutline"] = "THICKOUTLINE",
+					["justifyH"] = "RIGHT",
+					["size"] = 11,
+					["text_format"] = "||cffFFFF00[absorbs]||r ",
+					["xOffset"] = 6,
+					["yOffset"] = 0
+				}
+			end
+		end
 
-	if E.db["datatexts"]["panels"]["EltruismTime"] and E.db["datatexts"]["panels"]["EltruismTime"]["enable"] then
-		E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["font"] = fontvalue
-	end
+		-- Custom Text: Arena
+		E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
+		if E.Retail or E.Wrath then
+			if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] then
+				E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] = {
+					["attachTextTo"] = "Health",
+					["enable"] = true,
+					["font"] = fontvalue,
+					["fontOutline"] = "OUTLINE",
+					["justifyH"] = "LEFT",
+					["size"] = 16,
+					["text_format"] = "[health:current:shortvalue]",
+					["xOffset"] = 0,
+					["yOffset"] = 0
+				}
+			end
+			if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"] then
+				E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"] = {
+					["attachTextTo"] = "Health",
+					["enable"] = true,
+					["font"] = fontvalue,
+					["fontOutline"] = "THICKOUTLINE",
+					["justifyH"] = "RIGHT",
+					["size"] = 12,
+					["text_format"] = "[name:eltruism:gradientshort] [difficultycolor][smartlevel]",
+					["xOffset"] = 2,
+					["yOffset"] = 0
+				}
+			end
+			if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"] then
+				E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"] = {
+					["attachTextTo"] = "Power",
+					["enable"] = true,
+					["font"] = fontvalue,
+					["fontOutline"] = "THICKOUTLINE",
+					["justifyH"] = "LEFT",
+					["size"] = 11,
+					["text_format"] = "[powercolor][power:current:shortvalue]",
+					["xOffset"] = 1,
+					["yOffset"] = -1
+				}
+			end
+		elseif E.Classic then
+			if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] then
+				E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] = {
+					["attachTextTo"] = "Health",
+					["enable"] = false,
+					["font"] = fontvalue,
+					["fontOutline"] = "OUTLINE",
+					["justifyH"] = "LEFT",
+					["size"] = 16,
+					["text_format"] = "[health:current:shortvalue]",
+					["xOffset"] = 0,
+					["yOffset"] = 0
+				}
+			end
+			if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"] then
+				E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"] = {
+					["attachTextTo"] = "Health",
+					["enable"] = false,
+					["font"] = fontvalue,
+					["fontOutline"] = "THICKOUTLINE",
+					["justifyH"] = "RIGHT",
+					["size"] = 12,
+					["text_format"] = "[name:eltruism:gradientshort] [difficultycolor][smartlevel]",
+					["xOffset"] = 2,
+					["yOffset"] = 0
+				}
+			end
+			if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"] then
+				E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"] = {
+					["attachTextTo"] = "Power",
+					["enable"] = false,
+					["font"] = fontvalue,
+					["fontOutline"] = "THICKOUTLINE",
+					["justifyH"] = "LEFT",
+					["size"] = 11,
+					["text_format"] = "[powercolor][power:current:shortvalue]",
+					["xOffset"] = 1,
+					["yOffset"] = -1
+				}
+			end
+		end
+		if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"] then
+			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = false,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 40,
+				["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+				["xOffset"] = -50,
+				["yOffset"] = 0
+			}
+		end
+
+		-- Custom Text: Pet
+		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
+		if E.Retail then
+			if E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
+				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
+					["attachTextTo"] = "Health",
+					["enable"] = true,
+					["font"] = fontvalue,
+					["fontOutline"] = "THICKOUTLINE",
+					["justifyH"] = "CENTER",
+					["size"] = 12,
+					["text_format"] = "[name:eltruism:gradient]",
+					["xOffset"] = 0,
+					["yOffset"] = 0
+				}
+			end
+		elseif E.Wrath or E.Classic then
+			if E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
+				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
+					["attachTextTo"] = "Health",
+					["enable"] = true,
+					["font"] = fontvalue,
+					["fontOutline"] = "THICKOUTLINE",
+					["justifyH"] = "CENTER",
+					["size"] = 12,
+					["text_format"] = "[name:eltruism:gradient][happiness:discord]",
+					["xOffset"] = 0,
+					["yOffset"] = 0
+				}
+			end
+		end
+
+		-- Custom Text: Player
+		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
+		if E.Retail then
+			if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] then
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] = {
+					["attachTextTo"] = "Health",
+					["enable"] = true,
+					["font"] = fontvalue,
+					["fontOutline"] = "THICKOUTLINE",
+					["justifyH"] = "RIGHT",
+					["size"] = 12,
+					["text_format"] = "||cffFFFF00[absorbs]||r ",
+					["xOffset"] = 0,
+					["yOffset"] = 15
+				}
+			end
+		end
+		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "RIGHT",
+				["size"] = 14,
+				["text_format"] = "[health:current-percent:shortvalue]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		end
+		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "LEFT",
+				["size"] = 16,
+				["text_format"] = "[name:eltruism:gradient] [eltruism:class:player] [eltruism:raidmarker]",
+				["xOffset"] = 2,
+				["yOffset"] = 0
+			}
+		end
+		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] = {
+				["attachTextTo"] = "Power",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "RIGHT",
+				["size"] = 10,
+				["text_format"] = "[powercolor][power:current:shortvalue]",
+				["xOffset"] = 0,
+				["yOffset"] = -1
+			}
+		end
+		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPvP"] then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPvP"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 15,
+				["text_format"] = "[mouseover]||cFFB04F4F[pvptimer]||r",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		end
+		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = false,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 27,
+				["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+				["xOffset"] = 50,
+				["yOffset"] = 0
+			}
+		end
+
+		-- Custom Text: Raid1
+		E.db["unitframe"]["units"]["raid1"]["customTexts"] = E.db["unitframe"]["units"]["raid1"]["customTexts"] or {}
+		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumGroup"] then
+			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumGroup"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = false,
+				["font"] = fontvalue,
+				["fontOutline"] = "NONE",
+				["justifyH"] = "LEFT",
+				["size"] = 8,
+				["text_format"] = " Group [group]",
+				["xOffset"] = 37,
+				["yOffset"] = 10
+			}
+		end
+		if E.Retail then
+			if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Absorb"] then
+				E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Absorb"] = {
+					["attachTextTo"] = "Health",
+					["enable"] = false,
+					["font"] = fontvalue,
+					["fontOutline"] = "THICKOUTLINE",
+					["justifyH"] = "CENTER",
+					["size"] = 10,
+					["text_format"] = "||cffFFFF00[absorbs]||r",
+					["xOffset"] = 45,
+					["yOffset"] = 0
+				}
+			end
+		end
+		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Health"] then
+			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Health"] = {
+				["attachTextTo"] = "InfoPanel",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "OUTLINE",
+				["justifyH"] = "RIGHT",
+				["size"] = 10,
+				["text_format"] = "[health:current:shortvalue]",
+				["xOffset"] = 0,
+				["yOffset"] = -1
+			}
+		end
+		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Name"] then
+			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Name"] = {
+				["attachTextTo"] = "InfoPanel",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "OUTLINE",
+				["justifyH"] = "LEFT",
+				["size"] = 10,
+				["text_format"] = "[name:eltruism:gradientshort]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		end
+		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumStatus"] then
+			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumStatus"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = false,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 25,
+				["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		end
+
+		-- Custom Text: Raid2
+		E.db["unitframe"]["units"]["raid2"]["customTexts"] = E.db["unitframe"]["units"]["raid2"]["customTexts"] or {}
+		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumGroup"] then
+			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumGroup"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = false,
+				["font"] = fontvalue,
+				["fontOutline"] = "NONE",
+				["justifyH"] = "LEFT",
+				["size"] = 8,
+				["text_format"] = " Group [group]",
+				["xOffset"] = 37,
+				["yOffset"] = 10
+			}
+		end
+		if E.Retail then
+			if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Absorb"] then
+				E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Absorb"] = {
+					["attachTextTo"] = "Health",
+					["enable"] = false,
+					["font"] = fontvalue,
+					["fontOutline"] = "THICKOUTLINE",
+					["justifyH"] = "CENTER",
+					["size"] = 10,
+					["text_format"] = "||cffFFFF00[absorbs]||r",
+					["xOffset"] = 45,
+					["yOffset"] = 0
+				}
+			end
+		end
+		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Health"] then
+			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Health"] = {
+				["attachTextTo"] = "InfoPanel",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "OUTLINE",
+				["justifyH"] = "RIGHT",
+				["size"] = 10,
+				["text_format"] = "[health:current:shortvalue]",
+				["xOffset"] = 0,
+				["yOffset"] = -1
+			}
+		end
+		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Name"] then
+			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Name"] = {
+				["attachTextTo"] = "InfoPanel",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "OUTLINE",
+				["justifyH"] = "LEFT",
+				["size"] = 10,
+				["text_format"] = "[name:eltruism:gradientshort]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		end
+		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumStatus"] then
+			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumStatus"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = false,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 25,
+				["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		end
+
+		-- Custom Text: Raid3
+		E.db["unitframe"]["units"]["raid3"]["customTexts"] = E.db["unitframe"]["units"]["raid3"]["customTexts"] or {}
+		if E.Retail then
+			if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Absorb"] then
+				E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Absorb"] = {
+					["attachTextTo"] = "Health",
+					["enable"] = false,
+					["font"] = fontvalue,
+					["fontOutline"] = "THICKOUTLINE",
+					["justifyH"] = "CENTER",
+					["size"] = 10,
+					["text_format"] = "||cffFFFF00[absorbs]||r",
+					["xOffset"] = 37,
+					["yOffset"] = 12
+				}
+			end
+		end
+		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumGroup"] then
+			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumGroup"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = false,
+				["font"] = fontvalue,
+				["fontOutline"] = "NONE",
+				["justifyH"] = "LEFT",
+				["size"] = 8,
+				["text_format"] = " Group [group]",
+				["xOffset"] = 40,
+				["yOffset"] = 12
+			}
+		end
+		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Health"] then
+			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Health"] = {
+				["attachTextTo"] = "InfoPanel",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "OUTLINE",
+				["justifyH"] = "RIGHT",
+				["size"] = 10,
+				["text_format"] = "[health:current:shortvalue]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		end
+		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Name"] then
+			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Name"] = {
+				["attachTextTo"] = "InfoPanel",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "OUTLINE",
+				["justifyH"] = "LEFT",
+				["size"] = 10,
+				["text_format"] = "[name:eltruism:gradientshort]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		end
+		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumStatus"] then
+			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumStatus"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = false,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 20,
+				["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+				["xOffset"] = 0,
+				["yOffset"] = 0
+			}
+		end
+
+		-- Custom Text: Target
+		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
+		if E.Retail then
+			if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] then
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] = {
+					["attachTextTo"] = "Health",
+					["enable"] = true,
+					["font"] = fontvalue,
+					["fontOutline"] = "THICKOUTLINE",
+					["justifyH"] = "RIGHT",
+					["size"] = 12,
+					["text_format"] = "||cffFFFF00[absorbs]||r",
+					["xOffset"] = 0,
+					["yOffset"] = 15
+				}
+			end
+		end
+		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] then
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "LEFT",
+				["size"] = 14,
+				["text_format"] = "[health:current-percent:shortvalue]",
+				["xOffset"] = 2,
+				["yOffset"] = 0
+			}
+		end
+		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] then
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "RIGHT",
+				["size"] = 16,
+				["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [eltruism:difficulty][name:eltruism:gradientshort]",
+				["xOffset"] = -2,
+				["yOffset"] = 0
+			}
+		end
+		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] then
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] = {
+				["attachTextTo"] = "Power",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "LEFT",
+				["size"] = 10,
+				["text_format"] = "[powercolor][power:current:shortvalue]",
+				["xOffset"] = 2,
+				["yOffset"] = -1
+			}
+		end
+		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetofTarget"] then
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetofTarget"] = {
+				["attachTextTo"] = "Frame",
+				["enable"] = false,
+				["font"] = fontvalue,
+				["fontOutline"] = "OUTLINE",
+				["justifyH"] = "RIGHT",
+				["size"] = 10,
+				["text_format"] = "Target: [eltruism:targetcast]",
+				["xOffset"] = -5,
+				["yOffset"] = -14
+			}
+		end
+		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"] then
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = false,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 27,
+				["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+				["xOffset"] = -50,
+				["yOffset"] = 0
+			}
+		end
+
+		-- Custom Text: TargetTarget
+		E.db["unitframe"]["units"]["targettarget"]["customTexts"] = E.db["unitframe"]["units"]["targettarget"]["customTexts"] or {}
+		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"] then
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = false,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "LEFT",
+				["size"] = 11,
+				["text_format"] = "[health:current:shortvalue]",
+				["xOffset"] = 2,
+				["yOffset"] = 3
+			}
+		end
+		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] then
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "OUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 12,
+				["text_format"] = "[name:eltruism:gradientshort]",
+				["xOffset"] = 0,
+				["yOffset"] = 3
+			}
+		end
+		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] then
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] = {
+				["attachTextTo"] = "Power",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "RIGHT",
+				["size"] = 9,
+				["text_format"] = "[powercolor][power:current:shortvalue]",
+				["xOffset"] = 0,
+				["yOffset"] = -1
+			}
+		end
+		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"] then
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"] = {
+				["attachTextTo"] = "Health",
+				["enable"] = true,
+				["font"] = fontvalue,
+				["fontOutline"] = "THICKOUTLINE",
+				["justifyH"] = "CENTER",
+				["size"] = 15,
+				["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+				["xOffset"] = 0,
+				["yOffset"] = 22
+			}
+		end
+
+		--fix for dark/light mode
+		if E.db.ElvUI_EltreumUI.unitframes.lightmode == false then
+			if E.Classic or E.Wrath then
+				if E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
+					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name:eltruism:gradient][happiness:discord]"
+				end
+			elseif E.Retail then
+				if E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
+					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name:eltruism:gradient]"
+				end
+			end
+				if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] then
+					E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name:eltruism:gradient] [eltruism:class:player] [eltruism:raidmarker]"
+				end
+				if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] then
+					E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [eltruism:difficulty][name:eltruism:gradientshort]"
+				end
+				E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:eltruism:gradient]"
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:eltruism:gradientshort]"
+			if E.Retail or E.Wrath then
+				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:eltruism:gradientshort] [eltruism:class:player] [eltruism:raidmarker]"
+			end
+		elseif E.db.ElvUI_EltreumUI.unitframes.lightmode == true then
+			if E.Classic or E.Wrath then
+				if E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
+					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name][happiness:discord]"
+				end
+			elseif E.Retail then
+				if E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
+					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name]"
+				end
+			end
+				if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] then
+					E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:abbrev]"
+				end
+				if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] then
+					E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+				end
+				if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] then
+					E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:IconOutline:player] [eltruism:difficulty][name:eltruism:abbreviate]"
+				end
+				E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
+			if E.Retail or E.Wrath then
+				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:eltruism:gradientshort] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+			end
+		end
+
+		if E.db["datatexts"]["panels"]["EltruismTime"] and E.db["datatexts"]["panels"]["EltruismTime"]["enable"] then
+			E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["font"] = fontvalue
+		end
 
 	--FCT font
 	if IsAddOnLoaded("ElvUI_FCT") then
@@ -901,6 +1009,9 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		ElvFCT["unitframes"]["frames"]["Party"]["critFont"] = fontvalue
 		ElvFCT["unitframes"]["frames"]["Arena"]["font"] = fontvalue
 		ElvFCT["unitframes"]["frames"]["Arena"]["critFont"] = fontvalue
+	end
+	if IsAddOnLoaded('NameplateSCT') then
+		NameplateSCTDB["global"]["font"] = fontvalue
 	end
 
 	E:StaggeredUpdateAll()

@@ -143,6 +143,9 @@ P.ElvUI_EltreumUI = {
 			minimap = true,
 			chat = true,
 			bigwigs = true,
+			unitframes = true,
+			blizzard = true,
+			tooltip = true,
 		},
 
 		meetinghorn = false,
