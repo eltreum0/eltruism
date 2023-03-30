@@ -221,7 +221,7 @@ ElvUI_EltreumUI.InstallerData = {
 				end
 				ElvUI_EltreumUI:SetupGeneralLayout()
 				ElvUI_EltreumUI:SetupLayoutDPS()
-				ElvUI_EltreumUI:SetupNamePlates('ElvUI')
+				ElvUI_EltreumUI:SetupNamePlates()
 				ElvUI_EltreumUI:ResolutionOutline()
 				ElvUI_EltreumUI:UpdateEltruismSettings()
 				PlaySound(888)
@@ -254,7 +254,7 @@ ElvUI_EltreumUI.InstallerData = {
 				end
 				ElvUI_EltreumUI:SetupGeneralLayout()
 				ElvUI_EltreumUI:SetupLayoutHealer()
-				ElvUI_EltreumUI:SetupNamePlates('ElvUI')
+				ElvUI_EltreumUI:SetupNamePlates()
 				ElvUI_EltreumUI:ResolutionOutline()
 				ElvUI_EltreumUI:UpdateEltruismSettings()
 				PlaySound(888)
