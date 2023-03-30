@@ -105,6 +105,12 @@ function ElvUI_EltreumUI:Shadows()
 						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.GenericTraitFrame.shadow) end
 					end
 				end
+				if (arg == "Blizzard_TalkingHeadUI") or IsAddOnLoaded("Blizzard_TalkingHeadUI") then
+					if _G.TalkingHeadFrame and not _G.TalkingHeadFrame.shadow then
+						_G.TalkingHeadFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.TalkingHeadFrame.shadow) end
+					end
+				end
 				if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then
 					if _G.ClassTalentFrame and not _G.ClassTalentFrame.shadow then
 						_G.ClassTalentFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
