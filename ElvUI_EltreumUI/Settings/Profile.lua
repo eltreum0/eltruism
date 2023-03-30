@@ -28,6 +28,7 @@ P.ElvUI_EltreumUI = {
 	cvars = {
 		nameplateOtherBottomInset = 0.02,
 		nameplateOtherTopInset = 0.1,
+		nameplateOccludedAlphaMult = 0,
 		cameraFOV = 90,
 		cameraDistanceMaxZoomFactor = 2.6,
 		nameplateTargetRadialPosition = 1,

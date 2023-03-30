@@ -4582,6 +4582,18 @@ function ElvUI_EltreumUI:Configtable()
 										get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset = value SetCVar('nameplateOtherTopInset', value) SetCVar('nameplateLargeTopInset', value) end,
 									},
+									nameplateOccludedAlphaMult = {
+										type = 'range',
+										name = L["Nameplate Occluded Alpha"],
+										desc = L["Alpha of Nameplates out of Sight"],
+										order = 16,
+										min = 0,
+										max = 1,
+										step = 0.01,
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult = value SetCVar('nameplateOccludedAlphaMult', value) SetCVar('nameplateOccludedAlphaMult', value) end,
+									},
 								},
 							},
 							graphics = {
