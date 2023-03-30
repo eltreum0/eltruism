@@ -316,5 +316,21 @@ function ElvUI_EltreumUI:GetRoleIcon(role)
 		elseif role == "DAMAGER" then
 			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS.tga'
 		end
+	elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "IOS" then
+		if role == "TANK" then
+			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Tank.tga'
+		elseif role == "HEALER" then
+			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Healer.tga'
+		elseif role == "DAMAGER" then
+			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\DPS.tga'
+		end
+	elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "MATERIAL" then
+		if role == "TANK" then
+			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Tank.tga'
+		elseif role == "HEALER" then
+			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Healer.tga'
+		elseif role == "DAMAGER" then
+			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\DPS.tga'
+		end
 	end
 end
