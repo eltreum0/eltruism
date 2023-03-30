@@ -1,6 +1,9 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.7.9.1
+Added 3 new Statusbar textures\
+Fixed a possible error when applying Fonts
 ### 3.7.9
 Added NameplateSCT to Font and Font Outline functions\
 Added Questie to Font and Font Outline functions\
