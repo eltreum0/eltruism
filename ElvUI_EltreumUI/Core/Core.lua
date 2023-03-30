@@ -366,6 +366,19 @@ function ElvUI_EltreumUI:Anchors()
 						tremove(editMode.registeredSystemFrames, i)
 					end
 				end
+
+				--[[TalkingHeadFrame
+				DurabilityFrame
+				BagsBar
+				ChatFrame1
+				DebuffFrame
+				BuffFrame
+				MinimapCluster
+				SecondaryStatusTrackingBarContainer
+				MainStatusTrackingBarContainer
+				MicroMenu
+				GameTooltipDefaultContainer]]
+
 			end
 		end
 
