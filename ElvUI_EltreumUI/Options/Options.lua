@@ -219,7 +219,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'execute',
 								name = L["Reset nameplates to Eltruism settings"],
 								width = 'full',
-								func = function() ElvUI_EltreumUI:SetupNamePlates('ElvUI') ElvUI_EltreumUI:ResolutionOutline() end,
+								func = function() ElvUI_EltreumUI:SetupNamePlates() ElvUI_EltreumUI:ResolutionOutline() end,
 							},
 							header2 = {
 								order = 2,

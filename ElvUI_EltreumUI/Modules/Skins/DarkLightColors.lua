@@ -107,6 +107,27 @@ function ElvUI_EltreumUI:DarkMode()
 		--E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = false
 		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "V2"
 
+		if E.private.nameplates.enable and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["format"] = "[namecolor][name][realm:dash]"
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
+
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["format"] = "[namecolor][npctitle:brackets]"
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["format"] = "[namecolor][name]"
+
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["format"] = "[namecolor][name:title][realm:dash]"
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
+
+			if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
+				E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["name"] = "[namecolor][name]"
+				E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets]"
+			end
+
+			if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
+				E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["name"] = "[namecolor][name:title][realm:dash]"
+				E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets][guild:brackets]"
+			end
+		end
+
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
 
@@ -223,6 +244,27 @@ function ElvUI_EltreumUI:LightMode()
 		--E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = false
 		E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
 		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "V2"
+
+		if E.private.nameplates.enable and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["format"] = "[namecolor][name][realm:dash]"
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
+
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["format"] = "[namecolor][npctitle:brackets]"
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["format"] = "[namecolor][name]"
+
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["format"] = "[namecolor][name:title][realm:dash]"
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
+
+			if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
+				E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["name"] = "[namecolor][name]"
+				E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets]"
+			end
+
+			if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
+				E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["name"] = "[namecolor][name:title][realm:dash]"
+				E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets][guild:brackets]"
+			end
+		end
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()
@@ -409,6 +451,27 @@ function ElvUI_EltreumUI:GradientMode()
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayertarget = true
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits = true
 		E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
+
+		if E.private.nameplates.enable then
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["format"] = "[name:eltruism:gradient][eltruismrealm:dash]"
+			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["format"] = "[eltruismguild:brackets]"
+
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["format"] = "[name:eltruism:gradient]"
+			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["format"] = "[eltruismnpctitle:brackets]"
+
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["format"] = "[eltruismname:title][eltruismrealm:dash]"
+			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[eltruismguild:brackets]"
+
+			if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
+				E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["name"] = "[name:eltruism:gradient]"
+				E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["title"] = "[eltruismnpctitle:brackets]"
+			end
+
+			if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
+				E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["name"] = "[eltruismname:title][eltruismrealm:dash]"
+				E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["title"] = "[eltruismnpctitle:brackets][eltruismguild:brackets]"
+			end
+		end
 
 		E:UpdateMediaItems()
 		E:UpdateUnitFrames()

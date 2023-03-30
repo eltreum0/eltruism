@@ -68,6 +68,9 @@ LSM:Register("statusbar", "Eltreum9pixel", [[Interface\Addons\ElvUI_EltreumUI\Me
 LSM:Register("statusbar", "Eltreum10pixel", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum10pixel.tga]])
 
 LSM:Register("statusbar", "Eltreum-Stripes", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Stripes.tga]])
+LSM:Register("statusbar", "Eltreum-Stripes2", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Stripes2.tga]])
+LSM:Register("statusbar", "Eltreum-Stripes3", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Stripes3.tga]])
+LSM:Register("statusbar", "Eltreum-Stripes4", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Stripes4.tga]])
 LSM:Register("statusbar", "Eltreum-Blank", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Blank.tga]])
 LSM:Register("statusbar", "Eltreum-Elvui-Norm", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Elvui-Norm.tga]])
 LSM:Register("statusbar", "Eltreum-Dark", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Dark.tga]])

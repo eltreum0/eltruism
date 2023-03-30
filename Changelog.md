@@ -1,6 +1,16 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.7.9.1
+Added 3 new Statusbar textures\
+Fixed a possible error when applying Fonts
+### 3.7.9
+Added NameplateSCT to Font and Font Outline functions\
+Added Questie to Font and Font Outline functions\
+Updated German locale by Dlarge\
+Fixed Immersion skin not sometimes skinning the options\
+Fixed player/target unitframe shadows in some scenarios\
+Fixed Paladin Smart Class Bar hiding not working
 ### 3.7.8
 Added gradient to Objective Frame progress bars in Retail\
 Added Custom Gradient Colors to BigWigs Skin\
@@ -2148,7 +2158,7 @@ ___
 Added a function to play a sound when someone dies
 ___
 ### v1.1.0
-Healer profile was changed
+Healer profile was changed\
 Additional Media
 ___
 ### v1.0.0
