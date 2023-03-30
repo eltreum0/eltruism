@@ -7,4 +7,4 @@ Updated German locale by Dlarge\
 Fixed Immersion skin not sometimes skinning the options\
 Fixed player/target unitframe shadows in some scenarios\
 Fixed Paladin Smart Class Bar hiding not working\
-Fixed a possible error when applying Fonts\
+Fixed a possible error when applying Fonts
