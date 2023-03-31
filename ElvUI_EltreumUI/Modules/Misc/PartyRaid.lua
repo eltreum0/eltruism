@@ -341,3 +341,6 @@ E.Media.CombatIcons.Eltruism1 = [[Interface\Addons\ElvUI_EltreumUI\Media\Texture
 E.Media.CombatIcons.Eltruism2 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight2.tga]]
 E.Media.CombatIcons.Eltruism3 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight3.tga]]
 E.Media.CombatIcons.Eltruism4 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight4.tga]]
+
+E.Media.RestIcons.Eltruism1 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\rest1.tga]]
+E.Media.RestIcons.Eltruism2 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\rest2.tga]]
