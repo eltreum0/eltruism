@@ -26,6 +26,8 @@ local function SkipInstallComplete()
 end
 
 --add some stuff to the installer
+local PIHook
+local isfirstpage = true
 local function ImproveInstall(installtype,mode,null)
 	if null then
 		_G.PluginInstallFrame.Option1:SetScript('OnEnter', nil)
@@ -122,7 +124,38 @@ local function ImproveInstall(installtype,mode,null)
 			UIFrameFadeIn(_G.PluginInstallFrame.Desc4, 0.5, 0, 1)
 			UIFrameFadeIn(_G.PluginInstallFrame.SubTitle, 0.5, 0, 1)
 		end
+	end
 
+	if not PIHook then
+		local plugininstaller = E:GetModule('PluginInstaller')
+		local function GradientTabNames(_ ,PageNum, PrevPage)
+			if _G.PluginInstallFrame.StepTitles and _G["PluginInstallFrame"].Title:GetText() ~= nil and _G["PluginInstallFrame"].Title:GetText() == ElvUI_EltreumUI.Name then
+				for i = 1, #_G.PluginInstallFrame.side.Lines do
+					local line, color = _G.PluginInstallFrame.side.Lines[i]
+					if i == _G.PluginInstallFrame.CurrentPage then
+						color = _G.PluginInstallFrame.StepTitlesColorSelected
+					else
+						color = _G.PluginInstallFrame.StepTitlesColor
+					end
+
+					local StepTitleText
+					if type(_G.PluginInstallFrame.StepTitles[i]) == 'function' then
+						StepTitleText = _G.PluginInstallFrame.StepTitles[i]()
+					else
+						StepTitleText = _G.PluginInstallFrame.StepTitles[i]
+					end
+
+					if i == _G.PluginInstallFrame.CurrentPage then
+						line.text:SetText(E:TextGradient(StepTitleText, 0.50, 0.70, 1, 0.67, 0.95, 1))
+					else
+						line.text:SetText(StepTitleText)
+						line.text:SetTextColor(color[1] or color.r, color[2] or color.g, color[3] or color.b)
+					end
+				end
+			end
+		end
+		hooksecurefunc(plugininstaller, "SetPage", function() GradientTabNames() end)
+		PIHook = true
 	end
 end
 
@@ -134,7 +167,11 @@ ElvUI_EltreumUI.InstallerData = {
 	Pages = {
 		[1] = function()
 			ImproveInstall()
-
+			if isfirstpage then
+				ElvUI_EltreumUI.InstallerData.StepTitles[1] = E:TextGradient(L["Welcome"], 0.50, 0.70, 1, 0.67, 0.95, 1)
+			else
+				ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
+			end
 			--hide on other plugins
 			if _G.PluginInstallFrame then
 				_G.PluginInstallFrame:HookScript("OnShow", function()
@@ -166,6 +203,8 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:SetText(L["Skip Install"])
 		end,
 		[2] = function()
+			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
+			isfirstpage = false
 			--for classic chat lfg
 			local lfg
 			if E.global.general.locale == "enUS" then
@@ -273,6 +312,8 @@ ElvUI_EltreumUI.InstallerData = {
 			end
 		end,
 		[3] = function()
+			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
+			isfirstpage = false
 			_G.PluginInstallOption1ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
 			_G.PluginInstallOption2ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
 			_G.PluginInstallOption3ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
@@ -330,6 +371,8 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option4:SetText(L["Background"].."\n"..L["Color"])
 		end,
 		[4] = function()
+			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
+			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["Fonts"])
 			_G.PluginInstallFrame.Desc1:SetText(L["Eltruism uses Kimberley as the default font"])
 			_G.PluginInstallFrame.Desc2:SetText(L["You can replace it with one of the following:"])
@@ -365,6 +408,8 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallOption4ButtonText:SetFont("Fonts\\ARHei.TTF", 12, E.db.general.fontStyle)
 		end,
 		[5] = function()
+			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
+			isfirstpage = false
 			_G.PluginInstallOption1ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
 			_G.PluginInstallOption2ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
 			_G.PluginInstallOption3ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
@@ -389,6 +434,8 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option2:SetText(L["Dark Chat"])
 		end,
 		[6] = function()
+			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
+			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["Details! DPS Meter"])
 			_G.PluginInstallFrame.Desc1:SetText(L["Import Details! profile with dual panels"])
 			_G.PluginInstallFrame.Desc2:SetText(L["You can right click the bottom right arrow to toggle the Details! Window"])
@@ -430,6 +477,8 @@ ElvUI_EltreumUI.InstallerData = {
 			end
 		end,
 		[7] = function()
+			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
+			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["PVP/PVE Addons"])
 			if E.Retail then
 				_G.PluginInstallFrame.Desc1:SetText(L["Import GladiusEx profile for arenas, remember to disable ElvUI Arena Frames"])
@@ -542,6 +591,8 @@ ElvUI_EltreumUI.InstallerData = {
 			end
 		end,
 		[8] = function()
+			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
+			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["PVP/PVE Addons"].." 2")
 			if IsAddOnLoaded("BattleGroundEnemies") then
 				_G.PluginInstallFrame.Desc1:SetText(L["Import BattlegroundEnemies profile for battlegrounds"])
@@ -594,6 +645,8 @@ ElvUI_EltreumUI.InstallerData = {
 			end
 		end,
 		[9] = function()
+			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
+			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["QOL Addons"])
 			_G.PluginInstallFrame.Desc1:SetText(L["Import profiles for NameplateSCT or ElvUI Floating Combat Text"])
 			_G.PluginInstallFrame.Desc2:SetText(L["Import "]..'Immersion '..L["settings configured for "]..'Eltruism')
@@ -658,6 +711,8 @@ ElvUI_EltreumUI.InstallerData = {
 			end
 		end,
 		[10] = function()
+			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
+			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetFormattedText('Discord')
 			_G.PluginInstallFrame.Desc1:SetText(L["Join the Discord if you have any questions or issues (English Support)"])
 			_G.PluginInstallFrame.Option1:Enable()
@@ -668,6 +723,8 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:SetText('Discord')
 		end,
 		[11] = function()
+			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
+			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetText(L["Installation Complete"])
 			_G.PluginInstallFrame.Desc1:SetText(L["You have completed the installation process"])
 			_G.PluginInstallFrame.Desc2:SetText(L["Feel free to explore Eltruism settings in ElvUI > Eltruism.\nThere are lot of settings that are disabled by default."])
