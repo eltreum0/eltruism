@@ -820,8 +820,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["player"]["CombatIcon"]["defaultColor"] = true
 	E.db["unitframe"]["units"]["player"]["CombatIcon"]["texture"] = "Eltruism10"
 	E.db["unitframe"]["units"]["player"]["CombatIcon"]["size"] = 20
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = -7
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = -7
+	E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = 8
+	E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = -9
 	E.db["unitframe"]["units"]["player"]["CombatIcon"]["enable"] = true
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["a"] = 0.57115608453751
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["defaultColor"] = true
@@ -1151,8 +1151,8 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["g"] = 1
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["defaultColor"] = true
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["texture"] = "Eltruism09"
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["xOffset"] = 8
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = -7
+	E.db["unitframe"]["units"]["target"]["CombatIcon"]["xOffset"] = -8
+	E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = -9
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = true
 	E.db["unitframe"]["units"]["target"]["aurabar"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["target"]["aurabar"]["sortDirection"] = "ASCENDING"
