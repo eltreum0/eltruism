@@ -154,7 +154,17 @@ local function ImproveInstall(installtype,mode,null)
 				end
 			end
 		end
-		hooksecurefunc(plugininstaller, "SetPage", function() GradientTabNames() end)
+		hooksecurefunc(plugininstaller, "SetPage", GradientTabNames)
+
+		if _G.PluginInstallStatus then
+			hooksecurefunc(_G.PluginInstallStatus, "SetStatusBarColor", function(_, r, g, b)
+				if not E.Classic then
+					_G.PluginInstallStatus:GetStatusBarTexture():SetGradient("HORIZONTAL", {r = r - 0.5,g = g - 0.5, b = b - 0.5, a = 1}, {r = r + 0.2, g = g + 0.2, b = b + 0.2, a = 1})
+				else
+					_G.PluginInstallStatus:GetStatusBarTexture():SetGradient("HORIZONTAL", r - 0.5, g - 0.5, b - 0.5, 1, r + 0.2, g + 0.2, b + 0.2, 1)
+				end
+			end)
+		end
 		PIHook = true
 	end
 end
