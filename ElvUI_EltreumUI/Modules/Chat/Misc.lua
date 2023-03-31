@@ -255,6 +255,24 @@ local function ColorSysMsgs(_, event, message, ...)
 			_G.INLINE_TANK_ICON = roleIcons.TANK
 			_G.INLINE_HEALER_ICON = roleIcons.HEALER
 			_G.INLINE_DAMAGER_ICON = roleIcons.DAMAGER
+		elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "IOS" then
+			local roleIcons = {
+				TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Tank.tga', sizeString),
+				HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Healer.tga', sizeString),
+				DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\DPS.tga', sizeString),
+			}
+			_G.INLINE_TANK_ICON = roleIcons.TANK
+			_G.INLINE_HEALER_ICON = roleIcons.HEALER
+			_G.INLINE_DAMAGER_ICON = roleIcons.DAMAGER
+		elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "MATERIAL" then
+			local roleIcons = {
+				TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Tank.tga', sizeString),
+				HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Healer.tga', sizeString),
+				DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\DPS.tga', sizeString),
+			}
+			_G.INLINE_TANK_ICON = roleIcons.TANK
+			_G.INLINE_HEALER_ICON = roleIcons.HEALER
+			_G.INLINE_DAMAGER_ICON = roleIcons.DAMAGER
 		end
 	end
 end
@@ -316,6 +334,18 @@ function ElvUI_EltreumUI:ChatRoleSwapIcons()
 				HEALER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer.tga',
 				DAMAGER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS.tga',
 			}
+		elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "IOS" then
+			UF.RoleIconTextures = {
+				TANK = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Tank.tga',
+				HEALER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Healer.tga',
+				DAMAGER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\DPS.tga',
+			}
+		elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "MATERIAL" then
+			UF.RoleIconTextures = {
+				TANK = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Tank.tga',
+				HEALER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Healer.tga',
+				DAMAGER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\DPS.tga',
+			}
 		end
 		if IsAddOnLoaded("ElvUI_SLE") then
 			local SLE = unpack(ElvUI_SLE)
@@ -353,6 +383,16 @@ function ElvUI_EltreumUI:ChatRoleSwapIcons()
 				TANK = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Tank.tga',
 				HEALER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer.tga',
 				DAMAGER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS.tga',
+			}
+			SLE.rolePaths["iOS"] = {
+				TANK = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Tank.tga',
+				HEALER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Healer.tga',
+				DAMAGER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\DPS.tga',
+			}
+			SLE.rolePaths["Material"] = {
+				TANK = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Tank.tga',
+				HEALER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Healer.tga',
+				DAMAGER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\DPS.tga',
 			}
 			SLE.rolePaths["Eltruism Custom"] = {
 				TANK = [[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank,
@@ -514,6 +554,24 @@ if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 		_G.INLINE_TANK_ICON = roleIcons.TANK
 		_G.INLINE_HEALER_ICON = roleIcons.HEALER
 		_G.INLINE_DAMAGER_ICON = roleIcons.DAMAGER
+	elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "IOS" then
+		local roleIcons = {
+			TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Tank.tga', sizeString),
+			HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Healer.tga', sizeString),
+			DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\DPS.tga', sizeString),
+		}
+		_G.INLINE_TANK_ICON = roleIcons.TANK
+		_G.INLINE_HEALER_ICON = roleIcons.HEALER
+		_G.INLINE_DAMAGER_ICON = roleIcons.DAMAGER
+	elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "MATERIAL" then
+		local roleIcons = {
+			TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Tank.tga', sizeString),
+			HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Healer.tga', sizeString),
+			DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\DPS.tga', sizeString),
+		}
+		_G.INLINE_TANK_ICON = roleIcons.TANK
+		_G.INLINE_HEALER_ICON = roleIcons.HEALER
+		_G.INLINE_DAMAGER_ICON = roleIcons.DAMAGER
 	end
 
 	if IsAddOnLoaded("ElvUI_WindTools") then
@@ -590,6 +648,24 @@ if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 			CT.cache.blizzardRoleIcons.Tank = roleIcons.TANK
 			CT.cache.blizzardRoleIcons.Healer = roleIcons.HEALER
 			CT.cache.blizzardRoleIcons.DPS = roleIcons.DAMAGER
+		elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "IOS" then
+			local roleIcons = {
+				TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Tank.tga', sizeString),
+				HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Healer.tga', sizeString),
+				DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\DPS.tga', sizeString),
+			}
+			CT.cache.blizzardRoleIcons.Tank = roleIcons.TANK
+			CT.cache.blizzardRoleIcons.Healer = roleIcons.HEALER
+			CT.cache.blizzardRoleIcons.DPS = roleIcons.DAMAGER
+		elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "MATERIAL" then
+			local roleIcons = {
+				TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Tank.tga', sizeString),
+				HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Healer.tga', sizeString),
+				DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\DPS.tga', sizeString),
+			}
+			CT.cache.blizzardRoleIcons.Tank = roleIcons.TANK
+			CT.cache.blizzardRoleIcons.Healer = roleIcons.HEALER
+			CT.cache.blizzardRoleIcons.DPS = roleIcons.DAMAGER
 		end
 
 		local function RoleIcons()
@@ -661,6 +737,24 @@ if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 					TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Tank.tga', sizeString),
 					HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer.tga', sizeString),
 					DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS.tga', sizeString),
+				}
+				CT.cache.blizzardRoleIcons.Tank = roleIcons.TANK
+				CT.cache.blizzardRoleIcons.Healer = roleIcons.HEALER
+				CT.cache.blizzardRoleIcons.DPS = roleIcons.DAMAGER
+			elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "IOS" then
+				local roleIcons = {
+					TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Tank.tga', sizeString),
+					HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Healer.tga', sizeString),
+					DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\DPS.tga', sizeString),
+				}
+				CT.cache.blizzardRoleIcons.Tank = roleIcons.TANK
+				CT.cache.blizzardRoleIcons.Healer = roleIcons.HEALER
+				CT.cache.blizzardRoleIcons.DPS = roleIcons.DAMAGER
+			elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "MATERIAL" then
+				local roleIcons = {
+					TANK = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Tank.tga', sizeString),
+					HEALER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Healer.tga', sizeString),
+					DAMAGER = E:TextureString('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\DPS.tga', sizeString),
 				}
 				CT.cache.blizzardRoleIcons.Tank = roleIcons.TANK
 				CT.cache.blizzardRoleIcons.Healer = roleIcons.HEALER

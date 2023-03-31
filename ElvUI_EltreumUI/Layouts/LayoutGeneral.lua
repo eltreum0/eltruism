@@ -11,7 +11,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	if not E.db.movers then E.db.movers = {} end
 		local width = GetPhysicalScreenSize()
 		-- Setup UI Scale
-		ElvUI_EltreumUI:SetupScale()
+		E.global["general"]["UIScale"] = 0.71111111111111
 
 		-- Setup Global DB
 		ElvUI_EltreumUI:SetupGlobal()

@@ -2,11 +2,6 @@ local E, L, V, P, G = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local EnhancedShadows = nil
-if IsAddOnLoaded("ProjectAzilroka") then
-	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
-end
 
 do
 
@@ -61,10 +56,10 @@ do
 					if bar then
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not bar.shadow then
 							bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							--if EnhancedShadows then EnhancedShadows:RegisterShadow(bar.shadow) end
 							bar.shadow:ClearAllPoints()
 							bar.shadow:SetPoint("TOPLEFT", bar.icon, "TOPLEFT", -3,3)
 							bar.shadow:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT",3,-3)
+							ElvUI_EltreumUI:ShadowColor(bar.shadow)
 						end
 						if bar.bg then
 							if E.db.unitframe.colors.transparentAurabars then

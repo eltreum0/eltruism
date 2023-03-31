@@ -103,6 +103,7 @@ function ElvUI_EltreumUI:BattleRes()
 				bresframe.shadow:SetPoint("BOTTOMRIGHT", bresframe,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
 				bresframe.shadow:SetPoint("TOPLEFT", spellicon,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
 				bresframe.shadow:SetPoint("TOPRIGHT", bresframe,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(bresframe.shadow)
 			end
 		end
 
@@ -316,5 +317,40 @@ function ElvUI_EltreumUI:GetRoleIcon(role)
 		elseif role == "DAMAGER" then
 			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS.tga'
 		end
+	elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "IOS" then
+		if role == "TANK" then
+			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Tank.tga'
+		elseif role == "HEALER" then
+			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Healer.tga'
+		elseif role == "DAMAGER" then
+			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\DPS.tga'
+		end
+	elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "MATERIAL" then
+		if role == "TANK" then
+			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Tank.tga'
+		elseif role == "HEALER" then
+			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Healer.tga'
+		elseif role == "DAMAGER" then
+			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\DPS.tga'
+		end
 	end
 end
+
+--other combat icons
+E.Media.CombatIcons.Eltruism01 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight1.tga]]
+E.Media.CombatIcons.Eltruism02 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight2.tga]]
+E.Media.CombatIcons.Eltruism03 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight3.tga]]
+E.Media.CombatIcons.Eltruism04 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight4.tga]]
+E.Media.CombatIcons.Eltruism05 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight5.tga]]
+E.Media.CombatIcons.Eltruism06 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight6.tga]]
+E.Media.CombatIcons.Eltruism07 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight7.tga]]
+E.Media.CombatIcons.Eltruism08 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight8.tga]]
+E.Media.CombatIcons.Eltruism09 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight9.tga]]
+E.Media.CombatIcons.Eltruism10 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight10.tga]]
+E.Media.CombatIcons.Eltruism11 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight11.tga]]
+E.Media.CombatIcons.Eltruism12 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight12.tga]]
+E.Media.CombatIcons.Eltruism13 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight13.tga]]
+
+--other rest icons
+E.Media.RestIcons.Eltruism01 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\rest1.tga]]
+E.Media.RestIcons.Eltruism02 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\rest2.tga]]

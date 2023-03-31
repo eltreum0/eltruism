@@ -16,13 +16,8 @@ local headerassist = nil
 local headerraidpet = nil
 local group, groupbutton, tankbutton, assistbutton, raidpetbutton,partypetbutton
 local IsInGroup = _G.IsInGroup
-local IsAddOnLoaded = _G.IsAddOnLoaded
 local classcolor = E:ClassColor(E.myclass, true)
 local skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
-local EnhancedShadows = nil
-if IsAddOnLoaded("ProjectAzilroka") then
-	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
-end
 local UnitIsCharmed = _G.UnitIsCharmed
 local pairs = _G.pairs
 

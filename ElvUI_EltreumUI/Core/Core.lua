@@ -29,11 +29,6 @@ local tremove = _G.tremove
 local math = _G.math
 local PlaySound = _G.PlaySound
 local W
-local EnhancedShadows = nil
-if IsAddOnLoaded("ProjectAzilroka") then
-	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
-end
-
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
@@ -440,35 +435,19 @@ function ElvUI_EltreumUI:Anchors()
 	end
 end
 
--- UI Scale
-function ElvUI_EltreumUI:SetupScale()
-	E.global["general"]["UIScale"] = 0.71111111111111
-	if (not IsAddOnLoaded("ElvUI_SLE")) then
-		SetCVar('uiScale', 0.71111111111111)
-	end
-end
-
-function ElvUI_EltreumUI:AutoScale()
-	local a = E:PixelBestSize()
-	SetCVar('uiScale', a)
-	E.global["general"]["UIScale"] = a
-	ElvUI_EltreumUI:Print(L["A scale of "..a.." has automatically been set."])
-end
-
 --World text Scale
 function ElvUI_EltreumUI:WorldTextScale(value)
 	E.db.ElvUI_EltreumUI.otherstuff.worldtextscale = value
 	SetCVar('WorldTextScale', value)
 end
 
---set some CVars when entering world
+--Set some CVars when entering world
 function ElvUI_EltreumUI:EnteringWorldCVars()
-	--SetCVars at start
 	SetCVar('nameplateOtherBottomInset', E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset)
 	SetCVar('nameplateOtherTopInset', E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset)
 	SetCVar('cameraDistanceMaxZoomFactor', E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor)
 	SetCVar('nameplateTargetRadialPosition', E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition)
-	--ElvUI_EltreumUI:Print(L["Custom Nameplate CVars were set."])
+	SetCVar('nameplateOccludedAlphaMult', E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult)
 	if E.Retail and E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable then
 		SetCVar('showInGameNavigation', E.db.ElvUI_EltreumUI.cvars.showInGameNavigation)
 	elseif E.Classic or E.Wrath then
@@ -596,13 +575,11 @@ end
 --fix the toggles hiding when chat panels hide
 function ElvUI_EltreumUI:FixChatToggles()
 	if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
-		--[[
-			_G.RightChatToggleButton:SetPoint('TOPLEFT', _G.DTPanelEltruismMover, 'TOPRIGHT', 0, 0)
-			_G.RightChatToggleButton:SetPoint('BOTTOMRIGHT', _G.DTPanelEltruismMover, 'BOTTOMRIGHT', 0, 0)
-			_G.LeftChatToggleButton:SetPoint("RIGHT", _G.DTPanelEltruismMover,"LEFT",0,0)
-		]]
+
 		_G.LeftChatToggleButton:SetAlpha(1)
 		_G.LeftChatToggleButton:Show()
+		_G.RightChatToggleButton:SetAlpha(1)
+		_G.RightChatToggleButton:Show()
 
 		--fix if the value changed since install
 		local buttonwidth = _G.RightChatToggleButton:GetWidth()
@@ -614,14 +591,6 @@ function ElvUI_EltreumUI:FixChatToggles()
 				E:UpdateDataTexts()
 			end
 		end
-
-		--[[
-			_G.LeftChatToggleButton:SetPoint('TOPRIGHT', _G.DTPanelEltruismMover, 'TOPLEFT', 0, 0)
-			_G.LeftChatToggleButton:SetPoint('BOTTOMLEFT', _G.DTPanelEltruismMover, 'BOTTOMLEFT', 0, 0)
-			_G.RightChatToggleButton:SetPoint("LEFT", _G.DTPanelEltruismMover,"RIGHT",0,0)
-		]]
-		_G.RightChatToggleButton:SetAlpha(1)
-		_G.RightChatToggleButton:Show()
 	end
 end
 
@@ -687,9 +656,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 	end
 
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu and isMenuExpanded == false then
-		--EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64:5:59:5:59|t".. ElvUI_EltreumUI.Name) -- old 32x32 icon
 		EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64|t".. ElvUI_EltreumUI.Name) --new 64x64 icon
-		--EltruismMenuButton:SetText(ElvUI_EltreumUI.Name)
 		S:HandleButton(EltruismMenuButton)
 		local x, y = _G["GameMenuButtonLogout"]:GetSize()
 		EltruismMenuButton:SetSize(x,y)
@@ -776,7 +743,7 @@ if E.Retail then
 			LoadAddOn("Blizzard_ClickBindingUI")
 			if not _G["ClickBindingFrame"].shadow then
 				_G["ClickBindingFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["ClickBindingFrame"].shadow) end
+				ElvUI_EltreumUI:ShadowColor(_G["ClickBindingFrame"].shadow)
 			end
 		end
 		if not _G["ClickBindingFrame"]:IsShown() then

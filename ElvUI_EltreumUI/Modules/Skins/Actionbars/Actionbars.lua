@@ -511,6 +511,7 @@ function ElvUI_EltreumUI:PreviewGlow()
 
 	if not EltruismGlowPreview.shadow then
 		EltruismGlowPreview:CreateShadow()
+		ElvUI_EltreumUI:ShadowColor(EltruismGlowPreview.shadow)
 	end
 
 	if EltruismGlowPreview:IsShown() then

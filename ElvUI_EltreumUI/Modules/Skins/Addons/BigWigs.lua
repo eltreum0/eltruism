@@ -2,11 +2,6 @@ local E, L, V, P, G = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local tostring = _G.tostring
-local EnhancedShadows = nil
-local IsAddOnLoaded = _G.IsAddOnLoaded
-if IsAddOnLoaded("ProjectAzilroka") then
-	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
-end
 
 do
 
@@ -79,11 +74,11 @@ do
 				if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs then
 					if not self.candyBarBar.shadow then
 						self.candyBarBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(self.candyBarBar.shadow) end
+						ElvUI_EltreumUI:ShadowColor(self.candyBarBar.shadow)
 					end
 					if not self.candyBarIconFrameBackdrop.shadow then
 						self.candyBarIconFrameBackdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(self.candyBarIconFrameBackdrop.shadow) end
+						ElvUI_EltreumUI:ShadowColor(self.candyBarIconFrameBackdrop.shadow)
 					end
 				end
 			end
@@ -196,7 +191,7 @@ do
 						frame:SetWidth(width-1)
 						if not frame.shadow then
 							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+							ElvUI_EltreumUI:ShadowColor(frame.shadow)
 						end
 					end
 				end

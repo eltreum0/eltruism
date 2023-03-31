@@ -4582,6 +4582,18 @@ function ElvUI_EltreumUI:Configtable()
 										get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset = value SetCVar('nameplateOtherTopInset', value) SetCVar('nameplateLargeTopInset', value) end,
 									},
+									nameplateOccludedAlphaMult = {
+										type = 'range',
+										name = L["Nameplate Occluded Alpha"],
+										desc = L["Alpha of Nameplates out of Sight"],
+										order = 16,
+										min = 0,
+										max = 1,
+										step = 0.01,
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult = value SetCVar('nameplateOccludedAlphaMult', value) SetCVar('nameplateOccludedAlphaMult', value) end,
+									},
 								},
 							},
 							graphics = {
@@ -10624,6 +10636,8 @@ function ElvUI_EltreumUI:Configtable()
 											["ATWOODGREY"] = 'Grey '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Tank',':20:20'),
 											["ATWOODWHITE"] = 'White '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Tank',':20:20'),
 											["RELEAF"] = 'Releaf '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Tank',':20:20'),
+											["IOS"] = 'iOS '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Tank',':20:20'),
+											["MATERIAL"] = 'Material '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Tank',':20:20'),
 											["CUSTOM"] = 'Custom',
 										},
 										sorting = {
@@ -10634,6 +10648,8 @@ function ElvUI_EltreumUI:Configtable()
 											"ATWOODGREY",
 											"ATWOODWHITE",
 											"RELEAF",
+											"IOS",
+											"MATERIAL",
 											"CUSTOM"
 										},
 										style = 'radio',
@@ -11974,6 +11990,44 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.length end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.length = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							headershadowcolor = {
+								order = 102,
+								type = "description",
+								name = L["Custom Color"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							shadowclasscolors = {
+								type = 'toggle',
+								name = L["Use Class Colors"],
+								width = "full",
+								order = 103,
+								disabled = function() return E.db.ElvUI_EltreumUI.skins.shadow.customcolor or not E.db.ElvUI_EltreumUI.skins.shadow.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.classcolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.classcolor = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							shadowcustomcolorenable = {
+								order = 104,
+								name = L["Enable Custom Colors"],
+								type = "toggle",
+								--width = 'full',
+								disabled = function() return E.db.ElvUI_EltreumUI.skins.shadow.classcolor or not E.db.ElvUI_EltreumUI.skins.shadow.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.customcolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.customcolor = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							shadowcustomcolor = {
+								order = 105,
+								type = 'color',
+								name = L["Custom Color"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable or not E.db.ElvUI_EltreumUI.skins.shadow.customcolor end,
+								get = function()
+									return E.db.ElvUI_EltreumUI.skins.shadow.r, E.db.ElvUI_EltreumUI.skins.shadow.g, E.db.ElvUI_EltreumUI.skins.shadow.b, 1, P.ElvUI_EltreumUI.skins.shadow.r, P.ElvUI_EltreumUI.skins.shadow.g, P.ElvUI_EltreumUI.skins.shadow.b, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.skins.shadow.r, E.db.ElvUI_EltreumUI.skins.shadow.g, E.db.ElvUI_EltreumUI.skins.shadow.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+								end,
 							},
 						},
 					},

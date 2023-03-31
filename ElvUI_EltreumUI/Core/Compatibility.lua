@@ -40,6 +40,7 @@ local function ConstructCompatibilityFrame()
 	end)
 	if not frame.shadow then
 		frame:CreateShadow()
+		ElvUI_EltreumUI:ShadowColor(frame.shadow)
 	end
 
 	frame:SetFrameStrata("TOOLTIP")

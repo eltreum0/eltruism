@@ -3,12 +3,7 @@ local S = E:GetModule('Skins')
 local _G = _G
 local unpack = _G.unpack
 local CreateFrame = _G.CreateFrame
-local EnhancedShadows = nil
 local InCombatLockdown = _G.InCombatLockdown
-local IsAddOnLoaded = _G.IsAddOnLoaded
-if IsAddOnLoaded("ProjectAzilroka") then
-	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
-end
 
 --based on old addonskins skin
 function ElvUI_EltreumUI:EltruismPallyPower()
@@ -54,7 +49,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 					_G.PallyPowerAura.shadow:Hide()
 				end
 			end)
-			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PallyPowerAura.shadow) end
+			ElvUI_EltreumUI:ShadowColor(_G.PallyPowerAura.shadow)
 		end
 
 		--_G.PallyPowerAuto:SetTemplate("Transparent", nil, true)
@@ -68,7 +63,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 				_G.PallyPowerAuto.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerAutoIcon,"BOTTOMRIGHT", 3, -3)
 				_G.PallyPowerAuto.shadow:SetPoint("TOPRIGHT", _G.PallyPowerAutoIcon,"TOPRIGHT", 3, 3)
 				_G.PallyPowerAuto.shadow:SetParent(_G.PallyPowerAuto)
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PallyPowerAuto.shadow) end
+				ElvUI_EltreumUI:ShadowColor(_G.PallyPowerAuto.shadow)
 			end
 		end
 
@@ -86,7 +81,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 				_G.PallyPowerRF.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerRFIconSeal,"BOTTOMRIGHT", 3, -3)
 				_G.PallyPowerRF.shadow:SetPoint("TOPRIGHT", _G.PallyPowerRFIconSeal,"TOPRIGHT", 3, 3)
 				_G.PallyPowerRF.shadow:SetParent(_G.PallyPowerRF)
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PallyPowerRF.shadow) end
+				ElvUI_EltreumUI:ShadowColor(_G.PallyPowerRF.shadow)
 			end
 		end
 		--because we need 2 shadows
@@ -99,7 +94,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 				_G.PallyPowerAnchor.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerRFIcon,"BOTTOMRIGHT", 3, -3)
 				_G.PallyPowerAnchor.shadow:SetPoint("TOPRIGHT", _G.PallyPowerRFIcon,"TOPRIGHT", 3, 3)
 				_G.PallyPowerAnchor.shadow:SetParent(_G.PallyPowerRF)
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PallyPowerAnchor.shadow) end
+				ElvUI_EltreumUI:ShadowColor(_G.PallyPowerAnchor.shadow)
 			end
 		end
 
@@ -123,7 +118,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 				button.shadow:SetPoint("BOTTOMRIGHT", _G[button:GetName().."BuffIcon"],"BOTTOMRIGHT", 3, -3)
 				button.shadow:SetPoint("TOPRIGHT", _G[button:GetName().."BuffIcon"],"TOPRIGHT", 3, 3)
 				button.shadow:SetParent(button)
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(button.shadow) end
+				ElvUI_EltreumUI:ShadowColor(button.shadow)
 			end
 
 			for j = 1, PALLYPOWER_MAXPERCLASS do
@@ -148,7 +143,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 						else
 							_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:Hide()
 						end
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow) end
+						ElvUI_EltreumUI:ShadowColor(_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow)
 					end
 					_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i]:HookScript("OnClick", function()
 						E:Delay(0, function()
@@ -183,7 +178,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow:SetPoint("BOTTOMRIGHT", _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"],"BOTTOMRIGHT", 3, -3)
 					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow:SetPoint("TOPRIGHT", _G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeaderIcon"],"TOPRIGHT", 3, 3)
 					_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow:SetParent(_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"])
-					if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow) end
+					ElvUI_EltreumUI:ShadowColor(_G["PallyPowerBlessingsFrameAuraGroup"..i.."AuraHeader"].shadow)
 				end
 			end
 
@@ -199,7 +194,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 							_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("BOTTOMRIGHT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"BOTTOMRIGHT", 3, -3)
 							_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetPoint("TOPRIGHT", _G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i.."Icon"],"TOPRIGHT", 3, 3)
 							_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow:SetParent(_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i])
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow) end
+							ElvUI_EltreumUI:ShadowColor(_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i].shadow)
 						end
 					end
 					_G["PallyPowerBlessingsFramePlayer"..j.."Aura"..i]:HookScript("OnClick", function()
@@ -226,7 +221,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		--add shadow
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not PallyPowerBlessingsFrame.shadow then
 			PallyPowerBlessingsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			if EnhancedShadows then EnhancedShadows:RegisterShadow(PallyPowerBlessingsFrame.shadow) end
+			ElvUI_EltreumUI:ShadowColor(PallyPowerBlessingsFrame.shadow)
 		end
 
 		--better point
@@ -402,7 +397,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 					end
 					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC10, "BOTTOMRIGHT",3,-3)
 				end
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.PallyPowerFrame.shadow) end
+				ElvUI_EltreumUI:ShadowColor(_G.PallyPowerFrame.shadow)
 			end
 		end
 

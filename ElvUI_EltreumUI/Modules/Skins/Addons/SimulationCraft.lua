@@ -1,12 +1,7 @@
 local E, L, V, P, G = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
-local EnhancedShadows = nil
-if IsAddOnLoaded("ProjectAzilroka") then
-	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
-end
 
 --skin simc
 function ElvUI_EltreumUI:EltruismSimulationCraft()
@@ -24,12 +19,12 @@ function ElvUI_EltreumUI:EltruismSimulationCraft()
 					if not E.Classic then
 						if _G["SimcFrame"] and not _G["SimcFrame"].shadow then
 							_G["SimcFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["SimcFrame"].shadow) end
+							ElvUI_EltreumUI:ShadowColor(_G["SimcFrame"].shadow)
 						end
 					else
 						if _G["SimcFrame"] and _G["SimcFrame"].backdrop and not _G["SimcFrame"].backdrop.shadow then
 							_G["SimcFrame"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["SimcFrame"].backdrop.shadow) end
+							ElvUI_EltreumUI:ShadowColor(_G["SimcFrame"].backdrop.shadow)
 						end
 					end
 				end

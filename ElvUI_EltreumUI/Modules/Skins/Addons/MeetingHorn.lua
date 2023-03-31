@@ -1,12 +1,7 @@
 local E, L, V, P, G = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
 local select = _G.select
-local EnhancedShadows = nil
-if IsAddOnLoaded("ProjectAzilroka") then
-	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
-end
 
 --skin IME input
 local function SkinLocale()
@@ -29,7 +24,7 @@ function ElvUI_EltreumUI:EltruismMeetingHorn()
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 			if not f.MainPanel.shadow then
 				f.MainPanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				if EnhancedShadows then EnhancedShadows:RegisterShadow(f.MainPanel.shadow) end
+				ElvUI_EltreumUI:ShadowColor(f.MainPanel.shadow)
 			end
 		end
 
@@ -149,7 +144,7 @@ function ElvUI_EltreumUI:EltruismMeetingHorn()
 					S:HandleTab(group)
 					if not group.backdrop.shadow then
 						group.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(group.backdrop.shadow) end
+						ElvUI_EltreumUI:ShadowColor(group.backdrop.shadow)
 					end
 				end
 			end

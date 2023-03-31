@@ -31,12 +31,12 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 				if not E.Classic then
 					if _G["scanner_button"] and not _G["scanner_button"].shadow then
 						_G["scanner_button"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["scanner_button"].shadow) end
+						ElvUI_EltreumUI:ShadowColor(_G["scanner_button"].shadow)
 					end
 				else
 					if _G["scanner_button"] and _G["scanner_button"].backdrop and not _G["scanner_button"].backdrop.shadow then
 						_G["scanner_button"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["scanner_button"].backdrop.shadow) end
+						ElvUI_EltreumUI:ShadowColor(_G["scanner_button"].backdrop.shadow)
 					end
 				end
 			end
@@ -54,6 +54,7 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 				--add shadows too
 				if not v.shadow then
 					v:CreateShadow()
+					ElvUI_EltreumUI:ShadowColor(v.shadow)
 				end
 
 				--elvui didnt get rid of the blizzard texture
@@ -92,6 +93,7 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 							v:CreateBackdrop()
 							if E.db.ElvUI_EltreumUI.skins.shadow.enable and not v.shadow then
 								v:CreateShadow(2)
+								ElvUI_EltreumUI:ShadowColor(v.shadow)
 							end
 							v.IsSkinned = true
 						end

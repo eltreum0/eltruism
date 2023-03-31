@@ -1362,3 +1362,5 @@ L["MAP_SEARCHER_TOOLTIP_TITLE"] = "Buscador de RareScanner" -- from rarescanner 
 L["Add Shadows to the Unitframes"] = true
 L["Add Shadows to Tooltips"] = true
 L["Add Shadows to general Blizzard/ElvUI frames"] = true
+L["Nameplate Occluded Alpha"] = true
+L["Alpha of Nameplates out of Sight"] = true

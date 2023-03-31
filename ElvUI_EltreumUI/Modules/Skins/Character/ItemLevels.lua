@@ -17,6 +17,7 @@ local level
 local hooksecurefunc = _G.hooksecurefunc
 local C_Timer = _G.C_Timer
 local IsAddOnLoaded = _G.IsAddOnLoaded
+local isHooked = false
 
 --Calculate ilvl and average ilvl of player items/inspect unit
 local EltruismInspectilvls = CreateFrame("Frame")
@@ -151,17 +152,19 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 		EltruismInspectilvls:RegisterEvent("INSPECT_READY")
 		EltruismInspectilvls:SetScript("OnEvent", function(_,event,arg)
 			if arg == "Blizzard_InspectUI" or IsAddOnLoaded("Blizzard_InspectUI") then
-				--EltruismInspectilvls:UnregisterAllEvents()
 				EltruismInspectilvls:UnregisterEvent("ADDON_LOADED")
-				hooksecurefunc("InspectPaperDollItemSlotButton_Update", function(button)
-					if E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
-						if _G.InspectFrame and _G.InspectFrame.unit then
-							UpdateItemSlotButton(button, _G.InspectFrame.unit)
-						else
-							UpdateItemSlotButton(button, "target")
+				if not isHooked then
+					hooksecurefunc("InspectPaperDollItemSlotButton_Update", function(button)
+						if E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
+							if _G.InspectFrame and _G.InspectFrame.unit then
+								UpdateItemSlotButton(button, _G.InspectFrame.unit)
+							else
+								UpdateItemSlotButton(button, "target")
+							end
 						end
-					end
-				end)
+					end)
+					isHooked = true
+				end
 			end
 			if event == "INSPECT_READY" then
 				C_Timer.After(0.1, function()
