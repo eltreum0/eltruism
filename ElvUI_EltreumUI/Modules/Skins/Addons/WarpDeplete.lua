@@ -29,6 +29,7 @@ function ElvUI_EltreumUI:EltruismWarpDeplete()
 								v.shadow:ClearAllPoints()
 								v.shadow:SetPoint("TOPLEFT", v, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length+1, E.db.ElvUI_EltreumUI.skins.shadow.length-1)
 								v.shadow:SetPoint("BOTTOMRIGHT", v, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length-1, -E.db.ElvUI_EltreumUI.skins.shadow.length+1)
+								ElvUI_EltreumUI:ShadowColor(v.shadow)
 							end
 						end
 					end

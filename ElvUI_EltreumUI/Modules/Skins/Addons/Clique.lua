@@ -3,11 +3,6 @@ local S = E:GetModule('Skins')
 local _G = _G
 local unpack = _G.unpack
 local pairs = _G.pairs
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local EnhancedShadows = nil
-if IsAddOnLoaded("ProjectAzilroka") then
-	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
-end
 
 --skin Clique
 function ElvUI_EltreumUI:EltruismClique()
@@ -48,7 +43,7 @@ function ElvUI_EltreumUI:EltruismClique()
 			for _, frame in pairs(frames) do
 				if frame and not frame.shadow then
 					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+					ElvUI_EltreumUI:ShadowColor(frame.shadow)
 				end
 			end
 		end

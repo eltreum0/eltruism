@@ -25,12 +25,7 @@ local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetInventoryItemCooldown = _G.GetInventoryItemCooldown
 local GetBindingText = _G.GetBindingText
 local CooldownFrame_Set = _G.CooldownFrame_Set
-local IsAddOnLoaded = _G.IsAddOnLoaded
 local _, instanceType
-local EnhancedShadows = nil
-if IsAddOnLoaded("ProjectAzilroka") then
-	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
-end
 
 --A merge of QBAr by Aezay with a few edits by Eltreum
 --This module is GNU GPL v3
@@ -470,7 +465,7 @@ function ElvUI_EltreumUI:QuestItem()
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 					if not b.shadow then
 						b:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(b.shadow) end
+						ElvUI_EltreumUI:ShadowColor(b.shadow)
 					end
 				end
 				b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")

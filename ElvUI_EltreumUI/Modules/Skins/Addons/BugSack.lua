@@ -4,10 +4,6 @@ local _G = _G
 local pairs = _G.pairs
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
-local EnhancedShadows = nil
-if IsAddOnLoaded("ProjectAzilroka") then
-	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
-end
 
 --skin bugsack
 function ElvUI_EltreumUI:EltruismBugSack()
@@ -45,7 +41,7 @@ function ElvUI_EltreumUI:EltruismBugSack()
 					for _, frame in pairs(frames) do
 						if frame and not frame.shadow then
 							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+							ElvUI_EltreumUI:ShadowColor(frame.shadow)
 						end
 					end
 				end

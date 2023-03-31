@@ -7,12 +7,8 @@ local unpack = _G.unpack
 local next = _G.next
 local InCombatLockdown = _G.InCombatLockdown
 local embedpanel
-local EnhancedShadows = nil
 local DetailsHooked = false
 local RightChatDetailsHook = false
-if IsAddOnLoaded("ProjectAzilroka") then
-	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
-end
 
 do
 
@@ -125,7 +121,7 @@ do
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 							if embedpanel and not embedpanel.shadow then
 								embedpanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if EnhancedShadows then EnhancedShadows:RegisterShadow(embedpanel.shadow) end
+								ElvUI_EltreumUI:ShadowColor(embedpanel.shadow)
 							end
 						end
 					end

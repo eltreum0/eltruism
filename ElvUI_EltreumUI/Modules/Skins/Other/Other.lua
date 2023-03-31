@@ -16,10 +16,6 @@ local skillbutton,skillTitle
 local vellumbutton,disenchantbutton,tradeskilloadmonitor
 local classcolor = E:ClassColor(E.myclass, true)
 local string = _G.string
-local EnhancedShadows = nil
-if IsAddOnLoaded("ProjectAzilroka") then
-	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
-end
 
 --frame scaling
 function ElvUI_EltreumUI:FrameScales()
@@ -202,7 +198,7 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 					if not frame.status.shadow then
 						frame.status:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.status.shadow) end
+						ElvUI_EltreumUI:ShadowColor(frame.status.shadow)
 					end
 				end
 				if not frame.GradientHook then
@@ -366,7 +362,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 					E:Delay(0, function()
 						if not CraftFrame.backdrop.shadow then
 							CraftFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(CraftFrame.backdrop.shadow) end
+							ElvUI_EltreumUI:ShadowColor(CraftFrame.backdrop.shadow)
 						end
 						CraftFrame:SetWidth(765)
 						CraftFrame:SetHeight(550)

@@ -2,11 +2,6 @@ local E, L, V, P, G = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local _G = _G
 local UnitClass = _G.UnitClass
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local EnhancedShadows
-if IsAddOnLoaded("ProjectAzilroka") then
-	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
-end
 
 --blizzard raid frames custom textures/gradient
 function ElvUI_EltreumUI:BlizzardTexturesGradient()
@@ -66,7 +61,7 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 										if E.db.ElvUI_EltreumUI.skins.shadow.raid and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.raidborders) then
 											if not _G["CompactRaidGroup"..k.."Member"..l].healthBar.shadow then
 												_G["CompactRaidGroup"..k.."Member"..l].healthBar:CreateShadow()
-												if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["CompactRaidGroup"..k.."Member"..l].healthBar.shadow) end
+												ElvUI_EltreumUI:ShadowColor(_G["CompactRaidGroup"..k.."Member"..l].healthBar.shadow)
 											end
 										end
 									end
@@ -128,7 +123,7 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 									if E.db.ElvUI_EltreumUI.skins.shadow.raid and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.raidborders) then
 										if not _G["CompactRaidFrame"..i].healthBar.shadow then
 											_G["CompactRaidFrame"..i].healthBar:CreateShadow()
-											if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["CompactRaidFrame"..i].healthBar.shadow) end
+											ElvUI_EltreumUI:ShadowColor(_G["CompactRaidFrame"..i].healthBar.shadow)
 										end
 									end
 								end

@@ -11991,6 +11991,44 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.length end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.length = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
+							headershadowcolor = {
+								order = 102,
+								type = "description",
+								name = L["Custom Color"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							shadowclasscolors = {
+								type = 'toggle',
+								name = L["Use Class Colors"],
+								width = "full",
+								order = 103,
+								disabled = function() return E.db.ElvUI_EltreumUI.skins.shadow.customcolor or not E.db.ElvUI_EltreumUI.skins.shadow.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.classcolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.classcolor = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							shadowcustomcolorenable = {
+								order = 104,
+								name = L["Enable Custom Colors"],
+								type = "toggle",
+								--width = 'full',
+								disabled = function() return E.db.ElvUI_EltreumUI.skins.shadow.classcolor or not E.db.ElvUI_EltreumUI.skins.shadow.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.customcolor end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.customcolor = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							shadowcustomcolor = {
+								order = 105,
+								type = 'color',
+								name = L["Custom Color"],
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable or not E.db.ElvUI_EltreumUI.skins.shadow.customcolor end,
+								get = function()
+									return E.db.ElvUI_EltreumUI.skins.shadow.r, E.db.ElvUI_EltreumUI.skins.shadow.g, E.db.ElvUI_EltreumUI.skins.shadow.b, 1, P.ElvUI_EltreumUI.skins.shadow.r, P.ElvUI_EltreumUI.skins.shadow.g, P.ElvUI_EltreumUI.skins.shadow.b, 1
+								end,
+								set = function(_, r, g, b, a)
+									E.db.ElvUI_EltreumUI.skins.shadow.r, E.db.ElvUI_EltreumUI.skins.shadow.g, E.db.ElvUI_EltreumUI.skins.shadow.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+								end,
+							},
 						},
 					},
 					quests = {

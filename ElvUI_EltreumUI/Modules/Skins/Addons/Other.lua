@@ -3,12 +3,6 @@ local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local next = _G.next
---local LibAHTab = LibStub("LibAHTab-1-0")
-local EnhancedShadows = nil
-local IsAddOnLoaded = _G.IsAddOnLoaded
-if IsAddOnLoaded("ProjectAzilroka") then
-	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
-end
 local tabSkinned = false
 
 --simple tab skin
@@ -26,7 +20,7 @@ function ElvUI_EltreumUI:EltruismAuction()
 											S:HandleTab(v)
 											if E.db.ElvUI_EltreumUI.skins.shadow.enable and v.backdrop and not v.backdrop.shadow then
 												v.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-												if EnhancedShadows then EnhancedShadows:RegisterShadow(v.backdrop.shadow) end
+												ElvUI_EltreumUI:ShadowColor(v.backdrop.shadow)
 											end
 											tabSkinned = true
 										end
@@ -46,7 +40,7 @@ function ElvUI_EltreumUI:EltruismAuction()
 								S:HandleTab(_G["AuctionFrameTab"..i])
 								if E.db.ElvUI_EltreumUI.skins.shadow.enable and _G["AuctionFrameTab"..i].backdrop and not _G["AuctionFrameTab"..i].backdrop.shadow then
 									_G["AuctionFrameTab"..i].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["AuctionFrameTab"..i].backdrop.shadow) end
+									ElvUI_EltreumUI:ShadowColor(_G["AuctionFrameTab"..i].backdrop.shadow)
 								end
 								tabSkinned = true
 							end
@@ -65,7 +59,7 @@ function ElvUI_EltreumUI:EltruismScrap()
 		S:HandleTab(_G["MerchantFrameSecureTab0"])
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and _G["MerchantFrameSecureTab0"].backdrop and not _G["MerchantFrameSecureTab0"].backdrop.shadow then
 			_G["MerchantFrameSecureTab0"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G["MerchantFrameSecureTab0"].backdrop.shadow) end
+			ElvUI_EltreumUI:ShadowColor(_G["MerchantFrameSecureTab0"].backdrop.shadow)
 		end
 	end
 end

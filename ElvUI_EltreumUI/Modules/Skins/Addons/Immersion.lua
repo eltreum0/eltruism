@@ -7,10 +7,6 @@ local tostring = _G.tostring
 local tonumber = _G.tonumber
 local InCombatLockdown = _G.InCombatLockdown
 local IsAddOnLoaded = _G.IsAddOnLoaded
-local EnhancedShadows = nil
-if IsAddOnLoaded("ProjectAzilroka") then
-	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
-end
 local GetQuestItemInfo = _G.GetQuestItemInfo
 local GetItemQualityColor = _G.GetItemQualityColor
 
@@ -42,7 +38,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 			for _, frame in pairs(frames) do
 				if frame and not frame.shadow then
 					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					if EnhancedShadows then EnhancedShadows:RegisterShadow(frame.shadow) end
+					ElvUI_EltreumUI:ShadowColor(frame.shadow)
 				end
 			end
 		end
@@ -84,7 +80,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 						if v and not v.shadow then
 							v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if EnhancedShadows then EnhancedShadows:RegisterShadow(v.shadow) end
+							ElvUI_EltreumUI:ShadowColor(v.shadow)
 						end
 					end
 					v.IsSkinned = true

@@ -10,11 +10,6 @@ local PlaySound = _G.PlaySound
 local StopMusic = _G.StopMusic
 local StopSound = _G.StopSound
 local tonumber = _G.tonumber
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local EnhancedShadows = nil
-if IsAddOnLoaded("ProjectAzilroka") then
-	EnhancedShadows = _G.ProjectAzilroka:GetModule('EnhancedShadows')
-end
 
 -- general alliance walk (legion) maybe human music idk
 --/script PlaySoundFile(1417250, "Dialog", true)
@@ -175,11 +170,11 @@ function ElvUI_EltreumUI:AFKLogo()
 		--add shadows
 		if not EltruismAFKTop.shadow then
 			EltruismAFKTop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			if EnhancedShadows then EnhancedShadows:RegisterShadow(EltruismAFKTop.shadow) end
+			ElvUI_EltreumUI:ShadowColor(EltruismAFKTop.shadow)
 		end
 		if _G.ElvUIAFKFrame and _G.ElvUIAFKFrame.bottom and not _G.ElvUIAFKFrame.bottom.shadow then
 			_G.ElvUIAFKFrame.bottom:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-			if EnhancedShadows then EnhancedShadows:RegisterShadow(_G.ElvUIAFKFrame.bottom.shadow) end
+			ElvUI_EltreumUI:ShadowColor(_G.ElvUIAFKFrame.bottom.shadow)
 		end
 
 		if E.db.ElvUI_EltreumUI.otherstuff.afklogo then
