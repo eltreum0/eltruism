@@ -159,9 +159,9 @@ local function ImproveInstall(installtype,mode,null)
 		if _G.PluginInstallStatus then
 			hooksecurefunc(_G.PluginInstallStatus, "SetStatusBarColor", function(_, r, g, b)
 				if not E.Classic then
-					_G.PluginInstallStatus:GetStatusBarTexture():SetGradient("HORIZONTAL", {r = r - 0.5,g = g - 0.5, b = b - 0.5, a = 1}, {r = r + 0.2, g = g + 0.2, b = b + 0.2, a = 1})
+					_G.PluginInstallStatus:GetStatusBarTexture():SetGradient("HORIZONTAL", {r = r - 0.5,g = g - 0.5, b = b - 0.5, a = 1}, {r = r + 0.4, g = g + 0.4, b = b + 0.4, a = 1})
 				else
-					_G.PluginInstallStatus:GetStatusBarTexture():SetGradient("HORIZONTAL", r - 0.5, g - 0.5, b - 0.5, 1, r + 0.2, g + 0.2, b + 0.2, 1)
+					_G.PluginInstallStatus:GetStatusBarTexture():SetGradient("HORIZONTAL", r - 0.5, g - 0.5, b - 0.5, r + 0.4, g + 0.4, b + 0.4)
 				end
 			end)
 		end
