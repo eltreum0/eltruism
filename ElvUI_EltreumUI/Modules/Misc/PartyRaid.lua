@@ -346,6 +346,10 @@ E.Media.CombatIcons.Eltruism6 = [[Interface\Addons\ElvUI_EltreumUI\Media\Texture
 E.Media.CombatIcons.Eltruism7 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight7.tga]]
 E.Media.CombatIcons.Eltruism8 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight8.tga]]
 E.Media.CombatIcons.Eltruism9 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight9.tga]]
+E.Media.CombatIcons.Eltruism10 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight10.tga]]
+E.Media.CombatIcons.Eltruism11 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight11.tga]]
+E.Media.CombatIcons.Eltruism12 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight12.tga]]
+E.Media.CombatIcons.Eltruism13 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight13.tga]]
 
 --other rest icons
 E.Media.RestIcons.Eltruism1 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\rest1.tga]]
