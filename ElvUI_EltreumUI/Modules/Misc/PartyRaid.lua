@@ -335,3 +335,9 @@ function ElvUI_EltreumUI:GetRoleIcon(role)
 		end
 	end
 end
+
+--other combat icons
+E.Media.CombatIcons.Eltruism1 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight1.tga]]
+E.Media.CombatIcons.Eltruism2 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight2.tga]]
+E.Media.CombatIcons.Eltruism3 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight3.tga]]
+E.Media.CombatIcons.Eltruism4 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Unitframes\fight4.tga]]
