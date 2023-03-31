@@ -875,11 +875,11 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = -7
 	E.db["unitframe"]["units"]["player"]["CombatIcon"]["enable"] = true
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["a"] = 0.57115608453751
-	E.db["unitframe"]["units"]["player"]["RestIcon"]["defaultColor"] = false
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["defaultColor"] = true
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["size"] = 15
-	E.db["unitframe"]["units"]["player"]["RestIcon"]["texture"] = "Resting0"
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["texture"] = "Eltruism01"
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 8
-	E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = -7
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = -6
 	E.db["unitframe"]["units"]["player"]["aurabar"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["player"]["aurabar"]["detachedWidth"] = 266
 	E.db["unitframe"]["units"]["player"]["aurabar"]["maxDuration"] = 60
