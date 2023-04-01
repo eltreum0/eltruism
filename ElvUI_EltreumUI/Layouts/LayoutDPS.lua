@@ -172,36 +172,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["actionbar"]["bar4"]["macroTextPosition"] = "BOTTOM"
 	E.db["actionbar"]["bar4"]["macroTextYOffset"] = 2
 	E.db["actionbar"]["bar4"]["macrotext"] = true
-
-	if E.Retail or E.Wrath then
-		E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[vehicleui] 16; [overridebar] 18; [possessbar] 16; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["HUNTER"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["MAGE"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["MONK"] = "[vehicleui] 16; [overridebar] 18; [possessbar] 16;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["PALADIN"] = "[vehicleui] 16; [overridebar] 18; [possessbar] 16;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 16; [overridebar] 18; [possessbar] 16;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [vehicleui] 16; [overridebar] 18; [possessbar] 12;[bonusbar:2] 8;[bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
-		E.db["actionbar"]["bar4"]["paging"]["SHAMAN"] = "[vehicleui] 16; [overridebar] 18; [possessbar] 16;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["EVOKER"] = "[vehicleui] 16; [overridebar] 18; [possessbar] 16;[bonusbar:5] 11;[bonusbar:1] 7;"
-	else
-		E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["HUNTER"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["MAGE"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["MONK"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["PALADIN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:2] 8;[bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
-		E.db["actionbar"]["bar4"]["paging"]["SHAMAN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[form:1] 7;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;[stance:1] 7; [stance:2] 8; [stance:3] 9;"
-		E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11; [bonusbar:1] 7;"
-	end
-
 	E.db["actionbar"]["bar4"]["point"] = "BOTTOMLEFT"
 	E.db["actionbar"]["bar4"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
 	E.db["actionbar"]["bar5"]["alpha"] = 1
@@ -651,9 +621,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["boss"]["raidicon"]["size"] = 24
 	E.db["unitframe"]["units"]["boss"]["raidicon"]["yOffset"] = 12
 	E.db["unitframe"]["units"]["boss"]["threatStyle"] = "BORDERS"
-	E.db["unitframe"]["units"]["focus"]["CombatIcon"]["xOffset"] = -87
-	E.db["unitframe"]["units"]["focus"]["CombatIcon"]["yOffset"] = 10
-	E.db["unitframe"]["units"]["focus"]["CombatIcon"]["enable"] = false
 	E.db["unitframe"]["units"]["focus"]["buffIndicator"]["size"] = 20
 	E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["colorBackdrop"]["a"] = 0
 	E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0.50196078431373
@@ -721,11 +688,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["party"]["castbar"]["timeToHold"] = 0.6
 	E.db["unitframe"]["units"]["party"]["castbar"]["width"] = 200
 	E.db["unitframe"]["units"]["party"]["castbar"]["xOffsetText"] = 2
-	E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["b"] = 1
-	E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["g"] = 1
-	E.db["unitframe"]["units"]["party"]["CombatIcon"]["defaultColor"] = true
-	E.db["unitframe"]["units"]["party"]["CombatIcon"]["enable"] = false
-	E.db["unitframe"]["units"]["party"]["CombatIcon"]["texture"] = "Eltruism05"
+
 	E.db["unitframe"]["units"]["party"]["colorOverride"] = "FORCE_OFF"
 	E.db["unitframe"]["units"]["party"]["debuffs"]["countFontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["party"]["debuffs"]["xOffset"] = 5
@@ -864,16 +827,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["pettarget"]["power"]["enable"] = false
 	E.db["unitframe"]["units"]["pettarget"]["power"]["text_format"] = "[power:current:shortvalue]"
 	E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "TOPRIGHT"
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["a"] = 0.80000001192093
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["b"] = 1
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["g"] = 1
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["defaultColor"] = true
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["texture"] = "Eltruism10"
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["size"] = 20
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = 8
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = -9
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["enable"] = true
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["a"] = 0.57115608453751
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["defaultColor"] = true
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["size"] = 15
@@ -1209,14 +1162,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["tank"]["targetsGroup"]["xOffset"] = 2
 	E.db["unitframe"]["units"]["tank"]["verticalSpacing"] = 7
 	E.db["unitframe"]["units"]["target"]["orientation"] = "RIGHT"
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["anchorPoint"] = "TOPLEFT"
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["b"] = 1
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["g"] = 1
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["defaultColor"] = true
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["xOffset"] = -8
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = -9
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["texture"] = "Eltruism09"
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = true
 	E.db["unitframe"]["units"]["target"]["aurabar"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["target"]["aurabar"]["maxBars"] = 15
 	E.db["unitframe"]["units"]["target"]["aurabar"]["yOffset"] = 1
