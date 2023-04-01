@@ -576,10 +576,12 @@ end
 function ElvUI_EltreumUI:FixChatToggles()
 	if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
 
-		_G.LeftChatToggleButton:SetAlpha(1)
-		_G.LeftChatToggleButton:Show()
-		_G.RightChatToggleButton:SetAlpha(1)
-		_G.RightChatToggleButton:Show()
+		if E.db.ElvUI_EltreumUI.chat.chattoggles then
+			_G.LeftChatToggleButton:SetAlpha(1)
+			_G.LeftChatToggleButton:Show()
+			_G.RightChatToggleButton:SetAlpha(1)
+			_G.RightChatToggleButton:Show()
+		end
 
 		--fix if the value changed since install
 		local buttonwidth = _G.RightChatToggleButton:GetWidth()
@@ -587,7 +589,11 @@ function ElvUI_EltreumUI:FixChatToggles()
 		local width = ceil(E.screenWidth)
 		if E.global["datatexts"]["customPanels"]["EltruismDataText"] then
 			if E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] >= width then
-				E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2 + math.ceil(width - (buttonwidth * 2))
+				if E.db.ElvUI_EltreumUI.chat.chattoggles then
+					E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2 + math.ceil(width - (buttonwidth * 2))
+				else
+					E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = math.ceil(width)
+				end
 				E:UpdateDataTexts()
 			end
 		end
