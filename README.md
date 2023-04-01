@@ -1,5 +1,5 @@
 ### [![](https://img.shields.io/badge/Eltruism-Join-steelblue.svg?longCache=true?style=flat-square&logo=discord)](https://discord.gg/cXfA56gmYW)
-![Logo](https://i.imgur.com/rSz4VmT.png)
+![Logo](https://i.imgur.com/IYW5tER.png)
 ___
 ### [Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
@@ -11,7 +11,7 @@ ___
 ### Addon Profiles
 > The installation will offer profiles for several following addons, including:\
  \
-**[AddOnSkins](https://www.curseforge.com/wow/addons/addonskins)**, **[ProjectAzilroka](https://www.curseforge.com/wow/addons/projectazilroka)**,,**[Shadow & Light](https://www.tukui.org/addons.php?id=38)** ,**[Windtools](https://www.curseforge.com/wow/addons/elvui-windtools)**, **[Bigwigs](https://www.curseforge.com/wow/addons/big-wigs)** ,**[DBM](https://www.curseforge.com/wow/addons/deadly-boss-mods)** ,**[Details](https://www.curseforge.com/wow/addons/details)**, **[Method Raid Tools](https://www.curseforge.com/wow/addons/method-raid-tools)**, **[Dynamic Cam](https://www.curseforge.com/wow/addons/dynamiccam)**, **[Immersion](https://www.curseforge.com/wow/addons/immersion)**, **[Questie](https://www.curseforge.com/wow/addons/questie)**, **[GladiusEx](https://www.curseforge.com/wow/addons/gladiusex)**, **[Gladdy](https://www.curseforge.com/wow/addons/gladdy-tbc)**, **[Gladius](https://www.curseforge.com/wow/addons/gladius-v3)**, **[Nameplate Scrolling Combat Text](https://www.curseforge.com/wow/addons/nameplate-scrolling-combat-text)**, **[ElvUI Floating Combat Text](https://www.tukui.org/addons.php?id=137)**
+**[AddOnSkins](https://www.curseforge.com/wow/addons/addonskins)**, **[ProjectAzilroka](https://www.curseforge.com/wow/addons/projectazilroka)**, **[Shadow & Light](https://www.tukui.org/addons.php?id=38)** ,**[Windtools](https://www.curseforge.com/wow/addons/elvui-windtools)**, **[Bigwigs](https://www.curseforge.com/wow/addons/big-wigs)**, **[DBM](https://www.curseforge.com/wow/addons/deadly-boss-mods)**, **[Details](https://www.curseforge.com/wow/addons/details)**, **[Method Raid Tools](https://www.curseforge.com/wow/addons/method-raid-tools)**, **[Dynamic Cam](https://www.curseforge.com/wow/addons/dynamiccam)**, **[Immersion](https://www.curseforge.com/wow/addons/immersion)**, **[Questie](https://www.curseforge.com/wow/addons/questie)**, **[GladiusEx](https://www.curseforge.com/wow/addons/gladiusex)**, **[Gladdy](https://www.curseforge.com/wow/addons/gladdy-tbc)**, **[Gladius](https://www.curseforge.com/wow/addons/gladius-v3)**, **[Nameplate Scrolling Combat Text](https://www.curseforge.com/wow/addons/nameplate-scrolling-combat-text)**, **[ElvUI Floating Combat Text](https://www.tukui.org/addons.php?id=137)**
 ___
 ### Features (List based on v3.7.8)
 Eltruism includes many features and all can be turned off if the user wants. Some of them are listed below:
@@ -32,7 +32,7 @@ Cursors that indicate cast times, cooldowns and more
 >Gradients, Custom Textures, Custom Role Icons
 \
 Skins:\
-Shadows, Character Panel, Quests, other AddOns and more are skinned
+Shadows, Character Panel, Quests, other AddOns are skinned
 \
 Miscellaneous:\
 Cooldowns with TTS, Combat Music, Fast Loot, Loot Wishlist, Hide Talking Head, Mail Sounds, Time to Arrive to Waypoint
