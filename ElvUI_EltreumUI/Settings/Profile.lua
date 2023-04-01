@@ -460,6 +460,17 @@ P.ElvUI_EltreumUI = {
 		blizzard = false,
 		pixel = false,
 		autocast = false,
+		border = false,
+		borderannoy = false,
+		numberborder = 2,
+		frequencyborder = 1.75,
+		bordersine = true,
+		thicknessborder = 2,
+		borderxOffset = 0,
+		borderyOffset = 0,
+		bordergradfreq = 0.75,
+
+
 
 		totemtypecolor = true,
 		totem1 = true,

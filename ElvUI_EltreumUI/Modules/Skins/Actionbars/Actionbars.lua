@@ -17,7 +17,7 @@ local UnitCreatureType = _G.UnitCreatureType
 local InCombatLockdown = _G.InCombatLockdown
 local GetPetActionInfo = _G.GetPetActionInfo
 local pairs = _G.pairs
---moving creteframes out of the function for some reason breaks it
+--moving createframes out of the function for some reason breaks it
 
 -- Skill Glow
 function ElvUI_EltreumUI:SkillGlow()
@@ -34,32 +34,87 @@ function ElvUI_EltreumUI:SkillGlow()
 	if E.db.ElvUI_EltreumUI.glow.enable and E.private.actionbar.enable then
 		if E.Retail then
 			if not IsAddOnLoaded("ElvUI_ActionBarMasks") then
-				if E.db.ElvUI_EltreumUI.glow.pixel then
+				if E.db.ElvUI_EltreumUI.glow.border then
 					function LCG.ShowOverlayGlow(button)
 						if button:GetAttribute("type") == "action" then
-							LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
+							LCG.BorderPulse_Start(button,{
+								template = "default",
+								N = E.db.ElvUI_EltreumUI.glow.numberborder,
+								th = E.db.ElvUI_EltreumUI.glow.thicknessborder,
+								frequency = E.db.ElvUI_EltreumUI.glow.frequencyborder,
+								sine = E.db.ElvUI_EltreumUI.glow.bordersine,
+								forceStop = false,
+								color = skillglowcolor,
+								gradient = ElvUI_EltreumUI:GradientGlowColors("action"),
+								gradientFrequency = E.db.ElvUI_EltreumUI.glow.bordergradfreq,
+								annoy = E.db.ElvUI_EltreumUI.glow.borderannoy,
+								annoyFrequency = 0.5,
+								xOffset = E.db.ElvUI_EltreumUI.glow.borderxOffset,
+								yOffset = E.db.ElvUI_EltreumUI.glow.borderyOffset,
+							})
 						end
 					end
 					function LCG.HideOverlayGlow(button)
-						LCG.PixelGlow_Stop(button)
+						LCG.BorderPulse_Stop(button,nil,true)
+					end
+				elseif E.db.ElvUI_EltreumUI.glow.pixel then
+					function LCG.ShowOverlayGlow(button)
+						if button:GetAttribute("type") == "action" then
+							--LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
+							LCG.PixelGlow_Start(button,{
+								template = "default",
+								th = E.db.ElvUI_EltreumUI.glow.thicknesspixel,
+								length = E.db.ElvUI_EltreumUI.glow.lengthpixel,
+								N = E.db.ElvUI_EltreumUI.glow.numberpixel,
+								frequency = -E.db.ElvUI_EltreumUI.glow.frequencypixel,
+								annoy = true,
+								annoyFrequency = 0.5,
+								gradient = ElvUI_EltreumUI:GradientGlowColors("action"),
+								gradientFrequency = 0.75,
+								forceStop = false,
+								fadeDuration = 0.45,
+								xOffset = E.db.ElvUI_EltreumUI.glow.pixelxOffset,
+								yOffset = E.db.ElvUI_EltreumUI.glow.pixelyOffset,
+								frameLevel = 8,
+							})
+						end
+					end
+					function LCG.HideOverlayGlow(button)
+						--LCG.PixelGlow_Stop(button)
+						LCG.PixelGlow_Stop(button,nil, true)
 					end
 				elseif E.db.ElvUI_EltreumUI.glow.autocast then
 					function LCG.ShowOverlayGlow(button)
 						if button:GetAttribute("type") == "action" then
-							LCG.AutoCastGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+							--LCG.AutoCastGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+							LCG.AutoCastGlow_Start(button,{
+								key = "",
+								color = skillglowcolor,
+								N = E.db.ElvUI_EltreumUI.glow.numberauto,
+								frequency = E.db.ElvUI_EltreumUI.glow.frequencyauto,
+								scale = E.db.ElvUI_EltreumUI.glow.autoscale,
+								xOffset = E.db.ElvUI_EltreumUI.glow.autoxOffset,
+								yOffset = E.db.ElvUI_EltreumUI.glow.autoyOffset,
+							})
 						end
 					end
 					function LCG.HideOverlayGlow(button)
-						LCG.AutoCastGlow_Stop(button)
+						--LCG.AutoCastGlow_Stop(button)
+						LCG.AutoCastGlow_Stop(button,nil)
 					end
 				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 					function LCG.ShowOverlayGlow(button)
 						if button:GetAttribute("type") == "action" then
-							LCG.ButtonGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
+							--LCG.ButtonGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
+							LCG.ButtonGlow_Start(button,{
+								color = skillglowcolor,
+								frequency = E.db.ElvUI_EltreumUI.glow.frequencyblizz
+							})
 						end
 					end
 					function LCG.HideOverlayGlow(button)
-						LCG.ButtonGlow_Stop(button)
+						--LCG.ButtonGlow_Stop(button)
+						LCG.ButtonGlow_Stop(button,nil)
 					end
 				end
 			end
@@ -458,9 +513,41 @@ function ElvUI_EltreumUI:SkillGlowPet()
 				local button = _G[buttonName]
 				if autoCastEnabled then
 					AutoCastShine_AutoCastStop(button.AutoCastShine)
-					if E.db.ElvUI_EltreumUI.glow.pixel then
+					if E.db.ElvUI_EltreumUI.glow.border then
+							LCG.BorderPulse_Start(button,{
+								template = "default",
+								N = E.db.ElvUI_EltreumUI.glow.numberborder,
+								th = E.db.ElvUI_EltreumUI.glow.thicknessborder,
+								frequency = E.db.ElvUI_EltreumUI.glow.frequencyborder,
+								sine = E.db.ElvUI_EltreumUI.glow.bordersine,
+								forceStop = false,
+								color = skillglowcolor,
+								gradient = ElvUI_EltreumUI:GradientGlowColors("action"),
+								gradientFrequency = E.db.ElvUI_EltreumUI.glow.bordergradfreq,
+								annoy = E.db.ElvUI_EltreumUI.glow.borderannoy,
+								annoyFrequency = 0.5,
+								xOffset = E.db.ElvUI_EltreumUI.glow.borderxOffset,
+								yOffset = E.db.ElvUI_EltreumUI.glow.borderyOffset,
+							})
+					elseif E.db.ElvUI_EltreumUI.glow.pixel then
 						--PixelGlow_Start(frame[, color[, N[, frequency[, length[, th[, xOffset[, yOffset[, border[ ,key]]]]]]]])
-						LCG.PixelGlow_Start(button, skillglowcolor, 10, 0.25, 5, 2, 0, 0, false, nil, 6)
+						--LCG.PixelGlow_Start(button, skillglowcolor, 10, 0.25, 5, 2, 0, 0, false, nil, 6)
+						LCG.PixelGlow_Start(button,{
+								template = "default",
+								th = 2,
+								length = 5,
+								N = 10,
+								frequency = 0.25,
+								annoy = false,
+								annoyFrequency = 0.5,
+								gradient = ElvUI_EltreumUI:GradientGlowColors("pet"),
+								gradientFrequency = 0.75,
+								forceStop = false,
+								fadeDuration = 0.45,
+								xOffset = 0,
+								yOffset = 0,
+								frameLevel = 8,
+							})
 					elseif E.db.ElvUI_EltreumUI.glow.autocast then
 						--AutoCastGlow_Start(frame[, color[, N[, frequency[, scale[, xOffset[, yOffset[, key]]]]]]])
 						LCG.AutoCastGlow_Start(button, skillglowcolor, 16, 0.25, 0.7, 0, 0)
@@ -471,11 +558,14 @@ function ElvUI_EltreumUI:SkillGlowPet()
 				else
 					AutoCastShine_AutoCastStop(button.AutoCastShine)
 					if E.db.ElvUI_EltreumUI.glow.pixel then
-						LCG.PixelGlow_Stop(button)
+						--LCG.PixelGlow_Stop(button)
+						LCG.PixelGlow_Stop(button,nil, true)
 					elseif E.db.ElvUI_EltreumUI.glow.autocast then
 						LCG.AutoCastGlow_Stop(button)
 					elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 						LCG.ButtonGlow_Stop(button)
+					elseif E.db.ElvUI_EltreumUI.glow.border then
+						LCG.BorderPulse_Stop(button,nil,true)
 					end
 				end
 			end
