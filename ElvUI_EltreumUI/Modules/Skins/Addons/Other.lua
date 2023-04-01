@@ -64,3 +64,4 @@ function ElvUI_EltreumUI:EltruismScrap()
 	end
 end
 S:AddCallbackForAddon('Scrap_Merchant', "EltruismScrap", ElvUI_EltreumUI.EltruismScrap)
+S:AddCallbackForAddon('Scrap', "EltruismScrap", ElvUI_EltreumUI.EltruismScrap)
