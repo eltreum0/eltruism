@@ -1389,4 +1389,4 @@ L["Add Shadows to general Blizzard/ElvUI frames"] = "Schatten zu Allgemeinen Bli
 L["Nameplate Occluded Alpha"] = "Namensplaketten Verdeckt Transparenz"
 L["Alpha of Nameplates out of Sight"] = "Transparenz der namensplaketten außer Sichtweite"
 L["Force ElvUI Chat Toggles"] = "Erzwinge umschalten der ElvUI Chattasten"
-L["Enable Always Forcing ElvUI Chat Toggles On"] = "Aktiviert das erwzingen des umschaltens der ElvUI Chattasten."
+L["Enable Always Forcing ElvUI Chat Toggles On"] = "Aktiviere das erwzingen der ElvUI Chattasten auf Ein."
