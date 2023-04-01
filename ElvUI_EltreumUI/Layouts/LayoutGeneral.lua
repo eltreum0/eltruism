@@ -84,6 +84,35 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.private["general"]["pixelPerfect"] = true
 		E.db["unitframe"]["thinBorders"] = true
 
+		--combat icon
+		E.db["unitframe"]["units"]["focus"]["CombatIcon"]["xOffset"] = -87
+		E.db["unitframe"]["units"]["focus"]["CombatIcon"]["yOffset"] = 10
+		E.db["unitframe"]["units"]["focus"]["CombatIcon"]["enable"] = false
+		E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["b"] = 1
+		E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["g"] = 1
+		E.db["unitframe"]["units"]["party"]["CombatIcon"]["defaultColor"] = true
+		E.db["unitframe"]["units"]["party"]["CombatIcon"]["enable"] = false
+		E.db["unitframe"]["units"]["party"]["CombatIcon"]["texture"] = "Eltruism05"
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "TOPRIGHT"
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["a"] = 0.80000001192093
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["b"] = 1
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["g"] = 1
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["defaultColor"] = true
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["texture"] = "Eltruism10"
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["size"] = 14
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = -7
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = -7
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["enable"] = true
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["anchorPoint"] = "TOPLEFT"
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["b"] = 1
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["g"] = 1
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["defaultColor"] = true
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["xOffset"] = 7
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = -7
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["texture"] = "Eltruism09"
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["size"] = 14
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = true
+
 		--aura filtering
 		E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,nonPersonal"
 		E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = "Blacklist,Personal,nonPersonal"

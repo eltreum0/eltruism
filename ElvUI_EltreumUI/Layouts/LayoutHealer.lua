@@ -604,9 +604,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["boss"]["debuffs"]["spacing"] = 2
 	E.db["unitframe"]["units"]["focus"]["colorOverride"] = "FORCE_OFF"
 	E.db["unitframe"]["units"]["focus"]["healPrediction"]["absorbStyle"] = "REVERSED"
-	E.db["unitframe"]["units"]["focus"]["CombatIcon"]["xOffset"] = -87
-	E.db["unitframe"]["units"]["focus"]["CombatIcon"]["yOffset"] = 10
-	E.db["unitframe"]["units"]["focus"]["CombatIcon"]["enable"] = false
 	E.db["unitframe"]["units"]["focus"]["buffIndicator"]["size"] = 20
 	E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["colorBackdrop"]["a"] = 0
 	E.db["unitframe"]["units"]["focus"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0
@@ -657,11 +654,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["party"]["buffs"]["sizeOverride"] = 24
 	E.db["unitframe"]["units"]["party"]["buffs"]["yOffset"] = 1
 	E.db["unitframe"]["units"]["party"]["colorOverride"] = "FORCE_OFF"
-	E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["b"] = 1
-	E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["g"] = 1
-	E.db["unitframe"]["units"]["party"]["CombatIcon"]["defaultColor"] = true
-	E.db["unitframe"]["units"]["party"]["CombatIcon"]["texture"] = "Eltruism05"
-	E.db["unitframe"]["units"]["party"]["CombatIcon"]["enable"] = false
 	E.db["unitframe"]["units"]["party"]["debuffs"]["anchorPoint"] = "TOP"
 	E.db["unitframe"]["units"]["party"]["debuffs"]["attachTo"] = "BUFFS"
 	E.db["unitframe"]["units"]["party"]["debuffs"]["countFont"] = "Kimberley"
@@ -813,16 +805,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["unitframe"]["units"]["pet"]["width"] = 100
 	end
 	E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "TOPRIGHT"
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["a"] = 0.80000001192093
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["b"] = 1
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["g"] = 1
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["defaultColor"] = true
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["texture"] = "Eltruism10"
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["size"] = 20
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = 8
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = -9
-	E.db["unitframe"]["units"]["player"]["CombatIcon"]["enable"] = true
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["a"] = 0.57115608453751
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["defaultColor"] = true
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["size"] = 15
@@ -1146,14 +1128,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raidpet"]["healPrediction"]["absorbStyle"] = "REVERSED"
 	E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["size"] = 20
 	E.db["unitframe"]["units"]["raidpet"]["rdebuffs"]["yOffset"] = 5
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["anchorPoint"] = "TOPLEFT"
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["b"] = 1
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["g"] = 1
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["defaultColor"] = true
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["texture"] = "Eltruism09"
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["xOffset"] = -8
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = -9
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = true
 	E.db["unitframe"]["units"]["target"]["aurabar"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["target"]["aurabar"]["sortDirection"] = "ASCENDING"
 	E.db["unitframe"]["units"]["target"]["aurabar"]["spacing"] = 1
