@@ -4,7 +4,6 @@ local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local tostring = _G.tostring
 local CreateFrame = _G.CreateFrame
-local classcolor = E:ClassColor(E.myclass, true)
 
 do
 
@@ -560,27 +559,4 @@ do
 		end
 	end
 
-	function ElvUI_EltreumUI:GradientGlowColors(glowtype)
-		if E.db.ElvUI_EltreumUI.glow.colorclass then
-			if not E.Classic then
-				return {{[1] = classcolor.r - 0.2, [2] = classcolor.g - 0.2, [3] = classcolor.b - 0.2, [4] = 1}, {[1] = classcolor.r + 0.2, [2] = classcolor.g + 0.2, [3] = classcolor.b + 0.2, [4] = 1}}
-			else
-				return {[1] = classcolor.r - 0.2, [2] = classcolor.g - 0.2, [3] = classcolor.b - 0.2, [4] = 1}, {[1] = classcolor.r + 0.2, [2] = classcolor.g + 0.2, [3] = classcolor.b + 0.2, [4] = 1}
-			end
-		else
-			if glowtype == "action" then
-				if not E.Classic then
-					return {{[1] = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r - 0.2, [2] = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g - 0.2, [3] = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b - 0.2, [4] = 1}, {[1] = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r + 0.2, [2] = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g + 0.2, [3] = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b + 0.2, [4] = 1}}
-				else
-					return {[1] = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r - 0.2, [2] = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g - 0.2, [3] = E.db.ElvUI_EltreumUI.glow.glowcustomcolorr.b - 0.2, [4] = 1}, {[1] = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r + 0.2, [2] = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g + 0.2, [3] = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b + 0.2, [4] = 1}
-				end
-			elseif glowtype == "pet" then
-				if not E.Classic then
-					return {{[1] = E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.r - 0.2, [2] = E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.g - 0.2, [3] = E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.b - 0.2, [4] = 1}, {[1] = E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.r + 0.2, [2] = E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.g + 0.2, [3] = E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.b + 0.2, [4] = 1}}
-				else
-					return {[1] = E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.r - 0.2, [2] = E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.g - 0.2, [3] = E.db.ElvUI_EltreumUI.glow.glowcustomcolorpetr.b - 0.2, [4] = 1}, {[1] = E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.r + 0.2, [2] = E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.g + 0.2, [3] = E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.b + 0.2, [4] = 1}
-				end
-			end
-		end
-	end
 end
