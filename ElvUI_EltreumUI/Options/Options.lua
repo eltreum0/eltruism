@@ -4715,6 +4715,22 @@ function ElvUI_EltreumUI:Configtable()
 						name = L["General"],
 						childGroups = "tab",
 						args = {
+							headerchattoggle = {
+								order = 1,
+								type = "description",
+								name = L["Force ElvUI Chat Toggles"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							elvuichattoggles = {
+								order = 2,
+								type = 'toggle',
+								name = L["Enable Always Forcing ElvUI Chat Toggles On"],
+								width = 'full',
+								desc = L["Toggle the option on"],
+								get = function() return E.db.ElvUI_EltreumUI.chat.chattoggles end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.chattoggles = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
 							headerkeys = {
 								order = 189,
 								type = "description",

@@ -23,6 +23,7 @@ P.ElvUI_EltreumUI = {
 		rollsound = false,
 		looticons = false,
 		itemlevels = false,
+		chattoggles = true,
 	},
 
 	cvars = {

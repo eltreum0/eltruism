@@ -1388,3 +1388,5 @@ L["Add Shadows to Tooltips"] = "Schatten zu ETooltips hinzufügen"
 L["Add Shadows to general Blizzard/ElvUI frames"] = "Schatten zu Allgemeinen Blizzard/ELvUI Fenstern hinzufügen"
 L["Nameplate Occluded Alpha"] = "Namensplaketten Verdeckt Transparenz"
 L["Alpha of Nameplates out of Sight"] = "Transparenz der namensplaketten außer Sichtweite"
+L["Force ElvUI Chat Toggles"] = true
+L["Enable Always Forcing ElvUI Chat Toggles On"] = true
