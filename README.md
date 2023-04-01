@@ -1,5 +1,5 @@
 ### [![](https://img.shields.io/badge/Eltruism-Join-steelblue.svg?longCache=true?style=flat-square&logo=discord)](https://discord.gg/cXfA56gmYW)
-<p align="center">![Logo](https://i.imgur.com/rSz4VmT.png) </p>
+![Logo](https://i.imgur.com/rSz4VmT.png)
 ___
 ### [Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
