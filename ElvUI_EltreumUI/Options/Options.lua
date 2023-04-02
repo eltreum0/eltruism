@@ -11951,8 +11951,8 @@ function ElvUI_EltreumUI:Configtable()
 								type = "toggle",
 								desc = L["Add Shadows to Nameplate Portraits"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.npportrait end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.npportrait = value E:StaticPopup_Show('CONFIG_RL') end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.npportraits end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.npportraits = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							shadowsenablenppower = {
 								order = 99,
