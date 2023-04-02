@@ -49,6 +49,12 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 				else
 					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight)
 				end
+			elseif UnitThreatSituation("player", unit.unit) ~= nil then
+				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight then
+					unit.Health:SetHeight(heighttable[unit.frameType])
+				else
+					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight)
+				end
 			else
 				unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.outofcombatHeight)
 			end
