@@ -389,12 +389,19 @@ function ElvUI_EltreumUI:SkinQuests()
 								end
 							end
 						end
-						progressBar.Bar.backdrop:SetAlpha(0.7)
-						--progressBar:SetBackdropColor(0, 0, 0, 1)
-						--progressBar.Bar.backdrop:SetBackdropBorderColor(0, 0, 0, 1)
+
+						E:Delay(0, function()
+							progressBar.Bar.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
+							progressBar.Bar.backdrop:SetBackdropColor(0,0,0)
+						end)
 						progressBar.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.queststatusbartexture))
 						hooksecurefunc(progressBar.Bar, "SetStatusBarColor", function(_, r, g, b)
 							progressBar.Bar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= E.db.general.backdropfadecolor.a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= E.db.general.backdropfadecolor.a})
+							progressBar.Bar.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
+							E:Delay(0, function()
+								progressBar.Bar.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
+								progressBar.Bar.backdrop:SetBackdropColor(0,0,0)
+							end)
 						end)
 						progressBar.EltruismSkin = true
 					end

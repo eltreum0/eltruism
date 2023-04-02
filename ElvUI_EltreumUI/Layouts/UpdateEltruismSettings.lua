@@ -37,6 +37,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.skins.shadow.nppower = true
 	E.db.ElvUI_EltreumUI.skins.shadow.npcastbar = true
 	E.db.ElvUI_EltreumUI.skins.shadow.npportraits = true
+	E.db.ElvUI_EltreumUI.skins.shadow.npauras = true
 
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.a = 1
 	E.db.ElvUI_EltreumUI.nameplates.nameplatelevel = true

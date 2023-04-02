@@ -10654,6 +10654,7 @@ function ElvUI_EltreumUI:Configtable()
 											["RELEAF"] = 'Releaf '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Tank',':20:20'),
 											["IOS"] = 'iOS '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Tank',':20:20'),
 											["MATERIAL"] = 'Material '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Tank',':20:20'),
+											["EMOJI"] = 'Emoji '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Emoji\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Emoji\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Emoji\\Tank',':20:20'),
 											["CUSTOM"] = 'Custom',
 										},
 										sorting = {
@@ -10666,6 +10667,7 @@ function ElvUI_EltreumUI:Configtable()
 											"RELEAF",
 											"IOS",
 											"MATERIAL",
+											"EMOJI",
 											"CUSTOM"
 										},
 										style = 'radio',
@@ -11949,8 +11951,8 @@ function ElvUI_EltreumUI:Configtable()
 								type = "toggle",
 								desc = L["Add Shadows to Nameplate Portraits"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.npportrait end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.npportrait = value E:StaticPopup_Show('CONFIG_RL') end,
+								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.npportraits end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.npportraits = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							shadowsenablenppower = {
 								order = 99,

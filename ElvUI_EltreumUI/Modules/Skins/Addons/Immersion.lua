@@ -43,6 +43,21 @@ function ElvUI_EltreumUI:EltruismImmersion()
 			end
 		end
 
+		if E.Classic then
+			local classicframes = {
+				_G["ImmersionFrame"].TalkBox.MainFrame,
+				_G["ImmersionFrame"].TalkBox.Elements,
+			}
+			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+				for _, frame in pairs(classicframes) do
+					if frame and not frame.shadow then
+						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(frame.shadow)
+					end
+				end
+			end
+		end
+
 		S:HandleCloseButton(_G["ImmersionFrame"].TalkBox.MainFrame.CloseButton)
 
 		--hide highlights/animations

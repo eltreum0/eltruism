@@ -36,8 +36,20 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 			return
 		end
 
-		if (not UnitAffectingCombat(unit.unit)) and (UnitThreatSituation("player", unit.unit) == nil) then
-			if UnitIsUnit(unit.unit, "target") then
+		if UnitIsUnit(unit.unit, "target") then
+			if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight then
+				unit.Health:SetHeight(heighttable[unit.frameType])
+			else
+				unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight)
+			end
+		else
+			if UnitAffectingCombat(unit.unit) and UnitThreatSituation("player", unit.unit) ~= nil then
+				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight then
+					unit.Health:SetHeight(heighttable[unit.frameType])
+				else
+					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight)
+				end
+			elseif UnitThreatSituation("player", unit.unit) ~= nil then
 				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight then
 					unit.Health:SetHeight(heighttable[unit.frameType])
 				else
@@ -45,12 +57,6 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 				end
 			else
 				unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.outofcombatHeight)
-			end
-		elseif UnitAffectingCombat(unit.unit) or (UnitThreatSituation("player", unit.unit) ~= nil) then
-			if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight then
-				unit.Health:SetHeight(heighttable[unit.frameType])
-			else
-				unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight)
 			end
 		end
 	end
