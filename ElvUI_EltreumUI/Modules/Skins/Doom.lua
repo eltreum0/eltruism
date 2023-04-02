@@ -55,7 +55,12 @@ E:CreateMover(DCP, "EltruismDoomMover", L["EltruismDoom"], nil, nil, nil, 'ALL,S
 
 -- preview function
 function ElvUI_EltreumUI:PreviewDoom()
-	DCPT:SetTexture("Interface\\Icons\\Spell_Nature_Earthbind")
+	if not E.Classic then
+		DCPT:SetTexture("Interface\\Icons\\Spell_Nature_Earthbind")
+	else
+		DCPT:SetTexture("Interface\\Icons\\Spell_Nature_Cyclone")
+	end
+
 	DCPT:SetTexCoord(0.08,0.92,0.08,0.92)
 	local scale = E.db.ElvUI_EltreumUI.skins.doom.iconSize+(E.db.ElvUI_EltreumUI.skins.doom.iconSize*((E.db.ElvUI_EltreumUI.skins.doom.animScale-1)))
 	DCP:SetWidth(scale)
@@ -72,6 +77,12 @@ function ElvUI_EltreumUI:PreviewDoom()
 			DCP.shadow:SetAlpha(0)
 		end
 	end
+
+	if DCP:GetAlpha() == 1 and E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil then
+		local tts = E.Classic and GetSpellInfo(17401) or GetSpellInfo(33786)
+		C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
+	end
+
 	wasPreviewing = true
 end
 
