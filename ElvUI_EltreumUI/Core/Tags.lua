@@ -929,6 +929,14 @@ E:AddTag("eltruism:leader", "GROUP_ROSTER_UPDATE", function(unit)
 end)
 E:AddTagInfo("eltruism:leader", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Shows the Leader Icon or Assist icon if the unit is Leader or Assist"])
 
+E:AddTag("eltruism:leader:emoji", "GROUP_ROSTER_UPDATE", function(unit)
+	local leader = UnitIsGroupLeader(unit)
+	if leader then
+		return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Emoji\\Leader.tga:0:0:0:0|t"
+	end
+end)
+E:AddTagInfo("eltruism:leader:emoji", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Shows the Leader Icon as an Emoji Crown"])
+
 --combat icon idea for other units
 E:AddTag("eltruism:combatindicator", 'UNIT_HEALTH', function(unit)
 	local texture = E.db["unitframe"]["units"]["player"]["CombatIcon"]["texture"]
