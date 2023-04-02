@@ -83,24 +83,26 @@ function ElvUI_EltreumUI:EltruismImmersion()
 				_G["ImmersionFrame"].TalkBox.Elements:SetPoint("TOP", _G["ImmersionFrame"].TalkBox, "BOTTOM", 0, -10)
 			end
 
-			for _, v in pairs{_G["ImmersionFrame"].TitleButtons:GetChildren()} do
-				if v and not v.IsSkinned then
-					S:HandleButton(v)
-					v:CreateBackdrop('Transparent')
-					v.Hilite:Hide()
-					v.Overlay:Hide()
-					v:StyleButton()
-					v.hover:SetVertexColor(classcolor.r, classcolor.g,classcolor.b, 0.7) --hover color
-					v.pushed:SetColorTexture(classcolor.r, classcolor.g,classcolor.b, 0.8) --pushed color
-					if E.db.ElvUI_EltreumUI.skins.shadow.enable then
-						if v and not v.shadow then
-							v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(v.shadow)
+			E:Delay(0, function()
+				for _, v in pairs{_G["ImmersionFrame"].TitleButtons:GetChildren()} do
+					if v and not v.IsSkinned then
+						S:HandleButton(v)
+						v:CreateBackdrop('Transparent')
+						v.Hilite:Hide()
+						v.Overlay:Hide()
+						v:StyleButton()
+						v.hover:SetVertexColor(classcolor.r, classcolor.g,classcolor.b, 0.7) --hover color
+						v.pushed:SetColorTexture(classcolor.r, classcolor.g,classcolor.b, 0.8) --pushed color
+						if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+							if v and not v.shadow then
+								v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(v.shadow)
+							end
 						end
+						v.IsSkinned = true
 					end
-					v.IsSkinned = true
 				end
-			end
+			end)
 
 			for i = 1, 10 do
 				if _G["ImmersionQuestInfoItem" .. i] then
