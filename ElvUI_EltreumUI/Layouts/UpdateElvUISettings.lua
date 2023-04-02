@@ -2,6 +2,16 @@ local E, L, V, P, G = unpack(ElvUI)
 
 --profile updates, so that whole profile doesnt need to be reimported
 function ElvUI_EltreumUI:UpdateElvUISettings()
+	if not E.db.movers then E.db.movers = {} end
+
+	if E.Retail then
+		E.db["bags"]["split"]["bag5"] = true
+		E.db["bags"]["split"]["bagSpacing"] = 7
+		E.db["bags"]["split"]["player"] = true
+	end
+
+	E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-100"
+
 	E.db["unitframe"]["colors"]["classResources"]["MONK"][1]["b"] = 0.57254904508591
 	E.db["unitframe"]["colors"]["classResources"]["MONK"][1]["g"] = 1
 	E.db["unitframe"]["colors"]["classResources"]["MONK"][1]["r"] = 0.078431375324726
@@ -44,14 +54,38 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 	E.db["unitframe"]["colors"]["classResources"]["comboPoints"][7]["g"] = 0.2549019753933
 	E.db["unitframe"]["colors"]["classResources"]["comboPoints"][7]["r"] = 1
 
-	if E.Retail then
-		E.db["bags"]["split"]["bag5"] = true
-		E.db["bags"]["split"]["bagSpacing"] = 7
-		E.db["bags"]["split"]["player"] = true
-	end
-
-	E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-100"
-
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["defaultColor"] = true
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["texture"] = "Eltruism01"
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = -6
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 8
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["size"] = 15
+	E.db["unitframe"]["units"]["focus"]["CombatIcon"]["xOffset"] = -87
+	E.db["unitframe"]["units"]["focus"]["CombatIcon"]["yOffset"] = 10
+	E.db["unitframe"]["units"]["focus"]["CombatIcon"]["enable"] = false
+	E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["b"] = 1
+	E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["g"] = 1
+	E.db["unitframe"]["units"]["party"]["CombatIcon"]["defaultColor"] = true
+	E.db["unitframe"]["units"]["party"]["CombatIcon"]["enable"] = false
+	E.db["unitframe"]["units"]["party"]["CombatIcon"]["texture"] = "Eltruism05"
+	E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "TOPRIGHT"
+	E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["a"] = 0.80000001192093
+	E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["b"] = 1
+	E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["g"] = 1
+	E.db["unitframe"]["units"]["player"]["CombatIcon"]["defaultColor"] = true
+	E.db["unitframe"]["units"]["player"]["CombatIcon"]["texture"] = "Eltruism10"
+	E.db["unitframe"]["units"]["player"]["CombatIcon"]["size"] = 14
+	E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = -7
+	E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = -7
+	E.db["unitframe"]["units"]["player"]["CombatIcon"]["enable"] = true
+	E.db["unitframe"]["units"]["target"]["CombatIcon"]["anchorPoint"] = "TOPLEFT"
+	E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["b"] = 1
+	E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["g"] = 1
+	E.db["unitframe"]["units"]["target"]["CombatIcon"]["defaultColor"] = true
+	E.db["unitframe"]["units"]["target"]["CombatIcon"]["xOffset"] = 7
+	E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = -7
+	E.db["unitframe"]["units"]["target"]["CombatIcon"]["texture"] = "Eltruism09"
+	E.db["unitframe"]["units"]["target"]["CombatIcon"]["size"] = 14
+	E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = true
 
 	E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
 
