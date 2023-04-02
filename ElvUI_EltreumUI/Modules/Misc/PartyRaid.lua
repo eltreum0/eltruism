@@ -333,6 +333,14 @@ function ElvUI_EltreumUI:GetRoleIcon(role)
 		elseif role == "DAMAGER" then
 			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\DPS.tga'
 		end
+	elseif E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "EMOJI" then
+		if role == "TANK" then
+			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Emoji\\Tank.tga'
+		elseif role == "HEALER" then
+			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Emoji\\Healer.tga'
+		elseif role == "DAMAGER" then
+			return 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Emoji\\DPS.tga'
+		end
 	end
 end
 
