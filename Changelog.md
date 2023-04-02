@@ -1,6 +1,24 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.8.0
+Added an option to disable forcing the ElvUI chat toggles on\
+Added a slider to set the Occluded Nameplate CVar\
+Added an option to change the shadow color\
+Added several new Role Icon styles\
+Added [eltruism:leader:emoji] tag\
+Added some missing shadows\
+Added several Combat Icons\
+Added two Rest Icons\
+Updated Nameplate Import to apply gradient names only when setting gradient\
+Updated Nameplate Height to better detect threat/combat\
+Updated DPS/Healer profile Combat/Rest Icons\
+Updated German locale by Dlarge\
+Updated Plugin Installer skin\
+Fixed an issue where the Objective Frame could error if loading in while in combat\
+Fixed an issue where the Nameplate Portrait Shadows option wouldn't work\
+Fixed a possible issue where Role Icons would not show up in chat\
+Fixed an issue with Item Levels in Wrath/Classic
 ### 3.7.9.1
 Added 3 new Statusbar textures\
 Fixed a possible error when applying Fonts
