@@ -15,6 +15,15 @@ do
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars then
 				local r,g,b = bar:GetStatusBarColor()
 				if unit == "player" then
+					if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable then
+						bar.spark:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
+						if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' and not E.db.unitframe.units.player.aurabar.reverseFill then --flip otherwise it will look wrong
+							bar.spark:SetTexCoord(1, 0, 0, 1)
+						end
+						bar.spark:SetBlendMode('BLEND')
+						bar.spark:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
+						bar.spark:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
+					end
 					if E.db.unitframe.colors.transparentAurabars then
 						if E.Retail or E.Wrath then
 							bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.3,g= g-0.3,b=b-0.3,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r,g= g,b= b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
@@ -29,6 +38,15 @@ do
 						end
 					end
 				elseif unit == "target" then
+					if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable then
+						bar.spark:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
+						if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' and not E.db.unitframe.units.target.aurabar.reverseFill then --flip otherwise it will look wrong
+							bar.spark:SetTexCoord(1, 0, 0, 1)
+						end
+						bar.spark:SetBlendMode('BLEND')
+						bar.spark:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
+						bar.spark:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
+					end
 					if E.db.unitframe.colors.transparentAurabars then
 						if E.Retail or E.Wrath then
 							bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r,g= g,b= b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r-0.3,g= g-0.3,b= b-0.3,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})

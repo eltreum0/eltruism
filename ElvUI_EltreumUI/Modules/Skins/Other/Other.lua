@@ -686,3 +686,16 @@ function ElvUI_EltreumUI:SkinMailZone()
 		end
 	end
 end
+
+--skin the vehicle button, since its been a long time unskinned
+if _G["MainMenuBarVehicleLeaveButton"] then
+	S:HandleButton(_G["MainMenuBarVehicleLeaveButton"])
+	if _G["MainMenuBarVehicleLeaveButton"].hover then
+		_G["MainMenuBarVehicleLeaveButton"].hover:Hide()
+	end
+	_G["MainMenuBarVehicleLeaveButton"]:GetNormalTexture():SetTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\ExitVehicle")
+	_G["MainMenuBarVehicleLeaveButton"]:GetPushedTexture():SetTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\ExitVehicle")
+	_G["MainMenuBarVehicleLeaveButton"]:GetPushedTexture():SetVertexColor(1,0,0,1)
+	_G["MainMenuBarVehicleLeaveButton"]:GetDisabledTexture():SetTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\ExitVehicle")
+	_G["MainMenuBarVehicleLeaveButton"]:GetDisabledTexture():SetVertexColor(1,0,0,1)
+end
