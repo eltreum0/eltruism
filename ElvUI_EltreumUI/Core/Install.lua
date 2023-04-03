@@ -250,6 +250,9 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:Show()
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function()
 				E:SetupChat()
+				if E.Retail then
+					ChatFrame_RemoveChannel(_G.ChatFrame1, "services") --get rid of the gold seller chat
+				end
 				if not E.Retail then --remove lfg spam from general and creat tab for it
 					if lfg then
 						ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
