@@ -1346,3 +1346,4 @@ L["Nameplate Occluded Alpha"] = "Alpha de la plaque d'identité occultée"
 L["Alpha of Nameplates out of Sight"] = "Alpha des plaques d'identité hors de vue"
 L["Force ElvUI Chat Toggles"] = "Forcer les Toggles de Chat ElvUI"
 L["Enable Always Forcing ElvUI Chat Toggles On"] = "Activer le fait de toujours forcer les bascules de discussion d'ElvUI"
+L["Enable on Aura Bars"] = true
