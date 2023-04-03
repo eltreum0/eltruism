@@ -457,7 +457,7 @@ ElvUI_EltreumUI.InstallerData = {
 
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
-			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT() ElvUI_EltreumUI:GetASProfile() end)
+			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT("spec") ElvUI_EltreumUI:GetASProfile() end)
 			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ImproveInstall("detailsspec","ENTERING") end)
 			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			if E.Retail then
@@ -468,14 +468,14 @@ ElvUI_EltreumUI.InstallerData = {
 
 			_G.PluginInstallFrame.Option2:Enable()
 			_G.PluginInstallFrame.Option2:Show()
-			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDTReleaf() ElvUI_EltreumUI:GetASProfile() end)
+			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT("releafalpha") ElvUI_EltreumUI:GetASProfile() end)
 			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ImproveInstall("detailsreleafalpha","ENTERING") end)
 			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option2:SetText('Releaf Alpha')
 
 			_G.PluginInstallFrame.Option3:Enable()
 			_G.PluginInstallFrame.Option3:Show()
-			_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDTReleafv3() ElvUI_EltreumUI:GetASProfile() end)
+			_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT("releafsolid") ElvUI_EltreumUI:GetASProfile() end)
 			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ImproveInstall("detailsreleafsolid","ENTERING") end)
 			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option3:SetText('Releaf Solid')

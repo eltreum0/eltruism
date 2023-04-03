@@ -759,7 +759,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = 'NameplateSCT',
 								desc = L["Reset to Eltruism defaults."],
 								width = 'full',
-								func = function() ElvUI_EltreumUI:AddonSetupNameplateSCT() E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() ElvUI_EltreumUI:AddonSetupCombatText("NameplateSCT") E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header9 = {
 								order = 20,
@@ -773,7 +773,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = 'ElvUI Floating Combat Text',
 								desc = L["Reset to Eltruism defaults."],
 								width = 'full',
-								func = function() ElvUI_EltreumUI:AddonSetupFCT() E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() ElvUI_EltreumUI:AddonSetupCombatText("ElvUI_FCT") E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header10 = {
 								order = 96,
@@ -788,7 +788,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Details v1 - Blizzard Flat Icons"],
 								desc = L["Reset to Eltruism defaults."],
 								width = 'full',
-								func = function() ElvUI_EltreumUI:AddonSetupDT() E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() ElvUI_EltreumUI:AddonSetupDT("spec") E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header11 = {
 								order = 98,
@@ -802,7 +802,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Details v2 - Releaf Transparent Icons"],
 								desc = L["Reset to Eltruism defaults."],
 								width = 'full',
-								func = function() ElvUI_EltreumUI:AddonSetupDTReleaf() E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() ElvUI_EltreumUI:AddonSetupDT("releafalpha") E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header12 = {
 								order = 99,
@@ -816,7 +816,7 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Details v3 - Releaf Solid Icons"],
 								desc = L["Reset to Eltruism defaults."],
 								width = 'full',
-								func = function() ElvUI_EltreumUI:AddonSetupDTReleafv3() E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() ElvUI_EltreumUI:AddonSetupDT("releafsolid") E:StaticPopup_Show('CONFIG_RL') end,
 							},
 						},
 					},

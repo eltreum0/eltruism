@@ -44,28 +44,18 @@ function ElvUI_EltreumUI:AddonSetupDBM()
 end
 
 -- Details Profile
-function ElvUI_EltreumUI:AddonSetupDT()
+function ElvUI_EltreumUI:AddonSetupDT(style)
 	if IsAddOnLoaded("Details") then
-		ElvUI_EltreumUI:GetDetailsProfile()
-		ElvUI_EltreumUI:Print(L["Details profile using Blizzard icons has been set."])
-	else
-		ElvUI_EltreumUI:Print("Details is not loaded")
-	end
-end
-
-function ElvUI_EltreumUI:AddonSetupDTReleaf()
-	if IsAddOnLoaded("Details") then
-		ElvUI_EltreumUI:GetDetailsProfileReleaf()
-		ElvUI_EltreumUI:Print("Details profile using Releaf Transparent icons has been set.")
-	else
-		ElvUI_EltreumUI:Print("Details is not loaded")
-	end
-end
-
-function ElvUI_EltreumUI:AddonSetupDTReleafv3()
-	if IsAddOnLoaded("Details") then
-		ElvUI_EltreumUI:GetDetailsProfileReleafv3()
-		ElvUI_EltreumUI:Print("Details profile using Releaf Solid icons has been set.")
+		if style == "spec" then
+			ElvUI_EltreumUI:GetDetailsProfile()
+			ElvUI_EltreumUI:Print(L["Details profile using Blizzard icons has been set."])
+		elseif style == "releafalpha" then
+			ElvUI_EltreumUI:GetDetailsProfileReleaf()
+			ElvUI_EltreumUI:Print("Details profile using Releaf Transparent icons has been set.")
+		elseif style == "releafsolid" then
+			ElvUI_EltreumUI:GetDetailsProfileReleafv3()
+			ElvUI_EltreumUI:Print("Details profile using Releaf Solid icons has been set.")
+		end
 	else
 		ElvUI_EltreumUI:Print("Details is not loaded")
 	end
@@ -121,31 +111,28 @@ function ElvUI_EltreumUI:AddonSetupQuestie()
 	end
 end
 
--- NameplateSCT Profile
-function ElvUI_EltreumUI:AddonSetupNameplateSCT()
-	if IsAddOnLoaded("NameplateSCT") then
-		ElvUI_EltreumUI:GetNameplateSCTProfile()
+-- Combat Text Profile
+function ElvUI_EltreumUI:AddonSetupCombatText(addon)
+	if IsAddOnLoaded("NameplateSCT") or IsAddOnLoaded("ElvUI_FCT") then
 		SetCVar("enableFloatingCombatText", 0)
 		if E.Wrath or E.Classic then
 			SetCVar("floatingCombatTextCombatDamage", 0)
 		end
-		ElvUI_EltreumUI:Print(L["NameplateSCT profile has been set."])
-	else
-		ElvUI_EltreumUI:Print("NameplateSCT is not loaded")
 	end
-end
-
--- FCT Profile
-function ElvUI_EltreumUI:AddonSetupFCT()
-	if IsAddOnLoaded("ElvUI_FCT") then
-		ElvUI_EltreumUI:GetFCTProfile()
-		SetCVar("enableFloatingCombatText", 0)
-		if E.Wrath or E.Classic then
-			SetCVar("floatingCombatTextCombatDamage", 0)
+	if addon == "NameplateSCT" then
+		if IsAddOnLoaded("NameplateSCT") then
+			ElvUI_EltreumUI:GetNameplateSCTProfile()
+			ElvUI_EltreumUI:Print(L["NameplateSCT profile has been set."])
+		else
+			ElvUI_EltreumUI:Print("NameplateSCT is not loaded")
 		end
-		ElvUI_EltreumUI:Print(L["Floating Combat Text profile has been set."])
-	else
-		ElvUI_EltreumUI:Print("Floating Combat Text is not loaded")
+	elseif addon == "ElvUI_FCT" then
+		if IsAddOnLoaded("ElvUI_FCT") then
+			ElvUI_EltreumUI:GetFCTProfile()
+			ElvUI_EltreumUI:Print(L["Floating Combat Text profile has been set."])
+		else
+			ElvUI_EltreumUI:Print("Floating Combat Text is not loaded")
+		end
 	end
 end
 
