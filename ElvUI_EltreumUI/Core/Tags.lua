@@ -816,23 +816,23 @@ E:AddTag("eltruism:dead", "UNIT_HEALTH", function(unit,_,args)
 	local texture = strsplit(':', args or '')
 	if UnitIsDead(unit) and UnitIsPlayer(unit) then
 		if texture == '' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga:0:0:0:0|t"
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead5.tga:0:0:0:0|t"
 		elseif texture == '1' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead1.tga:0:0:0:0|t"
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead1.tga:0:0:0:0|t"
 		elseif texture == '2' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead2.tga:0:0:0:0|t"
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead2.tga:0:0:0:0|t"
 		elseif texture == '3' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead3.tga:0:0:0:0|t"
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead3.tga:0:0:0:0|t"
 		elseif texture == '4' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead4.tga:0:0:0:0|t"
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead4.tga:0:0:0:0|t"
 		elseif texture == '5' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga:0:0:0:0|t"
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead5.tga:0:0:0:0|t"
 		elseif texture == '6' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead6.tga:0:0:0:0|t"
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead6.tga:0:0:0:0|t"
 		elseif texture == '7' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead7.tga:0:0:0:0|t"
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead7.tga:0:0:0:0|t"
 		else
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga:0:0:0:0|t"
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead5.tga:0:0:0:0|t"
 		end
 	elseif UnitIsGhost(unit) then
 		return GetSpellInfo(8326)
@@ -845,21 +845,21 @@ E:AddTag("eltruism:dc", "UNIT_CONNECTION", function(unit,_,args)
 	local texture = strsplit(':', args or '')
 	if UnitIsConnected(unit) == false and UnitIsPlayer(unit) then
 		if texture == '' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga:0:0:0:0|t"
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc2.tga:0:0:0:0|t"
 		elseif texture == '1' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc1.tga:0:0:0:0|t"
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc1.tga:0:0:0:0|t"
 		elseif texture == '2' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga:0:0:0:0|t"
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc2.tga:0:0:0:0|t"
 		elseif texture == '3' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc3.tga:0:0:0:0|t"
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc3.tga:0:0:0:0|t"
 		elseif texture == '4' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc4.tga:0:0:0:0|t"
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc4.tga:0:0:0:0|t"
 		elseif texture == '5' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc5.tga:0:0:0:0|t"
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc5.tga:0:0:0:0|t"
 		elseif texture == '6' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc6.tga:0:0:0:0|t"
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc6.tga:0:0:0:0|t"
 		else
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga:0:0:0:0|t"
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc2.tga:0:0:0:0|t"
 		end
 	end
 end)
@@ -874,8 +874,8 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 	if texture2 == nil then
 		texture2 = 2
 	end
-	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead"..tostring(texture1)..".tga:0:0:0:0|t"
-	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc"..tostring(texture2)..".tga:0:0:0:0|t"
+	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(texture1)..".tga:0:0:0:0|t"
+	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(texture2)..".tga:0:0:0:0|t"
 	if not UnitIsPlayer(unit) then --npc
 		if not UnitIsDead(unit) then
 			if UnitHealth(unit) == UnitHealthMax(unit) then
@@ -990,8 +990,8 @@ E:AddTag("eltruism:hpstatusnopc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PL
 	if texture2 == nil then
 		texture2 = 2
 	end
-	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead"..tostring(texture1)..".tga:0:0:0:0|t"
-	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc"..tostring(texture2)..".tga:0:0:0:0|t"
+	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(texture1)..".tga:0:0:0:0|t"
+	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(texture2)..".tga:0:0:0:0|t"
 	if not UnitIsPlayer(unit) then --npc
 		if not UnitIsDead(unit) then
 			return E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1))
