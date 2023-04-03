@@ -15,13 +15,13 @@ do
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars then
 				local r,g,b = bar:GetStatusBarColor()
 				if unit == "player" then
-					if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable then
+					if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enableaurabars then
 						bar.spark:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
 						if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' and not E.db.unitframe.units.player.aurabar.reverseFill then --flip otherwise it will look wrong
 							bar.spark:SetTexCoord(1, 0, 0, 1)
 						end
 						bar.spark:SetBlendMode('BLEND')
-						bar.spark:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
+						--bar.spark:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
 						bar.spark:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
 					end
 					if E.db.unitframe.colors.transparentAurabars then
@@ -38,13 +38,13 @@ do
 						end
 					end
 				elseif unit == "target" then
-					if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable then
+					if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enableaurabars then
 						bar.spark:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
 						if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' and not E.db.unitframe.units.target.aurabar.reverseFill then --flip otherwise it will look wrong
 							bar.spark:SetTexCoord(1, 0, 0, 1)
 						end
 						bar.spark:SetBlendMode('BLEND')
-						bar.spark:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
+						--bar.spark:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
 						bar.spark:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
 					end
 					if E.db.unitframe.colors.transparentAurabars then
