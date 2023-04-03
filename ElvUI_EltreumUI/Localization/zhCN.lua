@@ -1299,7 +1299,6 @@ L["Cooldown Pulse\n(Includes TTS)"] = true
 L["Cooldown Pulse"] = true
 L["Waypoints"] = true
 L["Autopin, Time to Arrive"] = true
-L["Waypoints"] = true
 L["Autopin"] = true
 L["Cast Bar Custom Spark/Texture"] = true
 L["Combat Alert"] = true
