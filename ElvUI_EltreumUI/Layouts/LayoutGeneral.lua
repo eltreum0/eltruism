@@ -70,12 +70,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["player"]["power"]["height"] = 15
 		E.db["unitframe"]["units"]["target"]["power"]["height"] = 15
 
-		--and combat indicator
-		E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["r"] = 1
-		E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["b"] = 1
-		E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["g"] = 1
-		E.db["unitframe"]["units"]["party"]["CombatIcon"]["defaultColor"] = false
-
 		--reverse target
 		E.db["unitframe"]["units"]["target"]["health"]["reverseFill"] = false
 		E.db["unitframe"]["units"]["target"]["power"]["reverseFill"] = false
@@ -1420,16 +1414,16 @@ function ElvUI_EltreumUI:SetupDataText()
 		E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 1912
 	end]]
 
+	E.db["datatexts"]["panels"]["EltruismDataText"][2] = "Durability"
+	E.db["datatexts"]["panels"]["EltruismDataText"][3] = "EltruismTeleports"
+	E.db["datatexts"]["panels"]["EltruismDataText"][4] = "Eltruism Stats 1"
+	E.db["datatexts"]["panels"]["EltruismDataText"][5] = ""
+	E.db["datatexts"]["panels"]["EltruismDataText"][6] = "Eltruism Stats 2"
+	E.db["datatexts"]["panels"]["EltruismDataText"][7] = "System"
+	E.db["datatexts"]["panels"]["EltruismDataText"][8] = "Combat"
+	E.db["datatexts"]["panels"]["EltruismDataText"][9] = "Gold"
 	if E.Retail then
 		E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Talent/Loot Specialization"
-		E.db["datatexts"]["panels"]["EltruismDataText"][2] = "Durability"
-		E.db["datatexts"]["panels"]["EltruismDataText"][3] = "EltruismTeleports"
-		E.db["datatexts"]["panels"]["EltruismDataText"][4] = "Eltruism Stats 1"
-		E.db["datatexts"]["panels"]["EltruismDataText"][5] = ""
-		E.db["datatexts"]["panels"]["EltruismDataText"][6] = "Eltruism Stats 2"
-		E.db["datatexts"]["panels"]["EltruismDataText"][7] = "System"
-		E.db["datatexts"]["panels"]["EltruismDataText"][8] = "Combat"
-		E.db["datatexts"]["panels"]["EltruismDataText"][9] = "Gold"
 	else
 		if E.myclass == 'HUNTER' or E.myclass == 'WARLOCK' then
 			E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Ammo"
@@ -1439,14 +1433,6 @@ function ElvUI_EltreumUI:SetupDataText()
 				E.db["datatexts"]["panels"]["EltruismDataText"][1] = "DualSpecialization"
 			end
 		end
-		E.db["datatexts"]["panels"]["EltruismDataText"][2] = "Durability"
-		E.db["datatexts"]["panels"]["EltruismDataText"][3] = "EltruismTeleports"
-		E.db["datatexts"]["panels"]["EltruismDataText"][4] = "Eltruism Stats 1"
-		E.db["datatexts"]["panels"]["EltruismDataText"][5] = ""
-		E.db["datatexts"]["panels"]["EltruismDataText"][6] = "Eltruism Stats 2"
-		E.db["datatexts"]["panels"]["EltruismDataText"][7] = "System"
-		E.db["datatexts"]["panels"]["EltruismDataText"][8] = "Combat"
-		E.db["datatexts"]["panels"]["EltruismDataText"][9] = "Gold"
 	end
 	E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] = true
 

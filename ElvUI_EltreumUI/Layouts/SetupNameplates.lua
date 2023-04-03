@@ -248,9 +248,6 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconOffsetY"] = -1
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconPosition"] = "LEFT"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 32
-		if width == 1920 then
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["iconSize"] = 32
-		end
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["showIcon"] = true
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["textPosition"] = "ONBAR"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["timeToHold"] = 0.6
@@ -345,9 +342,6 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["height"] = 12
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconPosition"] = "LEFT"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 32
-		if width == 1920 then
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconSize"] = 32
-		end
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconOffsetX"] = -4
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["iconOffsetY"] = -1
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["castbar"]["showIcon"] = true
