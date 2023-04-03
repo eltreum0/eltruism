@@ -159,7 +159,7 @@ end
 -- Repooc's Dynamic Status Icons
 function ElvUI_EltreumUI:SetupDynamicStatusIcons()
 	if IsAddOnLoaded("ElvUI_DynamicStatusIcons") then
-		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
+		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
 			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["anchorPoint"] = "BOTTOMRIGHT"
 			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["color"]["b"] = 0.4274500310421
 			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["color"]["g"] = 0.60784178972244
@@ -167,37 +167,23 @@ function ElvUI_EltreumUI:SetupDynamicStatusIcons()
 			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["faceright"] = true
 			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["iconpack"] = "Default - Pepe - Traveler"
 			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["scale"] = 0.8
-			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["xOffset"] = -75
-			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["yOffset"] = -83
 			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["anchorPoint"] = "BOTTOMLEFT"
 			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["color"]["b"] = 0.4274500310421
 			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["color"]["g"] = 0.60784178972244
 			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["color"]["r"] = 0.77646887302399
 			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["iconpack"] = "Default - Pepe - Clockwork"
 			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["scale"] = 0.8
-			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["xOffset"] = 75
-			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["yOffset"] = -83
-
-			ElvUI_EltreumUI:Print("Dynamic Status Icons was setup")
-		elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["anchorPoint"] = "BOTTOMRIGHT"
-			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["color"]["b"] = 0.4274500310421
-			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["color"]["g"] = 0.60784178972244
-			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["color"]["r"] = 0.77646887302399
-			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["faceright"] = true
-			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["iconpack"] = "Default - Pepe - Traveler"
-			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["scale"] = 0.8
-			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["xOffset"] = -49
-			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["yOffset"] = -88
-			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["anchorPoint"] = "BOTTOMLEFT"
-			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["color"]["b"] = 0.4274500310421
-			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["color"]["g"] = 0.60784178972244
-			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["color"]["r"] = 0.77646887302399
-			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["iconpack"] = "Default - Pepe - Clockwork"
-			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["scale"] = 0.8
-			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["xOffset"] = 49
-			E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["yOffset"] = -88
-
+			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
+				E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["xOffset"] = -75
+				E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["yOffset"] = -83
+				E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["xOffset"] = 75
+				E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["yOffset"] = -83
+			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
+				E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["xOffset"] = -49
+				E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["yOffset"] = -88
+				E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["xOffset"] = 49
+				E.db["unitframe"]["units"]["target"]["DynamicStatusIcons"]["yOffset"] = -88
+			end
 			ElvUI_EltreumUI:Print("Dynamic Status Icons was setup")
 		else
 			ElvUI_EltreumUI:Print("Eltruism profile not found")
