@@ -18,6 +18,7 @@ local difficultyok
 local instanceok
 local currentCharges, cooldownStart, cooldownDuration
 local cooldown
+local GetPartyAssignment = _G.GetPartyAssignment
 
 --PlaySound(61850)
 --PlaySound(61851)
@@ -373,7 +374,15 @@ function ElvUI_EltreumUI:LeaderIcon()
 		end
 	end
 	if frame.RaidRoleIndicator then
-		frame.RaidRoleIndicator:SetTexture(ElvUI_EltreumUI:GetRoleIcon("TANK"))
+		if(GetPartyAssignment('MAINTANK', frame.unit)) then
+			frame.RaidRoleIndicator:SetTexture(ElvUI_EltreumUI:GetRoleIcon("TANK"))
+		elseif(GetPartyAssignment('MAINASSIST', frame.unit)) then
+			if E.db.ElvUI_EltreumUI.otherstuff.assisticonstype ~= "CUSTOM" then
+				frame.RaidRoleIndicator:SetTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Assist\\MainAssist'..E.db.ElvUI_EltreumUI.otherstuff.assisticonstype..'.tga')
+			else
+				frame.RaidRoleIndicator:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticonscustom)
+			end
+		end
 	end
 end
 hooksecurefunc(UF,"RaidRoleUpdate", ElvUI_EltreumUI.LeaderIcon)
