@@ -2981,7 +2981,7 @@ function ElvUI_EltreumUI:Configtable()
 							enableuf = {
 								order = 53,
 								type = 'toggle',
-								name = E.NewSign..L["Enable on Unitframes"],
+								name = L["Enable on Unitframes"],
 								desc = L["Add a glow when Unitframes have a debuff"],
 								width = 'full',
 								get = function() return E.db.ElvUI_EltreumUI.glow.enableUFs end,
@@ -7411,7 +7411,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							wordlmapscaletoggle = {
 								type = 'toggle',
-								name = E.NewSign..L["Enable World Map Scaling"],
+								name = L["Enable World Map Scaling"],
 								order = 10,
 								--desc = "",
 								width = 'full',
@@ -7421,7 +7421,7 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							worldmapscalevalue = {
 								type = 'range',
-								name = E.NewSign..L["World Map Scale"],
+								name = L["World Map Scale"],
 								order = 11,
 								min = 0.1,
 								max = 3,
@@ -7980,7 +7980,7 @@ function ElvUI_EltreumUI:Configtable()
 					},
 					tags = {
 						type = 'group',
-						name = L["Tags"],
+						name = E.NewSign..L["Tags"],
 						order = 2,
 						childGroups = "tab",
 						args = {
@@ -9457,7 +9457,7 @@ function ElvUI_EltreumUI:Configtable()
 					icons = {
 						order = 3,
 						type = 'group',
-						name = E.NewSign..L["Classification"],
+						name = L["Classification"],
 						args = {
 							enable = {
 								order = 1,
