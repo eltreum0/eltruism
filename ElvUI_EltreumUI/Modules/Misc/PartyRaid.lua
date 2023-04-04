@@ -372,5 +372,8 @@ function ElvUI_EltreumUI:LeaderIcon()
 			frame.MasterLooterIndicator:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticonscustom)
 		end
 	end
+	if frame.RaidRoleIndicator then
+		frame.RaidRoleIndicator:SetTexture(ElvUI_EltreumUI:GetRoleIcon("TANK"))
+	end
 end
 hooksecurefunc(UF,"RaidRoleUpdate", ElvUI_EltreumUI.LeaderIcon)
