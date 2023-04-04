@@ -25,30 +25,9 @@ do
 
 	--set the textures or gradients for single units
 	function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unittexture)
-		_, classunit = UnitClass(unit)
-		reaction = UnitReaction(unit, "player")
 		if UnitExists(unit) then
-			if UnitIsPlayer(unit) then
-				if classunit then
-					namebar = ElvUI_EltreumUI:UnitframeClassTexture(classunit)
-				end
-			else
-				if UnitIsTapDenied(unit) and not UnitPlayerControlled(unit) then
-					namebar = ElvUI_EltreumUI:UnitframeClassTexture("TAPPED")
-				else
-					if reaction then
-						if reaction >= 5 then
-							namebar = ElvUI_EltreumUI:UnitframeClassTexture("NPCFRIENDLY")
-						elseif reaction == 4 then
-							namebar = ElvUI_EltreumUI:UnitframeClassTexture("NPCNEUTRAL")
-						elseif reaction == 3 then
-							namebar = ElvUI_EltreumUI:UnitframeClassTexture("NPCUNFRIENDLY")
-						elseif reaction <= 2 then
-							namebar = ElvUI_EltreumUI:UnitframeClassTexture("NPCHOSTILE")
-						end
-					end
-				end
-			end
+			_, classunit = UnitClass(unit)
+			reaction = UnitReaction(unit, "player")
 			unitframe = _G["ElvUF_"..name]
 			if unitframe and unitframe.Health then
 				unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
