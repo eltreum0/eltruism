@@ -800,7 +800,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		}
 		E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"] = {
 			["attachTextTo"] = "Health",
-			["enable"] = false,
+			["enable"] = true,
 			["font"] = "Kimberley",
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "CENTER",
@@ -848,7 +848,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			}
 			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"] = {
 				["attachTextTo"] = "Health",
-				["enable"] = false,
+				["enable"] = true,
 				["font"] = "Kimberley",
 				["fontOutline"] = "THICKOUTLINE",
 				["justifyH"] = "CENTER",
@@ -1037,7 +1037,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		}
 		E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumStatus"] = {
 			["attachTextTo"] = "Health",
-			["enable"] = false,
+			["enable"] = true,
 			["font"] = "Kimberley",
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "CENTER",
@@ -1095,7 +1095,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		}
 		E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumStatus"] = {
 			["attachTextTo"] = "Health",
-			["enable"] = false,
+			["enable"] = true,
 			["font"] = "Kimberley",
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "CENTER",
@@ -1153,7 +1153,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		}
 		E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumStatus"] = {
 			["attachTextTo"] = "Health",
-			["enable"] = false,
+			["enable"] = true,
 			["font"] = "Kimberley",
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "CENTER",
