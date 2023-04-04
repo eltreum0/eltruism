@@ -289,6 +289,9 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] then
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"]["font"] = fontvalue
 		end
+		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStance"] then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStance"]["font"] = fontvalue
+		end
 
 		-- Custom Text: Raid1
 		E.db["unitframe"]["units"]["raid1"]["customTexts"] = E.db["unitframe"]["units"]["raid1"]["customTexts"] or {}

@@ -155,6 +155,9 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] then
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"]["fontOutline"] = "THICKOUTLINE"
 		end
+		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStance"] then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStance"]["fontOutline"] = "OUTLINE"
+		end
 	end
 	if E.db["unitframe"]["units"]["target"]["customTexts"] then
 		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] then

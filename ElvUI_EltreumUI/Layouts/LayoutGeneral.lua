@@ -988,6 +988,17 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["xOffset"] = 50,
 			["yOffset"] = 0
 		}
+		E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStance"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "OUTLINE",
+			["justifyH"] = "LEFT",
+			["size"] = 10,
+			["text_format"] = "[eltruism:stance]",
+			["xOffset"] = 4,
+			["yOffset"] = -15,
+		}
 
 		-- Custom Text: Raid1
 		E.db["unitframe"]["units"]["raid1"]["customTexts"] = E.db["unitframe"]["units"]["raid1"]["customTexts"] or {}
