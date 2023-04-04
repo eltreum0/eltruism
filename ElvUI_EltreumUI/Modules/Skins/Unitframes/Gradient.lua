@@ -9,10 +9,7 @@ local UnitIsPlayer = _G.UnitIsPlayer
 local select = _G.select
 local UnitIsTapDenied = _G.UnitIsTapDenied
 local UnitPlayerControlled = _G.UnitPlayerControlled
-local _, buttonclass, classunit, unitframe, namebar, reaction
-local headergroup = nil
-local headerraidpet = nil
-local group, groupbutton, tankbutton, assistbutton, raidpetbutton,partypetbutton
+local _, buttonclass, classunit, unitframe, reaction
 local IsInGroup = _G.IsInGroup
 local classcolor = E:ClassColor(E.myclass, true)
 local skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
@@ -606,31 +603,63 @@ function ElvUI_EltreumUI:GradientUF(unit,forced)
 		if (IsInGroup() or forced) and UnitExists(unit) and (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
 
 			--party/raid
-			headergroup = nil
-			if _G["ElvUF_Raid1"] and _G["ElvUF_Raid1"]:IsShown() then
-				headergroup = _G["ElvUF_Raid1"]
-			elseif _G["ElvUF_Raid2"] and _G["ElvUF_Raid2"]:IsShown() then
-				headergroup = _G["ElvUF_Raid2"]
-			elseif _G["ElvUF_Raid3"] and _G["ElvUF_Raid3"]:IsShown() then
-				headergroup = _G["ElvUF_Raid3"]
-			elseif _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsShown() then
-				headergroup = _G["ElvUF_Party"]
-			end
-			if headergroup ~= nil then
-				for i = 1, headergroup:GetNumChildren() do
-					group = select(i, headergroup:GetChildren())
-					for j = 1, group:GetNumChildren() do
-						groupbutton = select(j, group:GetChildren())
-						if groupbutton and groupbutton.Health then
-							ElvUI_EltreumUI:ApplyGroupGradient(groupbutton)
+			if _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsShown() then
+				--print("party spam")
+				local partymembers = {_G["ElvUF_PartyGroup1"]:GetChildren()}
+				for _, frame in pairs(partymembers) do
+					if frame and frame.Health then
+						ElvUI_EltreumUI:ApplyGroupGradient(frame)
+					end
+				end
+				if E.db.unitframe.units.party.petsGroup.enable then
+					if _G["ElvUF_PartyGroup1UnitButton1Pet"] and _G["ElvUF_PartyGroup1UnitButton1Pet"]:IsShown() then
+						for i = 1, 5 do
+							local partypetbutton = _G["ElvUF_PartyGroup1UnitButton"..i.."Pet"]
+							if partypetbutton and partypetbutton.Health then
+								ElvUI_EltreumUI:ApplyGroupGradient(partypetbutton)
+							end
 						end
 					end
 				end
-				if headergroup == _G["ElvUF_Party"] and E.db.unitframe.units.party.petsGroup.enable then
-					for i = 1, 5 do
-						partypetbutton = _G["ElvUF_PartyGroup1UnitButton"..i.."Pet"]
-						if partypetbutton and partypetbutton.Health then
-							ElvUI_EltreumUI:ApplyGroupGradient(partypetbutton)
+			end
+
+			if _G["ElvUF_Raid1"] and _G["ElvUF_Raid1"]:IsShown() then
+				--print("raid1 spam")
+				for i = 1, 8 do
+					if _G["ElvUF_Raid1Group"..i] then
+						local raidmembers = {_G["ElvUF_Raid1Group"..i]:GetChildren()}
+						for _, frame in pairs(raidmembers) do
+							if frame and frame.Health then
+								ElvUI_EltreumUI:ApplyGroupGradient(frame)
+							end
+						end
+					end
+				end
+			end
+
+			if _G["ElvUF_Raid2"] and _G["ElvUF_Raid2"]:IsShown() then
+				--print("raid2 spam")
+				for i = 1, 8 do
+					if _G["ElvUF_Raid2Group"..i] then
+						local raidmembers = {_G["ElvUF_Raid2Group"..i]:GetChildren()}
+						for _, frame in pairs(raidmembers) do
+							if frame and frame.Health then
+								ElvUI_EltreumUI:ApplyGroupGradient(frame)
+							end
+						end
+					end
+				end
+			end
+
+			if _G["ElvUF_Raid3"] and _G["ElvUF_Raid3"]:IsShown() then
+				--print("raid3 spam")
+				for i = 1, 8 do
+					if _G["ElvUF_Raid3Group"..i] then
+						local raidmembers = {_G["ElvUF_Raid3Group"..i]:GetChildren()}
+						for _, frame in pairs(raidmembers) do
+							if frame and frame.Health then
+								ElvUI_EltreumUI:ApplyGroupGradient(frame)
+							end
 						end
 					end
 				end
@@ -676,16 +705,13 @@ function ElvUI_EltreumUI:GradientUF(unit,forced)
 			end
 
 			--raid pets
-			headerraidpet = nil
-			if _G["ElvUF_RaidpetGroup1"] and _G["ElvUF_RaidpetGroup1"]:IsShown() and E.db.unitframe.units.raidpet.enable then
-				headerraidpet = _G["ElvUF_RaidpetGroup1"]
-			end
-			if headerraidpet ~= nil then
-				--print("raid pet gradient debug")
-				for i = 1, headerraidpet:GetNumChildren() do
-					raidpetbutton = select(i, headerraidpet:GetChildren())
-					if raidpetbutton and raidpetbutton.Health then
-						ElvUI_EltreumUI:ApplyGroupGradient(raidpetbutton)
+			if _G["ElvUF_RaidpetGroup1UnitButton1"] and _G["ElvUF_RaidpetGroup1UnitButton1"]:IsShown() and E.db.unitframe.units.raidpet.enable then
+				for i = 1, 40 do
+					local raidpetbutton = {_G["ElvUF_AssistUnitButton"..i]}
+					for _, frame in pairs(raidpetbutton) do
+						if frame and frame.Health then
+							ElvUI_EltreumUI:ApplyGroupGradient(frame)
+						end
 					end
 				end
 			end
