@@ -761,7 +761,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 16,
-			["text_format"] = "[eltruism:raidmarker] [eltruism:hpstatusnopc{5,3}]",
+			["text_format"] = "[eltruism:raidmarker] [eltruism:hpstatusnopc]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -805,7 +805,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 40,
-			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["text_format"] = "[eltruism:dead][eltruism:dc]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -820,7 +820,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["fontOutline"] = "OUTLINE",
 				["justifyH"] = "LEFT",
 				["size"] = 16,
-				["text_format"] = "[eltruism:hpstatusnopc{5,3}]",
+				["text_format"] = "[eltruism:hpstatusnopc]",
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
@@ -853,7 +853,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["fontOutline"] = "THICKOUTLINE",
 				["justifyH"] = "CENTER",
 				["size"] = 40,
-				["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+				["text_format"] = "[eltruism:dead][eltruism:dc]",
 				["xOffset"] = -50,
 				["yOffset"] = 0
 			}
@@ -865,7 +865,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["fontOutline"] = "OUTLINE",
 				["justifyH"] = "LEFT",
 				["size"] = 16,
-				["text_format"] = "[eltruism:hpstatusnopc{5,3}]",
+				["text_format"] = "[eltruism:hpstatusnopc]",
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
@@ -940,7 +940,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 14,
-			["text_format"] = "[eltruism:hpstatus{5,3}]",
+			["text_format"] = "[eltruism:hpstatus]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -984,7 +984,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 27,
-			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["text_format"] = "[eltruism:dead][eltruism:dc]",
 			["xOffset"] = 50,
 			["yOffset"] = 0
 		}
@@ -1020,7 +1020,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 10,
-			["text_format"] = "[eltruism:hpstatusnopc{5,3}]",
+			["text_format"] = "[eltruism:hpstatusnopc]",
 			["xOffset"] = 0,
 			["yOffset"] = -1
 		}
@@ -1042,7 +1042,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 25,
-			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["text_format"] = "[eltruism:dead][eltruism:dc]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -1078,7 +1078,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 10,
-			["text_format"] = "[eltruism:hpstatusnopc{5,3}]",
+			["text_format"] = "[eltruism:hpstatusnopc]",
 			["xOffset"] = 0,
 			["yOffset"] = -1
 		}
@@ -1100,7 +1100,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 25,
-			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["text_format"] = "[eltruism:dead][eltruism:dc]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -1136,7 +1136,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 10,
-			["text_format"] = "[eltruism:hpstatusnopc{5,3}]",
+			["text_format"] = "[eltruism:hpstatusnopc]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -1158,7 +1158,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 20,
-			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["text_format"] = "[eltruism:dead][eltruism:dc]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -1183,7 +1183,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 14,
-			["text_format"] = "[eltruism:hpstatus{5,3}]",
+			["text_format"] = "[eltruism:hpstatus]",
 			["xOffset"] = 2,
 			["yOffset"] = 0
 		}
@@ -1194,7 +1194,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 27,
-			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["text_format"] = "[eltruism:dead][eltruism:dc]",
 			["xOffset"] = -50,
 			["yOffset"] = 0
 		}
@@ -1255,7 +1255,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 11,
-			["text_format"] = "[eltruism:hpstatusnopc{5,3}]",
+			["text_format"] = "[eltruism:hpstatusnopc]",
 			["xOffset"] = 2,
 			["yOffset"] = 3
 		}
@@ -1288,7 +1288,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "CENTER",
 			["size"] = 15,
-			["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+			["text_format"] = "[eltruism:dead][eltruism:dc]",
 			["xOffset"] = 0,
 			["yOffset"] = 22
 		}

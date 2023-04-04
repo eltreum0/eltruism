@@ -1296,6 +1296,11 @@ P.ElvUI_EltreumUI = {
 		lootericonstype = "1",
 		eltruismlootericonscustom = "",
 
+		hpstatusdeadicon = "5",
+		hpstatusdcicon = "2",
+		deadtagicon = "5",
+		dctagicon = "2",
+
 		gamemenu = false,
 		afklogo = true,
 		mailsoundenable = false,
