@@ -1283,6 +1283,19 @@ P.ElvUI_EltreumUI = {
 		eltruismroleiconscustomhealer = "",
 		eltruismroleiconscustomdps = "",
 		roleiconstype = 'ELTRUISM',
+
+		eltruismleadericons = false,
+		leadericonstype = "1",
+		eltruismleadericonscustom = "",
+
+		eltruismassisticons = false,
+		assisticonstype = "1",
+		eltruismassisticonscustom = "",
+
+		eltruismlootericons = false,
+		lootericonstype = "1",
+		eltruismlootericonscustom = "",
+
 		gamemenu = false,
 		afklogo = true,
 		mailsoundenable = false,

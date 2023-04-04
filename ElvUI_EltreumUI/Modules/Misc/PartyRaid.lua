@@ -343,3 +343,34 @@ function ElvUI_EltreumUI:GetRoleIcon(role)
 		end
 	end
 end
+
+--replace the leader/assist/master looter icons in frames
+local UF = E:GetModule('UnitFrames')
+function ElvUI_EltreumUI:LeaderIcon()
+	if not E.db.ElvUI_EltreumUI.otherstuff.eltruismleadericons and not E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticons and not E.db.ElvUI_EltreumUI.otherstuff.eltruismlootericons then return end
+	local anchor = self:GetParent()
+	local frame = anchor and anchor:GetParent():GetParent()
+	if not frame then return end
+	if E.db.ElvUI_EltreumUI.otherstuff.eltruismleadericons and frame.LeaderIndicator then
+		if E.db.ElvUI_EltreumUI.otherstuff.leadericonstype ~= "CUSTOM" then
+			frame.LeaderIndicator:SetTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Leader\\Leader'..E.db.ElvUI_EltreumUI.otherstuff.leadericonstype..'.tga')
+		else
+			frame.LeaderIndicator:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismleadericonscustom)
+		end
+	end
+	if E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticons and frame.AssistantIndicator then
+		if E.db.ElvUI_EltreumUI.otherstuff.assisticonstype ~= "CUSTOM" then
+			frame.AssistantIndicator:SetTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Assist\\Assist'..E.db.ElvUI_EltreumUI.otherstuff.assisticonstype..'.tga')
+		else
+			frame.AssistantIndicator:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticonscustom)
+		end
+	end
+	if E.db.ElvUI_EltreumUI.otherstuff.eltruislootericons and frame.MasterLooterIndicator then
+		if E.db.ElvUI_EltreumUI.otherstuff.lootericonstype ~= "CUSTOM" then
+			frame.MasterLooterIndicator:SetTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\MasterLooter\\Looter'..E.db.ElvUI_EltreumUI.otherstuff.lootericonstype..'.tga')
+		else
+			frame.MasterLooterIndicator:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticonscustom)
+		end
+	end
+end
+hooksecurefunc(UF,"RaidRoleUpdate", ElvUI_EltreumUI.LeaderIcon)
