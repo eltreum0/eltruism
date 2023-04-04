@@ -551,7 +551,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["PLAYER"]["health"]["text"]["font"] = "Kimberley"
 		E.db["nameplates"]["units"]["PLAYER"]["health"]["text"]["fontOutline"] = "THICKOUTLINE"
 		E.db["nameplates"]["units"]["PLAYER"]["health"]["text"]["fontSize"] = 12
-		E.db["nameplates"]["units"]["PLAYER"]["health"]["text"]["format"] = "[health:current-percent:shortvalue]"
+		E.db["nameplates"]["units"]["PLAYER"]["health"]["text"]["format"] = "[eltruism:hpstatusnopc]"
 		E.db["nameplates"]["units"]["PLAYER"]["health"]["text"]["parent"] = "Health"
 		E.db["nameplates"]["units"]["PLAYER"]["health"]["text"]["xOffset"] = 0
 		E.db["nameplates"]["units"]["PLAYER"]["health"]["text"]["yOffset"] = -1
