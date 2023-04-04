@@ -52,12 +52,9 @@ local function ImproveInstall(installtype,mode,null)
 		end
 		if not _G.PluginInstallFrame.installpreview then
 			_G.PluginInstallFrame.installpreview = _G.PluginInstallFrame:CreateTexture("InstallTexturePreview")
-			_G.PluginInstallFrame.installpreview:SetAllPoints(_G.PluginInstallFrame)
-			_G.PluginInstallFrame.installpreview:SetTexCoord(0,0.72,0,1)
-		else
-			_G.PluginInstallFrame.installpreview:SetAllPoints(_G.PluginInstallFrame)
-			_G.PluginInstallFrame.installpreview:SetTexCoord(0,0.72,0,1)
 		end
+		_G.PluginInstallFrame.installpreview:SetAllPoints(_G.PluginInstallFrame)
+		_G.PluginInstallFrame.installpreview:SetTexCoord(0,0.72,0,1)
 	else
 		if installtype == "dps" then
 			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\DPS.jpg")
@@ -132,12 +129,6 @@ local function ImproveInstall(installtype,mode,null)
 			if _G.PluginInstallFrame.StepTitles and _G["PluginInstallFrame"].Title:GetText() ~= nil and _G["PluginInstallFrame"].Title:GetText() == ElvUI_EltreumUI.Name then
 				for i = 1, #_G.PluginInstallFrame.side.Lines do
 					local line, color = _G.PluginInstallFrame.side.Lines[i]
-					if i == _G.PluginInstallFrame.CurrentPage then
-						color = _G.PluginInstallFrame.StepTitlesColorSelected
-					else
-						color = _G.PluginInstallFrame.StepTitlesColor
-					end
-
 					local StepTitleText
 					if type(_G.PluginInstallFrame.StepTitles[i]) == 'function' then
 						StepTitleText = _G.PluginInstallFrame.StepTitles[i]()
@@ -146,8 +137,10 @@ local function ImproveInstall(installtype,mode,null)
 					end
 
 					if i == _G.PluginInstallFrame.CurrentPage then
+						color = _G.PluginInstallFrame.StepTitlesColorSelected
 						line.text:SetText(E:TextGradient(StepTitleText, 0.50, 0.70, 1, 0.67, 0.95, 1))
 					else
+						color = _G.PluginInstallFrame.StepTitlesColor
 						line.text:SetText(StepTitleText)
 						line.text:SetTextColor(color[1] or color.r, color[2] or color.g, color[3] or color.b)
 					end
@@ -457,7 +450,7 @@ ElvUI_EltreumUI.InstallerData = {
 
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
-			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT() ElvUI_EltreumUI:GetASProfile() end)
+			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT("spec") ElvUI_EltreumUI:GetASProfile() end)
 			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ImproveInstall("detailsspec","ENTERING") end)
 			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			if E.Retail then
@@ -468,14 +461,14 @@ ElvUI_EltreumUI.InstallerData = {
 
 			_G.PluginInstallFrame.Option2:Enable()
 			_G.PluginInstallFrame.Option2:Show()
-			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDTReleaf() ElvUI_EltreumUI:GetASProfile() end)
+			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT("releafalpha") ElvUI_EltreumUI:GetASProfile() end)
 			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ImproveInstall("detailsreleafalpha","ENTERING") end)
 			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option2:SetText('Releaf Alpha')
 
 			_G.PluginInstallFrame.Option3:Enable()
 			_G.PluginInstallFrame.Option3:Show()
-			_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDTReleafv3() ElvUI_EltreumUI:GetASProfile() end)
+			_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT("releafsolid") ElvUI_EltreumUI:GetASProfile() end)
 			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ImproveInstall("detailsreleafsolid","ENTERING") end)
 			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option3:SetText('Releaf Solid')
@@ -667,14 +660,14 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
-			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupNameplateSCT() end)
+			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupCombatText("NameplateSCT") end)
 			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ImproveInstall("NameplateSCT","ENTERING") end)
 			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option1:SetText('NameplateSCT')
 
 			_G.PluginInstallFrame.Option2:Enable()
 			_G.PluginInstallFrame.Option2:Show()
-			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupFCT() end)
+			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupCombatText("ElvUI_FCT") end)
 			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ImproveInstall("ElvUIFCT","ENTERING") end)
 			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option2:SetText('ElvUI FCT')

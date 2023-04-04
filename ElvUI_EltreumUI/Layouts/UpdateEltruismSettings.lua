@@ -73,6 +73,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture = "Asphyxia-Norm"
 	E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.7
 	E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable = true
+	E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enableaurabars = true
 	E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture = 'Eltreum-Fade'
 	E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width = 20
 	E.db.ElvUI_EltreumUI.unitframes.darkpowercolor = true
@@ -219,6 +220,9 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = true
 	E.db.ElvUI_EltreumUI.otherstuff.mpluskeys = true
 	E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons = true
+	E.db.ElvUI_EltreumUI.otherstuff.eltruismleadericons = true
+	E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticons = true
+	E.db.ElvUI_EltreumUI.otherstuff.eltruismlootericons = true
 	E.db.ElvUI_EltreumUI.otherstuff.delete = true
 	E.db.ElvUI_EltreumUI.otherstuff.gamemenu = true
 

@@ -812,99 +812,30 @@ end)
 E:AddTagInfo("eltruism:shortclassification", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Displays the unit's classification in short form (e.g. '+' for ELITE and 'R' for RARE and a Skull for Boss)"])
 
 --Tag for dead based on elvui tag for health with user input
-E:AddTag("eltruism:dead", "UNIT_HEALTH", function(unit,_,args)
-	local texture = strsplit(':', args or '')
+E:AddTag("eltruism:dead", "UNIT_HEALTH", function(unit)
 	if UnitIsDead(unit) and UnitIsPlayer(unit) then
-		if texture == '' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga:0:0:0:0|t"
-		elseif texture == '1' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead1.tga:0:0:0:0|t"
-		elseif texture == '2' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead2.tga:0:0:0:0|t"
-		elseif texture == '3' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead3.tga:0:0:0:0|t"
-		elseif texture == '4' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead4.tga:0:0:0:0|t"
-		elseif texture == '5' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga:0:0:0:0|t"
-		elseif texture == '6' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead6.tga:0:0:0:0|t"
-		elseif texture == '7' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead7.tga:0:0:0:0|t"
+		if E.db.ElvUI_EltreumUI.otherstuff.deadtagicon ~= "NONE" then
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.deadtagicon)..".tga:0:0:0:0|t"
 		else
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead5.tga:0:0:0:0|t"
+			return L["Dead"]
 		end
 	elseif UnitIsGhost(unit) then
 		return GetSpellInfo(8326)
 	end
 end)
-E:AddTagInfo("eltruism:dead", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Displays a dead symbol from Releaf when unit is dead. Usage: [eltruism:dead{number}]"])
+E:AddTagInfo("eltruism:dead", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Displays a dead symbol when unit is dead. Can be customized in Eltruism > Media"])
 
---Tag for dc based on elvui tag for health with user input
-E:AddTag("eltruism:dc", "UNIT_CONNECTION", function(unit,_,args)
-	local texture = strsplit(':', args or '')
+--Tag for dc based on elvui tag for health
+E:AddTag("eltruism:dc", "UNIT_CONNECTION", function(unit)
 	if UnitIsConnected(unit) == false and UnitIsPlayer(unit) then
-		if texture == '' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga:0:0:0:0|t"
-		elseif texture == '1' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc1.tga:0:0:0:0|t"
-		elseif texture == '2' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga:0:0:0:0|t"
-		elseif texture == '3' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc3.tga:0:0:0:0|t"
-		elseif texture == '4' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc4.tga:0:0:0:0|t"
-		elseif texture == '5' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc5.tga:0:0:0:0|t"
-		elseif texture == '6' then
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc6.tga:0:0:0:0|t"
+		if E.db.ElvUI_EltreumUI.otherstuff.dctagicon ~= "NONE" then
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.dctagicon)..".tga:0:0:0:0|t"
 		else
-			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc2.tga:0:0:0:0|t"
+			return L["Dead"]
 		end
 	end
 end)
-E:AddTagInfo("eltruism:dc", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Displays a disconnect symbol from Releaf when unit is disconnected. Usage: [eltruism:dc{number}]"])
-
---HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
-E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit,_,args)
-	local texture1,texture2 = strsplit(',', args or '')
-	if texture1 == nil then
-		texture1 = 5
-	end
-	if texture2 == nil then
-		texture2 = 2
-	end
-	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead"..tostring(texture1)..".tga:0:0:0:0|t"
-	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc"..tostring(texture2)..".tga:0:0:0:0|t"
-	if not UnitIsPlayer(unit) then --npc
-		if not UnitIsDead(unit) then
-			if UnitHealth(unit) == UnitHealthMax(unit) then
-				return E:ShortValue(UnitHealth(unit))
-			else
-				return (E:ShortValue(UnitHealth(unit)).." - "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)))
-			end
-		else
-			return DEAD
-		end
-	else
-		if not UnitIsDead(unit) and not UnitIsGhost(unit) then --players
-			if UnitHealth(unit) == UnitHealthMax(unit) then
-				return E:ShortValue(UnitHealth(unit))
-			else
-				return (E:ShortValue(UnitHealth(unit)).." - "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)))
-			end
-		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			return deadtexture
-		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
-			return dctexture
-		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			return dctexture
-		elseif UnitIsGhost(unit) then
-			return GetSpellInfo(8326)
-		end
-	end
-end)
-E:AddTagInfo("eltruism:hpstatus", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Displays HP - % and a status symbol from Releaf for players. Usage: [eltruism:hpstatus{number,number}]"])
+E:AddTagInfo("eltruism:dc", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Displays a disconnect symbol when unit is disconnected. Can be customized in Eltruism > Media"])
 
 E:AddTag("eltruism:leader", "GROUP_ROSTER_UPDATE", function(unit)
 	local leader = UnitIsGroupLeader(unit)
@@ -932,7 +863,7 @@ E:AddTagInfo("eltruism:leader", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Shows 
 E:AddTag("eltruism:leader:emoji", "GROUP_ROSTER_UPDATE", function(unit)
 	local leader = UnitIsGroupLeader(unit)
 	if leader then
-		return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Emoji\\Leader.tga:0:0:0:0|t"
+		return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Leader\\Leader1.tga:0:0:0:0|t"
 	end
 end)
 E:AddTagInfo("eltruism:leader:emoji", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Shows the Leader Icon as an Emoji Crown"])
@@ -981,32 +912,85 @@ E:AddTag("eltruism:effectivehp", "UNIT_HEALTH UNIT_TARGET", function()
 end)
 E:AddTagInfo("eltruism:effectivehp", ElvUI_EltreumUI.Name.." "..L["Health"], L["Shows Effective Health"])
 
+--HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
+E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
+	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
+	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
+	if not UnitIsPlayer(unit) then --npc
+		if not UnitIsDead(unit) then
+			local min, max = UnitHealth(unit), UnitHealthMax(unit)
+			return E:GetFormattedText('CURRENT_PERCENT', min, max, nil, true)
+		else
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+				return deadtexture
+			else
+				return L["Dead"]
+			end
+		end
+	else
+		if not UnitIsDead(unit) and not UnitIsGhost(unit) then --players
+			local min, max = UnitHealth(unit), UnitHealthMax(unit)
+			return E:GetFormattedText('CURRENT_PERCENT', min, max, nil, true)
+		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+				return deadtexture
+			else
+				return L["Dead"]
+			end
+		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
+			else
+				return L["Offline"]
+			end
+		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
+			else
+				return L["Offline"]
+			end
+		elseif UnitIsGhost(unit) then
+			return GetSpellInfo(8326)
+		end
+	end
+end)
+E:AddTagInfo("eltruism:hpstatus", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays HP - % and a status symbol. Can be customized in Eltruism > Media"])
+
 --no percentage value of other HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
-E:AddTag("eltruism:hpstatusnopc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit,_,args)
-	local texture1,texture2 = strsplit(',', args or '')
-	if texture1 == nil then
-		texture1 = 5
-	end
-	if texture2 == nil then
-		texture2 = 2
-	end
-	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dead"..tostring(texture1)..".tga:0:0:0:0|t"
-	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\dc"..tostring(texture2)..".tga:0:0:0:0|t"
+E:AddTag("eltruism:hpstatusnopc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
+	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
+	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
 	if not UnitIsPlayer(unit) then --npc
 		if not UnitIsDead(unit) then
 			return E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1))
 		else
-			return DEAD
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+				return deadtexture
+			else
+				return L["Dead"]
+			end
 		end
 	else
 		if not UnitIsDead(unit) and not UnitIsGhost(unit) then --players
 			return E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1))
 		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			return deadtexture
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+				return deadtexture
+			else
+				return L["Dead"]
+			end
 		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
-			return dctexture
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
+			else
+				return L["Offline"]
+			end
 		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
-			return dctexture
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
+			else
+				return L["Offline"]
+			end
 		elseif UnitIsGhost(unit) then
 			return GetSpellInfo(8326)
 		end

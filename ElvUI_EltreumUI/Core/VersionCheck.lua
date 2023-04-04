@@ -257,7 +257,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 				["fontOutline"] = E.db.general.fontStyle,
 				["justifyH"] = "CENTER",
 				["size"] = 40,
-				["text_format"] = "[eltruism:dead{5}][eltruism:dc{2}]",
+				["text_format"] = "[eltruism:dead][eltruism:dc]",
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}

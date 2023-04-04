@@ -66,7 +66,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 	E.db["unitframe"]["units"]["party"]["CombatIcon"]["color"]["g"] = 1
 	E.db["unitframe"]["units"]["party"]["CombatIcon"]["defaultColor"] = true
 	E.db["unitframe"]["units"]["party"]["CombatIcon"]["enable"] = false
-	E.db["unitframe"]["units"]["party"]["CombatIcon"]["texture"] = "Eltruism05"
+	E.db["unitframe"]["units"]["party"]["CombatIcon"]["texture"] = "Eltruism04"
 	E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "TOPRIGHT"
 	E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["a"] = 0.80000001192093
 	E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["b"] = 1

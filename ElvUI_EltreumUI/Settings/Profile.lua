@@ -1239,6 +1239,7 @@ P.ElvUI_EltreumUI = {
 		},
 		sparkcustomcolor ={
 			enable = false,
+			enableaurabars = false,
 			texture = 'Eltreum-Blank',
 			--texture = 'Eltreum-Fade',
 			r = 0.80,
@@ -1282,6 +1283,24 @@ P.ElvUI_EltreumUI = {
 		eltruismroleiconscustomhealer = "",
 		eltruismroleiconscustomdps = "",
 		roleiconstype = 'ELTRUISM',
+
+		eltruismleadericons = false,
+		leadericonstype = "1",
+		eltruismleadericonscustom = "",
+
+		eltruismassisticons = false,
+		assisticonstype = "1",
+		eltruismassisticonscustom = "",
+
+		eltruismlootericons = false,
+		lootericonstype = "1",
+		eltruismlootericonscustom = "",
+
+		hpstatusdeadicon = "5",
+		hpstatusdcicon = "2",
+		deadtagicon = "5",
+		dctagicon = "2",
+
 		gamemenu = false,
 		afklogo = true,
 		mailsoundenable = false,

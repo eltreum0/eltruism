@@ -79,8 +79,10 @@ do
 				end)
 				DetailsHooked = true
 			end
+		end
 
-			--add a basic embed if addonskins is not loaded
+		--add a basic embed if addonskins is not loaded
+		if E.db.ElvUI_EltreumUI.skins.detailsembed then
 			local checkembed
 			if IsAddOnLoaded("AddOnSkins") or IsAddOnLoaded("ElvUI_MerathilisUI") then
 				if IsAddOnLoaded("AddOnSkins") then
@@ -104,7 +106,7 @@ do
 				checkembed = true
 			end
 
-			if checkembed == true and E.db.ElvUI_EltreumUI.skins.detailsembed then
+			if checkembed == true then
 				if not _G["EltruismDetailsEmbedPanel"] then
 					embedpanel = CreateFrame("FRAME","EltruismDetailsEmbedPanel")
 				else
@@ -198,7 +200,6 @@ do
 					RightChatDetailsHook = true
 				end
 			end
-
 		end
 	end
 	S:AddCallbackForAddon('Details', "EltruismDetails", ElvUI_EltreumUI.EltruismDetails)

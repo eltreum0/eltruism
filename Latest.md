@@ -1,19 +1,17 @@
-### 3.8.0 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.8.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added an option to disable forcing the ElvUI chat toggles on\
-Added a slider to set the Occluded Nameplate CVar\
-Added an option to change the shadow color\
-Added several new Role Icon styles\
-Added [eltruism:leader:emoji] tag\
-Added some missing shadows\
-Added several Combat Icons\
-Added two Rest Icons\
-Updated Nameplate Import to apply gradient names only when setting gradient\
-Updated Nameplate Height to better detect threat/combat\
-Updated DPS/Healer profile Combat/Rest Icons\
-Updated German locale by Dlarge\
-Updated Plugin Installer skin\
-Fixed an issue where the Objective Frame could error if loading in while in combat\
-Fixed an issue where the Nameplate Portrait Shadows option wouldn't work\
-Fixed a possible issue where Role Icons would not show up in chat\
-Fixed an issue with Item Levels in Wrath/Classic
+Added EltreumStance custom tag to player unitframe, which show show the current stance\
+Added Dead/Disconnected Icon Customization for tags\
+Added a skin to the Vehicle Leave Button\
+Added Master Looter Icon customization\
+Added spark replacement to Aura Bars\
+Added Raid Assist Icon customization\
+Added Leader Icon customization\
+Added a few shadows\
+Updated Nameplate Height to also work when the player is targeted\
+Updated Details Embed to not rely on the skin\
+Updated Install to remove the Services chat\
+Updated Immersion Skin speed\
+Fixed an issue where when changing fonts custom texts could get reapplied\
+Fixed wrong combat icon in Party unitframes\
+Fixed a double Combat Indicator Icon
