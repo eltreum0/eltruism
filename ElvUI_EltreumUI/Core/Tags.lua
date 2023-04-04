@@ -932,7 +932,7 @@ E:AddTagInfo("eltruism:leader", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Shows 
 E:AddTag("eltruism:leader:emoji", "GROUP_ROSTER_UPDATE", function(unit)
 	local leader = UnitIsGroupLeader(unit)
 	if leader then
-		return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Leader\\Emoji.tga:0:0:0:0|t"
+		return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Leader\\Leader1.tga:0:0:0:0|t"
 	end
 end)
 E:AddTagInfo("eltruism:leader:emoji", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Shows the Leader Icon as an Emoji Crown"])
