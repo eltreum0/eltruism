@@ -429,21 +429,19 @@ do
 
 	--sets name with gradient colors using elvui
 	function ElvUI_EltreumUI:GradientName(name, unitclass)
-		local text
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 			if not unitframecustomgradients[unitclass] then
-				text = E:TextGradient(name, unitframecustomgradients["ELTRUISM"].r1, unitframecustomgradients["ELTRUISM"].g1, unitframecustomgradients["ELTRUISM"].b1, unitframecustomgradients["ELTRUISM"].r2, unitframecustomgradients["ELTRUISM"].g2, unitframecustomgradients["ELTRUISM"].b2)
+				return E:TextGradient(name, unitframecustomgradients["ELTRUISM"].r1, unitframecustomgradients["ELTRUISM"].g1, unitframecustomgradients["ELTRUISM"].b1, unitframecustomgradients["ELTRUISM"].r2, unitframecustomgradients["ELTRUISM"].g2, unitframecustomgradients["ELTRUISM"].b2)
 			else
-				text = E:TextGradient(name, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2)
+				return E:TextGradient(name, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2)
 			end
 		else
 			if not unitframegradients[unitclass] then
-				text = E:TextGradient(name, unitframegradients["ELTRUISM"].r1, unitframegradients["ELTRUISM"].g1, unitframegradients["ELTRUISM"].b1, unitframegradients["ELTRUISM"].r2, unitframegradients["ELTRUISM"].g2, unitframegradients["ELTRUISM"].b2)
+				return E:TextGradient(name, unitframegradients["ELTRUISM"].r1, unitframegradients["ELTRUISM"].g1, unitframegradients["ELTRUISM"].b1, unitframegradients["ELTRUISM"].r2, unitframegradients["ELTRUISM"].g2, unitframegradients["ELTRUISM"].b2)
 			else
-				text = E:TextGradient(name, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2)
+				return E:TextGradient(name, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2)
 			end
 		end
-		return text
 	end
 
 	--sends the colors for chat

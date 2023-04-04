@@ -2347,9 +2347,11 @@ end
 
 --benik's version
 function ElvUI_EltreumUI:NameplateShadows(nameplate)
+	if not nameplate then return end
 	if E.private.nameplates.enable and E.db.ElvUI_EltreumUI.skins.shadow.enable then
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.nameplates then
+			if not nameplate.Health then return end
 			if nameplate.Health.backdrop and not nameplate.Health.backdrop.shadow then
 				nameplate.Health.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(nameplate.Health.backdrop.shadow)
@@ -2357,6 +2359,7 @@ function ElvUI_EltreumUI:NameplateShadows(nameplate)
 		end
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.nppower then
+			if not nameplate.Power then return end
 			if nameplate.Power.backdrop and not nameplate.Power.backdrop.shadow then
 				nameplate.Power.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(nameplate.Power.backdrop.shadow)
@@ -2380,6 +2383,7 @@ function ElvUI_EltreumUI:NameplateShadows(nameplate)
 		end
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.npcastbar then
+			if not nameplate.Castbar then return end
 			if nameplate.Castbar.backdrop and not nameplate.Castbar.backdrop.shadow then
 				nameplate.Castbar.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(nameplate.Castbar.backdrop.shadow)
@@ -2392,6 +2396,7 @@ function ElvUI_EltreumUI:NameplateShadows(nameplate)
 		end
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.npportraits then
+			if not nameplate.Portrait then return end
 			if nameplate.Portrait.backdrop and not nameplate.Portrait.backdrop.shadow then
 				nameplate.Portrait.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(nameplate.Portrait.backdrop.shadow)
@@ -2402,6 +2407,7 @@ end
 hooksecurefunc(NP, 'StylePlate', ElvUI_EltreumUI.NameplateShadows) --nameplate shadows
 
 function ElvUI_EltreumUI:Construct_AuraIcon(button)
+	if not button then return end
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.npauras then
 		if button and not button.shadow then
 			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -2412,6 +2418,7 @@ end
 hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) --nameplate buffs/debuffs shadows
 
 function ElvUI_EltreumUI:AuraShadows(button)
+	if not button then return end
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) and not IsAddOnLoaded("Masque") then
 		if button and not button.shadow then
 			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -2422,6 +2429,7 @@ end
 hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows) --aura (minimap) shadows
 
 function ElvUI_EltreumUI:UFAuraShadows(button)
+	if not button then return end
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.ufaura and not IsAddOnLoaded("Masque") then
 		if button and not button.shadow then
 			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
