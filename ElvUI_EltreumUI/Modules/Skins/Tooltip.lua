@@ -60,11 +60,9 @@ local function SetTooltipGradient(unit)
 end
 
 --skin tooltip
-function ElvUI_EltreumUI:Tooltip(tt, unit)
+function ElvUI_EltreumUI:Tooltip(tt)
 	if GameTooltip and GameTooltip:IsForbidden() then return end
-
 	if not tt then return end
-	if tt == nil then return end
 
 	--gradient
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.private.tooltip.enable then
@@ -84,12 +82,11 @@ function ElvUI_EltreumUI:Tooltip(tt, unit)
 			local _, classunit = UnitClass(fixunit)
 			local reaction = UnitReaction(fixunit, "player")
 			local tooltipname = _G["GameTooltipTextLeft1"]:GetText()
-			if tooltipname then
+			if tooltipname and classunit and reaction then
 				--by arkinventory on wow forums, to strip the name from color sequences
 				if tooltipname:match("|c") or tooltipname:match("|r") then
-					tooltipname = string.gsub(tooltipname, "|c%x%x%x%x%x%x%x%x", "" )
-					tooltipname = string.gsub(tooltipname, "|c%x%x %x%x%x%x%x", "" )
-					tooltipname = string.gsub(tooltipname, "|r", "" )
+					tooltipname = string.gsub(tooltipname, "|c%x%x%x%x%x%x%x%x", "")
+					tooltipname = string.gsub(tooltipname, "|r", "")
 				end
 
 				if UnitIsPlayer(fixunit) and classunit then
