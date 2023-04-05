@@ -266,7 +266,7 @@ function ElvUI_EltreumUI:UnitframeClassTextureCustom(unitclass)
 	end
 end
 
---get the gradient colors
+--return the background offset
 local function bgfade(isBG)
 	if isBG then
 		return E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade
@@ -275,6 +275,7 @@ local function bgfade(isBG)
 	end
 end
 
+--get the gradient colors
 function ElvUI_EltreumUI:GradientColors(unitclass, invert, alpha, isBG)
 	if not unitclass then return end
 	if E.Retail or E.Wrath then
