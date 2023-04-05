@@ -217,6 +217,10 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 		powerbareffect:Hide()
 		EltreumPowerAnchor = nil
 	end
+	if not UnitExists("target") then return end
+	if not UnitCanAttack("player", "target") then return end
+	if not C_NamePlate.GetNamePlateForUnit("target") then return end
+	if UnitIsDead("target") then return end
 	if not E.private.ElvUI_EltreumUI then return end
 	if not E.private.ElvUI_EltreumUI.install_version then return end
 	if not E.private.ElvUI_EltreumUI.nameplatepower then return end

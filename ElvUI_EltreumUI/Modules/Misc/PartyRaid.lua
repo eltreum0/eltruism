@@ -18,6 +18,7 @@ local difficultyok
 local instanceok
 local currentCharges, cooldownStart, cooldownDuration
 local cooldown
+local GetPartyAssignment = _G.GetPartyAssignment
 
 --PlaySound(61850)
 --PlaySound(61851)
@@ -352,6 +353,7 @@ function ElvUI_EltreumUI:LeaderIcon()
 	local frame = anchor and anchor:GetParent():GetParent()
 	if not frame then return end
 	if E.db.ElvUI_EltreumUI.otherstuff.eltruismleadericons and frame.LeaderIndicator then
+		frame.LeaderIndicator:SetTexCoord(0,1,0,1)
 		if E.db.ElvUI_EltreumUI.otherstuff.leadericonstype ~= "CUSTOM" then
 			frame.LeaderIndicator:SetTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Leader\\Leader'..E.db.ElvUI_EltreumUI.otherstuff.leadericonstype..'.tga')
 		else
@@ -359,6 +361,7 @@ function ElvUI_EltreumUI:LeaderIcon()
 		end
 	end
 	if E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticons and frame.AssistantIndicator then
+		frame.AssistantIndicator:SetTexCoord(0,1,0,1)
 		if E.db.ElvUI_EltreumUI.otherstuff.assisticonstype ~= "CUSTOM" then
 			frame.AssistantIndicator:SetTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Assist\\Assist'..E.db.ElvUI_EltreumUI.otherstuff.assisticonstype..'.tga')
 		else
@@ -366,10 +369,19 @@ function ElvUI_EltreumUI:LeaderIcon()
 		end
 	end
 	if E.db.ElvUI_EltreumUI.otherstuff.eltruislootericons and frame.MasterLooterIndicator then
+		frame.MasterLooterIndicator:SetTexCoord(0,1,0,1)
 		if E.db.ElvUI_EltreumUI.otherstuff.lootericonstype ~= "CUSTOM" then
 			frame.MasterLooterIndicator:SetTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\MasterLooter\\Looter'..E.db.ElvUI_EltreumUI.otherstuff.lootericonstype..'.tga')
 		else
 			frame.MasterLooterIndicator:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticonscustom)
+		end
+	end
+	if frame.RaidRoleIndicator then
+		frame.RaidRoleIndicator:SetTexCoord(0,1,0,1)
+		if(GetPartyAssignment('MAINTANK', frame.unit)) then
+			frame.RaidRoleIndicator:SetTexture(ElvUI_EltreumUI:GetRoleIcon("TANK"))
+		elseif(GetPartyAssignment('MAINASSIST', frame.unit)) then
+			frame.RaidRoleIndicator:SetTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Assist\\MainAssist1.tga')
 		end
 	end
 end

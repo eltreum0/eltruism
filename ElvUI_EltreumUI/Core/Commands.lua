@@ -230,9 +230,10 @@ local AddOns = {
 	["ElvUI_Libraries"] = true,
 	["ElvUI_Options"] = true,
 	["ElvUI_EltreumUI"] = true,
-	--["AddOnSkins"] = true,
 	["!BugGrabber"] = true,
 	["BugSack"] = true,
+	["!CPUThieves"] = true,
+	["ElvUI_CPU"] = true,
 }
 function ElvUI_EltreumUI:DebugMode(message)
 	local switch = strlower(message)

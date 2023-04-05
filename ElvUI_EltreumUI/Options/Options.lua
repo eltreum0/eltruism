@@ -15498,7 +15498,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "description",
 								name = "",
 								width = 'full',
-								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\WADemo', 512, 1024 end,
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\WADemo', 512, 512 end,
 							},
 						},
 					},

@@ -15,9 +15,31 @@ local function SetTooltipGradient(unit)
 	if not E.private.tooltip.enable then return end
 	local _, classunit = UnitClass(unit)
 	local reaction = UnitReaction(unit, "player")
-	local _, classunit = UnitClass(unit)
-	local reaction = UnitReaction(unit, "player")
 	if GameTooltip and GameTooltip:IsForbidden() then return end
+
+	local tooltipname = _G["GameTooltipTextLeft1"]:GetText()
+	if tooltipname and classunit and reaction then
+		--by arkinventory on wow forums, to strip the name from color sequences
+		if tooltipname:match("|c") or tooltipname:match("|r") then
+			tooltipname = string.gsub(tooltipname, "|c%x%x%x%x%x%x%x%x", "")
+			tooltipname = string.gsub(tooltipname, "|r", "")
+		end
+
+		if UnitIsPlayer(unit) and classunit then
+			_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, classunit))
+		else
+			if reaction and reaction >= 5 then
+				_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, "NPCFRIENDLY"))
+			elseif reaction and reaction == 4 then
+				_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, "NPCNEUTRAL"))
+			elseif reaction and reaction == 3 then
+				_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, "NPCUNFRIENDLY"))
+			elseif reaction and reaction == 2 or reaction == 1 then
+				_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, "NPCHOSTILE"))
+			end
+		end
+	end
+
 	if UnitIsPlayer(unit) then
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 			_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, false, false))
@@ -62,13 +84,12 @@ local function SetTooltipGradient(unit)
 end
 
 --skin tooltip
-function ElvUI_EltreumUI:Tooltip(tt, unit)
+function ElvUI_EltreumUI:Tooltip(tt)
 	if GameTooltip and GameTooltip:IsForbidden() then return end
+	if not tt then return end
 
 	--gradient
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.private.tooltip.enable then
-		local _, fixunit = _G.GameTooltip:GetUnit()
-		SetTooltipGradient(fixunit)
 		if not self.isHooked then
 			_G.GameTooltipStatusBar:HookScript("OnShow", function()
 				local _,unittp = _G.GameTooltip:GetUnit()
@@ -77,6 +98,11 @@ function ElvUI_EltreumUI:Tooltip(tt, unit)
 				end
 			end)
 			self.isHooked = true
+		end
+
+		local _, fixunit = _G.GameTooltip:GetUnit()
+		if fixunit then
+			SetTooltipGradient(fixunit)
 		end
 	end
 
