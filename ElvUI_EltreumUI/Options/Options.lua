@@ -4689,7 +4689,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'toggle',
 										name = L["Lowers render scale if GPU bound to hit Target FPS."],
 										--name = "Allow render scale to be dynamically changed\n to help hit a Target FPS.", --OPTION_TOOLTIP_DYNAMIC_RENDER_SCALE
-										desc = "Note this feature is in BETA.\nKnown issues:\n - May cause hitching.\n - May behave poorly with vsync on.",
+										desc = L["Note this feature is in BETA.\nKnown issues:\n - May cause hitching.\n - May behave poorly with vsync on."],
 										descStyle = "inline",
 										width = 'full',
 										get = function()
