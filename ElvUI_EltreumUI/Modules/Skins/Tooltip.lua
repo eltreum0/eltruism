@@ -16,6 +16,30 @@ local function SetTooltipGradient(unit)
 	local _, classunit = UnitClass(unit)
 	local reaction = UnitReaction(unit, "player")
 	if GameTooltip and GameTooltip:IsForbidden() then return end
+
+	local tooltipname = _G["GameTooltipTextLeft1"]:GetText()
+	if tooltipname and classunit and reaction then
+		--by arkinventory on wow forums, to strip the name from color sequences
+		if tooltipname:match("|c") or tooltipname:match("|r") then
+			tooltipname = string.gsub(tooltipname, "|c%x%x%x%x%x%x%x%x", "")
+			tooltipname = string.gsub(tooltipname, "|r", "")
+		end
+
+		if UnitIsPlayer(unit) and classunit then
+			_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, classunit))
+		else
+			if reaction and reaction >= 5 then
+				_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, "NPCFRIENDLY"))
+			elseif reaction and reaction == 4 then
+				_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, "NPCNEUTRAL"))
+			elseif reaction and reaction == 3 then
+				_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, "NPCUNFRIENDLY"))
+			elseif reaction and reaction == 2 or reaction == 1 then
+				_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, "NPCHOSTILE"))
+			end
+		end
+	end
+
 	if UnitIsPlayer(unit) then
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 			_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, false, false))
@@ -79,30 +103,6 @@ function ElvUI_EltreumUI:Tooltip(tt)
 		local _, fixunit = _G.GameTooltip:GetUnit()
 		if fixunit then
 			SetTooltipGradient(fixunit)
-			local _, classunit = UnitClass(fixunit)
-			local reaction = UnitReaction(fixunit, "player")
-			local tooltipname = _G["GameTooltipTextLeft1"]:GetText()
-			if tooltipname and classunit and reaction then
-				--by arkinventory on wow forums, to strip the name from color sequences
-				if tooltipname:match("|c") or tooltipname:match("|r") then
-					tooltipname = string.gsub(tooltipname, "|c%x%x%x%x%x%x%x%x", "")
-					tooltipname = string.gsub(tooltipname, "|r", "")
-				end
-
-				if UnitIsPlayer(fixunit) and classunit then
-					_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, classunit))
-				else
-					if reaction and reaction >= 5 then
-						_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, "NPCFRIENDLY"))
-					elseif reaction and reaction == 4 then
-						_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, "NPCNEUTRAL"))
-					elseif reaction and reaction == 3 then
-						_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, "NPCUNFRIENDLY"))
-					elseif reaction and reaction == 2 or reaction == 1 then
-						_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, "NPCHOSTILE"))
-					end
-				end
-			end
 		end
 	end
 
