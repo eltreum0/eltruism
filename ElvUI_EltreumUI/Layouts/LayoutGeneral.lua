@@ -1508,6 +1508,11 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('UberTooltips', 1)
 	SetCVar('alwaysShowActionBars', 1)
 	SetCVar('lockActionBars', 1)
+	SetCVar('ActionButtonUseKeyDown', 1)
+	SetCVar('fstack_preferParentKeys', 0) --Add back the frame names via fstack!
+	SetCVar('threatWarning', 3)
+	SetCVar('showNPETutorials', 0)
+	SetCVar('showQuestTrackingTooltips', 1)
 	--SetCVar('Sound_EnableErrorSpeech', 1)
 	SetCVar('alwaysCompareItems', 0) --dont always compare
 	SetCVar('allowCompareWithToggle', 1) --compare using shift
@@ -1534,11 +1539,6 @@ function ElvUI_EltreumUI:SetupCVars()
 	end
 
 	if E.Retail then
-		SetCVar('showNPETutorials', 0)
-		SetCVar('threatWarning', 3)
-		SetCVar('showQuestTrackingTooltips', 1)
-		SetCVar('fstack_preferParentKeys', 0) --Add back the frame names via fstack!
-
 		--this makes it so that the non nameplate names are hidden
 		SetCVar('UnitNameHostleNPC', 0) --Display names for hostile NPCs
 		SetCVar('UnitNameInteractiveNPC', 0) --Display names for interactive NPCs
