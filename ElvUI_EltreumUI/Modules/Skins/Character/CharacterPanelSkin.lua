@@ -424,7 +424,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PaperDollFrame.TitleManagerPane.ScrollBox:SetPoint("RIGHT", CharacterFrame, "RIGHT", -40, -20)
 			end
 
-			-- if not slecheckattribute and (not IsAddOnLoaded('DejaCharacterStats')) then
 			if not ElvUI_EltreumUI:SLCheck("stats") and (not IsAddOnLoaded('DejaCharacterStats')) then
 				CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
 				CharacterStatsPane.ItemLevelCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
@@ -441,6 +440,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismExtraStatsFont:SetParent(CharacterStatsPane)
 
 			if ElvUI_EltreumUI:SLCheck("stats") and not IsAddOnLoaded('DejaCharacterStats') then
+
+				--item level
+				CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
 
 				--offense
 				CharacterStatsPane.OffenseCategory.backdrop:Hide()
