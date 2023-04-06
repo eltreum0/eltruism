@@ -694,6 +694,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G.FriendsFrameTab2.backdrop,
 				_G.FriendsFrameTab3.backdrop,
 				_G.FriendsFrameTab4.backdrop,
+				_G.RaidInfoFrame,
+				_G.RecruitAFriendRecruitmentFrame,
 				_G.SpellBookFrameTabButton1.backdrop,
 				_G.SpellBookFrameTabButton2.backdrop,
 				_G.SpellBookFrameTabButton3.backdrop,

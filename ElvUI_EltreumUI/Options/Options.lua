@@ -4677,6 +4677,55 @@ function ElvUI_EltreumUI:Configtable()
 										get = function() return C_CVar.GetCVar('LowLatencyMode') end,
 										set = function(_, value) local number = tonumber(value) SetCVar('LowLatencyMode', number) end,
 									},
+									headerdynamicrenderscale = {
+										order = 21,
+										type = "description",
+										name = L["Dynamic Render Scale"],
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									dynamicrenderscaleenable = {
+										order = 22,
+										type = 'toggle',
+										name = L["Lowers render scale if GPU bound to hit Target FPS."],
+										--name = "Allow render scale to be dynamically changed\n to help hit a Target FPS.", --OPTION_TOOLTIP_DYNAMIC_RENDER_SCALE
+										desc = L["Note this feature is in BETA.\nKnown issues:\n - May cause hitching.\n - May behave poorly with vsync on."],
+										descStyle = "inline",
+										width = 'full',
+										get = function()
+											if C_CVar.GetCVar('DynamicRenderScale') == '0' then
+												return false
+											elseif C_CVar.GetCVar('DynamicRenderScale') == '1' then
+												return true
+											end
+										end,
+										set = function(_, value)
+											if value == true then
+												SetCVar('DynamicRenderScale', 1)
+											else
+												SetCVar('DynamicRenderScale', 0)
+											end
+										 end
+,									},
+									dynamicrenderscalepercentage = {
+										type = 'range',
+										name = L["Dynamic Render Scale Minimum"],
+										desc = L["Lowest Render Scale used"],
+										order = 23,
+										min = 0.1,
+										max = 1,
+										step = 0.01,
+										width = "full",
+										disabled = function()
+											if C_CVar.GetCVar('DynamicRenderScale') == '1' then
+												return false
+											elseif C_CVar.GetCVar('DynamicRenderScale') == '0' then
+												return true
+											end
+										end,
+										get = function() return tonumber(C_CVar.GetCVar('DynamicRenderScaleMin')) end,
+										set = function(_, value) SetCVar('DynamicRenderScaleMin', value) end,
+									},
 								},
 							},
 						},
@@ -12280,7 +12329,7 @@ function ElvUI_EltreumUI:Configtable()
 								type = "toggle",
 								desc = L["Add Shadows to Raid Frames"],
 								width = 'full',
-								disabled = function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable or not E.db.ElvUI_EltreumUI.skins.shadow.unitframes end,
+								disabled = function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable end,
 								get = function() return E.db.ElvUI_EltreumUI.skins.shadow.raid end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.raid = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
