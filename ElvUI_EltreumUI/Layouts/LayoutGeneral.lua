@@ -1553,7 +1553,7 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar('WorldTextMinSize', 6)
 
 		--new softtarget (only function if player enables interact with target option, which these cvars do not enable)
-		--SetCVar('SoftTargetInteractRange', 30)
+		SetCVar('SoftTargetInteractRange', 5)
 		SetCVar('SoftTargetIconGameObject', 1)
 		SetCVar('SoftTargetIconInteract', 1)
 		SetCVar('SoftTargetInteract', 3) --3 enables, 0 disables
