@@ -1540,7 +1540,7 @@ function ElvUI_EltreumUI:SetupCVars()
 
 	if E.Retail then
 		--this makes it so that the non nameplate names are hidden
-		SetCVar('UnitNameHostleNPC', 0) --Display names for hostile NPCs
+		SetCVar('UnitNameHostleNPC', 0) --Display names for hostile NPCs, even when they are dead
 		SetCVar('UnitNameInteractiveNPC', 0) --Display names for interactive NPCs
 		SetCVar('UnitNameNPC', 0)
 
