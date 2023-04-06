@@ -9,48 +9,111 @@ do
 	function ElvUI_EltreumUI:EltruismBigWigs()
 		if E.db.ElvUI_EltreumUI.skins.bigwigs then
 			local candy = _G.LibStub("LibCandyBar-3.0")
+
+			local bigwigstype
+			if E.Retail then
+				bigwigstype = BigWigs3DB
+			else
+				bigwigstype = BigWigsClassicDB
+			end
+			local currentprofile = bigwigstype["profileKeys"][E.mynameRealm]
+
+			--fix db since colors are missing
+			if not bigwigstype["namespaces"]["BigWigs_Plugins_Colors"] then
+				bigwigstype["namespaces"]["BigWigs_Plugins_Colors"] = {}
+				bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] = {}
+				bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile] = {
+					["barColor"] = {
+						["BigWigs_Plugins_Colors"] = {
+							["default"] = {
+								0.25, -- [1]
+								0.33, -- [2]
+								0.68, -- [3]
+							},
+						},
+					},
+					["barEmphasized"] = {
+						["BigWigs_Plugins_Colors"] = {
+							["default"] = {
+								1, -- [1]
+								0, -- [2]
+								0, -- [3]
+							},
+						},
+					},
+				}
+			end
+			bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] = bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] or {}
+			if not bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile] then
+				bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile] = {
+					["barColor"] = {
+						["BigWigs_Plugins_Colors"] = {
+							["default"] = {
+								0.25, -- [1]
+								0.33, -- [2]
+								0.68, -- [3]
+							},
+						},
+					},
+					["barEmphasized"] = {
+						["BigWigs_Plugins_Colors"] = {
+							["default"] = {
+								1, -- [1]
+								0, -- [2]
+								0, -- [3]
+							},
+						},
+					},
+				}
+			end
+			if not bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"] then
+				bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"] = {
+					["BigWigs_Plugins_Colors"] = {
+						["default"] = {
+							0.25, -- [1]
+							0.33, -- [2]
+							0.68, -- [3]
+						},
+					},
+				}
+			end
+			if not bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"] then
+				bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"] = {
+					["BigWigs_Plugins_Colors"] = {
+						["default"] = {
+							1, -- [1]
+							0, -- [2]
+							0, -- [3]
+						},
+					},
+				}
+			end
+
 			function candy.barPrototype:SetColor(...)
 				self.candyBarBar:SetStatusBarColor(...)
 				local r,g,b = self.candyBarBar:GetStatusBarColor()
-				if E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor then
-					local bigwigstype
-					if E.Retail then
-						bigwigstype = BigWigs3DB
-					else
-						bigwigstype = BigWigsClassicDB
-					end
-					local currentprofile = bigwigstype["profileKeys"][E.mynameRealm]
-					local r1,g1,b1
 
-					--so there is something strange going on where if not converted to string the values are not equal, guess wow drops some decimal places and rounds them differently so tostring is used to avoid that issue
+				if E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor then
+					local currentprofile = bigwigstype["profileKeys"][E.mynameRealm]
 					r = tostring(r)
 					g = tostring(g)
 					b = tostring(b)
-					if currentprofile ~= "Default" then
-						r1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][1])
-						g1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][2])
-						b1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][3])
-					else
-						if r ~= tostring(0.25098040699959) and g ~= tostring(0.32941177487373) and b ~= tostring(0.678431391716) then
-							r1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][1])
-							g1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][2])
-							b1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][3])
-						else
-							r1 = tostring(0.25098040699959)
-							g1 = tostring(0.32941177487373)
-							b1 = tostring(0.678431391716)
-						end
-					end
+
+					--so there is something strange going on where if not converted to string the values are not equal, guess wow drops some decimal places and rounds them differently so tostring is used to avoid that issue
+					local r1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][1])
+					local g1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][2])
+					local b1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][3])
 					local r2 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][1])
 					local g2 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][2])
 					local b2 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][3])
+
 					if (r == r1 and g == g1 and b == b1) then -- its normal bar
 						if E.Retail or E.Wrath then
 							self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr1,g= E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg1,b= E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb1,a= 0.7}, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr2,g=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg2,b=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb2,a= 0.7})
 						else
 							self.candyBarBar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr1, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg1, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb1, 0.7, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr2, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg2, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb2, 0.7)
 						end
-					elseif (r == r2 and g == g2 and b == b2) then --its emphasized bar]
+					elseif (r == r2 and g == g2 and b == b2) then --its emphasized bar
 						if E.Retail or E.Wrath then
 							self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr1,g= E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg1,b= E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb1,a= 0.7}, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr2,g=E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg2,b=E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb2,a= 0.7})
 						else
