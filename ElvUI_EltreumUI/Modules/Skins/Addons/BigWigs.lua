@@ -26,18 +26,18 @@ do
 					["barColor"] = {
 						["BigWigs_Plugins_Colors"] = {
 							["default"] = {
-								0.25, -- [1]
-								0.33, -- [2]
-								0.68, -- [3]
+								0.5098039507865906, -- [1]
+								0.7019608020782471, -- [2]
+								1, -- [3]
 							},
 						},
 					},
 					["barEmphasized"] = {
 						["BigWigs_Plugins_Colors"] = {
 							["default"] = {
-								1, -- [1]
-								0, -- [2]
-								0, -- [3]
+								0.7098039388656616, -- [1]
+								0.03529411926865578, -- [2]
+								0.03529411926865578, -- [3]
 							},
 						},
 					},
@@ -49,18 +49,18 @@ do
 					["barColor"] = {
 						["BigWigs_Plugins_Colors"] = {
 							["default"] = {
-								0.25, -- [1]
-								0.33, -- [2]
-								0.68, -- [3]
+								0.5098039507865906, -- [1]
+								0.7019608020782471, -- [2]
+								1, -- [3]
 							},
 						},
 					},
 					["barEmphasized"] = {
 						["BigWigs_Plugins_Colors"] = {
 							["default"] = {
-								1, -- [1]
-								0, -- [2]
-								0, -- [3]
+								0.7098039388656616, -- [1]
+								0.03529411926865578, -- [2]
+								0.03529411926865578, -- [3]
 							},
 						},
 					},
@@ -70,9 +70,9 @@ do
 				bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"] = {
 					["BigWigs_Plugins_Colors"] = {
 						["default"] = {
-							0.25, -- [1]
-							0.33, -- [2]
-							0.68, -- [3]
+							0.5098039507865906, -- [1]
+							0.7019608020782471, -- [2]
+							1, -- [3]
 						},
 					},
 				}
@@ -81,9 +81,9 @@ do
 				bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"] = {
 					["BigWigs_Plugins_Colors"] = {
 						["default"] = {
-							1, -- [1]
-							0, -- [2]
-							0, -- [3]
+							0.7098039388656616, -- [1]
+							0.03529411926865578, -- [2]
+							0.03529411926865578, -- [3]
 						},
 					},
 				}
