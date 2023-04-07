@@ -1362,3 +1362,5 @@ L["Dynamic Render Scale Minimum"] = "Escala Mínima de Renderização Dinâmica"
 L["Lowest Render Scale used"] = "Menor Escala de Renderização utilizada"
 L["Other CVars"] = true
 ["Smart Classbar"] = true
+L["Health Height"] = true
+L["Auto Accept"] = true

@@ -1357,3 +1357,5 @@ L["Dynamic Render Scale Minimum"] = true
 L["Lowest Render Scale used"] = true
 L["Other CVars"] = true
 ["Smart Classbar"] = true
+L["Health Height"] = true
+L["Auto Accept"] = true
