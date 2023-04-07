@@ -14,12 +14,11 @@ local GetQuestLogTitle = _G.GetQuestLogTitle
 local UIParent_ManageFramePositions = _G.UIParent_ManageFramePositions
 local select = _G.select
 local ScenarioObjectiveBlockBackground
-local ScenarioObjectiveBlockBackgroundTexture
 local wowheadbutton = CreateFrame("Button", nil)
 local dontexpandanymorequests = 0
 if E.Retail then
 	ScenarioObjectiveBlockBackground = CreateFrame("Frame", "EltruismScenarioBlockBg")
-	ScenarioObjectiveBlockBackgroundTexture = ScenarioObjectiveBlockBackground:CreateTexture()
+	S:HandleFrame(ScenarioObjectiveBlockBackground)
 end
 local format = _G.format
 
@@ -456,11 +455,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 					ScenarioObjectiveBlockBackground:SetSize(243, 80)
 					ScenarioObjectiveBlockBackground:SetFrameLevel(3)
-					ScenarioObjectiveBlockBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI\\Code\\Media\\Textures\\White8x8.tga")
-					ScenarioObjectiveBlockBackgroundTexture:SetColorTexture(0, 0, 0, 0.5)
-					ScenarioObjectiveBlockBackgroundTexture:SetAllPoints(ScenarioObjectiveBlockBackground)
 					ScenarioObjectiveBlockBackground:Show()
-					ScenarioObjectiveBlockBackgroundTexture:Show()
 					if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow then
 						ScenarioObjectiveBlockBackground:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(ScenarioObjectiveBlockBackground.shadow.shadow)
