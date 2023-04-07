@@ -17,7 +17,6 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 			["ScrollFrame"] = true,
 			["ModelScene"] = true,
 		}
-
 		local function SkinFrame(frame)
 			if frame:GetObjectType() == "Texture" then frame = frame:GetParent() end
 			local mt = getmetatable(frame).__index
@@ -31,24 +30,21 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 						bgtexture:ClearAllPoints()
 						bgtexture:SetPoint("TOPLEFT", 1, -1)
 						bgtexture:SetPoint("BOTTOMRIGHT", -1, 1)
-						bgtexture:SetTexture(E.LSM:Fetch("background", E.db.ElvUI_EltreumUI.skins.elvui.texture), true, true) --custom texture? although getting even one to work was hard
+						bgtexture:SetTexture(E.LSM:Fetch("background", E.db.ElvUI_EltreumUI.skins.elvui.texture), true, true)
 						bgtexture:SetHorizTile(true)
 						bgtexture:SetVertTile(true)
 						bgtexture:SetBlendMode("ADD")
 						frame.EltruismBackground = true
 						if E.db.ElvUI_EltreumUI.skins.elvui.color.classcolor then
-							bgtexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,0.5)
+							bgtexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
 						else
 							bgtexture:SetVertexColor(E.db.ElvUI_EltreumUI.skins.elvui.color.r,E.db.ElvUI_EltreumUI.skins.elvui.color.g,E.db.ElvUI_EltreumUI.skins.elvui.color.b,E.db.ElvUI_EltreumUI.skins.elvui.color.a)
 						end
-						--frame:SetAlpha(E.db.general.backdropfadecolor.a)
-						--bgtexture:SetAlpha(1)
 					end
 				end)
 			end
 		end
 		SkinFrame(frame)
-
 		frame = EnumerateFrames()
 		while frame do
 			if (not frame:IsForbidden()) and not frametypes[frame:GetObjectType()] then

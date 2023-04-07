@@ -189,9 +189,16 @@ LSM:Register("border", "RenaitreFade11x", [[Interface\Addons\ElvUI_EltreumUI\Med
 LSM:Register("border", "RenaitreFade11xblk", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade11xblk.tga]])
 
 -- Background
-LSM:Register("background", "Eltreum-Tile1", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\framebg1.tga]])
-LSM:Register("background", "Eltreum-Tile2", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\framebg2.tga]])
-LSM:Register("background", "Eltreum-Tile3", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\framebg3.tga]])
+LSM:Register("background", "Eltreum-Tile01", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\FrameBG\framebg1.tga]])
+LSM:Register("background", "Eltreum-Tile02", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\FrameBG\framebg2.tga]])
+LSM:Register("background", "Eltreum-Tile03", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\FrameBG\framebg3.tga]])
+LSM:Register("background", "Eltreum-Tile04", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\FrameBG\framebg4.tga]])
+LSM:Register("background", "Eltreum-Tile05", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\FrameBG\framebg5.tga]])
+LSM:Register("background", "Eltreum-Tile06", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\FrameBG\framebg6.tga]])
+LSM:Register("background", "Eltreum-Tile07", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\FrameBG\framebg7.tga]])
+LSM:Register("background", "Eltreum-Tile08", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\FrameBG\framebg8.tga]])
+LSM:Register("background", "Eltreum-Tile09", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\FrameBG\framebg9.tga]])
+LSM:Register("background", "Eltreum-Tile10", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\FrameBG\framebg10.tga]])
 
 --other combat icons
 E.Media.CombatIcons.Eltruism01 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Combat\fight1.tga]]
