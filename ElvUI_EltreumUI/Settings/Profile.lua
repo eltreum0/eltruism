@@ -52,7 +52,8 @@ P.ElvUI_EltreumUI = {
 				g = 0,
 				b = 0,
 				a = 1,
-			}
+			},
+			texture = "Eltreum-Tile1",
 		},
 		levelbossinstance = false,
 		widertransmog = false,
