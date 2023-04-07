@@ -38,6 +38,18 @@ function ElvUI_EltreumUI:Shadows()
 			EltruismBlizzShadows:RegisterEvent("ADDON_LOADED")
 			EltruismBlizzShadows:RegisterEvent("PLAYER_ENTERING_WORLD")
 			EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
+				if (arg == "WeakAurasOptions") or IsAddOnLoaded("WeakAurasOptions") then
+					if IsAddOnLoaded("ElvUI_WindTools") then
+						if E.private.WT.skins.addons.weakAuras then
+							E:Delay(0, function()
+								if _G["WeakAurasOptions"] and not _G["WeakAurasOptions"].shadow then
+									_G["WeakAurasOptions"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G["WeakAurasOptions"].shadow)
+								end
+							end)
+						end
+					end
+				end
 				if (arg == "Blizzard_PerksProgram") or IsAddOnLoaded("Blizzard_PerksProgram") then
 					if _G.PerksProgramFrame then
 						if _G.PerksProgramFrame.ProductsFrame then
@@ -2279,6 +2291,17 @@ function ElvUI_EltreumUI:Shadows()
 			if _G.SquareMinimapButtonBar and not _G.SquareMinimapButtonBar.shadow then
 				_G.SquareMinimapButtonBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(_G.SquareMinimapButtonBar.shadow)
+			end
+		end
+
+		if IsAddOnLoaded("ElvUI_WindTools") then
+			if _G["WTEventTracker"] and not _G["WTEventTracker"].shadow then
+				_G["WTEventTracker"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(_G["WTEventTracker"].shadow)
+			end
+			if _G["WTContacts"] and not _G["WTContacts"].shadow then
+				_G["WTContacts"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(_G["WTContacts"].shadow)
 			end
 		end
 	end
