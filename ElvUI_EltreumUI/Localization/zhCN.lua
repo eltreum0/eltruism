@@ -1356,6 +1356,6 @@ L["Note this feature is in BETA.\nKnown issues:\n - May cause hitching.\n - May 
 L["Dynamic Render Scale Minimum"] = true
 L["Lowest Render Scale used"] = true
 L["Other CVars"] = true
-["Smart Classbar"] = true
+L["Smart Classbar"] = true
 L["Health Height"] = true
 L["Auto Accept"] = true

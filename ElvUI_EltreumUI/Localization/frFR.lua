@@ -1369,6 +1369,6 @@ L["Note this feature is in BETA.\nKnown issues:\n - May cause hitching.\n - May 
 L["Dynamic Render Scale Minimum"] = "Échelle de rendu dynamique minimale"
 L["Lowest Render Scale used"] = "Échelle de rendu la plus basse utilisée"
 L["Other CVars"] = true
-["Smart Classbar"] = true
+L["Smart Classbar"] = true
 L["Health Height"] = true
 L["Auto Accept"] = true
