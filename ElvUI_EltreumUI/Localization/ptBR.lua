@@ -1360,3 +1360,4 @@ L["Lowers render scale if GPU bound to hit Target FPS."] = "Reduz a escala se a 
 L["Note this feature is in BETA.\nKnown issues:\n - May cause hitching.\n - May behave poorly with vsync on."] = "Note que este recurso está em BETA.\nProblemas conhecidos:\n - Pode causar microparadas.\n - Pode se comportar mal com o vsync ligado"
 L["Dynamic Render Scale Minimum"] = "Escala Mínima de Renderização Dinâmica"
 L["Lowest Render Scale used"] = "Menor Escala de Renderização utilizada"
+L["Add a texture to ElvUI Backgrounds"] = true
