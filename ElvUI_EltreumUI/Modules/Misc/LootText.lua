@@ -14,6 +14,9 @@ LootTextframe:RegisterEvent("CHAT_MSG_LOOT")
 LootTextframe:RegisterEvent("CHAT_MSG_MONEY")
 LootTextframe:RegisterEvent("CHAT_MSG_CURRENCY")
 LootTextframe:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
+LootTextframe:RegisterEvent("CHAT_MSG_SKILL") --profession level up
+--LootTextframe:RegisterEvent("CHAT_MSG_TRADESKILLS")
+
 LootTextframe:RegisterEvent("LOOT_OPENED")
 local combatindicatorframe = CreateFrame("Frame")
 combatindicatorframe:RegisterEvent("PLAYER_REGEN_ENABLED")
@@ -296,6 +299,11 @@ function ElvUI_EltreumUI:LootText()
 						end
 					end
 				end
+			end
+			if event == 'CHAT_MSG_SKILL' then
+				E:Delay(0.5, function()
+					CombatText_AddMessage(arg1, CombatText_StandardScroll, 255, 255, 255)
+				end)
 			end
 		end
 
