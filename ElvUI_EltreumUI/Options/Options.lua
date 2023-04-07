@@ -13471,7 +13471,7 @@ function ElvUI_EltreumUI:Configtable()
 										type = 'color',
 										name = L["Custom Color"],
 										hasAlpha = true,
-										disabled = function() return not E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate end,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate or E.db.ElvUI_EltreumUI.skins.elvui.color.classcolor end,
 										get = function()
 											local dr = P.ElvUI_EltreumUI.skins.elvui.color.r
 											local dg = P.ElvUI_EltreumUI.skins.elvui.color.g

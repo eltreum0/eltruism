@@ -42,7 +42,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 							bgtexture:SetVertexColor(E.db.ElvUI_EltreumUI.skins.elvui.color.r,E.db.ElvUI_EltreumUI.skins.elvui.color.g,E.db.ElvUI_EltreumUI.skins.elvui.color.b,E.db.ElvUI_EltreumUI.skins.elvui.color.a)
 						end
 						--frame:SetAlpha(E.db.general.backdropfadecolor.a)
-						bgtexture:SetAlpha(1)
+						--bgtexture:SetAlpha(1)
 					end
 				end)
 			end
