@@ -214,7 +214,7 @@ local function EltruismStatsDatatext1(dt)
 		local haste = STAT_HASTE..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", retailhaste).."|r"
 		local crit = CRIT_ABBR..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", retailcrit).."|r"
 
-		dt.text:SetFormattedText('%s %s|r',haste,crit)
+		dt.text:SetFormattedText('%s %s|r',crit,haste)
 	else
 		local haste
 		local crit
@@ -249,7 +249,7 @@ local function EltruismStatsDatatext1(dt)
 			haste = STAT_HASTE..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetHaste()).."|r"
 			crit = CRIT_ABBR..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetCritChance()).."|r"
 		end
-		dt.text:SetFormattedText('%s %s|r',haste,crit)
+		dt.text:SetFormattedText('%s %s|r',crit,haste)
 	end
 end
 DT:RegisterDatatext('Eltruism Stats 1', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_STATS","UNIT_SPELL_HASTE","UNIT_DAMAGE","UNIT_ATTACK_SPEED","SPELL_POWER_CHANGED"}, EltruismStatsDatatext1, nil, nil, EltruismStatsDatatextOnEnter, nil, L["Eltruism Stats 1"])
