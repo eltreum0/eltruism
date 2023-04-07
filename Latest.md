@@ -1,9 +1,9 @@
 ### 3.8.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added EltreumStance custom tag to player unitframe, which show show the current stance\
-Added ElvUI Skin in Eltruism > Skins > Addons, which adds textures to frames\
-Added several background textures that can be used with the ElvUI Skin\
-Added an empty texture, None, that can be used to disable textures\
+Added EltreumStance custom tag to player unitframe, which show show the current stance  
+Added ElvUI Skin in Eltruism > Skins > Addons, which adds textures to frames  
+Added several background textures that can be used with the ElvUI Skin  
+Added an empty texture, None, that can be used to disable textures  
 Added the teleport NPC to Quest Auto Turn in block list\
 Added Dead/Disconnected Icon Customization for tags\
 Added Dynamic Render Scale CVar to Graphics CVars\
