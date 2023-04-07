@@ -13412,6 +13412,73 @@ function ElvUI_EltreumUI:Configtable()
 									},
 								},
 							},
+							elvui = {
+								type = 'group',
+								name = E.NewSign.."ElvUI",
+								order = 1,
+								args = {
+									gap1 = {
+										order = 1,
+										type = "description",
+										name = "ElvUI",
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									elvuisettemplate = {
+										order = 2,
+										type = 'toggle',
+										name = E.NewSign..L["Skin ElvUI"],
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									uf = {
+										order = 3,
+										type = 'toggle',
+										name = L["UnitFrames"],
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.elvui.unitframes end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.elvui.unitframes = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									np = {
+										order = 4,
+										type = 'toggle',
+										name = L["Nameplates"],
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.elvui.nameplates end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.elvui.nameplates = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									classcolors = {
+										type = 'toggle',
+										name = L["Use Class Colors"],
+										--width = "full",
+										order = 95,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.elvui.color.classcolor end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.elvui.color.classcolor = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									color = {
+										order = 5,
+										type = 'color',
+										name = L["Custom Color"],
+										hasAlpha = true,
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate end,
+										get = function()
+											local dr = P.ElvUI_EltreumUI.skins.elvui.color.r
+											local dg = P.ElvUI_EltreumUI.skins.elvui.color.g
+											local db = P.ElvUI_EltreumUI.skins.elvui.color.b
+											local da = P.ElvUI_EltreumUI.skins.elvui.color.a
+											return E.db.ElvUI_EltreumUI.skins.elvui.color.r, E.db.ElvUI_EltreumUI.skins.elvui.color.g, E.db.ElvUI_EltreumUI.skins.elvui.color.b, E.db.ElvUI_EltreumUI.skins.elvui.color.a, dr, dg, db, da
+										end,
+										set = function(_, r, g, b, a)
+											E.db.ElvUI_EltreumUI.skins.elvui.color.r, E.db.ElvUI_EltreumUI.skins.elvui.color.g, E.db.ElvUI_EltreumUI.skins.elvui.color.b, E.db.ElvUI_EltreumUI.skins.elvui.color.a = r, g, b, a
+											E:StaticPopup_Show('CONFIG_RL')
+										end,
+									},
+								},
+							},
 						},
 					},
 				},
