@@ -44,6 +44,7 @@ function ElvUI_EltreumUI:QuestEncounter()
 		end
 	end
 end
+
 --expand after encounter is over
 function ElvUI_EltreumUI:QuestEncounterEnd()
 	if E.db.ElvUI_EltreumUI.quests.enable then
@@ -64,6 +65,7 @@ function ElvUI_EltreumUI:QuestEncounterEnd()
 		end
 	end
 end
+
 --hide quests in arena/bg matches
 function ElvUI_EltreumUI:ArenaQuest()
 	if E.db.ElvUI_EltreumUI.quests.arena then
@@ -99,6 +101,7 @@ function ElvUI_EltreumUI:ArenaQuest()
 		end
 	end
 end
+
 --Collapse/Hide Quests during combat with anything
 function ElvUI_EltreumUI:QuestCombat()
 	if E.db.ElvUI_EltreumUI.quests.combatenable then
@@ -114,6 +117,7 @@ function ElvUI_EltreumUI:QuestCombat()
 		end
 	end
 end
+
 --expand after combat is over
 function ElvUI_EltreumUI:QuestCombatEnd()
 	if E.db.ElvUI_EltreumUI.quests.combatenable then
@@ -180,7 +184,6 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 			if normal then
 				return
 			else
-				if E.Retail and C_Map.GetBestMapForUnit('player') == 762 then return end
 				if E.db.ElvUI_EltreumUI.dev then
 					ElvUI_EltreumUI:Print("started quest automation")
 				end
@@ -333,6 +336,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						[196499] = true, --therazal, aiding the accord quest that drops scaling gear, so should be delayed
 						[199366] = true, --therazal, aiding the accord quest that drops scaling gear, so should be delayed
 						[194584] = true, --Khuri, fishing npc
+						[113617] = true, --cos teleport back npc
 					}
 					if ignoredNPCS[NPC_ID] then
 						if E.db.ElvUI_EltreumUI.dev then
@@ -453,6 +457,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 									ElvUI_EltreumUI:Print("no available or active quest, looking for gossip instead")
 								end
 								local gossipInfoTable = C_GossipInfo.GetOptions()
+								if E.Retail and C_Map.GetBestMapForUnit('player') == 762 then return end
 								if #gossipInfoTable == 1 then
 									if NPC_ID == 153897 then
 										return
