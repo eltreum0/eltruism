@@ -58,5 +58,13 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 			frame = EnumerateFrames(frame)
 		end
 		E:StaggeredUpdateAll()
+		E:Delay(10, function()
+			if E.db.ElvUI_EltreumUI.chat.chattoggles then
+				_G.LeftChatToggleButton:SetAlpha(1)
+				_G.LeftChatToggleButton:Show()
+				_G.RightChatToggleButton:SetAlpha(1)
+				_G.RightChatToggleButton:Show()
+			end
+		end)
 	end
 end
