@@ -1355,3 +1355,4 @@ L["Lowers render scale if GPU bound to hit Target FPS."] = true
 L["Note this feature is in BETA.\nKnown issues:\n - May cause hitching.\n - May behave poorly with vsync on."] = true
 L["Dynamic Render Scale Minimum"] = true
 L["Lowest Render Scale used"] = true
+L["Other CVars"] = true

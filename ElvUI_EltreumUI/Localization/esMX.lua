@@ -1386,3 +1386,4 @@ L["Lowers render scale if GPU bound to hit Target FPS."] = "Reduce la escala de 
 L["Note this feature is in BETA.\nKnown issues:\n - May cause hitching.\n - May behave poorly with vsync on."] = "Ten en cuenta que esta característica está en BETA.\nProblemas conocidos:\n - Puede causar tartamudeo.\n - Puede comportarse mal con vsync activado."
 L["Dynamic Render Scale Minimum"] = "Escala de renderización dinámica mínima"
 L["Lowest Render Scale used"] = "Escala de renderización mínima utilizada"
+L["Other CVars"] = true
