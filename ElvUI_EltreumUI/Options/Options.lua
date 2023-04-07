@@ -7015,7 +7015,7 @@ function ElvUI_EltreumUI:Configtable()
 									},
 									skill = {
 										type = 'toggle',
-										name = SKILL,
+										name = E.NewSign..SKILL,
 										order = 5,
 										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
 										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.skill end,
