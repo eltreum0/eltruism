@@ -20,7 +20,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 		local function SkinFrame(frame)
 			if frame:GetObjectType() == "Texture" then frame = frame:GetParent() end
 			local mt = getmetatable(frame).__index
-			 if mt.SetTemplate then
+			if mt.SetTemplate then
 				hooksecurefunc(mt, "SetTemplate", function(frame, template, _, _, _, isUnitFrameElement, isNamePlateElement)
 					if isUnitFrameElement and not E.db.ElvUI_EltreumUI.skins.elvui.unitframes then return end
 					if isNamePlateElement and not E.db.ElvUI_EltreumUI.skins.elvui.nameplates then return end
