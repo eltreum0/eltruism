@@ -5,11 +5,7 @@ local hooksecurefunc = _G.hooksecurefunc
 local EnumerateFrames = _G.EnumerateFrames
 
 --based on elvui toolkit
-local testframe = CreateFrame("FRAME")
-testframe:RegisterEvent("PLAYER_STARTED_MOVING") --test
-testframe:RegisterEvent("PLAYER_ENTERING_WORLD")
-testframe:SetScript("OnEvent", function()
-	testframe:UnregisterAllEvents()
+function ElvUI_EltreumUI:SetTemplateSkin()
 	local frame = CreateFrame("Frame")
 	local frametypes = {
 		["Region"] = true,
@@ -50,4 +46,4 @@ testframe:SetScript("OnEvent", function()
 		frame = EnumerateFrames(frame)
 	end
 	E:StaggeredUpdateAll()
-end)
+end
