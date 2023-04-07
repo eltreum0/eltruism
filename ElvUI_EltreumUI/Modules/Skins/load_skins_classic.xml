@@ -1,4 +1,5 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file='SetTemplate.lua'/>
 	<Script file='Actionbars/Actionbars.lua'/>
 	<Include file='Addons\load_addons.xml'/>
 	<Script file='Addons/MeetingHorn.lua'/>
