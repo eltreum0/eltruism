@@ -13414,20 +13414,20 @@ function ElvUI_EltreumUI:Configtable()
 							},
 							elvui = {
 								type = 'group',
-								name = E.NewSign.."ElvUI",
+								name = "ElvUI",
 								order = 1,
 								args = {
 									gap1 = {
 										order = 1,
 										type = "description",
-										name = "ElvUI",
+										name = E.NewSign..L["Skin ElvUI"],
 										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 										width = "full",
 									},
 									elvuisettemplate = {
 										order = 2,
 										type = 'toggle',
-										name = E.NewSign..L["Skin ElvUI"],
+										name = L["Add a texture to ElvUI Backgrounds"],
 										width = "full",
 										get = function() return E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate = value E:StaticPopup_Show('CONFIG_RL') end,
@@ -13435,7 +13435,7 @@ function ElvUI_EltreumUI:Configtable()
 									uf = {
 										order = 3,
 										type = 'toggle',
-										name = L["UnitFrames"],
+										name = L["Enable on Unitframes"],
 										width = "full",
 										disabled = function() return not E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate end,
 										get = function() return E.db.ElvUI_EltreumUI.skins.elvui.unitframes end,
@@ -13444,7 +13444,7 @@ function ElvUI_EltreumUI:Configtable()
 									np = {
 										order = 4,
 										type = 'toggle',
-										name = L["Nameplates"],
+										name = L["Enable on Nameplate"],
 										width = "full",
 										disabled = function() return not E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate end,
 										get = function() return E.db.ElvUI_EltreumUI.skins.elvui.nameplates end,
