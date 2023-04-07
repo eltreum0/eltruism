@@ -8,6 +8,7 @@ Added an empty texture, None, that can be used to disable textures\
 Added Dead/Disconnected Icon Customization for tags\
 Added Dynamic Render Scale CVar to Graphics CVars\
 Added ElvUI Skin, which adds textures to frames\
+Added an option to show skill ups on LootText\
 Added a skin to the Vehicle Leave Button\
 Added Master Looter Icon customization\
 Added spark replacement to Aura Bars\
