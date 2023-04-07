@@ -37,7 +37,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 						bgtexture:SetBlendMode("ADD")
 						frame.EltruismBackground = true
 						if E.db.ElvUI_EltreumUI.skins.elvui.color.classcolor then
-							bgtexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
+							bgtexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,0.5)
 						else
 							bgtexture:SetVertexColor(E.db.ElvUI_EltreumUI.skins.elvui.color.r,E.db.ElvUI_EltreumUI.skins.elvui.color.g,E.db.ElvUI_EltreumUI.skins.elvui.color.b,E.db.ElvUI_EltreumUI.skins.elvui.color.a)
 						end
