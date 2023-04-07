@@ -579,6 +579,7 @@ P.ElvUI_EltreumUI = {
 			enable = false,
 			honor = true,
 			currency = true,
+			skill = false,
 			pet = true,
 			scale = 0.65,
 			strata = "BACKGROUND",

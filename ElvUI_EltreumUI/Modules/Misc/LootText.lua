@@ -300,10 +300,12 @@ function ElvUI_EltreumUI:LootText()
 					end
 				end
 			end
-			if event == 'CHAT_MSG_SKILL' and arg2 == "" then
-				E:Delay(0.5, function()
-					CombatText_AddMessage(arg1, CombatText_StandardScroll, 255, 255, 255)
-				end)
+			if E.db.ElvUI_EltreumUI.loot.loottext.skill then
+				if event == 'CHAT_MSG_SKILL' and arg2 == "" then
+					E:Delay(0.5, function()
+						CombatText_AddMessage(arg1, CombatText_StandardScroll, 255, 255, 255)
+					end)
+				end
 			end
 		end
 

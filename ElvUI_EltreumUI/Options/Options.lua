@@ -7013,6 +7013,14 @@ function ElvUI_EltreumUI:Configtable()
 										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.pet end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.pet = value end,
 									},
+									skill = {
+										type = 'toggle',
+										name = SKILL,
+										order = 5,
+										disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end,
+										get = function() return E.db.ElvUI_EltreumUI.loot.loottext.skill end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.skill = value end,
+									},
 								},
 							},
 							filter = {
