@@ -1390,3 +1390,6 @@ L["Other CVars"] = true
 L["Smart Classbar"] = true
 L["Health Height"] = true
 L["Auto Accept"] = true
+L["Skin ElvUI"] = true
+L["Add a texture to ElvUI Backgrounds"] = true
+L["Reset Style Filters"] = true
