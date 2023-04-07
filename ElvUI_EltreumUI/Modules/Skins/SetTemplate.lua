@@ -31,7 +31,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 						bgtexture:ClearAllPoints()
 						bgtexture:SetPoint("TOPLEFT", 1, -1)
 						bgtexture:SetPoint("BOTTOMRIGHT", -1, 1)
-						bgtexture:SetTexture([[Interface\AddOns\ElvUI_EltreumUI\Media\Textures\framebg1]], true, true) --custom texture? although getting even one to work was hard
+						bgtexture:SetTexture(E.LSM:Fetch("background", E.db.ElvUI_EltreumUI.skins.elvui.texture), true, true) --custom texture? although getting even one to work was hard
 						bgtexture:SetHorizTile(true)
 						bgtexture:SetVertTile(true)
 						bgtexture:SetBlendMode("ADD")
