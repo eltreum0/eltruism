@@ -42,6 +42,19 @@ P.ElvUI_EltreumUI = {
 	},
 
 	skins = {
+		elvui = {
+			SetTemplate = false,
+			unitframes = true,
+			nameplates = true,
+			color = {
+				classcolor = false,
+				r = 0.12,
+				g = 0.12,
+				b = 0.12,
+				a = 1,
+			},
+			texture = "Eltreum-Tile01",
+		},
 		levelbossinstance = false,
 		widertransmog = false,
 		expandedstable = false,
