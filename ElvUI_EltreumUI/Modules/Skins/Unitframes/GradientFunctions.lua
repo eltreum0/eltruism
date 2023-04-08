@@ -408,19 +408,35 @@ function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, alpha, isBG)
 end
 
 --sets name with gradient colors using elvui
-function ElvUI_EltreumUI:GradientName(name, unitclass)
+function ElvUI_EltreumUI:GradientName(name, unitclass, isTarget)
 	if not name then return end
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 		if unitframecustomgradients[unitclass] then
-			return E:TextGradient(name, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2)
+			if not isTarget then
+				return E:TextGradient(name, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2)
+			else
+				return E:TextGradient(name, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1)
+			end
 		else
-			return E:TextGradient(name, unitframecustomgradients["ELTRUISM"].r1, unitframecustomgradients["ELTRUISM"].g1, unitframecustomgradients["ELTRUISM"].b1, unitframecustomgradients["ELTRUISM"].r2, unitframecustomgradients["ELTRUISM"].g2, unitframecustomgradients["ELTRUISM"].b2)
+			if not isTarget then
+				return E:TextGradient(name, unitframecustomgradients["ELTRUISM"].r1, unitframecustomgradients["ELTRUISM"].g1, unitframecustomgradients["ELTRUISM"].b1, unitframecustomgradients["ELTRUISM"].r2, unitframecustomgradients["ELTRUISM"].g2, unitframecustomgradients["ELTRUISM"].b2)
+			else
+				return E:TextGradient(name, unitframecustomgradients["ELTRUISM"].r2, unitframecustomgradients["ELTRUISM"].g2, unitframecustomgradients["ELTRUISM"].b2, unitframecustomgradients["ELTRUISM"].r1, unitframecustomgradients["ELTRUISM"].g1, unitframecustomgradients["ELTRUISM"].b1)
+			end
 		end
 	else
 		if unitframegradients[unitclass] then
-			return E:TextGradient(name, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2)
+			if not isTarget then
+				return E:TextGradient(name, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2)
+			else
+				return E:TextGradient(name, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1)
+			end
 		else
-			return E:TextGradient(name, unitframegradients["ELTRUISM"].r1, unitframegradients["ELTRUISM"].g1, unitframegradients["ELTRUISM"].b1, unitframegradients["ELTRUISM"].r2, unitframegradients["ELTRUISM"].g2, unitframegradients["ELTRUISM"].b2)
+			if not isTarget then
+				return E:TextGradient(name, unitframegradients["ELTRUISM"].r1, unitframegradients["ELTRUISM"].g1, unitframegradients["ELTRUISM"].b1, unitframegradients["ELTRUISM"].r2, unitframegradients["ELTRUISM"].g2, unitframegradients["ELTRUISM"].b2)
+			else
+				return E:TextGradient(name, unitframegradients["ELTRUISM"].r2, unitframegradients["ELTRUISM"].g2, unitframegradients["ELTRUISM"].b2, unitframegradients["ELTRUISM"].r1, unitframegradients["ELTRUISM"].g1, unitframegradients["ELTRUISM"].b1)
+			end
 		end
 	end
 end

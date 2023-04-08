@@ -415,20 +415,21 @@ E:AddTagInfo("name:eltruism:abbreviateshort", ElvUI_EltreumUI.Name.." "..L["Name
 E:AddTag("name:eltruism:gradient", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
 	local _, unitClass = UnitClass(unit)
+	local isTarget = UnitIsUnit(unit,"target")
 
 	if UnitIsPlayer(unit) then
-		return ElvUI_EltreumUI:GradientName(name, unitClass)
+		return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget)
 	elseif not UnitIsPlayer(unit) then
 		local reaction = UnitReaction(unit, "player")
 		if reaction then
 			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY")
+				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget)
 			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL")
+				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget)
 			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY")
+				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget)
 			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE")
+				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget)
 			end
 		end
 	end
@@ -442,20 +443,21 @@ E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit)
 	if name and string.len(name) > 16 then
 		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
 	end
+	local isTarget = UnitIsUnit(unit,"target")
 
 	if UnitIsPlayer(unit) then
-		return ElvUI_EltreumUI:GradientName(name, unitClass)
+		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
 	elseif not UnitIsPlayer(unit) then
 		local reaction = UnitReaction(unit, "player")
 		if reaction then
 			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY")
+				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget)
 			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL")
+				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget)
 			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY")
+				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget)
 			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE")
+				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget)
 			end
 		end
 	end
@@ -467,20 +469,21 @@ E:AddTag("name:eltruism:gradienttranslit", "UNIT_NAME_UPDATE", function(unit)
 	local targetName = UnitName(unit)
 	local name = Translit:Transliterate(targetName)
 	local _, unitClass = UnitClass(unit)
+	local isTarget = UnitIsUnit(unit,"target")
 
 	if UnitIsPlayer(unit) then
-		return ElvUI_EltreumUI:GradientName(name, unitClass)
+		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
 	elseif not UnitIsPlayer(unit) then
 		local reaction = UnitReaction(unit, "player")
 		if reaction then
 			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY")
+				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget)
 			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL")
+				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget)
 			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY")
+				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget)
 			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE")
+				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget)
 			end
 		end
 	end
@@ -495,20 +498,21 @@ E:AddTag("name:eltruism:gradientshorttranslit", "UNIT_NAME_UPDATE", function(uni
 	if name and string.len(name) > 16 then
 		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
 	end
+	local isTarget = UnitIsUnit(unit,"target")
 
 	if UnitIsPlayer(unit) then
-		return ElvUI_EltreumUI:GradientName(name, unitClass)
+		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
 	elseif not UnitIsPlayer(unit) then
 		local reaction = UnitReaction(unit, "player")
 		if reaction then
 			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY")
+				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget)
 			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL")
+				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget)
 			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY")
+				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget)
 			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE")
+				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget)
 			end
 		end
 	end
