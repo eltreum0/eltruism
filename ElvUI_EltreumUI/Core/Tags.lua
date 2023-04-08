@@ -415,7 +415,7 @@ E:AddTagInfo("name:eltruism:abbreviateshort", ElvUI_EltreumUI.Name.." "..L["Name
 E:AddTag("name:eltruism:gradient", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
 	local _, unitClass = UnitClass(unit)
-	local isTarget = UnitIsUnit(unit,"target")
+	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate")
 
 	if UnitIsPlayer(unit) then
 		return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget)
@@ -443,7 +443,7 @@ E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit)
 	if name and string.len(name) > 16 then
 		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
 	end
-	local isTarget = UnitIsUnit(unit,"target")
+	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate")
 
 	if UnitIsPlayer(unit) then
 		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
@@ -469,7 +469,7 @@ E:AddTag("name:eltruism:gradienttranslit", "UNIT_NAME_UPDATE", function(unit)
 	local targetName = UnitName(unit)
 	local name = Translit:Transliterate(targetName)
 	local _, unitClass = UnitClass(unit)
-	local isTarget = UnitIsUnit(unit,"target")
+	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate")
 
 	if UnitIsPlayer(unit) then
 		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
@@ -498,7 +498,7 @@ E:AddTag("name:eltruism:gradientshorttranslit", "UNIT_NAME_UPDATE", function(uni
 	if name and string.len(name) > 16 then
 		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
 	end
-	local isTarget = UnitIsUnit(unit,"target")
+	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate")
 
 	if UnitIsPlayer(unit) then
 		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
