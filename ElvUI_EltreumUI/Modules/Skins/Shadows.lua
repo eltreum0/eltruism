@@ -2275,6 +2275,22 @@ function ElvUI_EltreumUI:Shadows()
 				LeftChatShadow:Hide()
 				RightChatShadow:Hide()
 			end
+
+			--datatext shadow
+			E:Delay(1, function()
+				for i = 0, 10 do
+					if _G["ElvUI_DTPanel"..tostring(i)] then
+						if _G["ElvUI_DTPanel"..tostring(i)].template ~= 'NoBackdrop' then
+							if not _G["ElvUI_DTPanel"..tostring(i)].shadow then
+								_G["ElvUI_DTPanel"..tostring(i)]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUI_DTPanel"..tostring(i)].shadow)
+							end
+						end
+					else
+						break
+					end
+				end
+			end)
 		end
 		------------------------------------------------------------------------------------------------------other addons
 		if IsAddOnLoaded('ProjectAzilroka') then

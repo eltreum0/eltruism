@@ -37,6 +37,19 @@ function ElvUI_EltreumUI:TransparentChat()
 	_G.RightChatToggleButton:SetAlpha(1)
 	_G.RightChatToggleButton:Show()
 
+	--datatext shadow
+	for i = 0, 10 do
+		if _G["ElvUI_DTPanel"..tostring(i)] then
+			if _G["ElvUI_DTPanel"..tostring(i)].name == "EltruismDataText" then
+				if _G["ElvUI_DTPanel"..tostring(i)].shadow then
+					_G["ElvUI_DTPanel"..tostring(i)].shadow:Hide()
+				end
+			end
+		else
+			break
+		end
+	end
+
 	ElvUI_EltreumUI:Print("Chat set to Transparent mode")
 end
 
@@ -75,6 +88,19 @@ function ElvUI_EltreumUI:DarkChat()
 	_G.LeftChatToggleButton:Show()
 	_G.RightChatToggleButton:SetAlpha(1)
 	_G.RightChatToggleButton:Show()
+
+	--datatext shadow
+	for i = 0, 10 do
+		if _G["ElvUI_DTPanel"..tostring(i)] then
+			if _G["ElvUI_DTPanel"..tostring(i)].name == "EltruismDataText" then
+				if _G["ElvUI_DTPanel"..tostring(i)].shadow then
+					_G["ElvUI_DTPanel"..tostring(i)].shadow:Show()
+				end
+			end
+		else
+			break
+		end
+	end
 
 	ElvUI_EltreumUI:Print("Chat set to Dark mode")
 end
