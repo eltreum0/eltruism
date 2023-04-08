@@ -24,24 +24,35 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 				hooksecurefunc(mt, "SetTemplate", function(frame, template, _, _, _, isUnitFrameElement, isNamePlateElement)
 					if isUnitFrameElement and not E.db.ElvUI_EltreumUI.skins.elvui.unitframes then return end
 					if isNamePlateElement and not E.db.ElvUI_EltreumUI.skins.elvui.nameplates then return end
-					if template ~= "NoBackdrop" and not frame.EltruismBackground then
-						local bgtexture = frame:CreateTexture(nil, "BORDER")
-						bgtexture:SetParent(frame)
-						bgtexture:ClearAllPoints()
-						bgtexture:SetPoint("TOPLEFT", 1, -1)
-						bgtexture:SetPoint("BOTTOMRIGHT", -1, 1)
-						bgtexture:SetTexture(E.LSM:Fetch("background", E.db.ElvUI_EltreumUI.skins.elvui.texture), true, true)
-						bgtexture:SetHorizTile(true)
-						bgtexture:SetVertTile(true)
-						bgtexture:SetBlendMode("ADD")
-						if frame:GetObjectType() == "Button" and frame.icon then --fix for buttons since the texture could overlap over the icon
-							bgtexture:SetDrawLayer("BACKGROUND")
-						end
-						frame.EltruismBackground = true
-						if E.db.ElvUI_EltreumUI.skins.elvui.color.classcolor then
-							bgtexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,0.15)
+					if template ~= "NoBackdrop" then
+						if not frame.EltruismBackground then
+							frame.eltruismbgtexture = frame:CreateTexture(nil, "BORDER")
+							frame.eltruismbgtexture:SetParent(frame)
+							frame.eltruismbgtexture:ClearAllPoints()
+							frame.eltruismbgtexture:SetPoint("TOPLEFT", 1, -1)
+							frame.eltruismbgtexture:SetPoint("BOTTOMRIGHT", -1, 1)
+							frame.eltruismbgtexture:SetTexture(E.LSM:Fetch("background", E.db.ElvUI_EltreumUI.skins.elvui.texture), true, true)
+							frame.eltruismbgtexture:SetHorizTile(true)
+							frame.eltruismbgtexture:SetVertTile(true)
+							frame.eltruismbgtexture:SetBlendMode("ADD")
+							if frame:GetObjectType() == "Button" and frame.icon then --fix for buttons since the texture could overlap over the icon
+								frame.eltruismbgtexture:SetDrawLayer("BACKGROUND")
+							end
+
+							if E.db.ElvUI_EltreumUI.skins.elvui.color.classcolor then
+								frame.eltruismbgtexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,0.15)
+							else
+								frame.eltruismbgtexture:SetVertexColor(E.db.ElvUI_EltreumUI.skins.elvui.color.r,E.db.ElvUI_EltreumUI.skins.elvui.color.g,E.db.ElvUI_EltreumUI.skins.elvui.color.b,E.db.ElvUI_EltreumUI.skins.elvui.color.a)
+							end
+							frame.EltruismBackground = true
 						else
-							bgtexture:SetVertexColor(E.db.ElvUI_EltreumUI.skins.elvui.color.r,E.db.ElvUI_EltreumUI.skins.elvui.color.g,E.db.ElvUI_EltreumUI.skins.elvui.color.b,E.db.ElvUI_EltreumUI.skins.elvui.color.a)
+							if frame.eltruismbgtexture then
+								frame.eltruismbgtexture:Show()
+							end
+						end
+					elseif template == "NoBackdrop" then
+						if frame.eltruismbgtexture then
+							frame.eltruismbgtexture:Hide()
 						end
 					end
 				end)
