@@ -50,7 +50,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 								frame.eltruismbgtexture:Show()
 							end
 						end
-					elseif template == "NoBackdrop" then
+					else
 						if frame.eltruismbgtexture then
 							frame.eltruismbgtexture:Hide()
 						end
