@@ -34,6 +34,9 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 						bgtexture:SetHorizTile(true)
 						bgtexture:SetVertTile(true)
 						bgtexture:SetBlendMode("ADD")
+						if frame:GetObjectType() == "Button" and frame.icon then --fix for buttons since the texture could overlap over the icon
+							bgtexture:SetDrawLayer("BACKGROUND")
+						end
 						frame.EltruismBackground = true
 						if E.db.ElvUI_EltreumUI.skins.elvui.color.classcolor then
 							bgtexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,0.15)
