@@ -1379,3 +1379,6 @@ L["Nameplate Global Scale"] = true
 L["Global Scaling of nameplates after selected, min, and max scale"] = true
 L["Soft Target Interact"] = true
 L["Enable Soft Target Interactions"] = true
+L["Skin BagSync"] = true
+L["Skin Hekili"] = true
+L["Skin OmniCD"] = true
