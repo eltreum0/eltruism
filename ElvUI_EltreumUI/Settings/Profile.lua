@@ -196,6 +196,9 @@ P.ElvUI_EltreumUI = {
 		rarescanner = false,
 		simulationcraft = false,
 		warpdeplete = false,
+		bagsync = false,
+		hekili = false,
+		omnicd = false,
 
 		hideABkeypress = false,
 		tbctalents = false,

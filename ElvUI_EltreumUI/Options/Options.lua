@@ -13341,6 +13341,21 @@ function ElvUI_EltreumUI:Configtable()
 								name = L["Other AddOns"],
 								order = 1,
 								args = {
+									gapbagsync = {
+										order = 200,
+										type = "description",
+										name = "BagSync",
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									bagsyncskin = {
+										order = 201,
+										type = 'toggle',
+										name = E.NewSign..L["Skin BagSync"],
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.skins.bagsync end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.bagsync = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
 									gap2 = {
 										order = 203,
 										type = "description",
@@ -13370,6 +13385,21 @@ function ElvUI_EltreumUI:Configtable()
 										width = "full",
 										get = function() return E.db.ElvUI_EltreumUI.skins.clique end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.skins.clique = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									gaphekili = {
+										order = 500,
+										type = "description",
+										name = "Hekili",
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									hekiliskin = {
+										order = 501,
+										type = 'toggle',
+										name = E.NewSign..L["Skin Hekili"],
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.skins.hekili end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.hekili = value E:StaticPopup_Show('CONFIG_RL') end,
 									},
 									gap5 = {
 										order = 505,
@@ -13403,6 +13433,22 @@ function ElvUI_EltreumUI:Configtable()
 										width = "full",
 										get = function() return E.db.ElvUI_EltreumUI.skins.meetinghorn end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.skins.meetinghorn = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									gapomnicd = {
+										order = 680,
+										type = "description",
+										name = "OmniCD",
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+										width = "full",
+									},
+									omnicd = {
+										order = 681,
+										type = 'toggle',
+										name = L["Skin OmniCD"],
+										desc = L["Skin OmniCD"],
+										width = "full",
+										get = function() return E.db.ElvUI_EltreumUI.skins.omnicd end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.omnicd = value E:StaticPopup_Show('CONFIG_RL') end,
 									},
 									gap7 = {
 										order = 700,
