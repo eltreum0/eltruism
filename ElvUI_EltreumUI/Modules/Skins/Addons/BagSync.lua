@@ -1,6 +1,7 @@
 local E, L, V, P, G = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
+local valuecolors = E:ClassColor(E.myclass, true)
 
 --based on meeting horn skin
 function ElvUI_EltreumUI:EltruismBagSync()
@@ -24,12 +25,22 @@ function ElvUI_EltreumUI:EltruismBagSync()
 				local group = select(i, header:GetChildren())
 				if group and group.scrollBar then
 					S:HandleScrollBar(group.scrollBar)
+					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
+					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
 				end
 			end
 
 			S:HandleFrame(Search.helpFrame)
 			S:HandleCloseButton(Search.helpFrame.CloseButton)
 			S:HandleScrollBar(Search.helpFrame.ScrollFrame.ScrollBar)
+
+			S:HandleFrame(Search.savedSearch)
+			S:HandleCloseButton(Search.savedSearch.CloseButton)
+			S:HandleButton(Search.savedSearch.addSavedBtn)
+			S:HandleScrollBar(Search.savedSearch.scrollFrame.scrollBar)
+			S:HandleFrame(Search.savedSearch.scrollFrame.scrollChild)
+			Search.savedSearch.scrollFrame.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
+			Search.savedSearch.scrollFrame.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
 
 			local adv = f:GetModule("AdvancedSearch")
 			S:HandleFrame(adv.frame)
@@ -44,6 +55,8 @@ function ElvUI_EltreumUI:EltruismBagSync()
 				local group = select(i, header2:GetChildren())
 				if group and group.scrollBar then
 					S:HandleScrollBar(group.scrollBar)
+					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
+					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
 				end
 			end
 
@@ -56,6 +69,7 @@ function ElvUI_EltreumUI:EltruismBagSync()
 				if group and group.scrollBar then
 					S:HandleScrollBar(group.scrollBar)
 					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
+					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
 				end
 			end
 
@@ -68,6 +82,7 @@ function ElvUI_EltreumUI:EltruismBagSync()
 				if group and group.scrollBar then
 					S:HandleScrollBar(group.scrollBar)
 					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
+					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
 				end
 			end
 
@@ -80,6 +95,7 @@ function ElvUI_EltreumUI:EltruismBagSync()
 				if group and group.scrollBar then
 					S:HandleScrollBar(group.scrollBar)
 					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
+					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
 				end
 			end
 
@@ -96,6 +112,7 @@ function ElvUI_EltreumUI:EltruismBagSync()
 				if group and group.scrollBar then
 					S:HandleScrollBar(group.scrollBar)
 					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
+					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
 				end
 			end
 
@@ -110,6 +127,7 @@ function ElvUI_EltreumUI:EltruismBagSync()
 				if group and group.scrollBar then
 					S:HandleScrollBar(group.scrollBar)
 					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
+					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
 				end
 			end
 			S:HandleFrame(Whitelist.warningFrame)
@@ -124,6 +142,7 @@ function ElvUI_EltreumUI:EltruismBagSync()
 				if group and group.scrollBar then
 					S:HandleScrollBar(group.scrollBar)
 					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
+					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
 				end
 			end
 
@@ -136,6 +155,7 @@ function ElvUI_EltreumUI:EltruismBagSync()
 				if group and group.scrollBar then
 					S:HandleScrollBar(group.scrollBar)
 					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
+					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
 				end
 			end
 
@@ -157,11 +177,26 @@ function ElvUI_EltreumUI:EltruismBagSync()
 					if group.scrollBar then
 						S:HandleScrollBar(group.scrollBar)
 						group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
+						group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
 					end
 				end
 			end
 			S:HandleFrame(SortOrder.warningFrame)
 			S:HandleCloseButton(SortOrder.warningFrame.CloseButton)
+
+			local Details = f:GetModule("Details")
+			S:HandleFrame(Details.frame)
+			S:HandleCloseButton(Details.frame.closeBtn)
+			local header11 = Details.frame
+			for i = 1, header11:GetNumChildren() do
+				local group = select(i, header11:GetChildren())
+				if group and group.scrollBar then
+					S:HandleScrollBar(group.scrollBar)
+					S:HandleFrame(group)
+					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
+					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
+				end
+			end
 
 			--shadows
 			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
@@ -169,13 +204,17 @@ function ElvUI_EltreumUI:EltruismBagSync()
 					Search.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(Search.frame.shadow)
 				end
-				if not adv.frame.shadow then
-					adv.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(adv.frame.shadow)
-				end
 				if not Search.helpFrame.shadow then
 					Search.helpFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(Search.helpFrame.shadow)
+				end
+				if not Search.savedSearch.shadow then
+					Search.savedSearch:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(Search.savedSearch.shadow)
+				end
+				if not adv.frame.shadow then
+					adv.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(adv.frame.shadow)
 				end
 				if not Currency.frame.shadow then
 					Currency.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -216,6 +255,10 @@ function ElvUI_EltreumUI:EltruismBagSync()
 				if not SortOrder.warningFrame.shadow then
 					SortOrder.warningFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(SortOrder.warningFrame.shadow)
+				end
+				if not Details.frame.shadow then
+					Details.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(Details.frame.shadow)
 				end
 			end
 		end)
