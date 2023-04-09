@@ -4537,6 +4537,47 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								childGroups = "tab",
 								args = {
+									headersofttarget = {
+										order = 1,
+										type = "description",
+										name = "",
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
+									SoftTargetInteract = {
+										order = 2,
+										type = 'toggle',
+										name = L["Soft Target Interact"],
+										desc = L["Enable Soft Target Interactions"],
+										width = 'full',
+										get = function()
+											if C_CVar.GetCVar('SoftTargetInteract') == '0' then
+												return false
+											elseif C_CVar.GetCVar('SoftTargetInteract') == '3' then
+												return true
+											end
+										end,
+										set = function(_, value)
+											if value == true then
+												SetCVar('SoftTargetInteract', 3)
+												SetCVar('SoftTargetIconInteract', 1)
+												SetCVar('SoftTargetIconGameObject', 1)
+												SetCVar('SoftTargetNameplateInteract', 1)
+											else
+												SetCVar('SoftTargetInteract', 0)
+												SetCVar('SoftTargetIconInteract', 0)
+												SetCVar('SoftTargetIconGameObject', 0)
+												SetCVar('SoftTargetNameplateInteract', 0)
+											end
+										 end,
+									},
+									headerradial = {
+										order = 11,
+										type = "description",
+										name = "",
+										width = 'full',
+										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+									},
 									nameplateTargetRadialPosition = {
 										order = 12,
 										type = 'select',
@@ -4592,7 +4633,19 @@ function ElvUI_EltreumUI:Configtable()
 										step = 0.01,
 										width = "full",
 										get = function() return E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult end,
-										set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult = value SetCVar('nameplateOccludedAlphaMult', value) SetCVar('nameplateOccludedAlphaMult', value) end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult = value SetCVar('nameplateOccludedAlphaMult', value) end,
+									},
+									nameplateGlobalScale = {
+										type = 'range',
+										name = L["Nameplate Global Scale"],
+										desc = L["Global Scaling of nameplates after selected, min, and max scale"],
+										order = 17,
+										min = 0.1,
+										max = 2,
+										step = 0.01,
+										width = "full",
+										get = function() return tonumber(C_CVar.GetCVar('nameplateGlobalScale')) end,
+										set = function(_, value) SetCVar('nameplateGlobalScale', value) end,
 									},
 								},
 							},
