@@ -184,6 +184,20 @@ function ElvUI_EltreumUI:EltruismBagSync()
 			S:HandleFrame(SortOrder.warningFrame)
 			S:HandleCloseButton(SortOrder.warningFrame.CloseButton)
 
+			local Details = f:GetModule("Details")
+			S:HandleFrame(Details.frame)
+			S:HandleCloseButton(Details.frame.closeBtn)
+			local header11 = Details.frame
+			for i = 1, header11:GetNumChildren() do
+				local group = select(i, header11:GetChildren())
+				if group and group.scrollBar then
+					S:HandleScrollBar(group.scrollBar)
+					S:HandleFrame(group)
+					group.scrollBar.thumbTexture:SetTexture(E.Media.Textures.Melli)
+					group.scrollBar.thumbTexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
+				end
+			end
+
 			--shadows
 			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 				if not Search.frame.shadow then
@@ -241,6 +255,10 @@ function ElvUI_EltreumUI:EltruismBagSync()
 				if not SortOrder.warningFrame.shadow then
 					SortOrder.warningFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(SortOrder.warningFrame.shadow)
+				end
+				if not Details.frame.shadow then
+					Details.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(Details.frame.shadow)
 				end
 			end
 		end)
