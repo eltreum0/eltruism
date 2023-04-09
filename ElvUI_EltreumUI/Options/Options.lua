@@ -4641,7 +4641,7 @@ function ElvUI_EltreumUI:Configtable()
 										desc = L["Global Scaling of nameplates after selected, min, and max scale"],
 										order = 17,
 										min = 0.1,
-										max = 2,
+										max = 10,
 										step = 0.01,
 										width = "full",
 										get = function() return tonumber(C_CVar.GetCVar('nameplateGlobalScale')) end,
