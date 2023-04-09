@@ -1364,3 +1364,7 @@ L["Auto Accept"] = true
 L["Skin ElvUI"] = true
 L["Add a texture to ElvUI Backgrounds"] = true
 L["Reset Style Filters"] = true
+L["Nameplate Global Scale"] = true
+L["Global Scaling of nameplates after selected, min, and max scale"] = true
+L["Soft Target Interact"] = true
+L["Enable Soft Target Interactions"] = true

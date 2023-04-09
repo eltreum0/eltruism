@@ -1367,3 +1367,7 @@ L["Auto Accept"] = "Auto Aceitação"
 L["Skin ElvUI"] = "Modificar ElvUI"
 L["Add a texture to ElvUI Backgrounds"] = "Acrescentar uma textura ao fundo da ElvUI"
 L["Reset Style Filters"] = "Resetar Filtros de Estilo"
+L["Nameplate Global Scale"] = true
+L["Global Scaling of nameplates after selected, min, and max scale"] = true
+L["Soft Target Interact"] = true
+L["Enable Soft Target Interactions"] = true
