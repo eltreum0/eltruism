@@ -61,11 +61,11 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 
 	--game version check
 	local requiredversion = tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-Interface'))
-	local currentversion = tonumber(select(4,GetBuildInfo()))
-	if requiredversion < currentversion then
+	local currentversion = select(4,GetBuildInfo())
+	if requiredversion < tonumber(currentversion) then
 		E:StaticPopup_Show('GAMEVERSIONCHECKHIGHER')
 		ElvUI_EltreumUI:Print(L["Your World of Warcraft version is higher than expected for Eltruism, please update Eltruism or you might run into issues.\n|cffFF0000(You are likely having errors right now!)|r"])
-	elseif requiredversion > currentversion then
+	elseif requiredversion > tonumber(currentversion) then
 		E:StaticPopup_Show('GAMEVERSIONCHECKLOWER')
 		ElvUI_EltreumUI:Print(L["Your World of Warcraft version is older than Eltruism, you might run into issues!"])
 	end
