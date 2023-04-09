@@ -29,15 +29,15 @@ function ElvUI_EltreumUI:EltruismBagSync()
 		S:HandleCloseButton(Search.helpFrame.CloseButton)
 		S:HandleScrollBar(Search.helpFrame.ScrollFrame.ScrollBar)
 
-		local adv = f:GetModule("AdvancedSearch", true).frame
-		S:HandleFrame(adv)
-		S:HandleEditBox(adv.SearchBox)
-		S:HandleButton(adv.PlusButton)
-		S:HandleButton(adv.RefreshButton)
-		S:HandleCloseButton(adv.closeBtn)
-		S:HandleButton(adv.selectAllButton)
-		S:HandleButton(adv.resetButton)
-		local header2 = adv
+		local adv = f:GetModule("AdvancedSearch")
+		S:HandleFrame(adv.frame)
+		S:HandleEditBox(adv.frame.SearchBox)
+		S:HandleButton(adv.frame.PlusButton)
+		S:HandleButton(adv.frame.RefreshButton)
+		S:HandleCloseButton(adv.frame.closeBtn)
+		S:HandleButton(adv.frame.selectAllButton)
+		S:HandleButton(adv.frame.resetButton)
+		local header2 = adv.frame
 		for i = 1, header2:GetNumChildren() do
 			local group = select(i, header2:GetChildren())
 			if group and group.scrollBar then
@@ -167,9 +167,9 @@ function ElvUI_EltreumUI:EltruismBagSync()
 				Search.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(Search.frame.shadow)
 			end
-			if not adv.shadow then
-				adv:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(adv.shadow)
+			if not adv.frame.shadow then
+				adv.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(adv.frame.shadow)
 			end
 			if not Search.helpFrame.shadow then
 				Search.helpFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
