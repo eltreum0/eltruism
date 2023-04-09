@@ -3,7 +3,8 @@ local _G = _G
 local CH = E:GetModule("Chat")
 
 --Eltreum
-local EltreumIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:0:32:32:0:32:0:32:69:128:179|t"
+--|Tpath:height[:width[:offsetX:offsetY:[textureWidth:textureHeight:leftTexel:rightTexel:topTexel:bottomTexel[:rVertexColor:gVertexColor:bVertexColor]]]]|t
+local EltreumIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:2:64:64:0:64:0:64:69:128:179|t"
 local EltreumCharacters = {
 
 	--Retail Alliance
@@ -40,18 +41,27 @@ local EltreumCharacters = {
 }
 
 --Donators
-local DonatorsIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:0:32:32:0:32:0:32:181:9:9|t"
+local DonatorsIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:2:64:64:0:64:0:64:181:9:9|t"
 local DonatorsCharacters = {
-	--["Kuriatas-Stormrage"] = DonatorsIcon, --test
+	--jiberish
 	["Jiberish-Illidan"] = DonatorsIcon,
 	["Jiberishaman-Illidan"] = DonatorsIcon,
 	["Jiberishift-Illidan"] = DonatorsIcon,
 	["Jiberishadow-Illidan"] = DonatorsIcon,
 	["Jiberisheep-Illidan"] = DonatorsIcon,
+
+	--trenchy
+	["Grunchy-Thrall"] = DonatorsIcon,
+	["Trenchey-Thrall"] = DonatorsIcon,
+	["Trenchay-Thrall"] = DonatorsIcon,
+	["Trenchy-Thrall"] = DonatorsIcon,
+	["Trenchee-Thrall"] = DonatorsIcon,
+	["Trenchae-Thrall"] = DonatorsIcon,
+	["Trenchai-Thrall"] = DonatorsIcon,
 }
 
 --Discord MVPs
-local MVPIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:0:32:32:0:32:0:32:255:115:0|t"
+local MVPIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:2:64:64:0:64:0:64:255:115:0|t"
 local MVPCharacters = {
 	--["Kuriatas-Stormrage"] = MVPIcon, --test
 	["Evowøød-Blackhand"] = MVPIcon,
