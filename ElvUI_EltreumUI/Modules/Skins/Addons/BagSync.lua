@@ -6,7 +6,7 @@ local _G = _G
 function ElvUI_EltreumUI:EltruismBagSync()
 	if E.db.ElvUI_EltreumUI.skins.bagsync then
 
-		local f = LibStub("AceAddon-3.0"):GetAddon("BagSync")
+		local f = E.Libs.AceAddon:GetAddon("BagSync")
 
 		local Search = f:GetModule("Search")
 		S:HandleFrame(Search.frame)

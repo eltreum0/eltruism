@@ -17,7 +17,7 @@ SkinLocale()
 function ElvUI_EltreumUI:EltruismMeetingHorn()
 	if E.db.ElvUI_EltreumUI.skins.meetinghorn then
 
-		local f = LibStub("AceAddon-3.0"):GetAddon("MeetingHorn")
+		local f = E.Libs.AceAddon:GetAddon("MeetingHorn")
 		S:HandleFrame(f.MainPanel)
 		f.MainPanel:SetTemplate('Transparent', nil, true)
 
