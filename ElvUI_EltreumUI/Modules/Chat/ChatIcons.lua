@@ -43,6 +43,11 @@ local EltreumCharacters = {
 local DonatorsIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:0:32:32:0:32:0:32:181:9:9|t"
 local DonatorsCharacters = {
 	--["Kuriatas-Stormrage"] = DonatorsIcon, --test
+	["Jiberish-Illidan"] = DonatorsIcon,
+	["Jiberishaman-Illidan"] = DonatorsIcon,
+	["Jiberishift-Illidan"] = DonatorsIcon,
+	["Jiberishadow-Illidan"] = DonatorsIcon,
+	["Jiberisheep-Illidan"] = DonatorsIcon,
 }
 
 --Discord MVPs
