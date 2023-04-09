@@ -142,19 +142,25 @@ local function ColorSysMsgs(_, event, message, ...)
 			leavestring2 = "leaves the"
 		end
 		if message:find(rollstring) then
-			local msg = (string.format("|cff"..classcolorsescape[E.myclass]..message.."|r"))
-			if msg:find(rollstring.." 1 ") then
-				if E.db.ElvUI_EltreumUI.chat.rollsound then
-					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.ogg", "Master")
+			--from this deleted user on the addons discord (ty whoever you are) https://discord.com/channels/168296152670797824/168296152670797824/558463766828679188
+			local _rollMessageTailRegex = RANDOM_ROLL_RESULT:gsub("%(", "%%("):gsub("%)", "%%)"):gsub("%%d", "(%%d+)"):gsub("%%%d+%$d", "(%%d+)"):gsub("%%s", ""):gsub("%%%d+%$s", "").. "$"
+			local name = message:gsub("%s*" .. _rollMessageTailRegex, "")
+			local _, unitClass = UnitClass(name)
+			if unitClass then
+				local msg = (string.format("|cff"..classcolorsescape[unitClass]..message.."|r"))
+				if msg:find(rollstring.." 1 ") then
+					if E.db.ElvUI_EltreumUI.chat.rollsound then
+						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\oof.ogg", "Master")
+					end
+					return false, gsub(msg, rollstring.." 1", rollstring.." |cffFF00001|r"), ...
+				elseif msg:find(rollstring.." 100 ") then
+					if E.db.ElvUI_EltreumUI.chat.rollsound then
+						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\WillSmith-Ahaha.ogg", "Master")
+					end
+					return false, gsub(msg, rollstring.." 100", rollstring.." |cffFFFF00100|r"), ...
+				else
+					return false, msg, ...
 				end
-				return false, gsub(msg, rollstring.." 1", rollstring.." |cffFF00001|r"), ...
-			elseif msg:find(rollstring.." 100 ") then
-				if E.db.ElvUI_EltreumUI.chat.rollsound then
-					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\WillSmith-Ahaha.ogg", "Master")
-				end
-				return false, gsub(msg, rollstring.." 100", rollstring.." |cffFFFF00100|r"), ...
-			else
-				return false, msg, ...
 			end
 		end
 		if message:find(joinsstring) then

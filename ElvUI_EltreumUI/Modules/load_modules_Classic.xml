@@ -5,7 +5,7 @@
 	<Script file='Chat/LootIcon.lua'/>
 	<Script file='Chat/Misc.lua'/>
 	<Script file='Chat/ChatColor.lua'/>
-	<!--<Script file='Chat/ChatIcons.lua'/>-->
+	<Script file='Chat/ChatIcons.lua'/>
 	<Script file='DataTexts/Ammo.lua'/>
 	<Script file='DataTexts/Config.lua'/>
 	<Script file='DataTexts/Other.lua'/>
