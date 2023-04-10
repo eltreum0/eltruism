@@ -79,6 +79,12 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Sârâphyn-Alleria"] = DonatorsIcon,
 			["Xentario-Alleria"] = DonatorsIcon,
 			["Xântios-Alleria"] = DonatorsIcon,
+
+			--madlampy
+			["Vonbek-TarrenMill"] = DonatorsIcon,
+			["Vonhellzing-TarrenMill"] = DonatorsIcon,
+			["Raarmoo-TarrenMill"] = DonatorsIcon,
+			["Rosavonbek-TarrenMill"] = DonatorsIcon,
 		}
 
 		--Discord MVPs
