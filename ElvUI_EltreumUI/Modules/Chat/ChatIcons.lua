@@ -10,7 +10,7 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 
 		--Eltreum
 		--|Tpath:height[:width[:offsetX:offsetY:[textureWidth:textureHeight:leftTexel:rightTexel:topTexel:bottomTexel[:rVertexColor:gVertexColor:bVertexColor]]]]|t
-		local EltreumIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:0:64:64:0:64:0:64:69:128:179|t"
+		local EltreumIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:0:0:0:0|t"
 		local EltreumCharacters = {
 
 			--Retail Alliance
@@ -47,7 +47,7 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 		}
 
 		--Donators
-		local DonatorsIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:0:64:64:0:64:0:64:181:9:9|t"
+		local DonatorsIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogodonator.tga:0:0:0:0|t"
 		local DonatorsCharacters = {
 			--jiberish
 			["Jiberish-Illidan"] = DonatorsIcon,
@@ -85,10 +85,19 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Vonhellzing-TarrenMill"] = DonatorsIcon,
 			["Raarmoo-TarrenMill"] = DonatorsIcon,
 			["Rosavonbek-TarrenMill"] = DonatorsIcon,
+
+			--greevir
+			["Greevir-Skywall"] = DonatorsIcon,
+			["Greebur-Skywall"] = DonatorsIcon,
+			["Greevir-Westfall"] = DonatorsIcon,
+			["Greebur-Westfall"] = DonatorsIcon,
+			["Greevur-Westfall"] = DonatorsIcon,
+			["Analrexia-Westfall"] = DonatorsIcon,
+			["Verstedruide-Westfall"] = DonatorsIcon,
 		}
 
 		--Discord MVPs
-		local MVPIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:0:64:64:0:64:0:64:255:115:0|t"
+		local MVPIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogomvp.tga:0:0:0:0|t"
 		local MVPCharacters = {
 			--Atwood
 			["Evowøød-Blackhand"] = MVPIcon,
