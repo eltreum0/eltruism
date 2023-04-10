@@ -4759,7 +4759,7 @@ function ElvUI_EltreumUI:Configtable()
 												SetCVar('DynamicRenderScale', 0)
 											end
 										 end
-,									},
+									},
 									dynamicrenderscalepercentage = {
 										type = 'range',
 										name = L["Dynamic Render Scale Minimum"],
@@ -5096,6 +5096,55 @@ function ElvUI_EltreumUI:Configtable()
 								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable or not E.db.ElvUI_EltreumUI.chat.classcolorchat end,
 								get = function() return E.db.ElvUI_EltreumUI.chat.classcolorchatcustom end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.chat.classcolorchatcustom = value end,
+							},
+						},
+					},
+					classicons = {
+						order = 3,
+						type = 'group',
+						disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+						name = E.NewSign..L["Class Icons"],
+						childGroups = "tab",
+						args = {
+							header7 = {
+								order = 87,
+								type = "description",
+								name = "",
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							colorsysmsgs = {
+								order = 88,
+								type = 'toggle',
+								name = L["Add Class Icons in Chat messages"],
+								width = 'full',
+								desc = L["Player names in chat will have a class icon next to their name"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.colorsysmsg end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.colorsysmsg = value end,
+							},
+							classiconpick = {
+								order = 163,
+								type = 'select',
+								name = "",
+								values = {
+									["RELEAF"] = "Releaf "..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnightReleaf',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterReleaf',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanReleaf',':20:20'),
+									["BLIZZARD"] = 'Blizzard '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnight',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Hunter',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Shaman',':20:20'),
+									["BORDER"] = 'Border '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnightIconReleaf',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterIconReleaf',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanIconReleaf',':20:20'),
+									["SHADOW"] = 'Shadow '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnightShadow',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterShadow',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanShadow',':20:20'),
+									["OUTLINE"] = 'Outline '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnight1',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Hunter1',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Shaman1',':20:20'),
+								},
+								sorting = {
+									"RELEAF",
+									"OUTLINE",
+									"BORDER",
+									"BLIZZARD",
+									"SHADOW",
+								},
+								style = 'radio',
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable or not E.db.ElvUI_EltreumUI.chat.chaticonenable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.chaticontype end,
+								set = function(_,value) E.db.ElvUI_EltreumUI.chat.chaticontype = value end,
 							},
 						},
 					},
