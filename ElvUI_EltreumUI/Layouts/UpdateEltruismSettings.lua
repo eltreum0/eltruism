@@ -138,6 +138,9 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.skins.rarescanner = true
 	E.db.ElvUI_EltreumUI.skins.simulationcraft = true
 	E.db.ElvUI_EltreumUI.skins.warpdeplete = true
+	E.db.ElvUI_EltreumUI.skins.bagsync = true
+	E.db.ElvUI_EltreumUI.skins.hekili = true
+	E.db.ElvUI_EltreumUI.skins.omnicd = true
 
 	-- Borders
 	E.db.ElvUI_EltreumUI.borders.minimapborder = true
@@ -223,6 +226,9 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.otherstuff.eltruismleadericons = true
 	E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticons = true
 	E.db.ElvUI_EltreumUI.otherstuff.eltruismlootericons = true
+
+	E.db.ElvUI_EltreumUI.otherstuff.roleiconstype = "EMOJI"
+
 	E.db.ElvUI_EltreumUI.otherstuff.delete = true
 	E.db.ElvUI_EltreumUI.otherstuff.gamemenu = true
 
