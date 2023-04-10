@@ -85,6 +85,15 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Vonhellzing-TarrenMill"] = DonatorsIcon,
 			["Raarmoo-TarrenMill"] = DonatorsIcon,
 			["Rosavonbek-TarrenMill"] = DonatorsIcon,
+
+			--greevir
+			["Greevir-Skywall"] = DonatorsIcon,
+			["Greebur-Skywall"] = DonatorsIcon,
+			["Greevir-Westfall"] = DonatorsIcon,
+			["Greebur-Westfall"] = DonatorsIcon,
+			["Greevur-Westfall"] = DonatorsIcon,
+			["Analrexia-Westfall"] = DonatorsIcon,
+			["Verstedruide-Westfall"] = DonatorsIcon,
 		}
 
 		--Discord MVPs
