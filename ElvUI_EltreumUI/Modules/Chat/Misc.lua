@@ -4,6 +4,7 @@ local unpack = _G.unpack
 local WT = E.Libs.AceAddon:GetAddon("ElvUI_WindTools", true)
 local CH = E:GetModule('Chat')
 local ChatFrame_AddMessageEventFilter = _G.ChatFrame_AddMessageEventFilter
+local ChatFrame_RemoveMessageEventFilter = _G.ChatFrame_RemoveMessageEventFilter
 local CreateFrame = _G.CreateFrame
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
@@ -39,7 +40,6 @@ local joinsstring2
 local joinsstring3
 local leavestring
 local leavestring2
-local ChatSysRoleSet = false
 
 local function ColorSysMsgs(_, event, message, ...)
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
@@ -187,9 +187,23 @@ local function ColorSysMsgs(_, event, message, ...)
 		if message:find(offlinestring) then
 			return false, gsub(message, offlinestring, "|cffFF0000"..offlinestring.."|r"), ...
 		end
+	else
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_SYSTEM", ColorSysMsgs)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_BN_INLINE_TOAST_ALERT", ColorSysMsgs)
 	end
+end
+ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", ColorSysMsgs)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_INLINE_TOAST_ALERT", ColorSysMsgs)
 
-	if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons and not ChatSysRoleSet then
+local function RoleIconMsg()
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then
+		return
+	elseif not E.db.ElvUI_EltreumUI then
+		return
+	elseif not E.db.ElvUI_EltreumUI.otherstuff then
+		return
+	end
+	if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 		local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
 		if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == nil then
 			CH.RoleIcons = {
@@ -291,13 +305,15 @@ local function ColorSysMsgs(_, event, message, ...)
 			_G.INLINE_HEALER_ICON = CH.RoleIcons.HEALER
 			_G.INLINE_DAMAGER_ICON = CH.RoleIcons.DAMAGER
 		end
-		ChatSysRoleSet = true
+		ChatFrame_RemoveMessageEventFilter("ROLE_CHANGED_INFORM", RoleIconMsg)
+		ChatFrame_RemoveMessageEventFilter("PLAYER_ROLES_ASSIGNED", RoleIconMsg)
+	else
+		ChatFrame_RemoveMessageEventFilter("ROLE_CHANGED_INFORM", RoleIconMsg)
+		ChatFrame_RemoveMessageEventFilter("PLAYER_ROLES_ASSIGNED", RoleIconMsg)
 	end
 end
-ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", ColorSysMsgs)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_INLINE_TOAST_ALERT", ColorSysMsgs)
-ChatFrame_AddMessageEventFilter("ROLE_CHANGED_INFORM", ColorSysMsgs)
-ChatFrame_AddMessageEventFilter("PLAYER_ROLES_ASSIGNED", ColorSysMsgs)
+ChatFrame_AddMessageEventFilter("ROLE_CHANGED_INFORM", RoleIconMsg)
+ChatFrame_AddMessageEventFilter("PLAYER_ROLES_ASSIGNED", RoleIconMsg)
 --ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", ColorSysMsgs) --this is for testing purposes
 
 --icons in chat/UF when party member swaps roles

@@ -24,6 +24,9 @@ P.ElvUI_EltreumUI = {
 		looticons = false,
 		itemlevels = false,
 		chattoggles = true,
+		chaticonenable = true,
+		chaticontype = "SHADOW",
+		AuthorMVPDonatorIcons = true,
 	},
 
 	cvars = {

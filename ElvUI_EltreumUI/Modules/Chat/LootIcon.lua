@@ -2,6 +2,7 @@ local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local ChatFrame_AddMessageEventFilter = _G.ChatFrame_AddMessageEventFilter
+local ChatFrame_RemoveMessageEventFilter = _G.ChatFrame_RemoveMessageEventFilter
 local GetItemIcon = _G.GetItemIcon
 local tonumber = _G.tonumber
 local GetItemInfo = _G.GetItemInfo
@@ -128,6 +129,25 @@ local function AddLootIcons(_, _, message, ...)
 				return false, message, ...
 			end
 		end
+	elseif not E.db.ElvUI_EltreumUI.chat.enable or (not E.db.ElvUI_EltreumUI.chat.looticons and not E.db.ElvUI_EltreumUI.chat.classcolorchat) then
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_LOOT", AddLootIcons)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_GUILD", AddLootIcons)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_SAY", AddLootIcons)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_CHANNEL", AddLootIcons)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_PARTY", AddLootIcons)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_INSTANCE_CHAT", AddLootIcons)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_PARTY_LEADER", AddLootIcons)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_INSTANCE_CHAT_LEADER", AddLootIcons)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_RAID_LEADER", AddLootIcons)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_RAID_WARNING", AddLootIcons)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_WHISPER", AddLootIcons)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_WHISPER_INFORM", AddLootIcons)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_YELL", AddLootIcons)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_BN_WHISPER", AddLootIcons)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_BN_WHISPER_INFORM", AddLootIcons)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_OFFICER", AddLootIcons)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_RAID", AddLootIcons)
+		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_TRADESKILLS", AddLootIcons)
 	end
 end
 

@@ -1426,3 +1426,7 @@ L["Enable Soft Target Interactions"] = "Sanfte Ziel Interaktionen aktivieren"
 L["Skin BagSync"] = "Skinne BagSync"
 L["Skin Hekili"] = "Skinne Hekili"
 L["Skin OmniCD"] = "Skinne OmniCD"
+L["Add Class Icons in Chat messages"] = true
+L["Player names in chat will have a class icon next to their name"] = true
+L["Enable Showing Author, Donator and MVP Chat Icons"] = true
+L["Author, MVP and Donator Icons"] = true
