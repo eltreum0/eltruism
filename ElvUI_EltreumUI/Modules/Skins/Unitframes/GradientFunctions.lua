@@ -286,8 +286,7 @@ end
 
 --get the gradient colors
 function ElvUI_EltreumUI:GradientColors(unitclass, invert, alpha, isBG)
-	if not unitclass then return end
-	if E.Retail or E.Wrath then
+	if not E.Classic then
 		if unitframegradients[unitclass] then
 			if invert then
 				return {r=unitframegradients[unitclass].r2 - bgfade(isBG),g= unitframegradients[unitclass].g2 - bgfade(isBG),b= unitframegradients[unitclass].b2 - bgfade(isBG),a= bgalpha(alpha)}, {r=unitframegradients[unitclass].r1 - bgfade(isBG),g= unitframegradients[unitclass].g1 - bgfade(isBG), b=unitframegradients[unitclass].b1 - bgfade(isBG),a= bgalpha(alpha)}
@@ -312,8 +311,7 @@ end
 
 --get the custom gradient colors
 function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, alpha, isBG)
-	if not unitclass then return end
-	if E.Retail or E.Wrath then
+	if not E.Classic then
 		if unitframecustomgradients[unitclass] then
 			if invert then
 				return {r=unitframecustomgradients[unitclass].r2 - bgfade(isBG),g= unitframecustomgradients[unitclass].g2 - bgfade(isBG),b= unitframecustomgradients[unitclass].b2 - bgfade(isBG),a= bgalpha(alpha)}, {r=unitframecustomgradients[unitclass].r1 - bgfade(isBG),g= unitframecustomgradients[unitclass].g1 - bgfade(isBG),b= unitframecustomgradients[unitclass].b1 - bgfade(isBG),a= bgalpha(alpha)}
