@@ -1374,3 +1374,5 @@ L["Enable Soft Target Interactions"] = true
 L["Skin BagSync"] = true
 L["Skin Hekili"] = true
 L["Skin OmniCD"] = true
+L["Add Class Icons in Chat messages"] = true
+L["Player names in chat will have a class icon next to their name"] = true
