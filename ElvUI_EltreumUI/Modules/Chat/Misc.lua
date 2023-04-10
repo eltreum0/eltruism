@@ -162,29 +162,21 @@ local function ColorSysMsgs(_, event, message, ...)
 					return false, msg, ...
 				end
 			end
-		end
-		if message:find(joinsstring) then
+		elseif message:find(joinsstring) then
 			return false, gsub(message, joinsstring, "|cff82B4ff"..joinsstring.."|r"), ...
-		end
-		if message:find(joinsstring2) then
+		elseif message:find(joinsstring2) then
 			return false, gsub(message, joinsstring2, "|cff82B4ff"..joinsstring2.."|r"), ...
-		end
-		if message:find(joinsstring3) then
+		elseif message:find(joinsstring3) then
 			return false, gsub(message, joinsstring3, "|cff82B4ff"..joinsstring3.."|r"), ...
-		end
-		if message:find(leavestring) then
+		elseif message:find(leavestring) then
 			return false, gsub(message, leavestring, "|cffB50909"..leavestring.."|r"), ...
-		end
-		if message:find(leavestring2) then
+		elseif message:find(leavestring2) then
 			return false, gsub(message, leavestring2, "|cffB50909"..leavestring2.."|r"), ...
-		end
-		if message:find("leave the") then
+		elseif message:find("leave the") then
 			return false, gsub(message, "leave", "|cffB50909leave|r"), ...
-		end
-		if message:find(onlinestring) then --german, english, italian all use the same online/offline
+		elseif message:find(onlinestring) then --german, english, italian all use the same online/offline
 			return false, gsub(message, onlinestring, "|cff00FF00"..onlinestring.."|r"), ...
-		end
-		if message:find(offlinestring) then
+		elseif message:find(offlinestring) then
 			return false, gsub(message, offlinestring, "|cffFF0000"..offlinestring.."|r"), ...
 		end
 	else
