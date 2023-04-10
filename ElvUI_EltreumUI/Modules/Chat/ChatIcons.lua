@@ -64,6 +64,21 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Trenchee-Thrall"] = DonatorsIcon,
 			["Trenchae-Thrall"] = DonatorsIcon,
 			["Trenchai-Thrall"] = DonatorsIcon,
+			
+			--Dlarge
+			["Âlysiâ-Alleria"] = DonatorsIcon,
+			["Xâvius-Alleria"] = DonatorsIcon,
+			["Dractyron-Alleria"] = DonatorsIcon,
+			["Xândos-Alleria"] = DonatorsIcon,
+			["Môrphos-Alleria"] = DonatorsIcon,
+			["Âllandir-Alleria"] = DonatorsIcon,
+			["Xâdrilâ-Alleria"] = DonatorsIcon,
+			["Shiôla-Alleria"] = DonatorsIcon,
+			["Shâolîn-Alleria"] = DonatorsIcon,
+			["Gnomico-Alleria"] = DonatorsIcon,
+			["Sârâphyn-Alleria"] = DonatorsIcon,
+			["Xentario-Alleria"] = DonatorsIcon,
+			["Xântios-Alleria"] = DonatorsIcon,
 		}
 
 		--Discord MVPs
