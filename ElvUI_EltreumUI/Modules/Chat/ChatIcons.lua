@@ -124,6 +124,36 @@ local classIcons = {
 	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\EvokerReleaf.tga:0:0:0:0|t",
 }
 
+function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, _, _, arg12)
+	--print(event, _, arg2, _, _, _, _, _, arg8, _, _, _, arg12)
+	local chatType = strsub(event, 10)
+
+	local subType = strsub(chatType, 1, 7)
+	if subType == 'WHISPER' then
+		chatType = 'WHISPER'
+	elseif subType == 'CHANNEL' then
+		chatType = 'CHANNEL'..arg8
+	end
+
+	--ambiguate guild chat names
+	arg2 = Ambiguate(arg2, (chatType == 'GUILD' and 'guild') or 'none')
+
+	local info = arg12 and _G.ChatTypeInfo[chatType]
+	if info and _G.Chat_ShouldColorChatByClass(info) then
+		local data = CH:GetPlayerInfoByGUID(arg12)
+		local classColor = data and data.classColor
+		if classColor then
+			return classIcons[data.englishClass]..format('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, arg2)
+		end
+	end
+
+	return arg2
+end
+hooksecurefunc(CH, "ChatFrame_MessageEventHandler", function()
+	CH.GetColoredName = ElvUI_EltreumUI.ChatClassIcons
+end)
+
+--[[
 function CH:GetColoredName(event, _, arg2, _, _, _, _, _, arg8, _, _, _, arg12)
 	local chatType = strsub(event, 10)
 
@@ -148,3 +178,4 @@ function CH:GetColoredName(event, _, arg2, _, _, _, _, _, arg8, _, _, _, arg12)
 
 	return arg2
 end
+]]
