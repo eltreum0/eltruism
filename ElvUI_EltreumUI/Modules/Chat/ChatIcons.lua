@@ -6,7 +6,7 @@ local format = _G.string.format
 
 --Eltreum
 --|Tpath:height[:width[:offsetX:offsetY:[textureWidth:textureHeight:leftTexel:rightTexel:topTexel:bottomTexel[:rVertexColor:gVertexColor:bVertexColor]]]]|t
-local EltreumIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:2:64:64:0:64:0:64:69:128:179|t"
+local EltreumIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:0:64:64:0:64:0:64:69:128:179|t"
 local EltreumCharacters = {
 
 	--Retail Alliance
@@ -43,7 +43,7 @@ local EltreumCharacters = {
 }
 
 --Donators
-local DonatorsIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:2:64:64:0:64:0:64:181:9:9|t"
+local DonatorsIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:0:64:64:0:64:0:64:181:9:9|t"
 local DonatorsCharacters = {
 	--jiberish
 	["Jiberish-Illidan"] = DonatorsIcon,
@@ -63,7 +63,7 @@ local DonatorsCharacters = {
 }
 
 --Discord MVPs
-local MVPIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:2:64:64:0:64:0:64:255:115:0|t"
+local MVPIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:0:64:64:0:64:0:64:255:115:0|t"
 local MVPCharacters = {
 	--["Kuriatas-Stormrage"] = MVPIcon, --test
 	["Evowøød-Blackhand"] = MVPIcon,
