@@ -64,6 +64,12 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Trenchee-Thrall"] = DonatorsIcon,
 			["Trenchae-Thrall"] = DonatorsIcon,
 			["Trenchai-Thrall"] = DonatorsIcon,
+
+			--madlampy
+			["Vonbek-TarrenMill"] = DonatorsIcon,
+			["Vonhellzing-TarrenMill"] = DonatorsIcon,
+			["Raarmoo-TarrenMill"] = DonatorsIcon,
+			["Rosavonbek-TarrenMill"] = DonatorsIcon,
 		}
 
 		--Discord MVPs
