@@ -84,7 +84,7 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 		--Discord MVPs
 		local MVPIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:0:64:64:0:64:0:64:255:115:0|t"
 		local MVPCharacters = {
-			--["Kuriatas-Stormrage"] = MVPIcon, --test
+			--Atwood
 			["Evowøød-Blackhand"] = MVPIcon,
 			["Evowøød-Antonidas"] = MVPIcon,
 
@@ -115,6 +115,16 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Shawøød-Antonidas"] = MVPIcon,
 			["Dewøød-Antonidas"] = MVPIcon,
 			["Farmwøød-Antonidas"] = MVPIcon,
+
+			--Blinkii
+			["Raeldan-Thrall"] = MVPIcon,
+			["Blinkii-Thrall"] = MVPIcon,
+			["Flinkii-Thrall"] = MVPIcon,
+			["Zwerglii-Thrall"] = MVPIcon,
+			["Raeldan-Arygos"] = MVPIcon,
+			["Blinkii-Arygos"] = MVPIcon,
+			["Flinkii-Arygos"] = MVPIcon,
+			["Zwerglii-Arygos"] = MVPIcon,
 		}
 
 		CH:AddPluginIcons(function(unit)
