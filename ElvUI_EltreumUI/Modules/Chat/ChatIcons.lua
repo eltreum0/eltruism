@@ -1,6 +1,8 @@
 local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 local CH = E:GetModule("Chat")
+local hooksecurefunc = _G.hooksecurefunc
+local format = _G.string.format
 
 --Eltreum
 --|Tpath:height[:width[:offsetX:offsetY:[textureWidth:textureHeight:leftTexel:rightTexel:topTexel:bottomTexel[:rVertexColor:gVertexColor:bVertexColor]]]]|t
