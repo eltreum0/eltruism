@@ -5120,8 +5120,8 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								desc = L["Player names in chat will have a class icon next to their name"],
 								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
-								get = function() return E.db.ElvUI_EltreumUI.chat.colorsysmsg end,
-								set = function(_, value) E.db.ElvUI_EltreumUI.chat.colorsysmsg = value end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.chaticonenable end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.chaticonenable = value end,
 							},
 							classiconpick = {
 								order = 163,
