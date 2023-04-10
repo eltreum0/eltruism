@@ -4,110 +4,115 @@ local CH = E:GetModule("Chat")
 local hooksecurefunc = _G.hooksecurefunc
 local format = _G.string.format
 
---Eltreum
---|Tpath:height[:width[:offsetX:offsetY:[textureWidth:textureHeight:leftTexel:rightTexel:topTexel:bottomTexel[:rVertexColor:gVertexColor:bVertexColor]]]]|t
-local EltreumIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:0:64:64:0:64:0:64:69:128:179|t"
-local EltreumCharacters = {
-
-	--Retail Alliance
-	["Missiles-Stormrage"] = EltreumIcon,
-	["Eltreum-Stormrage"] = EltreumIcon,
-	["Effecta-Stormrage"] = EltreumIcon,
-	["Deci-Stormrage"] = EltreumIcon,
-	["Kuriatas-Stormrage"] = EltreumIcon,
-	["Tyriendal-Stormrage"] = EltreumIcon,
-	["Lastwill-Stormrage"] = EltreumIcon,
-	["Auramaster-Stormrage"] = EltreumIcon,
-	["Futuria-Stormrage"] = EltreumIcon,
-	["Repairs-Stormrage"] = EltreumIcon,
-	["Brihtnes-Stormrage"] = EltreumIcon,
-	["Insidium-Stormrage"] = EltreumIcon,
-	["Chromatus-Stormrage"] = EltreumIcon,
-
-	--Retail Horde
-	["Antarcticus-Area 52"] = EltreumIcon,
-	["Eltreum-Area 52"] = EltreumIcon,
-
-	--Wrath
-	["Antarcticus-Faerlina"] = EltreumIcon,
-	["Atrophos-Faerlina"] = EltreumIcon,
-	["Kuriatas-Faerlina"] = EltreumIcon,
-	["Tartharus-Faerlina"] = EltreumIcon,
-	["Futuria-Faerlina"] = EltreumIcon,
-	["Repairs-Faerlina"] = EltreumIcon,
-	["Durtram-Faerlina"] = EltreumIcon,
-	["Auramaster-Faerlina"] = EltreumIcon,
-	["Eltreum-Faerlina"] = EltreumIcon,
-	["Effecta-Faerlina"] = EltreumIcon,
-	["Brihtnes-Faerlina"] = EltreumIcon,
-}
-
---Donators
-local DonatorsIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:0:64:64:0:64:0:64:181:9:9|t"
-local DonatorsCharacters = {
-	--jiberish
-	["Jiberish-Illidan"] = DonatorsIcon,
-	["Jiberishaman-Illidan"] = DonatorsIcon,
-	["Jiberishift-Illidan"] = DonatorsIcon,
-	["Jiberishadow-Illidan"] = DonatorsIcon,
-	["Jiberisheep-Illidan"] = DonatorsIcon,
-
-	--trenchy
-	["Grunchy-Thrall"] = DonatorsIcon,
-	["Trenchey-Thrall"] = DonatorsIcon,
-	["Trenchay-Thrall"] = DonatorsIcon,
-	["Trenchy-Thrall"] = DonatorsIcon,
-	["Trenchee-Thrall"] = DonatorsIcon,
-	["Trenchae-Thrall"] = DonatorsIcon,
-	["Trenchai-Thrall"] = DonatorsIcon,
-}
-
---Discord MVPs
-local MVPIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:0:64:64:0:64:0:64:255:115:0|t"
-local MVPCharacters = {
-	--["Kuriatas-Stormrage"] = MVPIcon, --test
-	["Evowøød-Blackhand"] = MVPIcon,
-	["Evowøød-Antonidas"] = MVPIcon,
-
-	["Lockwøød-Blackhand"] = MVPIcon,
-	["Drwøød-Blackhand"] = MVPIcon,
-	["Shawøød-Blackhand"] = MVPIcon,
-	["Rowøød-Blackhand"] = MVPIcon,
-	["Prwøød-Blackhand"] = MVPIcon,
-	["Mawøød-Blackhand"] = MVPIcon,
-	["Huwøød-Blackhand"] = MVPIcon,
-	["Mokwøød-Blackhand"] = MVPIcon,
-	["Dawøød-Blackhand"] = MVPIcon,
-	["Palwøød-Blackhand"] = MVPIcon,
-	["Warwøød-Blackhand"] = MVPIcon,
-	["Dewøød-Blackhand"] = MVPIcon,
-	["Farmwøød-Blackhand"] = MVPIcon,
-
-	["Lockwøød-Antonidas"] = MVPIcon,
-	["Rowøød-Antonidas"] = MVPIcon,
-	["Warwøød-Antonidas"] = MVPIcon,
-	["Drwøød-Antonidas"] = MVPIcon,
-	["Mokwøød-Antonidas"] = MVPIcon,
-	["Palwøød-Antonidas"] = MVPIcon,
-	["Prwøød-Antonidas"] = MVPIcon,
-	["Mawøød-Antonidas"] = MVPIcon,
-	["Dawøød-Antonidas"] = MVPIcon,
-	["Huwøød-Antonidas"] = MVPIcon,
-	["Shawøød-Antonidas"] = MVPIcon,
-	["Dewøød-Antonidas"] = MVPIcon,
-	["Farmwøød-Antonidas"] = MVPIcon,
-}
-
 --Add Icons to chat messages
-CH:AddPluginIcons(function(unit)
-	if EltreumCharacters[unit] then
-		return EltreumCharacters[unit]
-	elseif DonatorsCharacters[unit] then
-		return DonatorsCharacters[unit]
-	elseif MVPCharacters[unit] then
-		return MVPCharacters[unit]
+function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
+	if E.db.ElvUI_EltreumUI.chat.AuthorMVPDonatorIcons then
+
+		--Eltreum
+		--|Tpath:height[:width[:offsetX:offsetY:[textureWidth:textureHeight:leftTexel:rightTexel:topTexel:bottomTexel[:rVertexColor:gVertexColor:bVertexColor]]]]|t
+		local EltreumIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:0:64:64:0:64:0:64:69:128:179|t"
+		local EltreumCharacters = {
+
+			--Retail Alliance
+			["Missiles-Stormrage"] = EltreumIcon,
+			["Eltreum-Stormrage"] = EltreumIcon,
+			["Effecta-Stormrage"] = EltreumIcon,
+			["Deci-Stormrage"] = EltreumIcon,
+			["Kuriatas-Stormrage"] = EltreumIcon,
+			["Tyriendal-Stormrage"] = EltreumIcon,
+			["Lastwill-Stormrage"] = EltreumIcon,
+			["Auramaster-Stormrage"] = EltreumIcon,
+			["Futuria-Stormrage"] = EltreumIcon,
+			["Repairs-Stormrage"] = EltreumIcon,
+			["Brihtnes-Stormrage"] = EltreumIcon,
+			["Insidium-Stormrage"] = EltreumIcon,
+			["Chromatus-Stormrage"] = EltreumIcon,
+
+			--Retail Horde
+			["Antarcticus-Area 52"] = EltreumIcon,
+			["Eltreum-Area 52"] = EltreumIcon,
+
+			--Wrath
+			["Antarcticus-Faerlina"] = EltreumIcon,
+			["Atrophos-Faerlina"] = EltreumIcon,
+			["Kuriatas-Faerlina"] = EltreumIcon,
+			["Tartharus-Faerlina"] = EltreumIcon,
+			["Futuria-Faerlina"] = EltreumIcon,
+			["Repairs-Faerlina"] = EltreumIcon,
+			["Durtram-Faerlina"] = EltreumIcon,
+			["Auramaster-Faerlina"] = EltreumIcon,
+			["Eltreum-Faerlina"] = EltreumIcon,
+			["Effecta-Faerlina"] = EltreumIcon,
+			["Brihtnes-Faerlina"] = EltreumIcon,
+		}
+
+		--Donators
+		local DonatorsIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:0:64:64:0:64:0:64:181:9:9|t"
+		local DonatorsCharacters = {
+			--jiberish
+			["Jiberish-Illidan"] = DonatorsIcon,
+			["Jiberishaman-Illidan"] = DonatorsIcon,
+			["Jiberishift-Illidan"] = DonatorsIcon,
+			["Jiberishadow-Illidan"] = DonatorsIcon,
+			["Jiberisheep-Illidan"] = DonatorsIcon,
+
+			--trenchy
+			["Grunchy-Thrall"] = DonatorsIcon,
+			["Trenchey-Thrall"] = DonatorsIcon,
+			["Trenchay-Thrall"] = DonatorsIcon,
+			["Trenchy-Thrall"] = DonatorsIcon,
+			["Trenchee-Thrall"] = DonatorsIcon,
+			["Trenchae-Thrall"] = DonatorsIcon,
+			["Trenchai-Thrall"] = DonatorsIcon,
+		}
+
+		--Discord MVPs
+		local MVPIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogowhite.tga:0:0:0:0:64:64:0:64:0:64:255:115:0|t"
+		local MVPCharacters = {
+			--["Kuriatas-Stormrage"] = MVPIcon, --test
+			["Evowøød-Blackhand"] = MVPIcon,
+			["Evowøød-Antonidas"] = MVPIcon,
+
+			["Lockwøød-Blackhand"] = MVPIcon,
+			["Drwøød-Blackhand"] = MVPIcon,
+			["Shawøød-Blackhand"] = MVPIcon,
+			["Rowøød-Blackhand"] = MVPIcon,
+			["Prwøød-Blackhand"] = MVPIcon,
+			["Mawøød-Blackhand"] = MVPIcon,
+			["Huwøød-Blackhand"] = MVPIcon,
+			["Mokwøød-Blackhand"] = MVPIcon,
+			["Dawøød-Blackhand"] = MVPIcon,
+			["Palwøød-Blackhand"] = MVPIcon,
+			["Warwøød-Blackhand"] = MVPIcon,
+			["Dewøød-Blackhand"] = MVPIcon,
+			["Farmwøød-Blackhand"] = MVPIcon,
+
+			["Lockwøød-Antonidas"] = MVPIcon,
+			["Rowøød-Antonidas"] = MVPIcon,
+			["Warwøød-Antonidas"] = MVPIcon,
+			["Drwøød-Antonidas"] = MVPIcon,
+			["Mokwøød-Antonidas"] = MVPIcon,
+			["Palwøød-Antonidas"] = MVPIcon,
+			["Prwøød-Antonidas"] = MVPIcon,
+			["Mawøød-Antonidas"] = MVPIcon,
+			["Dawøød-Antonidas"] = MVPIcon,
+			["Huwøød-Antonidas"] = MVPIcon,
+			["Shawøød-Antonidas"] = MVPIcon,
+			["Dewøød-Antonidas"] = MVPIcon,
+			["Farmwøød-Antonidas"] = MVPIcon,
+		}
+
+		CH:AddPluginIcons(function(unit)
+			if EltreumCharacters[unit] then
+				return EltreumCharacters[unit]
+			elseif DonatorsCharacters[unit] then
+				return DonatorsCharacters[unit]
+			elseif MVPCharacters[unit] then
+				return MVPCharacters[unit]
+			end
+		end)
 	end
-end)
+end
 
 --Add class icons next to player names in chat
 local classIcons = {

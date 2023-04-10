@@ -4817,15 +4817,31 @@ function ElvUI_EltreumUI:Configtable()
 						name = L["General"],
 						childGroups = "tab",
 						args = {
-							headerchattoggle = {
+							headerauthoricon = {
 								order = 1,
+								type = "description",
+								name = L["Author, MVP and Donator Icons"],
+								width = 'full',
+								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
+							},
+							authoricons = {
+								order = 2,
+								type = 'toggle',
+								name = L["Enable Showing Author, Donator and MVP Chat Icons"],
+								width = 'full',
+								desc = L["Toggle the option on"],
+								get = function() return E.db.ElvUI_EltreumUI.chat.AuthorMVPDonatorIcons end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.AuthorMVPDonatorIcons = value E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							headerchattoggle = {
+								order = 187,
 								type = "description",
 								name = L["Force ElvUI Chat Toggles"],
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							elvuichattoggles = {
-								order = 2,
+								order = 188,
 								type = 'toggle',
 								name = L["Enable Always Forcing ElvUI Chat Toggles On"],
 								width = 'full',

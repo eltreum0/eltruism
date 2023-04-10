@@ -26,6 +26,7 @@ P.ElvUI_EltreumUI = {
 		chattoggles = true,
 		chaticonenable = true,
 		chaticontype = "SHADOW",
+		AuthorMVPDonatorIcons = true,
 	},
 
 	cvars = {
