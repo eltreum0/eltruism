@@ -115,7 +115,7 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 end
 
 --Add class icons next to player names in chat
-local classIcons = {
+local classIconsReleaf = {
 	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorReleaf.tga:0:0:0:0|t",
 	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinReleaf.tga:0:0:0:0|t",
 	["HUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterReleaf.tga:0:0:0:0|t",
@@ -145,7 +145,7 @@ local classIconsBlizzard = {
 	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunter.tga:0:0:0:0|t",
 	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Evoker.tga:0:0:0:0|t",
 }
-local classIconsReleafborder = {
+local classIconsBorder = {
 	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorIconReleaf.tga:0:0:0:0|t",
 	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinIconReleaf.tga:0:0:0:0|t",
 	["HUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterIconReleaf.tga:0:0:0:0|t",
@@ -160,7 +160,7 @@ local classIconsReleafborder = {
 	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunterIconReleaf.tga:0:0:0:0|t",
 	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\EvokerIconReleaf.tga:0:0:0:0|t",
 }
-local classIconsOutline = {
+local classIconsShadow = {
 	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorShadow.tga:0:0:0:0|t",
 	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinShadow.tga:0:0:0:0|t",
 	["HUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterShadow.tga:0:0:0:0|t",
@@ -175,7 +175,7 @@ local classIconsOutline = {
 	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunterShadow.tga:0:0:0:0|t",
 	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\EvokerShadow.tga:0:0:0:0|t",
 }
-local classIconsOutlineReleaf = {
+local classIconsOutline = {
 	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Warrior1.tga:0:0:0:0|t",
 	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Paladin1.tga:0:0:0:0|t",
 	["HUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Hunter1.tga:0:0:0:0|t",
@@ -210,19 +210,7 @@ function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, 
 		local classColor = data and data.classColor
 		if classColor then
 			if E.db.ElvUI_EltreumUI.chat.chaticonenable then
-				if E.db.ElvUI_EltreumUI.chat.chaticontype  == "RELEAF" then
-					return classIcons[data.englishClass]..format('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, arg2)
-				elseif E.db.ElvUI_EltreumUI.chat.chaticontype == "BLIZZARD" then
-					return classIconsBlizzard[data.englishClass]..format('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, arg2)
-				elseif E.db.ElvUI_EltreumUI.chat.chaticontype == "BORDER" then
-					return classIconsReleafborder[data.englishClass]..format('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, arg2)
-				elseif E.db.ElvUI_EltreumUI.chat.chaticontype == "SHADOW" then
-					return classIconsOutline[data.englishClass]..format('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, arg2)
-				elseif E.db.ElvUI_EltreumUI.chat.chaticontype == "OUTLINE" then
-					return classIconsOutlineReleaf[data.englishClass]..format('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, arg2)
-				else
-					return format('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, arg2)
-				end
+				return ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.chat.chaticontype,data.englishClass)..format('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, arg2)
 			else
 				return format('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, arg2)
 			end
@@ -237,29 +225,18 @@ hooksecurefunc(CH, "ChatFrame_MessageEventHandler", function()
 	end
 end)
 
---[[
-function CH:GetColoredName(event, _, arg2, _, _, _, _, _, arg8, _, _, _, arg12)
-	local chatType = strsub(event, 10)
 
-	local subType = strsub(chatType, 1, 7)
-	if subType == 'WHISPER' then
-		chatType = 'WHISPER'
-	elseif subType == 'CHANNEL' then
-		chatType = 'CHANNEL'..arg8
+--return icons for other functions
+function ElvUI_EltreumUI:GetClassIcons(icon,unitclass)
+	if icon == "RELEAF" then
+		return classIconsReleaf[unitclass]
+	elseif icon == "OUTLINE" then
+		return classIconsOutline[unitclass]
+	elseif icon == "BLIZZARD" then
+		return classIconsBlizzard[unitclass]
+	elseif icon == "BORDER" then
+		return classIconsBorder[unitclass]
+	elseif icon == "SHADOW" then
+		return classIconsShadow[unitclass]
 	end
-
-	--ambiguate guild chat names
-	arg2 = Ambiguate(arg2, (chatType == 'GUILD' and 'guild') or 'none')
-
-	local info = arg12 and _G.ChatTypeInfo[chatType]
-	if info and _G.Chat_ShouldColorChatByClass(info) then
-		local data = CH:GetPlayerInfoByGUID(arg12)
-		local classColor = data and data.classColor
-		if classColor then
-			return classIcons[data.englishClass]..format('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, arg2)
-		end
-	end
-
-	return arg2
 end
-]]
