@@ -38,6 +38,10 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 							if frame:GetObjectType() == "Button" and frame.icon then --fix for buttons since the texture could overlap over the icon
 								frame.eltruismbgtexture:SetDrawLayer("BACKGROUND")
 							end
+							if frame:GetParent() and frame:GetParent():GetObjectType() == "Button" and frame:GetParent().icon then --fix for buttons since the texture could overlap over the icon
+								frame.eltruismbgtexture:SetDrawLayer("BACKGROUND")
+							end
+
 							if E.db.ElvUI_EltreumUI.skins.elvui.color.classcolor then
 								frame.eltruismbgtexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,0.15)
 							else
