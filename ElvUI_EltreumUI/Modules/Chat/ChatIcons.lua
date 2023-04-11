@@ -94,6 +94,7 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Greevur-Westfall"] = DonatorsIcon,
 			["Analrexia-Westfall"] = DonatorsIcon,
 			["Verstedruide-Westfall"] = DonatorsIcon,
+			["Verstekriger-Westfall"] = DonatorsIcon,
 		}
 
 		--Discord MVPs
@@ -140,6 +141,9 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Blinkii-Arygos"] = MVPIcon,
 			["Flinkii-Arygos"] = MVPIcon,
 			["Zwerglii-Arygos"] = MVPIcon,
+
+			--roxanne
+			["Roxanne-Blackrock"] = DonatorsIcon,
 		}
 
 		CH:AddPluginIcons(function(unit)
