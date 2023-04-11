@@ -44,12 +44,20 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 
 				--gradient on the BG
 				if icon.class and not icon.EltruismHook then
-					hooksecurefunc(icon.statusBar.BG,"SetVertexColor", function()--(_,r,g,b)
+					hooksecurefunc(icon.statusBar.BG,"SetVertexColor", function(self)--(_,r,g,b)
 						--print(r,g,b)
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-							icon.statusBar.BG:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColorsCustom(icon.class))
+							self:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColorsCustom(icon.class))
 						else
-							icon.statusBar.BG:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors(icon.class))
+							self:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors(icon.class))
+						end
+					end)
+					hooksecurefunc(icon.statusBar.CastingBar,"SetStatusBarColor", function()
+						--print(r,g,b)
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+							icon.statusBar.CastingBar:GetStatusBarTexture():SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColorsCustom(icon.class))
+						else
+							icon.statusBar.CastingBar:GetStatusBarTexture():SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors(icon.class))
 						end
 					end)
 					icon.EltruismHook = true
