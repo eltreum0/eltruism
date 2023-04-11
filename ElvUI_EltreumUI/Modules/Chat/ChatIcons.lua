@@ -10,7 +10,7 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 
 		--Eltreum
 		--|Tpath:height[:width[:offsetX:offsetY:[textureWidth:textureHeight:leftTexel:rightTexel:topTexel:bottomTexel[:rVertexColor:gVertexColor:bVertexColor]]]]|t
-		local EltreumIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:0:0:0:0|t"
+		local EltreumIcon = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogodev.tga:0:0:0:0|t"
 		local EltreumCharacters = {
 
 			--Retail Alliance
