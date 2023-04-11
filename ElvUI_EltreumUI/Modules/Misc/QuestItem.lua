@@ -266,6 +266,7 @@ local qItems = {
 	60501, 	-- Stormstone, Deepholm Quest
 	185956,
 	180008, --resonating anima core
+	45072, --noblegarden egg that has to be opened
 }
 local blocklist = {
 	[176809] = true, -- junk item that for some reason showed up
@@ -619,6 +620,17 @@ function ElvUI_EltreumUI:QuestItem()
 			end
 			EltruismQuestItemFrame:RequestUpdate()
 
+			--check for other buttons that are the same
+			local function CheckButtonExistence(itemId)
+				for i =1, #EltruismQuestItemFrame.items do
+					if EltruismQuestItemFrame.items[i].itemId and EltruismQuestItemFrame.items[i].itemId == itemId then
+						return false
+					end
+				end
+
+				return true
+			end
+
 			-- Update Buttons
 			function EltruismQuestItemFrame:UpdateButtons()
 				--print("updating buttons function")
@@ -638,18 +650,20 @@ function ElvUI_EltreumUI:QuestItem()
 						if (link) and (itemId) then
 							if not blocklist[itemId] then
 								local _, _, _, _, _, itemType, itemSubType, _, _, _, _, classID = GetItemInfo(link)
-								if E.Retail then
-									local questInfo = C_Container.GetContainerItemQuestInfo(bag,slot)
-									if ((questInfo.isQuestItem or (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12)) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
-										local _, count = GetContainerItemInfo(bag,slot)
-										AddButton(index,bag,slot,link,itemId,count)
-										index = (index + 1)
-									end
-								elseif E.Wrath or E.Classic then
-									if ((itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
-										local _, count = GetContainerItemInfo(bag,slot)
-										AddButton(index,bag,slot,link,itemId,count)
-										index = (index + 1)
+								if CheckButtonExistence(itemId) then
+									if E.Retail then
+										local questInfo = C_Container.GetContainerItemQuestInfo(bag,slot)
+										if ((questInfo.isQuestItem or (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12)) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
+											local _, count = GetContainerItemInfo(bag,slot)
+											AddButton(index,bag,slot,link,itemId,count)
+											index = (index + 1)
+										end
+									elseif E.Wrath or E.Classic then
+										if ((itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
+											local _, count = GetContainerItemInfo(bag,slot)
+											AddButton(index,bag,slot,link,itemId,count)
+											index = (index + 1)
+										end
 									end
 								end
 							end
@@ -663,9 +677,11 @@ function ElvUI_EltreumUI:QuestItem()
 					local link = GetInventoryItemLink("player",slotId)
 					local itemId = link and tonumber(link:match(ITEMID_PATTERN))
 					if (link) and (itemId) and (CheckItemTooltip(link,itemId)) and GetItemSpell(itemId) ~= nil then
-						if not blocklist[itemId] then
-							AddButton(index,nil,slotId,link,itemId)
-							index = (index + 1)
+						if CheckButtonExistence(itemId) then
+							if not blocklist[itemId] then
+								AddButton(index,nil,slotId,link,itemId)
+								index = (index + 1)
+							end
 						end
 					end
 				end
