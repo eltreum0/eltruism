@@ -272,6 +272,7 @@ local blocklist = {
 	[8529] = true, --noggenfogger
 	[180536] = true, --broken kyrian flute, can't be used
 	[180817] = true, -- cypher of relocation
+	[45067] = true, --noblegarden dress transmog
 	--[140212] = true, --test item
 
 	--[24468] = true, --burstcap mushroom
@@ -577,7 +578,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 				-- Include predefinded items
 				for _, id in ipairs(qItems) do
-					if (itemId == id) then
+					if (itemId == id) and not blocklist[itemId] then
 						return 1
 					end
 				end
@@ -601,7 +602,9 @@ function ElvUI_EltreumUI:QuestItem()
 
 				--new
 				if (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12) and itemEquipLoc == "" and GetItemSpell(itemId) ~= nil then
-					return 1
+					if not blocklist[itemId] then
+						return 1
+					end
 				end
 			end
 			--------------------------------------------------------------------------------------------------------
@@ -660,8 +663,10 @@ function ElvUI_EltreumUI:QuestItem()
 					local link = GetInventoryItemLink("player",slotId)
 					local itemId = link and tonumber(link:match(ITEMID_PATTERN))
 					if (link) and (itemId) and (CheckItemTooltip(link,itemId)) and GetItemSpell(itemId) ~= nil then
-						AddButton(index,nil,slotId,link,itemId)
-						index = (index + 1)
+						if not blocklist[itemId] then
+							AddButton(index,nil,slotId,link,itemId)
+							index = (index + 1)
+						end
 					end
 				end
 
