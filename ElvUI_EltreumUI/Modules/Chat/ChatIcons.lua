@@ -94,6 +94,10 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Greevur-Westfall"] = DonatorsIcon,
 			["Analrexia-Westfall"] = DonatorsIcon,
 			["Verstedruide-Westfall"] = DonatorsIcon,
+			["Verstekriger-Westfall"] = DonatorsIcon,
+
+			--roxanne
+			["Roxanne-Blackrock"] = DonatorsIcon,
 		}
 
 		--Discord MVPs
