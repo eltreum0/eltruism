@@ -639,6 +639,11 @@ function ElvUI_EltreumUI:QuestItem()
 					return
 				end
 
+				--reset ids
+				for i =1, #EltruismQuestItemFrame.items do
+					EltruismQuestItemFrame.items[i].itemId = 0
+				end
+
 				-- locals
 				local index = 1
 
