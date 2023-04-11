@@ -35,7 +35,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 							frame.eltruismbgtexture:SetHorizTile(true)
 							frame.eltruismbgtexture:SetVertTile(true)
 							frame.eltruismbgtexture:SetBlendMode("ADD")
-							if frame:GetObjectType() == "Button" and frame.icon then --fix for buttons since the texture could overlap over the icon
+							if (frame:GetObjectType() == "Button" or frame:GetObjectType() == "CheckButton") and frame.icon then --fix for buttons since the texture could overlap over the icon
 								frame.eltruismbgtexture:SetDrawLayer("BACKGROUND")
 							end
 							if frame:GetParent() and frame:GetParent():GetObjectType() == "Button" and frame:GetParent().icon then --fix for buttons since the texture could overlap over the icon
