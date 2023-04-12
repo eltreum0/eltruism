@@ -91,5 +91,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[eltruism:classification][name]"
 
+	E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "none"
+
 	ElvUI_EltreumUI:Print(L["Settings for ElvUI were updated."])
 end
