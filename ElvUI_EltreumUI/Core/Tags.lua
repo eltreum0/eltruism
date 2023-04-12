@@ -394,7 +394,7 @@ E:AddTag('eltruismrealm:dash', 'UNIT_NAME_UPDATE', function(unit)
 		end
 	end
 end)
-E:AddTagInfo("eltruismname:title", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the server name with a dash in gradient"])
+E:AddTagInfo("eltruismrealm:dash", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the server name with a dash in gradient"])
 
 -------------------------------------------------------------------------- ICONS -------------------------------------------------------------------------
 
