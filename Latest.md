@@ -1,32 +1,24 @@
-### 3.8.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.8.2 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added EltreumStance custom tag to player unitframe, which show show the current stance  
-Added ElvUI Skin in Eltruism > Skins > Addons, which adds textures to frames  
-Added several background textures that can be used with the ElvUI Skin  
-Added an empty texture, None, that can be used to disable textures  
-Added the teleport NPC to Quest Auto Turn in block list  
-Added Dead/Disconnected Icon Customization for tags  
-Added Dynamic Render Scale CVar to Graphics CVars  
-Added an option to show skill ups on LootText  
-Added a skin to the Vehicle Leave Button  
-Added Master Looter Icon customization  
-Added spark replacement to Aura Bars  
-Added Raid Assist Icon customization  
-Added Leader Icon customization  
-Added Gradient to tooltip names  
-Added custom spark to aura bars  
-Added a few shadows  
-Updated Nameplate Height to also work when the player is targeted  
-Updated Details Embed to not rely on the skin  
-Updated Weakauras tutorial image for anchors  
-Updated Install to remove the Services chat  
-Updated some functions to perform better  
+Added an option in CVars to change Nameplate Global scale  
+Added Eltruism Icons for Author, Donators and MVPs  
+Added an option in CVars to disable Soft Targets  
+Added gradient names to player names in chat  
+Added class icons to player names in chat  
+Added shadows to datatexts  
+Added a skin for BagSync  
+Added a skin for Hekili  
+Added a skin for OmniCD  
+Updated Item Level tooltip in Classic to show the Item Level on the second line  
+Updated Quest Items to prevent adding multiples of the same item  
+Updated gradient tag to reverse gradient on Target unitframe  
+Updated Warrior Action Paging in Wrath/Classic to fix stances  
+Updated Eltruism Stat Datatext to show Crit before Haste  
+Updated Nameplate Custom Height to better detect combat  
+Updated Rogue Action Paging to fix Vehicle UI in Retail  
+Updated Chat /roll to show colors per class  
 Updated German locale by Dlarge  
-Updated Immersion Skin speed  
-Fixed an issue where Item Level backdrop would appear while Shadow and Light's Armory was enabled  
-Fixed an issue where Raid Shadows would run when Unitframes Shadows were disabled  
-Fixed an issue where when changing fonts custom texts could get reapplied  
-Fixed an issue where BigWigs Custom Gradient Colors could not work  
-Fixed an issue in Court of Stars after Blizzard changed Gossip API  
-Fixed wrong combat icon in Party unitframes  
-Fixed a double Combat Indicator Icon
+Fixed castbar shadows when the castbar icon was of a different size from the castbar  
+Fixed an issue with unitframe shadows when all power frames were dettached  
+Fixed some texture transparencies in ElvUI skin  
+Fixed ElvUI skin on some buttons

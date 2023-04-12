@@ -15,6 +15,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.chat.looticons = true
 	E.db.ElvUI_EltreumUI.chat.itemlevels = true
 	E.db.ElvUI_EltreumUI.chat.rollsound = true
+	E.db.ElvUI_EltreumUI.chat.chattoggles = true
 
 	-- Nameplates
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition = true
@@ -187,11 +188,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	elseif E.Wrath or E.Classic then
 		E.db.ElvUI_EltreumUI.quests.enable = false
 	end
-	if E.Retail then
-		E.db.ElvUI_EltreumUI.quests.questitems = false
-	else
-		E.db.ElvUI_EltreumUI.quests.questitems = true
-	end
+	E.db.ElvUI_EltreumUI.quests.questitems = true
 	E.db.ElvUI_EltreumUI.quests.questitemsbar1 = true
 	E.db.ElvUI_EltreumUI.quests.questitemsfade = false
 	--E.db.ElvUI_EltreumUI.quests.autoaccept = true --maybe in the future?
