@@ -13773,6 +13773,16 @@ function ElvUI_EltreumUI:Configtable()
 										get = function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
 									},
+									enabletooltip = {
+										order = 6,
+										type = 'toggle',
+										name = L["Enable Gradient Tooltips"],
+										desc = L["Enable Gradient Tooltips"],
+										width = 'full',
+										disabled = function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.gradienttooltip end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.gradienttooltip = value ElvUI_EltreumUI:GradientColorTableUpdate() end,
+									}
 								}
 							},
 							fillorientation = {
