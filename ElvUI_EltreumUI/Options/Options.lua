@@ -7632,7 +7632,7 @@ function ElvUI_EltreumUI:Configtable()
 							header1 = {
 								order = 1,
 								type = "description",
-								name = "",
+								name = L["Add a time to arrive below the waypoint"],
 								width = 'full',
 								hidden = not E.Retail,
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
@@ -7642,34 +7642,41 @@ function ElvUI_EltreumUI:Configtable()
 								type = 'group',
 								inline = true,
 								hidden = not E.Retail,
-								name = L["Add a time to arrive below the waypoint"],
+								name = "",
 								args = {
-									explainer = {
+									header1 = {
 										order = 1,
+										type = "description",
+										name = "",
+										width = 'full',
+										hidden = not E.Retail,
+									},
+									explainer = {
+										order = 2,
 										type = "description",
 										name = L["The time will be calculated based on player speed and distance"],
 										width = 'full',
 									},
 									explainer2 = {
-										order = 2,
+										order = 3,
 										type = "description",
 										name = L["If the player is not moving then *** will show up since time cannot be calculated"],
 											width = 'full',
 									},
 									explainer3 = {
-										order = 3,
+										order = 4,
 										type = "description",
 										name = L["If you move away from the waypoint the time will just increase"],
 										width = 'full',
 									},
 									explainer4 = {
-										order = 4,
+										order = 5,
 										type = "description",
 										width = 'full',
 										name = '',
 									},
 									enable = {
-										order = 5,
+										order = 6,
 										type = 'toggle',
 										name = L["Enable ETA"],
 										desc = L["Add an ETA to waypoints"],
@@ -7694,14 +7701,6 @@ function ElvUI_EltreumUI:Configtable()
 										disabled = function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
 										get = function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance or not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance = value end,
-									},
-									header1 = {
-										order = 1,
-										type = "description",
-										name = "",
-										width = 'full',
-										hidden = not E.Retail,
-										image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 									},
 									etacolor = {
 										order = 10,
