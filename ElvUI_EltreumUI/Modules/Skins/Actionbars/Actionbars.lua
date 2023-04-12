@@ -34,7 +34,7 @@ function ElvUI_EltreumUI:SkillGlow()
 	if E.db.ElvUI_EltreumUI.glow.enable and E.private.actionbar.enable then
 		if E.Retail then
 			if not IsAddOnLoaded("ElvUI_ActionBarMasks") then
-				function LCG.ShowOverlayGlow(button)
+				hooksecurefunc(LCG, "ShowOverlayGlow", function(button)
 					if button:GetAttribute("type") == "action" then
 						if E.db.ElvUI_EltreumUI.glow.pixel then
 							LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
@@ -44,8 +44,8 @@ function ElvUI_EltreumUI:SkillGlow()
 							LCG.ButtonGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
 						end
 					end
-				end
-				function LCG.HideOverlayGlow(button)
+				end)
+				hooksecurefunc(LCG, "HideOverlayGlow", function(button)
 					if E.db.ElvUI_EltreumUI.glow.pixel then
 						LCG.PixelGlow_Stop(button)
 					elseif E.db.ElvUI_EltreumUI.glow.autocast then
@@ -53,7 +53,7 @@ function ElvUI_EltreumUI:SkillGlow()
 					elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 						LCG.ButtonGlow_Stop(button)
 					end
-				end
+				end)
 			end
 		else
 			--classic shaman totem bar glow when totems are not active in combat
