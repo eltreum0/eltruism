@@ -451,6 +451,7 @@ function ElvUI_EltreumUI:GradientMode()
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayertarget = true
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits = true
 		E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
+		E.db.ElvUI_EltreumUI.chat.chatgradient = true
 
 		if E.private.nameplates.enable then
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["format"] = "[name:eltruism:gradient][eltruismrealm:dash]"
