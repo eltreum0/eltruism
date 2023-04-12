@@ -1374,3 +1374,5 @@ L["Player names in chat will have a class icon next to their name"] = true
 L["Enable Showing Author, Donator and MVP Chat Icons"] = true
 L["Author, MVP and Donator Icons"] = true
 L["Enable Gradient Tooltips"] = true
+L["Add Gradient to Names"] = true
+L["Player names in chat will have a class gradient"] = true
