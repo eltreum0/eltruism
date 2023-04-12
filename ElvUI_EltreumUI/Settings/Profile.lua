@@ -342,6 +342,7 @@ P.ElvUI_EltreumUI = {
 			ttsvolume = 100,
 		},
 		ilvltooltip = true,
+		gradienttooltip = true,
 		professionscale = 1,
 	},
 

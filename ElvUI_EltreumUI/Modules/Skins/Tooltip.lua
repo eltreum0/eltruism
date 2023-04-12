@@ -89,7 +89,7 @@ function ElvUI_EltreumUI:Tooltip(tt)
 	if not tt then return end
 
 	--gradient
-	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.private.tooltip.enable then
+	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.private.tooltip.enable and E.db.ElvUI_EltreumUI.skins.gradienttooltip then
 		if not self.isHooked then
 			_G.GameTooltipStatusBar:HookScript("OnShow", function()
 				local _,unittp = _G.GameTooltip:GetUnit()
