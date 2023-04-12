@@ -1430,4 +1430,4 @@ L["Add Class Icons in Chat messages"] = "Klassensymbole in Chatnachrichten hinzu
 L["Player names in chat will have a class icon next to their name"] = "Spielernamen im Chat haben ein Klassensymbol neben ihrem Namen"
 L["Enable Showing Author, Donator and MVP Chat Icons"] = "Anzeige von Autoren-, Spender- und MVP Chatsymbolen aktivieren"
 L["Author, MVP and Donator Icons"] = "Autoren-, MVP und Spendersymbole"
-L["Enable Gradient Tooltips"] = true
+L["Enable Gradient Tooltips"] = "Aktiviere Tooltips Farbverlauf"
