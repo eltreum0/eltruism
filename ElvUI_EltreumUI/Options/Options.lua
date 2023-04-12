@@ -5093,8 +5093,18 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.chat.colorsysmsg end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.chat.colorsysmsg = value end,
 							},
-							classcolormsgs = {
+							gradientnames = {
 								order = 89,
+								type = 'toggle',
+								name = L["Add Gradient to Names"],
+								width = 'full',
+								desc = L["Player names in chat will have a class gradient"],
+								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.chat.chatgradient end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.chat.chatgradient = value end,
+							},
+							classcolormsgs = {
+								order = 90,
 								type = 'toggle',
 								name = L["Enable on Chat Messages"],
 								width = 'double',
@@ -5104,7 +5114,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.chat.classcolorchat = value end,
 							},
 							classcolormsgscustom = {
-								order = 90,
+								order = 91,
 								type = 'toggle',
 								name = L["Custom Color"],
 								--width = 'double',
@@ -5129,7 +5139,7 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
-							colorsysmsgs = {
+							classicons = {
 								order = 88,
 								type = 'toggle',
 								name = L["Add Class Icons in Chat messages"],
