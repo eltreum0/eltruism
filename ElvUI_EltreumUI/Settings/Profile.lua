@@ -25,6 +25,7 @@ P.ElvUI_EltreumUI = {
 		itemlevels = false,
 		chattoggles = true,
 		chaticonenable = true,
+		chatgradient = false,
 		chaticontype = "OUTLINE",
 		AuthorMVPDonatorIcons = true,
 	},
