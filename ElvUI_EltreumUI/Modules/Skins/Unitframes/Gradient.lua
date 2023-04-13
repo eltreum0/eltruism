@@ -15,6 +15,7 @@ local classcolor = E:ClassColor(E.myclass, true)
 local skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 local UnitIsCharmed = _G.UnitIsCharmed
 local pairs = _G.pairs
+local forced
 
 --set the textures or gradients for single units
 function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unittexture)
@@ -531,7 +532,7 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button)
 	end
 end
 
-function ElvUI_EltreumUI:GradientUF(unit,forced)
+function ElvUI_EltreumUI:GradientUF(unit)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 
 		--main issue = the toggle for some units like boss and arena wont work bc it checks for boss1,boss2... instead of just boss
@@ -595,6 +596,12 @@ function ElvUI_EltreumUI:GradientUF(unit,forced)
 			if UnitExists("arena5") then
 				ElvUI_EltreumUI:ApplyUnitGradient("arena5", "Arena5", "arena")
 			end
+		end
+
+		forced = false
+		if unit == "testunit" then
+			forced = true
+			unit = "player"
 		end
 
 		if forced then
@@ -751,8 +758,8 @@ hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientUF)
 
 --allows previews to show custom textures and gradients
 hooksecurefunc(UF, "ToggleForceShowGroupFrames", function()
-	ElvUI_EltreumUI:CustomTexture("player",true)
-	ElvUI_EltreumUI:GradientUF("player",true)
+	ElvUI_EltreumUI:CustomTexture("testunit")
+	ElvUI_EltreumUI:GradientUF("testunit")
 end)
 --[[
 hooksecurefunc(UF, "HeaderConfig", function()

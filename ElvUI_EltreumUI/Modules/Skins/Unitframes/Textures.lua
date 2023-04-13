@@ -14,6 +14,7 @@ local headergroup = nil
 local headertank = nil
 local headerassist = nil
 local headerraidpet = nil
+local forced
 local group, groupbutton, tankbutton, assistbutton, raidpetbutton,partypetbutton
 local IsInGroup = _G.IsInGroup
 local UnitIsCharmed = _G.UnitIsCharmed
@@ -156,7 +157,7 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button)
 	end
 end
 
-function ElvUI_EltreumUI:CustomTexture(unit,forced)
+function ElvUI_EltreumUI:CustomTexture(unit)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 
 		--main issue = the toggle for some units like boss and arena wont work bc it checks for boss1,boss2... instead of just boss
@@ -184,6 +185,30 @@ function ElvUI_EltreumUI:CustomTexture(unit,forced)
 			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena3", "Arena3", "arena")
 			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena4", "Arena4", "arena")
 			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena5", "Arena5", "arena")
+		end
+
+		forced = false
+		if unit == "testunit" then
+			forced = true
+			unit = "player"
+		end
+
+		if forced then
+			if E.Retail or E.Wrath then
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss1", "boss")
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss2", "boss")
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss3", "boss")
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss4", "boss")
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss5", "boss")
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss6", "boss")
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss7", "boss")
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss8", "boss")
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Arena1", "arena")
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Arena2", "arena")
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Arena3", "arena")
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Arena4", "arena")
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Arena5", "arena")
+			end
 		end
 
 		--group/raid unitframes
