@@ -1766,11 +1766,24 @@ function ElvUI_EltreumUI:Shadows()
 							end
 							ElvUI_EltreumUI:ShadowColor(frame.shadow)
 						end
-						--[[for _, button in pairs(tankmembers) do
-							if not button.shadow then
-								button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					end
+				end
+
+				--assist targets
+				for i = 1, 8 do
+					local assisttargetmembers = {_G["ElvUF_AssistUnitButton"..i.."Target"]}
+					for _, frame in pairs(assisttargetmembers) do
+						if not frame.shadow then
+							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
+								frame.shadow:ClearAllPoints()
+								frame.shadow:SetPoint("BOTTOMLEFT", frame.Power,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								frame.shadow:SetPoint("BOTTOMRIGHT", frame.Power,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								frame.shadow:SetPoint("TOPLEFT", frame.InfoPanel,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+								frame.shadow:SetPoint("TOPRIGHT", frame.InfoPanel,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
-						end]]
+							ElvUI_EltreumUI:ShadowColor(frame.shadow)
+						end
 					end
 				end
 

@@ -549,7 +549,7 @@ function ElvUI_EltreumUI:GradientUF(unit,forced)
 			ElvUI_EltreumUI:ApplyUnitGradient("pet", "Pet", "pet")
 		end
 
-		if E.Retail or E.Wrath then
+		if not E.Classic then
 			if UnitExists("boss1") then
 				ElvUI_EltreumUI:ApplyUnitGradient("boss1", "Boss1", "boss")
 			end
@@ -574,8 +574,6 @@ function ElvUI_EltreumUI:GradientUF(unit,forced)
 			if UnitExists("boss8") then
 				ElvUI_EltreumUI:ApplyUnitGradient("boss8", "Boss8", "boss")
 			end
-		end
-		if not E.Classic then
 			if UnitExists("focus") then
 				ElvUI_EltreumUI:ApplyUnitGradient("focus", "Focus", "focus")
 			end
@@ -596,6 +594,24 @@ function ElvUI_EltreumUI:GradientUF(unit,forced)
 			end
 			if UnitExists("arena5") then
 				ElvUI_EltreumUI:ApplyUnitGradient("arena5", "Arena5", "arena")
+			end
+		end
+
+		if forced then
+			if E.Retail or E.Wrath then
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss1", "boss")
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss2", "boss")
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss3", "boss")
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss4", "boss")
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss5", "boss")
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss6", "boss")
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss7", "boss")
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss8", "boss")
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Arena1", "arena")
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Arena2", "arena")
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Arena3", "arena")
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Arena4", "arena")
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Arena5", "arena")
 			end
 		end
 
@@ -704,6 +720,19 @@ function ElvUI_EltreumUI:GradientUF(unit,forced)
 				end
 			end
 
+			--raid assist targets
+			if _G["ElvUF_AssistUnitButton1Target"] and _G["ElvUF_AssistUnitButton1Target"]:IsShown() then
+				--print("assist target frames gradient debug")
+				for i = 1, 8 do
+					local assisttargetmembers = {_G["ElvUF_AssistUnitButton"..i.."Target"]}
+					for _, frame in pairs(assisttargetmembers) do
+						if frame and frame.Health then
+							ElvUI_EltreumUI:ApplyGroupGradient(frame)
+						end
+					end
+				end
+			end
+
 			--raid pets
 			if _G["ElvUF_RaidpetGroup1UnitButton1"] and _G["ElvUF_RaidpetGroup1UnitButton1"]:IsShown() and E.db.unitframe.units.raidpet.enable then
 				for i = 1, 40 do
@@ -721,7 +750,13 @@ end
 hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.GradientUF)
 
 --allows previews to show custom textures and gradients
-hooksecurefunc(UF, "ToggleForceShowGroupFrames", function(_,group)
+hooksecurefunc(UF, "ToggleForceShowGroupFrames", function()
 	ElvUI_EltreumUI:CustomTexture("player",true)
 	ElvUI_EltreumUI:GradientUF("player",true)
 end)
+--[[
+hooksecurefunc(UF, "HeaderConfig", function()
+	ElvUI_EltreumUI:CustomTexture("player",true)
+	ElvUI_EltreumUI:GradientUF("player",true)
+end)
+]]

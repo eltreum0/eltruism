@@ -236,13 +236,13 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.font), E.db.ElvUI_EltreumUI.nameplates.nameplatepower.fontsize, E.db.general.fontStyle)
 				EltreumPowerBar:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
 				S:HandleStatusBar(EltreumPowerBar)
-				EltreumPowerBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture))
 				EltreumPowerBar:SetFrameStrata("MEDIUM")
 				EltreumPowerPrediction:SetFrameStrata("HIGH")
 				EltreumPowerPredictionIncoming:SetFrameStrata("HIGH")
 				if not E.private.nameplates.enable then -- no elvui np then the position needs to be manual
-					E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition = true
+					E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition = false
 				end
+				EltreumPowerBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture))
 				isSetup = true
 			end
 
