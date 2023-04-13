@@ -699,10 +699,6 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"]["g"] = 0
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"]["r"] = 1
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["enable"] = true
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["glowColor"]["a"] = 0.90000000596046
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["glowColor"]["b"] = 0.27450981736183
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["glowColor"]["g"] = 0.062745101749897
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["glowColor"]["r"] = 1
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["size"] = 2
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["speed"] = 0.75
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["style"] = "Pixel Glow"
