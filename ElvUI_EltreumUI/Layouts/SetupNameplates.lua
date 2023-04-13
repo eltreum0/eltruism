@@ -693,6 +693,20 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceType"]["party"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceType"]["pvp"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceType"]["scenario"] = true
+		--[[
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"]["a"] = 0.90000000596046
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"]["b"] = 0.078431375324726
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"]["g"] = 0
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"]["r"] = 1
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["glowColor"]["a"] = 0.90000000596046
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["glowColor"]["b"] = 0.27450981736183
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["glowColor"]["g"] = 0.062745101749897
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["glowColor"]["r"] = 1
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["size"] = 2
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["speed"] = 0.75
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["style"] = "Pixel Glow"
+		]]
 
 		-- Enemy at execute range, general range bc different classes have different hp% executes
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["b"] = 0
@@ -779,6 +793,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		--hide np of dead targets
 		--E.global["nameplates"]["filters"]["EltreumDeadNP"]["actions"]["hide"] = true
 		E.global["nameplates"]["filters"]["EltreumDeadNP"]["actions"]["nameOnly"] = true
+		E.global["nameplates"]["filters"]["EltreumDeadNP"]["actions"]["tags"]["name"] = "[name]"
 		E.global["nameplates"]["filters"]["EltreumDeadNP"]["triggers"]["isDeadOrGhost"] = true
 		--E.global["nameplates"]["filters"]["EltreumDeadNP"]["triggers"]["nameplateType"]["enable"] = true
 		--E.global["nameplates"]["filters"]["EltreumDeadNP"]["triggers"]["nameplateType"]["enemyNPC"] = true
