@@ -238,8 +238,8 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 	end]]
 
 	--to make the previews update
-	ElvUI_EltreumUI:CustomTexture("player",true)
-	ElvUI_EltreumUI:GradientUF("player",true)
+	ElvUI_EltreumUI:CustomTexture("testunit")
+	ElvUI_EltreumUI:GradientUF("testunit")
 	if not E.private.unitframe.disabledBlizzardFrames.raid then
 		ElvUI_EltreumUI:BlizzardTexturesGradient()
 	end
