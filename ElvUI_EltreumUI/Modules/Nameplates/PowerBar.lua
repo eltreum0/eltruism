@@ -239,34 +239,37 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				EltreumPowerBar:SetFrameStrata("MEDIUM")
 				EltreumPowerPrediction:SetFrameStrata("HIGH")
 				EltreumPowerPredictionIncoming:SetFrameStrata("HIGH")
+				EltreumPowerPrediction:SetPoint("RIGHT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
+				EltreumPowerPredictionIncoming:SetPoint("LEFT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
 				if not E.private.nameplates.enable then -- no elvui np then the position needs to be manual
 					E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition = false
 				end
-				EltreumPowerBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture))
+				if E.Retail then
+					if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
+						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
+					else
+						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
+					end
+				elseif E.Classic or E.Wrath then
+					if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
+						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
+					else
+						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
+					end
+				end
+				EltreumPowerBarText:SetPoint("Center", EltreumPowerBar, "Center", 0, 0)
 				isSetup = true
 			end
 
+			EltreumPowerBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture))
+
+
 			--update power prediction
 			EltreumPowerPrediction:SetMinMaxValues(0, UnitPowerMax("player"))
-			EltreumPowerPrediction:SetPoint("RIGHT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
 
 			--update power prediction incoming
 			EltreumPowerPredictionIncoming:SetMinMaxValues(0, UnitPowerMax("player"))
-			EltreumPowerPredictionIncoming:SetPoint("LEFT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
 
-			if E.Retail then
-				if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
-					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-				else
-					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
-				end
-			elseif E.Classic or E.Wrath then
-				if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
-					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-				else
-					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
-				end
-			end
 			powernumber, powertype = UnitPowerType("player")
 			--set gradient if enabled
 			if powertype then
@@ -758,8 +761,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					end
 				end
 			end
-			--update text position late so that it is in the correct position due to different clases/specs/forms
-			EltreumPowerBarText:SetPoint("Center", EltreumPowerBar, "Center", 0, 0)
 
 			--add effect to bar
 			if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect then
