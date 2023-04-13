@@ -672,8 +672,16 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["color"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["color"]["g"] = 0
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["color"]["r"] = 0
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["enable"] = false
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["speed"] = 7
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"]["a"] = 0.90000000596046
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"]["b"] = 0.078431375324726
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"]["g"] = 0
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"]["r"] = 1
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["size"] = 2
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["speed"] = 0.75
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["style"] = "Pixel Glow"
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["scale"] = 1.2
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["enable"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["texture"] = "Eltreum-Stripes"
@@ -693,16 +701,6 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceType"]["party"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceType"]["pvp"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceType"]["scenario"] = true
-		--[[
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"]["a"] = 0.90000000596046
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"]["b"] = 0.078431375324726
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"]["g"] = 0
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"]["r"] = 1
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["enable"] = true
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["size"] = 2
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["speed"] = 0.75
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["style"] = "Pixel Glow"
-		]]
 
 		-- Enemy at execute range, general range bc different classes have different hp% executes
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["b"] = 0
