@@ -89,6 +89,11 @@ function ElvUI_EltreumUI:ExpandedStable()
 		_G["PetStableStabledPet1"]:ClearAllPoints()
 		_G["PetStableStabledPet1"]:SetPoint("TOPLEFT", EltruismExpandedStableFrame, 8, -36)
 
+		--fix diet icon
+		local texture = _G.PetStableDiet:GetRegions()
+		texture:SetTexture(134372)
+		texture:SetTexCoord(0.08,0.92,0.08,0.92)
+
 		S:HandleRotateButton(_G.PetStableModelRotateRightButton)
 		_G.PetStableModelRotateRightButton:SetNormalTexture(E.Media.Textures.ArrowUp)
 		_G.PetStableModelRotateRightButton:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
