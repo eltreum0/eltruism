@@ -275,6 +275,17 @@ function ElvUI_EltreumUI:WorldMapScale()
 			_G["WorldMapFrame"]:HookScript("OnShow", function()
 				_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
 			end)
+
+			--make the bounty select mouseover
+			for _, v in pairs({_G["WorldMapFrame"]:GetChildren()}) do
+				if v and v.BountyDropDown and v.BountyDropdownButton then
+					v:SetAlpha(0)
+					v:SetScript('OnEnter', function() v:SetAlpha(1) v.BountyDropdownButton:SetAlpha(1) end)
+					v:SetScript('OnLeave', function() v:SetAlpha(0) v.BountyDropdownButton:SetAlpha(0) end)
+					v.BountyDropdownButton:SetScript('OnEnter', function() v:SetAlpha(1) v.BountyDropdownButton:SetAlpha(1) end)
+					v.BountyDropdownButton:SetScript('OnLeave', function() v:SetAlpha(0) v.BountyDropdownButton:SetAlpha(0) end)
+				end
+			end
 		end
 	end
 end
