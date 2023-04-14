@@ -611,6 +611,9 @@ do
 		if not itemLink then return end
 
 		local lootName, _, _, _, _, _, _, _, _, lootTexture = GetItemInfo(itemLink)
+		if itemLink:match("|Hbattlepet:") then
+			lootName, _, _, _, _, _, _, _, _, lootTexture = GetItemInfo(82800)
+		end
 		if not (lootName and lootTexture) then return end
 
 		local text = _G.StaticPopup1Text:GetText()
@@ -619,7 +622,7 @@ do
 			_G.StaticPopup1Text:SetText(deletetext)
 		end
 
-		self.editBox:SetText(DELETE_ITEM_CONFIRM_STRING) --from line 2028
+		_G.StaticPopup1.editBox:SetText(DELETE_ITEM_CONFIRM_STRING) --from line 2028
 
 		if throttle == 0 then
 			throttle = 1
@@ -629,10 +632,19 @@ do
 	end
 
 	local isDeleteHooked = false
+	local petdetect = CreateFrame("FRAME")
 	function ElvUI_EltreumUI:DeleteItem()
 		if not isDeleteHooked and E.db.ElvUI_EltreumUI.otherstuff.delete then
 			hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM,"OnShow",TypeDelete) --Interface/FrameXML/StaticPopup.lua line 1965/2074
 			hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM,"OnShow",TypeDelete) --Interface/FrameXML/StaticPopup.lua line 2125
+
+			petdetect:RegisterEvent("DELETE_ITEM_CONFIRM")
+			petdetect:SetScript("OnEvent", function(_,_,deletetype)
+				if deletetype == "Pet Cage" then
+					TypeDelete()
+				end
+			end)
+
 			isDeleteHooked = true
 		end
 	end
