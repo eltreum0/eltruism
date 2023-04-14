@@ -165,6 +165,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["skins"]["widgets"]["slider"]["classColor"] = true
 		E.private["WT"]["skins"]["widgets"]["slider"]["texture"] = "ElvUI Norm1"
 		E.private["WT"]["skins"]["widgets"]["tab"]["enable"] = true
+		E.private["WT"]["skins"]["widgets"]["tab"]["backdrop"]["classColor"] = true
 		E.private["WT"]["skins"]["widgets"]["tab"]["backdrop"]["color"]["b"] = 1
 		E.private["WT"]["skins"]["widgets"]["tab"]["backdrop"]["color"]["g"] = 1
 		E.private["WT"]["skins"]["widgets"]["tab"]["backdrop"]["color"]["r"] = 1
@@ -187,6 +188,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["selected"]["backdropColor"]["b"] = 1
 		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["selected"]["backdropColor"]["g"] = 1
 		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["selected"]["backdropColor"]["r"] = 1
+		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["selected"]["borderClassColor"] = true
 		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["selected"]["borderColor"]["b"] = 1
 		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["selected"]["borderColor"]["g"] = 1
 		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["selected"]["borderColor"]["r"] = 1
