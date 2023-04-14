@@ -50,6 +50,7 @@ P.ElvUI_EltreumUI = {
 			SetTemplate = false,
 			unitframes = true,
 			nameplates = true,
+			button = true,
 			color = {
 				classcolor = false,
 				r = 0.12,
