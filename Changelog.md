@@ -1753,32 +1753,32 @@ Fixed Action Bar 4 showing up during pet battles
 Moved the Raid Pet frames for Burning Crusade Classic and Classic to allow healers heal pets more easily  
 Fixed Expanded Talents on Classic
 ___
-### v2.5.6
+### 2.5.6
 Fixed duplicate name text  
 Fixed error on install due to a Shadow & Light change  
 Changed action paging for Rogue due to an issue with Shadowdance
 ___
-### v2.5.5
+### 2.5.5
 Updated toc for TBC classic  
 Attempted to fix errors related to font file format  
 If you still have errors or issues, please report to the Eltruism discord, thank you
 ___
-### v2.5.4
+### 2.5.4
 Fixed GothanNarrow font not working well with French localization  
 Fixed chat loot icons being enabled even when chat modifications were disabled
 ___
-### v2.5.3
+### 2.5.3
 Disabled the Hardware Cursor change by default  
 Changed how detecting combat text addons work, now it is an option in Eltruism >Misc
 ___
-### v2.5.2
+### 2.5.2
 Fixed tags in TBC due to a new ElvUI version  
 Fixed buffs being too high on nameplates due to a change in how they are handled
 ___
-### v2.5.1
+### 2.5.1
 Fixed shadows error related to unitframes
 ___
-### v2.5.0
+### 2.5.0
 Added a check for resolution for pet unitframe  
 Enabled buffs and debuffs on pet unitframe for DPS/Tank profile   
 Changed castbar on Healer profile to fit the shadows, this change will be pushed if you login with the healer profile after updating  
@@ -1787,20 +1787,20 @@ Added more checks before creating shadows to prevent errors
 Tweaked class icons in light mode to not be so pixelated  
 Set most chat fade options to be disabled by default, making it user preference to enable them
 ___
-### v2.4.9
+### 2.4.9
 Updated tags for new ElvUI version  
 Added an option to disable hardware cursor, resolving the cursor lag introduced in Battle for Azeroth
 ___
-### v2.4.8
+### 2.4.8
 Fixed Multiple Class Icons on Character Frame  
 Added check for elvui bags before adding shadows to prevent errors
 ___
-### v2.4.7
+### 2.4.7
 Removed SmartAura from Pet Unitframe  
 Added a check for ProjectAzilroka before applying shadows to stAddonManager  
 Added an option to skip plugin install warnings on login
 ___
-### v2.4.6
+### 2.4.6
 Eltruism now only requires ElvUI and AddOnSkins. ProjectAzilroka, Shadow & Light and Windtools are highly recommended screenshots still use them, but you no longer need to have to use Eltruism  
 Updated layout for ElvUI 12.38  
 Added loot icons which is merged from Stanzilla's Chat Loot Icons which is Public Domain  
@@ -1813,13 +1813,13 @@ Hid the copy chat and Voice Buttons on the layouts
 Nameplate Power Bar will now break down big numbers such as 50000 becoming 50k  
 Waypoint Time to Arrive now has unlimited range, automatically tracks new waypoints and the font follows ElvUI General Font
 ___
-### v2.4.5
+### 2.4.5
 Added a Preview for Custom Glow, you will need to toggle it on and off to update the glow options  
 Updated Time to Arrive to use less CPU  
 Fixed Buffs being moved when auto adjust was turned off  
 Cooldown will now color the text red when below 1 second
 ___
-### v2.4.4
+### 2.4.4
 Added glow to pet action bars, this setting is also available for TBC/Classic in Eltruism > Custom Glow  
 Added glow to expiring debuffs on nameplates, this can be turned off in Eltruism > Custom Glow  
 Moved the timer text for Buffs & Debuffs on Nameplates to a more readable position (top)  
@@ -1833,20 +1833,20 @@ Disabled Flash on EltreumExecute Nameplate Style Filter
 Readded Cast Icons on Nameplates and changed their position/size  
 Retail can now have threat on nameplates just like Classic/TBC if you enable Nameplate titles on Enemy NPC and/or Enemy Player
 ___
-### v2.4.3
+### 2.4.3
 Added an option to hide Blizzard Boss Alerts (default on)  
 Added more fonts and textures  
 Changed textures and flash on EltreumExecute and EltreumInterrupt nameplate filters  
 Split Textures on Unitframes from Light Mode and Dark Mode  
 Updated AddOnSkins hide chat to current ElvUI chat frames, this might only work on the alpha version of AddOnSkins for now
 ___
-### v2.4.2
+### 2.4.2
 Improved Party/Raid death detection  
 Split Cooldown from Cursor, now you can enable one without needing the other  
 Fixed Light Mode not having gradient unitframes  
 Fixed Class Icon on Armory being blurry sometimes
 ___
-### v2.4.1
+### 2.4.1
 Added Class Icons by Releaf  
 Added a second Details profile that includes class icons by Releaf
 Added an option to switch icon types on character profile
@@ -1855,7 +1855,7 @@ Updated chat install according to ElvUI changes
 Fixed switching Dark Mode > Light Mode > Dark mode  
 Fixed cooldown being enabled when cursor was disabled
 ___
-### v2.4.0
+### 2.4.0
 Added Class Icons to Player and Target unitframe Name  
 Borders is now released  
 Added Cooldown to Cursor  
@@ -1864,13 +1864,13 @@ The icon will show again when the skill becomes usable
 Revamped changelog into a markdown file linked in the Support options menu  
 Added support for Dynamic Status Icons when importing profile
 ___
-### v2.3.9
+### 2.3.9
 Fixed Transmog Window  
 Exorsus Raid Tools was renamed to Method Raid Tools and the references were updated for it  
 BigWigs profile is now working according to Funkeh's suggestions  
 Fixed .toc interface version
 ___
-### v2.3.8
+### 2.3.8
 9.1 Compatibility  
 Wide Transmog updated to support transmogrifying each shoulder separately  
 Level Up and Event Toast updated to new system  
@@ -1882,14 +1882,14 @@ Added option to hide arena unitframes in arena (in case you are using an addon l
 Added option to hide raid frames in battlegrounds (in case you are using an addon like Battleground Enemies)  
 Rogue Order Hall Auto Open has been moved to Misc
 ___
-### v2.3.7
+### 2.3.7
 Improved event detection for Nameplate Power Bar (Thanks Repooc!)  
 Hunter and Demon Hunter power bars will now follow Unitframe Power Colors like other classes  
 Left Chat hide will now behave the same as Right Chat hide  
 Moved the Focus Castbar into an easier to see position  
 Changed Experience and Reputation databars to on the top of the screen, disabled honor and azerite databars
 ___
-### v2.3.6
+### 2.3.6
 Added Borders (Beta), disabled by default  
 You will need to adjust the borders if using them with profile or setting outside of the defaults for Eltruism DPS/Tank  
 Added Border media, credits in the License folder  
@@ -1898,31 +1898,31 @@ Changed code for Nameplate Power Bar
 Nameplate Power Bar colors will now follow Unitframe Power Colors so they can be changed by the user over there  
 Changed BigWigs and Details import logic (thanks Luckyone!)
 ___
-### v2.3.5
+### 2.3.5
 Tweak chat hide so that it will hide without a mouse click  
 Prepared for 9.1  
 Changed classpower on nameplates that was defaulting to class color when it was meant not to  
 LootText will now have trimmed icons without the grey border
 ___
-### v2.3.4
+### 2.3.4
 Added Localization Support (only English is live for now)  
 Added World Text Scale option  
 Fixed overlapping debuffs on nameplates due to Nameplate Power Bar  
 Moved the Focus to the top left side since on the right side there are boss frames and Arena frames and it should not overlap the Alternate Unitframes
 ___
-### v2.3.3
+### 2.3.3
 Improved module loading between TBC/Classic/Retail  
 Fixed missing Demon Hunter Power Bar due to the position being behind the nameplate  
 Added Gladius and Gladdy profiles for TBC
 ___
-### v2.3.2
+### 2.3.2
 Added more options to Nameplate Power Bar, such as changing its size, position, and texture  
 Fixed Nameplate Power Bar not appearing for retail Shamans until they swapped specs  
 Bundled ElvUI Chat and CVArs setup with Eltruism Install  
 ElvUI Install prompt will now be skipped since Eltruism sets the same things or overwrites things  
 Swapped Chat functions: Now it starts disabled and after a left click it can fade
 ___
-### v2.3.1
+### 2.3.1
 Chat Fade/Hide can now be toggled off by Left clicking on either chat, clicking again will enable the Fade/hide again  
 Quests will now expand when the boss encounter ends  
 Reworked Classic/TBC Druid logic for Nameplate Power Bar  
@@ -1931,7 +1931,7 @@ Fixed missing Enemy Player Buffs/Debuffs on Aura Filters
 Added Expanded Stables to Shadowlands Hunters, merged from Improved Stable Frame by Cybeloras and licensed under GNU GPLv3  
 Rogue Order Hall will automatically open following Rogue Door Opener by Burzolog licensed under GNU GPLv3
 ___
-### v2.3.0
+### 2.3.0
 Added Chat Modifications, check Eltruism > Chat for the options  
 Added Expanded Transmog Window to Shadowlands  
 Spellsteal filter will now check for player class  
@@ -1941,24 +1941,24 @@ Fixed Nameplate Power Bar showing on neutral or unattackable NPCs
 Fixed LootText not showing Gold earned when in other locales  
 Fixed Stealth not working when entering world or the first time stealth was used
 ___
-### v2.2.9
+### 2.2.9
 Fixed Classic/TBC feral druid power bar overlapping combo points  
 Added ElvUI movers that can be used as Weakauras anchors: EltruismWA and ELtruismConsumables  
 Simply open your weakaura group and in Display > Anchored To > Select Frame > Type either EltruismWA or EltruismConsumables  
 The Weakauras will anchor to the mover and now you can use /moveui to move them.
 ___
-### v2.2.8
+### 2.2.8
 Added aura filter options to show more buffs/debuffs  
 Added more options to Cursor  
 Added more options to Action Bars Glow  
 Reworked Shadow and Light and Windtools dependencies: Eltruism still requires them for Shadowlands, but not on Curse due to TBC/Classic issues
 ___
-### v2.2.7
+### 2.2.7
 Added option for LootText to use ElvUI General Font (Found in ElvUI > General > Media)  
 Changed LootText icon scaling to be more inline with the font  
 Removed Weakauras page from install since most of them are now options in the plugin
 ___
-### v2.2.6
+### 2.2.6
 Added Nameplate Power Bars - Based on the Weakaura  
 Added expanded talents to Classic  
 Added AFK music to TBC and Classic  
@@ -1969,15 +1969,15 @@ Modified Dynamic Datatext to Show Icon for Ammo/Soul Shards
 Fixed an error due to scroll wheel being killed on talent window  
 Tweaked the Healing Profile Tank and Assist Frames
 ___
-### v2.2.5
+### 2.2.5
 Fixed TBC Expanded Talents --Thanks Gregory!  
 Reworked Version Checks to have less errors
 ___
-### v2.2.4
+### 2.2.4
 Added option to change the position of LootText  
 Fixes for TBC Expanded Talents
 ___
-### v2.2.3
+### 2.2.3
 Added Expanded Talents for TBC  
 Added options in Media for the Expanded Talents, Level Up skin and Boss Loot Frames depending on game version  
 Added threat to Enemy NPC nameplates  
@@ -1985,14 +1985,14 @@ Fixed errors when user first installing Eltruism
 Fixed missing possession bar on Death Knights  
 Fixed the Healer Layout Tank and Assist Frames
 ___
-### v2.2.2
+### 2.2.2
 Fixed error when ElvUI nameplates were turned off
 ___
-### v2.2.1
+### 2.2.1
 Added option to change the strata of LootText  
 Fixed an error due to a missing table for Rare Style Filter
 ___
-### v2.2.0
+### 2.2.0
 Added scale option to LootText  
 Optimization/Cleaning Pass  
 Added dynamic datatexts that change according to player class, showing Ammo/Soul Shards for Hunters and warlocks, and Friends for other classes  
@@ -2000,32 +2000,32 @@ Fixed heal prediction being gray for some classes in TBC/Classic due to a low al
 Dynamic Level tags on enemy nameplates that will show only when the player is below max level  
 Due to how aura filters work in ElvUI it's recommended to go to |cffff0000ElvUI > Unitframes > Group Units > Party/Raid/Raid40 > Aura Indicator > Set them to Textured Icon with Display Timer|r
 ___
-### v2.1.9
+### 2.1.9
 Fixed repeating install process prompt due to a database change
 ___
-### v2.1.8
+### 2.1.8
 Revamped Changelog to fit more versions  
 Layout now has additional checks for resolution  
 Added class check to change left chat datatext panel to count Ammo/Soul Shards if playing Hunter or Warlock in Classic/TBC  
 Do note that the datatext will not dynamically swap if you change characters  
 Further streamlined the install process code
 ___
-### v2.1.7
+### 2.1.7
 Added new Cursors, changed their file path  
 Revamped Cursor options  
 Changed some internal code  
 Improved Party/Raid death according to Simpy's suggestion
 ___
-### v2.1.6
+### 2.1.6
 
 Fixed Cursor error related to instances
 ___
-### v2.1.5
+### 2.1.5
 Added an option to change the size of the cursor  
 Added images showing the rings for the cursor  
 Fixed abbreviation when using cyrillic letters
 ___
-### v2.1.4
+### 2.1.4
 Added Cursor, a fork of CastCursor by michaelsp (this module is GNU GPLv3)  
 Changed how version checking works  
 Added alternative layouts for party/raid/raid40 for the DPS/Tank profiles  
@@ -2034,25 +2034,25 @@ The original layouts for those frames were made with pure dps classes in mind,
 if your class has off heals or raid cooldowns you might want to use the alternative layout  
 Check it in Eltruism > Party/Raid
 ___
-### v2.1.3
+### 2.1.3
 Updated settings to ElvUI's newest version  
 Changed TBC/Classic profiles to show mana/energy regen
 ___
-### v2.1.2
+### 2.1.2
 Added option to reset nameplates to Eltruism defaults  
 Tweaked nameplate class borders, colors, and textures when option is off
 ___
-### v2.1.1
+### 2.1.1
 Fixed friendly nameplates being forced on during login
 ___
-### v2.1.0
+### 2.1.0
 Converted database to profile from private  
 Renamed Nameplate Stylefilters to avoid confusion, please remove the |cffff0000EnemyCasting, ExecuteRange, StealThisBuff and HideThis nameplate filters|r  
 Fixed Details! TBC profile due to Details! changes  
 Fixed Pet Unitframe happiness missing when using Custom Fonts  
 Reworked absorb logic for Retail profiles (disabled for DPS, enabled for Healer)
 ___
-### v2.0.9
+### 2.0.9
 Streamlined install process  
 Updated ProjectAzilroka profile  
 Added missing Party Castbar to Retail Healer profile and TBC profiles  
@@ -2060,30 +2060,30 @@ Added new death sound (Ion's - Frankly that's a skill issue)
 Added custom fonts option (Eltruism > Media)  
 Fixed a rare issue with Shadow and Light viewport on profile install
 ___
-### v2.0.8
+### 2.0.8
 Added power bar to pets  
 Update function has been changed  
 Added level to enemy nameplates in Classic/TBC  
 Fixed .toc versions
 ___
-### v2.0.7
+### 2.0.7
 Condensed the install screen to be faster  
 Fixed ProjectAzilroka install due to its internal change  
 Revamped Threat bar in Classic/TBC to be in the Left Chat Datatext
 ___
-### v2.0.6
+### 2.0.6
 Tweaked init function for quests
 ___
-### v2.0.5
+### 2.0.5
 Removed Quest options in Classic/TBC due to those versions not supporting the function
 ___
-### v2.0.4
+### 2.0.4
 Fixed a bug with LootText when awarded honor in Classic and Burning Crusade Classic  
 More pet unitframe changes to accommodate name length and happiness tracking  
 Changed the DBM HUD size in Questie profile  
 Warning: DBM HUD will cause bugs in bgs due to not being supported in instances
 ___
-### v2.0.3
+### 2.0.3
 Improved Font Outline detection  
 Friendly Nameplate disable option added  
 Pet bar change to accommodate name length and happiness  
@@ -2092,18 +2092,18 @@ Questie profile for Classic and Burning Crusade Classic
 You will need to reload after questie builds the database and reload again after setting the profile  
 Classic Questie has some issues for now, and you might need several reloads due to a known bug with townsfolk
 ___
-### v2.0.2
+### 2.0.2
 Added Dark Mode and Light Mode  
 Can be found in Eltruism > Media  
 Fixed Bigwigs profile for TBC due to new version
 ___
-### v2.0.1
+### 2.0.1
 Fixed absorb tags in Classic/TBC  
 Fixed nameplate clamping to screen in TBC  
 Fixed LootText test command in TBC
 Fixed datatext height
 ___
-### v2.0.0
+### 2.0.0
 Added combat music! Type the path to your file in the settings  
 Classic/TBC Support! Report any bugs in the Discord  
 Many addons weren't updated for TBC yet, so profiles might not work  
@@ -2117,7 +2117,7 @@ Recommended settings for font outline:
 - 1080p resolution: Eltruism > Media > Outline  
 Implemented automatic switching of font outlines
 ___
-### v1.9.3
+### 1.9.3
 Added /way and /waypoint command, usage:  
 /way XX YY or /waypoint XX YY  
 /way XXX YYY or /waypoint XXX YYY  
@@ -2130,14 +2130,14 @@ Added checks for installed addons
 Added Font Outline options to Media  
 Fixed missing Sepsis paging for Night Fae Rogues (thanks to Naifu)
 ___
-### v1.9.2
+### 1.9.2
 Fixed a CVar bug due to triggering in combat  
 Fixed full inventory in LootText
 ___
-### v1.9.1
+### 1.9.1
 Removed test print
 ___
-### v1.9
+### 1.9
 Added LootText, a fork of SLoTE. (This module of Eltruism is GNU GPLv3)  
 You can test LootText by typing '/eltruism loot'  
 Added a version check which will automatically update settings if the user is out of date  
@@ -2156,12 +2156,12 @@ Added a few commands:
 /eltruism setup - prompt the installer  
 /eltruism loot - Display a test message for LootText
 ___
-### v1.8.1
+### 1.8.1
 Added Changelog to options  
 Tweaked Quests during encounters  
 Fixed AFK music muting music on login
 ___
-### v1.8
+### 1.8
 Version check for Shadow & Light  
 Added media (class textures)  
 Split Functions into Modules  
@@ -2171,13 +2171,13 @@ AFK Class Music
 Quest Collapse during boss encounters to prevent overlap with boss frame  
 Roboto Font added as option during install
 ___
-### v1.7
+### 1.7
 New option to change font during the install, choose between Kimberley, Exo2 and GothamNarrow  
 New media added  
 Tweaks to AFK sound, should no longer play duplicate sounds  
 Fixed DBM Y-Offset that was broken due to a change in DBM
 ___
-### v1.6
+### 1.6
 Wide Nameplate Buffs and Debuffs  
 Nameplate Buffs and Debuffs stack count moved to lower right when using wide nameplate  
 New death sounds  
@@ -2185,68 +2185,68 @@ Nameplate tweaks to make them stick inside the screen while targeted
 Tweaks to font outlines  
 Minor tweaks to profiles
 ___
-### v1.5.2
+### 1.5.2
 Fixed action paging for some classes
 ___
-### v1.5.1
+### 1.5.1
 Fixed global fade on healer profile  
 Updated the waypoint options
 ___
-### v1.5.0
+### 1.5.0
 Revamped Waypoint Time to arrive, decreasing memory usage by a lot!  
 Added Role Icons  
 Layout Changes  
 Added Weakaura recommendations that were made for this addon
 ___
-### v1.4.5
+### 1.4.5
 Changed Action bar visibility options  
 Now you can have actionbars on all the time by disabling Inherit Global Fade on each bar
 ___
-### v1.4.4
+### 1.4.4
 New death sound (Wilson Wow)  
 New media available  
 Tweaked Enemy Player Nameplates  
 Tweaked install process  
 Fixed missing chat height
 ___
-### v1.4.3
+### 1.4.3
 Fix global soundHandle  
 Tweaked Nameplate classpower background color
 ___
-### v1.4.2
+### 1.4.2
 Fixed classpower position
 ___
-### v1.4.1
+### 1.4.1
 Time to Arrive includes the memory usage of the SuperTrackedFrame and should reset automatically just like Blizzard's code, but for now it will reflect Blizzard's memory usage  
 Added Time to Arrive text below Waypoints  
 Tweaked a few profile settings  
 Fixed SuperTrackedFrame inside instances
 ___
-### v1.4.0
+### 1.4.0
 Added time to arrive text below waypoints  
 This setting includes the memory usage of the SuperTrackedFrame, and should reset automatically just like Blizzard's code  
 Tweaked a few profile settings
 ___
-### v1.3.2
+### 1.3.2
 Fixed CVar taint from friendly nameplates near WQ areas  
 Fixed missing music for some races
 ___
-### v1.3.2
+### 1.3.2
 AFK music is now working correctly
 ___
-### v1.3.0
+### 1.3.0
 Added options to nameplates  
 Friendly Nameplates will now show outside instances, and hide while inside instances  
 Test version for Racial AFK Music added
 ___
-### v1.2.0
+### 1.2.0
 Added a function to play a sound when someone dies
 ___
-### v1.1.0
+### 1.1.0
 Healer profile was changed  
 Additional Media
 ___
-### v1.0.0
+### 1.0.0
 Initial version  
 Added Layout for DPS and Healer  
 Added Options Menu  
