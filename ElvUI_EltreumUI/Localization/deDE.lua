@@ -1433,3 +1433,4 @@ L["Author, MVP and Donator Icons"] = "Autoren-, MVP und Spendersymbole"
 L["Enable Gradient Tooltips"] = "Aktiviere Tooltips Farbverlauf"
 L["Add Gradient to Names"] = "Füge einen Verlauf zum Namen"
 L["Player names in chat will have a class gradient"] = "Spielenamen im Chat haben einen Klassenfarbverlauf"
+L["Enable on Buttons"] = true

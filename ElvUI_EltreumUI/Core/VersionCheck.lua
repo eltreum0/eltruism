@@ -49,6 +49,12 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 		whileDead = 1,
 		hideOnEscape = false,
 	}
+	E.PopupDialogs["PRIVATESERVER"] = {
+		text = L["|cffff0000Private Servers are unsupported!"],
+		timeout = 0,
+		whileDead = 1,
+		hideOnEscape = false,
+	}
 
 	--elvui check
 	if E.version < 13.29 then
@@ -62,12 +68,15 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 	--game version check
 	local requiredversion = tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-Interface'))
 	local currentversion = select(4,GetBuildInfo())
+	local privateserver = 30300
 	if requiredversion < tonumber(currentversion) then
 		E:StaticPopup_Show('GAMEVERSIONCHECKHIGHER')
 		ElvUI_EltreumUI:Print(L["Your World of Warcraft version is higher than expected for Eltruism, please update Eltruism or you might run into issues.\n|cffFF0000(You are likely having errors right now!)|r"])
 	elseif requiredversion > tonumber(currentversion) then
 		E:StaticPopup_Show('GAMEVERSIONCHECKLOWER')
 		ElvUI_EltreumUI:Print(L["Your World of Warcraft version is older than Eltruism, you might run into issues!"])
+	elseif tonumber(currentversion) == privateserver then
+		E:StaticPopup_Show('PRIVATESERVER')
 	end
 end
 

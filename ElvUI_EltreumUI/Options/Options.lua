@@ -13634,13 +13634,22 @@ function ElvUI_EltreumUI:Configtable()
 										set = function(_, value) E.db.ElvUI_EltreumUI.skins.elvui.unitframes = value E:StaticPopup_Show('CONFIG_RL') end,
 									},
 									np = {
-										order = 4,
+										order = 3,
 										type = 'toggle',
 										name = L["Enable on Nameplate"],
 										width = "full",
 										disabled = function() return not E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate end,
 										get = function() return E.db.ElvUI_EltreumUI.skins.elvui.nameplates end,
 										set = function(_, value) E.db.ElvUI_EltreumUI.skins.elvui.nameplates = value E:StaticPopup_Show('CONFIG_RL') end,
+									},
+									button = {
+										order = 3,
+										type = 'toggle',
+										name = L["Enable on Buttons"],
+										width = "full",
+										disabled = function() return not E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate end,
+										get = function() return E.db.ElvUI_EltreumUI.skins.elvui.button end,
+										set = function(_, value) E.db.ElvUI_EltreumUI.skins.elvui.button = value E:StaticPopup_Show('CONFIG_RL') end,
 									},
 									gap2 = {
 										order = 5,

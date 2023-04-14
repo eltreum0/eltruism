@@ -58,14 +58,11 @@ local shamanhex = 0
 local shamanbolt = 8
 local shamanlavaburst = 10
 local huntersteadyshot = 0
-local druideclipse
-local costTable
-local ret--, ret2
+local druideclipse,costTable,ret,currentSpec,power
 local predictioncolorr, predictioncolorg, predictioncolorb
-local currentSpec
 local placeValue = ("%%.%df"):format(1)
-local power
 local isSetup, isSetupprediction = false, false
+local maxpower = 0
 
 --Calculate the Power Cost and draw on the Bar
 function ElvUI_EltreumUI:PowerPrediction()
@@ -229,8 +226,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 		if UnitExists("target") and UnitCanAttack("player", "target") and C_NamePlate.GetNamePlateForUnit("target") ~= nil and not UnitIsDead("target") then
 			EltreumPowerAnchor = C_NamePlate.GetNamePlateForUnit("target")
 			EltreumPowerBar:SetParent(EltreumPowerAnchor)
-			EltreumPowerBar:SetMinMaxValues(0, UnitPowerMax("player"))
-			EltreumPowerBar:SetValue(UnitPower("player")) --try to make it not be full always at the start
 
 			if not isSetup then
 				EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.font), E.db.ElvUI_EltreumUI.nameplates.nameplatepower.fontsize, E.db.general.fontStyle)
@@ -239,34 +234,42 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				EltreumPowerBar:SetFrameStrata("MEDIUM")
 				EltreumPowerPrediction:SetFrameStrata("HIGH")
 				EltreumPowerPredictionIncoming:SetFrameStrata("HIGH")
+				EltreumPowerPrediction:SetPoint("RIGHT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
+				EltreumPowerPredictionIncoming:SetPoint("LEFT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
 				if not E.private.nameplates.enable then -- no elvui np then the position needs to be manual
 					E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition = false
 				end
-				EltreumPowerBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture))
+				if E.Retail then
+					if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
+						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
+					else
+						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
+					end
+				elseif E.Classic or E.Wrath then
+					if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
+						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
+					else
+						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
+					end
+				end
+				EltreumPowerBarText:SetPoint("Center", EltreumPowerBar, "Center", 0, 0)
 				isSetup = true
 			end
 
-			--update power prediction
-			EltreumPowerPrediction:SetMinMaxValues(0, UnitPowerMax("player"))
-			EltreumPowerPrediction:SetPoint("RIGHT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
+			--check if max power has changed, update then
+			if UnitPowerMax("player") ~= maxpower then
+				maxpower = UnitPowerMax("player")
+				--update power prediction
+				EltreumPowerPrediction:SetMinMaxValues(0, UnitPowerMax("player"))
 
-			--update power prediction incoming
-			EltreumPowerPredictionIncoming:SetMinMaxValues(0, UnitPowerMax("player"))
-			EltreumPowerPredictionIncoming:SetPoint("LEFT", EltreumPowerBar:GetStatusBarTexture(), "RIGHT", 0, 0)
+				--update power prediction incoming
+				EltreumPowerPredictionIncoming:SetMinMaxValues(0, UnitPowerMax("player"))
 
-			if E.Retail then
-				if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
-					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-				else
-					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
-				end
-			elseif E.Classic or E.Wrath then
-				if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
-					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-				else
-					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
-				end
+				--update power bar itself
+				EltreumPowerBar:SetMinMaxValues(0, UnitPowerMax("player"))
 			end
+			EltreumPowerBar:SetValue(UnitPower("player")) --try to make it not be full always at the start
+			EltreumPowerBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture))
 			powernumber, powertype = UnitPowerType("player")
 			--set gradient if enabled
 			if powertype then
@@ -758,8 +761,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					end
 				end
 			end
-			--update text position late so that it is in the correct position due to different clases/specs/forms
-			EltreumPowerBarText:SetPoint("Center", EltreumPowerBar, "Center", 0, 0)
 
 			--add effect to bar
 			if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect then
@@ -817,28 +818,28 @@ function ElvUI_EltreumUI:NameplatePowerTextUpdate()
 	end
 end
 
---these two frames update the others
+--update power itself
 local EltruismPowerBarEventsFrame = CreateFrame("FRAME")
 EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
-EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
 EltruismPowerBarEventsFrame:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:NameplatePowerTextUpdate()
 	ElvUI_EltreumUI:NameplatePower()
 end)
 
---split because text would error on removed/added
-local nameplateeventframe = CreateFrame("FRAME")
-nameplateeventframe:RegisterUnitEvent("NAME_PLATE_UNIT_ADDED")
-nameplateeventframe:RegisterUnitEvent("NAME_PLATE_UNIT_REMOVED")
-nameplateeventframe:SetScript("OnEvent", function()
-	ElvUI_EltreumUI:NameplatePower()
-end)
-
+--update prediction
 local EltruismPowerBarPredictionEventsFrame = CreateFrame("FRAME")
 EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
-EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
 EltruismPowerBarPredictionEventsFrame:SetScript("OnEvent", function()
+	ElvUI_EltreumUI:PowerPrediction()
+end)
+
+--update when model changes (for druids mostly)
+local EltruismPowerBarModelCheck = CreateFrame("FRAME")
+EltruismPowerBarModelCheck:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
+EltruismPowerBarModelCheck:SetScript("OnEvent", function()
+	ElvUI_EltreumUI:NameplatePowerTextUpdate()
+	ElvUI_EltreumUI:NameplatePower()
 	ElvUI_EltreumUI:PowerPrediction()
 end)
 

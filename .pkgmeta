@@ -10,6 +10,7 @@ ignore:
   - eltruism/License.md
   - eltruism/README.md
   - "*.md"
+  - eltruism/Screenshots
 
 move-folders:
     ElvUI_EltreumUI/ElvUI_EltreumUI: ElvUI_EltreumUI

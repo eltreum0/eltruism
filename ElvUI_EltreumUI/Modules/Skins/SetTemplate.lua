@@ -24,6 +24,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 				hooksecurefunc(mt, "SetTemplate", function(frame, template, _, _, _, isUnitFrameElement, isNamePlateElement)
 					if isUnitFrameElement and not E.db.ElvUI_EltreumUI.skins.elvui.unitframes then return end
 					if isNamePlateElement and not E.db.ElvUI_EltreumUI.skins.elvui.nameplates then return end
+					if frame:GetObjectType() == "Button" and not E.db.ElvUI_EltreumUI.skins.elvui.button then return end
 					if template ~= "NoBackdrop" then
 						if not frame.EltruismBackground then
 							frame.eltruismbgtexture = frame:CreateTexture(nil, "BORDER")

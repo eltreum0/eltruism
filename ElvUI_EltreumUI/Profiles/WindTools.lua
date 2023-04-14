@@ -74,9 +74,13 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["skins"]["addons"]["bigWigs"] = false
 		E.private["WT"]["skins"]["addons"]["bigWigsQueueTimer"] = false
 		E.private["WT"]["skins"]["addons"]["bugSack"] = false
+		E.private["WT"]["skins"]["addons"]["hekili"] = false
 		E.private["WT"]["skins"]["addons"]["immersion"] = false
+		E.private["WT"]["skins"]["addons"]["omniCD"] = false
+		E.private["WT"]["skins"]["addons"]["omniCDStatusBar"] = false
 		E.private["WT"]["skins"]["addons"]["rareScanner"] = false
 		E.private["WT"]["skins"]["addons"]["simulationcraft"] = false
+		E.private["WT"]["skins"]["addons"]["warpDeplete"] = false
 		E.private["WT"]["skins"]["blizzard"]["achievements"] = false
 		E.private["WT"]["skins"]["blizzard"]["addonManager"] = false
 		E.private["WT"]["skins"]["blizzard"]["adventureMap"] = false
@@ -165,6 +169,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["skins"]["widgets"]["slider"]["classColor"] = true
 		E.private["WT"]["skins"]["widgets"]["slider"]["texture"] = "ElvUI Norm1"
 		E.private["WT"]["skins"]["widgets"]["tab"]["enable"] = true
+		E.private["WT"]["skins"]["widgets"]["tab"]["backdrop"]["classColor"] = true
 		E.private["WT"]["skins"]["widgets"]["tab"]["backdrop"]["color"]["b"] = 1
 		E.private["WT"]["skins"]["widgets"]["tab"]["backdrop"]["color"]["g"] = 1
 		E.private["WT"]["skins"]["widgets"]["tab"]["backdrop"]["color"]["r"] = 1
@@ -187,6 +192,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["selected"]["backdropColor"]["b"] = 1
 		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["selected"]["backdropColor"]["g"] = 1
 		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["selected"]["backdropColor"]["r"] = 1
+		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["selected"]["borderClassColor"] = true
 		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["selected"]["borderColor"]["b"] = 1
 		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["selected"]["borderColor"]["g"] = 1
 		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["selected"]["borderColor"]["r"] = 1
