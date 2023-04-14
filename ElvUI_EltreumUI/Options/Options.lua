@@ -8650,15 +8650,76 @@ function ElvUI_EltreumUI:Configtable()
 								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicator end,
 								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicator = value E:StaticPopup_Show('CONFIG_RL') end,
 							},
-							header7 = {
+							combatextindicatorcustomtext = {
 								order = 28,
+								type = "toggle",
+								name = L["Custom Texts"],
+								width = 'full',
+								disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator end,
+								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable = value end,
+							},
+							combatextindicatorcustomtextenter = {
+								order = 29,
+								type = 'input',
+								name = ENTERING_COMBAT,
+								width = 'double',
+								disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enter end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enter = tostring(value) end,
+							},
+							combatextindicatorcustomtextentercolor = {
+								order = 30,
+								type = 'color',
+								name = L["Color"], --???????
+								--width = 'double',
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end,
+								get = function()
+									local color = E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor
+									local d = P.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor
+									return color.r, color.g, color.b, 1, d.r, d.g, d.b,1
+								end,
+								set = function(_, r, g, b, a)
+									local color = E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor
+									color.r, color.g, color.b = r, g, b
+								end,
+							},
+							combatextindicatorcustomtextleave = {
+								order = 31,
+								type = 'input',
+								name = LEAVING_COMBAT,
+								width = 'double',
+								disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end,
+								get = function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leave end,
+								set = function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leave = tostring(value) end,
+							},
+							combatextindicatorcustomtextleavecolor = {
+								order = 32,
+								type = 'color',
+								name = L["Color"],
+								--width = 'double',
+								hasAlpha = false,
+								disabled = function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end,
+								get = function()
+									local color = E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor
+									local d = P.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor
+									return color.r, color.g, color.b, 1, d.r, d.g, d.b, 1
+								end,
+								set = function(_, r, g, b, a)
+									local color = E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor
+									color.r, color.g, color.b = r, g, b
+								end,
+							},
+							header7 = {
+								order = 280,
 								type = "description",
 								name = "",
 								width = 'full',
 								image = function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end,
 							},
 							darksouls = {
-								order = 29,
+								order = 290,
 								type = "toggle",
 								name = L["Enable a Dark Souls death animation"],
 								desc = L["Plays an animation when you die"],
@@ -8668,7 +8729,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeath = value end,
 							},
 							gta = {
-								order = 29,
+								order = 290,
 								type = "toggle",
 								name = L["Enable a GTA death animation"],
 								desc = L["Plays an animation when you die"],
@@ -8678,7 +8739,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeathgta = value end,
 							},
 							customdeath = {
-								order = 30,
+								order = 300,
 								type = "toggle",
 								name = L["Enable a Custom death animation"],
 								desc = L["Plays an animation when you die"],
@@ -8688,7 +8749,7 @@ function ElvUI_EltreumUI:Configtable()
 								set = function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeathcustom = value end,
 							},
 							customdeathtext = {
-								order = 31,
+								order = 310,
 								type = 'input',
 								name = L["Custom Death Text"],
 								desc = L["The text displayed when you die using the custom text option"],

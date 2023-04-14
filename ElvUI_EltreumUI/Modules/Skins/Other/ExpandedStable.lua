@@ -89,6 +89,27 @@ function ElvUI_EltreumUI:ExpandedStable()
 		_G["PetStableStabledPet1"]:ClearAllPoints()
 		_G["PetStableStabledPet1"]:SetPoint("TOPLEFT", EltruismExpandedStableFrame, 8, -36)
 
+		--fix diet icon
+		local texture = _G.PetStableDiet:GetRegions()
+		texture:SetTexture(134372)
+		texture:SetTexCoord(0.08,0.92,0.08,0.92)
+
+		S:HandleRotateButton(_G.PetStableModelRotateRightButton)
+		_G.PetStableModelRotateRightButton:SetNormalTexture(E.Media.Textures.ArrowUp)
+		_G.PetStableModelRotateRightButton:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
+		_G.PetStableModelRotateRightButton:GetNormalTexture():SetRotation(-1.57)
+		_G.PetStableModelRotateRightButton:SetPushedTexture(E.Media.Textures.ArrowUp)
+		_G.PetStableModelRotateRightButton:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
+		_G.PetStableModelRotateRightButton:GetPushedTexture():SetRotation(-1.57)
+
+		S:HandleRotateButton(_G.PetStableModelRotateLeftButton)
+		_G.PetStableModelRotateLeftButton:SetNormalTexture(E.Media.Textures.ArrowUp)
+		_G.PetStableModelRotateLeftButton:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
+		_G.PetStableModelRotateLeftButton:GetNormalTexture():SetRotation(1.57)
+		_G.PetStableModelRotateLeftButton:SetPushedTexture(E.Media.Textures.ArrowUp)
+		_G.PetStableModelRotateLeftButton:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
+		_G.PetStableModelRotateLeftButton:GetPushedTexture():SetRotation(1.57)
+
 		local searchInput = CreateFrame("EditBox", "EltruismES_SearchInput", EltruismExpandedStableFrame, "SearchBoxTemplate")
 		S:HandleFrame(searchInput)
 		searchInput:SetPoint("TOPLEFT", 9, 0)
