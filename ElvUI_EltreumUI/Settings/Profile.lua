@@ -600,6 +600,21 @@ P.ElvUI_EltreumUI = {
 			fontLSM = "Kimberley",
 			fontsize = 24,
 			combatindicator = false,
+			combatindicatorcustom = {
+				enable = false,
+				enter = "Enter",
+				entercolor = {
+					r = 1,
+					g = 0,
+					b = 0,
+				},
+				leave = "Leave",
+				leavecolor = {
+					r = 1,
+					g = 1,
+					b = 1,
+				},
+			},
 		},
 		fastloot = false,
 		fastlootfilter = false,

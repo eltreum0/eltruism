@@ -158,10 +158,18 @@ function ElvUI_EltreumUI:LootText()
 	combatindicatorframe:SetScript("OnEvent", function(_,event)
 		if E.db.ElvUI_EltreumUI.loot.loottext.combatindicator then
 			if event == "PLAYER_REGEN_DISABLED" then
-				CombatText_AddMessage("|cffFF0000+"..string.upper(COMBAT).."|r", CombatText_StandardScroll, 1, 0, 0)
+				if E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable then
+					CombatText_AddMessage(E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enter, CombatText_StandardScroll, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor.r, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor.g, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor.b)
+				else
+					CombatText_AddMessage("|cffFF0000+"..string.upper(COMBAT).."|r", CombatText_StandardScroll, 1, 0, 0)
+				end
 			end
 			if event == "PLAYER_REGEN_ENABLED" then
-				CombatText_AddMessage("|cffFFFFFF-"..string.upper(COMBAT).."|r", CombatText_StandardScroll, 1, 0, 0)
+				if E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable then
+					CombatText_AddMessage(E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leave, CombatText_StandardScroll, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.r, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.g, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.r)
+				else
+					CombatText_AddMessage("|cffFFFFFF-"..string.upper(COMBAT).."|r", CombatText_StandardScroll, 1, 0, 0)
+				end
 			end
 		end
 	end)
