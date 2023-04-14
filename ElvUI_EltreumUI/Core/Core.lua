@@ -638,12 +638,14 @@ do
 			hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM,"OnShow",TypeDelete) --Interface/FrameXML/StaticPopup.lua line 1965/2074
 			hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM,"OnShow",TypeDelete) --Interface/FrameXML/StaticPopup.lua line 2125
 
-			petdetect:RegisterEvent("DELETE_ITEM_CONFIRM")
-			petdetect:SetScript("OnEvent", function(_,_,deletetype)
-				if deletetype == "Pet Cage" then
-					TypeDelete()
-				end
-			end)
+			if E.Retail then
+				petdetect:RegisterEvent("DELETE_ITEM_CONFIRM")
+				petdetect:SetScript("OnEvent", function(_,_,deletetype)
+					if deletetype == "Pet Cage" then
+						TypeDelete()
+					end
+				end)
+			end
 
 			isDeleteHooked = true
 		end
