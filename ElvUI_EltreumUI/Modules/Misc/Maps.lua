@@ -16,6 +16,7 @@ local table = _G.table
 local wipe = _G.wipe
 local UiMapPoint = _G.UiMapPoint
 local SuperTrackedFrame = _G.SuperTrackedFrame
+local S = E:GetModule('Skins')
 
 --Conversion of Time to Arrive weakaura (new version)
 local EltruismAutopin = CreateFrame("Frame", "EltruismAutoPin")
@@ -284,6 +285,15 @@ function ElvUI_EltreumUI:WorldMapScale()
 					v:SetScript('OnLeave', function() v:SetAlpha(0) v.BountyDropdownButton:SetAlpha(0) end)
 					v.BountyDropdownButton:SetScript('OnEnter', function() v:SetAlpha(1) v.BountyDropdownButton:SetAlpha(1) end)
 					v.BountyDropdownButton:SetScript('OnLeave', function() v:SetAlpha(0) v.BountyDropdownButton:SetAlpha(0) end)
+
+					--skin the bounty button
+					S:HandleButton(v.BountyDropdownButton)
+					v.BountyDropdownButton:SetNormalTexture(E.Media.Textures.ArrowUp)
+					v.BountyDropdownButton:SetPushedTexture(E.Media.Textures.ArrowUp)
+					v.BountyDropdownButton:SetDisabledTexture(E.Media.Textures.ArrowUp)
+					v.BountyDropdownButton:GetNormalTexture():SetRotation(-1.57)
+					v.BountyDropdownButton:GetPushedTexture():SetRotation(-1.57)
+					v.BountyDropdownButton:GetDisabledTexture():SetRotation(-1.57)
 				end
 			end
 		end
