@@ -111,7 +111,9 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 				end
 				Minimap:Hide()
 				Minimap:SetAlpha(0)
-				PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\You_Died.ogg" , "Master")
+				if not IsAddOnLoaded("Hardcore") then
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\You_Died.ogg" , "Master")
+				end
 				UIFrameFadeIn(darksouls, 1, 0, 1)
 				darksouls.scaler:Play()
 				C_Timer.After(4, function() UIFrameFadeOut(darksouls, 1, 1, 0) end)
@@ -152,7 +154,9 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 			gta.Text:SetShadowOffset(4, -4)
 			gta.Text:SetText("WASTED")
 			gta.Text:SetDrawLayer("OVERLAY")
-			gtabanner:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Wasted.tga")
+			if not IsAddOnLoaded("Hardcore") then
+				gtabanner:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Wasted.tga")
+			end
 			gtabanner:SetAlpha(0.60)
 			gtabanner:SetSize(x, 300)
 
