@@ -126,3 +126,12 @@ function ElvUI_EltreumUI:DatatextHide(event)
 		end
 	end
 end
+
+--secret
+if IsAddOnLoaded("Hardcore") then
+	local HardcoreMonitor = CreateFrame("Frame")
+	HardcoreMonitor:RegisterEvent("PLAYER_DEAD")
+	HardcoreMonitor:SetScript("OnEvent", function()
+		PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\overconfidence.ogg" , "Master")
+	end)
+end
