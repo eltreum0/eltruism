@@ -1,6 +1,6 @@
 ## Interface: 100007
 ## Author: Eltreum
-## Version: 3.8.1
+## Version: 3.8.2
 ## Title: |cff1784d1ElvUI|r |cff91bdffE|r|cff95c5ffl|r|cff99ccfet|r|cff9dd4fer|r|cffa1dcfeu|r|cffa5e4fei|r|cffa9ebfds|r|cffadf3fdm|r
 ## IconTexture: Interface\AddOns\ElvUI_EltreumUI\Media\Textures\tinylogo
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
