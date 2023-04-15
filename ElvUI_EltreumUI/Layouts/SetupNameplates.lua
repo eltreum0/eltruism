@@ -672,17 +672,21 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["color"]["b"] = 0
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["color"]["g"] = 0
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["color"]["r"] = 0
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["enable"] = false
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["speed"] = 7
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"][1] = 1
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"][2] = 0
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"][3] = 0.078431375324726
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"][4] = 0.90000000596046
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["enable"] = true
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["size"] = 2
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["speed"] = 0.75
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["lines"] = 8
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["style"] = "Pixel Glow"
+		if E.version > 13.29 then
+			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["enable"] = false
+			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"][1] = 1
+			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"][2] = 0
+			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"][3] = 0.078431375324726
+			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"][4] = 0.90000000596046
+			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["enable"] = true
+			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["size"] = 2
+			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["speed"] = 0.75
+			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["lines"] = 8
+			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["style"] = "Pixel Glow"
+		else
+			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["enable"] = true
+		end
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["scale"] = 1.2
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["enable"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["texture"] = "Eltreum-Stripes"
