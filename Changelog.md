@@ -4,6 +4,7 @@ ___
 ### 3.8.2
 Added an option to disable the Gradient Health and Name on tooltips  
 Added options to customize the Entering/Leaving Combat Indicator  
+Added glow to EltreumInterrupt Style filter if using ElvUI 13.30  
 Added an option in CVars to change Nameplate Global scale  
 Added Gradient and Custom Textures to Assist Targets  
 Added an option to disable the ElvUI skin on Buttons  
@@ -11,7 +12,6 @@ Added Eltruism Icons for Author, Donators and MVPs
 Added an option in CVars to disable Soft Targets  
 Added an extra Combat Icon and used it in Party  
 Added gradient names to player names in chat  
-Added glow to EltreumInterrupt Style filter  
 Added class icons to player names in chat  
 Added Auto Delete to Pet Cages in Retail  
 Added a new sound: Overconfidence  
