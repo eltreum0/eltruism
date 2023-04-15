@@ -203,14 +203,6 @@ local function EltruismTeleportsOnEvent(self)
 end
 
 local function EltruismTeleportsOnEnter(self)
-	_G["EltruismHearthStoneTest"] = _G["EltruismHearthStoneTest"] or CreateFrame('Button', "EltruismHearthStoneTest", self, 'SecureActionButtonTemplate')
-	_G["EltruismHearthStoneTest"]:SetAttribute('type', 'item')
-	local name = GetItemInfo(6948)
-	_G["EltruismHearthStoneTest"]:SetAttribute('item', name)
-	_G["EltruismHearthStoneTest"]:RegisterForClicks("AnyUp", "AnyDown")
-	_G["EltruismHearthStoneTest"]:SetPoint("TOPLEFT", self ,"TOPLEFT", 0, 0)
-	_G["EltruismHearthStoneTest"]:SetPoint("BOTTOMRIGHT", self,"BOTTOMRIGHT", -(self:GetWidth()/4)*3, 0)
-
 	DT.tooltip:ClearLines()
 	local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
 	for i,v in pairs(TeleportsItems) do
@@ -348,9 +340,19 @@ end
 
 local function EltruismTeleportsOnLeave()
 	teleportupdate:SetScript("OnUpdate", nil)
+	E:Delay(1, function()_G["EltruismHearthStoneSecureButton"]:Hide() end) --delay because showing leaves the datatext so this would trigger early
 end
 
+_G["EltruismHearthStoneSecureButton"] = _G["EltruismHearthStoneSecureButton"] or CreateFrame('Button', "EltruismHearthStoneSecureButton", nil, 'SecureActionButtonTemplate')
+_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'item')
+local name = GetItemInfo(6948)
+_G["EltruismHearthStoneSecureButton"]:SetAttribute('item', name)
+_G["EltruismHearthStoneSecureButton"]:RegisterForClicks("AnyUp", "AnyDown")
+--_G["EltruismHearthStoneSecureButton"]:SetPoint("TOPLEFT", self ,"TOPLEFT", 0, 0)
+--_G["EltruismHearthStoneSecureButton"]:SetPoint("BOTTOMRIGHT", self,"BOTTOMRIGHT", -(self:GetWidth()/4)*3, 0)
+
 local function EltruismTeleportsOnClick(self, button)
-	_G["EltruismHearthStoneTest"]:Click(button)
+	_G["EltruismHearthStoneSecureButton"]:Show()
+	_G["EltruismHearthStoneSecureButton"]:SetAllPoints(self)
 end
 DT:RegisterDatatext('EltruismTeleports', nil, { 'SPELL_UPDATE_COOLDOWN', 'BAG_UPDATE_COOLDOWN', "HEARTHSTONE_BOUND"}, EltruismTeleportsOnEvent, nil, EltruismTeleportsOnClick, EltruismTeleportsOnEnter, EltruismTeleportsOnLeave, L["Eltruism Hearthstones/Teleports"], nil, nil)
