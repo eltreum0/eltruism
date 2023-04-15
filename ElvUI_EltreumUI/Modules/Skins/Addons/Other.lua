@@ -66,3 +66,13 @@ function ElvUI_EltreumUI:EltruismScrap()
 end
 S:AddCallbackForAddon('Scrap_Merchant', "EltruismScrap", ElvUI_EltreumUI.EltruismScrap)
 S:AddCallbackForAddon('Scrap', "EltruismScrap", ElvUI_EltreumUI.EltruismScrap)
+
+--secret
+function ElvUI_EltreumUI:EltruismHardcore()
+	local HardcoreMonitor = CreateFrame("Frame")
+	HardcoreMonitor:RegisterEvent("PLAYER_DEAD")
+	HardcoreMonitor:SetScript("OnEvent", function()
+		PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\overconfidence.ogg" , "Master")
+	end)
+end
+S:AddCallbackForAddon('Hardcore', "EltruismHardcore", ElvUI_EltreumUI.EltruismHardcore)

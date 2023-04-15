@@ -1022,6 +1022,12 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 
+				--quest model thing
+				if _G["EltruismQuestNPCModelTemplate"] and not _G["EltruismQuestNPCModelTemplate"].shadow then
+					_G["EltruismQuestNPCModelTemplate"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G["EltruismQuestNPCModelTemplate"].shadow)
+				end
+
 				--loss of control frame icon
 				if _G.LossOfControlFrame and _G.LossOfControlFrame.Icon and _G.LossOfControlFrame.shadow then
 					_G.LossOfControlFrame.shadow:ClearAllPoints()

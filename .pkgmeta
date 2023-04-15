@@ -11,6 +11,7 @@ ignore:
   - eltruism/README.md
   - "*.md"
   - eltruism/Screenshots
+  - Screenshots
 
 move-folders:
     ElvUI_EltreumUI/ElvUI_EltreumUI: ElvUI_EltreumUI

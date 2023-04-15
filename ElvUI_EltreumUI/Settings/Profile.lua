@@ -602,13 +602,13 @@ P.ElvUI_EltreumUI = {
 			combatindicator = false,
 			combatindicatorcustom = {
 				enable = false,
-				enter = "Enter",
+				enter = "+COMBAT",
 				entercolor = {
 					r = 1,
 					g = 0,
 					b = 0,
 				},
-				leave = "Leave",
+				leave = "-COMBAT",
 				leavecolor = {
 					r = 1,
 					g = 1,
