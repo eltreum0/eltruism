@@ -26,7 +26,6 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 					if isNamePlateElement and not E.db.ElvUI_EltreumUI.skins.elvui.nameplates then return end
 					if frame:GetObjectType() == "Button" and not E.db.ElvUI_EltreumUI.skins.elvui.button then return end
 					if frame:GetParent() and frame:GetParent():GetObjectType() == "Button" and not E.db.ElvUI_EltreumUI.skins.elvui.button then return end
-					if frame:GetParent() and frame:GetParent().style or frame.styleShadow then return end --avoid benik's style
 
 					if template ~= "NoBackdrop" then
 						if not frame.EltruismBackground then
