@@ -21,6 +21,7 @@ local GetSpellCooldown = _G.GetSpellCooldown
 local tostring = _G.tostring
 local mod = _G.mod
 local IsUsableItem = _G.IsUsableItem
+local hsIsReady = true
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------hearthstone/tp item datatext
 --based yet again on elvui config
 --most from https://www.wowhead.com/item=6948/hearthstone#comments
@@ -196,8 +197,10 @@ local function EltruismTeleportsOnEvent(self)
 	local cooldown = start + duration - GetTime()
 	if cooldown >= 2 then
 		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t |cffED7474"..GetBindLocation().."|r"
+		hsIsReady = false
 	elseif cooldown <= 0 then
 		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
+		hsIsReady = true
 	end
 	self.text:SetText(displayStringEltruismTeleports)
 end
@@ -262,8 +265,10 @@ local function EltruismTeleportsOnEnter(self)
 	local cooldown = start + duration - GetTime()
 	if cooldown >= 2 then
 		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t |cffdb3030"..GetBindLocation().."|r"
+		hsIsReady = false
 	else
 		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
+		hsIsReady = true
 	end
 	DT.tooltip:AddDoubleLine(L["Double Click:"], USE.." "..GetItemInfo(6948))
 	DT.tooltip:Show()
@@ -331,8 +336,10 @@ local function EltruismTeleportsOnEnter(self)
 			local cooldown = start + duration - GetTime()
 			if cooldown >= 2 then
 				displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t |cffdb3030"..GetBindLocation().."|r"
+				hsIsReady = false
 			else
 				displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
+				hsIsReady = true
 			end
 			DT.tooltip:AddDoubleLine(L["Double Click:"], USE.." "..GetItemInfo(6948))
 			DT.tooltip:Show()
@@ -350,13 +357,16 @@ _G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'item')
 local name = GetItemInfo(6948)
 _G["EltruismHearthStoneSecureButton"]:SetAttribute('item', name)
 _G["EltruismHearthStoneSecureButton"]:RegisterForClicks("AnyUp", "AnyDown")
---_G["EltruismHearthStoneSecureButton"]:SetPoint("TOPLEFT", self ,"TOPLEFT", 0, 0)
---_G["EltruismHearthStoneSecureButton"]:SetPoint("BOTTOMRIGHT", self,"BOTTOMRIGHT", -(self:GetWidth()/4)*3, 0)
-
 local function EltruismTeleportsOnClick(self, button)
-	_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'item')
-	local name = GetItemInfo(6948)
-	_G["EltruismHearthStoneSecureButton"]:SetAttribute('item', name)
+	if not hsIsReady and E.myclass == "SHAMAN" then
+		_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'spell')
+		local name = GetSpellInfo(556)
+		_G["EltruismHearthStoneSecureButton"]:SetAttribute('spell', name)
+	else
+		_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'item')
+		local name = GetItemInfo(6948)
+		_G["EltruismHearthStoneSecureButton"]:SetAttribute('item', name)
+	end
 	_G["EltruismHearthStoneSecureButton"]:RegisterForClicks("AnyUp", "AnyDown")
 	_G["EltruismHearthStoneSecureButton"]:Show()
 	_G["EltruismHearthStoneSecureButton"]:SetAllPoints(self)
