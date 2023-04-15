@@ -186,6 +186,16 @@ function ElvUI_EltreumUI:SkinQuests()
 		end
 
 		if E.Retail then
+			if _G["QuestNPCModelTextFrame"] then
+				if not _G["QuestNPCModelTextFrame"].Eltruismbg then
+					local QuestNPCModelTemplate = CreateFrame("Frame", "EltruismQuestNPCModelTemplate")
+					QuestNPCModelTemplate:SetPoint("TOPLEFT", _G["QuestModelScene"], "TOPLEFT", 0,0)
+					QuestNPCModelTemplate:SetPoint("BOTTOMRIGHT", _G["QuestNPCModelTextFrame"], "BOTTOMRIGHT", 0,0)
+					S:HandleFrame(QuestNPCModelTemplate)
+					_G["QuestNPCModelTextFrame"].Eltruismbg = _G["QuestNPCModelTextFrame"]:CreateTexture() --used as a check
+				end
+			end
+
 			-- and (not IsAddOnLoaded("ElvUI_WindTools"))
 			if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 				--WQs banner
