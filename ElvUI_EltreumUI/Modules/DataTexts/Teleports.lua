@@ -203,15 +203,13 @@ local function EltruismTeleportsOnEvent(self)
 end
 
 local function EltruismTeleportsOnEnter(self)
-	--[[_G["EltruismHearthStoneTest"] = _G["EltruismHearthStoneTest"] or CreateFrame('Button', "EltruismHearthStoneTest", self, 'SecureActionButtonTemplate')
+	_G["EltruismHearthStoneTest"] = _G["EltruismHearthStoneTest"] or CreateFrame('Button', "EltruismHearthStoneTest", self, 'SecureActionButtonTemplate')
 	_G["EltruismHearthStoneTest"]:SetAttribute('type', 'item')
 	local name = GetItemInfo(6948)
 	_G["EltruismHearthStoneTest"]:SetAttribute('item', name)
-	_G["EltruismHearthStoneTest"]:RegisterForClicks("AnyUp")
-	--_G["EltruismHearthStoneTest"]:SetAllPoints()
-
+	_G["EltruismHearthStoneTest"]:RegisterForClicks("AnyUp", "AnyDown")
 	_G["EltruismHearthStoneTest"]:SetPoint("TOPLEFT", self ,"TOPLEFT", 0, 0)
-	_G["EltruismHearthStoneTest"]:SetPoint("BOTTOMRIGHT", self,"BOTTOMRIGHT", -(self:GetWidth()/4)*3, 0)]]
+	_G["EltruismHearthStoneTest"]:SetPoint("BOTTOMRIGHT", self,"BOTTOMRIGHT", -(self:GetWidth()/4)*3, 0)
 
 	DT.tooltip:ClearLines()
 	local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
@@ -352,4 +350,7 @@ local function EltruismTeleportsOnLeave()
 	teleportupdate:SetScript("OnUpdate", nil)
 end
 
-DT:RegisterDatatext('EltruismTeleports', nil, { 'SPELL_UPDATE_COOLDOWN', 'BAG_UPDATE_COOLDOWN', "HEARTHSTONE_BOUND"}, EltruismTeleportsOnEvent, nil, nil, EltruismTeleportsOnEnter, EltruismTeleportsOnLeave, L["Eltruism Hearthstones/Teleports"], nil, nil)
+local function EltruismTeleportsOnClick(self, button)
+	_G["EltruismHearthStoneTest"]:Click(button)
+end
+DT:RegisterDatatext('EltruismTeleports', nil, { 'SPELL_UPDATE_COOLDOWN', 'BAG_UPDATE_COOLDOWN', "HEARTHSTONE_BOUND"}, EltruismTeleportsOnEvent, nil, EltruismTeleportsOnClick, EltruismTeleportsOnEnter, EltruismTeleportsOnLeave, L["Eltruism Hearthstones/Teleports"], nil, nil)
