@@ -319,6 +319,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckWindTools(L["Keystone\n!key command/Autoinsert"], L["Keystone Autoinsert"], "db.ElvUI_EltreumUI.otherstuff.mpluskeys", "db.WT.combat.quickKeystone.enable")
 	CheckWindTools(L["Fast Loot"], L["Fast Loot"], "db.ElvUI_EltreumUI.loot.fastloot", "db.WT.item.fastLoot.enable")
 	CheckWindTools(L["Auto Type Delete"], L["Auto Type Delete"], "db.ElvUI_EltreumUI.otherstuff.delete", "db.WT.item.delete.enable")
+	CheckMerathilisUI(L["Tooltip\nGradient Name and Health"], L["Tooltip\nGradient Name"], "db.ElvUI_EltreumUI.skins.gradienttooltip", "db.mui.tooltip.gradientName")
 
 	if _G["EltruismCompatibilityFrame"].numModules > 0 then
 		_G["EltruismCompatibilityFrame"]:Show()
