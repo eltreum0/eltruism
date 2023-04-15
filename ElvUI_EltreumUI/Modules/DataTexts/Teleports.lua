@@ -265,6 +265,7 @@ local function EltruismTeleportsOnEnter(self)
 	else
 		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
 	end
+	DT.tooltip:AddDoubleLine(L["Double Click:"], USE.." "..GetItemInfo(6948))
 	DT.tooltip:Show()
 
 	teleportupdate:SetScript("OnUpdate", function(self, elapsed)
@@ -333,6 +334,7 @@ local function EltruismTeleportsOnEnter(self)
 			else
 				displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
 			end
+			DT.tooltip:AddDoubleLine(L["Double Click:"], USE.." "..GetItemInfo(6948))
 			DT.tooltip:Show()
 		end
 	end)
@@ -352,6 +354,10 @@ _G["EltruismHearthStoneSecureButton"]:RegisterForClicks("AnyUp", "AnyDown")
 --_G["EltruismHearthStoneSecureButton"]:SetPoint("BOTTOMRIGHT", self,"BOTTOMRIGHT", -(self:GetWidth()/4)*3, 0)
 
 local function EltruismTeleportsOnClick(self, button)
+	_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'item')
+	local name = GetItemInfo(6948)
+	_G["EltruismHearthStoneSecureButton"]:SetAttribute('item', name)
+	_G["EltruismHearthStoneSecureButton"]:RegisterForClicks("AnyUp", "AnyDown")
 	_G["EltruismHearthStoneSecureButton"]:Show()
 	_G["EltruismHearthStoneSecureButton"]:SetAllPoints(self)
 end
