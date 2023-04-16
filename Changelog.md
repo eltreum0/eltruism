@@ -1,6 +1,9 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.8.2.1
+Fixed Player Model in AFK screen sometimes overlapping the timer  
+Fixed Quest Dialog Frame Model Shadows/Skin not hiding  
 ### 3.8.2
 Added an option to disable the Gradient Health and Name on tooltips  
 Added options to customize the Entering/Leaving Combat Indicator  
