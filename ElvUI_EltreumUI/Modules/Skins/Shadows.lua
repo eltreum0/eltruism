@@ -1026,6 +1026,7 @@ function ElvUI_EltreumUI:Shadows()
 				if _G["EltruismQuestNPCModelTemplate"] and not _G["EltruismQuestNPCModelTemplate"].shadow then
 					_G["EltruismQuestNPCModelTemplate"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(_G["EltruismQuestNPCModelTemplate"].shadow)
+					_G["EltruismQuestNPCModelTemplate"].shadow:SetParent(_G["EltruismQuestNPCModelTemplate"])
 				end
 
 				--loss of control frame icon
