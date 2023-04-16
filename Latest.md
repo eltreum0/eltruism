@@ -40,9 +40,12 @@ Updated Pet Stable Skin
 Updated AFK Skin  
 Fixed castbar shadows when the castbar icon was of a different size from the castbar  
 Fixed an issue with unitframe shadows when all power frames were detached  
+Fixed Player Model in AFK screen sometimes overlapping the timer  
 Fixed Nameplate Power Bar sometimes having the wrong texture  
+Fixed Quest Dialog Frame Model Shadows/Skin not hiding  
 Fixed some texture transparencies in ElvUI skin  
 Fixed ElvUI skin on some buttons
+
 
 
 
