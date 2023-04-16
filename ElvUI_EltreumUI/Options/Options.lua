@@ -5159,6 +5159,7 @@ function ElvUI_EltreumUI:Configtable()
 									["BORDER"] = 'Border '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnightIconReleaf',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterIconReleaf',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanIconReleaf',':20:20'),
 									["SHADOW"] = 'Shadow '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnightShadow',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterShadow',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanShadow',':20:20'),
 									["OUTLINE"] = 'Outline '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnight1',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Hunter1',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Shaman1',':20:20'),
+									["ORIGINAL"] = 'Original '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnightOriginal',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterOriginal',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanOriginal',':20:20'),
 								},
 								sorting = {
 									"RELEAF",
@@ -5166,6 +5167,7 @@ function ElvUI_EltreumUI:Configtable()
 									"BORDER",
 									"BLIZZARD",
 									"SHADOW",
+									"ORIGINAL",
 								},
 								style = 'radio',
 								disabled = function() return not E.db.ElvUI_EltreumUI.chat.enable or not E.db.ElvUI_EltreumUI.chat.chaticonenable end,

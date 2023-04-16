@@ -275,6 +275,21 @@ local classIconsOutline = {
 	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunter1.tga:0:0:0:0|t",
 	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Evoker1.tga:0:0:0:0|t",
 }
+local OriginalIcons = {
+	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorOriginal.tga:0:0:0:0|t",
+	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinOriginal.tga:0:0:0:0|t",
+	["HUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterOriginal.tga:0:0:0:0|t",
+	["ROGUE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\RogueOriginal.tga:0:0:0:0|t",
+	["PRIEST"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PriestOriginal.tga:0:0:0:0|t",
+	["DEATHKNIGHT"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnightOriginal.tga:0:0:0:0|t",
+	["SHAMAN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanOriginal.tga:0:0:0:0|t",
+	["MAGE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MageOriginal.tga:0:0:0:0|t",
+	["WARLOCK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarlockOriginal.tga:0:0:0:0|t",
+	["MONK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MonkOriginal.tga:0:0:0:0|t",
+	["DRUID"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DruidOriginal.tga:0:0:0:0|t",
+	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunterOriginal.tga:0:0:0:0|t",
+	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\EvokerOriginal.tga:0:0:0:0|t",
+}
 local reverseclassIconsReleaf = {
 	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
 	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
@@ -350,6 +365,21 @@ local reverseclassIconsOutline = {
 	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunter1.tga:0:0:0:0:64:64:64:0:0:64|t",
 	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\Evoker1.tga:0:0:0:0:64:64:64:0:0:64|t",
 }
+local reverseOriginalIcons = {
+	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorOriginal.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinOriginal.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["HUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterOriginal.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["ROGUE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\RogueOriginal.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["PRIEST"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PriestOriginal.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DEATHKNIGHT"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnightOriginal.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["SHAMAN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanOriginal.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["MAGE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MageOriginal.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["WARLOCK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarlockOriginal.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["MONK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MonkOriginal.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DRUID"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DruidOriginal.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunterOriginal.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\EvokerOriginal.tga:0:0:0:0:64:64:64:0:0:64|t",
+}
 
 --return icons for other functions
 function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert)
@@ -364,6 +394,8 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert)
 			return classIconsBorder[unitclass]
 		elseif icon == "SHADOW" then
 			return classIconsShadow[unitclass]
+		elseif icon == "ORIGINAL" then
+			return OriginalIcons[unitclass]
 		end
 	else
 		if icon == "RELEAF" then
@@ -376,6 +408,8 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert)
 			return reverseclassIconsBorder[unitclass]
 		elseif icon == "SHADOW" then
 			return reverseclassIconsShadow[unitclass]
+		elseif icon == "ORIGINAL" then
+			return reverseOriginalIcons[unitclass]
 		end
 	end
 end
