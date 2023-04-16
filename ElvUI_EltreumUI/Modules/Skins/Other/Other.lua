@@ -611,9 +611,10 @@ function ElvUI_EltreumUI:SkinMailZone()
 
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not self.ZoneSkinned then
 				_G.ZoneTextFrame:HookScript("OnUpdate", function()
-					_G.ZoneTextString:SetWidth(512)
-					_G.ZoneTextString:SetMaxLines(1)
-					_G.ZoneTextString:SetWordWrap(false)
+					--_G.ZoneTextString:SetWidth(512)
+					--_G.ZoneTextString:SetMaxLines(1)
+					--_G.ZoneTextString:SetWordWrap(false)
+					--_G.ZoneTextString:SetText("Putricide's Laboratory of Alchemical Horrors and Fun") --debug for length
 					if _G.ZoneTextString:GetText() ~= nil and not _G.ZoneTextString:GetText():match("|r|c") then
 						local r,g,b = _G.ZoneTextString:GetTextColor()
 						local r2 = r-0.3
@@ -636,9 +637,9 @@ function ElvUI_EltreumUI:SkinMailZone()
 					end
 				end)
 				_G.SubZoneTextFrame:HookScript("OnUpdate", function()
-					_G.SubZoneTextString:SetWidth(512)
-					_G.SubZoneTextString:SetMaxLines(1)
-					_G.SubZoneTextString:SetWordWrap(false)
+					--_G.SubZoneTextString:SetWidth(512)
+					--_G.SubZoneTextString:SetMaxLines(1)
+					--_G.SubZoneTextString:SetWordWrap(false)
 					if _G.SubZoneTextString:GetText() ~= nil and not _G.SubZoneTextString:GetText():match("|r|c") then
 						local r,g,b = _G.SubZoneTextString:GetTextColor()
 						local r2 = r-0.3
