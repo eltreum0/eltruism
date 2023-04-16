@@ -92,6 +92,9 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Kimberley"
 		E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
 
+		--no target glow
+		E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "none"
+
 		--remove the by type border colors
 		E.db["nameplates"]["colors"]["auraByType"] = false
 		--boss mods
