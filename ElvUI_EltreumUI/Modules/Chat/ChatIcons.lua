@@ -6,7 +6,7 @@ local format = _G.string.format
 
 --Add Icons to chat messages
 function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
-	if E.db.ElvUI_EltreumUI.chat.AuthorMVPDonatorIcons then
+	if E.db.ElvUI_EltreumUI.chat.AuthorMVPDonatorIcons and E.db.ElvUI_EltreumUI.chat.enable then
 
 		--Eltreum
 		--|Tpath:height[:width[:offsetX:offsetY:[textureWidth:textureHeight:leftTexel:rightTexel:topTexel:bottomTexel[:rVertexColor:gVertexColor:bVertexColor]]]]|t
@@ -195,7 +195,7 @@ function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, 
 	return arg2
 end
 hooksecurefunc(CH, "ChatFrame_MessageEventHandler", function()
-	if E.db.ElvUI_EltreumUI.chat.chaticonenable then
+	if E.db.ElvUI_EltreumUI.chat.chaticonenable and E.db.ElvUI_EltreumUI.chat.enable then
 		CH.GetColoredName = ElvUI_EltreumUI.ChatClassIcons
 	end
 end)
