@@ -611,7 +611,7 @@ function ElvUI_EltreumUI:SkinMailZone()
 
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not self.ZoneSkinned then
 				_G.ZoneTextFrame:HookScript("OnUpdate", function()
-					_G.ZoneTextString:SetWidth(1024)
+					_G.ZoneTextString:SetWidth(512)
 					_G.ZoneTextString:SetMaxLines(1)
 					_G.ZoneTextString:SetWordWrap(false)
 					if _G.ZoneTextString:GetText() ~= nil and not _G.ZoneTextString:GetText():match("|r|c") then
@@ -636,7 +636,7 @@ function ElvUI_EltreumUI:SkinMailZone()
 					end
 				end)
 				_G.SubZoneTextFrame:HookScript("OnUpdate", function()
-					_G.SubZoneTextString:SetWidth(1024)
+					_G.SubZoneTextString:SetWidth(512)
 					_G.SubZoneTextString:SetMaxLines(1)
 					_G.SubZoneTextString:SetWordWrap(false)
 					if _G.SubZoneTextString:GetText() ~= nil and not _G.SubZoneTextString:GetText():match("|r|c") then
