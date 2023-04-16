@@ -191,6 +191,7 @@ function ElvUI_EltreumUI:AFKLogo()
 			local point, relativeTo, relativePoint, xOfs, yOfs = _G.ElvUIAFKFrame.bottom.modelHolder:GetPoint()
 			_G.ElvUIAFKFrame.bottom.modelHolder:ClearAllPoints()
 			_G.ElvUIAFKFrame.bottom.modelHolder:Point(point, relativeTo, relativePoint, 250, yOfs+10)
+			_G.ElvUIAFKFrame.bottom.model:SetScale(0.9)
 
 			--time
 			_G.ElvUIAFKFrame.bottom.time:ClearAllPoints()
