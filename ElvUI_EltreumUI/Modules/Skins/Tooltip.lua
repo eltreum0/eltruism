@@ -138,3 +138,4 @@ function ElvUI_EltreumUI:Tooltip(tt)
 end
 hooksecurefunc(TT, 'AddTargetInfo', ElvUI_EltreumUI.Tooltip)
 hooksecurefunc(TT, 'GameTooltip_OnTooltipSetUnit', ElvUI_EltreumUI.Tooltip)
+hooksecurefunc(TT, 'MODIFIER_STATE_CHANGED', ElvUI_EltreumUI.Tooltip)
