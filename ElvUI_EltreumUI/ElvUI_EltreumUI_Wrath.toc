@@ -1,7 +1,7 @@
 ## Interface: 30401
 ## Author: Eltreum
 ## Version: 3.8.2
-## Title: |cff1784d1ElvUI|r |cff91bdffE|r|cff93c2ffl|r|cff96c6fft|r|cff98cbffr|r|cff9acffeu|r|cff9dd4fei|r|cff9fd8fes|r|cffa1ddfem|r |cffa4e1feW|r|cffa6e6fer|r|cffa8eafda|r|cffabeffdt|r|cffadf3fdh|r
+## Title: |cff1784d1ElvUI|r |cff587AADE|r|cff5D82B2l|r|cff638BB8t|r|cff6993BEr|r|cff6F9CC4u|r|cff75A4CAi|r|cff7BADD0s|r|cff81B6D6m|r |cff8CC7E1W|r|cff92CFE7r|r|cff98D8EDa|r|cff9EE0F3t|r|cffA4E9F9h|r
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
 ## Notes-deDE: Eltruism ist ein ElvUI Plugin mit Profilen und anderen Funktionen, die in ElvUI nicht verfügbar sind
 ## Dependencies: ElvUI
