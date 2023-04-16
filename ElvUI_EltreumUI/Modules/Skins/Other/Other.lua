@@ -598,25 +598,20 @@ end)
 function ElvUI_EltreumUI:SkinMailZone()
 	if E.db.ElvUI_EltreumUI.skins.zones then
 		if not ElvUI_EltreumUI:SLCheck("media") then
-			--[[hooksecurefunc("SetZoneText", function()
-				ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, E.db.general.fontStyle)
-				SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, E.db.general.fontStyle)
-				PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
-				PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
-			end)]]
-			--[[_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, "NONE")
-			_G.ZoneTextString:SetShadowColor(0,0,0,1)
-			_G.ZoneTextString:SetShadowOffset(3, -3)
-			_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, "NONE")
-			_G.SubZoneTextString:SetShadowColor(0,0,0,1)
-			_G.SubZoneTextString:SetShadowOffset(3, -3)]]
 			_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, E.db.general.fontStyle)
+			_G.ZoneTextString:SetShadowColor(0,0,0,1)
+			_G.ZoneTextString:SetShadowOffset(1, -1)
 			_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, E.db.general.fontStyle)
+			_G.SubZoneTextString:SetShadowColor(0,0,0,1)
+			_G.SubZoneTextString:SetShadowOffset(1, -1)
 			_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
 			_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
 
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not self.ZoneSkinned then
 				_G.ZoneTextFrame:HookScript("OnUpdate", function()
+					--_G.ZoneTextString:SetWidth(1024)
+					--_G.ZoneTextString:SetMaxLines(1)
+					--_G.ZoneTextString:SetWordWrap(false)
 					if _G.ZoneTextString:GetText() ~= nil and not _G.ZoneTextString:GetText():match("|r|c") then
 						local r,g,b = _G.ZoneTextString:GetTextColor()
 						local r2 = r-0.3
@@ -638,8 +633,10 @@ function ElvUI_EltreumUI:SkinMailZone()
 						_G.PVPInfoTextString:SetText(E:TextGradient(_G.PVPInfoTextString:GetText(), r, g, b, r2, g2, b2))
 					end
 				end)
-
 				_G.SubZoneTextFrame:HookScript("OnUpdate", function()
+					--_G.SubZoneTextString:SetWidth(1024)
+					--_G.SubZoneTextString:SetMaxLines(1)
+					--_G.SubZoneTextString:SetWordWrap(false)
 					if _G.SubZoneTextString:GetText() ~= nil and not _G.SubZoneTextString:GetText():match("|r|c") then
 						local r,g,b = _G.SubZoneTextString:GetTextColor()
 						local r2 = r-0.3
@@ -661,7 +658,6 @@ function ElvUI_EltreumUI:SkinMailZone()
 						_G.PVPArenaTextString:SetText(E:TextGradient(_G.PVPArenaTextString:GetText(), r, g, b, r2, g2, b2))
 					end
 				end)
-
 				self.ZoneSkinned = true
 			end
 
