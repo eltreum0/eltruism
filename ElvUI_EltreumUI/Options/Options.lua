@@ -11726,6 +11726,7 @@ function ElvUI_EltreumUI:Configtable()
 							lootericons = {
 								type = 'group',
 								name = E.NewSign..L["Master Looter Icons"],
+								hidden = E.Retail,
 								order = 4,
 								args = {
 									headerlootericon = {
