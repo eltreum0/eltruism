@@ -49,6 +49,10 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 									frame.eltruismbgtexture:SetVertexColor(1,0,0,0)
 								end
 							end
+							if isUnitFrameElement and (frame:GetParent() and frame:GetParent().isTransparent == false and frame:GetParent().cur) then --only on health
+								frame.eltruismbgtexture:SetDrawLayer("ARTWORK")
+								frame.eltruismbgtexture:SetParent(frame:GetParent())
+							end
 							if E.db.ElvUI_EltreumUI.skins.elvui.color.classcolor then
 								frame.eltruismbgtexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,0.15)
 							else
