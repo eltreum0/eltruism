@@ -102,6 +102,8 @@ local function ImproveInstall(installtype,mode,null)
 			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\ElvUIFCT.jpg")
 		elseif installtype == "Immersion" then
 			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\Immersion.jpg")
+		elseif installtype == "OmniCD" then
+			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\OmniCD.jpg")
 		end
 
 		if mode == "ENTERING" then
@@ -644,8 +646,23 @@ ElvUI_EltreumUI.InstallerData = {
 					_G.PluginInstallFrame.Option3:Show()
 					_G.PluginInstallFrame.Option3:SetText(L["WarpDeplete"])
 				end
+
+				if IsAddOnLoaded("OmniCD") then
+					_G.PluginInstallFrame.Desc3:SetText(L["Import OmniCD profile"])
+					_G.PluginInstallFrame.Option3:Enable()
+					_G.PluginInstallFrame.Option3:Show()
+					_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:GetOmniCDProfile() end)
+					_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ImproveInstall("OmniCD","ENTERING") end)
+					_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+					_G.PluginInstallFrame.Option3:SetText(L["OmniCD"])
+				else
+					_G.PluginInstallFrame.Desc3:SetText(L["OmniCD is not installed or enabled"])
+					_G.PluginInstallFrame.Option3:Disable()
+					_G.PluginInstallFrame.Option3:Show()
+					_G.PluginInstallFrame.Option3:SetText(L["OmniCD"])
+				end
 			end
-			if not ( IsAddOnLoaded("WarpDeplete") or IsAddOnLoaded("Capping") or IsAddOnLoaded("BattleGroundEnemies") ) then
+			if not ( IsAddOnLoaded("WarpDeplete") or IsAddOnLoaded("Capping") or IsAddOnLoaded("BattleGroundEnemies") or IsAddOnLoaded("OmniCD") ) then
 				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			else
 				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')

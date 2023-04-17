@@ -17,8 +17,14 @@ function ElvUI_EltreumUI:EltruismWarpDeplete()
 						--print(v:GetObjectType())
 						for _, j in pairs{v:GetChildren()} do
 							if j:IsObjectType('StatusBar') then
-								local r,g,b,a = j:GetStatusBarColor()
-								j:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= a})
+								local r,g,b = j:GetStatusBarColor()
+								j:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= E.db.general.backdropfadecolor.a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= E.db.general.backdropfadecolor.a})
+								if not j.EltruismHook then --hook so it updates later
+									hooksecurefunc(j,"SetStatusBarColor", function(_,r,g,b,a)
+										j:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= E.db.general.backdropfadecolor.a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= E.db.general.backdropfadecolor.a})
+									end)
+									j.EltruismHook = true
+								end
 							end
 						end
 
