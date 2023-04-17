@@ -13,6 +13,7 @@
 	<Script file='Gladius.lua'/>
 	<Script file='Immersion.lua'/>
 	<Script file='NameplateSCT.lua'/>
+	<Script file='OmniCD.lua'/>
 	<Script file='ProjectAzilroka.lua'/>
 	<Script file='Questie.lua'/>
 	<Script file='ShadowAndLight.lua'/>
