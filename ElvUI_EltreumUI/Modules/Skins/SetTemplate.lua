@@ -60,10 +60,29 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 								frame.eltruismbgtexture:Show()
 							end
 						end
+						--[[if not frame.eltruismbordertest then
+							local classcolor = E:ClassColor(E.myclass, true)
+							local offset = (E.PixelMode and 13) or 14
+							frame.eltruismbordertest = CreateFrame("Frame", nil, frame, BackdropTemplateMixin and "BackdropTemplate")
+							frame.eltruismbordertest:SetPoint("CENTER", frame, "CENTER", 0, 0)
+							frame.eltruismbordertest:SetBackdrop({
+								edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
+								edgeSize = offset,
+							})
+							frame.eltruismbordertest:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+							--frame.eltruismbordertest:SetFrameLevel(1)
+							frame.eltruismbordertest:SetFrameStrata(frame:GetFrameStrata())
+							frame.eltruismbordertest:SetOutside(frame, offset-1.5, offset-1.5, nil, true)
+						else
+							frame.eltruismbordertest:Show()
+						end]]
 					else
 						if frame.eltruismbgtexture then
 							frame.eltruismbgtexture:Hide()
 						end
+						--[[if frame.eltruismbordertest then
+							frame.eltruismbordertest:Hide()
+						end]]
 					end
 				end)
 			end

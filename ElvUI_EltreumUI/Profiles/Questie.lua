@@ -31,8 +31,10 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 		QuestieConfig["global"]["dbmHUDRadius"] = 4
 		QuestieConfig["global"]["dbmHUDShowQuest"] = false
 
-		QuestieConfig["global"]["nameplateX"] = -30
+		QuestieConfig["global"]["nameplateX"] = -25
 		QuestieConfig["global"]["nameplateY"] = 0
+		QuestieConfig["global"]["nameplateTargetFrameY"] = 5
+		QuestieConfig["global"]["nameplateTargetFrameX"] = -171
 
 		QuestieConfig["global"]["questMinimapObjectiveColors"] = true
 		QuestieConfig["global"]["questObjectiveColors"] = true
