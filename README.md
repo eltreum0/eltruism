@@ -46,9 +46,9 @@ Shadows, Character Panel, Quests, other AddOns are skinned\
 Cooldowns with TTS, Combat Music, Fast Loot, Loot Wishlist, Hide Talking Head, Mail Sounds, Time to Arrive to Waypoint
 ___
 ### Pictures
-[![](https://github.com/eltreum0/eltruism/raw/main/Screenshots/Preview1.jpg)](https://github.com/eltreum0/eltruism/raw/main/Screenshots/Preview1.jpg)
+[![](https://github.com/eltreum0/eltruism/raw/main/Screenshots/Preview1.webp)](https://github.com/eltreum0/eltruism/raw/main/Screenshots/Preview1.webp)
 \
-[![](https://github.com/eltreum0/eltruism/raw/main/Screenshots/Preview2.jpg)](https://github.com/eltreum0/eltruism/raw/main/Screenshots/Preview2.jpg)
+[![](https://github.com/eltreum0/eltruism/raw/main/Screenshots/Preview2.webp)](https://github.com/eltreum0/eltruism/raw/main/Screenshots/Preview2.webp)
 ___
 ### Credits
 > This plugin was based in **[LuckyoneUI](httpswww.tukui.orgaddons.php?id=154)** and credits go to him for allowing its use
