@@ -651,7 +651,15 @@ ElvUI_EltreumUI.InstallerData = {
 					_G.PluginInstallFrame.Desc3:SetText(L["Import OmniCD profile"])
 					_G.PluginInstallFrame.Option3:Enable()
 					_G.PluginInstallFrame.Option3:Show()
-					_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:GetOmniCDProfile() end)
+					_G.PluginInstallFrame.Option3:SetScript('OnClick', function()
+						if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
+							ElvUI_EltreumUI:GetOmniCDProfile("dps")
+						elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
+							ElvUI_EltreumUI:GetOmniCDProfile("healer")
+						else
+							ElvUI_EltreumUI:GetOmniCDProfile("dps")
+						end
+					end)
 					_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ImproveInstall("OmniCD","ENTERING") end)
 					_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
 					_G.PluginInstallFrame.Option3:SetText(L["OmniCD"])

@@ -699,15 +699,25 @@ function ElvUI_EltreumUI:Configtable()
 								width = 'full',
 								hidden = not E.Retail,
 							},
-							omnicd = {
+							omnicddps = {
 								order = 10,
 								type = 'execute',
-								name = 'OmniCD',
+								name = 'OmniCD DPS',
 								desc = L["Reset to Eltruism defaults."],
 								width = 'full',
 								hidden = not E.Retail,
 								disabled = function() return not IsAddOnLoaded("OmniCD") end,
-								func = function() ElvUI_EltreumUI:GetOmniCDProfile() E:StaticPopup_Show('CONFIG_RL') end,
+								func = function() ElvUI_EltreumUI:GetOmniCDProfile("dps") E:StaticPopup_Show('CONFIG_RL') end,
+							},
+							omnicdhealer = {
+								order = 10,
+								type = 'execute',
+								name = 'OmniCD Healer',
+								desc = L["Reset to Eltruism defaults."],
+								width = 'full',
+								hidden = not E.Retail,
+								disabled = function() return not IsAddOnLoaded("OmniCD") end,
+								func = function() ElvUI_EltreumUI:GetOmniCDProfile("healer") E:StaticPopup_Show('CONFIG_RL') end,
 							},
 							header5pvp = {
 								order = 209,
