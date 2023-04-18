@@ -135,7 +135,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.logo = ACH:Description(nil, 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohq', 320, 80 end)
 
 	-- installer
-	ElvUI_EltreumUI.Options.args.installer = ACH:Group('|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\install:0:0:0:0|t '..E:TextGradient(L["Installer"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Install, Reinstall or Update various parts of Eltruism"], 2, 'tab')
+	ElvUI_EltreumUI.Options.args.installer = ACH:Group(E:TextGradient(L["Installer"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Install, Reinstall or Update various parts of Eltruism"], 2, 'tab')
+	ElvUI_EltreumUI.Options.args.installer.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\install'
 	ElvUI_EltreumUI.Options.args.installer.args.tab1 = ACH:Group(L["Eltruism Installer"], nil, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab1.args.header1 = ACH:Description(L["Eltruism Installer"], 2, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
 	ElvUI_EltreumUI.Options.args.installer.args.tab1.args.eltruisminstaller = ACH:Execute(L["Launch Eltruism Installer"], L["Launches the Eltruism install prompt"], 3, function() E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData) E:ToggleOptions() end,nil,false,'full')
@@ -202,7 +203,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.detailscache= ACH:Execute(L["Clear Details Tables"], L["Set Details tables to be empty"], 9, function() ElvUI_EltreumUI:EmptyDetailsTable() end,nil,false,'full')
 
 	-- aurafilters
-	ElvUI_EltreumUI.Options.args.aurafilters = ACH:Group('|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\aurafilter:0:0:0:0|t '..E:TextGradient(L["Aura Filters"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Choose to show all debuffs/buffs or use default Filters"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.aurafilters = ACH:Group(E:TextGradient(L["Aura Filters"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Choose to show all debuffs/buffs or use default Filters"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.aurafilters.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\aurafilter'
 	ElvUI_EltreumUI.Options.args.aurafilters.args.player = ACH:Group(L["Player"], nil, 2)
 	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player = ACH:Group(L["Select how auras will be displayed for Player"], nil, 1)
 	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player.inline = true
@@ -250,7 +252,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate.args.nameplate.args.eltruismdebuffs = ACH:Execute(L["Eltruism Nameplate Debuffs"], L["Set filters to be Eltruism defaults on Nameplates"], 6, function() ElvUI_EltreumUI:SetupDebuffs('nameplate', 'Eltruism') end,nil,false,'full')
 
 	--addons
-	ElvUI_EltreumUI.Options.args.addons = ACH:Group('|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\addon:0:0:0:0|t '..E:TextGradient(L["Addons"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Install or update other Addon profiles"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.addons = ACH:Group(E:TextGradient(L["Addons"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Install or update other Addon profiles"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.addons.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\addon'
 	ElvUI_EltreumUI.Options.args.addons.args.elvuiplugins = ACH:Group(L["ElvUI Plugins"], nil, 2)
 	ElvUI_EltreumUI.Options.args.addons.args.elvuiplugins.args.header1 = ACH:Description("Azilroka Addons", 2, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
 	ElvUI_EltreumUI.Options.args.addons.args.elvuiplugins.args.addonskins = ACH:Execute('|cff16C3F2AddOn|r|cFFFFFFFFSkins|r', L["Reset to Eltruism defaults."], 3, function() ElvUI_EltreumUI:AddonSetupAS() E:StaticPopup_Show('CONFIG_RL') end,nil,false,'full',nil,nil, function() return not IsAddOnLoaded("AddOnSkins") end)
@@ -290,7 +293,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.addons.args.otheraddons.args.detailsv3 = ACH:Execute(L["Details v3 - Releaf Solid Icons"], L["Reset to Eltruism defaults."], 10, function() ElvUI_EltreumUI:AddonSetupDT("releafsolid") E:StaticPopup_Show('CONFIG_RL') end,nil,false,'full',nil,nil, function() return not IsAddOnLoaded("Details") end)
 
 	--afk
-	ElvUI_EltreumUI.Options.args.afk = ACH:Group('|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\afk:0:0:0:0|t '..E:TextGradient(L["A.F.K"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Enhance the AFK screen"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.afk = ACH:Group(E:TextGradient(L["A.F.K"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Enhance the AFK screen"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.afk.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\afk'
 	ElvUI_EltreumUI.Options.args.afk.args.header1 = ACH:Description(L["Play music while you are AFK"], 2, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
 	ElvUI_EltreumUI.Options.args.afk.args.enable = ACH:Toggle(L["Enable"], nil, 3, nil, false,"full",function() return E.db.ElvUI_EltreumUI.otherstuff.afkmusic.enable end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.afkmusic.enable = value end)
 	ElvUI_EltreumUI.Options.args.afk.args.header2 = ACH:Description(L["Select a type of music"], 4, nil, nil, nil, nil, nil, nil, not E.Retail)
@@ -300,7 +304,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.afk.args.eltruismlogo = ACH:Toggle(L["Enable"], nil, 7, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.afklogo end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.afklogo = value end)
 
 	--borders
-	ElvUI_EltreumUI.Options.args.borders = ACH:Group('|TInterface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\border:0:0:0:0|t '..E:TextGradient(L["Borders"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add Borders to frames and customize them"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.borders = ACH:Group(E:TextGradient(L["Borders"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add Borders to frames and customize them"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.borders.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\border'
 	ElvUI_EltreumUI.Options.args.borders.args.general = ACH:Group(L["General"], nil, 2)
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.header1 = ACH:Description(L["Enable Borders"], 3, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.enable = ACH:Toggle(L["Enable"], nil, 4, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.borders end,function(_, value) E.db.ElvUI_EltreumUI.borders.borders = value ElvUI_EltreumUI:ShowHideBorders() ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end)
