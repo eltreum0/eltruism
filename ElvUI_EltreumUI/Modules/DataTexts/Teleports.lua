@@ -349,7 +349,9 @@ end
 
 local function EltruismTeleportsOnLeave()
 	teleportupdate:SetScript("OnUpdate", nil)
-	E:Delay(1, function()_G["EltruismHearthStoneSecureButton"]:Hide() end) --delay because showing leaves the datatext so this would trigger early
+	if not InCombatLockdown() then
+		E:Delay(1, function()_G["EltruismHearthStoneSecureButton"]:Hide() end) --delay because showing leaves the datatext so this would trigger early
+	end
 end
 
 _G["EltruismHearthStoneSecureButton"] = _G["EltruismHearthStoneSecureButton"] or CreateFrame('Button', "EltruismHearthStoneSecureButton", nil, 'SecureActionButtonTemplate')
@@ -358,6 +360,7 @@ local name = GetItemInfo(6948)
 _G["EltruismHearthStoneSecureButton"]:SetAttribute('item', name)
 _G["EltruismHearthStoneSecureButton"]:RegisterForClicks("AnyUp", "AnyDown")
 local function EltruismTeleportsOnClick(self, button)
+	if InCombatLockdown() then return end
 	if not hsIsReady and E.myclass == "SHAMAN" then
 		_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'spell')
 		local name = GetSpellInfo(556)
