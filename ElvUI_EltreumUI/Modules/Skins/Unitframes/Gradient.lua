@@ -532,6 +532,7 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button)
 	end
 end
 
+local forced = false
 function ElvUI_EltreumUI:GradientUF(unit)
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 
@@ -598,10 +599,11 @@ function ElvUI_EltreumUI:GradientUF(unit)
 			end
 		end
 
-		forced = false
 		if unit == "testunit" then
 			forced = true
 			unit = "player"
+		else
+			forced = false
 		end
 
 		if forced then
@@ -623,8 +625,7 @@ function ElvUI_EltreumUI:GradientUF(unit)
 		end
 
 		--group/raid unitframes
-		if (IsInGroup() or forced) and UnitExists(unit) and (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
-
+		if ((IsInGroup() and UnitExists(unit)) or forced) and (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
 			--party/raid
 			if _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsShown() then
 				--print("party spam")
@@ -761,9 +762,8 @@ hooksecurefunc(UF, "ToggleForceShowGroupFrames", function()
 	ElvUI_EltreumUI:CustomTexture("testunit")
 	ElvUI_EltreumUI:GradientUF("testunit")
 end)
---[[
+--omnicd fix
 hooksecurefunc(UF, "HeaderConfig", function()
-	ElvUI_EltreumUI:CustomTexture("player",true)
-	ElvUI_EltreumUI:GradientUF("player",true)
+	ElvUI_EltreumUI:CustomTexture("testunit")
+	ElvUI_EltreumUI:GradientUF("testunit")
 end)
-]]
