@@ -368,12 +368,12 @@ function ElvUI_EltreumUI:LeaderIcon()
 			frame.AssistantIndicator:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticonscustom)
 		end
 	end
-	if E.db.ElvUI_EltreumUI.otherstuff.eltruislootericons and frame.MasterLooterIndicator then
+	if E.db.ElvUI_EltreumUI.otherstuff.eltruismlootericons and frame.MasterLooterIndicator then
 		frame.MasterLooterIndicator:SetTexCoord(0,1,0,1)
 		if E.db.ElvUI_EltreumUI.otherstuff.lootericonstype ~= "CUSTOM" then
 			frame.MasterLooterIndicator:SetTexture('Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\MasterLooter\\Looter'..E.db.ElvUI_EltreumUI.otherstuff.lootericonstype..'.tga')
 		else
-			frame.MasterLooterIndicator:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismassisticonscustom)
+			frame.MasterLooterIndicator:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.otherstuff.eltruismlootericonscustom)
 		end
 	end
 	if frame.RaidRoleIndicator then

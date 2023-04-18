@@ -7,4 +7,5 @@
 	<Script file='Tags.lua'/>
 	<Script file='VersionCheck.lua'/>
 	<Script file='DatabaseConverter.lua'/>
+	<Script file='Options.lua'/>
 </Ui>

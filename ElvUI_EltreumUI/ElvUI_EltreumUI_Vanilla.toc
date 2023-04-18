@@ -22,4 +22,3 @@ Media\load_media.xml
 Modules\load_modules_Classic.xml
 Profiles\load_profiles.xml
 Layouts\load_layouts.xml
-Options\Options.lua
