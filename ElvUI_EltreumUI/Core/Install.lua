@@ -103,7 +103,13 @@ local function ImproveInstall(installtype,mode,null)
 		elseif installtype == "Immersion" then
 			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\Immersion.jpg")
 		elseif installtype == "OmniCD" then
-			_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\OmniCD.jpg")
+			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
+				_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\OmniCD.jpg")
+			elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
+				_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\OmniCD2.jpg")
+			else
+				_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\OmniCD.jpg")
+			end
 		end
 
 		if mode == "ENTERING" then
