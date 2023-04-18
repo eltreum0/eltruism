@@ -306,7 +306,7 @@ function ElvUI_EltreumUI:Configtable()
 	--borders
 	ElvUI_EltreumUI.Options.args.borders = ACH:Group(E:TextGradient(L["Borders"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add Borders to frames and customize them"], 85, 'tab')
 	ElvUI_EltreumUI.Options.args.borders.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\border'
-	ElvUI_EltreumUI.Options.args.borders.args.general = ACH:Group(L["General"], nil, 2)
+	ElvUI_EltreumUI.Options.args.borders.args.general = ACH:Group(L["General"], nil, 1)
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.header1 = ACH:Description(L["Enable Borders"], 3, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.enable = ACH:Toggle(L["Enable"], nil, 4, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.borders end,function(_, value) E.db.ElvUI_EltreumUI.borders.borders = value ElvUI_EltreumUI:ShowHideBorders() ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.enableautoadjust = ACH:Toggle(L["Enable Auto-adjusting the actionbar spacing and position"], L["Adjusts actionbar spacing and position based on borders being enabled or not"], 5, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust end,function(_, value) E.db.ElvUI_EltreumUI.borders.borderautoadjust = value ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end)
@@ -323,6 +323,24 @@ function ElvUI_EltreumUI:Configtable()
 		customcolorborders.r, customcolorborders.g, customcolorborders.b = r, g, b E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:Borders()
 	end, function() return E.db.ElvUI_EltreumUI.borders.classcolor end)
 
+	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders = ACH:Group(L["ActionBars"], nil, 2, nil,nil,nil,function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end)
+	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders.args.header0 = ACH:Group(L["(All settings require a reload)"], nil, 1)
+	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders.args.header0.inline = true
+	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders.args.header0.args.header1 = ACH:Description(L["Change the size of the borders:"], 2)
+	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders.args.header0.args.ABsize = ACH:Range(L["Actionbar Thickness"], nil, 3, { min = 1, max = 200, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.baredgesize end, function(_, value) E.db.ElvUI_EltreumUI.borders.baredgesize = value ElvUI_EltreumUI:Borders() end, function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders or not E.private.actionbar.enable end)
+
+	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders.args.actionbar1 = ACH:Group(L["Action Bar 1"], nil, 2,"tab")
+	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders.args.actionbar1.args.enable = ACH:Toggle(L["Enable"], nil, 1, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.bar1borders end,function(_, value) E.db.ElvUI_EltreumUI.borders.bar1borders = value ElvUI_EltreumUI:Borders() end, function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar1.enabled end)
+	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders.args.actionbar1.args.bar1xsize = ACH:Range(L["Bar 1 X offset"], nil, 2, { min = 1, max = 200, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.bar1xborder end, function(_, value) E.db.ElvUI_EltreumUI.borders.bar1xborder = value ElvUI_EltreumUI:Borders() end, function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar1.enabled end)
+	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders.args.actionbar1.args.bar1ysize = ACH:Range(L["Bar 1 Y offset"], nil, 2, { min = 1, max = 200, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.bar1yborder end, function(_, value) E.db.ElvUI_EltreumUI.borders.bar1yborder = value ElvUI_EltreumUI:Borders() end, function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar1.enabled end)
+
+	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders.args.actionbar2 = ACH:Group(L["Action Bar 2"], nil, 2,"tab")
+	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders.args.actionbar2.args.enable = ACH:Toggle(L["Enable"], nil, 1, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.bar2borders end,function(_, value) E.db.ElvUI_EltreumUI.borders.bar2borders = value ElvUI_EltreumUI:Borders() end, function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar2.enabled end)
+	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders.args.actionbar2.args.bar1xsize = ACH:Range(L["Bar 2 X offset"], nil, 2, { min = 1, max = 200, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.bar2xborder end, function(_, value) E.db.ElvUI_EltreumUI.borders.bar2xborder = value ElvUI_EltreumUI:Borders() end, function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar2.enabled end)
+	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders.args.actionbar2.args.bar1ysize = ACH:Range(L["Bar 2 Y offset"], nil, 2, { min = 1, max = 200, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.bar2yborder end, function(_, value) E.db.ElvUI_EltreumUI.borders.bar2yborder = value ElvUI_EltreumUI:Borders() end, function() return not E.db.ElvUI_EltreumUI.borders.borders or not E.db.actionbar.bar2.enabled end)
+
+
+
 	--ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
 	--ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)
 	--ACH:Header(name, order, get, set, hidden)
@@ -332,6 +350,7 @@ function ElvUI_EltreumUI:Configtable()
 	--ACH:MultiSelect(name, desc, order, values, confirm, width, get, set, disabled, hidden) --??
 
 	--ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
+	--ACH:Range(name, desc, order, values, width, get, set, disabled, hidden)
 
 	--ACH:SharedMediaFont(name, desc, order, width, get, set, disabled, hidden)
 	--ACH:SharedMediaSound(name, desc, order, width, get, set, disabled, hidden)
