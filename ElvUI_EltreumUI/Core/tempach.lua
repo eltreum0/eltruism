@@ -311,7 +311,17 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.enable = ACH:Toggle(L["Enable"], nil, 4, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.borders end,function(_, value) E.db.ElvUI_EltreumUI.borders.borders = value ElvUI_EltreumUI:ShowHideBorders() ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.enableautoadjust = ACH:Toggle(L["Enable Auto-adjusting the actionbar spacing and position"], L["Adjusts actionbar spacing and position based on borders being enabled or not"], 5, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust end,function(_, value) E.db.ElvUI_EltreumUI.borders.borderautoadjust = value ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.header2 = ACH:Description(L["Choose the Border Texture to be used:"], 6, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
-	ElvUI_EltreumUI.Options.args.borders.args.general.args.bordertexture = ACH:SharedMediaBorder(L["Select a Texture"], L["Select a Texture"], 7, "full", function() return E.db.ElvUI_EltreumUI.borders.texture end, function(self,key) E.db.ElvUI_EltreumUI.borders.texture = key ElvUI_EltreumUI:Borders() end, function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end)
+	ElvUI_EltreumUI.Options.args.borders.args.general.args.bordertexture = ACH:SharedMediaBorder("", nil, 7, "full", function() return E.db.ElvUI_EltreumUI.borders.texture end, function(self,key) E.db.ElvUI_EltreumUI.borders.texture = key ElvUI_EltreumUI:Borders() end, function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end)
+	ElvUI_EltreumUI.Options.args.borders.args.general.args.classcolors = ACH:Toggle(L["Use Class Colors"], nil, 8, nil, false,nil,function() return E.db.ElvUI_EltreumUI.borders.classcolor end,function(_, value) E.db.ElvUI_EltreumUI.borders.classcolor = value ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end,function() return not E.db.ElvUI_EltreumUI.borders.borders end)
+	ElvUI_EltreumUI.Options.args.borders.args.general.args.colorborders = ACH:Color(L["Custom Color"], nil, 9, false, nil, function()
+		local customcolorborders = E.db.ElvUI_EltreumUI.borders.bordercolors
+		local d = P.ElvUI_EltreumUI.borders.bordercolors
+		return customcolorborders.r, customcolorborders.g, customcolorborders.b, customcolorborders.a, d.r, d.g, d.b, d.a
+	end,
+	function(_, r, g, b, a)
+		local customcolorborders = E.db.ElvUI_EltreumUI.borders.bordercolors
+		customcolorborders.r, customcolorborders.g, customcolorborders.b = r, g, b E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:Borders()
+	end, function() return E.db.ElvUI_EltreumUI.borders.classcolor end)
 
 	--ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
 	--ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)
@@ -320,6 +330,8 @@ function ElvUI_EltreumUI:Configtable()
 	--ACH:Description(name, order, fontSize, image, imageCoords, imageWidth, imageHeight, width, hidden)
 	--ACH:Select(name, desc, order, values, confirm, width, get, set, disabled, hidden)
 	--ACH:MultiSelect(name, desc, order, values, confirm, width, get, set, disabled, hidden) --??
+
+	--ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
 
 	--ACH:SharedMediaFont(name, desc, order, width, get, set, disabled, hidden)
 	--ACH:SharedMediaSound(name, desc, order, width, get, set, disabled, hidden)
