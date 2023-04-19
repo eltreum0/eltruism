@@ -488,25 +488,82 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath.args.header1 = ACH:Description(L["Example: "].."mymusic.mp3", 1)
 	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath.args.input = ACH:Input("", "", 3, false, "full", function() return E.private.ElvUI_EltreumUI.combatmusic.bossfile end, function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossmusic = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.combatmusic.bossmusic end)
 
+	--weakauras anchor
+	ElvUI_EltreumUI.Options.args.weakauras = ACH:Group(E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's movers to move them"], 85)
+	ElvUI_EltreumUI.Options.args.weakauras.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras'
+	ElvUI_EltreumUI.Options.args.weakauras.args.header1 = ACH:Description(L["WeakAuras"], 2, nil)
+	ElvUI_EltreumUI.Options.args.weakauras.args.header2 = ACH:Description(L["You can set your Weakauras to anchor to custom locations making it easier to move them"], 3, nil)
+	ElvUI_EltreumUI.Options.args.weakauras.args.header3 = ACH:Description(L["In order to use this feature, simply go to your Weakaura, and go to its Group options, scroll down to Position Settings and set the Anchored To Select Frame, then type either |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumablesWA|r to anchor the weakaura to the preset location"], 4, nil)
+	ElvUI_EltreumUI.Options.args.weakauras.args.header4 = ACH:Description(L["Setting "].."|cff82B4ffEltruismWA|r"..L[" or "].."|cff82B4ffEltruismConsumablesWA|r"..L[" as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero"], 5, nil)
+	ElvUI_EltreumUI.Options.args.weakauras.args.image = ACH:Group(L["How to use the Anchors"], nil, 6)
+	ElvUI_EltreumUI.Options.args.weakauras.args.image.inline = true
+	ElvUI_EltreumUI.Options.args.weakauras.args.image.args.header1 = ACH:Description(L["Open WeakAuras, go to your group Weakauras and in Group change Position Settings > Anchored To > Select Frame > EltruismWA or EltruismConsumablesWA"], 2, nil)
+	ElvUI_EltreumUI.Options.args.weakauras.args.image.args.header2 = ACH:Description("", 3, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\WADemo', 512, 512 end)
+
+	--discord
+	ElvUI_EltreumUI.Options.args.discord = ACH:Group(E:TextGradient(L["Discord"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Join the Discord for faster support and to report any issues you might encounter"], 86)
+	ElvUI_EltreumUI.Options.args.discord.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\discord'
+	ElvUI_EltreumUI.Options.args.discord.args.header1 = ACH:Description("", 2, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\disc', 256, 128 end)
+	ElvUI_EltreumUI.Options.args.discord.args.header2 = ACH:Description(L["Join the Discord if you have any questions or issues"], 3, nil)
+	ElvUI_EltreumUI.Options.args.discord.args.header2 = ACH:Description(L["Keep in mind the discord is in English"], 4, nil)
+	ElvUI_EltreumUI.Options.args.discord.args.discordlink = ACH:Input("", "", 3, false, "full", function() return 'https://discord.gg/rBXNxUY6pk' end)
+
+	--credits
+	ElvUI_EltreumUI.Options.args.credits = ACH:Group(E:TextGradient(L["Credits"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Credits and Licenses"], 87)
+	ElvUI_EltreumUI.Options.args.credits.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\credits'
+	ElvUI_EltreumUI.Options.args.credits.args.author = ACH:Group(L["Author"], nil, 1)
+	ElvUI_EltreumUI.Options.args.credits.args.author.inline = true
+	ElvUI_EltreumUI.Options.args.credits.args.author.args.header1 = ACH:Description(AUTHORS_STRING, 2, "medium")
+	ElvUI_EltreumUI.Options.args.credits.args.thankyous = ACH:Group(L["Credits and Thank yous"], nil, 3)
+	ElvUI_EltreumUI.Options.args.credits.args.thankyous.inline = true
+	ElvUI_EltreumUI.Options.args.credits.args.thankyous.args.header1 = ACH:Description(THANKYOU_STRING, 4, "medium")
+	ElvUI_EltreumUI.Options.args.credits.args.donators = ACH:Group(L["Donators"], nil, 5)
+	ElvUI_EltreumUI.Options.args.credits.args.donators.inline = true
+	ElvUI_EltreumUI.Options.args.credits.args.donators.args.header1 = ACH:Description(DONATORS_STRING, 6, "medium")
+	ElvUI_EltreumUI.Options.args.credits.args.translators = ACH:Group(L["Translators"], nil, 7)
+	ElvUI_EltreumUI.Options.args.credits.args.translators.inline = true
+	ElvUI_EltreumUI.Options.args.credits.args.translators.args.header1 = ACH:Description(TRANSLATORS_STRING, 8, "medium")
+	ElvUI_EltreumUI.Options.args.credits.args.licenses = ACH:Group(L["License"], nil, 9)
+	ElvUI_EltreumUI.Options.args.credits.args.licenses.inline = true
+	ElvUI_EltreumUI.Options.args.credits.args.licenses.args.header1 = ACH:Description(function()
+		if E.Retail then
+			return 'Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3\nCursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain\nExpand Hunter Stables is merged from Improved Stable Frame by Cybeloras which is licensed under GNU GPLv3\nIcons8 (www.icons8.com) for some of the icons. List in license.txt\nFreeVector (www.freevector.com) for some of the icons. List in license.txt\nLootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3\nRogue Door Opener is a fork of Rogue Door Opener by Burzolog which licensed under GNU GPLv3\nLoot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain\nQuest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3\nCooldown is a fork of discoteq\'s Doom Cooldown Pulse which is licensed under MIT License'
+		else
+			return 'Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3\nCursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain\nIcons8 (www.icons8.com) for some of the icons. List in license.txt\nFreeVector (www.freevector.com) for some of the icons. List in license.txt\nLootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3\nLoot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain\nThe Item Level shown on the Character Panel Skin uses code from Simple Item level by Kemayo, licensed under BSD\nQuest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3\nSockets and Enchants is a fork of Kibs Item Levels by Kibsgaard which is licensed under Public Domain'
+		end
+	end, 10, "medium")
+
+	--support
+	ElvUI_EltreumUI.Options.args.support = ACH:Group(E:TextGradient(GAMEMENU_SUPPORT, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Direct links to GitHub, CurseForge, Wago and Tukui"], 88, 'tab')
+	ElvUI_EltreumUI.Options.args.support.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support'
+	ElvUI_EltreumUI.Options.args.support.args.changelog = ACH:Input(L["Changelog"], "", 7, false, "full", function() return 'https://github.com/eltreum0/eltruism/blob/main/Changelog.md' end)
+	ElvUI_EltreumUI.Options.args.support.args.issues = ACH:Input(L["Report issues and problems here:"], "", 8, false, "full", function() return 'https://github.com/eltreum0/eltruism/issues' end)
+	ElvUI_EltreumUI.Options.args.support.args.tukui = ACH:Input(L["Addon on Tukui:"], "", 9, false, "full", function()
+		if E.Retail then
+			return 'https://www.tukui.org/addons.php?id=209'
+		elseif E.Wrath then
+			return 'https://www.tukui.org/classic-wotlk-addons.php?id=10'
+		elseif E.Classic then
+			return 'https://www.tukui.org/classic-addons.php?id=49'
+		end
+	end)
+	ElvUI_EltreumUI.Options.args.support.args.curse = ACH:Input(L["Addon on CurseForge:"], "", 10, false, "full", function() return 'https://www.curseforge.com/wow/addons/elvui-eltruism' end)
+	ElvUI_EltreumUI.Options.args.support.args.wago = ACH:Input(L["Addon on Wago:"], "", 10, false, "full", function() return 'https://addons.wago.io/addons/elvui-eltruism' end)
+
 	--ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
 	--ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)
 	--ACH:Header(name, order, get, set, hidden)
 	--ACH:Execute(name, desc, order, func, image, confirm, width, get, set, disabled, hidden)
 	--ACH:Description(name, order, fontSize, image, imageCoords, imageWidth, imageHeight, width, hidden)
 	--ACH:Select(name, desc, order, values, confirm, width, get, set, disabled, hidden)
-	--ACH:MultiSelect(name, desc, order, values, confirm, width, get, set, disabled, hidden) --??
-
 	--ACH:Input(name, desc, order, multiline, width, get, set, disabled, hidden, validate)
 	--ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
 	--ACH:Range(name, desc, order, values, width, get, set, disabled, hidden)
-
 	--ACH:SharedMediaFont(name, desc, order, width, get, set, disabled, hidden)
 	--ACH:SharedMediaSound(name, desc, order, width, get, set, disabled, hidden)
 	--ACH:SharedMediaStatusbar(name, desc, order, width, get, set, disabled, hidden)
 	--ACH:SharedMediaBackground(name, desc, order, width, get, set, disabled, hidden)
 	--ACH:SharedMediaBorder(name, desc, order, width, get, set, disabled, hidden)
-
-
 
 	E.Options.args.ElvUI_EltreumUI = ElvUI_EltreumUI.Options
 end
