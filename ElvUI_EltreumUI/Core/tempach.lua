@@ -467,7 +467,26 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.chat.args.rightchatx = ACH:Range(L["Right Chat Border X offset"], nil, 7, { min = 1, max = 800, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.rightchatborderx end, function(_, value) E.db.ElvUI_EltreumUI.borders.rightchatborderx = value ElvUI_EltreumUI:Borders() end, function() return not E.db.ElvUI_EltreumUI.borders.chatborder end)
 	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.chat.args.rightchaty = ACH:Range(L["Right Chat Border Y offset"], nil, 7, { min = 1, max = 800, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.rightchatbordery end, function(_, value) E.db.ElvUI_EltreumUI.borders.rightchatbordery = value ElvUI_EltreumUI:Borders() end, function() return not E.db.ElvUI_EltreumUI.borders.chatborder end)
 
-
+	--combat music
+	ElvUI_EltreumUI.Options.args.combatmusic = ACH:Group(E:TextGradient(L["Combat Music"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Play custom music during fights and boss fights"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.combatmusic.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\music'
+	ElvUI_EltreumUI.Options.args.combatmusic.args.combat = ACH:Group(L["Combat Music"], nil, 1)
+	ElvUI_EltreumUI.Options.args.combatmusic.args.combat.args.enable = ACH:Toggle(L["Enable Combat Music"], L["Enable music during combat"], 4, nil, false,"full",function() return E.private.ElvUI_EltreumUI.combatmusic.enable end,function(_, value) E.private.ElvUI_EltreumUI.combatmusic.enable = value E:StaticPopup_Show('PRIVATE_RL') end)
+	ElvUI_EltreumUI.Options.args.combatmusic.args.combat.args.disableinstance = ACH:Toggle(L["Disable Combat Music in Instances"], L["Disable music during combat in instances"], 5, nil, false,"full",function() return E.private.ElvUI_EltreumUI.combatmusic.disableinstance end,function(_, value) E.private.ElvUI_EltreumUI.combatmusic.disableinstance = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.combatmusic.enable end)
+	ElvUI_EltreumUI.Options.args.combatmusic.args.combat.args.header1 = ACH:Description(L["Normal Combat Music"], 6, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
+	ElvUI_EltreumUI.Options.args.combatmusic.args.combat.args.filepath = ACH:Group(L["Name of file inside Interface\\Addons"], nil, 7)
+	ElvUI_EltreumUI.Options.args.combatmusic.args.combat.args.filepath.inline = true
+	ElvUI_EltreumUI.Options.args.combatmusic.args.combat.args.filepath.args.header1 = ACH:Description(L["Example: "].."mymusic.mp3", 1)
+	ElvUI_EltreumUI.Options.args.combatmusic.args.combat.args.filepath.args.shuffle = ACH:Toggle(L["Shuffle"], L["Randomize Music Order"], 2, nil, false,"full",function() return E.db.ElvUI_EltreumUI.otherstuff.musicshuffle end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.musicshuffle = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.combatmusic.enable end)
+	ElvUI_EltreumUI.Options.args.combatmusic.args.combat.args.filepath.args.input = ACH:Input("", "", 3, false, "full", function() return E.private.ElvUI_EltreumUI.combatmusic.musicfile end, function(_, value) E.private.ElvUI_EltreumUI.combatmusic.musicfile = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.combatmusic.enable end, E.db.ElvUI_EltreumUI.otherstuff.musicshuffle)
+	ElvUI_EltreumUI.Options.args.combatmusic.args.combat.args.filepath.args.inputshuffle = ACH:Input(L["Shuffle List"], L["Split files with a comma, such as: file1.mp3,file2.mp3"], 3, false, "full", function() return E.private.ElvUI_EltreumUI.combatmusic.shufflelist end, function(_, value) E.private.ElvUI_EltreumUI.combatmusic.shufflelist = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.combatmusic.enable end, not E.db.ElvUI_EltreumUI.otherstuff.musicshuffle)
+	ElvUI_EltreumUI.Options.args.combatmusic.args.boss = ACH:Group(L["Boss Music"], nil, 2)
+	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.enable = ACH:Toggle(L["Enable Boss Music"], L["Enable music during combat"], 4, nil, false,"full",function() return E.private.ElvUI_EltreumUI.combatmusic.bossmusic end,function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossmusic = value E:StaticPopup_Show('PRIVATE_RL') end)
+	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.header1 = ACH:Description(L["Boss Combat Music"], 6, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
+	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath = ACH:Group(L["Name of file inside Interface\\Addons"], nil, 7)
+	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath.inline = true
+	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath.args.header1 = ACH:Description(L["Example: "].."mymusic.mp3", 1)
+	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath.args.input = ACH:Input("", "", 3, false, "full", function() return E.private.ElvUI_EltreumUI.combatmusic.bossfile end, function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossmusic = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.combatmusic.bossmusic end)
 
 	--ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
 	--ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)
@@ -477,6 +496,7 @@ function ElvUI_EltreumUI:Configtable()
 	--ACH:Select(name, desc, order, values, confirm, width, get, set, disabled, hidden)
 	--ACH:MultiSelect(name, desc, order, values, confirm, width, get, set, disabled, hidden) --??
 
+	--ACH:Input(name, desc, order, multiline, width, get, set, disabled, hidden, validate)
 	--ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
 	--ACH:Range(name, desc, order, values, width, get, set, disabled, hidden)
 
