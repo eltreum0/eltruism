@@ -1,5 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
+local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 local tinsert = _G.table.insert
 local tconcat = _G.table.concat
 local unpack = _G.unpack
@@ -131,7 +132,7 @@ function ElvUI_EltreumUI:Configtable()
 	-- Add Eltruism version on top of the ElvUI config
 	E.Options.name = E.Options.name .. " + " .. ElvUI_EltreumUI.Name .. format(" |cffffffff%s|r", ElvUI_EltreumUI.Version)
 	local ACH = E.Libs.ACH
-	local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
+
 
 	ElvUI_EltreumUI.Options = ACH:Group("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:14:14:0:0|t" .. ElvUI_EltreumUI.Name, nil, 6)
 	ElvUI_EltreumUI.Options.args.logo = ACH:Description(nil, 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohq', 320, 80 end)
@@ -652,8 +653,84 @@ function ElvUI_EltreumUI:Configtable()
 
 
 
+	--maps
+	ElvUI_EltreumUI.Options.args.map = ACH:Group(E:TextGradient(L["Maps"], 0.50, 0.70, 1, 0.67, 0.95, 1), E.Retail and L["Add a time to arrive to waypoints, cardinal directions and more"] or L["Add cardinal directions, change map scale and more"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.map.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\map'
+	ElvUI_EltreumUI.Options.args.map.args.general = ACH:Group(L["General"], nil, 1)
+	ElvUI_EltreumUI.Options.args.map.args.general.args.header1 = ACH:Description(L["Flight Frame"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.general.args.taxiscale = ACH:Range(L["Flight Frame Scale"], nil, 2, { min = 0.1, max = 3, step = 0.01 }, 'double', function() return E.db.ElvUI_EltreumUI.otherstuff.taxiscale end,
+	function(_, value)
+		E.db.ElvUI_EltreumUI.otherstuff.taxiscale = value
+		if _G["TaxiFrame"] then
+			_G["TaxiFrame"]:SetScale(value)
+		end
+		if _G["FlightMapFrame"] then
+			_G["FlightMapFrame"]:SetScale(value)
+		end
+	end)
+	ElvUI_EltreumUI.Options.args.map.args.general.args.header2 = ACH:Description(L["WORLD_MAP"], 3, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.map.args.general.args.worldmapscaletoggle = ACH:Toggle(L["Enable World Map Scaling"], nil, 4, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscale = value end, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.map.args.general.args.worldmapscale = ACH:Range(L["World Map Scale"], nil, 5, { min = 0.1, max = 3, step = 0.01 }, 'double', function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue end,
+	function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue = value
+		if _G["WorldMapFrame"] and E.Retail then
+			_G["WorldMapFrame"]:SetScale(value)
+		end
+	end,function() return not E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.map.args.eta = ACH:Group(L["Time to Arrive"], nil, 2, "tab", nil, nil, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.header1 = ACH:Description(L["Add a time to arrive below the waypoint"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.header2 = ACH:Description(L["The time will be calculated based on player speed and distance"], 2, nil, nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.header3 = ACH:Description(L["If the player is not moving then *** will show up since time cannot be calculated"], 3, nil, nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.header3 = ACH:Description(L["If you move away from the waypoint the time will just increase"], 4, nil, nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.enable = ACH:Toggle(L["Enable ETA"], L["Add an ETA to waypoints"], 5, nil, false,'full',function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.enableautopin = ACH:Toggle(L["Enable ETA"], L["Add an ETA to waypoints"], 6, nil, false,'full',function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin end,function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end)
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.etacolor = ACH:Color(L["Text Color"], nil, 6, false, "full", function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB, 1, P.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, P.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, P.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB, 1 end,
+	function(_, r, g, b, a)
+		E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB = r, g, b
+		E:StaticPopup_Show('CONFIG_RL')
+	end, function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end)
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.enablelimit = ACH:Toggle(L["Limit Max Distance"], L["Add an ETA to waypoints"], 7, nil, false,'full',function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance end,function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end)
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.limitmaxdistance = ACH:Range(L["Max Distance"], nil, 8, { min = 200, max = 10000, step = 10 }, 'double', function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue end, function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance = value end, function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance or not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end)
+
+	ElvUI_EltreumUI.Options.args.map.args.waytext = ACH:Group(L["Chat Command"], nil, 3, "tab", nil, nil, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.map.args.waytext.args.header1 = ACH:Description(L["Enable the /way and /waypoint commands"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.waytext.args.header2 = ACH:Description(L["You can type /way or /waypoint"], 2)
+	ElvUI_EltreumUI.Options.args.map.args.waytext.args.header3 = ACH:Description(L["Use formats such as:"], 3)
+	ElvUI_EltreumUI.Options.args.map.args.waytext.args.header4 = ACH:Description(L["XX YY, XX.XX YY.YY, XX,XX YY,YY and XXX YYY"], 4)
+	--ElvUI_EltreumUI.Options.args.map.args.waytext.args.header5 = ACH:Description(L["Other Formats can end up causing errors"], 5)
+	ElvUI_EltreumUI.Options.args.map.args.waytext.args.enable = ACH:Toggle(L["Enable"], L["Enable the /way and /waypoint commands"], 6, nil, false,'full',function() return E.db.ElvUI_EltreumUI.waypoints.waytext.enable end,function(_, value) E.db.ElvUI_EltreumUI.waypoints.waytext.enable = value end)
+	ElvUI_EltreumUI.Options.args.map.args.cardinal = ACH:Group(L["Cardinal Directions"], nil, 3)
+	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.header1 = ACH:Description(L["Minimap Cardinal Directions"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.enable = ACH:Toggle(L["Enable Cardinal Directions"], L["Add North, East, South, West to Minimap"], 2, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable = value ElvUI_EltreumUI:MinimapCardinalDirections() end, function() return C_CVar.GetCVar("rotateMinimap") == "1" end)
+	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.cardinaloffset = ACH:Range(L["Cardinal Text Offset"], nil, 3, { min = -100, max = 100, step = 1 }, 'double', function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset = value ElvUI_EltreumUI:MinimapCardinalDirections() end, function() return C_CVar.GetCVar("rotateMinimap") == "1" or not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable end)
+	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.header2 = ACH:Description("", 4, nil, nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.fontsize = ACH:Range(L["Font Size"], nil, 5, { min = 4, max = 64, step = 1 }, 'double', function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize = value ElvUI_EltreumUI:MinimapCardinalDirections() end, function() return C_CVar.GetCVar("rotateMinimap") == "1" or not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable end)
+	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.header3 = ACH:Description("", 6, nil, nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.classcolor = ACH:Toggle(L["Use Class Colors"], nil, 7, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor = value ElvUI_EltreumUI:MinimapCardinalDirections() end, function() return C_CVar.GetCVar("rotateMinimap") == "1" or not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable end)
+	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.customcolor = ACH:Color(L["Custom Color"], nil, 8, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b, 1 end, function(_, r, g, b, a) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b = r, g, b ElvUI_EltreumUI:MinimapCardinalDirections() end, function() return C_CVar.GetCVar("rotateMinimap") == "1" or not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable or E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor end)
+
+	ElvUI_EltreumUI.Options.args.map.args.combathide = ACH:Group(L["Combat Hide"], nil, 3)
+	ElvUI_EltreumUI.Options.args.map.args.combathide.args.header1 = ACH:Description(L["Minimap"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.combathide.args.header2 = ACH:Description(L["Hide Minimap while in Combat"], 2, nil, nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.combathide.args.enable = ACH:Toggle(L["Enable"], L["Automatically hide the Minimap in combat"], 3, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.mapcombathide end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mapcombathide = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.map.args.combathide.args.enableauras = ACH:Toggle(L["Adjust Auras Position"], L["Automatically move auras to the Top Right when minimap is hidden"], 4, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mapcombathide end)
 
 
+	--ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func
+	--ACH:Header(name, order, get, set, hidden)
+	--ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
+	--ACH:Execute(name, desc, order, func, image, confirm, width, get, set, disabled, hidden)
+	--ACH:Description(name, order, fontSize, image, imageCoords, imageWidth, imageHeight, width, hidden)
+
+	--ACH:Select(name, desc, order, values, confirm, width, get, set, disabled, hidden)
+	--ACH:Input(name, desc, order, multiline, width, get, set, disabled, hidden, validate)
+	--ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
+	--ACH:Range(name, desc, order, values, width, get, set, disabled, hidden)
+
+	--ACH:SharedMediaFont(name, desc, order, width, get, set, disabled, hidden)
+	--ACH:SharedMediaSound(name, desc, order, width, get, set, disabled, hidden)
+	--ACH:SharedMediaStatusbar(name, desc, order, width, get, set, disabled, hidden)
+	--ACH:SharedMediaBackground(name, desc, order, width, get, set, disabled, hidden)
+	--ACH:SharedMediaBorder(name, desc, order, width, get, set, disabled, hidden)
 
 	--media
 	ElvUI_EltreumUI.Options.args.media = ACH:Group(E:TextGradient(L["Media"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Change Fonts, Font Outlines and Action Paging"], 85, 'tab')
@@ -684,7 +761,6 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.media.args.general.args.weakaurasactionbar = ACH:Toggle(L["Move ActionBars and Power to be similar to WeakAuras"], L["Overwrites some profile settings to move ActionBars, Unitframes and Powers to look more similar to a WeakAura. |cffFF0000WARNING:|r This will overwrite some of your profile settings with no way to restore"], 18, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA = value ElvUI_EltreumUI:WeakAurasLikeActionBars(value) E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.media.args.general.args.header7 = ACH:Description("", 19, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.media.args.general.args.black = ACH:Execute(L["Swap Action Paging and visibility for Bar1 and Bar4"], nil, 20, function() ElvUI_EltreumUI:ActionPagingSwap() E:StaticPopup_Show('CONFIG_RL') end,nil,true)
-
 	ElvUI_EltreumUI.Options.args.media.args.tags = ACH:Group(E.NewSign..L["Tags"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.media.args.tags.args.enable = ACH:Group("", nil, 1)
 	ElvUI_EltreumUI.Options.args.media.args.tags.args.enable.inline = true
@@ -737,28 +813,6 @@ function ElvUI_EltreumUI:Configtable()
 		["NONE"] = L["None"],
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.dctagicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.dctagicon = tostring(value) end)
 	ElvUI_EltreumUI.Options.args.media.args.tags.args.dc.args.dciconpick.style = "radio"
-
-
-
-
-
-
-
-	--ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
-	--ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)
-	--ACH:Header(name, order, get, set, hidden)
-	--ACH:Execute(name, desc, order, func, image, confirm, width, get, set, disabled, hidden)
-	--ACH:Description(name, order, fontSize, image, imageCoords, imageWidth, imageHeight, width, hidden)
-	--ACH:Select(name, desc, order, values, confirm, width, get, set, disabled, hidden)
-	--ACH:Input(name, desc, order, multiline, width, get, set, disabled, hidden, validate)
-	--ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
-	--ACH:Range(name, desc, order, values, width, get, set, disabled, hidden)
-	--ACH:SharedMediaFont(name, desc, order, width, get, set, disabled, hidden)
-	--ACH:SharedMediaSound(name, desc, order, width, get, set, disabled, hidden)
-	--ACH:SharedMediaStatusbar(name, desc, order, width, get, set, disabled, hidden)
-	--ACH:SharedMediaBackground(name, desc, order, width, get, set, disabled, hidden)
-	--ACH:SharedMediaBorder(name, desc, order, width, get, set, disabled, hidden)
-
 
 	--weakauras anchor
 	ElvUI_EltreumUI.Options.args.weakauras = ACH:Group(E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's movers to move them"], 85)
