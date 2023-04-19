@@ -588,7 +588,6 @@ function ElvUI_EltreumUI:Configtable()
 		local glowtotem4customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor
 		glowtotem4customcolor.r, glowtotem4customcolor.g, glowtotem4customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
 	end, function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor or not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
-
 	ElvUI_EltreumUI.Options.args.customglow.args.pixel = ACH:Group(L["Pixel Glow"], nil, 3, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end)
 	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header1 = ACH:Description("", 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.pixelborder = ACH:Toggle(L["Enable Pixel Border"], L["Enable a border for the Pixel Glow"], 2, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.borderpixel end,function(_, value) E.db.ElvUI_EltreumUI.glow.borderpixel = value end)
@@ -619,7 +618,64 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.customglow.args.blizzard.args.header1 = ACH:Description(L["Blizzard Glow"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.customglow.args.blizzard.args.frequencyblizz = ACH:Range(L["Blizzard Frequency (Default is 0.5)"], L["Speed for Blizzard glow"], 2, { min = 0.1, max = 3, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.frequencyblizz end, function(_, value) E.db.ElvUI_EltreumUI.glow.frequencyblizz = value end)
 
+	--cooldown
+	ElvUI_EltreumUI.Options.args.cooldown = ACH:Group(E:TextGradient(L["Cooldown"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Show a pulsing cooldown and let it speak the spell name"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.cooldown.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cooldown'
+	ElvUI_EltreumUI.Options.args.cooldown.args.header1 = ACH:Description(L["Cooldown"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.cooldown.args.enable = ACH:Toggle(L["Enable Cooldown Pulse"], L["Show a Skill Pulse when its cooldown is ending"], 2, nil, false,'full',function() return E.db.ElvUI_EltreumUI.skins.doom.enable end,function(_, value) E.db.ElvUI_EltreumUI.skins.doom.enable = value ElvUI_EltreumUI:Doom() E:StaticPopup_Show('PRIVATE_RL') end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.showSpellName = ACH:Toggle(L["Show Spell Name"], L["Displays a Text with the name of the spell"], 3, nil, false,'full',function() return E.db.ElvUI_EltreumUI.skins.doom.showSpellName end,function(_, value) E.db.ElvUI_EltreumUI.skins.doom.showSpellName = value ElvUI_EltreumUI:Doom() E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.fadeInTime = ACH:Range(L["Fade In Time"], L["Time it takes for the icon to fade in"], 4, { min = 0, max = 5, step = 0.1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.fadeInTime end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.fadeInTime = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.fadeOutTime = ACH:Range(L["Fade Out Time"], L["Time it takes for the icon to fade out"], 4, { min = 0, max = 5, step = 0.1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.maxAlpha = ACH:Range(L["Alpha"], L["Transparency of the Icon"], 4, { min = 0, max = 1, step = 0.01 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.maxAlpha end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.maxAlpha = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.animScale = ACH:Range(L["Animation Scale"], L["Animation will scale to this size"], 4, { min = 0, max = 5, step = 0.1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.animScale end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.animScale = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.iconSize = ACH:Range(L["Icon Size"], L["Size of the Icon"], 4, { min = 6, max = 200, step = 0.1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.iconSize end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.iconSize = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.holdTime = ACH:Range(L["Hold Time"], L["How long the Icon will appear"], 4, { min = 0, max = 5, step = 0.1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.holdTime end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.holdTime = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.graceperiod = ACH:Range(L["Minimum Cooldown Length"], L["Cooldowns must be longer than this to show up"], 4, { min = 0, max = 120, step = 1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.graceperiod end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.graceperiod = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.doomignored = ACH:Input(L["Ignored Spells, use a comma to separate spells"], L["List of spells ignored, use a comma to separate spells"], 5, false, "full", function() return E.private.ElvUI_EltreumUI.doomignored end, function(_, value) E.private.ElvUI_EltreumUI.doomignored = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.header2 = ACH:Description(L["Text to Speech"], 6, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.cooldown.args.ttsvoicetoggle = ACH:Toggle(L["Enable"], nil, 7, nil, false,'full',function() return E.db.ElvUI_EltreumUI.skins.doom.tts end,function(_, value) E.db.ElvUI_EltreumUI.skins.doom.tts = value ElvUI_EltreumUI:Doom() end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.ttsvoiceselect = ACH:Select(L["Text to Speech Config"], nil, 8, function()
+		local Voices = {}
+		for i, v in pairs(C_VoiceChat.GetTtsVoices()) do
+			--Voices[i] = v.name
+			Voices[v.voiceID] = v.name
+		end
+		return Voices
+	end, false, "full", function() return E.db.ElvUI_EltreumUI.skins.doom.ttsvoice end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.ttsvoice = tonumber(value) C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume) end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable or not E.db.ElvUI_EltreumUI.skins.doom.tts end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.volume = ACH:Range(VOLUME, nil, 9, { min = 0, max = 100, step = 1 }, 'full', function() return E.db.ElvUI_EltreumUI.skins.doom.ttsvolume end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.ttsvolume = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable or not E.db.ElvUI_EltreumUI.skins.doom.tts end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.header3 = ACH:Description(PREVIEW, 10, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.cooldown.args.preview = ACH:Execute(PREVIEW, nil, 11, function() ElvUI_EltreumUI:PreviewDoom() end,nil,false,'full')
 
+
+
+
+
+
+
+
+	--media
+	ElvUI_EltreumUI.Options.args.media = ACH:Group(E:TextGradient(L["Media"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Change Fonts, Font Outlines and Action Paging"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.media.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\media'
+	ElvUI_EltreumUI.Options.args.media.args.general = ACH:Group(L["Setup Media"], nil, 1)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.header1 = ACH:Description("", 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.media.args.general.args.resetmedia = ACH:Execute(L["Reset all Media"], L["Reset all Media"], 2, function() ElvUI_EltreumUI:SetupPrivate() E:StaggeredUpdateAll() E:StaticPopup_Show('CONFIG_RL') end,nil,true,'full')
+	ElvUI_EltreumUI.Options.args.media.args.general.args.header2 = ACH:Description(L["Set the fonts used in Eltruism. Kimberley is the default font"], 3, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.media.args.general.args.kimberley = ACH:Execute("Kimberley", L["This will set all ElvUI fonts as Kimberley"], 4, function() ElvUI_EltreumUI:SetupFont("Kimberley") end,nil,true)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.exo2 = ACH:Execute("Exo2", L["This will set all ElvUI fonts as Exo2"], 4, function() ElvUI_EltreumUI:SetupFont("Exo2 Extra Bold") end,nil,true)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.gap1 = ACH:Description('', 5, nil)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.Gotham = ACH:Execute("Gotham", L["This will set all ElvUI fonts as Gotham"], 6, function() ElvUI_EltreumUI:SetupFont("GothamNarrow Black") end,nil,true)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.Roboto = ACH:Execute("Roboto", L["This will set all ElvUI fonts as Roboto"], 6, function() ElvUI_EltreumUI:SetupFont("Roboto") end,nil,true)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.gap2 = ACH:Description('', 7, nil)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.sharedmedia = ACH:SharedMediaFont(L["Or choose a custom font"], L["Choose a different font from the preselected ones"], 8, "double", function() return E.db.ElvUI_EltreumUI.otherstuff.fonts.playerfont end, function(self,fontvalue) E.db.ElvUI_EltreumUI.otherstuff.fonts.playerfont = fontvalue ElvUI_EltreumUI:SetupFont(fontvalue, true) end)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.header3 = ACH:Description(L["Set the Font Outlines everywhere. Use Default to return to Eltruism default settings"], 9, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.media.args.general.args.fontoutlinedefault = ACH:Execute(L["Defaults"], L["This will set fonts to Eltruism defaults, recommended for 4K"], 10, function() ElvUI_EltreumUI:SetupFontsOutlineDefault() E:StaggeredUpdateAll() E:StaticPopup_Show('CONFIG_RL') end,nil,true)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.fontoutlinenone = ACH:Execute(L["None"], L["This will set fonts to no outline"], 10, function() ElvUI_EltreumUI:SetupFontsOutlineCustom("NONE") E:StaggeredUpdateAll() E:StaticPopup_Show('CONFIG_RL') end,nil,true)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.gap3 = ACH:Description('', 11, nil)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.fontoutlineoutline = ACH:Execute(L["Outline"], L["This will set fonts to use outline, recommended for 1440p and 1080p"], 12, function() ElvUI_EltreumUI:SetupFontsOutlineCustom("OUTLINE") E:StaggeredUpdateAll() E:StaticPopup_Show('CONFIG_RL') end,nil,true)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.fontoutlinethick = ACH:Execute(L["Thick Outline"], L["This will set fonts to use thick outline"], 12, function() ElvUI_EltreumUI:SetupFontsOutlineCustom("THICKOUTLINE") E:StaggeredUpdateAll() E:StaticPopup_Show('CONFIG_RL') end,nil,true)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.header4 = ACH:Description(L["Change the ElvUI background"], 13, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.media.args.general.args.grey = ACH:Execute(L["Grey Background"], L["This will set the background to be a grey color"], 14, function() ElvUI_EltreumUI:GreyBg() E:UpdateMediaItems() end,nil,true)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.black = ACH:Execute(L["Black Background"], L["This will set the background to be a black color"], 14, function() ElvUI_EltreumUI:SetupFontsOutlineCustom("THICKOUTLINE") E:StaggeredUpdateAll() E:StaticPopup_Show('CONFIG_RL') end,nil,true)
 
 	--ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
 	--ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)
