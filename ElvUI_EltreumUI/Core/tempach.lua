@@ -488,6 +488,182 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath.args.header1 = ACH:Description(L["Example: "].."mymusic.mp3", 1)
 	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath.args.input = ACH:Input("", "", 3, false, "full", function() return E.private.ElvUI_EltreumUI.combatmusic.bossfile end, function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossmusic = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.combatmusic.bossmusic end)
 
+	--custom glow
+	ElvUI_EltreumUI.Options.args.customglow = ACH:Group(E:TextGradient(L["Custom Glow"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Fully customize how action bars glow and add glows to debuffs on unitframes"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.customglow.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\customglow'
+	ElvUI_EltreumUI.Options.args.customglow.args.general = ACH:Group(L["General"], nil, 1)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.header1 = ACH:Description(L["Replace Blizzards Default Glow with a Custom Glow"], 2, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.enableab = ACH:Toggle(L["Enable on Action Bars"], nil, 4, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.enable end,function(_, value) E.db.ElvUI_EltreumUI.glow.enable = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.enablepet = ACH:Toggle(L["Enable on Pet Bar"], nil, 4, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.enablepet end,function(_, value) E.db.ElvUI_EltreumUI.glow.enablepet = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.enableuf = ACH:Toggle(L["Enable on Unitframes"], L["Add a glow when Unitframes have a debuff"], 4, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.enableUFs end,function(_, value) E.db.ElvUI_EltreumUI.glow.enableUFs = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.enablenp = ACH:Toggle(L["Enable on Nameplate"], L["Add a glow when buffs or debuffs are expiring on nameplates"], 5, nil, false,"full",function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow end,function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.debufftimer = ACH:Range(L["Debuff Timer"], L["Time at which the glow will start"], 6, { min = 1, max = 30, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.numberdebuff end, function(_, value) E.db.ElvUI_EltreumUI.glow.numberdebuff = value end, function() return not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow end)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.header2 = ACH:Description(L["Shaman Totems"], 7, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.enableshamantotem = ACH:Toggle(L["Enable on Shaman Totems"], nil, 8, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.enabletotem end,function(_, value) E.db.ElvUI_EltreumUI.glow.enabletotem = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable end, E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.enableshamantotem1 = ACH:Toggle(L["Enable on Shaman Fire Totem"], nil, 9, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.totem1 end,function(_, value) E.db.ElvUI_EltreumUI.glow.totem1 = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.enableshamantotem2 = ACH:Toggle(L["Enable on Shaman Earth Totem"], nil, 9, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.totem2 end,function(_, value) E.db.ElvUI_EltreumUI.glow.totem2 = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.enableshamantotem3 = ACH:Toggle(L["Enable on Shaman Water Totem"], nil, 9, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.totem3 end,function(_, value) E.db.ElvUI_EltreumUI.glow.totem3 = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.enableshamantotem4 = ACH:Toggle(L["Enable on Shaman Air Totem"], nil, 9, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.totem4 end,function(_, value) E.db.ElvUI_EltreumUI.glow.totem4 = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.header3 = ACH:Description(L["Select a Type"], 10, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.autocast = ACH:Toggle(L["Autocast"], L["Adds an autocast style glow using class color"], 11, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.autocast end,function(_, value) E.db.ElvUI_EltreumUI.glow.autocast = value end, function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.pixel or E.db.ElvUI_EltreumUI.glow.blizzard end)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.pixel = ACH:Toggle(L["Pixel"], L["Adds a pixel style glow using class color"], 11, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.pixel end,function(_, value) E.db.ElvUI_EltreumUI.glow.pixel = value end, function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.blizzard end)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.blizzard = ACH:Toggle(L["Blizzard"], L["Adds an autocast style glow using class color"], 11, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.blizzard end,function(_, value) E.db.ElvUI_EltreumUI.glow.blizzard = value end, function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.pixel end)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.header4 = ACH:Description(L["Preview the Glow"], 12, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.preview = ACH:Execute(PREVIEW, L["Preview the Glow, you will need to toggle it off and on to update the glow"], 13, function() ElvUI_EltreumUI:PreviewGlow() end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.customglow.args.colors = ACH:Group(L["Glow Colors"], nil, 2,"tab",nil,nil,function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.header1 = ACH:Description(L["Action Bars"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.classcolorab = ACH:Toggle(L["Use Class Colors"], L["Toggle Class Colored glows"], 2, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.colorclass end,function(_, value) E.db.ElvUI_EltreumUI.glow.colorclass = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable end)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.customcolorab = ACH:Color(L["Custom Color"], nil, 3, false, nil, function()
+		local glowcustomcolor = E.db.ElvUI_EltreumUI.glow.glowcustomcolor
+		local d = P.ElvUI_EltreumUI.glow.glowcustomcolor
+		return glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b, glowcustomcolor.a, d.r, d.g, d.b, d.a
+	end,
+	function(_, r, g, b, a)
+		local glowcustomcolor = E.db.ElvUI_EltreumUI.glow.glowcustomcolor
+		glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+	end, function() return E.db.ElvUI_EltreumUI.glow.colorclass or not E.db.ElvUI_EltreumUI.glow.enable end)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.header2 = ACH:Description(L["Pet Bar"], 4, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.classcolorpet = ACH:Toggle(L["Use Class Colors"], L["Toggle Class Colored glows"], 5, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.colorclasspet end,function(_, value) E.db.ElvUI_EltreumUI.glow.colorclasspet = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enablepet end)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.customcolorpet = ACH:Color(L["Custom Color"], nil, 6, false, nil, function()
+		local glowcustomcolorpet = E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet
+		local d = P.ElvUI_EltreumUI.glow.glowcustomcolorpet
+		return glowcustomcolorpet.r, glowcustomcolorpet.g, glowcustomcolorpet.b, glowcustomcolorpet.a, d.r, d.g, d.b, d.a
+	end,
+	function(_, r, g, b, a)
+		local glowcustomcolorpet = E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet
+		glowcustomcolorpet.r, glowcustomcolorpet.g, glowcustomcolorpet.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+	end, function() return E.db.ElvUI_EltreumUI.glow.colorclasspet or not E.db.ElvUI_EltreumUI.glow.enablepet end)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.header3 = ACH:Description(L["Nameplate Buff/Debuff"], 7, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.classcolornp = ACH:Toggle(L["Use Class Colors"], L["Toggle Class Colored glows"], 8, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.colorclassnp end,function(_, value) E.db.ElvUI_EltreumUI.glow.colorclassnp = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow end)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.customcolornp = ACH:Color(L["Custom Color"], nil, 9, false, nil, function()
+		local glowcustomcolornp = E.db.ElvUI_EltreumUI.glow.glowcustomcolornp
+		local d = P.ElvUI_EltreumUI.glow.glowcustomcolornp
+		return glowcustomcolornp.r, glowcustomcolornp.g, glowcustomcolornp.b, glowcustomcolornp.a, d.r, d.g, d.b, d.a
+	end,
+	function(_, r, g, b, a)
+		local glowcustomcolornp = E.db.ElvUI_EltreumUI.glow.glowcustomcolornp
+		glowcustomcolornp.r, glowcustomcolornp.g, glowcustomcolornp.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+	end, function() return E.db.ElvUI_EltreumUI.glow.colorclassnp or not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow end)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem1 = ACH:Description(L["Shaman Fire Totem"], 10, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem1typecolor = ACH:Toggle(L["Use Type Colors"], L["Toggle Totem to use it's own Type Colors"], 11, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,function(_, value) E.db.ElvUI_EltreumUI.glow.totemtypecolor = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem1customcolor = ACH:Color(L["Custom Color"], nil, 12, false, nil, function()
+		local glowtotem1customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor
+		local d = P.ElvUI_EltreumUI.glow.glowtotem1customcolor
+		return glowtotem1customcolor.r, glowtotem1customcolor.g, glowtotem1customcolor.b, glowtotem1customcolor.a, d.r, d.g, d.b, d.a
+	end,
+	function(_, r, g, b, a)
+		local glowtotem1customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor
+		glowtotem1customcolor.r, glowtotem1customcolor.g, glowtotem1customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+	end, function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor or not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem2 = ACH:Description(L["Shaman Earth Totem"], 13, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem2typecolor = ACH:Toggle(L["Use Type Colors"], L["Toggle Totem to use it's own Type Colors"], 14, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,function(_, value) E.db.ElvUI_EltreumUI.glow.totemtypecolor = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem2customcolor = ACH:Color(L["Custom Color"], nil, 15, false, nil, function()
+		local glowtotem2customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem2customcolor
+		local d = P.ElvUI_EltreumUI.glow.glowtotem2customcolor
+		return glowtotem2customcolor.r, glowtotem2customcolor.g, glowtotem2customcolor.b, glowtotem2customcolor.a, d.r, d.g, d.b, d.a
+	end,
+	function(_, r, g, b, a)
+		local glowtotem2customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem2customcolor
+		glowtotem2customcolor.r, glowtotem2customcolor.g, glowtotem2customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+	end, function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor or not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem3 = ACH:Description(L["Shaman Water Totem"], 16, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem3typecolor = ACH:Toggle(L["Use Type Colors"], L["Toggle Totem to use it's own Type Colors"], 17, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,function(_, value) E.db.ElvUI_EltreumUI.glow.totemtypecolor = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem3customcolor = ACH:Color(L["Custom Color"], nil, 18, false, nil, function()
+		local glowtotem3customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem3customcolor
+		local d = P.ElvUI_EltreumUI.glow.glowtotem3customcolor
+		return glowtotem3customcolor.r, glowtotem3customcolor.g, glowtotem3customcolor.b, glowtotem3customcolor.a, d.r, d.g, d.b, d.a
+	end,
+	function(_, r, g, b, a)
+		local glowtotem3customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem3customcolor
+		glowtotem3customcolor.r, glowtotem3customcolor.g, glowtotem3customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+	end, function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor or not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem4 = ACH:Description(L["Shaman Air Totem"], 19, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem4typecolor = ACH:Toggle(L["Use Type Colors"], L["Toggle Totem to use it's own Type Colors"], 20, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,function(_, value) E.db.ElvUI_EltreumUI.glow.totemtypecolor = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem4customcolor = ACH:Color(L["Custom Color"], nil, 21, false, nil, function()
+		local glowtotem4customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor
+		local d = P.ElvUI_EltreumUI.glow.glowtotem4customcolor
+		return glowtotem4customcolor.r, glowtotem4customcolor.g, glowtotem4customcolor.b, glowtotem4customcolor.a, d.r, d.g, d.b, d.a
+	end,
+	function(_, r, g, b, a)
+		local glowtotem4customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor
+		glowtotem4customcolor.r, glowtotem4customcolor.g, glowtotem4customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+	end, function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor or not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel = ACH:Group(L["Pixel Glow"], nil, 3, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header1 = ACH:Description("", 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.pixelborder = ACH:Toggle(L["Enable Pixel Border"], L["Enable a border for the Pixel Glow"], 2, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.borderpixel end,function(_, value) E.db.ElvUI_EltreumUI.glow.borderpixel = value end)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header2 = ACH:Description("", 3, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.numberpixel = ACH:Range(L["Number of Pixels (Default is 9)"], L["Set the number of pixels in pixel glow"], 4, { min = 1, max = 20, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.numberpixel end, function(_, value) E.db.ElvUI_EltreumUI.glow.numberpixel = value end)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header3 = ACH:Description("", 5, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.pixelfrequency = ACH:Range(L["Pixel Frequency (Default is 1)"], L["Set the frequency pixel glow"], 6, { min = -10, max = 10, step = 0.01 }, "full", function() return E.db.ElvUI_EltreumUI.glow.frequencypixel end, function(_, value) E.db.ElvUI_EltreumUI.glow.frequencypixel = value end)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header4 = ACH:Description("", 7, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.pixellength = ACH:Range(L["Pixel Length (Default is 3)"], L["Set the length of pixels"], 8, { min = 1, max = 20, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.lengthpixel end, function(_, value) E.db.ElvUI_EltreumUI.glow.lengthpixel = value end)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header5 = ACH:Description("", 9, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.pixelthickness = ACH:Range(L["Pixel Thickness (Default is 5)"], L["Set the thickness of pixels"], 10, { min = 1, max = 10, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.thicknesspixel end, function(_, value) E.db.ElvUI_EltreumUI.glow.thicknesspixel = value end)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header6 = ACH:Description("", 11, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.pixelxoffset = ACH:Range(L["Pixel Horizontal Offset (Default is 5)"], L["Set the horizontal offset of pixels"], 12, { min = 1, max = 10, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.pixelxOffset end, function(_, value) E.db.ElvUI_EltreumUI.glow.pixelxOffset = value end)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header7 = ACH:Description("", 13, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.pixelyoffset = ACH:Range(L["Pixel Vertical Offset (Default is 5)"], L["Set the vertical offset of pixels"], 14, { min = 1, max = 10, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.pixelyOffset end, function(_, value) E.db.ElvUI_EltreumUI.glow.pixelyOffset = value end)
+
+
+
+
+
+
+
+
+
+
+
+
+	--ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
+	--ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)
+	--ACH:Header(name, order, get, set, hidden)
+	--ACH:Execute(name, desc, order, func, image, confirm, width, get, set, disabled, hidden)
+	--ACH:Description(name, order, fontSize, image, imageCoords, imageWidth, imageHeight, width, hidden)
+	--ACH:Select(name, desc, order, values, confirm, width, get, set, disabled, hidden)
+	--ACH:Input(name, desc, order, multiline, width, get, set, disabled, hidden, validate)
+	--ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
+	--ACH:Range(name, desc, order, values, width, get, set, disabled, hidden)
+	--ACH:SharedMediaFont(name, desc, order, width, get, set, disabled, hidden)
+	--ACH:SharedMediaSound(name, desc, order, width, get, set, disabled, hidden)
+	--ACH:SharedMediaStatusbar(name, desc, order, width, get, set, disabled, hidden)
+	--ACH:SharedMediaBackground(name, desc, order, width, get, set, disabled, hidden)
+	--ACH:SharedMediaBorder(name, desc, order, width, get, set, disabled, hidden)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	--weakauras anchor
 	ElvUI_EltreumUI.Options.args.weakauras = ACH:Group(E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's movers to move them"], 85)
 	ElvUI_EltreumUI.Options.args.weakauras.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras'
@@ -549,21 +725,6 @@ function ElvUI_EltreumUI:Configtable()
 	end)
 	ElvUI_EltreumUI.Options.args.support.args.curse = ACH:Input(L["Addon on CurseForge:"], "", 10, false, "full", function() return 'https://www.curseforge.com/wow/addons/elvui-eltruism' end)
 	ElvUI_EltreumUI.Options.args.support.args.wago = ACH:Input(L["Addon on Wago:"], "", 10, false, "full", function() return 'https://addons.wago.io/addons/elvui-eltruism' end)
-
-	--ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
-	--ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)
-	--ACH:Header(name, order, get, set, hidden)
-	--ACH:Execute(name, desc, order, func, image, confirm, width, get, set, disabled, hidden)
-	--ACH:Description(name, order, fontSize, image, imageCoords, imageWidth, imageHeight, width, hidden)
-	--ACH:Select(name, desc, order, values, confirm, width, get, set, disabled, hidden)
-	--ACH:Input(name, desc, order, multiline, width, get, set, disabled, hidden, validate)
-	--ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
-	--ACH:Range(name, desc, order, values, width, get, set, disabled, hidden)
-	--ACH:SharedMediaFont(name, desc, order, width, get, set, disabled, hidden)
-	--ACH:SharedMediaSound(name, desc, order, width, get, set, disabled, hidden)
-	--ACH:SharedMediaStatusbar(name, desc, order, width, get, set, disabled, hidden)
-	--ACH:SharedMediaBackground(name, desc, order, width, get, set, disabled, hidden)
-	--ACH:SharedMediaBorder(name, desc, order, width, get, set, disabled, hidden)
 
 	E.Options.args.ElvUI_EltreumUI = ElvUI_EltreumUI.Options
 end
