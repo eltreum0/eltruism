@@ -80,6 +80,9 @@ function ElvUI_EltreumUI:StopBossMusic(event)
 	end
 end
 
+local BuffsMover = E.db["movers"]["BuffsMover"]
+local DebuffsMover = E.db["movers"]["DebuffsMover"]
+
 function ElvUI_EltreumUI:MinimapHide(event)
 	if E.db.ElvUI_EltreumUI.otherstuff.mapcombathide then
 		if event == 'PLAYER_REGEN_DISABLED' then
@@ -89,6 +92,8 @@ function ElvUI_EltreumUI:MinimapHide(event)
 				_G.MinimapCluster:Hide()
 			end
 			if E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura then
+				BuffsMover = E.db["movers"]["BuffsMover"]
+				DebuffsMover = E.db["movers"]["DebuffsMover"]
 				E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-4"
 				E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-101"
 				E:SetMoverPoints("BuffsMover")
@@ -101,8 +106,8 @@ function ElvUI_EltreumUI:MinimapHide(event)
 				_G.MinimapCluster:Show()
 			end
 			if E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura then
-				E.db["movers"]["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-4"
-				E.db["movers"]["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-213,-101"
+				E.db["movers"]["BuffsMover"] = BuffsMover
+				E.db["movers"]["DebuffsMover"] = DebuffsMover
 				E:SetMoverPoints("BuffsMover")
 				E:SetMoverPoints("DebuffsMover")
 			end

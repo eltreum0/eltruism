@@ -1,5 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
+local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 local tinsert = _G.table.insert
 local tconcat = _G.table.concat
 local unpack = _G.unpack
@@ -131,6 +132,8 @@ function ElvUI_EltreumUI:Configtable()
 	-- Add Eltruism version on top of the ElvUI config
 	E.Options.name = E.Options.name .. " + " .. ElvUI_EltreumUI.Name .. format(" |cffffffff%s|r", ElvUI_EltreumUI.Version)
 	local ACH = E.Libs.ACH
+
+
 	ElvUI_EltreumUI.Options = ACH:Group("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:14:14:0:0|t" .. ElvUI_EltreumUI.Name, nil, 6)
 	ElvUI_EltreumUI.Options.args.logo = ACH:Description(nil, 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohq', 320, 80 end)
 
@@ -201,55 +204,6 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.header4 = ACH:Description(L["Clear Details! Damage Meter tables to free up memory"], 8, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.detailscache= ACH:Execute(L["Clear Details Tables"], L["Set Details tables to be empty"], 9, function() ElvUI_EltreumUI:EmptyDetailsTable() end,nil,false,'full')
 
-	-- aurafilters
-	ElvUI_EltreumUI.Options.args.aurafilters = ACH:Group(E:TextGradient(L["Aura Filters"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Choose to show all debuffs/buffs or use default Filters"], 85, 'tab')
-	ElvUI_EltreumUI.Options.args.aurafilters.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\aurafilter'
-	ElvUI_EltreumUI.Options.args.aurafilters.args.player = ACH:Group(L["Player"], nil, 2)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player = ACH:Group(L["Select how auras will be displayed for Player"], nil, 1)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player.inline = true
-	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player.args.header1 = ACH:Description(nil, 2, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player.args.allbuffs = ACH:Execute(L["All Player Buffs"], L["Set filters to show more buffs on Player"], 2, function() ElvUI_EltreumUI:SetupBuffs('player', 'Everything') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player.args.alldebuffs = ACH:Execute(L["All Player Debuffs"], L["Set filters to show more debuffs on Player"], 3, function() ElvUI_EltreumUI:SetupDebuffs('player', 'Everything') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player.args.header2 = ACH:Description(nil, 4, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player.args.eltruismbuffs = ACH:Execute(L["Eltruism Player Buffs"], L["Set filters to be Eltruism defaults on Player"], 5, function() ElvUI_EltreumUI:SetupBuffs('player', 'Eltruism') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player.args.eltruismdebuffs = ACH:Execute(L["Eltruism Player Debuffs"], L["Set filters to be Eltruism defaults on Player"], 6, function() ElvUI_EltreumUI:SetupDebuffs('player', 'Eltruism') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.target = ACH:Group(TARGET, nil, 2)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.target.args.target = ACH:Group(L["Select how auras will be displayed for Target"], nil, 1)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.target.args.target.inline = true
-	ElvUI_EltreumUI.Options.args.aurafilters.args.target.args.target.args.header1 = ACH:Description(nil, 2, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.target.args.target.args.allbuffs = ACH:Execute(L["All Target Buffs"], L["Set filters to show more buffs on Target"], 2, function() ElvUI_EltreumUI:SetupBuffs('target', 'Everything') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.target.args.target.args.alldebuffs = ACH:Execute(L["All Target Debuffs"], L["Set filters to show more debuffs on Target"], 3, function() ElvUI_EltreumUI:SetupDebuffs('target', 'Everything') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.target.args.target.args.header2 = ACH:Description(nil, 4, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.target.args.target.args.eltruismbuffs = ACH:Execute(L["Eltruism Target Buffs"], L["Set filters to be Eltruism defaults on Target"], 5, function() ElvUI_EltreumUI:SetupBuffs('target', 'Eltruism') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.target.args.target.args.eltruismdebuffs = ACH:Execute(L["Eltruism Target Debuffs"], L["Set filters to be Eltruism defaults on Target"], 6, function() ElvUI_EltreumUI:SetupDebuffs('target', 'Eltruism') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.focus = ACH:Group(POWER_TYPE_FOCUS, nil, 2, nil, nil, nil, nil, E.Classic)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.focus.args.focus = ACH:Group(L["Select how auras will be displayed for Focus"], nil, 1)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.focus.args.focus.inline = true
-	ElvUI_EltreumUI.Options.args.aurafilters.args.focus.args.focus.args.header1 = ACH:Description(nil, 2, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.focus.args.focus.args.allbuffs = ACH:Execute(L["All Focus Buffs"], L["Set filters to show more buffs on Focus"], 2, function() ElvUI_EltreumUI:SetupBuffs('focus', 'Everything') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.focus.args.focus.args.alldebuffs = ACH:Execute(L["All Focus Debuffs"], L["Set filters to show more debuffs on Focus"], 3, function() ElvUI_EltreumUI:SetupDebuffs('focus', 'Everything') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.focus.args.focus.args.header2 = ACH:Description(nil, 4, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.focus.args.focus.args.eltruismbuffs = ACH:Execute(L["Eltruism Focus Buffs"], L["Set filters to be Eltruism defaults on Focus"], 5, function() ElvUI_EltreumUI:SetupBuffs('focus', 'Eltruism') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.focus.args.focus.args.eltruismdebuffs = ACH:Execute(L["Eltruism Focus Debuffs"], L["Set filters to be Eltruism defaults on Focus"], 6, function() ElvUI_EltreumUI:SetupDebuffs('focus', 'Eltruism') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.boss = ACH:Group(L["Boss"], nil, 2, nil, nil, nil, nil, E.Classic)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.boss.args.boss = ACH:Group(L["Select how auras will be displayed for Boss"], nil, 1)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.boss.args.boss.inline = true
-	ElvUI_EltreumUI.Options.args.aurafilters.args.boss.args.boss.args.header1 = ACH:Description(nil, 2, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.boss.args.boss.args.allbuffs = ACH:Execute(L["All Boss Buffs"], L["Set filters to show more buffs on Boss"], 2, function() ElvUI_EltreumUI:SetupBuffs('boss', 'Everything') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.boss.args.boss.args.alldebuffs = ACH:Execute(L["All Boss Debuffs"], L["Set filters to show more debuffs on Boss"], 3, function() ElvUI_EltreumUI:SetupDebuffs('boss', 'Everything') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.boss.args.boss.args.header2 = ACH:Description(nil, 4, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.boss.args.boss.args.eltruismbuffs = ACH:Execute(L["Eltruism Boss Buffs"], L["Set filters to be Eltruism defaults on Boss"], 5, function() ElvUI_EltreumUI:SetupBuffs('boss', 'Eltruism') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.boss.args.boss.args.eltruismdebuffs = ACH:Execute(L["Eltruism Boss Debuffs"], L["Set filters to be Eltruism defaults on Boss"], 6, function() ElvUI_EltreumUI:SetupDebuffs('boss', 'Eltruism') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate = ACH:Group(L["Nameplates"], nil, 2)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate.args.nameplate = ACH:Group(L["Select how auras will be displayed for Nameplates"], nil, 1)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate.args.nameplate.inline = true
-	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate.args.nameplate.args.header1 = ACH:Description(nil, 2, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate.args.nameplate.args.allbuffs = ACH:Execute(L["All Nameplate Buffs"], L["Set filters to show more buffs on Nameplates"], 2, function() ElvUI_EltreumUI:SetupBuffs('nameplate', 'Everything') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate.args.nameplate.args.alldebuffs = ACH:Execute(L["All Nameplate Debuffs"], L["Set filters to show more debuffs on Nameplates"], 3, function() ElvUI_EltreumUI:SetupDebuffs('nameplate', 'Everything') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate.args.nameplate.args.header2 = ACH:Description(nil, 4, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
-	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate.args.nameplate.args.eltruismbuffs = ACH:Execute(L["Eltruism Nameplate Buffs"], L["Set filters to be Eltruism defaults on Nameplates"], 5, function() ElvUI_EltreumUI:SetupBuffs('nameplate', 'Eltruism') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate.args.nameplate.args.eltruismdebuffs = ACH:Execute(L["Eltruism Nameplate Debuffs"], L["Set filters to be Eltruism defaults on Nameplates"], 6, function() ElvUI_EltreumUI:SetupDebuffs('nameplate', 'Eltruism') end,nil,false,'full')
-
 	--addons
 	ElvUI_EltreumUI.Options.args.addons = ACH:Group(E:TextGradient(L["Addons"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Install or update other Addon profiles"], 85, 'tab')
 	ElvUI_EltreumUI.Options.args.addons.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\addon'
@@ -301,6 +255,55 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.afk.args.classmusic = ACH:Toggle(L["Class Music"], nil, 5, nil, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.afkmusic.playerclass end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.afkmusic.playerclass = value end, function() return not E.db.ElvUI_EltreumUI.otherstuff.afkmusic.enable or E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial end, not E.Retail)
 	ElvUI_EltreumUI.Options.args.afk.args.header3 = ACH:Description("Eltruism Logo", 6, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
 	ElvUI_EltreumUI.Options.args.afk.args.eltruismlogo = ACH:Toggle(L["Enable"], nil, 7, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.afklogo end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.afklogo = value end)
+
+	-- aurafilters
+	ElvUI_EltreumUI.Options.args.aurafilters = ACH:Group(E:TextGradient(L["Aura Filters"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Choose to show all debuffs/buffs or use default Filters"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.aurafilters.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\aurafilter'
+	ElvUI_EltreumUI.Options.args.aurafilters.args.player = ACH:Group(L["Player"], nil, 2)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player = ACH:Group(L["Select how auras will be displayed for Player"], nil, 1)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player.inline = true
+	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player.args.header1 = ACH:Description(nil, 2, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player.args.allbuffs = ACH:Execute(L["All Player Buffs"], L["Set filters to show more buffs on Player"], 2, function() ElvUI_EltreumUI:SetupBuffs('player', 'Everything') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player.args.alldebuffs = ACH:Execute(L["All Player Debuffs"], L["Set filters to show more debuffs on Player"], 3, function() ElvUI_EltreumUI:SetupDebuffs('player', 'Everything') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player.args.header2 = ACH:Description(nil, 4, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player.args.eltruismbuffs = ACH:Execute(L["Eltruism Player Buffs"], L["Set filters to be Eltruism defaults on Player"], 5, function() ElvUI_EltreumUI:SetupBuffs('player', 'Eltruism') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player.args.eltruismdebuffs = ACH:Execute(L["Eltruism Player Debuffs"], L["Set filters to be Eltruism defaults on Player"], 6, function() ElvUI_EltreumUI:SetupDebuffs('player', 'Eltruism') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.target = ACH:Group(TARGET, nil, 2)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.target.args.target = ACH:Group(L["Select how auras will be displayed for Target"], nil, 1)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.target.args.target.inline = true
+	ElvUI_EltreumUI.Options.args.aurafilters.args.target.args.target.args.header1 = ACH:Description(nil, 2, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.target.args.target.args.allbuffs = ACH:Execute(L["All Target Buffs"], L["Set filters to show more buffs on Target"], 2, function() ElvUI_EltreumUI:SetupBuffs('target', 'Everything') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.target.args.target.args.alldebuffs = ACH:Execute(L["All Target Debuffs"], L["Set filters to show more debuffs on Target"], 3, function() ElvUI_EltreumUI:SetupDebuffs('target', 'Everything') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.target.args.target.args.header2 = ACH:Description(nil, 4, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.target.args.target.args.eltruismbuffs = ACH:Execute(L["Eltruism Target Buffs"], L["Set filters to be Eltruism defaults on Target"], 5, function() ElvUI_EltreumUI:SetupBuffs('target', 'Eltruism') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.target.args.target.args.eltruismdebuffs = ACH:Execute(L["Eltruism Target Debuffs"], L["Set filters to be Eltruism defaults on Target"], 6, function() ElvUI_EltreumUI:SetupDebuffs('target', 'Eltruism') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.focus = ACH:Group(POWER_TYPE_FOCUS, nil, 2, nil, nil, nil, nil, E.Classic)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.focus.args.focus = ACH:Group(L["Select how auras will be displayed for Focus"], nil, 1)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.focus.args.focus.inline = true
+	ElvUI_EltreumUI.Options.args.aurafilters.args.focus.args.focus.args.header1 = ACH:Description(nil, 2, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.focus.args.focus.args.allbuffs = ACH:Execute(L["All Focus Buffs"], L["Set filters to show more buffs on Focus"], 2, function() ElvUI_EltreumUI:SetupBuffs('focus', 'Everything') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.focus.args.focus.args.alldebuffs = ACH:Execute(L["All Focus Debuffs"], L["Set filters to show more debuffs on Focus"], 3, function() ElvUI_EltreumUI:SetupDebuffs('focus', 'Everything') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.focus.args.focus.args.header2 = ACH:Description(nil, 4, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.focus.args.focus.args.eltruismbuffs = ACH:Execute(L["Eltruism Focus Buffs"], L["Set filters to be Eltruism defaults on Focus"], 5, function() ElvUI_EltreumUI:SetupBuffs('focus', 'Eltruism') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.focus.args.focus.args.eltruismdebuffs = ACH:Execute(L["Eltruism Focus Debuffs"], L["Set filters to be Eltruism defaults on Focus"], 6, function() ElvUI_EltreumUI:SetupDebuffs('focus', 'Eltruism') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.boss = ACH:Group(L["Boss"], nil, 2, nil, nil, nil, nil, E.Classic)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.boss.args.boss = ACH:Group(L["Select how auras will be displayed for Boss"], nil, 1)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.boss.args.boss.inline = true
+	ElvUI_EltreumUI.Options.args.aurafilters.args.boss.args.boss.args.header1 = ACH:Description(nil, 2, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.boss.args.boss.args.allbuffs = ACH:Execute(L["All Boss Buffs"], L["Set filters to show more buffs on Boss"], 2, function() ElvUI_EltreumUI:SetupBuffs('boss', 'Everything') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.boss.args.boss.args.alldebuffs = ACH:Execute(L["All Boss Debuffs"], L["Set filters to show more debuffs on Boss"], 3, function() ElvUI_EltreumUI:SetupDebuffs('boss', 'Everything') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.boss.args.boss.args.header2 = ACH:Description(nil, 4, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.boss.args.boss.args.eltruismbuffs = ACH:Execute(L["Eltruism Boss Buffs"], L["Set filters to be Eltruism defaults on Boss"], 5, function() ElvUI_EltreumUI:SetupBuffs('boss', 'Eltruism') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.boss.args.boss.args.eltruismdebuffs = ACH:Execute(L["Eltruism Boss Debuffs"], L["Set filters to be Eltruism defaults on Boss"], 6, function() ElvUI_EltreumUI:SetupDebuffs('boss', 'Eltruism') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate = ACH:Group(L["Nameplates"], nil, 2)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate.args.nameplate = ACH:Group(L["Select how auras will be displayed for Nameplates"], nil, 1)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate.args.nameplate.inline = true
+	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate.args.nameplate.args.header1 = ACH:Description(nil, 2, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate.args.nameplate.args.allbuffs = ACH:Execute(L["All Nameplate Buffs"], L["Set filters to show more buffs on Nameplates"], 2, function() ElvUI_EltreumUI:SetupBuffs('nameplate', 'Everything') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate.args.nameplate.args.alldebuffs = ACH:Execute(L["All Nameplate Debuffs"], L["Set filters to show more debuffs on Nameplates"], 3, function() ElvUI_EltreumUI:SetupDebuffs('nameplate', 'Everything') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate.args.nameplate.args.header2 = ACH:Description(nil, 4, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate.args.nameplate.args.eltruismbuffs = ACH:Execute(L["Eltruism Nameplate Buffs"], L["Set filters to be Eltruism defaults on Nameplates"], 5, function() ElvUI_EltreumUI:SetupBuffs('nameplate', 'Eltruism') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.nameplate.args.nameplate.args.eltruismdebuffs = ACH:Execute(L["Eltruism Nameplate Debuffs"], L["Set filters to be Eltruism defaults on Nameplates"], 6, function() ElvUI_EltreumUI:SetupDebuffs('nameplate', 'Eltruism') end,nil,false,'full')
 
 	--borders
 	ElvUI_EltreumUI.Options.args.borders = ACH:Group(E:TextGradient(L["Borders"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add Borders to frames and customize them"], 85, 'tab')
@@ -488,6 +491,130 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath.args.header1 = ACH:Description(L["Example: "].."mymusic.mp3", 1)
 	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath.args.input = ACH:Input("", "", 3, false, "full", function() return E.private.ElvUI_EltreumUI.combatmusic.bossfile end, function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossmusic = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.combatmusic.bossmusic end)
 
+	--cooldown
+	ElvUI_EltreumUI.Options.args.cooldown = ACH:Group(E:TextGradient(L["Cooldown"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Show a pulsing cooldown and let it speak the spell name"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.cooldown.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cooldown'
+	ElvUI_EltreumUI.Options.args.cooldown.args.header1 = ACH:Description(L["Cooldown"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.cooldown.args.enable = ACH:Toggle(L["Enable Cooldown Pulse"], L["Show a Skill Pulse when its cooldown is ending"], 2, nil, false,'full',function() return E.db.ElvUI_EltreumUI.skins.doom.enable end,function(_, value) E.db.ElvUI_EltreumUI.skins.doom.enable = value ElvUI_EltreumUI:Doom() E:StaticPopup_Show('PRIVATE_RL') end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.showSpellName = ACH:Toggle(L["Show Spell Name"], L["Displays a Text with the name of the spell"], 3, nil, false,'full',function() return E.db.ElvUI_EltreumUI.skins.doom.showSpellName end,function(_, value) E.db.ElvUI_EltreumUI.skins.doom.showSpellName = value ElvUI_EltreumUI:Doom() E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.fadeInTime = ACH:Range(L["Fade In Time"], L["Time it takes for the icon to fade in"], 4, { min = 0, max = 5, step = 0.1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.fadeInTime end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.fadeInTime = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.fadeOutTime = ACH:Range(L["Fade Out Time"], L["Time it takes for the icon to fade out"], 4, { min = 0, max = 5, step = 0.1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.maxAlpha = ACH:Range(L["Alpha"], L["Transparency of the Icon"], 4, { min = 0, max = 1, step = 0.01 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.maxAlpha end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.maxAlpha = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.animScale = ACH:Range(L["Animation Scale"], L["Animation will scale to this size"], 4, { min = 0, max = 5, step = 0.1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.animScale end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.animScale = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.iconSize = ACH:Range(L["Icon Size"], L["Size of the Icon"], 4, { min = 6, max = 200, step = 0.1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.iconSize end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.iconSize = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.holdTime = ACH:Range(L["Hold Time"], L["How long the Icon will appear"], 4, { min = 0, max = 5, step = 0.1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.holdTime end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.holdTime = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.graceperiod = ACH:Range(L["Minimum Cooldown Length"], L["Cooldowns must be longer than this to show up"], 4, { min = 0, max = 120, step = 1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.graceperiod end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.graceperiod = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.doomignored = ACH:Input(L["Ignored Spells, use a comma to separate spells"], L["List of spells ignored, use a comma to separate spells"], 5, false, "full", function() return E.private.ElvUI_EltreumUI.doomignored end, function(_, value) E.private.ElvUI_EltreumUI.doomignored = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.header2 = ACH:Description(L["Text to Speech"], 6, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.cooldown.args.ttsvoicetoggle = ACH:Toggle(L["Enable"], nil, 7, nil, false,'full',function() return E.db.ElvUI_EltreumUI.skins.doom.tts end,function(_, value) E.db.ElvUI_EltreumUI.skins.doom.tts = value ElvUI_EltreumUI:Doom() end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.ttsvoiceselect = ACH:Select(L["Text to Speech Config"], nil, 8, function()
+		local Voices = {}
+		for i, v in pairs(C_VoiceChat.GetTtsVoices()) do
+			--Voices[i] = v.name
+			Voices[v.voiceID] = v.name
+		end
+		return Voices
+	end, false, "full", function() return E.db.ElvUI_EltreumUI.skins.doom.ttsvoice end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.ttsvoice = tonumber(value) C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume) end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable or not E.db.ElvUI_EltreumUI.skins.doom.tts end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.volume = ACH:Range(VOLUME, nil, 9, { min = 0, max = 100, step = 1 }, 'full', function() return E.db.ElvUI_EltreumUI.skins.doom.ttsvolume end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.ttsvolume = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable or not E.db.ElvUI_EltreumUI.skins.doom.tts end)
+	ElvUI_EltreumUI.Options.args.cooldown.args.header3 = ACH:Description(PREVIEW, 10, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.cooldown.args.preview = ACH:Execute(PREVIEW, nil, 11, function() ElvUI_EltreumUI:PreviewDoom() end,nil,false,'full')
+
+	--cvars
+	ElvUI_EltreumUI.Options.args.cvars = ACH:Group(E:TextGradient(L["CVars"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Customize Blizzard's Hidden Settings"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.cvars.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cvar'
+	ElvUI_EltreumUI.Options.args.cvars.args.general = ACH:Group(L["General"], nil, 1)
+	ElvUI_EltreumUI.Options.args.cvars.args.general.args.header1 = ACH:Description(L["Setup CVars"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.general.args.generalVars = ACH:Execute(L["General CVars"], nil, 2, function() ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() end,nil,true, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.general.args.header2 = ACH:Description(L["It will set these CVars:"], 3, nil, nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.general.args.cvarlist = ACH:Description('- autoLootDefault 1\n- ShowClassColorInFriendlyNameplate 1\n- removeChatDelay 1\n- autoQuestWatch 1\n- cameraDistanceMaxZoomFactor 2.6\n- nameplateLargerScale 1.2\n- nameplateMaxDistance 60\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 0\n- nameplateOverlapH 0.8\n- nameplateOverlapV 1.1\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateShowFriendlyMinions 0\n- nameplateOtherBottomInset 0.02\n- nameplateOtherTopInset 0.1\n- nameplateTargetRadialPosition 1\n- nameplateTargetBehindMaxDistance 40\n- nameplateShowEnemies 1\n- nameplateShowFriends 1\n- UnitNameEnemyGuardianName 0\n- UnitNameEnemyMinionName 0\n- UnitNameEnemyPetName 0\n- UnitNameEnemyPlayerName 1\n- UnitNameEnemyTotemName 1\n- UnitNameFriendlyPetName 0\n- UnitNameNPC 1\n- statusTextDisplay BOTH\n- screenshotQuality 10\n- chatMouseScroll 1\n- wholeChatWindowClickable 0\n- showTutorials 0\n- UberTooltips 1\n- alwaysCompareItems 0\n- allowCompareWithToggle 1\n- instantQuestText 1\n- autoLootRate 1\n- showQuestTrackingTooltips 1\n- lootUnderMouse 1\n- equipmentManager 1\n- previewTalents 1\n- WorldTextMinSize 6', 4, nil, nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars = ACH:Group(L["Other CVars"], nil, 2)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.combattext = ACH:Group(L["Combat Text"], nil, 2, "tab")
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.combattext.args.header1 = ACH:Description(L["Blizzard Floating Combat Text"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.combattext.args.blizzcombatexttoggle = ACH:Toggle(L["Disable Combat Text"], L["Enable or disable Blizzard's default Floating Combat Text"], 2, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.combattext.args.blizzcombatextmana = ACH:Toggle(L["Enable Resource Gains"], L["Enable or disable Blizzard's default Floating Combat Text for Mana/Rage/Energy and other resouces"], 3, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.combattext.args.restorecvars = ACH:Execute(L["Restore All Blizzard Combat Text"], nil, 4, function() ElvUI_EltreumUI:RestoreBlizzCombatText() E:StaticPopup_Show('CONFIG_RL') end,nil,true, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.combattext.args.header2 = ACH:Description(L["Change the Scale of the World Text"], 5, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.combattext.args.worldtextscale = ACH:Range(L["Select the size of the World Text"], nil, 6, { min = 0.2, max = 2, step = 0.1 }, 'full', function() return E.db.ElvUI_EltreumUI.otherstuff.worldtextscale end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldtextscale = value ElvUI_EltreumUI:WorldTextScale(value) end)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.camera = ACH:Group(L["Camera"], nil, 2, "tab")
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.camera.args.header1 = ACH:Description("", 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.camera.args.cameraFOV = ACH:Range(L["Camera Field of View"], L["This allows you to zoom out further with the camera to increase the field of view."], 2, { min = 50, max = 90, step = 1 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.cameraFOV end, function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraFOV = value SetCVar('camerafov', value) end, nil, E.Classic)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.camera.args.cameraDistanceMaxZoomFactor = ACH:Range(L["Camera Distance Max Zoom Factor"], L["Maximum Camera Zoom Out"], 2, { min = 1, max = function() if not E.Wrath then return 2.6 else return 3.4 end end, step = 0.1 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor end, function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor = value SetCVar('cameraDistanceMaxZoomFactor', value) end)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates = ACH:Group(L["Nameplates"], nil, 2, "tab")
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.header1 = ACH:Description("", 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.SoftTargetInteract = ACH:Toggle(L["Soft Target Interact"], L["Enable Soft Target Interactions"], 2, nil, false,'full',
+	function()
+		if C_CVar.GetCVar('SoftTargetInteract') == '0' then
+			return false
+		elseif C_CVar.GetCVar('SoftTargetInteract') == '3' then
+			return true
+		end
+	end, function(_, value)
+		if value == true then
+			SetCVar('SoftTargetInteract', 3)
+			SetCVar('SoftTargetIconInteract', 1)
+			SetCVar('SoftTargetIconGameObject', 1)
+			SetCVar('SoftTargetNameplateInteract', 1)
+		else
+			SetCVar('SoftTargetInteract', 0)
+			SetCVar('SoftTargetIconInteract', 0)
+			SetCVar('SoftTargetIconGameObject', 0)
+			SetCVar('SoftTargetNameplateInteract', 0)
+		end
+	 end, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.header2 = ACH:Description("", 3, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateTargetRadialPosition = ACH:Select(L["Nameplate Target Radial Position"], L["When target is off screen, position its nameplate radially around sides and bottom."], 4, {
+		["1"] = L["Target Only"],
+		["2"] = L["All in Combat"],
+	}, false, nil, function() return C_CVar.GetCVar('nameplateTargetRadialPosition') end, function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition = value SetCVar('nameplateTargetRadialPosition', value) end)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateTargetRadialPosition.style = "radio"
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.header3 = ACH:Description("", 5, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateOtherBottomInset = ACH:Range(L["Nameplate Other Bottom Inset"], L["In screen % the inset from the Bottom"], 6, { min = 0.01, max = 1, step = 0.01 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset end, function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset = value SetCVar('nameplateOtherBottomInset', value) SetCVar('nameplateLargeBottomInset', value) end)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateOtherTopInset = ACH:Range(L["Nameplate Other Top Inset"], L["In screen % the inset from the Top"], 6, { min = 0.01, max = 1, step = 0.01 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset end, function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset = value SetCVar('nameplateOtherTopInset', value) SetCVar('nameplateLargeTopInset', value) end)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateOccludedAlphaMult = ACH:Range(L["Nameplate Occluded Alpha"], L["Alpha of Nameplates out of Sight"], 7, { min = 0, max = 1, step = 0.01 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult end, function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult = value SetCVar('nameplateOccludedAlphaMult', value) end)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateGlobalScale = ACH:Range(L["Nameplate Global Scale"], L["Global Scaling of nameplates after selected, min, and max scale"], 7, { min = 0.1, max = 10, step = 0.01 }, 'full', function() return tonumber(C_CVar.GetCVar('nameplateGlobalScale')) end, function(_, value) SetCVar('nameplateGlobalScale', value) end)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics = ACH:Group(L["Graphics"], nil, 2, "tab")
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.header1 = ACH:Description(L["AMD FSR"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.forceFSRon = ACH:Toggle(L["Enable AMD FSR even if not scaling"], L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"], 2, nil, false,'full',
+	function()
+		if C_CVar.GetCVar('ResampleAlwaysSharpen') == '0' then
+			return false
+		elseif C_CVar.GetCVar('ResampleAlwaysSharpen') == '1' then
+			return true
+		end
+	end, function(_, value)
+		if value == true then
+			SetCVar('ResampleAlwaysSharpen', 1)
+		else
+			SetCVar('ResampleAlwaysSharpen', 0)
+		end
+	 end)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.forceFSRsharpness = ACH:Range(RESAMPLE_QUALITY_FSR, nil, 3, { min = 0, max = 2, step = 0.1 }, 'full', function() return tonumber(C_CVar.GetCVar('ResampleSharpness')) end, function(_, value) SetCVar('ResampleSharpness', value) end, function() if C_CVar.GetCVar('ResampleAlwaysSharpen') == '1' then return false elseif C_CVar.GetCVar('ResampleAlwaysSharpen') == '0' then return true end end)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.header2 = ACH:Description("", 4, nil, nil, nil, nil, nil, "full", E.Classic)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.lowlatencycvar = ACH:Select(LOW_LATENCY_MODE or "Low Latency Mode", OPTION_TOOLTIP_LOW_LATENCY_MODE or "Allows the game to use various techniques to reduce input latency", 5, {
+		["0"] = VIDEO_OPTIONS_DISABLED or "Disabled",
+		["1"] = VIDEO_OPTIONS_BUILTIN or "Built-in",
+		["2"] = VIDEO_OPTIONS_NVIDIA_REFLEX or "NVIDIA Reflex",
+		--["3"] = VIDEO_OPTIONS_NVIDIA_REFLEX_BOOST,
+	}, false, nil, function() return C_CVar.GetCVar('LowLatencyMode') end, function(_, value) local number = tonumber(value) SetCVar('LowLatencyMode', number) end, E.Classic)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.lowlatencycvar.style = "radio"
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.header3 = ACH:Description(L["Dynamic Render Scale"], 5, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.dynamicrenderscaleenable = ACH:Toggle(L["Lowers render scale if GPU bound to hit Target FPS."], L["Note this feature is in BETA.\nKnown issues:\n - May cause hitching.\n - May behave poorly with vsync on."], 6, nil, false,'full',
+	function()
+		if C_CVar.GetCVar('DynamicRenderScale') == '0' then
+			return false
+		elseif C_CVar.GetCVar('DynamicRenderScale') == '1' then
+			return true
+		end
+	end, function(_, value)
+		if value == true then
+			SetCVar('DynamicRenderScale', 1)
+		else
+			SetCVar('DynamicRenderScale', 0)
+		end
+	 end)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.dynamicrenderscaleenable.descStyle = "inline"
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.dynamicrenderscalepercentage = ACH:Range(L["Dynamic Render Scale Minimum"], L["Lowest Render Scale used"], 7, { min = 0.1, max = 1, step = 0.01 }, 'full', function() return tonumber(C_CVar.GetCVar('DynamicRenderScaleMin')) end, function(_, value) SetCVar('DynamicRenderScaleMin', value) end, function() if C_CVar.GetCVar('DynamicRenderScale') == '1' then return false elseif C_CVar.GetCVar('DynamicRenderScale') == '0' then return true end end)
+
 	--custom glow
 	ElvUI_EltreumUI.Options.args.customglow = ACH:Group(E:TextGradient(L["Custom Glow"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Fully customize how action bars glow and add glows to debuffs on unitframes"], 85, 'tab')
 	ElvUI_EltreumUI.Options.args.customglow.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\customglow'
@@ -618,40 +745,64 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.customglow.args.blizzard.args.header1 = ACH:Description(L["Blizzard Glow"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.customglow.args.blizzard.args.frequencyblizz = ACH:Range(L["Blizzard Frequency (Default is 0.5)"], L["Speed for Blizzard glow"], 2, { min = 0.1, max = 3, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.frequencyblizz end, function(_, value) E.db.ElvUI_EltreumUI.glow.frequencyblizz = value end)
 
-	--cooldown
-	ElvUI_EltreumUI.Options.args.cooldown = ACH:Group(E:TextGradient(L["Cooldown"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Show a pulsing cooldown and let it speak the spell name"], 85, 'tab')
-	ElvUI_EltreumUI.Options.args.cooldown.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\cooldown'
-	ElvUI_EltreumUI.Options.args.cooldown.args.header1 = ACH:Description(L["Cooldown"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
-	ElvUI_EltreumUI.Options.args.cooldown.args.enable = ACH:Toggle(L["Enable Cooldown Pulse"], L["Show a Skill Pulse when its cooldown is ending"], 2, nil, false,'full',function() return E.db.ElvUI_EltreumUI.skins.doom.enable end,function(_, value) E.db.ElvUI_EltreumUI.skins.doom.enable = value ElvUI_EltreumUI:Doom() E:StaticPopup_Show('PRIVATE_RL') end)
-	ElvUI_EltreumUI.Options.args.cooldown.args.showSpellName = ACH:Toggle(L["Show Spell Name"], L["Displays a Text with the name of the spell"], 3, nil, false,'full',function() return E.db.ElvUI_EltreumUI.skins.doom.showSpellName end,function(_, value) E.db.ElvUI_EltreumUI.skins.doom.showSpellName = value ElvUI_EltreumUI:Doom() E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
-	ElvUI_EltreumUI.Options.args.cooldown.args.fadeInTime = ACH:Range(L["Fade In Time"], L["Time it takes for the icon to fade in"], 4, { min = 0, max = 5, step = 0.1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.fadeInTime end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.fadeInTime = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
-	ElvUI_EltreumUI.Options.args.cooldown.args.fadeOutTime = ACH:Range(L["Fade Out Time"], L["Time it takes for the icon to fade out"], 4, { min = 0, max = 5, step = 0.1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
-	ElvUI_EltreumUI.Options.args.cooldown.args.maxAlpha = ACH:Range(L["Alpha"], L["Transparency of the Icon"], 4, { min = 0, max = 1, step = 0.01 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.maxAlpha end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.maxAlpha = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
-	ElvUI_EltreumUI.Options.args.cooldown.args.animScale = ACH:Range(L["Animation Scale"], L["Animation will scale to this size"], 4, { min = 0, max = 5, step = 0.1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.animScale end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.animScale = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
-	ElvUI_EltreumUI.Options.args.cooldown.args.iconSize = ACH:Range(L["Icon Size"], L["Size of the Icon"], 4, { min = 6, max = 200, step = 0.1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.iconSize end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.iconSize = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
-	ElvUI_EltreumUI.Options.args.cooldown.args.holdTime = ACH:Range(L["Hold Time"], L["How long the Icon will appear"], 4, { min = 0, max = 5, step = 0.1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.holdTime end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.holdTime = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
-	ElvUI_EltreumUI.Options.args.cooldown.args.graceperiod = ACH:Range(L["Minimum Cooldown Length"], L["Cooldowns must be longer than this to show up"], 4, { min = 0, max = 120, step = 1 }, nil, function() return E.db.ElvUI_EltreumUI.skins.doom.graceperiod end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.graceperiod = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
-	ElvUI_EltreumUI.Options.args.cooldown.args.doomignored = ACH:Input(L["Ignored Spells, use a comma to separate spells"], L["List of spells ignored, use a comma to separate spells"], 5, false, "full", function() return E.private.ElvUI_EltreumUI.doomignored end, function(_, value) E.private.ElvUI_EltreumUI.doomignored = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
-	ElvUI_EltreumUI.Options.args.cooldown.args.header2 = ACH:Description(L["Text to Speech"], 6, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
-	ElvUI_EltreumUI.Options.args.cooldown.args.ttsvoicetoggle = ACH:Toggle(L["Enable"], nil, 7, nil, false,'full',function() return E.db.ElvUI_EltreumUI.skins.doom.tts end,function(_, value) E.db.ElvUI_EltreumUI.skins.doom.tts = value ElvUI_EltreumUI:Doom() end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable end)
-	ElvUI_EltreumUI.Options.args.cooldown.args.ttsvoiceselect = ACH:Select(L["Text to Speech Config"], nil, 8, function()
-		local Voices = {}
-		for i, v in pairs(C_VoiceChat.GetTtsVoices()) do
-			--Voices[i] = v.name
-			Voices[v.voiceID] = v.name
+	--maps
+	ElvUI_EltreumUI.Options.args.map = ACH:Group(E:TextGradient(L["Maps"], 0.50, 0.70, 1, 0.67, 0.95, 1), E.Retail and L["Add a time to arrive to waypoints, cardinal directions and more"] or L["Add cardinal directions, change map scale and more"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.map.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\map'
+	ElvUI_EltreumUI.Options.args.map.args.general = ACH:Group(L["General"], nil, 1)
+	ElvUI_EltreumUI.Options.args.map.args.general.args.header1 = ACH:Description(L["Flight Frame"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.general.args.taxiscale = ACH:Range(L["Flight Frame Scale"], nil, 2, { min = 0.1, max = 3, step = 0.01 }, 'double', function() return E.db.ElvUI_EltreumUI.otherstuff.taxiscale end,
+	function(_, value)
+		E.db.ElvUI_EltreumUI.otherstuff.taxiscale = value
+		if _G["TaxiFrame"] then
+			_G["TaxiFrame"]:SetScale(value)
 		end
-		return Voices
-	end, false, "full", function() return E.db.ElvUI_EltreumUI.skins.doom.ttsvoice end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.ttsvoice = tonumber(value) C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume) end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable or not E.db.ElvUI_EltreumUI.skins.doom.tts end)
-	ElvUI_EltreumUI.Options.args.cooldown.args.volume = ACH:Range(VOLUME, nil, 9, { min = 0, max = 100, step = 1 }, 'full', function() return E.db.ElvUI_EltreumUI.skins.doom.ttsvolume end, function(_, value) E.db.ElvUI_EltreumUI.skins.doom.ttsvolume = value end, function() return not E.db.ElvUI_EltreumUI.skins.doom.enable or not E.db.ElvUI_EltreumUI.skins.doom.tts end)
-	ElvUI_EltreumUI.Options.args.cooldown.args.header3 = ACH:Description(PREVIEW, 10, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
-	ElvUI_EltreumUI.Options.args.cooldown.args.preview = ACH:Execute(PREVIEW, nil, 11, function() ElvUI_EltreumUI:PreviewDoom() end,nil,false,'full')
-
-
-
-
-
-
-
+		if _G["FlightMapFrame"] then
+			_G["FlightMapFrame"]:SetScale(value)
+		end
+	end)
+	ElvUI_EltreumUI.Options.args.map.args.general.args.header2 = ACH:Description(L["WORLD_MAP"], 3, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.map.args.general.args.worldmapscaletoggle = ACH:Toggle(L["Enable World Map Scaling"], nil, 4, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscale = value end, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.map.args.general.args.worldmapscale = ACH:Range(L["World Map Scale"], nil, 5, { min = 0.1, max = 3, step = 0.01 }, 'double', function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue end,
+	function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue = value
+		if _G["WorldMapFrame"] and E.Retail then
+			_G["WorldMapFrame"]:SetScale(value)
+		end
+	end,function() return not E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.map.args.eta = ACH:Group(L["Time to Arrive"], nil, 2, "tab", nil, nil, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.header1 = ACH:Description(L["Add a time to arrive below the waypoint"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.header2 = ACH:Description(L["The time will be calculated based on player speed and distance"], 2, nil, nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.header3 = ACH:Description(L["If the player is not moving then *** will show up since time cannot be calculated"], 3, nil, nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.header3 = ACH:Description(L["If you move away from the waypoint the time will just increase"], 4, nil, nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.enable = ACH:Toggle(L["Enable ETA"], L["Add an ETA to waypoints"], 5, nil, false,'full',function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end,function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.enableautopin = ACH:Toggle(L["Enable ETA"], L["Add an ETA to waypoints"], 6, nil, false,'full',function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin end,function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end)
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.etacolor = ACH:Color(L["Text Color"], nil, 6, false, "full", function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB, 1, P.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, P.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, P.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB, 1 end,
+	function(_, r, g, b, a)
+		E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB = r, g, b
+		E:StaticPopup_Show('CONFIG_RL')
+	end, function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end)
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.enablelimit = ACH:Toggle(L["Limit Max Distance"], L["Add an ETA to waypoints"], 7, nil, false,'full',function() return E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance end,function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end)
+	ElvUI_EltreumUI.Options.args.map.args.eta.args.limitmaxdistance = ACH:Range(L["Max Distance"], nil, 8, { min = 200, max = 10000, step = 10 }, 'double', function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue end, function(_, value) E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.distance = value end, function() return not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.limitmaxdistance or not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable end)
+	ElvUI_EltreumUI.Options.args.map.args.waytext = ACH:Group(L["Chat Command"], nil, 3, "tab", nil, nil, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.map.args.waytext.args.header1 = ACH:Description(L["Enable the /way and /waypoint commands"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.waytext.args.header2 = ACH:Description(L["You can type /way or /waypoint"], 2)
+	ElvUI_EltreumUI.Options.args.map.args.waytext.args.header3 = ACH:Description(L["Use formats such as:"], 3)
+	ElvUI_EltreumUI.Options.args.map.args.waytext.args.header4 = ACH:Description(L["XX YY, XX.XX YY.YY, XX,XX YY,YY and XXX YYY"], 4)
+	--ElvUI_EltreumUI.Options.args.map.args.waytext.args.header5 = ACH:Description(L["Other Formats can end up causing errors"], 5)
+	ElvUI_EltreumUI.Options.args.map.args.waytext.args.enable = ACH:Toggle(L["Enable"], L["Enable the /way and /waypoint commands"], 6, nil, false,'full',function() return E.db.ElvUI_EltreumUI.waypoints.waytext.enable end,function(_, value) E.db.ElvUI_EltreumUI.waypoints.waytext.enable = value end)
+	ElvUI_EltreumUI.Options.args.map.args.cardinal = ACH:Group(L["Cardinal Directions"], nil, 3)
+	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.header1 = ACH:Description(L["Minimap Cardinal Directions"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.enable = ACH:Toggle(L["Enable Cardinal Directions"], L["Add North, East, South, West to Minimap"], 2, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable = value ElvUI_EltreumUI:MinimapCardinalDirections() end, function() return C_CVar.GetCVar("rotateMinimap") == "1" end)
+	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.cardinaloffset = ACH:Range(L["Cardinal Text Offset"], nil, 3, { min = -100, max = 100, step = 1 }, 'double', function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset = value ElvUI_EltreumUI:MinimapCardinalDirections() end, function() return C_CVar.GetCVar("rotateMinimap") == "1" or not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable end)
+	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.header2 = ACH:Description("", 4, nil, nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.fontsize = ACH:Range(L["Font Size"], nil, 5, { min = 4, max = 64, step = 1 }, 'double', function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize = value ElvUI_EltreumUI:MinimapCardinalDirections() end, function() return C_CVar.GetCVar("rotateMinimap") == "1" or not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable end)
+	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.header3 = ACH:Description("", 6, nil, nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.classcolor = ACH:Toggle(L["Use Class Colors"], nil, 7, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor = value ElvUI_EltreumUI:MinimapCardinalDirections() end, function() return C_CVar.GetCVar("rotateMinimap") == "1" or not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable end)
+	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.customcolor = ACH:Color(L["Custom Color"], nil, 8, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b, 1 end, function(_, r, g, b, a) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b = r, g, b ElvUI_EltreumUI:MinimapCardinalDirections() end, function() return C_CVar.GetCVar("rotateMinimap") == "1" or not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable or E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor end)
+	ElvUI_EltreumUI.Options.args.map.args.combathide = ACH:Group(L["Combat Hide"], nil, 3)
+	ElvUI_EltreumUI.Options.args.map.args.combathide.args.header1 = ACH:Description(L["Minimap"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.combathide.args.header2 = ACH:Description(L["Hide Minimap while in Combat"], 2, nil, nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.map.args.combathide.args.enable = ACH:Toggle(L["Enable"], L["Automatically hide the Minimap in combat"], 3, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.mapcombathide end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mapcombathide = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.map.args.combathide.args.enableauras = ACH:Toggle(L["Adjust Auras Position"], L["Automatically move auras to the Top Right when minimap is hidden"], 4, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mapcombathide end)
 
 	--media
 	ElvUI_EltreumUI.Options.args.media = ACH:Group(E:TextGradient(L["Media"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Change Fonts, Font Outlines and Action Paging"], 85, 'tab')
@@ -676,22 +827,64 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.media.args.general.args.header4 = ACH:Description(L["Change the ElvUI background"], 13, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.media.args.general.args.grey = ACH:Execute(L["Grey Background"], L["This will set the background to be a grey color"], 14, function() ElvUI_EltreumUI:GreyBg() E:UpdateMediaItems() end,nil,true)
 	ElvUI_EltreumUI.Options.args.media.args.general.args.black = ACH:Execute(L["Black Background"], L["This will set the background to be a black color"], 14, function() ElvUI_EltreumUI:SetupFontsOutlineCustom("THICKOUTLINE") E:StaggeredUpdateAll() E:StaticPopup_Show('CONFIG_RL') end,nil,true)
-
-	--ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
-	--ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)
-	--ACH:Header(name, order, get, set, hidden)
-	--ACH:Execute(name, desc, order, func, image, confirm, width, get, set, disabled, hidden)
-	--ACH:Description(name, order, fontSize, image, imageCoords, imageWidth, imageHeight, width, hidden)
-	--ACH:Select(name, desc, order, values, confirm, width, get, set, disabled, hidden)
-	--ACH:Input(name, desc, order, multiline, width, get, set, disabled, hidden, validate)
-	--ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
-	--ACH:Range(name, desc, order, values, width, get, set, disabled, hidden)
-	--ACH:SharedMediaFont(name, desc, order, width, get, set, disabled, hidden)
-	--ACH:SharedMediaSound(name, desc, order, width, get, set, disabled, hidden)
-	--ACH:SharedMediaStatusbar(name, desc, order, width, get, set, disabled, hidden)
-	--ACH:SharedMediaBackground(name, desc, order, width, get, set, disabled, hidden)
-	--ACH:SharedMediaBorder(name, desc, order, width, get, set, disabled, hidden)
-
+	ElvUI_EltreumUI.Options.args.media.args.general.args.header5 = ACH:Description(L["Dynamic Datatext that changes according to class to show Ammo or Soul Shards when playing Hunter, Warrior, Rogue or Warlock"], 15, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.dynamicdatatext = ACH:Toggle(L["Enable"], L["Enable the Dynamic Datatext"], 16, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext = value end, nil, E.Retail)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.header6 = ACH:Description(L["WeakAuras Action Bar"], 17, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.media.args.general.args.weakaurasactionbar = ACH:Toggle(L["Move ActionBars and Power to be similar to WeakAuras"], L["Overwrites some profile settings to move ActionBars, Unitframes and Powers to look more similar to a WeakAura. |cffFF0000WARNING:|r This will overwrite some of your profile settings with no way to restore"], 18, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA = value ElvUI_EltreumUI:WeakAurasLikeActionBars(value) E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.header7 = ACH:Description("", 19, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.media.args.general.args.black = ACH:Execute(L["Swap Action Paging and visibility for Bar1 and Bar4"], nil, 20, function() ElvUI_EltreumUI:ActionPagingSwap() E:StaticPopup_Show('CONFIG_RL') end,nil,true)
+	ElvUI_EltreumUI.Options.args.media.args.tags = ACH:Group(E.NewSign..L["Tags"], nil, 2, "tab")
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.enable = ACH:Group("", nil, 1)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.enable.inline = true
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.enable.args.header1 = ACH:Description(L["Customize Tags"], 2)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.hpstatus = ACH:Group("[eltruism:hpstatus]", nil, 2)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.hpstatus.args.header1 = ACH:Description(E.NewSign..L["Customize Health Status Icons"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.hpstatus.args.deadiconpick = ACH:Select(L["Dead"], nil, 2, {
+		["1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead1',':20:20'),
+		["2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead2',':20:20'),
+		["3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead3',':20:20'),
+		["4"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead4',':20:20'),
+		["5"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead5',':20:20'),
+		["6"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead6',':20:20'),
+		["7"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead7',':20:20'),
+		["NONE"] = L["None"],
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon = tostring(value) end)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.hpstatus.args.deadiconpick.style = "radio"
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.hpstatus.args.dciconpick = ACH:Select(L["Disconnected"], nil, 2, {
+		["1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc1',':20:20'),
+		["2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc2',':20:20'),
+		["3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc3',':20:20'),
+		["4"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc4',':20:20'),
+		["5"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc5',':20:20'),
+		["6"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc6',':20:20'),
+		["NONE"] = L["None"],
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon = tostring(value) end)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.hpstatus.args.dciconpick.style = "radio"
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.dead = ACH:Group("[eltruism:dead]", nil, 2)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.dead.args.header1 = ACH:Description(E.NewSign..L["Customize the Dead Icons"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.dead.args.deadiconpick = ACH:Select(L["Disconnected"], nil, 2, {
+		["1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead1',':20:20'),
+		["2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead2',':20:20'),
+		["3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead3',':20:20'),
+		["4"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead4',':20:20'),
+		["5"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead5',':20:20'),
+		["6"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead6',':20:20'),
+		["7"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead7',':20:20'),
+		["NONE"] = L["None"],
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.deadtagicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.deadtagicon = tostring(value) end)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.dead.args.deadiconpick.style = "radio"
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.dc = ACH:Group("[eltruism:dc]", nil, 2)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.dc.args.header1 = ACH:Description(E.NewSign..L["Customize the Disconnected Icons"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.dc.args.dciconpick = ACH:Select(L["Disconnected"], nil, 2, {
+		["1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc1',':20:20'),
+		["2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc2',':20:20'),
+		["3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc3',':20:20'),
+		["4"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc4',':20:20'),
+		["5"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc5',':20:20'),
+		["6"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc6',':20:20'),
+		["NONE"] = L["None"],
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.dctagicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.dctagicon = tostring(value) end)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.dc.args.dciconpick.style = "radio"
 
 	--weakauras anchor
 	ElvUI_EltreumUI.Options.args.weakauras = ACH:Group(E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's movers to move them"], 85)
@@ -754,6 +947,72 @@ function ElvUI_EltreumUI:Configtable()
 	end)
 	ElvUI_EltreumUI.Options.args.support.args.curse = ACH:Input(L["Addon on CurseForge:"], "", 10, false, "full", function() return 'https://www.curseforge.com/wow/addons/elvui-eltruism' end)
 	ElvUI_EltreumUI.Options.args.support.args.wago = ACH:Input(L["Addon on Wago:"], "", 10, false, "full", function() return 'https://addons.wago.io/addons/elvui-eltruism' end)
+
+	--quests
+	ElvUI_EltreumUI.Options.args.quests = ACH:Group(E:TextGradient(QUESTS_LABEL, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Automate Quests and Gossip, add a Quest Item Bar, hide Quests during Boss fights and more"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.quests.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\quest'
+	ElvUI_EltreumUI.Options.args.quests.args.general = ACH:Group(L["General"], nil, 1)
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.header1 = ACH:Description("", 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.questboss = ACH:Toggle(L["Collapse Quests during Encounters/Boss Fights"], L["Collapse Quests when the boss fight starts"], 2, nil, false,'full',function() return E.db.ElvUI_EltreumUI.quests.enable end,function(_, value) E.db.ElvUI_EltreumUI.quests.enable = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.header2 = ACH:Description("", 3, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.questcombat = ACH:Toggle(L["Collapse Quests during any combat event"], L["Collapse Quests when you enter combat"], 4, nil, false,'full',function() return E.db.ElvUI_EltreumUI.quests.combatenable end,function(_, value) E.db.ElvUI_EltreumUI.quests.combatenable = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.header3 = ACH:Description("", 5, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.questarena = ACH:Toggle(L["Hide Quests during Battlegrounds and Arenas"], nil, 6, nil, false,'full',function() return E.db.ElvUI_EltreumUI.quests.arena end,function(_, value) E.db.ElvUI_EltreumUI.quests.arena = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.header4 = ACH:Description("", 7, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.objectiveanchor = ACH:Toggle(L["Objective Frame Anchor"], L["Reactivate the ElvUI Objective Frame Anchor and Mover"], 8, nil, false,'full',function() return E.db.ElvUI_EltreumUI.quests.anchor end,function(_, value) E.db.ElvUI_EltreumUI.quests.anchor = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.objectiveheight = ACH:Range(L["Objective Frame Height"], L["Height of the objective tracker. Increase size to be able to see more objectives."], 5, { min = 100, max = 900, step = 1 }, 'double',
+	function()
+		if ObjectiveTrackerFrame then
+			return ObjectiveTrackerFrame.editModeHeight
+		else
+			return 1
+		end
+	end, function(_, value)
+		if ObjectiveTrackerFrame then
+			E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight = value
+			ObjectiveTrackerFrame.editModeHeight = value
+			Enum.EditModeObjectiveTrackerSetting.Height = value
+			ObjectiveTrackerFrame:SetHeight(value)
+			ObjectiveTracker_UpdateHeight()
+		end
+	end, function() return not E.db.ElvUI_EltreumUI.quests.anchor end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.quests.args.item = ACH:Group(L["Quest Item Bar"], nil, 2)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.header1 = ACH:Description(L["Quest Item Bar"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitembar = ACH:Toggle(L["Enable Quest Item Bar"], L["Add a Quest Item bar, keybind can be changed in Keybinds > ElvUI Eltruism"], 2, nil, false,'full', function() return E.db.ElvUI_EltreumUI.quests.questitems end,function(_, value) E.db.ElvUI_EltreumUI.quests.questitems = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitembarfade = ACH:Toggle(L["Quest Item Bar follows visibility settings for ElvUI Action Bar 1"], L["The Quest Item Bar will appear only when ElvUI Action Bar 1 appears, following its settings"], 3, nil, false,'full', function() return E.db.ElvUI_EltreumUI.quests.questitemsbar1 end,function(_, value) E.db.ElvUI_EltreumUI.quests.questitemsbar1 = value E:StaticPopup_Show('CONFIG_RL') end, function() return (not E.db.ElvUI_EltreumUI.quests.questitems) or E.db.ElvUI_EltreumUI.quests.questitemsfade end)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitembarmouseover = ACH:Toggle(L["Quest Item Bar Button Mouse Over"], L["Each Button in the Quest Item Bar will appear only if the cursor is over it"], 3, nil, false,'full', function() return E.db.ElvUI_EltreumUI.quests.questitemsfade end,function(_, value) E.db.ElvUI_EltreumUI.quests.questitemsfade = value E:StaticPopup_Show('CONFIG_RL') end, function() return (not E.db.ElvUI_EltreumUI.quests.questitems) or E.db.ElvUI_EltreumUI.quests.questitemsbar1 end)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitembarkeybind = ACH:Toggle(L["Keybind Text"], nil, 4, nil, false,'full', function() return E.db.ElvUI_EltreumUI.quests.showkeybind end,function(_, value) E.db.ElvUI_EltreumUI.quests.showkeybind = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.quests.questitems end)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.header2 = ACH:Description(L["Quest Item Bar Button Size"], 5, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitemsbarsizex = ACH:Range(L["Width"], L["Change the size of the button on the Quest Item Bar"], 6, { min = 10, max = 100, step = 1 }, 'double', function() return E.db.ElvUI_EltreumUI.quests.questitemsize end, function(_, value) E.db.ElvUI_EltreumUI.quests.questitemsize = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.quests.questitems end)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitemsbarsizey = ACH:Range(L["Height"], L["Change the size of the button on the Quest Item Bar"], 6, { min = 10, max = 100, step = 1 }, 'double', function() return E.db.ElvUI_EltreumUI.quests.questitemsizey end, function(_, value) E.db.ElvUI_EltreumUI.quests.questitemsizey = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.quests.questitems end)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitembarspacing = ACH:Range(L["Button Spacing"], L["The spacing between buttons."], 7, { min = 0, max = 20, step = 1 }, 'double', function() return E.db.ElvUI_EltreumUI.quests.questitemspacing end, function(_, value) E.db.ElvUI_EltreumUI.quests.questitemspacing = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.quests.questitems end)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitembarorientation = ACH:Select(L["Bar Direction"], nil, 8, {
+		["HORIZONTAL"] = L["Horizontal"],
+		["VERTICAL"] = L["Vertical"],
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.quests.questorientation end, function(_, value) E.db.ElvUI_EltreumUI.quests.questorientation = value end, function() return not E.db.ElvUI_EltreumUI.quests.questitems end)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitembarorientation.style = "radio"
+	ElvUI_EltreumUI.Options.args.quests.args.autoaccept = ACH:Group(L["Auto Accept"], nil, 2)
+	ElvUI_EltreumUI.Options.args.quests.args.autoaccept.args.header1 = ACH:Description("", 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.quests.args.autoaccept.args.autoaccept = ACH:Toggle(L["Enable Automatically accepting/turning in Quests when not holding CTRL/SHIFT/ALT"], L["You will automatically accept and turn in quests that do not require gold, are not weekly and are not daily"], 2, nil, false,'full', function() return E.db.ElvUI_EltreumUI.quests.autoaccept end,function(_, value) E.db.ElvUI_EltreumUI.quests.autoaccept = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.quests.args.autoaccept.args.autoacceptdaily = ACH:Toggle(L["Accept Daily and Weekly quests"], L["You will also automatically accept Daily and Weekly Quests"], 3, nil, false,'full', function() return E.db.ElvUI_EltreumUI.quests.acceptdaily end,function(_, value) E.db.ElvUI_EltreumUI.quests.acceptdaily = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.quests.autoaccept end)
+	ElvUI_EltreumUI.Options.args.quests.args.autoaccept.args.autoacceptinvert = ACH:Toggle(L["Invert CTRL/SHIFT/ALT"], L["You will only accept and turn in quests if you hold CTRL/SHIFT/ALT while talking to the NPC"], 4, nil, false,'full', function() return E.db.ElvUI_EltreumUI.quests.autoacceptinvert end,function(_, value) E.db.ElvUI_EltreumUI.quests.autoacceptinvert = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.quests.autoaccept end)
+
+	--ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func
+	--ACH:Header(name, order, get, set, hidden)
+	--ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
+	--ACH:Execute(name, desc, order, func, image, confirm, width, get, set, disabled, hidden)
+	--ACH:Description(name, order, fontSize, image, imageCoords, imageWidth, imageHeight, width, hidden)
+
+	--ACH:Select(name, desc, order, values, confirm, width, get, set, disabled, hidden)
+	--ACH:Input(name, desc, order, multiline, width, get, set, disabled, hidden, validate)
+	--ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
+	--ACH:Range(name, desc, order, values, width, get, set, disabled, hidden)
+
+	--ACH:SharedMediaFont(name, desc, order, width, get, set, disabled, hidden)
+	--ACH:SharedMediaSound(name, desc, order, width, get, set, disabled, hidden)
+	--ACH:SharedMediaStatusbar(name, desc, order, width, get, set, disabled, hidden)
+	--ACH:SharedMediaBackground(name, desc, order, width, get, set, disabled, hidden)
+	--ACH:SharedMediaBorder(name, desc, order, width, get, set, disabled, hidden)
 
 	E.Options.args.ElvUI_EltreumUI = ElvUI_EltreumUI.Options
 end
