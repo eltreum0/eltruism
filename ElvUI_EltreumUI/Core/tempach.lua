@@ -588,30 +588,36 @@ function ElvUI_EltreumUI:Configtable()
 		local glowtotem4customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor
 		glowtotem4customcolor.r, glowtotem4customcolor.g, glowtotem4customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
 	end, function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor or not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
+
 	ElvUI_EltreumUI.Options.args.customglow.args.pixel = ACH:Group(L["Pixel Glow"], nil, 3, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end)
-	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header1 = ACH:Description("", 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header1 = ACH:Description("", 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.pixelborder = ACH:Toggle(L["Enable Pixel Border"], L["Enable a border for the Pixel Glow"], 2, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.borderpixel end,function(_, value) E.db.ElvUI_EltreumUI.glow.borderpixel = value end)
-	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header2 = ACH:Description("", 3, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header2 = ACH:Description("", 3, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.numberpixel = ACH:Range(L["Number of Pixels (Default is 9)"], L["Set the number of pixels in pixel glow"], 4, { min = 1, max = 20, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.numberpixel end, function(_, value) E.db.ElvUI_EltreumUI.glow.numberpixel = value end)
-	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header3 = ACH:Description("", 5, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header3 = ACH:Description("", 5, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.pixelfrequency = ACH:Range(L["Pixel Frequency (Default is 1)"], L["Set the frequency pixel glow"], 6, { min = -10, max = 10, step = 0.01 }, "full", function() return E.db.ElvUI_EltreumUI.glow.frequencypixel end, function(_, value) E.db.ElvUI_EltreumUI.glow.frequencypixel = value end)
-	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header4 = ACH:Description("", 7, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header4 = ACH:Description("", 7, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.pixellength = ACH:Range(L["Pixel Length (Default is 3)"], L["Set the length of pixels"], 8, { min = 1, max = 20, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.lengthpixel end, function(_, value) E.db.ElvUI_EltreumUI.glow.lengthpixel = value end)
-	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header5 = ACH:Description("", 9, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header5 = ACH:Description("", 9, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.pixelthickness = ACH:Range(L["Pixel Thickness (Default is 5)"], L["Set the thickness of pixels"], 10, { min = 1, max = 10, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.thicknesspixel end, function(_, value) E.db.ElvUI_EltreumUI.glow.thicknesspixel = value end)
-	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header6 = ACH:Description("", 11, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header6 = ACH:Description("", 11, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.pixelxoffset = ACH:Range(L["Pixel Horizontal Offset (Default is 5)"], L["Set the horizontal offset of pixels"], 12, { min = 1, max = 10, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.pixelxOffset end, function(_, value) E.db.ElvUI_EltreumUI.glow.pixelxOffset = value end)
-	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header7 = ACH:Description("", 13, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.header7 = ACH:Description("", 13, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.customglow.args.pixel.args.pixelyoffset = ACH:Range(L["Pixel Vertical Offset (Default is 5)"], L["Set the vertical offset of pixels"], 14, { min = 1, max = 10, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.pixelyOffset end, function(_, value) E.db.ElvUI_EltreumUI.glow.pixelyOffset = value end)
-
-
-
-
-
-
-
-
-
+	ElvUI_EltreumUI.Options.args.customglow.args.autocast = ACH:Group(L["Autocast Glow"], nil, 3, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end)
+	ElvUI_EltreumUI.Options.args.customglow.args.autocast.args.header1 = ACH:Description("", 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.customglow.args.autocast.args.numberautocast = ACH:Range(L["Autocast Particle Groups (Default is 8)"], L["Set the number of groups for autocast, for each group you get 4 particles"], 2, { min = 1, max = 10, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.numberauto end, function(_, value) E.db.ElvUI_EltreumUI.glow.numberauto = value end)
+	ElvUI_EltreumUI.Options.args.customglow.args.autocast.args.header2 = ACH:Description("", 3, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.customglow.args.autocast.args.autofrequency = ACH:Range(L["Autocast Frequency (Default is 0.8)"], L["Speed for Autocast, set to negative to inverse direction of rotation"], 4, { min = -3, max = 3, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.frequencyauto end, function(_, value) E.db.ElvUI_EltreumUI.glow.frequencyauto = value end)
+	ElvUI_EltreumUI.Options.args.customglow.args.autocast.args.header3 = ACH:Description("", 5, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.customglow.args.autocast.args.autoscale = ACH:Range(L["Autocast Scale (Default is 2)"], L["Change the size of Autocast"], 6, { min = -3, max = 3, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.autoscale end, function(_, value) E.db.ElvUI_EltreumUI.glow.autoscale = value end)
+	ElvUI_EltreumUI.Options.args.customglow.args.autocast.args.header4 = ACH:Description("", 7, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.customglow.args.autocast.args.autooffsetx = ACH:Range(L["Autocast Horizontal Offset (Default is 5)"], L["Set the horizontal offset of autocast"], 8, { min = 1, max = 10, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.autoxOffset end, function(_, value) E.db.ElvUI_EltreumUI.glow.autoxOffset = value end)
+	ElvUI_EltreumUI.Options.args.customglow.args.autocast.args.header5 = ACH:Description("", 9, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.customglow.args.autocast.args.autooffsety = ACH:Range(L["Autocast Vertical Offset (Default is 5)"], L["Set the vertical offset of autocast"], 10, { min = 1, max = 10, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.autoyOffset end, function(_, value) E.db.ElvUI_EltreumUI.glow.autoyOffset = value end)
+	ElvUI_EltreumUI.Options.args.customglow.args.blizzard = ACH:Group(L["Blizzard Glow"], nil, 3, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end)
+	ElvUI_EltreumUI.Options.args.customglow.args.blizzard.args.header1 = ACH:Description(L["Blizzard Glow"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.customglow.args.blizzard.args.frequencyblizz = ACH:Range(L["Blizzard Frequency (Default is 0.5)"], L["Speed for Blizzard glow"], 2, { min = 0.1, max = 3, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.frequencyblizz end, function(_, value) E.db.ElvUI_EltreumUI.glow.frequencyblizz = value end)
 
 
 
@@ -629,39 +635,6 @@ function ElvUI_EltreumUI:Configtable()
 	--ACH:SharedMediaStatusbar(name, desc, order, width, get, set, disabled, hidden)
 	--ACH:SharedMediaBackground(name, desc, order, width, get, set, disabled, hidden)
 	--ACH:SharedMediaBorder(name, desc, order, width, get, set, disabled, hidden)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	--weakauras anchor
