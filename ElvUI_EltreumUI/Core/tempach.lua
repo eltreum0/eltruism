@@ -948,8 +948,54 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.support.args.curse = ACH:Input(L["Addon on CurseForge:"], "", 10, false, "full", function() return 'https://www.curseforge.com/wow/addons/elvui-eltruism' end)
 	ElvUI_EltreumUI.Options.args.support.args.wago = ACH:Input(L["Addon on Wago:"], "", 10, false, "full", function() return 'https://addons.wago.io/addons/elvui-eltruism' end)
 
-
-
+	--quests
+	ElvUI_EltreumUI.Options.args.quests = ACH:Group(E:TextGradient(QUESTS_LABEL, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Automate Quests and Gossip, add a Quest Item Bar, hide Quests during Boss fights and more"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.quests.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\quest'
+	ElvUI_EltreumUI.Options.args.quests.args.general = ACH:Group(L["General"], nil, 1)
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.header1 = ACH:Description("", 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.questboss = ACH:Toggle(L["Collapse Quests during Encounters/Boss Fights"], L["Collapse Quests when the boss fight starts"], 2, nil, false,'full',function() return E.db.ElvUI_EltreumUI.quests.enable end,function(_, value) E.db.ElvUI_EltreumUI.quests.enable = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.header2 = ACH:Description("", 3, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.questcombat = ACH:Toggle(L["Collapse Quests during any combat event"], L["Collapse Quests when you enter combat"], 4, nil, false,'full',function() return E.db.ElvUI_EltreumUI.quests.combatenable end,function(_, value) E.db.ElvUI_EltreumUI.quests.combatenable = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.header3 = ACH:Description("", 5, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.questarena = ACH:Toggle(L["Hide Quests during Battlegrounds and Arenas"], nil, 6, nil, false,'full',function() return E.db.ElvUI_EltreumUI.quests.arena end,function(_, value) E.db.ElvUI_EltreumUI.quests.arena = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.header4 = ACH:Description("", 7, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.objectiveanchor = ACH:Toggle(L["Objective Frame Anchor"], L["Reactivate the ElvUI Objective Frame Anchor and Mover"], 8, nil, false,'full',function() return E.db.ElvUI_EltreumUI.quests.anchor end,function(_, value) E.db.ElvUI_EltreumUI.quests.anchor = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.objectiveheight = ACH:Range(L["Objective Frame Height"], L["Height of the objective tracker. Increase size to be able to see more objectives."], 5, { min = 100, max = 900, step = 1 }, 'double',
+	function()
+		if ObjectiveTrackerFrame then
+			return ObjectiveTrackerFrame.editModeHeight
+		else
+			return 1
+		end
+	end, function(_, value)
+		if ObjectiveTrackerFrame then
+			E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight = value
+			ObjectiveTrackerFrame.editModeHeight = value
+			Enum.EditModeObjectiveTrackerSetting.Height = value
+			ObjectiveTrackerFrame:SetHeight(value)
+			ObjectiveTracker_UpdateHeight()
+		end
+	end, function() return not E.db.ElvUI_EltreumUI.quests.anchor end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.quests.args.item = ACH:Group(L["Quest Item Bar"], nil, 2)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.header1 = ACH:Description(L["Quest Item Bar"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitembar = ACH:Toggle(L["Enable Quest Item Bar"], L["Add a Quest Item bar, keybind can be changed in Keybinds > ElvUI Eltruism"], 2, nil, false,'full', function() return E.db.ElvUI_EltreumUI.quests.questitems end,function(_, value) E.db.ElvUI_EltreumUI.quests.questitems = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitembarfade = ACH:Toggle(L["Quest Item Bar follows visibility settings for ElvUI Action Bar 1"], L["The Quest Item Bar will appear only when ElvUI Action Bar 1 appears, following its settings"], 3, nil, false,'full', function() return E.db.ElvUI_EltreumUI.quests.questitemsbar1 end,function(_, value) E.db.ElvUI_EltreumUI.quests.questitemsbar1 = value E:StaticPopup_Show('CONFIG_RL') end, function() return (not E.db.ElvUI_EltreumUI.quests.questitems) or E.db.ElvUI_EltreumUI.quests.questitemsfade end)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitembarmouseover = ACH:Toggle(L["Quest Item Bar Button Mouse Over"], L["Each Button in the Quest Item Bar will appear only if the cursor is over it"], 3, nil, false,'full', function() return E.db.ElvUI_EltreumUI.quests.questitemsfade end,function(_, value) E.db.ElvUI_EltreumUI.quests.questitemsfade = value E:StaticPopup_Show('CONFIG_RL') end, function() return (not E.db.ElvUI_EltreumUI.quests.questitems) or E.db.ElvUI_EltreumUI.quests.questitemsbar1 end)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitembarkeybind = ACH:Toggle(L["Keybind Text"], nil, 4, nil, false,'full', function() return E.db.ElvUI_EltreumUI.quests.showkeybind end,function(_, value) E.db.ElvUI_EltreumUI.quests.showkeybind = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.quests.questitems end)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.header2 = ACH:Description(L["Quest Item Bar Button Size"], 5, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitemsbarsizex = ACH:Range(L["Width"], L["Change the size of the button on the Quest Item Bar"], 6, { min = 10, max = 100, step = 1 }, 'double', function() return E.db.ElvUI_EltreumUI.quests.questitemsize end, function(_, value) E.db.ElvUI_EltreumUI.quests.questitemsize = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.quests.questitems end)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitemsbarsizey = ACH:Range(L["Height"], L["Change the size of the button on the Quest Item Bar"], 6, { min = 10, max = 100, step = 1 }, 'double', function() return E.db.ElvUI_EltreumUI.quests.questitemsizey end, function(_, value) E.db.ElvUI_EltreumUI.quests.questitemsizey = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.quests.questitems end)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitembarspacing = ACH:Range(L["Button Spacing"], L["The spacing between buttons."], 7, { min = 0, max = 20, step = 1 }, 'double', function() return E.db.ElvUI_EltreumUI.quests.questitemspacing end, function(_, value) E.db.ElvUI_EltreumUI.quests.questitemspacing = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.quests.questitems end)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitembarorientation = ACH:Select(L["Bar Direction"], nil, 8, {
+		["HORIZONTAL"] = L["Horizontal"],
+		["VERTICAL"] = L["Vertical"],
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.quests.questorientation end, function(_, value) E.db.ElvUI_EltreumUI.quests.questorientation = value end, function() return not E.db.ElvUI_EltreumUI.quests.questitems end)
+	ElvUI_EltreumUI.Options.args.quests.args.item.args.questitembarorientation.style = "radio"
+	ElvUI_EltreumUI.Options.args.quests.args.autoaccept = ACH:Group(L["Auto Accept"], nil, 2)
+	ElvUI_EltreumUI.Options.args.quests.args.autoaccept.args.header1 = ACH:Description("", 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.quests.args.autoaccept.args.autoaccept = ACH:Toggle(L["Enable Automatically accepting/turning in Quests when not holding CTRL/SHIFT/ALT"], L["You will automatically accept and turn in quests that do not require gold, are not weekly and are not daily"], 2, nil, false,'full', function() return E.db.ElvUI_EltreumUI.quests.autoaccept end,function(_, value) E.db.ElvUI_EltreumUI.quests.autoaccept = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.quests.args.autoaccept.args.autoacceptdaily = ACH:Toggle(L["Accept Daily and Weekly quests"], L["You will also automatically accept Daily and Weekly Quests"], 3, nil, false,'full', function() return E.db.ElvUI_EltreumUI.quests.acceptdaily end,function(_, value) E.db.ElvUI_EltreumUI.quests.acceptdaily = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.quests.autoaccept end)
+	ElvUI_EltreumUI.Options.args.quests.args.autoaccept.args.autoacceptinvert = ACH:Toggle(L["Invert CTRL/SHIFT/ALT"], L["You will only accept and turn in quests if you hold CTRL/SHIFT/ALT while talking to the NPC"], 4, nil, false,'full', function() return E.db.ElvUI_EltreumUI.quests.autoacceptinvert end,function(_, value) E.db.ElvUI_EltreumUI.quests.autoacceptinvert = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.quests.autoaccept end)
 
 	--ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func
 	--ACH:Header(name, order, get, set, hidden)
