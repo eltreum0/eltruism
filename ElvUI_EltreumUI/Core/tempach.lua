@@ -131,6 +131,8 @@ function ElvUI_EltreumUI:Configtable()
 	-- Add Eltruism version on top of the ElvUI config
 	E.Options.name = E.Options.name .. " + " .. ElvUI_EltreumUI.Name .. format(" |cffffffff%s|r", ElvUI_EltreumUI.Version)
 	local ACH = E.Libs.ACH
+	local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
+
 	ElvUI_EltreumUI.Options = ACH:Group("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:14:14:0:0|t" .. ElvUI_EltreumUI.Name, nil, 6)
 	ElvUI_EltreumUI.Options.args.logo = ACH:Description(nil, 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohq', 320, 80 end)
 
@@ -676,6 +678,71 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.media.args.general.args.header4 = ACH:Description(L["Change the ElvUI background"], 13, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.media.args.general.args.grey = ACH:Execute(L["Grey Background"], L["This will set the background to be a grey color"], 14, function() ElvUI_EltreumUI:GreyBg() E:UpdateMediaItems() end,nil,true)
 	ElvUI_EltreumUI.Options.args.media.args.general.args.black = ACH:Execute(L["Black Background"], L["This will set the background to be a black color"], 14, function() ElvUI_EltreumUI:SetupFontsOutlineCustom("THICKOUTLINE") E:StaggeredUpdateAll() E:StaticPopup_Show('CONFIG_RL') end,nil,true)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.header5 = ACH:Description(L["Dynamic Datatext that changes according to class to show Ammo or Soul Shards when playing Hunter, Warrior, Rogue or Warlock"], 15, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.dynamicdatatext = ACH:Toggle(L["Enable"], L["Enable the Dynamic Datatext"], 16, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext = value end, nil, E.Retail)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.header6 = ACH:Description(L["WeakAuras Action Bar"], 17, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.media.args.general.args.weakaurasactionbar = ACH:Toggle(L["Move ActionBars and Power to be similar to WeakAuras"], L["Overwrites some profile settings to move ActionBars, Unitframes and Powers to look more similar to a WeakAura. |cffFF0000WARNING:|r This will overwrite some of your profile settings with no way to restore"], 18, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA = value ElvUI_EltreumUI:WeakAurasLikeActionBars(value) E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.header7 = ACH:Description("", 19, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.media.args.general.args.black = ACH:Execute(L["Swap Action Paging and visibility for Bar1 and Bar4"], nil, 20, function() ElvUI_EltreumUI:ActionPagingSwap() E:StaticPopup_Show('CONFIG_RL') end,nil,true)
+
+	ElvUI_EltreumUI.Options.args.media.args.tags = ACH:Group(E.NewSign..L["Tags"], nil, 2, "tab")
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.enable = ACH:Group("", nil, 1)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.enable.inline = true
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.enable.args.header1 = ACH:Description(L["Customize Tags"], 2)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.hpstatus = ACH:Group("[eltruism:hpstatus]", nil, 2)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.hpstatus.args.header1 = ACH:Description(E.NewSign..L["Customize Health Status Icons"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.hpstatus.args.deadiconpick = ACH:Select(L["Dead"], nil, 2, {
+		["1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead1',':20:20'),
+		["2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead2',':20:20'),
+		["3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead3',':20:20'),
+		["4"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead4',':20:20'),
+		["5"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead5',':20:20'),
+		["6"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead6',':20:20'),
+		["7"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead7',':20:20'),
+		["NONE"] = L["None"],
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon = tostring(value) end)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.hpstatus.args.deadiconpick.style = "radio"
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.hpstatus.args.dciconpick = ACH:Select(L["Disconnected"], nil, 2, {
+		["1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc1',':20:20'),
+		["2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc2',':20:20'),
+		["3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc3',':20:20'),
+		["4"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc4',':20:20'),
+		["5"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc5',':20:20'),
+		["6"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc6',':20:20'),
+		["NONE"] = L["None"],
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon = tostring(value) end)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.hpstatus.args.dciconpick.style = "radio"
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.dead = ACH:Group("[eltruism:dead]", nil, 2)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.dead.args.header1 = ACH:Description(E.NewSign..L["Customize the Dead Icons"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.dead.args.deadiconpick = ACH:Select(L["Disconnected"], nil, 2, {
+		["1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead1',':20:20'),
+		["2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead2',':20:20'),
+		["3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead3',':20:20'),
+		["4"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead4',':20:20'),
+		["5"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead5',':20:20'),
+		["6"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead6',':20:20'),
+		["7"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead7',':20:20'),
+		["NONE"] = L["None"],
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.deadtagicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.deadtagicon = tostring(value) end)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.dead.args.deadiconpick.style = "radio"
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.dc = ACH:Group("[eltruism:dc]", nil, 2)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.dc.args.header1 = ACH:Description(E.NewSign..L["Customize the Disconnected Icons"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.dc.args.dciconpick = ACH:Select(L["Disconnected"], nil, 2, {
+		["1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc1',':20:20'),
+		["2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc2',':20:20'),
+		["3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc3',':20:20'),
+		["4"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc4',':20:20'),
+		["5"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc5',':20:20'),
+		["6"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc6',':20:20'),
+		["NONE"] = L["None"],
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.dctagicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.dctagicon = tostring(value) end)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.dc.args.dciconpick.style = "radio"
+
+
+
+
+
+
 
 	--ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
 	--ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)
