@@ -42,14 +42,14 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 								frame.eltruismbgtexture:SetDrawLayer("BACKGROUND")
 							end
 							if frame:GetParent() then
-								if frame:GetParent():GetObjectType() == "Button" and frame:GetParent().icon then --fix for buttons since the texture could overlap over the icon
+								if frame:GetParent():GetObjectType() == "Button" and frame:GetParent().icon and not isUnitFrameElement then --fix for buttons since the texture could overlap over the icon
 									frame.eltruismbgtexture:SetDrawLayer("BACKGROUND")
 								end
 								if frame:GetParent().TransmogStateTexture then --transmog stuff
 									frame.eltruismbgtexture:SetVertexColor(1,0,0,0)
 								end
 							end
-							if isUnitFrameElement and (frame:GetParent() and frame:GetParent().isTransparent == false and frame:GetParent().cur) then --only on health
+							if isUnitFrameElement and (frame:GetParent() and frame:GetParent().isTransparent == false) then --only on health
 								frame.eltruismbgtexture:SetDrawLayer("ARTWORK")
 								frame.eltruismbgtexture:SetParent(frame:GetParent())
 							end
