@@ -2061,6 +2061,11 @@ function ElvUI_EltreumUI:Configtable()
 		end
 	end)
 
+	--gradient
+	--skins
+	--party
+	--nameplates
+
 
 	--[[
 		ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func
