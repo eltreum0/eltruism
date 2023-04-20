@@ -540,7 +540,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.camera.args.cameraFOV = ACH:Range(L["Camera Field of View"], L["This allows you to zoom out further with the camera to increase the field of view."], 2, { min = 50, max = 90, step = 1 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.cameraFOV end, function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraFOV = value SetCVar('camerafov', value) end, nil, E.Classic)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.camera.args.cameraDistanceMaxZoomFactor = ACH:Range(L["Camera Distance Max Zoom Factor"], L["Maximum Camera Zoom Out"], 2, { min = 1, max = function() if not E.Wrath then return 2.6 else return 3.4 end end, step = 0.1 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor end, function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor = value SetCVar('cameraDistanceMaxZoomFactor', value) end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates = ACH:Group(L["Nameplates"], nil, 2, "tab")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.header1 = ACH:Description("", 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.header1 = ACH:Description("", 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Classic)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.SoftTargetInteract = ACH:Toggle(L["Soft Target Interact"], L["Enable Soft Target Interactions"], 2, nil, false,'full',
 	function()
 		if C_CVar.GetCVar('SoftTargetInteract') == '0' then
@@ -560,7 +560,7 @@ function ElvUI_EltreumUI:Configtable()
 			SetCVar('SoftTargetIconGameObject', 0)
 			SetCVar('SoftTargetNameplateInteract', 0)
 		end
-	 end, nil, not E.Retail)
+	 end, nil, E.Classic)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.header2 = ACH:Description("", 3, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateTargetRadialPosition = ACH:Select(L["Nameplate Target Radial Position"], L["When target is off screen, position its nameplate radially around sides and bottom."], 4, {
 		["1"] = L["Target Only"],
@@ -1148,6 +1148,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.cursor.args.texture.args.ring10 = ACH:Execute(L["Type 10"], L["The Cursor will use this type as its texture"], 12, function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring10.tga' ElvUI_EltreumUI:CastCursor() end)
 	ElvUI_EltreumUI.Options.args.cursor.args.texture.args.ring10.image = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring10'
 
+	--loot
 	ElvUI_EltreumUI.Options.args.loot = ACH:Group(E:TextGradient(LOOT, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add a scrolling loot text that will show items that you loot, filter which items you can loot, enable fast looting and create your own item wishlist"], 85, 'tab')
 	ElvUI_EltreumUI.Options.args.loot.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\loot'
 	ElvUI_EltreumUI.Options.args.loot.args.loottext = ACH:Group(L["LootText"], nil, 1)
@@ -1187,7 +1188,6 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.position.args.header1 = ACH:Description("", 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.position.args.x = ACH:Range(L["Change the Horizontal Position of LootText (Default = 0)"], nil, 2, { min = -1000, max = 1000, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.loot.loottext.xOffset end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.xOffset = value end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end)
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.position.args.y = ACH:Range(L["Change the Vertical Position of LootText (Default = 200)"], nil, 3, { min = -1000, max = 1000, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.loot.loottext.yOffset end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.yOffset = value end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end)
-
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.fonts = ACH:Group(L["Fonts"], nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.fonts.args.header1 = ACH:Description("", 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.fonts.args.size = ACH:Range(L["Font Size"], nil, 2, { min = 4, max = 160, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsize end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontsize = value end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.enable end)
@@ -1196,16 +1196,12 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.fonts.args.customfontdmg = ACH:Toggle(L["Use ElvUI Damage Font"], L["Change the font of LootText"], 5, nil, false, nil, function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg end,function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg = value E:StaticPopup_Show('CONFIG_RL') end, function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsetting or E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable or not E.db.ElvUI_EltreumUI.loot.loottext.enable end)
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.fonts.args.customLSMenable = ACH:Toggle(L["Use Custom Font"], L["Change the font of LootText"], 6, nil, false, nil, function() return E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable end,function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable = value E:StaticPopup_Show('CONFIG_RL') end, function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg or E.db.ElvUI_EltreumUI.loot.loottext.fontsetting end)
 	ElvUI_EltreumUI.Options.args.loot.args.loottext.args.fonts.args.customLSMfont = ACH:SharedMediaFont(L["Font"], L["Choose a different font from the preselected ones"], 7, nil, function() return E.db.ElvUI_EltreumUI.loot.loottext.fontLSM end, function(self,fontvalue) E.db.ElvUI_EltreumUI.loot.loottext.fontLSM = fontvalue end, function() return E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg or E.db.ElvUI_EltreumUI.loot.loottext.fontsetting or not E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable end)
-
-
 	ElvUI_EltreumUI.Options.args.loot.args.fastloot = ACH:Group("Fast Loot", nil, 2)
 	ElvUI_EltreumUI.Options.args.loot.args.fastloot.args.enable = ACH:Toggle(L["Enable Fast Loot"], L["Decrease the time it takes for auto loot to work, works with TSM"], 1, nil, false, "full", function() return E.db.ElvUI_EltreumUI.loot.fastloot end,function(_, value) E.db.ElvUI_EltreumUI.loot.fastloot = value SetCVar('autoLootDefault', 1) E:StaticPopup_Show('CONFIG_RL') end, function() return E.db.ElvUI_EltreumUI.loot.fastlootfilter or E.db.ElvUI_EltreumUI.loot.lootwishlistfilter end)
 	ElvUI_EltreumUI.Options.args.loot.args.fastloot.args.enablefilter = ACH:Toggle(L["Enable Fast Loot with Loot Quality Filter"], L["Enable filtering item quality, items can still be looted by holding Shift or the mod key setup in Interface"], 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.loot.fastlootfilter end, function(_, value) E.db.ElvUI_EltreumUI.loot.fastlootfilter = value SetCVar('autoLootDefault', 0) E:StaticPopup_Show('CONFIG_RL') end, function() return E.db.ElvUI_EltreumUI.loot.fastloot or E.db.ElvUI_EltreumUI.loot.lootwishlistfilter end)
 	ElvUI_EltreumUI.Options.args.loot.args.fastloot.args.enablewishlist = ACH:Toggle(L["Enable Fast Loot with Wishlist Filter"], L["Items not on the wishlist will not be looted, items can still be looted by holding Shift or the mod key setup in Interface"], 3, nil, false, "full", function() return E.db.ElvUI_EltreumUI.loot.lootwishlistfilter end, function(_, value) E.db.ElvUI_EltreumUI.loot.lootwishlistfilter = value SetCVar('autoLootDefault', 0) E:StaticPopup_Show('CONFIG_RL') end, function() return E.db.ElvUI_EltreumUI.loot.fastloot or E.db.ElvUI_EltreumUI.loot.fastlootfilter or #E.private.ElvUI_EltreumUI.wishlistID == 0 end)
 	ElvUI_EltreumUI.Options.args.loot.args.fastloot.args.enablewishlistwarning = ACH:Toggle(L["Enable Wishlist Loot Warning"], L["Show a toast if an item in the wishlist is looted"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.loot.lootwishlistwarning end, function(_, value) E.db.ElvUI_EltreumUI.loot.lootwishlistwarning = value E:StaticPopup_Show('CONFIG_RL') end, function() return #E.private.ElvUI_EltreumUI.wishlistID == 0 end)
 	ElvUI_EltreumUI.Options.args.loot.args.fastloot.args.autoclose = ACH:Toggle(L["Enable Automatically Closing Loot Window"], L["Loot Window will automatically close when using filters and the item desired is not found"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.loot.lootautoclose end, function(_, value) E.db.ElvUI_EltreumUI.loot.lootautoclose = value E:StaticPopup_Show('CONFIG_RL') end)
-
-
 	ElvUI_EltreumUI.Options.args.loot.args.fastloot.args.confirmbop = ACH:Toggle(L["Enable Automatically Confirming Bind on Pickup"], L["Loot Window will automatically confirm looting Bind on Pickup items"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.loot.confirmbop end, function(_, value) E.db.ElvUI_EltreumUI.loot.confirmbop = value end)
 	ElvUI_EltreumUI.Options.args.loot.args.fastloot.args.screenshot = ACH:Toggle(L["Enable Screenshotting if an item from the wishlist is looted"], L["Automatically screenshot when you loot an item from the wishlist"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.loot.lootwishlistscreenshot end, function(_, value) E.db.ElvUI_EltreumUI.loot.lootwishlistscreenshot = value E:StaticPopup_Show('CONFIG_RL') end, function() return #E.private.ElvUI_EltreumUI.wishlistID == 0 end, E.Retail)
 	ElvUI_EltreumUI.Options.args.loot.args.fastloot.args.filterquality = ACH:Select(L["Minimum Loot Quality Filter"], L["Only items of this quality or better will be looted when using Fast Loot Filter"], 4, {
@@ -1258,24 +1254,102 @@ function ElvUI_EltreumUI:Configtable()
 		tremove(E.private.ElvUI_EltreumUI.wishlistName, item)
 	end)
 
+	--misc
+	ElvUI_EltreumUI.Options.args.misc = ACH:Group(E:TextGradient(L["Misc"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Various miscellaneous features such as death animations, stealth texture, mail sound, /roll sounds and more"], 85, 'tab')
+	ElvUI_EltreumUI.Options.args.misc.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\misc'
+	ElvUI_EltreumUI.Options.args.misc.args.general = ACH:Group(L["General"], nil, 1)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.header1 = ACH:Description(L["Show Eltruism Game Menu Button"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.gamemenu = ACH:Toggle(L["Enable"], nil, 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.gamemenu end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.gamemenu = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.header2 = ACH:Description(L["Auto open the Rogue Order Hall, to avoid opening hold CTRL or SHIFT or ALT while talking to the NPC"], 3, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.rogueorderhall = ACH:Toggle(L["Enable"], L["Enable the Rogue Order Hall Auto Open"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.quests.rogueopen end, function(_, value) E.db.ElvUI_EltreumUI.quests.rogueopen = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.header3 = ACH:Description("", 5, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.rollsound = ACH:Toggle(L["Add Sounds to /roll when someone gets a 1 or a 100"], L["Plays a sound if someone rolls 1 or 100 out 100"], 6, nil, false, "full", function() return E.db.ElvUI_EltreumUI.chat.rollsound end, function(_, value) E.db.ElvUI_EltreumUI.chat.rollsound = value PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\WillSmith-Ahaha.ogg", "Master") E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.header4 = ACH:Description(L["Hide Talking Head"], 7, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.talkinghead = ACH:Toggle(L["Enable"], L["Prevent Blizzard's Talking Head from appearing"], 8, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.hidetalkinghead end, function(_, value) E.db.ElvUI_EltreumUI.skins.hidetalkinghead = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.header5 = ACH:Description(L["Automatically take Screenshots"], 9, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.autoscreenshot = ACH:Toggle(L["Enable"], L["Automatically take Screenshots such as when leveling up"], 10, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.screenshot end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.screenshot = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.header6 = ACH:Description(L["Stealth"], 11, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.stealth = ACH:Toggle(L["Add a vignette effect while in stealth"], L["Turn the effect on"], 12, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.stealtheffect end, function(_, value) E.db.ElvUI_EltreumUI.skins.stealtheffect = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.header7 = ACH:Description(L["Item Deletion"], 13, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.delete = ACH:Toggle(L["Automatically type DELETE on the popup"], L["Will not delete the item, will simply type DELETE instead you needing to type it"], 14, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.delete end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.delete = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.header8 = ACH:Description(L["Play a Sound when receiving mail"], 15, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundenable = ACH:Toggle(L["Enable"], nil, 16, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundselect = ACH:Select(SOUND, nil, 17, { ["tts"] = L["Text to Speech"], ["sharedmedia"] = CUSTOM, }, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype = value end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundselect.style = "radio"
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundLSM = ACH:SharedMediaSound(L["Select a Sound"], L["Choose a Sound from SharedMedia files"], 18, "double", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsound end, function(self,key) E.db.ElvUI_EltreumUI.otherstuff.mailsound = key E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundTTS = ACH:Input(L["Text to Speech announcement"], nil, 19, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext end, function(_, value)
+		E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext = tostring(value)
+		if E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice ~= nil then
+			C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, tostring(value) , Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
+		end
+	end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "sharedmedia" end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundTTSconfig = ACH:Select(L["Text to Speech Config"], nil, 20, function()
+		local Voices = {}
+		for i, v in pairs(C_VoiceChat.GetTtsVoices()) do
+			--Voices[i] = v.voiceID
+			Voices[v.voiceID] = v.name
+		end
+		return Voices
+	end, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice = tonumber(value) C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume) end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundTTSvolume = ACH:Range(VOLUME, nil, 21, { min = 1, max = 100, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume = value end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end)
+	ElvUI_EltreumUI.Options.args.misc.args.combat = ACH:Group(L["Combat"], nil, 2)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.header1 = ACH:Description(L["Show Buffs in Arena and hide them outside (will overwrite Eltruism default settings)"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.arenabuffs = ACH:Toggle(L["Enable"], nil, 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.arenabuffs end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.arenabuffs = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.header2 = ACH:Description(function() if E.Retail then return L["Hide Arena Frames in Arena due to Gladius/GladiusEX or another addon"] else return L["Hide Arena Frames in Arena due to Gladius/Gladdy or another addon"] end end, 3, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Classic)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.arenaUF = ACH:Toggle(L["Enable"], nil, 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.arenaunitframes end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.arenaunitframes = value E:StaticPopup_Show('CONFIG_RL') end, nil, E.Classic)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.header3 = ACH:Description(L["Hide Raid Unitframes in battlegrounds due to addons like Battleground Enemies"], 5, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.battlegroundUF = ACH:Toggle(L["Enable"], nil, 6, nil, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.bgunitframes end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.bgunitframes = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.header4 = ACH:Description("", 7, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextindicator = ACH:Toggle(L["Enable Entering/Leaving Combat Indicator Texts"], L["Adds a +Combat and -Combat for when entering and leaving combat"], 8, nil, false, "full", function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicator end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicator = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextindicatorcustom = ACH:Toggle(L["Custom Texts"], L["Adds a +Combat and -Combat for when entering and leaving combat"], 9, nil, false, "full", function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable = value end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator end)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextenter = ACH:Input(ENTERING_COMBAT, nil, 10, false, "double", function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enter end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enter = tostring(value) end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextentercolor = ACH:Color(L["Color"], nil, 11, false, nil, function()
+		local color = E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor
+		local d = P.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor
+		return color.r, color.g, color.b, 1, d.r, d.g, d.b,1
+	end, function(_, r, g, b, a)
+		local color = E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.entercolor
+		color.r, color.g, color.b = r, g, b
+	end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextleave = ACH:Input(LEAVING_COMBAT, nil, 12, false, "double", function() return E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leave end, function(_, value) E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leave = tostring(value) end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.combattextleavecolor = ACH:Color(L["Color"], nil, 13, false, nil, function()
+		local color = E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor
+		local d = P.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor
+		return color.r, color.g, color.b, 1, d.r, d.g, d.b, 1
+	end, function(_, r, g, b, a)
+		local color = E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor
+		color.r, color.g, color.b = r, g, b
+	end, function() return not E.db.ElvUI_EltreumUI.loot.loottext.combatindicator or not E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable end)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.header5 = ACH:Description("", 14, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.darksouls = ACH:Toggle(L["Enable a Dark Souls death animation"], L["Plays an animation when you die"], 15, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.playerdeath end, function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeath = value end, function() return E.db.ElvUI_EltreumUI.skins.playerdeathgta or E.db.ElvUI_EltreumUI.skins.playerdeathcustom end)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.gta = ACH:Toggle(L["Enable a GTA death animation"], L["Plays an animation when you die"], 15, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.playerdeathgta end, function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeathgta = value end, function() return E.db.ElvUI_EltreumUI.skins.playerdeath or E.db.ElvUI_EltreumUI.skins.playerdeathcustom end)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.customdeath = ACH:Toggle(L["Enable a Custom death animation"], L["Plays an animation when you die"], 16, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.playerdeathcustom end, function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeathcustom = value end, function() return E.db.ElvUI_EltreumUI.skins.playerdeathgta or E.db.ElvUI_EltreumUI.skins.playerdeath end)
+	ElvUI_EltreumUI.Options.args.misc.args.combat.args.customdeathtext = ACH:Input(L["Custom Death Text"], L["The text displayed when you die using the custom text option"], 17, false, nil, function() return E.db.ElvUI_EltreumUI.skins.playerdeathcustomtext end, function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeathcustomtext = tostring(value) E:StaticPopup_Show('PRIVATE_RL') end, function() return E.db.ElvUI_EltreumUI.skins.playerdeathgta or E.db.ElvUI_EltreumUI.skins.playerdeath or (not E.db.ElvUI_EltreumUI.skins.playerdeathcustom) end)
+	ElvUI_EltreumUI.Options.args.misc.args.datatext = ACH:Group(L["DataTexts"], nil, 2)
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.header1 = ACH:Description("", 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.xp = ACH:Toggle(L["Dynamically toggle the mouseover of the Experience Bar"], L["Shows XP bar when below max level, makes it mouseover when max level"], 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.header2 = ACH:Description(L["Datatext Hiding"], 3, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.leftdatatexthide = ACH:Toggle(L["Hide Left Chat Datatext out of Combat"], nil, 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.datatexts.panels.LeftChatDataPanel.enable end)
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.rightdatatexthide = ACH:Toggle(L["Hide Right Chat Datatext out of Combat"], nil, 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.datatexts.panels.RightChatDataPanel.enable end)
 
+	--[[
+		ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func
+		ACH:Header(name, order, get, set, hidden)
+		ACH:Description(name, order, fontSize, image, imageCoords, imageWidth, imageHeight, width, hidden)
 
-	--ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func
-	--ACH:Header(name, order, get, set, hidden)
-	--ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
-	--ACH:Execute(name, desc, order, func, image, confirm, width, get, set, disabled, hidden)
-	--ACH:Description(name, order, fontSize, image, imageCoords, imageWidth, imageHeight, width, hidden)
+		ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
+		ACH:Execute(name, desc, order, func, image, confirm, width, get, set, disabled, hidden)
+		ACH:Select(name, desc, order, values, confirm, width, get, set, disabled, hidden)
+		ACH:Input(name, desc, order, multiline, width, get, set, disabled, hidden, validate)
+		ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
+		ACH:Range(name, desc, order, values, width, get, set, disabled, hidden)
 
-	--ACH:Select(name, desc, order, values, confirm, width, get, set, disabled, hidden)
-	--ACH:Input(name, desc, order, multiline, width, get, set, disabled, hidden, validate)
-	--ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
-	--ACH:Range(name, desc, order, values, width, get, set, disabled, hidden)
-
-	--ACH:SharedMediaFont(name, desc, order, width, get, set, disabled, hidden)
-	--ACH:SharedMediaSound(name, desc, order, width, get, set, disabled, hidden)
-	--ACH:SharedMediaStatusbar(name, desc, order, width, get, set, disabled, hidden)
-	--ACH:SharedMediaBackground(name, desc, order, width, get, set, disabled, hidden)
-	--ACH:SharedMediaBorder(name, desc, order, width, get, set, disabled, hidden)
+		ACH:SharedMediaFont(name, desc, order, width, get, set, disabled, hidden)
+		ACH:SharedMediaSound(name, desc, order, width, get, set, disabled, hidden)
+		ACH:SharedMediaStatusbar(name, desc, order, width, get, set, disabled, hidden)
+		ACH:SharedMediaBackground(name, desc, order, width, get, set, disabled, hidden)
+		ACH:SharedMediaBorder(name, desc, order, width, get, set, disabled, hidden)
+	]]--
 
 	E.Options.args.ElvUI_EltreumUI = ElvUI_EltreumUI.Options
 end
