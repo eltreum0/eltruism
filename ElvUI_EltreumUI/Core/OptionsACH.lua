@@ -2414,24 +2414,97 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.skins = ACH:Group(E:TextGradient(L["Skins"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add several skins to World of Warcraft, such as Quests, Character Frame, Shadows, other Addons, Role Icons and more"], 85, 'tab')
 	ElvUI_EltreumUI.Options.args.skins.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\paint'
 	ElvUI_EltreumUI.Options.args.skins.args.general = ACH:Group(L["General"], nil, 1, "tab")
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.roleicons = ACH:Group(L["Role Icons"], nil, 1, "tab")
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.roleicons.args.header1 = ACH:Description(L["Replace role icons with Eltruism role icons"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.roleicons.args.enable = ACH:Toggle(L["Enable Eltruism Icons"], nil, 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.roleicons.args.select = ACH:Select(" ", nil, 3, {
+		["ELTRUISM"] = "Eltruism "..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield',':20:20'),
+		["ATWOODELVUI"] = 'ElvUI '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\Tank',':20:20'),
+		["ATWOODGLOW"] = 'Glow '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\Tank',':20:20'),
+		["ATWOODGRAVED"] = 'Atwood '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\Tank',':20:20'),
+		["ATWOODGREY"] = 'Grey '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Tank',':20:20'),
+		["ATWOODWHITE"] = 'White '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Tank',':20:20'),
+		["RELEAF"] = 'Releaf '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Tank',':20:20'),
+		["IOS"] = 'iOS '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Tank',':20:20'),
+		["MATERIAL"] = 'Material '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Tank',':20:20'),
+		["EMOJI"] = 'Emoji '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Emoji\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Emoji\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Emoji\\Tank',':20:20'),
+		["CUSTOM"] = 'Custom',
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.roleiconstype end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.roleiconstype = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons end)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.roleicons.args.select.style = "radio"
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.roleicons.args.select.sorting = {
+		"ELTRUISM",
+		"ATWOODELVUI",
+		"ATWOODGLOW",
+		"ATWOODGRAVED",
+		"ATWOODGREY",
+		"ATWOODWHITE",
+		"RELEAF",
+		"IOS",
+		"MATERIAL",
+		"EMOJI",
+		"CUSTOM"
+	}
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.roleicons.args.custom = ACH:Group(L["Name of file inside Interface\\Addons"])
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.roleicons.args.custom.inline = true
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.roleicons.args.custom.args.tank = ACH:Input(L["Tank"], L["Example: "].."mytexture.tga or mytexture or mytexture.jpg", 1, nil, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomtank = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype ~= 'CUSTOM' end)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.roleicons.args.custom.args.dps = ACH:Input(L["DPS"], L["Example: "].."mytexture.tga or mytexture or mytexture.jpg", 1, nil, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomdps = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype ~= 'CUSTOM' end)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.roleicons.args.custom.args.healer = ACH:Input(L["Healer"], L["Example: "].."mytexture.tga or mytexture or mytexture.jpg", 1, nil, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.eltruismroleiconscustomhealer = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype ~= 'CUSTOM' end)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard = ACH:Group(L["Blizzard"], nil, 1, "tab")
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.header1 = ACH:Description(L["Make more texts use ElvUI font settings"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.errorenable = ACH:Toggle(L["Enable for Error Frame"], L["Enable for Error Frame"], 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzframes.errorframe end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.errorframe = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.errorfontsize = ACH:Range(L["Error Frame Font Size"], nil, 3, { min = 8, max = 60, step = 1 }, "double", function() return E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize = tonumber(value) E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.zonetext = ACH:Toggle(L["Enable for Zones, Mail and others"], L["Such as the Zones, Mail and others"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.zones end, function(_, value) E.db.ElvUI_EltreumUI.skins.zones = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.header2 = ACH:Description(" ", 5, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Classic)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.bossbannerscale = ACH:Range(L["Boss Banner Frame Scale"], nil, 6, { min = 0.2, max = 3, step = 0.01 }, "double", function() return E.db.ElvUI_EltreumUI.skins.blizzframes.bossScale end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.bossScale = tonumber(value) if _G.RaidBossEmoteFrame then _G.RaidBossEmoteFrame:SetScale(value) end end, function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.header3 = ACH:Description(L["Hide Blizzard Frames"], 7, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.hideerror = ACH:Toggle(L["Hide Error Frame"], L["Hide the Red Error Text"], 8, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hideerrorframe end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hideerrorframe = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.hidezone = ACH:Toggle(L["Hide Zone Text"], L["Hide the text that appears when changing zones"], 9, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hidezone end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hidezone = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.hidealert = ACH:Toggle(L["Hide Alert Frame"], L["Hide the Alert Frame that appears when looting a rare item or earning an achievement"], 10, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hidealert end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hidealert = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.hideboss = ACH:Toggle(L["Hide Boss Banner Frame"], L["Hide the boss banner that appears when killing a raid boss or completing a Mythic+ dungeon"], 11, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss = value E:StaticPopup_Show('CONFIG_RL') end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.header4 = ACH:Description(L["Skin Profession Frame"], 12, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.professionskin = ACH:Toggle(L["Skin the Profession/Tradeskill Frame"], nil, 13, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.professions end, function(_, value) E.db.ElvUI_EltreumUI.skins.professions = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.professionscale = ACH:Range(L["Scale"], nil, 14, { min = 0.2, max = 1.3, step = 0.01 }, "double", function() return E.db.ElvUI_EltreumUI.skins.professionscale end, function(_, value) E.db.ElvUI_EltreumUI.skins.professionscale = value _G.ProfessionsFrame:SetScale(value) end, function() return not E.db.ElvUI_EltreumUI.skins.professions end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.header5 = ACH:Description(L["Skin Level Up, Boss Loot and Instance Entrance frames to be class colored"], 15, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.skinlevelbossinstance = ACH:Toggle(L["Enable"], L["Enable the Skins"], 16, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.levelbossinstance end, function(_, value) E.db.ElvUI_EltreumUI.skins.levelbossinstance = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.header6 = ACH:Description(L["Expand the Talents to show the entire tree"], 17, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.classictalentenable = ACH:Toggle(L["Expanded Talents"], L["Expand Talents to cover the full tree"], 18, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.tbctalents end, function(_, value) E.db.ElvUI_EltreumUI.skins.tbctalents = value E:StaticPopup_Show('CONFIG_RL') end, nil, E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.classictalentscale = ACH:Range(L["Scale"], nil, 19, { min = 0.1, max = 2, step = 0.01 }, "double", function() return E.db.ElvUI_EltreumUI.skins.expandedtalentscale end, function(_, value) E.db.ElvUI_EltreumUI.skins.expandedtalentscale = value _G.PlayerTalentFrame:SetScale(value) end, function() return not E.db.ElvUI_EltreumUI.skins.tbctalents end, E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.header7 = ACH:Description(L["Talents"], 20, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.retailtalentscale = ACH:Range(L["Scale"], nil, 21, { min = 0.1, max = 1.3, step = 0.01 }, "double", function() return E.db.ElvUI_EltreumUI.skins.expandedtalentscale end, function(_, value) E.db.ElvUI_EltreumUI.skins.expandedtalentscale = value if _G.ClassTalentFrame then _G.ClassTalentFrame:SetScale(value) end end, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.header8 = ACH:Description(L["Bags"], 22, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.bagscale = ACH:Toggle(L["Scale"], nil, 23, nil, false, "double", function() return E.db.ElvUI_EltreumUI.otherstuff.bagscale end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bagscale = value if _G["ElvUI_ContainerFrame"] then _G["ElvUI_ContainerFrame"]:SetScale(value) end end)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.header9 = ACH:Description(L["Bank"], 24, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.bankscale = ACH:Toggle(L["Scale"], nil, 25, nil, false, "double", function() return E.db.ElvUI_EltreumUI.otherstuff.bankscale end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bankscale = value if _G["ElvUI_BankContainerFrame"] then _G["ElvUI_BankContainerFrame"]:SetScale(value) end end)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.header10 = ACH:Description(L["Remove Blizzard's Boss Emote Frame"], 26, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Classic)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.bossemotehide = ACH:Toggle(L["Enable"], L["Enable removing the Alert Frame that can show up in the middle of the screen"], 27, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.bossemote end, function(_, value) E.db.ElvUI_EltreumUI.skins.bossemote = value E:StaticPopup_Show('CONFIG_RL') end, nil, E.Classic)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.header11 = ACH:Description(L["Expand Transmog Window to better show your character"], 28, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.widetransmog = ACH:Toggle(L["Enable"], L["Enable the Wider Transmog Window"], 29, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.widertransmog end, function(_, value) E.db.ElvUI_EltreumUI.skins.widertransmog = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.header12 = ACH:Description(L["Item Level on Tooltip"], 30, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.tooltipilvl = ACH:Toggle(L["Enable"], L["Shows Item Level on Tooltips"], 31, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.ilvltooltip end, function(_, value) E.db.ElvUI_EltreumUI.skins.ilvltooltip = value E:StaticPopup_Show('CONFIG_RL') end, nil, E.Retail)
+
+
 
 	--[[
-		ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func
-		ACH:Header(name, order, get, set, hidden)
-		ACH:Description(name, order, fontSize, image, imageCoords, imageWidth, imageHeight, width, hidden)
 
-		ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
-		ACH:Execute(name, desc, order, func, image, confirm, width, get, set, disabled, hidden)
-		ACH:Select(name, desc, order, values, confirm, width, get, set, disabled, hidden)
-		ACH:Input(name, desc, order, multiline, width, get, set, disabled, hidden, validate)
-		ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
-		ACH:Range(name, desc, order, values, width, get, set, disabled, hidden)
+	ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func
+	ACH:Header(name, order, get, set, hidden)
+	ACH:Description(name, order, fontSize, image, imageCoords, imageWidth, imageHeight, width, hidden)
 
-		ACH:SharedMediaFont(name, desc, order, width, get, set, disabled, hidden)
-		ACH:SharedMediaSound(name, desc, order, width, get, set, disabled, hidden)
-		ACH:SharedMediaStatusbar(name, desc, order, width, get, set, disabled, hidden)
-		ACH:SharedMediaBackground(name, desc, order, width, get, set, disabled, hidden)
-		ACH:SharedMediaBorder(name, desc, order, width, get, set, disabled, hidden)
+	ACH:Toggle(name, desc, order, tristate, confirm, width, get, set, disabled, hidden)
+	ACH:Execute(name, desc, order, func, image, confirm, width, get, set, disabled, hidden)
+	ACH:Select(name, desc, order, values, confirm, width, get, set, disabled, hidden)
+	ACH:Input(name, desc, order, multiline, width, get, set, disabled, hidden, validate)
+	ACH:Color(name, desc, order, alpha, width, get, set, disabled, hidden)
+	ACH:Range(name, desc, order, values, width, get, set, disabled, hidden)
+
+	ACH:SharedMediaFont(name, desc, order, width, get, set, disabled, hidden)
+	ACH:SharedMediaSound(name, desc, order, width, get, set, disabled, hidden)
+	ACH:SharedMediaStatusbar(name, desc, order, width, get, set, disabled, hidden)
+	ACH:SharedMediaBackground(name, desc, order, width, get, set, disabled, hidden)
+	ACH:SharedMediaBorder(name, desc, order, width, get, set, disabled, hidden)
+
+
+
 	]]--
 
 	E.Options.args.ElvUI_EltreumUI = ElvUI_EltreumUI.Options
