@@ -1963,7 +1963,7 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player"].shadow)
 						end
 						if E.db["unitframe"]["units"]["player"]["classbar"]["enable"] then
-							if E.db["unitframe"]["units"]["player"]["classbar"]["fill"] == "spaced"  then
+							if E.db["unitframe"]["units"]["player"]["classbar"]["fill"] == "spaced" then
 								if E.db["unitframe"]["units"]["player"]["power"]["width"] == "inset" then
 									if _G["ElvUF_Player"] and _G["ElvUF_Player"].shadow then
 										_G["ElvUF_Player"].shadow:ClearAllPoints()

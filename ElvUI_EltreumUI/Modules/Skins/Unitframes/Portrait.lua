@@ -448,7 +448,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 					--fix camera rotation by get the model id
 					if _G["ElvUF_Player"].Portrait3D then
 						playermodel = _G["ElvUF_Player"].Portrait3D:GetModelFileID()
-						if playermodel  then
+						if playermodel then
 							if modelsRotate[playermodel]then
 								newrotation = 0
 							elseif playermodel == 926251 then

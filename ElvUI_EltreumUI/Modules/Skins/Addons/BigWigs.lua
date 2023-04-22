@@ -198,7 +198,7 @@ do
 				bar:SetIcon(nil)
 				icon:SetTexture(tex)
 				icon:Show()
-				if bar.iconPosition == "RIGHT" then  --icon position
+				if bar.iconPosition == "RIGHT" then --icon position
 					icon:SetPoint("BOTTOMLEFT", bar, "BOTTOMRIGHT", E.PixelMode and 1 or 5, 0)
 				else
 					icon:SetPoint("BOTTOMRIGHT", bar, "BOTTOMLEFT", E.PixelMode and -5 or -10, 0)
@@ -284,7 +284,7 @@ do
 			apiVersion = 1,
 			version = 10,
 			barSpacing = E.PixelMode and 20 or 15, --bar space
-			barHeight = 15,  --bar height
+			barHeight = 15, --bar height
 			ApplyStyle = styleBar,
 			BarStopped = removeStyle,
 			GetStyleName = function() return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:14:14:0:0|t |cff82B4ffEltruism|r" end,

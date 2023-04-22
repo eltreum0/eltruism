@@ -1,5 +1,5 @@
 local E, L, V, P, G = unpack(ElvUI)
-local _G  = _G
+local _G = _G
 local table = _G.table
 
 -- Gladdy profile setup
