@@ -349,7 +349,6 @@ do
 									if iconparent then
 										--iconparent:SetTemplate()
 										iconparent:CreateBackdrop()
-										iconparent:CreateShadow(5)
 										if iconparent.icon then --crop icon
 											iconparent.icon:SetTexCoord(0.08,0.92,0.08,0.92)
 										end
