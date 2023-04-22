@@ -402,22 +402,22 @@ function ElvUI_EltreumUI:QuestItem()
 						local point, relativeTo, relativePoint, xOfs, yOfs = EltruismQuestItemFrame:GetPoint()
 						_G["EltruismQuestItem1"]:ClearAllPoints()
 						if E.db.ElvUI_EltreumUI.quests.questorientation == "HORIZONTAL" then
-							if self.shownItems ~= 1 then
-								if (self.shownItems % 2) == 0 then
+							if EltruismQuestItemFrame.shownItems ~= 1 then
+								if (EltruismQuestItemFrame.shownItems % 2) == 0 then
 									if xOfs >= 0 then
-										--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
-										_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2)-(E.db.ElvUI_EltreumUI.quests.questitemspacing *(self.shownItems-1)/2), yOfs)
+										--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((EltruismQuestItemFrame.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
+										_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((EltruismQuestItemFrame.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2)-(E.db.ElvUI_EltreumUI.quests.questitemspacing *(EltruismQuestItemFrame.shownItems-1)/2), yOfs)
 									elseif xOfs < 0 then
-										--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
-										_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2)+(E.db.ElvUI_EltreumUI.quests.questitemspacing *(self.shownItems-1)/2), yOfs)
+										--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((EltruismQuestItemFrame.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2), yOfs)
+										_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((EltruismQuestItemFrame.shownItems-1)*E.db.ElvUI_EltreumUI.quests.questitemsize)/2)+(E.db.ElvUI_EltreumUI.quests.questitemspacing *(EltruismQuestItemFrame.shownItems-1)/2), yOfs)
 									end
 								else
 									if xOfs >= 0 then
-										--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize+1))/2), yOfs)
-										_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(E.db.ElvUI_EltreumUI.quests.questitemspacing *(self.shownItems-1)/2)-(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize+1))/2), yOfs)
+										--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(((EltruismQuestItemFrame.shownItems-(EltruismQuestItemFrame.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize+1))/2), yOfs)
+										_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs-(E.db.ElvUI_EltreumUI.quests.questitemspacing *(EltruismQuestItemFrame.shownItems-1)/2)-(((EltruismQuestItemFrame.shownItems-(EltruismQuestItemFrame.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize+1))/2), yOfs)
 									elseif xOfs < 0 then
-										--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize-1))/2), yOfs)
-										_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(E.db.ElvUI_EltreumUI.quests.questitemspacing *(self.shownItems-1)/2)+(((self.shownItems-(self.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize-1))/2), yOfs)
+										--_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(((EltruismQuestItemFrame.shownItems-(EltruismQuestItemFrame.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize-1))/2), yOfs)
+										_G["EltruismQuestItem1"]:SetPoint(point, relativeTo, relativePoint, xOfs+(E.db.ElvUI_EltreumUI.quests.questitemspacing *(EltruismQuestItemFrame.shownItems-1)/2)+(((EltruismQuestItemFrame.shownItems-(EltruismQuestItemFrame.shownItems % 2))*(E.db.ElvUI_EltreumUI.quests.questitemsize-1))/2), yOfs)
 									end
 								end
 							else
@@ -435,12 +435,12 @@ function ElvUI_EltreumUI:QuestItem()
 			--------------------------------------------------------------------------------------------------------
 			local function OnUpdate(self,elapsed)
 				--print("quest item spam "..math.random(1,99))
-				self.updateTime = (self.updateTime + elapsed)
-				if (self.updateTime > UPDATE_DELAY) then
+				EltruismQuestItemFrame.updateTime = (EltruismQuestItemFrame.updateTime + elapsed)
+				if (EltruismQuestItemFrame.updateTime > UPDATE_DELAY) then
 					--print("setting onupdate to nil, updating buttons")
-					--print("updated in: ", self.updateTime)
-					self:SetScript("OnUpdate",nil)
-					self:UpdateButtons()
+					--print("updated in: ", EltruismQuestItemFrame.updateTime)
+					EltruismQuestItemFrame:SetScript("OnUpdate",nil)
+					EltruismQuestItemFrame:UpdateButtons()
 				end
 			end
 			--------------------------------------------------------------------------------------------------------
@@ -514,7 +514,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 				b:Show()
 				--if (#EltruismQuestItemFrame.items == 0) then
-				if (self.shownItems == 0) then
+				if (EltruismQuestItemFrame.shownItems == 0) then
 					if E.db.ElvUI_EltreumUI.quests.questorientation == "HORIZONTAL" then
 						b:SetPoint("TOPLEFT",EltruismQuestItemFrame,0,0)
 					else
@@ -614,7 +614,7 @@ function ElvUI_EltreumUI:QuestItem()
 			-- Request a Button Update
 			function EltruismQuestItemFrame:RequestUpdate()
 				--print("requesting update")
-				self.updateTime = 0
+				EltruismQuestItemFrame.updateTime = 0
 				EltruismQuestItemFrame:SetScript("OnUpdate",OnUpdate)
 				--print("re quest item spam "..math.random(1,99))
 			end
@@ -692,26 +692,26 @@ function ElvUI_EltreumUI:QuestItem()
 				end
 
 				-- Set Shown Items
-				self.shownItems = (index - 1)
+				EltruismQuestItemFrame.shownItems = (index - 1)
 				for i = index, #self.items do
 					self.items[i]:Hide()
 				end
 
 				--update bind text
 				if E.db.ElvUI_EltreumUI.quests.showkeybind then
-					for i = 1, self.shownItems do
+					for i = 1, EltruismQuestItemFrame.shownItems do
 						self.items[i].bind:SetText(GetBindingText(GetBindingKey("CLICK ".."EltruismQuestItem"..i..":LeftButton")))
 					end
 				end
 
 				-- Update Misc
-				self:UpdateCooldowns()
+				EltruismQuestItemFrame:UpdateCooldowns()
 			end
 
 			-- Update Cooldowns
 			function EltruismQuestItemFrame:UpdateCooldowns()
 				--print("updating cooldowns function")
-				for i = 1, self.shownItems do
+				for i = 1, EltruismQuestItemFrame.shownItems do
 					local bag, slot = self.items[i]:GetAttribute("bag"), self.items[i]:GetAttribute("slot")
 					if (bag) then
 						CooldownFrame_Set(self.items[i].cooldown,GetContainerItemCooldown(bag,slot))
@@ -720,40 +720,40 @@ function ElvUI_EltreumUI:QuestItem()
 					end
 				end
 				if E.db.ElvUI_EltreumUI.quests.showkeybind then
-					if bindingText1 and self.shownItems >= 1 then
+					if bindingText1 and EltruismQuestItemFrame.shownItems >= 1 then
 						self.items[1].bind:SetText(bindingText1)
 					end
-					if bindingText2 and self.shownItems >= 2 then
+					if bindingText2 and EltruismQuestItemFrame.shownItems >= 2 then
 						self.items[2].bind:SetText(bindingText2)
 					end
-					if bindingText3 and self.shownItems >= 3 then
+					if bindingText3 and EltruismQuestItemFrame.shownItems >= 3 then
 						self.items[3].bind:SetText(bindingText3)
 					end
-					if bindingText4 and self.shownItems >= 4 then
+					if bindingText4 and EltruismQuestItemFrame.shownItems >= 4 then
 						self.items[4].bind:SetText(bindingText4)
 					end
-					if bindingText5 and self.shownItems >= 5 then
+					if bindingText5 and EltruismQuestItemFrame.shownItems >= 5 then
 						self.items[5].bind:SetText(bindingText5)
 					end
-					if bindingText6 and self.shownItems >= 6 then
+					if bindingText6 and EltruismQuestItemFrame.shownItems >= 6 then
 						self.items[6].bind:SetText(bindingText6)
 					end
-					if bindingText7 and self.shownItems >= 7 then
+					if bindingText7 and EltruismQuestItemFrame.shownItems >= 7 then
 						self.items[7].bind:SetText(bindingText7)
 					end
-					if bindingText8 and self.shownItems >= 8 then
+					if bindingText8 and EltruismQuestItemFrame.shownItems >= 8 then
 						self.items[8].bind:SetText(bindingText8)
 					end
-					if bindingText9 and self.shownItems >= 9 then
+					if bindingText9 and EltruismQuestItemFrame.shownItems >= 9 then
 						self.items[9].bind:SetText(bindingText9)
 					end
-					if bindingText10 and self.shownItems >= 10 then
+					if bindingText10 and EltruismQuestItemFrame.shownItems >= 10 then
 						self.items[10].bind:SetText(bindingText10)
 					end
-					if bindingText11 and self.shownItems >= 11 then
+					if bindingText11 and EltruismQuestItemFrame.shownItems >= 11 then
 						self.items[11].bind:SetText(bindingText11)
 					end
-					if bindingText12 and self.shownItems >= 12 then
+					if bindingText12 and EltruismQuestItemFrame.shownItems >= 12 then
 						self.items[12].bind:SetText(bindingText12)
 					end
 				end
@@ -769,18 +769,18 @@ function ElvUI_EltreumUI:QuestItem()
 					self[event](self,event,...)
 				else
 					--print("unregisteredevent",event)
-					self:RequestUpdate()
+					EltruismQuestItemFrame:RequestUpdate()
 				end
 			end)
 
 			-- Update Cooldowns
 			function EltruismQuestItemFrame:ACTIONBAR_UPDATE_COOLDOWN(event)
 				--print("actionbar update cooldown")
-				if not self.shownItems then --added this check
-					self.shownItems = 0
+				if not EltruismQuestItemFrame.shownItems then --added this check
+					EltruismQuestItemFrame.shownItems = 0
 				end
-				if (self.shownItems > 0) then
-					self:UpdateCooldowns()
+				if (EltruismQuestItemFrame.shownItems > 0) then
+					EltruismQuestItemFrame:UpdateCooldowns()
 				end
 			end
 
@@ -788,7 +788,7 @@ function ElvUI_EltreumUI:QuestItem()
 			function EltruismQuestItemFrame:UNIT_INVENTORY_CHANGED(event,unit)
 				--print("unit inventory changed")
 				if (unit == "player") then
-					self:RequestUpdate()
+					EltruismQuestItemFrame:RequestUpdate()
 					-- update mover position
 					EltruismQuestItemFrame:FixPosition()
 				end
@@ -797,7 +797,7 @@ function ElvUI_EltreumUI:QuestItem()
 			-- Inventory might've changed because of mail
 			function EltruismQuestItemFrame:MAIL_SUCCESS(event)
 				--print("mail sucess")
-				self:RequestUpdate()
+				EltruismQuestItemFrame:RequestUpdate()
 				-- update mover position
 				EltruismQuestItemFrame:FixPosition()
 			end
