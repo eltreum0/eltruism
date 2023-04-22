@@ -7,7 +7,6 @@ local CreateFrame = _G.CreateFrame
 local setmetatable = _G.setmetatable
 local table = _G.table
 local IsModifiedClick = _G.IsModifiedClick
-local C_Timer = _G.C_Timer
 local pairs = _G.pairs
 local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetInventorySlotInfo = _G.GetInventorySlotInfo
@@ -1382,17 +1381,17 @@ function ElvUI_EltreumUI:ClassicSockets()
 			self:_Refresh()
 		end)]]
 
-		--Eltreum: use C_Timer.After to decrease memory/cpu usage and also possibly make it faster
-		self.refreshTimer0 = C_Timer.After(0.1, function()
+		--Eltreum: use E:Delay to decrease memory/cpu usage and also possibly make it faster
+		self.refreshTimer0 = E:Delay(0.1, function()
 			self:_Refresh()
 		end)
-		self.refreshTimer1 = C_Timer.After(1, function()
+		self.refreshTimer1 = E:Delay(1, function()
 			self:_Refresh()
 		end)
-		self.refreshTimer2 = C_Timer.After(2, function()
+		self.refreshTimer2 = E:Delay(2, function()
 			self:_Refresh()
 		end)
-		self.refreshTimer3 = C_Timer.After(3, function()
+		self.refreshTimer3 = E:Delay(3, function()
 			self:_Refresh()
 		end)
 	end

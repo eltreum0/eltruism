@@ -8,7 +8,6 @@ local InCombatLockdown = _G.InCombatLockdown
 local UnitLevel = _G.UnitLevel
 local HasNewMail = _G.HasNewMail
 local PlaySoundFile = _G.PlaySoundFile
-local C_Timer = _G.C_Timer
 local _, instanceType
 local level
 local IsPlayerAtEffectiveMaxLevel = _G.IsPlayerAtEffectiveMaxLevel
@@ -385,7 +384,7 @@ mailsoundframe:SetScript("OnEvent", function()
 			PlaySoundFile(E.LSM:Fetch("sound", E.db.ElvUI_EltreumUI.otherstuff.mailsound) , "Master")
 		end
 		mailthrottle = 1
-		C_Timer.After(2, function()
+		E:Delay(2, function()
 			mailthrottle = 0
 		end)
 	end

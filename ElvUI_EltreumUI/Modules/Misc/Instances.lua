@@ -7,7 +7,6 @@ local WorldMapFrame = _G.WorldMapFrame
 local select = _G.select
 local GetInstanceInfo = _G.GetInstanceInfo
 local C_ChallengeMode = _G.C_ChallengeMode
-local C_Timer = _G.C_Timer
 local classcolors = E:ClassColor(E.myclass, true)
 local textgradient,backuptext
 
@@ -286,7 +285,7 @@ instancedifficulty:SetScript("OnEvent", function(_,event)
 		instancedifficulty.Text:Hide()
 	end
 	--confirm its instance because once again the zone_changed event is not reliable when changing into and out of places like the garrison
-	C_Timer.After(5, function()
+	E:Delay(5, function()
 		_, instanceType = IsInInstance()
 		mapID = WorldMapFrame:GetMapID()
 		if instanceType == "none" or mapID == 1662 or mapID == 582 or mapID == 590 or instanceType == "pvp" or instanceType == "arena" then

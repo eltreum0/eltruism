@@ -4,7 +4,6 @@ local classcolor = E:ClassColor(E.myclass, true)
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
 local IsInInstance = _G.IsInInstance
-local C_Timer = _G.C_Timer
 local UIFrameFadeIn = _G.UIFrameFadeIn
 local UIFrameFadeOut = _G.UIFrameFadeOut
 
@@ -141,7 +140,7 @@ if E.Wrath or E.Classic then
 				--print(playerlevel)
 				LevelUpFrame.Text2:SetText(LEVEL.." "..playerlevel.."!")
 				UIFrameFadeIn(LevelUpFrame, 1, 0, 1)
-				C_Timer.After(5, function() UIFrameFadeOut(LevelUpFrame, 1, 1, 0) end)
+				E:Delay(5, function() UIFrameFadeOut(LevelUpFrame, 1, 1, 0) end)
 			end
 		end)
 	end

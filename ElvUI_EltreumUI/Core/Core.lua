@@ -9,7 +9,6 @@ local unpack = unpack
 local hooksecurefunc = _G.hooksecurefunc
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local DisableAddOn = _G.DisableAddOn
-local C_Timer = C_Timer
 local GetPhysicalScreenSize = GetPhysicalScreenSize
 local SetCVar = SetCVar
 local UIParentLoadAddOn = _G.UIParentLoadAddOn
@@ -48,7 +47,7 @@ function ElvUI_EltreumUI:HidePopups(delay)
 	if IsAddOnLoaded("Details_Streamer") then
 		DisableAddOn("Details_Streamer")
 	end
-	C_Timer.After(delay, function()
+	E:Delay(delay, function()
 		if IsAddOnLoaded("Details") and _G['_detalhes'] then
 			_G['_detalhes'].is_first_run = false
 			_G['_detalhes']:DisablePlugin ("DETAILS_PLUGIN_STREAM_OVERLAY")
@@ -627,7 +626,7 @@ do
 		if throttle == 0 then
 			throttle = 1
 			ElvUI_EltreumUI:Print("DELETE automatically typed")
-			C_Timer.After(1, ClearThrottle)
+			E:Delay(1, ClearThrottle)
 		end
 	end
 

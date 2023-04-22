@@ -15,7 +15,6 @@ local GetInventoryItemQuality = _G.GetInventoryItemQuality
 local GetDetailedItemLevelInfo = _G.GetDetailedItemLevelInfo
 local level
 local hooksecurefunc = _G.hooksecurefunc
-local C_Timer = _G.C_Timer
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local isHooked = false
 
@@ -167,7 +166,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 				end
 			end
 			if event == "INSPECT_READY" then
-				C_Timer.After(0.1, function()
+				E:Delay(0.1, function()
 					if _G.InspectFrame and _G.InspectFrame:IsVisible() then
 						_G.InspectPaperDollFrame_UpdateButtons()
 					end
