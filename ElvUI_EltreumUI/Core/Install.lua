@@ -755,7 +755,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Desc1:SetText(L["Join the Discord if you have any questions or issues (English Support)"])
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
-			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/rBXNxUY6pk')  end)
+			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/rBXNxUY6pk') end)
 			_G.PluginInstallFrame.Option1:SetScript('OnEnter', nil)
 			_G.PluginInstallFrame.Option1:SetScript('OnLeave', nil)
 			_G.PluginInstallFrame.Option1:SetText('Discord')

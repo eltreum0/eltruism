@@ -198,7 +198,7 @@ do
 				bar:SetIcon(nil)
 				icon:SetTexture(tex)
 				icon:Show()
-				if bar.iconPosition == "RIGHT" then  --icon position
+				if bar.iconPosition == "RIGHT" then --icon position
 					icon:SetPoint("BOTTOMLEFT", bar, "BOTTOMRIGHT", E.PixelMode and 1 or 5, 0)
 				else
 					icon:SetPoint("BOTTOMRIGHT", bar, "BOTTOMLEFT", E.PixelMode and -5 or -10, 0)
@@ -220,11 +220,71 @@ do
 			bd:Show()
 		end
 
+		--vertical bars attempt with icon on the bar texture, multiple bars made this not happen
+		--[[
+		local function styleBarVertical(bar)
+			local bd = bar.candyBarBackdrop
+
+			bd:SetTemplate("Transparent")
+			bd:SetOutside(bar)
+			if not E.PixelMode and bd.iborder then
+				bd.iborder:Show()
+				bd.oborder:Show()
+			end
+
+			local tex = bar:GetIcon()
+			if tex then
+				local icon = bar.candyBarIconFrame
+
+				local width, height = bar:GetSize()
+				bar:SetSize(height,width)
+				bar.candyBarBar:SetSize(height,width)
+				bar.candyBarBar:SetOrientation("VERTICAL")
+				--bar:SetOrientation("VERTICAL")
+
+				E:SetSmoothing(bar.candyBarBar,true)
+
+				bar.candyBarDuration:ClearAllPoints()
+				bar.candyBarDuration:SetPoint("CENTER", bar.candyBarBar:GetStatusBarTexture(), "TOP")
+				--print(bar.candyBarIconFrame:GetObjectType()) -- texture
+
+				bar.candyBarLabel:ClearAllPoints()
+				bar.candyBarLabel:SetPoint("RIGHT", bar.candyBarBar, "LEFT")
+
+				bar:SetIcon(nil)
+				icon:SetTexture(tex)
+				icon:Show()
+				icon:SetSize(bar:GetWidth()*1.5, bar:GetWidth()*1.5) --icon size
+				bar:Set("bigwigs:restoreicon", tex)
+
+
+
+				--set icon to the statusbar
+				icon:ClearAllPoints()
+				icon:SetPoint("CENTER", bar.candyBarBar:GetStatusBarTexture(), "TOP")
+				--icon:SetDrawLayer('HIGHLIGHT',1)
+				--bar:SetFrameStrata("BACKGROUND")
+
+				local iconBd = bar.candyBarIconFrameBackdrop
+
+				iconBd:SetTemplate("Transparent")
+				iconBd:SetOutside(bar.candyBarIconFrame)
+				if not E.PixelMode and iconBd.iborder then
+					iconBd.iborder:Show()
+					iconBd.oborder:Show()
+				end
+				iconBd:Show()
+			end
+
+			bd:Show()
+		end
+		]]
+
 		_G.BigWigsAPI:RegisterBarStyle("Eltruism", {
 			apiVersion = 1,
 			version = 10,
 			barSpacing = E.PixelMode and 20 or 15, --bar space
-			barHeight = 15,  --bar height
+			barHeight = 15, --bar height
 			ApplyStyle = styleBar,
 			BarStopped = removeStyle,
 			GetStyleName = function() return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:14:14:0:0|t |cff82B4ffEltruism|r" end,
@@ -262,5 +322,51 @@ do
 		end
 	end
 	S:AddCallbackForAddon('BigWigs', "EltruismBigWigsQueue", ElvUI_EltreumUI.BigWigsQueue)
+
+	function ElvUI_EltreumUI:ElWigo()
+		if E.db.ElvUI_EltreumUI.skins.bigwigs then
+			local ElWigoAddon = E.Libs.AceAddon:GetAddon("ElWigo")
+			hooksecurefunc(ElWigoAddon,"spawnIcon", function()
+				for i = 1, 4 do
+					local elwigobars = {_G["ElWigoBar"..i]}
+					for _, frame in pairs(elwigobars) do
+						if frame then
+
+							if not frame.EltruismSkin then
+								S:HandleFrame(frame)
+								if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs then
+									if not frame.shadow then
+										frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(frame.shadow)
+									end
+								end
+								frame.EltruismSkin = true
+							end
+
+							if frame.frames and #frame.frames ~= 0 then
+								for i = 1, #frame.frames do
+									local iconparent = frame.frames[i]
+									if iconparent then
+										--iconparent:SetTemplate()
+										iconparent:CreateBackdrop()
+										if iconparent.icon then --crop icon
+											iconparent.icon:SetTexCoord(0.08,0.92,0.08,0.92)
+										end
+										if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs then
+											if not iconparent.shadow then
+												iconparent:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+												ElvUI_EltreumUI:ShadowColor(iconparent.shadow)
+											end
+										end
+									end
+								end
+							end
+						end
+					end
+				end
+			end)
+		end
+	end
+	S:AddCallbackForAddon('elWigo', "EltruismElWigo", ElvUI_EltreumUI.ElWigo)
 
 end

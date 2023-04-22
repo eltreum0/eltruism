@@ -744,7 +744,7 @@ function ElvUI_EltreumUI:GradientUF(unit)
 			--raid pets
 			if _G["ElvUF_RaidpetGroup1UnitButton1"] and _G["ElvUF_RaidpetGroup1UnitButton1"]:IsShown() and E.db.unitframe.units.raidpet.enable then
 				for i = 1, 40 do
-					local raidpetbutton = {_G["ElvUF_AssistUnitButton"..i]}
+					local raidpetbutton = {_G["ElvUF_RaidpetGroup1UnitButton"..i]}
 					for _, frame in pairs(raidpetbutton) do
 						if frame and frame.Health then
 							ElvUI_EltreumUI:ApplyGroupGradient(frame)

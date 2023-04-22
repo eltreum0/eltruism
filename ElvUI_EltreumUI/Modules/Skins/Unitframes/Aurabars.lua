@@ -1,6 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI)
-local UF = E:GetModule('UnitFrames')
 local _G = _G
+local UF = E:GetModule('UnitFrames')
 local hooksecurefunc = _G.hooksecurefunc
 
 --Gradient Aurabars
@@ -8,55 +8,61 @@ function ElvUI_EltreumUI:AuraBarGradient(unit, bar, _, _, _, _, debuffType, isSt
 	if not unit and not bar then return end
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and bar and unit then
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars then
-			local r,g,b = bar:GetStatusBarColor()
-			if unit == "player" then
-				if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enableaurabars and not bar.EltruismSparkPlayer then
-					bar.spark:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
-					if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' and not E.db.unitframe.units.player.aurabar.reverseFill then --flip otherwise it will look wrong
-						bar.spark:SetTexCoord(1, 0, 0, 1)
+			if not bar.EltruismHook then
+				hooksecurefunc(bar,"SetStatusBarColor", function(_,r,g,b)
+					if bar.unit then
+						if bar.unit == "player" then
+							if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enableaurabars and not bar.EltruismSparkPlayer then
+								bar.spark:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
+								if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' and not E.db.unitframe.units.player.aurabar.reverseFill then --flip otherwise it will look wrong
+									bar.spark:SetTexCoord(1, 0, 0, 1)
+								end
+								bar.spark:SetBlendMode('BLEND')
+								--bar.spark:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
+								bar.spark:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
+								bar.EltruismSparkPlayer = true
+							end
+							if E.Retail or E.Wrath then
+								if E.db.unitframe.colors.transparentAurabars then
+									bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.3,g= g-0.3,b=b-0.3,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r,g= g,b= b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+								else
+									bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.3,g= g-0.3,b= b-0.3,a= 1}, {r=r,g= g,b= b,a= 1})
+								end
+							else
+								if E.db.unitframe.colors.transparentAurabars then
+									bar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.3, g-0.3, b-0.3, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, r, g, b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+								else
+									bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.3, g-0.3, b-0.3, r, g, b)
+								end
+							end
+						elseif bar.unit == "target" then
+							if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enableaurabars and not bar.EltruismSparkTarget then
+								bar.spark:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
+								if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' and not E.db.unitframe.units.target.aurabar.reverseFill then --flip otherwise it will look wrong
+									bar.spark:SetTexCoord(1, 0, 0, 1)
+								end
+								bar.spark:SetBlendMode('BLEND')
+								--bar.spark:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
+								bar.spark:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
+								bar.EltruismSparkTarget = true
+							end
+							if E.Retail or E.Wrath then
+								if E.db.unitframe.colors.transparentAurabars then
+									bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r,g= g,b= b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r-0.3,g= g-0.3,b= b-0.3,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+								else
+									bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r,g= g,b= b,a= 1}, {r=r-0.3,g= g-0.3,b= b-0.3,a= 1})
+								end
+							else
+								if E.db.unitframe.colors.transparentAurabars then
+									bar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r, g, b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, r-0.3, g-0.3, b-0.3, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+								else
+									bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r, g, b, r-0.3, g-0.3, b-0.3)
+								end
+							end
+						end
 					end
-					bar.spark:SetBlendMode('BLEND')
-					--bar.spark:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
-					bar.spark:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
-					bar.EltruismSparkPlayer = true
-				end
-				if E.Retail or E.Wrath then
-					if E.db.unitframe.colors.transparentAurabars then
-						bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.3,g= g-0.3,b=b-0.3,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r,g= g,b= b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
-					else
-						bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.3,g= g-0.3,b= b-0.3,a= 1}, {r=r,g= g,b= b,a= 1})
-					end
-				else
-					if E.db.unitframe.colors.transparentAurabars then
-						bar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.3, g-0.3, b-0.3, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, r, g, b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-					else
-						bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.3, g-0.3, b-0.3, r, g, b)
-					end
-				end
-			elseif unit == "target" then
-				if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enableaurabars and not bar.EltruismSparkTarget then
-					bar.spark:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
-					if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' and not E.db.unitframe.units.target.aurabar.reverseFill then --flip otherwise it will look wrong
-						bar.spark:SetTexCoord(1, 0, 0, 1)
-					end
-					bar.spark:SetBlendMode('BLEND')
-					--bar.spark:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
-					bar.spark:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
-					bar.EltruismSparkTarget = true
-				end
-				if E.Retail or E.Wrath then
-					if E.db.unitframe.colors.transparentAurabars then
-						bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r,g= g,b= b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r-0.3,g= g-0.3,b= b-0.3,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
-					else
-						bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r,g= g,b= b,a= 1}, {r=r-0.3,g= g-0.3,b= b-0.3,a= 1})
-					end
-				else
-					if E.db.unitframe.colors.transparentAurabars then
-						bar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r, g, b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, r-0.3, g-0.3, b-0.3, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-					else
-						bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r, g, b, r-0.3, g-0.3, b-0.3)
-					end
-				end
+				end)
+				bar.EltruismHook = true
 			end
 		end
 	end
