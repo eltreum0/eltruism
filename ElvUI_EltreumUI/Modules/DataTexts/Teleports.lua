@@ -22,6 +22,7 @@ local tostring = _G.tostring
 local mod = _G.mod
 local IsUsableItem = _G.IsUsableItem
 local hsIsReady = true
+local USE = _G.USE or "Use"
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------hearthstone/tp item datatext
 --based yet again on elvui config
 --most from https://www.wowhead.com/item=6948/hearthstone#comments
