@@ -47,6 +47,7 @@ EltreumPowerBar.Text:SetJustifyV("CENTER")
 local EltreumPowerPrediction = CreateFrame('StatusBar', "EltruismPowerBarPrediction", EltreumPowerBar)
 EltreumPowerPrediction:Hide()
 local EltreumPowerPredictionIncoming = CreateFrame('StatusBar', "EltruismPowerBarPredictionIncoming", EltreumPowerBar)
+EltreumPowerPrediction:SetValue(0)
 EltreumPowerPredictionIncoming:Hide()
 local mainCost = 0
 local incResource = 0
