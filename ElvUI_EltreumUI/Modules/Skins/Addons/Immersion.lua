@@ -93,7 +93,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 						v:StyleButton()
 						v.hover:SetVertexColor(classcolor.r, classcolor.g,classcolor.b, 0.7) --hover color
 						v.pushed:SetColorTexture(classcolor.r, classcolor.g,classcolor.b, 0.8) --pushed color
-						v.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+						v.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+3, E.db.general.fontStyle)
 						v.Label:SetShadowOffset(1,-1)
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 							if v and not v.shadow then
