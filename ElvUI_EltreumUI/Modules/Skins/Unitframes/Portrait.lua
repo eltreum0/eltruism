@@ -523,6 +523,9 @@ if E.Retail or E.Wrath then
 				if not _G["ElvUF_Player"].EltruismAlphaCheck then --another hook to fix when not using elvui fader smoothing
 					hooksecurefunc(_G["ElvUF_Player"], "SetAlpha", function(_,alpha)
 						if alpha == 0 then
+							if _G["ElvUF_Player"].Portrait3D then
+								_G["ElvUF_Player"].Portrait3D:Hide()
+							end
 							if _G["EltruismPlayerEffect"] then
 								_G["EltruismPlayerEffect"]:SetAlpha(0)
 							end
@@ -535,6 +538,9 @@ if E.Retail or E.Wrath then
 							end
 							if _G["EltruismPlayerPowerBarEffect"] then
 								_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
+							end
+							if _G["ElvUF_Player"].Portrait3D then
+								_G["ElvUF_Player"].Portrait3D:Show()
 							end
 						end
 					end)
