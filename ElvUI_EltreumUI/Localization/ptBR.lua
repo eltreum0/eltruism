@@ -1401,3 +1401,5 @@ L["All Raid Buffs"] = true
 L["All Raid Debuffs"] = true
 L["Eltruism Raid Buffs"] = true
 L["Eltruism Raid Debuffs"] = true
+L["Minimal"] = true
+L["Select how auras will be displayed for Aura Bars"] = true
