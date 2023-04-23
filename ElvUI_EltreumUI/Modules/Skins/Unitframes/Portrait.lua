@@ -379,6 +379,7 @@ local modelsRotate = {
 	[4218362] = true, --Alexstrasza the Life-Binder
 	[4218967] = true, --Nozdormu
 	[797415] = true,
+	[2205511] = true, --kul tiran moonkin
 }
 
 --set portrait rotation based on target being npc or not
