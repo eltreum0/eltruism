@@ -1,11 +1,13 @@
 ### 3.8.3 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
+Added options to set Aura Filters for Party, Raid and Aura Bars  
 Added Shadows to Zone Text and Bonus Objective  
 Added Painsmith -Unleash the Instrument sound  
 Added several optimizations based on Luckyone  
 Added the optimizations to ElvUI Update  
 Added a new Minimal Aura filter option  
 Added Original Icons to Chat Icons  
+Added a new Nameplate Target Arrow  
 Added ElWigo to BigWigs skin  
 Added OmniCD profile  
 Updated Minimap Combat hide to move Auras back into their original position instead  
