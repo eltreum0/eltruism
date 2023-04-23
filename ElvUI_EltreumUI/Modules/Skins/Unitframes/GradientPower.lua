@@ -34,10 +34,10 @@ do
 			unitframe = _G["ElvUF_"..name]
 			if unitframe and unitframe.Power then
 
-				--[[if E.db.unitframe.colors.transparentPower and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
-					unitframe.Power.BG:SetAlpha(0.3)
-					unitframe.Power.backdrop.Center:SetVertexColor(E.db.unitframe.colors.classpower_backdrop.r,E.db.unitframe.colors.classpower_backdrop.g,E.db.unitframe.colors.classpower_backdrop.b,E.db.general.backdropfadecolor.a)
-				end]]
+				if E.db.unitframe.colors.transparentPower and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
+					unitframe.Power.BG:SetAlpha(E.db.general.backdropfadecolor.a)
+					--unitframe.Power.backdrop.Center:SetVertexColor(E.db.unitframe.colors.classpower_backdrop.r,E.db.unitframe.colors.classpower_backdrop.g,E.db.unitframe.colors.classpower_backdrop.b,E.db.general.backdropfadecolor.a)
+				end
 				if powertypes[powertype] then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower == "HORIZONTAL" then
