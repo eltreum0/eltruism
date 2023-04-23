@@ -2,6 +2,8 @@
 ___
 Added Shadows to Zone Text and Bonus Objective  
 Added Painsmith -Unleash the Instrument sound  
+Added several optimizations based on Luckyone  
+Added a new Minimal Aura filter option  
 Added Original Icons to Chat Icons  
 Added ElWigo to BigWigs skin  
 Added OmniCD profile  
@@ -17,7 +19,9 @@ Fixed an error related to AutoDelete when ConsolePort was loaded
 Fixed ElvUI Skin when Unitframe Health was not transparent  
 Fixed WarpDeplete Skin sometimes not changing to gradient  
 Fixed an issue on Character Panel where Icons could flash  
+Fixed Transparent Power Custom backdrop in ElvUI  
 Fixed OmniCD Name Bar mode having shadows  
 Fixed Raid Pets not being Gradient  
 Fixed Focus Target ElvUI Skin  
 Fixed Master Looter Icon
+
