@@ -16,6 +16,7 @@ local EltruismGroupDebuffs = 'Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,W
 
 local EltruismAuraTarget = 'Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs'
 local EltruismAuraPlayer = 'Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs'
+local AlternativeAura = 'Blacklist,blockNoDuration,Personal,Dispellable'
 
 --nameplates
 local EltruismNameplateEnemyPlayerBuffs = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs"
@@ -104,8 +105,8 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = EltruismAuraTarget
 			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = EltruismAuraPlayer
 		elseif type == 'Minimal' then
-			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = Alternative
-			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = Alternative
+			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = AlternativeAura
+			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = AlternativeAura
 		end
 	end
 	E:StaggeredUpdateAll()
@@ -186,8 +187,8 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = EltruismAuraTarget
 			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = EltruismAuraPlayer
 		elseif type == 'Minimal' then
-			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = Alternative
-			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = Alternative
+			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = AlternativeAura
+			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = AlternativeAura
 		end
 	end
 	E:StaggeredUpdateAll()
