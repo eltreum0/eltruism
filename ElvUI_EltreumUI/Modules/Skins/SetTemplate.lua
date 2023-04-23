@@ -64,6 +64,10 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 								frame.eltruismbgtexture:Show()
 							end
 						end
+						--[[if not frame.shadow then
+							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(frame.shadow)
+						end]]
 						--[[if not frame.eltruismbordertest then
 							local classcolor = E:ClassColor(E.myclass, true)
 							local offset = (E.PixelMode and 13) or 14
