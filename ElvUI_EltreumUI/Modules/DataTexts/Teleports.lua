@@ -23,6 +23,7 @@ local mod = _G.mod
 local IsUsableItem = _G.IsUsableItem
 local hsIsReady = true
 local USE = _G.USE or "Use"
+local HearthstoneString = GetItemInfo(6948) or "Hearthstone"
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------hearthstone/tp item datatext
 --based yet again on elvui config
 --most from https://www.wowhead.com/item=6948/hearthstone#comments
@@ -271,7 +272,7 @@ local function EltruismTeleportsOnEnter(self)
 		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
 		hsIsReady = true
 	end
-	DT.tooltip:AddDoubleLine(L["Double Click:"], USE.." "..GetItemInfo(6948))
+	DT.tooltip:AddDoubleLine(L["Double Click:"], USE.." "..HearthstoneString)
 	DT.tooltip:Show()
 
 	teleportupdate:SetScript("OnUpdate", function(self, elapsed)
@@ -342,7 +343,7 @@ local function EltruismTeleportsOnEnter(self)
 				displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
 				hsIsReady = true
 			end
-			DT.tooltip:AddDoubleLine(L["Double Click:"], USE.." "..GetItemInfo(6948))
+			DT.tooltip:AddDoubleLine(L["Double Click:"], USE.." "..HearthstoneString)
 			DT.tooltip:Show()
 		end
 	end)
