@@ -4,6 +4,14 @@ local ReloadUI = _G.ReloadUI
 local math = _G.math
 local PlaySound = _G.PlaySound
 local IsAddOnLoaded = _G.IsAddOnLoaded
+local ElvUI_EltreumUI  = _G.ElvUI_EltreumUI
+local UIFrameFadeIn = _G.UIFrameFadeIn
+local UIFrameFadeOut = _G.UIFrameFadeOut
+local hooksecurefunc = _G.hooksecurefunc
+local CopyTable = _G.CopyTable
+local Enum = _G.Enum
+local tinsert = _G.table.insert
+local CHAT_LABEL = _G.CHAT_LABEL
 
 -- Set version & reload on "Finished"
 local function InstallComplete()
@@ -170,6 +178,21 @@ local function ImproveInstall(installtype,mode,null)
 	end
 end
 
+--create new edit mode layout and switch to it to prevent possible issues with movers/taints
+local function NewRetailEditModeLayout()
+	local layoutstable = C_EditMode.GetLayouts()
+	if layoutstable.layouts and layoutstable.layouts[1] then
+		local taintpreventlayout = E:CopyTable(layoutstable.layouts[1])
+		taintpreventlayout.layoutType = Enum.EditModeLayoutType.Character
+		taintpreventlayout.layoutName = "EltruismTaintPreventer"
+		local numlayouts = Enum.EditModePresetLayoutsMeta.NumValues
+		tinsert(layoutstable.layouts, numlayouts + 1, taintpreventlayout)
+		layoutstable.activeLayout = numlayouts + 1
+		C_EditMode.SaveLayouts(layoutstable) --if not called then layout wont apply because its not saved
+		C_EditMode.SetActiveLayout(layoutstable.activeLayout)
+	end
+end
+
 -- Installer Steps
 ElvUI_EltreumUI.InstallerData = {
 	Title = ElvUI_EltreumUI.Name,
@@ -253,6 +276,7 @@ ElvUI_EltreumUI.InstallerData = {
 				E:SetupChat()
 				if E.Retail then
 					ChatFrame_RemoveChannel(_G.ChatFrame1, "services") --get rid of the gold seller chat
+					NewRetailEditModeLayout()
 				else --remove lfg spam from general and creat tab for it
 					if lfg then
 						ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
