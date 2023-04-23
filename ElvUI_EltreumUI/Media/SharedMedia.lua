@@ -223,3 +223,6 @@ E.Media.CombatIcons.Eltruism16 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textur
 --other rest icons
 E.Media.RestIcons.Eltruism01 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Rest\rest1.tga]]
 E.Media.RestIcons.Eltruism02 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Rest\rest2.tga]]
+
+--target
+E.Media.Arrows.Eltruism01 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\ArrowEltruism.tga]]

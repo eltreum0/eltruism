@@ -92,9 +92,6 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["cooldown"]["fonts"]["font"] = "Kimberley"
 		E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = "THICKOUTLINE"
 
-		--no target glow
-		E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "none"
-
 		--remove the by type border colors
 		E.db["nameplates"]["colors"]["auraByType"] = false
 		--boss mods
@@ -568,8 +565,8 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["PLAYER"]["smartAuraPosition"] = "BUFFS_ON_DEBUFFS"
 		E.db["nameplates"]["units"]["PLAYER"]["title"]["enable"] = false
 
-		E.db["nameplates"]["units"]["TARGET"]["arrow"] = "Arrow21"
-		E.db["nameplates"]["units"]["TARGET"]["arrowScale"] = 0.4
+		E.db["nameplates"]["units"]["TARGET"]["arrow"] = "Eltruism01"
+		E.db["nameplates"]["units"]["TARGET"]["arrowScale"] = 0.3
 		E.db["nameplates"]["units"]["TARGET"]["arrowSpacing"] = 0
 		E.db["nameplates"]["units"]["TARGET"]["classpower"]["classColor"] = false --no this would set the classbar to have class color as opposed to being nicely colored
 		E.db["nameplates"]["units"]["TARGET"]["classpower"]["enable"] = true
@@ -577,11 +574,11 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["TARGET"]["classpower"]["width"] = 150
 		E.db["nameplates"]["units"]["TARGET"]["classpower"]["yOffset"] = 26
 		--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style1" --border glow
-		E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style2" --background glow
+		--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style2" --background glow
 		--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style8" --background glow + side arrow
-		--E.db["nameplates"]["units"]["TARGET"]["arrow"] = "Arrow21" --the arrow
+		--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style4" --arrow
+		E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "none" --no target glow
 		if E.Classic then
-			--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style2"
 			E.db["v11NamePlateReset"] = true
 			E.db["nameplates"]["motionType"] = "OVERLAP"
 		end
