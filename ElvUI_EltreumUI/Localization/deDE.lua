@@ -1435,3 +1435,5 @@ L["Add Gradient to Names"] = "Füge einen Verlauf zum Namen"
 L["Player names in chat will have a class gradient"] = "Spielenamen im Chat haben einen Klassenfarbverlauf"
 L["Enable on Buttons"] = true
 L["Double Click:"] = true
+L["Minimal Buffs"] = true
+L["Minimal Debuffs"] = true
