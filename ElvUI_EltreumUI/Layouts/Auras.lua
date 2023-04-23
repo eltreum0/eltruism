@@ -28,7 +28,7 @@ local EltruismNameplateEnemyNPCDebuffs = "Blacklist,Personal,CCDebuffs,CastByNPC
 local EltruismEverything = "Blacklist,Personal,nonPersonal"
 
 --based on luckyone
-local Alternative = 'Blacklist,Dispellable,RaidBuffsElvUI'
+local Alternative = 'Blacklist,Dispellable,RaidBuffsElvUI,Personal'
 
 --aura filter setup based on Luckyone's credits to him!
 function ElvUI_EltreumUI:SetupBuffs(frame, type)
