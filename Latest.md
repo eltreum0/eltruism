@@ -1,6 +1,7 @@
 ### 3.8.3 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
 Added Shadows to Zone Text and Bonus Objective  
+Added Painsmith -Unleash the Instrument sound  
 Added Original Icons to Chat Icons  
 Added ElWigo to BigWigs skin  
 Added OmniCD profile  
@@ -9,6 +10,7 @@ Updated Chat icons functions to not run when Chat modifications are disabled
 Updated Questie Profile Nameplate/Unitframe Quest Icon Position  
 Updated Eltruism default settings for Quest Autoaccept  
 Updated Options to use ACH lib  
+Updated Immersion Skin font  
 Fixed Tooltip Gradient Name not being Gradient when a mod key was pressed  
 Fixed a possible error in combat due to the Eltruism Teleport Datatext  
 Fixed an error related to AutoDelete when ConsolePort was loaded  

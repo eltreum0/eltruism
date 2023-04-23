@@ -33,6 +33,18 @@ do
 			--print(powertype,unit)
 			unitframe = _G["ElvUF_"..name]
 			if unitframe and unitframe.Power then
+
+				if E.db.unitframe.colors.transparentPower and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
+					unitframe.Power.BG:SetVertexColor(E.db.unitframe.colors.power_backdrop.r,E.db.unitframe.colors.power_backdrop.g,E.db.unitframe.colors.power_backdrop.b,E.db.general.backdropfadecolor.a)
+					if not unitframe.Power.EltruismTransparencyFix then
+						unitframe.Power.backdrop:ClearAllPoints()
+						unitframe.Power.backdrop:SetAllPoints(unitframe.Power:GetStatusBarTexture())
+						unitframe.Power.backdrop:SetInside(unitframe.Power:GetStatusBarTexture(), 0, 0)
+						unitframe.Power.EltruismTransparencyFix = true
+					end
+					--unitframe.Power.BG:SetAlpha(E.db.general.backdropfadecolor.a)
+					--unitframe.Power.backdrop.Center:SetVertexColor(E.db.unitframe.colors.power_backdrop.r,E.db.unitframe.colors.power_backdrop.g,E.db.unitframe.colors.power_backdrop.b,E.db.general.backdropfadecolor.a)
+				end
 				if powertypes[powertype] then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower == "HORIZONTAL" then
@@ -275,7 +287,7 @@ do
 						group = select(i, headergroup:GetChildren())
 						for j = 1, group:GetNumChildren() do
 							groupbutton = select(j, group:GetChildren())
-							if groupbutton and groupbutton.Power and groupbutton.unit then
+							if groupbutton and groupbutton.Power and groupbutton.Power:IsShown() and groupbutton.unit then
 								ElvUI_EltreumUI:ApplyGroupGradientPower(groupbutton)
 							end
 						end
@@ -292,6 +304,9 @@ do
 							Additionalframe:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= 1}, {r=r,g= g,b= b,a= 1})
 						else
 							Additionalframe:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, r - 0.4, g - 0.4, b - 0.4, r, g, b)
+						end
+						if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
+							Additionalframe.bg:SetAlpha(E.db.general.backdropfadecolor.a)
 						end
 					end)
 					isHooked = true
