@@ -11,6 +11,12 @@ local EltruismBossBuffs = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
 local EltruismBossDebuffs = "Blacklist,CCDebuffs,RaidDebuffs"
 local EltruismFocusBuffs = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
 local EltruismFocusDebuffs = "Blacklist,Personal,CCDebuffs"
+local EltruismGroupBuffs = 'Blacklist,TurtleBuffs'
+local EltruismGroupDebuffs = 'Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist'
+
+local EltruismAuraTarget = 'Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs'
+local EltruismAuraPlayer = 'Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs'
+local AlternativeAura = 'Blacklist,blockNoDuration,Personal,Dispellable'
 
 --nameplates
 local EltruismNameplateEnemyPlayerBuffs = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs"
@@ -22,7 +28,7 @@ local EltruismNameplateEnemyNPCDebuffs = "Blacklist,Personal,CCDebuffs,CastByNPC
 local EltruismEverything = "Blacklist,Personal,nonPersonal"
 
 --based on luckyone
-local Alternative = 'Blacklist,Dispellable,RaidBuffsElvUI'
+local Alternative = 'Blacklist,Dispellable,RaidBuffsElvUI,Personal'
 
 --aura filter setup based on Luckyone's credits to him!
 function ElvUI_EltreumUI:SetupBuffs(frame, type)
@@ -68,6 +74,39 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 		elseif type == 'Minimal' then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = Alternative
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = 'Blacklist,Dispellable,TurtleBuffs'
+		end
+	elseif frame == 'party' then
+		if type == 'Everything' then
+			E.db["unitframe"]["units"]["party"]["buffs"]["priority"] = EltruismEverything
+		elseif type == 'Eltruism' then
+			E.db["unitframe"]["units"]["party"]["buffs"]["priority"] = EltruismGroupBuffs
+		elseif type == 'Minimal' then
+			E.db["unitframe"]["units"]["party"]["buffs"]["priority"] = Alternative
+		end
+	elseif frame == 'raid' then
+		if type == 'Everything' then
+			E.db["unitframe"]["units"]["raid1"]["buffs"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["raid2"]["buffs"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["raid3"]["buffs"]["priority"] = EltruismEverything
+		elseif type == 'Eltruism' then
+			E.db["unitframe"]["units"]["raid1"]["buffs"]["priority"] = EltruismGroupBuffs
+			E.db["unitframe"]["units"]["raid2"]["buffs"]["priority"] = EltruismGroupBuffs
+			E.db["unitframe"]["units"]["raid3"]["buffs"]["priority"] = EltruismGroupBuffs
+		elseif type == 'Minimal' then
+			E.db["unitframe"]["units"]["raid1"]["buffs"]["priority"] = Alternative
+			E.db["unitframe"]["units"]["raid2"]["buffs"]["priority"] = Alternative
+			E.db["unitframe"]["units"]["raid3"]["buffs"]["priority"] = Alternative
+		end
+	elseif frame == 'aurabar' then
+		if type == 'Everything' then
+			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = EltruismEverything
+		elseif type == 'Eltruism' then
+			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = EltruismAuraTarget
+			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = EltruismAuraPlayer
+		elseif type == 'Minimal' then
+			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = AlternativeAura
+			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = AlternativeAura
 		end
 	end
 	E:StaggeredUpdateAll()
@@ -117,6 +156,39 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 		elseif type == 'Minimal' then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = Alternative
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
+		end
+	elseif frame == 'party' then
+		if type == 'Everything' then
+			E.db["unitframe"]["units"]["party"]["debuffs"]["priority"] = EltruismEverything
+		elseif type == 'Eltruism' then
+			E.db["unitframe"]["units"]["party"]["debuffs"]["priority"] = EltruismGroupDebuffs
+		elseif type == 'Minimal' then
+			E.db["unitframe"]["units"]["party"]["debuffs"]["priority"] = Alternative
+		end
+	elseif frame == 'raid' then
+		if type == 'Everything' then
+			E.db["unitframe"]["units"]["raid1"]["debuffs"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["raid2"]["debuffs"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["raid3"]["debuffs"]["priority"] = EltruismEverything
+		elseif type == 'Eltruism' then
+			E.db["unitframe"]["units"]["raid1"]["debuffs"]["priority"] = EltruismGroupDebuffs
+			E.db["unitframe"]["units"]["raid2"]["debuffs"]["priority"] = EltruismGroupDebuffs
+			E.db["unitframe"]["units"]["raid3"]["debuffs"]["priority"] = EltruismGroupDebuffs
+		elseif type == 'Minimal' then
+			E.db["unitframe"]["units"]["raid1"]["debuffs"]["priority"] = Alternative
+			E.db["unitframe"]["units"]["raid2"]["debuffs"]["priority"] = Alternative
+			E.db["unitframe"]["units"]["raid3"]["debuffs"]["priority"] = Alternative
+		end
+	elseif frame == 'aurabar' then
+		if type == 'Everything' then
+			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = EltruismEverything
+		elseif type == 'Eltruism' then
+			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = EltruismAuraTarget
+			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = EltruismAuraPlayer
+		elseif type == 'Minimal' then
+			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = AlternativeAura
+			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = AlternativeAura
 		end
 	end
 	E:StaggeredUpdateAll()

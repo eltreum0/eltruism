@@ -95,6 +95,12 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.private["general"]["pixelPerfect"] = true
 		E.db["unitframe"]["thinBorders"] = true
 
+		--transparent things
+		E.db["unitframe"]["colors"]["transparentAurabars"] = true
+		E.db["unitframe"]["colors"]["transparentCastbar"] = true
+		E.db["unitframe"]["colors"]["transparentHealth"] = true
+		E.db["unitframe"]["colors"]["transparentPower"] = true
+
 		--combat icon
 		E.db["unitframe"]["units"]["focus"]["CombatIcon"]["xOffset"] = -87
 		E.db["unitframe"]["units"]["focus"]["CombatIcon"]["yOffset"] = 10
