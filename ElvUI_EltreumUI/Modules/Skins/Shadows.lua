@@ -38,6 +38,20 @@ function ElvUI_EltreumUI:Shadows()
 			EltruismBlizzShadows:RegisterEvent("ADDON_LOADED")
 			EltruismBlizzShadows:RegisterEvent("PLAYER_ENTERING_WORLD")
 			EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
+				if (arg == "Blizzard_ArtifactUI") or IsAddOnLoaded("Blizzard_ArtifactUI") then
+					if _G.ArtifactFrame and not _G.ArtifactFrame.shadow then
+						_G.ArtifactFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G.ArtifactFrame.shadow)
+					end
+					if _G.ArtifactFrameTab1 and _G.ArtifactFrameTab1.backdrop and not _G.ArtifactFrameTab1.backdrop.shadow then
+						_G.ArtifactFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G.ArtifactFrameTab1.backdrop.shadow)
+					end
+					if _G.ArtifactFrameTab2 and _G.ArtifactFrameTab2.backdrop and not _G.ArtifactFrameTab2.backdrop.shadow then
+						_G.ArtifactFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G.ArtifactFrameTab2.backdrop.shadow)
+					end
+				end
 				if (arg == "WeakAurasOptions") or IsAddOnLoaded("WeakAurasOptions") then
 					if IsAddOnLoaded("ElvUI_WindTools") then
 						if E.private.WT.skins.addons.weakAuras then
