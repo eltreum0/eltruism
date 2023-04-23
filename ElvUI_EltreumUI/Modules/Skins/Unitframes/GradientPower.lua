@@ -33,6 +33,11 @@ do
 			--print(powertype,unit)
 			unitframe = _G["ElvUF_"..name]
 			if unitframe and unitframe.Power then
+
+				--[[if E.db.unitframe.colors.transparentPower and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
+					unitframe.Power.BG:SetAlpha(0.3)
+					unitframe.Power.backdrop.Center:SetVertexColor(E.db.unitframe.colors.classpower_backdrop.r,E.db.unitframe.colors.classpower_backdrop.g,E.db.unitframe.colors.classpower_backdrop.b,E.db.general.backdropfadecolor.a)
+				end]]
 				if powertypes[powertype] then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower == "HORIZONTAL" then
@@ -275,7 +280,7 @@ do
 						group = select(i, headergroup:GetChildren())
 						for j = 1, group:GetNumChildren() do
 							groupbutton = select(j, group:GetChildren())
-							if groupbutton and groupbutton.Power and groupbutton.unit then
+							if groupbutton and groupbutton.Power and groupbutton.Power:IsShown() and groupbutton.unit then
 								ElvUI_EltreumUI:ApplyGroupGradientPower(groupbutton)
 							end
 						end
@@ -292,6 +297,9 @@ do
 							Additionalframe:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= 1}, {r=r,g= g,b= b,a= 1})
 						else
 							Additionalframe:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, r - 0.4, g - 0.4, b - 0.4, r, g, b)
+						end
+						if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
+							Additionalframe.bg:SetAlpha(E.db.general.backdropfadecolor.a)
 						end
 					end)
 					isHooked = true
