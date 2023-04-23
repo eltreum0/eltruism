@@ -14,6 +14,9 @@ local EltruismFocusDebuffs = "Blacklist,Personal,CCDebuffs"
 local EltruismGroupBuffs = 'Blacklist,TurtleBuffs'
 local EltruismGroupDebuffs = 'Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist'
 
+local EltruismAuraTarget = 'Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs'
+local EltruismAuraPlayer = 'Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs'
+
 --nameplates
 local EltruismNameplateEnemyPlayerBuffs = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs"
 local EltruismNameplateEnemyPlayerDebuffs = "Blacklist,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
@@ -93,6 +96,17 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 			E.db["unitframe"]["units"]["raid2"]["buffs"]["priority"] = Alternative
 			E.db["unitframe"]["units"]["raid3"]["buffs"]["priority"] = Alternative
 		end
+	elseif frame == 'aurabar' then
+		if type == 'Everything' then
+			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = EltruismEverything
+		elseif type == 'Eltruism' then
+			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = EltruismAuraTarget
+			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = EltruismAuraPlayer
+		elseif type == 'Minimal' then
+			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = Alternative
+			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = Alternative
+		end
 	end
 	E:StaggeredUpdateAll()
 	ElvUI_EltreumUI:Print(L["Buff filters were setup"])
@@ -163,6 +177,17 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 			E.db["unitframe"]["units"]["raid1"]["debuffs"]["priority"] = Alternative
 			E.db["unitframe"]["units"]["raid2"]["debuffs"]["priority"] = Alternative
 			E.db["unitframe"]["units"]["raid3"]["debuffs"]["priority"] = Alternative
+		end
+	elseif frame == 'aurabar' then
+		if type == 'Everything' then
+			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = EltruismEverything
+			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = EltruismEverything
+		elseif type == 'Eltruism' then
+			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = EltruismAuraTarget
+			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = EltruismAuraPlayer
+		elseif type == 'Minimal' then
+			E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = Alternative
+			E.db["unitframe"]["units"]["player"]["aurabar"]["priority"] = Alternative
 		end
 	end
 	E:StaggeredUpdateAll()

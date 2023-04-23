@@ -343,6 +343,15 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.aurafilters.args.raid.args.raid.args.description3 = ACH:Description(nil, 7, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
 	ElvUI_EltreumUI.Options.args.aurafilters.args.raid.args.raid.args.minimalbuffs = ACH:Execute(L["Minimal Buffs"], nil, 8, function() ElvUI_EltreumUI:SetupBuffs('raid', 'Minimal') end,nil,false,'full')
 	ElvUI_EltreumUI.Options.args.aurafilters.args.raid.args.raid.args.minimaldebuffs = ACH:Execute(L["Minimal Debuffs"], nil, 9, function() ElvUI_EltreumUI:SetupDebuffs('raid', 'Minimal') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.aurabar = ACH:Group(L["Aura Bars"], nil, 2)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.aurabar.args.aurabar = ACH:Group(L["Select how auras will be displayed for Aura Bars"], nil, 1)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.aurabar.args.aurabar.inline = true
+	ElvUI_EltreumUI.Options.args.aurafilters.args.aurabar.args.aurabar.args.description1 = ACH:Description(nil, 2, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.aurabar.args.aurabar.args.alldebuffs = ACH:Execute(ALL, nil, 3, function() ElvUI_EltreumUI:SetupDebuffs('aurabar', 'Everything') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.aurabar.args.aurabar.args.description2 = ACH:Description(nil, 4, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.aurabar.args.aurabar.args.eltruismdebuffs = ACH:Execute("Eltruism", nil, 5, function() ElvUI_EltreumUI:SetupDebuffs('aurabar', 'Eltruism') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.aurabar.args.aurabar.args.description3 = ACH:Description(nil, 6, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.aurabar.args.aurabar.args.minimalbuffs = ACH:Execute(L["Minimal"], nil, 7, function() ElvUI_EltreumUI:SetupBuffs('aurabar', 'Minimal') end,nil,false,'full')
 
 	--borders
 	ElvUI_EltreumUI.Options.args.borders = ACH:Group(E:TextGradient(L["Borders"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add Borders to frames and customize them"], 85, 'tab')
