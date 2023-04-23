@@ -35,8 +35,15 @@ do
 			if unitframe and unitframe.Power then
 
 				if E.db.unitframe.colors.transparentPower and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
-					unitframe.Power.BG:SetAlpha(E.db.general.backdropfadecolor.a)
-					--unitframe.Power.backdrop.Center:SetVertexColor(E.db.unitframe.colors.classpower_backdrop.r,E.db.unitframe.colors.classpower_backdrop.g,E.db.unitframe.colors.classpower_backdrop.b,E.db.general.backdropfadecolor.a)
+					unitframe.Power.BG:SetVertexColor(E.db.unitframe.colors.power_backdrop.r,E.db.unitframe.colors.power_backdrop.g,E.db.unitframe.colors.power_backdrop.b,E.db.general.backdropfadecolor.a)
+					if not unitframe.Power.EltruismTransparencyFix then
+						unitframe.Power.backdrop:ClearAllPoints()
+						unitframe.Power.backdrop:SetAllPoints(unitframe.Power:GetStatusBarTexture())
+						unitframe.Power.backdrop:SetInside(unitframe.Power:GetStatusBarTexture(), 0, 0)
+						unitframe.Power.EltruismTransparencyFix = true
+					end
+					--unitframe.Power.BG:SetAlpha(E.db.general.backdropfadecolor.a)
+					--unitframe.Power.backdrop.Center:SetVertexColor(E.db.unitframe.colors.power_backdrop.r,E.db.unitframe.colors.power_backdrop.g,E.db.unitframe.colors.power_backdrop.b,E.db.general.backdropfadecolor.a)
 				end
 				if powertypes[powertype] then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
