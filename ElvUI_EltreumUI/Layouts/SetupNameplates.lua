@@ -578,6 +578,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style8" --background glow + side arrow
 		--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style4" --arrow
 		E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "none" --no target glow
+
 		if E.Classic then
 			E.db["v11NamePlateReset"] = true
 			E.db["nameplates"]["motionType"] = "OVERLAP"
@@ -620,7 +621,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["alpha"] = 100
 
 		-- Non targeted enemies
-		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["actions"]["alpha"] = 20
+		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["actions"]["alpha"] = 100 --20 --test 100% alpha
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["actions"]["scale"] = 0.75
 		--E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["requireTarget"] = true
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["notTarget"] = true
