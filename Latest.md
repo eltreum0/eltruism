@@ -1,52 +1,21 @@
-### 3.8.2 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.8.3 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added an option to disable the Gradient Health and Name on tooltips  
-Added options to customize the Entering/Leaving Combat Indicator  
-Added glow to EltreumInterrupt Style filter if using ElvUI 13.30  
-Added an option in CVars to change Nameplate Global scale  
-Added Gradient and Custom Textures to Assist Targets  
-Added an option to disable the ElvUI skin on Buttons  
-Added Eltruism Icons for Author, Donators and MVPs  
-Added an option in CVars to disable Soft Targets  
-Added an extra Combat Icon and used it in Party  
-Added gradient names to player names in chat  
-Added class icons to player names in chat  
-Added Auto Delete to Pet Cages in Retail  
-Added a new sound: Overconfidence  
-Added Shadows to Assist Targets  
-Added shadows to datatexts  
-Added a skin for BagSync  
-Added a skin for Hekili  
-Added a skin for OmniCD  
-Updated Eltruism Teleports/Hearthstones datatext to allow double clicking to use Hearthstone  
-Updated World Map to make the Retail Bounty Icon a mouse over and skin the selection  
-Updated Item Level tooltip in Classic to show the Item Level on the second line  
-Updated ElvUI Preview to allow Boss and Arena frames to work with it  
-Updated several ElvUI Skin Textures to better deal with transparency  
-Updated Quest Items to prevent adding multiples of the same item  
-Updated Warrior Action Paging in Wrath/Classic to fix stances  
-Updated gradient tag to reverse gradient on Target unitframe  
-Updated Eltruism Stat Datatext to show Crit before Haste  
-Updated Nameplate Custom Height to better detect combat  
-Updated Rogue Action Paging to fix Vehicle UI in Retail  
-Updated Retail Quest Dialog Frame to skin the NPC Model  
-Updated Nameplate Power Bar to better handle events  
-Updated Eltruism Profile to enable the ElvUI Skin  
-Updated Chat /roll to show colors per class  
-Updated German locale by Dlarge  
-Updated AddOnSkins profile  
-Updated WindTools profile  
-Updated Pet Stable Skin  
-Updated AFK Skin  
-Fixed castbar shadows when the castbar icon was of a different size from the castbar  
-Fixed an issue with unitframe shadows when all power frames were detached  
-Fixed Player Model in AFK screen sometimes overlapping the timer  
-Fixed Nameplate Power Bar sometimes having the wrong texture  
-Fixed Quest Dialog Frame Model Shadows/Skin not hiding  
-Fixed some texture transparencies in ElvUI skin  
-Fixed ElvUI skin on some buttons
-
-
-
-
-
+Added Shadows to Zone Text and Bonus Objective  
+Added Original Icons to Chat Icons  
+Added ElWigo to BigWigs skin  
+Added OmniCD profile  
+Updated Minimap Combat hide to move Auras back into their original position instead  
+Updated Chat icons functions to not run when Chat modifications are disabled  
+Updated Questie Profile Nameplate/Unitframe Quest Icon Position  
+Updated Eltruism default settings for Quest Autoaccept  
+Updated Options to use ACH lib  
+Fixed Tooltip Gradient Name not being Gradient when a mod key was pressed  
+Fixed a possible error in combat due to the Eltruism Teleport Datatext  
+Fixed an error related to AutoDelete when ConsolePort was loaded  
+Fixed ElvUI Skin when Unitframe Health was not transparent  
+Fixed WarpDeplete Skin sometimes not changing to gradient  
+Fixed an issue on Character Panel where Icons could flash  
+Fixed OmniCD Name Bar mode having shadows  
+Fixed Raid Pets not being Gradient  
+Fixed Focus Target ElvUI Skin  
+Fixed Master Looter Icon

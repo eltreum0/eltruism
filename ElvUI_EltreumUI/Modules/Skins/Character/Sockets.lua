@@ -1382,7 +1382,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 			self:_Refresh()
 		end)]]
 
-		--Eltreum: use C_Timer.After to decrease memory/cpu usage and also possibly make it faster
+		--Eltreum: use E:Delay to decrease memory/cpu usage and also possibly make it faster
 		self.refreshTimer0 = C_Timer.After(0.1, function()
 			self:_Refresh()
 		end)

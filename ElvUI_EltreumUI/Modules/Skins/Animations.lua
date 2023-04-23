@@ -11,7 +11,6 @@ local ObjectiveTrackerFrame = _G.ObjectiveTrackerFrame
 local Minimap = _G.Minimap
 local PlaySoundFile = _G.PlaySoundFile
 local UIFrameFadeIn = _G.UIFrameFadeIn
-local C_Timer = _G.C_Timer
 local UIFrameFadeOut = _G.UIFrameFadeOut
 
 
@@ -116,8 +115,8 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 				end
 				UIFrameFadeIn(darksouls, 1, 0, 1)
 				darksouls.scaler:Play()
-				C_Timer.After(4, function() UIFrameFadeOut(darksouls, 1, 1, 0) end)
-				C_Timer.After(5, function()
+				E:Delay(4, function() UIFrameFadeOut(darksouls, 1, 1, 0) end)
+				E:Delay(5, function()
 					UIParent:SetAlpha(1)
 					if E.Retail then
 						ObjectiveTrackerFrame:SetAlpha(1)
@@ -179,16 +178,16 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 				PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wasted.ogg" , "Master")
 				UIFrameFadeIn(gta, 1, 0, 1)
 
-				C_Timer.After(2.6, function()
+				E:Delay(2.6, function()
 					UIFrameFadeIn(gtatext, 0, 0, 1)
 				end)
 
-				C_Timer.After(5, function()
+				E:Delay(5, function()
 					UIFrameFadeOut(gta, 1, 1, 0)
 					UIFrameFadeOut(gtatext, 1, 1, 0)
 				end)
 
-				C_Timer.After(6, function()
+				E:Delay(6, function()
 					UIParent:SetAlpha(1)
 					if E.Retail then
 						ObjectiveTrackerFrame:SetAlpha(1)

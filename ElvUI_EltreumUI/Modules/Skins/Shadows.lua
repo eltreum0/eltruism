@@ -592,6 +592,18 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if (arg == "Blizzard_EncounterJournal") or IsAddOnLoaded("Blizzard_EncounterJournal") then
+
+						--fix the overflow button
+						if _G.EncounterJournalNavBarOverflowButton and not _G.EncounterJournalNavBarOverflowButton.EltruismSkin then
+							local S = E:GetModule('Skins')
+							S:HandleButton(_G.EncounterJournalNavBarOverflowButton)
+							_G.EncounterJournalNavBarOverflowButton.EltruismSkin = true
+							_G.EncounterJournalNavBarOverflowButton.EltruismArrow = _G.EncounterJournalNavBarOverflowButton:CreateTexture()
+							_G.EncounterJournalNavBarOverflowButton.EltruismArrow:SetTexture(E.Media.Textures.ArrowUp)
+							_G.EncounterJournalNavBarOverflowButton.EltruismArrow:SetRotation(1.57)
+							_G.EncounterJournalNavBarOverflowButton.EltruismArrow:SetScale(0.7)
+							_G.EncounterJournalNavBarOverflowButton.EltruismArrow:SetPoint("CENTER", _G.EncounterJournalNavBarOverflowButton, "CENTER", 0, 0)
+						end
 						if not _G.EncounterJournal.shadow then
 							_G.EncounterJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.EncounterJournal.shadow)

@@ -11,7 +11,6 @@ local GetItemIcon = _G.GetItemIcon
 local GetItemQualityColor = _G.GetItemQualityColor
 local tonumber = _G.tonumber
 local UIFrameFadeIn = _G.UIFrameFadeIn
-local C_Timer = _G.C_Timer
 local GetCVarBool = _G.GetCVarBool
 local IsModifiedClick = _G.IsModifiedClick
 local LootSlot = _G.LootSlot
@@ -106,17 +105,17 @@ local function InstantLoot(_, event,_, arg2)
 						WishlistItemFrame.Text2:SetText("|T"..itemtexture..":12:12:0:0:64:64:5:59:5:59|t "..itemName.."!")
 						UIFrameFadeIn(WishlistItemFrame, 1, 0, 1)
 						if E.db.ElvUI_EltreumUI.loot.lootwishlistscreenshot then
-							C_Timer.After(1, function() Screenshot() end)
+							E:Delay(1, function() Screenshot() end)
 						end
 						if E.db.ElvUI_EltreumUI.loot.lootwishlistsoundenable and lootsoundthrottle == 0 then
 							PlaySoundFile(E.LSM:Fetch("sound", E.db.ElvUI_EltreumUI.loot.lootwishlistsound) , "Master")
 							lootsoundthrottle = 1
-							C_Timer.After(0.5, function()
+							E:Delay(0.5, function()
 								lootsoundthrottle = 0
 							end)
 
 						end
-						C_Timer.After(5, function() UIFrameFadeOut(WishlistItemFrame, 1, 1, 0) end)
+						E:Delay(5, function() UIFrameFadeOut(WishlistItemFrame, 1, 1, 0) end)
 					end
 				end
 			end

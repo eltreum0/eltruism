@@ -212,7 +212,7 @@ function ElvUI_EltreumUI:LootText()
 				if errorthrottle == false then
 					CombatText_AddMessage(INVENTORY_FULL, CombatText_StandardScroll, 1, 0, 0) --apparently it spams for some people
 					errorthrottle = true
-					C_Timer.After(3, function() errorthrottle = false end)
+					E:Delay(3, function() errorthrottle = false end)
 				end
 			end
 			if (event == "CHAT_MSG_LOOT") then

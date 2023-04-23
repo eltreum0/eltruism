@@ -204,6 +204,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				if ObjectiveTrackerBonusBannerFrame then
 					--textcoords from https://www.townlong-yak.com/framexml/39229/Helix/AtlasInfo.lua
 					ObjectiveTrackerBonusBannerFrame.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+					ObjectiveTrackerBonusBannerFrame.Title:SetShadowOffset(2,-2)
 					ObjectiveTrackerBonusBannerFrame.Title:SetText("") --so that the text doesn't show up when it shouldnt
 					ObjectiveTrackerBonusBannerFrame.Icon:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")
 					ObjectiveTrackerBonusBannerFrame.Icon:SetTexCoord(0.482422, 0.785156, 0.00195312, 0.294922)

@@ -266,7 +266,7 @@ function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
-	C_Timer.After(5, function() ElvUI_EltreumUI:FriendlyNameplates() end)
+	E:Delay(5,function() ElvUI_EltreumUI:FriendlyNameplates() end)
 	ElvUI_EltreumUI:QuestItem()
 end
 
@@ -354,7 +354,9 @@ function ElvUI_EltreumUI:PLAYER_AVG_ITEM_LEVEL_UPDATE()
 end
 
 function ElvUI_EltreumUI:INSPECT_READY(_,unit)
-	ElvUI_EltreumUI:InspectBg(unit)
+	if _G.InspectFrame and _G.InspectFrame:IsVisible() then
+		ElvUI_EltreumUI:InspectBg(unit)
+	end
 end
 
 function ElvUI_EltreumUI:PLAYER_LEAVING_WORLD()

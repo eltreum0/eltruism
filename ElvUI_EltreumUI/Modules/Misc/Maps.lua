@@ -4,7 +4,6 @@ local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
 local IsInInstance = _G.IsInInstance
 local C_Map = _G.C_Map
-local C_Timer = _G.C_Timer
 local C_SuperTrack = _G.C_SuperTrack
 local SuperTrackedFrameMixin = _G.SuperTrackedFrameMixin
 local GetUnitSpeed = _G.GetUnitSpeed
