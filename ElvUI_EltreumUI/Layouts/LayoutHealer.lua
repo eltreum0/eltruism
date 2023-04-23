@@ -570,7 +570,6 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["boss"]["fader"]["minAlpha"] = 0.3
 	E.db["unitframe"]["units"]["boss"]["fader"]["playertarget"] = true
 	E.db["unitframe"]["units"]["boss"]["fader"]["range"] = false
-	E.db["unitframe"]["units"]["boss"]["fader"]["smooth"] = 0.25
 	E.db["unitframe"]["units"]["boss"]["health"]["attachTextTo"] = "InfoPanel"
 	E.db["unitframe"]["units"]["boss"]["health"]["position"] = "RIGHT"
 	E.db["unitframe"]["units"]["boss"]["health"]["text_format"] = "[healthcolor][eltruism:hpstatusnopc]"

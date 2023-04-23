@@ -331,7 +331,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["auras"]["buffs"]["fadeThreshold"] = 10
 	E.db["auras"]["buffs"]["horizontalSpacing"] = 7
 	E.db["auras"]["buffs"]["maxWraps"] = 2
-	E.db["auras"]["buffs"]["seperateOwn"] = -1
+	--E.db["auras"]["buffs"]["seperateOwn"] = -1
 	E.db["auras"]["buffs"]["size"] = 32
 	E.db["auras"]["buffs"]["sortDir"] = "+"
 	E.db["auras"]["buffs"]["timeFont"] = "Kimberley"
@@ -598,7 +598,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["boss"]["fader"]["minAlpha"] = 0.3
 	E.db["unitframe"]["units"]["boss"]["fader"]["playertarget"] = true
 	E.db["unitframe"]["units"]["boss"]["fader"]["range"] = false
-	E.db["unitframe"]["units"]["boss"]["fader"]["smooth"] = 0.25
 	E.db["unitframe"]["units"]["boss"]["health"]["attachTextTo"] = "InfoPanel"
 	E.db["unitframe"]["units"]["boss"]["health"]["position"] = "RIGHT"
 	E.db["unitframe"]["units"]["boss"]["health"]["text_format"] = "[healthcolor][eltruism:hpstatusnopc]"
@@ -886,7 +885,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["player"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["player"]["fader"]["enable"] = true
 	E.db["unitframe"]["units"]["player"]["fader"]["minAlpha"] = 0
-	E.db["unitframe"]["units"]["player"]["fader"]["smooth"] = 0.25
 	E.db["unitframe"]["units"]["player"]["healPrediction"]["absorbStyle"] = "REVERSED"
 	E.db["unitframe"]["units"]["player"]["healPrediction"]["anchorPoint"] = "CENTER"
 	E.db["unitframe"]["units"]["player"]["health"]["position"] = "RIGHT"
@@ -1215,7 +1213,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["target"]["debuffs"]["spacing"] = 2
 	E.db["unitframe"]["units"]["target"]["disableMouseoverGlow"] = true
 	E.db["unitframe"]["units"]["target"]["fader"]["minAlpha"] = 0.25
-	E.db["unitframe"]["units"]["target"]["fader"]["smooth"] = 0.25
 	E.db["unitframe"]["units"]["target"]["healPrediction"]["absorbStyle"] = "REVERSED"
 	E.db["unitframe"]["units"]["target"]["healPrediction"]["anchorPoint"] = "CENTER"
 	E.db["unitframe"]["units"]["target"]["health"]["text_format"] = ""

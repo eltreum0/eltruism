@@ -50,15 +50,32 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		-- AB Conversion
 		E.db["convertPages"] = true
 
-		--smoothbars
-		E.db["general"]["altPowerBar"]["smoothbars"] = true
-		E.db["nameplates"]["smoothbars"] = true
-		E.db["unitframe"]["smoothbars"] = true
-
-		--new tooltip things
-		E.db["tooltip"]["inspectDataEnable"] = true
-		E.db["tooltip"]["mythicDataEnable"] = true
-		E.db["tooltip"]["role"] = true
+		--luckyone based optimizations
+		E.db["auras"]["buffs"]["seperateOwn"] = 0 -- do not sort auras
+		E.db["auras"]["debuffs"]["seperateOwn"] = 0 -- do not sort auras
+		E.db["chat"]["fade"] = false -- do not fade chat
+		E.db["unitframe"]["units"]["assist"]["enable"] = false --disable assist/tank frames
+		E.db["unitframe"]["units"]["tank"]["enable"] = false --disable assist/tank frames
+		E.db["unitframe"]["units"]["boss"]["fader"]["smooth"] = 0 --used to be 0.25
+		E.db["unitframe"]["units"]["player"]["fader"]["smooth"] = 0 --used to be 0.25
+		E.db["unitframe"]["units"]["target"]["fader"]["smooth"] = 0 --used to be 0.25
+		E.db["unitframe"]["units"]["targettarget"]["fader"]["smooth"] = 0
+		E.db["unitframe"]["units"]["focus"]["fader"]["smooth"] = 0 --used to be 0.25
+		E.db["unitframe"]["units"]["pet"]["fader"]["smooth"] = 0 --used to be 0.25
+		E.db["unitframe"]["units"]["arena"]["fader"]["smooth"] = 0
+		E.db["unitframe"]["units"]["boss"]["fader"]["smooth"] = 0
+		E.db["unitframe"]["units"]["party"]["fader"]["smooth"] = 0
+		E.db["unitframe"]["units"]["raid1"]["fader"]["smooth"] = 0
+		E.db["unitframe"]["units"]["raid2"]["fader"]["smooth"] = 0
+		E.db["unitframe"]["units"]["raid3"]["fader"]["smooth"] = 0
+		E.db["general"]["altPowerBar"]["smoothbars"] = false --was true
+		E.db["nameplates"]["smoothbars"] = false --was true
+		E.db["unitframe"]["smoothbars"] = false --was true
+		E.db["tooltip"]["inspectDataEnable"] = false --was true
+		E.db["tooltip"]["mythicDataEnable"] = false --was true
+		E.db["tooltip"]["role"] = false --was true
+		E.db["tooltip"]["targetInfo"] = false --was true
+		E.db["tooltip"]["showMount"] = false --was true
 
 		--to make sure its correct height
 		E.db["unitframe"]["units"]["player"]["height"] = 54
@@ -312,7 +329,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["colors"]["transparentCastbar"] = true
 		E.db["unitframe"]["colors"]["transparentHealth"] = true
 		E.db["unitframe"]["colors"]["transparentPower"] = false
-
 
 		--movers
 		E.db["movers"]["MoverEltruismInstanceDifficulty"] = "TOPRIGHT,UIParent,TOPRIGHT,-146,-21"
