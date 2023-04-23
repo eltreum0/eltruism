@@ -1409,3 +1409,5 @@ L["Add Gradient to Names"] = "Añadir degradado a los nombres"
 L["Player names in chat will have a class gradient"] = "Los nombres de los jugadores en el chat tendrán un degradado de clase"
 L["Enable on Buttons"] = "Activar en botones"
 L["Double Click:"] = "Doble clic:"
+L["Minimal Buffs"] = true
+L["Minimal Debuffs"] = true
