@@ -8,6 +8,10 @@ local UnitPlayerControlled = _G.UnitPlayerControlled
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
+local GetItemInfo = _G.GetItemInfo
+local GetItemQualityColor = _G.GetItemQualityColor
+local GameTooltip = _G.GameTooltip
+local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 
 --gradient tooltip health
 local function SetTooltipGradient(unit)
@@ -117,6 +121,7 @@ function ElvUI_EltreumUI:Tooltip(tt)
 						if not name then return end
 						if not itemLink then return end
 						local _, _, itemQuality = GetItemInfo(itemLink)
+						if not itemQuality then return end
 						local r2,g2,b2 = GetItemQualityColor(itemQuality)
 						local r1 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
 						if r1 < 0 then r1 = 0 end
@@ -157,6 +162,7 @@ function ElvUI_EltreumUI:Tooltip(tt)
 						if not name then return end
 						if not itemLink then return end
 						local _, _, itemQuality = GetItemInfo(itemLink)
+						if not itemQuality then return end
 						local r2,g2,b2 = GetItemQualityColor(itemQuality)
 						local r1 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
 						if r1 < 0 then r1 = 0 end
