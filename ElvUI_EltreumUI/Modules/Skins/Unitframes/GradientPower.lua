@@ -42,7 +42,7 @@ do
 			if unitframe and unitframe.Power then
 				if E.db.unitframe.colors.transparentPower and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
 					unitframe.Power.BG:SetVertexColor(E.db.unitframe.colors.power_backdrop.r,E.db.unitframe.colors.power_backdrop.g,E.db.unitframe.colors.power_backdrop.b,E.db.general.backdropfadecolor.a)
-					if not unitframe.Power.EltruismTransparencyFix then
+					if not unitframe.Power.EltruismTransparencyFix and E.db.unitframe.thinBorders then
 						unitframe.Power.backdrop:ClearAllPoints()
 						unitframe.Power.backdrop:SetAllPoints(unitframe.Power:GetStatusBarTexture())
 						unitframe.Power.backdrop:SetInside(unitframe.Power:GetStatusBarTexture(), 0, 0)

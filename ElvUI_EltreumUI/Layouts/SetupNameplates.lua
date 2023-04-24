@@ -576,8 +576,8 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style1" --border glow
 		--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style2" --background glow
 		--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style8" --background glow + side arrow
-		--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style4" --arrow
-		E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "none" --no target glow
+		E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style4" --arrow
+		--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "none" --no target glow
 
 		if E.Classic then
 			E.db["v11NamePlateReset"] = true
