@@ -46,7 +46,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 									frame.eltruismbgtexture:SetDrawLayer("BACKGROUND")
 								end
 								if frame:GetParent().TransmogStateTexture then --transmog stuff
-									frame.eltruismbgtexture:SetVertexColor(1,0,0,0)
+									frame.eltruismbgtexture:Hide()
 								end
 							end
 							if isUnitFrameElement and (frame:GetParent() and frame:GetParent().isTransparent == false) then --only on health
