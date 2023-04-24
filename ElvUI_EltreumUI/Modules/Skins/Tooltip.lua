@@ -87,19 +87,18 @@ end
 
 --skin tooltip
 function ElvUI_EltreumUI:Tooltip(tt)
-	if GameTooltip and GameTooltip:IsForbidden() then return end
-	if not tt then return end
+	if (GameTooltip and GameTooltip:IsForbidden()) then return end
 
 	--gradient
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.private.tooltip.enable and E.db.ElvUI_EltreumUI.skins.gradienttooltip then
-		if not GameTooltip.isHooked then
+		if not self.isHooked then
 			_G.GameTooltipStatusBar:HookScript("OnShow", function()
 				local _,unittp = _G.GameTooltip:GetUnit()
 				if unittp then
 					SetTooltipGradient(unittp)
 				end
 			end)
-			GameTooltip.isHooked = true
+			self.isHooked = true
 		end
 
 		local _, fixunit = _G.GameTooltip:GetUnit()
@@ -108,10 +107,10 @@ function ElvUI_EltreumUI:Tooltip(tt)
 		end
 	end
 
-	--ilvl tooltip & gradient item
+	--ilvl tooltip & gradient
 	if E.db.ElvUI_EltreumUI.skins.ilvltooltip or E.db.ElvUI_EltreumUI.skins.gradienttooltip then
 		if E.Retail then
-			if E.db.ElvUI_EltreumUI.skins.gradienttooltip and not GameTooltip.ilvlHook then
+			if E.db.ElvUI_EltreumUI.skins.gradienttooltip and not self.ilvlHook then
 				TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, function(tt, data)
 					if data and tt then
 						local name,itemLink = GameTooltip:GetItem()
@@ -128,10 +127,10 @@ function ElvUI_EltreumUI:Tooltip(tt)
 						_G["GameTooltipTextLeft1"]:SetText(E:TextGradient(name, r1, g1, b1, r2 + 0.2, g2 + 0.2, b2 + 0.2))
 					end
 				end)
-				GameTooltip.ilvlHook = true
+				self.ilvlHook = true
 			end
 		else
-			if not GameTooltip.ilvlHook then
+			if not self.ilvlHook then
 				GameTooltip:HookScript("OnTooltipSetItem", function(tooltip)
 					local line = _G["GameTooltipTextLeft2"]:GetText()
 					if line and not line:match(ITEM_LEVEL) then
@@ -168,7 +167,7 @@ function ElvUI_EltreumUI:Tooltip(tt)
 						_G["GameTooltipTextLeft1"]:SetText(E:TextGradient(name, r1, g1, b1, r2 + 0.2, g2 + 0.2, b2 + 0.2))
 					end
 				end)
-				GameTooltip.ilvlHook = true
+				self.ilvlHook = true
 			end
 		end
 	end
