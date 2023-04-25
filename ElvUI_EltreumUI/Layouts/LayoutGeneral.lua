@@ -1539,6 +1539,7 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('alwaysCompareItems', 0) --dont always compare
 	SetCVar('allowCompareWithToggle', 1) --compare using shift
 	SetCVar('instantQuestText', 1) -- makes quest text show fast instead of per line
+	SetCVar('maxFPSLoading', 30) --smoother loading bar
 
 	-- fast loot
 	SetCVar("autoLootRate", 1)
