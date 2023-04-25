@@ -1339,6 +1339,7 @@ P.ElvUI_EltreumUI = {
 		hpstatusdeadicon = "5",
 		hpstatusdcicon = "2",
 		deadtagicon = "5",
+		ghosttagicon = "1",
 		dctagicon = "2",
 
 		gamemenu = false,

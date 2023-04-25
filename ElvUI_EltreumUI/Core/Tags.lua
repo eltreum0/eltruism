@@ -616,7 +616,11 @@ E:AddTag("eltruism:dead", "UNIT_HEALTH", function(unit)
 			return L["Dead"]
 		end
 	elseif UnitIsGhost(unit) then
-		return GetSpellInfo(8326)
+		if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga:0:0:0:0|t"
+		else
+			return GetSpellInfo(8326)
+		end
 	end
 end)
 E:AddTagInfo("eltruism:dead", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Displays a dead symbol when unit is dead. Can be customized in Eltruism > Media"])
@@ -746,7 +750,11 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 				return L["Offline"]
 			end
 		elseif UnitIsGhost(unit) then
-			return GetSpellInfo(8326)
+			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga:0:0:0:0|t"
+			else
+				return GetSpellInfo(8326)
+			end
 		end
 	end
 end)
@@ -788,7 +796,11 @@ E:AddTag("eltruism:hpstatusnopc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PL
 				return L["Offline"]
 			end
 		elseif UnitIsGhost(unit) then
-			return GetSpellInfo(8326)
+			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga:0:0:0:0|t"
+			else
+				return GetSpellInfo(8326)
+			end
 		end
 	end
 end)
