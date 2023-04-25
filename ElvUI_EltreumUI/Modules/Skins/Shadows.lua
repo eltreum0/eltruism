@@ -2210,7 +2210,7 @@ function ElvUI_EltreumUI:Shadows()
 							end
 						end
 					end
-					if E.db["unitframe"]["units"]["target"]["infoPanel"]["enable"] then
+					if E.db.unitframe.units.target.infoPanel.enable then
 						if not _G["ElvUF_Target"].shadow then
 							_G["ElvUF_Target"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Target"].shadow)
@@ -2255,8 +2255,7 @@ function ElvUI_EltreumUI:Shadows()
 							end
 						end
 					end
-
-					if E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["enable"] then
+					if E.db.unitframe.units.targettarget.infoPanel.enable then
 						if _G["ElvUF_TargetTarget"].shadow then
 							_G["ElvUF_TargetTarget"].shadow:ClearAllPoints()
 							_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_TargetTarget_HealthBar"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -2275,8 +2274,7 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_TargetTarget"].shadow)
 						end
 					end
-
-					if E.db["unitframe"]["units"]["pet"]["infoPanel"]["enable"] then
+					if E.db.unitframe.units.pet.infoPanel.enable then
 						if _G["ElvUF_Pet_HealthBar"].shadow then
 							_G["ElvUF_Pet_HealthBar"].shadow:Hide()
 						end
@@ -2302,6 +2300,210 @@ function ElvUI_EltreumUI:Shadows()
 								end
 							end
 							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Pet"].shadow)
+						end
+					end
+				else
+					if E.db.unitframe.units.player.infoPanel.enable then ------TODO might need to look into right orientation
+						if not _G["ElvUF_Player"].shadow then
+							_G["ElvUF_Player"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player"].shadow)
+						end
+						if _G["ElvUF_Player"].shadow then
+							_G["ElvUF_Player"].shadow:Show()
+							_G["ElvUF_Player"].shadow:ClearAllPoints()
+							if E.db.unitframe.thinBorders then
+								_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player_HealthBar"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+								_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player_HealthBar"] ,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+								_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if E.db.unitframe.units.player.portrait.enable and E.db.unitframe.units.player.portrait.style ~= "3D" and not benikdettached then
+									_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player"].Portrait,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+									_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								end
+							else
+								_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player_HealthBar"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length-1, E.db.ElvUI_EltreumUI.skins.shadow.length+1)
+								_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player_HealthBar"],"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length+1, E.db.ElvUI_EltreumUI.skins.shadow.length+1)
+								_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length-1, -E.db.ElvUI_EltreumUI.skins.shadow.length-1)
+								_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length+1, -E.db.ElvUI_EltreumUI.skins.shadow.length-1)
+								if E.db.unitframe.units.player.portrait.enable and E.db.unitframe.units.player.portrait.style ~= "3D" and not benikdettached then
+									_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player"].Portrait,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length-1, E.db.ElvUI_EltreumUI.skins.shadow.length+1)
+									_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length-1, -E.db.ElvUI_EltreumUI.skins.shadow.length-1)
+								end
+							end
+							if (E.db.unitframe.units.player.classbar.detachFromFrame and E.db.unitframe.units.player.classbar.enable) or (E.db.unitframe.units.player.power.detachFromFrame and E.db.unitframe.units.player.power.enable) then
+								if _G["ElvUF_Player_HealthBar"].shadow then
+									_G["ElvUF_Player_HealthBar"].shadow:Hide()
+								end
+								if E.db.unitframe.units.player.classbar.detachFromFrame and not E.db.unitframe.units.player.power.detachFromFrame then
+									if E.db.unitframe.units.player.infoPanel.enable then
+										if E.db.unitframe.thinBorders then
+											_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player"],"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+											_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+										else
+											_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player"],"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length-1, E.db.ElvUI_EltreumUI.skins.shadow.length)
+											_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length+1)
+										end
+									else
+										_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_PowerBar"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_PowerBar"] ,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									end
+								elseif E.db.unitframe.units.player.classbar.detachFromFrame and E.db.unitframe.units.player.power.detachFromFrame then
+									if E.db.unitframe.units.player.infoPanel.enable then
+										_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_HealthBar"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_HealthBar"] ,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player_InfoPanel"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player_InfoPanel"],"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+									else
+										_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_HealthBar"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_HealthBar"] ,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									end
+								elseif not E.db.unitframe.units.player.classbar.detachFromFrame and E.db.unitframe.units.player.power.detachFromFrame then
+									if E.db.unitframe.units.player.infoPanel.enable then
+										_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player_HealthBar"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player_HealthBar"] ,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									else
+										_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_HealthBar"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_HealthBar"] ,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									end
+								end
+							end
+						end
+					end
+					if E.db.unitframe.units.target.infoPanel.enable then
+						if not _G["ElvUF_Target"].shadow then
+							_G["ElvUF_Target"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Target"].shadow)
+						end
+						if _G["ElvUF_Target"].shadow then
+							_G["ElvUF_Target"].shadow:Show()
+							_G["ElvUF_Target"].shadow:ClearAllPoints()
+							if E.db.unitframe.thinBorders then
+								_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target_HealthBar"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+								_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target_HealthBar"] ,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+								_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if E.db.unitframe.units.target.portrait.enable and E.db.unitframe.units.target.portrait.style ~= "3D" and not benikdettached then
+									_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target"].Portrait,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+									_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								end
+							else
+								_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target_HealthBar"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length-1, E.db.ElvUI_EltreumUI.skins.shadow.length+1)
+								_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target_HealthBar"],"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length+1, E.db.ElvUI_EltreumUI.skins.shadow.length+1)
+								_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length-1, -E.db.ElvUI_EltreumUI.skins.shadow.length-1)
+								_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length+1, -E.db.ElvUI_EltreumUI.skins.shadow.length-1)
+								if E.db.unitframe.units.target.portrait.enable and E.db.unitframe.units.target.portrait.style ~= "3D" and not benikdettached then
+									_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target"].Portrait,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length+1, E.db.ElvUI_EltreumUI.skins.shadow.length+1)
+									_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length+1, -E.db.ElvUI_EltreumUI.skins.shadow.length-1)
+								end
+							end
+							if (E.db.unitframe.units.target.power.detachFromFrame and E.db.unitframe.units.target.power.enable) then
+								if _G["ElvUF_Target_HealthBar"].shadow then
+									_G["ElvUF_Target_HealthBar"].shadow:Hide()
+								end
+								if E.db.unitframe.units.target.power.detachFromFrame then
+									if E.db.unitframe.units.target.infoPanel.enable then
+										_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target_HealthBar"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target_HealthBar"] ,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									else
+										_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target_HealthBar"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_HealthBar"] ,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									end
+								end
+							end
+						end
+					end
+					if E.db.unitframe.units.targettarget.infoPanel.enable then
+						if not _G["ElvUF_TargetTarget"].shadow then
+							_G["ElvUF_TargetTarget"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_TargetTarget"].shadow)
+						end
+						if _G["ElvUF_TargetTarget"].shadow then
+							_G["ElvUF_TargetTarget"].shadow:Show()
+							_G["ElvUF_TargetTarget"].shadow:ClearAllPoints()
+							if E.db.unitframe.thinBorders then
+								_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget_HealthBar"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+								_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_TargetTarget_HealthBar"] ,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+								_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_TargetTarget_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if E.db.unitframe.units.targettarget.portrait.enable and E.db.unitframe.units.targettarget.portrait.style ~= "3D" and not benikdettached then
+									_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_TargetTarget"].Portrait,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+									_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								end
+							else
+								_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget_HealthBar"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length-1, E.db.ElvUI_EltreumUI.skins.shadow.length+1)
+								_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_TargetTarget_HealthBar"],"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length+1, E.db.ElvUI_EltreumUI.skins.shadow.length+1)
+								_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_TargetTarget_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length-1, -E.db.ElvUI_EltreumUI.skins.shadow.length-1)
+								_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length+1, -E.db.ElvUI_EltreumUI.skins.shadow.length-1)
+								if E.db.unitframe.units.targettarget.portrait.enable and E.db.unitframe.units.targettarget.portrait.style ~= "3D" and not benikdettached then
+									_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_TargetTarget"].Portrait,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length+1, E.db.ElvUI_EltreumUI.skins.shadow.length+1)
+									_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length+1, -E.db.ElvUI_EltreumUI.skins.shadow.length-1)
+								end
+							end
+							if (E.db.unitframe.units.targettarget.power.detachFromFrame and E.db.unitframe.units.targettarget.power.enable) then
+								if _G["ElvUF_TargetTarget_HealthBar"].shadow then
+									_G["ElvUF_TargetTarget_HealthBar"].shadow:Hide()
+								end
+								if E.db.unitframe.units.targettarget.power.detachFromFrame then
+									if E.db.unitframe.units.targettarget.infoPanel.enable then
+										_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget_HealthBar"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_TargetTarget_HealthBar"] ,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_TargetTarget_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									else
+										_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_TargetTarget_HealthBar"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget_HealthBar"] ,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									end
+								end
+							end
+						end
+					end
+					if E.db.unitframe.units.pet.infoPanel.enable then
+						if not _G["ElvUF_Pet"].shadow then
+							_G["ElvUF_Pet"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Pet"].shadow)
+						end
+						if _G["ElvUF_Pet"].shadow then
+							_G["ElvUF_Pet"].shadow:Show()
+							_G["ElvUF_Pet"].shadow:ClearAllPoints()
+							if E.db.unitframe.thinBorders then
+								_G["ElvUF_Pet"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Pet_HealthBar"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+								_G["ElvUF_Pet"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Pet_HealthBar"] ,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+								_G["ElvUF_Pet"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Pet_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								_G["ElvUF_Pet"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Pet_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if E.db.unitframe.units.pet.portrait.enable and E.db.unitframe.units.pet.portrait.style ~= "3D" and not benikdettached then
+									_G["ElvUF_Pet"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Pet"].Portrait,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+									_G["ElvUF_Pet"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Pet_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								end
+							else
+								_G["ElvUF_Pet"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Pet_HealthBar"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length-1, E.db.ElvUI_EltreumUI.skins.shadow.length+1)
+								_G["ElvUF_Pet"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Pet_HealthBar"],"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length+1, E.db.ElvUI_EltreumUI.skins.shadow.length+1)
+								_G["ElvUF_Pet"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Pet_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length-1, -E.db.ElvUI_EltreumUI.skins.shadow.length-1)
+								_G["ElvUF_Pet"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Pet_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length+1, -E.db.ElvUI_EltreumUI.skins.shadow.length-1)
+								if E.db.unitframe.units.pet.portrait.enable and E.db.unitframe.units.pet.portrait.style ~= "3D" and not benikdettached then
+									_G["ElvUF_Pet"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Pet"].Portrait,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length+1, E.db.ElvUI_EltreumUI.skins.shadow.length+1)
+									_G["ElvUF_Pet"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Pet_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length+1, -E.db.ElvUI_EltreumUI.skins.shadow.length-1)
+								end
+							end
+							if (E.db.unitframe.units.pet.power.detachFromFrame and E.db.unitframe.units.pet.power.enable) then
+								if _G["ElvUF_Pet_HealthBar"].shadow then
+									_G["ElvUF_Pet_HealthBar"].shadow:Hide()
+								end
+								if E.db.unitframe.units.pet.power.detachFromFrame then
+									if E.db.unitframe.units.pet.infoPanel.enable then
+										_G["ElvUF_Pet"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Pet_HealthBar"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Pet"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Pet_HealthBar"] ,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Pet"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Pet_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Pet"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Pet_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									else
+										_G["ElvUF_Pet"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Pet_HealthBar"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Pet"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Pet_HealthBar"] ,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									end
+								end
+							end
 						end
 					end
 				end
