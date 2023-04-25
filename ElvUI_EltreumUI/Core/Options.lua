@@ -934,6 +934,19 @@ function ElvUI_EltreumUI:Configtable()
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.dctagicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.dctagicon = tostring(value) end)
 	ElvUI_EltreumUI.Options.args.media.args.tags.args.dc.args.dciconpick.style = "radio"
 
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.ghost = ACH:Group(GetSpellInfo(8326), nil, 2)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.ghost.args.description1 = ACH:Description(E.NewSign..L["Customize the Ghost Icons"], 1, nil, function() return 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', 3240, 1 end, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.ghost.args.ghosticonpick = ACH:Select(GetSpellInfo(8326), nil, 2, {
+		["1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost1',':20:20'),
+		["2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost2',':20:20'),
+		["3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost3',':20:20'),
+		["4"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost4',':20:20'),
+		["5"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost5',':20:20'),
+		["6"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost6',':20:20'),
+		["NONE"] = L["None"],
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon = tostring(value) end)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.ghost.args.ghosticonpick.style = "radio"
+
 	--weakauras anchor
 	ElvUI_EltreumUI.Options.args.weakauras = ACH:Group(E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's movers to move them"], 85)
 	ElvUI_EltreumUI.Options.args.weakauras.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras'
