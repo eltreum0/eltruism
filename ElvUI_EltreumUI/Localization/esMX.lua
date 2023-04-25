@@ -1429,3 +1429,6 @@ L["Eltruism Raid Buffs"] = "Buffs de Raid de Eltruism"
 L["Eltruism Raid Debuffs"] = "Debuffs de Raid de Eltruism"
 L["Minimal"] = "Mínimo"
 L["Select how auras will be displayed for Aura Bars"] = "Selecciona cómo se mostrarán las auras en las barras de aura"
+L["Gradient Item Color Offsets"] = true
+L["Left Offset"] = true
+L["Right Offset"] = true

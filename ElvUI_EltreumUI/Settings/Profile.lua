@@ -345,6 +345,8 @@ P.ElvUI_EltreumUI = {
 		},
 		ilvltooltip = true,
 		gradienttooltip = true,
+		gradienttooltipoffset1 = -0.2,
+		gradienttooltipoffset2 = 0.2,
 		professionscale = 1,
 	},
 
