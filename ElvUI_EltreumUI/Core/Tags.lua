@@ -1001,7 +1001,7 @@ E:AddTag("eltruism:smartlevel", 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 end)
 E:AddTagInfo("eltruism:smartlevel", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows level difference when it exists for NPCs and players, hides for players if same level"])
 
-E:AddTag("eltruism:stance", 'UNIT_AURA', function(unit)
+E:AddTag("eltruism:stance", 1, function(unit)
 	local stance = GetShapeshiftForm()
 	local stanceInfo = stanceID[E.myclass] and stanceID[E.myclass][stance]
 	if stanceBackup ~= stance then
