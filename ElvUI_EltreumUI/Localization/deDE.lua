@@ -1458,3 +1458,4 @@ L["Select how auras will be displayed for Aura Bars"] = true
 L["Gradient Item Color Offsets"] = true
 L["Left Offset"] = true
 L["Right Offset"] = true
+L["Customize the Ghost Icons"] = true
