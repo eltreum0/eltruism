@@ -1110,7 +1110,7 @@ E:AddTag("eltruism:classcolor", 'UNIT_NAME_UPDATE', function(unit)
 	if UnitIsPlayer(unit) then
 		local _, unitClass = UnitClass(unit)
 		local cs = ElvUF.colors.class[unitClass]
-		return (cs and Hex(cs[1], cs[2], cs[3])) or '|cFFcccccc'
+		return (cs and E:RGBToHex(cs[1], cs[2], cs[3])) or '|cFFcccccc'
 	end
 end)
 E:AddTagInfo("eltruism:classcolor", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Returns class color only for players"])
