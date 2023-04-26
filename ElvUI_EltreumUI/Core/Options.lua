@@ -2381,6 +2381,7 @@ function ElvUI_EltreumUI:Configtable()
 		["TYPE19"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull9',':20:20'),
 		["TYPE20"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper',':20:20'),
 		["TYPE21"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper2',':20:20'),
+		["TYPE22"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull10',':20:20'),
 		["CUSTOM"] = 'Custom',
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss end, function(_,value) E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss = value end, function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable end)
 	ElvUI_EltreumUI.Options.args.nameplates.args.classification.args.boss.args.select.style = "radio"
@@ -2409,6 +2410,7 @@ function ElvUI_EltreumUI:Configtable()
 		["TYPE19"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull9',':20:20'),
 		["TYPE20"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper',':20:20'),
 		["TYPE21"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper2',':20:20'),
+		["TYPE22"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull10',':20:20'),
 		["CUSTOM"] = 'Custom',
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite end, function(_,value) E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite = value end, function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable end)
 	ElvUI_EltreumUI.Options.args.nameplates.args.classification.args.elite.args.select.style = "radio"
@@ -2437,6 +2439,7 @@ function ElvUI_EltreumUI:Configtable()
 		["TYPE19"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull9',':20:20'),
 		["TYPE20"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper',':20:20'),
 		["TYPE21"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper2',':20:20'),
+		["TYPE22"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull10',':20:20'),
 		["CUSTOM"] = 'Custom',
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare end, function(_,value) E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare = value end, function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable end)
 	ElvUI_EltreumUI.Options.args.nameplates.args.classification.args.rare.args.select.style = "radio"
@@ -2465,6 +2468,7 @@ function ElvUI_EltreumUI:Configtable()
 		["TYPE19"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull9',':20:20'),
 		["TYPE20"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper',':20:20'),
 		["TYPE21"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper2',':20:20'),
+		["TYPE22"] = E:TextureString('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull10',':20:20'),
 		["CUSTOM"] = 'Custom',
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite end, function(_,value) E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite = value end, function() return not E.db.ElvUI_EltreumUI.nameplates.classification.enable end)
 	ElvUI_EltreumUI.Options.args.nameplates.args.classification.args.rareelite.args.select.style = "radio"

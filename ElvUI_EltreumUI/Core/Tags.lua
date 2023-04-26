@@ -590,6 +590,23 @@ E:AddTag("eltruism:levelskull", "UNIT_TARGET UNIT_NAME_UPDATE", function(unit)
 end)
 E:AddTagInfo("eltruism:levelskull", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Shows the Unit Level, or a skull if the level is too high"])
 
+E:AddTag("eltruism:levelskull2", "UNIT_TARGET UNIT_NAME_UPDATE", function(unit)
+	local level
+	if E.Retail then
+		level = UnitEffectiveLevel(unit)
+	else
+		level = UnitLevel(unit)
+	end
+	local diff = level - UnitLevel("player")
+	local classification = UnitClassification(unit)
+	if diff > 8 or classification == "worldboss" then
+		return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull10.tga:0:0:0:0|t"
+	else
+		return level
+	end
+end)
+E:AddTagInfo("eltruism:levelskull2", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Shows the Unit Level, or a skull if the level is too high"])
+
 --Short classification, but with a skull for boss instead of B for Nekator
 E:AddTag("eltruism:shortclassification", "UNIT_NAME_UPDATE", function(unit)
 	local c = UnitClassification(unit)
