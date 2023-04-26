@@ -810,6 +810,12 @@ function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
 	end
 end
 
+--10.1 addon compartment
+function ElvUI_EltreumUI_OnAddonCompartmentClick()
+	E:ToggleOptions()
+	E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
+end
+
 --for fps testing
 --[[
 local framerate = CreateFrame("Frame", nil, UIParent)
