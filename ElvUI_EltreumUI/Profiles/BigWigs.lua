@@ -50,7 +50,6 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		["BigWigsAnchor_x"] = 1093,
 		["spacing"] = 15,
 		["emphasizeTime"] = 10,
-		["emphasizeGrowup"] = true,
 		--["barStyle"] = "AddOnSkins Half-Bar",
 		["barStyle"] = "Eltruism",
 		["BigWigsEmphasizeAnchor_height"] = 15,
@@ -62,7 +61,6 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		["outline"] = "OUTLINE",
 		["BigWigsEmphasizeAnchor_x"] = 928,
 		["texture"] = "ElvUI Norm1",
-		["outline"] = "OUTLINE",
 	}
 	bigwigstype["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] = bigwigstype["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] or {}
 	bigwigstype["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"]["Eltreum"] = {
