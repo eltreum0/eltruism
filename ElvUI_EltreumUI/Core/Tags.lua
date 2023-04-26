@@ -475,10 +475,8 @@ E:AddTagInfo("eltruism:ReleafIconOutline:player", ElvUI_EltreumUI.Name.." "..L["
 
 --show class icons on all targets
 E:AddTag("eltruism:reverseclass:all", "UNIT_NAME_UPDATE", function(unit)
-	local icon
 	local _ , classes = UnitClass(unit)
-	icon = reverseclassIcons[classes]
-	return icon
+	return ElvUI_EltreumUI:GetClassIcons("RELEAF",classes,true)
 end)
 E:AddTagInfo('eltruism:reverseclass:all', ElvUI_EltreumUI.Name.." "..L["Icons"], L["Shows Flipped Class Icons recolored by Releaf on all targets"])
 
