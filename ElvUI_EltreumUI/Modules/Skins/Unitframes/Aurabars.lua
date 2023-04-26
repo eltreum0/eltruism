@@ -87,7 +87,13 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 						if E.db.unitframe.colors.transparentAurabars then
 							bar.bg:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 						end
-						bar.backdrop:SetBackdropColor(0,0,0,0)
+						if bar.unit == "target" and E.db.unitframe.units.target.aurabar.reverseFill then
+							bar.backdrop:SetBackdropColor(0,0,0,E.db.general.backdropfadecolor.a)
+						elseif bar.unit == "player" and E.db.unitframe.units.player.aurabar.reverseFill then
+							bar.backdrop:SetBackdropColor(0,0,0,E.db.general.backdropfadecolor.a)
+						else
+							bar.backdrop:SetBackdropColor(0,0,0,0)
+						end
 					end
 				end
 			end)
