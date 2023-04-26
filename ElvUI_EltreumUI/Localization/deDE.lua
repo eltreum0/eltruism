@@ -1459,3 +1459,4 @@ L["Gradient Item Color Offsets"] = "Verlauf Gegenstandsfarben Versatz"
 L["Left Offset"] = "Linker Versatz"
 L["Right Offset"] = "Rechter Versatz"
 L["Customize the Ghost Icons"] = "Passe die Geistersymbole an"
+L["Displays percentage health with status icons"] = true
