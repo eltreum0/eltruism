@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, _, _, P = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc

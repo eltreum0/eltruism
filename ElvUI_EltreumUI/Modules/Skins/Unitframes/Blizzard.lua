@@ -1,5 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
-local UF = E:GetModule('UnitFrames')
+local E = unpack(ElvUI)
 local _G = _G
 local UnitClass = _G.UnitClass
 

@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local CreateFrame = _G.CreateFrame
@@ -13,7 +13,7 @@ WideTradeSkillEnchant:RegisterEvent("PLAYER_ENTERING_WORLD")
 local dontexpandanymoreEnchant = 0
 local dontexpandanymore = 0
 local skillbutton,skillTitle
-local vellumbutton,disenchantbutton,tradeskilloadmonitor
+local vellumbutton,disenchantbutton
 local classcolor = E:ClassColor(E.myclass, true)
 local string = _G.string
 

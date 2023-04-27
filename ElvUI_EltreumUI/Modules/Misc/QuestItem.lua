@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
@@ -9,14 +9,11 @@ local InCombatLockdown = _G.InCombatLockdown
 local GetBindingKey = _G.GetBindingKey
 local SetBindingClick = _G.SetBindingClick
 local HandleModifiedItemClick = _G.HandleModifiedItemClick
-local IsShiftKeyDown = _G.IsShiftKeyDown
-local GameFontNormal = _G.GameFontNormal
 local GameTooltip = _G.GameTooltip
 local GetItemInfo = _G.GetItemInfo
 local ipairs = _G.ipairs
 local GetContainerNumSlots = (E.Retail or E.Wrath) and C_Container.GetContainerNumSlots or _G.GetContainerNumSlots
 local GetContainerItemLink = (E.Retail or E.Wrath) and C_Container.GetContainerItemLink or _G.GetContainerItemLink
-local GetContainerItemQuestInfo = (E.Retail or E.Wrath) and C_Container.GetContainerItemQuestInfo or _G.GetContainerItemQuestInfo
 local GetContainerItemInfo = (E.Retail or E.Wrath) and C_Container.GetContainerItemInfo or _G.GetContainerItemInfo
 local GetContainerItemCooldown = (E.Retail or E.Wrath) and C_Container.GetContainerItemCooldown or _G.GetContainerItemCooldown
 local tonumber = _G.tonumber
@@ -433,7 +430,7 @@ function ElvUI_EltreumUI:QuestItem()
 			--------------------------------------------------------------------------------------------------------
 			--                                                Main                                                --
 			--------------------------------------------------------------------------------------------------------
-			local function OnUpdate(self,elapsed)
+			local function OnUpdate(_,elapsed)
 				--print("quest item spam "..math.random(1,99))
 				EltruismQuestItemFrame.updateTime = (EltruismQuestItemFrame.updateTime + elapsed)
 				if (EltruismQuestItemFrame.updateTime > UPDATE_DELAY) then
@@ -484,7 +481,7 @@ function ElvUI_EltreumUI:QuestItem()
 						b:SetAlpha(1)
 					end
 				end)
-				b:SetScript("OnLeave", function(self)
+				b:SetScript("OnLeave", function()
 					if E.db.ElvUI_EltreumUI.quests.questitemsfade then
 						b:SetAlpha(0)
 					end
@@ -774,7 +771,7 @@ function ElvUI_EltreumUI:QuestItem()
 			end)
 
 			-- Update Cooldowns
-			function EltruismQuestItemFrame:ACTIONBAR_UPDATE_COOLDOWN(event)
+			function EltruismQuestItemFrame:ACTIONBAR_UPDATE_COOLDOWN()
 				--print("actionbar update cooldown")
 				if not EltruismQuestItemFrame.shownItems then --added this check
 					EltruismQuestItemFrame.shownItems = 0
@@ -785,7 +782,7 @@ function ElvUI_EltreumUI:QuestItem()
 			end
 
 			-- Inventory Changed
-			function EltruismQuestItemFrame:UNIT_INVENTORY_CHANGED(event,unit)
+			function EltruismQuestItemFrame:UNIT_INVENTORY_CHANGED(_,unit)
 				--print("unit inventory changed")
 				if (unit == "player") then
 					EltruismQuestItemFrame:RequestUpdate()
@@ -795,7 +792,7 @@ function ElvUI_EltreumUI:QuestItem()
 			end
 
 			-- Inventory might've changed because of mail
-			function EltruismQuestItemFrame:MAIL_SUCCESS(event)
+			function EltruismQuestItemFrame:MAIL_SUCCESS()
 				--print("mail sucess")
 				EltruismQuestItemFrame:RequestUpdate()
 				-- update mover position

@@ -1,7 +1,6 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local IsInInstance = _G.IsInInstance
 local ObjectiveTracker_Collapse = _G.ObjectiveTracker_Collapse
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local IsInInstance = _G.IsInInstance
@@ -355,7 +354,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								if E.db.ElvUI_EltreumUI.dev then
 									ElvUI_EltreumUI:Print("available quest detected, searching for it")
 								end
-								for i, k in next, C_GossipInfo.GetAvailableQuests() do --quests to grab
+								for _, k in next, C_GossipInfo.GetAvailableQuests() do --quests to grab
 									--local title, questLevel, isTrivial, frequency, repeatable, isComplete, isLegendary, isIgnored, questID = C_GossipInfo.GetAvailableQuests(i)
 									if E.db.ElvUI_EltreumUI.dev then
 										ElvUI_EltreumUI:Print("iterate and select quest to get")
@@ -372,7 +371,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								if E.db.ElvUI_EltreumUI.dev then
 									ElvUI_EltreumUI:Print("active quest detected, searching for option")
 								end
-								for i, k in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
+								for i, _ in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
 									--local _, _, _, _, isComplete = active[i]
 									if active[i].isComplete == true then
 										completed = completed + 1
@@ -439,13 +438,13 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 												if E.db.ElvUI_EltreumUI.dev then
 													ElvUI_EltreumUI:Print("multiple gossip options detected, looking for blue quest text")
 												end
-												for i = 1, #gossipInfoTable do
-													local text = gossipInfoTable[i].name
+												for infonumber = 1, #gossipInfoTable do
+													local text = gossipInfoTable[infonumber].name
 													if text and text:match("|cFF0000FF") then --quests are marked with a blue (Quests) text too
 														if E.db.ElvUI_EltreumUI.dev then
 															ElvUI_EltreumUI:Print("blue quest text found, selecting it")
 														end
-														C_GossipInfo.SelectOption(gossipInfoTable[i].gossipOptionID)
+														C_GossipInfo.SelectOption(gossipInfoTable[infonumber].gossipOptionID)
 													end
 												end
 											end
@@ -567,7 +566,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								--GetQuestPortraitTurnIn()
 								--C_QuestOffer.
 							end
-							for i, k in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
+							for i, _ in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
 								local questdump = C_GossipInfo.GetActiveQuests()
 								--local _, _, _, _, isComplete = questdump[i]
 								if questdump[i].isComplete == false then

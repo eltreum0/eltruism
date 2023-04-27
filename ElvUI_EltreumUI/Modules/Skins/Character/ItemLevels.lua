@@ -1,11 +1,10 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local overlayFrame
 local _, hex
 local itemLink
 local quality
-local levelGetDetailedItemLevelInfo
 local slotID
 local itemQuality, itemLevel
 local math = _G.math
@@ -85,28 +84,28 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 			button.eltruismilvl:Hide()
 		end
 
-		local function AddLevelToButton(button, itemLevel, itemQuality)
-			if not itemLevel then
+		local function AddLevelToButton(button, itemLevel2, itemQuality2)
+			if not itemLevel2 then
 				return button.eltruismilvl and button.eltruismilvl:Hide()
-			elseif itemLevel == 1 then
+			elseif itemLevel2 == 1 then
 				return button.eltruismilvl and button.eltruismilvl:Hide()
 			end
 			PrepareItemButton(button)
-			_, _, _, hex = GetItemQualityColor(itemQuality)
+			_, _, _, hex = GetItemQualityColor(itemQuality2)
 			--if hex == "ffffffff" then
 				--return
 			--end
-			button.eltruismilvl:SetFormattedText('|c%s%s|r', hex, itemLevel or '?')
+			button.eltruismilvl:SetFormattedText('|c%s%s|r', hex, itemLevel2 or '?')
 			button.eltruismilvl:Show()
 		end
 
-		local function GetItemQualityAndLevel(unit, slotID)
+		local function GetItemQualityAndLevel(unit, slotID2)
 			-- link is more reliably fetched than ID, for whatever reason
 			--local itemLink = GetInventoryItemLink(unit, slotID)
-			itemLink = GetInventoryItemLink(unit, slotID)
+			itemLink = GetInventoryItemLink(unit, slotID2)
 			--local itemLink = LibItemInfo:GetUnitItemIndexLink(unit, slotID)
 			if itemLink ~= nil then
-				quality = GetInventoryItemQuality(unit, slotID)
+				quality = GetInventoryItemQuality(unit, slotID2)
 				level = GetDetailedItemLevelInfo(itemLink)
 				---local level LibItemInfo:GetItemLevel(itemLink)
 				--print(level) --level is the item level of each item

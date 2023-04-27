@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
@@ -68,7 +68,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 					end
 				end
 			else
-				button.Cooldown:SetScript('OnUpdate', function(self, elapsed)
+				button.Cooldown:SetScript('OnUpdate', function(_, elapsed)
 					TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 					if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 						TimeSinceLastUpdate = 0
@@ -165,7 +165,7 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 			return
 		else
 			TimeSinceLastUpdate = 0
-			button.Cooldown:SetScript('OnUpdate', function(self, elapsed)
+			button.Cooldown:SetScript('OnUpdate', function(_, elapsed)
 				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 					TimeSinceLastUpdate = 0

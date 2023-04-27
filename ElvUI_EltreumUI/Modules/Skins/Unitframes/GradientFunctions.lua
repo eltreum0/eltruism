@@ -1,9 +1,8 @@
-local E, L, V, P, G = unpack(ElvUI)
-local UF = E:GetModule('UnitFrames')
+local E = unpack(ElvUI)
 local _G = _G
-local hooksecurefunc = _G.hooksecurefunc
 local tostring = _G.tostring
 local CreateFrame = _G.CreateFrame
+local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 
 --set the variables
 local unitframegradients = {

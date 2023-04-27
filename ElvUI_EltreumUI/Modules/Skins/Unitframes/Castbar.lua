@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
@@ -9,9 +9,9 @@ local UnitIsPlayer = _G.UnitIsPlayer
 local targetcastbar,focuscastbar,castbar,petcastbar
 local reactiontarget,reactionfocus,reactionpet
 local _, targetclass, focusclass, petclass
-local IsAddOnLoaded = _G.IsAddOnLoaded
 local headergroup,group,groupbutton
 local select = _G.select
+local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 
 --elvui castbar texture/gradient
 function ElvUI_EltreumUI:CastBarTextureGradient()

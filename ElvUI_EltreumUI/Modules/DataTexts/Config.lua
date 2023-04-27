@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local _G = _G
 local DT = E:GetModule("DataTexts")
 local InCombatLockdown = _G.InCombatLockdown
@@ -32,7 +32,7 @@ local function EltruismConfigOnClick(_, button)
 	end
 end
 
-local function EltruismConfigValueColorUpdate(self,hex)
+local function EltruismConfigValueColorUpdate(_,hex)
 	displayStringEltruismconfig = strjoin('', hex, '%s|r')
 	if lastPanelEltruismConfig then EltruismConfigOnEvent(lastPanelEltruismConfig) end
 end

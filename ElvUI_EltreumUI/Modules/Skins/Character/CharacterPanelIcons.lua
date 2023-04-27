@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
 local CreateFrame = _G.CreateFrame
@@ -7,7 +7,6 @@ local hooksecurefunc = _G.hooksecurefunc
 local CharacterLevelText = _G.CharacterLevelText
 local CharacterFrameTitleText = _G.CharacterFrameTitleText
 local CharacterNameText = _G.CharacterNameText
-local CharacterModelFrame = _G.CharacterModelFrame
 local CharacterFrame = _G.CharacterFrame
 local PaperDollFrame = _G.PaperDollFrame
 local ReputationFrame = _G.ReputationFrame

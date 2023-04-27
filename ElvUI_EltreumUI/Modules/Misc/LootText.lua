@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local _G = _G
 local Deformat = _G.LibStub("LibDeformat-3.0")
 local CreateFrame = _G.CreateFrame
@@ -55,7 +55,6 @@ function ElvUI_EltreumUI:LootText()
 		end
 
 		-- See which direction the message should flow
-		local yDir
 		local lowestMessage
 		local useXadjustment = 0
 
@@ -177,37 +176,37 @@ function ElvUI_EltreumUI:LootText()
 	if E.db.ElvUI_EltreumUI.loot.loottext.enable then
 		local function getLoot(chatmsg)
 			-- check for multiple-item-loot
-			local itemLink, amount = Deformat(chatmsg, LOOT_ITEM_SELF_MULTIPLE)
-			if not itemLink then
-				itemLink, amount = Deformat(chatmsg, LOOT_ITEM_PUSHED_SELF_MULTIPLE)
+			local itemLink2, amount2 = Deformat(chatmsg, LOOT_ITEM_SELF_MULTIPLE)
+			if not itemLink2 then
+				itemLink2, amount2 = Deformat(chatmsg, LOOT_ITEM_PUSHED_SELF_MULTIPLE)
 			end
 			-- check for single-itemloot
-			if not itemLink then
-				itemLink = Deformat(chatmsg, LOOT_ITEM_SELF)
+			if not itemLink2 then
+				itemLink2 = Deformat(chatmsg, LOOT_ITEM_SELF)
 			end
-			if not itemLink then
-				itemLink, amount = Deformat(chatmsg, LOOT_ITEM_PUSHED_SELF)
+			if not itemLink2 then
+				itemLink2, amount2 = Deformat(chatmsg, LOOT_ITEM_PUSHED_SELF)
 			end
 			--check for created item
-			if not itemLink then
-				itemLink,amount = Deformat(chatmsg, LOOT_ITEM_CREATED_SELF)
+			if not itemLink2 then
+				itemLink2,amount2 = Deformat(chatmsg, LOOT_ITEM_CREATED_SELF)
 			end
-			if not itemLink then
-				itemLink,amount = Deformat(chatmsg, TRADESKILL_LOG_FIRSTPERSON)
+			if not itemLink2 then
+				itemLink2,amount2 = Deformat(chatmsg, TRADESKILL_LOG_FIRSTPERSON)
 			end
-			if not itemLink then
-				itemLink,amount = Deformat(chatmsg, LOOT_ITEM_CREATED_SELF_MULTIPLE)
+			if not itemLink2 then
+				itemLink2,amount2 = Deformat(chatmsg, LOOT_ITEM_CREATED_SELF_MULTIPLE)
 			end
 			-- if something has been looted
-			if itemLink then
-				if not amount then
-					amount = 1
+			if itemLink2 then
+				if not amount2 then
+					amount2 = 1
 				end
-				return itemLink, amount
+				return itemLink2, amount2
 			end
 		end
 
-		function LootTextframe.OnEvent(self, event, arg1, arg2)
+		function LootTextframe.OnEvent(_, event, arg1, arg2)
 			if event == "UI_ERROR_MESSAGE" and arg2 == ERR_INV_FULL then
 				if errorthrottle == false then
 					CombatText_AddMessage(INVENTORY_FULL, CombatText_StandardScroll, 1, 0, 0) --apparently it spams for some people

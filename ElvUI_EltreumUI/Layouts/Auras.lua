@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 
 --Eltruism/Default ElvUI filters
 

@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local oUF = E.oUF
 local NP = E:GetModule('NamePlates')
 local elementAdded = false

@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
@@ -19,7 +19,7 @@ local group, groupbutton, tankbutton, assistbutton, raidpetbutton,partypetbutton
 local IsInGroup = _G.IsInGroup
 local UnitIsCharmed = _G.UnitIsCharmed
 local pairs = _G.pairs
-local CreateFrame = _G.CreateFrame
+local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 
 --set the textures for single units
 function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture)

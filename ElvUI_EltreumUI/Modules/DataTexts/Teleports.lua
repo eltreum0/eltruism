@@ -1,7 +1,6 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local _G = _G
 local DT = E:GetModule("DataTexts")
-local GetCombatRatingBonus = _G.GetCombatRatingBonus
 local math = _G.math
 local GetItemInfo = _G.GetItemInfo
 local GetItemCount = _G.GetItemCount
@@ -193,7 +192,6 @@ local ONUPDATE_INTERVAL = 1
 local displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
 
 local function EltruismTeleportsOnEvent(self)
-	local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
 	local start, duration = GetItemCooldown(6948)
 	if not start then return end
 	local cooldown = start + duration - GetTime()
@@ -207,10 +205,9 @@ local function EltruismTeleportsOnEvent(self)
 	self.text:SetText(displayStringEltruismTeleports)
 end
 
-local function EltruismTeleportsOnEnter(self)
+local function EltruismTeleportsOnEnter()
 	DT.tooltip:ClearLines()
-	local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
-	for i,v in pairs(TeleportsItems) do
+	for _,v in pairs(TeleportsItems) do
 		local texture = GetItemIcon(v)
 		local name = GetItemInfo(v)
 		local hasItem = GetItemCount(v)
@@ -241,7 +238,7 @@ local function EltruismTeleportsOnEnter(self)
 			end
 		end
 	end
-	for i,v in pairs(TeleportsSpells) do
+	for _,v in pairs(TeleportsSpells) do
 		local texture = GetSpellTexture(v)
 		local name = GetSpellInfo(v)
 		local hasSpell = IsSpellKnown(v)
@@ -275,14 +272,13 @@ local function EltruismTeleportsOnEnter(self)
 	DT.tooltip:AddDoubleLine(L["Double Click:"], USE.." "..HearthstoneString)
 	DT.tooltip:Show()
 
-	teleportupdate:SetScript("OnUpdate", function(self, elapsed)
+	teleportupdate:SetScript("OnUpdate", function(_, elapsed)
 		--print("onupdate spam"..math.random(1,99))
 		TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 		if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 			TimeSinceLastUpdate = 0
 			DT.tooltip:ClearLines()
-			local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
-			for i,v in pairs(TeleportsItems) do
+			for _,v in pairs(TeleportsItems) do
 				local texture = GetItemIcon(v)
 				local name = GetItemInfo(v)
 				local hasItem = GetItemCount(v)
@@ -295,9 +291,9 @@ local function EltruismTeleportsOnEnter(self)
 				end
 
 				if texture and name and (hasItem > 0 or (E.Retail and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v)) ) then
-					local start, duration = GetItemCooldown(v)
-					local cooldown = start + duration - GetTime()
-					if cooldown >= 2 then
+					local startcd, durationcd = GetItemCooldown(v)
+					local cooldown2 = startcd + durationcd - GetTime()
+					if cooldown2 >= 2 then
 						local hours = math.floor(cooldown /3600)
 						local minutes = math.floor(cooldown / 60)
 						local seconds = string.format("%02.f", math.floor(cooldown - minutes * 60))
@@ -312,14 +308,14 @@ local function EltruismTeleportsOnEnter(self)
 					end
 				end
 			end
-			for i,v in pairs(TeleportsSpells) do
+			for _,v in pairs(TeleportsSpells) do
 				local texture = GetSpellTexture(v)
 				local name = GetSpellInfo(v)
 				local hasSpell = IsSpellKnown(v)
 				if texture and name and hasSpell then
-					local start, duration = GetSpellCooldown(v)
-					local cooldown = start + duration - GetTime()
-					if cooldown >= 2 then
+					local startcd2, durationcd2 = GetSpellCooldown(v)
+					local cooldown3 = startcd2 + durationcd2 - GetTime()
+					if cooldown3 >= 2 then
 						local hours = math.floor(cooldown /3600)
 						local minutes = math.floor(cooldown / 60)
 						local seconds = string.format("%02.f", math.floor(cooldown - minutes * 60))
@@ -334,9 +330,9 @@ local function EltruismTeleportsOnEnter(self)
 					end
 				end
 			end
-			local start, duration = GetItemCooldown(6948)
-			local cooldown = start + duration - GetTime()
-			if cooldown >= 2 then
+			local startcd3, durationcd3 = GetItemCooldown(6948)
+			local cooldown4 = startcd3 + durationcd3 - GetTime()
+			if cooldown4 >= 2 then
 				displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t |cffdb3030"..GetBindLocation().."|r"
 				hsIsReady = false
 			else
@@ -361,16 +357,16 @@ _G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'item')
 local name = GetItemInfo(6948)
 _G["EltruismHearthStoneSecureButton"]:SetAttribute('item', name)
 _G["EltruismHearthStoneSecureButton"]:RegisterForClicks("AnyUp", "AnyDown")
-local function EltruismTeleportsOnClick(self, button)
+local function EltruismTeleportsOnClick(self)
 	if InCombatLockdown() then return end
 	if not hsIsReady and E.myclass == "SHAMAN" then
 		_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'spell')
-		local name = GetSpellInfo(556)
-		_G["EltruismHearthStoneSecureButton"]:SetAttribute('spell', name)
+		local nameastrall = GetSpellInfo(556)
+		_G["EltruismHearthStoneSecureButton"]:SetAttribute('spell', nameastrall)
 	else
 		_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'item')
-		local name = GetItemInfo(6948)
-		_G["EltruismHearthStoneSecureButton"]:SetAttribute('item', name)
+		local namehs = GetItemInfo(6948)
+		_G["EltruismHearthStoneSecureButton"]:SetAttribute('item', namehs)
 	end
 	_G["EltruismHearthStoneSecureButton"]:RegisterForClicks("AnyUp", "AnyDown")
 	_G["EltruismHearthStoneSecureButton"]:Show()

@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
@@ -1865,7 +1865,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--classpower
-				if not (E.myclass == 'DEATHKNIGHT') then
+				if E.myclass ~= 'DEATHKNIGHT' then
 					for i = 1, 10 do
 						if not _G["ElvUF_PlayerClassIconButton"..i] then
 							break

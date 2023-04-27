@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local UnitCastingInfo = _G.UnitCastingInfo or _G.CastingInfo
 local UnitChannelInfo = _G.UnitChannelInfo or _G.ChannelInfo
@@ -383,7 +383,7 @@ function ElvUI_EltreumUI:CastCursor()
 		-- Casting/Channeling Ring
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_DELAYED", "player")
-		function Cast:UNIT_SPELLCAST_START(event, unit)
+		function Cast:UNIT_SPELLCAST_START(_, unit)
 			if unit and unit ~= 'player' then
 				return
 			elseif unit and unit == 'player' then
@@ -396,12 +396,13 @@ function ElvUI_EltreumUI:CastCursor()
 				end
 			end
 		end
+
 		Cast.UNIT_SPELLCAST_DELAYED = Cast.UNIT_SPELLCAST_START
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_FAILED", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_STOP", "player")
-		function Cast:UNIT_SPELLCAST_STOP(event, unit, castID)
+		function Cast:UNIT_SPELLCAST_STOP(_, unit, castID)
 			if unit and unit ~= 'player' then
 				return
 			elseif unit and unit == 'player' then
@@ -410,12 +411,13 @@ function ElvUI_EltreumUI:CastCursor()
 				end
 			end
 		end
+
 		Cast.UNIT_SPELLCAST_FAILED = Cast.UNIT_SPELLCAST_STOP
 		Cast.UNIT_SPELLCAST_INTERRUPTED = Cast.UNIT_SPELLCAST_STOP
 		Cast.UNIT_SPELLCAST_CHANNEL_STOP = Cast.UNIT_SPELLCAST_STOP
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_START", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_UPDATE", "player")
-		function Cast:UNIT_SPELLCAST_CHANNEL_START(event, unit)
+		function Cast:UNIT_SPELLCAST_CHANNEL_START(_, unit)
 			if unit and unit ~= 'player' then
 				return
 			elseif unit and unit == 'player' then
@@ -433,7 +435,7 @@ function ElvUI_EltreumUI:CastCursor()
 		-- GCD Ring
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
-		function GCD:UNIT_SPELLCAST_START(event, unit, _, spellID)
+		function GCD:UNIT_SPELLCAST_START(_, unit, _, spellID)
 			if unit and unit ~= 'player' then
 				return
 			elseif unit and unit == 'player' then
@@ -446,7 +448,7 @@ function ElvUI_EltreumUI:CastCursor()
 		GCD.UNIT_SPELLCAST_SUCCEEDED = GCD.UNIT_SPELLCAST_START
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", "player")
-		function GCD:UNIT_SPELLCAST_STOP(event, unit)
+		function GCD:UNIT_SPELLCAST_STOP(_, unit)
 			if unit and unit ~= 'player' then
 				return
 			elseif unit and unit == 'player' then
@@ -465,7 +467,7 @@ function ElvUI_EltreumUI:CastCursor()
 		-- Run
 		--this is kinda of a roundabout way of getting this to working here
 		cursorframe:RegisterEvent("PLAYER_STARTED_MOVING")
-		cursorframe:SetScript("OnEvent", function(self, event, _)
+		cursorframe:SetScript("OnEvent", function()
 			if InCombatLockdown() then UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r") end
 			if not InCombatLockdown() then
 				--print('cursorframe loaded')

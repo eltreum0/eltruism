@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
@@ -105,7 +105,7 @@ local function Configure_InfoPanel(_, frame)
 				end
 			end
 		else --this is the original
-			if frame.ORIENTATION == 'RIGHT' and not (frame.unitframeType == 'arena') then
+			if frame.ORIENTATION == 'RIGHT' and frame.unitframeType ~= 'arena' then
 				frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'BOTTOMRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
 				if frame.USE_POWERBAR and not frame.USE_INSET_POWERBAR and not frame.POWERBAR_DETACHED then
 					frame.InfoPanel:Point('TOPLEFT', frame.Power.backdrop, 'BOTTOMLEFT', UF.BORDER, -(UF.SPACING*3))

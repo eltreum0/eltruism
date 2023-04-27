@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local UIPanelWindows = _G.UIPanelWindows

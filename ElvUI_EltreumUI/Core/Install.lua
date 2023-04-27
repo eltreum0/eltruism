@@ -1,14 +1,12 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local _G = _G
 local ReloadUI = _G.ReloadUI
-local math = _G.math
 local PlaySound = _G.PlaySound
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local ElvUI_EltreumUI  = _G.ElvUI_EltreumUI
 local UIFrameFadeIn = _G.UIFrameFadeIn
 local UIFrameFadeOut = _G.UIFrameFadeOut
 local hooksecurefunc = _G.hooksecurefunc
-local CopyTable = _G.CopyTable
 local Enum = _G.Enum
 local tinsert = _G.table.insert
 local CHAT_LABEL = _G.CHAT_LABEL
@@ -141,7 +139,7 @@ local function ImproveInstall(installtype,mode,null)
 
 	if not PIHook then
 		local plugininstaller = E:GetModule('PluginInstaller')
-		local function GradientTabNames(_ ,PageNum, PrevPage)
+		local function GradientTabNames()
 			if _G.PluginInstallFrame.StepTitles and _G["PluginInstallFrame"].Title:GetText() ~= nil and _G["PluginInstallFrame"].Title:GetText() == ElvUI_EltreumUI.Name then
 				for i = 1, #_G.PluginInstallFrame.side.Lines do
 					local line = _G.PluginInstallFrame.side.Lines[i]

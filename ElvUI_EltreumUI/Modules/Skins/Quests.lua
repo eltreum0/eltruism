@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
@@ -492,8 +492,8 @@ function ElvUI_EltreumUI:SkinQuests()
 						for i = 1, _G.ScenarioStageBlock.WidgetContainer:GetNumChildren() do
 							local v = select(i, _G.ScenarioStageBlock.WidgetContainer:GetChildren())
 							if v:GetName() ~= "BackModelScene" and v:GetName() ~= "FrontModelScene" then
-								for i =1, v:GetNumChildren() do
-									local k = select(i, v:GetChildren())
+								for number =1, v:GetNumChildren() do
+									local k = select(number, v:GetChildren())
 									if k and k.Frame then
 										k.Frame:SetAlpha(0)
 									end
@@ -865,7 +865,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				questside = "RIGHT"
 			end
 			--skin the classic objective frame, based on aftermathh's
-			local function colorquests(line, _, _, isHeader, text, _, _, isComplete) --(line, anchor, verticalOffset, isHeader, text, dash, hasItem, isComplete)
+			local function colorquests(line, _, _, isHeader, _, _, _, isComplete) --(line, anchor, verticalOffset, isHeader, text, dash, hasItem, isComplete)
 				if line and line.text then
 					if ( isHeader ) then
 						--line.text:SetTextColor(0.75, 0.61, 0)

@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local unpack = _G.unpack
 local select = _G.select
@@ -25,7 +25,6 @@ local GetSpellLink = _G.GetSpellLink
 local GetSpellInfo = _G.GetSpellInfo
 local GetSpellTexture = _G.GetSpellTexture
 local IsAddOnLoaded = _G.IsAddOnLoaded
-local getmetatable = _G.getmetatable
 local type = _G.type
 local max = _G.max
 local strlenutf8 = _G.strlenutf8
@@ -1190,12 +1189,12 @@ function ElvUI_EltreumUI:ClassicSockets()
 		}
 
 		setmetatable(instance, CharacterFrameAdapterMetaTable)
-		instance:RegisterEvent("UNIT_INVENTORY_CHANGED", function(event, unit)
+		instance:RegisterEvent("UNIT_INVENTORY_CHANGED", function(_, unit)
 			if unit == 'player' then
 				instance:SendMessage(instance.messages.contentChanged)
 			end
 		end)
-		instance:RegisterEvent("PLAYER_EQUIPMENT_CHANGED", function(event, unit)
+		instance:RegisterEvent("PLAYER_EQUIPMENT_CHANGED", function()
 			instance:SendMessage(instance.messages.contentChanged)
 		end)
 		instance:RegisterEvent("SOCKET_INFO_CLOSE", function()
@@ -1225,7 +1224,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 				contentChanged = 'InspectionFrameAdapter.contentChanged',
 			}
 			setmetatable(instance, InspectionFrameAdapterMetaTable)
-			instance:RegisterEvent("UNIT_INVENTORY_CHANGED", function(event, unit)
+			instance:RegisterEvent("UNIT_INVENTORY_CHANGED", function(_, unit)
 				if unit ~= 'player' then
 					instance:SendMessage(instance.messages.contentChanged)
 				end
@@ -1440,7 +1439,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		end
 	end
 
-	function SlotIconManager:_GetLabelText(slotName)
+	function SlotIconManager:_GetLabelText()
 		return
 	end
 
@@ -1622,10 +1621,10 @@ function ElvUI_EltreumUI:ClassicSockets()
 		local totalMax = 0
 		for _, itemInfo in pairs(self:GetItemInfoForAllSlots()) do
 			if itemInfo then
-				local current, max = itemInfo:GetUpgrades()
-				if current and max then
+				local current, max1 = itemInfo:GetUpgrades()
+				if current and max1 then
 					totalCurrent = totalCurrent + current
-					totalMax = totalMax + max
+					totalMax = totalMax + max1
 				end
 			end
 		end
@@ -1659,7 +1658,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		return self.slotsWithRequiredEnchants[slotName] ~= nil and self:IsAtMaxLevel()
 	end
 
-	function SlotIconManager:IsSlotGemRequired(slotName, itemInfo)
+	function SlotIconManager:IsSlotGemRequired()
 		return self:IsAtMaxLevel()
 	end
 
@@ -1768,7 +1767,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		local sep = ":"
 		local pattern = string.format("([^%s]+)", sep)
 		string.gsub(itemS, pattern, function(c) bitem[#bitem + 1] = c end)
-		for k,v in pairs(bitem) do
+		for k,_ in pairs(bitem) do
 			if bitem[k]=="6514" or bitem[k]=="6935" then
 				result = true
 			end
@@ -1787,9 +1786,9 @@ function ElvUI_EltreumUI:ClassicSockets()
 					local text = _G[InvisibleTooltip:GetName() .. "TextLeft" .. i]
 
 					if text then
-						local current, max = (text:GetText() or ""):match("(%d+)/(%d+)$")
-						if current and max then
-							self.upgrades = { current, max }
+						local current, max2 = (text:GetText() or ""):match("(%d+)/(%d+)$")
+						if current and max2 then
+							self.upgrades = { current, max2 }
 							break
 						end
 					end

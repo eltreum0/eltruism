@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
@@ -33,8 +33,8 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 		hooksecurefunc(OmniCD.Party,"GetStatusBar",function(_, icon)
 			 if icon and icon.statusBar then
 
-			 	--shadows
-			 	if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+				--shadows
+				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 					if not icon.statusBar.shadow and not nameBar then
 						icon.statusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(icon.statusBar.shadow)
@@ -54,18 +54,18 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 
 				--gradient on the BG
 				if icon.class and not icon.EltruismHook then
-					hooksecurefunc(icon.statusBar.BG,"SetVertexColor", function(self)
+					hooksecurefunc(icon.statusBar.BG,"SetVertexColor", function(bar)
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-							self:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColorsCustom(icon.class))
+							bar:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColorsCustom(icon.class))
 						else
-							self:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors(icon.class))
+							bar:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors(icon.class))
 						end
 					end)
-					hooksecurefunc(icon.statusBar.CastingBar,"SetStatusBarColor", function(self)
+					hooksecurefunc(icon.statusBar.CastingBar,"SetStatusBarColor", function(bar2)
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-							self:GetStatusBarTexture():SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColorsCustom(icon.class))
+							bar2:GetStatusBarTexture():SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColorsCustom(icon.class))
 						else
-							self:GetStatusBarTexture():SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors(icon.class))
+							bar2:GetStatusBarTexture():SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors(icon.class))
 						end
 					end)
 					icon.EltruismHook = true

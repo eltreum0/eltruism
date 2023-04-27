@@ -1,7 +1,5 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L= unpack(ElvUI)
 local S = E:GetModule('Skins')
-local compatibilityran = false
-local addonname = "NAME"
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local GetAddOnInfo = _G.GetAddOnInfo
@@ -15,7 +13,6 @@ local format = _G.format
 local CreateFrame = _G.CreateFrame
 local strsplit = _G.strsplit
 local strlen = _G.strlen
-local classcolor = E:ClassColor(E.myclass, true)
 
 --adapted from windtools with authorization from fang2hou, ty again fang
 

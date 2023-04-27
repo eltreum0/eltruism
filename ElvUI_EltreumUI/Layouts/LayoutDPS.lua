@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize

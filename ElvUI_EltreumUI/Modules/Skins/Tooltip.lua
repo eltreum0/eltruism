@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local TT = E:GetModule('Tooltip')
@@ -90,7 +90,7 @@ local function SetTooltipGradient(unit)
 end
 
 --skin tooltip
-function ElvUI_EltreumUI:Tooltip(tt)
+function ElvUI_EltreumUI:Tooltip()
 	if (GameTooltip and GameTooltip:IsForbidden()) then return end
 
 	--gradient

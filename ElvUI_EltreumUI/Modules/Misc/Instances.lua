@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local Minimap = _G.Minimap
@@ -26,7 +26,7 @@ if E.Retail then
 end
 E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismInstanceDifficulty", nil, nil, nil, "ALL,SOLO,ELTREUMUI,PARTY,RAID", nil, 'ElvUI_EltreumUI,partyraidsettings')
 
-instancedifficulty:SetScript("OnEvent", function(_,event)
+instancedifficulty:SetScript("OnEvent", function()
 	if not E.private.ElvUI_EltreumUI then return end
 	if not E.private.ElvUI_EltreumUI.install_version then return end
 

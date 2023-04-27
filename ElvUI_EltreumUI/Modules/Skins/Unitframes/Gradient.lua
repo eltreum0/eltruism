@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
@@ -6,16 +6,13 @@ local UnitExists = _G.UnitExists
 local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
 local UnitIsPlayer = _G.UnitIsPlayer
-local select = _G.select
 local UnitIsTapDenied = _G.UnitIsTapDenied
 local UnitPlayerControlled = _G.UnitPlayerControlled
 local _, buttonclass, classunit, unitframe, reaction
 local IsInGroup = _G.IsInGroup
-local classcolor = E:ClassColor(E.myclass, true)
-local skillglowcolor = {classcolor.r, classcolor.g, classcolor.b, 1}
 local UnitIsCharmed = _G.UnitIsCharmed
 local pairs = _G.pairs
-local forced
+local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 
 --set the textures or gradients for single units
 function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unittexture)

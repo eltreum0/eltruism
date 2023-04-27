@@ -1,10 +1,9 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local id, _, powertype,powernumber,tablepowernumber
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local IsPlayerSpell = _G.IsPlayerSpell
-local GetPlayerAuraBySpellID = E.Retail and C_UnitAuras.GetPlayerAuraBySpellID or _G.GetPlayerAuraBySpellID
 local C_UnitAuras = _G.C_UnitAuras
 local UnitCastingInfo = _G.UnitCastingInfo
 local GetSpellPowerCost = _G.GetSpellPowerCost

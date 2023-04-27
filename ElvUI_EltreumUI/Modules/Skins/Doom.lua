@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
@@ -301,7 +301,7 @@ function ElvUI_EltreumUI:Doom()
 		end
 		DCP:RegisterEvent("SPELL_UPDATE_COOLDOWN")
 
-		function DCP:UNIT_SPELLCAST_SUCCEEDED(unit,lineID,spellID)
+		function DCP:UNIT_SPELLCAST_SUCCEEDED(unit,_,spellID)
 			if (unit == "player") then
 				watching[spellID] = {GetTime(),"spell",spellID}
 				if (not self:IsMouseEnabled()) then

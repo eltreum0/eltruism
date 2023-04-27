@@ -1,13 +1,11 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local level, targetmodel, playermodel
+local targetmodel, playermodel
 local UnitExists = _G.UnitExists
 local UnitIsDead = _G.UnitIsDead
 local hooksecurefunc = _G.hooksecurefunc
-local rad = _G.raid
-local unpack = _G.unpack
-local UnitClass = _G.UnitClass
+local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 
 local druidfix = {
 	[1272625] = true, --""druidbear2_artifact1.m2",

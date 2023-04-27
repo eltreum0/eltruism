@@ -1,25 +1,24 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local _G = _G
 local C_CVar = _G.C_CVar
 local S = E:GetModule('Skins')
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
-local print = print
-local unpack = unpack
+local print = _G.print
+local unpack = _G.unpack
 local hooksecurefunc = _G.hooksecurefunc
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local DisableAddOn = _G.DisableAddOn
-local GetPhysicalScreenSize = GetPhysicalScreenSize
-local SetCVar = SetCVar
+local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
+local SetCVar = _G.SetCVar
 local UIParentLoadAddOn = _G.UIParentLoadAddOn
-local select = select
-local GetCursorInfo = GetCursorInfo
-local GetItemInfo = GetItemInfo
-local string = string
+local GetCursorInfo = _G.GetCursorInfo
+local GetItemInfo = _G.GetItemInfo
+local string = _G.string
 local DELETE_ITEM_CONFIRM_STRING = _G.DELETE_ITEM_CONFIRM_STRING
 local InCombatLockdown = _G.InCombatLockdown
 local HideUIPanel = _G.HideUIPanel
-local LoadAddOn = LoadAddOn
+local LoadAddOn = _G.LoadAddOn
 local GameMenuFrame = _G.GameMenuFrame
 local UIErrorsFrame = _G.UIErrorsFrame
 local RaidWarningFrame = _G.RaidWarningFrame
@@ -605,7 +604,7 @@ do
 		throttle = 0
 	end
 
-	local function TypeDelete(self)
+	local function TypeDelete()
 		local _, _, itemLink = GetCursorInfo()
 		if not itemLink then return end
 
@@ -661,7 +660,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 	--use elvui moveui instead of blizzard edit mode
 	if _G.GameMenuButtonEditMode and E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
 		_G.GameMenuButtonEditMode:RegisterForClicks("AnyUp")
-		_G.GameMenuButtonEditMode:SetScript("OnClick", function(self, button)
+		_G.GameMenuButtonEditMode:SetScript("OnClick", function(_, button)
 			if not InCombatLockdown() then
 				if button == "LeftButton" then
 					E:ToggleMoveMode()

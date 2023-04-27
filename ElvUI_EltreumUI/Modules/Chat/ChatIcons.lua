@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local CH = E:GetModule("Chat")
 local hooksecurefunc = _G.hooksecurefunc
@@ -64,7 +64,7 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Trenchee-Thrall"] = DonatorsIcon,
 			["Trenchae-Thrall"] = DonatorsIcon,
 			["Trenchai-Thrall"] = DonatorsIcon,
-			
+
 			--Dlarge
 			["Âlysiâ-Alleria"] = DonatorsIcon,
 			["Xâvius-Alleria"] = DonatorsIcon,

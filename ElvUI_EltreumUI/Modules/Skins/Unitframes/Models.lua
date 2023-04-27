@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
@@ -17,7 +17,7 @@ local powerbareffectfocus = CreateFrame("PlayerModel", "EltruismFocusPowerBarEff
 local powerbareffectpet = CreateFrame("PlayerModel", "EltruismPetPowerBarEffect")
 local powerbar, targetpowerbar, targettargetpowerbar, petpowerbar
 local _, targetclass, targettargetbar, playerbar,targetbar, reactiontarget,reactionpet
-local reactiontargettarget, targettargetclass, petbar, petpetbar
+local reactiontargettarget, targettargetclass, petbar
 local focuspowerbar, focusbar, focusclass,reactionfocus
 local CreateVector3D = _G.CreateVector3D
 local rad = _G.rad
@@ -505,7 +505,6 @@ function ElvUI_EltreumUI:PetUFEffects()
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
 			petbar = _G["ElvUF_Pet"]
-			petpetbar = _G["ElvUF_PetPet"]
 			reactionpet = UnitReaction("pet", "player")
 
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then

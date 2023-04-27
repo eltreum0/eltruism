@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local UIFrameFadeIn = _G.UIFrameFadeIn
 local UIFrameFadeOut = _G.UIFrameFadeOut
@@ -22,7 +22,7 @@ StealthOptionsFrame:Hide()
 -- Setup the Stealth Overlay Options
 function ElvUI_EltreumUI:StealthOptions()
 	if E.db.ElvUI_EltreumUI.skins.stealtheffect then
-		StealthOptionsFrame:SetScript("OnEvent", function(__, event)
+		StealthOptionsFrame:SetScript("OnEvent", function(_, event)
 			if (event == "PLAYER_ENTERING_WORLD") then
 				if IsStealthed() then
 					StealthOptionsFrame:Show()
