@@ -414,12 +414,14 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 					end
 
 					--pause if dead
-					if UnitIsDead("target") then
-						E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = true
-						E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 1
-					else
-						E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = false
-						E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 0
+					if not E.db.unitframe.units.target.portrait.paused then
+						if UnitIsDead("target") then
+							E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = true
+							E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 1
+						else
+							E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = false
+							E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 0
+						end
 					end
 
 					if newrotation ~= originalrotation then
@@ -429,6 +431,9 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 					--force update portrait
 					if _G["ElvUF_Target"].Portrait3D then
 						_G["ElvUF_Target"].Portrait3D:ForceUpdate()
+						if E.db["unitframe"]["units"]["target"]["portrait"]["paused"] then
+							_G["ElvUF_Target"].Portrait3D:SetPaused(true)
+						end
 					end
 				end)
 			end
@@ -475,22 +480,28 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 						end
 					end
 
-					--pause if dead
-					if UnitIsDead("player") then
-						E.db["unitframe"]["units"]["player"]["portrait"]["paused"] = true
-						E.db["unitframe"]["units"]["player"]["portrait"]["desaturation"] = 1
-					else
-						E.db["unitframe"]["units"]["player"]["portrait"]["paused"] = false
-						E.db["unitframe"]["units"]["player"]["portrait"]["desaturation"] = 0
-					end
 
-					if newrotation and newrotation ~= originalrotation then
-						E.db["unitframe"]["units"]["player"]["portrait"]["rotation"] = newrotation
+					--pause if dead
+					if not E.db.unitframe.units.player.portrait.paused then
+						if UnitIsDead("player") then
+							E.db["unitframe"]["units"]["player"]["portrait"]["paused"] = true
+							E.db["unitframe"]["units"]["player"]["portrait"]["desaturation"] = 1
+						else
+							E.db["unitframe"]["units"]["player"]["portrait"]["paused"] = false
+							E.db["unitframe"]["units"]["player"]["portrait"]["desaturation"] = 0
+						end
+
+						if newrotation and newrotation ~= originalrotation then
+							E.db["unitframe"]["units"]["player"]["portrait"]["rotation"] = newrotation
+						end
 					end
 
 					--force update portrait
 					if _G["ElvUF_Player"].Portrait3D then
 						_G["ElvUF_Player"].Portrait3D:ForceUpdate()
+						if E.db.unitframe.units.player.portrait.paused then
+							_G["ElvUF_Player"].Portrait3D:SetPaused(true)
+						end
 					end
 				end)
 			end
@@ -525,6 +536,9 @@ if E.Retail or E.Wrath then
 						if alpha == 0 then
 							if _G["ElvUF_Player"].Portrait3D then
 								_G["ElvUF_Player"].Portrait3D:Hide()
+								if E.db.unitframe.units.player.portrait.paused then
+									_G["ElvUF_Player"].Portrait3D:SetPaused(true)
+								end
 							end
 							if _G["EltruismPlayerEffect"] then
 								_G["EltruismPlayerEffect"]:SetAlpha(0)
@@ -541,6 +555,9 @@ if E.Retail or E.Wrath then
 							end
 							if _G["ElvUF_Player"].Portrait3D then
 								_G["ElvUF_Player"].Portrait3D:Show()
+								if E.db.unitframe.units.player.portrait.paused then
+									_G["ElvUF_Player"].Portrait3D:SetPaused(true)
+								end
 							end
 						end
 					end)
@@ -549,6 +566,9 @@ if E.Retail or E.Wrath then
 
 				if _G["ElvUF_Player"].Portrait3D then
 					_G["ElvUF_Player"].Portrait3D:Hide()
+					if E.db.unitframe.units.player.portrait.paused then
+						_G["ElvUF_Player"].Portrait3D:SetPaused(true)
+					end
 				end
 				if _G["EltruismPlayerEffect"] then
 					_G["EltruismPlayerEffect"]:SetAlpha(0)
