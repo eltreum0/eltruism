@@ -132,6 +132,11 @@ function ElvUI_EltreumUI:Shadows()
 						_G.ProfessionsCustomerOrdersFrameOrdersTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.ProfessionsCustomerOrdersFrameOrdersTab.backdrop.shadow)
 					end
+
+					if _G.ProfessionsCustomerOrdersFrame and _G.ProfessionsCustomerOrdersFrame.Form and _G.ProfessionsCustomerOrdersFrame.Form.QualityDialog and not _G.ProfessionsCustomerOrdersFrame.Form.QualityDialog.shadow then
+						_G.ProfessionsCustomerOrdersFrame.Form.QualityDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G.ProfessionsCustomerOrdersFrame.Form.QualityDialog.shadow)
+					end
 				end
 				if (arg == "Blizzard_GenericTraitUI") or IsAddOnLoaded("Blizzard_GenericTraitUI") then
 					if _G.GenericTraitFrame and not _G.GenericTraitFrame.shadow then
