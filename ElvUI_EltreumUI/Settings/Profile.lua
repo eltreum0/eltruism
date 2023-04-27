@@ -484,6 +484,7 @@ P.ElvUI_EltreumUI = {
 		blizzard = false,
 		pixel = false,
 		autocast = false,
+		gradient = false,
 
 		totemtypecolor = true,
 		totem1 = true,

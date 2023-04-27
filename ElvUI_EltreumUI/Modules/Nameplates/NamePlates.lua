@@ -97,11 +97,35 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 								if debufftime ~= nil and debufftime <= E.db.ElvUI_EltreumUI.glow.numberdebuff and debufftime > 0 then
 									if E.db.ElvUI_EltreumUI.glow.pixel then
 										LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
+										if E.db.ElvUI_EltreumUI.glow.gradient then
+											for k,v in pairs({button._PixelGlow:GetRegions()}) do
+												local r,g,b,a = v:GetVertexColor()
+												v:SetVertexColor(r-(k/20),g-(k/20),b-(k/20),a)
+											end
+										end
 									elseif E.db.ElvUI_EltreumUI.glow.autocast then
 										--LCG.AutoCastGlow_Start(button, glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 										LCG.AutoCastGlow_Start(button, glowcolor, 8, 1, 1.5, 1, 1)
+										if E.db.ElvUI_EltreumUI.glow.gradient then
+											for k,v in pairs({button._AutoCastGlow:GetRegions()}) do
+												local r,g,b,a = v:GetVertexColor()
+												v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),a)
+											end
+										end
 									elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 										LCG.ButtonGlow_Start(button, glowcolor, 0.5)
+										button._ButtonGlow.outerGlow:SetScale(1.15)
+										if E.db.ElvUI_EltreumUI.glow.gradient then
+											if E.db.ElvUI_EltreumUI.glow.colorclass then
+												button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
+											else
+												if not E.Classic then
+													button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r - 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g - 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b - 0.2, a = 1}, {r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r + 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g + 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b + 0.2, a = 1})
+												else
+													button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r -0.2, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g-0.2, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b-0.2, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r+0.2, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g+0.2, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b+0.2)
+												end
+											end
+										end
 									end
 								else
 									if E.db.ElvUI_EltreumUI.glow.pixel then
