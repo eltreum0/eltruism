@@ -2921,7 +2921,7 @@ globals = {
 	"HybridScrollFrame_GetOffset",
 	"FCF_SetChatWindowFontSize",
 }
-max_line_length = 132
+max_line_length = false
 ignore = {
     "142/_.*", --Setting an undefined field of a global variable.
     "143/_.*", --Accessing an undefined field of a global variable.
