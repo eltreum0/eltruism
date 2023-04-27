@@ -2920,6 +2920,7 @@ globals = {
 	"MouseIsOver",
 	"HybridScrollFrame_GetOffset",
 	"FCF_SetChatWindowFontSize",
+	"_G",
 }
 max_line_length = false
 ignore = {
