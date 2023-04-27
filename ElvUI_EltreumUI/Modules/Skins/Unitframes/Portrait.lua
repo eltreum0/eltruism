@@ -381,6 +381,8 @@ local modelsRotate = {
 	[4518803] = true, --Subterrax
 	[875156] = true, --Emperor Shaohao
 }
+local truepausetarget = E.db.unitframe.units.target.portrait.paused
+local truepauseplayer = E.db.unitframe.units.player.portrait.paused
 
 --set portrait rotation based on target being npc or not
 function ElvUI_EltreumUI:DynamicUFPortraitRotation()
@@ -414,7 +416,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 					end
 
 					--pause if dead
-					if not E.db.unitframe.units.target.portrait.paused then
+					if not truepausetarget then
 						if UnitIsDead("target") then
 							E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = true
 							E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 1
@@ -431,7 +433,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 					--force update portrait
 					if _G["ElvUF_Target"].Portrait3D then
 						_G["ElvUF_Target"].Portrait3D:ForceUpdate()
-						if E.db["unitframe"]["units"]["target"]["portrait"]["paused"] then
+						if truepausetarget then
 							_G["ElvUF_Target"].Portrait3D:SetPaused(true)
 						end
 					end
@@ -482,7 +484,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 
 
 					--pause if dead
-					if not E.db.unitframe.units.player.portrait.paused then
+					if not truepauseplayer then
 						if UnitIsDead("player") then
 							E.db["unitframe"]["units"]["player"]["portrait"]["paused"] = true
 							E.db["unitframe"]["units"]["player"]["portrait"]["desaturation"] = 1
@@ -499,7 +501,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 					--force update portrait
 					if _G["ElvUF_Player"].Portrait3D then
 						_G["ElvUF_Player"].Portrait3D:ForceUpdate()
-						if E.db.unitframe.units.player.portrait.paused then
+						if truepauseplayer then
 							_G["ElvUF_Player"].Portrait3D:SetPaused(true)
 						end
 					end
