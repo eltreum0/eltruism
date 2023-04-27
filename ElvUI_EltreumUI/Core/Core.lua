@@ -809,6 +809,16 @@ function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
 	end
 end
 
+--[[
+function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
+	if IsAddOnLoaded("ElvUI_mMediaTag") then
+		return E.db.mMT.interruptoncd.enable and _G.mMediaTag_interruptOnCD() or false
+	else
+		return false
+    end
+end
+]]
+
 --10.1 addon compartment
 function ElvUI_EltreumUI_OnAddonCompartmentClick()
 	E:ToggleOptions()
