@@ -484,6 +484,7 @@ P.ElvUI_EltreumUI = {
 		blizzard = false,
 		pixel = false,
 		autocast = false,
+		gradient = false,
 
 		totemtypecolor = true,
 		totem1 = true,
@@ -1407,6 +1408,7 @@ P.ElvUI_EltreumUI = {
 		taxiscale = 1,
 		bagscale = 1,
 		bankscale = 1,
+		lootscale = 1,
 		colorbg = false,
 		musicshuffle = false,
 	},

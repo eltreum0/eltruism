@@ -40,7 +40,7 @@ function ElvUI_EltreumUI:HidePopups(delay)
 	if E:IsAddOnEnabled("ElvUI_WindTools") then
 		W = unpack(WindTools)
 		local function WindtoolsCompatHideWhileInstall()
-			WTCompatibilityFrame:Kill()
+			_G["WTCompatibilityFrame"]:Kill()
 		end
 		hooksecurefunc(W, "ConstructCompatibilityFrame", WindtoolsCompatHideWhileInstall)
 	end

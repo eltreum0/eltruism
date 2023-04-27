@@ -44,6 +44,12 @@ function ElvUI_EltreumUI:FrameScales()
 			_G["ElvUI_BankContainerFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.bankscale)
 		end)
 	end
+
+	if _G["ElvLootFrame"] then
+		_G["ElvLootFrame"]:HookScript("OnShow", function()
+			_G["ElvLootFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.lootscale)
+		end)
+	end
 end
 
 --add cardinal directions to minimap

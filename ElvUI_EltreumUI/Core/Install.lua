@@ -144,7 +144,7 @@ local function ImproveInstall(installtype,mode,null)
 		local function GradientTabNames(_ ,PageNum, PrevPage)
 			if _G.PluginInstallFrame.StepTitles and _G["PluginInstallFrame"].Title:GetText() ~= nil and _G["PluginInstallFrame"].Title:GetText() == ElvUI_EltreumUI.Name then
 				for i = 1, #_G.PluginInstallFrame.side.Lines do
-					local line, color = _G.PluginInstallFrame.side.Lines[i]
+					local line = _G.PluginInstallFrame.side.Lines[i]
 					local StepTitleText
 					if type(_G.PluginInstallFrame.StepTitles[i]) == 'function' then
 						StepTitleText = _G.PluginInstallFrame.StepTitles[i]()
@@ -153,10 +153,9 @@ local function ImproveInstall(installtype,mode,null)
 					end
 
 					if i == _G.PluginInstallFrame.CurrentPage then
-						color = _G.PluginInstallFrame.StepTitlesColorSelected
 						line.text:SetText(E:TextGradient(StepTitleText, 0.50, 0.70, 1, 0.67, 0.95, 1))
 					else
-						color = _G.PluginInstallFrame.StepTitlesColor
+						local color = _G.PluginInstallFrame.StepTitlesColor
 						line.text:SetText(StepTitleText)
 						line.text:SetTextColor(color[1] or color.r, color[2] or color.g, color[3] or color.b)
 					end

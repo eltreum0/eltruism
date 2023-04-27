@@ -475,10 +475,8 @@ E:AddTagInfo("eltruism:ReleafIconOutline:player", ElvUI_EltreumUI.Name.." "..L["
 
 --show class icons on all targets
 E:AddTag("eltruism:reverseclass:all", "UNIT_NAME_UPDATE", function(unit)
-	local icon
 	local _ , classes = UnitClass(unit)
-	icon = reverseclassIcons[classes]
-	return icon
+	return ElvUI_EltreumUI:GetClassIcons("RELEAF",classes,true)
 end)
 E:AddTagInfo('eltruism:reverseclass:all', ElvUI_EltreumUI.Name.." "..L["Icons"], L["Shows Flipped Class Icons recolored by Releaf on all targets"])
 
@@ -1112,7 +1110,7 @@ E:AddTag("eltruism:classcolor", 'UNIT_NAME_UPDATE', function(unit)
 	if UnitIsPlayer(unit) then
 		local _, unitClass = UnitClass(unit)
 		local cs = ElvUF.colors.class[unitClass]
-		return (cs and Hex(cs[1], cs[2], cs[3])) or '|cFFcccccc'
+		return (cs and E:RGBToHex(cs[1], cs[2], cs[3])) or '|cFFcccccc'
 	end
 end)
 E:AddTagInfo("eltruism:classcolor", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Returns class color only for players"])

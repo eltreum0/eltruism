@@ -12,6 +12,7 @@ ignore:
   - "*.md"
   - eltruism/Screenshots
   - Screenshots
+  - .luacheckrc
 
 move-folders:
     ElvUI_EltreumUI/ElvUI_EltreumUI: ElvUI_EltreumUI

@@ -378,7 +378,6 @@ function ElvUI_EltreumUI:GetFCTProfile()
 					["cycleColors"] = false,
 					["showHots"] = true,
 					["showDots"] = false,
-					["isPlayer"] = false,
 					["spellY"] = 0,
 					["showName"] = false,
 					["showPet"] = false,
