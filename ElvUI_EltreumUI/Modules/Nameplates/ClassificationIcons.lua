@@ -298,7 +298,7 @@ local function Update(self)
 	end
 
 	if E.db.ElvUI_EltreumUI.dev then
-		ElvUI_EltreumUI:Print("npcID: "..self.npcID,classification,frameType)
+		ElvUI_EltreumUI:Print("npcID: "..self.npcID..","..classification..","..frameType)
 	end
 
 	if element.PostUpdate then
