@@ -202,7 +202,9 @@ end
 function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
 	ElvUI_EltreumUI:RaidDeathGroupCheck()
 	--ElvUI_EltreumUI:Shadows()
-	ElvUI_EltreumUI:RaidShadows()
+	if IsInRaid() == true then
+		ElvUI_EltreumUI:RaidShadows()
+	end
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		ElvUI_EltreumUI:GradientUF()
 		ElvUI_EltreumUI:CustomTexture()
