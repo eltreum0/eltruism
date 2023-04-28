@@ -391,6 +391,24 @@ function ElvUI_EltreumUI:GradientName(name, unitclass, isTarget)
 	end
 end
 
+--sets name with default gradient colors using elvui
+function ElvUI_EltreumUI:GradientNameDefaultColors(name, unitclass, isTarget)
+	if not name then return end
+	if unitframegradients[unitclass] then
+		if not isTarget then
+			return E:TextGradient(name, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2)
+		else
+			return E:TextGradient(name, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1)
+		end
+	else
+		if not isTarget then
+			return E:TextGradient(name, unitframegradients["ELTRUISM"].r1, unitframegradients["ELTRUISM"].g1, unitframegradients["ELTRUISM"].b1, unitframegradients["ELTRUISM"].r2, unitframegradients["ELTRUISM"].g2, unitframegradients["ELTRUISM"].b2)
+		else
+			return E:TextGradient(name, unitframegradients["ELTRUISM"].r2, unitframegradients["ELTRUISM"].g2, unitframegradients["ELTRUISM"].b2, unitframegradients["ELTRUISM"].r1, unitframegradients["ELTRUISM"].g1, unitframegradients["ELTRUISM"].b1)
+		end
+	end
+end
+
 --sends the colors for chat
 function ElvUI_EltreumUI:ChatCustomColor(unitclass)
 	if unitclass then
