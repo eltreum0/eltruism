@@ -285,36 +285,25 @@ end
 
 --get the gradient colors
 function ElvUI_EltreumUI:GradientColors(unitclass, invert, alpha, isBG)
+	local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
 	if not E.Classic then
-		if unitframegradients[unitclass] then
-			if invert then
-				return {r=unitframegradients[unitclass].r2 - bgfade(isBG),g= unitframegradients[unitclass].g2 - bgfade(isBG),b= unitframegradients[unitclass].b2 - bgfade(isBG),a= bgalpha(alpha)}, {r=unitframegradients[unitclass].r1 - bgfade(isBG),g= unitframegradients[unitclass].g1 - bgfade(isBG), b=unitframegradients[unitclass].b1 - bgfade(isBG),a= bgalpha(alpha)}
-			else
-				return {r=unitframegradients[unitclass].r1 - bgfade(isBG),g= unitframegradients[unitclass].g1 - bgfade(isBG),b= unitframegradients[unitclass].b1 - bgfade(isBG),a= bgalpha(alpha)}, {r=unitframegradients[unitclass].r2 - bgfade(isBG),g= unitframegradients[unitclass].g2 - bgfade(isBG),b= unitframegradients[unitclass].b2 - bgfade(isBG),a= bgalpha(alpha)}
-			end
+		if invert then
+			return {r=color.r2 - bgfade(isBG),g= color.g2 - bgfade(isBG),b= color.b2 - bgfade(isBG),a= bgalpha(alpha)}, {r=color.r1 - bgfade(isBG),g= color.g1 - bgfade(isBG),b= color.b1 - bgfade(isBG),a= bgalpha(alpha)}
 		else
-			return {r=unitframegradients["ELTRUISM"].r1 - bgfade(isBG),g= unitframegradients["ELTRUISM"].g1 - bgfade(isBG),b= unitframegradients["ELTRUISM"].b1 - bgfade(isBG),a= 1}, {r=unitframegradients["ELTRUISM"].r2 - bgfade(isBG), g=unitframegradients["ELTRUISM"].g2 - bgfade(isBG), b=unitframegradients["ELTRUISM"].b2 - bgfade(isBG),a= 1}
+			return {r=color.r1 - bgfade(isBG),g= color.g1 - bgfade(isBG),b= color.b1 - bgfade(isBG),a= bgalpha(alpha)}, {r=color.r2 - bgfade(isBG),g= color.g2 - bgfade(isBG),b= color.b2 - bgfade(isBG),a= bgalpha(alpha)}
 		end
 	else
 		if alpha then
-			if unitframegradients[unitclass] then
-				if invert then
-					return unitframegradients[unitclass].r2 - bgfade(isBG), unitframegradients[unitclass].g2 - bgfade(isBG), unitframegradients[unitclass].b2 - bgfade(isBG), bgalpha(alpha), unitframegradients[unitclass].r1 - bgfade(isBG), unitframegradients[unitclass].g1 - bgfade(isBG), unitframegradients[unitclass].b1 - bgfade(isBG), bgalpha(alpha)
-				else
-					return unitframegradients[unitclass].r1 - bgfade(isBG), unitframegradients[unitclass].g1 - bgfade(isBG), unitframegradients[unitclass].b1 - bgfade(isBG), bgalpha(alpha), unitframegradients[unitclass].r2 - bgfade(isBG), unitframegradients[unitclass].g2 - bgfade(isBG), unitframegradients[unitclass].b2 - bgfade(isBG), bgalpha(alpha)
-				end
+			if invert then
+				return color.r2 - bgfade(isBG), color.g2 - bgfade(isBG), color.b2 - bgfade(isBG), bgalpha(alpha), color.r1 - bgfade(isBG), color.g1 - bgfade(isBG), color.b1 - bgfade(isBG), bgalpha(alpha)
 			else
-				return unitframegradients["ELTRUISM"].r1 - bgfade(isBG), unitframegradients["ELTRUISM"].g1 - bgfade(isBG), unitframegradients["ELTRUISM"].b1 - bgfade(isBG), unitframegradients["ELTRUISM"].r2 - bgfade(isBG), unitframegradients["ELTRUISM"].g2 - bgfade(isBG), unitframegradients["ELTRUISM"].b2 - bgfade(isBG)
+				return color.r1 - bgfade(isBG), color.g1 - bgfade(isBG), color.b1 - bgfade(isBG), bgalpha(alpha), color.r2 - bgfade(isBG), color.g2 - bgfade(isBG), color.b2 - bgfade(isBG), bgalpha(alpha)
 			end
 		else
-			if unitframegradients[unitclass] then
-				if invert then
-					return unitframegradients[unitclass].r2 - bgfade(isBG), unitframegradients[unitclass].g2 - bgfade(isBG), unitframegradients[unitclass].b2 - bgfade(isBG), unitframegradients[unitclass].r1 - bgfade(isBG), unitframegradients[unitclass].g1 - bgfade(isBG), unitframegradients[unitclass].b1 - bgfade(isBG)
-				else
-					return unitframegradients[unitclass].r1 - bgfade(isBG), unitframegradients[unitclass].g1 - bgfade(isBG), unitframegradients[unitclass].b1 - bgfade(isBG), unitframegradients[unitclass].r2 - bgfade(isBG), unitframegradients[unitclass].g2 - bgfade(isBG), unitframegradients[unitclass].b2 - bgfade(isBG)
-				end
+			if invert then
+				return color.r2 - bgfade(isBG), color.g2 - bgfade(isBG), color.b2 - bgfade(isBG), color.r1 - bgfade(isBG), color.g1 - bgfade(isBG), color.b1 - bgfade(isBG)
 			else
-				return unitframegradients["ELTRUISM"].r1 - bgfade(isBG), unitframegradients["ELTRUISM"].g1 - bgfade(isBG), unitframegradients["ELTRUISM"].b1 - bgfade(isBG), unitframegradients["ELTRUISM"].r2 - bgfade(isBG), unitframegradients["ELTRUISM"].g2 - bgfade(isBG), unitframegradients["ELTRUISM"].b2 - bgfade(isBG)
+				return color.r1 - bgfade(isBG), color.g1 - bgfade(isBG), color.b1 - bgfade(isBG), color.r2 - bgfade(isBG), color.g2 - bgfade(isBG), color.b2 - bgfade(isBG)
 			end
 		end
 	end
@@ -322,36 +311,25 @@ end
 
 --get the custom gradient colors
 function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, alpha, isBG)
+	local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
 	if not E.Classic then
-		if unitframecustomgradients[unitclass] then
-			if invert then
-				return {r=unitframecustomgradients[unitclass].r2 - bgfade(isBG),g= unitframecustomgradients[unitclass].g2 - bgfade(isBG),b= unitframecustomgradients[unitclass].b2 - bgfade(isBG),a= bgalpha(alpha)}, {r=unitframecustomgradients[unitclass].r1 - bgfade(isBG),g= unitframecustomgradients[unitclass].g1 - bgfade(isBG),b= unitframecustomgradients[unitclass].b1 - bgfade(isBG),a= bgalpha(alpha)}
-			else
-				return {r=unitframecustomgradients[unitclass].r1 - bgfade(isBG),g= unitframecustomgradients[unitclass].g1 - bgfade(isBG),b= unitframecustomgradients[unitclass].b1 - bgfade(isBG),a= bgalpha(alpha)}, {r=unitframecustomgradients[unitclass].r2 - bgfade(isBG),g= unitframecustomgradients[unitclass].g2 - bgfade(isBG),b= unitframecustomgradients[unitclass].b2 - bgfade(isBG),a= bgalpha(alpha)}
-			end
+		if invert then
+			return {r=color.r2 - bgfade(isBG),g= color.g2 - bgfade(isBG),b= color.b2 - bgfade(isBG),a= bgalpha(alpha)}, {r=color.r1 - bgfade(isBG),g= color.g1 - bgfade(isBG),b= color.b1 - bgfade(isBG),a= bgalpha(alpha)}
 		else
-			return {r=unitframecustomgradients["ELTRUISM"].r1 - bgfade(isBG),g= unitframecustomgradients["ELTRUISM"].g1 - bgfade(isBG),b= unitframecustomgradients["ELTRUISM"].b1 - bgfade(isBG),a= 1}, {r=unitframecustomgradients["ELTRUISM"].r2 - bgfade(isBG),g= unitframecustomgradients["ELTRUISM"].g2 - bgfade(isBG),b= unitframecustomgradients["ELTRUISM"].b2 - bgfade(isBG),a= 1}
+			return {r=color.r1 - bgfade(isBG),g= color.g1 - bgfade(isBG),b= color.b1 - bgfade(isBG),a= bgalpha(alpha)}, {r=color.r2 - bgfade(isBG),g= color.g2 - bgfade(isBG),b= color.b2 - bgfade(isBG),a= bgalpha(alpha)}
 		end
 	else
 		if alpha then
-			if unitframecustomgradients[unitclass] then
-				if invert then
-					return unitframecustomgradients[unitclass].r2 - bgfade(isBG), unitframecustomgradients[unitclass].g2 - bgfade(isBG), unitframecustomgradients[unitclass].b2 - bgfade(isBG), bgalpha(alpha), unitframecustomgradients[unitclass].r1 - bgfade(isBG), unitframecustomgradients[unitclass].g1 - bgfade(isBG), unitframecustomgradients[unitclass].b1 - bgfade(isBG), bgalpha(alpha)
-				else
-					return unitframecustomgradients[unitclass].r1 - bgfade(isBG), unitframecustomgradients[unitclass].g1 - bgfade(isBG), unitframecustomgradients[unitclass].b1 - bgfade(isBG), bgalpha(alpha), unitframecustomgradients[unitclass].r2 - bgfade(isBG), unitframecustomgradients[unitclass].g2 - bgfade(isBG), unitframecustomgradients[unitclass].b2 - bgfade(isBG), bgalpha(alpha)
-				end
+			if invert then
+				return color.r2 - bgfade(isBG), color.g2 - bgfade(isBG), color.b2 - bgfade(isBG), bgalpha(alpha), color.r1 - bgfade(isBG), color.g1 - bgfade(isBG), color.b1 - bgfade(isBG), bgalpha(alpha)
 			else
-				return unitframecustomgradients["ELTRUISM"].r1 - bgfade(isBG), unitframecustomgradients["ELTRUISM"].g1 - bgfade(isBG), unitframecustomgradients["ELTRUISM"].b1 - bgfade(isBG), unitframecustomgradients["ELTRUISM"].r2 - bgfade(isBG), unitframecustomgradients["ELTRUISM"].g2 - bgfade(isBG), unitframecustomgradients["ELTRUISM"].b2 - bgfade(isBG)
+				return color.r1 - bgfade(isBG), color.g1 - bgfade(isBG), color.b1 - bgfade(isBG), bgalpha(alpha), color.r2 - bgfade(isBG), color.g2 - bgfade(isBG), color.b2 - bgfade(isBG), bgalpha(alpha)
 			end
 		else
-			if unitframecustomgradients[unitclass] then
-				if invert then
-					return unitframecustomgradients[unitclass].r2 - bgfade(isBG), unitframecustomgradients[unitclass].g2 - bgfade(isBG), unitframecustomgradients[unitclass].b2 - bgfade(isBG), unitframecustomgradients[unitclass].r1 - bgfade(isBG), unitframecustomgradients[unitclass].g1 - bgfade(isBG), unitframecustomgradients[unitclass].b1 - bgfade(isBG)
-				else
-					return unitframecustomgradients[unitclass].r1 - bgfade(isBG), unitframecustomgradients[unitclass].g1 - bgfade(isBG), unitframecustomgradients[unitclass].b1 - bgfade(isBG), unitframecustomgradients[unitclass].r2 - bgfade(isBG), unitframecustomgradients[unitclass].g2 - bgfade(isBG), unitframecustomgradients[unitclass].b2 - bgfade(isBG)
-				end
+			if invert then
+				return color.r2 - bgfade(isBG), color.g2 - bgfade(isBG), color.b2 - bgfade(isBG), color.r1 - bgfade(isBG), color.g1 - bgfade(isBG), color.b1 - bgfade(isBG)
 			else
-				return unitframecustomgradients["ELTRUISM"].r1 - bgfade(isBG), unitframecustomgradients["ELTRUISM"].g1 - bgfade(isBG), unitframecustomgradients["ELTRUISM"].b1 - bgfade(isBG), unitframecustomgradients["ELTRUISM"].r2 - bgfade(isBG), unitframecustomgradients["ELTRUISM"].g2 - bgfade(isBG), unitframecustomgradients["ELTRUISM"].b2 - bgfade(isBG)
+				return color.r1 - bgfade(isBG), color.g1 - bgfade(isBG), color.b1 - bgfade(isBG), color.r2 - bgfade(isBG), color.g2 - bgfade(isBG), color.b2 - bgfade(isBG)
 			end
 		end
 	end
@@ -361,86 +339,54 @@ end
 function ElvUI_EltreumUI:GradientName(name, unitclass, isTarget)
 	if not name then return end
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-		if unitframecustomgradients[unitclass] then
-			if not isTarget then
-				return E:TextGradient(name, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2)
-			else
-				return E:TextGradient(name, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2, unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1)
-			end
+		local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
+		if not isTarget then
+			return E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)
 		else
-			if not isTarget then
-				return E:TextGradient(name, unitframecustomgradients["ELTRUISM"].r1, unitframecustomgradients["ELTRUISM"].g1, unitframecustomgradients["ELTRUISM"].b1, unitframecustomgradients["ELTRUISM"].r2, unitframecustomgradients["ELTRUISM"].g2, unitframecustomgradients["ELTRUISM"].b2)
-			else
-				return E:TextGradient(name, unitframecustomgradients["ELTRUISM"].r2, unitframecustomgradients["ELTRUISM"].g2, unitframecustomgradients["ELTRUISM"].b2, unitframecustomgradients["ELTRUISM"].r1, unitframecustomgradients["ELTRUISM"].g1, unitframecustomgradients["ELTRUISM"].b1)
-			end
+			return E:TextGradient(name, color.r2, color.g2, color.b2, color.r1, color.g1, color.b1)
 		end
 	else
-		if unitframegradients[unitclass] then
-			if not isTarget then
-				return E:TextGradient(name, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2)
-			else
-				return E:TextGradient(name, unitframegradients[unitclass].r2, unitframegradients[unitclass].g2, unitframegradients[unitclass].b2, unitframegradients[unitclass].r1, unitframegradients[unitclass].g1, unitframegradients[unitclass].b1)
-			end
+		local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
+		if not isTarget then
+			return E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)
 		else
-			if not isTarget then
-				return E:TextGradient(name, unitframegradients["ELTRUISM"].r1, unitframegradients["ELTRUISM"].g1, unitframegradients["ELTRUISM"].b1, unitframegradients["ELTRUISM"].r2, unitframegradients["ELTRUISM"].g2, unitframegradients["ELTRUISM"].b2)
-			else
-				return E:TextGradient(name, unitframegradients["ELTRUISM"].r2, unitframegradients["ELTRUISM"].g2, unitframegradients["ELTRUISM"].b2, unitframegradients["ELTRUISM"].r1, unitframegradients["ELTRUISM"].g1, unitframegradients["ELTRUISM"].b1)
-			end
+			return E:TextGradient(name, color.r2, color.g2, color.b2, color.r1, color.g1, color.b1)
 		end
+	end
+end
+
+--sets name with default gradient colors using elvui
+function ElvUI_EltreumUI:GradientNameDefaultColors(name, unitclass, isTarget)
+	if not name then return end
+	local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
+	if not isTarget then
+		return E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)
+	else
+		return E:TextGradient(name, color.r2, color.g2, color.b2, color.r1, color.g1, color.b1)
 	end
 end
 
 --sends the colors for chat
 function ElvUI_EltreumUI:ChatCustomColor(unitclass)
-	if unitclass then
-		if unitframecustomgradients[unitclass] then
-			return unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1
-		else
-			return unitframecustomgradients["NPCNEUTRAL"].r1, unitframecustomgradients["NPCNEUTRAL"].g1, unitframecustomgradients["NPCNEUTRAL"].b1
-		end
-	else
-		return unitframecustomgradients["NPCNEUTRAL"].r1, unitframecustomgradients["NPCNEUTRAL"].g1, unitframecustomgradients["NPCNEUTRAL"].b1
-	end
+	local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
+	return color.r1, color.g1, color.b1
 end
 
 --different for details because bars smaller and different
 function ElvUI_EltreumUI:GradientColorsDetails(unitclass)
+	local color = unitframegradients[unitclass] or unitframegradients["NPCNEUTRAL"]
 	if E.Retail or E.Wrath then
-		if unitclass then
-			if unitframegradients[unitclass] then
-				return {r=unitframegradients[unitclass].r1 - 0.2,g= unitframegradients[unitclass].g1 - 0.2, b=unitframegradients[unitclass].b1 - 0.2,a= 0.9}, {r=unitframegradients[unitclass].r2 + 0.2, g=unitframegradients[unitclass].g2 + 0.2, b=unitframegradients[unitclass].b2 + 0.2, a=0.9}
-			else
-				return {r=unitframegradients["NPCNEUTRAL"].r1 - 0.2,g= unitframegradients["NPCNEUTRAL"].g1 - 0.2, b=unitframegradients["NPCNEUTRAL"].b1 - 0.2, a=0.9}, {r=unitframegradients["NPCNEUTRAL"].r2 + 0.2, g=unitframegradients["NPCNEUTRAL"].g2 + 0.2, b=unitframegradients["NPCNEUTRAL"].b2 + 0.2, a=0.9}
-			end
-		end
+		return {r = color.r1 - 0.2, g = color.g1 - 0.2, b = color.b1 - 0.2, a = 0.9}, {r = color.r2 + 0.2, g = color.g2 + 0.2, b = color.b2 + 0.2, a = 0.9}
 	else
-		if unitclass then
-			if unitframegradients[unitclass] then
-				return unitframegradients[unitclass].r1 - 0.2, unitframegradients[unitclass].g1 - 0.2, unitframegradients[unitclass].b1 - 0.2, 0.9, unitframegradients[unitclass].r2 + 0.2, unitframegradients[unitclass].g2 + 0.2, unitframegradients[unitclass].b2 + 0.2, 0.9
-			else
-				return unitframegradients["NPCNEUTRAL"].r1 - 0.2, unitframegradients["NPCNEUTRAL"].g1 - 0.2, unitframegradients["NPCNEUTRAL"].b1 - 0.2, 0.9, unitframegradients["NPCNEUTRAL"].r2 + 0.2, unitframegradients["NPCNEUTRAL"].g2 + 0.2, unitframegradients["NPCNEUTRAL"].b2 + 0.2, 0.9
-			end
-		end
+		return color.r1 - 0.2, color.g1 - 0.2, color.b1 - 0.2, 0.9, color.r2 + 0.2, color.g2 + 0.2, color.b2 + 0.2, 0.9
 	end
 end
 
 function ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass)
+	local color = unitframecustomgradients[unitclass] or unitframecustomgradients["NPCNEUTRAL"]
 	if E.Retail or E.Wrath then
-		if unitclass then
-			if unitframegradients[unitclass] then
-				return {r=unitframecustomgradients[unitclass].r1,g= unitframecustomgradients[unitclass].g1,b= unitframecustomgradients[unitclass].b1, a=0.9}, {r=unitframecustomgradients[unitclass].r2,g= unitframecustomgradients[unitclass].g2,b= unitframecustomgradients[unitclass].b2, a=0.9}
-			else
-				return {r=unitframecustomgradients["NPCNEUTRAL"].r1,g= unitframecustomgradients["NPCNEUTRAL"].g1,b= unitframecustomgradients["NPCNEUTRAL"].b1, a=0.9}, {r=unitframecustomgradients["NPCNEUTRAL"].r2,g= unitframecustomgradients["NPCNEUTRAL"].g2, b=unitframecustomgradients["NPCNEUTRAL"].b2, a=0.9}
-			end
-		end
+		return {r = color.r1, g = color.g1, b = color.b1, a = 0.9}, {r = color.r2, g = color.g2, b = color.b2, a = 0.9}
 	else
-		if unitclass then
-			if unitframegradients[unitclass] then
-				return unitframecustomgradients[unitclass].r1, unitframecustomgradients[unitclass].g1, unitframecustomgradients[unitclass].b1, 0.9, unitframecustomgradients[unitclass].r2, unitframecustomgradients[unitclass].g2, unitframecustomgradients[unitclass].b2, 0.9
-			else
-				return unitframecustomgradients["NPCNEUTRAL"].r1, unitframecustomgradients["NPCNEUTRAL"].g1, unitframecustomgradients["NPCNEUTRAL"].b1, 0.9, unitframecustomgradients["NPCNEUTRAL"].r2, unitframecustomgradients["NPCNEUTRAL"].g2, unitframecustomgradients["NPCNEUTRAL"].b2, 0.9
-			end
-		end
+		return color.r1, color.g1, color.b1, 0.9, color.r2, color.g2, color.b2, 0.9
 	end
 end

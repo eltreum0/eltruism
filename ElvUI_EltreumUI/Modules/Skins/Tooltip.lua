@@ -26,8 +26,9 @@ local function SetTooltipGradient(unit)
 		if tooltipname and classunit and reaction then
 			--by arkinventory on wow forums, to strip the name from color sequences
 			if tooltipname:match("|c") or tooltipname:match("|r") then
-				tooltipname = string.gsub(tooltipname, "|c%x%x%x%x%x%x%x%x", "")
-				tooltipname = string.gsub(tooltipname, "|r", "")
+				tooltipname = E:StripString(tooltipname)
+				--tooltipname = string.gsub(tooltipname, "|c%x%x%x%x%x%x%x%x", "")
+				--tooltipname = string.gsub(tooltipname, "|r", "")
 			end
 
 			if UnitIsPlayer(unit) and classunit then

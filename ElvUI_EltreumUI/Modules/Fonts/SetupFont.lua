@@ -1,8 +1,6 @@
 local E, L = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
-local GetAddOnMetadata = _G.C_AddOns and _G.C_AddOns.GetAddOnMetadata or _G.GetAddOnMetadata
-local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 
 function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	if not E.db.movers then E.db.movers = {} end
@@ -78,17 +76,14 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 				E.db["sle"]["minimap"]["coords"]["font"] = fontvalue
 				E.db["sle"]["minimap"]["instance"]["font"] = fontvalue
 				E.db["sle"]["minimap"]["locPanel"]["font"] = fontvalue
-				if sleversioncheck >= "4.22" then
-					E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = fontvalue
-					E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = fontvalue
-					E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["font"] = fontvalue
-					E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["font"] = fontvalue
-					E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["font"] = fontvalue
-					E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["font"] = fontvalue
-					E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["font"] = fontvalue
-					E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["font"] = fontvalue
-				end
-
+				E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = fontvalue
+				E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = fontvalue
+				E.db["sle"]["afk"]["defaultTexts"]["SL_Date"]["font"] = fontvalue
+				E.db["sle"]["afk"]["defaultTexts"]["SL_GuildName"]["font"] = fontvalue
+				E.db["sle"]["afk"]["defaultTexts"]["SL_GuildRank"]["font"] = fontvalue
+				E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerClass"]["font"] = fontvalue
+				E.db["sle"]["afk"]["defaultTexts"]["SL_PlayerName"]["font"] = fontvalue
+				E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["font"] = fontvalue
 				E.db["sle"]["skins"]["merchant"]["list"]["nameFont"] = fontvalue
 				E.db["sle"]["skins"]["merchant"]["list"]["subFont"] = fontvalue
 			end

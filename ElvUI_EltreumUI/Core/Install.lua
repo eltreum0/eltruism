@@ -178,13 +178,30 @@ end
 --create new edit mode layout and switch to it to prevent possible issues with movers/taints
 local function NewRetailEditModeLayout()
 	local layoutstable = C_EditMode.GetLayouts()
-	if layoutstable.layouts and layoutstable.layouts[1] then
-		local taintpreventlayout = E:CopyTable(layoutstable.layouts[1])
-		taintpreventlayout.layoutType = Enum.EditModeLayoutType.Character
+	if not layoutstable.layouts then return end
+	local alreadyimported = false
+	if layoutstable.layouts[1] then
+		for i = 1, #layoutstable.layouts do
+			if layoutstable.layouts[i].layoutName == "EltruismTaintPreventer" then
+				alreadyimported = true
+			end
+		end
+		if not alreadyimported then
+			local taintpreventlayout = E:CopyTable(layoutstable.layouts[1])
+			taintpreventlayout.layoutType = Enum.EditModeLayoutType.Account
+			taintpreventlayout.layoutName = "EltruismTaintPreventer"
+			local numlayouts = Enum.EditModePresetLayoutsMeta.NumValues
+			tinsert(layoutstable.layouts, numlayouts + 1, taintpreventlayout)
+			layoutstable.activeLayout = numlayouts + 1
+			C_EditMode.SaveLayouts(layoutstable) --if not called then layout wont apply because its not saved
+			C_EditMode.SetActiveLayout(layoutstable.activeLayout)
+		end
+	else
+		local taintpreventlayout = C_EditMode.ConvertStringToLayoutInfo("0 36 0 0 1 7 7 UIParent 0.0 45.0 -1 ##$$%/&('%)#+# 0 1 1 7 7 UIParent 0.0 45.0 -1 ##$$%/&('%(#,$ 0 2 1 7 7 UIParent 0.0 45.0 -1 ##$$%/&('%(#,$ 0 3 1 5 5 UIParent -5.0 -77.0 -1 #$$$%/&('%(#,$ 0 4 1 5 5 UIParent -5.0 -77.0 -1 #$$$%/&('%(#,$ 0 5 1 1 4 UIParent 0.0 0.0 -1 ##$$%/&('%(#,$ 0 6 1 1 4 UIParent 0.0 -50.0 -1 ##$$%/&('%(#,$ 0 7 1 1 4 UIParent 0.0 -100.0 -1 ##$$%/&('%(#,$ 0 10 1 7 7 UIParent 0.0 45.0 -1 ##$$&('% 0 11 1 7 7 UIParent 0.0 45.0 -1 ##$$&('%,# 0 12 1 7 7 UIParent 0.0 45.0 -1 ##$$&('% 1 -1 1 4 4 UIParent 0.0 0.0 -1 ##$#%# 2 -1 1 2 2 UIParent 0.0 0.0 -1 ##$#%( 3 0 1 8 7 UIParent -300.0 250.0 -1 $#3# 3 1 1 6 7 UIParent 300.0 250.0 -1 %#3# 3 2 1 6 7 UIParent 520.0 265.0 -1 %#&#3# 3 3 1 0 2 CompactRaidFrameManager 0.0 -7.0 -1 '#(#)#-#.#/#1$3# 3 4 1 0 2 CompactRaidFrameManager 0.0 -5.0 -1 ,#-#.#/#0#1#2( 3 5 1 5 5 UIParent 0.0 0.0 -1 &#*$3# 3 6 1 5 5 UIParent 0.0 0.0 -1 3# 3 7 1 4 4 UIParent 0.0 0.0 -1 3# 4 -1 1 7 7 UIParent 0.0 45.0 -1 # 5 -1 1 7 7 UIParent 0.0 45.0 -1 # 6 0 1 2 2 UIParent -255.0 -10.0 -1 ##$#%#&.(()( 6 1 1 2 2 UIParent -270.0 -155.0 -1 ##$#%#'+(()( 7 -1 0 1 1 UIParent -0.3 -141.5 -1 # 8 -1 1 6 6 UIParent 35.0 50.0 -1 #'$A%$&7 9 -1 1 7 7 UIParent 0.0 45.0 -1 # 10 -1 1 0 0 UIParent 16.0 -116.0 -1 # 11 -1 1 8 8 UIParent -9.0 85.0 -1 # 12 -1 1 2 2 UIParent -110.0 -275.0 -1 #K$# 13 -1 1 8 8 MicroButtonAndBagsBar 0.0 0.0 -1 ##$#%#&- 14 -1 1 2 2 MicroButtonAndBagsBar 0.0 0.0 -1 ##$#%( 15 0 1 7 7 StatusTrackingBarManager 0.0 0.0 -1 # 15 1 1 7 7 StatusTrackingBarManager 0.0 17.0 -1 # 16 -1 0 7 7 UIParent 604.0 802.0 -1 #(")
+		taintpreventlayout.layoutType = Enum.EditModeLayoutType.Account
 		taintpreventlayout.layoutName = "EltruismTaintPreventer"
-		local numlayouts = Enum.EditModePresetLayoutsMeta.NumValues
-		tinsert(layoutstable.layouts, numlayouts + 1, taintpreventlayout)
-		layoutstable.activeLayout = numlayouts + 1
+		layoutstable.layouts[1] = taintpreventlayout
+		layoutstable.activeLayout = 3 --for some reason the 2 default ones count for it
 		C_EditMode.SaveLayouts(layoutstable) --if not called then layout wont apply because its not saved
 		C_EditMode.SetActiveLayout(layoutstable.activeLayout)
 	end
