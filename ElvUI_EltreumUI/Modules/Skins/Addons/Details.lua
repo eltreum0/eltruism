@@ -41,8 +41,8 @@ do
 								if row.lineText1 then
 									if row.minha_tabela and row.minha_tabela.name then
 										local lineclass = row.minha_tabela:class() --from details api returns class of that row
-										local name = row.minha_tabela:name()
-										if lineclass ~='UNKNOW' and classes[lineclass] and name then
+										local name = row.minha_tabela:GetDisplayName()
+										if classes[lineclass] and name then
 											row.lineText1:SetText(row.lineText1:GetText():gsub(name, ElvUI_EltreumUI:GradientName(name, lineclass)))
 										end
 									end
@@ -54,7 +54,7 @@ do
 										end
 										if row.minha_tabela and row.minha_tabela.name then
 											unitclass = row.minha_tabela:class() --from details api returns class of that row
-											if unitclass ~='UNKNOW' and classes[unitclass] then
+											if classes[unitclass] then
 												if E.Retail or E.Wrath then
 													if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 														row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
