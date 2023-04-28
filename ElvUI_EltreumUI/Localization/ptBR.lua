@@ -1408,3 +1408,4 @@ L["Left Offset"] = true
 L["Right Offset"] = true
 L["Customize the Ghost Icons"] = true
 L["Displays percentage health with status icons"] = true
+L["Enable Gradient Glow"] = true
