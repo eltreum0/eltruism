@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local tostring = _G.tostring
@@ -94,7 +94,7 @@ do
 				local r,g,b = self.candyBarBar:GetStatusBarColor()
 
 				if E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor then
-					local currentprofile = bigwigstype["profileKeys"][E.mynameRealm]
+					currentprofile = bigwigstype["profileKeys"][E.mynameRealm]
 					r = tostring(r)
 					g = tostring(g)
 					b = tostring(b)
@@ -151,15 +151,6 @@ do
 
 	--from BigWigs's bars file, modified ElvUI Skin
 	function ElvUI_EltreumUI:BigWigsStyle()
-		local backdropBorder = {
-			bgFile = "Interface\\Buttons\\WHITE8X8",
-			edgeFile = "Interface\\Buttons\\WHITE8X8",
-			tile = false,
-			tileSize = 0,
-			edgeSize = 1,
-			insets = {left = 0, right = 0, top = 0, bottom = 0}
-		}
-
 		local function removeStyle(bar)
 			local bd = bar.candyBarBackdrop
 			bd:Hide()
@@ -344,8 +335,8 @@ do
 							end
 
 							if frame.frames and #frame.frames ~= 0 then
-								for i = 1, #frame.frames do
-									local iconparent = frame.frames[i]
+								for framenumber = 1, #frame.frames do
+									local iconparent = frame.frames[framenumber]
 									if iconparent then
 										--iconparent:SetTemplate()
 										iconparent:CreateBackdrop()

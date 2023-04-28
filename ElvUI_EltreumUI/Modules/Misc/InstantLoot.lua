@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
 local CreateFrame = _G.CreateFrame
@@ -21,7 +21,7 @@ local CloseLoot = _G.CloseLoot
 local Screenshot = _G.Screenshot
 local UIFrameFadeOut = _G.UIFrameFadeOut
 local itemLink
-local itemName, _, quality
+local itemName, quality
 local itemtexture
 local r,g,b
 local id

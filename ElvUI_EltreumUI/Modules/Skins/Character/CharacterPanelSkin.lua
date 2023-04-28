@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L, _, P = unpack(ElvUI)
 local _G = _G
 local select = _G.select
 local classcolor = E:ClassColor(E.myclass, true)
@@ -25,13 +25,12 @@ local level, mainhand, offhand, ranged
 local linkloop, mainlevel, mainlink
 local offhandlink, offhandlevel, rangedlevel, rangedlink
 local spec, points
-local _, spent1, spent2, spent3, name, spent
+local _, name, spent
 local linewidth1, linewidth2, linewidth3, linewidth4
 local texturefile, linewidthsle1, linewidthsle2
 local id, currentSpec, speed, combatText, combat, regenRate, regenRateText
 local qualityAnchor,qualityAnchorInspect
 local CharacterModelScene = _G.CharacterModelScene
-local CharacterFrameTitleText = _G.CharacterFrameTitleText
 local pairs = _G.pairs
 local string = _G.string
 local InCombatLockdown = _G.InCombatLockdown
@@ -285,17 +284,14 @@ end
 --turns out classic has the functions to get number of points on talent trees
 function ElvUI_EltreumUI:GetPlayerSpec()
 	--reset variables
-	spent1 = 0
-	spent2 = 0
-	spent3 = 0
 	name = ""
 	spent = 0
 	points = 0
 	spec = ""
 
-	spent1 = select(3,_G.GetTalentTabInfo(1))
-	spent2 = select(3,_G.GetTalentTabInfo(2))
-	spent3 = select(3,_G.GetTalentTabInfo(3))
+	local spent1 = select(3,_G.GetTalentTabInfo(1))
+	local spent2 = select(3,_G.GetTalentTabInfo(2))
+	local spent3 = select(3,_G.GetTalentTabInfo(3))
 	for i=1, _G.GetNumTalentTabs() do
 		name, _, spent = _G.GetTalentTabInfo(i)
 		if spent > 0 and (not points or spent > points) then
@@ -940,7 +936,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		--add gradient text to stats
 		if E.db.ElvUI_EltreumUI.skins.statcolors then
-			hooksecurefunc('PaperDollFrame_SetLabelAndText', function(statFrame, label)
+			hooksecurefunc('PaperDollFrame_SetLabelAndText', function(statFrame)
 				if ( statFrame.Label ) then
 					local text = statFrame.Label:GetText()
 					if not ElvUI_EltreumUI:SLCheck("stats") then
@@ -1473,7 +1469,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 
 			if _G.ReputationListScrollFrameScrollBar then
-				local point, relativeTo, relativePoint, xOfs, yOfs = _G.ReputationListScrollFrameScrollBar:GetPoint()
+				local point, relativeTo, relativePoint, xOfs = _G.ReputationListScrollFrameScrollBar:GetPoint()
 				_G.ReputationListScrollFrameScrollBarScrollDownButton:SetPoint(point, relativeTo, relativePoint, xOfs-1, -330)
 			end
 
@@ -1503,7 +1499,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						CharacterFrame.StatusLine2:Hide()
 
 						--hide quality texture
-						for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
+						for _, InvSlotName in pairs(InvSlotIdTable) do
 							if _G["EltruismItemQuality"..InvSlotName] then
 								_G["EltruismItemQuality"..InvSlotName]:Hide()
 							end
@@ -1546,7 +1542,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrame.StatusLine2:Show()
 					CharacterFrame.Text6:Hide()
 					--show quality texture
-					for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
+					for _, InvSlotName in pairs(InvSlotIdTable) do
 						if _G["EltruismItemQuality"..InvSlotName] then
 							_G["EltruismItemQuality"..InvSlotName]:Show()
 						end
@@ -2072,7 +2068,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 					local quality = select(3, _G.GetItemInfo(itemLink))
 					local isSetItem = select(16, _G.GetItemInfo(itemLink))
 					if quality ~= nil then
-						local r,g,b = 1,1,1
+						local r,g,b
 						if E.db.ElvUI_EltreumUI.skins.itemsetenable then
 							if isSetItem then
 								if E.db.ElvUI_EltreumUI.skins.itemsetcustomcolor then
@@ -2253,7 +2249,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 				local _, englishClass, _, englishRace = _G.GetPlayerInfoByGUID(unit)
 				if englishClass or englishRace then
 					if _G.InspectFrame then
-						local classcolor = E:ClassColor(englishClass, true)
+						local classcolorinspect = E:ClassColor(englishClass, true)
 
 						--inspect frame expand skin
 						if not E.Retail then
@@ -2370,7 +2366,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 
 							_G.InspectFrame.ItemLevelText:ClearAllPoints()
 							_G.InspectFrame.ItemLevelText:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 165)
-							_G.InspectFrame.ItemLevelText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							_G.InspectFrame.ItemLevelText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
 							_G.InspectFrame.ItemLevelText:SetParent(_G["InspectModelFrame"])
 
 
@@ -2423,11 +2419,11 @@ function ElvUI_EltreumUI:InspectBg(unit)
 												_G.InspectNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectNameText:GetText(), englishClass))
 											else
 												_G.InspectNameText:SetText(classsymbolonframe.." ".._G.InspectNameText:GetText())
-												_G.InspectNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+												_G.InspectNameText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
 											end
 										else
 											_G.InspectNameText:SetText(classsymbolonframe.." ".._G.InspectNameText:GetText())
-											_G.InspectNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+											_G.InspectNameText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
 										end
 										_G.InspectNameText:SetShadowColor(0, 0, 0, 0.8)
 										_G.InspectNameText:SetShadowOffset(2, -1)
@@ -2442,11 +2438,11 @@ function ElvUI_EltreumUI:InspectBg(unit)
 												_G.InspectFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectFrameTitleText:GetText(), englishClass))
 											else
 												_G.InspectFrameTitleText:SetText(classsymbolonframe.." ".._G.InspectFrameTitleText:GetText())
-												_G.InspectFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+												_G.InspectFrameTitleText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
 											end
 										else
 											_G.InspectFrameTitleText:SetText(classsymbolonframe.." ".._G.InspectFrameTitleText:GetText())
-											_G.InspectFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+											_G.InspectFrameTitleText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
 										end
 										_G.InspectFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
 										_G.InspectFrameTitleText:SetShadowOffset(2, -1)
@@ -2468,7 +2464,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 								_G.InspectFrame.Ilvl:SetSize(200, 32)
 								_G.InspectFrame.Ilvl:SetPoint("BOTTOM", _G.InspectLevelText, "BOTTOM", 0, -25) --ilvl number
 								_G.InspectFrame.Ilvl:SetParent(_G["InspectModelFrame"])
-								_G.InspectFrame.Ilvl:SetTextColor(classcolor.r, classcolor.g, classcolor.b, 1)
+								_G.InspectFrame.Ilvl:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b, 1)
 								_G.InspectLevelText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 								_G.InspectFrame.Ilvl:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 								if _G.InspectFrame and _G.InspectFrame.unit then
@@ -2585,7 +2581,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							local quality = select(3,_G.GetItemInfo(itemLink))
 							local isSetItem = select(16, _G.GetItemInfo(itemLink))
 							if quality then
-								local r,g,b = 1,1,1
+								local r,g,b
 								if E.db.ElvUI_EltreumUI.skins.itemsetenable then
 									if isSetItem then
 										if E.db.ElvUI_EltreumUI.skins.itemsetcustomcolor then

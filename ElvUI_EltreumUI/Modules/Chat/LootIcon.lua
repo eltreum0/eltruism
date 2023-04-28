@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local ChatFrame_AddMessageEventFilter = _G.ChatFrame_AddMessageEventFilter
@@ -14,7 +14,7 @@ local ilvlpattern
 local texture
 local itemLevel
 local tt
-local _, itemQuality, classID
+local itemQuality, classID
 local hex
 local GetPlayerInfoByGUID = _G.GetPlayerInfoByGUID
 
@@ -101,7 +101,6 @@ local function AddLootIcons(_, _, message, ...)
 			if guid ~= nil then
 				local _, unitclass = GetPlayerInfoByGUID(guid)
 				local msg
-				local tname
 				if E.db.ElvUI_EltreumUI.chat.classcolorchatcustom then
 					local r,g,b = ElvUI_EltreumUI:ChatCustomColor(unitclass)
 					msg = "|c"..E:RGBToHex(r,g,b, 'ff')..message:gsub("(|c%x+|Hitem:.-|h|r)", Icon).."|r"
@@ -117,7 +116,6 @@ local function AddLootIcons(_, _, message, ...)
 			if guid ~= nil then
 				local _, unitclass = GetPlayerInfoByGUID(guid)
 				local msg
-				local tname
 				if E.db.ElvUI_EltreumUI.chat.classcolorchatcustom then
 					local r,g,b = ElvUI_EltreumUI:ChatCustomColor(unitclass)
 					msg = "|c"..E:RGBToHex(r,g,b, 'ff')..message.."|r"

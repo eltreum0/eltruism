@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 
@@ -43,8 +43,6 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 
 			_G["scanner_button"].IsSkinned = true
 		end
-
-		local f = LibStub("AceAddon-3.0"):GetAddon("RareScanner")
 
 		-- the search box is not named, use get children
 		for _, v in pairs({_G["WorldMapFrame"]:GetChildren()}) do

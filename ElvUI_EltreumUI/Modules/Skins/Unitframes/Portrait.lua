@@ -1,13 +1,11 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local level, targetmodel, playermodel
+local targetmodel, playermodel
 local UnitExists = _G.UnitExists
 local UnitIsDead = _G.UnitIsDead
 local hooksecurefunc = _G.hooksecurefunc
-local rad = _G.raid
-local unpack = _G.unpack
-local UnitClass = _G.UnitClass
+local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 
 local druidfix = {
 	[1272625] = true, --""druidbear2_artifact1.m2",
@@ -417,11 +415,19 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 
 					--pause if dead
 					if UnitIsDead("target") then
-						E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = true
-						E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 1
+						E:Delay(0,function()
+							if _G["ElvUF_Target"].Portrait3D then
+								_G["ElvUF_Target"].Portrait3D:SetPaused(true)
+								_G["ElvUF_Target"].Portrait3D:SetDesaturation(1)
+							end
+						end)
 					else
-						E.db["unitframe"]["units"]["target"]["portrait"]["paused"] = false
-						E.db["unitframe"]["units"]["target"]["portrait"]["desaturation"] = 0
+						E:Delay(0,function()
+							if _G["ElvUF_Target"].Portrait3D then
+								_G["ElvUF_Target"].Portrait3D:SetPaused(false)
+								_G["ElvUF_Target"].Portrait3D:SetDesaturation(0)
+							end
+						end)
 					end
 
 					if newrotation ~= originalrotation then
@@ -477,13 +483,22 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 						end
 					end
 
+
 					--pause if dead
 					if UnitIsDead("player") then
-						E.db["unitframe"]["units"]["player"]["portrait"]["paused"] = true
-						E.db["unitframe"]["units"]["player"]["portrait"]["desaturation"] = 1
+						E:Delay(0,function()
+							if _G["ElvUF_Player"].Portrait3D then
+								_G["ElvUF_Player"].Portrait3D:SetPaused(true)
+								_G["ElvUF_Player"].Portrait3D:SetDesaturation(1)
+							end
+						end)
 					else
-						E.db["unitframe"]["units"]["player"]["portrait"]["paused"] = false
-						E.db["unitframe"]["units"]["player"]["portrait"]["desaturation"] = 0
+						E:Delay(0,function()
+							if _G["ElvUF_Player"].Portrait3D then
+								_G["ElvUF_Player"].Portrait3D:SetPaused(false)
+								_G["ElvUF_Player"].Portrait3D:SetDesaturation(0)
+							end
+						end)
 					end
 
 					if newrotation and newrotation ~= originalrotation then
@@ -511,6 +526,12 @@ shapeshiftcheck:SetScript("OnEvent", function(_,_,unit)
 		ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 		ElvUI_EltreumUI:DynamicUFPortraitRotation()
 	end
+end)
+
+local playerdiedcheck = CreateFrame("FRAME")
+playerdiedcheck:RegisterEvent("PLAYER_DEAD")
+playerdiedcheck:SetScript("OnEvent", function()
+	ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 end)
 
 --hoping this is a temporary fix and blizzard actually fixes models not inherithing the parent's alpha

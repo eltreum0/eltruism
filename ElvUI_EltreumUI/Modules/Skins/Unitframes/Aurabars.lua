@@ -1,10 +1,10 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local UF = E:GetModule('UnitFrames')
 local hooksecurefunc = _G.hooksecurefunc
 
 --Gradient Aurabars
-function ElvUI_EltreumUI:AuraBarGradient(unit, bar, _, _, _, _, debuffType, isStealable) --could use isStealable to add a glow or something
+function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to add a glow or something
 	if not unit and not bar then return end
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and bar and unit then
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars then

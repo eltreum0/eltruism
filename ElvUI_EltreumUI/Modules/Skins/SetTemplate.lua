@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local hooksecurefunc = _G.hooksecurefunc
@@ -20,6 +20,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 		local function SkinFrame(frame)
 			if frame:GetObjectType() == "Texture" then frame = frame:GetParent() end
 			local mt = getmetatable(frame).__index
+			if type(mt) == 'function' then return end
 			if mt.SetTemplate then
 				hooksecurefunc(mt, "SetTemplate", function(frame, template, _, _, _, isUnitFrameElement, isNamePlateElement)
 					if isUnitFrameElement and not E.db.ElvUI_EltreumUI.skins.elvui.unitframes then return end

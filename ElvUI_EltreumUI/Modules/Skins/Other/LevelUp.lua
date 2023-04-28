@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
 local CreateFrame = _G.CreateFrame
@@ -31,14 +31,14 @@ function ElvUI_EltreumUI:SkinLevelUp()
 				EventToastManagerFrame.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
 				EventToastManagerFrame.StatusLine2:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 
-				hooksecurefunc(_G.EventToastManagerFrame,"DisplayToast", function(self)
-					if self.currentDisplayingToast then
-						self.currentDisplayingToast.Title:SetShadowColor(0, 0, 0, 0.8)
-						self.currentDisplayingToast.Title:SetShadowOffset(2, -2)
-						--self.currentDisplayingToast.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 30, E.db.general.fontStyle) --font size doesnt adjust so it kinda breaks level up
-						self.currentDisplayingToast.SubTitle:SetShadowColor(0, 0, 0, 0.8)
-						self.currentDisplayingToast.SubTitle:SetShadowOffset(2, -2)
-						--self.currentDisplayingToast.SubTitle:SetFont(E.LSM:Fetch("font", E.db.general.font), 17, E.db.general.fontStyle) --font size doesnt adjust so it kinda breaks level up
+				hooksecurefunc(_G.EventToastManagerFrame,"DisplayToast", function(toast)
+					if toast.currentDisplayingToast then
+						toast.currentDisplayingToast.Title:SetShadowColor(0, 0, 0, 0.8)
+						toast.currentDisplayingToast.Title:SetShadowOffset(2, -2)
+						--toast.currentDisplayingToast.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 30, E.db.general.fontStyle) --font size doesnt adjust so it kinda breaks level up
+						toast.currentDisplayingToast.SubTitle:SetShadowColor(0, 0, 0, 0.8)
+						toast.currentDisplayingToast.SubTitle:SetShadowOffset(2, -2)
+						--toast.currentDisplayingToast.SubTitle:SetFont(E.LSM:Fetch("font", E.db.general.font), 17, E.db.general.fontStyle) --font size doesnt adjust so it kinda breaks level up
 					end
 				end)
 				--/script EventToastManagerFrame:Show()

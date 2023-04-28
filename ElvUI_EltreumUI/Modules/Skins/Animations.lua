@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local WorldFrame = _G.WorldFrame
@@ -45,6 +45,18 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 		darksouls:RegisterEvent("PLAYER_DEAD")
 		--darksouls:RegisterEvent("PLAYER_STARTED_MOVING")
 		darksouls:SetScript("OnEvent", function()
+			E:Delay(0.08, function()
+				if _G["ElvUF_Player"] and _G["ElvUF_Player"].Portrait3D then
+					_G["ElvUF_Player"].Portrait3D:Hide()
+				end
+				if _G["EltruismPlayerEffect"] then
+					_G["EltruismPlayerEffect"]:SetAlpha(0)
+				end
+				if _G["EltruismPlayerPowerBarEffect"] then
+					_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
+				end
+			end)
+
 			local x, y = UIParent:GetSize()
 			darksouls:SetSize(x,y)
 			darksoulstex:SetTexture(186185)
@@ -117,6 +129,15 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 				darksouls.scaler:Play()
 				E:Delay(4, function() UIFrameFadeOut(darksouls, 1, 1, 0) end)
 				E:Delay(5, function()
+					if _G["ElvUF_Player"].Portrait3D then
+						_G["ElvUF_Player"].Portrait3D:Show()
+					end
+					if _G["EltruismPlayerEffect"] then
+						_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+					end
+					if _G["EltruismPlayerPowerBarEffect"] then
+						_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
+					end
 					UIParent:SetAlpha(1)
 					if E.Retail then
 						ObjectiveTrackerFrame:SetAlpha(1)
@@ -135,6 +156,18 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 		gta:RegisterEvent("PLAYER_DEAD")
 		--gta:RegisterEvent("PLAYER_STARTED_MOVING")
 		gta:SetScript("OnEvent", function()
+			E:Delay(0.08, function()
+				if _G["ElvUF_Player"] and _G["ElvUF_Player"].Portrait3D then
+					_G["ElvUF_Player"].Portrait3D:Hide()
+				end
+				if _G["EltruismPlayerEffect"] then
+					_G["EltruismPlayerEffect"]:SetAlpha(0)
+				end
+				if _G["EltruismPlayerPowerBarEffect"] then
+					_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
+				end
+			end)
+
 			local x, y = UIParent:GetSize()
 			gta:SetSize(x,y)
 			gta:SetPoint("Center", UIParent)
@@ -188,6 +221,15 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 				end)
 
 				E:Delay(6, function()
+					if _G["ElvUF_Player"].Portrait3D then
+						_G["ElvUF_Player"].Portrait3D:Show()
+					end
+					if _G["EltruismPlayerEffect"] then
+						_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+					end
+					if _G["EltruismPlayerPowerBarEffect"] then
+						_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
+					end
 					UIParent:SetAlpha(1)
 					if E.Retail then
 						ObjectiveTrackerFrame:SetAlpha(1)

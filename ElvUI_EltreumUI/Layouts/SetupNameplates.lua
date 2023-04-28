@@ -1,8 +1,7 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local _G = _G
 local pairs = _G.pairs
 local SetCVar = _G.SetCVar
-local valuecolors = E:ClassColor(E.myclass, true)
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
 
 -- for rare nameplates

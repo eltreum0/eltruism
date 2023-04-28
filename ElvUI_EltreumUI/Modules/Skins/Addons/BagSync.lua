@@ -1,6 +1,5 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
-local _G = _G
 local valuecolors = E:ClassColor(E.myclass, true)
 
 --based on meeting horn skin
@@ -167,8 +166,8 @@ function ElvUI_EltreumUI:EltruismBagSync()
 				local group = select(i, header10:GetChildren())
 				if group then
 					if group.scrollChild then
-						for i = 1, group.scrollChild:GetNumChildren() do
-							local frame = select(i, group.scrollChild:GetChildren())
+						for itemnumber = 1, group.scrollChild:GetNumChildren() do
+							local frame = select(itemnumber, group.scrollChild:GetChildren())
 							if frame.SortBox then
 								S:HandleEditBox(frame.SortBox)
 							end

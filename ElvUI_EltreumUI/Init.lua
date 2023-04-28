@@ -1,11 +1,10 @@
 -- This whole plugin started based in LuckyoneUI, which was the simplest to understand. Full thanks to him for making it and allowing its use!
 -- It wouldn't be possible without the ElvUI community after all
-local E, _, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local EP = LibStub('LibElvUIPlugin-1.0')
-local addon, Engine = ...
+local addon = ...
 local _G = _G
 ElvUI_EltreumUI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0', 'AceConsole-3.0')
-local L = E.Libs.ACL:GetLocale("ElvUI", E.global.general.locale)
 local GetAddOnMetadata = _G.C_AddOns and _G.C_AddOns.GetAddOnMetadata or _G.GetAddOnMetadata
 
 --Binding
@@ -203,7 +202,9 @@ end
 function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
 	ElvUI_EltreumUI:RaidDeathGroupCheck()
 	--ElvUI_EltreumUI:Shadows()
-	ElvUI_EltreumUI:RaidShadows()
+	if IsInRaid() == true then
+		ElvUI_EltreumUI:RaidShadows()
+	end
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		ElvUI_EltreumUI:GradientUF()
 		ElvUI_EltreumUI:CustomTexture()

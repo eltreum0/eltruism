@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local utf8sub = string.utf8sub
 local _G = _G
 local UnitName = _G.UnitName
@@ -34,29 +34,10 @@ local DoEmote = _G.DoEmote
 local UnitIsUnit = _G.UnitIsUnit
 local UnitPowerMax = _G.UnitPowerMax
 local UnitPower = _G.UnitPower
-local IsPlayerSpell = _G.IsPlayerSpell
 local GetSpecialization = _G.GetSpecialization
 local GetShapeshiftFormInfo = _G.GetShapeshiftFormInfo
 local select = _G.select
-
---level difference table based on blizzard's
-local eltruismdif = {
-	["-9"] = "|cFF808080",
-	["-8"] = "|cFF008000",
-	["-7"] = "|cFF008000",
-	["-6"] = "|cFF008000",
-	["-5"] = "|cFF008000",
-	["-4"] = "|cFF008000",
-	["-3"] = "|cFF008000",
-	["-2"] = "|cFFFFFF00",
-	["-1"] = "|cFFFFFF00",
-	["0"] = "|cFFFFFF00",
-	["1"] = "|cFFFFFF00",
-	["2"] = "|cFFFFFF00",
-	["3"] = "|cFFFFA500",
-	["4"] = "|cFFA50000",
-	["5"] = "|cFFFF0000",
-}
+local ElvUI_EltreumUI  = _G.ElvUI_EltreumUI
 
 --level difference table based on blizzard's
 local eltruismdif = {
@@ -1066,7 +1047,7 @@ E:AddTag("eltruism:smartlevel", 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 end)
 E:AddTagInfo("eltruism:smartlevel", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows level difference when it exists for NPCs and players, hides for players if same level"])
 
-E:AddTag("eltruism:stance", 1, function(unit)
+E:AddTag("eltruism:stance", 1, function()
 	local stance = GetShapeshiftForm()
 	local stanceInfo = stanceID[E.myclass] and stanceID[E.myclass][stance]
 	if stanceBackup ~= stance then
@@ -1080,7 +1061,6 @@ E:AddTagInfo("eltruism:stance", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L
 
 --group number only for first member of group (can break if players get moved tho)
 E:AddTag("eltruism:groupnumber", "GROUP_ROSTER_UPDATE UNIT_NAME_UPDATE", function(unit)
-	local c = UnitClassification(unit)
 	if IsInRaid() == true then
 		if unit == "raid1" then
 			return GROUP.." 1"

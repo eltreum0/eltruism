@@ -1,8 +1,8 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
-local _, nameplate, colors, db, className, player, reaction, targettype, Color, Scale, sf
+local _, nameplate, db, className, player, reaction, targettype, sf
 local UnitIsTapDenied = _G.UnitIsTapDenied
 local InCombatLockdown = _G.InCombatLockdown
 local UnitClass = _G.UnitClass
@@ -12,7 +12,6 @@ local UnitPlayerControlled = _G.UnitPlayerControlled
 local UnitCanAttack = _G.UnitCanAttack
 local UnitGUID = _G.UnitGUID
 local UnitIsDead = _G.UnitIsDead
-local wipe = _G.wipe
 
 --gradient threat
 function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
@@ -198,8 +197,6 @@ function ElvUI_EltreumUI:NPClassPower_SetBarColor(bar, r, g, b)
 	end
 end
 hooksecurefunc(NP, "ClassPower_SetBarColor", ElvUI_EltreumUI.NPClassPower_SetBarColor)
-
-local FallbackColor = {r=1, b=1, g=1}
 
 --to fix stylefilter for gradient nameplates
 function ElvUI_EltreumUI:StyleFilterClearChanges(frame, HealthColor)

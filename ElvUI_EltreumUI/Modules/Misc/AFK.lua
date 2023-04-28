@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local C_CVar = _G.C_CVar
 local CreateFrame = _G.CreateFrame
@@ -188,7 +188,7 @@ function ElvUI_EltreumUI:AFKLogo()
 			EltruismAFKLogoTexture:Point('LEFT', _G.ElvUIAFKFrame.bottom,'CENTER', 10, 0)
 
 			--model
-			local point, relativeTo, relativePoint, xOfs, yOfs = _G.ElvUIAFKFrame.bottom.modelHolder:GetPoint()
+			local point, relativeTo, relativePoint, _, yOfs = _G.ElvUIAFKFrame.bottom.modelHolder:GetPoint()
 			_G.ElvUIAFKFrame.bottom.modelHolder:ClearAllPoints()
 			_G.ElvUIAFKFrame.bottom.modelHolder:Point(point, relativeTo, relativePoint, 250, yOfs+10)
 			_G.ElvUIAFKFrame.bottom.model:SetScale(0.9)

@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local _G = _G
 local DT = E:GetModule("DataTexts")
 local GetCombatRatingBonus = _G.GetCombatRatingBonus

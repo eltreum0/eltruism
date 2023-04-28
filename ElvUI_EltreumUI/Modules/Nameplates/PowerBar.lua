@@ -1,10 +1,9 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local id, _, powertype,powernumber,tablepowernumber
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local IsPlayerSpell = _G.IsPlayerSpell
-local GetPlayerAuraBySpellID = E.Retail and C_UnitAuras.GetPlayerAuraBySpellID or _G.GetPlayerAuraBySpellID
 local C_UnitAuras = _G.C_UnitAuras
 local UnitCastingInfo = _G.UnitCastingInfo
 local GetSpellPowerCost = _G.GetSpellPowerCost
@@ -59,9 +58,8 @@ local shamanhex = 0
 local shamanbolt = 8
 local shamanlavaburst = 10
 local huntersteadyshot = 0
-local druideclipse,costTable,ret,currentSpec,power
+local druideclipse,costTable,currentSpec
 local predictioncolorr, predictioncolorg, predictioncolorb
-local placeValue = ("%%.%df"):format(1)
 local isSetup, isSetupprediction = false, false
 local maxpower = 0
 
@@ -803,21 +801,8 @@ end
 --update the values of nameplate power bar
 function ElvUI_EltreumUI:NameplatePowerTextUpdate()
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
-		power = UnitPower("player")
-		if not power then return end
-		EltreumPowerBar:SetValue(power)
-		if UnitPower("player") >= 1000000000000 then
-			ret = placeValue:format(UnitPower("player") * 0.000000000001) .. " T" -- trillion
-		elseif UnitPower("player") >= 1000000000 then
-			ret = placeValue:format(UnitPower("player") * 0.000000001) .. " B" -- billion
-		elseif UnitPower("player") >= 1000000 then
-			ret = placeValue:format(UnitPower("player") * 0.000001) .. " M" -- million
-		elseif UnitPower("player") >= 1000 then
-			ret = placeValue:format(UnitPower("player") * 0.001) .. "k" -- thousand
-		else
-			ret = UnitPower("player") -- hundreds
-		end
-		EltreumPowerBar.Text:SetText(ret)
+		EltreumPowerBar:SetValue(UnitPower("player"))
+		EltreumPowerBar.Text:SetText(E:ShortValue(UnitPower("player")))
 	end
 end
 

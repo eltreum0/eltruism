@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local select = _G.select
@@ -241,8 +241,8 @@ function ElvUI_EltreumUI:AutoCombatLog()
 		if not InCombatLockdown() then
 			SetCVar("advancedCombatLogging", 1)
 		end
-		local _, instanceType = IsInInstance()
-		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then
+		local _, instanceType2 = IsInInstance()
+		if instanceType2 == "raid" or instanceType2 == "party" or instanceType2 == "scenario" then
 			LoggingCombat(true)
 			--ElvUI_EltreumUI:Print(COMBATLOGENABLED)
 		else

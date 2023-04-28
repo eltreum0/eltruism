@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local DB = E:GetModule('DataBars')
 local S = E:GetModule('Skins')
 local _G = _G
@@ -32,9 +32,6 @@ function ElvUI_EltreumUI:GradientDatabarRep()
 				if info and info.friendshipFactionID then
 					local isMajorFaction = factionID and C_Reputation.IsMajorFaction(factionID)
 					if isMajorFaction then
-						local majorFactionData = C_MajorFactions.GetMajorFactionData(factionID)
-						local renownColor = DB.db.colors.factionColors[10]
-						local renownHex = E:RGBToHex(renownColor.r, renownColor.g, renownColor.b)
 						reaction = 10
 					end
 				end

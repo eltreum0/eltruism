@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local CreateFrame = _G.CreateFrame
@@ -10,7 +10,6 @@ local strlower = _G.strlower
 local GetContainerNumSlots = E.Retail and C_Container.GetContainerNumSlots or _G.GetContainerNumSlots
 local GetContainerItemInfo = E.Retail and C_Container.GetContainerItemInfo or _G.GetContainerItemInfo
 local UseContainerItem = E.Retail and C_Container.UseContainerItem or _G.UseContainerItem
-local select = _G.select
 local next = _G.next
 local SendChatMessage = _G.SendChatMessage
 
@@ -285,7 +284,6 @@ function ElvUI_EltreumUI:Keys(event,message)
 		for bag = 0, NUM_BAG_SLOTS do
 			local bagSlots = C_Container.GetContainerNumSlots(bag)
 			for slot = 1, bagSlots do
-				--local itemLink, _, _, itemID = select(7, C_Container.GetContainerItemInfo(bag, slot))
 				local containerInfo = C_Container.GetContainerItemInfo(bag, slot)
 				if containerInfo then
 					local itemLink = containerInfo.hyperlink
@@ -297,7 +295,7 @@ function ElvUI_EltreumUI:Keys(event,message)
 			end
 		end
 	end
-	local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or (event == 'CHAT_MSG_PARTY_LEADER' and 'PARTY') or (event == 'CHAT_MSG_PARTY' and 'PARTY')
+
 	local function link(channel)
 		update()
 		if E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
@@ -308,6 +306,7 @@ function ElvUI_EltreumUI:Keys(event,message)
 		end
 	end
 
+	local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or (event == 'CHAT_MSG_PARTY_LEADER' and 'PARTY') or (event == 'CHAT_MSG_PARTY' and 'PARTY')
 	if event == 'BAG_UPDATE_DELAYED' then
 		update()
 	elseif message and ( strlower(message) == '!keys' or strlower(message) == '!key') then

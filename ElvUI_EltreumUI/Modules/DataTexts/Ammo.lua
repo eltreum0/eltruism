@@ -1,8 +1,8 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local _G = _G
 local DT = E:GetModule("DataTexts")
 local select, wipe = _G.select, _G.wipe
-local format, strjoin = _G.format, _G.strjoin
+local strjoin = _G.strjoin
 local GetItemInfo = _G.GetItemInfo
 local GetItemInfoInstant = _G.GetItemInfoInstant
 local GetItemCount = _G.GetItemCount
@@ -23,7 +23,7 @@ if not E.Retail then
 	local displayString = ''
 	local waitingItemID
 	local function OnEvent(self, event, ...)
-		local name, count, itemID, itemEquipLoc
+		local name, count, itemID, itemEquipLoc, texture,_
 		if event == 'GET_ITEM_INFO_RECEIVED' then
 			itemID = ...
 			if itemID ~= waitingItemID then return end
@@ -35,7 +35,7 @@ if not E.Retail then
 		end
 		if E.myclass == 'WARLOCK' then
 			local namewarlock
-			local name, _, _, _, _, _, _, _, _, texture = GetItemInfo(6265)
+			name, _, _, _, _, _, _, _, _, texture = GetItemInfo(6265)
 			count = GetItemCount(6265)
 			if texture == nil then
 				namewarlock = itemName[6265]
@@ -60,7 +60,7 @@ if not E.Retail then
 			if (itemID and itemID > 0) and (count > 0) then
 				if itemID then
 					--name = itemName[itemID] or GetItemInfo(itemID)
-					local _, _, _, _, _, _, _, _, _, texture = GetItemInfo(itemID)
+					_, _, _, _, _, _, _, _, _, texture = GetItemInfo(itemID)
 					if texture == nil then
 						name = itemName[itemID] or GetItemInfo(itemID)
 					else
@@ -107,7 +107,7 @@ if not E.Retail then
 				for j = 1, GetContainerNumSlots(i) do
 					local itemID = GetContainerItemID(i, j)
 					if itemID and not itemCount[itemID] then
-						local name, _, quality, _, _, _, _, _, equipLoc, texture = GetItemInfo(itemID)
+						local name, _, quality, _, _, _, _, _, _, texture = GetItemInfo(itemID)
 						local count = GetItemCount(itemID)
 						if itemID == 6265 then
 							DT.tooltip:AddDoubleLine(strjoin('', format(iconString, texture), ' ', name), count, GetItemQualityColor(quality))
@@ -148,10 +148,8 @@ if not E.Retail then
 			end
 		end
 	end
-	local function ValueColorUpdate(self, hex)
+	local function ValueColorUpdate(_, hex)
 		displayString = strjoin('', '%s: ', hex, '%d|r')
-
-		--OnEvent(self)
 	end
 	DT:RegisterDatatext("Eltruism Ammo", nil, {'BAG_UPDATE', 'UNIT_INVENTORY_CHANGED'}, OnEvent, nil, OnClick, OnEnter, nil, L["Eltruism Ammo"], nil, ValueColorUpdate)
 end

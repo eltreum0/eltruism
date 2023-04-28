@@ -1,9 +1,8 @@
 --CursorCooldown is a fork of CooldownToGo by mitchnull, which is licensed under Public Domain. My thanks to mitchnull for making it!
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
-local C_CVar = _G.C_CVar
 local GetTime = _G.GetTime
 local GetCursorPosition = _G.GetCursorPosition
 local math = _G.math
@@ -20,7 +19,7 @@ local GetItemInfo = _G.GetItemInfo
 local GetItemCooldown = (E.Retail or E.Wrath) and _G.C_Container.GetItemCooldown or _G.GetItemCooldown
 local GetPetActionCooldown = _G.GetPetActionCooldown
 local PlaySoundFile = _G.PlaySoundFile
-local start, duration, enabled
+local enabled
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
 
 --onupdate things
@@ -39,11 +38,9 @@ local isAlmostReady = false
 local isReady = false
 local isHidden = false
 local cooldownsize
-local textsize
-local name, _, isToken
+local textsize, _, isToken
 local typeslot, id
-local namepet, texture
-local namespell, texturespell
+local namepet, namespell, texturespell
 local baseCooldown
 local itemLinkinv
 local itemLinkcontainer
@@ -166,15 +163,15 @@ function ElvUI_EltreumUI:CooldownEnable()
 	--self:RegisterUnitEvent("UNIT_SPELLCAST_FAILED", "player") --this triggers every single time a spell fails like when out of resources or on cd
 end
 
-function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
+function ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, show, startHidden)
 	--print("updateStamps spam "..math.random(1,99))
-	if not start then
+	if not startstamp then
 		return
 	end
-	currStart = start
-	currDuration = duration
+	currStart = startstamp
+	currDuration = durationstamp
 	now = GetTime()
-	endStamp = start + duration
+	endStamp = startstamp + durationstamp
 	if endStamp < now then
 		endStamp = now
 	end
@@ -216,9 +213,9 @@ function ElvUI_EltreumUI:updateStamps(start, duration, show, startHidden)
 					else
 						if needUpdate then
 							needUpdate = false
-							start, duration = currGetCooldown(currArg)
-							if currStart ~= start or currDuration ~= duration then
-								ElvUI_EltreumUI:updateStamps(start, duration, false)
+							startstamp, durationstamp = currGetCooldown(currArg)
+							if currStart ~= startstamp or currDuration ~= durationstamp then
+								ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, false)
 							end
 						end
 						now = GetTime()
@@ -317,7 +314,7 @@ local function findPetActionIndexForSpell(spell)
 	if not spell then return end
 	for i = 1, NUM_PET_ACTION_SLOTS do
 		namepet, _, _, isToken = GetPetActionInfo(i)
-		if isToken then namepet = _G[name] end
+		if isToken then namepet = _G[namepet] end
 		if namepet == spell and E.db.ElvUI_EltreumUI.cursors.cursor.petcooldown then
 			return i
 		end
@@ -378,7 +375,7 @@ function ElvUI_EltreumUI:checkPetActionCooldown(index)
 	if spellIdpetcd then
 		ElvUI_EltreumUI:checkSpellCooldown(spellIdpetcd)
 	else
-		ElvUI_EltreumUI:showCooldown(texture, GetPetActionCooldown, index)
+		ElvUI_EltreumUI:showCooldown(texturepetcd, GetPetActionCooldown, index)
 	end
 end
 

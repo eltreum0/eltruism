@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local unpack = _G.unpack
 local WT = E.Libs.AceAddon:GetAddon("ElvUI_WindTools", true)
@@ -11,10 +11,6 @@ local hooksecurefunc = _G.hooksecurefunc
 local string = _G.string
 local PlaySoundFile = _G.PlaySoundFile
 local gsub = _G.gsub
-local UIParentLoadAddOn = _G.UIParentLoadAddOn
-local INLINE_TANK_ICON = _G.INLINE_TANK_ICON
-local INLINE_HEALER_ICON = _G.INLINE_HEALER_ICON
-local INLINE_DAMAGER_ICON = _G.INLINE_DAMAGER_ICON
 
 local classcolorsescape = {
 	["DEATHKNIGHT"]	= "C41E3A",
@@ -41,7 +37,7 @@ local joinsstring3
 local leavestring
 local leavestring2
 
-local function ColorSysMsgs(_, event, message, ...)
+local function ColorSysMsgs(_, _, message, ...)
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
 	elseif not E.db.ElvUI_EltreumUI then
