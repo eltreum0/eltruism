@@ -331,10 +331,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["colors"]["power_backdrop"]["b"] = 0
 		E.db["unitframe"]["colors"]["power_backdrop"]["g"] = 0
 		E.db["unitframe"]["colors"]["power_backdrop"]["r"] = 0
-		E.db["unitframe"]["colors"]["transparentAurabars"] = true
-		E.db["unitframe"]["colors"]["transparentCastbar"] = true
-		E.db["unitframe"]["colors"]["transparentHealth"] = true
-		E.db["unitframe"]["colors"]["transparentPower"] = false
 
 		--movers
 		E.db["movers"]["MoverEltruismInstanceDifficulty"] = "TOPRIGHT,UIParent,TOPRIGHT,-146,-21"
