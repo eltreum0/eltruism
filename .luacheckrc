@@ -2921,6 +2921,7 @@ globals = {
 	"HybridScrollFrame_GetOffset",
 	"FCF_SetChatWindowFontSize",
 	"_G",
+	"print",
 }
 max_line_length = false
 ignore = {
