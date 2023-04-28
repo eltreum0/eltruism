@@ -42,7 +42,7 @@ do
 									if row.minha_tabela and row.minha_tabela.name then
 										local lineclass = row.minha_tabela:class() --from details api returns class of that row
 										local name = row.minha_tabela:name()
-										if lineclass ~='UNKNOW' and classes[unitclass] and name then
+										if lineclass ~='UNKNOW' and classes[lineclass] and name then
 											row.lineText1:SetText(row.lineText1:GetText():gsub(name, ElvUI_EltreumUI:GradientName(name, lineclass)))
 										end
 									end
