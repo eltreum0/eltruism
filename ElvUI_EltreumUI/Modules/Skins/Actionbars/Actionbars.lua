@@ -39,8 +39,8 @@ function ElvUI_EltreumUI:SkillGlow()
 							LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
 							if E.db.ElvUI_EltreumUI.glow.gradient then
 								for k,v in pairs({button._PixelGlow:GetRegions()}) do
-									local r,g,b,a = v:GetVertexColor()
-									v:SetVertexColor(r-(k/20),g-(k/20),b-(k/20),a)
+									local r,g,b = v:GetVertexColor()
+									v:SetVertexColor((r-(k/20)),(g-(k/20)),(b-(k/20)),1)
 								end
 							end
 						elseif E.db.ElvUI_EltreumUI.glow.autocast then
@@ -50,8 +50,8 @@ function ElvUI_EltreumUI:SkillGlow()
 							end
 							if E.db.ElvUI_EltreumUI.glow.gradient then
 								for k,v in pairs({button._AutoCastGlow:GetRegions()}) do
-									local r,g,b,a = v:GetVertexColor()
-									v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),a)
+									local r,g,b = v:GetVertexColor()
+									v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),1)
 								end
 							end
 						elseif E.db.ElvUI_EltreumUI.glow.blizzard then
@@ -146,16 +146,16 @@ function ElvUI_EltreumUI:SkillGlow()
 											LCG.PixelGlow_Start(totemglow1, totem1glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 8)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({totemglow1._PixelGlow:GetRegions()}) do
-													local r,g,b,a = v:GetVertexColor()
-													v:SetVertexColor(r-(k/30),g-(k/30),b-(k/30),a)
+													local r,g,b = v:GetVertexColor()
+													v:SetVertexColor(r-(k/30),g-(k/30),b-(k/30),1)
 												end
 											end
 										elseif E.db.ElvUI_EltreumUI.glow.autocast then
 											LCG.AutoCastGlow_Start(totemglow1, totem1glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({totemglow1._AutoCastGlow:GetRegions()}) do
-													local r,g,b,a = v:GetVertexColor()
-													v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),a)
+													local r,g,b = v:GetVertexColor()
+													v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),1)
 												end
 											end
 										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
@@ -194,16 +194,16 @@ function ElvUI_EltreumUI:SkillGlow()
 											LCG.PixelGlow_Start(totemglow2, totem2glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 8)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({totemglow2._PixelGlow:GetRegions()}) do
-													local r,g,b,a = v:GetVertexColor()
-													v:SetVertexColor(r-(k/30),g-(k/30),b-(k/30),a)
+													local r,g,b = v:GetVertexColor()
+													v:SetVertexColor(r-(k/30),g-(k/30),b-(k/30),1)
 												end
 											end
 										elseif E.db.ElvUI_EltreumUI.glow.autocast then
 											LCG.AutoCastGlow_Start(totemglow2, totem2glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({totemglow2._AutoCastGlow:GetRegions()}) do
-													local r,g,b,a = v:GetVertexColor()
-													v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),a)
+													local r,g,b = v:GetVertexColor()
+													v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),1)
 												end
 											end
 										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
@@ -242,16 +242,16 @@ function ElvUI_EltreumUI:SkillGlow()
 											LCG.PixelGlow_Start(totemglow3, totem3glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 8)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({totemglow3._PixelGlow:GetRegions()}) do
-													local r,g,b,a = v:GetVertexColor()
-													v:SetVertexColor(r-(k/30),g-(k/30),b-(k/30),a)
+													local r,g,b = v:GetVertexColor()
+													v:SetVertexColor(r-(k/30),g-(k/30),b-(k/30),1)
 												end
 											end
 										elseif E.db.ElvUI_EltreumUI.glow.autocast then
 											LCG.AutoCastGlow_Start(totemglow3, totem3glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({totemglow3._AutoCastGlow:GetRegions()}) do
-													local r,g,b,a = v:GetVertexColor()
-													v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),a)
+													local r,g,b = v:GetVertexColor()
+													v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),1)
 												end
 											end
 										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
@@ -290,16 +290,16 @@ function ElvUI_EltreumUI:SkillGlow()
 											LCG.PixelGlow_Start(totemglow4, totem4glowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 8)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({totemglow4._PixelGlow:GetRegions()}) do
-													local r,g,b,a = v:GetVertexColor()
-													v:SetVertexColor(r-(k/30),g-(k/30),b-(k/30),a)
+													local r,g,b = v:GetVertexColor()
+													v:SetVertexColor(r-(k/30),g-(k/30),b-(k/30),1)
 												end
 											end
 										elseif E.db.ElvUI_EltreumUI.glow.autocast then
 											LCG.AutoCastGlow_Start(totemglow4, totem4glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({totemglow4._AutoCastGlow:GetRegions()}) do
-													local r,g,b,a = v:GetVertexColor()
-													v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),a)
+													local r,g,b = v:GetVertexColor()
+													v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),1)
 												end
 											end
 										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
@@ -473,16 +473,16 @@ function ElvUI_EltreumUI:SkillGlow()
 													LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
 													if E.db.ElvUI_EltreumUI.glow.gradient then
 														for k,v in pairs({_G[buttonname]._PixelGlow:GetRegions()}) do
-															local r,g,b,a = v:GetVertexColor()
-															v:SetVertexColor(r-(k/20),g-(k/20),b-(k/20),a)
+															local r,g,b = v:GetVertexColor()
+															v:SetVertexColor(r-(k/20),g-(k/20),b-(k/20),1)
 														end
 													end
 												elseif E.db.ElvUI_EltreumUI.glow.autocast then
 													LCG.AutoCastGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 													if E.db.ElvUI_EltreumUI.glow.gradient then
 														for k,v in pairs({_G[buttonname]._AutoCastGlow:GetRegions()}) do
-															local r,g,b,a = v:GetVertexColor()
-															v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),a)
+															local r,g,b = v:GetVertexColor()
+															v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),1)
 														end
 													end
 												elseif E.db.ElvUI_EltreumUI.glow.blizzard then
@@ -514,16 +514,16 @@ function ElvUI_EltreumUI:SkillGlow()
 												LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
 												if E.db.ElvUI_EltreumUI.glow.gradient then
 														for k,v in pairs({_G[buttonname]._PixelGlow:GetRegions()}) do
-															local r,g,b,a = v:GetVertexColor()
-															v:SetVertexColor(r-(k/20),g-(k/20),b-(k/20),a)
+															local r,g,b = v:GetVertexColor()
+															v:SetVertexColor(r-(k/20),g-(k/20),b-(k/20),1)
 														end
 													end
 											elseif E.db.ElvUI_EltreumUI.glow.autocast then
 												LCG.AutoCastGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 												if E.db.ElvUI_EltreumUI.glow.gradient then
 													for k,v in pairs({_G[buttonname]._AutoCastGlow:GetRegions()}) do
-														local r,g,b,a = v:GetVertexColor()
-														v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),a)
+														local r,g,b = v:GetVertexColor()
+														v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),1)
 													end
 												end
 											elseif E.db.ElvUI_EltreumUI.glow.blizzard then
@@ -570,16 +570,16 @@ function ElvUI_EltreumUI:SkillGlow()
 											LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({_G[buttonname]._PixelGlow:GetRegions()}) do
-													local r,g,b,a = v:GetVertexColor()
-													v:SetVertexColor(r-(k/20),g-(k/20),b-(k/20),a)
+													local r,g,b = v:GetVertexColor()
+													v:SetVertexColor(r-(k/20),g-(k/20),b-(k/20),1)
 												end
 											end
 										elseif E.db.ElvUI_EltreumUI.glow.autocast then
 											LCG.AutoCastGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({_G[buttonname]._AutoCastGlow:GetRegions()}) do
-													local r,g,b,a = v:GetVertexColor()
-													v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),a)
+													local r,g,b = v:GetVertexColor()
+													v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),1)
 												end
 											end
 										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
@@ -664,8 +664,8 @@ function ElvUI_EltreumUI:SkillGlowPet()
 					LCG.PixelGlow_Start(button, skillglowcolorpet, 10, 0.25, 5, 2, 0, 0, false, nil, 6)
 					if E.db.ElvUI_EltreumUI.glow.gradient then
 						for k,v in pairs({button._PixelGlow:GetRegions()}) do
-							local r,g,b,a = v:GetVertexColor()
-							v:SetVertexColor(r-(k/20),g-(k/20),b-(k/20),a)
+							local r,g,b = v:GetVertexColor()
+							v:SetVertexColor(r-(k/20),g-(k/20),b-(k/20),1)
 						end
 					end
 				elseif E.db.ElvUI_EltreumUI.glow.autocast then
@@ -673,8 +673,8 @@ function ElvUI_EltreumUI:SkillGlowPet()
 					LCG.AutoCastGlow_Start(button, skillglowcolorpet, 16, 0.25, 0.7, 0, 0)
 					if E.db.ElvUI_EltreumUI.glow.gradient then
 						for k,v in pairs({button._AutoCastGlow:GetRegions()}) do
-							local r,g,b,a = v:GetVertexColor()
-							v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),a)
+							local r,g,b = v:GetVertexColor()
+							v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),1)
 						end
 					end
 				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
@@ -761,16 +761,16 @@ function ElvUI_EltreumUI:PreviewGlow()
 			LCG.PixelGlow_Start(EltruismGlowPreview, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
 			if E.db.ElvUI_EltreumUI.glow.gradient then
 				for k,v in pairs({EltruismGlowPreview._PixelGlow:GetRegions()}) do
-					local r,g,b,a = v:GetVertexColor()
-					v:SetVertexColor(r-(k/20),g-(k/20),b-(k/20),a)
+					local r,g,b = v:GetVertexColor()
+					v:SetVertexColor(r-(k/20),g-(k/20),b-(k/20),1)
 				end
 			end
 		elseif E.db.ElvUI_EltreumUI.glow.autocast then
 			LCG.AutoCastGlow_Start(EltruismGlowPreview, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 			if E.db.ElvUI_EltreumUI.glow.gradient then
 				for k,v in pairs({EltruismGlowPreview._AutoCastGlow:GetRegions()}) do
-					local r,g,b,a = v:GetVertexColor()
-					v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),a)
+					local r,g,b = v:GetVertexColor()
+					v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),1)
 				end
 			end
 		elseif E.db.ElvUI_EltreumUI.glow.blizzard then
