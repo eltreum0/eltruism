@@ -2,7 +2,6 @@ local E, L = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local GetAddOnMetadata = _G.C_AddOns and _G.C_AddOns.GetAddOnMetadata or _G.GetAddOnMetadata
-local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 
 function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	if not E.db.movers then E.db.movers = {} end
@@ -78,6 +77,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 				E.db["sle"]["minimap"]["coords"]["font"] = fontvalue
 				E.db["sle"]["minimap"]["instance"]["font"] = fontvalue
 				E.db["sle"]["minimap"]["locPanel"]["font"] = fontvalue
+				local sleversioncheck = GetAddOnMetadata('ElvUI_SLE', 'Version')
 				if sleversioncheck >= "4.22" then
 					E.db["sle"]["afk"]["defaultTexts"]["SL_AFKMessage"]["font"] = fontvalue
 					E.db["sle"]["afk"]["defaultTexts"]["SL_AFKTimePassed"]["font"] = fontvalue
