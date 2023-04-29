@@ -33,9 +33,17 @@ do
 		if E.db.ElvUI_EltreumUI.skins.details then
 			if not DetailsHooked then
 				local Details = _G.Details
-				--gradient name
+				--gradient name (damage)
 				hooksecurefunc(Details.atributo_damage,"RefreshLine", function(_,_, lineContainer, whichRowLine)
 					local thisLine = lineContainer[whichRowLine]
+					if not thisLine then return end
+					if thisLine.lineText1 then
+						thisLine.lineText1:SetText(thisLine.colocacao .. ". " .. ElvUI_EltreumUI:GradientName(thisLine.minha_tabela:GetDisplayName(), thisLine.minha_tabela:class()))
+					end
+				end)
+				--gradient name (heal)
+				hooksecurefunc(Details.atributo_heal,"RefreshLine", function(_,instancia, _, whichRowLine)
+					local thisLine = instancia.barras[whichRowLine]
 					if not thisLine then return end
 					if thisLine.lineText1 then
 						thisLine.lineText1:SetText(thisLine.colocacao .. ". " .. ElvUI_EltreumUI:GradientName(thisLine.minha_tabela:GetDisplayName(), thisLine.minha_tabela:class()))
