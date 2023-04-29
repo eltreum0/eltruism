@@ -24,13 +24,7 @@ local function SetTooltipGradient(unit)
 
 		local tooltipname = _G["GameTooltipTextLeft1"]:GetText()
 		if tooltipname and classunit and reaction then
-			--by arkinventory on wow forums, to strip the name from color sequences
-			if tooltipname:match("|c") or tooltipname:match("|r") then
-				tooltipname = E:StripString(tooltipname)
-				--tooltipname = string.gsub(tooltipname, "|c%x%x%x%x%x%x%x%x", "")
-				--tooltipname = string.gsub(tooltipname, "|r", "")
-			end
-
+			tooltipname = E:StripString(tooltipname)
 			if UnitIsPlayer(unit) and classunit then
 				_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, classunit))
 			else
