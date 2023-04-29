@@ -63,7 +63,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["quest"]["objectiveTracker"]["header"]["size"] = 16
 		E.private["WT"]["quest"]["objectiveTracker"]["cosmeticBar"]["height"] = 3
 		E.private["WT"]["quest"]["objectiveTracker"]["cosmeticBar"]["offsetY"] = -13
-		E.private["WT"]["quest"]["objectiveTracker"]["cosmeticBar"]["texture"] = "Asphyxia-Norm"
+		E.private["WT"]["quest"]["objectiveTracker"]["cosmeticBar"]["texture"] = "ElvUI Norm1"
 		E.private["WT"]["quest"]["objectiveTracker"]["cosmeticBar"]["color"]["mode"] = "GRADIENT"
 		E.private["WT"]["quest"]["objectiveTracker"]["cosmeticBar"]["color"]["gradientColor1"]["b"] = unitframegradients[E.myclass].b1
 		E.private["WT"]["quest"]["objectiveTracker"]["cosmeticBar"]["color"]["gradientColor1"]["g"] = unitframegradients[E.myclass].g1

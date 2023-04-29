@@ -721,7 +721,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["speed"] = 7
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["scale"] = 1.25
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["texture"]["enable"] = true
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["texture"]["texture"] = "Asphyxia-Norm"
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["texture"]["texture"] = "ElvUI Norm1"
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["healthThreshold"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["isTarget"] = false
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["isNotTapDenied"] = true

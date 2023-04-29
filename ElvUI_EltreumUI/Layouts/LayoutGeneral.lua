@@ -384,7 +384,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["general"]["loginmessage"] = false
 		E.db["general"]["lootRoll"]["leftButtons"] = true
 		E.db["general"]["lootRoll"]["nameFont"] = "Kimberley"
-		E.db["general"]["lootRoll"]["statusBarTexture"] = "Asphyxia-Norm"
+		E.db["general"]["lootRoll"]["statusBarTexture"] = "ElvUI Norm1"
 		E.db["general"]["minimap"]["icons"]["calendar"]["position"] = "TOPLEFT"
 		E.db["general"]["minimap"]["icons"]["calendar"]["xOffset"] = 3
 		E.db["general"]["minimap"]["icons"]["calendar"]["yOffset"] = -38
@@ -1333,9 +1333,9 @@ function ElvUI_EltreumUI:SetupPrivate()
 	E.private["general"]["chatBubbleFontSize"] = 10
 	E.private["general"]["chatBubbleName"] = true
 	E.private["general"]["dmgfont"] = "Kimberley"
-	E.private["general"]["glossTex"] = "Asphyxia-Norm"
+	E.private["general"]["glossTex"] = "ElvUI Norm1"
 	E.private["general"]["namefont"] = "Kimberley"
-	E.private["general"]["normTex"] = "Asphyxia-Norm"
+	E.private["general"]["normTex"] = "ElvUI Norm1"
 	E.private["theme"] = "class"
 	E.private["skins"]["parchmentRemoverEnable"] = true
 	E.private["skins"]["blizzard"]["enable"] = true
