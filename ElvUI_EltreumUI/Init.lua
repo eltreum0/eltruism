@@ -150,12 +150,6 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED') --for hiding healthbar in friendly np
 	ElvUI_EltreumUI:RegisterEvent('ZONE_CHANGED_NEW_AREA') --for hiding healthbar in friendly np
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_TARGET_CHANGED') --for power bar and light mode texture
-	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_LOOT") --LootText things
-	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_MONEY") --LootText things
-	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_CURRENCY") --LootText things
-	ElvUI_EltreumUI:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN") --LootText things
-	ElvUI_EltreumUI:RegisterEvent("LOOT_OPENED") --LootText things
-	ElvUI_EltreumUI:RegisterEvent('UI_ERROR_MESSAGE') --LootText things
 	ElvUI_EltreumUI:RegisterEvent('INSPECT_READY')
 	if E.Retail then
 		ElvUI_EltreumUI:RegisterEvent('GOSSIP_SHOW') --for rogue order hall
@@ -281,30 +275,6 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
 		ElvUI_EltreumUI:BordersTargetChanged()
 	end
-end
-
-function ElvUI_EltreumUI:CHAT_MSG_LOOT()
-	ElvUI_EltreumUI:LootText()
-end
-
-function ElvUI_EltreumUI:CHAT_MSG_MONEY()
-	ElvUI_EltreumUI:LootText()
-end
-
-function ElvUI_EltreumUI:CHAT_MSG_CURRENCY()
-	ElvUI_EltreumUI:LootText()
-end
-
-function ElvUI_EltreumUI:CHAT_MSG_COMBAT_HONOR_GAIN()
-	ElvUI_EltreumUI:LootText()
-end
-
-function ElvUI_EltreumUI:LOOT_OPENED()
-	ElvUI_EltreumUI:LootText()
-end
-
-function ElvUI_EltreumUI:UI_ERROR_MESSAGE()
-	ElvUI_EltreumUI:LootText()
 end
 
 local currenttalentretail = E.Retail and GetSpecialization()

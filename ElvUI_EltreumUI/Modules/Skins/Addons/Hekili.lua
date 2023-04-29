@@ -16,6 +16,9 @@ function ElvUI_EltreumUI:EltruismHekili()
 					if _G["Hekili_Primary_B"..i].Highlight then
 						_G["Hekili_Primary_B"..i].Highlight:SetAlpha(0)
 					end
+					if _G["Hekili_Primary_B"..i].Empowerment then
+						_G["Hekili_Primary_B"..i].Empowerment:SetAlpha(0)
+					end
 				end
 				if _G["Hekili_Defensives_B"..i] then
 					S:HandleButton(_G["Hekili_Defensives_B"..i])
@@ -25,6 +28,9 @@ function ElvUI_EltreumUI:EltruismHekili()
 					end
 					if _G["Hekili_Defensives_B"..i].Highlight then
 						_G["Hekili_Defensives_B"..i].Highlight:SetAlpha(0)
+					end
+					if _G["Hekili_Defensives_B"..i].Empowerment then
+						_G["Hekili_Defensives_B"..i].Empowerment:SetAlpha(0)
 					end
 				end
 			end

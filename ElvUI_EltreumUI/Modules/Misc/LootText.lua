@@ -16,8 +16,8 @@ LootTextframe:RegisterEvent("CHAT_MSG_CURRENCY")
 LootTextframe:RegisterEvent("CHAT_MSG_COMBAT_HONOR_GAIN")
 LootTextframe:RegisterEvent("CHAT_MSG_SKILL") --profession level up
 --LootTextframe:RegisterEvent("CHAT_MSG_TRADESKILLS")
-
 LootTextframe:RegisterEvent("LOOT_OPENED")
+
 local combatindicatorframe = CreateFrame("Frame")
 combatindicatorframe:RegisterEvent("PLAYER_REGEN_ENABLED")
 combatindicatorframe:RegisterEvent("PLAYER_REGEN_DISABLED")
@@ -206,7 +206,7 @@ function ElvUI_EltreumUI:LootText()
 			end
 		end
 
-		function LootTextframe.OnEvent(_, event, arg1, arg2)
+		LootTextframe:SetScript("OnEvent",function(_, event, arg1, arg2)
 			if event == "UI_ERROR_MESSAGE" and arg2 == ERR_INV_FULL then
 				if errorthrottle == false then
 					CombatText_AddMessage(INVENTORY_FULL, CombatText_StandardScroll, 1, 0, 0) --apparently it spams for some people
@@ -314,8 +314,6 @@ function ElvUI_EltreumUI:LootText()
 					end)
 				end
 			end
-		end
-
-		LootTextframe:SetScript("OnEvent", LootTextframe.OnEvent)
+		end)
 	end
 end
