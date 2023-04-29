@@ -33,41 +33,37 @@ do
 		if E.db.ElvUI_EltreumUI.skins.details then
 			if not DetailsHooked then
 				local Details = _G.Details
+				--gradient name
+				hooksecurefunc(Details.atributo_damage,"RefreshLine", function(_,_, lineContainer, whichRowLine)
+					local thisLine = lineContainer[whichRowLine]
+					if not thisLine then return end
+					if thisLine.lineText1 then
+						thisLine.lineText1:SetText(thisLine.colocacao .. ". " .. ElvUI_EltreumUI:GradientName(thisLine.minha_tabela:GetDisplayName(), thisLine.minha_tabela:class()))
+					end
+				end)
+				--gradient texture
 				hooksecurefunc(Details, "InstanceRefreshRows", function(instancia)
 					if instancia.barras and instancia.barras[1] then
 						for _, row in next, instancia.barras do
-							if row then
-								if row.textura and not row.textura.EltruismHook then
-									hooksecurefunc(row.textura, "SetVertexColor", function(_, r, g, b) --managed to hook the global to set vertex color on this only, might be useful later
-										if E.db.ElvUI_EltreumUI.skins.detailstextureoverwrite then
-											row.textura:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixelB")
-										end
-										if row.minha_tabela and row.minha_tabela.name then
-											local unitclass = row.minha_tabela:class() --from details api returns class of that row
-											if classes[unitclass] then
-												if row.lineText1 then
-													E:Delay(0,function()
-														row.lineText1:SetText(ElvUI_EltreumUI:GradientName(E:StripString(row.lineText1:GetText()), unitclass))
-													end)
-												end
-												if E.Retail or E.Wrath then
-													if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-														row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
-													else
-														row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
-													end
+							if row and row.textura and not row.textura.EltruismHook then
+								hooksecurefunc(row.textura, "SetVertexColor", function(_, r, g, b) --managed to hook the global to set vertex color on this only, might be useful later
+									if E.db.ElvUI_EltreumUI.skins.detailstextureoverwrite then
+										row.textura:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixelB")
+									end
+									if row.minha_tabela and row.minha_tabela.name then
+										local unitclass = row.minha_tabela:class() --from details api returns class of that row
+										if classes[unitclass] then
+											if E.Retail or E.Wrath then
+												if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+													row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
 												else
-													if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-														row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
-													else
-														row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
-													end
+													row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
 												end
 											else
-												if E.Retail or E.Wrath then
-													row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.5,g= g-0.5,b= b-0.5,a= 0.9}, {r=r+0.2,g= g+0.2,b= b+0.2,a= 0.9})
+												if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+													row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
 												else
-													row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.5, g-0.5, b-0.5, 0.9, r+0.2, g+0.2, b+0.2, 0.9)
+													row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
 												end
 											end
 										else
@@ -77,9 +73,15 @@ do
 												row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.5, g-0.5, b-0.5, 0.9, r+0.2, g+0.2, b+0.2, 0.9)
 											end
 										end
-									end)
-									row.textura.EltruismHook = true
-								end
+									else
+										if E.Retail or E.Wrath then
+											row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.5,g= g-0.5,b= b-0.5,a= 0.9}, {r=r+0.2,g= g+0.2,b= b+0.2,a= 0.9})
+										else
+											row.textura:SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.5, g-0.5, b-0.5, 0.9, r+0.2, g+0.2, b+0.2, 0.9)
+										end
+									end
+								end)
+								row.textura.EltruismHook = true
 							end
 						end
 					end
