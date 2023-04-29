@@ -248,10 +248,11 @@ end)
 E:AddTagInfo("name:eltruism:gradient", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color"])
 
 --gradient name abbreviate
-E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit)
+E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit,_,args)
 	local name = UnitName(unit)
+	if not args then args = 16 end
 	local _, unitClass = UnitClass(unit)
-	if name and string.len(name) > 16 then
+	if name and string.len(name) > tonumber(args) then
 		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
 	end
 	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate")
