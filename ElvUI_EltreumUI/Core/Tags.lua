@@ -281,11 +281,20 @@ end)
 E:AddTagInfo("name:eltruism:gradientshort", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
 
 --gradient name translit
-E:AddTag("name:eltruism:gradienttranslit", "UNIT_NAME_UPDATE", function(unit)
+E:AddTag("name:eltruism:gradienttranslit", "UNIT_NAME_UPDATE", function(unit,_,args)
 	local targetName = UnitName(unit)
 	local name = Translit:Transliterate(targetName)
+	if not name then return end
 	local _, unitClass = UnitClass(unit)
 	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate")
+	if args then
+		if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
+			name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
+		end
+		if string.len(name) > tonumber(args) then --second for players
+			name = E:ShortenString(name, tonumber(args))
+		end
+	end
 
 	if UnitIsPlayer(unit) then
 		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
