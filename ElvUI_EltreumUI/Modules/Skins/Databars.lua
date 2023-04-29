@@ -108,7 +108,7 @@ S:AddCallbackForAddon('Blizzard_ArchaeologyUI', "GradientArcheology", ElvUI_Eltr
 --gradient Blizzard Alt Power
 local B = E:GetModule('Blizzard')
 function ElvUI_EltreumUI:BlizzardAltPower()
-	if B.AltPowerBar then
+	if B.AltPowerBar and B.AltPowerBar:IsShown() then
 		B.AltPowerBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower then
 			if E.db.general.altPowerBar.statusBarColorGradient then
