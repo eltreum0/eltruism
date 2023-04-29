@@ -33,28 +33,23 @@ do
 		if E.db.ElvUI_EltreumUI.skins.details then
 			if not DetailsHooked then
 				local Details = _G.Details
-				local unitclass
 				hooksecurefunc(Details, "InstanceRefreshRows", function(instancia)
 					if instancia.barras and instancia.barras[1] then
 						for _, row in next, instancia.barras do
 							if row then
-								if row.lineText1 then
-									if row.minha_tabela and row.minha_tabela.name then
-										local lineclass = row.minha_tabela:class() --from details api returns class of that row
-										local name = row.minha_tabela:GetDisplayName()
-										if classes[lineclass] and name then
-											row.lineText1:SetText(row.lineText1:GetText():gsub(name, ElvUI_EltreumUI:GradientName(name, lineclass)))
-										end
-									end
-								end
-								if row.textura then
+								if row.textura and not row.textura.EltruismHook then
 									hooksecurefunc(row.textura, "SetVertexColor", function(_, r, g, b) --managed to hook the global to set vertex color on this only, might be useful later
 										if E.db.ElvUI_EltreumUI.skins.detailstextureoverwrite then
 											row.textura:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixelB")
 										end
 										if row.minha_tabela and row.minha_tabela.name then
-											unitclass = row.minha_tabela:class() --from details api returns class of that row
+											local unitclass = row.minha_tabela:class() --from details api returns class of that row
 											if classes[unitclass] then
+												if row.lineText1 then
+													E:Delay(0,function()
+														row.lineText1:SetText(ElvUI_EltreumUI:GradientName(E:StripString(row.lineText1:GetText()), unitclass))
+													end)
+												end
 												if E.Retail or E.Wrath then
 													if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 														row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
@@ -83,6 +78,7 @@ do
 											end
 										end
 									end)
+									row.textura.EltruismHook = true
 								end
 							end
 						end
@@ -92,7 +88,7 @@ do
 			end
 		end
 
-		--add a basic embed if addonskins is not loaded
+		--add a basic embed if addonskins is not loaded`
 		if E.db.ElvUI_EltreumUI.skins.detailsembed then
 			local checkembed
 			if IsAddOnLoaded("AddOnSkins") or IsAddOnLoaded("ElvUI_MerathilisUI") then
