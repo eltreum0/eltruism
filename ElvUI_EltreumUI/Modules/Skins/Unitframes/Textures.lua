@@ -158,7 +158,7 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button)
 end
 
 function ElvUI_EltreumUI:CustomTexture(unit)
-	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 
 		--main issue = the toggle for some units like boss and arena wont work bc it checks for boss1,boss2... instead of just boss
 		ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Player","player")
