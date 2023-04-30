@@ -43,6 +43,7 @@ do
 			unitframe = _G["ElvUF_"..name]
 			if unitframe and unitframe.Power then
 				if E.db.unitframe.colors.transparentPower and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
+					unitframe.Power.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 					unitframe.Power.BG:SetVertexColor(E.db.unitframe.colors.power_backdrop.r,E.db.unitframe.colors.power_backdrop.g,E.db.unitframe.colors.power_backdrop.b,E.db.general.backdropfadecolor.a)
 					if not unitframe.Power.EltruismTransparencyFix and E.db.unitframe.thinBorders then
 						unitframe.Power.backdrop:ClearAllPoints()
