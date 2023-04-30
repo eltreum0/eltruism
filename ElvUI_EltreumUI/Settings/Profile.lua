@@ -853,6 +853,7 @@ P.ElvUI_EltreumUI = {
 
 			enableplayer = true,
 			enabletarget = true,
+			reversetarget = true,
 			enabletargettarget = true,
 			enabletargettargettarget = true,
 			enablefocus = true,
