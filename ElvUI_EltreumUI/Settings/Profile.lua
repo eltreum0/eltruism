@@ -212,6 +212,8 @@ P.ElvUI_EltreumUI = {
 		blizzframes = {
 			errorframe = true,
 			errorframefontsize = 14,
+			errorframecustomfont = false,
+			errorframefont = "Kimberley",
 			hideerrorframe = false,
 			raidbossframe = true,
 			raidbossframefontsize = 14,
@@ -853,6 +855,7 @@ P.ElvUI_EltreumUI = {
 
 			enableplayer = true,
 			enabletarget = true,
+			reversetarget = true,
 			enabletargettarget = true,
 			enabletargettargettarget = true,
 			enablefocus = true,
