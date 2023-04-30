@@ -226,7 +226,7 @@ E:AddTagInfo("name:eltruism:abbreviateshort", ElvUI_EltreumUI.Name.." "..L["Name
 E:AddTag("name:eltruism:gradient", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
 	local _, unitClass = UnitClass(unit)
-	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate")
+	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 
 	if UnitIsPlayer(unit) then
 		return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget)
@@ -256,7 +256,7 @@ E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit,_,args
 	if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
 		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
 	end
-	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate")
+	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 	if string.len(name) > tonumber(args) then --second for players
 		name = E:ShortenString(name, tonumber(args))
 	end
@@ -286,7 +286,7 @@ E:AddTag("name:eltruism:gradienttranslit", "UNIT_NAME_UPDATE", function(unit,_,a
 	local name = Translit:Transliterate(targetName)
 	if not name then return end
 	local _, unitClass = UnitClass(unit)
-	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate")
+	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 	if args then
 		if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
 			name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
@@ -323,7 +323,7 @@ E:AddTag("name:eltruism:gradientshorttranslit", "UNIT_NAME_UPDATE", function(uni
 	if name and string.len(name) > 16 then
 		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
 	end
-	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate")
+	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 
 	if UnitIsPlayer(unit) then
 		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
@@ -396,7 +396,7 @@ E:AddTagInfo("eltruismrealm:dash", ElvUI_EltreumUI.Name.." "..L["Names"], L["Dis
 E:AddTag("name:eltruism:gradientdefaultcolors", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
 	local _, unitClass = UnitClass(unit)
-	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate")
+	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 
 	if UnitIsPlayer(unit) then
 		return ElvUI_EltreumUI:GradientNameDefaultColors(name, unitClass,isTarget)
@@ -424,7 +424,7 @@ E:AddTag("name:eltruism:gradientdefaultcolorsshort", "UNIT_NAME_UPDATE", functio
 	if name and string.len(name) > 16 then
 		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
 	end
-	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate")
+	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 
 	if UnitIsPlayer(unit) then
 		return ElvUI_EltreumUI:GradientNameDefaultColors(name, unitClass, isTarget)
