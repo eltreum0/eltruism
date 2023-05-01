@@ -1411,3 +1411,5 @@ L["Displays percentage health with status icons"] = true
 L["Enable Gradient Glow"] = true
 L["Reverse Target"] = true
 L["Reverse Target Gradient Health"] = true
+L["Skin Cell"] = true
+L["Gradient Health Loss"] = true

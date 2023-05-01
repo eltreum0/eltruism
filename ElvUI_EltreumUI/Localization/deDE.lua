@@ -1463,3 +1463,5 @@ L["Displays percentage health with status icons"] = "Zeigt die prozentuale Gesun
 L["Enable Gradient Glow"] = "Aktiviere Farbverlauf Leuchten"
 L["Reverse Target"] = "Umgekehrtes Ziel"
 L["Reverse Target Gradient Health"] = "Umgekehrtes Ziel Gesundheitsfarbverlauf"
+L["Skin Cell"] = true
+L["Gradient Health Loss"] = true
