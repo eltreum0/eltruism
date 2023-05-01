@@ -205,6 +205,7 @@ P.ElvUI_EltreumUI = {
 		bagsync = false,
 		hekili = false,
 		omnicd = false,
+		cell = false,
 
 		hideABkeypress = false,
 		tbctalents = false,

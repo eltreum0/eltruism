@@ -10,4 +10,5 @@
 	<Script file='Hekili.lua'/>
 	<Script file='BagSync.lua'/>
 	<Script file='OmniCD.lua'/>
+	<Script file='Cell.lua'/>
 </Ui>
