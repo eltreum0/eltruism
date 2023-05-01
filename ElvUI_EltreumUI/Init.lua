@@ -121,6 +121,9 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	if not E.private.unitframe.disabledBlizzardFrames.raid then -- blizzard raid textures/gradient
 		ElvUI_EltreumUI:BlizzardTexturesGradient()
 	end
+	if E.db.ElvUI_EltreumUI.skins.cell then --Cell gradient/custom textures/shadows
+		ElvUI_EltreumUI:EltruismCell()
+	end
 end
 
 function ElvUI_EltreumUI:Initialize()
@@ -208,6 +211,9 @@ function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
 	end
 	if not E.private.unitframe.disabledBlizzardFrames.raid then -- blizzard raid textures/gradient
 		ElvUI_EltreumUI:BlizzardTexturesGradient()
+	end
+	if E.db.ElvUI_EltreumUI.skins.cell then --Cell gradient/custom textures/shadows
+		ElvUI_EltreumUI:EltruismCell()
 	end
 end
 
