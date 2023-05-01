@@ -65,7 +65,6 @@ function ElvUI_EltreumUI:EltruismCell()
 
 		--party
 		if _G["CellPartyFrame"] and IsInGroup() then
-			print("3")
 			if _G["CellPartyFrameHeader"] then
 				for i = 1, 5 do
 					if _G["CellPartyFrameHeaderUnitButton"..i] and _G["CellPartyFrameHeaderUnitButton"..i.."HealthBar"]then
