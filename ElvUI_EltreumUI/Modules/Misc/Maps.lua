@@ -26,7 +26,7 @@ local EltruismTimeToArrive = CreateFrame("Frame", "EltruismTimeToArrive", UIPare
 EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 EltruismTimeToArrive.TimeText:SetJustifyV("TOP")
 EltruismTimeToArrive.TimeText:SetSize(0, 26)
-EltruismTimeToArrive.TimeText:SetPoint("TOP", "SuperTrackedFrame", "BOTTOM", 0, -40)
+EltruismTimeToArrive.TimeText:SetPoint("TOP", "SuperTrackedFrame", "BOTTOM", 0, 7)
 EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 EltruismTimeToArrive.TimeText:SetParent(_G["SuperTrackedFrame"])
 EltruismTimeToArrive:SetParent(_G["SuperTrackedFrame"])
