@@ -242,6 +242,9 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 	if not E.private.unitframe.disabledBlizzardFrames.raid then
 		ElvUI_EltreumUI:BlizzardTexturesGradient()
 	end
+	if E.db.ElvUI_EltreumUI.skins.cell then
+		ElvUI_EltreumUI:EltruismCell()
+	end
 end
 local colorupdateframe = CreateFrame("FRAME")
 colorupdateframe:RegisterEvent("PLAYER_ENTERING_WORLD")

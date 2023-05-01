@@ -206,6 +206,7 @@ P.ElvUI_EltreumUI = {
 		hekili = false,
 		omnicd = false,
 		cell = false,
+		cellhealthloss = false,
 
 		hideABkeypress = false,
 		tbctalents = false,
