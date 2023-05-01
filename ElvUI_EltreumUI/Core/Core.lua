@@ -809,24 +809,13 @@ end
 
 --check for blinkii's kick on cd function
 function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
-	if IsAddOnLoaded("ElvUI_mMediaTag") then
-		if E.db.mMediaTag.mCastbar.enable then
-			return _G.mMediaTag_interruptOnCD
-		end
-	else
-		return false
-	end
-end
-
---[[
-function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
-	if IsAddOnLoaded("ElvUI_mMediaTag") then
-		return E.db.mMT.interruptoncd.enable and _G.mMediaTag_interruptOnCD() or false
-	else
-		return false
+    if IsAddOnLoaded("ElvUI_mMediaTag") and (E.db.mMT and E.db.mMT.interruptoncd and E.db.mMT.interruptoncd.enable) then
+        local mMT = E:GetModule("ElvUI_mMediaTag")
+        return mMT:mMediaTag_interruptOnCD() or false
+    else
+        return false
     end
 end
-]]
 
 --10.1 addon compartment
 function ElvUI_EltreumUI_OnAddonCompartmentClick()
