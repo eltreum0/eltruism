@@ -760,21 +760,22 @@ end)
 E:AddTagInfo("eltruism:combatindicator", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Displays an icon when the unit is in combat, uses player icon"])
 
 ------------------------------------------------------------------------- HEALTH ------------------------------------------------------------------------
-
-E:AddTag("eltruism:effectivehp", "UNIT_HEALTH UNIT_TARGET", function()
-	local dr
-	if UnitExists("target") then
-		dr = (UnitArmor("player")/((UnitLevel("target")*467.5)+UnitArmor("player")-22167.5))
-		--dr = (UnitArmor("player")/((UnitLevel('target')*467.5)+UnitHealthMax("player")-22167.5))
-	else
-		dr = (UnitArmor("player")/((UnitLevel("player")*467.5)+UnitArmor("player")-22167.5))
-		--dr = (UnitArmor("player")/((UnitLevel('player')*467.5)+UnitHealthMax("player")-22167.5))
-	end
-	local ehp = UnitHealthMax("player")/(1-dr)
-	local effective = math.floor((ehp*100)/100)
-	return effective
-end)
-E:AddTagInfo("eltruism:effectivehp", ElvUI_EltreumUI.Name.." "..L["Health"], L["Shows Effective Health"])
+if not E.Retail then
+	E:AddTag("eltruism:effectivehp", "UNIT_HEALTH UNIT_TARGET", function()
+		local dr
+		if UnitExists("target") then
+			dr = (UnitArmor("player")/((UnitLevel("target")*467.5)+UnitArmor("player")-22167.5))
+			--dr = (UnitArmor("player")/((UnitLevel('target')*467.5)+UnitHealthMax("player")-22167.5))
+		else
+			dr = (UnitArmor("player")/((UnitLevel("player")*467.5)+UnitArmor("player")-22167.5))
+			--dr = (UnitArmor("player")/((UnitLevel('player')*467.5)+UnitHealthMax("player")-22167.5))
+		end
+		local ehp = UnitHealthMax("player")/(1-dr)
+		local effective = math.floor((ehp*100)/100)
+		return effective
+	end)
+	E:AddTagInfo("eltruism:effectivehp", ElvUI_EltreumUI.Name.." "..L["Health"], L["Shows Effective Health"])
+end
 
 --HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
 E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)

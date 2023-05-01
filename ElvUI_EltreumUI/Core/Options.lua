@@ -658,7 +658,7 @@ function ElvUI_EltreumUI:Configtable()
 		end
 	 end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.dynamicrenderscaleenable.descStyle = "inline"
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.dynamicrenderscalepercentage = ACH:Range(L["Dynamic Render Scale Minimum"], L["Lowest Render Scale used"], 8, { min = 0.1, max = 1, step = 0.01 }, 'full', function() return tonumber(C_CVar.GetCVar('DynamicRenderScaleMin')) end, function(_, value) SetCVar('DynamicRenderScaleMin', value) end, function() if C_CVar.GetCVar('DynamicRenderScale') == '1' then return false elseif C_CVar.GetCVar('DynamicRenderScale') == '0' then return true end end)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.dynamicrenderscalepercentage = ACH:Range(L["Dynamic Render Scale Minimum"], L["Lowest Render Scale used"], 8, { min = 0.1, max = 1, step = 0.01 }, 'full', function() return tonumber(C_CVar.GetCVar('DynamicRenderScaleMin')) end, function(_, value) SetCVar('DynamicRenderScaleMin', tonumber(value)) E.db.ElvUI_EltreumUI.cvars.dynamicrenderscalemin = tonumber(value) end, function() if C_CVar.GetCVar('DynamicRenderScale') == '1' then return false elseif C_CVar.GetCVar('DynamicRenderScale') == '0' then return true end end)
 
 	--custom glow
 	ElvUI_EltreumUI.Options.args.customglow = ACH:Group(E:TextGradient(L["Custom Glow"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Fully customize how action bars glow and add glows to debuffs on unitframes"], 85, 'tab')

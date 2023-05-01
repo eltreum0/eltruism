@@ -37,6 +37,7 @@ P.ElvUI_EltreumUI = {
 		cameraFOV = 90,
 		cameraDistanceMaxZoomFactor = 2.6,
 		nameplateTargetRadialPosition = 1,
+		dynamicrenderscalemin = 0.33, --default value
 		--for retail
 		showInGameNavigation = 1,
 		--for tbc/classic
