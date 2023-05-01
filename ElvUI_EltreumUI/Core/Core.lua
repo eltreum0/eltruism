@@ -543,13 +543,13 @@ function ElvUI_EltreumUI:DevTools()
 		--addon specific cpu/memory usage
 		--/run UpdateAddOnCPUUsage() UpdateAddOnMemoryUsage() print("cpu: "..((math.floor(GetAddOnCPUUsage("ElvUI_EltreumUI")))).."ms | memory: "..((math.floor(GetAddOnMemoryUsage("ElvUI_EltreumUI")/10))/100).."mb")
 
-		local function LogEvent(self, event, ...)
+		local function LogEvent(frame, event, ...)
 			if event == "COMBAT_LOG_EVENT_UNFILTERED" or event == "COMBAT_LOG_EVENT" then
-				self:LogEvent_Original(event, CombatLogGetCurrentEventInfo())
+				frame:LogEvent_Original(event, CombatLogGetCurrentEventInfo())
 			elseif event == "COMBAT_TEXT_UPDATE" then
-				self:LogEvent_Original(event, (...), GetCurrentCombatTextEventInfo())
+				frame:LogEvent_Original(event, (...), GetCurrentCombatTextEventInfo())
 			else
-				self:LogEvent_Original(event, ...)
+				frame:LogEvent_Original(event, ...)
 			end
 		end
 
@@ -809,12 +809,16 @@ end
 
 --check for blinkii's kick on cd function
 function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
-    if IsAddOnLoaded("ElvUI_mMediaTag") and (E.db.mMT and E.db.mMT.interruptoncd and E.db.mMT.interruptoncd.enable) then
-        local mMT = E:GetModule("ElvUI_mMediaTag")
-        return mMT:mMediaTag_interruptOnCD() or false
-    else
-        return false
-    end
+	if IsAddOnLoaded("ElvUI_mMediaTag") then
+		if (E.db.mMT and E.db.mMT.interruptoncd and E.db.mMT.interruptoncd.enable) then
+			local mMT = E:GetModule("ElvUI_mMediaTag")
+			return mMT:mMediaTag_interruptOnCD() or false
+		else
+			return false
+		end
+	else
+		return false
+	end
 end
 
 --10.1 addon compartment
