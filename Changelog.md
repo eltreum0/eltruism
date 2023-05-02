@@ -1,6 +1,11 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.8.4.1
+Added a fix for the Friendly Nameplates not showing  
+Added Gradient Class Icons to Chat Class Icons  
+Fixed Details Embed always showing up  
+Fixed Map Pin Max Distance  
 ### 3.8.4
 Added an option to disable the reversed gradient on target health frame  
 Added [eltruism:reverseReleafgradient:player] tag with gradient icons  
