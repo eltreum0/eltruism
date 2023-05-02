@@ -430,6 +430,8 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["general"]["minimap"]["icons"]["queueStatus"]["fontSize"] = 20
 		E.db["general"]["minimap"]["icons"]["queueStatus"]["xOffset"] = -24
 
+		E.db["general"]["addonCompartment"]["fontOutline"] = "OUTLINE"
+
 		E.db["general"]["objectiveFrameAutoHideInKeystone"] = false
 		E.db["general"]["objectiveFrameHeight"] = 550
 		E.db["general"]["resurrectSound"] = true

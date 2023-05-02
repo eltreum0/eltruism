@@ -41,6 +41,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontOutline"] = fontStyle
 	E.db["general"]["fontStyle"] = fontStyle
 	E.db["general"]["minimap"]["locationFontOutline"] = fontStyle
+	E.db["general"]["addonCompartment"]["fontOutline"] = fontStyle
 	if E.Retail then
 		E.db["general"]["minimap"]["icons"]["queueStatus"]["fontOutline"] = fontStyle
 	end
