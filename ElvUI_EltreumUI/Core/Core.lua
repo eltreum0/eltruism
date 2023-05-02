@@ -449,6 +449,9 @@ end
 
 --Set some CVars when entering world
 function ElvUI_EltreumUI:EnteringWorldCVars()
+	if E.Retail then
+		SetCVar("nameplatePlayerMaxDistance", 60)
+	end
 	SetCVar('nameplateOtherBottomInset', E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset)
 	SetCVar('nameplateOtherTopInset', E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset)
 	SetCVar('cameraDistanceMaxZoomFactor', E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor)
