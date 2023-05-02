@@ -13,6 +13,7 @@ Added options to change the Ghost text into Icons
 Added Gradient to Item names, alongside settings  
 Added [name:eltruism:gradientdefaultcolors] tag  
 Added Eltruism to the Addon Compartment Frame  
+Added settings for Private Auras in Retail  
 Added an option to scale the Loot Frame  
 Added an option to make Glows Gradient  
 Added [eltruism:perhpstatus] tag  
@@ -40,9 +41,11 @@ Fixed models showing up during Dark Souls or GTA death animations
 Fixed [eltruism:classcolor] tag sometimes not returning colors  
 Fixed Target Portrait Fix causing issues with paused portraits  
 Fixed an issue with Gradient Power and non Thin Unitframes  
+Fixed gradient mode missing gradient texture in light mode  
 Fixed Blizzard's Alt Power spamming when not shown  
 Fixed [eltruism:reverseclass:all] missing icons  
 Fixed Unitframe Shadows in more configurations  
+Fixed extra pixels on the Target Arrow Texture  
 Fixed Boss Frame Spaced Shadows  
 Fixed Aura Bars reversed gradient  
 Fixed a few missing options
