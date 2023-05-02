@@ -380,6 +380,36 @@ local reverseOriginalIcons = {
 	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunterOriginal.tga:0:0:0:0:64:64:64:0:0:64|t",
 	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\EvokerOriginal.tga:0:0:0:0:64:64:64:0:0:64|t",
 }
+local gradient ={
+	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorGradient.tga:0:0:0:0|t",
+	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinGradient.tga:0:0:0:0|t",
+	["HUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterGradient.tga:0:0:0:0|t",
+	["ROGUE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\RogueGradient.tga:0:0:0:0|t",
+	["PRIEST"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PriestGradient.tga:0:0:0:0|t",
+	["DEATHKNIGHT"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnightGradient.tga:0:0:0:0|t",
+	["SHAMAN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanGradient.tga:0:0:0:0|t",
+	["MAGE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MageGradient.tga:0:0:0:0|t",
+	["WARLOCK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarlockGradient.tga:0:0:0:0|t",
+	["MONK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MonkGradient.tga:0:0:0:0|t",
+	["DRUID"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DruidGradient.tga:0:0:0:0|t",
+	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunterGradient.tga:0:0:0:0|t",
+	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\EvokerGradient.tga:0:0:0:0|t",
+}
+local gradientReverse ={
+	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorGradient.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinGradient.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["HUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterGradient.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["ROGUE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\RogueGradient.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["PRIEST"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PriestGradient.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DEATHKNIGHT"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DeathKnightGradient.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["SHAMAN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\ShamanGradient.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["MAGE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MageGradient.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["WARLOCK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarlockGradient.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["MONK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\MonkGradient.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DRUID"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DruidGradient.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunterGradient.tga:0:0:0:0:64:64:64:0:0:64|t",
+	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\EvokerGradient.tga:0:0:0:0:64:64:64:0:0:64|t",
+}
 
 --return icons for other functions
 function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert)
@@ -396,6 +426,8 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert)
 			return classIconsShadow[unitclass]
 		elseif icon == "ORIGINAL" then
 			return OriginalIcons[unitclass]
+		elseif icon == "GRADIENT" then
+			return gradient[unitclass]
 		end
 	else
 		if icon == "RELEAF" then
@@ -410,6 +442,8 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert)
 			return reverseclassIconsShadow[unitclass]
 		elseif icon == "ORIGINAL" then
 			return reverseOriginalIcons[unitclass]
+		elseif icon == "GRADIENT" then
+			return gradientReverse[unitclass]
 		end
 	end
 end
