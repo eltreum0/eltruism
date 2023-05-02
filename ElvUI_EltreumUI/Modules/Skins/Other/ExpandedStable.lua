@@ -89,6 +89,11 @@ function ElvUI_EltreumUI:ExpandedStable()
 		_G["PetStableStabledPet1"]:ClearAllPoints()
 		_G["PetStableStabledPet1"]:SetPoint("TOPLEFT", EltruismExpandedStableFrame, 8, -36)
 
+		--nineslice
+		if EltruismExpandedStableFrame.NineSlice then
+			EltruismExpandedStableFrame.NineSlice:Hide()
+		end
+
 		--fix diet icon
 		local texture = _G.PetStableDiet:GetRegions()
 		texture:SetTexture(134372)

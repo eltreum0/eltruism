@@ -589,13 +589,43 @@ E:AddTag("eltruism:reverseReleafIconOutline:all", "UNIT_NAME_UPDATE", function(u
 end)
 E:AddTagInfo("eltruism:reverseReleafIconOutline:all", ElvUI_EltreumUI.Name.." "..L["Icons"], "Shows Flipped Class Icons with Outlines by Releaf all targets")
 
---class icons with otlines on players
+--class icons with outlines on players
 E:AddTag("eltruism:reverseReleafIconOutline:player", "UNIT_NAME_UPDATE", function(unit)
 	if not UnitIsPlayer(unit) then return end
 	local _ , classes = UnitClass(unit)
 	return ElvUI_EltreumUI:GetClassIcons("OUTLINE",classes,true)
 end)
 E:AddTagInfo("eltruism:reverseReleafIconOutline:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "Shows Flipped Class Icons with Outlines by Releaf on Player targets")
+
+--gradient releaf icons
+E:AddTag("eltruism:Releafgradient:player", "UNIT_NAME_UPDATE", function(unit)
+	if not UnitIsPlayer(unit) then return end
+	local _,englishClass = UnitClass(unit)
+	return ElvUI_EltreumUI:GetClassIcons("GRADIENT",englishClass)
+end)
+E:AddTagInfo("eltruism:Releafgradient:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "Shows Releaf Icons with Gradient Colors")
+
+--gradient releaf icons reversed
+E:AddTag("eltruism:reverseReleafgradient:player", "UNIT_NAME_UPDATE", function(unit)
+	if not UnitIsPlayer(unit) then return end
+	local _,englishClass = UnitClass(unit)
+	return ElvUI_EltreumUI:GetClassIcons("GRADIENT",englishClass,true)
+end)
+E:AddTagInfo("eltruism:reverseReleafgradient:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "Shows Reversed Releaf Icons with Gradient Colors")
+
+--gradient releaf icons for all
+E:AddTag("eltruism:Releafgradient:all", "UNIT_NAME_UPDATE", function(unit)
+	local _,englishClass = UnitClass(unit)
+	return ElvUI_EltreumUI:GetClassIcons("GRADIENT",englishClass)
+end)
+E:AddTagInfo("eltruism:Releafgradient:all", ElvUI_EltreumUI.Name.." "..L["Icons"], "Shows Releaf Icons with Gradient Colors for All")
+
+--gradient releaf icons reversed for all
+E:AddTag("eltruism:reverseReleafgradient:all", "UNIT_NAME_UPDATE", function(unit)
+	local _,englishClass = UnitClass(unit)
+	return ElvUI_EltreumUI:GetClassIcons("GRADIENT",englishClass,true)
+end)
+E:AddTagInfo("eltruism:reverseReleafgradient:all", ElvUI_EltreumUI.Name.." "..L["Icons"], "Shows Reversed Releaf Icons with Gradient Colors for All")
 
 -- Releaf Logo
 E:AddTag("releaf", "UNIT_NAME_UPDATE", function()

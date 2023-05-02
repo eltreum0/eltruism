@@ -90,6 +90,9 @@ function ElvUI_EltreumUI:MinimapHide(event)
 				Minimap:Hide()
 			else
 				_G.MinimapCluster:Hide()
+				if _G.AddonCompartmentFrame then
+					_G.AddonCompartmentFrame:Hide()
+				end
 			end
 			if E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura then
 				BuffsMover = E.db["movers"]["BuffsMover"]
@@ -104,6 +107,9 @@ function ElvUI_EltreumUI:MinimapHide(event)
 				Minimap:Show()
 			else
 				_G.MinimapCluster:Show()
+				if _G.AddonCompartmentFrame then
+					_G.AddonCompartmentFrame:Show()
+				end
 			end
 			if E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura then
 				E.db["movers"]["BuffsMover"] = BuffsMover or E.db["movers"]["BuffsMover"]
