@@ -184,9 +184,9 @@ do
 				end
 				embedpanel:RegisterEvent("PLAYER_ENTERING_WORLD")
 
-				if not _G.RightChatToggleButton:IsShown() then --fix when no chat toggle exists
+				--[[if not _G.RightChatToggleButton:IsShown() then --fix when no chat toggle exists
 					E.db.ElvUI_EltreumUI.skins.detailsembedhidden = false
-				end
+				end]]
 
 				embedpanel:SetScript("OnEvent", function(_,event)
 					if event == "PLAYER_REGEN_DISABLED" then
