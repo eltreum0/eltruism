@@ -44,6 +44,7 @@ Fixed Blizzard's Alt Power spamming when not shown
 Fixed [eltruism:reverseclass:all] missing icons  
 Fixed Unitframe Shadows in more configurations  
 Fixed extra pixels on the Target Arrow Texture  
-Fixed Boss Frame Spaced Shadows  
+Fixed a possible error when Pet Battle ends  
 Fixed Aura Bars reversed gradient  
+Fixed Boss Frame Spaced Shadows  
 Fixed a few missing options
