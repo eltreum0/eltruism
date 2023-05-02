@@ -811,7 +811,7 @@ end
 function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
 	if IsAddOnLoaded("ElvUI_mMediaTag") then
 		if (E.db.mMT and E.db.mMT.interruptoncd and E.db.mMT.interruptoncd.enable) then
-			local mMT = E:GetModule("ElvUI_mMediaTag")
+			local mMT = E:GetModule("ElvUI_mMediaTag", true)
 			return mMT:mMediaTag_interruptOnCD() or false
 		else
 			return false
