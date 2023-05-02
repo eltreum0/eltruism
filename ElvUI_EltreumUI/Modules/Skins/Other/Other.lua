@@ -698,6 +698,9 @@ if _G["MainMenuBarVehicleLeaveButton"] then
 	if _G["MainMenuBarVehicleLeaveButton"].hover then
 		_G["MainMenuBarVehicleLeaveButton"].hover:Hide()
 	end
+	if _G["MainMenuBarVehicleLeaveButton"].Highlight then
+		_G["MainMenuBarVehicleLeaveButton"].Highlight:SetTexture(nil)
+	end
 	_G["MainMenuBarVehicleLeaveButton"]:GetNormalTexture():SetTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\ExitVehicle")
 	_G["MainMenuBarVehicleLeaveButton"]:GetPushedTexture():SetTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\ExitVehicle")
 	_G["MainMenuBarVehicleLeaveButton"]:GetPushedTexture():SetVertexColor(1,0,0,1)
