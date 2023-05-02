@@ -3,6 +3,10 @@ The future is uncertain
 ___
 ### 3.8.4
 Added an option to disable the reversed gradient on target health frame  
+Added [eltruism:reverseReleafgradient:player] tag with gradient icons  
+Added [eltruism:reverseReleafgradient:all] tag with gradient icons  
+Added [eltruism:Releafgradient:player] tag with gradient icons  
+Added [eltruism:Releafgradient:all] tag with gradient icons  
 Added an option to use a custom font on the Error Frame  
 Added [name:eltruism:gradientdefaultcolorsshort] tag  
 Added options to change the Ghost text into Icons  
