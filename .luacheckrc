@@ -2922,6 +2922,7 @@ globals = {
 	"FCF_SetChatWindowFontSize",
 	"_G",
 	"print",
+	"ElvUI_EltreumUI_OnAddonCompartmentClick",
 }
 max_line_length = false
 ignore = {
