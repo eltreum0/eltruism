@@ -56,7 +56,7 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 	}
 
 	--elvui check
-	if E.version < 13.29 then
+	if E.version < 13.30 then
 		E:StaticPopup_Show('ELVUIVERSIONCHECK')
 		ElvUI_EltreumUI:Print(L["Your ElvUI version is out of date, please update to avoid issues!"])
 	elseif E.version > 13.35 then
