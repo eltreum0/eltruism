@@ -120,5 +120,12 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 	E.db["tooltip"]["targetInfo"] = false --was true
 	E.db["tooltip"]["showMount"] = false --was true
 
+	--private auras
+	E.db["movers"]["PrivateAurasMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-287,-150"
+	E.db["unitframe"]["units"]["party"]["privateAuras"]["parent"]["offsetY"] = 12
+	E.db["unitframe"]["units"]["raid1"]["privateAuras"]["parent"]["offsetY"] = 5
+	E.db["unitframe"]["units"]["raid2"]["privateAuras"]["parent"]["offsetY"] = 5
+	E.db["unitframe"]["units"]["raid3"]["privateAuras"]["parent"]["offsetY"] = 5
+
 	ElvUI_EltreumUI:Print(L["Settings for ElvUI were updated."])
 end
