@@ -2659,16 +2659,25 @@ function ElvUI_EltreumUI:RaidShadows()
 					local slots = {_G["ElvUF_Raid"..i..'Group'..k..'UnitButton'..l]}
 					for _, button in pairs(slots) do
 						if button and not button.shadow then
-							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
-								button.shadow:ClearAllPoints()
-								button.shadow:SetPoint("BOTTOMLEFT", button.Health,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
-								button.shadow:SetPoint("BOTTOMRIGHT", button.Health,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
-								button.shadow:SetPoint("TOPLEFT", button.InfoPanel,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
-								button.shadow:SetPoint("TOPRIGHT", button.InfoPanel,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+							if button.db.power.width == "spaced" and button.db.power.enable then
+								button.Health:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								button.Health.shadow:SetParent(button)
+								ElvUI_EltreumUI:ShadowColor(button.Health.shadow)
+								button.Power:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								button.Power.shadow:SetParent(button)
+								ElvUI_EltreumUI:ShadowColor(button.Power.shadow)
+							else
+								button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
+									button.shadow:ClearAllPoints()
+									button.shadow:SetPoint("BOTTOMLEFT", button.Health,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									button.shadow:SetPoint("BOTTOMRIGHT", button.Health,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									button.shadow:SetPoint("TOPLEFT", button.InfoPanel,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+									button.shadow:SetPoint("TOPRIGHT", button.InfoPanel,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+								end
+								button.shadow:SetParent(button)
+								ElvUI_EltreumUI:ShadowColor(button.shadow)
 							end
-							button.shadow:SetParent(button)
-							ElvUI_EltreumUI:ShadowColor(button.shadow)
 						end
 					end
 				end
