@@ -119,6 +119,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			local questID
 			local getquestid = CreateFrame("FRAME")
 			getquestid:RegisterEvent("QUEST_DATA_LOAD_RESULT")
+			getquestid:RegisterEvent("QUEST_LOG_UPDATE")
 			getquestid:SetScript("OnEvent", function()
 				questID = QuestMapFrame_GetDetailQuestID()
 				if questID ~= nil then
