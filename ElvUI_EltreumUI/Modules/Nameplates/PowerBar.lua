@@ -117,12 +117,15 @@ function ElvUI_EltreumUI:PowerPrediction()
 			-- Shadow Priest
 			[8092] = 6, -- mind blast
 			[34914] = 5, -- vampiric touch
-			[15407] = 12, -- mind flay, but is a channel so idc
+			--[15407] = 12, -- mind flay, but is a channel so idc
 			--[48045] = 6, -- per target, but is a channel so idc
-			[263165] = 60, -- void torrent, but is a channel so idc
+			--[263165] = 60, -- void torrent, but is a channel so idc
 			[263346] = 15, --dark void
 			[73510] = 4, --mind spike
 			[391109] = 30, --dark ascension
+			[391399] = 6, --mind spike: insanity
+			[375901] = 10, --mindgames
+			[120644] = 10, -- halo
 
 			-- Elemental Shaman
 			[188196] = shamanbolt, --lightning bolt
