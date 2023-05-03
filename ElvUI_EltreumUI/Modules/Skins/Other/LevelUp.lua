@@ -33,12 +33,16 @@ function ElvUI_EltreumUI:SkinLevelUp()
 
 				hooksecurefunc(_G.EventToastManagerFrame,"DisplayToast", function(toast)
 					if toast.currentDisplayingToast then
-						toast.currentDisplayingToast.Title:SetShadowColor(0, 0, 0, 0.8)
-						toast.currentDisplayingToast.Title:SetShadowOffset(2, -2)
-						--toast.currentDisplayingToast.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 30, E.db.general.fontStyle) --font size doesnt adjust so it kinda breaks level up
-						toast.currentDisplayingToast.SubTitle:SetShadowColor(0, 0, 0, 0.8)
-						toast.currentDisplayingToast.SubTitle:SetShadowOffset(2, -2)
-						--toast.currentDisplayingToast.SubTitle:SetFont(E.LSM:Fetch("font", E.db.general.font), 17, E.db.general.fontStyle) --font size doesnt adjust so it kinda breaks level up
+						if toast.currentDisplayingToast.Title then
+							toast.currentDisplayingToast.Title:SetShadowColor(0, 0, 0, 0.8)
+							toast.currentDisplayingToast.Title:SetShadowOffset(2, -2)
+							--toast.currentDisplayingToast.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 30, E.db.general.fontStyle) --font size doesnt adjust so it kinda breaks level up
+						end
+						if toast.currentDisplayingToast.SubTitle then
+							toast.currentDisplayingToast.SubTitle:SetShadowColor(0, 0, 0, 0.8)
+							toast.currentDisplayingToast.SubTitle:SetShadowOffset(2, -2)
+							--toast.currentDisplayingToast.SubTitle:SetFont(E.LSM:Fetch("font", E.db.general.font), 17, E.db.general.fontStyle) --font size doesnt adjust so it kinda breaks level up
+						end
 					end
 				end)
 				--/script EventToastManagerFrame:Show()

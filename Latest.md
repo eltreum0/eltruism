@@ -1,4 +1,4 @@
-### 3.8.4 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.8.4.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
 Added an option to disable the reversed gradient on target health frame  
 Added [eltruism:reverseReleafgradient:player] tag with gradient icons  
@@ -7,6 +7,7 @@ Added [eltruism:Releafgradient:player] tag with gradient icons
 Added [eltruism:Releafgradient:all] tag with gradient icons  
 Added an option to use a custom font on the Error Frame  
 Added [name:eltruism:gradientdefaultcolorsshort] tag  
+Added a fix for the Friendly Nameplates not showing  
 Added options to change the Ghost text into Icons  
 Added Gradient to Item names, alongside settings  
 Added [name:eltruism:gradientdefaultcolors] tag  
@@ -44,6 +45,10 @@ Fixed Blizzard's Alt Power spamming when not shown
 Fixed [eltruism:reverseclass:all] missing icons  
 Fixed Unitframe Shadows in more configurations  
 Fixed extra pixels on the Target Arrow Texture  
-Fixed Boss Frame Spaced Shadows  
+Added Gradient Class Icons to Chat Class Icons  
+Fixed a possible error when Pet Battle ends  
+Fixed Details Embed always showing up  
 Fixed Aura Bars reversed gradient  
-Fixed a few missing options
+Fixed Boss Frame Spaced Shadows  
+Fixed a few missing options  
+Fixed Map Pin Max Distance

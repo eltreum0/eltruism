@@ -1,6 +1,11 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.8.4.1
+Added a fix for the Friendly Nameplates not showing  
+Added Gradient Class Icons to Chat Class Icons  
+Fixed Details Embed always showing up  
+Fixed Map Pin Max Distance  
 ### 3.8.4
 Added an option to disable the reversed gradient on target health frame  
 Added [eltruism:reverseReleafgradient:player] tag with gradient icons  
@@ -46,8 +51,9 @@ Fixed Blizzard's Alt Power spamming when not shown
 Fixed [eltruism:reverseclass:all] missing icons  
 Fixed Unitframe Shadows in more configurations  
 Fixed extra pixels on the Target Arrow Texture  
-Fixed Boss Frame Spaced Shadows  
+Fixed a possible error when Pet Battle ends  
 Fixed Aura Bars reversed gradient  
+Fixed Boss Frame Spaced Shadows  
 Fixed a few missing options
 ### 3.8.3
 Added options to set Aura Filters for Party, Raid and Aura Bars  

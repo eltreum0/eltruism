@@ -44,7 +44,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	if E.Wrath then
 		E.db["general"]["totems"]["fontOutline"] = "OUTLINE"
 	end
-	--E.db["general"]["minimap"]["locationFontOutline"] = "THICKOUTLINE" --test
+	E.db["general"]["addonCompartment"]["fontOutline"] = "OUTLINE"
 	E.db["bags"]["countFontOutline"] = "OUTLINE"
 	E.db["bags"]["itemInfoFontOutline"] = "OUTLINE"
 	E.db["bags"]["itemLevelFontOutline"] = "OUTLINE"

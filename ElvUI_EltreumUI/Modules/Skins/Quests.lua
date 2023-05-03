@@ -119,6 +119,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			local questID
 			local getquestid = CreateFrame("FRAME")
 			getquestid:RegisterEvent("QUEST_DATA_LOAD_RESULT")
+			getquestid:RegisterEvent("QUEST_LOG_UPDATE")
 			getquestid:SetScript("OnEvent", function()
 				questID = QuestMapFrame_GetDetailQuestID()
 				if questID ~= nil then
@@ -1058,17 +1059,17 @@ function ElvUI_EltreumUI:SkinQuests()
 			end)
 
 			--highlight
-			hooksecurefunc("WatchFrameLinkButtonTemplate_Highlight", function(self, onEnter)
+			hooksecurefunc("WatchFrameLinkButtonTemplate_Highlight", function(quest, onEnter)
 				local line
 				_G.WatchFrame_Update()
-				for index = self.startLine, self.lastLine do
-					line = self.lines[index]
+				for index = quest.startLine, quest.lastLine do
+					line = quest.lines[index]
 					if ( line ) then
 						if line.text:GetTextColor() == 0 and 0.99999779462814 and 0 and 0.99999779462814 then
 							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, E.db.general.fontStyle)
 							line.text:SetWidth(250)
 						else
-							if ( index == self.startLine ) then
+							if ( index == quest.startLine ) then
 								-- header
 								if ( onEnter ) then
 

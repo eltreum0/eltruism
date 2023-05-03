@@ -1410,3 +1410,5 @@ L["Reverse Target"] = true
 L["Reverse Target Gradient Health"] = true
 L["Skin Cell"] = true
 L["Gradient Health Loss"] = true
+L["Gradient Name"] = true
+L["Add gradient to Names"] = true

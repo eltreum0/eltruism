@@ -38,6 +38,8 @@ function ElvUI_EltreumUI:Shadows()
 			EltruismBlizzShadows:RegisterEvent("ADDON_LOADED")
 			EltruismBlizzShadows:RegisterEvent("PLAYER_ENTERING_WORLD")
 			EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
+				--[[if (arg == "Blizzard_PetBattleUI") or IsAddOnLoaded("Blizzard_PetBattleUI") or _G.PetBattleFrame then --todo look into pet battle shadows but they are unnamed
+				end]]
 				if (arg == "Blizzard_ArtifactUI") or IsAddOnLoaded("Blizzard_ArtifactUI") then
 					if _G.ArtifactFrame and not _G.ArtifactFrame.shadow then
 						_G.ArtifactFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)

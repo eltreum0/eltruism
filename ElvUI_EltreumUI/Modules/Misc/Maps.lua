@@ -61,7 +61,7 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 		end
 
 		--remove max distance
-		do
+		if not SuperTrackedFrame.EltruismHook then
 			function SuperTrackedFrame:GetTargetAlphaBaseValue()
 				local d = C_Navigation.GetDistance()
 				if (d >= 10 ) then
@@ -79,6 +79,7 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 					return 0
 				end
 			end
+			SuperTrackedFrame.EltruismHook = true
 		end
 
 		SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)

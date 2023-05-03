@@ -26,7 +26,7 @@ P.ElvUI_EltreumUI = {
 		chattoggles = true,
 		chaticonenable = true,
 		chatgradient = false,
-		chaticontype = "OUTLINE",
+		chaticontype = "GRADIENT",
 		AuthorMVPDonatorIcons = true,
 	},
 
@@ -191,6 +191,7 @@ P.ElvUI_EltreumUI = {
 		bigwigscustomemphasizedg2 = 0.23,
 		bigwigscustomemphasizedb2 = 0.23,
 		details = false,
+		detailsgradientname = true,
 		detailstextureoverwrite = true,
 		detailsembed = false,
 		detailsembedooc = false,
