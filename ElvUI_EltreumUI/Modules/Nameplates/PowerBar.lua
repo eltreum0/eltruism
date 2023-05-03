@@ -52,8 +52,7 @@ local mainCost = 0
 local incResource = 0
 local startTime, endTime, spellID = 0, 0, 0
 local spellGenerators
-local druidwrath = 6
-local druidstarfire = 8
+local druidwrath = 10
 local shamanhex = 0
 local shamanbolt = 8
 local shamanlavaburst = 10
@@ -87,10 +86,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 		if E.Retail then
 			druideclipse = C_UnitAuras.GetPlayerAuraBySpellID(48517) --might be removed in dragonflight
 			if IsPlayerSpell(114107) and druideclipse ~= nil then
-				druidwrath = 9
-			end
-			if IsPlayerSpell(378776) then --shaman inundate
-				shamanhex = 8
+				druidwrath = 13
 			end
 			if IsPlayerSpell(321018) then --improved steady shot
 				huntersteadyshot = 10
@@ -99,6 +95,9 @@ function ElvUI_EltreumUI:PowerPrediction()
 				shamanbolt = 10
 				shamanlavaburst = 12
 			end
+			if IsPlayerSpell(378776) and InCombatLockdown() then --shaman inundate
+				shamanhex = 8
+			end
 		end
 
 		--Some of this is from Asakawa's Universal Power Bar, but mostly has been revamped and updated to current values instead of BFA values
@@ -106,26 +105,28 @@ function ElvUI_EltreumUI:PowerPrediction()
 
 			-- Balance Druid
 			[190984] = druidwrath, --wrath
-			[194153] = druidstarfire, -- StarFire
-			[214281] = 10, -- New Moon
-			[274281] = 10, -- New Moon
-			[214282] = 20, -- Half Moon
-			[274282] = 20, -- Half Moon
-			[274283] = 40, -- Full Moon
-			[202347] = 8, -- Stellar Flare
+			[194153] = 10, -- StarFire
+			[214281] = 12, -- New Moon
+			[274281] = 12, -- New Moon
+			[214282] = 24, -- Half Moon
+			[274282] = 24, -- Half Moon
+			[274283] = 50, -- Full Moon
+			[202347] = 12, -- Stellar Flare
 
 			-- Shadow Priest
 			[8092] = 6, -- mind blast
-			[34914] = 5, -- vampiric touch
+			[34914] = 4, -- vampiric touch
 			--[15407] = 12, -- mind flay, but is a channel so idc
 			--[48045] = 6, -- per target, but is a channel so idc
 			--[263165] = 60, -- void torrent, but is a channel so idc
 			[263346] = 15, --dark void
 			[73510] = 4, --mind spike
 			[391109] = 30, --dark ascension
-			[391399] = 6, --mind spike: insanity
+			[407466] = 6, --mind spike: insanity
+			--[391403] = 12, --mind flay: insanity, but its a channel so idc
 			[375901] = 10, --mindgames
 			[120644] = 10, -- halo
+			--[263165] = 24, --void torrent, but its a channel so idc
 
 			-- Elemental Shaman
 			[188196] = shamanbolt, --lightning bolt
@@ -134,6 +135,14 @@ function ElvUI_EltreumUI:PowerPrediction()
 			[210714] = 25, --icefury
 			[188443] = 4, --chain lightning (per target hit)
 			[51514] = shamanhex, --hex can have maelstrom if they have inundate
+			[210873] = shamanhex, --hex can have maelstrom if they have inundate
+			[211004] = shamanhex, --hex can have maelstrom if they have inundate
+			[211010] = shamanhex, --hex can have maelstrom if they have inundate
+			[211015] = shamanhex, --hex can have maelstrom if they have inundate
+			[269352] = shamanhex, --hex can have maelstrom if they have inundate
+			[277778] = shamanhex, --hex can have maelstrom if they have inundate
+			[277784] = shamanhex, --hex can have maelstrom if they have inundate
+			[309328] = shamanhex, --hex can have maelstrom if they have inundate
 
 			--Hunter
 			[56641] = huntersteadyshot, --steady shot only gives focus with a talent now
