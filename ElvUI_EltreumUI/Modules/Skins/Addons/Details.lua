@@ -33,41 +33,44 @@ do
 		if E.db.ElvUI_EltreumUI.skins.details then
 			if not DetailsHooked then
 				local Details = _G.Details
-				if not E.Classic then
-					--gradient name (damage)
-					hooksecurefunc(Details.atributo_damage,"RefreshLine", function(_,_, lineContainer, whichRowLine)
-						local thisLine = lineContainer[whichRowLine]
-						if not thisLine then return end
-						if thisLine.lineText1 then
-							thisLine.lineText1:SetText(thisLine.colocacao .. ". " .. ElvUI_EltreumUI:GradientName(thisLine.minha_tabela:GetDisplayName(), thisLine.minha_tabela:class()))
-						end
-					end)
-					--gradient name (heal)
-					hooksecurefunc(Details.atributo_heal,"RefreshLine", function(_,instancia, _, whichRowLine)
-						local thisLine = instancia.barras[whichRowLine]
-						if not thisLine then return end
-						if thisLine.lineText1 then
-							thisLine.lineText1:SetText(thisLine.colocacao .. ". " .. ElvUI_EltreumUI:GradientName(thisLine.minha_tabela:GetDisplayName(), thisLine.minha_tabela:class()))
-						end
-					end)
-				else
-					local _detalhes = _G._detalhes
-					--gradient name (damage)
-					hooksecurefunc(_detalhes.atributo_damage,"AtualizaBarra", function(_,instancia, _, qual_barra)
-						local esta_barra = instancia.barras[qual_barra]
-						if not esta_barra then return end
-						if esta_barra.texto_esquerdo then
-							esta_barra.texto_esquerdo:SetText(esta_barra.colocacao .. ". " .. ElvUI_EltreumUI:GradientName(esta_barra.minha_tabela:GetDisplayName(), esta_barra.minha_tabela:class()))
-						end
-					end)
-					--gradient name (heal)
-					hooksecurefunc(_detalhes.atributo_heal,"AtualizaBarra", function(_,instancia, _, qual_barra)
-						local esta_barra = instancia.barras[qual_barra]
-						if not esta_barra then return end
-						if esta_barra.texto_esquerdo then
-							esta_barra.texto_esquerdo:SetText(esta_barra.colocacao .. ". " .. ElvUI_EltreumUI:GradientName(esta_barra.minha_tabela:GetDisplayName(), esta_barra.minha_tabela:class()))
-						end
-					end)
+
+				if E.db.ElvUI_EltreumUI.skins.detailsgradientname then
+					if not E.Classic then
+						--gradient name (damage)
+						hooksecurefunc(Details.atributo_damage,"RefreshLine", function(_,_, lineContainer, whichRowLine)
+							local thisLine = lineContainer[whichRowLine]
+							if not thisLine then return end
+							if thisLine.lineText1 then
+								thisLine.lineText1:SetText(thisLine.colocacao .. ". " .. ElvUI_EltreumUI:GradientName(thisLine.minha_tabela:GetDisplayName(), thisLine.minha_tabela:class()))
+							end
+						end)
+						--gradient name (heal)
+						hooksecurefunc(Details.atributo_heal,"RefreshLine", function(_,instancia, _, whichRowLine)
+							local thisLine = instancia.barras[whichRowLine]
+							if not thisLine then return end
+							if thisLine.lineText1 then
+								thisLine.lineText1:SetText(thisLine.colocacao .. ". " .. ElvUI_EltreumUI:GradientName(thisLine.minha_tabela:GetDisplayName(), thisLine.minha_tabela:class()))
+							end
+						end)
+					else
+						local _detalhes = _G._detalhes
+						--gradient name (damage)
+						hooksecurefunc(_detalhes.atributo_damage,"AtualizaBarra", function(_,instancia, _, qual_barra)
+							local esta_barra = instancia.barras[qual_barra]
+							if not esta_barra then return end
+							if esta_barra.texto_esquerdo then
+								esta_barra.texto_esquerdo:SetText(esta_barra.colocacao .. ". " .. ElvUI_EltreumUI:GradientName(esta_barra.minha_tabela:GetDisplayName(), esta_barra.minha_tabela:class()))
+							end
+						end)
+						--gradient name (heal)
+						hooksecurefunc(_detalhes.atributo_heal,"AtualizaBarra", function(_,instancia, _, qual_barra)
+							local esta_barra = instancia.barras[qual_barra]
+							if not esta_barra then return end
+							if esta_barra.texto_esquerdo then
+								esta_barra.texto_esquerdo:SetText(esta_barra.colocacao .. ". " .. ElvUI_EltreumUI:GradientName(esta_barra.minha_tabela:GetDisplayName(), esta_barra.minha_tabela:class()))
+							end
+						end)
+					end
 				end
 				--gradient texture
 				hooksecurefunc(Details, "InstanceRefreshRows", function(instancia)

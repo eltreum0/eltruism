@@ -191,6 +191,7 @@ P.ElvUI_EltreumUI = {
 		bigwigscustomemphasizedg2 = 0.23,
 		bigwigscustomemphasizedb2 = 0.23,
 		details = false,
+		detailsgradientname = true,
 		detailstextureoverwrite = true,
 		detailsembed = false,
 		detailsembedooc = false,
