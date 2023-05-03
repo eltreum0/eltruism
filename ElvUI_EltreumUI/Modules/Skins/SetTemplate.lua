@@ -8,7 +8,7 @@ local valuecolors = E:ClassColor(E.myclass, true)
 --based on elvui toolkit
 function ElvUI_EltreumUI:SetTemplateSkin()
 	if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
-		local frame = CreateFrame("Frame")
+		local loopframe = CreateFrame("Frame")
 		local frametypes = {
 			["Region"] = true,
 			["Texture"] = true,
@@ -17,9 +17,9 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 			["ScrollFrame"] = true,
 			["ModelScene"] = true,
 		}
-		local function SkinFrame(frame)
-			if frame:GetObjectType() == "Texture" then frame = frame:GetParent() end
-			local mt = getmetatable(frame).__index
+		local function SkinFrame(object)
+			if object:GetObjectType() == "Texture" then object = object:GetParent() end
+			local mt = getmetatable(object).__index
 			if type(mt) == 'function' then return end
 			if mt.SetTemplate then
 				hooksecurefunc(mt, "SetTemplate", function(frame, template, _, _, _, isUnitFrameElement, isNamePlateElement)
@@ -99,14 +99,14 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 				end)
 			end
 		end
-		SkinFrame(frame)
-		frame = EnumerateFrames()
-		while frame do
-			if (not frame:IsForbidden()) and not frametypes[frame:GetObjectType()] then
-				SkinFrame(frame)
-				frametypes[frame:GetObjectType()] = true
+		SkinFrame(loopframe)
+		loopframe = EnumerateFrames()
+		while loopframe do
+			if (not loopframe:IsForbidden()) and not frametypes[loopframe:GetObjectType()] then
+				SkinFrame(loopframe)
+				frametypes[loopframe:GetObjectType()] = true
 			end
-			frame = EnumerateFrames(frame)
+			loopframe = EnumerateFrames(loopframe)
 		end
 		E:StaggeredUpdateAll()
 		E:Delay(10, function()
