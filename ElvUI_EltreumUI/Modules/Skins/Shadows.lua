@@ -2670,7 +2670,7 @@ function ElvUI_EltreumUI:RaidShadows()
 								ElvUI_EltreumUI:ShadowColor(button.Power.shadow)
 							else
 								button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes then
+								if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.ElvUI_EltreumUI.unitframes.infopanelontopallframes and button.db.infoPanel.enable then
 									button.shadow:ClearAllPoints()
 									button.shadow:SetPoint("BOTTOMLEFT", button.Health,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
 									button.shadow:SetPoint("BOTTOMRIGHT", button.Health,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
