@@ -567,6 +567,17 @@ if E.Retail or E.Wrath then
 							end
 						end
 					end)
+					hooksecurefunc(_G["ElvUF_Pet"], "SetAlpha", function(_,alpha)
+						if alpha == 0 then
+							if _G["EltruismPetPowerBarEffect"] then
+								_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
+							end
+						else
+							if _G["EltruismPetPowerBarEffect"] then
+								_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
+							end
+						end
+					end)
 					_G["ElvUF_Player"].EltruismAlphaCheck = true
 				end
 
@@ -578,6 +589,9 @@ if E.Retail or E.Wrath then
 				end
 				if _G["EltruismPlayerPowerBarEffect"] then
 					_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
+				end
+				if _G["EltruismPetPowerBarEffect"] then
+					_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
 				end
 			end)
 		end
