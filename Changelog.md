@@ -1,6 +1,14 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.8.5
+Added an option to disable Gradient Names in Details Skin  
+Updated several Spell Generators for the Nameplate Power Bar in Retail  
+Updated how Eltruism Options is toggled  
+Fixed a possible issue with Pet Glow Colors in Wrath  
+Fixed a possible issue with the Cursor Cooldowns  
+Fixed Wowhead quest button in Retail  
+Fixed Pet Power Effect Alpha
 ### 3.8.4.1
 Added a fix for the Friendly Nameplates not showing  
 Added Gradient Class Icons to Chat Class Icons  
