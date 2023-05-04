@@ -209,23 +209,23 @@ local function GetCheckCompatibilityFunction(targetAddonName, targetAddonLocales
 		end
 	else
 		return function(myModuleName, targetAddon, myDB)
-			if not (myDB and targetAddonName) then
+			if not (myDB and targetAddon) then
 				return
 			end
 			local myTable, myKey, myValue = GetDatabaseRealValue(myDB)
-			if myValue == true and IsAddOnLoaded(targetAddonName) then
+			if myValue == true and IsAddOnLoaded(targetAddon) then
 				AddButtonToCompatibilityFrame({
 					module1 = myModuleName,
 					plugin1 = select(2,GetAddOnInfo("ElvUI_EltreumUI")),
 					func1 = function()
 						myTable[myKey] = true
-						DisableAddOn(targetAddonName)
+						DisableAddOn(targetAddon)
 					end,
 					module2 = "AddOn:",
-					plugin2 = select(2,GetAddOnInfo(targetAddonName)),
+					plugin2 = select(2,GetAddOnInfo(targetAddon)),
 					func2 = function()
 						myTable[myKey] = false
-						EnableAddOn(targetAddonName)
+						EnableAddOn(targetAddon)
 					end
 				})
 			end
