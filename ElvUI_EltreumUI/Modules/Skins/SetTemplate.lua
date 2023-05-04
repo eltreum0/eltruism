@@ -62,6 +62,16 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 							else
 								frame.eltruismbgtexture:SetVertexColor(E.db.ElvUI_EltreumUI.skins.elvui.color.r,E.db.ElvUI_EltreumUI.skins.elvui.color.g,E.db.ElvUI_EltreumUI.skins.elvui.color.b,E.db.ElvUI_EltreumUI.skins.elvui.color.a)
 							end
+							--possible widget shadows
+							if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+								if frame:GetParent() and frame:GetParent():GetParent() and frame:GetParent():GetParent().widgetContainer then
+									if not frame.shadow then
+										frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(frame.shadow)
+
+									end
+								end
+							end
 							frame.EltruismBackground = true
 						else
 							if frame.eltruismbgtexture then

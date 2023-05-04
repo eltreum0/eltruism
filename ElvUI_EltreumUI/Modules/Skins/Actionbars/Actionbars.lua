@@ -638,20 +638,20 @@ function ElvUI_EltreumUI:SkillGlow()
 end
 
 --Skill Glow Pet
-local skillglowcolorpet
-local petcolorsetup = false
+local skillglowcolorpet = {classcolor.r, classcolor.g, classcolor.b, 1}
 function ElvUI_EltreumUI:SkillGlowPet()
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end
 	if not E.private.ElvUI_EltreumUI then return end
 	if not UnitExists("pet") then return end
 	if IsAddOnLoaded("ElvUI_ActionBarMasks") then return end
 	if E.db.ElvUI_EltreumUI.glow.enablepet and E.private.actionbar.enable then
-		if not petcolorsetup then
-			if E.db.ElvUI_EltreumUI.glow.colorclass then
+		if not self.petglowcolorsetup and E.db.ElvUI_EltreumUI.glow.colorclasspet ~= nil then
+			if E.db.ElvUI_EltreumUI.glow.colorclasspet then
 				skillglowcolorpet = {classcolor.r, classcolor.g, classcolor.b, 1}
 			else
 				skillglowcolorpet = {E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.r, E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.g, E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet.b, 1}
 			end
-			petcolorsetup = true
+			self.petglowcolorsetup = true
 		end
 		for i = 1, NUM_PET_ACTION_SLOTS, 1 do
 			local _, _, _, _, _, autoCastEnabled, _ = GetPetActionInfo(i)
@@ -709,13 +709,7 @@ end
 --elvui function can be spammy so use event instead
 local petcdcheck = CreateFrame("FRAME")
 petcdcheck:RegisterEvent("PET_BAR_UPDATE")
-petcdcheck:RegisterEvent("PLAYER_ENTERING_WORLD")
-petcdcheck:RegisterEvent("PLAYER_STARTED_MOVING")
-petcdcheck:SetScript("OnEvent", function(_,event)
-	if event == "PLAYER_STARTED_MOVING" then
-		ElvUI_EltreumUI:SkillGlowPet()
-		petcdcheck:UnregisterEvent("PLAYER_STARTED_MOVING")
-	end
+petcdcheck:SetScript("OnEvent", function()
 	ElvUI_EltreumUI:SkillGlowPet()
 end)
 --hooksecurefunc(AB, "UpdatePet", ElvUI_EltreumUI.SkillGlowPet)
