@@ -634,13 +634,13 @@ function ElvUI_EltreumUI:Configtable()
 		end
 	 end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.forceFSRsharpness = ACH:Range(RESAMPLE_QUALITY_FSR, nil, 3, { min = 0, max = 2, step = 0.1 }, 'full', function() return tonumber(C_CVar.GetCVar('ResampleSharpness')) end, function(_, value) SetCVar('ResampleSharpness', value) end, function() if C_CVar.GetCVar('ResampleAlwaysSharpen') == '1' then return false elseif C_CVar.GetCVar('ResampleAlwaysSharpen') == '0' then return true end end)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.description2 = ACH:Description(LOW_LATENCY_MODE or "Low Latency Mode", 4, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Classic)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.description2 = ACH:Description(LOW_LATENCY_MODE or "Low Latency Mode", 4, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Wrath)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.lowlatencycvar = ACH:Select(" ",OPTION_TOOLTIP_LOW_LATENCY_MODE or "Allows the game to use various techniques to reduce input latency", 5, {
 		["0"] = VIDEO_OPTIONS_DISABLED or "Disabled",
 		["1"] = VIDEO_OPTIONS_BUILTIN or "Built-in",
 		["2"] = VIDEO_OPTIONS_NVIDIA_REFLEX or "NVIDIA Reflex",
 		--["3"] = VIDEO_OPTIONS_NVIDIA_REFLEX_BOOST,
-	}, false, nil, function() return C_CVar.GetCVar('LowLatencyMode') end, function(_, value) local number = tonumber(value) SetCVar('LowLatencyMode', number) end, nil, E.Classic)
+	}, false, nil, function() return C_CVar.GetCVar('LowLatencyMode') end, function(_, value) local number = tonumber(value) SetCVar('LowLatencyMode', number) end, nil, not E.Wrath)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.lowlatencycvar.style = "radio"
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.description3 = ACH:Description(L["Dynamic Render Scale"], 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.dynamicrenderscaleenable = ACH:Toggle(L["Lowers render scale if GPU bound to hit Target FPS."], L["Note this feature is in BETA.\nKnown issues:\n - May cause hitching.\n - May behave poorly with vsync on."], 7, nil, false,'full',
