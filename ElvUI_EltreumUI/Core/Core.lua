@@ -692,8 +692,8 @@ EltruismGameMenu:SetScript("OnEvent", function()
 		EltruismMenuButton:SetSize(x,y)
 		EltruismMenuButton:SetScript("OnClick", function()
 			if not InCombatLockdown() then
-				E:ToggleOptions()
-				E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
+				E:ToggleOptions("ElvUI_EltreumUI")
+				--E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
 				HideUIPanel(_G["GameMenuFrame"])
 			end
 		end)
@@ -826,8 +826,8 @@ end
 
 --10.1 addon compartment
 function ElvUI_EltreumUI_OnAddonCompartmentClick()
-	E:ToggleOptions()
-	E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
+	E:ToggleOptions("ElvUI_EltreumUI") --has msg arg which can be used
+	--E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
 end
 
 --for fps testing
