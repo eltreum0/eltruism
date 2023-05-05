@@ -406,13 +406,11 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 
 		E.db["general"]["minimap"]["icons"]["mail"]["yOffset"] = 0
 		if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
-			E.db["general"]["minimap"]["icons"]["queueStatus"]["yOffset"] = 13
 			E.db["movers"]["DTPanelEltruismDataTextMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,0"
 			if not E.Retail then
 				E.db["general"]["minimap"]["icons"]["mail"]["yOffset"] = -10
 			end
 		else
-			E.db["general"]["minimap"]["icons"]["queueStatus"]["yOffset"] = 3
 			if not E.Retail then
 				E.db["general"]["minimap"]["icons"]["mail"]["yOffset"] = -27
 			end
@@ -425,10 +423,12 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["general"]["minimap"]["resetZoom"]["enable"] = true
 		E.db["general"]["minimap"]["resetZoom"]["time"] = 10
 		E.db["general"]["minimap"]["size"] = 200
-		E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = "Kimberley"
-		E.db["general"]["minimap"]["icons"]["queueStatus"]["fontOutline"] = "OUTLINE"
-		E.db["general"]["minimap"]["icons"]["queueStatus"]["fontSize"] = 20
-		E.db["general"]["minimap"]["icons"]["queueStatus"]["xOffset"] = -24
+		E.db["general"]["queueStatus"]["font"] = "Kimberley"
+		E.db["general"]["queueStatus"]["fontOutline"] = "OUTLINE"
+		E.db["general"]["queueStatus"]["fontSize"] = 20
+		E.db["general"]["queueStatus"]["position"] = "LEFT"
+		E.db["general"]["queueStatus"]["xOffset"] = -28
+		E.db["general"]["queueStatus"]["yOffset"] = 0
 		E.db["general"]["minimap"]["timeFont"] = "Kimberley"
 		E.db["general"]["addonCompartment"]["fontOutline"] = "OUTLINE"
 		E.db["general"]["addonCompartment"]["font"] = "Kimberley"

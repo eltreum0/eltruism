@@ -93,6 +93,9 @@ function ElvUI_EltreumUI:MinimapHide(event)
 				if _G.AddonCompartmentFrame then
 					_G.AddonCompartmentFrame:Hide()
 				end
+				if _G.QueueStatusButton then
+					_G.QueueStatusButton:Hide()
+				end
 			end
 			if E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura then
 				BuffsMover = E.db["movers"]["BuffsMover"]
@@ -109,6 +112,9 @@ function ElvUI_EltreumUI:MinimapHide(event)
 				_G.MinimapCluster:Show()
 				if _G.AddonCompartmentFrame then
 					_G.AddonCompartmentFrame:Show()
+				end
+				if _G.QueueStatusButton then
+					_G.QueueStatusButton:Show()
 				end
 			end
 			if E.db.ElvUI_EltreumUI.otherstuff.mapcombathideadjustaura then
