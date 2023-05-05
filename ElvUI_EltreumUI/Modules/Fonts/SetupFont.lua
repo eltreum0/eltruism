@@ -102,7 +102,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		E.db["general"]["minimap"]["locationFont"] = fontvalue
 		E.db["general"]["minimap"]["timeFont"] = fontvalue
 		if E.Retail then
-			E.db["general"]["minimap"]["icons"]["queueStatus"]["font"] = fontvalue
+			E.db["general"]["queueStatus"]["font"] = fontvalue
 		end
 		if E.Wrath then
 			E.db["general"]["totems"]["font"] = fontvalue
