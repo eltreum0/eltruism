@@ -32,9 +32,9 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 	if (E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight) and unit and unit.unit and unit.unit:match("nameplate") then
 
 		--check if its not explosive
-		if (unit.unitGUID and unit.unitGUID:match("-120651-")) or UnitIsUnit(unit.unit,"player") then
+		--[[if (unit.unitGUID and unit.unitGUID:match("-120651-")) or UnitIsUnit(unit.unit,"player") then
 			return
-		end
+		end]]
 
 		if UnitIsUnit(unit.unit, "target") then
 			if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight then
