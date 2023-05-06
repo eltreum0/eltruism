@@ -195,7 +195,7 @@ function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, 
 	return arg2
 end
 hooksecurefunc(CH, "ChatFrame_MessageEventHandler", function()
-	if E.db.ElvUI_EltreumUI.chat.chaticonenable and E.db.ElvUI_EltreumUI.chat.enable then
+	if (E.db.ElvUI_EltreumUI.chat.chaticonenable or E.db.ElvUI_EltreumUI.chat.chatgradient) and E.db.ElvUI_EltreumUI.chat.enable then
 		CH.GetColoredName = ElvUI_EltreumUI.ChatClassIcons
 	end
 end)

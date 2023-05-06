@@ -425,9 +425,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["general"]["minimap"]["size"] = 200
 		E.db["general"]["queueStatus"]["font"] = "Kimberley"
 		E.db["general"]["queueStatus"]["fontOutline"] = "OUTLINE"
-		E.db["general"]["queueStatus"]["fontSize"] = 20
+		E.db["general"]["queueStatus"]["fontSize"] = 18
 		E.db["general"]["queueStatus"]["position"] = "LEFT"
-		E.db["general"]["queueStatus"]["xOffset"] = -28
+		E.db["general"]["queueStatus"]["xOffset"] = -30
 		E.db["general"]["queueStatus"]["yOffset"] = 0
 		E.db["general"]["minimap"]["timeFont"] = "Kimberley"
 		E.db["general"]["addonCompartment"]["fontOutline"] = "OUTLINE"
