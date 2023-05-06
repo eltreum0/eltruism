@@ -1388,32 +1388,34 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 			end
 
 			--party
-			headergroup = nil
-			if _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsShown() then
-				headergroup = _G["ElvUF_Party"]
-			end
-			if headergroup ~= nil then
-				for i = 1, headergroup:GetNumChildren() do
-					group = select(i, headergroup:GetChildren())
-					for j = 1, group:GetNumChildren() do
-						groupbutton = select(j, group:GetChildren())
-						if groupbutton and groupbutton.Castbar then
-							--set textures
-							if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-								groupbutton.Castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
-							elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-								groupbutton.Castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-							else
-								groupbutton.Castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
-							end
-							--set spark texture
-							if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable then
-								groupbutton.Castbar.Spark_:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
-								if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' then --flip otherwise it will look wrong
-									groupbutton.Castbar.Spark_:SetTexCoord(1, 0, 0, 1)
+			if IsInGroup() then
+				headergroup = nil
+				if _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsShown() then
+					headergroup = _G["ElvUF_Party"]
+				end
+				if headergroup ~= nil then
+					for i = 1, headergroup:GetNumChildren() do
+						group = select(i, headergroup:GetChildren())
+						for j = 1, group:GetNumChildren() do
+							groupbutton = select(j, group:GetChildren())
+							if groupbutton and groupbutton.Castbar then
+								--set textures
+								if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+									groupbutton.Castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
+								elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+									groupbutton.Castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+								else
+									groupbutton.Castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
 								end
-								groupbutton.Castbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
-								groupbutton.Castbar.Spark_:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
+								--set spark texture
+								if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable then
+									groupbutton.Castbar.Spark_:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
+									if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' then --flip otherwise it will look wrong
+										groupbutton.Castbar.Spark_:SetTexCoord(1, 0, 0, 1)
+									end
+									groupbutton.Castbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
+									groupbutton.Castbar.Spark_:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
+								end
 							end
 						end
 					end
