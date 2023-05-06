@@ -52,7 +52,7 @@ local mainCost = 0
 local incResource = 0
 local startTime, endTime, spellID = 0, 0, 0
 local spellGenerators
-local druidwrath = 10
+local druidwrath = 8
 local shamanhex = 0
 local shamanbolt = 8
 local shamanlavaburst = 10
