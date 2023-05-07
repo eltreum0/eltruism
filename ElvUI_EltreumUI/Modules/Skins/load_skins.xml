@@ -7,6 +7,9 @@
 	<Script file='Borders/BorderAdjust.lua'/>
 	<Script file='Character/CharacterPanelIcons.lua'/>
 	<Script file='Character/CharacterPanelSkin.lua'/>
+	<Script file='Nameplate/Nameplates.lua'/>
+	<Script file='Nameplate/PowerBar.lua'/>
+	<Script file='Nameplate/ClassificationIcons.lua'/>
 	<Script file='Nameplate/Gradient.lua'/>
 	<Script file='Nameplate/Height.lua'/>
 	<Script file='Nameplate/Model.lua'/>
@@ -32,7 +35,7 @@
 	<Script file='DarkLightColors.lua'/>
 	<Script file='Databars.lua'/>
 	<Script file='Doom.lua'/>
-	<Script file='Quests.lua'/>
+	<Script file='QuestSkin.lua'/>
 	<Script file='Shadows.lua'/>
 	<Script file='Tooltip.lua'/>
 </Ui>

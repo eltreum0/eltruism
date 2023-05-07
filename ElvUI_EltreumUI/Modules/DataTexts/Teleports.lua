@@ -21,8 +21,6 @@ local tostring = _G.tostring
 local mod = _G.mod
 local IsUsableItem = _G.IsUsableItem
 local hsIsReady = true
-local USE = _G.USE or "Use"
-local HearthstoneString = GetItemInfo(6948) or "Hearthstone"
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------hearthstone/tp item datatext
 --based yet again on elvui config
 --most from https://www.wowhead.com/item=6948/hearthstone#comments
@@ -178,6 +176,13 @@ local TeleportsSpells = {
 	393766, --path-of-the-grand-magistrix
 	393267, --path-of-the-rotting-woods
 }
+function ElvUI_EltreumUI:GetTeleportSpells()
+	if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
+		return TeleportsSpells
+	else
+		return TeleportsItems
+	end
+end
 --the maw to avoid cypher showing up everywhere
 local mawIDs = {
 	["11400"] = true,
@@ -269,7 +274,7 @@ local function EltruismTeleportsOnEnter()
 		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
 		hsIsReady = true
 	end
-	DT.tooltip:AddDoubleLine(L["Double Click:"], USE.." "..HearthstoneString)
+	DT.tooltip:AddDoubleLine(L["Double Click:"], E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
 	DT.tooltip:Show()
 
 	teleportupdate:SetScript("OnUpdate", function(_, elapsed)
@@ -339,7 +344,7 @@ local function EltruismTeleportsOnEnter()
 				displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
 				hsIsReady = true
 			end
-			DT.tooltip:AddDoubleLine(L["Double Click:"], USE.." "..HearthstoneString)
+			DT.tooltip:AddDoubleLine(L["Double Click:"], E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
 			DT.tooltip:Show()
 		end
 	end)
@@ -364,9 +369,19 @@ local function EltruismTeleportsOnClick(self)
 		local nameastrall = GetSpellInfo(556)
 		_G["EltruismHearthStoneSecureButton"]:SetAttribute('spell', nameastrall)
 	else
-		_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'item')
-		local namehs = GetItemInfo(6948)
-		_G["EltruismHearthStoneSecureButton"]:SetAttribute('item', namehs)
+		if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
+			_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'spell')
+			local namespell = GetSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+			_G["EltruismHearthStoneSecureButton"]:SetAttribute('spell', namespell)
+		elseif E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "ITEM" then
+			_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'item')
+			local nameitem = GetItemInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+			_G["EltruismHearthStoneSecureButton"]:SetAttribute('item', nameitem)
+		else
+			_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'item')
+			local namehs = GetItemInfo(6948)
+			_G["EltruismHearthStoneSecureButton"]:SetAttribute('item', namehs)
+		end
 	end
 	_G["EltruismHearthStoneSecureButton"]:RegisterForClicks("AnyUp", "AnyDown")
 	_G["EltruismHearthStoneSecureButton"]:Show()

@@ -1418,5 +1418,7 @@ P.ElvUI_EltreumUI = {
 		lootscale = 1,
 		colorbg = false,
 		musicshuffle = false,
+		datatextteleport = "Hearthstone",
+		datatextteleporttype = "ITEM",
 	},
 }

@@ -80,6 +80,30 @@ local bossIDs = {
 	["59726"] = true,
 	["56732"] = true,
 	["56439"] = true,
+	-- Neltharion's Lair
+	["91007"] = true,
+	["91005"] = true,
+	["91003"] = true,
+	["91004"] = true,
+
+	-- Freehold
+	["129431"] = true,
+	["129432"] = true,
+	["126847"] = true,
+	["129440"] = true,
+	["129732"] = true,
+
+	-- Underrot
+	["131817"] = true,
+	["131318"] = true,
+	["131383"] = true,
+	["133007"] = true,
+
+	-- Vortex Pinnacle
+	["43878"] = true,
+	["43873"] = true,
+	["43875"] = true,
+
 	-- raid VOTI
 	["190245"] = true, --Broodkeeper-Diurna
 	["184972"] = true, --Eranog
@@ -92,6 +116,20 @@ local bossIDs = {
 	["187768"] = true, --Dathea-Stormlash
 	["187772"] = true, --Opalfang
 	["187767"] = true, --Embar-Firepath
+	-- raid Aberrus
+	["200913"] = true, --Thadrion
+	["200918"] = true, --Rionthus
+	["199659"] = true, --Warlord Kagni
+	["201320"] = true, --Rashok
+	["202637"] = true, --Zskarn
+	["201579"] = true, --Magmorax
+	["204223"] = true, --Neltharion
+	["205319"] = true, --Scalecommander Sarkareth
+	["201261"] = true, --Kazzara, the Hellforged
+	["201773"] = true, --Eternal Blaze
+	["201774"] = true, --Essence of Shadow
+	["201934"] = true, --Shadowflame Amalgamation
+	["200912"] = true, --Neldris
 
 	--storm fury bosses
 	["199502"] = true, --glakis-winters-wrath
@@ -105,6 +143,8 @@ local bossIDs = {
 	["193532"] = true, --bazual
 	["193535"] = true, --basrikron
 	["193533"] = true, --liskanoth
+	["203220"] = true, --Vakan
+	["199853"] = true, --Gholna
 
 	--shadowlands
 	["167524"] = true, --valinor
