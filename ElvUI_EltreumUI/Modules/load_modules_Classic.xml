@@ -18,7 +18,8 @@
 	<Script file='Misc/Instances.lua'/>
 	<Script file='Misc/LootText.lua'/>
 	<Script file='Misc/PartyRaid.lua'/>
-	<Script file='Misc/Quests.lua'/>
+	<Script file='Misc/QuestAutoAccept.lua'/>
+	<Script file='Misc/QuestCombat.lua'/>
 	<Script file='Misc/QuestItem.lua'/>
 	<Script file='Misc/Screenshot.lua'/>
 	<Script file='Fonts/SetupFont.lua'/>
