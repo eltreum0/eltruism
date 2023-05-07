@@ -175,7 +175,6 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		if E.Retail then
 			E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = false
 		elseif E.Classic or E.Wrath then
-			E.db["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["enable"] = false
 			E.db["nameplates"]["filters"]["EltreumLevel"]["triggers"]["enable"] = true
 		end
 		--enable general style filters on all versions
@@ -599,18 +598,6 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 			E.global["nameplates"]["filters"][filterName] = {}
 			E.NamePlates:StyleFilterCopyDefaults(E.global["nameplates"]["filters"][filterName])
 			E.db["nameplates"]["filters"][filterName] = { triggers = { enable = true } }
-		end
-
-		--fix explosive alpha/priority
-		if E.Retail then
-			E.global["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["priority"] = 1
-			E.global["nameplates"]["filters"]["ElvUI_Explosives"]["triggers"]["names"]["120651"] = true
-			E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["alpha"] = 100
-			E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["scale"] = 1.25
-			E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["r"] = 0
-			E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["g"] = 1
-			E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["color"]["healthColor"]["b"] = 1
-			E.global["nameplates"]["filters"]["ElvUI_Explosives"]["actions"]["usePortrait"] = true
 		end
 
 		--actually set the scale since 10.0 seems to break it

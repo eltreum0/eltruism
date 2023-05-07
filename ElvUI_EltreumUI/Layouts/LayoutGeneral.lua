@@ -1589,6 +1589,8 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar('SoftTargetInteractArc', 2)
 		SetCVar('SoftTargetNameplateInteract', 1)
 
+		SetCVar('missingTransmogSourceInItemTooltips', 1)
+
 		--[[
 		SetCVar('findYourselfAnywhere', 0) --"Always Highlight your character"
 		SetCVar('findYourselfAnywhereOnlyInCombat', 0) --"Highlight your character only when in combat"

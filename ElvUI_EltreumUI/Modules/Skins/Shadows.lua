@@ -798,6 +798,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.AddFriendFrame,
 				_G.MinimapRightClickMenu,
 				_G.TimeManagerFrame,
+				_G.LootFrame,
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame and not frame.shadow then
