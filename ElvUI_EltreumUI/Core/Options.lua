@@ -1382,6 +1382,54 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.description2 = ACH:Description(L["Datatext Hiding"], 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.leftdatatexthide = ACH:Toggle(L["Hide Left Chat Datatext out of Combat"], nil, 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.datatexts.panels.LeftChatDataPanel.enable end)
 	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.rightdatatexthide = ACH:Toggle(L["Hide Right Chat Datatext out of Combat"], nil, 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.datatexts.panels.RightChatDataPanel.enable end)
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.description3 = ACH:Description(L["Eltruism Hearthstones/Teleports"], 5, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.teleporttype = ACH:Select(E.NewSign..L["Select which type of teleports to use on double click"], nil, 6, {
+		["ITEM"] = _G.ITEMS,
+		["SPELL"] = _G.SPELLS,
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype = value end)
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.teleporttype.style = "radio"
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.teleport = ACH:Select(L["Select Spell/Item"], nil, 7, function()
+		local tpspellsitems = {}
+		for _, v in pairs(ElvUI_EltreumUI:GetTeleportSpells()) do
+			if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
+				local name = GetSpellInfo(v)
+				local hasSpell = IsSpellKnown(v)
+				if hasSpell then
+					tpspellsitems[v] = name
+				end
+			else
+				local name, itemLink = GetItemInfo(v)
+				local hasItem = GetItemCount(v)
+				if name and ((hasItem > 0 and IsUsableItem(v)) or (E.Retail and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v))) then
+					local itemid = itemLink:match("item:(%d+)")
+					tpspellsitems[itemid] = name
+				end
+			end
+		end
+		return tpspellsitems
+	end, false, "full", function()
+		if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
+			local value = select(7,GetSpellInfo(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)))
+			if value then
+				return value
+			end
+		else
+			local _, itemLink = GetItemInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+			if itemLink then
+				local itemid = itemLink:match("item:(%d+)")
+				return itemid
+			end
+		end
+	end,
+	function(_, value)
+		if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
+			local name = GetSpellInfo(value)
+			E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = tostring(name)
+		else
+			local name = GetItemInfo(value)
+			E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = tostring(name)
+		end
+	end)
 
 	--unitframes
 	ElvUI_EltreumUI.Options.args.unitframes = ACH:Group(E:TextGradient(L["Unitframes"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add Gradient, Custom Textures, Models, change fill orientation and more"], 85, 'tab')
