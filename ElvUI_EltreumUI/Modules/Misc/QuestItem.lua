@@ -445,14 +445,14 @@ function ElvUI_EltreumUI:QuestItem()
 			--------------------------------------------------------------------------------------------------------
 			-- OnClick
 			--local function Button_OnClick(self,button, down)
-			local function Button_OnClick(self, _, _)
+			local function Button_OnClick(button, _, _)
 				--print(button,down)
 				-- Handle Modified Click
 				--print("button_onclick")
-				if (HandleModifiedItemClick(self.link)) then
+				if (HandleModifiedItemClick(button.link)) then
 					return
 				end
-				self:Click("LeftButton", true)
+				button:Click("LeftButton", true)
 			end
 
 			-- Make Loot Button
@@ -469,9 +469,9 @@ function ElvUI_EltreumUI:QuestItem()
 				end
 				b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
 				b:RegisterForClicks("LeftButtonUp","RightButtonUp")
-				b:SetScript("OnEnter", function (self)
+				b:SetScript("OnEnter", function (button)
 					GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
-					local bag, slot = self:GetAttribute("bag"), self:GetAttribute("slot")
+					local bag, slot = button:GetAttribute("bag"), button:GetAttribute("slot")
 					if (bag) then
 						GameTooltip:SetBagItem(bag,slot)
 					else
@@ -759,11 +759,11 @@ function ElvUI_EltreumUI:QuestItem()
 			--------------------------------------------------------------------------------------------------------
 			--                                               Events                                               --
 			--------------------------------------------------------------------------------------------------------
-			EltruismQuestItemFrame:SetScript("OnEvent",function(self,event,...)
+			EltruismQuestItemFrame:SetScript("OnEvent",function(frame,event,...)
 				--print(event.." quest onevent spam "..math.random(1,99))
-				if (self[event]) then
+				if (frame[event]) then
 					--print("registered",event)
-					self[event](self,event,...)
+					frame[event](frame,event,...)
 				else
 					--print("unregisteredevent",event)
 					EltruismQuestItemFrame:RequestUpdate()
