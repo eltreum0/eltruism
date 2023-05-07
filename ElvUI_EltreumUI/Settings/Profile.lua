@@ -893,7 +893,7 @@ P.ElvUI_EltreumUI = {
 			playercastbarB1noninterruptiblecustom = 0,
 			playercastbarB2noninterruptiblecustom = 0.29019607843137,
 			playercastbarG1noninterruptiblecustom = 0.34901960784314,
-			playercastbarG2noninterruptiblecustom = 0,
+			playercastbarG2noninterruptiblecustom = 0.19607843137255,
 
 			playercastbarR1interrupted = 0.6,
 			playercastbarR2interrupted = 0.2,
@@ -930,8 +930,8 @@ P.ElvUI_EltreumUI = {
 			targetcastbarR1noninterruptible = 1,
 			targetcastbarR2noninterruptible = 1,
 			targetcastbarB1noninterruptible = 0,
-			targetcastbarB2noninterruptible = 0,
-			targetcastbarG1noninterruptible = 0,
+			targetcastbarB2noninterruptible = 0.29019607843137,
+			targetcastbarG1noninterruptible = 0.34901960784314,
 			targetcastbarG2noninterruptible = 0.19607843137255,
 
 			targetcastbarR1noninterruptiblecustom = 1,
@@ -939,7 +939,7 @@ P.ElvUI_EltreumUI = {
 			targetcastbarB1noninterruptiblecustom = 0,
 			targetcastbarB2noninterruptiblecustom = 0.29019607843137,
 			targetcastbarG1noninterruptiblecustom = 0.34901960784314,
-			targetcastbarG2noninterruptiblecustom = 0,
+			targetcastbarG2noninterruptiblecustom = 0.19607843137255,
 
 			targetcastbarR1interrupted = 0.6,
 			targetcastbarR2interrupted = 0.2,
