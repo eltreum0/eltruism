@@ -1,6 +1,11 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.8.5.1
+Updated Classic Era Details Profiles  
+Updated German translation by Dlarge  
+Fixed an error with progress bars in Retail Quests Skin  
+Fixed an error in Classic Era due to Details changes
 ### 3.8.5
 Added options to customize the Teleport/Hearthstone Datatext to use other Spells/Items  
 Added Season 2 Mythic Plus Bosses to Nameplate Classification Icons  
