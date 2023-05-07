@@ -1412,3 +1412,4 @@ L["Skin Cell"] = true
 L["Gradient Health Loss"] = true
 L["Gradient Name"] = true
 L["Add gradient to Names"] = true
+L["Select which type of teleports to use on double click"] = true
