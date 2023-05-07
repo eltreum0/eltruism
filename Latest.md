@@ -1,5 +1,6 @@
 ### 3.8.5 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
+Added options to customize the Teleport/Hearthstone Datatext to use other Spells/Items  
 Added Season 2 Mythic Plus Bosses to Nameplate Classification Icons  
 Added Aberrus and World Bosses to Nameplate Classification Icons  
 Added an option to disable Gradient Names in Details Skin  
