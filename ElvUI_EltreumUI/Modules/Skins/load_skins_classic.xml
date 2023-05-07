@@ -10,6 +10,9 @@
 	<Script file='Character/CharacterPanelSkin.lua'/>
 	<Script file='Character/ItemLevels.lua'/>
 	<Script file='Character/Sockets.lua'/>
+	<Script file='Nameplate/Nameplates.lua'/>
+	<Script file='Nameplate/PowerBar.lua'/>
+	<Script file='Nameplate/ClassificationIcons.lua'/>
 	<Script file='Nameplate/Gradient.lua'/>
 	<Script file='Nameplate/Height.lua'/>
 	<Script file='Nameplate/Model.lua'/>
