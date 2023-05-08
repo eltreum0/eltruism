@@ -336,13 +336,15 @@ local function EltruismTeleportsOnEnter()
 				end
 			end
 			local startcd3, durationcd3 = GetItemCooldown(6948)
-			local cooldown4 = startcd3 + durationcd3 - GetTime()
-			if cooldown4 >= 2 then
-				displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t |cffdb3030"..GetBindLocation().."|r"
-				hsIsReady = false
-			else
-				displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
-				hsIsReady = true
+			if startcd3 and durationcd3 then
+				local cooldown4 = startcd3 + durationcd3 - GetTime()
+				if cooldown4 >= 2 then
+					displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t |cffdb3030"..GetBindLocation().."|r"
+					hsIsReady = false
+				else
+					displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
+					hsIsReady = true
+				end
 			end
 			DT.tooltip:AddDoubleLine(L["Double Click:"], E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
 			DT.tooltip:Show()
