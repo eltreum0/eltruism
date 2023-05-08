@@ -49,6 +49,9 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 								if frame:GetParent().TransmogStateTexture then --transmog stuff
 									frame.eltruismbgtexture:SetTexture("")
 								end
+								if frame:GetParent().TransmogSelectedAnim then --transmog stuff
+									frame.eltruismbgtexture:SetTexture("")
+								end
 							end
 							if (frame.SelectedTexture or frame.glossTex) and not E.db.ElvUI_EltreumUI.skins.elvui.button then --fix some more buttons
 								frame.eltruismbgtexture:Hide()
