@@ -107,37 +107,42 @@ function ElvUI_EltreumUI:Tooltip()
 	end
 
 	--ilvl tooltip & gradient
-	if E.db.ElvUI_EltreumUI.skins.ilvltooltip or E.db.ElvUI_EltreumUI.skins.gradienttooltip then
-		if E.Retail then
-			if E.db.ElvUI_EltreumUI.skins.gradienttooltip and not self.ilvlHook then
-				TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, function(tt)
-					if tt then
-						local name,itemLink = GameTooltip:GetItem()
-						if not name then return end
-						if not itemLink then return end
-						local _, _, itemQuality = GetItemInfo(itemLink)
-						if not itemQuality then return end
-						local r2,g2,b2 = GetItemQualityColor(itemQuality)
-						local r1 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-						if r1 < 0 then r1 = 0 elseif r1 > 1 then r1 = 1 end
-						local g1 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-						if g1 < 0 then g1 = 0 elseif g1 > 1 then g1 = 1 end
-						local b1 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-						if b1 < 0 then b1 = 0 elseif b1 > 1 then b1 = 1 end
-						r2 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-						if r2 < 0 then r2 = 0 elseif r2 > 1 then r2 = 1 end
-						g2 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-						if g2 < 0 then g2 = 0 elseif g2 > 1 then g2 = 1 end
-						b2 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-						if b2 < 0 then b2 = 0 elseif b2 > 1 then b2 = 1 end
+	if E.Retail then
+		if E.db.ElvUI_EltreumUI.skins.gradienttooltip and not self.EltruismTooltipHook then
+			TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, function(tt)
+				if tt then
+					local name,itemLink = GameTooltip:GetItem()
+					if not name then return end
+					if not itemLink then return end
+					local _, _, itemQuality = GetItemInfo(itemLink)
+					if not itemQuality then return end
+					local r2,g2,b2 = GetItemQualityColor(itemQuality)
+					local r1 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
+					if r1 < 0 then r1 = 0 elseif r1 > 1 then r1 = 1 end
+					local g1 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
+					if g1 < 0 then g1 = 0 elseif g1 > 1 then g1 = 1 end
+					local b1 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
+					if b1 < 0 then b1 = 0 elseif b1 > 1 then b1 = 1 end
+					r2 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
+					if r2 < 0 then r2 = 0 elseif r2 > 1 then r2 = 1 end
+					g2 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
+					if g2 < 0 then g2 = 0 elseif g2 > 1 then g2 = 1 end
+					b2 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
+					if b2 < 0 then b2 = 0 elseif b2 > 1 then b2 = 1 end
+					local icon = strmatch(_G["GameTooltipTextLeft1"]:GetText(), "^.-|t")
+					if icon then
+						_G["GameTooltipTextLeft1"]:SetText(icon .. " " .. E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+					else
 						_G["GameTooltipTextLeft1"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2))
 					end
-				end)
-				self.ilvlHook = true
-			end
-		else
-			if not self.ilvlHook then
-				GameTooltip:HookScript("OnTooltipSetItem", function(tooltip)
+				end
+			end)
+			self.EltruismTooltipHook = true
+		end
+	else
+		if (E.db.ElvUI_EltreumUI.skins.ilvltooltip or E.db.ElvUI_EltreumUI.skins.gradienttooltip) and not self.EltruismTooltipHook then
+			GameTooltip:HookScript("OnTooltipSetItem", function(tooltip)
+				if E.db.ElvUI_EltreumUI.skins.ilvltooltip then
 					local line = _G["GameTooltipTextLeft2"]:GetText()
 					if line and not line:match(ITEM_LEVEL) then
 						local _, itemLink = tooltip:GetItem()
@@ -157,31 +162,35 @@ function ElvUI_EltreumUI:Tooltip()
 							end
 						end
 					end
-
-					if E.db.ElvUI_EltreumUI.skins.gradienttooltip then
-						local name,itemLink = GameTooltip:GetItem()
-						if not name then return end
-						if not itemLink then return end
-						local _, _, itemQuality = GetItemInfo(itemLink)
-						if not itemQuality then return end
-						local r2,g2,b2 = GetItemQualityColor(itemQuality)
-						local r1 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-						if r1 < 0 then r1 = 0 elseif r1 > 1 then r1 = 1 end
-						local g1 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-						if g1 < 0 then g1 = 0 elseif g1 > 1 then g1 = 1 end
-						local b1 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
-						if b1 < 0 then b1 = 0 elseif b1 > 1 then b1 = 1 end
-						r2 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-						if r2 < 0 then r2 = 0 elseif r2 > 1 then r2 = 1 end
-						g2 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-						if g2 < 0 then g2 = 0 elseif g2 > 1 then g2 = 1 end
-						b2 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
-						if b2 < 0 then b2 = 0 elseif b2 > 1 then b2 = 1 end
+				end
+				if E.db.ElvUI_EltreumUI.skins.gradienttooltip then
+					local name,itemLink = GameTooltip:GetItem()
+					if not name then return end
+					if not itemLink then return end
+					local _, _, itemQuality = GetItemInfo(itemLink)
+					if not itemQuality then return end
+					local r2,g2,b2 = GetItemQualityColor(itemQuality)
+					local r1 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
+					if r1 < 0 then r1 = 0 elseif r1 > 1 then r1 = 1 end
+					local g1 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
+					if g1 < 0 then g1 = 0 elseif g1 > 1 then g1 = 1 end
+					local b1 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
+					if b1 < 0 then b1 = 0 elseif b1 > 1 then b1 = 1 end
+					r2 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
+					if r2 < 0 then r2 = 0 elseif r2 > 1 then r2 = 1 end
+					g2 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
+					if g2 < 0 then g2 = 0 elseif g2 > 1 then g2 = 1 end
+					b2 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
+					if b2 < 0 then b2 = 0 elseif b2 > 1 then b2 = 1 end
+					local icon = strmatch(_G["GameTooltipTextLeft1"]:GetText(), "^.-|t")
+					if icon then
+						_G["GameTooltipTextLeft1"]:SetText(icon .. " " .. E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+					else
 						_G["GameTooltipTextLeft1"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2))
 					end
-				end)
-				self.ilvlHook = true
-			end
+				end
+			end)
+			self.EltruismTooltipHook = true
 		end
 	end
 end
