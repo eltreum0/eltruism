@@ -824,6 +824,13 @@ function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
 	end
 end
 
+function ElvUI_EltreumUI:ShortenString(text, length)
+	if text and string.len(text) > length then
+		text = text:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
+	end
+	return text
+end
+
 --10.1 addon compartment
 function ElvUI_EltreumUI_OnAddonCompartmentClick()
 	E:ToggleOptions("ElvUI_EltreumUI") --has msg arg which can be used
