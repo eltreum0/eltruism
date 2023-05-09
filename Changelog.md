@@ -10,7 +10,8 @@ Added Neltharion to Portrait Fix
 Updated Tooltip Gradient to avoid issues with Icons  
 Updated Tooltip Gradient to be independent of Ilvl  
 Fixed a possible error with the Teleport Datatext if hovered over during loading screens  
-Fixed ElvUI Skin interfering with the transmog frame selection
+Fixed ElvUI Skin interfering with the transmog frame selection  
+Fixed Gradient Power colors in Classic Era
 ### 3.8.5.1
 Updated Classic Era Details Profiles  
 Updated German translation by Dlarge  
