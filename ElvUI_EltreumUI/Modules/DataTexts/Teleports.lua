@@ -128,6 +128,7 @@ local TeleportsItems = {
 	17907, --frostwolf-insignia-rank-4
 	17908, --frostwolf-insignia-rank-5
 	17909, --frostwolf-insignia-rank-6
+	142542, --tome of town portal (finally has a new animation)
 }
 local TeleportsSpells = {
 	556, --astral-recall
