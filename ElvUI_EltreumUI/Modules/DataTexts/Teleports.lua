@@ -374,20 +374,27 @@ _G["EltruismHearthStoneSecureButton"]:RegisterForClicks("AnyUp", "AnyDown")
 
 local function EltruismTeleportsOnEvent(self)
 	local start, duration = GetItemCooldown(6948)
+	if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
+		start,duration = GetSpellCooldown(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport))
+	elseif E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "ITEM" then
+		local _, itemLink = GetItemInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+		local itemid = itemLink:match("item:(%d+)")
+		start, duration = GetItemCooldown(itemid)
+	end
 	if not start then return end
 	local cooldown = start + duration - GetTime()
 	if cooldown >= 2 then
 		if hearthstones[_G["EltruismHearthStoneSecureButton"].id] then
 			displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffED7474"..GetBindLocation().."|r"
 		else
-			displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffED7474"..tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport).."|r"
+			displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffED7474"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
 		end
 		hsIsReady = false
 	elseif cooldown <= 0 then
 		if hearthstones[_G["EltruismHearthStoneSecureButton"].id] then
 			displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..GetBindLocation()
 		else
-			displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport).."|r"
+			displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
 		end
 		hsIsReady = true
 	end
@@ -450,19 +457,26 @@ local function EltruismTeleportsOnEnter()
 		end
 	end
 	local start, duration = GetItemCooldown(6948)
+	if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
+		start,duration = GetSpellCooldown(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport))
+	elseif E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "ITEM" then
+		local _, itemLink = GetItemInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+		local itemid = itemLink:match("item:(%d+)")
+		start, duration = GetItemCooldown(itemid)
+	end
 	local cooldown = start + duration - GetTime()
 	if cooldown >= 2 then
 		if hearthstones[_G["EltruismHearthStoneSecureButton"].id] then
 			displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffdb3030"..GetBindLocation().."|r"
 		else
-			displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffdb3030"..tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport).."|r"
+			displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffdb3030"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
 		end
 		hsIsReady = false
 	elseif cooldown <= 0 then
 		if hearthstones[_G["EltruismHearthStoneSecureButton"].id] then
 			displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..GetBindLocation()
 		else
-			displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport).."|r"
+			displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
 		end
 		hsIsReady = true
 	end
@@ -528,20 +542,27 @@ local function EltruismTeleportsOnEnter()
 				end
 			end
 			local startcd3, durationcd3 = GetItemCooldown(6948)
+			if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
+				startcd3, durationcd3 = GetSpellCooldown(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport))
+			elseif E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "ITEM" then
+				local _, itemLink = GetItemInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+				local itemid = itemLink:match("item:(%d+)")
+				startcd3, durationcd3 = GetItemCooldown(itemid)
+			end
 			if startcd3 and durationcd3 then
 				local cooldown4 = startcd3 + durationcd3 - GetTime()
 				if cooldown4 >= 2 then
 					if hearthstones[_G["EltruismHearthStoneSecureButton"].id] then
 						displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffdb3030"..GetBindLocation().."|r"
 					else
-						displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffdb3030"..tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport).."|r"
+						displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t |cffdb3030"..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
 					end
 					hsIsReady = false
 				else
 					if hearthstones[_G["EltruismHearthStoneSecureButton"].id] then
 						displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..GetBindLocation().."|r"
 					else
-						displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport).."|r"
+						displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:5:59:5:59|t "..ElvUI_EltreumUI:ShortenString(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport), 23).."|r"
 					end
 					hsIsReady = true
 				end
