@@ -1,6 +1,17 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.8.6
+Added Icons and Cooldowns for the Item or Spell selected in Eltruism Teleport Datatext  
+Added Khadin to NPC ignore list for Quest Auto Accept  
+Added Town Portal to Teleport Datatext  
+Added shadows to Addon compartment  
+Added Neltharion to Portrait Fix  
+Updated Tooltip Gradient to avoid issues with Icons  
+Updated Tooltip Gradient to be independent of Ilvl  
+Fixed a possible error with the Teleport Datatext if hovered over during loading screens  
+Fixed ElvUI Skin interfering with the transmog frame selection  
+Fixed Gradient Power colors in Classic Era
 ### 3.8.5.1
 Updated Classic Era Details Profiles  
 Updated German translation by Dlarge  

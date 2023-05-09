@@ -381,6 +381,7 @@ local modelsRotate = {
 	[4518803] = true, --Subterrax
 	[875156] = true, --Emperor Shaohao
 	[1601374] = true, --Chitinbuk Grazer
+	[5059961] = true, --Neltharion
 }
 
 --set portrait rotation based on target being npc or not

@@ -341,15 +341,14 @@ end
 --sets name with gradient colors using elvui
 function ElvUI_EltreumUI:GradientName(name, unitclass, isTarget)
 	if not name then return end
+	local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-		local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
 		if not isTarget then
 			return E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)
 		else
 			return E:TextGradient(name, color.r2, color.g2, color.b2, color.r1, color.g1, color.b1)
 		end
 	else
-		local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
 		if not isTarget then
 			return E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)
 		else
