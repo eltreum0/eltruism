@@ -176,6 +176,10 @@ local TeleportsSpells = {
 	393764, --path-of-proven-worth
 	393766, --path-of-the-grand-magistrix
 	393267, --path-of-the-rotting-woods
+	410078, --path-of-the-earth-warder
+	410074, --path-of-festering-rot
+	410071, --path-of-the-freebooter
+	410080, --path-of-winds-domain
 }
 local texturePaths = {
 	["6948"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga", --hearthstone
@@ -327,6 +331,10 @@ local texturePaths = {
 	["393764"] = "Interface\\Icons\\achievement_dungeon_hallsofvalor.blp", --path-of-proven-worth
 	["393766"] = "Interface\\Icons\\achievement_dungeon_courtofstars.blp", --path-of-the-grand-magistrix
 	["393267"] = "Interface\\Icons\\achievement_dungeon_brackenhidehollow.blp", --path-of-the-rotting-woods
+	["410078"] = "Interface\\Icons\\achievement_dungeon_neltharionslair.blp", --path-of-the-earth-warder
+	["410074"] = "Interface\\Icons\\achievement_dungeon_underrot.blp", --path-of-festering-rot
+	["410071"] = "Interface\\Icons\\achievement_dungeon_freehold.blp", --path-of-the-freebooter
+	["410080"] = "Interface\\Icons\\achievement_dungeon_skywall.blp", --path-of-winds-domain
 }
 local hearthstones = {
 	["6948"] = true, --hearthstone
