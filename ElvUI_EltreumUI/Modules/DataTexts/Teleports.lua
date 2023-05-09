@@ -378,8 +378,10 @@ local function EltruismTeleportsOnEvent(self)
 		start,duration = GetSpellCooldown(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport))
 	elseif E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "ITEM" then
 		local _, itemLink = GetItemInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
-		local itemid = itemLink:match("item:(%d+)")
-		start, duration = GetItemCooldown(itemid)
+		if itemLink then
+			local itemid = itemLink:match("item:(%d+)")
+			start, duration = GetItemCooldown(itemid)
+		end
 	end
 	if not start then return end
 	local cooldown = start + duration - GetTime()
@@ -461,8 +463,10 @@ local function EltruismTeleportsOnEnter()
 		start,duration = GetSpellCooldown(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport))
 	elseif E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "ITEM" then
 		local _, itemLink = GetItemInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
-		local itemid = itemLink:match("item:(%d+)")
-		start, duration = GetItemCooldown(itemid)
+		if itemLink then
+			local itemid = itemLink:match("item:(%d+)")
+			start, duration = GetItemCooldown(itemid)
+		end
 	end
 	local cooldown = start + duration - GetTime()
 	if cooldown >= 2 then
@@ -546,8 +550,10 @@ local function EltruismTeleportsOnEnter()
 				startcd3, durationcd3 = GetSpellCooldown(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport))
 			elseif E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "ITEM" then
 				local _, itemLink = GetItemInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
-				local itemid = itemLink:match("item:(%d+)")
-				startcd3, durationcd3 = GetItemCooldown(itemid)
+				if itemLink then
+					local itemid = itemLink:match("item:(%d+)")
+					startcd3, durationcd3 = GetItemCooldown(itemid)
+				end
 			end
 			if startcd3 and durationcd3 then
 				local cooldown4 = startcd3 + durationcd3 - GetTime()
