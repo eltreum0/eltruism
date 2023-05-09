@@ -192,6 +192,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						[199366] = true, --therazal, aiding the accord quest that drops scaling gear, so should be delayed
 						[194584] = true, --Khuri, fishing npc
 						[113617] = true, --cos teleport back npc
+						[193110] = true, --Khadin, profession npc
 					}
 					if ignoredNPCS[NPC_ID] then
 						if E.db.ElvUI_EltreumUI.dev then
