@@ -177,6 +177,19 @@ local TeleportsSpells = {
 	393766, --path-of-the-grand-magistrix
 	393267, --path-of-the-rotting-woods
 }
+local texturePaths = {
+	["6948"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga",
+	["22630"] = "Interface\\Icons\\inv_staff_medivh.blp",
+	["22631"] = "Interface\\Icons\\inv_staff_medivh.blp",
+	["22632"] = "Interface\\Icons\\inv_staff_medivh.blp",
+	["22589"] = "Interface\\Icons\\inv_staff_medivh.blp",
+	["54452"] = "Interface\\Icons\\ability_mage_netherwindpresence.blp",
+	["93672"] = "Interface\\Icons\\achievement_dungeon_outland_dungeonmaster.blp",
+	["110560"] = "Interface\\Icons\\inv_misc_rune_15.blp",
+	["141605"] = "Interface\\Icons\\ability_hunter_beastcall.blp",
+	["128353"] = "Interface\\Icons\\inv_misc_idol_05.blp",
+	["142542"] = "Interface\\Icons\\diabloanniversary_tomeoftownportal.blp",
+}
 function ElvUI_EltreumUI:GetTeleportSpells()
 	if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
 		return TeleportsSpells
@@ -196,16 +209,22 @@ local teleportupdate = CreateFrame("FRAME")
 local TimeSinceLastUpdate = 0
 local ONUPDATE_INTERVAL = 1
 local displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
+_G["EltruismHearthStoneSecureButton"] = _G["EltruismHearthStoneSecureButton"] or CreateFrame('Button', "EltruismHearthStoneSecureButton", nil, 'SecureActionButtonTemplate')
+_G["EltruismHearthStoneSecureButton"].id = "6948"
+_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'item')
+local name = GetItemInfo(6948)
+_G["EltruismHearthStoneSecureButton"]:SetAttribute('item', name)
+_G["EltruismHearthStoneSecureButton"]:RegisterForClicks("AnyUp", "AnyDown")
 
 local function EltruismTeleportsOnEvent(self)
 	local start, duration = GetItemCooldown(6948)
 	if not start then return end
 	local cooldown = start + duration - GetTime()
 	if cooldown >= 2 then
-		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t |cffED7474"..GetBindLocation().."|r"
+		displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:2:62:2:62|t |cffED7474"..GetBindLocation().."|r"
 		hsIsReady = false
 	elseif cooldown <= 0 then
-		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
+		displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
 		hsIsReady = true
 	end
 	self.text:SetText(displayStringEltruismTeleports)
@@ -215,7 +234,7 @@ local function EltruismTeleportsOnEnter()
 	DT.tooltip:ClearLines()
 	for _,v in pairs(TeleportsItems) do
 		local texture = GetItemIcon(v)
-		local name = GetItemInfo(v)
+		local nameitems = GetItemInfo(v)
 		local hasItem = GetItemCount(v)
 
 		if v == 180817 then --hide cypher if outside the maw
@@ -226,7 +245,7 @@ local function EltruismTeleportsOnEnter()
 			end
 		end
 
-		if texture and name and ((hasItem > 0 and IsUsableItem(v)) or (E.Retail and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v))) then
+		if texture and nameitems and ((hasItem > 0 and IsUsableItem(v)) or (E.Retail and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v))) then
 			local start, duration = GetItemCooldown(v)
 			local cooldown = start + duration - GetTime()
 			if cooldown >= 2 then
@@ -235,20 +254,20 @@ local function EltruismTeleportsOnEnter()
 				local seconds = string.format("%02.f", math.floor(cooldown - minutes * 60))
 				if hours >= 1 then
 					minutes = math.floor(mod(cooldown,3600)/60)
-					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
+					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..nameitems.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
 				else
-					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
+					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..nameitems.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
 				end
 			elseif cooldown <= 0 then
-				DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..name.."|r", "|cff00FF00"..L["Ready"].."|r")
+				DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..nameitems.."|r", "|cff00FF00"..L["Ready"].."|r")
 			end
 		end
 	end
 	for _,v in pairs(TeleportsSpells) do
 		local texture = GetSpellTexture(v)
-		local name = GetSpellInfo(v)
+		local namespells = GetSpellInfo(v)
 		local hasSpell = IsSpellKnown(v)
-		if texture and name and hasSpell then
+		if texture and namespells and hasSpell then
 			local start, duration = GetSpellCooldown(v)
 			local cooldown = start + duration - GetTime()
 			if cooldown >= 2 then
@@ -257,22 +276,22 @@ local function EltruismTeleportsOnEnter()
 				local seconds = string.format("%02.f", math.floor(cooldown - minutes * 60))
 				if hours >= 1 then
 					minutes = math.floor(mod(cooldown,3600)/60)
-					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
+					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
 				else
-					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
+					DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
 				end
 			elseif cooldown <= 0 then
-				DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..name.."|r", "|cff00FF00"..L["Ready"].."|r")
+				DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..namespells.."|r", "|cff00FF00"..L["Ready"].."|r")
 			end
 		end
 	end
 	local start, duration = GetItemCooldown(6948)
 	local cooldown = start + duration - GetTime()
 	if cooldown >= 2 then
-		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t |cffdb3030"..GetBindLocation().."|r"
+		displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:2:62:2:62|t |cffdb3030"..GetBindLocation().."|r"
 		hsIsReady = false
 	else
-		displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
+		displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
 		hsIsReady = true
 	end
 	DT.tooltip:AddDoubleLine(L["Double Click:"], E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
@@ -286,7 +305,7 @@ local function EltruismTeleportsOnEnter()
 			DT.tooltip:ClearLines()
 			for _,v in pairs(TeleportsItems) do
 				local texture = GetItemIcon(v)
-				local name = GetItemInfo(v)
+				local nameitems = GetItemInfo(v)
 				local hasItem = GetItemCount(v)
 
 				if v == 180817 then --hide cypher if outside the maw
@@ -296,7 +315,7 @@ local function EltruismTeleportsOnEnter()
 					end
 				end
 
-				if texture and name and (hasItem > 0 or (E.Retail and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v)) ) then
+				if texture and nameitems and (hasItem > 0 or (E.Retail and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v)) ) then
 					local startcd, durationcd = GetItemCooldown(v)
 					local cooldown2 = startcd + durationcd - GetTime()
 					if cooldown2 >= 2 then
@@ -305,20 +324,20 @@ local function EltruismTeleportsOnEnter()
 						local seconds = string.format("%02.f", math.floor(cooldown2 - minutes * 60))
 						if hours >= 1 then
 							minutes = math.floor(mod(cooldown2,3600)/60)
-							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
+							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..nameitems.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
 						else
-							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
+							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..nameitems.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
 						end
 					elseif cooldown2 <= 0 then
-						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..name.."|r", "|cff00FF00"..L["Ready"].."|r")
+						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..nameitems.."|r", "|cff00FF00"..L["Ready"].."|r")
 					end
 				end
 			end
 			for _,v in pairs(TeleportsSpells) do
 				local texture = GetSpellTexture(v)
-				local name = GetSpellInfo(v)
+				local namespells = GetSpellInfo(v)
 				local hasSpell = IsSpellKnown(v)
-				if texture and name and hasSpell then
+				if texture and namespells and hasSpell then
 					local startcd2, durationcd2 = GetSpellCooldown(v)
 					local cooldown3 = startcd2 + durationcd2 - GetTime()
 					if cooldown3 >= 2 then
@@ -327,12 +346,12 @@ local function EltruismTeleportsOnEnter()
 						local seconds = string.format("%02.f", math.floor(cooldown - minutes * 60))
 						if hours >= 1 then
 							minutes = math.floor(mod(cooldown,3600)/60)
-							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
+							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..hours.."h "..minutes.."m "..seconds.."s|r"))
 						else
-							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..name.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
+							DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffdb3030"..namespells.."|r", ("|cffdb3030"..minutes.."m "..seconds.."s|r"))
 						end
 					elseif cooldown <= 0 then
-						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..name.."|r", "|cff00FF00"..L["Ready"].."|r")
+						DT.tooltip:AddDoubleLine("|T"..texture..":14:14:0:0:64:64:5:59:5:59|t |cffFFFFFF"..namespells.."|r", "|cff00FF00"..L["Ready"].."|r")
 					end
 				end
 			end
@@ -340,10 +359,10 @@ local function EltruismTeleportsOnEnter()
 			if startcd3 and durationcd3 then
 				local cooldown4 = startcd3 + durationcd3 - GetTime()
 				if cooldown4 >= 2 then
-					displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t |cffdb3030"..GetBindLocation().."|r"
+					displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:2:62:2:62|t |cffdb3030"..GetBindLocation().."|r"
 					hsIsReady = false
 				else
-					displayStringEltruismTeleports = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga:18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
+					displayStringEltruismTeleports = "|T"..tostring(texturePaths[_G["EltruismHearthStoneSecureButton"].id])..":18:18:0:0:64:64:2:62:2:62|t "..GetBindLocation()
 					hsIsReady = true
 				end
 			end
@@ -360,29 +379,29 @@ local function EltruismTeleportsOnLeave()
 	end
 end
 
-_G["EltruismHearthStoneSecureButton"] = _G["EltruismHearthStoneSecureButton"] or CreateFrame('Button', "EltruismHearthStoneSecureButton", nil, 'SecureActionButtonTemplate')
-_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'item')
-local name = GetItemInfo(6948)
-_G["EltruismHearthStoneSecureButton"]:SetAttribute('item', name)
-_G["EltruismHearthStoneSecureButton"]:RegisterForClicks("AnyUp", "AnyDown")
 local function EltruismTeleportsOnClick(self)
 	if InCombatLockdown() then return end
 	if not hsIsReady and E.myclass == "SHAMAN" then
 		_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'spell')
-		local nameastrall = GetSpellInfo(556)
+		local nameastrall, _, _, _, _, _, spellID = GetSpellInfo(556)
+		_G["EltruismHearthStoneSecureButton"].id = tostring(spellID)
 		_G["EltruismHearthStoneSecureButton"]:SetAttribute('spell', nameastrall)
 	else
 		if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
 			_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'spell')
-			local namespell = GetSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+			local namespell, _, _, _, _, _, spellID = GetSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+			_G["EltruismHearthStoneSecureButton"].id = tostring(spellID)
 			_G["EltruismHearthStoneSecureButton"]:SetAttribute('spell', namespell)
 		elseif E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "ITEM" then
 			_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'item')
-			local nameitem = GetItemInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+			local nameitem, itemLink = GetItemInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+			local itemid = itemLink:match("item:(%d+)")
+			_G["EltruismHearthStoneSecureButton"].id = tostring(itemid)
 			_G["EltruismHearthStoneSecureButton"]:SetAttribute('item', nameitem)
 		else
 			_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'item')
 			local namehs = GetItemInfo(6948)
+			_G["EltruismHearthStoneSecureButton"].id = "6948"
 			_G["EltruismHearthStoneSecureButton"]:SetAttribute('item', namehs)
 		end
 	end
