@@ -129,9 +129,13 @@ function ElvUI_EltreumUI:Tooltip()
 					if g2 < 0 then g2 = 0 elseif g2 > 1 then g2 = 1 end
 					b2 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
 					if b2 < 0 then b2 = 0 elseif b2 > 1 then b2 = 1 end
-					local icon = strmatch(_G["GameTooltipTextLeft1"]:GetText(), "^.-|t")
-					if icon then
-						_G["GameTooltipTextLeft1"]:SetText(icon .. " " .. E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+					if _G["GameTooltipTextLeft1"]:GetText() ~= nil then
+						local icon = strmatch(_G["GameTooltipTextLeft1"]:GetText(), "^.-|t")
+						if icon then
+							_G["GameTooltipTextLeft1"]:SetText(icon .. " " .. E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+						else
+							_G["GameTooltipTextLeft1"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+						end
 					else
 						_G["GameTooltipTextLeft1"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2))
 					end
@@ -182,9 +186,13 @@ function ElvUI_EltreumUI:Tooltip()
 					if g2 < 0 then g2 = 0 elseif g2 > 1 then g2 = 1 end
 					b2 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
 					if b2 < 0 then b2 = 0 elseif b2 > 1 then b2 = 1 end
-					local icon = strmatch(_G["GameTooltipTextLeft1"]:GetText(), "^.-|t")
-					if icon then
-						_G["GameTooltipTextLeft1"]:SetText(icon .. " " .. E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+					if _G["GameTooltipTextLeft1"]:GetText() ~= nil then
+						local icon = strmatch(_G["GameTooltipTextLeft1"]:GetText(), "^.-|t")
+						if icon then
+							_G["GameTooltipTextLeft1"]:SetText(icon .. " " .. E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+						else
+							_G["GameTooltipTextLeft1"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+						end
 					else
 						_G["GameTooltipTextLeft1"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2))
 					end
