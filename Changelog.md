@@ -2,7 +2,7 @@
 The future is uncertain
 ___
 ### 3.8.6.1
-Adde a few models to portrait fix  
+Added a few models to portrait fix  
 Updated some tag functions thanks to Simpy  
 Fixed an issue where other addons could cause the Tooltip gradient to error
 ### 3.8.6
