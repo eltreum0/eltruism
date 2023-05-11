@@ -98,6 +98,16 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 
 			--necator
 			["Necator-Benediction"] = DonatorsIcon,
+
+			--biovenom
+			["Bòóbs-Bloodsail Buccaneers"] = DonatorsIcon,
+			["Bôôbs-Bloodsail Buccaneers"] = DonatorsIcon,
+			["Bôôm-Bloodsail Buccaneers"] = DonatorsIcon,
+			["Bóòbs-Bloodsail Buccaneers"] = DonatorsIcon,
+			["Bõõbs-Bloodsail Buccaneers"] = DonatorsIcon,
+			["Bööbs-Bloodsail Buccaneers"] = DonatorsIcon,
+			["NÏpples-Bloodsail Buccaneers"] = DonatorsIcon,
+			["BioVenom-Bloodsail Buccaneers"] = DonatorsIcon,
 		}
 
 		--Discord MVPs

@@ -1,6 +1,10 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.8.6.1
+Added a few models to portrait fix  
+Updated some tag functions thanks to Simpy  
+Fixed an issue where other addons could cause the Tooltip gradient to error
 ### 3.8.6
 Added Icons and Cooldowns for the Item or Spell selected in Eltruism Teleport Datatext  
 Added Khadin to NPC ignore list for Quest Auto Accept  
