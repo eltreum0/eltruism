@@ -81,6 +81,7 @@ local DONATORS = {
 	'|cffB50909Smuve|r',
 	'|cffB50909Trenchy|r',
 	'|cffB50909Vxt|r',
+	'|cffB50909BioVenom|r',
 }
 
 local TRANSLATORS = {
