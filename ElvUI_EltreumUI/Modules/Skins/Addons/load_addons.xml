@@ -11,4 +11,5 @@
 	<Script file='BagSync.lua'/>
 	<Script file='OmniCD.lua'/>
 	<Script file='Cell.lua'/>
+	<Script file='DBM.lua'/>
 </Ui>
