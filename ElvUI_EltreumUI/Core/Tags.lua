@@ -1,5 +1,4 @@
 local E, L = unpack(ElvUI)
-local utf8sub = string.utf8sub
 local _G = _G
 local UnitName = _G.UnitName
 local string = _G.string
@@ -194,7 +193,7 @@ E:AddTag("name:eltruism:abbreviate", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
 	--local name = 'Ецхо оф а Пандарен' --cyrillic name test
 	if name and string.len(name) > 16 then
-		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
+		name = ElvUI_EltreumUI:ShortenString(name, 16)
 	end
 	return name
 end)
@@ -205,7 +204,7 @@ E:AddTag("name:eltruism:abbreviate20", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
 	--local name = 'Ецхо оф а Пандарен' --cyrillic name test
 	if name and string.len(name) > 20 then
-		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
+		name = ElvUI_EltreumUI:ShortenString(name, 20)
 	end
 	return name
 end)
@@ -254,7 +253,7 @@ E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit,_,args
 	if not args then args = 16 end
 	local _, unitClass = UnitClass(unit)
 	if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
-		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
+		name = ElvUI_EltreumUI:ShortenString(name, args)
 	end
 	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 	if string.len(name) > tonumber(args) then --second for players
@@ -289,7 +288,7 @@ E:AddTag("name:eltruism:gradienttranslit", "UNIT_NAME_UPDATE", function(unit,_,a
 	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 	if args then
 		if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
-			name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
+			name = ElvUI_EltreumUI:ShortenString(name, args)
 		end
 		if string.len(name) > tonumber(args) then --second for players
 			name = E:ShortenString(name, tonumber(args))
@@ -321,7 +320,7 @@ E:AddTag("name:eltruism:gradientshorttranslit", "UNIT_NAME_UPDATE", function(uni
 	local name = Translit:Transliterate(targetName)
 	local _, unitClass = UnitClass(unit)
 	if name and string.len(name) > 16 then
-		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
+		name = ElvUI_EltreumUI:ShortenString(name, 16)
 	end
 	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 
@@ -422,7 +421,7 @@ E:AddTag("name:eltruism:gradientdefaultcolorsshort", "UNIT_NAME_UPDATE", functio
 	local name = UnitName(unit)
 	local _, unitClass = UnitClass(unit)
 	if name and string.len(name) > 16 then
-		name = name:gsub('(%S+) ', function(t) return t:utf8sub(1,1)..'. ' end)
+		name = ElvUI_EltreumUI:ShortenString(name, 16)
 	end
 	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 

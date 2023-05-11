@@ -384,6 +384,7 @@ local modelsRotate = {
 	[5059961] = true, --Neltharion
 	[4519034] = true, --Neldris
 	[4918670] = true, --Rionthus
+	[1311487] = true, --Elisande
 }
 
 --set portrait rotation based on target being npc or not
