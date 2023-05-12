@@ -40,7 +40,7 @@ do
 						local thisLine = lineContainer[whichRowLine]
 						if not thisLine then return end
 						if thisLine.lineText1 then
-							thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(thisLine.colocacao .. ". " .. thisLine.minha_tabela:GetDisplayName(), thisLine.minha_tabela:class()))
+							thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(thisLine.colocacao .. ". " .. ElvUI_EltreumUI:ShortenString(thisLine.minha_tabela:GetDisplayName(), 10, true), thisLine.minha_tabela:class()))
 						end
 					end)
 					--gradient name (heal)
@@ -48,7 +48,7 @@ do
 						local thisLine = instancia.barras[whichRowLine]
 						if not thisLine then return end
 						if thisLine.lineText1 then
-							thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(thisLine.colocacao .. ". " .. thisLine.minha_tabela:GetDisplayName(), thisLine.minha_tabela:class()))
+							thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(thisLine.colocacao .. ". " .. ElvUI_EltreumUI:ShortenString(thisLine.minha_tabela:GetDisplayName(), 10, true), thisLine.minha_tabela:class()))
 						end
 					end)
 				end
