@@ -825,13 +825,16 @@ function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
 end
 
 do
-  local shortenReplace = function(t) return t:utf8sub(1,1)..'. ' end
-  function ElvUI_EltreumUI:ShortenString(text, length)
-      if text and string.len(text) > length then
-          text = text:gsub('(%S+) ', shortenReplace)
-      end
-      return text
-  end
+	local shortenReplace = function(t) return t:utf8sub(1,1)..'. ' end
+	function ElvUI_EltreumUI:ShortenString(text, length, cut)
+		if text and string.len(text) > length then
+			text = text:gsub('(%S+) ', shortenReplace)
+		end
+		if cut then
+			text = E:ShortenString(text,length)
+		end
+		return text
+	end
 end
 
 --10.1 addon compartment
