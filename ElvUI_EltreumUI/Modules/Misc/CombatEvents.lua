@@ -82,7 +82,7 @@ end
 
 local BuffsMover
 local DebuffsMover
-
+local eyecheck
 function ElvUI_EltreumUI:MinimapHide(event)
 	if E.db.ElvUI_EltreumUI.otherstuff.mapcombathide then
 		if event == 'PLAYER_REGEN_DISABLED' then
@@ -93,7 +93,8 @@ function ElvUI_EltreumUI:MinimapHide(event)
 				if _G.AddonCompartmentFrame then
 					_G.AddonCompartmentFrame:Hide()
 				end
-				if _G.QueueStatusButton then
+				if _G.QueueStatusButton:IsShown() then
+					eyecheck = true
 					_G.QueueStatusButton:Hide()
 				end
 			end
@@ -113,7 +114,8 @@ function ElvUI_EltreumUI:MinimapHide(event)
 				if _G.AddonCompartmentFrame then
 					_G.AddonCompartmentFrame:Show()
 				end
-				if _G.QueueStatusButton then
+				if _G.QueueStatusButton and eyecheck then
+					eyecheck = false
 					_G.QueueStatusButton:Show()
 				end
 			end
