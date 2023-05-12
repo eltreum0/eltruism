@@ -828,10 +828,11 @@ do
 	local shortenReplace = function(t) return t:utf8sub(1,1)..'. ' end
 	function ElvUI_EltreumUI:ShortenString(text, length, cut)
 		if text and string.len(text) > length then
-			text = text:gsub('(%S+) ', shortenReplace)
-		end
-		if cut then
-			text = E:ShortenString(text,length)
+			if cut then
+				text = E:ShortenString(text,length)
+			else
+				text = text:gsub('(%S+) ', shortenReplace)
+			end
 		end
 		return text
 	end
