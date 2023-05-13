@@ -61,3 +61,51 @@ function ElvUI_EltreumUI:DBMSkin()
 	end
 end
 S:AddCallbackForAddon('DBM-StatusBarTimers', "EltruismDBM", ElvUI_EltreumUI.DBMSkin)
+
+--dbm gui
+function ElvUI_EltreumUI:DBMGUISkin()
+	if E.db.ElvUI_EltreumUI.skins.dbm then
+		if not _G.DBM_GUI then return end
+		hooksecurefunc(_G.DBM_GUI, "ShowHide", function()
+			if _G["DBM_GUI_OptionsFrame"] and not _G["DBM_GUI_OptionsFrame"].EltruismSkin then
+				S:HandleFrame(_G["DBM_GUI_OptionsFrame"])
+				if E.db.ElvUI_EltreumUI.skins.shadow then
+					if not _G["DBM_GUI_OptionsFrame"].shadow then
+						_G["DBM_GUI_OptionsFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G["DBM_GUI_OptionsFrame"].shadow)
+					end
+				end
+				_G["DBM_GUI_OptionsFrame"].EltruismSkin = true
+			end
+			if _G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"] and not _G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"].EltruismSkin then
+				S:HandleScrollBar(_G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"])
+				_G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"].EltruismSkin = true
+			end
+			if _G["DBM_GUI_OptionsFrameTab1"] and not _G["DBM_GUI_OptionsFrameTab1"].EltruismSkin then
+				S:HandleTab(_G["DBM_GUI_OptionsFrameTab1"])
+				if _G["DBM_GUI_OptionsFrameTab1"].Text then
+					_G["DBM_GUI_OptionsFrameTab1"].Text:ClearAllPoints()
+					_G["DBM_GUI_OptionsFrameTab1"].Text:SetPoint("CENTER", _G["DBM_GUI_OptionsFrameTab1"])
+				end
+				_G["DBM_GUI_OptionsFrameTab1"].EltruismSkin = true
+			end
+			if _G["DBM_GUI_OptionsFrameTab2"] and not _G["DBM_GUI_OptionsFrameTab2"].EltruismSkin then
+				S:HandleTab(_G["DBM_GUI_OptionsFrameTab2"])
+				if _G["DBM_GUI_OptionsFrameTab2"].Text then
+					_G["DBM_GUI_OptionsFrameTab2"].Text:ClearAllPoints()
+					_G["DBM_GUI_OptionsFrameTab2"].Text:SetPoint("CENTER", _G["DBM_GUI_OptionsFrameTab2"])
+				end
+				_G["DBM_GUI_OptionsFrameTab2"].EltruismSkin = true
+			end
+			if _G["DBM_GUI_OptionsFrameWebsiteButton"] and not _G["DBM_GUI_OptionsFrameWebsiteButton"].EltruismSkin then
+				S:HandleButton(_G["DBM_GUI_OptionsFrameWebsiteButton"])
+				_G["DBM_GUI_OptionsFrameWebsiteButton"].EltruismSkin = true
+			end
+			if _G["DBM_GUI_OptionsFrameOkay"] and not _G["DBM_GUI_OptionsFrameOkay"].EltruismSkin then
+				S:HandleButton(_G["DBM_GUI_OptionsFrameOkay"])
+				_G["DBM_GUI_OptionsFrameOkay"].EltruismSkin = true
+			end
+		end)
+	end
+end
+S:AddCallbackForAddon('DBM-GUI', "EltruismDBMGUI", ElvUI_EltreumUI.DBMGUISkin)
