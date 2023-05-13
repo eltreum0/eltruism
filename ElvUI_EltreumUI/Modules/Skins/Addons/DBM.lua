@@ -77,6 +77,31 @@ function ElvUI_EltreumUI:DBMGUISkin()
 				end
 				_G["DBM_GUI_OptionsFrame"].EltruismSkin = true
 			end
+
+			--this is likely not a good idea...
+			for i=1,2000 do
+				if _G["DBM_GUI_Option_"..i] and not _G["DBM_GUI_Option_"..i].EltruismSkin then
+					if _G["DBM_GUI_Option_"..i]:GetObjectType() == "Button" then
+						S:HandleButton(_G["DBM_GUI_Option_"..i])
+					--elseif _G["DBM_GUI_Option_"..i]:GetObjectType() == "Frame" then
+						--S:HandleFrame(_G["DBM_GUI_Option_"..i])
+					elseif _G["DBM_GUI_Option_"..i]:GetObjectType() == "EditBox" then
+						S:HandleEditBox(_G["DBM_GUI_Option_"..i])
+					elseif _G["DBM_GUI_Option_"..i]:GetObjectType() == "Slider" then
+						S:HandleSliderFrame(_G["DBM_GUI_Option_"..i])
+					elseif _G["DBM_GUI_Option_"..i]:GetObjectType() == "CheckButton" then
+						S:HandleCheckBox(_G["DBM_GUI_Option_"..i])
+					end
+					_G["DBM_GUI_Option_"..i].EltruismSkin = true
+				end
+
+				if _G["DBM_GUI_DropDown"..i] and not _G["DBM_GUI_DropDown"..i].EltruismSkin then
+					local width = _G["DBM_GUI_DropDown"..i]:GetWidth()
+					S:HandleDropDownBox(_G["DBM_GUI_DropDown"..i], width, true)
+					_G["DBM_GUI_DropDown"..i].EltruismSkin = true
+				end
+			end
+
 			if _G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"] and not _G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"].EltruismSkin then
 				S:HandleScrollBar(_G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"])
 				_G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"].EltruismSkin = true
