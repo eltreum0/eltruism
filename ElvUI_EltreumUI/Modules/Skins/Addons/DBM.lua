@@ -144,6 +144,10 @@ function ElvUI_EltreumUI:DBMGUISkin()
 					S:HandleButton(_G["DBM_GUI_OptionsFrameOkay"])
 					_G["DBM_GUI_OptionsFrameOkay"].EltruismSkin = true
 				end
+				if _G["DBM_GUI_DropDown"] and not _G["DBM_GUI_DropDown"].EltruismSkin then
+					S:HandleFrame(_G["DBM_GUI_DropDown"])
+					_G["DBM_GUI_DropDown"].EltruismSkin = true
+				end
 			end
 		end)
 		hooksecurefunc(_G.DBM_GUI, "UpdateModList", function()
