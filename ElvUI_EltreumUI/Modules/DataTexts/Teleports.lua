@@ -384,8 +384,10 @@ local function EltruismTeleportsOnEvent(self)
 			_G["EltruismHearthStoneSecureButton"].id = tostring(spellID)
 		elseif E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "ITEM" then
 			local _, itemLink = GetItemInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
-			local itemid = itemLink:match("item:(%d+)")
-			_G["EltruismHearthStoneSecureButton"].id = tostring(itemid)
+			if itemLink then
+				local itemid = itemLink:match("item:(%d+)")
+				_G["EltruismHearthStoneSecureButton"].id = tostring(itemid)
+			end
 		else
 			_G["EltruismHearthStoneSecureButton"].id = "6948"
 		end
