@@ -62,74 +62,94 @@ function ElvUI_EltreumUI:DBMSkin()
 end
 S:AddCallbackForAddon('DBM-StatusBarTimers', "EltruismDBM", ElvUI_EltreumUI.DBMSkin)
 
+local function SkinGUI()
+	--this is likely not a good idea...
+	for i=1,2000 do
+		if _G["DBM_GUI_Option_"..i] and not _G["DBM_GUI_Option_"..i].EltruismSkin then
+			if _G["DBM_GUI_Option_"..i]:GetObjectType() == "Button" then
+				S:HandleButton(_G["DBM_GUI_Option_"..i])
+			elseif _G["DBM_GUI_Option_"..i]:GetObjectType() == "EditBox" then
+				S:HandleEditBox(_G["DBM_GUI_Option_"..i])
+			elseif _G["DBM_GUI_Option_"..i]:GetObjectType() == "Slider" then
+				S:HandleSliderFrame(_G["DBM_GUI_Option_"..i])
+			elseif _G["DBM_GUI_Option_"..i]:GetObjectType() == "CheckButton" then
+				S:HandleCheckBox(_G["DBM_GUI_Option_"..i])
+			end
+			_G["DBM_GUI_Option_"..i].EltruismSkin = true
+		end
+		if _G["DBM_GUI_DropDown"..i] and not _G["DBM_GUI_DropDown"..i].EltruismSkin then
+			local width = _G["DBM_GUI_DropDown"..i]:GetWidth()
+			S:HandleDropDownBox(_G["DBM_GUI_DropDown"..i], width, true)
+			if _G["DBM_GUI_DropDown"..i.."Text"] then
+				_G["DBM_GUI_DropDown"..i.."Text"]:ClearAllPoints()
+				_G["DBM_GUI_DropDown"..i.."Text"]:SetPoint("CENTER", _G["DBM_GUI_DropDown"..i].backdrop, "CENTER", 0,0)
+			end
+			_G["DBM_GUI_DropDown"..i].EltruismSkin = true
+		end
+	end
+end
+
 --dbm gui
 function ElvUI_EltreumUI:DBMGUISkin()
 	if E.db.ElvUI_EltreumUI.skins.dbm then
 		if not _G.DBM_GUI then return end
 		hooksecurefunc(_G.DBM_GUI, "ShowHide", function()
-			if _G["DBM_GUI_OptionsFrame"] and not _G["DBM_GUI_OptionsFrame"].EltruismSkin then
-				S:HandleFrame(_G["DBM_GUI_OptionsFrame"])
-				if E.db.ElvUI_EltreumUI.skins.shadow then
-					if not _G["DBM_GUI_OptionsFrame"].shadow then
-						_G["DBM_GUI_OptionsFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G["DBM_GUI_OptionsFrame"].shadow)
+			if _G["DBM_GUI_OptionsFrame"]:IsShown() then
+				SkinGUI()
+				if _G["DBM_GUI_OptionsFrame"] and not _G["DBM_GUI_OptionsFrame"].EltruismSkin then
+					S:HandleFrame(_G["DBM_GUI_OptionsFrame"])
+					if E.db.ElvUI_EltreumUI.skins.shadow then
+						if not _G["DBM_GUI_OptionsFrame"].shadow then
+							_G["DBM_GUI_OptionsFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G["DBM_GUI_OptionsFrame"].shadow)
+						end
 					end
+					_G["DBM_GUI_OptionsFrame"].EltruismSkin = true
 				end
-				_G["DBM_GUI_OptionsFrame"].EltruismSkin = true
-			end
-
-			--this is likely not a good idea...
-			for i=1,2000 do
-				if _G["DBM_GUI_Option_"..i] and not _G["DBM_GUI_Option_"..i].EltruismSkin then
-					if _G["DBM_GUI_Option_"..i]:GetObjectType() == "Button" then
-						S:HandleButton(_G["DBM_GUI_Option_"..i])
-					--elseif _G["DBM_GUI_Option_"..i]:GetObjectType() == "Frame" then
-						--S:HandleFrame(_G["DBM_GUI_Option_"..i])
-					elseif _G["DBM_GUI_Option_"..i]:GetObjectType() == "EditBox" then
-						S:HandleEditBox(_G["DBM_GUI_Option_"..i])
-					elseif _G["DBM_GUI_Option_"..i]:GetObjectType() == "Slider" then
-						S:HandleSliderFrame(_G["DBM_GUI_Option_"..i])
-					elseif _G["DBM_GUI_Option_"..i]:GetObjectType() == "CheckButton" then
-						S:HandleCheckBox(_G["DBM_GUI_Option_"..i])
+				if _G["DBM_GUI_OptionsFramePanelContainer"] then
+					_G["DBM_GUI_OptionsFramePanelContainer"].BottomEdge:Hide()
+					_G["DBM_GUI_OptionsFramePanelContainer"].LeftEdge:Hide()
+					_G["DBM_GUI_OptionsFramePanelContainer"].BottomRightCorner:Hide()
+					_G["DBM_GUI_OptionsFramePanelContainer"].BottomLeftCorner:Hide()
+					_G["DBM_GUI_OptionsFramePanelContainer"].RightEdge:Hide()
+					_G["DBM_GUI_OptionsFramePanelContainer"].TopEdge:Hide()
+					_G["DBM_GUI_OptionsFramePanelContainer"].TopLeftCorner:Hide()
+					_G["DBM_GUI_OptionsFramePanelContainer"].TopRightCorner:Hide()
+				end
+				if _G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"] and not _G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"].EltruismSkin then
+					S:HandleScrollBar(_G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"])
+					_G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"].EltruismSkin = true
+				end
+				if _G["DBM_GUI_OptionsFrameTab1"] and not _G["DBM_GUI_OptionsFrameTab1"].EltruismSkin then
+					S:HandleTab(_G["DBM_GUI_OptionsFrameTab1"])
+					if _G["DBM_GUI_OptionsFrameTab1"].Text then
+						_G["DBM_GUI_OptionsFrameTab1"].Text:ClearAllPoints()
+						_G["DBM_GUI_OptionsFrameTab1"].Text:SetPoint("CENTER", _G["DBM_GUI_OptionsFrameTab1"])
 					end
-					_G["DBM_GUI_Option_"..i].EltruismSkin = true
+					_G["DBM_GUI_OptionsFrameTab1"].EltruismSkin = true
 				end
-
-				if _G["DBM_GUI_DropDown"..i] and not _G["DBM_GUI_DropDown"..i].EltruismSkin then
-					local width = _G["DBM_GUI_DropDown"..i]:GetWidth()
-					S:HandleDropDownBox(_G["DBM_GUI_DropDown"..i], width, true)
-					_G["DBM_GUI_DropDown"..i].EltruismSkin = true
+				if _G["DBM_GUI_OptionsFrameTab2"] and not _G["DBM_GUI_OptionsFrameTab2"].EltruismSkin then
+					S:HandleTab(_G["DBM_GUI_OptionsFrameTab2"])
+					if _G["DBM_GUI_OptionsFrameTab2"].Text then
+						_G["DBM_GUI_OptionsFrameTab2"].Text:ClearAllPoints()
+						_G["DBM_GUI_OptionsFrameTab2"].Text:SetPoint("CENTER", _G["DBM_GUI_OptionsFrameTab2"])
+					end
+					_G["DBM_GUI_OptionsFrameTab2"].EltruismSkin = true
+				end
+				if _G["DBM_GUI_OptionsFrameWebsiteButton"] and not _G["DBM_GUI_OptionsFrameWebsiteButton"].EltruismSkin then
+					S:HandleButton(_G["DBM_GUI_OptionsFrameWebsiteButton"])
+					_G["DBM_GUI_OptionsFrameWebsiteButton"].EltruismSkin = true
+				end
+				if _G["DBM_GUI_OptionsFrameOkay"] and not _G["DBM_GUI_OptionsFrameOkay"].EltruismSkin then
+					S:HandleButton(_G["DBM_GUI_OptionsFrameOkay"])
+					_G["DBM_GUI_OptionsFrameOkay"].EltruismSkin = true
 				end
 			end
-
-			if _G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"] and not _G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"].EltruismSkin then
-				S:HandleScrollBar(_G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"])
-				_G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"].EltruismSkin = true
-			end
-			if _G["DBM_GUI_OptionsFrameTab1"] and not _G["DBM_GUI_OptionsFrameTab1"].EltruismSkin then
-				S:HandleTab(_G["DBM_GUI_OptionsFrameTab1"])
-				if _G["DBM_GUI_OptionsFrameTab1"].Text then
-					_G["DBM_GUI_OptionsFrameTab1"].Text:ClearAllPoints()
-					_G["DBM_GUI_OptionsFrameTab1"].Text:SetPoint("CENTER", _G["DBM_GUI_OptionsFrameTab1"])
-				end
-				_G["DBM_GUI_OptionsFrameTab1"].EltruismSkin = true
-			end
-			if _G["DBM_GUI_OptionsFrameTab2"] and not _G["DBM_GUI_OptionsFrameTab2"].EltruismSkin then
-				S:HandleTab(_G["DBM_GUI_OptionsFrameTab2"])
-				if _G["DBM_GUI_OptionsFrameTab2"].Text then
-					_G["DBM_GUI_OptionsFrameTab2"].Text:ClearAllPoints()
-					_G["DBM_GUI_OptionsFrameTab2"].Text:SetPoint("CENTER", _G["DBM_GUI_OptionsFrameTab2"])
-				end
-				_G["DBM_GUI_OptionsFrameTab2"].EltruismSkin = true
-			end
-			if _G["DBM_GUI_OptionsFrameWebsiteButton"] and not _G["DBM_GUI_OptionsFrameWebsiteButton"].EltruismSkin then
-				S:HandleButton(_G["DBM_GUI_OptionsFrameWebsiteButton"])
-				_G["DBM_GUI_OptionsFrameWebsiteButton"].EltruismSkin = true
-			end
-			if _G["DBM_GUI_OptionsFrameOkay"] and not _G["DBM_GUI_OptionsFrameOkay"].EltruismSkin then
-				S:HandleButton(_G["DBM_GUI_OptionsFrameOkay"])
-				_G["DBM_GUI_OptionsFrameOkay"].EltruismSkin = true
-			end
+		end)
+		hooksecurefunc(_G.DBM_GUI, "UpdateModList", function()
+			E:Delay(1, function()
+				SkinGUI()
+			end)
 		end)
 	end
 end
