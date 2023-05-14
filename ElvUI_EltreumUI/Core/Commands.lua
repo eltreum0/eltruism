@@ -336,7 +336,7 @@ keystone:SetScript("OnEvent", function(_,_,addon)
 	if (addon == "Blizzard_ChallengesUI" or IsAddOnLoaded("Blizzard_ChallengesUI")) and E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
 		keystone:UnregisterAllEvents()
 		if _G.ChallengesKeystoneFrame then
-			_G.ChallengesKeystoneFrame:SetScript("OnShow", function()
+			_G.ChallengesKeystoneFrame:HookScript("OnShow", function()
 				for bag = 0, NUM_BAG_SLOTS do
 					local bagSlots = GetContainerNumSlots(bag)
 					for slot = 1, bagSlots do

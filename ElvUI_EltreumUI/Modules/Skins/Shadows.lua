@@ -611,6 +611,10 @@ function ElvUI_EltreumUI:Shadows()
 							_G.PVEFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.PVEFrame.shadow)
 						end
+						if not _G.ChallengesKeystoneFrame.shadow then
+							_G.ChallengesKeystoneFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ChallengesKeystoneFrame.shadow)
+						end
 					end
 					if (arg == "Blizzard_EncounterJournal") or IsAddOnLoaded("Blizzard_EncounterJournal") then
 
