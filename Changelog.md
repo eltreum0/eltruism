@@ -1,6 +1,15 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.8.7
+Added DBM skin, similar to BigWigs skin  
+Added Sarkareth to portrait fix  
+Updated Details Name Gradient with a fix for long names  
+Updated Teleports Datatext to show correct Icon on login  
+Fixed a possible issue in Classic Era for Teleports Datatext  
+Fixed the Group Finder Eye in Retail showing after combat  
+Fixed an issue with some tag options  
+Fixed Keystone Frame skin
 ### 3.8.6.1
 Added a few models to portrait fix  
 Updated some tag functions thanks to Simpy  
