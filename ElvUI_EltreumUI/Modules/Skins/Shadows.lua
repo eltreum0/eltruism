@@ -804,6 +804,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.TimeManagerFrame,
 				_G.LootFrame,
 				_G.AddonCompartmentFrame,
+				_G.GroupLootHistoryFrame,
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame and not frame.shadow then
@@ -832,6 +833,11 @@ function ElvUI_EltreumUI:Shadows()
 			if _G.LootHistoryFrame and _G.LootHistoryFrame.ResizeButton then
 				_G.LootHistoryFrame.ResizeButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(_G.LootHistoryFrame.ResizeButton.shadow)
+			end
+
+			if _G.GroupLootHistoryFrame and _G.GroupLootHistoryFrame.ResizeButton and not _G.GroupLootHistoryFrame.ResizeButton.shadow then
+				_G.GroupLootHistoryFrame.ResizeButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(_G.GroupLootHistoryFrame.ResizeButton.shadow)
 			end
 
 			if _G.ProfessionsFrame and _G.ProfessionsFrame.TabSystem then

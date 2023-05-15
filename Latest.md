@@ -2,8 +2,8 @@
 ___
 Added DBM skin, similar to BigWigs skin  
 Added Sarkareth to portrait fix  
-Updated Details Name Gradient with a fix for long names  
 Updated Teleports Datatext to show correct Icon on login  
+Updated Details Name Gradient with a fix for long names  
 Fixed a possible issue in Classic Era for Teleports Datatext  
 Fixed the Group Finder Eye in Retail showing after combat  
 Fixed an issue with some tag options  

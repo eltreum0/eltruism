@@ -101,32 +101,24 @@ do
 			end
 		end
 
-		--add a basic embed if addonskins is not loaded`
+		--add a basic embed if addonskins is not loaded
 		if E.db.ElvUI_EltreumUI.skins.detailsembed then
-			local checkembed
+			local checkembed = true
 			if IsAddOnLoaded("AddOnSkins") or IsAddOnLoaded("ElvUI_MerathilisUI") then
 				if IsAddOnLoaded("AddOnSkins") then
 					local AS = unpack(AddOnSkins)
-					if not (AS.db["EmbedSystemDual"] or AS.db["EmbedSystem"]) then
-						checkembed = true
-					else
+					if (AS.db["EmbedSystemDual"] or AS.db["EmbedSystem"]) then
 						checkembed = false
 					end
-				else
-					checkembed = true
 				end
 				if IsAddOnLoaded("ElvUI_MerathilisUI") then
 					if E.private.mui.skins.embed.enable then
 						checkembed = false
-					else
-						checkembed = true
 					end
 				end
-			else
-				checkembed = true
 			end
 
-			if checkembed == true then
+			if checkembed then
 				if not _G["EltruismDetailsEmbedPanel"] then
 					embedpanel = CreateFrame("FRAME","EltruismDetailsEmbedPanel")
 				else
