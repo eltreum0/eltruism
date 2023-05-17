@@ -466,6 +466,16 @@ function ElvUI_EltreumUI:SkinQuests()
 					elseif _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine then
 						ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine, "CENTER", -3, -47)
 					end
+					if E.db.ElvUI_EltreumUI.skins.shadow.enable then --minimize shadows
+						if _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.MinimizeButton and not _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.MinimizeButton.shadow then
+							_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.MinimizeButton:CreateShadow()
+							_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.MinimizeButton.shadow:ClearAllPoints()
+							_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.MinimizeButton.shadow:SetPoint("TOPLEFT", _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.MinimizeButton.tex, "TOPLEFT", -2,2)
+							_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.MinimizeButton.shadow:SetPoint("BOTTOMRIGHT", _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.MinimizeButton.tex, "BOTTOMRIGHT", 2,-2)
+							ElvUI_EltreumUI:ShadowColor(_G.ObjectiveTrackerBlocksFrame.ScenarioHeader.MinimizeButton.shadow)
+						end
+					end
+
 					ScenarioObjectiveBlockBackground:SetSize(243, 80)
 					ScenarioObjectiveBlockBackground:SetFrameLevel(3)
 					ScenarioObjectiveBlockBackground:Show()
