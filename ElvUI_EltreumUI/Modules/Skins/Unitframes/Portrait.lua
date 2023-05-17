@@ -392,7 +392,7 @@ local modelsRotate = {
 --set portrait rotation based on target being npc or not
 function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 	if E.db.ElvUI_EltreumUI.unitframes.portraitfix and E.private.unitframe.enable then
-		if E.db.unitframe.units.target.portrait.enable and E.db.unitframe.units.target.portrait.style == "3D" then
+		if E.db.unitframe.units.target.enable and E.db.unitframe.units.target.portrait.enable and E.db.unitframe.units.target.portrait.style == "3D" then
 			if UnitExists("target") and _G["ElvUF_Target"] then
 				E:Delay(0, function()
 
@@ -454,7 +454,7 @@ end
 --because sometimes player portrait gets replaced and has wrong rotation too
 function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 	if E.db.ElvUI_EltreumUI.unitframes.portraitfix and E.private.unitframe.enable then
-		if E.db.unitframe.units.player.portrait.enable and E.db.unitframe.units.player.portrait.style == "3D" then
+		if E.db.unitframe.units.player.enable and E.db.unitframe.units.player.portrait.enable and E.db.unitframe.units.player.portrait.style == "3D" then
 			if UnitExists("player") and _G["ElvUF_Player"] then
 				E:Delay(0, function()
 

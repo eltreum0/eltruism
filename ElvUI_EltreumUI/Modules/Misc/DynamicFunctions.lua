@@ -16,28 +16,51 @@ local IsPlayerAtEffectiveMaxLevel = _G.IsPlayerAtEffectiveMaxLevel
 function ElvUI_EltreumUI:CooldownColors()
 	if E.db.ElvUI_EltreumUI.skins.classcolorcooldowns then
 		local valuecolors = E:ClassColor(E.myclass, true)
-		E.db["cooldown"]["daysIndicator"]["b"] = valuecolors.b
-		E.db["cooldown"]["daysIndicator"]["g"] = valuecolors.g
-		E.db["cooldown"]["daysIndicator"]["r"] = valuecolors.r
-		E.db["cooldown"]["hhmmColorIndicator"]["b"] = valuecolors.b
-		E.db["cooldown"]["hhmmColorIndicator"]["g"] = valuecolors.g
-		E.db["cooldown"]["hhmmColorIndicator"]["r"] = valuecolors.r
-		E.db["cooldown"]["hoursIndicator"]["b"] = valuecolors.b
-		E.db["cooldown"]["hoursIndicator"]["g"] = valuecolors.g
-		E.db["cooldown"]["hoursIndicator"]["r"] = valuecolors.r
-		E.db["cooldown"]["minutesIndicator"]["b"] = valuecolors.b
-		E.db["cooldown"]["minutesIndicator"]["g"] = valuecolors.g
-		E.db["cooldown"]["minutesIndicator"]["r"] = valuecolors.r
-		E.db["cooldown"]["mmssColorIndicator"]["b"] = valuecolors.b
-		E.db["cooldown"]["mmssColorIndicator"]["g"] = valuecolors.g
-		E.db["cooldown"]["mmssColorIndicator"]["r"] = valuecolors.r
-		E.db["cooldown"]["secondsIndicator"]["b"] = valuecolors.b
-		E.db["cooldown"]["secondsIndicator"]["g"] = valuecolors.g
-		E.db["cooldown"]["secondsIndicator"]["r"] = valuecolors.r
-		E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["b"] = valuecolors.b
-		E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["g"] = valuecolors.g
-		E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["r"] = valuecolors.r
-
+		if E.myclass == "PRIEST" then
+			E.db["cooldown"]["daysIndicator"]["b"] = 0.7
+			E.db["cooldown"]["daysIndicator"]["g"] = 0.7
+			E.db["cooldown"]["daysIndicator"]["r"] = 0.7
+			E.db["cooldown"]["hhmmColorIndicator"]["b"] = 0.7
+			E.db["cooldown"]["hhmmColorIndicator"]["g"] = 0.7
+			E.db["cooldown"]["hhmmColorIndicator"]["r"] = 0.7
+			E.db["cooldown"]["hoursIndicator"]["b"] = 0.7
+			E.db["cooldown"]["hoursIndicator"]["g"] = 0.7
+			E.db["cooldown"]["hoursIndicator"]["r"] = 0.7
+			E.db["cooldown"]["minutesIndicator"]["b"] = 0.7
+			E.db["cooldown"]["minutesIndicator"]["g"] = 0.7
+			E.db["cooldown"]["minutesIndicator"]["r"] = 0.7
+			E.db["cooldown"]["mmssColorIndicator"]["b"] = 0.7
+			E.db["cooldown"]["mmssColorIndicator"]["g"] = 0.7
+			E.db["cooldown"]["mmssColorIndicator"]["r"] = 0.7
+			E.db["cooldown"]["secondsIndicator"]["b"] = 0.7
+			E.db["cooldown"]["secondsIndicator"]["g"] = 0.7
+			E.db["cooldown"]["secondsIndicator"]["r"] = 0.7
+			E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["b"] = 0.7
+			E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["g"] = 0.7
+			E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["r"] = 0.7
+		else
+			E.db["cooldown"]["daysIndicator"]["b"] = valuecolors.b
+			E.db["cooldown"]["daysIndicator"]["g"] = valuecolors.g
+			E.db["cooldown"]["daysIndicator"]["r"] = valuecolors.r
+			E.db["cooldown"]["hhmmColorIndicator"]["b"] = valuecolors.b
+			E.db["cooldown"]["hhmmColorIndicator"]["g"] = valuecolors.g
+			E.db["cooldown"]["hhmmColorIndicator"]["r"] = valuecolors.r
+			E.db["cooldown"]["hoursIndicator"]["b"] = valuecolors.b
+			E.db["cooldown"]["hoursIndicator"]["g"] = valuecolors.g
+			E.db["cooldown"]["hoursIndicator"]["r"] = valuecolors.r
+			E.db["cooldown"]["minutesIndicator"]["b"] = valuecolors.b
+			E.db["cooldown"]["minutesIndicator"]["g"] = valuecolors.g
+			E.db["cooldown"]["minutesIndicator"]["r"] = valuecolors.r
+			E.db["cooldown"]["mmssColorIndicator"]["b"] = valuecolors.b
+			E.db["cooldown"]["mmssColorIndicator"]["g"] = valuecolors.g
+			E.db["cooldown"]["mmssColorIndicator"]["r"] = valuecolors.r
+			E.db["cooldown"]["secondsIndicator"]["b"] = valuecolors.b
+			E.db["cooldown"]["secondsIndicator"]["g"] = valuecolors.g
+			E.db["cooldown"]["secondsIndicator"]["r"] = valuecolors.r
+			E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["b"] = valuecolors.b
+			E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["g"] = valuecolors.g
+			E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["r"] = valuecolors.r
+		end
 		E:UpdateCooldownSettings('all')
 	end
 
