@@ -288,7 +288,7 @@ function ElvUI_EltreumUI:GetDBMProfile()
 		["RangeFrameSound1"] = "none",
 		["HPFrameY"] = -145,
 		["WarningFontSize"] = 20.580696105957,
-		["EventSoundVictory2"] = "Interface\\AddOns\\DBM-SoundEventsPack\\Victory\\Victory_FinalFantasyClassic.ogg",
+		["EventSoundVictory2"] = "None",
 		["EventSoundDungeonBGM"] = "None",
 		["LastRevision"] = -0,
 		["GUIPoint"] = "LEFT",
