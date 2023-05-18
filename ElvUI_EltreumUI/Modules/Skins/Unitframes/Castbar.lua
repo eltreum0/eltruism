@@ -1431,6 +1431,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 						for j = 1, group:GetNumChildren() do
 							groupbutton = select(j, group:GetChildren())
 							if groupbutton and groupbutton.Castbar then
+								local _, buttonclass = UnitClass(groupbutton.unit)
 								--set textures
 								if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 									groupbutton.Castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
@@ -1447,6 +1448,153 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 									end
 									groupbutton.Castbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
 									groupbutton.Castbar.Spark_:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
+								end
+								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+									if E.db.unitframe.colors.transparentCastbar then
+										groupbutton.Castbar.bg:SetVertexColor(0,0,0,0)
+										groupbutton.Castbar.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+									end
+									if E.db.unitframe.colors.customcastbarbackdrop then
+										groupbutton.Castbar.backdrop:SetBackdropColor(E.db.unitframe.colors.castbar_backdrop.r,E.db.unitframe.colors.castbar_backdrop.g,E.db.unitframe.colors.castbar_backdrop.b,E.db.unitframe.colors.castbar_backdrop.a)
+										groupbutton.Castbar.bg:SetVertexColor(E.db.unitframe.colors.castbar_backdrop.r,E.db.unitframe.colors.castbar_backdrop.g,E.db.unitframe.colors.castbar_backdrop.b,E.db.unitframe.colors.castbar_backdrop.a)
+									end
+									if groupbutton.Castbar.notInterruptible then --cant interrupt
+										if E.db.unitframe.units.party.castbar.reverse then
+											if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+												if E.db.unitframe.colors.transparentCastbar then
+													if E.Retail or E.Wrath then
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptiblecustom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptiblecustom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptiblecustom,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptiblecustom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptiblecustom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptiblecustom,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+													else
+														groupbutton.Castbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+													end
+												else
+													if E.Retail or E.Wrath then
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptiblecustom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptiblecustom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptiblecustom,a= 1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptiblecustom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptiblecustom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptiblecustom, a=1})
+													else
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptiblecustom)
+													end
+												end
+											else
+												if E.db.unitframe.colors.transparentCastbar then
+													if E.Retail or E.Wrath then
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptible,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptible,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptible,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptible,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptible,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptible,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+													else
+														groupbutton.Castbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptible, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptible, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+													end
+												else
+													if E.Retail or E.Wrath then
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptible,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptible,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptible,a= 1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptible, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptible,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptible, a=1})
+													else
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptible)
+													end
+												end
+											end
+										elseif not E.db.unitframe.units.party.castbar.reverse then
+											if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+												if E.db.unitframe.colors.transparentCastbar then
+													if E.Retail or E.Wrath then
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptiblecustom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptiblecustom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptiblecustom, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptiblecustom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptiblecustom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptiblecustom, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+													else
+														groupbutton.Castbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+													end
+												else
+													if E.Retail or E.Wrath then
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptiblecustom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptiblecustom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptiblecustom, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptiblecustom, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptiblecustom, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptiblecustom, a=1})
+													else
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptiblecustom, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptiblecustom)
+													end
+												end
+											else
+												if E.db.unitframe.colors.transparentCastbar then
+													if E.Retail or E.Wrath then
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptible, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptible, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptible, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptible, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptible, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptible, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+													else
+														groupbutton.Castbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptible, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptible, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+													end
+												else
+													if E.Retail or E.Wrath then
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptible, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptible, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptible, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptible, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptible, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptible, a=1})
+													else
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1noninterruptible, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1noninterruptible)
+													end
+												end
+											end
+										end
+									elseif (not groupbutton.Castbar.notInterruptible) then --can interrupt
+										if E.db.unitframe.units.party.castbar.reverse then
+											if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar then
+												if E.db.unitframe.colors.transparentCastbar then
+													if E.Retail or E.Wrath then
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+													else
+														groupbutton.Castbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+													end
+												else
+													if E.Retail or E.Wrath then
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1, a=1})
+													else
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1)
+													end
+												end
+											elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar then
+												if E.db.unitframe.colors.transparentCastbar then
+													if E.Retail or E.Wrath then
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, true, true))
+													else
+														groupbutton.Castbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, true, true))
+													end
+												else
+													groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, true))
+												end
+											else
+												if E.db.unitframe.colors.transparentCastbar then
+													if E.Retail or E.Wrath then
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, true, true))
+													else
+														groupbutton.Castbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, true, true))
+													end
+												else
+													groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, true))
+												end
+											end
+										elseif not E.db.unitframe.units.party.castbar.reverse then
+											if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar then
+												if E.db.unitframe.colors.transparentCastbar then
+													if E.Retail or E.Wrath then
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2, a=E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+													else
+														groupbutton.Castbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+													end
+												else
+													if E.Retail or E.Wrath then
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1, a=1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2, g=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2, b=E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2, a=1})
+													else
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.playercastbarB2)
+													end
+												end
+											elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar then
+												if E.db.unitframe.colors.transparentCastbar then
+													if E.Retail or E.Wrath then
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, true))
+													else
+														groupbutton.Castbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, true))
+													end
+												else
+													groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass))
+												end
+											else
+												if E.db.unitframe.colors.transparentCastbar then
+													if E.Retail or E.Wrath then
+														groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, false, true))
+													else
+														groupbutton.Castbar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, false, true))
+													end
+												else
+													groupbutton.Castbar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass))
+												end
+											end
+										end
+									end
 								end
 							end
 						end
