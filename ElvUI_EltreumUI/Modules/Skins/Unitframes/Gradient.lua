@@ -15,13 +15,15 @@ local pairs = _G.pairs
 local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 
 --set the textures or gradients for single units
-function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unittexture)
+function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unittexture,noOrientation)
 	if UnitExists(unit) then
 		_, classunit = UnitClass(unit)
 		reaction = UnitReaction(unit, "player")
 		unitframe = _G["ElvUF_"..name]
 		if unitframe and unitframe.Health then
-			unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
+			if not noOrientation then
+				unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
+			end
 			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 				--unitframe.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				unitframe.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
@@ -485,7 +487,7 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unittexture)
 end
 
 --set the textures or gradients for group units
-function ElvUI_EltreumUI:ApplyGroupGradient(button)
+function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 	if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 		button.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 		button.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
@@ -498,7 +500,9 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button)
 		buttonclass = "NPCFRIENDLY"
 	end
 	if buttonclass and button.Health then
-		button.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
+		if not noOrientation then
+			button.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
+		end
 		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
 				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
@@ -571,28 +575,28 @@ function ElvUI_EltreumUI:GradientUF(unit)
 
 		if not E.Classic then
 			if UnitExists("boss1") then
-				ElvUI_EltreumUI:ApplyUnitGradient("boss1", "Boss1", "boss")
+				ElvUI_EltreumUI:ApplyUnitGradient("boss1", "Boss1", "boss", true)
 			end
 			if UnitExists("boss2") then
-				ElvUI_EltreumUI:ApplyUnitGradient("boss2", "Boss2", "boss")
+				ElvUI_EltreumUI:ApplyUnitGradient("boss2", "Boss2", "boss", true)
 			end
 			if UnitExists("boss3") then
-				ElvUI_EltreumUI:ApplyUnitGradient("boss3", "Boss3", "boss")
+				ElvUI_EltreumUI:ApplyUnitGradient("boss3", "Boss3", "boss", true)
 			end
 			if UnitExists("boss4") then
-				ElvUI_EltreumUI:ApplyUnitGradient("boss4", "Boss4", "boss")
+				ElvUI_EltreumUI:ApplyUnitGradient("boss4", "Boss4", "boss", true)
 			end
 			if UnitExists("boss5") then
-				ElvUI_EltreumUI:ApplyUnitGradient("boss5", "Boss5", "boss")
+				ElvUI_EltreumUI:ApplyUnitGradient("boss5", "Boss5", "boss", true)
 			end
 			if UnitExists("boss6") then
-				ElvUI_EltreumUI:ApplyUnitGradient("boss6", "Boss6", "boss")
+				ElvUI_EltreumUI:ApplyUnitGradient("boss6", "Boss6", "boss", true)
 			end
 			if UnitExists("boss7") then
-				ElvUI_EltreumUI:ApplyUnitGradient("boss7", "Boss7", "boss")
+				ElvUI_EltreumUI:ApplyUnitGradient("boss7", "Boss7", "boss", true)
 			end
 			if UnitExists("boss8") then
-				ElvUI_EltreumUI:ApplyUnitGradient("boss8", "Boss8", "boss")
+				ElvUI_EltreumUI:ApplyUnitGradient("boss8", "Boss8", "boss", true)
 			end
 			if UnitExists("focus") then
 				ElvUI_EltreumUI:ApplyUnitGradient("focus", "Focus", "focus")
@@ -601,19 +605,19 @@ function ElvUI_EltreumUI:GradientUF(unit)
 				ElvUI_EltreumUI:ApplyUnitGradient("focustarget", "FocusTarget", "focustarget")
 			end
 			if UnitExists("arena1") then
-				ElvUI_EltreumUI:ApplyUnitGradient("arena1", "Arena1", "arena")
+				ElvUI_EltreumUI:ApplyUnitGradient("arena1", "Arena1", "arena", true)
 			end
 			if UnitExists("arena2") then
-				ElvUI_EltreumUI:ApplyUnitGradient("arena2", "Arena2", "arena")
+				ElvUI_EltreumUI:ApplyUnitGradient("arena2", "Arena2", "arena", true)
 			end
 			if UnitExists("arena3") then
-				ElvUI_EltreumUI:ApplyUnitGradient("arena3", "Arena3", "arena")
+				ElvUI_EltreumUI:ApplyUnitGradient("arena3", "Arena3", "arena", true)
 			end
 			if UnitExists("arena4") then
-				ElvUI_EltreumUI:ApplyUnitGradient("arena4", "Arena4", "arena")
+				ElvUI_EltreumUI:ApplyUnitGradient("arena4", "Arena4", "arena", true)
 			end
 			if UnitExists("arena5") then
-				ElvUI_EltreumUI:ApplyUnitGradient("arena5", "Arena5", "arena")
+				ElvUI_EltreumUI:ApplyUnitGradient("arena5", "Arena5", "arena", true)
 			end
 		end
 
@@ -626,19 +630,19 @@ function ElvUI_EltreumUI:GradientUF(unit)
 
 		if forced then
 			if E.Retail or E.Wrath then
-				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss1", "boss")
-				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss2", "boss")
-				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss3", "boss")
-				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss4", "boss")
-				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss5", "boss")
-				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss6", "boss")
-				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss7", "boss")
-				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss8", "boss")
-				ElvUI_EltreumUI:ApplyUnitGradient("player", "Arena1", "arena")
-				ElvUI_EltreumUI:ApplyUnitGradient("player", "Arena2", "arena")
-				ElvUI_EltreumUI:ApplyUnitGradient("player", "Arena3", "arena")
-				ElvUI_EltreumUI:ApplyUnitGradient("player", "Arena4", "arena")
-				ElvUI_EltreumUI:ApplyUnitGradient("player", "Arena5", "arena")
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss1", "boss", true)
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss2", "boss", true)
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss3", "boss", true)
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss4", "boss", true)
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss5", "boss", true)
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss6", "boss", true)
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss7", "boss", true)
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss8", "boss", true)
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Arena1", "arena", true)
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Arena2", "arena", true)
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Arena3", "arena", true)
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Arena4", "arena", true)
+				ElvUI_EltreumUI:ApplyUnitGradient("player", "Arena5", "arena", true)
 			end
 		end
 
@@ -650,7 +654,7 @@ function ElvUI_EltreumUI:GradientUF(unit)
 				local partymembers = {_G["ElvUF_PartyGroup1"]:GetChildren()}
 				for _, frame in pairs(partymembers) do
 					if frame and frame.Health then
-						ElvUI_EltreumUI:ApplyGroupGradient(frame)
+						ElvUI_EltreumUI:ApplyGroupGradient(frame,true)
 					end
 				end
 				if E.db.unitframe.units.party.petsGroup.enable then
@@ -672,7 +676,7 @@ function ElvUI_EltreumUI:GradientUF(unit)
 						local raidmembers = {_G["ElvUF_Raid1Group"..i]:GetChildren()}
 						for _, frame in pairs(raidmembers) do
 							if frame and frame.Health then
-								ElvUI_EltreumUI:ApplyGroupGradient(frame)
+								ElvUI_EltreumUI:ApplyGroupGradient(frame,true)
 							end
 						end
 					end
@@ -686,7 +690,7 @@ function ElvUI_EltreumUI:GradientUF(unit)
 						local raidmembers = {_G["ElvUF_Raid2Group"..i]:GetChildren()}
 						for _, frame in pairs(raidmembers) do
 							if frame and frame.Health then
-								ElvUI_EltreumUI:ApplyGroupGradient(frame)
+								ElvUI_EltreumUI:ApplyGroupGradient(frame,true)
 							end
 						end
 					end
@@ -700,7 +704,7 @@ function ElvUI_EltreumUI:GradientUF(unit)
 						local raidmembers = {_G["ElvUF_Raid3Group"..i]:GetChildren()}
 						for _, frame in pairs(raidmembers) do
 							if frame and frame.Health then
-								ElvUI_EltreumUI:ApplyGroupGradient(frame)
+								ElvUI_EltreumUI:ApplyGroupGradient(frame,true)
 							end
 						end
 					end
@@ -714,7 +718,7 @@ function ElvUI_EltreumUI:GradientUF(unit)
 					local tankmembers = {_G["ElvUF_TankUnitButton"..i]}
 					for _, frame in pairs(tankmembers) do
 						if frame and frame.Health then
-							ElvUI_EltreumUI:ApplyGroupGradient(frame)
+							ElvUI_EltreumUI:ApplyGroupGradient(frame,true)
 						end
 					end
 				end
@@ -740,7 +744,7 @@ function ElvUI_EltreumUI:GradientUF(unit)
 					local assistmembers = {_G["ElvUF_AssistUnitButton"..i]}
 					for _, frame in pairs(assistmembers) do
 						if frame and frame.Health then
-							ElvUI_EltreumUI:ApplyGroupGradient(frame)
+							ElvUI_EltreumUI:ApplyGroupGradient(frame,true)
 						end
 					end
 				end
@@ -765,7 +769,7 @@ function ElvUI_EltreumUI:GradientUF(unit)
 					local raidpetbutton = {_G["ElvUF_RaidpetGroup1UnitButton"..i]}
 					for _, frame in pairs(raidpetbutton) do
 						if frame and frame.Health then
-							ElvUI_EltreumUI:ApplyGroupGradient(frame)
+							ElvUI_EltreumUI:ApplyGroupGradient(frame,true)
 						end
 					end
 				end

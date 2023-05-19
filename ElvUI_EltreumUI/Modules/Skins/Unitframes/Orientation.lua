@@ -3,8 +3,6 @@ local UF = E:GetModule('UnitFrames')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 
---TODO trim this
-
 --Unitframe Backdrop Texture/Alpha/Fill Direction
 function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, backdropTex, adjustBackdropPoints, invertColors, reverseFill)
 	statusBar.isTransparent = isTransparent
@@ -37,8 +35,14 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, ba
 		end
 	end
 
+	local statusbarname = statusBar:GetName()
+	local forbiddenframe = false
+	if statusbarname:match("Tank") or statusbarname:match("Raid") or statusbarname:match("Boss") or statusbarname:match("Arena") or statusbarname:match("Assist") or statusbarname:match("Party") then
+		forbiddenframe = true
+	end
+
 	local orientation = statusBar:GetOrientation()
-	if E.db.ElvUI_EltreumUI.unitframes.UForientation == "VERTICAL" and statusBar:GetName():match("HealthBar") and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+	if E.db.ElvUI_EltreumUI.unitframes.UForientation == "VERTICAL" and statusbarname:match("HealthBar") and not forbiddenframe and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		orientation = "VERTICAL"
 	end
 	local barTexture = statusBar:GetStatusBarTexture() -- This fixes Center Pixel offset problem (normally this has > 2 points)
