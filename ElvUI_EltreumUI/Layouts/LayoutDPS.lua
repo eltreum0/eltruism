@@ -756,7 +756,11 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["party"]["petsGroup"]["enable"] = false
 	E.db["unitframe"]["units"]["party"]["petsGroup"]["healPrediction"]["enable"] = true
 	E.db["unitframe"]["units"]["party"]["petsGroup"]["height"] = 75
-	E.db["unitframe"]["units"]["party"]["petsGroup"]["name"]["text_format"] = "[name][happiness:discord]"
+	if E.Retail then
+		E.db["unitframe"]["units"]["party"]["petsGroup"]["name"]["text_format"] = "[name]"
+	else
+		E.db["unitframe"]["units"]["party"]["petsGroup"]["name"]["text_format"] = "[name][happiness:discord]"
+	end
 	E.db["unitframe"]["units"]["party"]["petsGroup"]["width"] = 100
 	E.db["unitframe"]["units"]["party"]["petsGroup"]["xOffset"] = 4
 	E.db["unitframe"]["units"]["pet"]["health"]["colorPetByUnitClass"] = false
