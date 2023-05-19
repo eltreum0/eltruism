@@ -22,7 +22,7 @@ local pairs = _G.pairs
 local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 
 --set the textures for single units
-function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture)
+function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientation)
 	_, classunit = UnitClass(unit)
 	reaction = UnitReaction(unit, "player")
 	if UnitExists(unit) then
@@ -49,7 +49,9 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture)
 		end
 		unitframe = _G["ElvUF_"..name]
 		if unitframe and unitframe.Health and unitframe.Health:GetStatusBarTexture() ~= nil then
-			unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
+			if not noOrientation then
+				unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
+			end
 			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 				--unitframe.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				unitframe.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
@@ -116,7 +118,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture)
 end
 
 --set the textures for group units
-function ElvUI_EltreumUI:ApplyGroupCustomTexture(button)
+function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation)
 	if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 		--button.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 		button.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
@@ -131,7 +133,9 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button)
 	end
 
 	if buttonclass and button.Health then
-		button.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
+		if not noOrientation then
+			button.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
+		end
 		groupbar = ElvUI_EltreumUI:UnitframeClassTexture(buttonclass)
 		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
@@ -168,23 +172,23 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 		ElvUI_EltreumUI:ApplyUnitCustomTexture("pet", "Pet","pet")
 
 		if E.Retail or E.Wrath then
-			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss1", "Boss1", "boss")
-			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss2", "Boss2", "boss")
-			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss3", "Boss3", "boss")
-			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss4", "Boss4", "boss")
-			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss5", "Boss5", "boss")
-			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss6", "Boss6", "boss")
-			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss7", "Boss7", "boss")
-			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss8", "Boss8", "boss")
+			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss1", "Boss1", "boss",true)
+			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss2", "Boss2", "boss",true)
+			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss3", "Boss3", "boss",true)
+			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss4", "Boss4", "boss",true)
+			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss5", "Boss5", "boss",true)
+			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss6", "Boss6", "boss",true)
+			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss7", "Boss7", "boss",true)
+			ElvUI_EltreumUI:ApplyUnitCustomTexture("boss8", "Boss8", "boss",true)
 		end
 		if not E.Classic then
 			ElvUI_EltreumUI:ApplyUnitCustomTexture("focus", "Focus", "focus")
 			ElvUI_EltreumUI:ApplyUnitCustomTexture("focustarget", "FocusTarget", "focus")
-			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena1", "Arena1", "arena")
-			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena2", "Arena2", "arena")
-			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena3", "Arena3", "arena")
-			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena4", "Arena4", "arena")
-			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena5", "Arena5", "arena")
+			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena1", "Arena1", "arena",true)
+			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena2", "Arena2", "arena",true)
+			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena3", "Arena3", "arena",true)
+			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena4", "Arena4", "arena",true)
+			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena5", "Arena5", "arena",true)
 		end
 
 		forced = false
@@ -195,19 +199,19 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 
 		if forced then
 			if E.Retail or E.Wrath then
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss1", "boss")
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss2", "boss")
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss3", "boss")
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss4", "boss")
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss5", "boss")
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss6", "boss")
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss7", "boss")
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss8", "boss")
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Arena1", "arena")
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Arena2", "arena")
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Arena3", "arena")
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Arena4", "arena")
-				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Arena5", "arena")
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss1", "boss",true)
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss2", "boss",true)
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss3", "boss",true)
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss4", "boss",true)
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss5", "boss",true)
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss6", "boss",true)
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss7", "boss",true)
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Boss8", "boss",true)
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Arena1", "arena",true)
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Arena2", "arena",true)
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Arena3", "arena",true)
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Arena4", "arena",true)
+				ElvUI_EltreumUI:ApplyUnitCustomTexture("player", "Arena5", "arena",true)
 			end
 		end
 
@@ -250,7 +254,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 					for j = 1, group:GetNumChildren() do
 						groupbutton = select(j, group:GetChildren())
 						if groupbutton and groupbutton.Health then
-							ElvUI_EltreumUI:ApplyGroupCustomTexture(groupbutton)
+							ElvUI_EltreumUI:ApplyGroupCustomTexture(groupbutton,true)
 						end
 					end
 				end
@@ -269,7 +273,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 				for i = 1, headertank:GetNumChildren() do
 					tankbutton = select(i, headertank:GetChildren())
 					if tankbutton and tankbutton.Health then
-						ElvUI_EltreumUI:ApplyGroupCustomTexture(tankbutton)
+						ElvUI_EltreumUI:ApplyGroupCustomTexture(tankbutton,true)
 					end
 				end
 			end
@@ -290,7 +294,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 				for i = 1, headerassist:GetNumChildren() do
 					assistbutton = select(i, headerassist:GetChildren())
 					if assistbutton and assistbutton.Health then
-						ElvUI_EltreumUI:ApplyGroupCustomTexture(assistbutton)
+						ElvUI_EltreumUI:ApplyGroupCustomTexture(assistbutton,true)
 					end
 				end
 			end
@@ -299,7 +303,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 				for i = 1, headerraidpet:GetNumChildren() do
 					raidpetbutton = select(i, headerraidpet:GetChildren())
 					if raidpetbutton and raidpetbutton.Health then
-						ElvUI_EltreumUI:ApplyGroupCustomTexture(raidpetbutton)
+						ElvUI_EltreumUI:ApplyGroupCustomTexture(raidpetbutton,true)
 					end
 				end
 			end
