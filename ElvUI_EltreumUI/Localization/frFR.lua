@@ -1424,3 +1424,4 @@ L["Gradient Health Loss"] = "Perte de santé en dégradé"
 L["Gradient Name"] = "Nom en dégradé"
 L["Add gradient to Names"] = "Ajouter un dégradé aux noms"
 L["Select which type of teleports to use on double click"] = "Sélectionner le type de téléportation à utiliser lors d'un double clic"
+L["Disable DPS Icons"] = true
