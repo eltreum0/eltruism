@@ -31,6 +31,7 @@
 	<Script file='Unitframes/Models.lua'/>
 	<Script file='Unitframes/Orientation.lua'/>
 	<Script file='Unitframes/Portrait.lua'/>
+	<Script file='Unitframes/RoleIcons.lua'/>
 	<Script file='Unitframes/Textures.lua'/>
 	<Script file='Animations.lua'/>
 	<Script file='DarkLightColors.lua'/>
