@@ -1021,7 +1021,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.questarena = ACH:Toggle(L["Hide Quests during Battlegrounds and Arenas"], nil, 6, nil, false,'full',function() return E.db.ElvUI_EltreumUI.quests.arena end,function(_, value) E.db.ElvUI_EltreumUI.quests.arena = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.description4 = ACH:Description(" ", 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.objectiveanchor = ACH:Toggle(L["Objective Frame Anchor"], L["Reactivate the ElvUI Objective Frame Anchor and Mover"], 8, nil, false,'full',function() return E.db.ElvUI_EltreumUI.quests.anchor end,function(_, value) E.db.ElvUI_EltreumUI.quests.anchor = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
-	ElvUI_EltreumUI.Options.args.quests.args.general.args.objectiveheight = ACH:Range(L["Objective Frame Height"], L["Height of the objective tracker. Increase size to be able to see more objectives."], 5, { min = 100, max = 900, step = 1 }, "full",
+	ElvUI_EltreumUI.Options.args.quests.args.general.args.objectiveheight = ACH:Range(L["Objective Frame Height"], L["Height of the objective tracker. Increase size to be able to see more objectives."], 9, { min = 100, max = 900, step = 1 }, "full",
 	function()
 		if ObjectiveTrackerFrame then
 			return ObjectiveTrackerFrame.editModeHeight
