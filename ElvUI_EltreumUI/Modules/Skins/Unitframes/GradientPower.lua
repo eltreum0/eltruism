@@ -328,6 +328,9 @@ function ElvUI_EltreumUI:UFClassPower_SetBarColor(bar, r, g, b)
 		--bar.bg:SetAlpha(E.db.general.backdropfadecolor.a)
 		--bar.backdrop.Center:SetAlpha(E.db.general.backdropfadecolor.a)
 		if E.db.unitframe.colors.customclasspowerbackdrop then
+			if E.db.unitframe.units.player.classbar.fill ~= "spaced" then
+				bar.backdrop:Show()
+			end
 			bar.backdrop.Center:SetVertexColor(E.db.unitframe.colors.classpower_backdrop.r, E.db.unitframe.colors.classpower_backdrop.g, E.db.unitframe.colors.classpower_backdrop.b)
 		end
 	end
