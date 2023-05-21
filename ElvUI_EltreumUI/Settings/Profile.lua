@@ -1332,6 +1332,7 @@ P.ElvUI_EltreumUI = {
 		eltruismroleiconscustomhealer = "",
 		eltruismroleiconscustomdps = "",
 		roleiconstype = 'ELTRUISM',
+		eltruismroleiconsdisabledps = false,
 
 		eltruismleadericons = false,
 		leadericonstype = "1",
