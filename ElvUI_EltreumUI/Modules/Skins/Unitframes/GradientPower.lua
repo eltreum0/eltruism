@@ -324,11 +324,15 @@ function ElvUI_EltreumUI:UFClassPower_SetBarColor(bar, r, g, b)
 		else
 			bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, r - 0.3, g - 0.3, b - 0.3, r, g, b)
 		end
-		bar.bg:SetAlpha(0)
-		--bar.bg:SetAlpha(E.db.general.backdropfadecolor.a)
-		--bar.backdrop.Center:SetAlpha(E.db.general.backdropfadecolor.a)
-		if E.db.unitframe.colors.customclasspowerbackdrop then
-			bar.backdrop.Center:SetVertexColor(E.db.unitframe.colors.classpower_backdrop.r, E.db.unitframe.colors.classpower_backdrop.g, E.db.unitframe.colors.classpower_backdrop.b)
+		if E.db.unitframe.units.player.classbar.fill == "spaced" then
+			bar.bg:SetAlpha(0)
+			--bar.bg:SetAlpha(E.db.general.backdropfadecolor.a)
+			--bar.backdrop.Center:SetAlpha(E.db.general.backdropfadecolor.a)
+			if E.db.unitframe.colors.customclasspowerbackdrop then
+				bar.backdrop.Center:SetVertexColor(E.db.unitframe.colors.classpower_backdrop.r, E.db.unitframe.colors.classpower_backdrop.g, E.db.unitframe.colors.classpower_backdrop.b)
+			end
+		else
+			bar.bg:SetAlpha(E.db.general.backdropfadecolor.a)
 		end
 	end
 end

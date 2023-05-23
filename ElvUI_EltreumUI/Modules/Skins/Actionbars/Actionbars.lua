@@ -640,10 +640,11 @@ end
 --Skill Glow Pet
 local skillglowcolorpet = {classcolor.r, classcolor.g, classcolor.b, 1}
 function ElvUI_EltreumUI:SkillGlowPet()
+	if IsAddOnLoaded("ElvUI_ActionBarMasks") then return end
+	if not UnitExists("pet") then return end
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end
 	if not E.private.ElvUI_EltreumUI then return end
-	if not UnitExists("pet") then return end
-	if IsAddOnLoaded("ElvUI_ActionBarMasks") then return end
+	if not E.db.ElvUI_EltreumUI.glow then return end
 	if E.db.ElvUI_EltreumUI.glow.enablepet and E.private.actionbar.enable then
 		if not self.petglowcolorsetup and E.db.ElvUI_EltreumUI.glow.colorclasspet ~= nil then
 			if E.db.ElvUI_EltreumUI.glow.colorclasspet then
