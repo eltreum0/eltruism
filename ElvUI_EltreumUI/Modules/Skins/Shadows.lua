@@ -40,6 +40,12 @@ function ElvUI_EltreumUI:Shadows()
 			EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
 				--[[if (arg == "Blizzard_PetBattleUI") or IsAddOnLoaded("Blizzard_PetBattleUI") or _G.PetBattleFrame then --todo look into pet battle shadows but they are unnamed
 				end]]
+				if (arg == "Blizzard_AdventureMap") or IsAddOnLoaded("Blizzard_AdventureMap") then
+					if _G.AdventureMapQuestChoiceDialog and not _G.AdventureMapQuestChoiceDialog.shadow then
+						_G.AdventureMapQuestChoiceDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G.AdventureMapQuestChoiceDialog.shadow)
+					end
+				end
 				if (arg == "Blizzard_ArtifactUI") or IsAddOnLoaded("Blizzard_ArtifactUI") then
 					if _G.ArtifactFrame and not _G.ArtifactFrame.shadow then
 						_G.ArtifactFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -1576,6 +1582,7 @@ function ElvUI_EltreumUI:Shadows()
 								_G["ElvUF_Player_CastBar"].shadow:SetPoint("BOTTOMRIGHT",_G["ElvUF_Player_CastBar"].Icon, "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
 							end
 						else
+							--E.db["unitframe"]["units"]["player"]["castbar"]["icon"] = false
 							if not E.db.unitframe.units.player.castbar.iconAttached then
 								if E.db["unitframe"]["units"]["player"]["castbar"]["iconAttachedTo"] == "Castbar" then
 									if E.db["unitframe"]["units"]["player"]["castbar"]["height"] < E.db["unitframe"]["units"]["player"]["castbar"]["iconSize"] and E.db["unitframe"]["units"]["player"]["castbar"]["iconXOffset"] ~= 0 then
