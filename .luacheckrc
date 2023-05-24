@@ -2923,6 +2923,8 @@ globals = {
 	"_G",
 	"print",
 	"ElvUI_EltreumUI_OnAddonCompartmentClick",
+	"EXHAUSTION_LABEL",
+	"BREATH_LABEL",
 }
 max_line_length = false
 ignore = {

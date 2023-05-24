@@ -133,6 +133,8 @@ function S:HandleMirrorTimer() --(timer, value, maxvalue, scale, paused, label)
 				frame.Text:ClearAllPoints()
 				frame.Text:SetParent(frame.StatusBar)
 				frame.Text:SetPoint('CENTER', frame.StatusBar, 0, 1)
+
+				frame:SetScale(E.db.ElvUI_EltreumUI.otherstuff.mirrorscale)
 			end
 
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
