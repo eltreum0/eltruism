@@ -1444,10 +1444,10 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.enable.args.aurabarsenable = ACH:Toggle(L["Enable Gradient Aurabars"], nil, 3, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = value ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.orientation = ACH:Group(L["Fill Orientation"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.orientation.args.description1 = ACH:Description(L["Unitframe Fill Orientation"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.orientation.args.setorientation = ACH:Select(L["Minimum Loot Quality Filter"], L["Only items of this quality or better will be looted when using Fast Loot Filter"], 4, {
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.orientation.args.setorientation = ACH:Select("", nil, 4, {
 		["HORIZONTAL"] = L["Horizontal"],
 		["VERTICAL"] = L["Vertical"],
-	}, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.UForientation end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.UForientation = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
+	}, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.UForientation end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.UForientation = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.orientation.args.setorientation.style = "radio"
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.appearance = ACH:Group(L["Appearance"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.appearance.args.description1 = ACH:Description(L["Change the look of frames to Dark or Light mode"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
