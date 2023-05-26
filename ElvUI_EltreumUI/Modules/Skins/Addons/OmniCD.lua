@@ -56,16 +56,16 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 				if icon.class and not icon.EltruismHook then
 					hooksecurefunc(icon.statusBar.BG,"SetVertexColor", function(bar)
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-							bar:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColorsCustom(icon.class))
+							bar:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColorsCustom(bar:GetParent():GetParent().class))
 						else
-							bar:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors(icon.class))
+							bar:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors(bar:GetParent():GetParent().class))
 						end
 					end)
 					hooksecurefunc(icon.statusBar.CastingBar,"SetStatusBarColor", function(bar2)
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-							bar2:GetStatusBarTexture():SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColorsCustom(icon.class))
+							bar2:GetStatusBarTexture():SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColorsCustom(bar2:GetParent():GetParent().class))
 						else
-							bar2:GetStatusBarTexture():SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors(icon.class))
+							bar2:GetStatusBarTexture():SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors(bar2:GetParent():GetParent().class))
 						end
 					end)
 					icon.EltruismHook = true
