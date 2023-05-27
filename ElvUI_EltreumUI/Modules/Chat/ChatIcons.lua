@@ -95,6 +95,9 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Analrexia-Westfall"] = DonatorsIcon,
 			["Verstedruide-Westfall"] = DonatorsIcon,
 			["Verstekriger-Westfall"] = DonatorsIcon,
+			["Greevir-Bloodsail Buccaneers"] = DonatorsIcon,
+			["Slaehretaw-Maladath"] = DonatorsIcon,
+			["Greevir-Maladath"] = DonatorsIcon,
 
 			--necator
 			["Necator-Benediction"] = DonatorsIcon,

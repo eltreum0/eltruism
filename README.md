@@ -1,5 +1,5 @@
 ### [![](https://img.shields.io/badge/Eltruism-Join-steelblue.svg?longCache=true?style=flat-square&logo=discord)](https://discord.gg/cXfA56gmYW)
-<p align="center"> <img src="https://github.com/eltreum0/eltruism/raw/main/Screenshots/logohq.png"/></p>
+<p align="center"> <img src="https://github.com/eltreum0/eltreum0.github.io/raw/main/logohq.png"/></p>
 
 ___
 ### [Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
@@ -46,9 +46,9 @@ Shadows, Character Panel, Quests, other AddOns are skinned\
 Cooldowns with TTS, Combat Music, Fast Loot, Loot Wishlist, Hide Talking Head, Mail Sounds, Time to Arrive to Waypoint
 ___
 ### Pictures
-[![](https://github.com/eltreum0/eltruism/raw/main/Screenshots/Preview1.webp)](https://github.com/eltreum0/eltruism/raw/main/Screenshots/Preview1.webp)
+[![](https://github.com/eltreum0/eltreum0.github.io/raw/main/Preview1.webp)](https://github.com/eltreum0/eltreum0.github.io/raw/main/Preview1.webp)
 \
-[![](https://github.com/eltreum0/eltruism/raw/main/Screenshots/Preview2.webp)](https://github.com/eltreum0/eltruism/raw/main/Screenshots/Preview2.webp)
+[![](https://github.com/eltreum0/eltreum0.github.io/raw/main/Preview2.webp)](https://github.com/eltreum0/eltreum0.github.io/raw/main/Preview2.webp)
 ___
 ### Credits
 > This plugin was based in **[LuckyoneUI](httpswww.tukui.orgaddons.php?id=154)** and credits go to him for allowing its use
