@@ -45,6 +45,11 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 						castbar.SafeZone:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 					end
 
+					--set custom texture
+					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+						castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
+					end
+
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 						if E.db.unitframe.colors.transparentCastbar then
 							castbar.bg:SetVertexColor(0,0,0,0)
@@ -55,12 +60,12 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 							castbar.bg:SetVertexColor(E.db.unitframe.colors.castbar_backdrop.r,E.db.unitframe.colors.castbar_backdrop.g,E.db.unitframe.colors.castbar_backdrop.b,E.db.unitframe.colors.castbar_backdrop.a)
 						end
 						--set textures
-						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-							castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
-						elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-							castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-						else
-							castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+						if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
+								castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+							else
+								castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+							end
 						end
 						if castbar.notInterruptible then --cant interrupt
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayercastbarnoninterruptible then
@@ -231,6 +236,11 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 						end
 					end
 
+					--set custom texture
+					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+						targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
+					end
+
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 						if E.db.unitframe.colors.transparentCastbar then
 							targetcastbar.bg:SetVertexColor(0, 0, 0, 0)
@@ -241,12 +251,12 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 							targetcastbar.bg:SetVertexColor(E.db.unitframe.colors.castbar_backdrop.r,E.db.unitframe.colors.castbar_backdrop.g,E.db.unitframe.colors.castbar_backdrop.b,E.db.unitframe.colors.castbar_backdrop.a)
 						end
 						--set textures
-						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-							targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
-						elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-							targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-						else
-							targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+						if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
+								targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+							else
+								targetcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+							end
 						end
 						if (targetcastbar.notInterruptible) then --cant interrupt
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible then
@@ -655,6 +665,11 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 						end
 					end
 
+					--set custom texture
+					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+						focuscastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
+					end
+
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 						if E.db.unitframe.colors.transparentCastbar then
 							focuscastbar.bg:SetVertexColor(0, 0, 0, 0)
@@ -665,12 +680,12 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 							focuscastbar.bg:SetVertexColor(E.db.unitframe.colors.castbar_backdrop.r,E.db.unitframe.colors.castbar_backdrop.g,E.db.unitframe.colors.castbar_backdrop.b,E.db.unitframe.colors.castbar_backdrop.a)
 						end
 						--set textures
-						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-							focuscastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
-						elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-							focuscastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-						else
-							focuscastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+						if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
+								focuscastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+							else
+								focuscastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+							end
 						end
 						if (focuscastbar.notInterruptible) then --cant interrupt
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible then
@@ -1049,6 +1064,11 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 						end
 					end
 
+					--set custom texture
+					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+						petcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
+					end
+
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 						if E.db.unitframe.colors.transparentCastbar then
 							petcastbar.bg:SetVertexColor(0, 0, 0, 0)
@@ -1059,12 +1079,12 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 							petcastbar.bg:SetVertexColor(E.db.unitframe.colors.castbar_backdrop.r,E.db.unitframe.colors.castbar_backdrop.g,E.db.unitframe.colors.castbar_backdrop.b,E.db.unitframe.colors.castbar_backdrop.a)
 						end
 						--set textures
-						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-							petcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
-						elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-							petcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-						else
-							petcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+						if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
+								petcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+							else
+								petcastbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+							end
 						end
 						if (petcastbar.notInterruptible) then --cant interrupt
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible then
@@ -1435,10 +1455,12 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 								--set textures
 								if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 									groupbutton.Castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.castbartexture))
-								elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-									groupbutton.Castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 								else
-									groupbutton.Castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
+										groupbutton.Castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+									else
+										groupbutton.Castbar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+									end
 								end
 								--set spark texture
 								if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable then
