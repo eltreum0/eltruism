@@ -200,6 +200,10 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = false
 		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = true
 	end
+	if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect = true
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture = false
+	end
 
 	--changes only for my profiles
 	if E.private.ElvUI_EltreumUI.install_version and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
