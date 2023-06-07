@@ -1494,7 +1494,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 
-				if E.db["unitframe"]["units"]["player"]["portrait"]["enable"] == true and E.db["unitframe"]["units"]["player"]["portrait"]["overlay"] == false then
+				if E.db.unitframe.units.player.enable and E.db["unitframe"]["units"]["player"]["portrait"]["enable"] == true and E.db["unitframe"]["units"]["player"]["portrait"]["overlay"] == false then
 					if _G["ElvUF_Player"] and not _G["ElvUF_Player"].shadow then
 						if not (E.db.ElvUI_EltreumUI.borders.playerborder and E.db.ElvUI_EltreumUI.borders.borders) then
 							_G["ElvUF_Player"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -1524,7 +1524,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 
-				if E.db["unitframe"]["units"]["target"]["portrait"]["enable"] == true and E.db["unitframe"]["units"]["target"]["portrait"]["overlay"] == false then
+				if E.db.unitframe.units.target.enable and E.db["unitframe"]["units"]["target"]["portrait"]["enable"] == true and E.db["unitframe"]["units"]["target"]["portrait"]["overlay"] == false then
 					if _G["ElvUF_Target"] and not _G["ElvUF_Target"].shadow then
 						if not (E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.ElvUI_EltreumUI.borders.borders) then
 							_G["ElvUF_Target"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -1550,7 +1550,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--player castbar
-				if E.db.unitframe.units.player.castbar.overlayOnFrame == "None" and not (E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.ElvUI_EltreumUI.borders.borders) and E.db.unitframe.units.player.castbar.icon then
+				if E.db.unitframe.units.player.enable and E.db.unitframe.units.player.castbar.overlayOnFrame == "None" and not (E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.ElvUI_EltreumUI.borders.borders) and E.db.unitframe.units.player.castbar.icon then
 					if _G["ElvUF_Player_CastBar"].shadow then
 						if E.db["unitframe"]["units"]["player"]["orientation"] == "RIGHT" then
 							if not E.db.unitframe.units.player.castbar.iconAttached then
@@ -1617,7 +1617,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--target castbar
-				if E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and not (E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.ElvUI_EltreumUI.borders.borders) and E.db.unitframe.units.target.castbar.icon then
+				if E.db.unitframe.units.target.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and not (E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.ElvUI_EltreumUI.borders.borders) and E.db.unitframe.units.target.castbar.icon then
 					if _G["ElvUF_Target_CastBar"].shadow then
 						if E.db["unitframe"]["units"]["target"]["orientation"] == "RIGHT" then
 							if not E.db.unitframe.units.target.castbar.iconAttached then
@@ -1683,7 +1683,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--focus castbar
-				if E.db.unitframe.units.focus.castbar.overlayOnFrame == "None" and E.db.unitframe.units.focus.castbar.icon and E.db.unitframe.units.focus.enable then
+				if E.db.unitframe.units.focus.enable and E.db.unitframe.units.focus.castbar.overlayOnFrame == "None" and E.db.unitframe.units.focus.castbar.icon and E.db.unitframe.units.focus.enable then
 					if _G["ElvUF_Focus_CastBar"] and _G["ElvUF_Focus_CastBar"].shadow then
 						if E.db["unitframe"]["units"]["focus"]["orientation"] == "RIGHT" then
 							if not E.db.unitframe.units.focus.castbar.iconAttached then
