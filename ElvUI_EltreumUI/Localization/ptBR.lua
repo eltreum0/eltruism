@@ -1417,3 +1417,4 @@ L["Gradient Name"] = "Nome em Gradiente"
 L["Add gradient to Names"] = "Adicionar Gradiente aos Nomes"
 L["Select which type of teleports to use on double click"] = "Selecione o tipo de teleporte a ser usado no clique duplo"
 L["Disable DPS Icons"] = true
+L["Shows the current presence with color"] = true
