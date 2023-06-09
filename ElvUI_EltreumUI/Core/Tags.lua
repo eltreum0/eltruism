@@ -1157,6 +1157,20 @@ E:AddTag("eltruism:stance", 1, function()
 end)
 E:AddTagInfo("eltruism:stance", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows the current stance"])
 
+if E.Wrath then
+	E:AddTag("eltruism:presencecolor", 1, function()
+		local stance = GetShapeshiftForm()
+		if stance == 1 then
+			return "|cFFff4040"..GetSpellInfo(48266).."|r"
+		elseif stance == 2 then
+			return "|cFF40ffff"..GetSpellInfo(48263).."|r"
+		elseif stance == 3 then
+			return "|cFF40ff40"..GetSpellInfo(48265).."|r"
+		end
+	end)
+	E:AddTagInfo("eltruism:presencecolor", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows the current presence with color"])
+end
+
 --group number only for first member of group (can break if players get moved tho)
 E:AddTag("eltruism:groupnumber", "GROUP_ROSTER_UPDATE UNIT_NAME_UPDATE", function(unit)
 	if IsInRaid() == true then
