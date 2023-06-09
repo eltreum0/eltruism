@@ -1,4 +1,5 @@
-### [![](https://img.shields.io/badge/Eltruism-Join-steelblue.svg?longCache=true?style=flat-square&logo=discord)](https://discord.gg/cXfA56gmYW)[![](https://img.shields.io/github/downloads/eltreum0/eltruism/total?color=steelblue&logo=github)](https://github.com/eltreum0/eltruism/releases)
+### [![](https://img.shields.io/badge/Eltruism-Join-steelblue.svg?longCache=true?style=flat-square&logo=discord)](https://discord.gg/cXfA56gmYW)
+[![](https://img.shields.io/github/downloads/eltreum0/eltruism/total?color=steelblue&logo=github)](https://github.com/eltreum0/eltruism/releases)
 <p align="center"> <img src="https://github.com/eltreum0/eltreum0.github.io/raw/main/logohq.png"/></p>
 
 ___
