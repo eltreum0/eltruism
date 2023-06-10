@@ -1468,5 +1468,5 @@ L["Gradient Health Loss"] = "Farbverlauf Gesundheitsverlust"
 L["Gradient Name"] = "Namenfarbverlauf"
 L["Add gradient to Names"] = "Fügt einen Farbverlauf dem Namen hinzu"
 L["Select which type of teleports to use on double click"] = "Wähle, welche Art von Teleports bei einem Doppelklick verwendet werden soll"
-L["Disable DPS Icons"] = true
-L["Shows the current presence with color"] = true
+L["Disable DPS Icons"] = "Deaktiviere DPS Symbole"
+L["Shows the current presence with color"] = "Zeigt die aktuelle Präsenz farblich an"
