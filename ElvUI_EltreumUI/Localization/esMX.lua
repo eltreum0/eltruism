@@ -1443,3 +1443,4 @@ L["Gradient Name"] = "Nombre en degradado"
 L["Add gradient to Names"] = "Añadir degradado a los nombres"
 L["Select which type of teleports to use on double click"] = "Selecciona qué tipo de teletransporte usar al hacer doble clic"
 L["Disable DPS Icons"] = true
+L["Shows the current presence with color"] = true

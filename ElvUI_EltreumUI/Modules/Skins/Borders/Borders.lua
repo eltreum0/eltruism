@@ -118,19 +118,24 @@ function ElvUI_EltreumUI:Borders()
 				else
 					playercastbarborder = _G["EltruismPlayerCastBarBorder"]
 				end
-				if E.db.unitframe.units.player.castbar.iconAttached == false then
-					playercastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayercast + E.db.unitframe.units.player.castbar.iconSize, E.db.ElvUI_EltreumUI.borders.yplayercast)
-					if E.db["unitframe"]["units"]["player"]["castbar"]["iconPosition"] == "RIGHT" then
-						playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", E.db.unitframe.units.player.castbar.iconSize/2, 0)
-					elseif E.db["unitframe"]["units"]["player"]["castbar"]["iconPosition"] == "LEFT" then
-						playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", -E.db.unitframe.units.player.castbar.iconSize/2, 0)
-					else
-						playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", 0, 0)
+				if E.db.unitframe.units.player.castbar.icon then
+					if E.db.unitframe.units.player.castbar.iconAttached == false then
+						playercastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayercast + E.db.unitframe.units.player.castbar.iconSize, E.db.ElvUI_EltreumUI.borders.yplayercast)
+						if E.db["unitframe"]["units"]["player"]["castbar"]["iconPosition"] == "RIGHT" then
+							playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", E.db.unitframe.units.player.castbar.iconSize/2, 0)
+						elseif E.db["unitframe"]["units"]["player"]["castbar"]["iconPosition"] == "LEFT" then
+							playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", -E.db.unitframe.units.player.castbar.iconSize/2, 0)
+						else
+							playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", 0, 0)
+						end
+					elseif E.db.unitframe.units.player.castbar.iconAttached ~= false then
+						playercastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayercast, E.db.ElvUI_EltreumUI.borders.yplayercast)
+						--playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", -E.db.unitframe.units.player.castbar.iconSize/2, 0)
+						playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"].Holder, "CENTER", 0, 0)
 					end
-				elseif E.db.unitframe.units.player.castbar.iconAttached ~= false then
+				else
 					playercastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayercast, E.db.ElvUI_EltreumUI.borders.yplayercast)
-					--playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", -E.db.unitframe.units.player.castbar.iconSize/2, 0)
-					playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"].Holder, "CENTER", 0, 0)
+					playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", 0, 0)
 				end
 				playercastbarborder:SetBackdrop({
 					edgeFile = bordertexture,
@@ -173,18 +178,23 @@ function ElvUI_EltreumUI:Borders()
 				else
 					targetcastbarborder = _G["EltruismTargetCastBarBorder"]
 				end
-				if E.db.unitframe.units.target.castbar.iconAttached == false then
-					targetcastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcasttarget + E.db.unitframe.units.target.castbar.iconSize, E.db.ElvUI_EltreumUI.borders.ycasttarget)
-					if E.db["unitframe"]["units"]["target"]["castbar"]["iconPosition"] == "RIGHT" then
-						targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", E.db.unitframe.units.target.castbar.iconSize/2, 0)
-					elseif E.db["unitframe"]["units"]["target"]["castbar"]["iconPosition"] == "LEFT" then
-						targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", -E.db.unitframe.units.target.castbar.iconSize/2, 0)
-					else
-						targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", 0, 0)
+				if E.db.unitframe.units.target.castbar.icon then
+					if E.db.unitframe.units.target.castbar.iconAttached == false then
+						targetcastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcasttarget + E.db.unitframe.units.target.castbar.iconSize, E.db.ElvUI_EltreumUI.borders.ycasttarget)
+						if E.db["unitframe"]["units"]["target"]["castbar"]["iconPosition"] == "RIGHT" then
+							targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", E.db.unitframe.units.target.castbar.iconSize/2, 0)
+						elseif E.db["unitframe"]["units"]["target"]["castbar"]["iconPosition"] == "LEFT" then
+							targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", -E.db.unitframe.units.target.castbar.iconSize/2, 0)
+						else
+							targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", 0, 0)
+						end
+					elseif E.db.unitframe.units.target.castbar.iconAttached ~= false then
+						targetcastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcasttarget, E.db.ElvUI_EltreumUI.borders.ycasttarget)
+						--targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", -E.db.unitframe.units.target.castbar.iconSize/2, 0)
+						targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"].Holder, "CENTER", 0, 0)
 					end
-				elseif E.db.unitframe.units.target.castbar.iconAttached ~= false then
+				else
 					targetcastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcasttarget, E.db.ElvUI_EltreumUI.borders.ycasttarget)
-					--targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", -E.db.unitframe.units.target.castbar.iconSize/2, 0)
 					targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"].Holder, "CENTER", 0, 0)
 				end
 				targetcastbarborder:SetBackdrop({
@@ -452,18 +462,23 @@ function ElvUI_EltreumUI:Borders()
 				else
 					focuscastbarborder = _G["EltruismFocusCastBarBorder"]
 				end
-				if E.db.unitframe.units.focus.castbar.iconAttached == false then
-					focuscastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcastfocus + E.db.unitframe.units.focus.castbar.iconSize, E.db.ElvUI_EltreumUI.borders.ycastfocus)
-					if E.db["unitframe"]["units"]["focus"]["castbar"]["iconPosition"] == "RIGHT" then
-						focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", E.db.unitframe.units.focus.castbar.iconSize/2, 0)
-					elseif E.db["unitframe"]["units"]["focus"]["castbar"]["iconPosition"] == "LEFT" then
-						focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", -E.db.unitframe.units.focus.castbar.iconSize/2, 0)
-					else
-						focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", 0, 0)
+				if E.db.unitframe.units.focus.castbar.icon then
+					if E.db.unitframe.units.focus.castbar.iconAttached == false then
+						focuscastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcastfocus + E.db.unitframe.units.focus.castbar.iconSize, E.db.ElvUI_EltreumUI.borders.ycastfocus)
+						if E.db["unitframe"]["units"]["focus"]["castbar"]["iconPosition"] == "RIGHT" then
+							focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", E.db.unitframe.units.focus.castbar.iconSize/2, 0)
+						elseif E.db["unitframe"]["units"]["focus"]["castbar"]["iconPosition"] == "LEFT" then
+							focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", -E.db.unitframe.units.focus.castbar.iconSize/2, 0)
+						else
+							focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", 0, 0)
+						end
+					elseif E.db.unitframe.units.focus.castbar.iconAttached ~= false then
+						focuscastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcastfocus, E.db.ElvUI_EltreumUI.borders.ycastfocus)
+						--focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", -E.db.unitframe.units.focus.castbar.iconSize/2, 0)
+						focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"].Holder, "CENTER", 0, 0)
 					end
-				elseif E.db.unitframe.units.focus.castbar.iconAttached ~= false then
+				else
 					focuscastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcastfocus, E.db.ElvUI_EltreumUI.borders.ycastfocus)
-					--focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", -E.db.unitframe.units.focus.castbar.iconSize/2, 0)
 					focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"].Holder, "CENTER", 0, 0)
 				end
 				focuscastbarborder:SetBackdrop({
