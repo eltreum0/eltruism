@@ -710,7 +710,9 @@ end
 --elvui function can be spammy so use event instead
 local petcdcheck = CreateFrame("FRAME")
 petcdcheck:RegisterEvent("PET_BAR_UPDATE")
+petcdcheck:RegisterEvent("PLAYER_STARTED_MOVING")
 petcdcheck:SetScript("OnEvent", function()
+	petcdcheck:UnregisterEvent("PLAYER_STARTED_MOVING")
 	ElvUI_EltreumUI:SkillGlowPet()
 end)
 --hooksecurefunc(AB, "UpdatePet", ElvUI_EltreumUI.SkillGlowPet)
