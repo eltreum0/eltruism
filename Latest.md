@@ -1,14 +1,12 @@
-### 3.8.8 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.8.9 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added scale to Mirror Timers (such as Breath and Fatigue)  
-Added an option to disable DPS role icons in unitframes  
-Added gradients to party castbars  
-Added a few shadows  
-Updated unitframe orientation to only run on ElvUI unitframes that lack the option  
-Fixed BigWigs import being disabled while BigWigs was loaded due to another BigWigs addon not being loaded  
-Fixed portrait automatic rotation running when the unitframe was disabled  
-Fixed retail pet unitframe having happiness tag  
-Fixed Gradient Colors in OmniCD interrupt bars  
-Fixed an error while loading in Wrath/Classic  
-Fixed the tooltip in Unitframe Orientation  
-Fixed custom class backdrop color
+Fixed a possible issue where class custom textures could be locked out  
+Updated Custom Textures to work outside of Gradient  
+Fixed an issue with shadows when some unitframes were disabled  
+Added [eltruism:presencecolor] tag which shows Death Knight Presence with color  
+Fixed an issue where some options were hidden  
+Fixed castbar borders when cast bar icon was disabled  
+Updated German locale by Dlarge  
+Fixed missing Custom Glow after a reload  
+Fixed other glows not hiding if changed in ElvUI  
+Added Tank Stats Datatext in Wrath and Classic  
