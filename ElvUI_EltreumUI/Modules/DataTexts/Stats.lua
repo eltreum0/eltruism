@@ -304,3 +304,10 @@ local function EltruismStatsDatatext2(dt)
 	end
 end
 DT:RegisterDatatext('Eltruism Stats 2', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_STATS","UNIT_RANGEDDAMAGE","UNIT_ATTACK_POWER","UNIT_RANGED_ATTACK_POWER","UNIT_ATTACK","MASTERY_UPDATE","UNIT_DAMAGE","SPELL_POWER_CHANGED","PLAYER_DAMAGE_DONE_MODS"}, EltruismStatsDatatext2, nil, nil, EltruismStatsDatatextOnEnter, nil, L["Eltruism Stats 2"])
+
+--wrath avoidance and defense
+local function EltruismStatsDatatext3(dt)
+end
+if not E.Retail then
+	DT:RegisterDatatext('Eltruism Stats 3', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_STATS"}, EltruismStatsDatatext3, nil, nil, EltruismStatsDatatextOnEnter, nil, L["Eltruism Stats 2"])
+end
