@@ -305,9 +305,20 @@ local function EltruismStatsDatatext2(dt)
 end
 DT:RegisterDatatext('Eltruism Stats 2', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_STATS","UNIT_RANGEDDAMAGE","UNIT_ATTACK_POWER","UNIT_RANGED_ATTACK_POWER","UNIT_ATTACK","MASTERY_UPDATE","UNIT_DAMAGE","SPELL_POWER_CHANGED","PLAYER_DAMAGE_DONE_MODS"}, EltruismStatsDatatext2, nil, nil, EltruismStatsDatatextOnEnter, nil, L["Eltruism Stats 2"])
 
---wrath avoidance and defense
-local function EltruismStatsDatatext3(dt)
-end
+--wrath avoidance and defense,based on https://wago.io/qYKsfPe_W
 if not E.Retail then
-	DT:RegisterDatatext('Eltruism Stats 3', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_STATS"}, EltruismStatsDatatext3, nil, nil, EltruismStatsDatatextOnEnter, nil, L["Eltruism Stats 2"])
+	local UnitDefense = _G.UnitDefense
+	local DEFENSE = _G.DEFENSE
+	local function EltruismStatsDatatext3(dt)
+		--defense
+		local defense = E:ShortenString(DEFENSE, 3)..": "..ElvUI[1].media.hexvaluecolor..(select(1, UnitDefense("player"))) + (select(2, UnitDefense("player"))).."|r"
+		--avoidance
+		local miss = 5 + (((select(1, UnitDefense("player"))) + (select(2, UnitDefense("player"))) - (UnitLevel("player") * 5)) * 0.04)
+		local avoid = miss+GetBlockChance()+GetParryChance()+GetDodgeChance()
+		local avoidance = E:ShortenString(STAT_AVOIDANCE, 5)..": "..ElvUI[1].media.hexvaluecolor..tostring(math.floor(avoid*100)/100).."%".."|r"
+
+		dt.text:SetFormattedText('%s %s|r',avoidance,defense)
+	end
+	DT:RegisterDatatext('Eltruism Stats 3', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_STATS","PLAYER_DAMAGE_DONE_MODS"}, EltruismStatsDatatext3, nil, nil, EltruismStatsDatatextOnEnter, nil, L["Eltruism Stats 3"])
 end
+
