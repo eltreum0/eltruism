@@ -321,4 +321,3 @@ if not E.Retail then
 	end
 	DT:RegisterDatatext('Eltruism Stats 3', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_STATS","PLAYER_DAMAGE_DONE_MODS"}, EltruismStatsDatatext3, nil, nil, EltruismStatsDatatextOnEnter, nil, L["Eltruism Stats 3"])
 end
-
