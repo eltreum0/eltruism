@@ -52,6 +52,7 @@ local GetArmorPenetration = _G.GetArmorPenetration
 local GetMeleeHaste= _G.GetMeleeHaste
 local GetRangedHaste = _G.GetRangedHaste
 local UnitLevel = _G.UnitLevel
+local tostring = _G.tostring
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------stats datatext
 local function EltruismStatsDatatextOnEnter()
 	local basestat1, currentstat1, statbuff1, statnerf1 = UnitStat('player', LE_UNIT_STAT_STRENGTH)
