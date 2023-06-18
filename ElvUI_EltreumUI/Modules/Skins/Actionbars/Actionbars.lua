@@ -43,10 +43,19 @@ function ElvUI_EltreumUI:SkillGlow()
 									v:SetVertexColor((r-(k/20)),(g-(k/20)),(b-(k/20)),1)
 								end
 							end
+							if button.AutoCastShine then
+								button.AutoCastShine:Hide()
+							end
+							if button._ButtonGlow then
+								button._ButtonGlow:Hide()
+							end
 						elseif E.db.ElvUI_EltreumUI.glow.autocast then
 							LCG.AutoCastGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
 							if button._PixelGlow then
 								button._PixelGlow:Hide()
+							end
+							if button._ButtonGlow then
+								button._ButtonGlow:Hide()
 							end
 							if E.db.ElvUI_EltreumUI.glow.gradient then
 								for k,v in pairs({button._AutoCastGlow:GetRegions()}) do
@@ -58,6 +67,9 @@ function ElvUI_EltreumUI:SkillGlow()
 							LCG.ButtonGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
 							if button._PixelGlow then
 								button._PixelGlow:Hide()
+							end
+							if button.AutoCastShine then
+								button.AutoCastShine:Hide()
 							end
 							button._ButtonGlow.outerGlow:SetScale(1.15)
 							if E.db.ElvUI_EltreumUI.glow.gradient then
