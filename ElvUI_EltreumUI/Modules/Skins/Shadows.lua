@@ -789,7 +789,6 @@ function ElvUI_EltreumUI:Shadows()
 				_G.RaidUtility_ShowButton,
 				_G.RaidUtilityPanel,
 				_G.RaidUtility_CloseButton,
-				_G.EditModeManagerFrame,
 				_G.PVPMatchScoreboard,
 				_G.PVPMatchResults,
 				_G.MajorFactionRenownFrame,
@@ -1066,6 +1065,7 @@ function ElvUI_EltreumUI:Shadows()
 					_G.LossOfControlFrame,
 					_G.QuestFrame,
 					_G.EquipmentFlyoutFrameButtons,
+					_G.EditModeManagerFrame,
 				}
 				for _, frame in pairs(retailframes) do
 					if frame and not frame.shadow then
