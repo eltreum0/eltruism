@@ -124,10 +124,10 @@ function S:HandleMirrorTimer() --(timer, value, maxvalue, scale, paused, label)
 
 				frame.StatusBar:SetParent(frame.atlasHolder)
 				frame.StatusBar:ClearAllPoints()
-				frame.StatusBar:SetSize(204, 22)
+				frame.StatusBar:SetSize(E.db.ElvUI_EltreumUI.otherstuff.mirrorx +4, E.db.ElvUI_EltreumUI.otherstuff.mirrory+4)
 				frame.StatusBar:Point('TOP', 0, 2)
 
-				frame:SetSize(200, 18)
+				frame:SetSize(E.db.ElvUI_EltreumUI.otherstuff.mirrorx, E.db.ElvUI_EltreumUI.otherstuff.mirrory)
 
 				frame.Text:FontTemplate()
 				frame.Text:ClearAllPoints()
