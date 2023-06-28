@@ -758,6 +758,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 
 					local number = CharacterStatsPane.statsFramePool:GetNumActive()
+					--local number = 13
 					if E.db.ElvUI_EltreumUI.dev then
 						ElvUI_EltreumUI:Print("Number of stats: "..number)
 					end
@@ -790,31 +791,47 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end]]
 
 					--numbers
-					CharacterFrame.EltruismSpeed:SetPoint("TOP", CharacterFrame.EltruismExtraStatsFont, "BOTTOM", 60, -10)
-					CharacterFrame.EltruismSpeed:SetSize(50,5)
-					CharacterFrame.EltruismSpeed:SetJustifyH("RIGHT")
-					CharacterFrame.EltruismClassResource:SetPoint("TOP", CharacterFrame.EltruismSpeed, "BOTTOM", 0, -10)
-					CharacterFrame.EltruismClassResource:SetSize(50,5)
-					CharacterFrame.EltruismClassResource:SetJustifyH("RIGHT")
-					CharacterFrame.EltruismClassResource2:SetPoint("TOP", CharacterFrame.EltruismClassResource, "BOTTOM", 0, -10)
-					CharacterFrame.EltruismClassResource2:SetJustifyH("RIGHT")
-					CharacterFrame.EltruismClassResource2:SetSize(50,5)
+					if number < 13 then
+						CharacterFrame.EltruismSpeed:SetAlpha(1)
+						CharacterFrame.EltruismClassResource:SetAlpha(1)
+						CharacterFrame.EltruismClassResource2:SetAlpha(1)
+						CharacterFrame.EltruismSpeedDesc:SetAlpha(1)
+						CharacterFrame.EltruismClassResourceDesc:SetAlpha(1)
+						CharacterFrame.EltruismClassResourceDesc2:SetAlpha(1)
 
-					--text
-					CharacterFrame.EltruismSpeedDesc:SetPoint("TOP", CharacterFrame.EltruismExtraStatsFont, "BOTTOM", -7, -10)
-					CharacterFrame.EltruismSpeedDesc:SetJustifyH("LEFT")
-					CharacterFrame.EltruismSpeedDesc:SetSize(150,5)
-					CharacterFrame.EltruismClassResourceDesc:SetPoint("TOP", CharacterFrame.EltruismSpeedDesc, "BOTTOM", 0, -10)
-					CharacterFrame.EltruismClassResourceDesc:SetJustifyH("LEFT")
-					CharacterFrame.EltruismClassResourceDesc:SetSize(150,5)
-					CharacterFrame.EltruismClassResourceDesc2:SetPoint("TOP", CharacterFrame.EltruismClassResourceDesc, "BOTTOM", 0, -10)
-					CharacterFrame.EltruismClassResourceDesc2:SetJustifyH("LEFT")
-					CharacterFrame.EltruismClassResourceDesc2:SetSize(150,5)
+						CharacterFrame.EltruismSpeed:SetPoint("TOP", CharacterFrame.EltruismExtraStatsFont, "BOTTOM", 60, -10)
+						CharacterFrame.EltruismSpeed:SetSize(50,5)
+						CharacterFrame.EltruismSpeed:SetJustifyH("RIGHT")
+						CharacterFrame.EltruismClassResource:SetPoint("TOP", CharacterFrame.EltruismSpeed, "BOTTOM", 0, -10)
+						CharacterFrame.EltruismClassResource:SetSize(50,5)
+						CharacterFrame.EltruismClassResource:SetJustifyH("RIGHT")
+						CharacterFrame.EltruismClassResource2:SetPoint("TOP", CharacterFrame.EltruismClassResource, "BOTTOM", 0, -10)
+						CharacterFrame.EltruismClassResource2:SetJustifyH("RIGHT")
+						CharacterFrame.EltruismClassResource2:SetSize(50,5)
 
-					--tooltip
-					CharacterFrame.EltruismSpeedDescTooltip:SetPoint("TOP", CharacterFrame.EltruismExtraStatsFont, "BOTTOM", 42, -10)
-					CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("TOP", CharacterFrame.EltruismSpeedDesc, "BOTTOM", 0, -10)
-					CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("TOP", CharacterFrame.EltruismClassResourceDesc, "BOTTOM", 0, -10)
+						--text
+						CharacterFrame.EltruismSpeedDesc:SetPoint("TOP", CharacterFrame.EltruismExtraStatsFont, "BOTTOM", -7, -10)
+						CharacterFrame.EltruismSpeedDesc:SetJustifyH("LEFT")
+						CharacterFrame.EltruismSpeedDesc:SetSize(150,5)
+						CharacterFrame.EltruismClassResourceDesc:SetPoint("TOP", CharacterFrame.EltruismSpeedDesc, "BOTTOM", 0, -10)
+						CharacterFrame.EltruismClassResourceDesc:SetJustifyH("LEFT")
+						CharacterFrame.EltruismClassResourceDesc:SetSize(150,5)
+						CharacterFrame.EltruismClassResourceDesc2:SetPoint("TOP", CharacterFrame.EltruismClassResourceDesc, "BOTTOM", 0, -10)
+						CharacterFrame.EltruismClassResourceDesc2:SetJustifyH("LEFT")
+						CharacterFrame.EltruismClassResourceDesc2:SetSize(150,5)
+
+						--tooltip
+						CharacterFrame.EltruismSpeedDescTooltip:SetPoint("TOP", CharacterFrame.EltruismExtraStatsFont, "BOTTOM", 42, -10)
+						CharacterFrame.EltruismClassResourceDescTooltip:SetPoint("TOP", CharacterFrame.EltruismSpeedDesc, "BOTTOM", 0, -10)
+						CharacterFrame.EltruismClassResourceDescTooltip2:SetPoint("TOP", CharacterFrame.EltruismClassResourceDesc, "BOTTOM", 0, -10)
+					else
+						CharacterFrame.EltruismSpeed:SetAlpha(0)
+						CharacterFrame.EltruismClassResource:SetAlpha(0)
+						CharacterFrame.EltruismClassResource2:SetAlpha(0)
+						CharacterFrame.EltruismSpeedDesc:SetAlpha(0)
+						CharacterFrame.EltruismClassResourceDesc:SetAlpha(0)
+						CharacterFrame.EltruismClassResourceDesc2:SetAlpha(0)
+					end
 				end
 			end)
 
