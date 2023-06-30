@@ -39,6 +39,10 @@ local function AddLootIcons(_, _, message, ...)
 	local _, _, _, _, _, _, _, _, _, _, guid = ...
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
+	elseif not E.db.ElvUI_EltreumUI then
+		return
+	elseif not E.db.ElvUI_EltreumUI.chat then
+		return
 	elseif E.db.ElvUI_EltreumUI.chat.enable then
 		local function Icon(link)
 
