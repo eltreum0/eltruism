@@ -75,3 +75,11 @@ function ElvUI_EltreumUI:EltruismHardcore()
 	end)
 end
 S:AddCallbackForAddon('Hardcore', "EltruismHardcore", ElvUI_EltreumUI.EltruismHardcore)
+
+--basic blizzard message dialog
+if _G.BasicMessageDialog then
+	S:HandleFrame(_G.BasicMessageDialog)
+	if _G._G.BasicMessageDialogButton then
+		S:HandleButton(_G._G.BasicMessageDialogButton)
+	end
+end
