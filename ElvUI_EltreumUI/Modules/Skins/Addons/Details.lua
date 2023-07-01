@@ -140,7 +140,7 @@ do
 						end
 					end
 
-					for i = 1, 3 do
+					for i = 1, 5 do
 						if _G["DetailsBaseFrame"..i] then
 							_G["DetailsBaseFrame"..i]:SetParent(embedpanel)
 							_G["DetailsRowFrame"..i]:SetParent(embedpanel)
