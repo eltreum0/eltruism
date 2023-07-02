@@ -124,7 +124,7 @@ function S:HandleMirrorTimer() --(timer, value, maxvalue, scale, paused, label)
 
 				frame.StatusBar:SetParent(frame.atlasHolder)
 				frame.StatusBar:ClearAllPoints()
-				frame.StatusBar:SetSize(E.db.ElvUI_EltreumUI.otherstuff.mirrorx +4, E.db.ElvUI_EltreumUI.otherstuff.mirrory+4)
+				frame.StatusBar:SetSize(E.db.ElvUI_EltreumUI.otherstuff.mirrorx + 4, E.db.ElvUI_EltreumUI.otherstuff.mirrory + 4)
 				frame.StatusBar:Point('TOP', 0, 2)
 
 				frame:SetSize(E.db.ElvUI_EltreumUI.otherstuff.mirrorx, E.db.ElvUI_EltreumUI.otherstuff.mirrory)
@@ -187,6 +187,8 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 				local statusBar = _G['MirrorTimer'..i..'StatusBar']
 				if statusBar then
 					statusBar:HookScript("OnShow", function()
+						statusBar:SetSize(E.db.ElvUI_EltreumUI.otherstuff.mirrorx, E.db.ElvUI_EltreumUI.otherstuff.mirrory)
+						statusBar:SetScale(E.db.ElvUI_EltreumUI.otherstuff.mirrorscale)
 						local r,g,b,a = statusBar:GetStatusBarColor()
 						if E.Wrath then
 							statusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.3,g= g - 0.3,b= b - 0.3,a= a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= a})
