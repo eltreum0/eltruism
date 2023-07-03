@@ -27,7 +27,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 			end
 			if E.db.ElvUI_EltreumUI.dev then
 				if nameplate.CurrentlyBeingTanked then
-					ElvUI_EltreumUI:Print(nameplate.CurrentlyBeingTanked..","..self.isTank..","..self.offTank..","..status)
+					ElvUI_EltreumUI:Print(nameplate.CurrentlyBeingTanked..","..tostring(self.isTank)..","..tostring(self.offTank)..","..status)
 				end
 			end
 			if status == 3 then -- securely tanking
