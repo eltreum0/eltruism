@@ -4,7 +4,7 @@ ___
 ### 3.8.9
 Added [eltruism:presencecolor] tag which shows Death Knight Presence with color  
 Added Tank Stats Datatext in Wrath and Classic  
-Added options to resize Mirro Timers  
+Added options to resize Mirror Timers  
 Updated Custom Textures to work outside of Gradient  
 Updated German locale by Dlarge  
 Fixed a possible issue where class custom textures could be locked out  
