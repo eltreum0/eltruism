@@ -126,6 +126,7 @@ local EltruismAFKLogoTexture = _G.ElvUIAFKFrame:CreateTexture()
 local EltruismAFKVignette = CreateFrame("Frame", "EltruismAFKVignette", UIParent)
 local EltruismAFKVignetteTexture = EltruismAFKVignette:CreateTexture()
 local EltruismAFKClassTexture = _G.ElvUIAFKFrame.bottom:CreateTexture()
+local ClassCrestFrameTexture = _G.ElvUIAFKFrame:CreateTexture("EltruismClassCrestAFK")
 
 local classIcons = {
 	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/WarriorShadow",
@@ -141,6 +142,38 @@ local classIcons = {
 	["DRUID"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DruidShadow",
 	["DEMONHUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunterShadow",
 	["EVOKER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/EvokerShadow",
+}
+
+local classCrests = {
+	["WARRIOR"] = "Artifacts-Warrior-BG-rune",
+	["PALADIN"] = "Artifacts-Paladin-BG-rune",
+	["HUNTER"] = "Artifacts-Hunter-BG-rune",
+	["ROGUE"] = "Artifacts-Rogue-BG-rune",
+	["PRIEST"] = "Artifacts-Priest-BG-rune",
+	["DEATHKNIGHT"] = "Artifacts-DeathKnightFrost-BG-Rune",
+	["SHAMAN"] = "Artifacts-Shaman-BG-rune",
+	["MAGE"] = "Artifacts-MageArcane-BG-rune",
+	["WARLOCK"] = "Artifacts-Warlock-BG-rune",
+	["MONK"] = "Artifacts-Monk-BG-rune",
+	["DRUID"] = "Artifacts-Druid-BG-rune",
+	["DEMONHUNTER"] = "Artifacts-DemonHunter-BG-rune",
+	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Evoker\\evokercrest",
+}
+
+local classCrests2 = {
+	["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Warrior.tga",
+	["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Paladin.tga",
+	["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Hunter.tga",
+	["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Rogue.tga",
+	["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Priest.tga",
+	["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\DeathKnight.tga",
+	["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Shaman.tga",
+	["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\MageArcane.tga",
+	["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Warlock.tga",
+	["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Monk.tga",
+	["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Druid.tga",
+	["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\DemonHunter.tga",
+	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Evoker.tga",
 }
 
 function ElvUI_EltreumUI:AFKLogo()
@@ -165,6 +198,21 @@ function ElvUI_EltreumUI:AFKLogo()
 				EltruismAFKVignette:Show()
 			else
 				EltruismAFKVignette:Hide()
+			end
+
+			--crest
+			if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
+				if E.db.ElvUI_EltreumUI.skins.armorycrestversion == 1 then
+					if E.myclass == "EVOKER" then
+						ClassCrestFrameTexture:SetTexture(classCrests[E.myclass])
+					else
+						ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+					end
+				else
+					ClassCrestFrameTexture:SetTexture(classCrests2[E.myclass])
+				end
+				ClassCrestFrameTexture:Point('RIGHT', _G.ElvUIAFKFrame.bottom, 'RIGHT', -80, 0)
+				ClassCrestFrameTexture:Size(E.screenHeight * 0.05, E.screenHeight * 0.05)
 			end
 
 			--bottom frame
