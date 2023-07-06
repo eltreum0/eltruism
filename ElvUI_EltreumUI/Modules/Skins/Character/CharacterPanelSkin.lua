@@ -151,6 +151,22 @@ local classCrests = {
 	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Evoker\\evokercrest",
 }
 
+local classCrests2 = {
+	["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Warrior.tga",
+	["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Paladin.tga",
+	["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Hunter.tga",
+	["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Rogue.tga",
+	["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Priest.tga",
+	["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\DeathKnight.tga",
+	["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Shaman.tga",
+	["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\MageArcane.tga",
+	["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Warlock.tga",
+	["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Monk.tga",
+	["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Druid.tga",
+	["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\DemonHunter.tga",
+	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Evoker.tga",
+}
+
 local statgradients = {
 	["WARRIOR"] = {r1 = 0.60, g1 = 0.40, b1 = 0.20, r2 = 0.66, g2 = 0.53, b2 = 0.34},
 	["PALADIN"] = {r1 = 0.9, g1 = 0.46, b1 = 0.64, r2 = 0.95, g2 = 0.65, b2 = 0.83},
@@ -1088,10 +1104,15 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			ClassCrestFrame:SetSize(256, 256)
 			ClassCrestFrame:SetPoint("CENTER", CharacterModelScene, 0, 50)
 			ClassCrestFrame:SetParent(CharacterFrame)
-			if E.myclass == "EVOKER" then
-				ClassCrestFrameTexture:SetTexture(classCrests[E.myclass])
+
+			if E.db.ElvUI_EltreumUI.skins.armorycrestversion == 1 then
+				if E.myclass == "EVOKER" then
+					ClassCrestFrameTexture:SetTexture(classCrests[E.myclass])
+				else
+					ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+				end
 			else
-				ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+				ClassCrestFrameTexture:SetTexture(classCrests2[E.myclass])
 			end
 			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
 			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
@@ -1356,7 +1377,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			ClassCrestFrame:SetPoint("CENTER", CharacterModelFrame, 0 , 50)
 			ClassCrestFrame:SetParent(CharacterFrame)
 			ClassCrestFrame:SetFrameLevel(1)
-			ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+			if E.db.ElvUI_EltreumUI.skins.armorycrestversion == 1 then
+				ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+			else
+				ClassCrestFrameTexture:SetTexture(classCrests2[E.myclass])
+			end
 			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
 			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND", -4)
 		end

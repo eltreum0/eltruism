@@ -119,6 +119,7 @@ P.ElvUI_EltreumUI = {
 		armoryvignettealpha = 1,
 		expandarmorybgalpha = 0.3,
 		expandarmorycrest = false,
+		armorycrestversion = 1,
 		statcolors = false,
 		bossemote = false,
 		quests = false,
