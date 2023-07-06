@@ -36,7 +36,7 @@ local UnitPower = _G.UnitPower
 local GetSpecialization = _G.GetSpecialization
 local GetShapeshiftFormInfo = _G.GetShapeshiftFormInfo
 local select = _G.select
-local ElvUI_EltreumUI  = _G.ElvUI_EltreumUI
+local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 
 --level difference table based on blizzard's
 local eltruismdif = {
