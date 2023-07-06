@@ -115,7 +115,7 @@ end
 --gradient mirror/breath/feigndeath
 function S:HandleMirrorTimer() --(timer, value, maxvalue, scale, paused, label)
 	for i = 1, 3 do
-		local frame = _G['MirrorTimer'..i]
+		local frame = _G['MirrorTimer'..i] --10.1.5 changes this to MirrorTimerContainer and will require a rework
 		if frame then
 			if not frame.atlasHolder then
 				frame.atlasHolder = CreateFrame('Frame', nil, frame)
