@@ -177,7 +177,7 @@ local classCrests2 = {
 }
 
 function ElvUI_EltreumUI:AFKLogo()
-	if E.db.general.afk then
+	if E.db.general.afk and E.db.ElvUI_EltreumUI.otherstuff.afklogo then
 
 		--add shadows
 		if _G.ElvUIAFKFrame and _G.ElvUIAFKFrame.bottom and not _G.ElvUIAFKFrame.bottom.shadow then
@@ -185,84 +185,81 @@ function ElvUI_EltreumUI:AFKLogo()
 			ElvUI_EltreumUI:ShadowColor(_G.ElvUIAFKFrame.bottom.shadow)
 		end
 
-		if E.db.ElvUI_EltreumUI.otherstuff.afklogo then
+		--vignette/overlay
+		EltruismAFKVignette:SetSize(E.screenWidth,E.screenHeight)
+		EltruismAFKVignette:SetAllPoints(_G.ElvUIAFKFrame)
+		EltruismAFKVignette:SetParent(_G.ElvUIAFKFrame)
+		EltruismAFKVignette:SetFrameStrata("BACKGROUND")
+		EltruismAFKVignetteTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\StealthOverlay.tga")
+		EltruismAFKVignetteTexture:SetAllPoints(EltruismAFKVignette)
+		if UnitIsAFK("player") then
+			EltruismAFKVignette:Show()
+		else
+			EltruismAFKVignette:Hide()
+		end
 
-			--vignette/overlay
-			EltruismAFKVignette:SetSize(E.screenWidth,E.screenHeight)
-			EltruismAFKVignette:SetAllPoints(_G.ElvUIAFKFrame)
-			EltruismAFKVignette:SetParent(_G.ElvUIAFKFrame)
-			EltruismAFKVignette:SetFrameStrata("BACKGROUND")
-			EltruismAFKVignetteTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\StealthOverlay.tga")
-			EltruismAFKVignetteTexture:SetAllPoints(EltruismAFKVignette)
-			if UnitIsAFK("player") then
-				EltruismAFKVignette:Show()
-			else
-				EltruismAFKVignette:Hide()
-			end
-
-			--crest
-			if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
-				if E.db.ElvUI_EltreumUI.skins.armorycrestversion == 1 then
-					if E.myclass == "EVOKER" then
-						ClassCrestFrameTexture:SetTexture(classCrests[E.myclass])
-					else
-						ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
-					end
+		--crest
+		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
+			if E.db.ElvUI_EltreumUI.skins.armorycrestversion == 1 then
+				if E.myclass == "EVOKER" then
+					ClassCrestFrameTexture:SetTexture(classCrests[E.myclass])
 				else
-					ClassCrestFrameTexture:SetTexture(classCrests2[E.myclass])
+					ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
 				end
-				ClassCrestFrameTexture:Point('RIGHT', _G.ElvUIAFKFrame.bottom, 'RIGHT', -80, 0)
-				ClassCrestFrameTexture:Size(E.screenHeight * 0.05, E.screenHeight * 0.05)
+			else
+				ClassCrestFrameTexture:SetTexture(classCrests2[E.myclass])
 			end
+			ClassCrestFrameTexture:Point('RIGHT', _G.ElvUIAFKFrame.bottom, 'RIGHT', -80, 0)
+			ClassCrestFrameTexture:Size(E.screenHeight * 0.05, E.screenHeight * 0.05)
+		end
 
-			--bottom frame
-			_G.ElvUIAFKFrame.bottom:SetWidth(E.screenWidth/1.75)
-			_G.ElvUIAFKFrame.bottom:SetHeight(E.screenHeight * 0.05)
-			_G.ElvUIAFKFrame.bottom:SetPoint("BOTTOM", _G.ElvUIAFKFrame, "BOTTOM", 0 , 50)
+		--bottom frame
+		_G.ElvUIAFKFrame.bottom:SetWidth(E.screenWidth/1.75)
+		_G.ElvUIAFKFrame.bottom:SetHeight(E.screenHeight * 0.05)
+		_G.ElvUIAFKFrame.bottom:SetPoint("BOTTOM", _G.ElvUIAFKFrame, "BOTTOM", 0 , 50)
 
-			--elvui logo
-			_G.ElvUIAFKFrame.bottom.LogoTop:SetTexture(nil)
-			_G.ElvUIAFKFrame.bottom.LogoBottom:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\elvui.tga")
-			_G.ElvUIAFKFrame.bottom.LogoBottom:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors(E.myclass, false, false))
-			_G.ElvUIAFKFrame.bottom.LogoBottom:SetSize(E.screenHeight * 0.1, E.screenHeight * 0.05)
-			_G.ElvUIAFKFrame.bottom.LogoBottom:ClearAllPoints()
-			_G.ElvUIAFKFrame.bottom.LogoBottom:Point('RIGHT', _G.ElvUIAFKFrame.bottom,'CENTER', -10, 0)
+		--elvui logo
+		_G.ElvUIAFKFrame.bottom.LogoTop:SetTexture(nil)
+		_G.ElvUIAFKFrame.bottom.LogoBottom:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\elvui.tga")
+		_G.ElvUIAFKFrame.bottom.LogoBottom:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors(E.myclass, false, false))
+		_G.ElvUIAFKFrame.bottom.LogoBottom:SetSize(E.screenHeight * 0.1, E.screenHeight * 0.05)
+		_G.ElvUIAFKFrame.bottom.LogoBottom:ClearAllPoints()
+		_G.ElvUIAFKFrame.bottom.LogoBottom:Point('RIGHT', _G.ElvUIAFKFrame.bottom,'CENTER', -10, 0)
 
-			--eltruism logo
-			EltruismAFKLogoTexture:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohqbw")
-			EltruismAFKLogoTexture:SetSize(E.screenHeight * 0.2, E.screenHeight * 0.05)
-			EltruismAFKLogoTexture:SetPoint("CENTER", _G.ElvUIAFKFrame.bottom)
-			EltruismAFKLogoTexture:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors("ELTRUISM", false, false))
-			EltruismAFKLogoTexture:Point('LEFT', _G.ElvUIAFKFrame.bottom,'CENTER', 10, 0)
+		--eltruism logo
+		EltruismAFKLogoTexture:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logohqbw")
+		EltruismAFKLogoTexture:SetSize(E.screenHeight * 0.2, E.screenHeight * 0.05)
+		EltruismAFKLogoTexture:SetPoint("CENTER", _G.ElvUIAFKFrame.bottom)
+		EltruismAFKLogoTexture:SetGradient("HORIZONTAL", ElvUI_EltreumUI:GradientColors("ELTRUISM", false, false))
+		EltruismAFKLogoTexture:Point('LEFT', _G.ElvUIAFKFrame.bottom,'CENTER', 10, 0)
 
-			--model
-			local point, relativeTo, relativePoint, _, yOfs = _G.ElvUIAFKFrame.bottom.modelHolder:GetPoint()
-			_G.ElvUIAFKFrame.bottom.modelHolder:ClearAllPoints()
-			_G.ElvUIAFKFrame.bottom.modelHolder:Point(point, relativeTo, relativePoint, 250, yOfs+10)
-			_G.ElvUIAFKFrame.bottom.model:SetScale(0.9)
+		--model
+		local point, relativeTo, relativePoint, _, yOfs = _G.ElvUIAFKFrame.bottom.modelHolder:GetPoint()
+		_G.ElvUIAFKFrame.bottom.modelHolder:ClearAllPoints()
+		_G.ElvUIAFKFrame.bottom.modelHolder:Point(point, relativeTo, relativePoint, 250, yOfs+10)
+		_G.ElvUIAFKFrame.bottom.model:SetScale(0.9)
 
-			--time
-			_G.ElvUIAFKFrame.bottom.time:ClearAllPoints()
-			_G.ElvUIAFKFrame.bottom.time:Point('RIGHT', _G.ElvUIAFKFrame.bottom, 'RIGHT', -10, 0)
+		--time
+		_G.ElvUIAFKFrame.bottom.time:ClearAllPoints()
+		_G.ElvUIAFKFrame.bottom.time:Point('RIGHT', _G.ElvUIAFKFrame.bottom, 'RIGHT', -10, 0)
 
-			--class icon
-			_G.ElvUIAFKFrame.bottom.faction:SetTexture(nil)
-			EltruismAFKClassTexture:Point('LEFT', _G.ElvUIAFKFrame.bottom, 'LEFT', 0, 0)
-			EltruismAFKClassTexture:Size(E.screenHeight * 0.05, E.screenHeight * 0.05)
-			EltruismAFKClassTexture:SetTexture(classIcons[E.myclass])
+		--class icon
+		_G.ElvUIAFKFrame.bottom.faction:SetTexture(nil)
+		EltruismAFKClassTexture:Point('LEFT', _G.ElvUIAFKFrame.bottom, 'LEFT', 0, 0)
+		EltruismAFKClassTexture:Size(E.screenHeight * 0.05, E.screenHeight * 0.05)
+		EltruismAFKClassTexture:SetTexture(classIcons[E.myclass])
 
-			--name
-			_G.ElvUIAFKFrame.bottom.name:SetText(ElvUI_EltreumUI:GradientName(E.myname, E.myclass))
-			_G.ElvUIAFKFrame.bottom.name:ClearAllPoints()
-			_G.ElvUIAFKFrame.bottom.name:Point('TOPLEFT', EltruismAFKClassTexture, 'TOPRIGHT', 10, -2)
+		--name
+		_G.ElvUIAFKFrame.bottom.name:SetText(ElvUI_EltreumUI:GradientName(E.myname, E.myclass))
+		_G.ElvUIAFKFrame.bottom.name:ClearAllPoints()
+		_G.ElvUIAFKFrame.bottom.name:Point('TOPLEFT', EltruismAFKClassTexture, 'TOPRIGHT', 10, -2)
 
-			--remove the rank from guild text
-			if IsInGuild() then
-				E:Delay(0, function()
-					local guildName = GetGuildInfo('player')
-					_G.ElvUIAFKFrame.bottom.guild:SetText(guildName)
-				end)
-			end
+		--remove the rank from guild text
+		if IsInGuild() then
+			E:Delay(0, function()
+				local guildName = GetGuildInfo('player')
+				_G.ElvUIAFKFrame.bottom.guild:SetText(guildName)
+			end)
 		end
 	end
 end
