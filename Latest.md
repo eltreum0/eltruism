@@ -1,14 +1,8 @@
-### 3.8.9 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.9.0 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added [eltruism:presencecolor] tag which shows Death Knight Presence with color  
-Added Tank Stats Datatext in Wrath and Classic  
-Added options to resize Mirror Timers  
-Updated Custom Textures to work outside of Gradient  
-Updated German locale by Dlarge  
-Fixed a possible issue where class custom textures could be locked out  
-Fixed an issue with shadows when some unitframes were disabled  
-Fixed castbar borders when cast bar icon was disabled  
-Fixed other glows not hiding if changed in ElvUI  
-Fixed an issue where some options were hidden  
-Fixed missing Custom Glow after a reload  
-Fixed a possible issue with shadows in Wrath
+Updated Details embed to handle extra Details windows  
+Updated Mirror Timers scale/size to work in Classic  
+Added new Class Crests/Symbols, with options to change versions  
+Added Class Crest to AFK screen (if option is enabled)  
+Fixed a possible issue with the chat icons when the database was not loaded  
+Fixed a possible issue with the number of stats on the Character Panel
