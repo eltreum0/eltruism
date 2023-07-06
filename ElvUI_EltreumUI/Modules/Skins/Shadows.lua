@@ -889,7 +889,7 @@ function ElvUI_EltreumUI:Shadows()
 
 			--mirror timer shadow
 			if not E.Retail then
-				for i = 1, _G.MIRRORTIMER_NUMTIMERS do
+				for i = 1, 3 do
 					local statusBar = _G['MirrorTimer'..i..'StatusBar']
 					if statusBar then
 						if not statusBar.shadow then
@@ -899,7 +899,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 			else
-				for i = 1, _G.MIRRORTIMER_NUMTIMERS do
+				for i = 1, 3 do
 					local statusBar = _G['MirrorTimer'..i]
 					if statusBar then
 						if not statusBar.shadow then

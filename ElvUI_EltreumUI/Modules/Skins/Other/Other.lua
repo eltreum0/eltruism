@@ -114,7 +114,7 @@ end
 
 --gradient mirror/breath/feigndeath
 function S:HandleMirrorTimer() --(timer, value, maxvalue, scale, paused, label)
-	for i = 1, _G.MIRRORTIMER_NUMTIMERS do
+	for i = 1, 3 do
 		local frame = _G['MirrorTimer'..i]
 		if frame then
 			if not frame.atlasHolder then
@@ -183,7 +183,7 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 
 		--breath/mirror
 		if not E.Retail then
-			for i = 1, _G.MIRRORTIMER_NUMTIMERS do
+			for i = 1, 3 do
 				local statusBar = _G['MirrorTimer'..i..'StatusBar']
 				if statusBar then
 					statusBar:HookScript("OnShow", function()
@@ -202,7 +202,7 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 
 
 		--loot roll
-		for i = 1, NUM_GROUP_LOOT_FRAMES do
+		for i = 1, 4 do
 			local frame = _G["ElvUI_LootRollFrame"..i]
 			if frame then
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then

@@ -223,7 +223,6 @@ globals = {
 	"PET_TALENTS",
 	"LEVEL_UP_YOU_REACHED",
 	"Minimap",
-	"NUM_GROUP_LOOT_FRAMES",
 	"C_CVar",
 	"UseItemByName",
 	"C_TradeSkillUI",
