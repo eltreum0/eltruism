@@ -1415,3 +1415,5 @@ L["Add gradient to Names"] = true
 L["Select which type of teleports to use on double click"] = true
 L["Disable DPS Icons"] = true
 L["Shows the current presence with color"] = true
+L["Stats Font Size"] = true
+L["Character Name Font Size"] = true
