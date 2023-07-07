@@ -1120,7 +1120,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		hooksecurefunc("CharacterFrame_Collapse", function()
 			if PaperDollFrame:IsVisible() then
-				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize - 6, E.db.general.fontStyle)
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
 					CharacterFrame:SetWidth(505)
 					E:Delay(0, function()
@@ -1173,7 +1173,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		hooksecurefunc("CharacterFrame_Expand", function()
 			if PaperDollFrame:IsVisible() then
-				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
+				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
 					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
 						if not ElvUI_EltreumUI:SLCheck("stats") then
@@ -1657,7 +1657,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterNameText:ClearAllPoints()
 			CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
 			--CharacterNameText:SetParent(CharacterModelFrame)
-			CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
+			CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
 			CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 			CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
 			CharacterNameText:SetShadowOffset(2, -1)
@@ -2456,7 +2456,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							E:Delay(0, function()
 								if not E.Retail then
 									if _G.InspectNameText and _G.InspectNameText:GetText() and not _G.InspectNameText:GetText():match("|T") then
-										_G.InspectNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
+										_G.InspectNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
 										if string.len(_G.InspectNameText:GetText()) >= 6 then
 											if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectNameText:GetText():match("|r") then
 												_G.InspectNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectNameText:GetText(), englishClass))
@@ -2475,7 +2475,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									end
 								else
 									if _G.InspectFrameTitleText and _G.InspectFrameTitleText:GetText() and not _G.InspectFrameTitleText:GetText():match("|T") then
-										_G.InspectFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
+										_G.InspectFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
 										if string.len(_G.InspectFrameTitleText:GetText()) >= 6 then
 											if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectFrameTitleText:GetText():match("|r") then
 												_G.InspectFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectFrameTitleText:GetText(), englishClass))
