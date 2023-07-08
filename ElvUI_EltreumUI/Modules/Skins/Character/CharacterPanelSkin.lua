@@ -151,6 +151,22 @@ local classCrests = {
 	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Evoker\\evokercrest",
 }
 
+local classCrests2 = {
+	["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Warrior.tga",
+	["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Paladin.tga",
+	["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Hunter.tga",
+	["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Rogue.tga",
+	["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Priest.tga",
+	["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\DeathKnight.tga",
+	["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Shaman.tga",
+	["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\MageArcane.tga",
+	["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Warlock.tga",
+	["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Monk.tga",
+	["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Druid.tga",
+	["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\DemonHunter.tga",
+	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Evoker.tga",
+}
+
 local statgradients = {
 	["WARRIOR"] = {r1 = 0.60, g1 = 0.40, b1 = 0.20, r2 = 0.66, g2 = 0.53, b2 = 0.34},
 	["PALADIN"] = {r1 = 0.9, g1 = 0.46, b1 = 0.64, r2 = 0.95, g2 = 0.65, b2 = 0.83},
@@ -1088,10 +1104,15 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			ClassCrestFrame:SetSize(256, 256)
 			ClassCrestFrame:SetPoint("CENTER", CharacterModelScene, 0, 50)
 			ClassCrestFrame:SetParent(CharacterFrame)
-			if E.myclass == "EVOKER" then
-				ClassCrestFrameTexture:SetTexture(classCrests[E.myclass])
+
+			if E.db.ElvUI_EltreumUI.skins.armorycrestversion == 1 then
+				if E.myclass == "EVOKER" then
+					ClassCrestFrameTexture:SetTexture(classCrests[E.myclass])
+				else
+					ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+				end
 			else
-				ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+				ClassCrestFrameTexture:SetTexture(classCrests2[E.myclass])
 			end
 			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
 			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
@@ -1099,7 +1120,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		hooksecurefunc("CharacterFrame_Collapse", function()
 			if PaperDollFrame:IsVisible() then
-				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize - 6, E.db.general.fontStyle)
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
 					CharacterFrame:SetWidth(505)
 					E:Delay(0, function()
@@ -1152,7 +1173,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		hooksecurefunc("CharacterFrame_Expand", function()
 			if PaperDollFrame:IsVisible() then
-				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
+				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
 					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
 						if not ElvUI_EltreumUI:SLCheck("stats") then
@@ -1356,7 +1377,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			ClassCrestFrame:SetPoint("CENTER", CharacterModelFrame, 0 , 50)
 			ClassCrestFrame:SetParent(CharacterFrame)
 			ClassCrestFrame:SetFrameLevel(1)
-			ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+			if E.db.ElvUI_EltreumUI.skins.armorycrestversion == 1 then
+				ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+			else
+				ClassCrestFrameTexture:SetTexture(classCrests2[E.myclass])
+			end
 			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
 			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND", -4)
 		end
@@ -1632,7 +1657,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterNameText:ClearAllPoints()
 			CharacterNameText:SetPoint('TOP', CharacterModelFrame, 0, 80)
 			--CharacterNameText:SetParent(CharacterModelFrame)
-			CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
+			CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
 			CharacterNameText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 			CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
 			CharacterNameText:SetShadowOffset(2, -1)
@@ -2431,7 +2456,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							E:Delay(0, function()
 								if not E.Retail then
 									if _G.InspectNameText and _G.InspectNameText:GetText() and not _G.InspectNameText:GetText():match("|T") then
-										_G.InspectNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
+										_G.InspectNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
 										if string.len(_G.InspectNameText:GetText()) >= 6 then
 											if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectNameText:GetText():match("|r") then
 												_G.InspectNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectNameText:GetText(), englishClass))
@@ -2450,7 +2475,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									end
 								else
 									if _G.InspectFrameTitleText and _G.InspectFrameTitleText:GetText() and not _G.InspectFrameTitleText:GetText():match("|T") then
-										_G.InspectFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
+										_G.InspectFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
 										if string.len(_G.InspectFrameTitleText:GetText()) >= 6 then
 											if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectFrameTitleText:GetText():match("|r") then
 												_G.InspectFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectFrameTitleText:GetText(), englishClass))
