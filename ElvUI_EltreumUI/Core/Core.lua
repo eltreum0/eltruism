@@ -287,6 +287,13 @@ function ElvUI_EltreumUI:Anchors()
 						tremove(editMode.registeredSystemFrames, i)
 					end
 				end
+				if name == "ArcheologyDigsiteProgressBar" then
+					tremove(editMode.registeredSystemFrames, i)
+					_G.ArcheologyDigsiteProgressBar.ApplySystemAnchor = nil
+					_G.ArcheologyDigsiteProgressBar.HighlightSystem = E.noop
+					_G.ArcheologyDigsiteProgressBar.ClearHighlight = E.noop
+				end
+
 				if E.private.actionbar.enable then
 					if name == "MainMenuBar" then
 						tremove(editMode.registeredSystemFrames, i)

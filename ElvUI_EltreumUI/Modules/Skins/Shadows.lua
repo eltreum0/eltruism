@@ -898,16 +898,6 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 				end
-			else
-				for i = 1, 3 do
-					local statusBar = _G['MirrorTimer'..i]
-					if statusBar then
-						if not statusBar.shadow then
-							statusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(statusBar.shadow)
-						end
-					end
-				end
 			end
 		end
 		------------------------------------------------------------------------------------------------------ minimap
