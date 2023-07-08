@@ -112,72 +112,7 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 	end
 end
 
---gradient mirror/breath/feigndeath
-function S:HandleMirrorTimer() --(timer, value, maxvalue, scale, paused, label)
-	for i = 1, 3 do
-		local frame = _G['MirrorTimer'..i] --10.1.5 changes this to MirrorTimerContainer and will require a rework
-		if frame then
-			if not frame.atlasHolder then
-				frame.atlasHolder = CreateFrame('Frame', nil, frame)
-				frame.atlasHolder:SetClipsChildren(true)
-				frame.atlasHolder:SetInside()
-
-				frame.StatusBar:SetParent(frame.atlasHolder)
-				frame.StatusBar:ClearAllPoints()
-				frame.StatusBar:SetSize(E.db.ElvUI_EltreumUI.otherstuff.mirrorx + 4, E.db.ElvUI_EltreumUI.otherstuff.mirrory + 4)
-				frame.StatusBar:Point('TOP', 0, 2)
-
-				frame:SetSize(E.db.ElvUI_EltreumUI.otherstuff.mirrorx, E.db.ElvUI_EltreumUI.otherstuff.mirrory)
-
-				frame.Text:FontTemplate()
-				frame.Text:ClearAllPoints()
-				frame.Text:SetParent(frame.StatusBar)
-				frame.Text:SetPoint('CENTER', frame.StatusBar, 0, 1)
-
-				frame:SetScale(E.db.ElvUI_EltreumUI.otherstuff.mirrorscale)
-			end
-
-			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-				local atlas = frame.StatusBar:GetStatusBarTexture():GetAtlas()
-				local alpha = frame.StatusBar:GetAlpha()
-				--print(atlas)
-				frame.StatusBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.private.general.glossTex))
-
-				--print(timer, value, maxvalue, scale, paused, label)
-				local MirrorTimerAtlasCheck = {
-					["EXHAUSTION"] = "UI-CastingBar-Filling-Standard", --yellow
-					["BREATH"] = "UI-CastingBar-Filling-ApplyingCrafting", --changing talents (blue)
-					--["DEATH"] = "UI-CastingBar-Filling-Standard", --same as EXHAUSTION
-					["FEIGNDEATH"] = "UI-CastingBar-Filling-Channel", --green
-				}
-				if atlas == MirrorTimerAtlasCheck["EXHAUSTION"] then
-					if E.Retail or E.Wrath then
-						frame.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=1,g= 0.68,b= 0,a= alpha}, {r=1,g= 0.83,b= 0.25,a= alpha})
-					else
-						frame.StatusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", 1, 0.68, 0, alpha, 1, 0.83, 0.25, alpha)
-					end
-				elseif atlas == MirrorTimerAtlasCheck["BREATH"] then
-					if E.Retail or E.Wrath then
-						frame.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=0,g= 0.33,b= 0.53,a= alpha}, {r=0.49,g= 0.87,b= 1,a= alpha})
-					else
-						frame.StatusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", 0, 0.33, 0.53, alpha, 0.49, 0.87, 1, alpha)
-					end
-				elseif atlas == MirrorTimerAtlasCheck["FEIGNDEATH"] then
-					if E.Retail or E.Wrath then
-						frame.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=0.01,g= 0.6,b= 0.36,a= alpha}, {r=0,g= 1,b= 0.58,a= alpha})
-					else
-						frame.StatusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", 0.01, 0.6, 0.36, alpha, 0, 1, 0.58, alpha)
-					end
-				end
-			end
-
-			frame:StripTextures()
-			frame:SetTemplate('Transparent')
-		end
-	end
-end
-
---gradient loot roll
+--gradient loot roll/mirror/breath/feigndeath
 function ElvUI_EltreumUI:GradientMirrorLoot()
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 
@@ -198,8 +133,63 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 					end)
 				end
 			end
-		end
+		else
+			if not _G.MirrorTimerContainer.EltruismHook then
+				hooksecurefunc(_G.MirrorTimerContainer, 'SetupTimer', function(container, timer) --based on elvui
+					_G.MirrorTimerContainer.EltruismHook = true
+					local bar = container:GetAvailableTimer(timer)
+					if not bar then return end
+					if bar.StatusBar then
 
+						--shadows
+						if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard then
+							if not bar.shadow then
+								bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(bar.shadow)
+							end
+						end
+
+						--gradient
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+							local atlas = bar.StatusBar:GetStatusBarTexture():GetAtlas()
+							local alpha = bar.StatusBar:GetAlpha()
+							--print(atlas)
+							bar.StatusBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.private.general.glossTex))
+
+							--print(timer, value, maxvalue, scale, paused, label)
+							local MirrorTimerAtlasCheck = {
+								["EXHAUSTION"] = "UI-CastingBar-Filling-Standard", --yellow
+								["BREATH"] = "UI-CastingBar-Filling-ApplyingCrafting", --changing talents (blue)
+								--["DEATH"] = "UI-CastingBar-Filling-Standard", --same as EXHAUSTION
+								["FEIGNDEATH"] = "UI-CastingBar-Filling-Channel", --green
+							}
+							if atlas == MirrorTimerAtlasCheck["EXHAUSTION"] then
+								if E.Retail or E.Wrath then
+									bar.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=1,g= 0.68,b= 0,a= alpha}, {r=1,g= 0.83,b= 0.25,a= alpha})
+								else
+									bar.StatusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", 1, 0.68, 0, alpha, 1, 0.83, 0.25, alpha)
+								end
+							elseif atlas == MirrorTimerAtlasCheck["BREATH"] then
+								if E.Retail or E.Wrath then
+									bar.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=0,g= 0.33,b= 0.53,a= alpha}, {r=0.49,g= 0.87,b= 1,a= alpha})
+								else
+									bar.StatusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", 0, 0.33, 0.53, alpha, 0.49, 0.87, 1, alpha)
+								end
+							elseif atlas == MirrorTimerAtlasCheck["FEIGNDEATH"] then
+								if E.Retail or E.Wrath then
+									bar.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=0.01,g= 0.6,b= 0.36,a= alpha}, {r=0,g= 1,b= 0.58,a= alpha})
+								else
+									bar.StatusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", 0.01, 0.6, 0.36, alpha, 0, 1, 0.58, alpha)
+								end
+							end
+						end
+
+						bar:StripTextures()
+						bar:SetTemplate('Transparent')
+					end
+				end)
+			end
+		end
 
 		--loot roll
 		for i = 1, 4 do
