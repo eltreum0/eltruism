@@ -56,6 +56,12 @@ local function ImproveInstall(installtype,mode,null)
 			_G.PluginInstallFrame.gaptexture:SetPoint("TOPRIGHT", _G.PluginInstallTitleFrame, "TOPLEFT",0,0)
 			_G.PluginInstallFrame.gaptexture:SetPoint("BOTTOMRIGHT", _G.PluginInstallTitleFrame, "BOTTOMLEFT",0,0)
 		end
+		if not _G.PluginInstallFrame.classsymbol then
+			_G.PluginInstallFrame.classsymbol = _G.PluginInstallTitleFrame:CreateTexture()
+			_G.PluginInstallFrame.classsymbol:SetTexture(ElvUI_EltreumUI:GetClassCrest())
+			_G.PluginInstallFrame.classsymbol:SetSize(128,128)
+			_G.PluginInstallFrame.classsymbol:SetPoint("BOTTOM", _G.PluginInstallTitleFrame, "BOTTOM", 0, 25)
+		end
 		if not _G.PluginInstallFrame.installpreview then
 			_G.PluginInstallFrame.installpreview = _G.PluginInstallFrame:CreateTexture("InstallTexturePreview")
 		end
