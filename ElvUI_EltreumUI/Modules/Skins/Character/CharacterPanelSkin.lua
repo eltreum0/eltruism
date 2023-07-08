@@ -347,6 +347,19 @@ function ElvUI_EltreumUI:GetPlayerSpec()
 	end
 end
 
+--return the proper class crest/icon/symbol for the player class
+function ElvUI_EltreumUI:GetClassCrest()
+	if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
+		if E.db.ElvUI_EltreumUI.skins.armorycrestversion == 1 then
+			return classCrests[E.myclass]
+		else
+			return classCrests2[E.myclass]
+		end
+	else
+		return classCrests2[E.myclass]
+	end
+end
+
 if not E.Retail then
 	local avgilvl = CreateFrame("FRAME")
 	avgilvl:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -1107,12 +1120,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			if E.db.ElvUI_EltreumUI.skins.armorycrestversion == 1 then
 				if E.myclass == "EVOKER" then
-					ClassCrestFrameTexture:SetTexture(classCrests[E.myclass])
+					ClassCrestFrameTexture:SetTexture(ElvUI_EltreumUI:GetClassCrest())
 				else
-					ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+					ClassCrestFrameTexture:SetAtlas(ElvUI_EltreumUI:GetClassCrest(), true)
 				end
 			else
-				ClassCrestFrameTexture:SetTexture(classCrests2[E.myclass])
+				ClassCrestFrameTexture:SetTexture(ElvUI_EltreumUI:GetClassCrest())
 			end
 			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
 			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
@@ -1378,9 +1391,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			ClassCrestFrame:SetParent(CharacterFrame)
 			ClassCrestFrame:SetFrameLevel(1)
 			if E.db.ElvUI_EltreumUI.skins.armorycrestversion == 1 then
-				ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+				ClassCrestFrameTexture:SetAtlas(ElvUI_EltreumUI:GetClassCrest(), true)
 			else
-				ClassCrestFrameTexture:SetTexture(classCrests2[E.myclass])
+				ClassCrestFrameTexture:SetTexture(ElvUI_EltreumUI:GetClassCrest())
 			end
 			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
 			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND", -4)
