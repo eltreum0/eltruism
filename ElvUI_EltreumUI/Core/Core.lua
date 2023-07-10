@@ -412,7 +412,6 @@ function ElvUI_EltreumUI:Anchors()
 						_G.ObjectiveTrackerFrame.SnapToFrame = nil
 						_G.ObjectiveTrackerFrame.ClearAllPointsOverride = nil
 						--_G.ObjectiveTrackerFrame.SetPointBase = E.noop --causes issues for some people for some reason
-
 						--_G.ObjectiveTrackerFrame.ClearAllPointsBase = nil
 						local function returnfalse()
 							return false
@@ -690,6 +689,15 @@ EltruismGameMenu:SetScript("OnEvent", function()
 					ShowUIPanel(EditModeManagerFrame);
 				end
 			end
+		end)
+		_G.GameMenuButtonEditMode:HookScript("OnEnter", function()
+			_G["GameTooltip"]:SetOwner(_G.GameMenuButtonEditMode, 'ANCHOR_RIGHT')
+			_G["GameTooltip"]:AddDoubleLine(L["Left Click:"], L["Toggle ElvUI Anchors"], 1, 1, 1)
+			_G["GameTooltip"]:AddDoubleLine(L["Right Click:"], L["Toggle Edit Mode"], 1, 1, 1)
+			_G["GameTooltip"]:Show()
+		end)
+		_G.GameMenuButtonEditMode:HookScript("OnLeave", function()
+			_G["GameTooltip"]:Hide()
 		end)
 	end
 
