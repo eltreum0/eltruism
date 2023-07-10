@@ -1472,3 +1472,5 @@ L["Disable DPS Icons"] = "Deaktiviere DPS Symbole"
 L["Shows the current presence with color"] = "Zeigt die aktuelle Präsenz farblich an"
 L["Stats Font Size"] = true
 L["Character Name Font Size"] = true
+L["Toggle ElvUI Anchors"] = true
+L["Toggle Edit Mode"] = true

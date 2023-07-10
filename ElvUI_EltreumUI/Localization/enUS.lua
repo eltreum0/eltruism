@@ -1417,3 +1417,5 @@ L["Disable DPS Icons"] = true
 L["Shows the current presence with color"] = true
 L["Stats Font Size"] = true
 L["Character Name Font Size"] = true
+L["Toggle ElvUI Anchors"] = true
+L["Toggle Edit Mode"] = true
