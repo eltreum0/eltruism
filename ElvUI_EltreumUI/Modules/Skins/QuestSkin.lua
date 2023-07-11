@@ -241,6 +241,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					_G.CAMPAIGN_QUEST_TRACKER_MODULE,
 					_G.PROFESSION_RECIPE_TRACKER_MODULE,
 					_G.MONTHLY_ACTIVITIES_TRACKER_MODULE,
+					_G.ADVENTURE_TRACKER_MODULE,
 				}
 				local mult = 0.85
 				for _, k in pairs(questmodules) do

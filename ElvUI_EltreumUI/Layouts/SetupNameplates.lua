@@ -570,6 +570,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["TARGET"]["classpower"]["enable"] = true
 		E.db["nameplates"]["units"]["TARGET"]["classpower"]["sortDirection"] = "asc"
 		E.db["nameplates"]["units"]["TARGET"]["classpower"]["width"] = 150
+		E.db["nameplates"]["units"]["TARGET"]["classpower"]["height"] = 7
 		E.db["nameplates"]["units"]["TARGET"]["classpower"]["yOffset"] = 26
 		--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style1" --border glow
 		--E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style2" --background glow

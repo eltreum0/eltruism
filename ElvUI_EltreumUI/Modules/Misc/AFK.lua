@@ -144,38 +144,6 @@ local classIcons = {
 	["EVOKER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/EvokerShadow",
 }
 
-local classCrests = {
-	["WARRIOR"] = "Artifacts-Warrior-BG-rune",
-	["PALADIN"] = "Artifacts-Paladin-BG-rune",
-	["HUNTER"] = "Artifacts-Hunter-BG-rune",
-	["ROGUE"] = "Artifacts-Rogue-BG-rune",
-	["PRIEST"] = "Artifacts-Priest-BG-rune",
-	["DEATHKNIGHT"] = "Artifacts-DeathKnightFrost-BG-Rune",
-	["SHAMAN"] = "Artifacts-Shaman-BG-rune",
-	["MAGE"] = "Artifacts-MageArcane-BG-rune",
-	["WARLOCK"] = "Artifacts-Warlock-BG-rune",
-	["MONK"] = "Artifacts-Monk-BG-rune",
-	["DRUID"] = "Artifacts-Druid-BG-rune",
-	["DEMONHUNTER"] = "Artifacts-DemonHunter-BG-rune",
-	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Evoker\\evokercrest",
-}
-
-local classCrests2 = {
-	["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Warrior.tga",
-	["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Paladin.tga",
-	["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Hunter.tga",
-	["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Rogue.tga",
-	["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Priest.tga",
-	["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\DeathKnight.tga",
-	["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Shaman.tga",
-	["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\MageArcane.tga",
-	["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Warlock.tga",
-	["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Monk.tga",
-	["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Druid.tga",
-	["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\DemonHunter.tga",
-	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Evoker.tga",
-}
-
 function ElvUI_EltreumUI:AFKLogo()
 	if E.db.general.afk and E.db.ElvUI_EltreumUI.otherstuff.afklogo then
 
@@ -202,16 +170,20 @@ function ElvUI_EltreumUI:AFKLogo()
 		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
 			if E.db.ElvUI_EltreumUI.skins.armorycrestversion == 1 then
 				if E.myclass == "EVOKER" then
-					ClassCrestFrameTexture:SetTexture(classCrests[E.myclass])
+					ClassCrestFrameTexture:SetTexture(ElvUI_EltreumUI:GetClassCrest())
 				else
-					ClassCrestFrameTexture:SetAtlas(classCrests[E.myclass], true)
+					ClassCrestFrameTexture:SetAtlas(ElvUI_EltreumUI:GetClassCrest(), true)
 				end
 			else
-				ClassCrestFrameTexture:SetTexture(classCrests2[E.myclass])
+				ClassCrestFrameTexture:SetAlpha(0.85)
+				ClassCrestFrameTexture:SetTexture(ElvUI_EltreumUI:GetClassCrest())
 			end
-			ClassCrestFrameTexture:Point('RIGHT', _G.ElvUIAFKFrame.bottom, 'RIGHT', -80, 0)
-			ClassCrestFrameTexture:Size(E.screenHeight * 0.05, E.screenHeight * 0.05)
+		else
+			ClassCrestFrameTexture:SetAlpha(0.85)
+			ClassCrestFrameTexture:SetTexture(ElvUI_EltreumUI:GetClassCrest())
 		end
+		ClassCrestFrameTexture:Point('RIGHT', _G.ElvUIAFKFrame.bottom, 'RIGHT', -80, 0)
+		ClassCrestFrameTexture:Size(E.screenHeight * 0.05, E.screenHeight * 0.05)
 
 		--bottom frame
 		_G.ElvUIAFKFrame.bottom:SetWidth(E.screenWidth/1.75)

@@ -409,14 +409,20 @@ function ElvUI_EltreumUI:Anchors()
 						_G.ObjectiveTrackerFrame.SetPointOverride = nil
 						_G.ObjectiveTrackerFrame.isRightManagedFrame = false
 						_G.ObjectiveTrackerFrame.breakSnappedFramesOnSave = false
-						--[[_G.ObjectiveTrackerFrame.SnapToFrame = nil
+						_G.ObjectiveTrackerFrame.SnapToFrame = nil
 						_G.ObjectiveTrackerFrame.ClearAllPointsOverride = nil
+						--_G.ObjectiveTrackerFrame.BreakFromFrameManager = E.noop
+						--_G.ObjectiveTrackerFrame.OnAnyEditModeSystemAnchorChanged = E.noop
+						--_G.ObjectiveTrackerFrame.ResetToDefaultPosition = E.noop
+						--_G.ObjectiveTrackerFrame.UpdateMagnetismRegistration = E.noop
+						--_G.ObjectiveTrackerFrame.UpdateSystemSetting = E.noop
+						--_G.ObjectiveTrackerFrame.SetSnappedToFrame = E.noop
 						--_G.ObjectiveTrackerFrame.SetPointBase = E.noop --causes issues for some people for some reason
 						--_G.ObjectiveTrackerFrame.ClearAllPointsBase = nil
 						local function returnfalse()
 							return false
 						end
-						_G.ObjectiveTrackerFrame.CanBeMoved = returnfalse()]]
+						_G.ObjectiveTrackerFrame.CanBeMoved = returnfalse()
 
 						_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
 						_G.ObjectiveTrackerFrame:SetMovable(true)
@@ -427,20 +433,23 @@ function ElvUI_EltreumUI:Anchors()
 						ObjectiveTrackerFrame:UnregisterEvent("ADDON_ACTION_BLOCKED")
 
 						local function SetObjectivePoint()
-							E:Delay(0, function()
+							--E:Delay(0, function()
 								if not InCombatLockdown() then
 									_G.ObjectiveTrackerFrame.isRightManagedFrame = false
 									_G.ObjectiveTrackerFrame.breakSnappedFramesOnSave = false
 									_G.ObjectiveTrackerFrame:ClearAllPoints()
 									_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
+									_G.ObjectiveTrackerFrame.editModeSystemAnchorDirty = false
 								end
-							end)
+							--end)
 							Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 							ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 							ObjectiveTrackerFrame:SetHeight(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight)
 						end
 						hooksecurefunc("ObjectiveTracker_UpdateHeight", SetObjectivePoint)
-
+						--hooksecurefunc(_G.ObjectiveTrackerFrame, "SetPointBase", SetObjectivePoint)
+						hooksecurefunc(_G.ObjectiveTrackerFrame, "OnAnyEditModeSystemAnchorChanged", SetObjectivePoint)
+						hooksecurefunc(_G.ObjectiveTrackerFrame, "ResetToDefaultPosition", SetObjectivePoint)
 					end
 				end)
 			end
@@ -689,6 +698,15 @@ EltruismGameMenu:SetScript("OnEvent", function()
 					ShowUIPanel(EditModeManagerFrame);
 				end
 			end
+		end)
+		_G.GameMenuButtonEditMode:HookScript("OnEnter", function()
+			_G["GameTooltip"]:SetOwner(_G.GameMenuButtonEditMode, 'ANCHOR_RIGHT')
+			_G["GameTooltip"]:AddDoubleLine(L["Left Click:"], L["Toggle ElvUI Anchors"], 1, 1, 1)
+			_G["GameTooltip"]:AddDoubleLine(L["Right Click:"], L["Toggle Edit Mode"], 1, 1, 1)
+			_G["GameTooltip"]:Show()
+		end)
+		_G.GameMenuButtonEditMode:HookScript("OnLeave", function()
+			_G["GameTooltip"]:Hide()
 		end)
 	end
 
