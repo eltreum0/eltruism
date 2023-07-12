@@ -481,7 +481,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 		end
 
 		--script buttons
-		if not self.isScripted then
+		if not _G.ProfessionsFrame.isEltruismScripted then
 			local disenchant = GetSpellInfo(13262)
 			disenchantbutton:SetText(disenchant)
 			disenchantbutton:SetAttribute("type1", "spell")
@@ -511,7 +511,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 				end
 			end
 
-			self.isScripted = true
+			_G.ProfessionsFrame.isEltruismScripted = true
 		end
 
 		--fixx disenchant overlap with create all
@@ -565,7 +565,7 @@ end
 local tradeskilloadmonitor = CreateFrame("FRAME")
 tradeskilloadmonitor:RegisterEvent("PLAYER_ENTERING_WORLD")
 tradeskilloadmonitor:RegisterEvent("ADDON_LOADED")
-tradeskilloadmonitor:SetScript("OnEvent", function(_,_,arg)
+local function TSMCheck(arg)
 	if IsAddOnLoaded("Blizzard_TradeSkillUI") or (arg == "Blizzard_TradeSkillUI") or _G.ProfessionsFrame then
 		tradeskilloadmonitor:UnregisterAllEvents()
 		if not E.private.ElvUI_EltreumUI then return end
@@ -573,6 +573,19 @@ tradeskilloadmonitor:SetScript("OnEvent", function(_,_,arg)
 		if not E.db.ElvUI_EltreumUI.skins then return end
 		if not E.db.ElvUI_EltreumUI.skins.professions then return end
 		ElvUI_EltreumUI:EnchantScroll()
+	end
+end
+tradeskilloadmonitor:SetScript("OnEvent", function(_,_,arg)
+	--in 10.1.5 the addon load order seems to not be reliable and tsm can error, so check for tsm being enabled (because it wont be loaded)
+	if GetAddOnEnableState(E.myname,"TradeSkillMaster") == 0 then
+		TSMCheck(arg)
+	else
+		if E.Retail then
+			tradeskilloadmonitor:UnregisterAllEvents()
+			S:AddCallbackForAddon('TradeSkillMaster', "EltruismTSMWorkaround", ElvUI_EltreumUI.EnchantScroll)
+		else
+			TSMCheck(arg)
+		end
 	end
 end)
 

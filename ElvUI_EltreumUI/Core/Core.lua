@@ -409,7 +409,7 @@ function ElvUI_EltreumUI:Anchors()
 						_G.ObjectiveTrackerFrame.SetPointOverride = nil
 						_G.ObjectiveTrackerFrame.isRightManagedFrame = false
 						_G.ObjectiveTrackerFrame.breakSnappedFramesOnSave = false
-						_G.ObjectiveTrackerFrame.SnapToFrame = nil
+						--[[_G.ObjectiveTrackerFrame.SnapToFrame = nil
 						_G.ObjectiveTrackerFrame.ClearAllPointsOverride = nil
 						--_G.ObjectiveTrackerFrame.BreakFromFrameManager = E.noop
 						--_G.ObjectiveTrackerFrame.OnAnyEditModeSystemAnchorChanged = E.noop
@@ -422,7 +422,7 @@ function ElvUI_EltreumUI:Anchors()
 						local function returnfalse()
 							return false
 						end
-						_G.ObjectiveTrackerFrame.CanBeMoved = returnfalse()
+						_G.ObjectiveTrackerFrame.CanBeMoved = returnfalse()]]
 
 						_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
 						_G.ObjectiveTrackerFrame:SetMovable(true)
