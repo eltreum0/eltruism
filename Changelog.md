@@ -1,6 +1,10 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.9.1
+Added missing Augmentation Evoker spec icon to Details icons  
+Updated ElvUI version check  
+Fixed possible taints with the Objective Tracker Mover in Retail
 ### 3.9.0
 Added new Class Crests/Symbols, with options to change versions  
 Added Class Crest to AFK screen (if option is enabled)  

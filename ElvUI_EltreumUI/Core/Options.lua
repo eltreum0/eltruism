@@ -677,10 +677,59 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.customglow.args.general.args.enableshamantotem2 = ACH:Toggle(L["Enable on Shaman Earth Totem"], nil, 9, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.totem2 end,function(_, value) E.db.ElvUI_EltreumUI.glow.totem2 = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
 	ElvUI_EltreumUI.Options.args.customglow.args.general.args.enableshamantotem3 = ACH:Toggle(L["Enable on Shaman Water Totem"], nil, 9, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.totem3 end,function(_, value) E.db.ElvUI_EltreumUI.glow.totem3 = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
 	ElvUI_EltreumUI.Options.args.customglow.args.general.args.enableshamantotem4 = ACH:Toggle(L["Enable on Shaman Air Totem"], nil, 9, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.totem4 end,function(_, value) E.db.ElvUI_EltreumUI.glow.totem4 = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
-	ElvUI_EltreumUI.Options.args.customglow.args.general.args.description3 = ACH:Description(L["Select a Type"], 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.customglow.args.general.args.autocast = ACH:Toggle(L["Autocast"], L["Adds an autocast style glow using class color"], 11, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.autocast end,function(_, value) E.db.ElvUI_EltreumUI.glow.autocast = value end, function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.pixel or E.db.ElvUI_EltreumUI.glow.blizzard end)
-	ElvUI_EltreumUI.Options.args.customglow.args.general.args.pixel = ACH:Toggle(L["Pixel"], L["Adds a pixel style glow using class color"], 11, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.pixel end,function(_, value) E.db.ElvUI_EltreumUI.glow.pixel = value end, function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.blizzard end)
-	ElvUI_EltreumUI.Options.args.customglow.args.general.args.blizzard = ACH:Toggle(L["Blizzard"], L["Adds an autocast style glow using class color"], 11, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.blizzard end,function(_, value) E.db.ElvUI_EltreumUI.glow.blizzard = value end, function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.pixel end)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.description3 = ACH:Description(" ", 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	--ElvUI_EltreumUI.Options.args.customglow.args.general.args.autocast = ACH:Toggle(L["Autocast"], L["Adds an autocast style glow using class color"], 11, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.autocast end,function(_, value) E.db.ElvUI_EltreumUI.glow.autocast = value end, function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.pixel or E.db.ElvUI_EltreumUI.glow.blizzard end)
+	--ElvUI_EltreumUI.Options.args.customglow.args.general.args.pixel = ACH:Toggle(L["Pixel"], L["Adds a pixel style glow using class color"], 11, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.pixel end,function(_, value) E.db.ElvUI_EltreumUI.glow.pixel = value end, function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.blizzard end)
+	--ElvUI_EltreumUI.Options.args.customglow.args.general.args.blizzard = ACH:Toggle(L["Blizzard"], L["Adds an autocast style glow using class color"], 11, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.blizzard end,function(_, value) E.db.ElvUI_EltreumUI.glow.blizzard = value end, function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) or E.db.ElvUI_EltreumUI.glow.autocast or E.db.ElvUI_EltreumUI.glow.pixel end)
+	local procoptions = {
+		["autocast"] = L["Autocast"],
+		["pixel"] = L["Pixel"],
+		["blizzard"] = L["Blizzard"],
+		["proc"] = L["Proc"],
+	}
+	if not E.Retail then
+		procoptions = {
+			["autocast"] = L["Autocast"],
+			["pixel"] = L["Pixel"],
+			["blizzard"] = L["Blizzard"],
+		}
+	end
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.customselection = ACH:Select(L["Select a Type"], nil, 10, procoptions, false, nil, function()
+		if E.db.ElvUI_EltreumUI.glow.autocast then
+			return "autocast"
+		elseif E.db.ElvUI_EltreumUI.glow.pixel then
+			return "pixel"
+		elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+			return "blizzard"
+		elseif E.db.ElvUI_EltreumUI.glow.procglow then
+			return "proc"
+		end
+	end,
+	function(_,value)
+		if value == "autocast" then
+			E.db.ElvUI_EltreumUI.glow.autocast = true
+			E.db.ElvUI_EltreumUI.glow.pixel = false
+			E.db.ElvUI_EltreumUI.glow.blizzard = false
+			E.db.ElvUI_EltreumUI.glow.procglow = false
+		elseif value == "pixel" then
+			E.db.ElvUI_EltreumUI.glow.autocast = false
+			E.db.ElvUI_EltreumUI.glow.pixel = true
+			E.db.ElvUI_EltreumUI.glow.blizzard = false
+			E.db.ElvUI_EltreumUI.glow.procglow = false
+		elseif value == "blizzard" then
+			E.db.ElvUI_EltreumUI.glow.autocast = false
+			E.db.ElvUI_EltreumUI.glow.pixel = false
+			E.db.ElvUI_EltreumUI.glow.blizzard = true
+			E.db.ElvUI_EltreumUI.glow.procglow = false
+		elseif value == "proc" then
+			E.db.ElvUI_EltreumUI.glow.autocast = false
+			E.db.ElvUI_EltreumUI.glow.pixel = false
+			E.db.ElvUI_EltreumUI.glow.blizzard = false
+			E.db.ElvUI_EltreumUI.glow.procglow = true
+		end
+	end, function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) end
+	)
+	ElvUI_EltreumUI.Options.args.customglow.args.general.args.customselection.style = "radio"
 	ElvUI_EltreumUI.Options.args.customglow.args.general.args.description4 = ACH:Description(L["Preview the Glow"], 12, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.customglow.args.general.args.preview = ACH:Execute(PREVIEW, L["Preview the Glow, you will need to toggle it off and on to update the glow"], 13, function() ElvUI_EltreumUI:PreviewGlow() end,nil,false,'full')
 	ElvUI_EltreumUI.Options.args.customglow.args.colors = ACH:Group(L["Glow Colors"], nil, 2,"tab",nil,nil,function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end)
@@ -792,6 +841,14 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.customglow.args.blizzard = ACH:Group(L["Blizzard Glow"], nil, 3, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end)
 	ElvUI_EltreumUI.Options.args.customglow.args.blizzard.args.description1 = ACH:Description(L["Blizzard Glow"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.customglow.args.blizzard.args.frequencyblizz = ACH:Range(L["Blizzard Frequency (Default is 0.5)"], L["Speed for Blizzard glow"], 2, { min = 0.1, max = 3, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.frequencyblizz end, function(_, value) E.db.ElvUI_EltreumUI.glow.frequencyblizz = value end)
+	ElvUI_EltreumUI.Options.args.customglow.args.proc = ACH:Group(E.NewSign..L["Proc Glow"], nil, 3, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end, not E.Retail) ----??????????????????
+	ElvUI_EltreumUI.Options.args.customglow.args.proc.args.startAnimation = ACH:Toggle(L["Start Animation"], L["Enable a start animation"], 1, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.proc.startAnimation end,function(_, value) E.db.ElvUI_EltreumUI.glow.proc.startAnimation = value end)
+	ElvUI_EltreumUI.Options.args.customglow.args.proc.args.description1 = ACH:Description(L["Proc Glow"], 2, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.customglow.args.proc.args.duration = ACH:Range(L["Speed"], L["Speed for Proc Glow"], 3, { min = 0.5, max = 3, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.proc.duration end, function(_, value) E.db.ElvUI_EltreumUI.glow.proc.duration = value end)
+	ElvUI_EltreumUI.Options.args.customglow.args.proc.args.description6 = ACH:Description(" ", 4, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.customglow.args.proc.args.procxoffset = ACH:Range(L["Horizontal Offset"], L["Set the horizontal offset"], 5, { min = 1, max = 10, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.proc.xOffset end, function(_, value) E.db.ElvUI_EltreumUI.glow.proc.xOffset = value end)
+	ElvUI_EltreumUI.Options.args.customglow.args.proc.args.description7 = ACH:Description(" ", 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.customglow.args.proc.args.procyoffset = ACH:Range(L["Vertical Offset"], L["Set the vertical offset"], 7, { min = 1, max = 10, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.glow.proc.yOffset end, function(_, value) E.db.ElvUI_EltreumUI.glow.proc.yOffset = value end)
 
 	--maps
 	ElvUI_EltreumUI.Options.args.map = ACH:Group(E:TextGradient(L["Maps"], 0.50, 0.70, 1, 0.67, 0.95, 1), E.Retail and L["Add a time to arrive to waypoints, cardinal directions and more"] or L["Add cardinal directions, change map scale and more"], 85, 'tab')
