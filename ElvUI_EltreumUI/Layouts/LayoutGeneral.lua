@@ -569,6 +569,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["actionbar"]["bar5"]["buttonsPerRow"] = 12
 		E.db["actionbar"]["bar6"]["buttonsPerRow"] = 12
 
+		--make sure bar4 is enabled
+		E.db["actionbar"]["bar4"]["enabled"] = true
+
 		E.db["actionbar"]["bar1"]["showGrid"] = true
 		E.db["actionbar"]["bar2"]["showGrid"] = true
 		E.db["actionbar"]["bar3"]["showGrid"] = true
