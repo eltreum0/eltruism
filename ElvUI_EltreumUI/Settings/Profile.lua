@@ -493,6 +493,7 @@ P.ElvUI_EltreumUI = {
 		blizzard = false,
 		pixel = false,
 		autocast = false,
+		procglow = false,
 		gradient = false,
 
 		totemtypecolor = true,
@@ -557,6 +558,13 @@ P.ElvUI_EltreumUI = {
 			r = 0.62,
 			g = 0.38,
 			b = 0.94,
+		},
+		proc = {
+			duration = 1,
+			startAnim = true,
+			frameLevel = 8,
+			xOffset = 3,
+			yOffset = 3,
 		},
 	},
 
