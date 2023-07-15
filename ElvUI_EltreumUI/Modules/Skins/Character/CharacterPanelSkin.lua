@@ -387,6 +387,7 @@ end
 function ElvUI_EltreumUI:ExpandedCharacterStats()
 	-- SLArmoryCheck()
 	if not E.private.skins.blizzard.enable then return end
+	if not E.private.skins.blizzard.character then return end
 
 	if not InCombatLockdown() then
 		_G["CharacterFrame"]:SetScale(E.db.ElvUI_EltreumUI.skins.characterpanelscale)
