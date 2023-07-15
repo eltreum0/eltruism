@@ -481,7 +481,13 @@ function ElvUI_EltreumUI:EnchantScroll()
 		end
 
 		--script buttons
-		if not _G.ProfessionsFrame.isEltruismScripted then
+		local hookedframe
+		if E.Retail then
+			hookedframe = _G.ProfessionsFrame
+		else
+			hookedframe = _G.TradeSkillFrame
+		end
+		if not hookedframe.isEltruismScripted then
 			local disenchant = GetSpellInfo(13262)
 			disenchantbutton:SetText(disenchant)
 			disenchantbutton:SetAttribute("type1", "spell")
@@ -511,10 +517,10 @@ function ElvUI_EltreumUI:EnchantScroll()
 				end
 			end
 
-			_G.ProfessionsFrame.isEltruismScripted = true
+			hookedframe.isEltruismScripted = true
 		end
 
-		--fixx disenchant overlap with create all
+		--fix disenchant overlap with create all
 		if E.Retail then
 			if _G.ProfessionsFrame.CraftingPage.CreateAllButton then
 				_G.ProfessionsFrame.CraftingPage.CreateAllButton:SetScript("OnShow", function()
