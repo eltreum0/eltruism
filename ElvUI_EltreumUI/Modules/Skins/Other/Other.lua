@@ -447,6 +447,9 @@ function ElvUI_EltreumUI:EnchantScroll()
 				_G.ProfessionsFrame:HookScript("OnShow", function()
 					_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale or 1)
 				end)
+				_G.ProfessionsFrame:SetScript('OnSizeChanged', function()
+					_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale or 1)
+				end)
 			end
 		end
 
