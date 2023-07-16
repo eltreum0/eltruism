@@ -65,6 +65,7 @@ local EltruismInstantLoot = CreateFrame("Frame", "EltruismInstantLoot")
 EltruismInstantLoot:RegisterEvent("LOOT_READY")
 EltruismInstantLoot:RegisterEvent("LOOT_OPENED")
 EltruismInstantLoot:RegisterEvent("LOOT_BIND_CONFIRM")
+EltruismInstantLoot:RegisterEvent("LOOT_SLOT_CHANGED")
 EltruismInstantLoot:RegisterEvent("UI_ERROR_MESSAGE")
 
 local function InstantLoot(_, event,_, arg2)
@@ -78,7 +79,7 @@ local function InstantLoot(_, event,_, arg2)
 		end
 	elseif event == "UI_ERROR_MESSAGE" and arg2 == ERR_INV_FULL then
 		return
-	elseif event == "LOOT_READY" or event == "LOOT_OPENED" then
+	elseif event == "LOOT_READY" or event == "LOOT_OPENED" or event == "LOOT_SLOT_CHANGED" then
 		--ElvUI_EltreumUI:Print("Event: "..event)
 		if E.db.ElvUI_EltreumUI.loot.lootwishlistwarning then
 			for i = GetNumLootItems(), 1, -1 do

@@ -152,7 +152,7 @@ instancedifficulty:SetScript("OnEvent", function()
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.b)
 				end
 			end
-		elseif DifficultyID == 9 or DifficultyID == 14 or DifficultyID == 173 then --regular raid
+		elseif DifficultyID == 9 or DifficultyID == 14 or DifficultyID == 173 or DifficultyID == 148 or DifficultyID == 185 or DifficultyID == 186 then --regular raid
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.Raid)
 			backuptext = E.db.ElvUI_EltreumUI.skins.instances.Raid
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
@@ -164,7 +164,7 @@ instancedifficulty:SetScript("OnEvent", function()
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.RaidColor.r, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.g, E.db.ElvUI_EltreumUI.skins.instances.RaidColor.b)
 				end
 			end
-		elseif DifficultyID == 174 or DifficultyID == 15 or DifficultyID == 148 or DifficultyID == 175 or DifficultyID == 176 or DifficultyID == 149 then --heroic raid
+		elseif DifficultyID == 174 or DifficultyID == 15 or DifficultyID == 175 or DifficultyID == 176 or DifficultyID == 149 or DifficultyID == 193 or DifficultyID == 194 then --heroic raid
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.RaidHeroic)
 			backuptext = E.db.ElvUI_EltreumUI.skins.instances.RaidHeroic
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
@@ -251,10 +251,10 @@ instancedifficulty:SetScript("OnEvent", function()
 			end
 		end
 
+		if _G["MiniMapInstanceDifficulty"] and (_G["MiniMapInstanceDifficulty"]:IsShown() == true or _G["MiniMapInstanceDifficulty"]:GetAlpha() == 1) then
+			_G["MiniMapInstanceDifficulty"]:SetAlpha(0)
+		end
 		if E.Retail then
-			if _G["MiniMapInstanceDifficulty"] and (_G["MiniMapInstanceDifficulty"]:IsShown() == true or _G["MiniMapInstanceDifficulty"]:GetAlpha() == 1) then
-				_G["MiniMapInstanceDifficulty"]:SetAlpha(0)
-			end
 			if _G["MiniMapChallengeMode"] and (_G["MiniMapChallengeMode"]:IsShown() == true or _G["MiniMapChallengeMode"]:GetAlpha() == 1) then
 				_G["MiniMapChallengeMode"]:SetAlpha(0)
 			end
