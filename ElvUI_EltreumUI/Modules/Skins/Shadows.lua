@@ -622,7 +622,6 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G.ChallengesKeystoneFrame.shadow)
 						end
 					end
-					print(arg)
 					if (arg == "Blizzard_Professions") or IsAddOnLoaded("Blizzard_Professions") then
 						if _G.ProfessionsFrame and not _G.ProfessionsFrame.shadow then
 							_G.ProfessionsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
