@@ -152,7 +152,7 @@ instancedifficulty:SetScript("OnEvent", function()
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonTimewalkerColor.b)
 				end
 			end
-		elseif DifficultyID == 9 or DifficultyID == 14 or DifficultyID == 173 or DifficultyID == 148 then --regular raid
+		elseif DifficultyID == 9 or DifficultyID == 14 or DifficultyID == 173 or DifficultyID == 148 or DifficultyID == 185 or DifficultyID == 186 then --regular raid
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.Raid)
 			backuptext = E.db.ElvUI_EltreumUI.skins.instances.Raid
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
