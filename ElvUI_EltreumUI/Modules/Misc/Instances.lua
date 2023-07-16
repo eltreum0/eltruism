@@ -251,10 +251,10 @@ instancedifficulty:SetScript("OnEvent", function()
 			end
 		end
 
+		if _G["MiniMapInstanceDifficulty"] and (_G["MiniMapInstanceDifficulty"]:IsShown() == true or _G["MiniMapInstanceDifficulty"]:GetAlpha() == 1) then
+			_G["MiniMapInstanceDifficulty"]:SetAlpha(0)
+		end
 		if E.Retail then
-			if _G["MiniMapInstanceDifficulty"] and (_G["MiniMapInstanceDifficulty"]:IsShown() == true or _G["MiniMapInstanceDifficulty"]:GetAlpha() == 1) then
-				_G["MiniMapInstanceDifficulty"]:SetAlpha(0)
-			end
 			if _G["MiniMapChallengeMode"] and (_G["MiniMapChallengeMode"]:IsShown() == true or _G["MiniMapChallengeMode"]:GetAlpha() == 1) then
 				_G["MiniMapChallengeMode"]:SetAlpha(0)
 			end
