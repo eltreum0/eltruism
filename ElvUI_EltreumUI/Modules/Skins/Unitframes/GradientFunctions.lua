@@ -350,7 +350,7 @@ function ElvUI_EltreumUI:GradientName(name, unitclass, isTarget)
 			return E:TextGradient(name, color.r2, color.g2, color.b2, color.r1, color.g1, color.b1)
 		end
 	else
-		local color = unitframegradients[unitclass]
+		local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
 		if not isTarget then
 			return E:TextGradient(name, color.r1, color.g1, color.b1, color.r2, color.g2, color.b2)
 		else

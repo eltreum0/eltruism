@@ -252,22 +252,22 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				if not E.private.nameplates.enable then -- no elvui np then the position needs to be manual
 					E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition = false
 				end
-				if E.Retail then
-					if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
-						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
-					else
-						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
-					end
-				elseif E.Classic or E.Wrath then
-					if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
-						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
-					else
-						EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
-					end
-				end
-				EltreumPowerBarText:SetPoint("Center", EltreumPowerBar, "Center", 0, 0)
 				isSetup = true
 			end
+			if E.Retail then
+				if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
+					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
+				else
+					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
+				end
+			elseif E.Classic or E.Wrath then
+				if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
+					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 10)
+				else
+					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
+				end
+			end
+			EltreumPowerBarText:SetPoint("Center", EltreumPowerBar, "Center", 0, 0)
 
 			--check if max power has changed, update then
 			if UnitPowerMax("player") ~= maxpower then

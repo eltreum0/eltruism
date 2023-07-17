@@ -622,6 +622,25 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G.ChallengesKeystoneFrame.shadow)
 						end
 					end
+					if (arg == "Blizzard_Professions") or IsAddOnLoaded("Blizzard_Professions") then
+						if _G.ProfessionsFrame and not _G.ProfessionsFrame.shadow then
+							_G.ProfessionsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ProfessionsFrame.shadow)
+						end
+						if _G.ProfessionsFrame and _G.ProfessionsFrame.TabSystem then
+							for i = 1, _G.ProfessionsFrame.TabSystem:GetNumChildren() do
+								local tab = select(i, _G.ProfessionsFrame.TabSystem:GetChildren())
+								if tab and tab.backdrop then
+									tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(tab.backdrop.shadow)
+								end
+							end
+							if _G.ProfessionsFrame.CraftingPage.CraftingOutputLog then
+								_G.ProfessionsFrame.CraftingPage.CraftingOutputLog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.ProfessionsFrame.CraftingPage.CraftingOutputLog.shadow)
+							end
+						end
+					end
 					if (arg == "Blizzard_EncounterJournal") or IsAddOnLoaded("Blizzard_EncounterJournal") then
 
 						--fix the overflow button
@@ -843,20 +862,6 @@ function ElvUI_EltreumUI:Shadows()
 			if _G.GroupLootHistoryFrame and _G.GroupLootHistoryFrame.ResizeButton and not _G.GroupLootHistoryFrame.ResizeButton.shadow then
 				_G.GroupLootHistoryFrame.ResizeButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(_G.GroupLootHistoryFrame.ResizeButton.shadow)
-			end
-
-			if _G.ProfessionsFrame and _G.ProfessionsFrame.TabSystem then
-				for i = 1, _G.ProfessionsFrame.TabSystem:GetNumChildren() do
-					local tab = select(i, _G.ProfessionsFrame.TabSystem:GetChildren())
-					if tab and tab.backdrop then
-						tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(tab.backdrop.shadow)
-					end
-				end
-				if _G.ProfessionsFrame.CraftingPage.CraftingOutputLog then
-					_G.ProfessionsFrame.CraftingPage.CraftingOutputLog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(_G.ProfessionsFrame.CraftingPage.CraftingOutputLog.shadow)
-				end
 			end
 
 			hooksecurefunc(_G.AlertFrame, "AddAlertFrame", function(_,frame)
