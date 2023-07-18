@@ -522,7 +522,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						S:HandleFrame(_G.ScenarioChallengeModeBlock)
 						--the block frame has a limit and because of that the shadow gets cropped out
 						-- so move the frame and increase the limit
-						_G.ScenarioBlocksFrame:SetWidth(265)
+						_G.ScenarioBlocksFrame:SetWidth(270)
 						local point, relativeTo, relativePoint, _, yOfs = _G.ScenarioChallengeModeBlock:GetPoint()
 						E:Delay(0, function()
 							_G.ScenarioChallengeModeBlock:ClearAllPoints()
