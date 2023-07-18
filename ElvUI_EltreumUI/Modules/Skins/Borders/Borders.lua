@@ -544,7 +544,7 @@ function ElvUI_EltreumUI:Borders()
 						else
 							bossborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 						end
-						bossborder:SetFrameStrata("LOW")
+						bossborder:SetFrameStrata("MEDIUM")
 					end
 				end
 			end

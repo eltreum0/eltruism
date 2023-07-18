@@ -520,6 +520,15 @@ function ElvUI_EltreumUI:SkinQuests()
 					if _G.ScenarioChallengeModeBlock:IsVisible() and not self.EltruismKeySkin then
 						S:HandleStatusBar(_G.ScenarioChallengeModeBlock.StatusBar)
 						S:HandleFrame(_G.ScenarioChallengeModeBlock)
+						--the block frame has a limit and because of that the shadow gets cropped out
+						-- so move the frame and increase the limit
+						_G.ScenarioBlocksFrame:SetWidth(270)
+						local point, relativeTo, relativePoint, _, yOfs = _G.ScenarioChallengeModeBlock:GetPoint()
+						E:Delay(0, function()
+							_G.ScenarioChallengeModeBlock:ClearAllPoints()
+							_G.ScenarioChallengeModeBlock:SetPoint(point, relativeTo, relativePoint, 5, yOfs-5)
+						end)
+
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 							if not _G.ScenarioChallengeModeBlock.shadow then
 								_G.ScenarioChallengeModeBlock:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
