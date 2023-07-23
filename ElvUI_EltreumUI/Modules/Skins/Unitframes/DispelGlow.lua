@@ -6,6 +6,7 @@ local LCG = E.Libs.CustomGlow
 local pairs = _G.pairs
 local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 --local LCG = LibStub('LibCustomGlow-1.0')
+local proc = {}
 
 --glow dispellable debuffs
 function ElvUI_EltreumUI:UFGlow(object, debuffType, _, wasFiltered)
@@ -43,6 +44,14 @@ function ElvUI_EltreumUI:UFGlow(object, debuffType, _, wasFiltered)
 									object._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r -0.2, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g-0.2, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b-0.2, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r+0.2, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g+0.2, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b+0.2)
 								end
 							end
+						elseif E.db.ElvUI_EltreumUI.glow.procglow then
+							proc.color = color
+							proc.duration = E.db.ElvUI_EltreumUI.glow.proc.duration
+							proc.startAnim = E.db.ElvUI_EltreumUI.glow.proc.startAnimation
+							proc.frameLevel = E.db.ElvUI_EltreumUI.glow.proc.frameLevel
+							proc.xOffset = E.db.ElvUI_EltreumUI.glow.proc.xOffset
+							proc.yOffset = E.db.ElvUI_EltreumUI.glow.proc.yOffset
+							LCG.ProcGlow_Start(object, proc)
 						end
 					end
 				else
@@ -52,6 +61,8 @@ function ElvUI_EltreumUI:UFGlow(object, debuffType, _, wasFiltered)
 						LCG.AutoCastGlow_Stop(object)
 					elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 						LCG.ButtonGlow_Stop(object)
+					elseif E.db.ElvUI_EltreumUI.glow.procglow then
+						LCG.ProcGlow_Stop(object)
 					end
 				end
 			end
