@@ -698,6 +698,7 @@ function ElvUI_EltreumUI:SkillGlowPet()
 			end
 			self.petglowcolorsetup = true
 		end
+		local procpet = {}
 		for i = 1, NUM_PET_ACTION_SLOTS, 1 do
 			local _, _, _, _, _, autoCastEnabled, _ = GetPetActionInfo(i)
 			local button = _G['PetActionButton'..i]
@@ -737,6 +738,14 @@ function ElvUI_EltreumUI:SkillGlowPet()
 							end
 						end
 					end
+				elseif E.db.ElvUI_EltreumUI.glow.procglow then
+					procpet.color = skillglowcolorpet
+					procpet.duration = E.db.ElvUI_EltreumUI.glow.proc.duration
+					procpet.startAnim = E.db.ElvUI_EltreumUI.glow.proc.startAnimation
+					procpet.frameLevel = E.db.ElvUI_EltreumUI.glow.proc.frameLevel
+					procpet.xOffset = E.db.ElvUI_EltreumUI.glow.proc.xOffset
+					procpet.yOffset = E.db.ElvUI_EltreumUI.glow.proc.yOffset
+					LCG.ProcGlow_Start(button, procpet)
 				end
 			else
 				AutoCastShine_AutoCastStop(button.AutoCastShine)
@@ -746,6 +755,8 @@ function ElvUI_EltreumUI:SkillGlowPet()
 					LCG.AutoCastGlow_Stop(button)
 				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 					LCG.ButtonGlow_Stop(button)
+				elseif E.db.ElvUI_EltreumUI.glow.procglow then
+					LCG.ProcGlow_Stop(button)
 				end
 			end
 		end
@@ -773,6 +784,7 @@ function ElvUI_EltreumUI:PreviewGlow()
 	if not E.private.ElvUI_EltreumUI then
 		return
 	end
+	local procpreview = {}
 	EltruismGlowTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\GlowPreview")
 	EltruismGlowTexture:SetAllPoints(EltruismGlowPreview)
 	EltruismGlowPreview:SetMovable(true)
@@ -795,6 +807,9 @@ function ElvUI_EltreumUI:PreviewGlow()
 		LCG.PixelGlow_Stop(EltruismGlowPreview)
 		LCG.AutoCastGlow_Stop(EltruismGlowPreview)
 		LCG.ButtonGlow_Stop(EltruismGlowPreview)
+		if E.Retail then
+			LCG.ProcGlow_Stop(EltruismGlowPreview)
+		end
 		EltruismGlowPreview:Hide()
 	else
 		EltruismGlowPreview:Show()
@@ -828,6 +843,14 @@ function ElvUI_EltreumUI:PreviewGlow()
 					end
 				end
 			end
+		elseif E.db.ElvUI_EltreumUI.glow.procglow then
+			procpreview.color = skillglowcolor
+			procpreview.duration = E.db.ElvUI_EltreumUI.glow.proc.duration
+			procpreview.startAnim = E.db.ElvUI_EltreumUI.glow.proc.startAnimation
+			procpreview.frameLevel = E.db.ElvUI_EltreumUI.glow.proc.frameLevel
+			procpreview.xOffset = E.db.ElvUI_EltreumUI.glow.proc.xOffset
+			procpreview.yOffset = E.db.ElvUI_EltreumUI.glow.proc.yOffset
+			LCG.ProcGlow_Start(EltruismGlowPreview, procpreview)
 		end
 	end
 end

@@ -39,6 +39,7 @@ local UnitName = _G.UnitName
 local IsResting = _G.IsResting
 local IsPlayerSpell = _G.IsPlayerSpell
 local UnitIsUnit = _G.UnitIsUnit
+local proc = {}
 
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1
@@ -65,6 +66,8 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 						LCG.AutoCastGlow_Stop(button)
 					elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 						LCG.ButtonGlow_Stop(button)
+					elseif E.db.ElvUI_EltreumUI.glow.procglow then
+						LCG.ProcGlow_Stop(button)
 					end
 				end
 			else
@@ -126,6 +129,14 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 												end
 											end
 										end
+									elseif E.db.ElvUI_EltreumUI.glow.procglow then
+										proc.color = glowcolor
+										proc.duration = E.db.ElvUI_EltreumUI.glow.proc.duration
+										proc.startAnim = E.db.ElvUI_EltreumUI.glow.proc.startAnimation
+										proc.frameLevel = E.db.ElvUI_EltreumUI.glow.proc.frameLevel
+										proc.xOffset = E.db.ElvUI_EltreumUI.glow.proc.xOffset
+										proc.yOffset = E.db.ElvUI_EltreumUI.glow.proc.yOffset
+										LCG.ProcGlow_Start(button, proc)
 									end
 								else
 									if E.db.ElvUI_EltreumUI.glow.pixel then
@@ -134,6 +145,8 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 										LCG.AutoCastGlow_Stop(button)
 									elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 										LCG.ButtonGlow_Stop(button)
+									elseif E.db.ElvUI_EltreumUI.glow.procglow then
+										LCG.ProcGlow_Stop(button)
 									end
 								end
 							end
@@ -145,6 +158,8 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 									LCG.AutoCastGlow_Stop(button)
 								elseif E.db.ElvUI_EltreumUI.glow.blizzard then
 									LCG.ButtonGlow_Stop(button)
+								elseif E.db.ElvUI_EltreumUI.glow.procglow then
+									LCG.ProcGlow_Stop(button)
 								end
 							end
 						end
