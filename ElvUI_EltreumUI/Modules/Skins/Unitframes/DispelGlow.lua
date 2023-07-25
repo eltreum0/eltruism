@@ -45,7 +45,7 @@ function ElvUI_EltreumUI:UFGlow(object, debuffType, _, wasFiltered)
 								end
 							end
 						elseif E.db.ElvUI_EltreumUI.glow.procglow then
-							proc.color = color
+							proc.color = {color.r, color.g, color.b, 1}
 							proc.duration = E.db.ElvUI_EltreumUI.glow.proc.duration
 							proc.startAnim = E.db.ElvUI_EltreumUI.glow.proc.startAnimation
 							proc.frameLevel = E.db.ElvUI_EltreumUI.glow.proc.frameLevel
