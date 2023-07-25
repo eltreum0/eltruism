@@ -49,8 +49,8 @@ function ElvUI_EltreumUI:UFGlow(object, debuffType, _, wasFiltered)
 							proc.duration = E.db.ElvUI_EltreumUI.glow.proc.duration
 							proc.startAnim = E.db.ElvUI_EltreumUI.glow.proc.startAnimation
 							proc.frameLevel = E.db.ElvUI_EltreumUI.glow.proc.frameLevel
-							proc.xOffset = E.db.ElvUI_EltreumUI.glow.proc.xOffset * 7
-							proc.yOffset = E.db.ElvUI_EltreumUI.glow.proc.yOffset * 2
+							proc.xOffset = 24
+							proc.yOffset = 6
 							LCG.ProcGlow_Start(object, proc)
 						end
 					end
