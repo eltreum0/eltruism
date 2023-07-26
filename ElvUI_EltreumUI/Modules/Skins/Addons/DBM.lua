@@ -30,7 +30,7 @@ function ElvUI_EltreumUI:DBMSkin()
 								bar.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(bar.frame.shadow)
 							end
-							if not statusbar.shadow then
+							if icon:IsShown() and not statusbar.shadow then
 								statusbar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(statusbar.shadow)
 								statusbar.shadow:ClearAllPoints()
