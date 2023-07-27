@@ -31,8 +31,6 @@ local TeleportsItems = {
 	22632, --atiesh-greatstaff-of-the-guardian
 	22589, --atiesh-greatstaff-of-the-guardian
 	54452, --ethereal-portal
-	188952, --dominated-hearthstone
-	162973, --greatfather-winters-hearthstone
 	93672, --dark-portal
 	184871, --dark-portal 2?
 	110560, --garrison-hearthstone
@@ -131,6 +129,9 @@ local TeleportsItems = {
 	17908, --frostwolf-insignia-rank-5
 	17909, --frostwolf-insignia-rank-6
 	142542, --tome of town portal (finally has a new animation)
+	--188952, --dominated-hearthstone
+	--162973, --greatfather-winters-hearthstone
+	--193588, --timewalkers-hearthstone
 }
 local TeleportsSpells = {
 	556, --astral-recall
@@ -337,8 +338,8 @@ local texturePaths = {
 	["410074"] = "Interface\\Icons\\achievement_dungeon_underrot.blp", --path-of-festering-rot
 	["410071"] = "Interface\\Icons\\achievement_dungeon_freehold.blp", --path-of-the-freebooter
 	["410080"] = "Interface\\Icons\\achievement_dungeon_skywall.blp", --path-of-winds-domain
-	["188952"] = "Interface\\Icons\\Spell_AnimaMaw_Nova.blp", --dominated hearthsone
-	["162973"] = "Interface\\Icons\\inv_holiday_hearthstonewinterveil.blp", --greatfather-winters-hearthstone
+	--["188952"] = "Interface\\Icons\\Spell_AnimaMaw_Nova.blp", --dominated hearthsone
+	--["162973"] = "Interface\\Icons\\inv_holiday_hearthstonewinterveil.blp", --greatfather-winters-hearthstone
 }
 local hearthstones = {
 	["6948"] = true, --hearthstone
@@ -349,8 +350,8 @@ local hearthstones = {
 	["142298"] = true, --astonishingly-scarlet-slippers
 	["142542"] = true, --tome of town portal (finally has a new animation)
 	["556"] = true, --astral-recall
-	["188952"] = true, --dominated hearthsone
-	["162973"] = true, --greatfather-winters-hearthstone
+	--["188952"] = true, --dominated hearthsone
+	--["162973"] = true, --greatfather-winters-hearthstone
 }
 function ElvUI_EltreumUI:GetTeleportSpells()
 	if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
