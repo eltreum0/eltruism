@@ -32,6 +32,7 @@ local TeleportsItems = {
 	22589, --atiesh-greatstaff-of-the-guardian
 	54452, --ethereal-portal
 	188952, --dominated-hearthstone
+	162973, --greatfather-winters-hearthstone
 	93672, --dark-portal
 	184871, --dark-portal 2?
 	110560, --garrison-hearthstone
@@ -337,6 +338,7 @@ local texturePaths = {
 	["410071"] = "Interface\\Icons\\achievement_dungeon_freehold.blp", --path-of-the-freebooter
 	["410080"] = "Interface\\Icons\\achievement_dungeon_skywall.blp", --path-of-winds-domain
 	["188952"] = "Interface\\Icons\\Spell_AnimaMaw_Nova.blp", --dominated hearthsone
+	["162973"] = "Interface\\Icons\\inv_holiday_hearthstonewinterveil.blp", --greatfather-winters-hearthstone
 }
 local hearthstones = {
 	["6948"] = true, --hearthstone
@@ -348,6 +350,7 @@ local hearthstones = {
 	["142542"] = true, --tome of town portal (finally has a new animation)
 	["556"] = true, --astral-recall
 	["188952"] = true, --dominated hearthsone
+	["162973"] = true, --greatfather-winters-hearthstone
 }
 function ElvUI_EltreumUI:GetTeleportSpells()
 	if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
@@ -457,8 +460,9 @@ local function EltruismTeleportsOnEnter()
 				hasItem = 0
 			end
 		end
-
+		--print(nameitems,PlayerHasToy(v),C_ToyBox.IsToyUsable(v))
 		if texture and nameitems and ((hasItem > 0 and IsUsableItem(v)) or (E.Retail and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v))) then
+
 			local start, duration = GetItemCooldown(v)
 			local cooldown = start + duration - GetTime()
 			if cooldown >= 2 then
