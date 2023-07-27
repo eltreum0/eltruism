@@ -31,6 +31,7 @@ local TeleportsItems = {
 	22632, --atiesh-greatstaff-of-the-guardian
 	22589, --atiesh-greatstaff-of-the-guardian
 	54452, --ethereal-portal
+	188952, --dominated-hearthstone
 	93672, --dark-portal
 	184871, --dark-portal 2?
 	110560, --garrison-hearthstone
@@ -335,6 +336,7 @@ local texturePaths = {
 	["410074"] = "Interface\\Icons\\achievement_dungeon_underrot.blp", --path-of-festering-rot
 	["410071"] = "Interface\\Icons\\achievement_dungeon_freehold.blp", --path-of-the-freebooter
 	["410080"] = "Interface\\Icons\\achievement_dungeon_skywall.blp", --path-of-winds-domain
+	["188952"] = "Interface\\Icons\\Spell_AnimaMaw_Nova.blp", --dominated hearthsone
 }
 local hearthstones = {
 	["6948"] = true, --hearthstone
@@ -345,6 +347,7 @@ local hearthstones = {
 	["142298"] = true, --astonishingly-scarlet-slippers
 	["142542"] = true, --tome of town portal (finally has a new animation)
 	["556"] = true, --astral-recall
+	["188952"] = true, --dominated hearthsone
 }
 function ElvUI_EltreumUI:GetTeleportSpells()
 	if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
