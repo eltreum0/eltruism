@@ -293,6 +293,98 @@ function ElvUI_EltreumUI:Tooltip()
 				end)
 				_G.ShoppingTooltip1.EltruismTooltipHook = true
 			end
+
+			if not _G.ShoppingTooltip2.EltruismTooltipHook then
+				_G.ShoppingTooltip2:HookScript("OnTooltipSetItem", function(tooltip)
+					if E.db.ElvUI_EltreumUI.skins.ilvltooltip then --CURRENTLY_EQUIPPED
+						local line = _G["ShoppingTooltip2TextLeft2"]:GetText()
+						if line and not line:match(ITEM_LEVEL) then
+							local _, itemLink = tooltip:GetItem()
+							if (itemLink ~= nil) then
+								local _, _, _, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(itemLink)
+								if itemLevel and (classID == 2 or classID == 4) then
+									--tooltip:AddLine(string.format(ITEM_LEVEL, itemLevel))
+									--tooltip:AppendText("("..itemLevel..")")
+									local lefttext = _G["ShoppingTooltip2TextLeft2"]:GetText()
+									_G["ShoppingTooltip2TextLeft2"]:SetText(lefttext.."|r\n".."|cfffece00"..string.format(ITEM_LEVEL, itemLevel))
+									_G["ShoppingTooltip2TextLeft2"]:SetJustifyH("LEFT")
+									if _G["ShoppingTooltip2TextRight2"] and _G["ShoppingTooltip2TextRight2"]:GetText() then
+										local righttext = _G["ShoppingTooltip2TextRight2"]:GetText()
+										if righttext then
+											_G["ShoppingTooltip2TextRight2"]:SetText("\n"..righttext.." ") --without the space the text truncates
+										end
+									end
+								end
+							end
+						end
+					end
+					if E.db.ElvUI_EltreumUI.skins.gradienttooltip then
+						local name,itemLink = _G.ShoppingTooltip2:GetItem()
+						if not name then return end
+						if not itemLink then return end
+						local _, _, itemQuality = GetItemInfo(itemLink)
+						if not itemQuality then return end
+						local r2,g2,b2 = GetItemQualityColor(itemQuality)
+						local r1 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
+						if r1 < 0 then r1 = 0 elseif r1 > 1 then r1 = 1 end
+						local g1 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
+						if g1 < 0 then g1 = 0 elseif g1 > 1 then g1 = 1 end
+						local b1 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset1
+						if b1 < 0 then b1 = 0 elseif b1 > 1 then b1 = 1 end
+						r2 = r2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
+						if r2 < 0 then r2 = 0 elseif r2 > 1 then r2 = 1 end
+						g2 = g2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
+						if g2 < 0 then g2 = 0 elseif g2 > 1 then g2 = 1 end
+						b2 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
+						if b2 < 0 then b2 = 0 elseif b2 > 1 then b2 = 1 end
+						if E.db.ElvUI_EltreumUI.skins.ilvltooltip then
+							local _, _, _, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(itemLink)
+							if itemLevel and (classID == 2 or classID == 4) then
+								if _G["ShoppingTooltip2TextLeft2"]:GetText() ~= nil then
+									local icon = strmatch(_G["ShoppingTooltip2TextLeft2"]:GetText(), "^.-|t")
+									if icon then
+										_G["ShoppingTooltip2TextLeft2"]:SetText(icon .. " " .. E:TextGradient(name, r1, g1, b1, r2, g2, b2).."|r\n".."|cfffece00"..string.format(ITEM_LEVEL, itemLevel))
+									else
+										_G["ShoppingTooltip2TextLeft2"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2).."|r\n".."|cfffece00"..string.format(ITEM_LEVEL, itemLevel))
+									end
+									_G["ShoppingTooltip2TextLeft2"]:SetJustifyH("LEFT")
+									if _G["ShoppingTooltip2TextRight2"] and _G["ShoppingTooltip2TextRight2"]:GetText() then
+										local righttext = _G["ShoppingTooltip2TextRight2"]:GetText()
+										if righttext then
+											_G["ShoppingTooltip2TextRight2"]:SetText("\n"..righttext.." ") --without the space the text truncates
+										end
+									end
+								else
+									_G["ShoppingTooltip2TextLeft2"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+								end
+							else
+								if _G["ShoppingTooltip2TextLeft2"]:GetText() ~= nil then
+									local icon = strmatch(_G["ShoppingTooltip2TextLeft2"]:GetText(), "^.-|t")
+									if icon then
+										_G["ShoppingTooltip2TextLeft2"]:SetText(icon .. " " .. E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+									else
+										_G["ShoppingTooltip2TextLeft2"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+									end
+								else
+									_G["ShoppingTooltip2TextLeft2"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+								end
+							end
+						else
+							if _G["ShoppingTooltip2TextLeft1"]:GetText() ~= nil then
+								local icon = strmatch(_G["ShoppingTooltip2TextLeft2"]:GetText(), "^.-|t")
+								if icon then
+									_G["ShoppingTooltip2TextLeft2"]:SetText(icon .. " " .. E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+								else
+									_G["ShoppingTooltip2TextLeft2"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+								end
+							else
+								_G["ShoppingTooltip2TextLeft2"]:SetText(E:TextGradient(name, r1, g1, b1, r2, g2, b2))
+							end
+						end
+					end
+				end)
+				_G.ShoppingTooltip2.EltruismTooltipHook = true
+			end
 		end
 	end
 end
