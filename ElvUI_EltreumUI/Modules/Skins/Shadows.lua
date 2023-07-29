@@ -2156,6 +2156,14 @@ function ElvUI_EltreumUI:Shadows()
 						_G["ElvUF_Player_AdditionalPowerBar"].shadow:Hide()
 					end
 				end
+				if E.db["unitframe"]["units"]["player"]["classbar"]["fill"] ~= "spaced" and E.db["unitframe"]["units"]["player"]["classbar"]["detachFromFrame"] and E.db["unitframe"]["units"]["player"]["classbar"]["enable"] then
+					if _G["ElvUF_Player_ClassBar"] then
+						if not _G["ElvUF_Player_ClassBar"].shadow then
+							_G["ElvUF_Player_ClassBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_ClassBar"].shadow)
+						end
+					end
+				end
 
 				--info panel on top
 				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
