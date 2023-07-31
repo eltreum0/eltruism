@@ -1427,3 +1427,5 @@ L["Horizontal Offset"] = true
 L["Vertical Offset"] = true
 L["Set the horizontal offset"] = true
 L["Set the vertical offset"] = true
+L["Enable for Pet"] = true
+L["Enable Gradient colors for Pet"] = true

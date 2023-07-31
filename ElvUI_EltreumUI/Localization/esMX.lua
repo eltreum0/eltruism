@@ -1455,3 +1455,5 @@ L["Horizontal Offset"] = "Desplazamiento horizontal"
 L["Vertical Offset"] = "Desplazamiento vertical"
 L["Set the horizontal offset"] = "Ajustar el desplazamiento horizontal"
 L["Set the vertical offset"] = "Establecer el desplazamiento vertical"
+L["Enable for Pet"] = true
+L["Enable Gradient colors for Pet"] = true
