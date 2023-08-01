@@ -1481,3 +1481,5 @@ L["Horizontal Offset"] = "Horizontaler Versatz"
 L["Vertical Offset"] = "Vertikaler Versatz"
 L["Set the horizontal offset"] = "Lege den horizontalen Versatz fest"
 L["Set the vertical offset"] = "Lege den vertikalen Versatz fest"
+L["Enable for Pet"] = true
+L["Enable Gradient colors for Pet"] = true
