@@ -303,6 +303,21 @@ local OriginalIcons = {
 	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunterOriginal.tga:0:0:0:0|t",
 	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\EvokerOriginal.tga:0:0:0:0|t",
 }
+local classSymbols = {
+	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Warrior.tga:0:0:0:0|t",
+	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Paladin.tga:0:0:0:0|t",
+	["HUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Hunter.tga:0:0:0:0|t",
+	["ROGUE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Rogue.tga:0:0:0:0|t",
+	["PRIEST"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Priest.tga:0:0:0:0|t",
+	["DEATHKNIGHT"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\DeathKnight.tga:0:0:0:0|t",
+	["SHAMAN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Shaman.tga:0:0:0:0|t",
+	["MAGE"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Mage.tga:0:0:0:0|t",
+	["WARLOCK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Warlock.tga:0:0:0:0|t",
+	["MONK"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Monk.tga:0:0:0:0|t",
+	["DRUID"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Druid.tga:0:0:0:0|t",
+	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\DemonHunter.tga:0:0:0:0|t",
+	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Evoker.tga:0:0:0:0|t",
+}
 local reverseclassIconsReleaf = {
 	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
 	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinReleaf.tga:0:0:0:0:64:64:64:0:0:64|t",
@@ -408,7 +423,7 @@ local gradient ={
 	["DEMONHUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\DemonHunterGradient.tga:0:0:0:0|t",
 	["EVOKER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\EvokerGradient.tga:0:0:0:0|t",
 }
-local gradientReverse ={
+local gradientReverse = {
 	["WARRIOR"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\WarriorGradient.tga:0:0:0:0:64:64:64:0:0:64|t",
 	["PALADIN"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\PaladinGradient.tga:0:0:0:0:64:64:64:0:0:64|t",
 	["HUNTER"] = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\HunterGradient.tga:0:0:0:0:64:64:64:0:0:64|t",
@@ -441,6 +456,8 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert)
 			return OriginalIcons[unitclass]
 		elseif icon == "GRADIENT" then
 			return gradient[unitclass]
+		elseif icon == "SYMBOLS" then
+			return classSymbols[unitclass]
 		end
 	else
 		if icon == "RELEAF" then
@@ -457,6 +474,8 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert)
 			return reverseOriginalIcons[unitclass]
 		elseif icon == "GRADIENT" then
 			return gradientReverse[unitclass]
+		elseif icon == "SYMBOLS" then
+			return classSymbols[unitclass]
 		end
 	end
 end

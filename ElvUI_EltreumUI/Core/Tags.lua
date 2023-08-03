@@ -612,6 +612,14 @@ E:AddTag("eltruism:reverseReleafgradient:player", "UNIT_NAME_UPDATE", function(u
 end)
 E:AddTagInfo("eltruism:reverseReleafgradient:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "Shows Reversed Releaf Icons with Gradient Colors")
 
+--new class symbols
+E:AddTag("eltruism:classSymbols:player", "UNIT_NAME_UPDATE", function(unit)
+	if not UnitIsPlayer(unit) then return end
+	local _,englishClass = UnitClass(unit)
+	return ElvUI_EltreumUI:GetClassIcons("SYMBOLS",englishClass)
+end)
+E:AddTagInfo("eltruism:classSymbols:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "Shows Eltruism Class Symbol")
+
 --gradient releaf icons for all
 E:AddTag("eltruism:Releafgradient:all", "UNIT_NAME_UPDATE", function(unit)
 	local _,englishClass = UnitClass(unit)
