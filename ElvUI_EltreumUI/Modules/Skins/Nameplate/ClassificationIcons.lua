@@ -104,6 +104,20 @@ local bossIDs = {
 	["43873"] = true,
 	["43875"] = true,
 
+	-- Dawn of the Infinite
+	["198933"] = true,
+	["198995"] = true,
+	["198996"] = true,
+	["198997"] = true,
+	["198998"] = true,
+	["198999"] = true,
+	["199000"] = true,
+	["201788"] = true,
+	["201790"] = true,
+	["201792"] = true,
+	["209207"] = true,
+	["209208"] = true,
+
 	-- raid VOTI
 	["190245"] = true, --Broodkeeper-Diurna
 	["184972"] = true, --Eranog
