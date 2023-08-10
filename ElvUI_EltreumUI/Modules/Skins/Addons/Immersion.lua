@@ -27,6 +27,20 @@ function ElvUI_EltreumUI:EltruismImmersion()
 			S:HandleFrame(v)
 		end
 
+		if _G["ImmersionFrame"].TalkBox.ReputationBar then
+			S:HandleStatusBar(_G["ImmersionFrame"].TalkBox.ReputationBar)
+			_G["ImmersionFrame"].TalkBox.ReputationBar:ClearAllPoints()
+			_G["ImmersionFrame"].TalkBox.ReputationBar:SetPoint("BOTTOMLEFT", _G["ImmersionFrame"].TalkBox, "TOPLEFT", 0, E.db.ElvUI_EltreumUI.skins.shadow.length)
+			_G["ImmersionFrame"].TalkBox.ReputationBar:SetPoint("BOTTOMRIGHT", _G["ImmersionFrame"].TalkBox, "TOPRIGHT", 0, E.db.ElvUI_EltreumUI.skins.shadow.length)
+			_G["ImmersionFrame"].TalkBox.ReputationBar:SetHeight(4)
+			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+				if not _G["ImmersionFrame"].TalkBox.ReputationBar.shadow then
+					_G["ImmersionFrame"].TalkBox.ReputationBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G["ImmersionFrame"].TalkBox.ReputationBar.shadow)
+				end
+			end
+		end
+
 		if _G["ImmersionFrame"].TalkBox.ProgressionBar then
 			S:HandleStatusBar(_G["ImmersionFrame"].TalkBox.ProgressionBar)
 			local width, height = _G["ImmersionFrame"].TalkBox.ProgressionBar:GetSize()
