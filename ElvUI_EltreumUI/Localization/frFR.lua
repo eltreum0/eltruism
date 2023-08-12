@@ -1437,5 +1437,5 @@ L["Horizontal Offset"] = "Décalage horizontal"
 L["Vertical Offset"] = "Décalage vertical"
 L["Set the horizontal offset"] = "Définir le décalage horizontal"
 L["Set the vertical offset"] = "Définir le décalage vertical"
-L["Enable for Pet"] = true
-L["Enable Gradient colors for Pet"] = true
+L["Enable for Pet"] = "Activer pour l'animal de compagnie"
+L["Enable Gradient colors for Pet"] = "Activer les couleurs dégradées pour l'animal de compagnie"
