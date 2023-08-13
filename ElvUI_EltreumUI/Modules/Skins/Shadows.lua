@@ -2856,7 +2856,7 @@ local TimeSinceLastUpdate = 0
 local ONUPDATE_INTERVAL = 0.1
 local M = E:GetModule('Misc')
 function ElvUI_EltreumUI:ChatBubblesShadows()
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable and not self.ChatShadowsHooked and E.private.general.chatBubbles == "backdrop" or E.private.general.chatBubbles == "backdrop_noborder" then
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and not self.ChatShadowsHooked and (E.private.general.chatBubbles == "backdrop" or E.private.general.chatBubbles == "backdrop_noborder") then
 		M.BubbleFrame:HookScript("OnUpdate",function(_,elapsed)
 			TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 			if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
