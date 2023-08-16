@@ -84,30 +84,17 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 			scaleOut:SetDuration(5)
 			scaleOut:SetStartDelay(0.1)
 			scaleOut:SetSmoothing("OUT")
-			if E.Classic then
-				scaleOut:SetFromScale(1, 1)
-				scaleOut:SetToScale(2, 2)
-			else
-				scaleOut:SetScaleFrom(1, 1)
-				scaleOut:SetScaleTo(2, 2)
-			end
+			scaleOut:SetScaleFrom(1, 1)
+			scaleOut:SetScaleTo(2, 2)
 			moveOut:SetOrder(1)
 			moveOut:SetDuration(5)
 			moveOut:SetSmoothing("OUT")
 			moveOut:SetStartDelay(0.1)
 			if E.db.ElvUI_EltreumUI.skins.playerdeathcustom then
 				local textwidth = darksouls.Text:GetStringWidth()
-				if E.Retail then
-					moveOut:SetOffset(-textwidth/2, fontsize/8)
-				else
-					moveOut:SetOffset(-textwidth/2, -fontsize/4)
-				end
+				moveOut:SetOffset(-textwidth/2, -fontsize/4)
 			else
-				if E.Retail then
-					moveOut:SetOffset(-fontsize, fontsize/8)
-				else
-					moveOut:SetOffset(-fontsize, -fontsize/4)
-				end
+				moveOut:SetOffset(-fontsize, fontsize/8)
 			end
 
 			local _, instanceType = IsInInstance()
@@ -122,8 +109,12 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 				end
 				Minimap:Hide()
 				Minimap:SetAlpha(0)
-				if not IsAddOnLoaded("Hardcore") then
+				if not E.Classic then
 					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\You_Died.ogg" , "Master")
+				else
+					if not C_GameRules.IsHardcoreActive() then
+						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\You_Died.ogg" , "Master")
+					end
 				end
 				UIFrameFadeIn(darksouls, 1, 0, 1)
 				darksouls.scaler:Play()
@@ -186,8 +177,12 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 			gta.Text:SetShadowOffset(4, -4)
 			gta.Text:SetText("WASTED")
 			gta.Text:SetDrawLayer("OVERLAY")
-			if not IsAddOnLoaded("Hardcore") then
+			if not E.Classic then
 				gtabanner:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Wasted.tga")
+			else
+				if not C_GameRules.IsHardcoreActive() then
+					gtabanner:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Wasted.tga")
+				end
 			end
 			gtabanner:SetAlpha(0.60)
 			gtabanner:SetSize(x, 300)
@@ -208,7 +203,13 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 				end
 				Minimap:Hide()
 				Minimap:SetAlpha(0)
-				PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wasted.ogg" , "Master")
+				if not E.Classic then
+					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wasted.ogg" , "Master")
+				else
+					if not C_GameRules.IsHardcoreActive() then
+						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wasted.ogg" , "Master")
+					end
+				end
 				UIFrameFadeIn(gta, 1, 0, 1)
 
 				E:Delay(2.6, function()

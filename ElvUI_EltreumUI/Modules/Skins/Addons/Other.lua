@@ -67,14 +67,15 @@ S:AddCallbackForAddon('Scrap_Merchant', "EltruismScrap", ElvUI_EltreumUI.Eltruis
 S:AddCallbackForAddon('Scrap', "EltruismScrap", ElvUI_EltreumUI.EltruismScrap)
 
 --secret
-function ElvUI_EltreumUI:EltruismHardcore()
+if E.Classic then
 	local HardcoreMonitor = CreateFrame("Frame")
 	HardcoreMonitor:RegisterEvent("PLAYER_DEAD")
 	HardcoreMonitor:SetScript("OnEvent", function()
-		PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\overconfidence.ogg" , "Master")
+		if C_GameRules.IsHardcoreActive() then
+			PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\overconfidence.ogg" , "Master")
+		end
 	end)
 end
-S:AddCallbackForAddon('Hardcore', "EltruismHardcore", ElvUI_EltreumUI.EltruismHardcore)
 
 --basic blizzard message dialog
 if _G.BasicMessageDialog then
