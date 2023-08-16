@@ -16,7 +16,7 @@ local unpack = _G.unpack
 local GetSpellCooldown = _G.GetSpellCooldown
 local GetSpellInfo = _G.GetSpellInfo
 local GetSpellTexture = _G.GetSpellTexture
-local GetItemCooldown = (E.Retail or E.Wrath) and C_Container.GetItemCooldown or _G.GetItemCooldown
+local GetItemCooldown = C_Container.GetItemCooldown
 local GetItemInfo = _G.GetItemInfo
 local GetPetActionCooldown = _G.GetPetActionCooldown
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
@@ -27,7 +27,6 @@ local GetActionInfo = _G.GetActionInfo
 local GetActionTexture = _G.GetActionTexture
 local GetInventoryItemID = _G.GetInventoryItemID
 local GetInventoryItemTexture = _G.GetInventoryItemTexture
-local GetContainerItemID = _G.GetContainerItemID
 local wasPreviewing = false
 local ignoredSpells
 local cooldowns, animating, watching = { }, { }, { }
@@ -364,23 +363,13 @@ function ElvUI_EltreumUI:Doom()
 			end
 		end)
 
-		if E.Retail or E.Wrath then
-			hooksecurefunc(C_Container, "UseContainerItem", function(bag,slot)
-				local itemID = C_Container.GetContainerItemID(bag, slot)
+		hooksecurefunc(C_Container, "UseContainerItem", function(bag,slot)
+			local itemID = C_Container.GetContainerItemID(bag, slot)
 
-				if (itemID) then
-					local texture = select(10, GetItemInfo(itemID))
-					watching[itemID] = {GetTime(),"item",texture}
-				end
-			end)
-		else
-			hooksecurefunc("UseContainerItem", function(bag,slot)
-				local itemID = GetContainerItemID(bag, slot)
-				if (itemID) then
-					local texture = select(10, GetItemInfo(itemID))
-					watching[itemID] = {GetTime(),"item",texture}
-				end
-			end)
-		end
+			if (itemID) then
+				local texture = select(10, GetItemInfo(itemID))
+				watching[itemID] = {GetTime(),"item",texture}
+			end
+		end)
 	end
 end

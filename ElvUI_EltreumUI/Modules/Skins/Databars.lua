@@ -8,11 +8,7 @@ local InCombatLockdown = _G.InCombatLockdown
 --gradient xp
 function ElvUI_EltreumUI:GradientDatabarXP()
 	if _G["ElvUI_ExperienceBar"] and E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP then
-		if E.Retail or E.Wrath then
-			_G["ElvUI_ExperienceBar"]:GetStatusBarTexture():SetGradient("HORIZONTAL", { r = E.db.databars.colors.experience.r, g = E.db.databars.colors.experience.g, b = E.db.databars.colors.experience.b, a = E.db.databars.colors.experience.a}, { r = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, g = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, b = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, a = E.db.databars.colors.experience.a})
-		else
-			_G["ElvUI_ExperienceBar"]:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", E.db.databars.colors.experience.r, E.db.databars.colors.experience.g, E.db.databars.colors.experience.b, E.db.databars.colors.experience.a, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, E.db.databars.colors.experience.a)
-		end
+		_G["ElvUI_ExperienceBar"]:GetStatusBarTexture():SetGradient("HORIZONTAL", { r = E.db.databars.colors.experience.r, g = E.db.databars.colors.experience.g, b = E.db.databars.colors.experience.b, a = E.db.databars.colors.experience.a}, { r = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, g = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, b = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, a = E.db.databars.colors.experience.a})
 	end
 end
 hooksecurefunc(DB, 'ExperienceBar_Update', ElvUI_EltreumUI.GradientDatabarXP)
@@ -45,14 +41,10 @@ function ElvUI_EltreumUI:GradientDatabarRep()
 			if color then
 				local alpha = (customColors and color.a) or DB.db.colors.reputationAlpha or 1
 				--databarRep:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", color.r, color.g, color.b, alpha or color.a or 1, color.r - 0.4, color.g - 0.1, color.b - 0.5, alpha or color.a or 1)
-				if E.Retail or E.Wrath then
-					if reaction == 10 then
-						_G["ElvUI_ReputationBar"]:GetStatusBarTexture():SetGradient("HORIZONTAL", { r = color.r, g = color.g, b = color.b, a = alpha or color.a or 1}, {r =color.r - E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r,g= color.g - E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g,b= color.b - E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b,a= alpha or color.a or 1})
-					else
-						_G["ElvUI_ReputationBar"]:GetStatusBarTexture():SetGradient("HORIZONTAL", { r = color.r, g = color.g, b = color.b, a = alpha or color.a or 1}, {r =color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r,g= color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g,b= color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b,a= alpha or color.a or 1})
-					end
+				if reaction == 10 then
+					_G["ElvUI_ReputationBar"]:GetStatusBarTexture():SetGradient("HORIZONTAL", { r = color.r, g = color.g, b = color.b, a = alpha or color.a or 1}, {r =color.r - E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r,g= color.g - E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g,b= color.b - E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b,a= alpha or color.a or 1})
 				else
-					_G["ElvUI_ReputationBar"]:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", color.r, color.g, color.b, alpha or color.a or 1, color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r, color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g, color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b, alpha or color.a or 1)
+					_G["ElvUI_ReputationBar"]:GetStatusBarTexture():SetGradient("HORIZONTAL", { r = color.r, g = color.g, b = color.b, a = alpha or color.a or 1}, {r =color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.r,g= color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.g,b= color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputationcolors.b,a= alpha or color.a or 1})
 				end
 			end
 		end
@@ -63,11 +55,7 @@ hooksecurefunc(DB, 'ReputationBar_Update', ElvUI_EltreumUI.GradientDatabarRep)
 --gradient honor
 function ElvUI_EltreumUI:GradientDatabarHonor()
 	if _G["ElvUI_HonorBar"] and E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor then
-		if E.Retail or E.Wrath then
-			_G["ElvUI_HonorBar"]:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=E.db.databars.colors.honor.r,g= E.db.databars.colors.honor.g,b= E.db.databars.colors.honor.b,a= E.db.databars.colors.honor.a}, {r=E.db.databars.colors.honor.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.r,g=E.db.databars.colors.honor.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.g,b= E.db.databars.colors.honor.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b,a= E.db.databars.colors.honor.a})
-		else
-			_G["ElvUI_HonorBar"]:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", E.db.databars.colors.honor.r, E.db.databars.colors.honor.g, E.db.databars.colors.honor.b, E.db.databars.colors.honor.a, E.db.databars.colors.honor.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.r, E.db.databars.colors.honor.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.g, E.db.databars.colors.honor.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b, E.db.databars.colors.honor.a)
-		end
+		_G["ElvUI_HonorBar"]:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=E.db.databars.colors.honor.r,g= E.db.databars.colors.honor.g,b= E.db.databars.colors.honor.b,a= E.db.databars.colors.honor.a}, {r=E.db.databars.colors.honor.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.r,g=E.db.databars.colors.honor.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.g,b= E.db.databars.colors.honor.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b,a= E.db.databars.colors.honor.a})
 	end
 end
 if E.Retail then
@@ -94,11 +82,7 @@ function ElvUI_EltreumUI:GradientArcheology()
 		if _G.ArcheologyDigsiteProgressBar.FillBar then
 			_G.ArcheologyDigsiteProgressBar.FillBar:SetSize(E.db.ElvUI_EltreumUI.otherstuff.archeology.sizex,E.db.ElvUI_EltreumUI.otherstuff.archeology.sizey)
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-				if E.Retail or E.Wrath then
-					_G.ArcheologyDigsiteProgressBar.FillBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=E.db.ElvUI_EltreumUI.otherstuff.archeology.r1,g=E.db.ElvUI_EltreumUI.otherstuff.archeology.g1,b=E.db.ElvUI_EltreumUI.otherstuff.archeology.b1,a= 1}, {r=E.db.ElvUI_EltreumUI.otherstuff.archeology.r2,g=E.db.ElvUI_EltreumUI.otherstuff.archeology.g2,b=E.db.ElvUI_EltreumUI.otherstuff.archeology.b2,a= 1})
-				else
-					_G.ArcheologyDigsiteProgressBar.FillBar:GetStatusBarTexture():SetGradient("HORIZONTAL", E.db.ElvUI_EltreumUI.otherstuff.archeology.r1,E.db.ElvUI_EltreumUI.otherstuff.archeology.g1,E.db.ElvUI_EltreumUI.otherstuff.archeology.b1, E.db.ElvUI_EltreumUI.otherstuff.archeology.r2,E.db.ElvUI_EltreumUI.otherstuff.archeology.g2,E.db.ElvUI_EltreumUI.otherstuff.archeology.b2)
-				end
+				_G.ArcheologyDigsiteProgressBar.FillBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=E.db.ElvUI_EltreumUI.otherstuff.archeology.r1,g=E.db.ElvUI_EltreumUI.otherstuff.archeology.g1,b=E.db.ElvUI_EltreumUI.otherstuff.archeology.b1,a= 1}, {r=E.db.ElvUI_EltreumUI.otherstuff.archeology.r2,g=E.db.ElvUI_EltreumUI.otherstuff.archeology.g2,b=E.db.ElvUI_EltreumUI.otherstuff.archeology.b2,a= 1})
 			end
 		end
 	end
@@ -115,18 +99,10 @@ function ElvUI_EltreumUI:BlizzardAltPower()
 				local power, maxPower = B.AltPowerBar.powerValue or 0, B.AltPowerBar.powerMaxValue or 0
 				local value = (maxPower > 0 and power / maxPower) or 0
 				local r, g, b = E:ColorGradient(value,0.8,0,0, 0.8,0.8,0, 0,0.8,0)
-				if E.Retail or E.Wrath then
-					B.AltPowerBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r,g= g,b= b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r,g=g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.g,b= b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
-				else
-					B.AltPowerBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r, g, b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r, g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.g, b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-				end
+				B.AltPowerBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r,g= g,b= b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r,g=g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.g,b= b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 			else
 				local color = E.db.general.altPowerBar.statusBarColor
-				if E.Retail or E.Wrath then
-					B.AltPowerBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=color.r,g= color.g,b= color.b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r,g=color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.g,b= color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
-				else
-					B.AltPowerBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", color.r, color.g, color.b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha, color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r, color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.g, color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.b, E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-				end
+				B.AltPowerBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=color.r,g= color.g,b= color.b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r,g=color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.g,b= color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 			end
 		end
 	end

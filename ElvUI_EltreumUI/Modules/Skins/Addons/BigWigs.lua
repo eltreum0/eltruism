@@ -108,30 +108,14 @@ do
 					local b2 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][3])
 
 					if (r == r1 and g == g1 and b == b1) then -- its normal bar
-						if E.Retail or E.Wrath then
-							self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr1,g= E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg1,b= E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb1,a= 0.7}, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr2,g=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg2,b=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb2,a= 0.7})
-						else
-							self.candyBarBar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr1, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg1, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb1, 0.7, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr2, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg2, E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb2, 0.7)
-						end
+						self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr1,g= E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg1,b= E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb1,a= 0.7}, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr2,g=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg2,b=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb2,a= 0.7})
 					elseif (r == r2 and g == g2 and b == b2) then --its emphasized bar
-						if E.Retail or E.Wrath then
-							self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr1,g= E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg1,b= E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb1,a= 0.7}, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr2,g=E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg2,b=E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb2,a= 0.7})
-						else
-							self.candyBarBar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr1, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg2, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb2, 0.7, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr2, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg2, E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb2, 0.7)
-						end
+						self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr1,g= E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg1,b= E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb1,a= 0.7}, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedr2,g=E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedg2,b=E.db.ElvUI_EltreumUI.skins.bigwigscustomemphasizedb2,a= 0.7})
 					else -- its something else
-						if E.Retail or E.Wrath then
-							self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.4,g= g-0.4,b= b-0.4,a= 0.7}, {r=r+0.2,g=g+0.2,b=b+0.2,a= 0.7})
-						else
-							self.candyBarBar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.4, g-0.4, b-0.4, 0.7, r+0.2, g+0.2, b+0.2, 0.7)
-						end
+						self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.4,g= g-0.4,b= b-0.4,a= 0.7}, {r=r+0.2,g=g+0.2,b=b+0.2,a= 0.7})
 					end
 				else
-					if E.Retail or E.Wrath then
-						self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.4,g= g-0.4,b= b-0.4,a= 0.7}, {r=r+0.2,g=g+0.2,b=b+0.2,a= 0.7})
-					else
-						self.candyBarBar:GetStatusBarTexture():SetGradientAlpha(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, r-0.4, g-0.4, b-0.4, 0.7, r+0.2, g+0.2, b+0.2, 0.7)
-					end
+					self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.4,g= g-0.4,b= b-0.4,a= 0.7}, {r=r+0.2,g=g+0.2,b=b+0.2,a= 0.7})
 				end
 
 				if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs then
