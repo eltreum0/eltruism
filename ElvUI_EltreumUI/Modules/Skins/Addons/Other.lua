@@ -72,7 +72,7 @@ if E.Classic then
 	HardcoreMonitor:RegisterEvent("PLAYER_DEAD")
 	HardcoreMonitor:SetScript("OnEvent", function()
 		if C_GameRules.IsHardcoreActive() then
-			PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\overconfidence.ogg" , "Master")
+			E:Delay(4,function() PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\overconfidence.ogg" , "Master") end)
 		end
 	end)
 end
