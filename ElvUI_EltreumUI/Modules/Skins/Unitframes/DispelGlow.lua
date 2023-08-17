@@ -38,11 +38,7 @@ function ElvUI_EltreumUI:UFGlow(object, debuffType, _, wasFiltered)
 							LCG.ButtonGlow_Start(object, {color.r, color.g, color.b, 1}, 0.5)
 							object._ButtonGlow.outerGlow:SetScale(1.15)
 							if E.db.ElvUI_EltreumUI.glow.gradient then
-								if not E.Classic then
-									object._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = color.r - 0.2, g = color.g - 0.2, b = color.b - 0.2, a = 1}, {r = color.r + 0.2, g = color.g + 0.2, b = color.b + 0.2, a = 1})
-								else
-									object._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r -0.2, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g-0.2, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b-0.2, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r+0.2, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g+0.2, E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b+0.2)
-								end
+								object._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = color.r - 0.2, g = color.g - 0.2, b = color.b - 0.2, a = 1}, {r = color.r + 0.2, g = color.g + 0.2, b = color.b + 0.2, a = 1})
 							end
 						elseif E.db.ElvUI_EltreumUI.glow.procglow then
 							proc.color = {color.r, color.g, color.b, 1}

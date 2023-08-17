@@ -125,11 +125,7 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 						statusBar:SetSize(E.db.ElvUI_EltreumUI.otherstuff.mirrorx, E.db.ElvUI_EltreumUI.otherstuff.mirrory)
 						statusBar:SetScale(E.db.ElvUI_EltreumUI.otherstuff.mirrorscale)
 						local r,g,b,a = statusBar:GetStatusBarColor()
-						if E.Wrath then
-							statusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.3,g= g - 0.3,b= b - 0.3,a= a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= a})
-						else
-							statusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r - 0.3, g - 0.3, b - 0.3, a, r + 0.2, g + 0.2, b + 0.2, a)
-						end
+						statusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.3,g= g - 0.3,b= b - 0.3,a= a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= a})
 					end)
 				end
 			end
@@ -164,23 +160,11 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 								["FEIGNDEATH"] = "UI-CastingBar-Filling-Channel", --green
 							}
 							if atlas == MirrorTimerAtlasCheck["EXHAUSTION"] then
-								if E.Retail or E.Wrath then
-									bar.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=1,g= 0.68,b= 0,a= alpha}, {r=1,g= 0.83,b= 0.25,a= alpha})
-								else
-									bar.StatusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", 1, 0.68, 0, alpha, 1, 0.83, 0.25, alpha)
-								end
+								bar.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=1,g= 0.68,b= 0,a= alpha}, {r=1,g= 0.83,b= 0.25,a= alpha})
 							elseif atlas == MirrorTimerAtlasCheck["BREATH"] then
-								if E.Retail or E.Wrath then
-									bar.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=0,g= 0.33,b= 0.53,a= alpha}, {r=0.49,g= 0.87,b= 1,a= alpha})
-								else
-									bar.StatusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", 0, 0.33, 0.53, alpha, 0.49, 0.87, 1, alpha)
-								end
+								bar.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=0,g= 0.33,b= 0.53,a= alpha}, {r=0.49,g= 0.87,b= 1,a= alpha})
 							elseif atlas == MirrorTimerAtlasCheck["FEIGNDEATH"] then
-								if E.Retail or E.Wrath then
-									bar.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=0.01,g= 0.6,b= 0.36,a= alpha}, {r=0,g= 1,b= 0.58,a= alpha})
-								else
-									bar.StatusBar:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", 0.01, 0.6, 0.36, alpha, 0, 1, 0.58, alpha)
-								end
+								bar.StatusBar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=0.01,g= 0.6,b= 0.36,a= alpha}, {r=0,g= 1,b= 0.58,a= alpha})
 							end
 						end
 
@@ -204,11 +188,7 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 				if not frame.GradientHook then
 					frame:HookScript("OnShow", function()
 						local r,g,b = frame.status:GetStatusBarColor()
-						if E.Retail or E.Wrath then
-							frame.status:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.5,g= g - 0.5,b= b - 0.5,a= 1}, {r=r + 0.3,g= g + 0.3,b= b + 0.3,a= 1})
-						else
-							frame.status:GetStatusBarTexture():SetGradientAlpha("HORIZONTAL", r - 0.5, g - 0.5, b - 0.5, 1, r + 0.3, g + 0.3, b + 0.3, 1)
-						end
+						frame.status:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.5,g= g - 0.5,b= b - 0.5,a= 1}, {r=r + 0.3,g= g + 0.3,b= b + 0.3,a= 1})
 					end)
 					frame.GradientHook = true
 				end
@@ -687,14 +667,10 @@ function ElvUI_EltreumUI:SkinMailZone()
 			end
 
 			if _G.OpenMailBodyText then
-				if E.Retail or E.Wrath then
-					if E.db.general.fontStyle == "NONE" then
-						_G.OpenMailBodyText:SetFont("P", E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, "")
-					else
-						_G.OpenMailBodyText:SetFont("P", E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
-					end
+				if E.db.general.fontStyle == "NONE" then
+					_G.OpenMailBodyText:SetFont("P", E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, "")
 				else
-					_G.OpenMailBodyText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+					_G.OpenMailBodyText:SetFont("P", E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 				end
 			end
 			if E.Retail then

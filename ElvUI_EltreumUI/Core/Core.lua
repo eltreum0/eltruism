@@ -220,13 +220,13 @@ function ElvUI_EltreumUI:Anchors()
 		E:CreateMover(UIErrorsFrame, "MoverUIERRORS", "UI Error Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
 		if E.db.ElvUI_EltreumUI.skins.blizzframes.errorframe then
 			if E.db.ElvUI_EltreumUI.skins.blizzframes.errorframecustomfont then
-				if (E.Retail or E.Wrath) and E.db.general.fontStyle == "NONE" then
+				if E.db.general.fontStyle == "NONE" then
 					UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefont), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, "")
 				else
 					UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefont), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, E.db.general.fontStyle)
 				end
 			else
-				if (E.Retail or E.Wrath) and E.db.general.fontStyle == "NONE" then
+				if E.db.general.fontStyle == "NONE" then
 					UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, "")
 				else
 					UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, E.db.general.fontStyle)
@@ -556,6 +556,157 @@ function ElvUI_EltreumUI:OriginalGroupsDPS()
 	end
 end
 
+function ElvUI_EltreumUI:ThinBars()
+	if not E.db.ElvUI_EltreumUI.unitframes.thinmode then
+		E.db.ElvUI_EltreumUI.unitframes.thinmode = true
+
+		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
+			E.db["actionbar"]["bar1"]["buttonHeight"] = 27
+			E.db["actionbar"]["bar1"]["buttonSpacing"] = 4
+			E.db["actionbar"]["bar2"]["buttonHeight"] = 22
+			E.db["actionbar"]["bar2"]["buttonSpacing"] = 3
+			E.db["actionbar"]["bar3"]["buttonHeight"] = 22
+			E.db["actionbar"]["bar3"]["buttonSpacing"] = 3
+			E.db["actionbar"]["bar4"]["buttonHeight"] = 22
+			E.db["actionbar"]["bar4"]["buttonSpacing"] = 3
+
+			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,199"
+			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,175"
+			E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,151"
+			E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,127"
+			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,228"
+			E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,278"
+			E.db["movers"]["TotemTrackerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,285"
+
+			E.db["unitframe"]["units"]["party"]["height"] = 35
+			E.db["unitframe"]["units"]["party"]["rdebuffs"]["yOffset"] = 20
+			E.db["unitframe"]["units"]["party"]["rdebuffs"]["xOffset"] = 0
+			E.db["unitframe"]["units"]["party"]["roleIcon"]["position"] = "TOPLEFT"
+			E.db["unitframe"]["units"]["party"]["roleIcon"]["xOffset"] = 1
+			E.db["unitframe"]["units"]["party"]["debuffs"]["yOffset"] = 0
+		end
+
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = 0
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = 40
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "CENTER"
+		E.db["unitframe"]["units"]["player"]["RestIcon"]["anchorPoint"] = "CENTER"
+		E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 25
+		E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = 0
+		E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 15
+		E.db["unitframe"]["units"]["player"]["castbar"]["iconSize"] = 14
+		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
+			E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 335
+		elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
+			E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 292
+			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,349"
+		end
+		E.db["unitframe"]["units"]["player"]["castbar"]["iconAttached"] = true
+		E.db["unitframe"]["units"]["player"]["classbar"]["enable"] = false
+		E.db["unitframe"]["units"]["player"]["height"] = 35
+		E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["frameStrata"] = "BACKGROUND"
+		E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomStrata"] = true
+		E.db["unitframe"]["units"]["player"]["power"]["width"] = "fill"
+		E.db["unitframe"]["units"]["player"]["power"]["height"] = 10
+
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["anchorPoint"] = "CENTER"
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["xOffset"] = -40
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = 0
+		E.db["unitframe"]["units"]["target"]["buffs"]["spacing"] = 7 --borders
+		E.db["unitframe"]["units"]["target"]["castbar"]["height"] = 15
+		E.db["unitframe"]["units"]["target"]["castbar"]["iconAttached"] = true
+		E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 270
+		E.db["unitframe"]["units"]["target"]["height"] = 35
+		E.db["unitframe"]["units"]["target"]["power"]["strataAndLevel"]["frameStrata"] = "BACKGROUND"
+		E.db["unitframe"]["units"]["target"]["power"]["strataAndLevel"]["useCustomStrata"] = true
+		E.db["unitframe"]["units"]["target"]["power"]["height"] = 10
+		E.db["unitframe"]["units"]["target"]["power"]["width"] = "fill"
+		E.db["unitframe"]["units"]["target"]["raidRoleIcons"]["yOffset"] = 4
+
+		E.db["unitframe"]["units"]["targettarget"]["height"] = 35
+		E.db["unitframe"]["units"]["targettarget"]["power"]["attachTextTo"] = "Frame"
+		E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 10
+		E.db["unitframe"]["units"]["targettarget"]["power"]["strataAndLevel"]["frameStrata"] = "BACKGROUND"
+		E.db["unitframe"]["units"]["targettarget"]["power"]["strataAndLevel"]["useCustomStrata"] = true
+		E.db["unitframe"]["units"]["targettarget"]["power"]["yOffset"] = -1
+		E.db["unitframe"]["units"]["targettarget"]["power"]["width"] = "fill"
+	else
+		E.db.ElvUI_EltreumUI.unitframes.thinmode = false
+
+		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
+			E.db["actionbar"]["bar1"]["buttonHeight"] = 35
+			E.db["actionbar"]["bar1"]["buttonSpacing"] = 3
+			E.db["actionbar"]["bar2"]["buttonHeight"] = 30
+			E.db["actionbar"]["bar2"]["buttonSpacing"] = 3
+			E.db["actionbar"]["bar3"]["buttonHeight"] = 30
+			E.db["actionbar"]["bar3"]["buttonSpacing"] = 3
+			E.db["actionbar"]["bar4"]["buttonHeight"] = 30
+			E.db["actionbar"]["bar4"]["buttonSpacing"] = 3
+
+			E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,223"
+			E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,191"
+			E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,159"
+			E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,127"
+			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-266,268"
+			E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,294,268"
+			E.db["movers"]["TotemTrackerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,258"
+
+			E.db["unitframe"]["units"]["party"]["height"] = 60
+			E.db["unitframe"]["units"]["party"]["rdebuffs"]["yOffset"] = 38
+			E.db["unitframe"]["units"]["party"]["rdebuffs"]["xOffset"] = -75
+			E.db["unitframe"]["units"]["party"]["roleIcon"]["position"] = "TOPRIGHT"
+			E.db["unitframe"]["units"]["party"]["roleIcon"]["xOffset"] = -1
+			E.db["unitframe"]["units"]["party"]["debuffs"]["yOffset"] = 11
+		end
+
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = -7
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = -7
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "TOPRIGHT"
+		E.db["unitframe"]["units"]["player"]["RestIcon"]["anchorPoint"] = "TOPLEFT"
+		E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 8
+		E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = -6
+		E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 30
+		E.db["unitframe"]["units"]["player"]["castbar"]["iconSize"] = 29
+		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
+			E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 243
+			E.db["unitframe"]["units"]["target"]["castbar"]["iconAttached"] = false
+		elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
+			E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 267
+			E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,14,355"
+			E.db["unitframe"]["units"]["target"]["castbar"]["iconAttached"] = true
+		end
+		E.db["unitframe"]["units"]["player"]["castbar"]["iconAttached"] = false
+		E.db["unitframe"]["units"]["player"]["classbar"]["enable"] = true
+		E.db["unitframe"]["units"]["player"]["height"] = 54
+		E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomStrata"] = false
+		E.db["unitframe"]["units"]["player"]["power"]["width"] = "spaced"
+		E.db["unitframe"]["units"]["player"]["power"]["height"] = 15
+
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["anchorPoint"] = "TOPLEFT"
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["xOffset"] = 7
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = -7
+		E.db["unitframe"]["units"]["target"]["buffs"]["spacing"] = 2
+		E.db["unitframe"]["units"]["target"]["castbar"]["height"] = 30
+		E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 243
+		E.db["unitframe"]["units"]["target"]["height"] = 54
+		E.db["unitframe"]["units"]["target"]["power"]["strataAndLevel"]["useCustomStrata"] = false
+		E.db["unitframe"]["units"]["target"]["power"]["height"] = 15
+		E.db["unitframe"]["units"]["target"]["power"]["width"] = "spaced"
+		E.db["unitframe"]["units"]["target"]["raidRoleIcons"]["yOffset"] = -2
+
+		E.db["unitframe"]["units"]["targettarget"]["height"] = 54
+		E.db["unitframe"]["units"]["targettarget"]["power"]["attachTextTo"] = "Power"
+		E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 15
+		E.db["unitframe"]["units"]["targettarget"]["power"]["strataAndLevel"]["useCustomStrata"] = false
+		E.db["unitframe"]["units"]["targettarget"]["power"]["yOffset"] = 1
+		E.db["unitframe"]["units"]["targettarget"]["power"]["width"] = "spaced"
+	end
+	E:UpdateLayout()
+	E:UpdateUnitFrames()
+	E:UpdateActionBars()
+	E:UpdateMoverPositions()
+	E:StaticPopup_Show('CONFIG_RL')
+end
+
 --Better EventTrace CLEU logging thanks to ;Meorawr.wtf.lua;
 function ElvUI_EltreumUI:DevTools()
 	if E.db.ElvUI_EltreumUI.dev then
@@ -837,7 +988,7 @@ end
 
 --check for blinkii's kick on cd function
 function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
-	if IsAddOnLoaded("ElvUI_mMediaTag") then
+	if IsAddOnLoaded("ElvUI_mMediaTag") and E.Retail then
 		if (E.db.mMT and E.db.mMT.interruptoncd and E.db.mMT.interruptoncd.enable) then
 			local mMT = E:GetModule("ElvUI_mMediaTag", true)
 			return mMT:mMediaTag_interruptOnCD() or false

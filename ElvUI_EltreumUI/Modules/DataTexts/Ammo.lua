@@ -7,12 +7,12 @@ local GetItemInfo = _G.GetItemInfo
 local GetItemInfoInstant = _G.GetItemInfoInstant
 local GetItemCount = _G.GetItemCount
 local format = _G.format
-local GetContainerItemID = (E.Retail or E.Wrath) and C_Container.GetContainerItemID or _G.GetContainerItemID
+local GetContainerItemID = C_Container.GetContainerItemID
 local GetInventoryItemCount = _G.GetInventoryItemCount
 local GetInventoryItemID = _G.GetInventoryItemID
-local ContainerIDToInventoryID = (E.Retail or E.Wrath) and C_Container.ContainerIDToInventoryID or _G.ContainerIDToInventoryID
-local GetContainerNumSlots = (E.Retail or E.Wrath) and C_Container.GetContainerNumSlots or _G.GetContainerNumSlots
-local GetContainerNumFreeSlots = (E.Retail or E.Wrath) and C_Container.GetContainerNumFreeSlots or _G.GetContainerNumFreeSlots
+local ContainerIDToInventoryID = C_Container.ContainerIDToInventoryID
+local GetContainerNumSlots = C_Container.GetContainerNumSlots
+local GetContainerNumFreeSlots = C_Container.GetContainerNumFreeSlots
 local GetItemQualityColor = _G.GetItemQualityColor
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
