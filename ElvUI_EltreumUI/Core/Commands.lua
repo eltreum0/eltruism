@@ -195,6 +195,17 @@ function ElvUI_EltreumUI:RunCommands(message)
 				ElvUI_EltreumUI:Print("Borders Autoadjust disabled")
 			end
 		end
+	elseif message == 'thinmode' then
+		ElvUI_EltreumUI:ThinBars()
+	elseif message == 'elvuiskin' then
+		if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
+			E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate = false
+			ElvUI_EltreumUI:Print("ElvUI Skin disabled")
+		else
+			E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate = true
+			ElvUI_EltreumUI:Print("ElvUI Skin enabled")
+		end
+		E:StaticPopup_Show('CONFIG_RL')
 	else
 		ElvUI_EltreumUI:Print("|cff82B4ffYou have entered an unknown command, here's a list of commands you can use:|r")
 		print("|cff82B4ff/eltruism|r - Opens Eltruism Config")
