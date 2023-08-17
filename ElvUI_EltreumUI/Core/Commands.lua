@@ -231,6 +231,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 			print("|cff82B4ff/eltruism autoadjust|r - Toggles Borders automatically adjusting the layout")
 		end
 		print("|cff82B4ff/eltruism weakauras|r - Toggles actionbars to be similar to WeakAuras, will overwrite settings")
+		print("|cff82B4ff/eltruism elvuiskin|r - Toggles ElvUI Skin")
 	end
 end
 
