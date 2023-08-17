@@ -752,7 +752,7 @@ end
 --fix the toggles hiding when chat panels hide
 function ElvUI_EltreumUI:FixChatToggles()
 	if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
-
+		ElvUI_EltreumUI:BottomDatabarTexture()
 		if E.db.ElvUI_EltreumUI.chat.chattoggles then
 			_G.LeftChatToggleButton:SetAlpha(1)
 			_G.LeftChatToggleButton:Show()

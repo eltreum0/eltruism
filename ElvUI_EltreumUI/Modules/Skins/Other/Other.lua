@@ -726,3 +726,28 @@ if _G["MainMenuBarVehicleLeaveButton"] then
 	_G["MainMenuBarVehicleLeaveButton"]:GetDisabledTexture():SetTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\ExitVehicle")
 	_G["MainMenuBarVehicleLeaveButton"]:GetDisabledTexture():SetVertexColor(1,0,0,1)
 end
+
+--add class color bar on the bottom
+local bottomclassbar = CreateFrame("FRAME")
+function ElvUI_EltreumUI:BottomDatabarTexture()
+	if E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar and not bottomclassbar.texture then
+		local width = ceil(E.screenWidth)
+		bottomclassbar:SetSize(width,16)
+		bottomclassbar:SetPoint("BOTTOM", UIParent)
+		bottomclassbar.texture = bottomclassbar:CreateTexture(nil,"BACKGROUND")
+		bottomclassbar:SetFrameStrata("BACKGROUND")
+		bottomclassbar:SetFrameLevel(1)
+		bottomclassbar.texture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade2.tga")
+		bottomclassbar.texture:SetSize(width,23)
+		bottomclassbar.texture:SetPoint("BOTTOM", UIParent)
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+				bottomclassbar.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColorsCustom(E.myclass, false, true))
+			else
+				bottomclassbar.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColors(E.myclass, false, true))
+			end
+		else
+			bottomclassbar.texture:SetVertexColor(classcolor.r, classcolor.g, classcolor.b, 1)
+		end
+	end
+end
