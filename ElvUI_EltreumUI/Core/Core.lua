@@ -393,7 +393,7 @@ function ElvUI_EltreumUI:Anchors()
 		if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 			if E.db.ElvUI_EltreumUI.quests.anchor then
 				E:Delay(0, function()
-					if not _G["ObjectiveFrameHolder"] and not InCombatLockdown() then
+					if not _G["ObjectiveFrameHolder"] and not InCombatLockdown() and not _G.MovieFrame:IsShown() then
 						local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
 						holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
 						holder:SetSize(130, 22)
