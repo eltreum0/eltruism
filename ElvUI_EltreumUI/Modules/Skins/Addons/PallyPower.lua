@@ -99,7 +99,9 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		end
 
 		--hide the double lines
-		_G.PallyPowerRF.TopEdge:Kill()
+		if E.Wrath then
+			_G.PallyPowerRF.TopEdge:Kill()
+		end
 		_G.PallyPowerRF.BottomEdge:Kill()
 
 		--update for new pallypower
@@ -226,7 +228,13 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 
 		--better point
 		_G.PallyPowerAnchor:ClearAllPoints()
-		_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-10,10)
+		E:Delay(0, function()
+			if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
+				_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-10,10)
+			else
+				_G.PallyPowerAnchor:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-10,10)
+			end
+		end)
 		_G.PallyPowerAnchor:SetFrameLevel(10)
 
 		--shadow update function
@@ -234,7 +242,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 			if InCombatLockdown() then return end
 			if not _G.PallyPowerFrame.shadow then
 				_G.PallyPowerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				_G.PallyPowerFrame.shadow:SetParent(_G.PallyPowerC1)
+				_G.PallyPowerFrame.shadow:SetParent(_G.PallyPowerRF)
 			end
 			if _G.PallyPowerFrame.shadow then
 				if _G.PallyPowerC1 and _G.PallyPowerC1:IsShown() then
@@ -396,6 +404,17 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerC1, "TOPLEFT",-3,3)
 					end
 					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerC10, "BOTTOMRIGHT",3,-3)
+				end
+				if _G.PallyPowerC1 and not _G.PallyPowerC1:IsShown() then
+					_G.PallyPowerFrame.shadow:ClearAllPoints()
+					if _G.PallyPowerAura and _G.PallyPowerAura:IsShown() then
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAura, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerRF and _G.PallyPowerRF:IsShown() then
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerRF, "TOPLEFT",-3,3)
+					elseif _G.PallyPowerAuto and _G.PallyPowerAuto:IsShown() then
+						_G.PallyPowerFrame.shadow:SetPoint("TOPLEFT", _G.PallyPowerAuto, "TOPLEFT",-3,3)
+					end
+					_G.PallyPowerFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PallyPowerAuto, "BOTTOMRIGHT",3,-3)
 				end
 				ElvUI_EltreumUI:ShadowColor(_G.PallyPowerFrame.shadow)
 			end
