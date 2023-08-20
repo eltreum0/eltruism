@@ -393,7 +393,7 @@ function ElvUI_EltreumUI:Anchors()
 		if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 			if E.db.ElvUI_EltreumUI.quests.anchor then
 				E:Delay(0, function()
-					if not _G["ObjectiveFrameHolder"] and not InCombatLockdown() then
+					if not _G["ObjectiveFrameHolder"] and not InCombatLockdown() and not _G.MovieFrame:IsShown() then
 						local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
 						holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
 						holder:SetSize(130, 22)
@@ -752,7 +752,7 @@ end
 --fix the toggles hiding when chat panels hide
 function ElvUI_EltreumUI:FixChatToggles()
 	if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
-
+		ElvUI_EltreumUI:BottomDatabarTexture()
 		if E.db.ElvUI_EltreumUI.chat.chattoggles then
 			_G.LeftChatToggleButton:SetAlpha(1)
 			_G.LeftChatToggleButton:Show()

@@ -83,6 +83,7 @@ local DONATORS = {
 	'|cffB50909Vxt|r',
 	'|cffB50909BioVenom|r',
 	'|cffB50909bansheeirl|r',
+	'|cffB50909Ante|r',
 }
 
 local TRANSLATORS = {
@@ -1437,6 +1438,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.misc.args.datatext = ACH:Group(L["DataTexts"], nil, 2)
 	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.description1 = ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.xp = ACH:Toggle(L["Dynamically toggle the mouseover of the Experience Bar"], L["Shows XP bar when below max level, makes it mouseover when max level"], 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.bottomclasstexture = ACH:Toggle(L["Class Color Texture with Eltruism Datatext"], nil, 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.description2 = ACH:Description(L["Datatext Hiding"], 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.leftdatatexthide = ACH:Toggle(L["Hide Left Chat Datatext out of Combat"], nil, 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.datatexts.panels.LeftChatDataPanel.enable end)
 	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.rightdatatexthide = ACH:Toggle(L["Hide Right Chat Datatext out of Combat"], nil, 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.datatexts.panels.RightChatDataPanel.enable end)

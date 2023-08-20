@@ -111,6 +111,24 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Bööbs-Bloodsail Buccaneers"] = DonatorsIcon,
 			["NÏpples-Bloodsail Buccaneers"] = DonatorsIcon,
 			["BioVenom-Bloodsail Buccaneers"] = DonatorsIcon,
+
+			--Ante
+			["Boss-TarrenMill"] = DonatorsIcon,
+			["Viper-TarrenMill"] = DonatorsIcon,
+			["Teddy-TarrenMill"] = DonatorsIcon,
+			["Soap-TarrenMill"] = DonatorsIcon,
+			["Snail-TarrenMill"] = DonatorsIcon,
+			["Pizza-TarrenMill"] = DonatorsIcon,
+			["Bee-TarrenMill"] = DonatorsIcon,
+			["Zeus-TarrenMill"] = DonatorsIcon,
+			["Demik-TarrenMill"] = DonatorsIcon,
+			["Stormer-TarrenMill"] = DonatorsIcon,
+			["Antitankie-TarrenMill"] = DonatorsIcon,
+			["Tarrenmonka-TarrenMill"] = DonatorsIcon,
+			["Vanishe-TarrenMill"] = DonatorsIcon,
+			["Angelina-TarrenMill"] = DonatorsIcon,
+			["Gigadudu-TarrenMill"] = DonatorsIcon,
+			["Tyrant-TarrenMill"] = DonatorsIcon,
 		}
 
 		--Discord MVPs
