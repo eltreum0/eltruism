@@ -10,20 +10,65 @@ do
 		if E.db.ElvUI_EltreumUI.skins.bigwigs then
 			local candy = _G.LibStub("LibCandyBar-3.0")
 
-			local bigwigstype
-			if E.Retail then
+			local bigwigstype = BigWigs3DB
+			--[[if E.Retail then
 				bigwigstype = BigWigs3DB
 			else
 				bigwigstype = BigWigsClassicDB
-			end
+			end]]
 			local currentprofile = bigwigstype["profileKeys"][E.mynameRealm]
 
 			--fix db since colors are missing
-			if not bigwigstype["namespaces"]["BigWigs_Plugins_Colors"] then
-				bigwigstype["namespaces"]["BigWigs_Plugins_Colors"] = {}
-				bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] = {}
-				bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile] = {
-					["barColor"] = {
+			if bigwigstype["namespaces"] then
+				if not bigwigstype["namespaces"]["BigWigs_Plugins_Colors"] then
+					bigwigstype["namespaces"]["BigWigs_Plugins_Colors"] = {}
+					bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] = {}
+					bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile] = {
+						["barColor"] = {
+							["BigWigs_Plugins_Colors"] = {
+								["default"] = {
+									0.5098039507865906, -- [1]
+									0.7019608020782471, -- [2]
+									1, -- [3]
+								},
+							},
+						},
+						["barEmphasized"] = {
+							["BigWigs_Plugins_Colors"] = {
+								["default"] = {
+									0.7098039388656616, -- [1]
+									0.03529411926865578, -- [2]
+									0.03529411926865578, -- [3]
+								},
+							},
+						},
+					}
+				end
+				bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] = bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] or {}
+				if not bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile] then
+					bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile] = {
+						["barColor"] = {
+							["BigWigs_Plugins_Colors"] = {
+								["default"] = {
+									0.5098039507865906, -- [1]
+									0.7019608020782471, -- [2]
+									1, -- [3]
+								},
+							},
+						},
+						["barEmphasized"] = {
+							["BigWigs_Plugins_Colors"] = {
+								["default"] = {
+									0.7098039388656616, -- [1]
+									0.03529411926865578, -- [2]
+									0.03529411926865578, -- [3]
+								},
+							},
+						},
+					}
+				end
+				if not bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"] then
+					bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"] = {
 						["BigWigs_Plugins_Colors"] = {
 							["default"] = {
 								0.5098039507865906, -- [1]
@@ -31,8 +76,10 @@ do
 								1, -- [3]
 							},
 						},
-					},
-					["barEmphasized"] = {
+					}
+				end
+				if not bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"] then
+					bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"] = {
 						["BigWigs_Plugins_Colors"] = {
 							["default"] = {
 								0.7098039388656616, -- [1]
@@ -40,53 +87,8 @@ do
 								0.03529411926865578, -- [3]
 							},
 						},
-					},
-				}
-			end
-			bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] = bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] or {}
-			if not bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile] then
-				bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile] = {
-					["barColor"] = {
-						["BigWigs_Plugins_Colors"] = {
-							["default"] = {
-								0.5098039507865906, -- [1]
-								0.7019608020782471, -- [2]
-								1, -- [3]
-							},
-						},
-					},
-					["barEmphasized"] = {
-						["BigWigs_Plugins_Colors"] = {
-							["default"] = {
-								0.7098039388656616, -- [1]
-								0.03529411926865578, -- [2]
-								0.03529411926865578, -- [3]
-							},
-						},
-					},
-				}
-			end
-			if not bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"] then
-				bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"] = {
-					["BigWigs_Plugins_Colors"] = {
-						["default"] = {
-							0.5098039507865906, -- [1]
-							0.7019608020782471, -- [2]
-							1, -- [3]
-						},
-					},
-				}
-			end
-			if not bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"] then
-				bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"] = {
-					["BigWigs_Plugins_Colors"] = {
-						["default"] = {
-							0.7098039388656616, -- [1]
-							0.03529411926865578, -- [2]
-							0.03529411926865578, -- [3]
-						},
-					},
-				}
+					}
+				end
 			end
 
 			function candy.barPrototype:SetColor(...)

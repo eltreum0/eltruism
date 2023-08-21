@@ -2,7 +2,7 @@ local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded
 local LoadAddOn = _G.LoadAddOn
-local bigwigstype
+--local bigwigstype
 
 -- BigWigs profile setup
 function ElvUI_EltreumUI:GetBigWigsProfile()
@@ -15,11 +15,13 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		LoadAddOn("BigWigs_Plugins")
 	end
 
-	if E.Retail then
+	--[[if E.Retail then
 		bigwigstype = BigWigs3DB
 	else
 		bigwigstype = BigWigsClassicDB
-	end
+	end]]
+
+	local bigwigstype = BigWigs3DB
 
 	--create profile
 	bigwigstype["profiles"] = bigwigstype["profiles"] or {}
@@ -164,7 +166,7 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["blizzMsg"] = false,
 		}
 	else
-		BigWigsIconClassicDB["hide"] = true
+		BigWigsIconDB["hide"] = true
 
 		bigwigstype["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] = bigwigstype["namespaces"]["BigWigs_Plugins_Victory"]["profiles"] or {}
 		bigwigstype["namespaces"]["BigWigs_Plugins_Victory"]["profiles"]["Eltreum"] = {

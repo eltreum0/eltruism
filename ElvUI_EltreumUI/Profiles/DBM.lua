@@ -449,15 +449,15 @@ function ElvUI_EltreumUI:GetDBMProfile()
 			["HugeHeight"] = 10, --bar height
 			["HugeBarXOffset"] = 0, --offset for bars near top right center
 			["HugeBarYOffset"] = 18, --offset for bars near top right center
-			["HugeTimerX"] = 400, --actual small bar position X
-			["HugeTimerY"] = 280, --actual small bar position Y
+			["HugeTimerX"] = 430, --actual small bar position X
+			["HugeTimerY"] = 220, --actual small bar position Y
 
 			--"small bars" the ones above right chat
 			["BarXOffset"] = 0, --offset between bars above right chat
 			["BarYOffset"] = 18, --offset between bars above right chat
 			["Scale"] = 1, --bar scale
-			["TimerX"] = -195, --actual position X
-			["TimerY"] = 215, -- actual positon Y
+			["TimerX"] = -200, --actual position X
+			["TimerY"] = 224, -- actual positon Y
 			["Height"] = 11, --bar height
 			["FontSize"] = 11, --bar font size
 			["Width"] = 390, --bar width

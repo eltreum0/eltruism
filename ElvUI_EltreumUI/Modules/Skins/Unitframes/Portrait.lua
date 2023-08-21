@@ -543,52 +543,74 @@ playerdiedcheck:SetScript("OnEvent", function()
 end)
 
 --hoping this is a temporary fix and blizzard actually fixes models not inherithing the parent's alpha
-if E.Retail or E.Wrath then
 
-	--fix alpha on login
-	local pewcheck = CreateFrame("FRAME")
-	pewcheck:RegisterEvent("PLAYER_ENTERING_WORLD")
-	pewcheck:SetScript("OnEvent",function()
-		if _G["ElvUF_Player"] and E.db.unitframe.units.player.fader.enable and E.db.unitframe.units.player.fader.minAlpha == 0 then
-			E:Delay(0, function()
-				if not _G["ElvUF_Player"].EltruismAlphaCheck and E.db.unitframe.units.player.fader.smooth == 0 then --another hook to fix when not using elvui fader smoothing
-					hooksecurefunc(_G["ElvUF_Player"], "SetAlpha", function(_,alpha)
-						if alpha == 0 then
-							if _G["ElvUF_Player"].Portrait3D then
-								_G["ElvUF_Player"].Portrait3D:Hide()
-							end
-							if _G["EltruismPlayerEffect"] then
-								_G["EltruismPlayerEffect"]:SetAlpha(0)
-							end
-							if _G["EltruismPlayerPowerBarEffect"] then
-								_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
-							end
-						else
-							if _G["EltruismPlayerEffect"] then
-								_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-							end
-							if _G["EltruismPlayerPowerBarEffect"] then
-								_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
-							end
-							if _G["ElvUF_Player"].Portrait3D then
-								_G["ElvUF_Player"].Portrait3D:Show()
-							end
+--fix alpha on login
+local pewcheck = CreateFrame("FRAME")
+pewcheck:RegisterEvent("PLAYER_ENTERING_WORLD")
+pewcheck:SetScript("OnEvent",function()
+	if _G["ElvUF_Player"] and E.db.unitframe.units.player.fader.enable and E.db.unitframe.units.player.fader.minAlpha == 0 then
+		E:Delay(0, function()
+			if not _G["ElvUF_Player"].EltruismAlphaCheck and E.db.unitframe.units.player.fader.smooth == 0 then --another hook to fix when not using elvui fader smoothing
+				hooksecurefunc(_G["ElvUF_Player"], "SetAlpha", function(_,alpha)
+					if alpha == 0 then
+						if _G["ElvUF_Player"].Portrait3D then
+							_G["ElvUF_Player"].Portrait3D:Hide()
 						end
-					end)
-					hooksecurefunc(_G["ElvUF_Pet"], "SetAlpha", function(_,alpha)
-						if alpha == 0 then
-							if _G["EltruismPetPowerBarEffect"] then
-								_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
-							end
-						else
-							if _G["EltruismPetPowerBarEffect"] then
-								_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
-							end
+						if _G["EltruismPlayerEffect"] then
+							_G["EltruismPlayerEffect"]:SetAlpha(0)
 						end
-					end)
-					_G["ElvUF_Player"].EltruismAlphaCheck = true
-				end
+						if _G["EltruismPlayerPowerBarEffect"] then
+							_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
+						end
+					else
+						if _G["EltruismPlayerEffect"] then
+							_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+						end
+						if _G["EltruismPlayerPowerBarEffect"] then
+							_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
+						end
+						if _G["ElvUF_Player"].Portrait3D then
+							_G["ElvUF_Player"].Portrait3D:Show()
+						end
+					end
+				end)
+				hooksecurefunc(_G["ElvUF_Pet"], "SetAlpha", function(_,alpha)
+					if alpha == 0 then
+						if _G["EltruismPetPowerBarEffect"] then
+							_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
+						end
+					else
+						if _G["EltruismPetPowerBarEffect"] then
+							_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
+						end
+					end
+				end)
+				_G["ElvUF_Player"].EltruismAlphaCheck = true
+			end
 
+			if _G["ElvUF_Player"].Portrait3D then
+				_G["ElvUF_Player"].Portrait3D:Hide()
+			end
+			if _G["EltruismPlayerEffect"] then
+				_G["EltruismPlayerEffect"]:SetAlpha(0)
+			end
+			if _G["EltruismPlayerPowerBarEffect"] then
+				_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
+			end
+			if _G["EltruismPetPowerBarEffect"] then
+				_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
+			end
+		end)
+	end
+end)
+
+--flags changed fix
+local flagcheck = CreateFrame("FRAME")
+flagcheck:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player") --model seems to update when flags are changed
+flagcheck:SetScript("OnEvent",function()
+	if _G["ElvUF_Player"] and E.db.unitframe.units.player.fader.enable and E.db.unitframe.units.player.fader.minAlpha == 0 then
+		E:Delay(0, function()
+			if _G["ElvUF_Player"]:GetAlpha() == 0 then
 				if _G["ElvUF_Player"].Portrait3D then
 					_G["ElvUF_Player"].Portrait3D:Hide()
 				end
@@ -598,23 +620,21 @@ if E.Retail or E.Wrath then
 				if _G["EltruismPlayerPowerBarEffect"] then
 					_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
 				end
-				if _G["EltruismPetPowerBarEffect"] then
-					_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
-				end
-			end)
-		end
-	end)
+			end
+		end)
+	end
+end)
 
-	--flags changed fix
-	local flagcheck = CreateFrame("FRAME")
-	flagcheck:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player") --model seems to update when flags are changed
-	flagcheck:SetScript("OnEvent",function()
-		if _G["ElvUF_Player"] and E.db.unitframe.units.player.fader.enable and E.db.unitframe.units.player.fader.minAlpha == 0 then
-			E:Delay(0, function()
-				if _G["ElvUF_Player"]:GetAlpha() == 0 then
-					if _G["ElvUF_Player"].Portrait3D then
-						_G["ElvUF_Player"].Portrait3D:Hide()
-					end
+--hook if frame has smoothing
+if E.db.unitframe.units.player.fader.smooth > 0 then
+	hooksecurefunc(E, "UIFrameFadeIn", function(_, frame,_, _, endAlpha)
+		if frame and endAlpha then
+			if endAlpha == 0 then
+				if frame.Portrait3D then
+					frame.Portrait3D:Hide()
+					frame.FixRotationEltruism = false
+				end
+				if frame:GetName() ~= nil and frame:GetName():match("Player") then
 					if _G["EltruismPlayerEffect"] then
 						_G["EltruismPlayerEffect"]:SetAlpha(0)
 					end
@@ -622,109 +642,87 @@ if E.Retail or E.Wrath then
 						_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
 					end
 				end
-			end)
+				if frame:GetName() ~= nil and frame:GetName():match("Pet") then
+					if _G["EltruismPetEffect"] then
+						_G["EltruismPetEffect"]:SetAlpha(0)
+					end
+					if _G["EltruismPetPowerBarEffect"] then
+						_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
+					end
+				end
+			elseif endAlpha == 1 then
+				if frame.Portrait3D then
+					frame.Portrait3D:Show()
+					ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
+					frame.FixRotationEltruism = true
+				end
+				if frame:GetName() ~= nil and frame:GetName():match("Player") then
+					if _G["EltruismPlayerEffect"] then
+						_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+					end
+					if _G["EltruismPlayerPowerBarEffect"] then
+						_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
+					end
+				end
+				if frame:GetName() ~= nil and frame:GetName():match("Pet") then
+					if _G["EltruismPetEffect"] then
+						_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
+					end
+					if _G["EltruismPetPowerBarEffect"] then
+						_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
+					end
+				end
+			end
 		end
 	end)
-
-	--hook if frame has smoothing
-	if E.db.unitframe.units.player.fader.smooth > 0 then
-		hooksecurefunc(E, "UIFrameFadeIn", function(_, frame,_, _, endAlpha)
-			if frame and endAlpha then
-				if endAlpha == 0 then
-					if frame.Portrait3D then
-						frame.Portrait3D:Hide()
-						frame.FixRotationEltruism = false
+	hooksecurefunc(E, "UIFrameFadeOut", function(_, frame,_, _, endAlpha)
+		if frame and endAlpha then
+			if endAlpha == 0 then
+				if frame.Portrait3D then
+					frame.Portrait3D:Hide()
+					frame.FixRotationEltruism = false
+				end
+				if frame:GetName() ~= nil and frame:GetName():match("Player") then
+					if _G["EltruismPlayerEffect"] then
+						_G["EltruismPlayerEffect"]:SetAlpha(0)
 					end
-					if frame:GetName() ~= nil and frame:GetName():match("Player") then
-						if _G["EltruismPlayerEffect"] then
-							_G["EltruismPlayerEffect"]:SetAlpha(0)
-						end
-						if _G["EltruismPlayerPowerBarEffect"] then
-							_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
-						end
+					if _G["EltruismPlayerPowerBarEffect"] then
+						_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
 					end
-					if frame:GetName() ~= nil and frame:GetName():match("Pet") then
-						if _G["EltruismPetEffect"] then
-							_G["EltruismPetEffect"]:SetAlpha(0)
-						end
-						if _G["EltruismPetPowerBarEffect"] then
-							_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
-						end
+				end
+				if frame:GetName() ~= nil and frame:GetName():match("Pet") then
+					if _G["EltruismPetEffect"] then
+						_G["EltruismPetEffect"]:SetAlpha(0)
 					end
-				elseif endAlpha == 1 then
-					if frame.Portrait3D then
-						frame.Portrait3D:Show()
+					if _G["EltruismPetPowerBarEffect"] then
+						_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
+					end
+				end
+			elseif endAlpha == 1 then
+				if frame.Portrait3D then
+					frame.Portrait3D:Show()
+					if not frame.FixRotationEltruism then
 						ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 						frame.FixRotationEltruism = true
 					end
-					if frame:GetName() ~= nil and frame:GetName():match("Player") then
-						if _G["EltruismPlayerEffect"] then
-							_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-						end
-						if _G["EltruismPlayerPowerBarEffect"] then
-							_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
-						end
+				end
+				if frame:GetName() ~= nil and frame:GetName():match("Player") then
+					if _G["EltruismPlayerEffect"] then
+						_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha or 0.5)
 					end
-					if frame:GetName() ~= nil and frame:GetName():match("Pet") then
-						if _G["EltruismPetEffect"] then
-							_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-						end
-						if _G["EltruismPetPowerBarEffect"] then
-							_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
-						end
+					if _G["EltruismPlayerPowerBarEffect"] then
+						_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
+					end
+				end
+				if frame:GetName() ~= nil and frame:GetName():match("Pet") then
+					if _G["EltruismPetEffect"] then
+						_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha or 0.5)
+					end
+					if _G["EltruismPetPowerBarEffect"] then
+						_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
 					end
 				end
 			end
-		end)
-		hooksecurefunc(E, "UIFrameFadeOut", function(_, frame,_, _, endAlpha)
-			if frame and endAlpha then
-				if endAlpha == 0 then
-					if frame.Portrait3D then
-						frame.Portrait3D:Hide()
-						frame.FixRotationEltruism = false
-					end
-					if frame:GetName() ~= nil and frame:GetName():match("Player") then
-						if _G["EltruismPlayerEffect"] then
-							_G["EltruismPlayerEffect"]:SetAlpha(0)
-						end
-						if _G["EltruismPlayerPowerBarEffect"] then
-							_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
-						end
-					end
-					if frame:GetName() ~= nil and frame:GetName():match("Pet") then
-						if _G["EltruismPetEffect"] then
-							_G["EltruismPetEffect"]:SetAlpha(0)
-						end
-						if _G["EltruismPetPowerBarEffect"] then
-							_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
-						end
-					end
-				elseif endAlpha == 1 then
-					if frame.Portrait3D then
-						frame.Portrait3D:Show()
-						if not frame.FixRotationEltruism then
-							ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
-							frame.FixRotationEltruism = true
-						end
-					end
-					if frame:GetName() ~= nil and frame:GetName():match("Player") then
-						if _G["EltruismPlayerEffect"] then
-							_G["EltruismPlayerEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha or 0.5)
-						end
-						if _G["EltruismPlayerPowerBarEffect"] then
-							_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0.4)
-						end
-					end
-					if frame:GetName() ~= nil and frame:GetName():match("Pet") then
-						if _G["EltruismPetEffect"] then
-							_G["EltruismPetEffect"]:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha or 0.5)
-						end
-						if _G["EltruismPetPowerBarEffect"] then
-							_G["EltruismPetPowerBarEffect"]:SetAlpha(0.8)
-						end
-					end
-				end
-			end
-		end)
-	end
+		end
+	end)
 end
