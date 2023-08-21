@@ -1426,3 +1426,4 @@ L["Set the horizontal offset"] = true
 L["Set the vertical offset"] = true
 L["Enable for Pet"] = true
 L["Enable Gradient colors for Pet"] = true
+L["Class Color Texture with Eltruism Datatext"] = true
