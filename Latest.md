@@ -17,6 +17,7 @@ Fixed a possible error with mMediaTag when playing in Classic
 Fixed a shadow for icons on DBM when the icon was disabled  
 Fixed shadows for non spaced classbar when its detached  
 Fixed player castbar shadows when the icon is detached  
+Fixed Inspect Class background skin in Classic Era  
 Fixed an error with the Quest Skin in Classic  
 Fixed Classic Era talent texture position  
 Fixed Unitframe Dispel Glow Color  

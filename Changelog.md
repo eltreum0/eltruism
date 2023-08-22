@@ -3,6 +3,7 @@ The future is uncertain
 ___
 ### 3.9.3.1
 Updated German locale by Dlarge  
+Fixed Inspect Class background skin in Classic Era  
 Fixed Classic Era talent texture position
 ### 3.9.3
 Added [eltruism:classSymbols:player] tag, which shows the new class symbols used during install  
