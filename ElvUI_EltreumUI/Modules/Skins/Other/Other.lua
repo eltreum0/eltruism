@@ -742,12 +742,12 @@ function ElvUI_EltreumUI:BottomDatabarTexture()
 		bottomclassbar.texture:SetPoint("BOTTOM", UIParent)
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-				bottomclassbar.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColorsCustom(E.myclass, false, true))
+				bottomclassbar.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColorsCustom(E.myclass, false, true, false, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha))
 			else
-				bottomclassbar.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColors(E.myclass, false, true))
+				bottomclassbar.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColors(E.myclass, false, true, false, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha))
 			end
 		else
-			bottomclassbar.texture:SetVertexColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			bottomclassbar.texture:SetVertexColor(classcolor.r, classcolor.g, classcolor.b, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha)
 		end
 	end
 end

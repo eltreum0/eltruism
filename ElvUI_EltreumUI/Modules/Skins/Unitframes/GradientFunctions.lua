@@ -287,22 +287,38 @@ local function bgalpha(alpha)
 end
 
 --get the gradient colors
-function ElvUI_EltreumUI:GradientColors(unitclass, invert, alpha, isBG)
+function ElvUI_EltreumUI:GradientColors(unitclass, invert, alpha, isBG, customalpha)
 	local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
-	if invert then
-		return {r=color.r2 - bgfade(isBG),g= color.g2 - bgfade(isBG),b= color.b2 - bgfade(isBG),a= bgalpha(alpha)}, {r=color.r1 - bgfade(isBG),g= color.g1 - bgfade(isBG),b= color.b1 - bgfade(isBG),a= bgalpha(alpha)}
+	if customalpha then
+		if invert then
+			return {r=color.r2 - bgfade(isBG),g= color.g2 - bgfade(isBG),b= color.b2 - bgfade(isBG),a= customalpha}, {r=color.r1 - bgfade(isBG),g= color.g1 - bgfade(isBG),b= color.b1 - bgfade(isBG),a= customalpha}
+		else
+			return {r=color.r1 - bgfade(isBG),g= color.g1 - bgfade(isBG),b= color.b1 - bgfade(isBG),a= customalpha}, {r=color.r2 - bgfade(isBG),g= color.g2 - bgfade(isBG),b= color.b2 - bgfade(isBG),a= customalpha}
+		end
 	else
-		return {r=color.r1 - bgfade(isBG),g= color.g1 - bgfade(isBG),b= color.b1 - bgfade(isBG),a= bgalpha(alpha)}, {r=color.r2 - bgfade(isBG),g= color.g2 - bgfade(isBG),b= color.b2 - bgfade(isBG),a= bgalpha(alpha)}
+		if invert then
+			return {r=color.r2 - bgfade(isBG),g= color.g2 - bgfade(isBG),b= color.b2 - bgfade(isBG),a= bgalpha(alpha)}, {r=color.r1 - bgfade(isBG),g= color.g1 - bgfade(isBG),b= color.b1 - bgfade(isBG),a= bgalpha(alpha)}
+		else
+			return {r=color.r1 - bgfade(isBG),g= color.g1 - bgfade(isBG),b= color.b1 - bgfade(isBG),a= bgalpha(alpha)}, {r=color.r2 - bgfade(isBG),g= color.g2 - bgfade(isBG),b= color.b2 - bgfade(isBG),a= bgalpha(alpha)}
+		end
 	end
 end
 
 --get the custom gradient colors
-function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, alpha, isBG)
+function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, alpha, isBG, customalpha)
 	local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
-	if invert then
-		return {r=color.r2 - bgfade(isBG),g= color.g2 - bgfade(isBG),b= color.b2 - bgfade(isBG),a= bgalpha(alpha)}, {r=color.r1 - bgfade(isBG),g= color.g1 - bgfade(isBG),b= color.b1 - bgfade(isBG),a= bgalpha(alpha)}
+	if customalpha then
+		if invert then
+			return {r=color.r2 - bgfade(isBG),g= color.g2 - bgfade(isBG),b= color.b2 - bgfade(isBG),a= customalpha}, {r=color.r1 - bgfade(isBG),g= color.g1 - bgfade(isBG),b= color.b1 - bgfade(isBG),a= customalpha}
+		else
+			return {r=color.r1 - bgfade(isBG),g= color.g1 - bgfade(isBG),b= color.b1 - bgfade(isBG),a= customalpha}, {r=color.r2 - bgfade(isBG),g= color.g2 - bgfade(isBG),b= color.b2 - bgfade(isBG),a= customalpha}
+		end
 	else
-		return {r=color.r1 - bgfade(isBG),g= color.g1 - bgfade(isBG),b= color.b1 - bgfade(isBG),a= bgalpha(alpha)}, {r=color.r2 - bgfade(isBG),g= color.g2 - bgfade(isBG),b= color.b2 - bgfade(isBG),a= bgalpha(alpha)}
+		if invert then
+			return {r=color.r2 - bgfade(isBG),g= color.g2 - bgfade(isBG),b= color.b2 - bgfade(isBG),a= bgalpha(alpha)}, {r=color.r1 - bgfade(isBG),g= color.g1 - bgfade(isBG),b= color.b1 - bgfade(isBG),a= bgalpha(alpha)}
+		else
+			return {r=color.r1 - bgfade(isBG),g= color.g1 - bgfade(isBG),b= color.b1 - bgfade(isBG),a= bgalpha(alpha)}, {r=color.r2 - bgfade(isBG),g= color.g2 - bgfade(isBG),b= color.b2 - bgfade(isBG),a= bgalpha(alpha)}
+		end
 	end
 end
 
