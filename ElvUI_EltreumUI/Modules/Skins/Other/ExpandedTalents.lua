@@ -72,7 +72,11 @@ function ElvUI_EltreumUI:ExpandedTalents()
 						end
 						--set the position
 						PlayerTalentFrameScrollFrame:ClearAllPoints()
-						PlayerTalentFrameScrollFrame:SetPoint("CENTER", PlayerTalentFrame, 0, 20)
+						if E.Wrath then
+							PlayerTalentFrameScrollFrame:SetPoint("CENTER", PlayerTalentFrame, 0, 20)
+						else
+							PlayerTalentFrameScrollFrame:SetPoint("TOP", PlayerTalentFrame, "TOP", -22, -37)
+						end
 					end
 
 					--increase the size of the background
