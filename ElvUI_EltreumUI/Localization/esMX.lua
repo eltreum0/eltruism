@@ -1457,3 +1457,4 @@ L["Set the horizontal offset"] = "Ajustar el desplazamiento horizontal"
 L["Set the vertical offset"] = "Establecer el desplazamiento vertical"
 L["Enable for Pet"] = "Activar para mascotas"
 L["Enable Gradient colors for Pet"] = "Activar colores degradados para mascotas"
+L["Class Color Texture with Eltruism Datatext"] = true
