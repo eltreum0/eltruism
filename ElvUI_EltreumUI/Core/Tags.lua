@@ -1277,3 +1277,28 @@ E:AddTag("eltruism:healermana", 'UNIT_POWER_FREQUENT UNIT_MAXPOWER', function(un
 	end
 end)
 E:AddTagInfo("eltruism:healermana", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows mana if the unit is a healer"])
+
+--gradient name in caps
+E:AddTag("name:eltruism:gradientcaps", "UNIT_NAME_UPDATE", function(unit)
+	local name = string.upper(UnitName(unit))
+	local _, unitClass = UnitClass(unit)
+	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
+
+	if UnitIsPlayer(unit) then
+		return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget)
+	elseif not UnitIsPlayer(unit) then
+		local reaction = UnitReaction(unit, "player")
+		if reaction then
+			if reaction >= 5 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget)
+			elseif reaction == 4 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget)
+			elseif reaction == 3 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget)
+			elseif reaction == 2 or reaction == 1 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget)
+			end
+		end
+	end
+end)
+E:AddTagInfo("name:eltruism:gradientcaps", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color"])
