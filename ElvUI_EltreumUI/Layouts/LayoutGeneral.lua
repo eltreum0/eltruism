@@ -1565,7 +1565,7 @@ function ElvUI_EltreumUI:SetupCVars()
 		_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:RefreshValue()
 	end
 
-	if not E.Wrath then
+	if E.Retail then
 		SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	else
 		SetCVar('cameraDistanceMaxZoomFactor', 3.4)
