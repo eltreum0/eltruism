@@ -129,6 +129,9 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Angelina-TarrenMill"] = DonatorsIcon,
 			["Gigadudu-TarrenMill"] = DonatorsIcon,
 			["Tyrant-TarrenMill"] = DonatorsIcon,
+
+			--Spectated
+			["Spectated-Benediction"] = DonatorsIcon,
 		}
 
 		--Discord MVPs
