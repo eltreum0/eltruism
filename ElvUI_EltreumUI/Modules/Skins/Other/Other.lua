@@ -751,3 +751,11 @@ function ElvUI_EltreumUI:BottomDatabarTexture()
 		end
 	end
 end
+
+--make shamans blue again in classic
+if E.Classic then
+	_G.RAID_CLASS_COLORS['SHAMAN']["r"] = 0.00
+	_G.RAID_CLASS_COLORS['SHAMAN']["g"] = 0.44
+	_G.RAID_CLASS_COLORS['SHAMAN']["b"] = 0.87
+	_G.RAID_CLASS_COLORS['SHAMAN']["colorStr"] = "ff0070DD"
+end
