@@ -51,12 +51,12 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[1144] = 33990, -- 15 spirit
 		[1257] = 46506, -- 15 arcane res
 		[1441] = 46507, -- 15 shadow res
-		[2620] = 359949, -- 15 nature res
+		[2620] = E.Wrath and 359949 or 25082, -- 15 nature res
 		[2519] = 359950, -- 15 fire res
 		[2664] = 46508, -- 7 res all
 		[2343] = 46531, -- major healing weapon
-		[1888] = 359685, -- shield resilience? resistance? 46525
-		[926] = 359895, -- shield frost res
+		[1888] = E.Wrath and 359685 or 20014, -- shield resilience? resistance? 46525
+		[926] = E.Wrath and 359895 or 13933, -- shield frost res
 		[983] = 44500, -- cloak superior agility
 		[2566] = 2317, -- +13 spellpower ????
 		[1354] = 44556, -- cloak superior fire res
@@ -93,6 +93,14 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[3762] = 57699, --fur-lining-nature-resist
 		[3763] = 57701, --fur-lining-arcane-resist
 		[3878] = 67839, --mind-amplification-dish
+		[2585] = 24161, --deaths-embrace
+		[2586] = 24162, --falcons-call
+		[903] = 13794, --enchant-cloak-resistance
+		[2619] = 25081, --enchant-cloak-greater-fire-resistance
+		[2463] = 13657, --enchant-cloak-fire-resistance
+		[804] = 13522, --enchant-cloak-lesser-shadow-resistance
+		[256] = 7861, --enchant-cloak-lesser-fire-resistance
+		--[1897] = 20031, --enchant-weapon-superior-striking
 
 		---- old list
 		[15] = 2831, -- Reinforced (+$k1 Armor)
@@ -207,14 +215,14 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[1884] = 20009, -- +$k1 Spirit
 		[1885] = 20010, -- +$k1 Strength
 		[1886] = 20011, -- +$k1 Stamina
-		[1887] = 20012, -- +$k1 Agility
+		[1887] = E.Wrath and 20012 or 20023, -- +$k1 Agility
 		[1889] = 20015, -- +$k1 Armor
 		[1890] = 20016, -- +$k1 Spirit and +$k2 Stamina
 		[1891] = 20025, -- +$19988s1 All Stats
 		[1892] = 20026, -- +$19990s1 Health
 		[1893] = 20028, -- +$k1 Mana
 		[1894] = 20029, -- Icy Chill
-		[1896] = 20030, -- +$k1 Weapon Damage
+		[1896] = E.Wrath and 20030 or 20031, -- +$k1 Weapon Damage
 		[1897] = 13695, -- +$k1 Weapon Damage
 		[1898] = 20032, -- Lifestealing
 		[1899] = 20033, -- Unholy Weapon
