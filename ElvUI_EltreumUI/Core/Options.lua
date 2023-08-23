@@ -84,6 +84,7 @@ local DONATORS = {
 	'|cffB50909BioVenom|r',
 	'|cffB50909bansheeirl|r',
 	'|cffB50909Ante|r',
+	'|cffB50909Spectated|r',
 }
 
 local TRANSLATORS = {
@@ -584,10 +585,10 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.combattext.args.worldtextscale = ACH:Range(L["Select the size of the World Text"], nil, 6, { min = 0.2, max = 2, step = 0.1 }, 'full', function() return E.db.ElvUI_EltreumUI.otherstuff.worldtextscale end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldtextscale = value ElvUI_EltreumUI:WorldTextScale(value) end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.camera = ACH:Group(L["Camera"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.camera.args.description1 = ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.camera.args.cameraFOV = ACH:Range(L["Camera Field of View"], L["This allows you to zoom out further with the camera to increase the field of view."], 2, { min = 50, max = 90, step = 1 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.cameraFOV end, function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraFOV = value SetCVar('camerafov', value) end, nil, E.Classic)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.camera.args.cameraDistanceMaxZoomFactor = ACH:Range(L["Camera Distance Max Zoom Factor"], L["Maximum Camera Zoom Out"], 2, { min = 1, max = function() if not E.Wrath then return 2.6 else return 3.4 end end, step = 0.1 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor end, function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor = value SetCVar('cameraDistanceMaxZoomFactor', value) end)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.camera.args.cameraFOV = ACH:Range(L["Camera Field of View"], L["This allows you to zoom out further with the camera to increase the field of view."], 2, { min = 50, max = 90, step = 1 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.cameraFOV end, function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraFOV = value SetCVar('camerafov', value) end, nil)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.camera.args.cameraDistanceMaxZoomFactor = ACH:Range(L["Camera Distance Max Zoom Factor"], L["Maximum Camera Zoom Out"], 2, { min = 1, max = function() if not (E.Wrath or E.Classic) then return 2.6 else return 3.4 end end, step = 0.1 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor end, function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor = value SetCVar('cameraDistanceMaxZoomFactor', value) end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates = ACH:Group(L["Nameplates"], nil, 2, "tab")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.description1 = ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Classic)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.description1 = ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.SoftTargetInteract = ACH:Toggle(L["Soft Target Interact"], L["Enable Soft Target Interactions"], 2, nil, false,'full',
 	function()
 		if C_CVar.GetCVar('SoftTargetInteract') == '0' then
@@ -607,7 +608,7 @@ function ElvUI_EltreumUI:Configtable()
 			SetCVar('SoftTargetIconGameObject', 0)
 			SetCVar('SoftTargetNameplateInteract', 0)
 		end
-	 end, nil, E.Classic)
+	 end, nil)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.description2 = ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateTargetRadialPosition = ACH:Select(L["Nameplate Target Radial Position"], L["When target is off screen, position its nameplate radially around sides and bottom."], 4, {
 		["1"] = L["Target Only"],
