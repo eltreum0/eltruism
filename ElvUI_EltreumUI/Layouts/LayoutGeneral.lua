@@ -1571,6 +1571,14 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar('cameraDistanceMaxZoomFactor', 3.4)
 	end
 
+	--new softtarget (only function if player enables interact with target option, which these cvars do not enable)
+	SetCVar('SoftTargetInteractRange', 5)
+	SetCVar('SoftTargetIconGameObject', 1)
+	SetCVar('SoftTargetIconInteract', 1)
+	SetCVar('SoftTargetInteract', 3) --3 enables, 0 disables
+	SetCVar('SoftTargetInteractArc', 2)
+	SetCVar('SoftTargetNameplateInteract', 1)
+
 	if E.Retail then
 		--this makes it so that the non nameplate names are hidden
 		SetCVar('UnitNameHostleNPC', 0) --Display names for hostile NPCs, even when they are dead
@@ -1584,14 +1592,6 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar('minimapTrackingShowAll', 1) --return old tracking on right click
 
 		SetCVar('WorldTextMinSize', 6)
-
-		--new softtarget (only function if player enables interact with target option, which these cvars do not enable)
-		SetCVar('SoftTargetInteractRange', 5)
-		SetCVar('SoftTargetIconGameObject', 1)
-		SetCVar('SoftTargetIconInteract', 1)
-		SetCVar('SoftTargetInteract', 3) --3 enables, 0 disables
-		SetCVar('SoftTargetInteractArc', 2)
-		SetCVar('SoftTargetNameplateInteract', 1)
 
 		SetCVar('missingTransmogSourceInItemTooltips', 1)
 
