@@ -17,7 +17,6 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.private["sle"]["module"]["screensaver"] = true
 		E.private["sle"]["professions"]["deconButton"]["enable"] = true
 		E.private["sle"]["professions"]["deconButton"]["style"] = "PIXEL"
-		E.private["sle"]["professions"]["enchant"]["enchScroll"] = true
 		E.private["sle"]["professions"]["fishing"]["EasyCast"] = true
 		E.private["sle"]["professions"]["fishing"]["FromMount"] = true
 		E.private["sle"]["skins"]["merchant"]["enable"] = true
