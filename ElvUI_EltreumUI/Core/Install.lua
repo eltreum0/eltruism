@@ -216,6 +216,11 @@ ElvUI_EltreumUI.InstallerData = {
 	tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 	Pages = {
 		[1] = function()
+			E:Delay(0, function() --compatibility during plugin install hides install so hide it instead
+				if _G["MERCompatibilityFrame"] then
+					_G["MERCompatibilityFrame"]:Hide()
+				end
+			end)
 			ImproveInstall()
 			if isfirstpage then
 				ElvUI_EltreumUI.InstallerData.StepTitles[1] = E:TextGradient(L["Welcome"], 0.50, 0.70, 1, 0.67, 0.95, 1)

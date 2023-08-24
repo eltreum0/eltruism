@@ -165,7 +165,7 @@ function ElvUI_EltreumUI:LootText()
 			end
 			if event == "PLAYER_REGEN_ENABLED" then
 				if E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.enable then
-					CombatText_AddMessage(E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leave, CombatText_StandardScroll, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.r, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.g, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.r)
+					CombatText_AddMessage(E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leave, CombatText_StandardScroll, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.r, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.g, E.db.ElvUI_EltreumUI.loot.loottext.combatindicatorcustom.leavecolor.b)
 				else
 					CombatText_AddMessage("|cffFFFFFF-"..string.upper(COMBAT).."|r", CombatText_StandardScroll, 1, 0, 0)
 				end

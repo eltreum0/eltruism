@@ -285,6 +285,9 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckMerathilisUI(L["Custom Power Models"], L["Power Models"], "db.ElvUI_EltreumUI.unitframes.models.powerbar", "db.mui.unitframes.power.enable")
 	CheckWindTools(L["Unitframe/Chat Role Icons"], L["Unitframe Role Icons"], "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "private.WT.unitFrames.roleIcon.enable")
 
+	--general gradient
+	CheckMerathilisUI(L["Gradient\nHealth/Power/Castbars"], L["Gradient Power"], "db.ElvUI_EltreumUI.unitframes.gradientmode.enable", "db.mui.gradient.enable")
+
 	--chat
 	CheckMerathilisUI(L["Chat Loot Icons"], L["Chat Loot Icons"], "db.ElvUI_EltreumUI.chat.looticons", "db.mui.chat.chatLink.enable")
 	CheckWindTools(L["Chat Loot Icons"], L["Chat Loot Icons"], "db.ElvUI_EltreumUI.chat.looticons", "db.WT.social.chatLink.icon")
@@ -320,6 +323,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 
 	if _G["EltruismCompatibilityFrame"].numModules > 0 then
 		_G["EltruismCompatibilityFrame"]:Show()
+		ElvUI_EltreumUI:HidePopups(0)
 		E:Delay(2, function()
 			if _G["MERCompatibilityFrame"] then --2 windows at the same time is just confusing
 				_G["MERCompatibilityFrame"]:Hide()

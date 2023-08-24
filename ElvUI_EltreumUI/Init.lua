@@ -331,9 +331,11 @@ function ElvUI_EltreumUI:PLAYER_AVG_ITEM_LEVEL_UPDATE()
 end
 
 function ElvUI_EltreumUI:INSPECT_READY(_,unit)
-	if _G.InspectFrame and _G.InspectFrame:IsVisible() then
-		ElvUI_EltreumUI:InspectBg(unit)
-	end
+	E:Delay(0, function()
+		if _G.InspectFrame and _G.InspectFrame:IsVisible() then
+			ElvUI_EltreumUI:InspectBg(unit)
+		end
+	end)
 end
 
 function ElvUI_EltreumUI:PLAYER_LEAVING_WORLD()
