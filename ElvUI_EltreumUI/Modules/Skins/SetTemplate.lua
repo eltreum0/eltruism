@@ -81,6 +81,35 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 								frame.eltruismbgtexture:Show()
 							end
 						end
+
+
+						--[[
+						frame:SetBackdrop({
+							edgeFile = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\border\\Eltreum-Border-1.tga",
+							bgFile = glossTex and (type(glossTex) == 'string' and glossTex or E.media.glossTex) or E.media.blankTex,
+							edgeSize = 3,
+						})
+						--frame.backdrop:SetOutside()
+						if frame.callbackBackdropColor then
+							frame:callbackBackdropColor()
+						else
+							frame:SetBackdropColor(0, 0, 0, frame.customBackdropAlpha or (template == 'Transparent' and 1) or 1)
+						end
+						local borderr, borderg, borderb, bordera = 0,0,0,1
+						if frame.forcedBorderColors then
+							borderr, borderg, borderb, bordera = unpack(frame.forcedBorderColors)
+						end
+
+						frame:SetBackdropBorderColor(borderr, borderg, borderb, bordera)
+						]]
+
+						--[[frame.testmask = frame:CreateMaskTexture()
+						frame.testmask:SetAllPoints(frame)
+						frame.testmask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask.TGA", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+						frame:AddMaskTexture(frame.testmask) --errors because frame doesnt have method, needs texture...
+						]]
+
+
 						--[[if not frame.shadow then
 							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(frame.shadow)

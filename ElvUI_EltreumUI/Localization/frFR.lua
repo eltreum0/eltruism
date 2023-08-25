@@ -1439,4 +1439,4 @@ L["Set the horizontal offset"] = "Définir le décalage horizontal"
 L["Set the vertical offset"] = "Définir le décalage vertical"
 L["Enable for Pet"] = "Activer pour l'animal de compagnie"
 L["Enable Gradient colors for Pet"] = "Activer les couleurs dégradées pour l'animal de compagnie"
-L["Class Color Texture with Eltruism Datatext"] = true
+L["Class Color Texture with Eltruism Datatext"] = "Classe Couleur Texture avec Eltruism Datatext"
