@@ -200,8 +200,9 @@ end
 
 --Add class icons next to player names in chat
 function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, _, _, arg12)
-	local chatType = strsub(event, 10)
+	if not arg2 then return end -- guild deaths is called here with no arg2
 
+	local chatType = strsub(event, 10)
 	local subType = strsub(chatType, 1, 7)
 	if subType == 'WHISPER' then
 		chatType = 'WHISPER'
@@ -209,29 +210,27 @@ function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, 
 		chatType = 'CHANNEL'..arg8
 	end
 
-	--ambiguate guild chat names
-	if arg2 then
-		arg2 = Ambiguate(arg2, (chatType == 'GUILD' and 'guild') or 'none')
-	end
+	-- ambiguate guild chat names
+	local name = Ambiguate(arg2, (chatType == 'GUILD' and 'guild') or 'none')
 
-	local info = arg12 and _G.ChatTypeInfo[chatType]
+	local info = name and arg12 and _G.ChatTypeInfo[chatType]
 	if info and _G.Chat_ShouldColorChatByClass(info) then
 		local data = CH:GetPlayerInfoByGUID(arg12)
 		local classColor = data and data.classColor
 		if classColor then
 			if E.db.ElvUI_EltreumUI.chat.chaticonenable and E.db.ElvUI_EltreumUI.chat.chatgradient then
-				return ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.chat.chaticontype,data.englishClass)..ElvUI_EltreumUI:GradientName(arg2, data.englishClass)
+				return ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.chat.chaticontype,data.englishClass)..ElvUI_EltreumUI:GradientName(name, data.englishClass)
 			elseif E.db.ElvUI_EltreumUI.chat.chaticonenable and not E.db.ElvUI_EltreumUI.chat.chatgradient then
-				return ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.chat.chaticontype,data.englishClass)..format('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, arg2)
+				return ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.chat.chaticontype,data.englishClass)..format('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, name)
 			elseif not E.db.ElvUI_EltreumUI.chat.chaticonenable and E.db.ElvUI_EltreumUI.chat.chatgradient then
-				return ElvUI_EltreumUI:GradientName(arg2, data.englishClass)
+				return ElvUI_EltreumUI:GradientName(name, data.englishClass)
 			else
-				return format('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, arg2)
+				return format('|cff%.2x%.2x%.2x%s|r', classColor.r*255, classColor.g*255, classColor.b*255, name)
 			end
 		end
 	end
 
-	return arg2
+	return name
 end
 hooksecurefunc(CH, "ChatFrame_MessageEventHandler", function()
 	if (E.db.ElvUI_EltreumUI.chat.chaticonenable or E.db.ElvUI_EltreumUI.chat.chatgradient) and E.db.ElvUI_EltreumUI.chat.enable then
