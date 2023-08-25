@@ -386,3 +386,30 @@ function ElvUI_EltreumUI:LeaderIcon()
 	end
 end
 hooksecurefunc(UF,"RaidRoleUpdate", ElvUI_EltreumUI.LeaderIcon)
+
+function ElvUI_EltreumUI:RestIcon(frame)
+	if not frame then return end
+	if frame.RestingIndicator then
+		if not frame.RestingIndicator.EltruismHook then
+			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:ClearAllPoints()
+			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetParent(frame)
+			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetPoint("CENTER", frame.RestingIndicator, "CENTER", 0, 0)
+			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetFrameStrata('DIALOG')
+			hooksecurefunc(frame.RestingIndicator, 'PostUpdate', function()
+				if frame.RestingIndicator:IsShown() then
+					_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:Show()
+				else
+					_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:Hide()
+				end
+				local r,g,b,a = frame.RestingIndicator:GetVertexColor()
+				_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop.RestTexture:SetDesaturated(true)
+				_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop.RestTexture:SetVertexColor(r,g,b,a)
+			end)
+			frame.RestingIndicator.EltruismHook = true
+		end
+		frame.RestingIndicator:SetTexture()
+	end
+end
+if E.Retail then
+	hooksecurefunc(UF,"Configure_RestingIndicator", ElvUI_EltreumUI.RestIcon)
+end
