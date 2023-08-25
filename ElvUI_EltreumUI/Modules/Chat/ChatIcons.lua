@@ -44,6 +44,9 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Eltreum-Faerlina"] = EltreumIcon,
 			["Effecta-Faerlina"] = EltreumIcon,
 			["Brihtnes-Faerlina"] = EltreumIcon,
+
+			--Era Hardcore
+			["Eltreum-DefiasPillager"] = EltreumIcon,
 		}
 
 		--Donators
@@ -207,7 +210,9 @@ function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, 
 	end
 
 	--ambiguate guild chat names
-	arg2 = Ambiguate(arg2, (chatType == 'GUILD' and 'guild') or 'none')
+	if arg2 then
+		arg2 = Ambiguate(arg2, (chatType == 'GUILD' and 'guild') or 'none')
+	end
 
 	local info = arg12 and _G.ChatTypeInfo[chatType]
 	if info and _G.Chat_ShouldColorChatByClass(info) then
