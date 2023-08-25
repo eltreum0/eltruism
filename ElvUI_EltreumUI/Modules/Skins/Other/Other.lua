@@ -758,4 +758,10 @@ if E.Classic then
 	_G.RAID_CLASS_COLORS['SHAMAN']["g"] = 0.44
 	_G.RAID_CLASS_COLORS['SHAMAN']["b"] = 0.87
 	_G.RAID_CLASS_COLORS['SHAMAN']["colorStr"] = "ff0070DD"
+	E.oUF.colors.class['SHAMAN'][1] = 0.00
+	E.oUF.colors.class['SHAMAN'][2] = 0.44
+	E.oUF.colors.class['SHAMAN'][3] = 0.87
+	E.oUF.colors.class['SHAMAN']["r"] = 0.00
+	E.oUF.colors.class['SHAMAN']["g"] = 0.44
+	E.oUF.colors.class['SHAMAN']["b"] = 0.87
 end
