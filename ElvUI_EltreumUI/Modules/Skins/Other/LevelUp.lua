@@ -118,25 +118,38 @@ if E.Wrath or E.Classic then
 	LevelUpFrame.Text2 = LevelUpFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 	LevelUpFrame.Text2:SetSize(418, 72)
 	LevelUpFrame.Text2:SetPoint("CENTER", "EltruismLevelUp", "CENTER", 0, -14)
-	LevelUpFrame.Text2:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+	if E.myclass == "SHAMAN" and E.Classic then
+		LevelUpFrame.Text2:SetTextColor(0, 0.44, 87)
+	else
+		LevelUpFrame.Text2:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+	end
 	LevelUpFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 42, E.db.general.fontStyle)
 
 	LevelUpFrame.StatusLine = CreateFrame("StatusBar", "EltruismLevelUp", LevelUpFrame)
 	LevelUpFrame.StatusLine:SetSize(418, 3)
 	LevelUpFrame.StatusLine:SetPoint("TOP", LevelUpFrame, 0, -5)
 	LevelUpFrame.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
-	LevelUpFrame.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
+	if E.myclass == "SHAMAN" and E.Classic then
+		LevelUpFrame.StatusLine:SetStatusBarColor(0, 0.44, 87, 1)
+	else
+		LevelUpFrame.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
+	end
 	LevelUpFrame.StatusLine2 = CreateFrame("StatusBar", "EltruismLevelUp", LevelUpFrame)
 	LevelUpFrame.StatusLine2:SetSize(418, 3)
 	LevelUpFrame.StatusLine2:SetPoint("BOTTOM", LevelUpFrame, 0, 0)
 	LevelUpFrame.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
-	LevelUpFrame.StatusLine2:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
+	if E.myclass == "SHAMAN" and E.Classic then
+		LevelUpFrame.StatusLine2:SetStatusBarColor(0, 0.44, 87, 1)
+	else
+		LevelUpFrame.StatusLine2:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
+	end
 
 	LevelUpFrame:Hide()
 
 	local playerlevel = E.mylevel
 	if E.Wrath or E.Classic then
 		LevelUpFrame:RegisterEvent("PLAYER_LEVEL_UP")
+		--LevelUpFrame:RegisterEvent("PLAYER_STARTED_MOVING")
 		--LevelUpFrame:SetScript("OnEvent", function(self, event, ...)
 		LevelUpFrame:SetScript("OnEvent", function()
 			if E.db.ElvUI_EltreumUI.skins.levelbossinstance then
