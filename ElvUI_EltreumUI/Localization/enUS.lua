@@ -1429,3 +1429,4 @@ L["Set the vertical offset"] = true
 L["Enable for Pet"] = true
 L["Enable Gradient colors for Pet"] = true
 L["Class Color Texture with Eltruism Datatext"] = true
+L["Displays unit name in caps while being class color or reaction color, shortens over 16 characters but can be changed with {arg}"] = true
