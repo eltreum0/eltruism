@@ -391,6 +391,7 @@ function ElvUI_EltreumUI:RestIcon(frame)
 	if not frame then return end
 	if frame.RestingIndicator then
 		if not frame.RestingIndicator.EltruismHook then
+			_G.PlayerFrame_UpdatePlayerRestLoop(true)
 			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:ClearAllPoints()
 			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetParent(frame)
 			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetPoint("CENTER", frame.RestingIndicator, "CENTER", 0, 0)
