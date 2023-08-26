@@ -1443,3 +1443,4 @@ L["Class Color Texture with Eltruism Datatext"] = "Classe Couleur Texture avec E
 L["Displays unit name in caps while being class color or reaction color, shortens over 16 characters but can be changed with {arg}"] = true
 L["NPC Textures"] = true
 L["Frames"] = true
+L["Skin"] = true
