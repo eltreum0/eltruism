@@ -177,7 +177,7 @@ function ElvUI_EltreumUI:ImproveInstall(installtype,mode,null)
 end
 
 local function InstallSizing()
-	--_G.PluginInstallFrame:SetSize(550,500) --default
+	--_G.PluginInstallFrame:SetSize(550,400) --default
 	--_G.PluginInstallFrame:SetSize(1024,512)
 	_G.PluginInstallFrame:SetSize(715,520)
 	_G.PluginInstallFrame.Desc1:ClearAllPoints()
