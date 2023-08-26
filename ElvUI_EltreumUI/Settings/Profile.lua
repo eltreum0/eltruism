@@ -1365,7 +1365,7 @@ P.ElvUI_EltreumUI = {
 
 		gamemenu = false,
 		afklogo = true,
-		afklogoeltruism = false,
+		afklogoeltruism = true,
 		mailsoundenable = false,
 		mailsoundtype = "sharedmedia",
 		mailsoundttstext = "You've got mail",
