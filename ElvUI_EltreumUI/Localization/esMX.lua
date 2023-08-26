@@ -1458,3 +1458,6 @@ L["Set the vertical offset"] = "Establecer el desplazamiento vertical"
 L["Enable for Pet"] = "Activar para mascotas"
 L["Enable Gradient colors for Pet"] = "Activar colores degradados para mascotas"
 L["Class Color Texture with Eltruism Datatext"] = "Textura de color de clase con eltruismo Datatext"
+L["Displays unit name in caps while being class color or reaction color, shortens over 16 characters but can be changed with {arg}"] = true
+L["NPC Textures"] = true
+L["Frames"] = true

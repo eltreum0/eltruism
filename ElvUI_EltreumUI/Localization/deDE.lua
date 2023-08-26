@@ -1484,3 +1484,6 @@ L["Set the vertical offset"] = "Lege den vertikalen Versatz fest"
 L["Enable for Pet"] = "Aktiviere für Begleiter"
 L["Enable Gradient colors for Pet"] = "Aktiviere Farbverlauf für Begleiter"
 L["Class Color Texture with Eltruism Datatext"] = "Klassenfarbentextur mit Eltruism Datentexte"
+L["Displays unit name in caps while being class color or reaction color, shortens over 16 characters but can be changed with {arg}"] = true
+L["NPC Textures"] = true
+L["Frames"] = true
