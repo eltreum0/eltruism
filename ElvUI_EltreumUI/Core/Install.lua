@@ -34,7 +34,7 @@ end
 --add some stuff to the installer
 local PIHook
 local isfirstpage = true
-local function ImproveInstall(installtype,mode,null)
+function ElvUI_EltreumUI:ImproveInstall(installtype,mode,null)
 	if null then
 		_G.PluginInstallFrame.Option1:SetScript('OnEnter', nil)
 		_G.PluginInstallFrame.Option1:SetScript('OnLeave', nil)
@@ -221,7 +221,7 @@ ElvUI_EltreumUI.InstallerData = {
 					_G["MERCompatibilityFrame"]:Hide()
 				end
 			end)
-			ImproveInstall()
+			ElvUI_EltreumUI:ImproveInstall()
 			if isfirstpage then
 				ElvUI_EltreumUI.InstallerData.StepTitles[1] = E:TextGradient(L["Welcome"], 0.50, 0.70, 1, 0.67, 0.95, 1)
 			else
@@ -232,7 +232,7 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame:HookScript("OnShow", function()
 					if _G.PluginInstallFrame.Title then
 						if _G.PluginInstallFrame.Title:GetText() ~= ElvUI_EltreumUI.Name then
-							ImproveInstall(nil,nil,true)
+							ElvUI_EltreumUI:ImproveInstall(nil,nil,true)
 						end
 					end
 				end)
@@ -323,8 +323,8 @@ ElvUI_EltreumUI.InstallerData = {
 				ElvUI_EltreumUI:UpdateEltruismSettings()
 				PlaySound(888)
 			end)
-			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ImproveInstall("dps","ENTERING") end)
-			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING")end)
+			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("dps","ENTERING") end)
+			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING")end)
 			_G.PluginInstallFrame.Option1:SetText(L["DPS\nTank"])
 
 			_G.PluginInstallFrame.Option2:Enable()
@@ -358,8 +358,8 @@ ElvUI_EltreumUI.InstallerData = {
 				ElvUI_EltreumUI:UpdateEltruismSettings()
 				PlaySound(888)
 			end)
-			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ImproveInstall("healer","ENTERING") end)
-			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("healer","ENTERING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option2:SetText(L["Healer"])
 
 			if E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
@@ -367,8 +367,8 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option3:Enable()
 				_G.PluginInstallFrame.Option3:Show()
 				_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AlternativeGroupsDPS() end)
-				_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ImproveInstall("alternative","ENTERING") end)
-				_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+				_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("alternative","ENTERING") end)
+				_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			end
 		end,
 		[3] = function()
@@ -387,8 +387,8 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:ColorModes() end)
-			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ImproveInstall("lightdark","ENTERING") end)
-			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("lightdark","ENTERING") end)
+			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option1:SetText(L["Light Mode"].."\n"..L["Dark Mode"])
 
 			_G.PluginInstallFrame.Option2:Enable()
@@ -408,8 +408,8 @@ ElvUI_EltreumUI.InstallerData = {
 				end
 			end)
 			_G.PluginInstallFrame.Option2:SetText(L["Gradient Mode"])
-			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ImproveInstall("gradient","ENTERING") end)
-			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gradient","ENTERING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 
 			_G.PluginInstallFrame.Option3:Enable()
 			_G.PluginInstallFrame.Option3:Show()
@@ -418,16 +418,16 @@ ElvUI_EltreumUI.InstallerData = {
 				ElvUI_EltreumUI:AuraBorders()
 				ElvUI_EltreumUI:ShowHideBorders(true)
 			end)
-			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ImproveInstall("borders","ENTERING") end)
-			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("borders","ENTERING") end)
+			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option3:SetText(L["Borders"])
 
 
 			_G.PluginInstallFrame.Option4:Enable()
 			_G.PluginInstallFrame.Option4:Show()
 			_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:CheckBackground() end)
-			_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ImproveInstall("backgroundcolors","ENTERING") end)
-			_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("backgroundcolors","ENTERING") end)
+			_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option4:SetText(L["Background"].."\n"..L["Color"])
 		end,
 		[4] = function()
@@ -482,15 +482,15 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:TransparentChat() end)
-			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ImproveInstall("chattransparent","ENTERING") end)
-			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("chattransparent","ENTERING") end)
+			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option1:SetText(L["Transparent\nChat"])
 
 			_G.PluginInstallFrame.Option2:Enable()
 			_G.PluginInstallFrame.Option2:Show()
 			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:DarkChat() end)
-			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ImproveInstall("chatdark","ENTERING") end)
-			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("chatdark","ENTERING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option2:SetText(L["Dark Chat"])
 		end,
 		[6] = function()
@@ -505,8 +505,8 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT("spec") ElvUI_EltreumUI:GetASProfile() end)
-			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ImproveInstall("detailsspec","ENTERING") end)
-			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("detailsspec","ENTERING") end)
+			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			if E.Retail then
 				_G.PluginInstallFrame.Option1:SetText('Spec')
 			elseif E.Classic or E.Wrath then
@@ -516,15 +516,15 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option2:Enable()
 			_G.PluginInstallFrame.Option2:Show()
 			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT("releafalpha") ElvUI_EltreumUI:GetASProfile() end)
-			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ImproveInstall("detailsreleafalpha","ENTERING") end)
-			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("detailsreleafalpha","ENTERING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option2:SetText('Releaf Alpha')
 
 			_G.PluginInstallFrame.Option3:Enable()
 			_G.PluginInstallFrame.Option3:Show()
 			_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT("releafsolid") ElvUI_EltreumUI:GetASProfile() end)
-			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ImproveInstall("detailsreleafsolid","ENTERING") end)
-			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("detailsreleafsolid","ENTERING") end)
+			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option3:SetText('Releaf Solid')
 			if (not IsAddOnLoaded("Details")) then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
@@ -545,8 +545,8 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option1:Enable()
 				_G.PluginInstallFrame.Option1:Show()
 				_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupGladiusEx() end)
-				_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ImproveInstall("gladiusEX","ENTERING") end)
-				_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+				_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladiusEX","ENTERING") end)
+				_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 				_G.PluginInstallFrame.Option1:SetText(L["GladiusEx"])
 			elseif E.Classic or E.Wrath then
 				_G.PluginInstallFrame.Desc1:SetText(L["Import Questie profile, which uses the DBM radar"])
@@ -574,38 +574,38 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option2:Enable()
 			_G.PluginInstallFrame.Option2:Show()
 			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDBM() end)
-			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ImproveInstall("DBM","ENTERING") end)
-			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("DBM","ENTERING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option2:SetText('DBM')
 
 			_G.PluginInstallFrame.Option3:Enable()
 			_G.PluginInstallFrame.Option3:Show()
 			_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupBW() end)
-			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ImproveInstall("BigWigs","ENTERING") end)
-			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("BigWigs","ENTERING") end)
+			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option3:SetText('BigWigs')
 			if E.Wrath then
 				_G.PluginInstallFrame.Option4:Enable()
 				_G.PluginInstallFrame.Option4:Show()
 				if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
 					_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
-					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ImproveInstall("gladdy","ENTERING") end)
-					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladdy","ENTERING") end)
+					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 					_G.PluginInstallFrame.Option4:SetText('Gladdy')
 				elseif IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
 					_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
-					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ImproveInstall("gladdy","ENTERING") end)
-					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladdy","ENTERING") end)
+					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 					_G.PluginInstallFrame.Option4:SetText('Gladdy')
 				elseif not IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
 					_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladius() end)
-					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ImproveInstall("gladius","ENTERING") end)
-					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladius","ENTERING") end)
+					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 					_G.PluginInstallFrame.Option4:SetText('Gladius')
 				elseif not IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
 					_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
-					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ImproveInstall("gladdy","ENTERING") end)
-					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladdy","ENTERING") end)
+					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 					_G.PluginInstallFrame.Option4:SetText('Gladdy')
 				end
 			end
@@ -659,8 +659,8 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option1:Enable()
 				_G.PluginInstallFrame.Option1:Show()
 				_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() end)
-				_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ImproveInstall("BattlegroundEnemies","ENTERING") end)
-				_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+				_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("BattlegroundEnemies","ENTERING") end)
+				_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 				_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
 			else
 				_G.PluginInstallFrame.Desc1:SetText(L["BattlegroundEnemies is not installed or enabled"])
@@ -673,8 +673,8 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option2:Enable()
 				_G.PluginInstallFrame.Option2:Show()
 				_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:GetCappingProfile() end)
-				_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ImproveInstall("Capping","ENTERING") end)
-				_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+				_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("Capping","ENTERING") end)
+				_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 				_G.PluginInstallFrame.Option2:SetText("Capping")
 			else
 				_G.PluginInstallFrame.Desc2:SetText(L["Capping is not installed or enabled"])
@@ -688,8 +688,8 @@ ElvUI_EltreumUI.InstallerData = {
 					_G.PluginInstallFrame.Option3:Enable()
 					_G.PluginInstallFrame.Option3:Show()
 					_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:GetWarpDepleteProfile() end)
-					_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ImproveInstall("WarpDeplete","ENTERING") end)
-					_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+					_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("WarpDeplete","ENTERING") end)
+					_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 					_G.PluginInstallFrame.Option3:SetText(L["WarpDeplete"])
 				else
 					_G.PluginInstallFrame.Desc3:SetText(L["WarpDeplete is not installed or enabled"])
@@ -711,8 +711,8 @@ ElvUI_EltreumUI.InstallerData = {
 							ElvUI_EltreumUI:GetOmniCDProfile("dps")
 						end
 					end)
-					_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ImproveInstall("OmniCD","ENTERING") end)
-					_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+					_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("OmniCD","ENTERING") end)
+					_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 					_G.PluginInstallFrame.Option3:SetText(L["OmniCD"])
 				else
 					_G.PluginInstallFrame.Desc3:SetText(L["OmniCD is not installed or enabled"])
@@ -738,22 +738,22 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:Enable()
 			_G.PluginInstallFrame.Option1:Show()
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupCombatText("NameplateSCT") end)
-			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ImproveInstall("NameplateSCT","ENTERING") end)
-			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("NameplateSCT","ENTERING") end)
+			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option1:SetText('NameplateSCT')
 
 			_G.PluginInstallFrame.Option2:Enable()
 			_G.PluginInstallFrame.Option2:Show()
 			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupCombatText("ElvUI_FCT") end)
-			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ImproveInstall("ElvUIFCT","ENTERING") end)
-			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("ElvUIFCT","ENTERING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option2:SetText('ElvUI FCT')
 
 			_G.PluginInstallFrame.Option3:Enable()
 			_G.PluginInstallFrame.Option3:Show()
 			_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupImmersion() end)
-			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ImproveInstall("Immersion","ENTERING") end)
-			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("Immersion","ENTERING") end)
+			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option3:SetText('Immersion')
 
 			_G.PluginInstallFrame.Option4:Enable()
