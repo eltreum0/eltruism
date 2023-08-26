@@ -176,7 +176,7 @@ function ElvUI_EltreumUI:ImproveInstall(installtype,mode,null)
 	end
 end
 
-local function InstallSizing()
+function ElvUI_EltreumUI:ResizeInstall()
 	--_G.PluginInstallFrame:SetSize(550,400) --default
 	--_G.PluginInstallFrame:SetSize(1024,512)
 	_G.PluginInstallFrame:SetSize(715,520)
@@ -223,7 +223,7 @@ ElvUI_EltreumUI.InstallerData = {
 	tutorialImage = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\logo.tga',
 	Pages = {
 		[1] = function()
-			InstallSizing()
+			ElvUI_EltreumUI:ResizeInstall()
 			E:Delay(0, function() --compatibility during plugin install hides install so hide it instead
 				if _G["MERCompatibilityFrame"] then
 					_G["MERCompatibilityFrame"]:Hide()
@@ -266,7 +266,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:SetText(L["Skip Install"])
 		end,
 		[2] = function()
-			InstallSizing()
+			ElvUI_EltreumUI:ResizeInstall()
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
 			--for classic chat lfg
@@ -381,7 +381,7 @@ ElvUI_EltreumUI.InstallerData = {
 			end
 		end,
 		[3] = function()
-			InstallSizing()
+			ElvUI_EltreumUI:ResizeInstall()
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
 			_G.PluginInstallOption1ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
@@ -441,7 +441,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option4:SetText(L["Background"].."\n"..L["Color"])
 		end,
 		[4] = function()
-			InstallSizing()
+			ElvUI_EltreumUI:ResizeInstall()
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["Fonts"])
@@ -479,7 +479,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallOption4ButtonText:SetFont("Fonts\\ARHei.TTF", 12, E.db.general.fontStyle)
 		end,
 		[5] = function()
-			InstallSizing()
+			ElvUI_EltreumUI:ResizeInstall()
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
 			_G.PluginInstallOption1ButtonText:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, E.db.general.fontStyle)
@@ -506,7 +506,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option2:SetText(L["Dark Chat"])
 		end,
 		[6] = function()
-			InstallSizing()
+			ElvUI_EltreumUI:ResizeInstall()
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["Details! DPS Meter"])
@@ -550,7 +550,7 @@ ElvUI_EltreumUI.InstallerData = {
 			end
 		end,
 		[7] = function()
-			InstallSizing()
+			ElvUI_EltreumUI:ResizeInstall()
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["PVP/PVE Addons"])
@@ -665,7 +665,7 @@ ElvUI_EltreumUI.InstallerData = {
 			end
 		end,
 		[8] = function()
-			InstallSizing()
+			ElvUI_EltreumUI:ResizeInstall()
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["PVP/PVE Addons"].." 2")
@@ -743,7 +743,7 @@ ElvUI_EltreumUI.InstallerData = {
 			end
 		end,
 		[9] = function()
-			InstallSizing()
+			ElvUI_EltreumUI:ResizeInstall()
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["QOL Addons"])
@@ -810,7 +810,7 @@ ElvUI_EltreumUI.InstallerData = {
 			end
 		end,
 		[10] = function()
-			InstallSizing()
+			ElvUI_EltreumUI:ResizeInstall()
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetFormattedText('Discord')
@@ -823,7 +823,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:SetText('|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinydisc.tga:0:0:0:0|t Discord')
 		end,
 		[11] = function()
-			InstallSizing()
+			ElvUI_EltreumUI:ResizeInstall()
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetText(L["Installation Complete"])
