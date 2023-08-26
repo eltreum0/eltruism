@@ -288,6 +288,9 @@ E:AddTagInfo("name:eltruism:gradientshort", ElvUI_EltreumUI.Name.." "..L["Names"
 
 --gradient name in caps
 E:AddTag("name:eltruism:gradientcaps", "UNIT_NAME_UPDATE", function(unit)
+	if not unit then return end
+	local namecheck = UnitName(unit)
+	if not namecheck then return end
 	local name = string.upper(UnitName(unit))
 	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 
@@ -313,6 +316,9 @@ E:AddTagInfo("name:eltruism:gradientcaps", ElvUI_EltreumUI.Name.." "..L["Names"]
 
 --gradient name abbreviate in caps
 E:AddTag("name:eltruism:gradientshortcaps", "UNIT_NAME_UPDATE", function(unit,_,args)
+	if not unit then return end
+	local namecheck = UnitName(unit)
+	if not namecheck then return end
 	local name = string.upper(UnitName(unit))
 	if not name then return end
 	if not args then args = 16 end
@@ -510,6 +516,9 @@ E:AddTagInfo("name:eltruism:gradientdefaultcolorsshort", ElvUI_EltreumUI.Name.."
 
 --class color name abbreviate in caps
 E:AddTag("name:eltruism:caps", "UNIT_NAME_UPDATE", function(unit,_,args)
+	if not unit then return end
+	local namecheck = UnitName(unit)
+	if not namecheck then return end
 	local name = string.upper(UnitName(unit))
 	if not name then return end
 	if not args then args = 16 end
