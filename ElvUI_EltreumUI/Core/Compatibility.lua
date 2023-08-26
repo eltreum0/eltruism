@@ -240,6 +240,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	--ElvUI plugins
 	local CheckMerathilisUI = GetCheckCompatibilityFunction("ElvUI_MerathilisUI", select(2,GetAddOnInfo("ElvUI_MerathilisUI")),false)
 	local CheckWindTools = GetCheckCompatibilityFunction("ElvUI_WindTools", select(2,GetAddOnInfo("ElvUI_WindTools")),false)
+	local CheckmMediaTag = GetCheckCompatibilityFunction("ElvUI_mMediaTag", select(2,GetAddOnInfo("ElvUI_mMediaTag")),false)
 
 	--other addons that are disable/enable
 	local CheckDeja = GetCheckCompatibilityFunction("DejaCharacterStats", select(2,GetAddOnInfo("DejaCharacterStats")),true)
@@ -320,6 +321,12 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckWindTools(L["Fast Loot"], L["Fast Loot"], "db.ElvUI_EltreumUI.loot.fastloot", "db.WT.item.fastLoot.enable")
 	CheckWindTools(L["Auto Type Delete"], L["Auto Type Delete"], "db.ElvUI_EltreumUI.otherstuff.delete", "db.WT.item.delete.enable")
 	CheckMerathilisUI(L["Tooltip\nGradient Name and Health"], L["Tooltip\nGradient Name"], "db.ElvUI_EltreumUI.skins.gradienttooltip", "db.mui.tooltip.gradientName")
+
+	--check mmediatag
+	CheckmMediaTag(L["Class Colored Nameplate Options"].."\n"..L["Hover"],L["Auto color Glow"], "db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow", "db.mMT.nameplate.bordercolor.glow")
+	CheckmMediaTag(L["Class Colored Nameplate Options"].."\n"..L["Border"],L["Auto color Border"], "db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate", "db.mMT.nameplate.bordercolor.border")
+	CheckmMediaTag(L["Quests Skin"], L["Objective Tracker"], "db.ElvUI_EltreumUI.skins.quests", "db.mMT.objectivetracker.enable")
+	CheckmMediaTag(L["Role Icons"], L["Role Icons"], "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "db.mMT.roleicons.enable")
 
 	if _G["EltruismCompatibilityFrame"].numModules > 0 then
 		_G["EltruismCompatibilityFrame"]:Show()
