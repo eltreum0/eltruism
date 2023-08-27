@@ -348,15 +348,19 @@ function ElvUI_EltreumUI:GetPlayerSpec()
 end
 
 --return the proper class crest/icon/symbol for the player class
-function ElvUI_EltreumUI:GetClassCrest()
-	if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
-		if E.db.ElvUI_EltreumUI.skins.armorycrestversion == 1 then
-			return classCrests[E.myclass]
+function ElvUI_EltreumUI:GetClassCrest(install)
+	if install then
+		return classCrests2[E.myclass]
+	else
+		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
+			if E.db.ElvUI_EltreumUI.skins.armorycrestversion == 1 then
+				return classCrests[E.myclass]
+			else
+				return classCrests2[E.myclass]
+			end
 		else
 			return classCrests2[E.myclass]
 		end
-	else
-		return classCrests2[E.myclass]
 	end
 end
 
