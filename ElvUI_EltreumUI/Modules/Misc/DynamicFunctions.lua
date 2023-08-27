@@ -14,8 +14,8 @@ local IsPlayerAtEffectiveMaxLevel = _G.IsPlayerAtEffectiveMaxLevel
 
 --fixed cooldown text to be class color
 function ElvUI_EltreumUI:CooldownColors()
+	local valuecolors = E:ClassColor(E.myclass, true)
 	if E.db.ElvUI_EltreumUI.skins.classcolorcooldowns then
-		local valuecolors = E:ClassColor(E.myclass, true)
 		if E.myclass == "PRIEST" then
 			E.db["cooldown"]["daysIndicator"]["b"] = 0.7
 			E.db["cooldown"]["daysIndicator"]["g"] = 0.7
@@ -66,11 +66,17 @@ function ElvUI_EltreumUI:CooldownColors()
 
 	--leave it here for now
 	if E.db.ElvUI_EltreumUI.otherstuff.colorbg then
-		local valuecolors = E:ClassColor(E.myclass, true)
 		E.db.general.backdropcolor.b = valuecolors.b*0.3
 		E.db.general.backdropcolor.g = valuecolors.g*0.3
 		E.db.general.backdropcolor.r = valuecolors.r*0.3
 		E:UpdateMediaItems()
+	end
+
+	if E.db.unitframe.units.player.enable and E.db.unitframe.units.player.RestIcon.enable and E.db.ElvUI_EltreumUI.unitframes.blizzardresticonclasscolor then
+		E.db.unitframe.units.player.RestIcon.color.r = valuecolors.r
+		E.db.unitframe.units.player.RestIcon.color.g = valuecolors.g
+		E.db.unitframe.units.player.RestIcon.color.b = valuecolors.b
+		_G["ElvUF_Player"]:Update() --update the unitframe so the rest icon updates
 	end
 end
 
