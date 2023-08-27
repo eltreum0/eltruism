@@ -1489,3 +1489,4 @@ L["NPC Textures"] = "NPC Texturen"
 L["Frames"] = "Fenster"
 L["Skin"] = true
 L["Shows the current stance of the player"] = "Zeigt die aktuelle Haltung des Spielers an"
+L["Replace ElvUI Rest Icon with Blizzard's Animated one"] = true
