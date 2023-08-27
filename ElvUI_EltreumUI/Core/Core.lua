@@ -766,7 +766,7 @@ function ElvUI_EltreumUI:FixChatToggles()
 				_G.RightChatToggleButton:Show()
 			end)
 
-			if E.db.ElvUI_EltreumUI.skins.shadow.enable and _G[datatextname].template ~= 'NoBackdrop' then
+			if E.db.ElvUI_EltreumUI.skins.shadow.enable and _G[datatextname].template and _G[datatextname].template ~= 'NoBackdrop' then
 				if not _G[datatextname].shadow then
 					_G[datatextname]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(_G[datatextname].shadow)

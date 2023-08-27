@@ -2655,7 +2655,7 @@ function ElvUI_EltreumUI:Shadows()
 			E:Delay(1, function()
 				for i = 0, 10 do
 					if _G["ElvUI_DTPanel"..tostring(i)] then
-						if _G["ElvUI_DTPanel"..tostring(i)].template ~= 'NoBackdrop' then
+						if _G["ElvUI_DTPanel"..tostring(i)].template and _G["ElvUI_DTPanel"..tostring(i)].template ~= 'NoBackdrop' then
 							if not _G["ElvUI_DTPanel"..tostring(i)].shadow then
 								_G["ElvUI_DTPanel"..tostring(i)]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G["ElvUI_DTPanel"..tostring(i)].shadow)
