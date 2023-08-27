@@ -290,9 +290,14 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 												end
 												C_GossipInfo.SelectOption(gossipInfoTable[i].gossipOptionID)
 											end
+										elseif #gossipInfoTable == 0 then
+											if E.db.ElvUI_EltreumUI.dev then
+												ElvUI_EltreumUI:Print("gossip table returning 0 entries")
+												--C_GossipInfo.SelectAvailableQuest()
+											end
 										else
 											if E.db.ElvUI_EltreumUI.dev then
-												ElvUI_EltreumUI:Print("multiple gossip options detected, looking for blue quest text")
+												ElvUI_EltreumUI:Print("multiple gossip options detected, looking for blue quest text...1")
 											end
 											for infonumber = 1, #gossipInfoTable do
 												local text = gossipInfoTable[infonumber].name
@@ -329,7 +334,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								end
 							else
 								if E.db.ElvUI_EltreumUI.dev then
-									ElvUI_EltreumUI:Print("multiple gossip options detected, looking for blue quest text")
+									ElvUI_EltreumUI:Print("multiple gossip options detected, looking for blue quest text...2")
 								end
 								for i = 1, #gossipInfoTable do
 									local text = gossipInfoTable[i].name

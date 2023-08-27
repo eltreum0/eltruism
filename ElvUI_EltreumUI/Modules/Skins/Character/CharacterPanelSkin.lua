@@ -348,15 +348,19 @@ function ElvUI_EltreumUI:GetPlayerSpec()
 end
 
 --return the proper class crest/icon/symbol for the player class
-function ElvUI_EltreumUI:GetClassCrest()
-	if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
-		if E.db.ElvUI_EltreumUI.skins.armorycrestversion == 1 then
-			return classCrests[E.myclass]
+function ElvUI_EltreumUI:GetClassCrest(install)
+	if install then
+		return classCrests2[E.myclass]
+	else
+		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
+			if E.db.ElvUI_EltreumUI.skins.armorycrestversion == 1 then
+				return classCrests[E.myclass]
+			else
+				return classCrests2[E.myclass]
+			end
 		else
 			return classCrests2[E.myclass]
 		end
-	else
-		return classCrests2[E.myclass]
 	end
 end
 
@@ -2026,7 +2030,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.CharacterStatFrame2Stat:SetParent(_G.CharacterStatFrame1)
 				_G.CharacterStatFrame3Stat:ClearAllPoints()
 				_G.CharacterStatFrame3Stat:SetPoint("BOTTOM", _G.CharacterStatFrame2Stat, "BOTTOM", 0, -13)
-				_G.CharacterStatFrame2StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+				_G.CharacterStatFrame3StatText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
 				_G.CharacterStatFrame3Stat:SetParent(_G.CharacterStatFrame1)
 				_G.CharacterStatFrame4Stat:ClearAllPoints()
 				_G.CharacterStatFrame4Stat:SetPoint("BOTTOM", _G.CharacterStatFrame3Stat, "BOTTOM", 0, -13)

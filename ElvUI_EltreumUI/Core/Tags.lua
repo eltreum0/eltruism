@@ -288,7 +288,10 @@ E:AddTagInfo("name:eltruism:gradientshort", ElvUI_EltreumUI.Name.." "..L["Names"
 
 --gradient name in caps
 E:AddTag("name:eltruism:gradientcaps", "UNIT_NAME_UPDATE", function(unit)
-	local name = string.upper(UnitName(unit))
+	if not unit then return end
+	local namecheck = UnitName(unit)
+	if not namecheck then return end
+	local name = string.upper(namecheck)
 	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 
 	if UnitIsPlayer(unit) then
@@ -313,8 +316,10 @@ E:AddTagInfo("name:eltruism:gradientcaps", ElvUI_EltreumUI.Name.." "..L["Names"]
 
 --gradient name abbreviate in caps
 E:AddTag("name:eltruism:gradientshortcaps", "UNIT_NAME_UPDATE", function(unit,_,args)
-	local name = string.upper(UnitName(unit))
-	if not name then return end
+	if not unit then return end
+	local namecheck = UnitName(unit)
+	if not namecheck then return end
+	local name = string.upper(namecheck)
 	if not args then args = 16 end
 
 	if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
@@ -510,8 +515,10 @@ E:AddTagInfo("name:eltruism:gradientdefaultcolorsshort", ElvUI_EltreumUI.Name.."
 
 --class color name abbreviate in caps
 E:AddTag("name:eltruism:caps", "UNIT_NAME_UPDATE", function(unit,_,args)
-	local name = string.upper(UnitName(unit))
-	if not name then return end
+	if not unit then return end
+	local namecheck = UnitName(unit)
+	if not namecheck then return end
+	local name = string.upper(namecheck)
 	if not args then args = 16 end
 
 	if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
@@ -1261,7 +1268,7 @@ E:AddTag("eltruism:stance", 1, function()
 		return stanceInfo, tostring(stance)
 	end
 end)
-E:AddTagInfo("eltruism:stance", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows the current stance"])
+E:AddTagInfo("eltruism:stance", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows the current stance of the player"])
 
 if E.Wrath then
 	E:AddTag("eltruism:presencecolor", 1, function()
