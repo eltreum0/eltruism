@@ -82,6 +82,48 @@ function ElvUI_EltreumUI:DynamicChatFade()
 		--timer things
 		hidetime = E.db.chat.inactivityTimer+2
 
+		--CH:UpdateChatTabs()
+		--needs more testing, needs more condtions, needs performance checks
+		--[[for _, chattab in ipairs(_G.CHAT_FRAMES) do
+			local parent = _G[chattab]:GetParent()
+			local parentname
+			if parent then
+				parentname = _G[chattab]:GetParent():GetName()
+			end
+			if parentname and not _G[chattab].EltruismHook then
+				if parentname == "LeftChatPanel" then
+					if _G[chattab].AddMessage then
+						hooksecurefunc(_G[chattab], "AddMessage", function()
+							if timeractiveleft then
+								ElvUI_EltreumUI:CancelTimer(timeractiveleft)
+							end
+							lalpha = LeftChatPanel:GetAlpha()
+							if lalpha == 1 then
+								timeractiveleft = ElvUI_EltreumUI:ScheduleTimer(function() UIFrameFadeOut(LeftChatPanel, 0.5, 1, 0)end, hidetime)
+							else
+								LeftChatPanel:SetAlpha(1)
+							end
+						end)
+					end
+				elseif parentname == "RightChatPanel" then
+					if _G[chattab].AddMessage then
+						hooksecurefunc(_G[chattab], "AddMessage", function()
+							if timeractiveright then
+								ElvUI_EltreumUI:CancelTimer(timeractiveright)
+							end
+							ralpha = RightChatPanel:GetAlpha()
+							if ralpha == 1 then
+								timeractiveright = ElvUI_EltreumUI:ScheduleTimer(function() UIFrameFadeOut(RightChatPanel, 0.5, 1, 0)end, hidetime)
+							else
+								RightChatPanel:SetAlpha(1)
+							end
+						end)
+					end
+				end
+				_G[chattab].EltruismHook = true
+			end
+		end]]
+
 		--left chat toggle the fade on and off
 		_G.ChatFrame1:SetScript('OnMouseDown', function(_, button)
 			if button=='LeftButton' then
