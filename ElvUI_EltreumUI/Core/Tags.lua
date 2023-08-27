@@ -1268,7 +1268,7 @@ E:AddTag("eltruism:stance", 1, function()
 		return stanceInfo, tostring(stance)
 	end
 end)
-E:AddTagInfo("eltruism:stance", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows the current stance"])
+E:AddTagInfo("eltruism:stance", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows the current stance of the player"])
 
 if E.Wrath then
 	E:AddTag("eltruism:presencecolor", 1, function()

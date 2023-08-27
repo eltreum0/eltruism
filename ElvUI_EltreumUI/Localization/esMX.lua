@@ -1462,3 +1462,4 @@ L["Displays unit name in caps while being class color or reaction color, shorten
 L["NPC Textures"] = true
 L["Frames"] = true
 L["Skin"] = true
+L["Shows the current stance of the player"] = true
