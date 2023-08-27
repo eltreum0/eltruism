@@ -395,7 +395,7 @@ function ElvUI_EltreumUI:RestIcon(frame)
 			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:ClearAllPoints()
 			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetParent(frame)
 			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetPoint("CENTER", frame.RestingIndicator, "CENTER", 0, 0)
-			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetFrameStrata('DIALOG')
+			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetFrameStrata('MEDIUM')
 			hooksecurefunc(frame.RestingIndicator, 'PostUpdate', function()
 				if frame.RestingIndicator:IsShown() then
 					_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:Show()
