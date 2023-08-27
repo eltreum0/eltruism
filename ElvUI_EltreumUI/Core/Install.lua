@@ -77,7 +77,7 @@ function ElvUI_EltreumUI:ImproveInstall(installtype,mode,null,custom,path)
 			end
 			if not _G.PluginInstallFrame.classsymbol then
 				_G.PluginInstallFrame.classsymbol = _G.PluginInstallTitleFrame:CreateTexture()
-				_G.PluginInstallFrame.classsymbol:SetTexture(ElvUI_EltreumUI:GetClassCrest())
+				_G.PluginInstallFrame.classsymbol:SetTexture(ElvUI_EltreumUI:GetClassCrest(true))
 				_G.PluginInstallFrame.classsymbol:SetSize(128,128)
 				_G.PluginInstallFrame.classsymbol:SetPoint("BOTTOM", _G.PluginInstallTitleFrame, "BOTTOM", 0, 25)
 			end
