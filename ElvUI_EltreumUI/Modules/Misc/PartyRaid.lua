@@ -389,7 +389,7 @@ hooksecurefunc(UF,"RaidRoleUpdate", ElvUI_EltreumUI.LeaderIcon)
 
 function ElvUI_EltreumUI:RestIcon(frame)
 	if not frame then return end
-	if frame.RestingIndicator then
+	if frame.RestingIndicator and E.db.unitframe.units.player.enable and E.db.unitframe.units.player.RestIcon.enable then
 		if not frame.RestingIndicator.EltruismHook then
 			_G.PlayerFrame_UpdatePlayerRestLoop(true)
 			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:ClearAllPoints()
