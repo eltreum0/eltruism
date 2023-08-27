@@ -5,8 +5,8 @@ local UIFrameFadeIn = _G. UIFrameFadeIn
 local InCombatLockdown = _G.InCombatLockdown
 
 --chat fading/mouseover/combathide
-local leftfaderbutton = 0 -- when 1 it can fade, when 0 it cannot
-local rightfaderbutton = 0 -- same as above
+local leftfaderbutton = 1 -- when 1 it can fade, when 0 it cannot
+local rightfaderbutton = 1 -- same as above
 local LeftChatPanel
 local RightChatPanel
 local hidetime
@@ -18,8 +18,8 @@ local lalpha, ralpha
 
 function ElvUI_EltreumUI:DynamicChatFade()
 	if E.db.ElvUI_EltreumUI.chat.invertclick then
-		leftfaderbutton = 1
-		rightfaderbutton = 1
+		leftfaderbutton = 0
+		rightfaderbutton = 0
 	end
 	if E.db.ElvUI_EltreumUI.chat.enable then
 		LeftChatPanel = _G.LeftChatPanel
@@ -222,6 +222,26 @@ function ElvUI_EltreumUI:DynamicChatFade()
 							end
 						end
 					end
+				elseif E.db.ElvUI_EltreumUI.chat.leftfader then
+					self:CancelTimer(timeractiveleft)
+					if not InCombatLockdown() then
+						if leftfaderbutton == 1 then
+							timeractiveleft = self:ScheduleTimer(function() UIFrameFadeOut(LeftChatPanel, 0.5, 1, 0)end, hidetime)
+							if lalpha == 0 then
+								LeftChatPanel:SetAlpha(1)
+							end
+						end
+					end
+					if InCombatLockdown() then
+						if not E.db.ElvUI_EltreumUI.chat.leftcombathide then
+							if leftfaderbutton == 1 then
+								self:CancelTimer(timeractiveleft)
+								if lalpha == 0 then
+									LeftChatPanel:SetAlpha(1)
+								end
+							end
+						end
+					end
 				end
 			end)
 		end
@@ -305,6 +325,26 @@ function ElvUI_EltreumUI:DynamicChatFade()
 											RightChatPanel:SetAlpha(1)
 										end
 									end
+								end
+							end
+						end
+					end
+				elseif E.db.ElvUI_EltreumUI.chat.rightfader then
+					self:CancelTimer(timeractiveright)
+					if not InCombatLockdown() then
+						if rightfaderbutton == 1 then
+							timeractiveright = self:ScheduleTimer(function() UIFrameFadeOut(RightChatPanel, 0.5, 1, 0)end, hidetime)
+							if ralpha == 0 then
+								RightChatPanel:SetAlpha(1)
+							end
+						end
+					end
+					if InCombatLockdown() then
+						if not E.db.ElvUI_EltreumUI.chat.rightcombathide then
+							if rightfaderbutton == 1 then
+								self:CancelTimer(timeractiveright)
+								if ralpha == 0 then
+									RightChatPanel:SetAlpha(1)
 								end
 							end
 						end
