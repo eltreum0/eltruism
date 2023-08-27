@@ -589,9 +589,6 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = 40
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "CENTER"
-		E.db["unitframe"]["units"]["player"]["RestIcon"]["anchorPoint"] = "CENTER"
-		E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 25
-		E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 15
 		E.db["unitframe"]["units"]["player"]["castbar"]["iconSize"] = 14
 		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
@@ -661,9 +658,6 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = -7
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = -7
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "TOPRIGHT"
-		E.db["unitframe"]["units"]["player"]["RestIcon"]["anchorPoint"] = "TOPLEFT"
-		E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 8
-		E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = -6
 		E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 30
 		E.db["unitframe"]["units"]["player"]["castbar"]["iconSize"] = 29
 		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then

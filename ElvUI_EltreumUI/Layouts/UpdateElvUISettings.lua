@@ -54,11 +54,6 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 	E.db["unitframe"]["colors"]["classResources"]["comboPoints"][7]["g"] = 0.2549019753933
 	E.db["unitframe"]["colors"]["classResources"]["comboPoints"][7]["r"] = 1
 
-	E.db["unitframe"]["units"]["player"]["RestIcon"]["defaultColor"] = true
-	E.db["unitframe"]["units"]["player"]["RestIcon"]["texture"] = "Eltruism01"
-	E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = -6
-	E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 8
-	E.db["unitframe"]["units"]["player"]["RestIcon"]["size"] = 15
 	E.db["unitframe"]["units"]["focus"]["CombatIcon"]["xOffset"] = -87
 	E.db["unitframe"]["units"]["focus"]["CombatIcon"]["yOffset"] = 10
 	E.db["unitframe"]["units"]["focus"]["CombatIcon"]["enable"] = false
