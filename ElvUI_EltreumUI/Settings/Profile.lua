@@ -826,6 +826,7 @@ P.ElvUI_EltreumUI = {
 		darkmode = false,
 		--modetexture = false,
 		darkpowercolor = false,
+		blizzardresticon = true,
 		infopanelontop = false,
 		infopanelontopallframes = false,
 		greybackground = false,
