@@ -241,6 +241,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	local CheckMerathilisUI = GetCheckCompatibilityFunction("ElvUI_MerathilisUI", select(2,GetAddOnInfo("ElvUI_MerathilisUI")),false)
 	local CheckWindTools = GetCheckCompatibilityFunction("ElvUI_WindTools", select(2,GetAddOnInfo("ElvUI_WindTools")),false)
 	local CheckmMediaTag = GetCheckCompatibilityFunction("ElvUI_mMediaTag", select(2,GetAddOnInfo("ElvUI_mMediaTag")),false)
+	local CheckWunderUI = GetCheckCompatibilityFunction("WunderUI", select(2,GetAddOnInfo("WunderUI")),false)
 
 	--other addons that are disable/enable
 	local CheckDeja = GetCheckCompatibilityFunction("DejaCharacterStats", select(2,GetAddOnInfo("DejaCharacterStats")),true)
@@ -328,6 +329,9 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckmMediaTag(L["Quests Skin"], L["Objective Tracker"], "db.ElvUI_EltreumUI.skins.quests", "db.mMT.objectivetracker.enable")
 	CheckmMediaTag(L["Role Icons"], L["Role Icons"], "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "db.mMT.roleicons.enable")
 	CheckmMediaTag(L["A.F.K"].."\n"..L["Eltruism Logo"], "AFK Logo", "db.ElvUI_EltreumUI.otherstuff.afklogoeltruism", "db.mMT.afk.logo")
+
+	--check wunderui
+	CheckWunderUI(L["Role Icons"], L["Role Icons"], "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "db.WunderUI.skins.elvUIIcons.roleIcons.enabled")
 
 	if _G["EltruismCompatibilityFrame"].numModules > 0 then
 		_G["EltruismCompatibilityFrame"]:Show()
