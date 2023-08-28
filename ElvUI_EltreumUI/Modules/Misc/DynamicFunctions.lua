@@ -76,6 +76,8 @@ function ElvUI_EltreumUI:CooldownColors()
 		E.db.unitframe.units.player.RestIcon.color.r = valuecolors.r
 		E.db.unitframe.units.player.RestIcon.color.g = valuecolors.g
 		E.db.unitframe.units.player.RestIcon.color.b = valuecolors.b
+		E.db.unitframe.units.player.RestIcon.color.a = 1.00
+		E.db.unitframe.units.player.RestIcon.defaultColor = false
 		_G["ElvUF_Player"]:Update() --update the unitframe so the rest icon updates
 	end
 end
