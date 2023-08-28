@@ -137,6 +137,17 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["raid2"]["privateAuras"]["parent"]["offsetY"] = 5
 		E.db["unitframe"]["units"]["raid3"]["privateAuras"]["parent"]["offsetY"] = 5
 
+		--rest icon
+		E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["a"] = 1.00
+		E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["r"] = valuecolors.r
+		E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["g"] = valuecolors.g
+		E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["b"] = valuecolors.b
+		E.db["unitframe"]["units"]["player"]["RestIcon"]["defaultColor"] = false
+		E.db["unitframe"]["units"]["player"]["RestIcon"]["size"] = 15
+		E.db["unitframe"]["units"]["player"]["RestIcon"]["texture"] = "Eltruism01"
+		E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 13
+		E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = -1
+
 		--paging
 		if E.Retail or E.Wrath then
 			E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"

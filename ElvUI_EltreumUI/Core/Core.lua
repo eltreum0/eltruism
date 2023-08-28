@@ -589,9 +589,6 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = 40
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "CENTER"
-		E.db["unitframe"]["units"]["player"]["RestIcon"]["anchorPoint"] = "CENTER"
-		E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 25
-		E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 15
 		E.db["unitframe"]["units"]["player"]["castbar"]["iconSize"] = 14
 		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
@@ -661,9 +658,6 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = -7
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = -7
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "TOPRIGHT"
-		E.db["unitframe"]["units"]["player"]["RestIcon"]["anchorPoint"] = "TOPLEFT"
-		E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 8
-		E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = -6
 		E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 30
 		E.db["unitframe"]["units"]["player"]["castbar"]["iconSize"] = 29
 		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
@@ -758,6 +752,53 @@ function ElvUI_EltreumUI:FixChatToggles()
 			_G.LeftChatToggleButton:Show()
 			_G.RightChatToggleButton:SetAlpha(1)
 			_G.RightChatToggleButton:Show()
+
+			--fix shadows when backdrop is shown
+			local DT = E:GetModule("DataTexts")
+			local eltruismdata = DT:FetchFrame("EltruismDataText")
+			local datatextname = tostring(eltruismdata:GetName())
+
+			--try again due to chat faders
+			E:Delay(1,function()
+				_G.LeftChatToggleButton:SetAlpha(1)
+				_G.LeftChatToggleButton:Show()
+				_G.RightChatToggleButton:SetAlpha(1)
+				_G.RightChatToggleButton:Show()
+			end)
+
+			if E.db.ElvUI_EltreumUI.skins.shadow.enable and _G[datatextname].template and _G[datatextname].template ~= 'NoBackdrop' then
+				if not _G[datatextname].shadow then
+					_G[datatextname]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G[datatextname].shadow)
+				end
+
+				if not _G.LeftChatToggleButton.shadow then
+					_G.LeftChatToggleButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G.LeftChatToggleButton.shadow)
+					_G.LeftChatToggleButton.shadow.RightEdge:Hide()
+					_G.LeftChatToggleButton.shadow.RightEdge:Hide()
+					_G.LeftChatToggleButton.shadow.BottomRightCorner:Hide()
+					_G.LeftChatToggleButton.shadow.TopRightCorner:Hide()
+					if _G[datatextname].shadow then
+						_G[datatextname].shadow.RightEdge:Hide()
+						_G[datatextname].shadow.BottomRightCorner:Hide()
+						_G[datatextname].shadow.TopRightCorner:Hide()
+					end
+				end
+				if not _G.RightChatToggleButton.shadow then
+					_G.RightChatToggleButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G.RightChatToggleButton.shadow)
+					_G.RightChatToggleButton.shadow.LeftEdge:Hide()
+					_G.RightChatToggleButton.shadow.LeftEdge:Hide()
+					_G.RightChatToggleButton.shadow.BottomLeftCorner:Hide()
+					_G.RightChatToggleButton.shadow.TopLeftCorner:Hide()
+					if _G[datatextname].shadow then
+						_G[datatextname].shadow.LeftEdge:Hide()
+						_G[datatextname].shadow.BottomLeftCorner:Hide()
+						_G[datatextname].shadow.TopLeftCorner:Hide()
+					end
+				end
+			end
 		end
 
 		--fix if the value changed since install

@@ -406,14 +406,14 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,563,283"
 	E.db["movers"]["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,560,183"
 	E.db["movers"]["ElvUF_PlayerAuraMover"] = "BOTTOM,ElvUIParent,BOTTOM,-276,239"
-	E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-266,268"
+	E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-265,268"
 	E.db["movers"]["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,299"
 	E.db["movers"]["ElvUF_Raid1Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-1"
 	E.db["movers"]["ElvUF_Raid2Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-1"
 	E.db["movers"]["ElvUF_Raid3Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-1"
 	E.db["movers"]["ElvUF_RaidpetMover"] = "TOPLEFT,ElvUIParent,BOTTOMLEFT,4,736"
 	E.db["movers"]["ElvUF_TankMover"] = "BOTTOM,ElvUIParent,BOTTOM,-155,39"
-	E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,294,268"
+	E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,293,268"
 	E.db["movers"]["ElvUF_TargetMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,299"
 	E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-438,299"
 	E.db["movers"]["ElvUIBagMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,23"
@@ -832,12 +832,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["pettarget"]["power"]["enable"] = false
 	E.db["unitframe"]["units"]["pettarget"]["power"]["text_format"] = "[power:current:shortvalue]"
 	E.db["unitframe"]["units"]["player"]["forcehealthreaction"] = false
-	E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["a"] = 0.57115608453751
-	E.db["unitframe"]["units"]["player"]["RestIcon"]["defaultColor"] = true
-	E.db["unitframe"]["units"]["player"]["RestIcon"]["size"] = 15
-	E.db["unitframe"]["units"]["player"]["RestIcon"]["texture"] = "Eltruism01"
-	E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 8
-	E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = -6
 	E.db["unitframe"]["units"]["player"]["aurabar"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["player"]["aurabar"]["detachedWidth"] = 266
 	E.db["unitframe"]["units"]["player"]["aurabar"]["maxDuration"] = 60
@@ -867,7 +861,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["player"]["castbar"]["iconAttachedTo"] = "Castbar"
 	E.db["unitframe"]["units"]["player"]["castbar"]["iconSize"] = 29
 	E.db["unitframe"]["units"]["player"]["castbar"]["iconXOffset"] = 0
-	E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 243
+	E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 242
 	E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["b"] = 1
 	E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["g"] = 1
 	E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["r"] = 1
@@ -1206,7 +1200,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["target"]["castbar"]["iconAttached"] = false
 	E.db["unitframe"]["units"]["target"]["castbar"]["iconSize"] = 29
 	E.db["unitframe"]["units"]["target"]["castbar"]["iconXOffset"] = 0
-	E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 243
+	E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 242
 	E.db["unitframe"]["units"]["target"]["castbar"]["timeToHold"] = 0.6
 	E.db["unitframe"]["units"]["target"]["debuffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["target"]["debuffs"]["countFontOutline"] = "OUTLINE"

@@ -25,7 +25,7 @@ function ElvUI_EltreumUI:DynamicChatFade()
 		LeftChatPanel = _G.LeftChatPanel
 		RightChatPanel = _G.RightChatPanel
 		--register events left chat panel
-		if E.db.ElvUI_EltreumUI.chat.leftfader then
+		--[[if E.db.ElvUI_EltreumUI.chat.leftfader then
 			LeftChatPanel:RegisterEvent("CHAT_MSG_ACHIEVEMENT")
 			LeftChatPanel:RegisterEvent("CHAT_MSG_BG_SYSTEM_ALLIANCE")
 			LeftChatPanel:RegisterEvent("CHAT_MSG_BG_SYSTEM_HORDE")
@@ -77,14 +77,43 @@ function ElvUI_EltreumUI:DynamicChatFade()
 			RightChatPanel:RegisterEvent("CHAT_MSG_WHISPER")
 			RightChatPanel:RegisterEvent("CHAT_MSG_YELL")
 			RightChatPanel:RegisterEvent("CHAT_MSG_BN_INLINE_TOAST_ALERT") --new
+		end]]
+
+		--hide at the start if the fade is enabled
+		if E.db.ElvUI_EltreumUI.chat.rightfader then
+			RightChatPanel:SetAlpha(0)
+		end
+		if E.db.ElvUI_EltreumUI.chat.leftfader then
+			LeftChatPanel:SetAlpha(0)
 		end
 
 		--timer things
 		hidetime = E.db.chat.inactivityTimer+2
 
-		--CH:UpdateChatTabs()
-		--needs more testing, needs more condtions, needs performance checks
-		--[[for _, chattab in ipairs(_G.CHAT_FRAMES) do
+		--function to time the fading
+		local function FadeChat(chat, alpha, side)
+			if side == "left" then
+				if timeractiveleft then
+					ElvUI_EltreumUI:CancelTimer(timeractiveleft)
+				end
+			else
+				if timeractiveright then
+					ElvUI_EltreumUI:CancelTimer(timeractiveright)
+				end
+			end
+			if alpha == 1 and not InCombatLockdown() then
+				if side == "left" then
+					timeractiveleft = ElvUI_EltreumUI:ScheduleTimer(function() UIFrameFadeOut(chat, 0.5, 1, 0)end, hidetime)
+				else
+					timeractiveright = ElvUI_EltreumUI:ScheduleTimer(function() UIFrameFadeOut(chat, 0.5, 1, 0)end, hidetime)
+				end
+			else
+				chat:SetAlpha(1)
+			end
+		end
+
+		--hook the chat to fade it, similar to elvui
+		for _, chattab in ipairs(_G.CHAT_FRAMES) do
 			local parent = _G[chattab]:GetParent()
 			local parentname
 			if parent then
@@ -92,69 +121,46 @@ function ElvUI_EltreumUI:DynamicChatFade()
 			end
 			if parentname and not _G[chattab].EltruismHook then
 				if parentname == "LeftChatPanel" then
-					if _G[chattab].AddMessage then
+					if _G[chattab].AddMessage and E.db.ElvUI_EltreumUI.chat.leftfader then
 						hooksecurefunc(_G[chattab], "AddMessage", function()
-							if timeractiveleft then
-								ElvUI_EltreumUI:CancelTimer(timeractiveleft)
-							end
 							lalpha = LeftChatPanel:GetAlpha()
-							if lalpha == 1 then
-								timeractiveleft = ElvUI_EltreumUI:ScheduleTimer(function() UIFrameFadeOut(LeftChatPanel, 0.5, 1, 0)end, hidetime)
-							else
-								LeftChatPanel:SetAlpha(1)
-							end
+							FadeChat(LeftChatPanel,lalpha, "left")
 						end)
 					end
 				elseif parentname == "RightChatPanel" then
-					if _G[chattab].AddMessage then
+					if _G[chattab].AddMessage and E.db.ElvUI_EltreumUI.chat.rightfader then
 						hooksecurefunc(_G[chattab], "AddMessage", function()
-							if timeractiveright then
-								ElvUI_EltreumUI:CancelTimer(timeractiveright)
-							end
 							ralpha = RightChatPanel:GetAlpha()
-							if ralpha == 1 then
-								timeractiveright = ElvUI_EltreumUI:ScheduleTimer(function() UIFrameFadeOut(RightChatPanel, 0.5, 1, 0)end, hidetime)
-							else
-								RightChatPanel:SetAlpha(1)
-							end
+							FadeChat(RightChatPanel,ralpha, "right")
 						end)
 					end
 				end
 				_G[chattab].EltruismHook = true
 			end
-		end]]
-
-		--left chat toggle the fade on and off
-		_G.ChatFrame1:SetScript('OnMouseDown', function(_, button)
-			if button=='LeftButton' then
-				if leftfaderbutton == 1 then
-					leftfaderbutton = 0
-				elseif leftfaderbutton == 0 then
-					leftfaderbutton = 1
-				end
-			end
-		end)
-		--right chat toggle the fade on and off
-		_G.ChatFrame4:SetScript('OnMouseDown', function(_, button)
-			if button=='LeftButton' then
-				if rightfaderbutton == 1 then
-					rightfaderbutton = 0
-				elseif rightfaderbutton == 0 then
-					rightfaderbutton = 1
-				end
-			end
-		end)
+		end
 
 		--Left Chat Panel Mouse Over
 		if E.db.ElvUI_EltreumUI.chat.leftmouseover then
-			_G.ChatFrame1:SetScript('OnEnter', function()
+
+			--left chat toggle the fade on and off
+			_G.LeftChatPanel:SetScript('OnMouseDown', function(_, button)
+				if button=='LeftButton' then
+					if leftfaderbutton == 1 then
+						leftfaderbutton = 0
+					elseif leftfaderbutton == 0 then
+						leftfaderbutton = 1
+					end
+				end
+			end)
+
+			_G.LeftChatPanel:SetScript('OnEnter', function()
 				if not InCombatLockdown() then
 					if leftfaderbutton == 1 then
 						UIFrameFadeIn(LeftChatPanel, 0.5, 0, 1)
 					end
 				end
 			end)
-			_G.ChatFrame1:SetScript('OnLeave', function()
+			_G.LeftChatPanel:SetScript('OnLeave', function()
 				if not InCombatLockdown() then
 					if leftfaderbutton == 1 then
 						UIFrameFadeOut(LeftChatPanel, 0.5, 1, 0)
@@ -165,14 +171,26 @@ function ElvUI_EltreumUI:DynamicChatFade()
 
 		--Right Chat Panel Mouse Over
 		if E.db.ElvUI_EltreumUI.chat.rightmouseover then
-			_G.ChatFrame4:SetScript('OnEnter', function()
+
+			--right chat toggle the fade on and off
+			_G.RightChatPanel:SetScript('OnMouseDown', function(_, button)
+				if button=='LeftButton' then
+					if rightfaderbutton == 1 then
+						rightfaderbutton = 0
+					elseif rightfaderbutton == 0 then
+						rightfaderbutton = 1
+					end
+				end
+			end)
+
+			_G.RightChatPanel:SetScript('OnEnter', function()
 				if not InCombatLockdown() then
 					if rightfaderbutton == 1 then
 						UIFrameFadeIn(RightChatPanel, 0.5, 0, 1)
 					end
 				end
 			end)
-			_G.ChatFrame4:SetScript('OnLeave', function()
+			_G.RightChatPanel:SetScript('OnLeave', function()
 				if not InCombatLockdown() then
 					if rightfaderbutton == 1 then
 						UIFrameFadeOut(RightChatPanel, 0.5, 1, 0)
@@ -181,8 +199,8 @@ function ElvUI_EltreumUI:DynamicChatFade()
 			end)
 		end
 
-		--Left chat inactivity hide
-		if E.db.ElvUI_EltreumUI.chat.leftcombathide or E.db.ElvUI_EltreumUI.chat.leftfader or E.db.ElvUI_EltreumUI.chat.leftbosshide then
+		--Left chat combat/boss hide
+		if E.db.ElvUI_EltreumUI.chat.leftcombathide or E.db.ElvUI_EltreumUI.chat.leftbosshide then
 			if E.db.ElvUI_EltreumUI.chat.leftcombathide then
 				LeftChatPanel:RegisterEvent("PLAYER_REGEN_DISABLED")
 				LeftChatPanel:RegisterEvent("PLAYER_REGEN_ENABLED")
@@ -205,28 +223,6 @@ function ElvUI_EltreumUI:DynamicChatFade()
 								UIFrameFadeIn(LeftChatPanel, 0.5, 0, 1)
 							end
 						end
-					elseif event ~= "PLAYER_REGEN_ENABLED" and event ~= "PLAYER_REGEN_DISABLED" then
-						if E.db.ElvUI_EltreumUI.chat.leftfader then
-							self:CancelTimer(timeractiveleft)
-							if not InCombatLockdown() then
-								if leftfaderbutton == 1 then
-									timeractiveleft = self:ScheduleTimer(function() UIFrameFadeOut(LeftChatPanel, 0.5, 1, 0)end, hidetime)
-									if lalpha == 0 then
-										LeftChatPanel:SetAlpha(1)
-									end
-								end
-							end
-							if InCombatLockdown() then
-								if not E.db.ElvUI_EltreumUI.chat.leftcombathide then
-									if leftfaderbutton == 1 then
-										self:CancelTimer(timeractiveleft)
-										if lalpha == 0 then
-											LeftChatPanel:SetAlpha(1)
-										end
-									end
-								end
-							end
-						end
 					end
 				elseif E.db.ElvUI_EltreumUI.chat.leftbosshide then
 					if event == "ENCOUNTER_START" then
@@ -241,54 +237,12 @@ function ElvUI_EltreumUI:DynamicChatFade()
 								UIFrameFadeIn(LeftChatPanel, 0.5, 0, 1)
 							end
 						end
-					elseif event ~= "ENCOUNTER_END" and event ~= "ENCOUNTER_START" then
-						if E.db.ElvUI_EltreumUI.chat.leftfader then
-							self:CancelTimer(timeractiveleft)
-							if not InCombatLockdown() then
-								if leftfaderbutton == 1 then
-									timeractiveleft = self:ScheduleTimer(function() UIFrameFadeOut(LeftChatPanel, 0.5, 1, 0)end, hidetime)
-									if lalpha == 0 then
-										LeftChatPanel:SetAlpha(1)
-									end
-								end
-							end
-							if InCombatLockdown() then
-								if not E.db.ElvUI_EltreumUI.chat.leftcombathide then
-									if leftfaderbutton == 1 then
-										self:CancelTimer(timeractiveleft)
-										if lalpha == 0 then
-											LeftChatPanel:SetAlpha(1)
-										end
-									end
-								end
-							end
-						end
-					end
-				elseif E.db.ElvUI_EltreumUI.chat.leftfader then
-					self:CancelTimer(timeractiveleft)
-					if not InCombatLockdown() then
-						if leftfaderbutton == 1 then
-							timeractiveleft = self:ScheduleTimer(function() UIFrameFadeOut(LeftChatPanel, 0.5, 1, 0)end, hidetime)
-							if lalpha == 0 then
-								LeftChatPanel:SetAlpha(1)
-							end
-						end
-					end
-					if InCombatLockdown() then
-						if not E.db.ElvUI_EltreumUI.chat.leftcombathide then
-							if leftfaderbutton == 1 then
-								self:CancelTimer(timeractiveleft)
-								if lalpha == 0 then
-									LeftChatPanel:SetAlpha(1)
-								end
-							end
-						end
 					end
 				end
 			end)
 		end
 
-		--Right chat inactivity hide
+		--Right chat combat/boss hide
 		if E.db.ElvUI_EltreumUI.chat.rightcombathide or E.db.ElvUI_EltreumUI.chat.rightfader or E.db.ElvUI_EltreumUI.chat.rightbosshide then
 			if E.db.ElvUI_EltreumUI.chat.rightcombathide then
 				RightChatPanel:RegisterEvent("PLAYER_REGEN_DISABLED")
@@ -312,28 +266,6 @@ function ElvUI_EltreumUI:DynamicChatFade()
 								UIFrameFadeIn(RightChatPanel, 0.5, 0, 1)
 							end
 						end
-					elseif event ~= "PLAYER_REGEN_ENABLED" and event ~= "PLAYER_REGEN_DISABLED" then
-						if E.db.ElvUI_EltreumUI.chat.rightfader then
-							self:CancelTimer(timeractiveright)
-							if not InCombatLockdown() then
-								if rightfaderbutton == 1 then
-									timeractiveright = self:ScheduleTimer(function() UIFrameFadeOut(RightChatPanel, 0.5, 1, 0)end, hidetime)
-									if ralpha == 0 then
-										RightChatPanel:SetAlpha(1)
-									end
-								end
-							end
-							if InCombatLockdown() then
-								if not E.db.ElvUI_EltreumUI.chat.rightcombathide then
-									if rightfaderbutton == 1 then
-										self:CancelTimer(timeractiveright)
-										if ralpha == 0 then
-											RightChatPanel:SetAlpha(1)
-										end
-									end
-								end
-							end
-						end
 					end
 				elseif E.db.ElvUI_EltreumUI.chat.rightbosshide then
 					if event == "ENCOUNTER_START" then
@@ -348,52 +280,9 @@ function ElvUI_EltreumUI:DynamicChatFade()
 								UIFrameFadeIn(RightChatPanel, 0.5, 0, 1)
 							end
 						end
-					elseif event ~= "ENCOUNTER_END" and event ~= "ENCOUNTER_END" then
-						if E.db.ElvUI_EltreumUI.chat.rightfader then
-							self:CancelTimer(timeractiveright)
-							if not InCombatLockdown() then
-								if rightfaderbutton == 1 then
-									timeractiveright = self:ScheduleTimer(function() UIFrameFadeOut(RightChatPanel, 0.5, 1, 0)end, hidetime)
-									if ralpha == 0 then
-										RightChatPanel:SetAlpha(1)
-									end
-								end
-							end
-							if InCombatLockdown() then
-								if not E.db.ElvUI_EltreumUI.chat.rightcombathide then
-									if rightfaderbutton == 1 then
-										self:CancelTimer(timeractiveright)
-										if ralpha == 0 then
-											RightChatPanel:SetAlpha(1)
-										end
-									end
-								end
-							end
-						end
-					end
-				elseif E.db.ElvUI_EltreumUI.chat.rightfader then
-					self:CancelTimer(timeractiveright)
-					if not InCombatLockdown() then
-						if rightfaderbutton == 1 then
-							timeractiveright = self:ScheduleTimer(function() UIFrameFadeOut(RightChatPanel, 0.5, 1, 0)end, hidetime)
-							if ralpha == 0 then
-								RightChatPanel:SetAlpha(1)
-							end
-						end
-					end
-					if InCombatLockdown() then
-						if not E.db.ElvUI_EltreumUI.chat.rightcombathide then
-							if rightfaderbutton == 1 then
-								self:CancelTimer(timeractiveright)
-								if ralpha == 0 then
-									RightChatPanel:SetAlpha(1)
-								end
-							end
-						end
 					end
 				end
 			end)
 		end
-
 	end
 end

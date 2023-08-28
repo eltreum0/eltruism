@@ -389,13 +389,13 @@ hooksecurefunc(UF,"RaidRoleUpdate", ElvUI_EltreumUI.LeaderIcon)
 
 function ElvUI_EltreumUI:RestIcon(frame)
 	if not frame then return end
-	if frame.RestingIndicator then
+	if frame.RestingIndicator and E.db.unitframe.units.player.enable and E.db.unitframe.units.player.RestIcon.enable and E.db.ElvUI_EltreumUI.unitframes.blizzardresticon then
 		if not frame.RestingIndicator.EltruismHook then
 			_G.PlayerFrame_UpdatePlayerRestLoop(true)
 			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:ClearAllPoints()
 			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetParent(frame)
 			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetPoint("CENTER", frame.RestingIndicator, "CENTER", 0, 0)
-			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetFrameStrata('DIALOG')
+			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetFrameStrata('MEDIUM')
 			hooksecurefunc(frame.RestingIndicator, 'PostUpdate', function()
 				if frame.RestingIndicator:IsShown() then
 					_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:Show()

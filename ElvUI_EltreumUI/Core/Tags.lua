@@ -59,10 +59,10 @@ local eltruismdif = {
 
 --to get the correct name for the files
 --https://stackoverflow.com/questions/2421695/first-character-uppercase-lua
-local function firstToUpper(str)
-    return (str:gsub("^%l", string.upper))
+function ElvUI_EltreumUI:firstToUpper(str)
+	return (str:gsub("^%l", string.upper))
 end
-local fileclass = firstToUpper(string.lower(E.myclass))
+local fileclass = ElvUI_EltreumUI:firstToUpper(string.lower(E.myclass))
 
 --from elvui, modified for gradient
 do
