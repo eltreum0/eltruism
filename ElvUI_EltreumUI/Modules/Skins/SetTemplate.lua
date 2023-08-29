@@ -82,7 +82,6 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 							end
 						end
 
-
 						--[[
 						frame:SetBackdrop({
 							edgeFile = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\border\\Eltreum-Border-1.tga",
@@ -109,7 +108,6 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 						frame:AddMaskTexture(frame.testmask) --errors because frame doesnt have method, needs texture...
 						]]
 
-
 						--[[if not frame.shadow then
 							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(frame.shadow)
@@ -130,6 +128,18 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 						else
 							frame.eltruismbordertest:Show()
 						end]]
+
+						--[[if frame:GetObjectType() == "Button" and not frame.EltruismAnimation and frame.Center then
+							local r,g,b,a = frame.Center:GetVertexColor()
+							frame:HookScript("OnEnter", function()
+								frame.Center:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
+							end)
+							frame:HookScript("OnLeave", function()
+								frame.Center:SetVertexColor(r,g,b,a)
+							end)
+							frame.EltruismAnimation = true
+						end]]
+
 					else
 						if frame.eltruismbgtexture then
 							frame.eltruismbgtexture:Hide()
