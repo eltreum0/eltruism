@@ -1,11 +1,18 @@
-### 3.9.4 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.9.5 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added [name:eltruism:gradientcaps] and [name:eltruism:gradientshortcaps] tags which will display the names in all caps  
-Added an option to change the alpha of the EltruismDatatext texture  
-Added a function to make Shamans blue again in Classic Era  
-Added several missing enchants to Sockets in Classic Era  
-Updated some CVars during install for Wrath and Classic Era  
-Updated some settings to allow them in Classic Era  
-Updated Shadow and Light profile  
-Fixed shadows in Target and Target of Target Unitframes when using power in fill mode  
-Fixed wrong custom color when leaving combat
+Added an option to Disable the Eltruism AFK logo, separate from the skin  
+Added Blizzard's animated rest icon to ElvUI Unitframes Rest Icon  
+Adde [name:eltruism:caps] which will show the name in full caps  
+Updated the Chat Fading Functions, which will now better detect messages that are in each panel  
+Updated Gladdy, Gladius, GladiusEx, BattleGroundEnemies profiles to remove unused tables  
+Updated the Camera Max Distance Zoom to better work with Classic  
+Updated DynamicCam profile to be the same in Classic and Retail  
+Updated shadows on EltruismDatatext when using Dark Chat mode  
+Updated Options, moving Gradient into a more unified tab  
+Updated Installer with new Screenshots  
+Updated German locale by Dlarge  
+Fixed an issue where it was possible the Class Symbol would not show up during install  
+Fixed an issue where Stance X offset for Borders was not able to be changed  
+Fixed the third stat in the Classic Era armory using wrong font size  
+Fixed a possible error with some tags where the unit could be nil  
+Fixed some Shaman colors in Classic Era  
