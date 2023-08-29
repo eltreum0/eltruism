@@ -238,463 +238,6 @@ local function NewRetailEditModeLayout()
 	end
 end
 
-local function Test123()
-	ElvUI_EltreumUI:ResizeInstall()
-	ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
-	isfirstpage = false
-	_G.PluginInstallFrame.SubTitle:SetFormattedText(L["PVP/PVE Addons"])
-	if E.Retail then
-		_G.PluginInstallFrame.Desc1:SetText(L["Import GladiusEx profile for arenas, remember to disable ElvUI Arena Frames"])
-		_G.PluginInstallFrame.Option1:Enable()
-		_G.PluginInstallFrame.Option1:Show()
-		_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupGladiusEx() end)
-		_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladiusEX","ENTERING") end)
-		_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-		_G.PluginInstallFrame.Option1:SetText(L["GladiusEx"])
-	elseif E.Classic or E.Wrath then
-		_G.PluginInstallFrame.Desc1:SetText(L["Import Questie profile, which uses the DBM radar"])
-		_G.PluginInstallFrame.Option1:Enable()
-		_G.PluginInstallFrame.Option1:Show()
-		_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupQuestie() end)
-		_G.PluginInstallFrame.Option1:SetScript('OnEnter', nil)
-		_G.PluginInstallFrame.Option1:SetScript('OnLeave', nil)
-		_G.PluginInstallFrame.Option1:SetText(L["Questie"])
-	end
-	_G.PluginInstallFrame.Desc2:SetText(L["Import DBM or BigWigs profiles for dungeons and raids. (Uses DBM English Calanon and Bigwigs Voice)"])
-	if E.Wrath then
-		if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
-			_G.PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladdy"])
-		elseif IsAddOnLoaded("Gladius") and IsAddOnLoaded("Gladdy") then
-			_G.PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladdy (Gladius can be found in Eltruism settings)"])
-		elseif not IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
-			_G.PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladius"])
-		elseif not IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
-			_G.PluginInstallFrame.Desc3:SetText(L["Gladdy and Gladius are not installed or enabled"])
-		end
-	end
-	_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
-
-	_G.PluginInstallFrame.Option2:Enable()
-	_G.PluginInstallFrame.Option2:Show()
-	_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDBM() end)
-	_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("DBM","ENTERING") end)
-	_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-	_G.PluginInstallFrame.Option2:SetText('DBM')
-
-	_G.PluginInstallFrame.Option3:Enable()
-	_G.PluginInstallFrame.Option3:Show()
-	_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupBW() end)
-	_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("BigWigs","ENTERING") end)
-	_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-	_G.PluginInstallFrame.Option3:SetText('BigWigs')
-	if E.Wrath then
-		_G.PluginInstallFrame.Option4:Enable()
-		_G.PluginInstallFrame.Option4:Show()
-		if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
-			_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
-			_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladdy","ENTERING") end)
-			_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-			_G.PluginInstallFrame.Option4:SetText('Gladdy')
-		elseif IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
-			_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
-			_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladdy","ENTERING") end)
-			_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-			_G.PluginInstallFrame.Option4:SetText('Gladdy')
-		elseif not IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
-			_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladius() end)
-			_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladius","ENTERING") end)
-			_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-			_G.PluginInstallFrame.Option4:SetText('Gladius')
-		elseif not IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
-			_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
-			_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladdy","ENTERING") end)
-			_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-			_G.PluginInstallFrame.Option4:SetText('Gladdy')
-		end
-	else
-		_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
-		_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
-	end
-	if (not IsAddOnLoaded("Questie")) and (E.Classic or E.Wrath) then
-		_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-		_G.PluginInstallFrame.Desc1:SetText(L["Questie is not installed or enabled"])
-		_G.PluginInstallFrame.Option1:Disable()
-	end
-	if (not IsAddOnLoaded("GladiusEx")) and E.Retail then
-		_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-		_G.PluginInstallFrame.Desc1:SetText("GladiusEx"..L[" is not installed or enabled"])
-		_G.PluginInstallFrame.Option1:Disable()
-	end
-	if (not IsAddOnLoaded("DBM-Core")) then
-		_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-		_G.PluginInstallFrame.Desc2:SetText(L["DBM is not installed or enabled so BigWigs will be used"])
-		_G.PluginInstallFrame.Option2:Disable()
-	end
-	if (not IsAddOnLoaded("BigWigs")) then
-		_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-		_G.PluginInstallFrame.Desc2:SetText(L["BigWigs is not installed or enabled so DBM will be used"])
-		_G.PluginInstallFrame.Option3:Disable()
-	end
-	if (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) then
-		_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-		_G.PluginInstallFrame.Desc2:SetText(L["Both DBM and BigWigs are not installed or enabled"])
-		_G.PluginInstallFrame.Option2:Disable()
-		_G.PluginInstallFrame.Option3:Disable()
-	end
-	if not IsAddOnLoaded("Gladdy") and (E.Wrath) and not IsAddOnLoaded("Gladius") then
-		_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-		_G.PluginInstallFrame.Desc3:SetText(L["Both Gladdy and Gladius are not installed or enabled"])
-		_G.PluginInstallFrame.Option4:Disable()
-	end
-	if E.Retail and ((not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("GladiusEx"))) then
-		_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
-	end
-	if E.Classic and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs"))) then
-		_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
-	end
-	if (E.Wrath) and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("Gladdy")) and (not IsAddOnLoaded("Gladius"))) then
-		_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
-	end
-
-	tinsert(ElvUI_EltreumUI.InstallerData.Pages,7, function()
-		ElvUI_EltreumUI:ResizeInstall()
-		ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
-		isfirstpage = false
-		_G.PluginInstallFrame.SubTitle:SetFormattedText(L["PVP/PVE Addons"])
-		if E.Retail then
-			_G.PluginInstallFrame.Desc1:SetText(L["Import GladiusEx profile for arenas, remember to disable ElvUI Arena Frames"])
-			_G.PluginInstallFrame.Option1:Enable()
-			_G.PluginInstallFrame.Option1:Show()
-			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupGladiusEx() end)
-			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladiusEX","ENTERING") end)
-			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-			_G.PluginInstallFrame.Option1:SetText(L["GladiusEx"])
-		elseif E.Classic or E.Wrath then
-			_G.PluginInstallFrame.Desc1:SetText(L["Import Questie profile, which uses the DBM radar"])
-			_G.PluginInstallFrame.Option1:Enable()
-			_G.PluginInstallFrame.Option1:Show()
-			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupQuestie() end)
-			_G.PluginInstallFrame.Option1:SetScript('OnEnter', nil)
-			_G.PluginInstallFrame.Option1:SetScript('OnLeave', nil)
-			_G.PluginInstallFrame.Option1:SetText(L["Questie"])
-		end
-		_G.PluginInstallFrame.Desc2:SetText(L["Import DBM or BigWigs profiles for dungeons and raids. (Uses DBM English Calanon and Bigwigs Voice)"])
-		if E.Wrath then
-			if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
-				_G.PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladdy"])
-			elseif IsAddOnLoaded("Gladius") and IsAddOnLoaded("Gladdy") then
-				_G.PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladdy (Gladius can be found in Eltruism settings)"])
-			elseif not IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
-				_G.PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladius"])
-			elseif not IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
-				_G.PluginInstallFrame.Desc3:SetText(L["Gladdy and Gladius are not installed or enabled"])
-			end
-		end
-		_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
-
-		_G.PluginInstallFrame.Option2:Enable()
-		_G.PluginInstallFrame.Option2:Show()
-		_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDBM() end)
-		_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("DBM","ENTERING") end)
-		_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-		_G.PluginInstallFrame.Option2:SetText('DBM')
-
-		_G.PluginInstallFrame.Option3:Enable()
-		_G.PluginInstallFrame.Option3:Show()
-		_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupBW() end)
-		_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("BigWigs","ENTERING") end)
-		_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-		_G.PluginInstallFrame.Option3:SetText('BigWigs')
-		if E.Wrath then
-			_G.PluginInstallFrame.Option4:Enable()
-			_G.PluginInstallFrame.Option4:Show()
-			if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
-				_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
-				_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladdy","ENTERING") end)
-				_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-				_G.PluginInstallFrame.Option4:SetText('Gladdy')
-			elseif IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
-				_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
-				_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladdy","ENTERING") end)
-				_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-				_G.PluginInstallFrame.Option4:SetText('Gladdy')
-			elseif not IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
-				_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladius() end)
-				_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladius","ENTERING") end)
-				_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-				_G.PluginInstallFrame.Option4:SetText('Gladius')
-			elseif not IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
-				_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
-				_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladdy","ENTERING") end)
-				_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-				_G.PluginInstallFrame.Option4:SetText('Gladdy')
-			end
-		else
-			_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
-			_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
-		end
-		if (not IsAddOnLoaded("Questie")) and (E.Classic or E.Wrath) then
-			_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-			_G.PluginInstallFrame.Desc1:SetText(L["Questie is not installed or enabled"])
-			_G.PluginInstallFrame.Option1:Disable()
-		end
-		if (not IsAddOnLoaded("GladiusEx")) and E.Retail then
-			_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-			_G.PluginInstallFrame.Desc1:SetText("GladiusEx"..L[" is not installed or enabled"])
-			_G.PluginInstallFrame.Option1:Disable()
-		end
-		if (not IsAddOnLoaded("DBM-Core")) then
-			_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-			_G.PluginInstallFrame.Desc2:SetText(L["DBM is not installed or enabled so BigWigs will be used"])
-			_G.PluginInstallFrame.Option2:Disable()
-		end
-		if (not IsAddOnLoaded("BigWigs")) then
-			_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-			_G.PluginInstallFrame.Desc2:SetText(L["BigWigs is not installed or enabled so DBM will be used"])
-			_G.PluginInstallFrame.Option3:Disable()
-		end
-		if (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) then
-			_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-			_G.PluginInstallFrame.Desc2:SetText(L["Both DBM and BigWigs are not installed or enabled"])
-			_G.PluginInstallFrame.Option2:Disable()
-			_G.PluginInstallFrame.Option3:Disable()
-		end
-		if not IsAddOnLoaded("Gladdy") and (E.Wrath) and not IsAddOnLoaded("Gladius") then
-			_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-			_G.PluginInstallFrame.Desc3:SetText(L["Both Gladdy and Gladius are not installed or enabled"])
-			_G.PluginInstallFrame.Option4:Disable()
-		end
-		if E.Retail and ((not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("GladiusEx"))) then
-			_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
-		end
-		if E.Classic and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs"))) then
-			_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
-		end
-		if (E.Wrath) and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("Gladdy")) and (not IsAddOnLoaded("Gladius"))) then
-			_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
-		end
-	end)
-	tinsert(ElvUI_EltreumUI.InstallerData.Pages,8 ,function()
-		ElvUI_EltreumUI:ResizeInstall()
-		ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
-		isfirstpage = false
-		_G.PluginInstallFrame.SubTitle:SetFormattedText(L["PVP/PVE Addons"].." 2")
-		if IsAddOnLoaded("BattleGroundEnemies") then
-			_G.PluginInstallFrame.Desc1:SetText(L["Import BattlegroundEnemies profile for battlegrounds"])
-			_G.PluginInstallFrame.Option1:Enable()
-			_G.PluginInstallFrame.Option1:Show()
-			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() end)
-			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("BattlegroundEnemies","ENTERING") end)
-			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-			_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
-		else
-			_G.PluginInstallFrame.Desc1:SetText(L["BattlegroundEnemies is not installed or enabled"])
-			_G.PluginInstallFrame.Option1:Disable()
-			_G.PluginInstallFrame.Option1:Show()
-			_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
-		end
-		if IsAddOnLoaded("Capping") then
-			_G.PluginInstallFrame.Desc2:SetText(L["Import Capping profile for battlegrounds"])
-			_G.PluginInstallFrame.Option2:Enable()
-			_G.PluginInstallFrame.Option2:Show()
-			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:GetCappingProfile() end)
-			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("Capping","ENTERING") end)
-			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-			_G.PluginInstallFrame.Option2:SetText("Capping")
-		else
-			_G.PluginInstallFrame.Desc2:SetText(L["Capping is not installed or enabled"])
-			_G.PluginInstallFrame.Option2:Disable()
-			_G.PluginInstallFrame.Option2:Show()
-			_G.PluginInstallFrame.Option2:SetText("Capping")
-		end
-		if E.Retail then
-			if IsAddOnLoaded("WarpDeplete") then
-				_G.PluginInstallFrame.Desc3:SetText(L["Import WarpDeplete profile for Mythic Plus"]..", "..L["WarpDeplete profile requires an import per class in order to have the correct texture"])
-				_G.PluginInstallFrame.Option3:Enable()
-				_G.PluginInstallFrame.Option3:Show()
-				_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:GetWarpDepleteProfile() end)
-				_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("WarpDeplete","ENTERING") end)
-				_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-				_G.PluginInstallFrame.Option3:SetText(L["WarpDeplete"])
-			else
-				_G.PluginInstallFrame.Desc3:SetText(L["WarpDeplete is not installed or enabled"])
-				_G.PluginInstallFrame.Option3:Disable()
-				_G.PluginInstallFrame.Option3:Show()
-				_G.PluginInstallFrame.Option3:SetText(L["WarpDeplete"])
-			end
-
-			if IsAddOnLoaded("OmniCD") then
-				_G.PluginInstallFrame.Desc4:SetText(L["Import OmniCD profile"])
-				_G.PluginInstallFrame.Option4:Enable()
-				_G.PluginInstallFrame.Option4:Show()
-				_G.PluginInstallFrame.Option4:SetScript('OnClick', function()
-					if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
-						ElvUI_EltreumUI:GetOmniCDProfile("dps")
-					elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
-						ElvUI_EltreumUI:GetOmniCDProfile("healer")
-					else
-						ElvUI_EltreumUI:GetOmniCDProfile("dps")
-					end
-				end)
-				_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("OmniCD","ENTERING") end)
-				_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-				_G.PluginInstallFrame.Option4:SetText(L["OmniCD"])
-			else
-				_G.PluginInstallFrame.Desc4:SetText(L["OmniCD is not installed or enabled"])
-				_G.PluginInstallFrame.Option4:Disable()
-				_G.PluginInstallFrame.Option4:Show()
-				_G.PluginInstallFrame.Option4:SetText(L["OmniCD"])
-			end
-		else
-			_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
-			_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
-		end
-		if not ( IsAddOnLoaded("WarpDeplete") or IsAddOnLoaded("Capping") or IsAddOnLoaded("BattleGroundEnemies") or IsAddOnLoaded("OmniCD") ) then
-			_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
-		--else
-			--_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
-		end
-	end)
-	tinsert(ElvUI_EltreumUI.InstallerData.Pages,9 ,function()
-		ElvUI_EltreumUI:ResizeInstall()
-		ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
-		isfirstpage = false
-		_G.PluginInstallFrame.SubTitle:SetFormattedText(L["QOL Addons"])
-		_G.PluginInstallFrame.Desc1:SetText(L["Import profiles for NameplateSCT or ElvUI Floating Combat Text"])
-		_G.PluginInstallFrame.Desc2:SetText(L["Import "]..'Immersion '..L["settings configured for "]..'Eltruism')
-		_G.PluginInstallFrame.Desc3:SetText(L["Import Dynamic Cam profile"])
-		_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
-		_G.PluginInstallFrame.Option1:Enable()
-		_G.PluginInstallFrame.Option1:Show()
-		_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupCombatText("NameplateSCT") end)
-		_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("NameplateSCT","ENTERING") end)
-		_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-		_G.PluginInstallFrame.Option1:SetText('NameplateSCT')
-
-		_G.PluginInstallFrame.Option2:Enable()
-		_G.PluginInstallFrame.Option2:Show()
-		_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupCombatText("ElvUI_FCT") end)
-		_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("ElvUIFCT","ENTERING") end)
-		_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-		_G.PluginInstallFrame.Option2:SetText('ElvUI FCT')
-
-		_G.PluginInstallFrame.Option3:Enable()
-		_G.PluginInstallFrame.Option3:Show()
-		_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupImmersion() end)
-		_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("Immersion","ENTERING") end)
-		_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-		_G.PluginInstallFrame.Option3:SetText('Immersion')
-
-		_G.PluginInstallFrame.Option4:Enable()
-		_G.PluginInstallFrame.Option4:Show()
-		_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDynamicCam() end)
-		_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
-		_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
-		_G.PluginInstallFrame.Option4:SetText(L["DynamicCam"])
-
-		if (not IsAddOnLoaded("NameplateSCT")) and IsAddOnLoaded("ElvUI_FCT") then
-			_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-			_G.PluginInstallFrame.Desc1:SetText(L["Import a profile for Simpy's ElvUI FCT configured for Eltruism"])
-			_G.PluginInstallFrame.Option1:Disable()
-		end
-		if (not IsAddOnLoaded("ElvUI_FCT")) and IsAddOnLoaded("NameplateSCT") then
-			_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-			_G.PluginInstallFrame.Desc1:SetText(L["Import a profile for NameplateSCT configured for Eltruism"])
-			_G.PluginInstallFrame.Option2:Disable()
-		end
-		if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
-			_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-			_G.PluginInstallFrame.Desc1:SetText(L["NameplateSCT and ElvUI FCT are not installed or enabled"])
-			_G.PluginInstallFrame.Option1:Disable()
-			_G.PluginInstallFrame.Option2:Disable()
-		end
-		if (not IsAddOnLoaded("Immersion")) then
-			_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-			_G.PluginInstallFrame.Desc2:SetText("Immersion"..L[" is not installed or enabled"])
-			_G.PluginInstallFrame.Option3:Disable()
-		end
-		if (not IsAddOnLoaded("DynamicCam")) then
-			_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
-			_G.PluginInstallFrame.Desc3:SetText("Dynamic Cam"..L[" is not installed or enabled"])
-			_G.PluginInstallFrame.Option4:Disable()
-		end
-		if (not IsAddOnLoaded("DynamicCam")) and (not IsAddOnLoaded("Immersion")) and (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
-			_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
-		end
-	end)
-	tinsert(ElvUI_EltreumUI.InstallerData.Pages,10, function()
-		ElvUI_EltreumUI:ResizeInstall()
-		ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
-		isfirstpage = false
-		_G.PluginInstallFrame.SubTitle:SetFormattedText('Discord')
-		_G.PluginInstallFrame.Desc1:SetText(L["Join the Discord if you have any questions or issues (English Support)"])
-		_G.PluginInstallFrame.Option1:Enable()
-		_G.PluginInstallFrame.Option1:Show()
-		_G.PluginInstallFrame.Option1:SetScript('OnClick', function() E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, 'https://discord.gg/rBXNxUY6pk') end)
-		_G.PluginInstallFrame.Option1:SetText('|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinydisc.tga:0:0:0:0|t Discord')
-		_G.PluginInstallFrame.Option1:SetScript('OnEnter', nil)
-		_G.PluginInstallFrame.Option1:SetScript('OnLeave', nil)
-		_G.PluginInstallFrame.Option2:SetScript('OnEnter', nil)
-		_G.PluginInstallFrame.Option2:SetScript('OnLeave', nil)
-		_G.PluginInstallFrame.Option3:SetScript('OnEnter', nil)
-		_G.PluginInstallFrame.Option3:SetScript('OnLeave', nil)
-		_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
-		_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
-	end)
-	tinsert(ElvUI_EltreumUI.InstallerData.Pages,11, function()
-		ElvUI_EltreumUI:ResizeInstall()
-		ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
-		isfirstpage = false
-		_G.PluginInstallFrame.SubTitle:SetText(L["Installation Complete"])
-		_G.PluginInstallFrame.Desc1:SetText(L["You have completed the installation process"])
-		_G.PluginInstallFrame.Desc2:SetText(L["Feel free to explore Eltruism settings in ElvUI > Eltruism.\nThere are lot of settings that are disabled by default."])
-		_G.PluginInstallFrame.Desc3:SetText(L["Please click Finished to reload the UI"])
-		_G.PluginInstallFrame.Desc4:SetText(L["Importance: "].."|cff82B4ff"..L["Very High"]..'|r')
-		_G.PluginInstallFrame.Option1:Enable()
-		_G.PluginInstallFrame.Option1:Show()
-		_G.PluginInstallFrame.Option1:SetScript('OnClick', InstallComplete)
-		_G.PluginInstallFrame.Option1:SetScript('OnEnter', nil)
-		_G.PluginInstallFrame.Option1:SetScript('OnLeave', nil)
-		_G.PluginInstallFrame.Option2:SetScript('OnEnter', nil)
-		_G.PluginInstallFrame.Option2:SetScript('OnLeave', nil)
-		_G.PluginInstallFrame.Option3:SetScript('OnEnter', nil)
-		_G.PluginInstallFrame.Option3:SetScript('OnLeave', nil)
-		_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
-		_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
-		_G.PluginInstallFrame.Option1:SetText(L["Finished"])
-	end)
-
-	ElvUI_EltreumUI.InstallerData.StepTitles[7] = L["PVP/PVE Addons"]
-	ElvUI_EltreumUI.InstallerData.StepTitles[8] = L["PVP/PVE Addons"].." 2"
-	ElvUI_EltreumUI.InstallerData.StepTitles[9] = L["QOL Addons"]
-
-	_G.PluginInstallFrame.MaxPage = 11
-
-	ElvUI_EltreumUI.InstallerData.StepTitles[10] = 'Discord'
-	ElvUI_EltreumUI.InstallerData.StepTitles[11] = L["Installation Complete"]
-
-	_G.PluginInstallFrame.side.Lines[10]:Show()
-	_G.PluginInstallFrame.side.Lines[10]:Point('CENTER', E.UIParent, 'CENTER', -100, 0)
-	_G.PluginInstallFrame.side.Lines[10]:SetWidth(180)
-	_G.PluginInstallFrame.side.Lines[10].text:SetWidth(200)
-	_G.PluginInstallFrame.side.Lines[10].text:SetJustifyH('RIGHT')
-
-
-	_G.PluginInstallFrame.side.Lines[11]:Show()
-	_G.PluginInstallFrame.side.Lines[11]:Point('CENTER', E.UIParent, 'CENTER', -100, 0)
-	_G.PluginInstallFrame.side.Lines[11]:SetWidth(180)
-	_G.PluginInstallFrame.side.Lines[11].text:SetWidth(200)
-	_G.PluginInstallFrame.side.Lines[11].text:SetJustifyH('RIGHT')
-
-
-	--StepTitleButtonWidth = 180,
-	local plugininstaller = E:GetModule('PluginInstaller')
-	plugininstaller:SetPage(7, 7)
-
-
-end
-
-
 -- Installer Steps
 ElvUI_EltreumUI.InstallerData = {
 	Title = ElvUI_EltreumUI.Name,
@@ -1048,32 +591,273 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
 			_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
 		end,
-
 		[7] = function()
 			ElvUI_EltreumUI:ResizeInstall()
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
-			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["Test Page"])
-			_G.PluginInstallFrame.Option1:SetScript('OnEnter', nil)
-			_G.PluginInstallFrame.Option1:SetScript('OnLeave', nil)
-			_G.PluginInstallFrame.Option1:SetScript('OnClick', function()
-				Test123()
+			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["PVP/PVE Addons"])
+			if E.Retail then
+				_G.PluginInstallFrame.Desc1:SetText(L["Import GladiusEx profile for arenas, remember to disable ElvUI Arena Frames"])
+				_G.PluginInstallFrame.Option1:Enable()
+				_G.PluginInstallFrame.Option1:Show()
+				_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupGladiusEx() end)
+				_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladiusEX","ENTERING") end)
+				_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+				_G.PluginInstallFrame.Option1:SetText(L["GladiusEx"])
+			elseif E.Classic or E.Wrath then
+				_G.PluginInstallFrame.Desc1:SetText(L["Import Questie profile, which uses the DBM radar"])
+				_G.PluginInstallFrame.Option1:Enable()
+				_G.PluginInstallFrame.Option1:Show()
+				_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupQuestie() end)
+				_G.PluginInstallFrame.Option1:SetScript('OnEnter', nil)
+				_G.PluginInstallFrame.Option1:SetScript('OnLeave', nil)
+				_G.PluginInstallFrame.Option1:SetText(L["Questie"])
+			end
+			_G.PluginInstallFrame.Desc2:SetText(L["Import DBM or BigWigs profiles for dungeons and raids. (Uses DBM English Calanon and Bigwigs Voice)"])
+			if E.Wrath then
+				if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
+					_G.PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladdy"])
+				elseif IsAddOnLoaded("Gladius") and IsAddOnLoaded("Gladdy") then
+					_G.PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladdy (Gladius can be found in Eltruism settings)"])
+				elseif not IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
+					_G.PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladius"])
+				elseif not IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
+					_G.PluginInstallFrame.Desc3:SetText(L["Gladdy and Gladius are not installed or enabled"])
+				end
+			end
+			_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
 
-				ElvUI_EltreumUI.InstallerData.StepTitles[7] = L["PVP/PVE Addons"]
-				ElvUI_EltreumUI.InstallerData.StepTitles[8] = L["PVP/PVE Addons"].." 2"
-				ElvUI_EltreumUI.InstallerData.StepTitles[9] = L["QOL Addons"]
-				ElvUI_EltreumUI.InstallerData.StepTitles[10] = 'Discord'
-				ElvUI_EltreumUI.InstallerData.StepTitles[11] = L["Installation Complete"]
-			end)
-			_G.PluginInstallFrame.Option1:SetText("TEST")
-			_G.PluginInstallFrame.Option1:Enable()
-			_G.PluginInstallFrame.Option1:Show()
+			_G.PluginInstallFrame.Option2:Enable()
+			_G.PluginInstallFrame.Option2:Show()
+			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDBM() end)
+			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("DBM","ENTERING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option2:SetText('DBM')
 
-			_G.PluginInstallFrame.Option2:Hide()
-			_G.PluginInstallFrame.Option3:Hide()
-			_G.PluginInstallFrame.Option4:Hide()
+			_G.PluginInstallFrame.Option3:Enable()
+			_G.PluginInstallFrame.Option3:Show()
+			_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupBW() end)
+			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("BigWigs","ENTERING") end)
+			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option3:SetText('BigWigs')
+			if E.Wrath then
+				_G.PluginInstallFrame.Option4:Enable()
+				_G.PluginInstallFrame.Option4:Show()
+				if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
+					_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
+					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladdy","ENTERING") end)
+					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+					_G.PluginInstallFrame.Option4:SetText('Gladdy')
+				elseif IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
+					_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
+					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladdy","ENTERING") end)
+					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+					_G.PluginInstallFrame.Option4:SetText('Gladdy')
+				elseif not IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
+					_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladius() end)
+					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladius","ENTERING") end)
+					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+					_G.PluginInstallFrame.Option4:SetText('Gladius')
+				elseif not IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
+					_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
+					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladdy","ENTERING") end)
+					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+					_G.PluginInstallFrame.Option4:SetText('Gladdy')
+				end
+			else
+				_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
+				_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
+			end
+			if (not IsAddOnLoaded("Questie")) and (E.Classic or E.Wrath) then
+				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
+				_G.PluginInstallFrame.Desc1:SetText(L["Questie is not installed or enabled"])
+				_G.PluginInstallFrame.Option1:Disable()
+			end
+			if (not IsAddOnLoaded("GladiusEx")) and E.Retail then
+				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
+				_G.PluginInstallFrame.Desc1:SetText("GladiusEx"..L[" is not installed or enabled"])
+				_G.PluginInstallFrame.Option1:Disable()
+			end
+			if (not IsAddOnLoaded("DBM-Core")) then
+				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
+				_G.PluginInstallFrame.Desc2:SetText(L["DBM is not installed or enabled so BigWigs will be used"])
+				_G.PluginInstallFrame.Option2:Disable()
+			end
+			if (not IsAddOnLoaded("BigWigs")) then
+				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
+				_G.PluginInstallFrame.Desc2:SetText(L["BigWigs is not installed or enabled so DBM will be used"])
+				_G.PluginInstallFrame.Option3:Disable()
+			end
+			if (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) then
+				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
+				_G.PluginInstallFrame.Desc2:SetText(L["Both DBM and BigWigs are not installed or enabled"])
+				_G.PluginInstallFrame.Option2:Disable()
+				_G.PluginInstallFrame.Option3:Disable()
+			end
+			if not IsAddOnLoaded("Gladdy") and (E.Wrath) and not IsAddOnLoaded("Gladius") then
+				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
+				_G.PluginInstallFrame.Desc3:SetText(L["Both Gladdy and Gladius are not installed or enabled"])
+				_G.PluginInstallFrame.Option4:Disable()
+			end
+			if E.Retail and ((not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("GladiusEx"))) then
+				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
+			end
+			if E.Classic and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs"))) then
+				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
+			end
+			if (E.Wrath) and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("Gladdy")) and (not IsAddOnLoaded("Gladius"))) then
+				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
+			end
 		end,
 		[8] = function()
+			ElvUI_EltreumUI:ResizeInstall()
+			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
+			isfirstpage = false
+			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["PVP/PVE Addons"].." 2")
+			if IsAddOnLoaded("BattleGroundEnemies") then
+				_G.PluginInstallFrame.Desc1:SetText(L["Import BattlegroundEnemies profile for battlegrounds"])
+				_G.PluginInstallFrame.Option1:Enable()
+				_G.PluginInstallFrame.Option1:Show()
+				_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:GetBattleGroundEnemiesProfile() end)
+				_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("BattlegroundEnemies","ENTERING") end)
+				_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+				_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
+			else
+				_G.PluginInstallFrame.Desc1:SetText(L["BattlegroundEnemies is not installed or enabled"])
+				_G.PluginInstallFrame.Option1:Disable()
+				_G.PluginInstallFrame.Option1:Show()
+				_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
+			end
+			if IsAddOnLoaded("Capping") then
+				_G.PluginInstallFrame.Desc2:SetText(L["Import Capping profile for battlegrounds"])
+				_G.PluginInstallFrame.Option2:Enable()
+				_G.PluginInstallFrame.Option2:Show()
+				_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:GetCappingProfile() end)
+				_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("Capping","ENTERING") end)
+				_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+				_G.PluginInstallFrame.Option2:SetText("Capping")
+			else
+				_G.PluginInstallFrame.Desc2:SetText(L["Capping is not installed or enabled"])
+				_G.PluginInstallFrame.Option2:Disable()
+				_G.PluginInstallFrame.Option2:Show()
+				_G.PluginInstallFrame.Option2:SetText("Capping")
+			end
+			if E.Retail then
+				if IsAddOnLoaded("WarpDeplete") then
+					_G.PluginInstallFrame.Desc3:SetText(L["Import WarpDeplete profile for Mythic Plus"]..", "..L["WarpDeplete profile requires an import per class in order to have the correct texture"])
+					_G.PluginInstallFrame.Option3:Enable()
+					_G.PluginInstallFrame.Option3:Show()
+					_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:GetWarpDepleteProfile() end)
+					_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("WarpDeplete","ENTERING") end)
+					_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+					_G.PluginInstallFrame.Option3:SetText(L["WarpDeplete"])
+				else
+					_G.PluginInstallFrame.Desc3:SetText(L["WarpDeplete is not installed or enabled"])
+					_G.PluginInstallFrame.Option3:Disable()
+					_G.PluginInstallFrame.Option3:Show()
+					_G.PluginInstallFrame.Option3:SetText(L["WarpDeplete"])
+				end
+
+				if IsAddOnLoaded("OmniCD") then
+					_G.PluginInstallFrame.Desc4:SetText(L["Import OmniCD profile"])
+					_G.PluginInstallFrame.Option4:Enable()
+					_G.PluginInstallFrame.Option4:Show()
+					_G.PluginInstallFrame.Option4:SetScript('OnClick', function()
+						if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
+							ElvUI_EltreumUI:GetOmniCDProfile("dps")
+						elseif ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
+							ElvUI_EltreumUI:GetOmniCDProfile("healer")
+						else
+							ElvUI_EltreumUI:GetOmniCDProfile("dps")
+						end
+					end)
+					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("OmniCD","ENTERING") end)
+					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+					_G.PluginInstallFrame.Option4:SetText(L["OmniCD"])
+				else
+					_G.PluginInstallFrame.Desc4:SetText(L["OmniCD is not installed or enabled"])
+					_G.PluginInstallFrame.Option4:Disable()
+					_G.PluginInstallFrame.Option4:Show()
+					_G.PluginInstallFrame.Option4:SetText(L["OmniCD"])
+				end
+			else
+				_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
+				_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
+			end
+			if not ( IsAddOnLoaded("WarpDeplete") or IsAddOnLoaded("Capping") or IsAddOnLoaded("BattleGroundEnemies") or IsAddOnLoaded("OmniCD") ) then
+				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
+			--else
+				--_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
+			end
+		end,
+		[9] = function()
+			ElvUI_EltreumUI:ResizeInstall()
+			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
+			isfirstpage = false
+			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["QOL Addons"])
+			_G.PluginInstallFrame.Desc1:SetText(L["Import profiles for NameplateSCT or ElvUI Floating Combat Text"])
+			_G.PluginInstallFrame.Desc2:SetText(L["Import "]..'Immersion '..L["settings configured for "]..'Eltruism')
+			_G.PluginInstallFrame.Desc3:SetText(L["Import Dynamic Cam profile"])
+			_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
+			_G.PluginInstallFrame.Option1:Enable()
+			_G.PluginInstallFrame.Option1:Show()
+			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupCombatText("NameplateSCT") end)
+			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("NameplateSCT","ENTERING") end)
+			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option1:SetText('NameplateSCT')
+
+			_G.PluginInstallFrame.Option2:Enable()
+			_G.PluginInstallFrame.Option2:Show()
+			_G.PluginInstallFrame.Option2:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupCombatText("ElvUI_FCT") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("ElvUIFCT","ENTERING") end)
+			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option2:SetText('ElvUI FCT')
+
+			_G.PluginInstallFrame.Option3:Enable()
+			_G.PluginInstallFrame.Option3:Show()
+			_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupImmersion() end)
+			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("Immersion","ENTERING") end)
+			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option3:SetText('Immersion')
+
+			_G.PluginInstallFrame.Option4:Enable()
+			_G.PluginInstallFrame.Option4:Show()
+			_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDynamicCam() end)
+			_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
+			_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
+			_G.PluginInstallFrame.Option4:SetText(L["DynamicCam"])
+
+			if (not IsAddOnLoaded("NameplateSCT")) and IsAddOnLoaded("ElvUI_FCT") then
+				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
+				_G.PluginInstallFrame.Desc1:SetText(L["Import a profile for Simpy's ElvUI FCT configured for Eltruism"])
+				_G.PluginInstallFrame.Option1:Disable()
+			end
+			if (not IsAddOnLoaded("ElvUI_FCT")) and IsAddOnLoaded("NameplateSCT") then
+				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
+				_G.PluginInstallFrame.Desc1:SetText(L["Import a profile for NameplateSCT configured for Eltruism"])
+				_G.PluginInstallFrame.Option2:Disable()
+			end
+			if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
+				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
+				_G.PluginInstallFrame.Desc1:SetText(L["NameplateSCT and ElvUI FCT are not installed or enabled"])
+				_G.PluginInstallFrame.Option1:Disable()
+				_G.PluginInstallFrame.Option2:Disable()
+			end
+			if (not IsAddOnLoaded("Immersion")) then
+				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
+				_G.PluginInstallFrame.Desc2:SetText("Immersion"..L[" is not installed or enabled"])
+				_G.PluginInstallFrame.Option3:Disable()
+			end
+			if (not IsAddOnLoaded("DynamicCam")) then
+				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
+				_G.PluginInstallFrame.Desc3:SetText("Dynamic Cam"..L[" is not installed or enabled"])
+				_G.PluginInstallFrame.Option4:Disable()
+			end
+			if (not IsAddOnLoaded("DynamicCam")) and (not IsAddOnLoaded("Immersion")) and (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
+				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
+			end
+		end,
+		[10] = function()
 			ElvUI_EltreumUI:ResizeInstall()
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
@@ -1092,7 +876,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
 			_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
 		end,
-		[9] = function()
+		[11] = function()
 			ElvUI_EltreumUI:ResizeInstall()
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
@@ -1122,9 +906,11 @@ ElvUI_EltreumUI.InstallerData = {
 		[4] = L["Fonts"],
 		[5] = CHAT_LABEL,
 		[6] = L["Details! DPS Meter"],
-		[7] = "Test",
-		[8] = 'Discord',
-		[9] = L["Installation Complete"],
+		[7] = L["PVP/PVE Addons"],
+		[8] = L["PVP/PVE Addons"].." 2",
+		[9] = L["QOL Addons"],
+		[10] = 'Discord',
+		[11] = L["Installation Complete"],
 	},
 	StepTitlesColor = {1, 1, 1},
 	StepTitlesColorSelected = {0.50, 0.70, 1},
