@@ -15,6 +15,14 @@ function ElvUI_EltreumUI:DynamicChatFade()
 	end
 	if E.db.ElvUI_EltreumUI.chat.enable then
 
+		--hide at the start if the fade is enabled
+		if E.db.ElvUI_EltreumUI.chat.rightfader then
+			_G["RightChatPanel"]:SetAlpha(0)
+		end
+		if E.db.ElvUI_EltreumUI.chat.leftfader then
+			_G["LeftChatPanel"]:SetAlpha(0)
+		end
+
 		--timer things
 		local hidetime = E.db.chat.inactivityTimer+2
 		local timeractiveleft = false
