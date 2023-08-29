@@ -236,7 +236,6 @@ end
 
 function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED(event)
 	ElvUI_EltreumUI:StopCombatMusic(event)
-	ElvUI_EltreumUI:DynamicChatFade()
 	ElvUI_EltreumUI:BlizzCombatText()
 	ElvUI_EltreumUI:QuestCombatEnd()
 	ElvUI_EltreumUI:MinimapHide(event)
@@ -246,7 +245,6 @@ end
 
 function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED(event)
 	ElvUI_EltreumUI:CombatMusic(event)
-	ElvUI_EltreumUI:DynamicChatFade()
 	ElvUI_EltreumUI:QuestCombat()
 	ElvUI_EltreumUI:MinimapHide(event)
 	ElvUI_EltreumUI:DatatextHide(event)
