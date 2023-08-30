@@ -145,7 +145,7 @@ function ElvUI_EltreumUI:ImproveInstall(installtype,mode,null,custom,path)
 			end
 
 			if mode == "ENTERING" then
-				UIFrameFadeIn(_G.PluginInstallFrame.installpreview, 0.5, 0, 0.7)
+				UIFrameFadeIn(_G.PluginInstallFrame.installpreview, 0.5, 0, 1)
 				UIFrameFadeOut(_G.PluginInstallTutorialImage, 0.5, 1, 0)
 				UIFrameFadeOut(_G.PluginInstallFrame.Desc1, 0.5, 1, 0)
 				UIFrameFadeOut(_G.PluginInstallFrame.Desc2, 0.5, 1, 0)
@@ -153,7 +153,7 @@ function ElvUI_EltreumUI:ImproveInstall(installtype,mode,null,custom,path)
 				UIFrameFadeOut(_G.PluginInstallFrame.Desc4, 0.5, 1, 0)
 				UIFrameFadeOut(_G.PluginInstallFrame.SubTitle, 0.5, 1, 0)
 			elseif mode == "LEAVING" then
-				UIFrameFadeOut(_G.PluginInstallFrame.installpreview, 0.5, 0.7, 0)
+				UIFrameFadeOut(_G.PluginInstallFrame.installpreview, 0.5, 1, 0)
 				UIFrameFadeIn(_G.PluginInstallTutorialImage, 0.5, 0, 1)
 				UIFrameFadeIn(_G.PluginInstallFrame.Desc1, 0.5, 0, 1)
 				UIFrameFadeIn(_G.PluginInstallFrame.Desc2, 0.5, 0, 1)
