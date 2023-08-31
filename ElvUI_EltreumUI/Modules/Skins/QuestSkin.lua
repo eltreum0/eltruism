@@ -195,6 +195,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					S:HandleFrame(QuestNPCModelTemplate)
 					QuestNPCModelTemplate:SetParent(_G["QuestNPCModelTextFrame"])
 					_G["QuestNPCModelTextFrame"].Eltruismbg = _G["QuestNPCModelTextFrame"]:CreateTexture() --used as a check
+					 QuestNPCModelTemplate:SetFrameStrata("LOW")
 				end
 			end
 
