@@ -99,14 +99,13 @@ if E.ClassicHC then
 					local name, _, _, _, _, _, _, _, _, _, unitclass = GetGuildRosterInfo(i)
 					local shortname, _ = strsplit("-", name)
 					if shortname == guildmembername and unitclass then
-						print(name,unitclass)
 						HardcoreMonitor:SetAlpha(1)
 						local classcolor = E:ClassColor(unitclass, true)
 						HardcoreMonitor.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 						HardcoreMonitor.StatusLine2:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
 						ChangeChatColor("GUILD_DEATHS", classcolor.r, classcolor.g, classcolor.b) --works for chat frame only
 						_G.RaidWarningFrameSlot1:SetTextColor(classcolor.r, classcolor.g, classcolor.b) --fixed raid warning
-						E:Delay(7, function()
+						E:Delay(5, function()
 							local hcalpha = HardcoreMonitor:GetAlpha()
 							if hcalpha ~= 0 then
 								UIFrameFadeOut(HardcoreMonitor, 1, 1, 0)
