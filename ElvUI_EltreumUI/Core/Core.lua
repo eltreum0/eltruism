@@ -352,7 +352,7 @@ function ElvUI_EltreumUI:Anchors()
 					if name == "CompactRaidFrameContainer" and E.private.unitframe.disabledBlizzardFrames.raid then
 						tremove(editMode.registeredSystemFrames, i)
 					end
-					if name == "ArenaEnemyFramesContainer" and E.private.unitframe.disabledBlizzardFrames.arena then
+					if name == "ArenaEnemyFramesContainer" and E.private.unitframe.disabledBlizzardFrames.arena and E.db.unitframe.units.arena.enable then
 						tremove(editMode.registeredSystemFrames, i)
 					end
 					if name == "BossTargetFrameContainer" and E.private.unitframe.disabledBlizzardFrames.boss then

@@ -332,6 +332,8 @@ function ElvUI_EltreumUI:CheckCompatibility()
 
 	--check wunderui
 	CheckWunderUI(L["Role Icons"], L["Role Icons"], "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "db.WunderUI.skins.elvUIIcons.roleIcons.enabled")
+	CheckWunderUI(L["Character Panel"], "Armory", "db.ElvUI_EltreumUI.skins.classicarmory", "db.WunderUI.armory.enabled")
+	CheckWunderUI(L["Expand Character Art"], "Armory", "db.ElvUI_EltreumUI.skins.expandarmorybg", "db.WunderUI.armory.enabled")
 
 	if _G["EltruismCompatibilityFrame"].numModules > 0 then
 		_G["EltruismCompatibilityFrame"]:Show()

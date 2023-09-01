@@ -67,12 +67,56 @@ S:AddCallbackForAddon('Scrap_Merchant', "EltruismScrap", ElvUI_EltreumUI.Eltruis
 S:AddCallbackForAddon('Scrap', "EltruismScrap", ElvUI_EltreumUI.EltruismScrap)
 
 --secret
-if E.Classic then
-	local HardcoreMonitor = CreateFrame("Frame")
+if E.ClassicHC then
+	local HardcoreMonitor = CreateFrame("Frame", "EltruismHardcoreDeathMonitor")
+	HardcoreMonitor:SetPoint("CENTER", _G.RaidWarningFrame)
+	local x,y = _G.RaidWarningFrame:GetSize()
+	HardcoreMonitor:SetSize(x,y)
+
+	HardcoreMonitor.StatusLine = CreateFrame("StatusBar", "EltruismHardcoreDeathLine", HardcoreMonitor)
+	HardcoreMonitor.StatusLine:SetSize(418, 3)
+	HardcoreMonitor.StatusLine:SetPoint("TOP", _G.RaidWarningFrameSlot1, 0, 5)
+	HardcoreMonitor.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
+
+	HardcoreMonitor.StatusLine2 = CreateFrame("StatusBar", "EltruismHardcoreDeathLine2", HardcoreMonitor)
+	HardcoreMonitor.StatusLine2:SetSize(418, 3)
+	HardcoreMonitor.StatusLine2:SetPoint("BOTTOM", _G.RaidWarningFrameSlot1, 0, -5)
+	HardcoreMonitor.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
+
+	HardcoreMonitor:SetAlpha(0)
+
 	HardcoreMonitor:RegisterEvent("PLAYER_DEAD")
-	HardcoreMonitor:SetScript("OnEvent", function()
+	HardcoreMonitor:RegisterEvent("GUILD_MEMBER_DIED")
+	HardcoreMonitor:RegisterEvent("CHAT_MSG_GUILD_DEATHS")
+	--HardcoreMonitor:RegisterEvent("PLAYER_STARTED_MOVING")
+	HardcoreMonitor:SetScript("OnEvent", function(_,event,guildmembername)
 		if C_GameRules.IsHardcoreActive() then
-			E:Delay(4,function() PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\overconfidence.ogg" , "Master") end)
+			if event == "PLAYER_DEAD" then
+				E:Delay(4,function() PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\overconfidence.ogg" , "Master") end)
+			else
+				if not guildmembername then return end
+				for i = 1, GetNumGuildMembers() do
+					local name, _, _, _, _, _, _, _, _, _, unitclass = GetGuildRosterInfo(i)
+					local shortname, _ = strsplit("-", name)
+					if shortname == guildmembername and unitclass then
+						HardcoreMonitor:SetAlpha(1)
+						local classcolor = E:ClassColor(unitclass, true)
+						HardcoreMonitor.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						HardcoreMonitor.StatusLine2:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						ChangeChatColor("GUILD_DEATHS", classcolor.r, classcolor.g, classcolor.b) --works for chat frame only
+						_G.RaidWarningFrameSlot1:SetTextColor(classcolor.r, classcolor.g, classcolor.b) --fixed raid warning
+						E:Delay(5, function()
+							local hcalpha = HardcoreMonitor:GetAlpha()
+							if hcalpha ~= 0 then
+								UIFrameFadeOut(HardcoreMonitor, 1, 1, 0)
+							end
+						end)
+						--PlaySound(8959)
+						--PlaySound(8960)
+						PlaySoundFile(E.LSM:Fetch("sound", "Warcraft 3 - Night Elf Ally Dies"), "Master")
+					end
+				end
+			end
 		end
 	end)
 end
