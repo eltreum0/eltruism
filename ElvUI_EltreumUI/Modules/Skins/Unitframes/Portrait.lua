@@ -774,6 +774,14 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update)
 	if update and frame.EltruismPortrait then
 		if not frame.unit then return end
 
+		--[[if E.db.ElvUI_EltreumUI.unitframes.portrait.style == "3D" then
+			if frame.Portrait3D then
+				frame.Portrait3D:ClearAllPoints()
+				frame.Portrait3D:SetAllPoints(frame.EltruismPortrait)
+				--frame.Portrait3D:AddMaskTexture(frame.EltruismPortrait.Mask) --3d models cant be masked
+			end
+		end]]
+
 		SetPortraitTexture(frame.EltruismPortrait.portrait,frame.unit,true)
 		frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
 		if invert then
