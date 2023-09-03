@@ -830,8 +830,8 @@ P.ElvUI_EltreumUI = {
 		blizzardresticonclasscolor = true,
 		portrait = {
 			enable = true,
-			style = "blizzard", --prob blizzard, class icons, symbols
-			circle = false,
+			style = "SYMBOLS",
+			type = "BLIZZARD",
 			gradient = true,
 			color = {
 				r = 1,
@@ -842,9 +842,10 @@ P.ElvUI_EltreumUI = {
 			size = 100,
 			position = {
 				align = "LEFT",
-				x = 0,
-				y = 0,
-			}
+				x = -36,
+				y = 13,
+			},
+			custom = false,
 		},
 		infopanelontop = false,
 		infopanelontopallframes = false,
