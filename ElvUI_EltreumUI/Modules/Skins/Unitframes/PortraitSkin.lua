@@ -221,6 +221,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 			frame.Portrait:ClearAllPoints()
 		end
 		if not E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
+			frame.EltruismPortrait.portrait:SetMask("")
 			frame.EltruismPortrait.border:Show()
 			frame.EltruismPortrait.rare:SetAlpha(1)
 			frame.EltruismPortrait.edge:SetAlpha(1)
@@ -333,19 +334,20 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 			frame.EltruismPortrait.border:Hide()
 			frame.EltruismPortrait.rare:SetAlpha(0)
 			frame.EltruismPortrait.edge:SetAlpha(0)
+			frame.EltruismPortrait.portrait:SetMask("")
 		else
 			frame.EltruismPortrait.border:Show()
 			frame.EltruismPortrait.rare:SetAlpha(1)
 			frame.EltruismPortrait.edge:SetAlpha(1)
 		end
 
-		if not E.db.ElvUI_EltreumUI.unitframes.portrait.player.rare or E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "CIRCLE" then
+		if not E.db.ElvUI_EltreumUI.unitframes.portrait.player.rare or E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "CIRCLE" or E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
 			frame.EltruismPortrait.rare:SetTexture()
 		else
 			frame.EltruismPortrait.rare:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Rare.tga")
 		end
 
-		if E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "BLIZZARD" or not E.db.ElvUI_EltreumUI.unitframes.portrait.player.edge then
+		if E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "BLIZZARD" or not E.db.ElvUI_EltreumUI.unitframes.portrait.player.edge or E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
 			frame.EltruismPortrait.edge:SetTexture()
 		else
 			frame.EltruismPortrait.edge:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Edge.tga")
@@ -364,6 +366,9 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 				frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\maskinvert.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
 			else
 				frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\mask.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+			end
+			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
+				frame.EltruismPortrait.Mask:SetColorTexture(0,0,0,1)
 			end
 		else
 			if E.db.ElvUI_EltreumUI.unitframes.portrait.shadow then
