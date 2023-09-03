@@ -757,16 +757,23 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 		frame.EltruismPortrait.portrait = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitPortrait", "OVERLAY", nil, 4)
 		frame.EltruismPortrait.portrait:SetAllPoints(frame.EltruismPortrait)
 
-		frame.EltruismPortrait.edge = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitEdge", "OVERLAY", nil, 7)
+		frame.EltruismPortrait.edge = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitEdge", "OVERLAY", nil, 6)
 		frame.EltruismPortrait.edge:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Edge.tga")
 		frame.EltruismPortrait.edge:SetAllPoints(frame.EltruismPortrait)
 
-
+		frame.EltruismPortrait.rare = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitRare", "OVERLAY", nil, 7)
+		frame.EltruismPortrait.rare:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Rare.tga")
+		frame.EltruismPortrait.rare:SetAllPoints(frame.EltruismPortrait)
+		if invert then
+			frame.EltruismPortrait.rare:SetTexCoord(1, 0, 0, 1)
+		end
+		if not E.db.ElvUI_EltreumUI.unitframes.portrait.player.rare or E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "CIRCLE" then
+			frame.EltruismPortrait.rare:SetTexture()
+		end
 
 		if E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "BLIZZARD" or not E.db.ElvUI_EltreumUI.unitframes.portrait.player.edge then
 			frame.EltruismPortrait.edge:SetTexture()
 		end
-
 
 		if E.db.ElvUI_EltreumUI.unitframes.portrait[db].type == "BLIZZARD" then
 			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].shadow then
@@ -816,14 +823,17 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 						frame.EltruismPortrait.border:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, false))
 						frame.EltruismPortrait.edge:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, false))
+						frame.EltruismPortrait.rare:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, false))
 					else
 						frame.EltruismPortrait.border:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(unitclass, invert, false))
 						frame.EltruismPortrait.edge:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(unitclass, invert, false))
+						frame.EltruismPortrait.rare:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(unitclass, invert, false))
 					end
 				else
 					local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
 					frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
 					frame.EltruismPortrait.edge:SetVertexColor(r,g,b,1)
+					frame.EltruismPortrait.rare:SetVertexColor(r,g,b,1)
 				end
 			else
 				local reaction = UnitReaction(frame.unit, "player")
@@ -874,6 +884,17 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 						local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCHOSTILE")
 						frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
 						frame.EltruismPortrait.edge:SetVertexColor(r,g,b,1)
+					end
+				end
+
+				if E.db.ElvUI_EltreumUI.unitframes.portrait[db].rare and E.db.ElvUI_EltreumUI.unitframes.portrait[db].type == "CIRCLE" then
+					local c = UnitClassification(frame.unit)
+					if (c == 'rare') or (c == 'rareelite') then
+						frame.EltruismPortrait.rare:SetVertexColor(1,1,1,1)
+					elseif(c == 'elite') or (c == 'worldboss') then
+						frame.EltruismPortrait.rare:SetVertexColor(0.84,0.74,0.35,1)
+					else
+						frame.EltruismPortrait.rare:SetVertexColor(0,0,0,0)
 					end
 				end
 			end
