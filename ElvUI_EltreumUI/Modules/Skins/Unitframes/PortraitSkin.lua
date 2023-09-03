@@ -218,7 +218,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 		if not UnitExists(frame.unit) then return end
 		if frame.Portrait then
 			frame.Portrait:Hide()
-			frame.Portrait:ClearAllPoints()
+			--frame.Portrait:ClearAllPoints()
 		end
 		if not E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
 			frame.EltruismPortrait.portrait:SetMask("")
