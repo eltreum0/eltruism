@@ -390,11 +390,13 @@ local UF = E:GetModule('UnitFrames')
 hooksecurefunc(UF,"PortraitUpdate", ElvUI_EltreumUI.BlizzPortraits)
 
 function ElvUI_EltreumUI:BlizzPortraitsGroup(frame)
-	if not frame then return end
-	if not frame.USE_PORTRAIT then return end
-	if not frame:GetName() then return end
-	if frame:GetName():match("PartyGroup") then
-		E:Delay(0, function() CreatePorfraitFrameAndTexture(_G[tostring(frame:GetName())],tostring(frame:GetName()),false,true,"party") end)
+	if E.db.ElvUI_EltreumUI.unitframes.portrait.enable then
+		if not frame then return end
+		if not frame.USE_PORTRAIT then return end
+		if not frame:GetName() then return end
+		if frame:GetName():match("PartyGroup") then
+			E:Delay(0, function() CreatePorfraitFrameAndTexture(_G[tostring(frame:GetName())],tostring(frame:GetName()),false,true,"party") end)
+		end
 	end
 end
 hooksecurefunc(UF,"Configure_Portrait", ElvUI_EltreumUI.BlizzPortraitsGroup)
