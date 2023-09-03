@@ -29,7 +29,8 @@
 	<Script file='Unitframes/Infopanel.lua'/>
 	<Script file='Unitframes/Models.lua'/>
 	<Script file='Unitframes/Orientation.lua'/>
-	<Script file='Unitframes/Portrait.lua'/>
+	<Script file='Unitframes/PortraitFix.lua'/>
+	<Script file='Unitframes/PortraitSkin.lua'/>
 	<Script file='Unitframes/RoleIcons.lua'/>
 	<Script file='Unitframes/Textures.lua'/>
 	<Script file='Animations.lua'/>
