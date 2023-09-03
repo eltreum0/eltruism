@@ -827,7 +827,24 @@ P.ElvUI_EltreumUI = {
 		--modetexture = false,
 		darkpowercolor = false,
 		blizzardresticon = true,
-		blizzardresticonclasscolor = false,
+		blizzardresticonclasscolor = true,
+		portrait = {
+			enable = true,
+			style = "blizzard", --prob blizzard, 3d, class icons, symbols
+			gradient = true,
+			color = {
+				r = 1,
+				g = 0,
+				b = 0,
+			},
+			shadow = true,
+			size = 100,
+			position = {
+				align = "LEFT",
+				x = 0,
+				y = 0,
+			}
+		},
 		infopanelontop = false,
 		infopanelontopallframes = false,
 		greybackground = false,

@@ -726,3 +726,90 @@ if E.db.unitframe.units.player.fader.smooth > 0 then
 		end
 	end)
 end
+
+
+local function CreatePorfraitFrameAndTexture(frame,name,invert,update)
+	if not frame then return end
+	if not frame.EltruismPortrait then
+		frame.EltruismPortrait = CreateFrame("FRAME", name.."EltruismPortrait", frame)
+		if invert then
+			frame.EltruismPortrait:SetPoint("LEFT", frame, "RIGHT", E.db.ElvUI_EltreumUI.unitframes.portrait.position.x, E.db.ElvUI_EltreumUI.unitframes.portrait.position.y)
+		else
+			frame.EltruismPortrait:SetPoint("RIGHT", frame, E.db.ElvUI_EltreumUI.unitframes.portrait.position.align, E.db.ElvUI_EltreumUI.unitframes.portrait.position.x, E.db.ElvUI_EltreumUI.unitframes.portrait.position.y)
+		end
+		frame.EltruismPortrait:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait.size,E.db.ElvUI_EltreumUI.unitframes.portrait.size)
+
+		frame.EltruismPortrait.border = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitTexture", "OVERLAY",nil,2)
+		frame.EltruismPortrait.border:SetParent(frame.EltruismPortrait)
+		frame.EltruismPortrait.border:SetAllPoints(frame.EltruismPortrait)
+
+		frame.EltruismPortrait.Mask = frame.EltruismPortrait:CreateMaskTexture()
+		frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\mask.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+		frame.EltruismPortrait.Mask:SetAllPoints(frame.EltruismPortrait)
+		if invert then
+			frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\maskinvert.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+		else
+			frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\mask.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+		end
+		frame.EltruismPortrait.portrait = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitPortrait", "OVERLAY")
+		frame.EltruismPortrait.portrait:SetAllPoints(frame.EltruismPortrait)
+
+		if invert then
+			if E.db.ElvUI_EltreumUI.unitframes.portrait.style == "blizzard" then
+				frame.EltruismPortrait.border:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Portrait.tga")
+			else
+				frame.EltruismPortrait.border:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Portrait.tga")
+			end
+			frame.EltruismPortrait.portrait:SetTexCoord(1, 0, 0, 1)
+			frame.EltruismPortrait.border:SetTexCoord(1, 0, 0, 1)
+		else
+			if E.db.ElvUI_EltreumUI.unitframes.portrait.style == "blizzard" then
+				frame.EltruismPortrait.border:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Portrait.tga")
+			else
+				frame.EltruismPortrait.border:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Portrait.tga")
+			end
+		end
+	end
+
+	if update and frame.EltruismPortrait then
+		if not frame.unit then return end
+
+		SetPortraitTexture(frame.EltruismPortrait.portrait,frame.unit,true)
+		frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
+		if invert then
+			frame.EltruismPortrait.portrait:SetTexCoord(1, 0, 0, 1)
+		end
+
+		if UnitIsPlayer(frame.unit) then
+			local _, unitclass = UnitClass(frame.unit)
+			local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
+			frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
+		else
+			local reaction = UnitReaction(frame.unit, "player")
+			if reaction >= 5 then
+				local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCFRIENDLY")
+				frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
+			elseif reaction == 4 then
+				local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCNEUTRAL")
+				frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
+			elseif reaction == 3 then
+				local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCUNFRIENDLY")
+				frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
+			elseif reaction == 2 or reaction == 1 then
+				local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCHOSTILE")
+				frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
+			end
+		end
+	end
+end
+
+function ElvUI_EltreumUI:BlizzPortraits(unit,hasStateChanged)
+	if unit == "player" then
+		CreatePorfraitFrameAndTexture(_G["ElvUF_Player"],"ElvUF_Player",false,hasStateChanged)
+	end
+	if unit == "target" then
+		CreatePorfraitFrameAndTexture(_G["ElvUF_Target"],"ElvUF_Target",true,hasStateChanged)
+	end
+end
+local UF = E:GetModule('UnitFrames')
+hooksecurefunc(UF,"PortraitUpdate", ElvUI_EltreumUI.BlizzPortraits)
