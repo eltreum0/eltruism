@@ -746,7 +746,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 		end
 		frame.EltruismPortrait:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait[db].size,E.db.ElvUI_EltreumUI.unitframes.portrait[db].size)
 
-		frame.EltruismPortrait.border = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitTexture", "OVERLAY",nil,2)
+		frame.EltruismPortrait.border = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitTexture", "OVERLAY", nil, 5)
 		frame.EltruismPortrait.border:SetParent(frame.EltruismPortrait)
 		frame.EltruismPortrait.border:SetAllPoints(frame.EltruismPortrait)
 
@@ -754,8 +754,19 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 		frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\mask.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
 		frame.EltruismPortrait.Mask:SetAllPoints(frame.EltruismPortrait)
 
-		frame.EltruismPortrait.portrait = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitPortrait", "OVERLAY")
+		frame.EltruismPortrait.portrait = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitPortrait", "OVERLAY", nil, 4)
 		frame.EltruismPortrait.portrait:SetAllPoints(frame.EltruismPortrait)
+
+		frame.EltruismPortrait.edge = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitEdge", "OVERLAY", nil, 7)
+		frame.EltruismPortrait.edge:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Edge.tga")
+		frame.EltruismPortrait.edge:SetAllPoints(frame.EltruismPortrait)
+
+
+
+		if E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "BLIZZARD" or not E.db.ElvUI_EltreumUI.unitframes.portrait.player.edge then
+			frame.EltruismPortrait.edge:SetTexture()
+		end
+
 
 		if E.db.ElvUI_EltreumUI.unitframes.portrait[db].type == "BLIZZARD" then
 			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].shadow then
@@ -766,6 +777,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 			if invert then
 				frame.EltruismPortrait.border:SetTexCoord(1, 0, 0, 1)
 				frame.EltruismPortrait.portrait:SetTexCoord(1, 0, 0, 1)
+				frame.EltruismPortrait.edge:SetTexCoord(1, 0, 0, 1)
 				frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\maskinvert.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
 			else
 				frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\mask.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
@@ -803,12 +815,15 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.gradient then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 						frame.EltruismPortrait.border:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, false))
+						frame.EltruismPortrait.edge:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, false))
 					else
 						frame.EltruismPortrait.border:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(unitclass, invert, false))
+						frame.EltruismPortrait.edge:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(unitclass, invert, false))
 					end
 				else
 					local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
 					frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
+					frame.EltruismPortrait.edge:SetVertexColor(r,g,b,1)
 				end
 			else
 				local reaction = UnitReaction(frame.unit, "player")
@@ -816,37 +831,49 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 						if reaction >= 5 then
 							frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", invert, false))
+							frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", invert, false))
 						elseif reaction == 4 then
 							frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", invert, false))
+							frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", invert, false))
 						elseif reaction == 3 then
 							frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", invert, false))
+							frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", invert, false))
 						elseif reaction <= 2 then
 							frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", invert, false))
+							frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", invert, false))
 						end
 					else
 						if reaction >= 5 then
 							frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", invert, false))
+							frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", invert, false))
 						elseif reaction == 4 then
 							frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", invert, false))
+							frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", invert, false))
 						elseif reaction == 3 then
 							frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", invert, false))
+							frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", invert, false))
 						elseif reaction <= 2 then
 							frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", invert, false))
+							frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", invert, false))
 						end
 					end
 				else
 					if reaction >= 5 then
 						local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCFRIENDLY")
 						frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
+						frame.EltruismPortrait.edge:SetVertexColor(r,g,b,1)
 					elseif reaction == 4 then
 						local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCNEUTRAL")
 						frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
+						frame.EltruismPortrait.edge:SetVertexColor(r,g,b,1)
 					elseif reaction == 3 then
 						local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCUNFRIENDLY")
 						frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
+						frame.EltruismPortrait.edge:SetVertexColor(r,g,b,1)
 					elseif reaction == 2 or reaction == 1 then
 						local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCHOSTILE")
 						frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
+						frame.EltruismPortrait.edge:SetVertexColor(r,g,b,1)
 					end
 				end
 			end
@@ -857,6 +884,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 			else
 				frame.EltruismPortrait.border:Hide()
 				frame.EltruismPortrait.portrait:SetTexture()
+				frame.EltruismPortrait.edge:SetTexture()
 			end
 		end
 	end

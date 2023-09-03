@@ -1548,14 +1548,10 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.backdrop.args.powerbgfade = ACH:Range(L["Gradient Power Backdrop"], L["Change how much the Gradient Power Backdrop will Fade"], 7, { min = 0, max = 1, step = 0.01 }, "full", function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.bgfade = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or E.db.unitframe.colors.custompowerbackdrop end)
 
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait = ACH:Group(E.NewSign..L["Portrait"], nil, 2, "tab")
-
-
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.general = ACH:Group(E.NewSign..L["General"], nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.general.args.description1 = ACH:Description(L["Target Portrait Fix"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.general.args.enableportraitfix = ACH:Toggle(L["Automatically rotate Target Portrait"], L["Detects target's species and uses it to fix the rotation of the Target's 3D Portrait"], 2, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.portraitfix end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraitfix = value end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.general.args.offset = ACH:Toggle(L["Automatically offset Player/Target Portrait"], L["Detects player and target's species and uses it to fix the offset of the 3D Portrait"], 2, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.portraitfix end)
-
-
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.general.args.description2 = ACH:Description(E.NewSign..L["Portrait Skin"], 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.general.args.enableportraitskin = ACH:Toggle(L["Enable Portrait Skin"], nil, 4, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.portrait.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.enable = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.general.args.gradient = ACH:Toggle(L["Enable Gradient"], nil, 5, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.portrait.gradient end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.gradient = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
@@ -1564,11 +1560,13 @@ function ElvUI_EltreumUI:Configtable()
 
 
 
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player = ACH:Group(E.NewSign..L["Player"], nil, 20, "tab")
+
+--????????????????
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player = ACH:Group(E.NewSign..L["Player"], nil, 20, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.portraittype = ACH:Select(L["Type"], L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.player.type end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.player.type = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.player.type end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.player.type = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or E.db.ElvUI_EltreumUI.unitframes.portrait.player.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.size = ACH:Range(L["Size"], nil, 2, { min = 8, max = 128, step = 1 }, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.player.size end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.player.size = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.anchor = ACH:Select(L["Anchor Point"], L["What point to anchor to the frame you set to attach to."], 2, {
 		LEFT = L["Left"],
@@ -1577,9 +1575,10 @@ function ElvUI_EltreumUI:Configtable()
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.player.position.align end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.player.position.align = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.xoffset = ACH:Range(L["X-Offset"], nil, 2, { min = -300, max = 300, step = 1 }, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.player.position.x end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.player.position.x = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.yoffset = ACH:Range(L["Y-Offset"], nil, 2, { min = -300, max = 300, step = 1 }, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.player.position.y end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.player.position.y = value E:StaticPopup_Show('CONFIG_RL') end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.description1 = ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.custom = ACH:Toggle(L["Enable Custom Textures"], nil, 4, nil, false, 'full', function() return E.db.ElvUI_EltreumUI.unitframes.portrait.player.custom end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.player.custom = value E:StaticPopup_Show('CONFIG_RL') end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 5, {
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.edge = ACH:Toggle(L["Edge"], nil, 3, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.player.edge end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.player.edge = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or E.db.ElvUI_EltreumUI.unitframes.portrait.player.type ~= "BLIZZARD" end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.description1 = ACH:Description(" ", 4, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.custom = ACH:Toggle(L["Enable Custom Textures"], nil, 5, nil, false, 'full', function() return E.db.ElvUI_EltreumUI.unitframes.portrait.player.custom end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.player.custom = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 6, {
 		["RELEAF"] = "Releaf",
 		["OUTLINE"] = L["Outline"],
 		["BLIZZARD"] = L["Blizzard"],
@@ -1591,7 +1590,16 @@ function ElvUI_EltreumUI:Configtable()
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.player.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.player.style = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.player.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.texture.style = "radio"
 
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target = ACH:Group(E.NewSign..L["Target"], nil, 21, "tab")
+
+
+
+
+
+
+
+
+
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target = ACH:Group(E.NewSign..L["Target"], nil, 21, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.portraittype = ACH:Select(L["Type"], L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
@@ -1604,9 +1612,10 @@ function ElvUI_EltreumUI:Configtable()
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.position.align end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.position.align = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.xoffset = ACH:Range(L["X-Offset"], nil, 2, { min = -300, max = 300, step = 1 }, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.position.x end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.position.x = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.yoffset = ACH:Range(L["Y-Offset"], nil, 2, { min = -300, max = 300, step = 1 }, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.position.y end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.position.y = value E:StaticPopup_Show('CONFIG_RL') end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.description1 = ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.custom = ACH:Toggle(L["Enable Custom Textures"], nil, 4, nil, false, 'full', function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.custom end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.custom = value E:StaticPopup_Show('CONFIG_RL') end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 5, {
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.edge = ACH:Toggle(L["Edge"], nil, 3, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.edge end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.edge = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or E.db.ElvUI_EltreumUI.unitframes.portrait.target.type ~= "BLIZZARD" end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.description1 = ACH:Description(" ", 4, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.custom = ACH:Toggle(L["Enable Custom Textures"], nil, 5, nil, false, 'full', function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.custom end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.custom = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 6, {
 		["RELEAF"] = "Releaf",
 		["OUTLINE"] = L["Outline"],
 		["BLIZZARD"] = L["Blizzard"],
@@ -1618,7 +1627,15 @@ function ElvUI_EltreumUI:Configtable()
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.style = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.target.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.texture.style = "radio"
 
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party = ACH:Group(E.NewSign..L["Party"], nil, 22, "tab")
+
+
+
+
+
+
+
+
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party = ACH:Group(E.NewSign..L["Party"], nil, 22, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.portraittype = ACH:Select(L["Type"], L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
@@ -1631,9 +1648,10 @@ function ElvUI_EltreumUI:Configtable()
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.position.align end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.position.align = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.xoffset = ACH:Range(L["X-Offset"], nil, 2, { min = -300, max = 300, step = 1 }, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.position.x end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.position.x = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.yoffset = ACH:Range(L["Y-Offset"], nil, 2, { min = -300, max = 300, step = 1 }, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.position.y end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.position.y = value E:StaticPopup_Show('CONFIG_RL') end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.description1 = ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.custom = ACH:Toggle(L["Enable Custom Textures"], nil, 4, nil, false, 'full', function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.custom end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.custom = value E:StaticPopup_Show('CONFIG_RL') end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 5, {
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.edge = ACH:Toggle(L["Edge"], nil, 3, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.edge end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.edge = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or E.db.ElvUI_EltreumUI.unitframes.portrait.party.type ~= "BLIZZARD" end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.description1 = ACH:Description(" ", 4, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.custom = ACH:Toggle(L["Enable Custom Textures"], nil, 5, nil, false, 'full', function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.custom end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.custom = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 6, {
 		["RELEAF"] = "Releaf",
 		["OUTLINE"] = L["Outline"],
 		["BLIZZARD"] = L["Blizzard"],
@@ -1644,6 +1662,17 @@ function ElvUI_EltreumUI:Configtable()
 		["SYMBOLS"] = L["Symbols"],
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.style = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.party.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.texture.style = "radio"
+
+
+
+
+
+
+
+
+
+
+
 
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.infopanel = ACH:Group(L["Information Panel"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.infopanel.args.description1 = ACH:Description(L["Information Panel"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")

@@ -847,6 +847,7 @@ P.ElvUI_EltreumUI = {
 					y = 13,
 				},
 				custom = false,
+				edge = true,
 			},
 			target = {
 				style = "SYMBOLS",
