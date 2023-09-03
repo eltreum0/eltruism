@@ -782,22 +782,54 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update)
 
 		if UnitIsPlayer(frame.unit) then
 			local _, unitclass = UnitClass(frame.unit)
-			local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
-			frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
+			if E.db.ElvUI_EltreumUI.unitframes.portrait.gradient then
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+					frame.EltruismPortrait.border:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, false))
+				else
+					frame.EltruismPortrait.border:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(unitclass, invert, false))
+				end
+			else
+				local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
+				frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
+			end
 		else
 			local reaction = UnitReaction(frame.unit, "player")
-			if reaction >= 5 then
-				local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCFRIENDLY")
-				frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
-			elseif reaction == 4 then
-				local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCNEUTRAL")
-				frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
-			elseif reaction == 3 then
-				local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCUNFRIENDLY")
-				frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
-			elseif reaction == 2 or reaction == 1 then
-				local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCHOSTILE")
-				frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
+			if E.db.ElvUI_EltreumUI.unitframes.portrait.gradient then
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+					if reaction >= 5 then
+						frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", invert, false))
+					elseif reaction == 4 then
+						frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", invert, false))
+					elseif reaction == 3 then
+						frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", invert, false))
+					elseif reaction <= 2 then
+						frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", invert, false))
+					end
+				else
+					if reaction >= 5 then
+						frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", invert, false))
+					elseif reaction == 4 then
+						frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", invert, false))
+					elseif reaction == 3 then
+						frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", invert, false))
+					elseif reaction <= 2 then
+						frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", invert, false))
+					end
+				end
+			else
+				if reaction >= 5 then
+					local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCFRIENDLY")
+					frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
+				elseif reaction == 4 then
+					local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCNEUTRAL")
+					frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
+				elseif reaction == 3 then
+					local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCUNFRIENDLY")
+					frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
+				elseif reaction == 2 or reaction == 1 then
+					local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCHOSTILE")
+					frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
+				end
 			end
 		end
 	end
