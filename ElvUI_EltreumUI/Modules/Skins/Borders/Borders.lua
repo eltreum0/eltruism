@@ -39,6 +39,9 @@ local classcolorreaction = {
 	["NPCUNFRIENDLY"] = {r1 = 0.94, g1 = 0.37, b1 = 0},
 	["NPCHOSTILE"] = {r1 = 0.8, g1 = 0, b1 = 0},
 }
+function ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
+	return classcolorreaction[unitclass]["r1"],classcolorreaction[unitclass]["g1"],classcolorreaction[unitclass]["b1"]
+end
 
 --Borders on frames
 function ElvUI_EltreumUI:Borders()

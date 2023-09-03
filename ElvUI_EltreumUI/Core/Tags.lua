@@ -799,17 +799,17 @@ E:AddTagInfo("eltruism:levelskull2", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TI
 --Short classification, but with a skull for boss instead of B for Nekator
 E:AddTag("eltruism:shortclassification", "UNIT_NAME_UPDATE", function(unit)
 	local c = UnitClassification(unit)
-		if(c == 'rare') then
-			return 'R'
-		elseif(c == 'rareelite') then
-			return 'R+'
-		elseif(c == 'elite') then
-			return '+'
-		elseif(c == 'worldboss') then
-			return "|TInterface\\TARGETINGFRAME\\UI-TARGETINGFRAME-SKULL.BLP:0:0:0:0|t"
-		elseif(c == 'minus') then
-			return '-'
-		end
+	if(c == 'rare') then
+		return 'R'
+	elseif(c == 'rareelite') then
+		return 'R+'
+	elseif(c == 'elite') then
+		return '+'
+	elseif(c == 'worldboss') then
+		return "|TInterface\\TARGETINGFRAME\\UI-TARGETINGFRAME-SKULL.BLP:0:0:0:0|t"
+	elseif(c == 'minus') then
+		return '-'
+	end
 end)
 E:AddTagInfo("eltruism:shortclassification", ElvUI_EltreumUI.Name.." "..L["Icons"], L["Displays the unit's classification in short form (e.g. '+' for ELITE and 'R' for RARE and a Skull for Boss)"])
 
