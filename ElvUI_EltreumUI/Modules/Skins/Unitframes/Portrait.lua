@@ -802,6 +802,8 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 	if E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
 		frame.EltruismPortrait.border:Hide()
 		frame.EltruismPortrait.portrait:SetTexture()
+		frame.EltruismPortrait.rare:SetTexture()
+		frame.EltruismPortrait.edge:SetTexture()
 	end
 
 	if update and frame.EltruismPortrait then
