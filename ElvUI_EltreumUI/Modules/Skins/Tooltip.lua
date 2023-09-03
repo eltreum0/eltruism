@@ -24,6 +24,7 @@ local function SetTooltipGradient(unit)
 
 		local tooltipname = _G["GameTooltipTextLeft1"]:GetText()
 		if tooltipname and classunit and reaction then
+			print("test",tooltipname,classunit,reaction)
 			tooltipname = E:StripString(tooltipname)
 			if UnitIsPlayer(unit) and classunit then
 				_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, classunit))
