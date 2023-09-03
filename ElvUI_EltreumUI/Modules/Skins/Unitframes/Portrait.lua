@@ -746,11 +746,17 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update)
 		frame.EltruismPortrait.Mask = frame.EltruismPortrait:CreateMaskTexture()
 		frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\mask.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
 		frame.EltruismPortrait.Mask:SetAllPoints(frame.EltruismPortrait)
-		if invert then
-			frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\maskinvert.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+
+		if not E.db.ElvUI_EltreumUI.unitframes.portrait.circle then
+			if invert then
+				frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\maskinvert.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+			else
+				frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\mask.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+			end
 		else
-			frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\mask.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+			frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\maskcircle.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
 		end
+
 		frame.EltruismPortrait.portrait = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitPortrait", "OVERLAY")
 		frame.EltruismPortrait.portrait:SetAllPoints(frame.EltruismPortrait)
 
@@ -844,11 +850,13 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update)
 end
 
 function ElvUI_EltreumUI:BlizzPortraits(unit,hasStateChanged)
-	if unit == "player" then
-		CreatePorfraitFrameAndTexture(_G["ElvUF_Player"],"ElvUF_Player",false,hasStateChanged)
-	end
-	if unit == "target" then
-		CreatePorfraitFrameAndTexture(_G["ElvUF_Target"],"ElvUF_Target",true,hasStateChanged)
+	if E.db.ElvUI_EltreumUI.unitframes.portrait.enable then
+		if unit == "player" then
+			CreatePorfraitFrameAndTexture(_G["ElvUF_Player"],"ElvUF_Player",false,hasStateChanged)
+		end
+		if unit == "target" then
+			CreatePorfraitFrameAndTexture(_G["ElvUF_Target"],"ElvUF_Target",true,hasStateChanged)
+		end
 	end
 end
 local UF = E:GetModule('UnitFrames')
