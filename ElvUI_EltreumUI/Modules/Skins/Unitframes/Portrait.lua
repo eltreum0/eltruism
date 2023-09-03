@@ -728,23 +728,23 @@ if E.db.unitframe.units.player.fader.smooth > 0 then
 end
 
 
-local function CreatePorfraitFrameAndTexture(frame,name,invert,update)
+local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db)
 	if not frame then return end
 	if not frame.USE_PORTRAIT then return end
 	if not frame.EltruismPortrait then
 		frame.EltruismPortrait = CreateFrame("FRAME", name.."EltruismPortrait", frame)
 		if invert then
-			if tostring(E.db.ElvUI_EltreumUI.unitframes.portrait.position.align) == "LEFT" then
-				frame.EltruismPortrait:SetPoint("CENTER", frame, "RIGHT", -E.db.ElvUI_EltreumUI.unitframes.portrait.position.x, E.db.ElvUI_EltreumUI.unitframes.portrait.position.y)
-			elseif tostring(E.db.ElvUI_EltreumUI.unitframes.portrait.position.align) == "RIGHT" then
-				frame.EltruismPortrait:SetPoint("CENTER", frame, "LEFT", -E.db.ElvUI_EltreumUI.unitframes.portrait.position.x, E.db.ElvUI_EltreumUI.unitframes.portrait.position.y)
+			if tostring(E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align) == "LEFT" then
+				frame.EltruismPortrait:SetPoint("CENTER", frame, "RIGHT", -E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.x, E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.y)
+			elseif tostring(E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align) == "RIGHT" then
+				frame.EltruismPortrait:SetPoint("CENTER", frame, "LEFT", -E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.x, E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.y)
 			else
-				frame.EltruismPortrait:SetPoint("CENTER", frame, tostring(E.db.ElvUI_EltreumUI.unitframes.portrait.position.align), -E.db.ElvUI_EltreumUI.unitframes.portrait.position.x, E.db.ElvUI_EltreumUI.unitframes.portrait.position.y)
+				frame.EltruismPortrait:SetPoint("CENTER", frame, tostring(E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align), -E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.x, E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.y)
 			end
 		else
-			frame.EltruismPortrait:SetPoint("CENTER", frame, tostring(E.db.ElvUI_EltreumUI.unitframes.portrait.position.align), E.db.ElvUI_EltreumUI.unitframes.portrait.position.x, E.db.ElvUI_EltreumUI.unitframes.portrait.position.y)
+			frame.EltruismPortrait:SetPoint("CENTER", frame, tostring(E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align), E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.x, E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.y)
 		end
-		frame.EltruismPortrait:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait.size,E.db.ElvUI_EltreumUI.unitframes.portrait.size)
+		frame.EltruismPortrait:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait[db].size,E.db.ElvUI_EltreumUI.unitframes.portrait[db].size)
 
 		frame.EltruismPortrait.border = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitTexture", "OVERLAY",nil,2)
 		frame.EltruismPortrait.border:SetParent(frame.EltruismPortrait)
@@ -757,8 +757,8 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update)
 		frame.EltruismPortrait.portrait = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitPortrait", "OVERLAY")
 		frame.EltruismPortrait.portrait:SetAllPoints(frame.EltruismPortrait)
 
-		if E.db.ElvUI_EltreumUI.unitframes.portrait.type == "BLIZZARD" then
-			if E.db.ElvUI_EltreumUI.unitframes.portrait.shadow then
+		if E.db.ElvUI_EltreumUI.unitframes.portrait[db].type == "BLIZZARD" then
+			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].shadow then
 				frame.EltruismPortrait.border:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\PortraitShadow.tga")
 			else
 				frame.EltruismPortrait.border:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Portrait.tga")
@@ -780,7 +780,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update)
 		end
 	end
 
-	if E.db.ElvUI_EltreumUI.unitframes.portrait.custom then
+	if E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
 		frame.EltruismPortrait.border:Hide()
 		frame.EltruismPortrait.portrait:SetTexture()
 	end
@@ -792,7 +792,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update)
 			frame.Portrait:Hide()
 			frame.Portrait:ClearAllPoints()
 		end
-		if not E.db.ElvUI_EltreumUI.unitframes.portrait.custom then
+		if not E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
 			SetPortraitTexture(frame.EltruismPortrait.portrait,frame.unit,true)
 			frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
 			if invert then
@@ -853,7 +853,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update)
 		else
 			if UnitIsPlayer(frame.unit) then
 				local _, unitclass = UnitClass(frame.unit)
-				frame.EltruismPortrait.portrait:SetTexture(ElvUI_EltreumUI:GetClassIconsTextures(E.db.ElvUI_EltreumUI.unitframes.portrait.style,unitclass))
+				frame.EltruismPortrait.portrait:SetTexture(ElvUI_EltreumUI:GetClassIconsTextures(E.db.ElvUI_EltreumUI.unitframes.portrait[db].style,unitclass))
 			else
 				frame.EltruismPortrait.border:Hide()
 				frame.EltruismPortrait.portrait:SetTexture()
@@ -865,10 +865,10 @@ end
 function ElvUI_EltreumUI:BlizzPortraits(unit,hasStateChanged)
 	if E.db.ElvUI_EltreumUI.unitframes.portrait.enable then
 		if unit == "player" then
-			CreatePorfraitFrameAndTexture(_G["ElvUF_Player"],"ElvUF_Player",false,hasStateChanged)
+			CreatePorfraitFrameAndTexture(_G["ElvUF_Player"],"ElvUF_Player",false,hasStateChanged,"player")
 		end
 		if unit == "target" then
-			CreatePorfraitFrameAndTexture(_G["ElvUF_Target"],"ElvUF_Target",true,hasStateChanged)
+			CreatePorfraitFrameAndTexture(_G["ElvUF_Target"],"ElvUF_Target",true,hasStateChanged,"target")
 		end
 	end
 end
@@ -880,7 +880,7 @@ function ElvUI_EltreumUI:BlizzPortraitsGroup(frame)
 	if not frame.USE_PORTRAIT then return end
 	if not frame:GetName() then return end
 	if frame:GetName():match("PartyGroup") then
-		E:Delay(0, function() CreatePorfraitFrameAndTexture(_G[tostring(frame:GetName())],tostring(frame:GetName()),false,true) end)
+		E:Delay(0, function() CreatePorfraitFrameAndTexture(_G[tostring(frame:GetName())],tostring(frame:GetName()),false,true,"party") end)
 	end
 end
 hooksecurefunc(UF,"Configure_Portrait", ElvUI_EltreumUI.BlizzPortraitsGroup)
