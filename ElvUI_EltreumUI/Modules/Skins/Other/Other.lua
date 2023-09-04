@@ -137,6 +137,12 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 					if not bar then return end
 					if bar.StatusBar then
 
+						--size/scale settings, but blizzard controls the mover and sizer too, so there might be issues
+						bar:SetSize(E.db.ElvUI_EltreumUI.otherstuff.mirrorx, E.db.ElvUI_EltreumUI.otherstuff.mirrory)
+						_G.MirrorTimerContainer:SetScale(E.db.ElvUI_EltreumUI.otherstuff.mirrorscale)
+						bar.StatusBar:SetAllPoints(bar)
+						bar:SetPoint("CENTER", _G.MirrorTimerContainer, "CENTER")
+
 						--shadows
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard then
 							if not bar.shadow then
