@@ -846,6 +846,7 @@ P.ElvUI_EltreumUI = {
 				rare = false,
 				scale = 0,
 				customcircle = false,
+				reversegradient = false,
 			},
 			target = {
 				style = "SYMBOLS",
@@ -861,6 +862,7 @@ P.ElvUI_EltreumUI = {
 				rare = false,
 				scale = 0,
 				customcircle = false,
+				reversegradient = true,
 			},
 			party = {
 				style = "SYMBOLS",
@@ -876,6 +878,7 @@ P.ElvUI_EltreumUI = {
 				rare = false,
 				scale = 0,
 				customcircle = false,
+				reversegradient = false,
 			},
 		},
 		infopanelontop = false,
