@@ -215,7 +215,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 
 	if (update or SettingUpdate) and frame.EltruismPortrait then
 		if not frame.unit then return end
-		if not UnitExists(frame.unit) then return end
+		--if not UnitExists(frame.unit) then return end
 		if frame.Portrait then
 			frame.Portrait:Hide()
 			--frame.Portrait:ClearAllPoints()
