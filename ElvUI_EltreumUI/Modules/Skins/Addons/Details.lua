@@ -71,7 +71,7 @@ do
 										if not row.statusbar.shadow then
 											row.statusbar:CreateShadow()
 											row.statusbar.shadow:ClearAllPoints()
-											row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2, -2)
+											row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2.8, -3)
 											row.statusbar.shadow:SetPoint("TOPRIGHT", row.textura,"TOPRIGHT", 3, -14)
 										end
 									end
