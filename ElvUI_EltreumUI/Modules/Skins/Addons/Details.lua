@@ -73,7 +73,6 @@ do
 											row.statusbar.shadow:ClearAllPoints()
 											row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2, -2)
 											row.statusbar.shadow:SetPoint("TOPRIGHT", row.textura,"TOPRIGHT", 3, -14)
-											row.statusbar.shadow:SetAllPoints(row.textura)
 										end
 									end
 									if row.minha_tabela and row.minha_tabela.name then
