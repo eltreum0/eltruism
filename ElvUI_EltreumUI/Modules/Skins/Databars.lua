@@ -4,6 +4,7 @@ local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local InCombatLockdown = _G.InCombatLockdown
+local classcolor = E:ClassColor(E.myclass, true)
 
 --gradient xp
 function ElvUI_EltreumUI:GradientDatabarXP()
@@ -113,4 +114,47 @@ end
 if E.Retail then
 	hooksecurefunc(B, 'UpdateAltPowerBarColors', ElvUI_EltreumUI.BlizzardAltPower)
 	hooksecurefunc(B, 'UpdateAltPowerBar', ElvUI_EltreumUI.BlizzardAltPower)
+end
+
+--add class color bar on the bottom
+local bottomclassbar = CreateFrame("FRAME")
+function ElvUI_EltreumUI:BottomDatabarTexture()
+	if E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar and not bottomclassbar.texture then
+		local width = ceil(E.screenWidth)
+		bottomclassbar:SetSize(width,16)
+		bottomclassbar:SetPoint("BOTTOM", UIParent)
+		bottomclassbar.texture = bottomclassbar:CreateTexture(nil,"BACKGROUND")
+		bottomclassbar:SetFrameStrata("BACKGROUND")
+		bottomclassbar:SetFrameLevel(1)
+		bottomclassbar.texture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade2.tga")
+		bottomclassbar.texture:SetSize(width,23)
+		bottomclassbar.texture:SetPoint("BOTTOM", UIParent)
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+				bottomclassbar.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColorsCustom(E.myclass, false, true, false, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha))
+			else
+				bottomclassbar.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColors(E.myclass, false, true, false, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha))
+			end
+		else
+			bottomclassbar.texture:SetVertexColor(classcolor.r, classcolor.g, classcolor.b, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha)
+		end
+	end
+
+	if bottomclassbar.texture then
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+				bottomclassbar.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColorsCustom(E.myclass, false, true, false, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha))
+			else
+				bottomclassbar.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColors(E.myclass, false, true, false, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha))
+			end
+		else
+			bottomclassbar.texture:SetVertexColor(classcolor.r, classcolor.g, classcolor.b, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha)
+		end
+
+		if not E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar then
+			bottomclassbar:Hide()
+		else
+			bottomclassbar:Show()
+		end
+	end
 end
