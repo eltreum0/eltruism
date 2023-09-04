@@ -296,7 +296,8 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckWindTools(L["Chat Loot Item Level"], L["Chat Loot Item Level"], "db.ElvUI_EltreumUI.chat.itemlevels", "db.WT.social.chatLink.level")
 
 	--addons
-	CheckMerathilisUI(L["Custom Gradient Details"], L["Gradient Details"], "db.ElvUI_EltreumUI.skins.details", "db.mui.skins.addonSkins.dt")
+	CheckMerathilisUI(L["Custom Gradient Details"], L["Gradient Details"], "db.ElvUI_EltreumUI.skins.details", "private.mui.skins.addonSkins.dt.gradientBars")
+	CheckMerathilisUI(L["Custom Gradient Details"], L["Gradient Details Names"], "db.ElvUI_EltreumUI.skins.details", "private.mui.skins.addonSkins.dt.gradientName")
 	CheckMerathilisUI(L["Gradient BigWigs"], L["BigWigs"], "db.ElvUI_EltreumUI.skins.bigwigs", "private.mui.skins.addonSkins.bw.enable")
 	CheckWindTools(L["Gradient BigWigs"], L["BigWigs"], "db.ElvUI_EltreumUI.skins.bigwigs", "private.WT.skins.addons.bigWigs")
 	CheckMerathilisUI(L["Gradient BigWigs"], L["BigWigs Queue Timer"], "db.ElvUI_EltreumUI.skins.bigwigs", "private.mui.skins.addonSkins.bw.queueTimer.enable")
