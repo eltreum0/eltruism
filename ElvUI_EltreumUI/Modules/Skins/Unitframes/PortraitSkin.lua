@@ -1,7 +1,6 @@
 local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local UnitExists = _G.UnitExists
 local hooksecurefunc = _G.hooksecurefunc
 local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 
@@ -190,7 +189,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 			end
 			if invert then
 				frame.EltruismPortrait.border:SetTexCoord(1, 0, 0, 1)
-				frame.EltruismPortrait.portrait:SetTexCoord(1, 0, 0, 1)
+				frame.EltruismPortrait.portrait:SetTexCoord(1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
 				frame.EltruismPortrait.edge:SetTexCoord(1, 0, 0, 1)
 				frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\maskinvert.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
 			else
@@ -325,9 +324,8 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 				frame.EltruismPortrait.edge:SetAlpha(0)
 			end
 		end
-
 		if invert then
-			frame.EltruismPortrait.portrait:SetTexCoord(1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+			frame.EltruismPortrait.portrait:SetTexCoord(1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
 		else
 			frame.EltruismPortrait.portrait:SetTexCoord(E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
 		end
@@ -368,7 +366,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 			end
 			if invert then
 				frame.EltruismPortrait.border:SetTexCoord(1, 0, 0, 1)
-				frame.EltruismPortrait.portrait:SetTexCoord(1, 0, 0, 1)
+				frame.EltruismPortrait.portrait:SetTexCoord(1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
 				frame.EltruismPortrait.edge:SetTexCoord(1, 0, 0, 1)
 				frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\maskinvert.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
 			else
