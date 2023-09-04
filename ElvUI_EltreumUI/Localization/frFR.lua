@@ -1074,9 +1074,9 @@ L["Text to Speech announcement"] = "Annonce de la synthèse vocale"
 L["Text to Speech Config"] = "Configuration de la synthèse vocale"
 L["Enable AMD FSR even if not scaling"] = "Activer FSR d'AMD même si pas de mise à l'échelle"
 L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"] = "Force le FSR d'AMD à rendre l'image plus nette même si vous n'exécutez pas une résolution inférieure"
-
 L["Add a gradient color to the Honor Bar"] = "Ajouter un dégradé de couleur à la barre d'honneur"
 L["Add a gradient color to the Reputation Bar"] = "Ajouter un gradient de couleur à la barre de réputation"
+L["Add a gradient color to the Alt Power Bar"] = true
 L["Character Model Zoom"] = "Zoom du modèle de personnage"
 L["Character Model X Offset"] = "Décalage X du modèle de personnage"
 L["Character Model Y Offset"] = "Décalage Y du modèle de personnage"
@@ -1451,3 +1451,5 @@ L["Choose the texture type"] = "Choisir le type de texture"
 L["Type"] = true
 L["Portrait Skin"] = "Peau de Portrait"
 L["Enable Portrait Skin"] = "Activer le Portrait Peau"
+L["Eltruism Hearthstones/Teleports"] = true
+L["Classes"] = true
