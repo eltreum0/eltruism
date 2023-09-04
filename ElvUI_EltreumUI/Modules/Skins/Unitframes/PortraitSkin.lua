@@ -250,6 +250,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 				end
 			else
 				local reaction = UnitReaction(frame.unit, "player")
+				if not reaction then return end
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.gradient then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 						if reaction >= 5 then
@@ -299,16 +300,16 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 						frame.EltruismPortrait.edge:SetVertexColor(r,g,b,1)
 					end
 				end
+			end
 
-				if E.db.ElvUI_EltreumUI.unitframes.portrait[db].rare and E.db.ElvUI_EltreumUI.unitframes.portrait[db].type == "CIRCLE" then
-					local c = UnitClassification(frame.unit)
-					if (c == 'rare') or (c == 'rareelite') then
-						frame.EltruismPortrait.rare:SetVertexColor(1,1,1,1)
-					elseif(c == 'elite') or (c == 'worldboss') then
-						frame.EltruismPortrait.rare:SetVertexColor(0.84,0.74,0.35,1)
-					else
-						frame.EltruismPortrait.rare:SetVertexColor(0,0,0,0)
-					end
+			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].rare and E.db.ElvUI_EltreumUI.unitframes.portrait[db].type == "CIRCLE" then
+				local c = UnitClassification(frame.unit)
+				if (c == 'rare') or (c == 'rareelite') then
+					frame.EltruismPortrait.rare:SetVertexColor(1,1,1,1)
+				elseif(c == 'elite') or (c == 'worldboss') then
+					frame.EltruismPortrait.rare:SetVertexColor(0.84,0.74,0.35,1)
+				else
+					frame.EltruismPortrait.rare:SetVertexColor(0,0,0,0)
 				end
 			end
 		else
