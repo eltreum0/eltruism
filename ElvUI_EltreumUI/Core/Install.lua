@@ -86,7 +86,7 @@ function ElvUI_EltreumUI:ImproveInstall(installtype,mode,null,custom,path)
 				_G.PluginInstallFrame.installpreview = _G.PluginInstallFrame:CreateTexture("InstallTexturePreview")
 			end
 			_G.PluginInstallFrame.installpreview:SetAllPoints(_G.PluginInstallFrame)
-			_G.PluginInstallFrame.installpreview:SetTexCoord(0,0.72,0,1)
+			--_G.PluginInstallFrame.installpreview:SetTexCoord(0,0.72,0,1)
 		else
 			if installtype == "dps" then
 				_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\DPS.jpg")
@@ -201,7 +201,8 @@ end
 function ElvUI_EltreumUI:ResizeInstall()
 	--_G.PluginInstallFrame:SetSize(550,400) --default
 	--_G.PluginInstallFrame:SetSize(1024,512)
-	_G.PluginInstallFrame:SetSize(715,520)
+	--_G.PluginInstallFrame:SetSize(715,520)
+	_G.PluginInstallFrame:SetSize(1040,520)
 	_G.PluginInstallFrame.Desc1:ClearAllPoints()
 	_G.PluginInstallFrame.Desc1:SetPoint("TOP", _G.PluginInstallFrame.SubTitle, "BOTTOM", 0,-30)
 end
