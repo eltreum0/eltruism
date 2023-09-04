@@ -181,10 +181,10 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 		if invert then
 			frame.EltruismPortrait.rare:SetTexCoord(1, 0, 0, 1)
 		end
-		if not E.db.ElvUI_EltreumUI.unitframes.portrait.player.rare or E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "CIRCLE" then
+		if not E.db.ElvUI_EltreumUI.unitframes.portrait[db].rare or E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "CIRCLE" then
 			frame.EltruismPortrait.rare:SetTexture()
 		end
-		if E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "BLIZZARD" or not E.db.ElvUI_EltreumUI.unitframes.portrait.player.edge then
+		if E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "BLIZZARD" or not E.db.ElvUI_EltreumUI.unitframes.portrait[db].edge then
 			frame.EltruismPortrait.edge:SetTexture()
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.portrait[db].type == "BLIZZARD" then
@@ -304,6 +304,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 				end
 
 				if E.db.ElvUI_EltreumUI.unitframes.portrait[db].rare and E.db.ElvUI_EltreumUI.unitframes.portrait[db].type == "CIRCLE" then
+					frame.EltruismPortrait.rare:SetAlpha(1)
 					local c = UnitClassification(frame.unit)
 					if (c == 'rare') or (c == 'rareelite') then
 						frame.EltruismPortrait.rare:SetVertexColor(1,1,1,1)
@@ -314,6 +315,8 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 							frame.EltruismPortrait.rare:SetVertexColor(0,0,0,0)
 						end
 					end
+				else
+					frame.EltruismPortrait.rare:SetAlpha(0)
 				end
 			end
 
@@ -356,7 +359,6 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 				frame.EltruismPortrait.portrait:SetMask("")
 			else
 				frame.EltruismPortrait.border:Show()
-				frame.EltruismPortrait.rare:SetAlpha(1)
 				frame.EltruismPortrait.edge:SetAlpha(1)
 			end
 
@@ -370,13 +372,13 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 				frame.EltruismPortrait.border:Hide()
 			end
 
-			if not E.db.ElvUI_EltreumUI.unitframes.portrait.player.rare or E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "CIRCLE" or E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
+			if not E.db.ElvUI_EltreumUI.unitframes.portrait[db].rare or E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "CIRCLE" or E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
 				frame.EltruismPortrait.rare:SetTexture()
 			else
 				frame.EltruismPortrait.rare:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Rare.tga")
 			end
 
-			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "BLIZZARD" or not E.db.ElvUI_EltreumUI.unitframes.portrait.player.edge or E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
+			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "BLIZZARD" or not E.db.ElvUI_EltreumUI.unitframes.portrait[db].edge or E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
 				frame.EltruismPortrait.edge:SetTexture()
 			else
 				frame.EltruismPortrait.edge:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Edge.tga")
