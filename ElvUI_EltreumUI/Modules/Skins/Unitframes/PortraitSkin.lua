@@ -325,6 +325,8 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 				frame.EltruismPortrait.edge:SetAlpha(0)
 			end
 		end
+
+		frame.EltruismPortrait.portrait:SetTexCoord(E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
 	end
 
 	if SettingUpdate and frame.EltruismPortrait then

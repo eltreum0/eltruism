@@ -844,6 +844,7 @@ P.ElvUI_EltreumUI = {
 				custom = false,
 				edge = true,
 				rare = false,
+				scale = 0.01,
 			},
 			target = {
 				style = "SYMBOLS",
@@ -857,6 +858,7 @@ P.ElvUI_EltreumUI = {
 				custom = false,
 				edge = true,
 				rare = false,
+				scale = 0.01,
 			},
 			party = {
 				style = "SYMBOLS",
@@ -870,6 +872,7 @@ P.ElvUI_EltreumUI = {
 				custom = false,
 				edge = true,
 				rare = false,
+				scale = 0.01,
 			},
 		},
 		infopanelontop = false,
