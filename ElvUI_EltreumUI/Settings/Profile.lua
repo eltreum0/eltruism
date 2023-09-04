@@ -1490,6 +1490,6 @@ P.ElvUI_EltreumUI = {
 		datatextteleport = "Hearthstone",
 		datatextteleporttype = "ITEM",
 		datatextclasscolorbar = true,
-		datatextclasscolorbaralpha = 1,
+		datatextclasscolorbaralpha = 0.5,
 	},
 }
