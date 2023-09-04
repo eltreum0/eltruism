@@ -140,6 +140,22 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 							frame.EltruismAnimation = true
 						end]]
 
+						--[[if not isUnitFrameElement and not isNamePlateElement and frame:GetObjectType() == "Button" and not frame.Bags and not frame.EltruismAnimationTest then
+							frame.EltruismAnimationTest = frame:CreateTexture(nil, "BACKGROUND", nil, 1)
+							--frame.EltruismAnimationTest:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Vignette.tga")
+							frame.EltruismAnimationTest:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.questsettings.texture))
+							frame.EltruismAnimationTest:SetVertexColor(1, 1, 1, 1)
+							frame.EltruismAnimationTest:SetInside(frame)
+							frame.EltruismAnimationTest:SetBlendMode("BLEND")
+							frame.EltruismAnimationTest:SetAlpha(0)
+							frame:HookScript("OnEnter", function()
+								UIFrameFadeIn(frame.EltruismAnimationTest, 0.5, 0, 1)
+
+							end)
+							frame:HookScript("OnLeave", function()
+								UIFrameFadeOut(frame.EltruismAnimationTest, 0.5, 1, 0)
+							end)
+						end]]
 					else
 						if frame.eltruismbgtexture then
 							frame.eltruismbgtexture:Hide()
