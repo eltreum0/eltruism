@@ -52,6 +52,7 @@ do
 						end
 					end)
 				end
+
 				--gradient texture
 				hooksecurefunc(Details, "InstanceRefreshRows", function(instancia)
 					if instancia.barras and instancia.barras[1] then
