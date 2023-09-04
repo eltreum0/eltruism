@@ -1061,6 +1061,11 @@ function ElvUI_EltreumUI_OnAddonCompartmentClick()
 	--E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
 end
 
+--set value between two other values
+function ElvUI_EltreumUI:Interval(value, minValue, maxValue)
+	return math.max(minValue, math.min(maxValue, value))
+end
+
 --for fps testing
 --[[
 local framerate = CreateFrame("Frame", nil, UIParent)
