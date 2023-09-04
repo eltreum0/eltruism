@@ -396,6 +396,7 @@ function ElvUI_EltreumUI:RestIcon(frame)
 			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetParent(frame)
 			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetPoint("CENTER", frame.RestingIndicator, "CENTER", 0, 0)
 			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetFrameStrata('MEDIUM')
+			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetScale(E.db.unitframe.units.player.RestIcon.size/15)
 			hooksecurefunc(frame.RestingIndicator, 'PostUpdate', function()
 				if frame.RestingIndicator:IsShown() then
 					_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:Show()
@@ -409,6 +410,7 @@ function ElvUI_EltreumUI:RestIcon(frame)
 			frame.RestingIndicator.EltruismHook = true
 		end
 		frame.RestingIndicator:SetTexture()
+		_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetScale(E.db.unitframe.units.player.RestIcon.size/15)
 	end
 end
 if E.Retail then

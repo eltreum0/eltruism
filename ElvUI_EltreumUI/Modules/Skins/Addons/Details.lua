@@ -52,6 +52,7 @@ do
 						end
 					end)
 				end
+
 				--gradient texture
 				hooksecurefunc(Details, "InstanceRefreshRows", function(instancia)
 					if instancia.barras and instancia.barras[1] then
@@ -59,7 +60,20 @@ do
 							if row and row.textura and not row.textura.EltruismHook then
 								hooksecurefunc(row.textura, "SetVertexColor", function(_, r, g, b) --managed to hook the global to set vertex color on this only, might be useful later
 									if E.db.ElvUI_EltreumUI.skins.detailstextureoverwrite then
-										row.textura:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixelB")
+										--row.textura:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixelB")
+										if not row.textura.EltruismMask then
+											row.EltruismMask = row:CreateMaskTexture()
+											row.EltruismMask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixel", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+											row.EltruismMask:SetAllPoints(row.textura)
+											row.textura:AddMaskTexture(row.EltruismMask)
+											row.textura.EltruismMask = true
+										end
+										if not row.statusbar.shadow then
+											row.statusbar:CreateShadow()
+											row.statusbar.shadow:ClearAllPoints()
+											row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2.8, -3)
+											row.statusbar.shadow:SetPoint("TOPRIGHT", row.textura,"TOPRIGHT", 3, -14)
+										end
 									end
 									if row.minha_tabela and row.minha_tabela.name then
 										local unitclass = row.minha_tabela:class() --from details api returns class of that row

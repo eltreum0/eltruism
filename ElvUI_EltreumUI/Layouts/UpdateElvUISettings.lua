@@ -1,4 +1,5 @@
 local E, L = unpack(ElvUI)
+local valuecolors = E:ClassColor(E.myclass, true)
 
 --profile updates, so that whole profile doesnt need to be reimported
 function ElvUI_EltreumUI:UpdateElvUISettings()
@@ -114,6 +115,17 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 	E.db["tooltip"]["role"] = false --was true
 	E.db["tooltip"]["targetInfo"] = false --was true
 	E.db["tooltip"]["showMount"] = false --was true
+
+	--rest icon
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["a"] = 1.00
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["r"] = valuecolors.r
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["g"] = valuecolors.g
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["b"] = valuecolors.b
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["defaultColor"] = false
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["size"] = 15
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["texture"] = "Eltruism01"
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 13
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = -1
 
 	--private auras
 	E.db["movers"]["PrivateAurasMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-287,-150"

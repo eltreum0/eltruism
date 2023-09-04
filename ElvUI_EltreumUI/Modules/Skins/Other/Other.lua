@@ -137,6 +137,12 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 					if not bar then return end
 					if bar.StatusBar then
 
+						--size/scale settings, but blizzard controls the mover and sizer too, so there might be issues
+						bar:SetSize(E.db.ElvUI_EltreumUI.otherstuff.mirrorx, E.db.ElvUI_EltreumUI.otherstuff.mirrory)
+						_G.MirrorTimerContainer:SetScale(E.db.ElvUI_EltreumUI.otherstuff.mirrorscale)
+						bar.StatusBar:SetAllPoints(bar)
+						bar:SetPoint("CENTER", _G.MirrorTimerContainer, "CENTER")
+
 						--shadows
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard then
 							if not bar.shadow then
@@ -725,31 +731,6 @@ if _G["MainMenuBarVehicleLeaveButton"] then
 	_G["MainMenuBarVehicleLeaveButton"]:GetPushedTexture():SetVertexColor(1,0,0,1)
 	_G["MainMenuBarVehicleLeaveButton"]:GetDisabledTexture():SetTexture("Interface\\AddOns\\ElvUI\\Core\\Media\\Textures\\ExitVehicle")
 	_G["MainMenuBarVehicleLeaveButton"]:GetDisabledTexture():SetVertexColor(1,0,0,1)
-end
-
---add class color bar on the bottom
-local bottomclassbar = CreateFrame("FRAME")
-function ElvUI_EltreumUI:BottomDatabarTexture()
-	if E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar and not bottomclassbar.texture then
-		local width = ceil(E.screenWidth)
-		bottomclassbar:SetSize(width,16)
-		bottomclassbar:SetPoint("BOTTOM", UIParent)
-		bottomclassbar.texture = bottomclassbar:CreateTexture(nil,"BACKGROUND")
-		bottomclassbar:SetFrameStrata("BACKGROUND")
-		bottomclassbar:SetFrameLevel(1)
-		bottomclassbar.texture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade2.tga")
-		bottomclassbar.texture:SetSize(width,23)
-		bottomclassbar.texture:SetPoint("BOTTOM", UIParent)
-		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-				bottomclassbar.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColorsCustom(E.myclass, false, true, false, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha))
-			else
-				bottomclassbar.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColors(E.myclass, false, true, false, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha))
-			end
-		else
-			bottomclassbar.texture:SetVertexColor(classcolor.r, classcolor.g, classcolor.b, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha)
-		end
-	end
 end
 
 --make shamans blue again in classic
