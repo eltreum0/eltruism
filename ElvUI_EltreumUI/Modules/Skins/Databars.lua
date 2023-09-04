@@ -75,6 +75,8 @@ function ElvUI_EltreumUI:GradientArcheology()
 
 		if _G.ArcheologyDigsiteProgressBar.BarTitle then
 			_G.ArcheologyDigsiteProgressBar.BarTitle:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontsize, E.db.general.fontStyle)
+
+			--in 10.1.7 this doesnt seem to actually clear and move the text
 			local point, relativeTo, relativePoint, xOfs, yOfs = _G.ArcheologyDigsiteProgressBar.BarTitle:GetPoint()
 			_G.ArcheologyDigsiteProgressBar.BarTitle:ClearAllPoints()
 			_G.ArcheologyDigsiteProgressBar.BarTitle:SetPoint(point, relativeTo, relativePoint, xOfs+E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx, yOfs+E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety)
