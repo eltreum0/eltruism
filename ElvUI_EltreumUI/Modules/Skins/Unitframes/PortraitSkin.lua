@@ -446,9 +446,11 @@ function ElvUI_EltreumUI:BlizzPortraits(unit,hasStateChanged)
 				CreatePorfraitFrameAndTexture(_G["ElvUF_FocusTarget"],"ElvUF_FocusTarget",false,hasStateChanged,"focustarget")
 			end
 		end
-		for i = 1, 5 do
-			if _G["ElvUF_PartyGroup1UnitButton"..i]:IsVisible() then
-				CreatePorfraitFrameAndTexture(_G["ElvUF_PartyGroup1UnitButton"..i],"ElvUF_PartyGroup1UnitButton"..i,false,true,"party")
+		if IsInGroup() then
+			for i = 1, 5 do
+				if _G["ElvUF_PartyGroup1UnitButton"..i]:IsVisible() then
+					CreatePorfraitFrameAndTexture(_G["ElvUF_PartyGroup1UnitButton"..i],"ElvUF_PartyGroup1UnitButton"..i,false,true,"party")
+				end
 			end
 		end
 	end
