@@ -446,24 +446,10 @@ function ElvUI_EltreumUI:BlizzPortraits(unit,hasStateChanged)
 				CreatePorfraitFrameAndTexture(_G["ElvUF_FocusTarget"],"ElvUF_FocusTarget",false,hasStateChanged,"focustarget")
 			end
 		end
-		if IsInGroup() then
-			E:Delay(0, function()
-				if _G["ElvUF_PartyGroup1UnitButton1"]:IsVisible() then
-					CreatePorfraitFrameAndTexture(_G["ElvUF_PartyGroup1UnitButton1"],"ElvUF_PartyGroup1UnitButton1",false,true,"party")
-				end
-				if _G["ElvUF_PartyGroup1UnitButton2"]:IsVisible() then
-					CreatePorfraitFrameAndTexture(_G["ElvUF_PartyGroup1UnitButton2"],"ElvUF_PartyGroup1UnitButton2",false,true,"party")
-				end
-				if _G["ElvUF_PartyGroup1UnitButton3"]:IsVisible() then
-					CreatePorfraitFrameAndTexture(_G["ElvUF_PartyGroup1UnitButton3"],"ElvUF_PartyGroup1UnitButton3",false,true,"party")
-				end
-				if _G["ElvUF_PartyGroup1UnitButton4"]:IsVisible() then
-					CreatePorfraitFrameAndTexture(_G["ElvUF_PartyGroup1UnitButton4"],"ElvUF_PartyGroup1UnitButton4",false,true,"party")
-				end
-				if _G["ElvUF_PartyGroup1UnitButton5"]:IsVisible() then
-					CreatePorfraitFrameAndTexture(_G["ElvUF_PartyGroup1UnitButton5"],"ElvUF_PartyGroup1UnitButton5",false,true,"party")
-				end
-			end)
+		for i = 1, 5 do
+			if _G["ElvUF_PartyGroup1UnitButton"..i]:IsVisible() then
+				CreatePorfraitFrameAndTexture(_G["ElvUF_PartyGroup1UnitButton"..i],"ElvUF_PartyGroup1UnitButton"..i,false,true,"party")
+			end
 		end
 	end
 end
