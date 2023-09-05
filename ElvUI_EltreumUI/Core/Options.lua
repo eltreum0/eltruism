@@ -1617,7 +1617,7 @@ function ElvUI_EltreumUI:Configtable()
 		["SYMBOLS"] = L["Symbols"],
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("target") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.target.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.texture.style = "radio"
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus = ACH:Group(E.NewSign..L["Focus"], nil, 22, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus = ACH:Group(E.NewSign..L["Focus"], nil, 22, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end, E.Classic or E.ClassicHC)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus.args.portraittype = ACH:Select(L["Type"], L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
@@ -1648,7 +1648,7 @@ function ElvUI_EltreumUI:Configtable()
 		["SYMBOLS"] = L["Symbols"],
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focus.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focus.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focus") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.focus.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus.args.texture.style = "radio"
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focustarget = ACH:Group(E.NewSign..L["FocusTarget"], nil, 22, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focustarget = ACH:Group(E.NewSign..L["FocusTarget"], nil, 22, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end, E.Classic or E.ClassicHC)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focustarget.args.portraittype = ACH:Select(L["Type"], L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
