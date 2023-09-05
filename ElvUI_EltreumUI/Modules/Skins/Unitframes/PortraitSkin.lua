@@ -433,6 +433,14 @@ function ElvUI_EltreumUI:BlizzPortraits(unit,hasStateChanged)
 		if unit == "target" then
 			CreatePorfraitFrameAndTexture(_G["ElvUF_Target"],"ElvUF_Target",true,hasStateChanged,"target")
 		end
+		if unit == "targettarget" then
+			CreatePorfraitFrameAndTexture(_G["ElvUF_TargetTarget"],"ElvUF_TargetTarget",true,hasStateChanged,"targettarget")
+		end
+		if not (E.Classic or E.ClassicHC) then
+			if unit == "focus" then
+				CreatePorfraitFrameAndTexture(_G["ElvUF_Focus"],"ElvUF_Focus",false,hasStateChanged,"focus")
+			end
+		end
 	end
 end
 local UF = E:GetModule('UnitFrames')
@@ -445,6 +453,12 @@ function ElvUI_EltreumUI:BlizzPortraitsGroup(frame)
 		if not frame:GetName() then return end
 		if frame:GetName():match("PartyGroup") then
 			E:Delay(0, function() CreatePorfraitFrameAndTexture(_G[tostring(frame:GetName())],tostring(frame:GetName()),false,true,"party") end)
+		end
+		if frame:GetName():match("Focus") then
+			E:Delay(0, function() CreatePorfraitFrameAndTexture(_G[tostring(frame:GetName())],tostring(frame:GetName()),false,true,"focus") end)
+		end
+		if frame:GetName():match("TargetTarget") then
+			E:Delay(0, function() CreatePorfraitFrameAndTexture(_G[tostring(frame:GetName())],tostring(frame:GetName()),true,true,"targettarget") end)
 		end
 	end
 end
@@ -466,6 +480,12 @@ function ElvUI_EltreumUI:BlizzPortraitSettingUpdate(unit)
 			CreatePorfraitFrameAndTexture(_G["ElvUF_PartyGroup1UnitButton3"],"ElvUF_PartyGroup1UnitButton3",false,true,"party",true)
 			CreatePorfraitFrameAndTexture(_G["ElvUF_PartyGroup1UnitButton4"],"ElvUF_PartyGroup1UnitButton4",false,true,"party",true)
 			CreatePorfraitFrameAndTexture(_G["ElvUF_PartyGroup1UnitButton5"],"ElvUF_PartyGroup1UnitButton5",false,true,"party",true)
+		end
+		if unit == "targettarget" then
+			CreatePorfraitFrameAndTexture(_G["ElvUF_TargetTarget"],"ElvUF_TargetTarget",true,true,"targettarget",true)
+		end
+		if unit == "focus" then
+			CreatePorfraitFrameAndTexture(_G["ElvUF_Focus"],"ElvUF_Focus",false,true,"focus",true)
 		end
 	end
 end
