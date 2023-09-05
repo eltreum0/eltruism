@@ -62,6 +62,12 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 
 		--remove max distance
 		if not SuperTrackedFrame.EltruismHook then
+
+			--in 10.1.7 blizzard restricts waypoints, unrestrict them again
+			hooksecurefunc(_G.C_Navigation, "HasValidScreenPosition", function()
+				return true
+			end)
+
 			function SuperTrackedFrame:GetTargetAlphaBaseValue()
 				local d = C_Navigation.GetDistance()
 				if (d >= 10 ) then
