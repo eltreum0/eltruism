@@ -1441,3 +1441,4 @@ L["Portrait Skin"] = true
 L["Enable Portrait Skin"] = true
 L["Eltruism Hearthstones/Teleports"] = true
 L["Classes"] = true
+L["Enable Custom Font"] = true

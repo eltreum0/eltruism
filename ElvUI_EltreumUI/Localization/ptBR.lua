@@ -1446,3 +1446,4 @@ L["Portrait Skin"] = "Modificação de Retrato"
 L["Enable Portrait Skin"] = "Ativar Modificação do Retrato"
 L["Eltruism Hearthstones/Teleports"] = "Hearthstones/Teleportes do Eltruism"
 L["Classes"] = true
+L["Enable Custom Font"] = true
