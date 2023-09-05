@@ -242,6 +242,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	local CheckWindTools = GetCheckCompatibilityFunction("ElvUI_WindTools", select(2,GetAddOnInfo("ElvUI_WindTools")),false)
 	local CheckmMediaTag = GetCheckCompatibilityFunction("ElvUI_mMediaTag", select(2,GetAddOnInfo("ElvUI_mMediaTag")),false)
 	local CheckWunderUI = GetCheckCompatibilityFunction("WunderUI", select(2,GetAddOnInfo("WunderUI")),false)
+	local CheckToxiUI = GetCheckCompatibilityFunction("ElvUI_ToxiUI", select(2,GetAddOnInfo("ElvUI_ToxiUI")),false)
 
 	--other addons that are disable/enable
 	local CheckDeja = GetCheckCompatibilityFunction("DejaCharacterStats", select(2,GetAddOnInfo("DejaCharacterStats")),true)
@@ -255,6 +256,10 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckMerathilisUI(L["Class Icons"], L["Class Icons"], "db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel", "db.mui.armory.character.classIcon")
 	CheckMerathilisUI(L["Character Panel"], L["Character Panel"], "db.ElvUI_EltreumUI.skins.classicarmory", "db.mui.armory.character.enable")
 	CheckDeja(L["Character Panel"], L["DejaCharacterStats"], "db.ElvUI_EltreumUI.skins.classicarmory", "DejaCharacterStats")
+	CheckToxiUI(L["Character Panel"], "Armory", "db.ElvUI_EltreumUI.skins.elvui.SetTemplate", "db.TXUI.armory.enabled")
+	CheckToxiUI(L["Expand Character Art"], "Armory", "db.ElvUI_EltreumUI.skins.elvui.SetTemplate", "db.TXUI.armory.enabled")
+	CheckWunderUI(L["Character Panel"], "Armory", "db.ElvUI_EltreumUI.skins.classicarmory", "db.WunderUI.armory.enabled")
+	CheckWunderUI(L["Expand Character Art"], "Armory", "db.ElvUI_EltreumUI.skins.expandarmorybg", "db.WunderUI.armory.enabled")
 
 	--Nameplates
 	CheckMerathilisUI(L["Gradient Nameplate\nHealth/CastBar/Threat"], L["Gradient Nameplate Health"], "db.ElvUI_EltreumUI.unitframes.gradientmode.npenable", "db.mui.nameplates.gradient")
@@ -287,21 +292,26 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckMerathilisUI(L["Custom Power Models"], L["Power Models"], "db.ElvUI_EltreumUI.unitframes.models.powerbar", "db.mui.unitframes.power.enable")
 	CheckWindTools(L["Unitframe/Chat Role Icons"], L["Unitframe Role Icons"], "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "private.WT.unitFrames.roleIcon.enable")
 
-	--general gradient
-	CheckMerathilisUI(L["Gradient\nHealth/Power/Castbars"], L["Gradient Power"], "db.ElvUI_EltreumUI.unitframes.gradientmode.enable", "db.mui.gradient.enable")
-
 	--chat
 	CheckMerathilisUI(L["Chat Loot Icons"], L["Chat Loot Icons"], "db.ElvUI_EltreumUI.chat.looticons", "db.mui.chat.chatLink.enable")
 	CheckWindTools(L["Chat Loot Icons"], L["Chat Loot Icons"], "db.ElvUI_EltreumUI.chat.looticons", "db.WT.social.chatLink.icon")
 	CheckWindTools(L["Chat Loot Item Level"], L["Chat Loot Item Level"], "db.ElvUI_EltreumUI.chat.itemlevels", "db.WT.social.chatLink.level")
 
-	--addons
+	--general gradient
+	CheckMerathilisUI(L["Gradient\nHealth/Power/Castbars"], L["Gradient Power"], "db.ElvUI_EltreumUI.unitframes.gradientmode.enable", "db.mui.gradient.enable")
 	CheckMerathilisUI(L["Custom Gradient Details"], L["Gradient Details"], "db.ElvUI_EltreumUI.skins.details", "private.mui.skins.addonSkins.dt.gradientBars")
 	CheckMerathilisUI(L["Custom Gradient Details"], L["Gradient Details Names"], "db.ElvUI_EltreumUI.skins.details", "private.mui.skins.addonSkins.dt.gradientName")
 	CheckMerathilisUI(L["Gradient BigWigs"], L["BigWigs"], "db.ElvUI_EltreumUI.skins.bigwigs", "private.mui.skins.addonSkins.bw.enable")
 	CheckWindTools(L["Gradient BigWigs"], L["BigWigs"], "db.ElvUI_EltreumUI.skins.bigwigs", "private.WT.skins.addons.bigWigs")
 	CheckMerathilisUI(L["Gradient BigWigs"], L["BigWigs Queue Timer"], "db.ElvUI_EltreumUI.skins.bigwigs", "private.mui.skins.addonSkins.bw.queueTimer.enable")
 	CheckWindTools(L["Gradient BigWigs"], L["BigWigs Queue Timer"], "db.ElvUI_EltreumUI.skins.bigwigs", "private.WT.skins.addons.bigWigsQueueTimer")
+	CheckToxiUI(L["Gradient Zone Text"], "Blizzard Fonts", "db.ElvUI_EltreumUI.skins.zones", "db.TXUI.blizzardFonts.enabled")
+	CheckToxiUI(L["Gradient"], "Gradient Mode", "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "db.TXUI.themes.gradientMode.enabled")
+	CheckMerathilisUI(L["Gradient Zone/Mail/Quest Text"], L["Zone Text"], "db.ElvUI_EltreumUI.skins.zones", "db.mui.media.zoneText.enable")
+	CheckMerathilisUI(L["Gradient Zone/Mail/Quest Text"], L["Mail Text"], "db.ElvUI_EltreumUI.skins.zones", "db.mui.media.miscText.mail.enable")
+	CheckMerathilisUI(L["Tooltip\nGradient Name and Health"], L["Tooltip\nGradient Name"], "db.ElvUI_EltreumUI.skins.gradienttooltip", "db.mui.tooltip.gradientName")
+
+	--skins for addons
 	CheckMerathilisUI(L["BugSack"], L["BugSack"], "db.ElvUI_EltreumUI.skins.bugsack", "db.mui.skins.addonSkins.bs")
 	CheckWindTools(L["BugSack"], L["BugSack"], "db.ElvUI_EltreumUI.skins.bugsack", "private.WT.skins.addons.bugSack")
 	CheckMerathilisUI(L["Clique"], L["Clique"], "db.ElvUI_EltreumUI.skins.clique", "db.mui.skins.addonSkins.cl")
@@ -312,29 +322,25 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckWindTools(L["WarpDeplete"], L["WarpDeplete"], "db.ElvUI_EltreumUI.skins.warpdeplete", "private.WT.skins.addons.warpDeplete")
 	CheckWindTools(L["Hekili"], L["Hekili"], "db.ElvUI_EltreumUI.skins.hekili", "private.WT.skins.addons.hekili")
 	CheckWindTools(L["OmniCD"], L["OmniCD"], "db.ElvUI_EltreumUI.skins.omnicd", "private.WT.skins.addons.omniCD")
+	CheckToxiUI(L["Skin ElvUI"], "ElvUI Theme", "db.ElvUI_EltreumUI.skins.elvui.SetTemplate", "db.TXUI.addons.elvUITheme.enabled")
 
 	--other
 	CheckMerathilisUI(L["Combat Alert"], L["Combat Alert"], "db.ElvUI_EltreumUI.loot.loottext.combatindicator", "db.mui.CombatAlert.enable")
-	CheckMerathilisUI(L["Gradient Zone/Mail/Quest Text"], L["Zone Text"], "db.ElvUI_EltreumUI.skins.zones", "db.mui.media.zoneText.enable")
-	CheckMerathilisUI(L["Gradient Zone/Mail/Quest Text"], L["Mail Text"], "db.ElvUI_EltreumUI.skins.zones", "db.mui.media.miscText.mail.enable")
-	CheckWindTools(L["Shadows"], L["Shadows"], "db.ElvUI_EltreumUI.skins.shadow.enable", "private.WT.skins.shadow")
-	CheckWindTools(L["Combat Alert"], L["Combat Alert"], "db.ElvUI_EltreumUI.loot.loottext.combatindicator", "db.WT.combat.combatAlert.text")
-	CheckWindTools(L["Keystone\n!key command/Autoinsert"], L["Keystone Autoinsert"], "db.ElvUI_EltreumUI.otherstuff.mpluskeys", "db.WT.combat.quickKeystone.enable")
-	CheckWindTools(L["Fast Loot"], L["Fast Loot"], "db.ElvUI_EltreumUI.loot.fastloot", "db.WT.item.fastLoot.enable")
-	CheckWindTools(L["Auto Type Delete"], L["Auto Type Delete"], "db.ElvUI_EltreumUI.otherstuff.delete", "db.WT.item.delete.enable")
-	CheckMerathilisUI(L["Tooltip\nGradient Name and Health"], L["Tooltip\nGradient Name"], "db.ElvUI_EltreumUI.skins.gradienttooltip", "db.mui.tooltip.gradientName")
-
-	--check mmediatag
 	CheckmMediaTag(L["Class Colored Nameplate Options"].."\n"..L["Hover"],L["Auto color Glow"], "db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow", "db.mMT.nameplate.bordercolor.glow")
 	CheckmMediaTag(L["Class Colored Nameplate Options"].."\n"..L["Border"],L["Auto color Border"], "db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate", "db.mMT.nameplate.bordercolor.border")
 	CheckmMediaTag(L["Quests Skin"], L["Objective Tracker"], "db.ElvUI_EltreumUI.skins.quests", "db.mMT.objectivetracker.enable")
 	CheckmMediaTag(L["Role Icons"], L["Role Icons"], "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "db.mMT.roleicons.enable")
 	CheckmMediaTag(L["A.F.K"].."\n"..L["Eltruism Logo"], "AFK Logo", "db.ElvUI_EltreumUI.otherstuff.afklogoeltruism", "db.mMT.afk.logo")
-
-	--check wunderui
+	CheckmMediaTag(L["Portrait Skin"], L["Portraits"], "db.ElvUI_EltreumUI.unitframes.portrait.enable", "db.mMT.portraits.general.enable")
+	CheckWindTools(L["Shadows"], L["Shadows"], "db.ElvUI_EltreumUI.skins.shadow.enable", "private.WT.skins.shadow")
+	CheckWindTools(L["Combat Alert"], L["Combat Alert"], "db.ElvUI_EltreumUI.loot.loottext.combatindicator", "db.WT.combat.combatAlert.text")
+	CheckWindTools(L["Keystone\n!key command/Autoinsert"], L["Keystone Autoinsert"], "db.ElvUI_EltreumUI.otherstuff.mpluskeys", "db.WT.combat.quickKeystone.enable")
+	CheckWindTools(L["Fast Loot"], L["Fast Loot"], "db.ElvUI_EltreumUI.loot.fastloot", "db.WT.item.fastLoot.enable")
+	CheckWindTools(L["Auto Type Delete"], L["Auto Type Delete"], "db.ElvUI_EltreumUI.otherstuff.delete", "db.WT.item.delete.enable")
 	CheckWunderUI(L["Role Icons"], L["Role Icons"], "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "db.WunderUI.skins.elvUIIcons.roleIcons.enabled")
-	CheckWunderUI(L["Character Panel"], "Armory", "db.ElvUI_EltreumUI.skins.classicarmory", "db.WunderUI.armory.enabled")
-	CheckWunderUI(L["Expand Character Art"], "Armory", "db.ElvUI_EltreumUI.skins.expandarmorybg", "db.WunderUI.armory.enabled")
+	CheckWunderUI(L["Portrait Skin"], "Ring Portraits", "db.ElvUI_EltreumUI.unitframes.portrait.enable", "db.WunderUI.skins.elvUIIcons.ringIcons.enabled")
+	CheckToxiUI(L["A.F.K"].."\n"..L["Skin"], "AFK Mode", "db.ElvUI_EltreumUI.otherstuff.afklogo", "db.TXUI.addons.afkMode.enabled")
+	CheckToxiUI(L["Role Icons"], "Role Icons", "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "db.TXUI.elvUIIcons.roleIcons.enabled")
 
 	if _G["EltruismCompatibilityFrame"].numModules > 0 then
 		_G["EltruismCompatibilityFrame"]:Show()
