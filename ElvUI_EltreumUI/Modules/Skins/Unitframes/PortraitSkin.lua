@@ -146,6 +146,7 @@ function ElvUI_EltreumUI:GetClassIconsTextures(icon,unitclass)
 	end
 end
 
+--create and update the portraits
 local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,SettingUpdate)
 	if not frame then return end
 	if not frame.USE_PORTRAIT then return end
@@ -425,6 +426,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 	end
 end
 
+--main hook
 function ElvUI_EltreumUI:BlizzPortraits(unit,hasStateChanged)
 	if E.db.ElvUI_EltreumUI.unitframes.portrait.enable then
 		if unit == "player" then
@@ -440,12 +442,16 @@ function ElvUI_EltreumUI:BlizzPortraits(unit,hasStateChanged)
 			if unit == "focus" then
 				CreatePorfraitFrameAndTexture(_G["ElvUF_Focus"],"ElvUF_Focus",false,hasStateChanged,"focus")
 			end
+			if unit == "focustarget" then
+				CreatePorfraitFrameAndTexture(_G["ElvUF_FocusTarget"],"ElvUF_FocusTarget",false,hasStateChanged,"focustarget")
+			end
 		end
 	end
 end
 local UF = E:GetModule('UnitFrames')
 hooksecurefunc(UF,"PortraitUpdate", ElvUI_EltreumUI.BlizzPortraits)
 
+--hook for party frames and others
 function ElvUI_EltreumUI:BlizzPortraitsGroup(frame)
 	if E.db.ElvUI_EltreumUI.unitframes.portrait.enable then
 		if not frame then return end
@@ -455,7 +461,10 @@ function ElvUI_EltreumUI:BlizzPortraitsGroup(frame)
 			E:Delay(0, function() CreatePorfraitFrameAndTexture(_G[tostring(frame:GetName())],tostring(frame:GetName()),false,true,"party") end)
 		end
 		if frame:GetName():match("Focus") then
-			E:Delay(0, function() CreatePorfraitFrameAndTexture(_G[tostring(frame:GetName())],tostring(frame:GetName()),false,true,"focus") end)
+			E:Delay(0, function() CreatePorfraitFrameAndTexture(_G[tostring(frame:GetName())],tostring(frame:GetName()),false,true,tostring(frame.unit)) end)
+		end
+		if frame:GetName():match("FocusTarget") then
+			E:Delay(0, function() CreatePorfraitFrameAndTexture(_G[tostring(frame:GetName())],tostring(frame:GetName()),false,true,"focustarget") end)
 		end
 		if frame:GetName():match("TargetTarget") then
 			E:Delay(0, function() CreatePorfraitFrameAndTexture(_G[tostring(frame:GetName())],tostring(frame:GetName()),true,true,"targettarget") end)
@@ -465,7 +474,7 @@ end
 hooksecurefunc(UF,"Configure_Portrait", ElvUI_EltreumUI.BlizzPortraitsGroup)
 hooksecurefunc(UF,"Update_PartyFrames", ElvUI_EltreumUI.BlizzPortraitsGroup)
 
-
+--function to update portrait when settings change
 function ElvUI_EltreumUI:BlizzPortraitSettingUpdate(unit)
 	if E.db.ElvUI_EltreumUI.unitframes.portrait.enable then
 		if unit == "player" then
@@ -486,6 +495,9 @@ function ElvUI_EltreumUI:BlizzPortraitSettingUpdate(unit)
 		end
 		if unit == "focus" then
 			CreatePorfraitFrameAndTexture(_G["ElvUF_Focus"],"ElvUF_Focus",false,true,"focus",true)
+		end
+		if unit == "focustarget" then
+			CreatePorfraitFrameAndTexture(_G["ElvUF_FocusTarget"],"ElvUF_FocusTarget",false,true,"focustarget",true)
 		end
 	end
 end
