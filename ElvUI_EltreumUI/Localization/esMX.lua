@@ -1472,4 +1472,4 @@ L["Portrait Skin"] = "Piel de Retrato"
 L["Enable Portrait Skin"] = "Habilitar Estilo de Retrato"
 L["Eltruism Hearthstones/Teleports"] = "Eltruism Hearthstones/Telepuertos"
 L["Classes"] = "Clases"
-L["Enable Custom Font"] = true
+L["Enable Custom Font"] = "Activar fuente personalizada"
