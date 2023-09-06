@@ -393,7 +393,7 @@ function ElvUI_EltreumUI:Anchors()
 		if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 			if E.db.ElvUI_EltreumUI.quests.anchor then
 				E:Delay(0, function()
-					if not _G["ObjectiveFrameHolder"] and not InCombatLockdown() and not _G.MovieFrame:IsShown() then
+					if not _G["ObjectiveFrameHolder"] and not InCombatLockdown() and not _G.MovieFrame:IsShown() and ObjectiveTrackerFrame:IsShown() then
 						local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
 						holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
 						holder:SetSize(130, 22)
@@ -444,7 +444,8 @@ function ElvUI_EltreumUI:Anchors()
 							--end)
 							Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 							ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
-							ObjectiveTrackerFrame:SetHeight(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight)
+							--ObjectiveTrackerFrame:SetHeight(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight)
+							--ObjectiveTracker_UpdateHeight()
 						end
 						hooksecurefunc("ObjectiveTracker_UpdateHeight", SetObjectivePoint)
 						--hooksecurefunc(_G.ObjectiveTrackerFrame, "SetPointBase", SetObjectivePoint)
