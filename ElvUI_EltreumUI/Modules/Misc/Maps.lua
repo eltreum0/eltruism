@@ -93,6 +93,20 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 		EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 		EltruismTimeToArrive.TimeText:SetTextColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorR, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorG, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.textcolorB)
 
+		--color icon
+		if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.enable then
+			SuperTrackedFrame.Icon:SetDesaturated(true)
+			SuperTrackedFrame.Arrow:SetDesaturated(true)
+			if not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.classcolor then
+				SuperTrackedFrame.Icon:SetVertexColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.r, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.g, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.b)
+				SuperTrackedFrame.Arrow:SetVertexColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.r, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.g, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.b)
+			else
+				local valuecolors = E:ClassColor(E.myclass, true)
+				SuperTrackedFrame.Arrow:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b)
+				SuperTrackedFrame.Icon:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b)
+			end
+		end
+
 		EltruismTimeToArriveParent:RegisterEvent("USER_WAYPOINT_UPDATED")
 		EltruismTimeToArriveParent:RegisterEvent("WAYPOINT_UPDATE")
 		EltruismTimeToArriveParent:RegisterEvent("SUPER_TRACKING_CHANGED")
@@ -302,5 +316,26 @@ function ElvUI_EltreumUI:WorldMapScale()
 				end
 			end
 		end
+	end
+end
+
+--update color for options
+function ElvUI_EltreumUI:UpdateSuperTrackedColor()
+	if E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.enable then
+		SuperTrackedFrame.Icon:SetDesaturated(true)
+		SuperTrackedFrame.Arrow:SetDesaturated(true)
+		if not E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.classcolor then
+			SuperTrackedFrame.Icon:SetVertexColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.r, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.g, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.b)
+			SuperTrackedFrame.Arrow:SetVertexColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.r, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.g, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.b)
+		else
+			local valuecolors = E:ClassColor(E.myclass, true)
+			SuperTrackedFrame.Arrow:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b)
+			SuperTrackedFrame.Icon:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b)
+		end
+	else
+		SuperTrackedFrame.Icon:SetDesaturated(false)
+		SuperTrackedFrame.Arrow:SetDesaturated(false)
+		SuperTrackedFrame.Arrow:SetVertexColor(1,1,1)
+		SuperTrackedFrame.Icon:SetVertexColor(1,1,1)
 	end
 end

@@ -577,6 +577,13 @@ P.ElvUI_EltreumUI = {
 			textcolorR = 1,
 			textcolorG = 1,
 			textcolorB = 1,
+			color = {
+				enable =  false,
+				classcolor = true,
+				r = 0.27,
+				g = 0.50,
+				b = 0.70,
+			}
 		},
 		waytext = {
 			enable = false,
