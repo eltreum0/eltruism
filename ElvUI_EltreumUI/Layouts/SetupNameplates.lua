@@ -23,7 +23,7 @@ local rareclass = {
 
 -- NamePlate Setup
 function ElvUI_EltreumUI:SetupNamePlates()
-	if E.private["nameplates"]["enable"] == true then
+	if E.private.nameplates.enable then
 		local width = GetPhysicalScreenSize()
 
 		-- Toggle on

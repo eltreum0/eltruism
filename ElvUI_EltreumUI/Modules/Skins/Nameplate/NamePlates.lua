@@ -501,7 +501,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 							E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["texture"]["enable"] = true
 						end
 					end
-				elseif ( UnitIsPlayer("target") == false and ( reactiontarget >= 5) ) then
+				elseif (not UnitIsPlayer("target") and (reactiontarget >= 5)) then
 					if E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V1" then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-Hunter"
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
@@ -682,7 +682,7 @@ EltruismNamePlateOptionsFrame:SetScript("OnEvent", ElvUI_EltreumUI.NamePlateOpti
 
 --add threat to nameplate by putting threat into title and moving title to the healthbar
 function ElvUI_EltreumUI:ClassicThreatNP()
-	if E.private.nameplates.enable == true then
+	if E.private.nameplates.enable then
 		if E.Classic or E.Wrath then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = E.db.general.font
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["fontOutline"] = E.db.general.fontStyle

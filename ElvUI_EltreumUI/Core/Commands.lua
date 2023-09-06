@@ -65,11 +65,11 @@ function ElvUI_EltreumUI:RunCommands(message)
 		E:ToggleOptions("ElvUI_EltreumUI")
 		--E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
 	elseif message == 'dev' then
-		if E.db.ElvUI_EltreumUI.dev == false then
+		if not E.db.ElvUI_EltreumUI.dev then
 			E.db.ElvUI_EltreumUI.dev = true
 			ElvUI_EltreumUI:Print("Development Tools Enabled, please reload")
 			E:StaticPopup_Show('CONFIG_RL')
-		elseif E.db.ElvUI_EltreumUI.dev == true then
+		elseif E.db.ElvUI_EltreumUI.dev then
 			E.db.ElvUI_EltreumUI.dev = false
 			ElvUI_EltreumUI:Print("Development Tools Disabled, please reload")
 			E:StaticPopup_Show('CONFIG_RL')
@@ -91,21 +91,21 @@ function ElvUI_EltreumUI:RunCommands(message)
 			ElvUI_EltreumUI:TransparentChat()
 		end
 	elseif message == 'color' then
-		if E.db.ElvUI_EltreumUI.unitframes.lightmode == true then
+		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			ElvUI_EltreumUI:DarkMode() E:StaticPopup_Show('CONFIG_RL')
-		elseif E.db.ElvUI_EltreumUI.unitframes.lightmode == false then
+		elseif not E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			ElvUI_EltreumUI:LightMode() E:StaticPopup_Show('CONFIG_RL')
 		else
 			ElvUI_EltreumUI:DarkMode() E:StaticPopup_Show('CONFIG_RL')
 		end
 	elseif message == 'gradient' then
-		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable == false then
+		if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = true
 			ElvUI_EltreumUI:GradientMode()
 			E:StaticPopup_Show('CONFIG_RL')
 			ElvUI_EltreumUI:Print("Gradient Enabled, please reload")
-		elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable == true then
+		elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = false
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = false
 			E:StaticPopup_Show('CONFIG_RL')
@@ -118,7 +118,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 				if E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA then
 					E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA = false
 					ElvUI_EltreumUI:WeakAurasLikeActionBars()
-				elseif E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA == false then
+				elseif not E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA then
 					E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA = true
 					ElvUI_EltreumUI:WeakAurasLikeActionBars()
 				end
@@ -132,9 +132,9 @@ function ElvUI_EltreumUI:RunCommands(message)
 		}
 		E:StaticPopup_Show('ELTRUISMWABARWARNING')
 	elseif message == 'background' then
-		if E.db.ElvUI_EltreumUI.unitframes.greybackground == true then
+		if E.db.ElvUI_EltreumUI.unitframes.greybackground then
 			ElvUI_EltreumUI:BlackBg()
-		elseif E.db.ElvUI_EltreumUI.unitframes.greybackground == false then
+		elseif not E.db.ElvUI_EltreumUI.unitframes.greybackground then
 			ElvUI_EltreumUI:GreyBg()
 		else
 			ElvUI_EltreumUI:GreyBg()

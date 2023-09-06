@@ -52,8 +52,8 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 				if instanceType ~= "none" then --clears waypoints inside instances
 					C_Map.ClearUserWaypoint()
 				elseif instanceType == "none" then --is in the open world
-					--if event == "USER_WAYPOINT_UPDATED" and C_Map.HasUserWaypoint() == true then
-					if C_Map.HasUserWaypoint() == true then
+					--if event == "USER_WAYPOINT_UPDATED" and C_Map.HasUserWaypoint() then
+					if C_Map.HasUserWaypoint() then
 						E:Delay(0, function() C_SuperTrack.SetSuperTrackedUserWaypoint(true) end)
 					end
 				end
@@ -114,7 +114,7 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 		EltruismTimeToArriveParent:SetScript("OnEvent", function()
 			local _, instanceType = IsInInstance()
 			--print(instanceType,event,"waypoint")
-			if (C_Map.HasUserWaypoint() == true or C_SuperTrack.IsSuperTrackingAnything() == true) and (instanceType == "none") then
+			if (C_Map.HasUserWaypoint() or C_SuperTrack.IsSuperTrackingAnything()) and (instanceType == "none") then
 				--use throttled onupdate to udpate the text (once per second)
 				EltruismTimeToArrive:SetScript("OnUpdate", function(_, elapsed)
 					--print("onupdate spam"..math.random(1,99))
@@ -210,7 +210,7 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 				table.insert(coords, pattern)
 			end
 			local canSet = C_Map.CanSetUserWaypointOnMap(C_Map.GetBestMapForUnit("player"))
-			if canSet == false then
+			if not canSet then
 				ElvUI_EltreumUI:Print(L["Area does not support waypoints"])
 				wipe(coords)
 			else
@@ -269,7 +269,7 @@ function ElvUI_EltreumUI:WaypointTexttoCoordinate(message)
 						else
 							ylength = false
 						end
-						if xlength == false or ylength == false then
+						if not xlength or not ylength then
 							ElvUI_EltreumUI:Print(L["Unsupported format or Area does not support waypoints"])
 							wipe(coords)
 						else

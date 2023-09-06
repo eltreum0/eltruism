@@ -229,7 +229,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 							end
 							for i, _ in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
 								--local _, _, _, _, isComplete = active[i]
-								if active[i].isComplete == true then
+								if active[i].isComplete then
 									completed = completed + 1
 									--[[if E.db.ElvUI_EltreumUI.dev then
 										ElvUI_EltreumUI:Print("iterate and select already active quest")
@@ -238,7 +238,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								elseif active[i].isComplete ~= true then
 									notcomplete = notcomplete +1
 								end
-									--[[if active[i+1] and active[i+1].isComplete == true then
+									--[[if active[i+1] and active[i+1].isComplete then
 										--ElvUI_EltreumUI:Print("cool")
 									else
 										ElvUI_EltreumUI:Print("nope")
@@ -262,7 +262,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 							end
 
 							--ElvUI_EltreumUI:Print(completed, notcomplete)
-							if loopcomplete == true then
+							if loopcomplete then
 								for i, k in next, C_GossipInfo.GetActiveQuests() do
 									if completed >= 1 then
 										if E.db.ElvUI_EltreumUI.dev then
@@ -430,12 +430,12 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 							for i, _ in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
 								local questdump = C_GossipInfo.GetActiveQuests()
 								--local _, _, _, _, isComplete = questdump[i]
-								if questdump[i].isComplete == false then
+								if not questdump[i].isComplete then
 									if E.db.ElvUI_EltreumUI.dev then
 										ElvUI_EltreumUI:Print("quest not completed")
 									end
 									return
-								elseif questdump[i].isComplete == true then
+								elseif questdump[i].isComplete then
 									if E.db.ElvUI_EltreumUI.dev then
 										ElvUI_EltreumUI:Print("quest completed, turning in")
 									end
@@ -469,10 +469,10 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								ElvUI_EltreumUI:Print("has gossip")
 								hasgossip = true
 								for i, k in next, C_GossipInfo.GetActiveQuests() do
-									if active[i] and active[i].isComplete == true then
+									if active[i] and active[i].isComplete then
 										ElvUI_EltreumUI:Print("111111")
 										completed = completed + 1
-									elseif active[i] and active[i].isComplete == false then
+									elseif active[i] and not active[i].isComplete then
 										ElvUI_EltreumUI:Print("33333")
 										notcomplete = notcomplete + 1
 									end
@@ -481,7 +481,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 							elseif active == nil then
 								ElvUI_EltreumUI:Print("no gossip")
 							end
-							if hasgossip == false then
+							if not hasgossip then
 								ElvUI_EltreumUI:Print("22222222")
 							end]]
 

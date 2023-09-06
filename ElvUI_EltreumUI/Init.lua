@@ -199,7 +199,7 @@ end
 function ElvUI_EltreumUI:GROUP_ROSTER_UPDATE()
 	ElvUI_EltreumUI:RaidDeathGroupCheck()
 	--ElvUI_EltreumUI:Shadows()
-	if IsInRaid() == true then
+	if IsInRaid() then
 		ElvUI_EltreumUI:RaidShadows()
 	end
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then

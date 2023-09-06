@@ -76,7 +76,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.xcastfocus = 365
 				E.db.ElvUI_EltreumUI.borders.ycastfocus = 62
 
-				if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
+				if not E.db.datatexts.panels.MinimapPanel.backdrop or not E.db.datatexts.panels.MinimapPanel.enable then
 					E.db.ElvUI_EltreumUI.borders.minimapsizey = 225
 				else
 					E.db.ElvUI_EltreumUI.borders.minimapsizey = 247
@@ -124,7 +124,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 						E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,260"
 					end
 
-					if E.db.ElvUI_EltreumUI.otherstuff.alternativegroups == false then
+					if not E.db.ElvUI_EltreumUI.otherstuff.alternativegroups then
 						E.db["movers"]["ElvUF_Raid1Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-4"
 						E.db["movers"]["ElvUF_Raid2Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-4"
 						E.db["movers"]["ElvUF_Raid3Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-4"
@@ -265,7 +265,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 							E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,103"
 						end
 					end
-					if E.db.ElvUI_EltreumUI.otherstuff.alternativegroups == false then
+					if not E.db.ElvUI_EltreumUI.otherstuff.alternativegroups then
 						E.db["movers"]["ElvUF_Raid1Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-1"
 						E.db["movers"]["ElvUF_Raid2Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-1"
 						E.db["movers"]["ElvUF_Raid3Mover"] = "TOPLEFT,ElvUIParent,TOPLEFT,1,-1"

@@ -47,8 +47,8 @@ end
 function ElvUI_EltreumUI:Borders()
 	if E.db.ElvUI_EltreumUI.borders.borders then
 		--borders not nice with transparent power
-		if E.db["unitframe"]["units"]["player"]["power"]["width"] == "spaced" then
-			E.db["unitframe"]["colors"]["transparentPower"] = false
+		if E.db.unitframe.units.player.power.width == "spaced" then
+			E.db.unitframe.colors.transparentPower = false
 		end
 
 		if E.db.ElvUI_EltreumUI.borders.texture then
@@ -59,7 +59,7 @@ function ElvUI_EltreumUI:Borders()
 			end
 		end
 
-		if E.db.ElvUI_EltreumUI.borders.classcolor == true then
+		if E.db.ElvUI_EltreumUI.borders.classcolor then
 			classcolor = E:ClassColor(E.myclass, true)
 		else
 			classcolor = {
@@ -97,7 +97,7 @@ function ElvUI_EltreumUI:Borders()
 					playerborder = _G["EltruismPlayerBorder"]
 				end
 				playerborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayer, E.db.ElvUI_EltreumUI.borders.yplayer)
-				if E.db["unitframe"]["units"]["player"]["power"]["width"] == "spaced" then
+				if E.db.unitframe.units.player.power.width == "spaced" then
 					playerborder:SetPoint("CENTER", _G.ElvUF_Player_HealthBar, "CENTER", 0, 0)
 				else
 					playerborder:SetPoint("CENTER", _G.ElvUF_Player, "CENTER", 0, 0)
@@ -122,11 +122,11 @@ function ElvUI_EltreumUI:Borders()
 					playercastbarborder = _G["EltruismPlayerCastBarBorder"]
 				end
 				if E.db.unitframe.units.player.castbar.icon then
-					if E.db.unitframe.units.player.castbar.iconAttached == false then
+					if not E.db.unitframe.units.player.castbar.iconAttached then
 						playercastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayercast + E.db.unitframe.units.player.castbar.iconSize, E.db.ElvUI_EltreumUI.borders.yplayercast)
-						if E.db["unitframe"]["units"]["player"]["castbar"]["iconPosition"] == "RIGHT" then
+						if E.db.unitframe.units.player.castbar.iconPosition == "RIGHT" then
 							playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", E.db.unitframe.units.player.castbar.iconSize/2, 0)
-						elseif E.db["unitframe"]["units"]["player"]["castbar"]["iconPosition"] == "LEFT" then
+						elseif E.db.unitframe.units.player.castbar.iconPosition == "LEFT" then
 							playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", -E.db.unitframe.units.player.castbar.iconSize/2, 0)
 						else
 							playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", 0, 0)
@@ -156,7 +156,7 @@ function ElvUI_EltreumUI:Borders()
 					targetborder = _G["EltruismTargetBorder"]
 				end
 				targetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xtarget, E.db.ElvUI_EltreumUI.borders.ytarget)
-				if E.db["unitframe"]["units"]["target"]["power"]["width"] == "spaced" then
+				if E.db.unitframe.units.target.power.width == "spaced" then
 					targetborder:SetPoint("CENTER", _G.ElvUF_Target_HealthBar, "CENTER", 0 ,0)
 				else
 					targetborder:SetPoint("CENTER", _G.ElvUF_Target, "CENTER", 0 ,0)
@@ -182,11 +182,11 @@ function ElvUI_EltreumUI:Borders()
 					targetcastbarborder = _G["EltruismTargetCastBarBorder"]
 				end
 				if E.db.unitframe.units.target.castbar.icon then
-					if E.db.unitframe.units.target.castbar.iconAttached == false then
+					if not E.db.unitframe.units.target.castbar.iconAttached then
 						targetcastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcasttarget + E.db.unitframe.units.target.castbar.iconSize, E.db.ElvUI_EltreumUI.borders.ycasttarget)
-						if E.db["unitframe"]["units"]["target"]["castbar"]["iconPosition"] == "RIGHT" then
+						if E.db.unitframe.units.target.castbar.iconPosition == "RIGHT" then
 							targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", E.db.unitframe.units.target.castbar.iconSize/2, 0)
-						elseif E.db["unitframe"]["units"]["target"]["castbar"]["iconPosition"] == "LEFT" then
+						elseif E.db.unitframe.units.target.castbar.iconPosition == "LEFT" then
 							targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", -E.db.unitframe.units.target.castbar.iconSize/2, 0)
 						else
 							targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", 0, 0)
@@ -216,7 +216,7 @@ function ElvUI_EltreumUI:Borders()
 					targettargetborder = _G["EltruismTargetTargetBorder"]
 				end
 				targettargetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xtargettarget, E.db.ElvUI_EltreumUI.borders.ytargettarget)
-				if E.db["unitframe"]["units"]["targettarget"]["power"]["width"] == "spaced" then
+				if E.db.unitframe.units.targettarget.power.width == "spaced" then
 					targettargetborder:SetPoint("CENTER", _G.ElvUF_TargetTarget_HealthBar, "CENTER", 0 ,0)
 				else
 					targettargetborder:SetPoint("CENTER", _G.ElvUF_TargetTarget, "CENTER", 0 ,0)
@@ -241,7 +241,7 @@ function ElvUI_EltreumUI:Borders()
 					petborder = _G["EltruismPetBorder"]
 				end
 				petborder:SetSize(E.db.ElvUI_EltreumUI.borders.petsizex, E.db.ElvUI_EltreumUI.borders.petsizey)
-				if E.db["unitframe"]["units"]["pet"]["power"]["width"] == "spaced" then
+				if E.db.unitframe.units.pet.power.width == "spaced" then
 					petborder:SetPoint("CENTER", _G.ElvUF_Pet_HealthBar,"CENTER", 0, 0)
 				else
 					petborder:SetPoint("CENTER", _G.ElvUF_Pet,"CENTER", 0, 0)
@@ -275,7 +275,7 @@ function ElvUI_EltreumUI:Borders()
 							edgeFile = bordertexture,
 							edgeSize = E.db.ElvUI_EltreumUI.borders.groupsize,
 						})
-						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
+						if E.db.ElvUI_EltreumUI.borders.classcolor then
 							partyborder:SetBackdropBorderColor(1, 1, 1, 1)
 						else
 							partyborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
@@ -441,7 +441,7 @@ function ElvUI_EltreumUI:Borders()
 					focusborder = _G["EltruismFocusBorder"]
 				end
 				focusborder:SetSize(E.db.ElvUI_EltreumUI.borders.xfocus, E.db.ElvUI_EltreumUI.borders.yfocus)
-				if E.db["unitframe"]["units"]["focus"]["power"]["width"] == "spaced" then
+				if E.db.unitframe.units.focus.power.width == "spaced" then
 					focusborder:SetPoint("CENTER", _G.ElvUF_Focus_HealthBar, "CENTER", 0, 0)
 				else
 					focusborder:SetPoint("CENTER", _G.ElvUF_Focus, "CENTER", 0, 0)
@@ -466,11 +466,11 @@ function ElvUI_EltreumUI:Borders()
 					focuscastbarborder = _G["EltruismFocusCastBarBorder"]
 				end
 				if E.db.unitframe.units.focus.castbar.icon then
-					if E.db.unitframe.units.focus.castbar.iconAttached == false then
+					if not E.db.unitframe.units.focus.castbar.iconAttached then
 						focuscastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcastfocus + E.db.unitframe.units.focus.castbar.iconSize, E.db.ElvUI_EltreumUI.borders.ycastfocus)
-						if E.db["unitframe"]["units"]["focus"]["castbar"]["iconPosition"] == "RIGHT" then
+						if E.db.unitframe.units.focus.castbar.iconPosition == "RIGHT" then
 							focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", E.db.unitframe.units.focus.castbar.iconSize/2, 0)
-						elseif E.db["unitframe"]["units"]["focus"]["castbar"]["iconPosition"] == "LEFT" then
+						elseif E.db.unitframe.units.focus.castbar.iconPosition == "LEFT" then
 							focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", -E.db.unitframe.units.focus.castbar.iconSize/2, 0)
 						else
 							focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", 0, 0)
@@ -500,7 +500,7 @@ function ElvUI_EltreumUI:Borders()
 					focustargetborder = _G["EltruismFocusTargetBorder"]
 				end
 				focustargetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xfocustarget, E.db.ElvUI_EltreumUI.borders.yfocustarget)
-				if E.db["unitframe"]["units"]["focustarget"]["power"]["width"] == "spaced" then
+				if E.db.unitframe.units.focustarget.power.width == "spaced" then
 					focustargetborder:SetPoint("CENTER", _G.ElvUF_FocusTarget_HealthBar, "CENTER", 0, 0)
 				else
 					focustargetborder:SetPoint("CENTER", _G.ElvUF_FocusTarget, "CENTER", 0, 0)
@@ -533,7 +533,7 @@ function ElvUI_EltreumUI:Borders()
 							edgeFile = bordertexture,
 							edgeSize = E.db.ElvUI_EltreumUI.borders.bosssize,
 						})
-						if UnitExists("boss"..i) and E.db.ElvUI_EltreumUI.borders.classcolor == true then
+						if UnitExists("boss"..i) and E.db.ElvUI_EltreumUI.borders.classcolor then
 							local reactionboss= UnitReaction("boss"..i, "player")
 							if reactionboss >= 5 then
 								bossborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
@@ -838,7 +838,7 @@ function ElvUI_EltreumUI:Borders()
 		end
 
 		-- minimap
-		if E.private["general"]["minimap"]["enable"] ~= false and E.db.ElvUI_EltreumUI.borders.minimapborder then
+		if E.private.general.minimap.enable ~= false and E.db.ElvUI_EltreumUI.borders.minimapborder then
 			if not _G["EltruismMiniMapBorderFrame"] then
 				MinimapBorder = CreateFrame("Frame", "EltruismMiniMapBorderFrame", _G["Minimap"], BackdropTemplateMixin and "BackdropTemplate")
 			else
@@ -855,18 +855,18 @@ function ElvUI_EltreumUI:Borders()
 			MinimapBorder:SetFrameStrata("LOW")
 			MinimapBorder:SetFrameLevel(2)
 
-			if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
+			if not E.db.datatexts.panels.MinimapPanel.backdrop or not E.db.datatexts.panels.MinimapPanel.enable then
 				MinimapBorder:SetPoint("CENTER", _G["MinimapBackdrop"],"CENTER", 0, 0)
 			else
 				MinimapBorder:SetPoint("CENTER", _G["ElvUI_MinimapHolder"],"CENTER", 0, 0)
 			end
 
-			if IsAddOnLoaded("ElvUI_SLE") and E.private["sle"]["minimap"]["rectangle"] == true then --Shadow and Light Rectangle Minimap
+			if IsAddOnLoaded("ElvUI_SLE") and E.private.sle.minimap.rectangle then --Shadow and Light Rectangle Minimap
 				rectangleminimapdetect:SetPoint("TOPRIGHT", _G["Minimap"].backdrop ,"TOPRIGHT", 0, 0)
 				rectangleminimapdetect:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", 0, 0)
 
 				MinimapBorder:SetPoint("CENTER", rectangleminimapdetect ,"CENTER", 0, 0)
-				if E.db.datatexts.panels.MinimapPanel.backdrop == false or E.db.datatexts.panels.MinimapPanel.enable == false then
+				if not E.db.datatexts.panels.MinimapPanel.backdrop or not E.db.datatexts.panels.MinimapPanel.enable then
 					MinimapBorder:SetPoint("CENTER", _G["Minimap"].backdrop.Center ,"CENTER", 0, 0)
 				end
 				updatelocationpos:RegisterEvent("ZONE_CHANGED")
@@ -878,7 +878,7 @@ function ElvUI_EltreumUI:Borders()
 					_G.Minimap.location:ClearAllPoints()
 					_G.Minimap.location:SetPoint('TOP', _G.Minimap, 'TOP', 0, -15)
 				end)
-			elseif IsAddOnLoaded("ElvUI_WindTools") and E.db["WT"]["maps"]["rectangleMinimap"]["enable"] == true then --Windtools rectangle minimap
+			elseif IsAddOnLoaded("ElvUI_WindTools") and E.db.WT.maps.rectangleMinimap.enable then --Windtools rectangle minimap
 				MinimapBorder:SetPoint("CENTER", _G["MinimapBackdrop"] ,"CENTER", 0, 0)
 
 				updatelocationpos:RegisterEvent("ZONE_CHANGED")
@@ -927,11 +927,11 @@ function ElvUI_EltreumUI:Borders()
 			RightChatBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			RightChatBorder:SetFrameStrata("MEDIUM")
 
-			if E.db["chat"]["panelBackdrop"] == "RIGHT" then
+			if E.db.chat.panelBackdrop == "RIGHT" then
 				LeftChatBorder:Hide()
-			elseif E.db["chat"]["panelBackdrop"] == "LEFT" then
+			elseif E.db.chat.panelBackdrop == "LEFT" then
 				RightChatBorder:Hide()
-			elseif E.db["chat"]["panelBackdrop"] == "HIDEBOTH" then
+			elseif E.db.chat.panelBackdrop == "HIDEBOTH" then
 				LeftChatBorder:Hide()
 				RightChatBorder:Hide()
 			end
@@ -1011,7 +1011,7 @@ end
 hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraBorders) --uf aura borders
 
 function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of target changes if the target is not in party/raid, no event to register :(
-	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor == true then
+	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
 
 		if E.db.unitframe.units.target.enable then
 			if UnitExists("target") then
@@ -1147,7 +1147,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 						local _, bossclass = UnitClass("boss"..i)
 						bossbordername:SetBackdropBorderColor(classcolorreaction[bossclass]["r1"], classcolorreaction[bossclass]["g1"], classcolorreaction[bossclass]["b1"], 1)
 					elseif not UnitIsPlayer("boss"..i) then
-						if E.db.ElvUI_EltreumUI.borders.classcolor == true then
+						if E.db.ElvUI_EltreumUI.borders.classcolor then
 							local reactionboss = UnitReaction("boss1", "player")
 							if reactionboss >= 5 then
 								bossbordername:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
