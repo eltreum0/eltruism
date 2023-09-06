@@ -124,6 +124,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	if E.db.ElvUI_EltreumUI.skins.cell then --Cell gradient/custom textures/shadows
 		ElvUI_EltreumUI:EltruismCell()
 	end
+	ElvUI_EltreumUI:HardcoreDeath() -- hardcore death sound/animation
 end
 
 function ElvUI_EltreumUI:Initialize()
