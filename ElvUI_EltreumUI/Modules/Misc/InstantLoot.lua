@@ -141,7 +141,7 @@ local function InstantLoot(_, event,_, arg2)
 				end
 				for i = GetNumLootItems(), 1, -1 do
 					_, _, _, _, lootQuality, _, isQuestItem = GetLootSlotInfo(i)
-					if isQuestItem == true then
+					if isQuestItem then
 						LootSlot(i)
 					elseif lootQuality >= tonumber(E.db.ElvUI_EltreumUI.loot.fastlootquality) then
 						LootSlot(i)

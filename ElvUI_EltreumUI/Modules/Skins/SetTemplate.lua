@@ -56,7 +56,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 							if (frame.SelectedTexture or frame.glossTex) and not E.db.ElvUI_EltreumUI.skins.elvui.button then --fix some more buttons
 								frame.eltruismbgtexture:Hide()
 							end
-							if isUnitFrameElement and (frame:GetParent() and frame:GetParent().isTransparent == false) then --only on health
+							if isUnitFrameElement and (frame:GetParent() and not frame:GetParent().isTransparent) then --only on health
 								frame.eltruismbgtexture:SetDrawLayer("ARTWORK")
 								frame.eltruismbgtexture:SetParent(frame:GetParent())
 							end

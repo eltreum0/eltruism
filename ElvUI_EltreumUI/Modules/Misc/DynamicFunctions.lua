@@ -410,7 +410,7 @@ mailsoundframe:SetScript("OnEvent", function()
 	if not E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice then return end
 	if not E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext then return end
 	if not E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume then return end
-	if HasNewMail() == true and E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable and not InCombatLockdown() and mailthrottle == 0 then
+	if HasNewMail() and E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable and not InCombatLockdown() and mailthrottle == 0 then
 
 		if E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" and E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice then
 			--C_VoiceChat.SpeakText(voiceID, text, destination, rate, volume)

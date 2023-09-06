@@ -149,10 +149,12 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 					end
 					_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i]:HookScript("OnClick", function()
 						E:Delay(0, function()
-							if _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"]:GetTexture() ~= nil then
-								_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:Show()
-							else
-								_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:Hide()
+							if _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow then
+								if _G["PallyPowerBlessingsFramePlayer"..j.."Class"..i.."Icon"]:GetTexture() ~= nil then
+									_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:Show()
+								else
+									_G["PallyPowerBlessingsFramePlayer"..j.."Class"..i].shadow:Hide()
+								end
 							end
 						end)
 					end)

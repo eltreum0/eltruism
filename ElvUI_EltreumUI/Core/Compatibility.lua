@@ -190,7 +190,7 @@ local function GetCheckCompatibilityFunction(targetAddonName, targetAddonLocales
 			end
 			local myTable, myKey, myValue = GetDatabaseRealValue(myDB)
 			local targetTable, targetKey, targetValue = GetDatabaseRealValue(targetAddonDB)
-			if myValue == true and targetValue == true then
+			if myValue and targetValue then
 				AddButtonToCompatibilityFrame({
 					module1 = myModuleName,
 					plugin1 = select(2,GetAddOnInfo("ElvUI_EltreumUI")),
@@ -213,7 +213,7 @@ local function GetCheckCompatibilityFunction(targetAddonName, targetAddonLocales
 				return
 			end
 			local myTable, myKey, myValue = GetDatabaseRealValue(myDB)
-			if myValue == true and IsAddOnLoaded(targetAddon) then
+			if myValue and IsAddOnLoaded(targetAddon) then
 				AddButtonToCompatibilityFrame({
 					module1 = myModuleName,
 					plugin1 = select(2,GetAddOnInfo("ElvUI_EltreumUI")),

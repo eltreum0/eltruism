@@ -124,7 +124,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 
 				--[[if unit == "player" then
 					local item = Item:CreateFromEquipmentSlot(slotID)
-					if item:IsItemEmpty() == true then
+					if item:IsItemEmpty() then
 						return
 					end
 					return item:ContinueOnItemLoad(function()

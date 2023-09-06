@@ -102,7 +102,7 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 			for i= 1, 10 do
 				spellId = select(10, UnitAura("player", i))
 			end
-			if IsEncounterSuppressingRelease() == false and instanceType == "none" and (spellId ~= 20711 and spellId ~= 5384) then
+			if not IsEncounterSuppressingRelease() and instanceType == "none" and (spellId ~= 20711 and spellId ~= 5384) then
 				UIParent:SetAlpha(0)
 				if E.Retail then
 					ObjectiveTrackerFrame:SetAlpha(0)
@@ -196,7 +196,7 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 			for i= 1, 10 do
 				spellId = select(10, UnitAura("player", i))
 			end
-			if IsEncounterSuppressingRelease() == false and instanceType == "none" and (spellId ~= 20711 and spellId ~= 5384) then
+			if not IsEncounterSuppressingRelease() and instanceType == "none" and (spellId ~= 20711 and spellId ~= 5384) then
 				UIParent:SetAlpha(0)
 				if E.Retail then
 					ObjectiveTrackerFrame:SetAlpha(0)

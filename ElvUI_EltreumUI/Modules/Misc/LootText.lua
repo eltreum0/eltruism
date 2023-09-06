@@ -208,7 +208,7 @@ function ElvUI_EltreumUI:LootText()
 
 		LootTextframe:SetScript("OnEvent",function(_, event, arg1, arg2)
 			if event == "UI_ERROR_MESSAGE" and arg2 == ERR_INV_FULL then
-				if errorthrottle == false then
+				if not errorthrottle then
 					CombatText_AddMessage(INVENTORY_FULL, CombatText_StandardScroll, 1, 0, 0) --apparently it spams for some people
 					errorthrottle = true
 					E:Delay(3, function() errorthrottle = false end)

@@ -833,7 +833,7 @@ E:AddTagInfo("eltruism:dead", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterfac
 
 --Tag for dc based on elvui tag for health
 E:AddTag("eltruism:dc", "UNIT_CONNECTION", function(unit)
-	if UnitIsConnected(unit) == false and UnitIsPlayer(unit) then
+	if not UnitIsConnected(unit) and UnitIsPlayer(unit) then
 		if E.db.ElvUI_EltreumUI.otherstuff.dctagicon ~= "NONE" then
 			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.dctagicon)..".tga:0:0:0:0|t"
 		else
@@ -1106,7 +1106,7 @@ E:AddTag('eltruism:difficulty', 'UNIT_NAME_UPDATE', function(unit)
 
 	--make sure its not a player as to not overwrite class colors
 	if not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
-		if UnitIsEnemy("player", unit) == true then
+		if UnitIsEnemy("player", unit) then
 			if classification ~= "worldboss" then
 				if E.Wrath or E.Classic then
 					return (eltruismdif[printdifference])
@@ -1286,7 +1286,7 @@ end
 
 --group number only for first member of group (can break if players get moved tho)
 E:AddTag("eltruism:groupnumber", "GROUP_ROSTER_UPDATE UNIT_NAME_UPDATE", function(unit)
-	if IsInRaid() == true then
+	if IsInRaid() then
 		if unit == "raid1" then
 			return GROUP.." 1"
 		elseif unit == "raid6" then
@@ -1339,7 +1339,7 @@ E:AddTag("eltruism:lowmana", 'UNIT_POWER_FREQUENT', function(unit,_,args)
 		end
 		if role == 'HEALER' then
 			if (UnitPower("player")/UnitPowerMax("player")) < (tonumber(percentage) * 0.01) then
-				if manaspam == false then
+				if not manaspam then
 					DoEmote("OOM")
 					manaspam = true
 				end
@@ -1363,7 +1363,7 @@ E:AddTag("eltruism:lowhealth", "UNIT_HEALTH UNIT_MAXHEALTH", function(unit,_,arg
 	if UnitIsUnit("player", unit) then --player
 		if not UnitIsDead("player") then
 			if (UnitHealth("player")/UnitHealthMax("player")) < (tonumber(percentage) * 0.01) then
-				if hpspam == false then
+				if not hpspam then
 					DoEmote("HEALME")
 					hpspam = true
 				end

@@ -5,7 +5,7 @@ ___
 Added Portrait Skin, which can add Blizz-like portraits and more to ElvUI Unitframes, alongside customization options in Eltruism > Unitframes > Portrait  
 Added an option to Disable the Eltruism AFK logo, separate from the skin  
 Added Blizzard's animated rest icon to ElvUI Unitframes Rest Icon  
-Adde [name:eltruism:caps] which will show the name in full caps  
+Added [name:eltruism:caps] which will show the name in full caps  
 Updated the Chat Fading Functions, which will now better detect messages that are in each panel  
 Updated the Classic Hardcore Death to also play a sound and animation when a Guild member dies  
 Updated Gladdy, Gladius, GladiusEx, BattleGroundEnemies profiles to remove unused tables  

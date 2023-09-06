@@ -31,7 +31,7 @@ local deaththrottle
 function ElvUI_EltreumUI:RaidDeathGroupCheck()
 	_, instanceType = IsInInstance()
 	if E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable then
-		if IsInGroup() == true then
+		if IsInGroup() then
 			if E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.bgdisable then --to disable it in arena/bg
 				if instanceType == "arena" or instanceType == "pvp" then
 					ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED')
@@ -43,7 +43,8 @@ function ElvUI_EltreumUI:RaidDeathGroupCheck()
 				deaththrottle = 1
 				ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath()
 			end
-		elseif IsInGroup() == false then
+		elseif not IsInGroup() then
+			print("11123123")
 			deaththrottle = 0
 			ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath() to not fire when not in a group
 		end
@@ -108,8 +109,8 @@ function ElvUI_EltreumUI:BattleRes()
 			end
 		end
 
-		--if ingroup == true and (instanceType == 'raid' or instanceType == 'party') and (DifficultyID == 8 or DifficultyID == 3 or DifficultyID == 4 or DifficultyID == 9 or DifficultyID == 14 or DifficultyID == 173 or DifficultyID == 5 or DifficultyID == 6 or DifficultyID == 174 or DifficultyID == 15 or DifficultyID == 148 or DifficultyID == 175 or DifficultyID == 176 or DifficultyID == 16) then
-		if ingroup == true and instanceok == true and difficultyok == true then
+		--if ingroup and (instanceType == 'raid' or instanceType == 'party') and (DifficultyID == 8 or DifficultyID == 3 or DifficultyID == 4 or DifficultyID == 9 or DifficultyID == 14 or DifficultyID == 173 or DifficultyID == 5 or DifficultyID == 6 or DifficultyID == 174 or DifficultyID == 15 or DifficultyID == 148 or DifficultyID == 175 or DifficultyID == 176 or DifficultyID == 16) then
+		if ingroup and instanceok and difficultyok then
 			bresframe:SetAlpha(1)
 			spellicon:SetSize(30, 30)
 			spellicon:SetPoint("LEFT", bresframe)
