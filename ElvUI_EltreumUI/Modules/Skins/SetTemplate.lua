@@ -28,6 +28,8 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 					if frame:GetObjectType() == "Button" and not E.db.ElvUI_EltreumUI.skins.elvui.button then return end
 					if frame:GetParent() and frame:GetParent():GetObjectType() == "Button" and not E.db.ElvUI_EltreumUI.skins.elvui.button then return end
 
+					if frame.showDispellableDebuff then return end --fix RaidDebufs
+
 					if template ~= "NoBackdrop" then
 						if not frame.EltruismBackground then
 							frame.eltruismbgtexture = frame:CreateTexture(nil, "BORDER")
