@@ -39,18 +39,33 @@ local function Configure_InfoPanel(_, frame)
 						frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height)
 						frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER+portrait.db.width, db.infoPanel.height)
 						frame.InfoPanel:SetSize(db.width-portrait.db.width,db.infoPanel.height)]]
-
-						frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
-						frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER+portrait.db.width, -(UF.SPACING*3))
-						frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height - (UF.BORDER/2))
-						frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER+portrait.db.width, db.infoPanel.height - (UF.BORDER/2))
-						frame.InfoPanel:SetSize(db.width-portrait.db.width,db.infoPanel.height)
+						if not frame.USE_PORTRAIT_OVERLAY then
+							frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
+							frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER+portrait.db.width, -(UF.SPACING*3))
+							frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height - (UF.BORDER/2))
+							frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER+portrait.db.width, db.infoPanel.height - (UF.BORDER/2))
+							frame.InfoPanel:SetSize(db.width-portrait.db.width,db.infoPanel.height)
+						else
+							frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
+							frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER, -(UF.SPACING*3))
+							frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height - (UF.BORDER/2))
+							frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER, db.infoPanel.height - (UF.BORDER/2))
+							frame.InfoPanel:SetSize(db.width,db.infoPanel.height)
+						end
 					elseif frame.ORIENTATION == 'RIGHT' then
-						frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING - portrait.db.width, UF.BORDER + UF.SPACING)
-						frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER, -(UF.SPACING*3))
-						frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING - portrait.db.width, db.infoPanel.height)
-						frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER, db.infoPanel.height)
-						frame.InfoPanel:SetSize(db.width-portrait.db.width,db.infoPanel.height)
+						if not frame.USE_PORTRAIT_OVERLAY then
+							frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING - portrait.db.width, UF.BORDER + UF.SPACING)
+							frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER, -(UF.SPACING*3))
+							frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING - portrait.db.width, db.infoPanel.height)
+							frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER, db.infoPanel.height)
+							frame.InfoPanel:SetSize(db.width-portrait.db.width,db.infoPanel.height)
+						else
+							frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
+							frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER, -(UF.SPACING*3))
+							frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height)
+							frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER, db.infoPanel.height)
+							frame.InfoPanel:SetSize(db.width,db.infoPanel.height)
+						end
 					end
 				else
 					frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
@@ -75,18 +90,33 @@ local function Configure_InfoPanel(_, frame)
 						frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height)
 						frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER+portrait.db.width, db.infoPanel.height)
 						frame.InfoPanel:SetSize(db.width-portrait.db.width,db.infoPanel.height)]]
-
-						frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
-						frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', (UF.BORDER*1.5)+portrait.db.width, -(UF.SPACING*3))
-						frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height - (UF.BORDER/2))
-						frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', (UF.BORDER*1.5)+portrait.db.width, db.infoPanel.height - (UF.BORDER/2))
-						frame.InfoPanel:SetSize(db.width-portrait.db.width,db.infoPanel.height)
+						if not frame.USE_PORTRAIT_OVERLAY then
+							frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
+							frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', (UF.BORDER*1.5)+portrait.db.width, -(UF.SPACING*3))
+							frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height - (UF.BORDER/2))
+							frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', (UF.BORDER*1.5)+portrait.db.width, db.infoPanel.height - (UF.BORDER/2))
+							frame.InfoPanel:SetSize(db.width-portrait.db.width,db.infoPanel.height)
+						else
+							frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
+							frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', (UF.BORDER*1.5), -(UF.SPACING*3))
+							frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height - (UF.BORDER/2))
+							frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', (UF.BORDER*1.5), db.infoPanel.height - (UF.BORDER/2))
+							frame.InfoPanel:SetSize(db.width,db.infoPanel.height)
+						end
 					elseif frame.ORIENTATION == 'RIGHT' then
-						frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING - portrait.db.width, UF.BORDER + UF.SPACING)
-						frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER*1.3, -(UF.SPACING*3))
-						frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING - portrait.db.width, db.infoPanel.height)
-						frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER*1.3, db.infoPanel.height)
-						frame.InfoPanel:SetSize(db.width-portrait.db.width,db.infoPanel.height)
+						if not frame.USE_PORTRAIT_OVERLAY then
+							frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
+							frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER*1.3, -(UF.SPACING*3))
+							frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, db.infoPanel.height)
+							frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER*1.3, db.infoPanel.height)
+							frame.InfoPanel:SetSize(db.width,db.infoPanel.height)
+						else
+							frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING - portrait.db.width, UF.BORDER + UF.SPACING)
+							frame.InfoPanel:Point('BOTTOMLEFT', frame, 'TOPLEFT', UF.BORDER*1.3, -(UF.SPACING*3))
+							frame.InfoPanel:Point('TOPRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING - portrait.db.width, db.infoPanel.height)
+							frame.InfoPanel:Point('TOPLEFT', frame, 'TOPLEFT', UF.BORDER*1.3, db.infoPanel.height)
+							frame.InfoPanel:SetSize(db.width-portrait.db.width,db.infoPanel.height)
+						end
 					end
 				else
 					frame.InfoPanel:Point('BOTTOMRIGHT', frame, 'TOPRIGHT', -UF.BORDER - UF.SPACING, UF.BORDER + UF.SPACING)
@@ -140,7 +170,7 @@ function ElvUI_EltreumUI:SkinPortrait(frame)
 	frame.Portrait = portrait
 
 	if frame.USE_PORTRAIT and portrait.db.style ~= '3D' then
-		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.infopanelontop and allowedunits[tostring(frame:GetName())] then
+		if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.infopanelontop and allowedunits[tostring(frame:GetName())] and not frame.USE_PORTRAIT_OVERLAY then
 			if frame.ORIENTATION == 'LEFT' then
 				if portrait.db.style == '2D' then
 					portrait:ClearAllPoints()

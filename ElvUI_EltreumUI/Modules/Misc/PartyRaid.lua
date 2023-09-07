@@ -44,7 +44,6 @@ function ElvUI_EltreumUI:RaidDeathGroupCheck()
 				ElvUI_EltreumUI:RegisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath()
 			end
 		elseif not IsInGroup() then
-			print("11123123")
 			deaththrottle = 0
 			ElvUI_EltreumUI:UnregisterEvent('COMBAT_LOG_EVENT_UNFILTERED') --for ElvUI_EltreumUI:RaidDeath() to not fire when not in a group
 		end

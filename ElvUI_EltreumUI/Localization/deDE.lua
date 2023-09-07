@@ -1500,3 +1500,5 @@ L["Eltruism Hearthstones/Teleports"] = "Eltruism Ruhesteine/Teleports"
 L["Classes"] = "Klassen"
 L["Enable Custom Font"] = "Benutzerdefinierte Schriftart"
 L["Change Texture Color"] = true
+L["Play a sound when you Die in Hardcore"] = true
+L["Enable Animation and Sound when Guild Member Dies"] = true

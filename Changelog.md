@@ -1,6 +1,14 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.9.6
+Added options to disable the Hardcore player death sound and the guild member death  
+Added options for custom color Portraits  
+Added an option to change the Waypoint Arrow Color in Retail  
+Fixed a possible error with the PallyPower Skin in Classic  
+Fixed a possible taint in the Objective Frame in Retail  
+Fixed shadows when using Information Panel on Top  
+Fixed target portrait in Classic
 ### 3.9.5
 Added Portrait Skin, which can add Blizz-like portraits and more to ElvUI Unitframes, alongside customization options in Eltruism > Unitframes > Portrait  
 Added an option to Disable the Eltruism AFK logo, separate from the skin  

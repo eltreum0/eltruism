@@ -336,6 +336,8 @@ P.ElvUI_EltreumUI = {
 		hidetalkinghead = false,
 		playerdeath = false,
 		playerdeathgta = false,
+		playerdeathhardcore = true,
+		guildmemberdeathhardcore = true,
 		playerdeathcustom = false,
 		playerdeathcustomtext = "YOU DIED",
 		doom = {
@@ -854,6 +856,12 @@ P.ElvUI_EltreumUI = {
 				scale = 0,
 				customcircle = false,
 				reversegradient = false,
+				customcolor = false,
+				color = {
+					r = 0.27,
+					g = 0.50,
+					b = 0.70,
+				}
 			},
 			target = {
 				style = "SYMBOLS",
@@ -870,6 +878,12 @@ P.ElvUI_EltreumUI = {
 				scale = 0,
 				customcircle = false,
 				reversegradient = true,
+				customcolor = false,
+				color = {
+					r = 0.27,
+					g = 0.50,
+					b = 0.70,
+				}
 			},
 			party = {
 				style = "SYMBOLS",
@@ -886,6 +900,12 @@ P.ElvUI_EltreumUI = {
 				scale = 0,
 				customcircle = false,
 				reversegradient = false,
+				customcolor = false,
+				color = {
+					r = 0.27,
+					g = 0.50,
+					b = 0.70,
+				}
 			},
 			targettarget = {
 				style = "SYMBOLS",
@@ -902,6 +922,12 @@ P.ElvUI_EltreumUI = {
 				scale = 0,
 				customcircle = false,
 				reversegradient = true,
+				customcolor = false,
+				color = {
+					r = 0.27,
+					g = 0.50,
+					b = 0.70,
+				}
 			},
 			focus = {
 				style = "SYMBOLS",
@@ -918,6 +944,12 @@ P.ElvUI_EltreumUI = {
 				scale = 0,
 				customcircle = false,
 				reversegradient = false,
+				customcolor = false,
+				color = {
+					r = 0.27,
+					g = 0.50,
+					b = 0.70,
+				}
 			},
 			focustarget = {
 				style = "SYMBOLS",
@@ -934,6 +966,12 @@ P.ElvUI_EltreumUI = {
 				scale = 0,
 				customcircle = false,
 				reversegradient = false,
+				customcolor = false,
+				color = {
+					r = 0.27,
+					g = 0.50,
+					b = 0.70,
+				}
 			},
 		},
 		infopanelontop = false,

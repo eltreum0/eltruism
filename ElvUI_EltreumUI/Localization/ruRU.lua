@@ -1446,3 +1446,5 @@ L["Eltruism Hearthstones/Teleports"] = true
 L["Classes"] = true
 L["Enable Custom Font"] = true
 L["Change Texture Color"] = true
+L["Play a sound when you Die in Hardcore"] = true
+L["Enable Animation and Sound when Guild Member Dies"] = true
