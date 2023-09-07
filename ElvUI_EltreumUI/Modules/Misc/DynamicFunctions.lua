@@ -72,7 +72,7 @@ function ElvUI_EltreumUI:CooldownColors()
 		E:UpdateMediaItems()
 	end
 
-	if E.db.unitframe.units.player.enable and E.db.unitframe.units.player.RestIcon.enable and E.db.ElvUI_EltreumUI.unitframes.blizzardresticonclasscolor then
+	if E.db.unitframe.units.player.enable and E.db.unitframe.units.player.RestIcon.enable and E.db.ElvUI_EltreumUI.unitframes.blizzardresticonclasscolor and E.Retail then
 		E.db.unitframe.units.player.RestIcon.color.r = valuecolors.r
 		E.db.unitframe.units.player.RestIcon.color.g = valuecolors.g
 		E.db.unitframe.units.player.RestIcon.color.b = valuecolors.b
