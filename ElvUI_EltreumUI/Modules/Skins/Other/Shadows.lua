@@ -1522,7 +1522,7 @@ function ElvUI_EltreumUI:Shadows()
 
 				if E.db.unitframe.units.target.enable and E.db.unitframe.units.target.portrait.enable and not E.db.unitframe.units.target.portrait.overlay then
 					if _G["ElvUF_Target"] and not _G["ElvUF_Target"].shadow then
-						if not (E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.ElvUI_EltreumUI.borders.borders) then
+						if not (E.db.ElvUI_EltreumUI.borders.targetborder and E.db.ElvUI_EltreumUI.borders.borders) then
 							_G["ElvUF_Target"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							_G["ElvUF_Target"].shadow:ClearAllPoints()
 							if E.db.unitframe.units.target.orientation == "LEFT" then
@@ -2185,7 +2185,7 @@ function ElvUI_EltreumUI:Shadows()
 
 				--info panel on top
 				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
-					if E.db.unitframe.units.player.infoPanel.enable then ------TODO might need to look into right orientation
+					if E.db.unitframe.units.player.infoPanel.enable and not (E.db.ElvUI_EltreumUI.borders.playerborder and E.db.ElvUI_EltreumUI.borders.borders) then ------TODO might need to look into right orientation
 						if _G["ElvUF_Player_HealthBar"].shadow then
 							_G["ElvUF_Player_HealthBar"].shadow:Hide()
 						end
@@ -2257,7 +2257,7 @@ function ElvUI_EltreumUI:Shadows()
 							end
 						end
 					end
-					if E.db.unitframe.units.target.infoPanel.enable then
+					if E.db.unitframe.units.target.infoPanel.enable and not (E.db.ElvUI_EltreumUI.borders.targetborder and E.db.ElvUI_EltreumUI.borders.borders) then
 						if _G["ElvUF_Target_HealthBar"].shadow then
 							_G["ElvUF_Target_HealthBar"].shadow:Hide()
 						end
@@ -2305,7 +2305,7 @@ function ElvUI_EltreumUI:Shadows()
 							end
 						end
 					end
-					if E.db.unitframe.units.targettarget.infoPanel.enable then
+					if E.db.unitframe.units.targettarget.infoPanel.enable and not (E.db.ElvUI_EltreumUI.borders.targettargetborder and E.db.ElvUI_EltreumUI.borders.borders) then
 						if _G["ElvUF_TargetTarget_HealthBar"].shadow then
 							_G["ElvUF_TargetTarget_HealthBar"].shadow:Hide()
 						end
@@ -2331,7 +2331,7 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_TargetTarget"].shadow)
 						end
 					end
-					if E.db.unitframe.units.pet.infoPanel.enable then
+					if E.db.unitframe.units.pet.infoPanel.enable and not (E.db.ElvUI_EltreumUI.borders.petborder and E.db.ElvUI_EltreumUI.borders.borders) then
 						if _G["ElvUF_Pet_HealthBar"].shadow then
 							_G["ElvUF_Pet_HealthBar"].shadow:Hide()
 						end
@@ -2357,6 +2357,16 @@ function ElvUI_EltreumUI:Shadows()
 								end
 							end
 							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Pet"].shadow)
+						end
+					end
+					if (E.db.ElvUI_EltreumUI.borders.playerborder and E.db.ElvUI_EltreumUI.borders.borders) then
+						if _G["ElvUF_Player"].shadow then
+							_G["ElvUF_Player"].shadow:Hide()
+						end
+					end
+					if (E.db.ElvUI_EltreumUI.borders.targetborder and E.db.ElvUI_EltreumUI.borders.borders) then
+						if _G["ElvUF_Target"].shadow then
+							_G["ElvUF_Target"].shadow:Hide()
 						end
 					end
 				else
