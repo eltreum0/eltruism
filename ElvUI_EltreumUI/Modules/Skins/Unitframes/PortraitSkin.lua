@@ -240,7 +240,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 				if UnitIsPlayer(frame.unit) then
 					local _, unitclass = UnitClass(frame.unit)
 					if E.db.ElvUI_EltreumUI.unitframes.portrait.gradient then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor and not E.db.ElvUI_EltreumUI.unitframes.portrait[db].defaultgradient then
+						if (E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor) and not E.db.ElvUI_EltreumUI.unitframes.portrait[db].defaultgradient then
 							frame.EltruismPortrait.border:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(unitclass, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
 							frame.EltruismPortrait.edge:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(unitclass, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
 							frame.EltruismPortrait.rare:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(unitclass, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
@@ -259,7 +259,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 					local reaction = UnitReaction(frame.unit, "player")
 					if not reaction then return end
 					if E.db.ElvUI_EltreumUI.unitframes.portrait.gradient then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor and not E.db.ElvUI_EltreumUI.unitframes.portrait[db].defaultgradient then
+						if (E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor) and not E.db.ElvUI_EltreumUI.unitframes.portrait[db].defaultgradient then
 							if reaction >= 5 then
 								frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
 								frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
