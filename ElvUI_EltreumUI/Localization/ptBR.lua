@@ -1456,3 +1456,4 @@ L["Button Hover"] = true
 L["Button Disabled"] = true
 L["Text Selected"] = true
 L["Text Enabled"] = true
+L["Default Gradient Colors"] = true
