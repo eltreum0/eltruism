@@ -13,6 +13,9 @@ local function CreateFader(frame)
 	if not E.db.ElvUI_EltreumUI.skins then return end
 	if not E.db.ElvUI_EltreumUI.skins.ace3 then return end
 	if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
+	if not E.db.ElvUI_EltreumUI.skins.ace3.button then return end
+	if not E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor then return end
+
 	if not frame.EltruismAnimation then
 		frame.EltruismAnimation = frame:CreateTexture(nil, "BACKGROUND", nil, 1)
 		frame.EltruismAnimation:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.ace3.texture))
