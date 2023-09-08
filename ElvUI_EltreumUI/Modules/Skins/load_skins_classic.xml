@@ -1,7 +1,8 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file='SetTemplate.lua'/>
-	<Script file='Actionbars/Actionbars.lua'/>
+	<Script file='Other/Shadows.lua'/>
 	<Include file='Addons\load_addons.xml'/>
+	<Script file='Actionbars/Actionbars.lua'/>
 	<Script file='Addons/MeetingHorn.lua'/>
 	<Script file='Addons/PallyPower.lua'/>
 	<Script file='Borders/Borders.lua'/>
@@ -16,10 +17,16 @@
 	<Script file='Nameplate/Gradient.lua'/>
 	<Script file='Nameplate/Height.lua'/>
 	<Script file='Nameplate/Model.lua'/>
+	<Script file='Other/Animations.lua'/>
+	<Script file='Other/DarkLightColors.lua'/>
+	<Script file='Other/Databars.lua'/>
+	<Script file='Other/Doom.lua'/>
 	<Script file='Other/ExpandedTalents.lua'/>
 	<Script file='Other/LevelUp.lua'/>
 	<Script file='Other/Other.lua'/>
+	<Script file='Other/QuestSkin.lua'/>
 	<Script file='Other/Stealth.lua'/>
+	<Script file='Other/Tooltip.lua'/>
 	<Script file='Unitframes/GradientFunctions.lua'/>
 	<Script file='Unitframes/Aurabars.lua'/>
 	<Script file='Unitframes/Blizzard.lua'/>
@@ -34,11 +41,4 @@
 	<Script file='Unitframes/PortraitSkin.lua'/>
 	<Script file='Unitframes/RoleIcons.lua'/>
 	<Script file='Unitframes/Textures.lua'/>
-	<Script file='Animations.lua'/>
-	<Script file='DarkLightColors.lua'/>
-	<Script file='Databars.lua'/>
-	<Script file='Doom.lua'/>
-	<Script file='QuestSkin.lua'/>
-	<Script file='Shadows.lua'/>
-	<Script file='Tooltip.lua'/>
 </Ui>

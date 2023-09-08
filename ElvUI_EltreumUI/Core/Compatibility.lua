@@ -253,8 +253,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	local CheckDoom = GetCheckCompatibilityFunction("Doom_CooldownPulse", select(2,GetAddOnInfo("Doom_CooldownPulse")),true)
 
 	--Character Panel
-	CheckMerathilisUI(L["Class Icons"], L["Class Icons"], "db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel", "db.mui.armory.character.classIcon")
-	CheckMerathilisUI(L["Character Panel"], L["Character Panel"], "db.ElvUI_EltreumUI.skins.classicarmory", "db.mui.armory.character.enable")
+	CheckMerathilisUI(L["Character Panel"].."\n"..L["Class Icons"], L["Character Panel"].."\n"..L["Class Icons"], "db.ElvUI_EltreumUI.skins.classicarmory", "db.mui.armory.character.enable")
 	CheckDeja(L["Character Panel"], L["DejaCharacterStats"], "db.ElvUI_EltreumUI.skins.classicarmory", "DejaCharacterStats")
 	CheckToxiUI(L["Character Panel"], "Armory", "db.ElvUI_EltreumUI.skins.elvui.SetTemplate", "db.TXUI.armory.enabled")
 	CheckToxiUI(L["Expand Character Art"], "Armory", "db.ElvUI_EltreumUI.skins.elvui.SetTemplate", "db.TXUI.armory.enabled")
@@ -280,7 +279,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 
 	--map/waypoint
 	CheckMerathilisUI(format("%s\n%s", L["Waypoints"], L["Autopin, Time to Arrive"]), format("%s\n%s", L["Waypoints"], L["Autopin"]), "db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable", "db.mui.maps.superTracker.enable")
-	CheckMerathilisUI(format("%s\n%s", L["Waypoints"], L["Chat Command"]), format("%s\n%s", L["Waypoints"], L["Chat Command"]), "db.ElvUI_EltreumUI.waypoints.waytext.enable", "db.mui.mapssuperTracker.waypointParse.enable")
+	CheckMerathilisUI(format("%s\n%s", L["Waypoints"], L["Chat Command"]), format("%s\n%s", L["Waypoints"], L["Chat Command"]), "db.ElvUI_EltreumUI.waypoints.waytext.enable", "db.mui.maps.superTracker.waypointParse.enable")
 	CheckWindTools(format("%s\n%s", L["Waypoints"], L["Autopin, Time to Arrive"]), format("%s\n%s", L["Waypoints"], L["Autopin"]), "db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable", "private.WT.maps.superTracker.enable")
 	CheckWindTools(format("%s\n%s", L["Waypoints"], L["Chat Command"]), format("%s\n%s", L["Waypoints"], L["Chat Command"]), "db.ElvUI_EltreumUI.waypoints.waytext.enable", "private.WT.maps.superTracker.waypointParse.enable")
 	CheckWindTools(L["Map Scale"], L["Map Scale"], "db.ElvUI_EltreumUI.otherstuff.worldmapscale", "private.WT.maps.worldMap.scale.enable")
@@ -309,13 +308,13 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckToxiUI(L["Gradient"], "Gradient Mode", "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "db.TXUI.themes.gradientMode.enabled")
 	CheckMerathilisUI(L["Gradient Zone/Mail/Quest Text"], L["Zone Text"], "db.ElvUI_EltreumUI.skins.zones", "db.mui.media.zoneText.enable")
 	CheckMerathilisUI(L["Gradient Zone/Mail/Quest Text"], L["Mail Text"], "db.ElvUI_EltreumUI.skins.zones", "db.mui.media.miscText.mail.enable")
-	CheckMerathilisUI(L["Tooltip\nGradient Name and Health"], L["Tooltip\nGradient Name"], "db.ElvUI_EltreumUI.skins.gradienttooltip", "db.mui.tooltip.gradientName")
+	CheckMerathilisUI(L["Tooltip\nGradient Name and Health"], L["Tooltip\nGradient Name"], "db.ElvUI_EltreumUI.skins.gradienttooltip", "db.mui.gradient.enable") --currently merathilis ui does not do anything with the tooltip option (no db entry toggle), only general disable of gradient works
 
 	--skins for addons
-	CheckMerathilisUI(L["BugSack"], L["BugSack"], "db.ElvUI_EltreumUI.skins.bugsack", "db.mui.skins.addonSkins.bs")
+	CheckMerathilisUI(L["BugSack"], L["BugSack"], "db.ElvUI_EltreumUI.skins.bugsack", "private.mui.skins.addonSkins.bs")
 	CheckWindTools(L["BugSack"], L["BugSack"], "db.ElvUI_EltreumUI.skins.bugsack", "private.WT.skins.addons.bugSack")
-	CheckMerathilisUI(L["Clique"], L["Clique"], "db.ElvUI_EltreumUI.skins.clique", "db.mui.skins.addonSkins.cl")
-	CheckMerathilisUI(L["Immersion"], L["Immersion"], "db.ElvUI_EltreumUI.skins.immersion", "db.mui.skins.addonSkins.imm")
+	CheckMerathilisUI(L["Clique"], L["Clique"], "db.ElvUI_EltreumUI.skins.clique", "private.mui.skins.addonSkins.cl")
+	CheckMerathilisUI(L["Immersion"], L["Immersion"], "db.ElvUI_EltreumUI.skins.immersion", "private.mui.skins.addonSkins.imm")
 	CheckWindTools(L["Immersion"], L["Immersion"], "db.ElvUI_EltreumUI.skins.immersion", "private.WT.skins.addons.immersion")
 	CheckWindTools(L["RareScanner"], L["RareScanner"], "db.ElvUI_EltreumUI.skins.rarescanner", "private.WT.skins.addons.rareScanner")
 	CheckWindTools(L["SimulationCraft"], L["SimulationCraft"], "db.ElvUI_EltreumUI.skins.simulationcraft", "private.WT.skins.addons.simulationcraft")
@@ -323,6 +322,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckWindTools(L["Hekili"], L["Hekili"], "db.ElvUI_EltreumUI.skins.hekili", "private.WT.skins.addons.hekili")
 	CheckWindTools(L["OmniCD"], L["OmniCD"], "db.ElvUI_EltreumUI.skins.omnicd", "private.WT.skins.addons.omniCD")
 	CheckToxiUI(L["Skin ElvUI"], "ElvUI Theme", "db.ElvUI_EltreumUI.skins.elvui.SetTemplate", "db.TXUI.addons.elvUITheme.enabled")
+	CheckMerathilisUI("Details".." "..L["Embed"], "Details".." "..L["Embed"], "db.ElvUI_EltreumUI.skins.detailsembed", "private.mui.skins.embed.enable")
 
 	--other
 	CheckMerathilisUI(L["Combat Alert"], L["Combat Alert"], "db.ElvUI_EltreumUI.loot.loottext.combatindicator", "db.mui.CombatAlert.enable")

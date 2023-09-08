@@ -852,7 +852,7 @@ function ElvUI_EltreumUI:Borders()
 				edgeSize = E.db.ElvUI_EltreumUI.borders.minimapsize,
 			})
 			MinimapBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			MinimapBorder:SetFrameStrata("LOW")
+			MinimapBorder:SetFrameStrata("MEDIUM")
 			MinimapBorder:SetFrameLevel(2)
 
 			if not E.db.datatexts.panels.MinimapPanel.backdrop or not E.db.datatexts.panels.MinimapPanel.enable then
