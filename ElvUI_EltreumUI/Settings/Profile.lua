@@ -61,6 +61,41 @@ P.ElvUI_EltreumUI = {
 			},
 			texture = "Eltreum-Tile01",
 		},
+		ace3 = {
+			enable = false,
+			texture = "ElvUI Norm1",
+			fadetime = 0.3,
+			tab = {
+				TextEnabled = {
+					r = 0.27,
+					g = 0.50,
+					b = 0.70,
+					classcolor = true,
+				},
+				TextSelected = {
+					r = 1,
+					g = 1,
+					b = 1,
+					classcolor = false,
+				},
+			},
+			button = {
+				hovercolor = {
+					r = 0.07,
+					g = 0.30,
+					b = 0.50,
+					a = 1,
+					classcolor = true,
+				},
+				disabled = {
+					r = 0.07,
+					g = 0.30,
+					b = 0.50,
+					a = 1,
+					classcolor = true,
+				},
+			},
+		},
 		levelbossinstance = false,
 		widertransmog = false,
 		expandedstable = false,

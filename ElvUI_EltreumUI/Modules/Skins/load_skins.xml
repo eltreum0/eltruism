@@ -1,5 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file='SetTemplate.lua'/>
+	<Script file='Ace3.lua'/>
 	<Script file='Other/Shadows.lua'/>
 	<Include file='Addons\load_addons.xml'/>
 	<Script file='Actionbars/Actionbars.lua'/>
