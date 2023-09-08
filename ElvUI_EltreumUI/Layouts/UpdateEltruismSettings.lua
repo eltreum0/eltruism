@@ -145,6 +145,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.skins.cell = true
 	E.db.ElvUI_EltreumUI.skins.dbm = true
 	E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate = true --elvui skin
+	E.db.ElvUI_EltreumUI.skins.ace3.enable = true --elvui skin
 
 	-- Borders
 	E.db.ElvUI_EltreumUI.borders.minimapborder = true
