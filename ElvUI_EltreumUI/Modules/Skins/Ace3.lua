@@ -37,7 +37,7 @@ local function CreateFader(frame)
 			UIFrameFadeIn(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 0, 1)
 			if frame.SetBackdropBorderColor then
 				frame:SetBackdropBorderColor(0, 0, 0, 0)
-				frame.SetBackdropBorderColor = E.noop
+				--frame.SetBackdropBorderColor = E.noop
 			end
 		end)
 		frame:HookScript("OnLeave", function()
@@ -66,7 +66,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 						btn:SetBackdropColor(valuecolors.r, valuecolors.g, valuecolors.b,E.db.general.backdropfadecolor.a)
 					end
 					btn:SetBackdropBorderColor(0, 0, 0, 0)
-					btn.SetBackdropBorderColor = E.noop
+					--btn.SetBackdropBorderColor = E.noop
 				end
 			end
 		end
@@ -86,7 +86,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 					button:SetBackdropColor(valuecolors.r, valuecolors.g, valuecolors.b,E.db.general.backdropfadecolor.a)
 				end
 				button:SetBackdropBorderColor(0, 0, 0, 0)
-				button.SetBackdropBorderColor = E.noop
+				--button.SetBackdropBorderColor = E.noop
 			end
 		else
 			if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
@@ -96,7 +96,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 			end
 			if button.SetBackdropColor then
 				button:SetBackdropBorderColor(0, 0, 0, 0)
-				button.SetBackdropBorderColor = E.noop
+				--button.SetBackdropBorderColor = E.noop
 			end
 		end
 	end)
@@ -112,7 +112,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 			if tab.backdrop then
 				tab.backdrop:SetBackdropColor(0.5, 0.5, 0.5, 0.3)
 				tab.backdrop:SetBackdropBorderColor(0, 0, 0, 0)
-				tab.backdrop.SetBackdropBorderColor = E.noop
+				--tab.backdrop.SetBackdropBorderColor = E.noop
 			end
 		elseif tab.disabled then
 			if tab.Text and tab.Text.GetText then
@@ -135,7 +135,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 			end
 			if tab.backdrop then
 				tab.backdrop:SetBackdropBorderColor(0, 0, 0, 0)
-				tab.backdrop.SetBackdropBorderColor = E.noop
+				--tab.backdrop.SetBackdropBorderColor = E.noop
 			end
 		end
 
@@ -177,10 +177,10 @@ function ElvUI_EltreumUI:Ace3Skin()
 				bd:SetBackdropColor(valuecolors.r, valuecolors.g, valuecolors.b,E.db.general.backdropfadecolor.a)
 			end
 			bd:SetBackdropBorderColor(0, 0, 0, 0)
-			bd.SetBackdropBorderColor = E.noop
+			--bd.SetBackdropBorderColor = E.noop
 		else
 			bd:SetBackdropBorderColor(0, 0, 0, 0)
-			bd.SetBackdropBorderColor = E.noop
+			--bd.SetBackdropBorderColor = E.noop
 		end
 	end)
 
