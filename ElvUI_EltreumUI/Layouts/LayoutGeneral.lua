@@ -1396,6 +1396,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		}
 
 	ElvUI_EltreumUI:Print(L["General Layout has been set."])
+
+	--run shadows
+	ElvUI_EltreumUI:Shadows()
 end
 
 -- Private DB
