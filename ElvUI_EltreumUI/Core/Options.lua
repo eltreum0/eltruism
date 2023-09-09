@@ -85,6 +85,7 @@ local DONATORS = {
 	'|cffB50909bansheeirl|r',
 	'|cffB50909Ante|r',
 	'|cffB50909Spectated|r',
+	'|cffB50909Volo|r',
 }
 
 local TRANSLATORS = {
