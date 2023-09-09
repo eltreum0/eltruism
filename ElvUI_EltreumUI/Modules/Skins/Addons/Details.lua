@@ -30,6 +30,14 @@ do
 
 	--Details gradient, inspired by aftermathh's edit but had to delve deeper into it, too many things going on there
 	function ElvUI_EltreumUI:EltruismDetails()
+
+		--check for correct details version, add a print if using wrong one
+		local checkdetails = GetAddOnMetadata("Details","Version")
+		if not checkdetails then
+			ElvUI_EltreumUI:Print("Details Classic Version is not recommended, use the regular Version which is better supported.")
+			return
+		end
+
 		if E.db.ElvUI_EltreumUI.skins.details then
 			if not DetailsHooked then
 				local Details = _G.Details
