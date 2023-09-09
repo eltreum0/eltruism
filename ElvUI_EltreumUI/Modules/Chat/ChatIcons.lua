@@ -137,7 +137,7 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Spectated-Benediction"] = DonatorsIcon,
 
 			--Volo
-			["Volo-Benediction"] = DonatorsIcon,
+			["Völo-Benediction"] = DonatorsIcon,
 		}
 
 		--Discord MVPs
