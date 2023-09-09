@@ -138,10 +138,10 @@ do
 													row.background:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
 												end
 											else
-												row.background:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.5,g= g-0.5,b= b-0.5,a= 0.9}, {r=r+0.2,g= g+0.2,b= b+0.2,a= 0.9})
+												row.background:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r = r-0.5,g = g-0.5,b = b-0.5,a = 0.9}, {r= r+0.2,g = g+0.2,b = b+0.2,a = 0.9})
 											end
 										else
-											row.background:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.5,g= g-0.5,b= b-0.5,a= 0.9}, {r=r+0.2,g= g+0.2,b= b+0.2,a= 0.9})
+											row.background:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r = r-0.5,g = g-0.5,b = b-0.5,a = 0.9}, {r = r+0.2,g = g+0.2,b = b+0.2,a = 0.9})
 										end
 									end)
 									row.background.EltruismHook = true
