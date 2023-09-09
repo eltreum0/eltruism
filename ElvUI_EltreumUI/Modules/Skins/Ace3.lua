@@ -36,7 +36,7 @@ local function CreateFader(frame)
 			--if frame.highlight and frame.highlight:IsVisible() then return end
 			UIFrameFadeIn(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 0, 1)
 			if frame.SetBackdropBorderColor then
-				frame:SetBackdropBorderColor(0, 0, 0, 0)
+				frame:SetBackdropBorderColor(0, 0, 0, 1)
 				--frame.SetBackdropBorderColor = E.noop
 			end
 		end)
@@ -65,7 +65,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 					else
 						btn:SetBackdropColor(valuecolors.r, valuecolors.g, valuecolors.b,E.db.general.backdropfadecolor.a)
 					end
-					btn:SetBackdropBorderColor(0, 0, 0, 0)
+					btn:SetBackdropBorderColor(0, 0, 0, 1)
 					--btn.SetBackdropBorderColor = E.noop
 				end
 			end
@@ -85,7 +85,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 				else
 					button:SetBackdropColor(valuecolors.r, valuecolors.g, valuecolors.b,E.db.general.backdropfadecolor.a)
 				end
-				button:SetBackdropBorderColor(0, 0, 0, 0)
+				--button:SetBackdropBorderColor(0, 0, 0, 0)
 				--button.SetBackdropBorderColor = E.noop
 			end
 		else
@@ -94,10 +94,10 @@ function ElvUI_EltreumUI:Ace3Skin()
 			else
 				button.Text:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
 			end
-			if button.SetBackdropColor then
-				button:SetBackdropBorderColor(0, 0, 0, 0)
+			--if button.SetBackdropColor then
+			--	button:SetBackdropBorderColor(0, 0, 0, 0)
 				--button.SetBackdropBorderColor = E.noop
-			end
+			--end
 		end
 	end)
 
@@ -111,7 +111,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 			end
 			if tab.backdrop then
 				tab.backdrop:SetBackdropColor(0.5, 0.5, 0.5, 0.3)
-				tab.backdrop:SetBackdropBorderColor(0, 0, 0, 0)
+				--tab.backdrop:SetBackdropBorderColor(0, 0, 0, 0)
 				--tab.backdrop.SetBackdropBorderColor = E.noop
 			end
 		elseif tab.disabled then
@@ -133,10 +133,10 @@ function ElvUI_EltreumUI:Ace3Skin()
 					end
 				end
 			end
-			if tab.backdrop then
-				tab.backdrop:SetBackdropBorderColor(0, 0, 0, 0)
+			--if tab.backdrop then
+			--	tab.backdrop:SetBackdropBorderColor(0, 0, 0, 0)
 				--tab.backdrop.SetBackdropBorderColor = E.noop
-			end
+			--end
 		end
 
 		if not tab.EltruismDisableHook then
@@ -176,10 +176,10 @@ function ElvUI_EltreumUI:Ace3Skin()
 			else
 				bd:SetBackdropColor(valuecolors.r, valuecolors.g, valuecolors.b,E.db.general.backdropfadecolor.a)
 			end
-			bd:SetBackdropBorderColor(0, 0, 0, 0)
+			bd:SetBackdropBorderColor(0, 0, 0, 1)
 			--bd.SetBackdropBorderColor = E.noop
-		else
-			bd:SetBackdropBorderColor(0, 0, 0, 0)
+		--else
+			--bd:SetBackdropBorderColor(0, 0, 0, 0)
 			--bd.SetBackdropBorderColor = E.noop
 		end
 	end)
