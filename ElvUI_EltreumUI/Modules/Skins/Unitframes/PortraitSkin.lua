@@ -169,7 +169,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 		frame.EltruismPortrait:SetPoint("CENTER", frame, tostring(E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align), E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.x, E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.y)
 		frame.EltruismPortrait:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait[db].size,E.db.ElvUI_EltreumUI.unitframes.portrait[db].size)
 		frame.EltruismPortrait:SetFrameLevel(200)
-		frame.EltruismPortrait:SetFrameStrata("HIGH")
+		frame.EltruismPortrait:SetFrameStrata("MEDIUM")
 		frame.EltruismPortrait.border = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitTexture", "OVERLAY", nil, 5)
 		frame.EltruismPortrait.border:SetParent(frame.EltruismPortrait)
 		frame.EltruismPortrait.border:SetAllPoints(frame.EltruismPortrait)
