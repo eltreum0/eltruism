@@ -443,7 +443,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 					end
 
 					--force update portrait
-					if _G["ElvUF_Target"].Portrait3D then
+					if _G["ElvUF_Target"].Portrait3D and _G["ElvUF_Target"].Portrait3D.ForceUpdate then
 						_G["ElvUF_Target"].Portrait3D:ForceUpdate()
 					end
 				end)
@@ -514,7 +514,7 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 					end
 
 					--force update portrait
-					if _G["ElvUF_Player"].Portrait3D then
+					if _G["ElvUF_Player"].Portrait3D and _G["ElvUF_Player"].Portrait3D.ForceUpdate then
 						_G["ElvUF_Player"].Portrait3D:ForceUpdate()
 					end
 				end)
