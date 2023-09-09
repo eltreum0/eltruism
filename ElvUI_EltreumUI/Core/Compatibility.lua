@@ -323,6 +323,12 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckWindTools(L["OmniCD"], L["OmniCD"], "db.ElvUI_EltreumUI.skins.omnicd", "private.WT.skins.addons.omniCD")
 	CheckToxiUI(L["Skin ElvUI"], "ElvUI Theme", "db.ElvUI_EltreumUI.skins.elvui.SetTemplate", "db.TXUI.addons.elvUITheme.enabled")
 	CheckMerathilisUI("Details".." "..L["Embed"], "Details".." "..L["Embed"], "db.ElvUI_EltreumUI.skins.detailsembed", "private.mui.skins.embed.enable")
+	CheckWindTools("Ace3", L["Widgets"].." "..L["Button"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.WT.skins.widgets.button.enable")
+	CheckWindTools("Ace3", L["Widgets"].." "..L["Tab"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.WT.skins.widgets.tab.enable")
+	CheckWindTools("Ace3", L["Widgets"].." "..L["Tree Group Button"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.WT.skins.widgets.treeGroupButton.enable")
+	CheckMerathilisUI("Ace3", L["Widgets"].." "..L["Button"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.mui.skins.widgets.button.enable")
+	CheckMerathilisUI("Ace3", L["Widgets"].." "..L["Tab"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.mui.skins.widgets.tab.enable")
+	CheckMerathilisUI("Ace3", L["Widgets"].." "..L["Tree Group Button"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.mui.skins.widgets.treeGroupButton.enable")
 
 	--other
 	CheckMerathilisUI(L["Combat Alert"], L["Combat Alert"], "db.ElvUI_EltreumUI.loot.loottext.combatindicator", "db.mui.CombatAlert.enable")

@@ -48,6 +48,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	ElvUI_EltreumUI:LoadCommands() --loads chat commands
 	ElvUI_EltreumUI:AuthorMVPDonatorIcons() -- add author/donator/mvp icons
 	ElvUI_EltreumUI:SetTemplateSkin() -- hook settemplate elvui skin
+	ElvUI_EltreumUI:Ace3Skin() --Ace3 Skin hook setup
 	ElvUI_EltreumUI:BorderAdjust() --auto adjust actionbar/border if option is enabled
 	ElvUI_EltreumUI:Borders() --creates borders if option is enabled
 	ElvUI_EltreumUI:GroupBorderColorUpdate()

@@ -142,20 +142,29 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 							frame.EltruismAnimation = true
 						end]]
 
-						--[[if not isUnitFrameElement and not isNamePlateElement and frame:GetObjectType() == "Button" and not frame.Bags and not frame.EltruismAnimationTest then
-							frame.EltruismAnimationTest = frame:CreateTexture(nil, "BACKGROUND", nil, 1)
-							--frame.EltruismAnimationTest:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Vignette.tga")
-							frame.EltruismAnimationTest:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.questsettings.texture))
-							frame.EltruismAnimationTest:SetVertexColor(1, 1, 1, 1)
-							frame.EltruismAnimationTest:SetInside(frame)
-							frame.EltruismAnimationTest:SetBlendMode("BLEND")
-							frame.EltruismAnimationTest:SetAlpha(0)
-							frame:HookScript("OnEnter", function()
-								UIFrameFadeIn(frame.EltruismAnimationTest, 0.5, 0, 1)
+						--[[if not isUnitFrameElement and not isNamePlateElement and frame:GetObjectType() == "Button" and not frame.Bags and not frame.Cooldown and not frame.EltruismAnimation then
+							frame.EltruismAnimation = frame:CreateTexture(nil, "BACKGROUND", nil, 1)
+							frame.EltruismAnimation:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.ace3.texture))
+							frame.EltruismAnimation:SetVertexColor(E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.r, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.g, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.b, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.a)
+							if frame.backdrop then
+								frame.EltruismAnimation:SetInside(frame.backdrop)
+							else
+								frame.EltruismAnimation:SetInside(frame)
+							end
+							frame.EltruismAnimation:SetBlendMode("BLEND")
+							frame.EltruismAnimation:SetAlpha(0)
 
+							frame:HookScript("OnEnter", function()
+								if frame.highlight and frame.highlight:IsVisible() then return end
+								UIFrameFadeIn(frame.EltruismAnimation, 0.3, 0, 1)
+								if frame.SetBackdropBorderColor then
+									frame:SetBackdropBorderColor(0, 0, 0, 0)
+									frame.SetBackdropBorderColor = E.noop
+								end
 							end)
 							frame:HookScript("OnLeave", function()
-								UIFrameFadeOut(frame.EltruismAnimationTest, 0.5, 1, 0)
+								if frame.highlight and frame.highlight:IsVisible() then return end
+								UIFrameFadeOut(frame.EltruismAnimation, 0.3, 1, 0)
 							end)
 						end]]
 					else

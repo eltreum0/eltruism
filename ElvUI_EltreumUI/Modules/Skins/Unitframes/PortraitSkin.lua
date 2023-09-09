@@ -125,6 +125,13 @@ local gradient ={
 	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\EvokerGradient.tga",
 }
 
+local notexcoord = {
+	["RELEAF"] = true,
+	["BLIZZARD"] = true,
+	["BORDER"] = true,
+	["ORIGINAL"] =true,
+}
+
 --return textures for other functions
 function ElvUI_EltreumUI:GetClassIconsTextures(icon,unitclass)
 	if icon == "RELEAF" then
@@ -162,6 +169,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 		frame.EltruismPortrait:SetPoint("CENTER", frame, tostring(E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align), E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.x, E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.y)
 		frame.EltruismPortrait:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait[db].size,E.db.ElvUI_EltreumUI.unitframes.portrait[db].size)
 		frame.EltruismPortrait:SetFrameLevel(200)
+		frame.EltruismPortrait:SetFrameStrata("HIGH")
 		frame.EltruismPortrait.border = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitTexture", "OVERLAY", nil, 5)
 		frame.EltruismPortrait.border:SetParent(frame.EltruismPortrait)
 		frame.EltruismPortrait.border:SetAllPoints(frame.EltruismPortrait)
@@ -201,7 +209,15 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 		end
 		if invert then
 			frame.EltruismPortrait.border:SetTexCoord(1, 0, 0, 1)
-			frame.EltruismPortrait.portrait:SetTexCoord(1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
+				if notexcoord[E.db.ElvUI_EltreumUI.unitframes.portrait[db].style] then
+					frame.EltruismPortrait.portrait:SetTexCoord(0.85 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.85 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+				else
+					frame.EltruismPortrait.portrait:SetTexCoord(1.15 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, -0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, -0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1.15 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+				end
+			else
+				frame.EltruismPortrait.portrait:SetTexCoord(1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+			end
 			frame.EltruismPortrait.edge:SetTexCoord(1, 0, 0, 1)
 			frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\maskinvert.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
 		else
@@ -240,7 +256,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 				if UnitIsPlayer(frame.unit) then
 					local _, unitclass = UnitClass(frame.unit)
 					if E.db.ElvUI_EltreumUI.unitframes.portrait.gradient then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+						if (E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor) and not E.db.ElvUI_EltreumUI.unitframes.portrait[db].defaultgradient then
 							frame.EltruismPortrait.border:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(unitclass, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
 							frame.EltruismPortrait.edge:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(unitclass, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
 							frame.EltruismPortrait.rare:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(unitclass, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
@@ -259,7 +275,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 					local reaction = UnitReaction(frame.unit, "player")
 					if not reaction then return end
 					if E.db.ElvUI_EltreumUI.unitframes.portrait.gradient then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+						if (E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor) and not E.db.ElvUI_EltreumUI.unitframes.portrait[db].defaultgradient then
 							if reaction >= 5 then
 								frame.EltruismPortrait.border:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
 								frame.EltruismPortrait.edge:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
@@ -352,9 +368,25 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 		end
 
 		if invert then
-			frame.EltruismPortrait.portrait:SetTexCoord(1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
+				if notexcoord[E.db.ElvUI_EltreumUI.unitframes.portrait[db].style] then
+					frame.EltruismPortrait.portrait:SetTexCoord(0.85 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.85 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+				else
+					frame.EltruismPortrait.portrait:SetTexCoord(1.15 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, -0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, -0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1.15 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+				end
+			else
+				frame.EltruismPortrait.portrait:SetTexCoord(1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+			end
 		else
-			frame.EltruismPortrait.portrait:SetTexCoord(E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
+				if notexcoord[E.db.ElvUI_EltreumUI.unitframes.portrait[db].style] then
+					frame.EltruismPortrait.portrait:SetTexCoord(0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.85 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.85 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+				else
+					frame.EltruismPortrait.portrait:SetTexCoord(-0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1.15 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, -0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1.15 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+				end
+			else
+				frame.EltruismPortrait.portrait:SetTexCoord(E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+			end
 		end
 	end
 
@@ -402,11 +434,27 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 			end
 			if invert then
 				frame.EltruismPortrait.border:SetTexCoord(1, 0, 0, 1)
-				frame.EltruismPortrait.portrait:SetTexCoord(1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+				if E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
+					if notexcoord[E.db.ElvUI_EltreumUI.unitframes.portrait[db].style] then
+						frame.EltruismPortrait.portrait:SetTexCoord(0.85 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.85 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+					else
+						frame.EltruismPortrait.portrait:SetTexCoord(1.15 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, -0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, -0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1.15 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+					end
+				else
+					frame.EltruismPortrait.portrait:SetTexCoord(1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+				end
 				frame.EltruismPortrait.edge:SetTexCoord(1, 0, 0, 1)
 				frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\maskinvert.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
 			else
-				frame.EltruismPortrait.portrait:SetTexCoord(E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+				if E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
+					if notexcoord[E.db.ElvUI_EltreumUI.unitframes.portrait[db].style] then
+						frame.EltruismPortrait.portrait:SetTexCoord(0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.85 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.85 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+					else
+						frame.EltruismPortrait.portrait:SetTexCoord(-0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1.15 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, -0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1.15 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+					end
+				else
+					frame.EltruismPortrait.portrait:SetTexCoord(E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+				end
 				frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\mask.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
 			end
 			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
@@ -419,9 +467,25 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 				frame.EltruismPortrait.border:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Circle.tga")
 			end
 			if invert then
-				frame.EltruismPortrait.portrait:SetTexCoord(1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+				if E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
+					if notexcoord[E.db.ElvUI_EltreumUI.unitframes.portrait[db].style] then
+						frame.EltruismPortrait.portrait:SetTexCoord(0.85 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.85 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+					else
+						frame.EltruismPortrait.portrait:SetTexCoord(1.15 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, -0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, -0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1.15 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+					end
+				else
+					frame.EltruismPortrait.portrait:SetTexCoord(1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+				end
 			else
-				frame.EltruismPortrait.portrait:SetTexCoord(E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1-E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+				if E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
+					if notexcoord[E.db.ElvUI_EltreumUI.unitframes.portrait[db].style] then
+						frame.EltruismPortrait.portrait:SetTexCoord(0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.85 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 0.85 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+					else
+						frame.EltruismPortrait.portrait:SetTexCoord(-0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1.15 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, -0.15 + E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1.15 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+					end
+				else
+					frame.EltruismPortrait.portrait:SetTexCoord(E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+				end
 			end
 			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcircle and E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
 				frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\maskcircle.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
