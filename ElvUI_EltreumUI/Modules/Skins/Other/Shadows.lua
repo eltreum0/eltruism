@@ -1251,6 +1251,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G["ElvUI_AltPowerBar"],
 				_G["ElvUISpellBookTooltip"],
 				_G["ElvUIConfigTooltip"],
+				_G["ElvUIAceConfigDialogTooltip"],
 			}
 			for _, frame in pairs(GeneralElvUIFrames) do
 				if frame and not frame.shadow then
