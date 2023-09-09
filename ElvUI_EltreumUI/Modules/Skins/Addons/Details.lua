@@ -126,7 +126,6 @@ do
 											if row.lineBorder then
 												row.lineBorder:SetAlpha(0)
 											end
-
 										else
 											row.background:SetTexture(row.textura:GetTexture())
 										end
