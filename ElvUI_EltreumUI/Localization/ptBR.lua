@@ -1457,3 +1457,4 @@ L["Button Disabled"] = "Botão Desativado"
 L["Text Selected"] = "Texto Selecionado"
 L["Text Enabled"] = "Texto Ativado"
 L["Default Gradient Colors"] = "Cores em gradiente padrão"
+L["Gradient Mode"] = true
