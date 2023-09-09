@@ -113,19 +113,20 @@ do
 												row.textura:AddMaskTexture(row.EltruismMask2)
 												row.textura.EltruismMask2 = true
 											end
+											row.background:ClearAllPoints()
+											row.background:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMRIGHT", -1, 0)
+											row.background:SetPoint("TOPRIGHT", row,"TOPRIGHT", 0, 0)
 											if not row.statusbar.shadow then
 												row.statusbar:CreateShadow()
 												row.statusbar.shadow:ClearAllPoints()
-												row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2.8, -3)
-												row.statusbar.shadow:SetPoint("TOPRIGHT", row.background,"TOPRIGHT", 3, -14)
+												row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2.5, -3)
+												row.statusbar.shadow:SetPoint("TOPRIGHT", row.background,"TOPRIGHT", 2.5, -13)
 											end
 											row.background:SetTexture(row.textura:GetTexture())
 											if row.lineBorder then
 												row.lineBorder:SetAlpha(0)
 											end
-											row.background:ClearAllPoints()
-											row.background:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMRIGHT", 0, 0)
-											row.background:SetPoint("TOPRIGHT", row,"TOPRIGHT", 0, 0)
+
 										else
 											row.background:SetTexture(row.textura:GetTexture())
 										end
