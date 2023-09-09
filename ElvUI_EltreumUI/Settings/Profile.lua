@@ -234,6 +234,7 @@ P.ElvUI_EltreumUI = {
 		detailsembedooc = false,
 		detailsembedhidden = true,
 		detailsdelay = 1,
+		detailsmode = "LIGHT",
 		bugsack = false,
 		clique = false,
 		immersion = false,

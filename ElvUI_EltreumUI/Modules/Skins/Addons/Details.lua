@@ -57,40 +57,95 @@ do
 				hooksecurefunc(Details, "InstanceRefreshRows", function(instancia)
 					if instancia.barras and instancia.barras[1] then
 						for _, row in next, instancia.barras do
-							if row and row.textura and not row.textura.EltruismHook then
-								hooksecurefunc(row.textura, "SetVertexColor", function(_, r, g, b) --managed to hook the global to set vertex color on this only, might be useful later
-									if E.db.ElvUI_EltreumUI.skins.detailstextureoverwrite then
-										--row.textura:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixelB")
-										if not row.textura.EltruismMask then
-											row.EltruismMask = row:CreateMaskTexture()
-											row.EltruismMask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixel", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
-											row.EltruismMask:SetAllPoints(row.textura)
-											row.textura:AddMaskTexture(row.EltruismMask)
-											row.textura.EltruismMask = true
+							if not row then return end
+							if E.db.ElvUI_EltreumUI.skins.detailsmode == "LIGHT" then
+								if row.textura and not row.textura.EltruismHook then
+									hooksecurefunc(row.textura, "SetVertexColor", function(_, r, g, b) --managed to hook the global to set vertex color on this only, might be useful later
+										if E.db.ElvUI_EltreumUI.skins.detailstextureoverwrite then
+											--row.textura:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixelB")
+											if not row.textura.EltruismMask then
+												row.EltruismMask = row:CreateMaskTexture()
+												row.EltruismMask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixel", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+												row.EltruismMask:SetAllPoints(row.textura)
+												row.textura:AddMaskTexture(row.EltruismMask)
+												row.textura.EltruismMask = true
+											end
+											if not row.statusbar.shadow then
+												row.statusbar:CreateShadow()
+												row.statusbar.shadow:ClearAllPoints()
+												row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2.8, -3)
+												row.statusbar.shadow:SetPoint("TOPRIGHT", row.textura,"TOPRIGHT", 3, -14)
+											end
 										end
-										if not row.statusbar.shadow then
-											row.statusbar:CreateShadow()
-											row.statusbar.shadow:ClearAllPoints()
-											row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2.8, -3)
-											row.statusbar.shadow:SetPoint("TOPRIGHT", row.textura,"TOPRIGHT", 3, -14)
-										end
-									end
-									if row.minha_tabela and row.minha_tabela.name then
-										local unitclass = row.minha_tabela:class() --from details api returns class of that row
-										if classes[unitclass] then
-											if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-												row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
+										if row.minha_tabela and row.minha_tabela.name then
+											local unitclass = row.minha_tabela:class() --from details api returns class of that row
+											if classes[unitclass] then
+												if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+													row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
+												else
+													row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
+												end
 											else
-												row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
+												row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.5,g= g-0.5,b= b-0.5,a= 0.9}, {r=r+0.2,g= g+0.2,b= b+0.2,a= 0.9})
 											end
 										else
 											row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.5,g= g-0.5,b= b-0.5,a= 0.9}, {r=r+0.2,g= g+0.2,b= b+0.2,a= 0.9})
 										end
-									else
-										row.textura:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.5,g= g-0.5,b= b-0.5,a= 0.9}, {r=r+0.2,g= g+0.2,b= b+0.2,a= 0.9})
-									end
-								end)
-								row.textura.EltruismHook = true
+									end)
+									row.textura.EltruismHook = true
+								end
+							else
+								if row.background and not row.background.EltruismHook then
+									hooksecurefunc(row.background, "SetVertexColor", function(_, r, g, b) --managed to hook the global to set vertex color on this only, might be useful later
+										if E.db.ElvUI_EltreumUI.skins.detailstextureoverwrite then
+											--row.textura:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixelB")
+											if not row.background.EltruismMask then
+												row.EltruismMask = row:CreateMaskTexture()
+												row.EltruismMask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixel", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+												row.EltruismMask:SetAllPoints(row.background)
+												row.background:AddMaskTexture(row.EltruismMask)
+												row.background.EltruismMask = true
+											end
+											if not row.textura.EltruismMask2 then
+												row.EltruismMask2 = row:CreateMaskTexture()
+												row.EltruismMask2:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum7pixel", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+												row.EltruismMask2:SetAllPoints(row.textura)
+												row.textura:AddMaskTexture(row.EltruismMask2)
+												row.textura.EltruismMask2 = true
+											end
+											if not row.statusbar.shadow then
+												row.statusbar:CreateShadow()
+												row.statusbar.shadow:ClearAllPoints()
+												row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2.8, -3)
+												row.statusbar.shadow:SetPoint("TOPRIGHT", row.background,"TOPRIGHT", 3, -14)
+											end
+											row.background:SetTexture(row.textura:GetTexture())
+											if row.lineBorder then
+												row.lineBorder:SetAlpha(0)
+											end
+											row.background:ClearAllPoints()
+											row.background:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMRIGHT", 0, 0)
+											row.background:SetPoint("TOPRIGHT", row,"TOPRIGHT", 0, 0)
+										else
+											row.background:SetTexture(row.textura:GetTexture())
+										end
+										if row.minha_tabela and row.minha_tabela.name then
+											local unitclass = row.minha_tabela:class() --from details api returns class of that row
+											if classes[unitclass] then
+												if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+													row.background:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetailsCustom(unitclass))
+												else
+													row.background:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsDetails(unitclass))
+												end
+											else
+												row.background:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.5,g= g-0.5,b= b-0.5,a= 0.9}, {r=r+0.2,g= g+0.2,b= b+0.2,a= 0.9})
+											end
+										else
+											row.background:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.5,g= g-0.5,b= b-0.5,a= 0.9}, {r=r+0.2,g= g+0.2,b= b+0.2,a= 0.9})
+										end
+									end)
+									row.background.EltruismHook = true
+								end
 							end
 						end
 					end
