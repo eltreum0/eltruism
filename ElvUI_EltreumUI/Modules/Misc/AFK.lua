@@ -129,19 +129,19 @@ local EltruismAFKClassTexture = _G.ElvUIAFKFrame.bottom:CreateTexture()
 local ClassCrestFrameTexture = _G.ElvUIAFKFrame:CreateTexture("EltruismClassCrestAFK")
 
 local classIcons = {
-	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/WarriorShadow",
-	["PALADIN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/PaladinShadow",
-	["HUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/HunterShadow",
-	["ROGUE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/RogueShadow",
-	["PRIEST"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/PriestShadow",
-	["DEATHKNIGHT"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DeathKnightShadow",
-	["SHAMAN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/ShamanShadow",
-	["MAGE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/MageShadow",
-	["WARLOCK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/WarlockShadow",
-	["MONK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/MonkShadow",
-	["DRUID"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DruidShadow",
-	["DEMONHUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/DemonHunterShadow",
-	["EVOKER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/EvokerShadow",
+	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/128/WarriorShadow",
+	["PALADIN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/128/PaladinShadow",
+	["HUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/128/HunterShadow",
+	["ROGUE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/128/RogueShadow",
+	["PRIEST"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/128/PriestShadow",
+	["DEATHKNIGHT"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/128/DeathKnightShadow",
+	["SHAMAN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/128/ShamanShadow",
+	["MAGE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/128/MageShadow",
+	["WARLOCK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/128/WarlockShadow",
+	["MONK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/128/MonkShadow",
+	["DRUID"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/128/DruidShadow",
+	["DEMONHUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/128/DemonHunterShadow",
+	["EVOKER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/128/EvokerShadow",
 }
 
 function ElvUI_EltreumUI:AFKLogo()
