@@ -428,10 +428,13 @@ function ElvUI_EltreumUI:RestIcon(frame)
 				end
 				--EltruismPlayerRestLoop.RestTexture:SetDesaturated(true)
 				if E.db.ElvUI_EltreumUI.unitframes.blizzardresticongradient then
-					if (E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor) then
-						EltruismPlayerRestLoop.RestTexture:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(E.myclass))
-					else
-						EltruismPlayerRestLoop.RestTexture:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
+					if not EltruismPlayerRestLoop.RestTexture.Gradient then
+						if (E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor) then
+							EltruismPlayerRestLoop.RestTexture:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(E.myclass))
+						else
+							EltruismPlayerRestLoop.RestTexture:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
+						end
+						EltruismPlayerRestLoop.RestTexture.Gradient = true
 					end
 				else
 					local r,g,b,a = frame.RestingIndicator:GetVertexColor()
