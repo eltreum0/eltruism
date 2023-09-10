@@ -406,7 +406,7 @@ EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetFlipBookFrameWidth(60)
 EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetChildKey("EltruismPlayerRestLoopFlipBook")
 EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetOrder(1)
 EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetDuration(1.5)
-EltruismPlayerRestLoop.PlayerRestLoopAnim:Play()
+--EltruismPlayerRestLoop.PlayerRestLoopAnim:Play()
 EltruismPlayerRestLoop:Hide()
 
 function ElvUI_EltreumUI:RestIcon(frame)
