@@ -520,7 +520,7 @@ function ElvUI_EltreumUI:BlizzPortraits(unit,hasStateChanged)
 		end
 		if IsInGroup() and not IsInRaid() then
 			for i = 1, 5 do
-				if _G["ElvUF_PartyGroup1UnitButton"..i]:IsVisible() then
+				if _G["ElvUF_PartyGroup1UnitButton"..i] and _G["ElvUF_PartyGroup1UnitButton"..i]:IsVisible() then
 					CreatePorfraitFrameAndTexture(_G["ElvUF_PartyGroup1UnitButton"..i],"ElvUF_PartyGroup1UnitButton"..i,false,true,"party")
 				end
 			end
