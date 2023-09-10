@@ -32,18 +32,40 @@ local function CreateFader(frame)
 		frame.EltruismAnimation:SetBlendMode("BLEND")
 		frame.EltruismAnimation:SetAlpha(0)
 
+		local backupR,backupG,backupB = 1,1,1
+
 		frame:HookScript("OnEnter", function()
-			--if frame.highlight and frame.highlight:IsVisible() then return end
 			UIFrameFadeIn(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 0, 1)
 			if frame.SetBackdropBorderColor then
 				frame:SetBackdropBorderColor(0, 0, 0, 1)
-				--frame.SetBackdropBorderColor = E.noop
+			end
+			local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
+			if frametext and frametext.GetText and not frame.disabled then
+				backupR,backupG,backupB = frametext:GetTextColor()
+				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
+					frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
+				else
+					frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				end
 			end
 		end)
+
 		frame:HookScript("OnLeave", function()
-			--if frame.highlight and frame.highlight:IsVisible() then return end
 			UIFrameFadeOut(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 1, 0)
+			local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
+			if frametext and frametext.GetText and not frame.disabled then
+				frametext:SetTextColor(backupR,backupG,backupB)
+			end
 		end)
+
+		local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
+		if frametext and frametext.GetText and not frame.disabled then
+			if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+				frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+			else
+				frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+			end
+		end
 	end
 end
 
@@ -67,6 +89,12 @@ function ElvUI_EltreumUI:Ace3Skin()
 					end
 					btn:SetBackdropBorderColor(0, 0, 0, 1)
 					--btn.SetBackdropBorderColor = E.noop
+					local btntext = (btn.Text) or (btn.text) or (_G[btn:GetName()] and _G[btn:GetName() .. "Text"]) --using btn.Text.GetText would return the function instead
+					if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
+						btntext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
+					else
+						btntext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+					end
 				end
 			end
 		end
@@ -74,8 +102,8 @@ function ElvUI_EltreumUI:Ace3Skin()
 
 	hooksecurefunc(E,"Config_SetButtonColor",function(_,button, disabled)
 		if disabled then
-			if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
-				button.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
+			if not E.db.ElvUI_EltreumUI.skins.ace3.button.disabled.classcolor then
+				button.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.button.disabled.r, E.db.ElvUI_EltreumUI.skins.ace3.button.disabled.g, E.db.ElvUI_EltreumUI.skins.ace3.button.disabled.b)
 			else
 				button.Text:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
 			end
@@ -89,8 +117,8 @@ function ElvUI_EltreumUI:Ace3Skin()
 				--button.SetBackdropBorderColor = E.noop
 			end
 		else
-			if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-				button.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+			if not E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.classcolor then
+				button.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.r, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.g, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.b)
 			else
 				button.Text:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
 			end
@@ -178,9 +206,6 @@ function ElvUI_EltreumUI:Ace3Skin()
 			end
 			bd:SetBackdropBorderColor(0, 0, 0, 1)
 			--bd.SetBackdropBorderColor = E.noop
-		--else
-			--bd:SetBackdropBorderColor(0, 0, 0, 0)
-			--bd.SetBackdropBorderColor = E.noop
 		end
 	end)
 
@@ -194,6 +219,24 @@ function ElvUI_EltreumUI:Ace3Skin()
 		for i = offset + 1, #lines do
 			local button = buttons[i - offset]
 			if button then
+				local buttontext = (button.Text) or (button.text) or (_G[button:GetName()] and _G[button:GetName() .. "Text"]) --using button.Text.GetText would return the function instead
+				if button.selected then
+					if buttontext and buttontext.GetText then
+						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
+							buttontext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
+						else
+							buttontext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+						end
+					end
+				else
+					if buttontext and buttontext.GetText then
+						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+							buttontext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+						else
+							buttontext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+						end
+					end
+				end
 				if button.highlight then
 					button.highlight:SetDesaturated(true)
 					button.highlight:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.ace3.texture))
@@ -220,3 +263,32 @@ hooksecurefunc(S,"HandleButton",function(_,button, _, _, noStyle)
 	if noStyle then return end
 	CreateFader(button)
 end)
+
+
+--for some reason buttons on macro frame dont get animation, maybe because they load too early?
+--[[
+local macroframe = CreateFrame("FRAME")
+macroframe:RegisterEvent("ADDON_LOADED")
+macroframe:SetScript("OnEvent",function(_,_,arg)
+	if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
+		macroframe:UnregisterAllEvents()
+		if _G["MacroFrame"] then
+			for _, button in next, {
+				_G.MacroSaveButton,
+				_G.MacroCancelButton,
+				_G.MacroDeleteButton,
+				_G.MacroNewButton,
+				_G.MacroExitButton,
+				_G.MacroEditButton,
+				_G.MacroFrameTab1,
+				_G.MacroFrameTab2,
+			} do
+				if button then
+					print(button:GetName())
+					CreateFader(button)
+				end
+			end
+		end
+	end
+end)
+]]
