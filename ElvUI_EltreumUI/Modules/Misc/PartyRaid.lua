@@ -387,32 +387,53 @@ function ElvUI_EltreumUI:LeaderIcon()
 end
 hooksecurefunc(UF,"RaidRoleUpdate", ElvUI_EltreumUI.LeaderIcon)
 
+--use new flipbook animation to recreate the blizzard resting animation
+local EltruismPlayerRestLoop = CreateFrame("FRAME","EltruismPlayerRestLoop")
+EltruismPlayerRestLoop:SetSize(30,30)
+EltruismPlayerRestLoop.RestTexture = EltruismPlayerRestLoop:CreateTexture(nil, "ARTWORK")
+EltruismPlayerRestLoop.RestTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Rest\\UIUnitFrameRestingFlipBook.tga")
+EltruismPlayerRestLoop.RestTexture:SetSize(512, 512)
+EltruismPlayerRestLoop.RestTexture:SetAllPoints(EltruismPlayerRestLoop)
+EltruismPlayerRestLoop.RestTexture:SetParentKey("EltruismPlayerRestLoopFlipBook")
+EltruismPlayerRestLoop.PlayerRestLoopAnim = EltruismPlayerRestLoop:CreateAnimationGroup()
+EltruismPlayerRestLoop.PlayerRestLoopAnim:SetLooping("REPEAT")
+EltruismPlayerRestLoop.PlayerRestLoopFlipBook = EltruismPlayerRestLoop.PlayerRestLoopAnim:CreateAnimation("FlipBook")
+EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetFlipBookColumns(6)
+EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetFlipBookRows(7)
+EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetFlipBookFrames(42)
+EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetFlipBookFrameHeight(60)
+EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetFlipBookFrameWidth(60)
+EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetChildKey("EltruismPlayerRestLoopFlipBook")
+EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetOrder(1)
+EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetDuration(1.5)
+EltruismPlayerRestLoop.PlayerRestLoopAnim:Play()
+EltruismPlayerRestLoop:Hide()
+
 function ElvUI_EltreumUI:RestIcon(frame)
 	if not frame then return end
 	if frame.RestingIndicator and E.db.unitframe.units.player.enable and E.db.unitframe.units.player.RestIcon.enable and E.db.ElvUI_EltreumUI.unitframes.blizzardresticon then
 		if not frame.RestingIndicator.EltruismHook then
-			_G.PlayerFrame_UpdatePlayerRestLoop(true)
-			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:ClearAllPoints()
-			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetParent(frame)
-			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetPoint("CENTER", frame.RestingIndicator, "CENTER", 0, 0)
-			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetFrameStrata('MEDIUM')
-			_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetScale(E.db.unitframe.units.player.RestIcon.size/15)
+			EltruismPlayerRestLoop:ClearAllPoints()
+			EltruismPlayerRestLoop:SetParent(frame)
+			EltruismPlayerRestLoop:SetPoint("CENTER", frame.RestingIndicator, "CENTER", 0, 0)
+			EltruismPlayerRestLoop:SetFrameStrata('MEDIUM')
+			EltruismPlayerRestLoop:SetScale(E.db.unitframe.units.player.RestIcon.size/15)
 			hooksecurefunc(frame.RestingIndicator, 'PostUpdate', function()
 				if frame.RestingIndicator:IsShown() then
-					_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:Show()
+					EltruismPlayerRestLoop:Show()
+					EltruismPlayerRestLoop.PlayerRestLoopAnim:Play()
 				else
-					_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:Hide()
+					EltruismPlayerRestLoop:Hide()
+					EltruismPlayerRestLoop.PlayerRestLoopAnim:Stop()
 				end
 				local r,g,b,a = frame.RestingIndicator:GetVertexColor()
-				_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop.RestTexture:SetDesaturated(true)
-				_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop.RestTexture:SetVertexColor(r,g,b,a)
+				EltruismPlayerRestLoop.RestTexture:SetDesaturated(true)
+				EltruismPlayerRestLoop.RestTexture:SetVertexColor(r,g,b,a)
 			end)
 			frame.RestingIndicator.EltruismHook = true
 		end
 		frame.RestingIndicator:SetTexture()
-		_G.PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop:SetScale(E.db.unitframe.units.player.RestIcon.size/15)
+		EltruismPlayerRestLoop:SetScale(E.db.unitframe.units.player.RestIcon.size/15)
 	end
 end
-if E.Retail then
-	hooksecurefunc(UF,"Configure_RestingIndicator", ElvUI_EltreumUI.RestIcon)
-end
+hooksecurefunc(UF,"Configure_RestingIndicator", ElvUI_EltreumUI.RestIcon)
