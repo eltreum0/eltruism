@@ -406,15 +406,14 @@ EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetFlipBookFrameWidth(60)
 EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetChildKey("EltruismPlayerRestLoopFlipBook")
 EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetOrder(1)
 EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetDuration(1.5)
---EltruismPlayerRestLoop.PlayerRestLoopAnim:Play()
-EltruismPlayerRestLoop:Hide()
 
 function ElvUI_EltreumUI:RestIcon(frame)
+	print(frame,frame:GetName())
 	if not frame then return end
 	if frame.RestingIndicator and E.db.unitframe.units.player.enable and E.db.unitframe.units.player.RestIcon.enable and E.db.ElvUI_EltreumUI.unitframes.blizzardresticon then
 		if not frame.RestingIndicator.EltruismHook then
 			EltruismPlayerRestLoop:ClearAllPoints()
-			EltruismPlayerRestLoop:SetParent(frame)
+			--EltruismPlayerRestLoop:SetParent(frame)
 			EltruismPlayerRestLoop:SetPoint("CENTER", frame.RestingIndicator, "CENTER", 0, 0)
 			EltruismPlayerRestLoop:SetFrameStrata('MEDIUM')
 			EltruismPlayerRestLoop:SetScale(E.db.unitframe.units.player.RestIcon.size/15)
@@ -441,6 +440,12 @@ function ElvUI_EltreumUI:RestIcon(frame)
 					EltruismPlayerRestLoop.RestTexture:SetVertexColor(r,g,b,a)
 				end
 			end)
+
+			--basically if i use SetParent the game crashes, have to hook the alpha and set it on the frame instead
+			hooksecurefunc(frame,'SetAlpha', function(_,alpha)
+				EltruismPlayerRestLoop:SetAlpha(alpha)
+			end)
+
 			frame.RestingIndicator.EltruismHook = true
 		end
 		frame.RestingIndicator:SetTexture()
