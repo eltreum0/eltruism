@@ -408,7 +408,6 @@ EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetOrder(1)
 EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetDuration(1.5)
 
 function ElvUI_EltreumUI:RestIcon(frame)
-	print(frame,frame:GetName())
 	if not frame then return end
 	if frame.RestingIndicator and E.db.unitframe.units.player.enable and E.db.unitframe.units.player.RestIcon.enable and E.db.ElvUI_EltreumUI.unitframes.blizzardresticon then
 		if not frame.RestingIndicator.EltruismHook then
@@ -445,6 +444,22 @@ function ElvUI_EltreumUI:RestIcon(frame)
 			hooksecurefunc(frame,'SetAlpha', function(_,alpha)
 				EltruismPlayerRestLoop:SetAlpha(alpha)
 			end)
+
+			--hook afk to hide it while afk, needs a delay
+			if _G.ElvUIAFKFrame then
+				_G.ElvUIAFKFrame:HookScript("OnShow", function()
+					E:Delay(0.05, function()
+						EltruismPlayerRestLoop:SetAlpha(0)
+					end)
+				end)
+				_G.ElvUIAFKFrame:HookScript("OnHide", function()
+					E:Delay(0.05, function()
+						if IsResting() and _G["ElvUF_Player"] and _G["ElvUF_Player"]:GetAlpha() == 1 then
+							EltruismPlayerRestLoop:SetAlpha(1)
+						end
+					end)
+				end)
+			end
 
 			frame.RestingIndicator.EltruismHook = true
 		end
