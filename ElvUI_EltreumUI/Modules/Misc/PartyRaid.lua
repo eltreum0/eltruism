@@ -389,7 +389,7 @@ hooksecurefunc(UF,"RaidRoleUpdate", ElvUI_EltreumUI.LeaderIcon)
 
 --use new flipbook animation to recreate the blizzard resting animation
 local EltruismPlayerRestLoop = CreateFrame("FRAME","EltruismPlayerRestLoop")
-EltruismPlayerRestLoop:SetSize(30,30)
+EltruismPlayerRestLoop:SetSize(20,20)
 EltruismPlayerRestLoop.RestTexture = EltruismPlayerRestLoop:CreateTexture(nil, "ARTWORK")
 EltruismPlayerRestLoop.RestTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Rest\\UIUnitFrameRestingFlipBook.tga")
 EltruismPlayerRestLoop.RestTexture:SetSize(512, 512)
