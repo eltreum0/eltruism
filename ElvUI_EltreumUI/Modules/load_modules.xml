@@ -13,6 +13,7 @@
 	<Script file='Misc/AFK.lua'/>
 	<Script file='Misc/CombatEvents.lua'/>
 	<Script file='Misc/DynamicFunctions.lua'/>
+	<Script file='Misc/GetClassIcons.lua'/>
 	<Script file='Misc/InstantLoot.lua'/>
 	<Script file='Misc/Instances.lua'/>
 	<Script file='Misc/LootText.lua'/>
