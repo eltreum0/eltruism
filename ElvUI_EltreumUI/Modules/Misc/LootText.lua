@@ -224,6 +224,7 @@ function ElvUI_EltreumUI:LootText()
 				if itemLink and not itemLink:match("|Hbattlepet:") then
 					local lootName, _, rarity, _, _, _, _, _, _, lootTexture, _, _, _, _, _, _, _ = GetItemInfo(itemLink)
 					local lootQuantity = amount
+					if not rarity then return end
 					local r, g, b, _ = GetItemQualityColor(rarity)
 					if rarity >= tonumber(E.db.ElvUI_EltreumUI.loot.loottext.quality) then
 						if lootQuantity >= 2 then
