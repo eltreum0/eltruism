@@ -53,6 +53,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		--luckyone based optimizations
 		E.db["auras"]["buffs"]["seperateOwn"] = 0 -- do not sort auras
 		E.db["auras"]["debuffs"]["seperateOwn"] = 0 -- do not sort auras
+		E.db["auras"]["cooldown"]["override"] = false
 		E.db["chat"]["fade"] = false -- do not fade chat
 		E.db["unitframe"]["units"]["assist"]["enable"] = false --disable assist/tank frames
 		E.db["unitframe"]["units"]["tank"]["enable"] = false --disable assist/tank frames
@@ -485,6 +486,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			E.db["bags"]["split"]["bag5"] = true
 			E.db["bags"]["split"]["player"] = true
 		end
+		E.db["bags"]["moneyFormat"] = "SMART"
 
 		-- Chat
 		E.db["chat"]["chatHistory"] = false
@@ -512,6 +514,8 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["chat"]["tabSelectorColor"]["g"] = valuecolors.g
 		E.db["chat"]["tabSelectorColor"]["r"] = valuecolors.r
 		E.db["chat"]["throttleInterval"] = 20
+		E.db["chat"]["LeftChatDataPanelAnchor"] = "BELOW_CHAT"
+		E.db["chat"]["RightChatDataPanelAnchor"] = "BELOW_CHAT"
 
 		-- Cooldown Text
 		E.db["cooldown"]["daysColor"]["g"] = 1
@@ -580,8 +584,12 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		end
 		E.db["actionbar"]["cooldown"]["mmssThreshold"] = 60
 		E.db["actionbar"]["cooldown"]["useIndicatorColor"] = true
+		E.db["actionbar"]["cooldown"]["expiringAuraColor"]["r"] = 1
 		E.db["actionbar"]["cooldown"]["expiringAuraColor"]["b"] = 0.2
 		E.db["actionbar"]["cooldown"]["expiringAuraColor"]["g"] = 0.2
+		E.db["actionbar"]["cooldown"]["daysColor"]["r"] = 1
+		E.db["actionbar"]["cooldown"]["daysColor"]["g"] = 1
+		E.db["actionbar"]["cooldown"]["daysColor"]["b"] = 1
 		E.db["actionbar"]["cooldown"]["expiringAuraIndicator"]["b"] = 0.2
 		E.db["actionbar"]["cooldown"]["expiringAuraIndicator"]["g"] = 0.2
 		E.db["actionbar"]["cooldown"]["expiringAuraIndicator"]["r"] = 1
@@ -599,6 +607,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["g"] = valuecolors.g
 		E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["r"] = valuecolors.r
 		E.db["actionbar"]["cooldown"]["threshold"] = 5
+		E.db["actionbar"]["cooldown"]["fonts"]["enable"] = false
 
 		E.db["actionbar"]["bar1"]["buttonsPerRow"] = 7
 		E.db["actionbar"]["bar2"]["buttonsPerRow"] = 12
@@ -805,7 +814,20 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["actionbar"]["bar4"]["counttext"] = true
 		E.db["actionbar"]["bar5"]["counttext"] = true
 		E.db["actionbar"]["bar6"]["counttext"] = true
-
+		E.db["actionbar"]["bar1"]["heightMult"] = 1
+		E.db["actionbar"]["bar2"]["heightMult"] = 1
+		E.db["actionbar"]["bar3"]["heightMult"] = 1
+		E.db["actionbar"]["bar4"]["heightMult"] = 1
+		E.db["actionbar"]["bar5"]["heightMult"] = 1
+		E.db["actionbar"]["bar6"]["heightMult"] = 1
+		E.db["actionbar"]["bar1"]["backdrop"] = false
+		E.db["actionbar"]["bar2"]["backdrop"] = false
+		E.db["actionbar"]["bar3"]["backdrop"] = false
+		E.db["actionbar"]["bar4"]["backdrop"] = false
+		E.db["actionbar"]["bar5"]["backdrop"] = false
+		E.db["actionbar"]["bar6"]["backdrop"] = false
+		E.db["actionbar"]["barPet"]["buttons"] = 10
+		E.db["actionbar"]["stanceBar"]["backdrop"] = false
 		E.db["actionbar"]["noRangeColor"]["b"] = 0.11764705882353
 		E.db["actionbar"]["noRangeColor"]["g"] = 0.11764705882353
 		E.db["actionbar"]["noRangeColor"]["r"] = 1
@@ -1374,6 +1396,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		}
 
 	ElvUI_EltreumUI:Print(L["General Layout has been set."])
+
+	--run shadows
+	ElvUI_EltreumUI:Shadows()
 end
 
 -- Private DB

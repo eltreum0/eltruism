@@ -73,7 +73,6 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 									if not frame.shadow then
 										frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 										ElvUI_EltreumUI:ShadowColor(frame.shadow)
-
 									end
 								end
 							end

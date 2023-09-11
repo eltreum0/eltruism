@@ -153,7 +153,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["skins"]["ime"]["label"]["name"] = E.db.general.font
 		E.private["WT"]["skins"]["removeParchment"] = false
 		E.private["WT"]["skins"]["shadow"] = false
-		E.private["WT"]["skins"]["widgets"]["button"]["enable"] = true
+		E.private["WT"]["skins"]["widgets"]["button"]["enable"] = false
 		E.private["WT"]["skins"]["widgets"]["button"]["backdrop"]["classColor"] = true
 		E.private["WT"]["skins"]["widgets"]["button"]["backdrop"]["texture"] = "ElvUI Norm1"
 		E.private["WT"]["skins"]["widgets"]["button"]["selected"]["backdropColor"]["b"] = 1
@@ -168,7 +168,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["skins"]["widgets"]["slider"]["enable"] = true
 		E.private["WT"]["skins"]["widgets"]["slider"]["classColor"] = true
 		E.private["WT"]["skins"]["widgets"]["slider"]["texture"] = "ElvUI Norm1"
-		E.private["WT"]["skins"]["widgets"]["tab"]["enable"] = true
+		E.private["WT"]["skins"]["widgets"]["tab"]["enable"] = false
 		E.private["WT"]["skins"]["widgets"]["tab"]["backdrop"]["classColor"] = true
 		E.private["WT"]["skins"]["widgets"]["tab"]["backdrop"]["color"]["b"] = 1
 		E.private["WT"]["skins"]["widgets"]["tab"]["backdrop"]["color"]["g"] = 1
@@ -186,7 +186,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["skins"]["widgets"]["tab"]["text"]["normalClassColor"] = true
 		E.private["WT"]["skins"]["widgets"]["tab"]["text"]["normalColor"]["b"] = 1
 		E.private["WT"]["skins"]["widgets"]["tab"]["text"]["normalColor"]["g"] = 1
-		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["enable"] = true
+		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["enable"] = false
 		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["backdrop"]["classColor"] = true
 		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["backdrop"]["texture"] = "ElvUI Norm1"
 		E.private["WT"]["skins"]["widgets"]["treeGroupButton"]["selected"]["backdropColor"]["b"] = 1
