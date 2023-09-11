@@ -20,7 +20,7 @@ local function CreateFader(frame)
 		frame.EltruismAnimation = frame:CreateTexture(nil, "BACKGROUND", nil, 1)
 		frame.EltruismAnimation:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.ace3.texture))
 		if not E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.classcolor then
-			frame.EltruismAnimation:SetVertexColor(E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.r, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.g, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.b, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.a or 1)
+			frame.EltruismAnimation:SetVertexColor(E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.r or 0.07, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.g or 0.30, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.b or 0.50, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.a or 1)
 		else
 			frame.EltruismAnimation:SetVertexColor(valuecolors.r, valuecolors.g, valuecolors.b,E.db.general.backdropfadecolor.a)
 		end
