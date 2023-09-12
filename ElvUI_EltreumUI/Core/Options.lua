@@ -1098,7 +1098,7 @@ function ElvUI_EltreumUI:Configtable()
 			E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight = value
 			ObjectiveTrackerFrame.editModeHeight = value
 			Enum.EditModeObjectiveTrackerSetting.Height = value
-			ObjectiveTrackerFrame:SetHeight(value)
+			--ObjectiveTrackerFrame:SetHeight(value)
 			ObjectiveTracker_UpdateHeight()
 		end
 	end, function() return not E.db.ElvUI_EltreumUI.quests.anchor end, not E.Retail)
