@@ -50,6 +50,17 @@ local function CreateFader(frame)
 			end
 		end)
 
+		frame:HookScript("OnShow", function()
+			local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
+			if frametext and frametext.GetText and not (frame.disabled or (frame.GetButtonState and frame:GetButtonState() == "DISABLED")) then
+				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+					frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+				else
+					frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				end
+			end
+		end)
+
 		frame:HookScript("OnLeave", function()
 			UIFrameFadeOut(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 1, 0)
 			local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
@@ -101,11 +112,12 @@ function ElvUI_EltreumUI:Ace3Skin()
 	end)
 
 	hooksecurefunc(E,"Config_SetButtonColor",function(_,button, disabled)
+		local buttontext = (button.Text) or (button.text) or (_G[button:GetName()] and _G[button:GetName() .. "Text"]) --using button.Text.GetText would return the function instead
 		if disabled then
 			if not E.db.ElvUI_EltreumUI.skins.ace3.button.disabled.classcolor then
-				button.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.button.disabled.r, E.db.ElvUI_EltreumUI.skins.ace3.button.disabled.g, E.db.ElvUI_EltreumUI.skins.ace3.button.disabled.b)
+				buttontext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.button.disabled.r, E.db.ElvUI_EltreumUI.skins.ace3.button.disabled.g, E.db.ElvUI_EltreumUI.skins.ace3.button.disabled.b)
 			else
-				button.Text:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				buttontext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
 			end
 			if button.SetBackdropColor then
 				if not E.db.ElvUI_EltreumUI.skins.ace3.button.disabled.classcolor then
@@ -118,9 +130,9 @@ function ElvUI_EltreumUI:Ace3Skin()
 			end
 		else
 			if not E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.classcolor then
-				button.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.r, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.g, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.b)
+				buttontext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.r, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.g, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.b)
 			else
-				button.Text:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				buttontext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
 			end
 			--if button.SetBackdropColor then
 			--	button:SetBackdropBorderColor(0, 0, 0, 0)
@@ -131,11 +143,12 @@ function ElvUI_EltreumUI:Ace3Skin()
 
 	hooksecurefunc(S,"Ace3_SkinTab",function(_,tab)
 		CreateFader(tab)
+		local tabtext = (tab.Text) or (tab.text) or (_G[tab:GetName()] and _G[tab:GetName() .. "Text"]) --using tab.Text.GetText would return the function instead
 		if tab.selected then
 			if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
-				tab.text:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
+				tabtext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
 			else
-				tab.text:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				tabtext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
 			end
 			if tab.backdrop then
 				tab.backdrop:SetBackdropColor(0.5, 0.5, 0.5, 0.3)
@@ -143,11 +156,11 @@ function ElvUI_EltreumUI:Ace3Skin()
 				--tab.backdrop.SetBackdropBorderColor = E.noop
 			end
 		elseif tab.disabled then
-			if tab.Text and tab.Text.GetText then
-				tab.Text:SetTextColor(0.5,0.5,0.5)
+			if tabtext and tabtext.GetText then
+				tabtext:SetTextColor(0.5,0.5,0.5)
 			end
 		else
-			if tab.Text and tab.Text.GetText then
+			if tabtext and tabtext.GetText then
 				local r,g,b = tab.Text:GetTextColor()
 				local r1,g1,b1 = E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b
 				if E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
@@ -155,9 +168,9 @@ function ElvUI_EltreumUI:Ace3Skin()
 				end
 				if (r == 1 and math.ceil(g*100) == 82 and b == 0) or (r == r1 and g == g1 and b == b1) then --get the other color so the disabled one is not overwritten
 					if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-						tab.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+						tabtext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
 					else
-						tab.Text:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+						tabtext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
 					end
 				end
 			end
@@ -169,16 +182,16 @@ function ElvUI_EltreumUI:Ace3Skin()
 
 		if not tab.EltruismDisableHook then
 			tab:HookScript("OnDisable", function()
-				if tab.Text and tab.Text.GetText then
-					tab.Text:SetTextColor(0.5,0.5,0.5)
+				if tabtext and tabtext.GetText then
+					tabtext:SetTextColor(0.5,0.5,0.5)
 				end
 			end)
 			tab:HookScript("OnEnable", function()
-				if tab.Text and tab.Text.GetText then
+				if tabtext and tabtext.GetText then
 					if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-						tab.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+						tabtext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
 					else
-						tab.Text:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+						tabtext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
 					end
 				end
 			end)
