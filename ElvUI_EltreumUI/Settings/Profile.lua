@@ -1563,6 +1563,7 @@ P.ElvUI_EltreumUI = {
 		mailsound = "Interface-10",
 		mailsoundttsvoice = nil,
 		mailsoundttsvoicevolume = 100,
+		mailAnimation = true,
 		worldtextscale = 1,
 		screenshot = false,
 		blizzcombattext = false,

@@ -56,51 +56,54 @@ function ElvUI_EltreumUI:BlizzMail()
 	EltruismMailArrive:SetScale(E.db.general.minimap.icons.mail.scale)
 
 	if HasNewMail() then
-		EltruismMailArrive.MailArriveAnim:Play()
-		EltruismMailArrive:SetAlpha(1)
 
-		EltruismMailArrive.MailArriveAnim:SetScript("OnPlay", function()
+		if E.db.ElvUI_EltreumUI.otherstuff.mailAnimation then
+			EltruismMailArrive.MailArriveAnim:Play()
 			EltruismMailArrive:SetAlpha(1)
-			EltruismMailExists.MailExistsAnim:SetLooping("NONE")
-			EltruismMailExists:SetAlpha(0)
-			EltruismMailExists.MailExistsAnim:Pause()
-		end)
 
-		EltruismMailArrive.MailArriveAnim:SetScript("OnFinished", function()
-			EltruismMailArrive:SetAlpha(0)
-			EltruismMailExists:SetAlpha(1)
-			EltruismMailExists.MailExistsAnim:Play()
-			EltruismMailExists.MailExistsAnim:SetLooping("REPEAT")
-		end)
+			EltruismMailArrive.MailArriveAnim:SetScript("OnPlay", function()
+				EltruismMailArrive:SetAlpha(1)
+				EltruismMailExists.MailExistsAnim:SetLooping("NONE")
+				EltruismMailExists:SetAlpha(0)
+				EltruismMailExists.MailExistsAnim:Pause()
+			end)
 
-		EltruismMailExists.MailExistsAnim:SetScript("OnPause", function()
-			EltruismMailExists:SetAlpha(0)
-			EltruismMailExists.MailExistsAnim:SetLooping("NONE")
-		end)
+			EltruismMailArrive.MailArriveAnim:SetScript("OnFinished", function()
+				EltruismMailArrive:SetAlpha(0)
+				EltruismMailExists:SetAlpha(1)
+				EltruismMailExists.MailExistsAnim:Play()
+				EltruismMailExists.MailExistsAnim:SetLooping("REPEAT")
+			end)
 
-		--SetParent on flipbook crashes the game, so have to do a workaround
-		local ArriveAlpha = 0
-		local ExistsAlpha = 0
-		_G.Minimap:HookScript("OnHide", function()
-			ArriveAlpha = EltruismMailArrive:GetAlpha()
-			ExistsAlpha = EltruismMailExists:GetAlpha()
-			EltruismMailArrive:SetAlpha(0)
-			EltruismMailExists:SetAlpha(0)
-		end)
-		_G.Minimap:HookScript("OnShow", function()
-			EltruismMailArrive:SetAlpha(ArriveAlpha)
-			EltruismMailExists:SetAlpha(ExistsAlpha)
-		end)
+			EltruismMailExists.MailExistsAnim:SetScript("OnPause", function()
+				EltruismMailExists:SetAlpha(0)
+				EltruismMailExists.MailExistsAnim:SetLooping("NONE")
+			end)
 
-		hooksecurefunc(_G.Minimap,'SetAlpha', function(_,alpha)
-			if alpha == 0 then
+			--SetParent on flipbook crashes the game, so have to do a workaround
+			local ArriveAlpha = 0
+			local ExistsAlpha = 0
+			_G.Minimap:HookScript("OnHide", function()
+				ArriveAlpha = EltruismMailArrive:GetAlpha()
+				ExistsAlpha = EltruismMailExists:GetAlpha()
 				EltruismMailArrive:SetAlpha(0)
 				EltruismMailExists:SetAlpha(0)
-			else
+			end)
+			_G.Minimap:HookScript("OnShow", function()
 				EltruismMailArrive:SetAlpha(ArriveAlpha)
 				EltruismMailExists:SetAlpha(ExistsAlpha)
-			end
-		end)
+			end)
+
+			hooksecurefunc(_G.Minimap,'SetAlpha', function(_,alpha)
+				if alpha == 0 then
+					EltruismMailArrive:SetAlpha(0)
+					EltruismMailExists:SetAlpha(0)
+				else
+					EltruismMailArrive:SetAlpha(ArriveAlpha)
+					EltruismMailExists:SetAlpha(ExistsAlpha)
+				end
+			end)
+		end
 
 		if E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable and not InCombatLockdown() and mailthrottle == 0 then
 			if E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" and E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice then
@@ -123,22 +126,24 @@ end
 
 --hook position/scale and erase texture
 function ElvUI_EltreumUI:ElvUIMailTexture()
-	_G.MiniMapMailIcon:SetTexture()
-	EltruismMailExists:SetScale(E.db.general.minimap.icons.mail.scale)
-	EltruismMailArrive:SetScale(E.db.general.minimap.icons.mail.scale)
-	if not EltruismMailArrive.hassetpoint then
-		EltruismMailArrive:ClearAllPoints()
-		EltruismMailArrive:SetPoint("CENTER", _G.MiniMapMailIcon, "CENTER", 0, 3) --  -3
-		EltruismMailArrive:SetFrameStrata("HIGH")
+	if E.db.ElvUI_EltreumUI.otherstuff.mailAnimation then
+		_G.MiniMapMailIcon:SetTexture()
+		EltruismMailExists:SetScale(E.db.general.minimap.icons.mail.scale)
+		EltruismMailArrive:SetScale(E.db.general.minimap.icons.mail.scale)
+		if not EltruismMailArrive.hassetpoint then
+			EltruismMailArrive:ClearAllPoints()
+			EltruismMailArrive:SetPoint("CENTER", _G.MiniMapMailIcon, "CENTER", 0, 3) --  -3
+			EltruismMailArrive:SetFrameStrata("HIGH")
 
-		EltruismMailExists:ClearAllPoints()
-		EltruismMailExists:SetPoint("CENTER", _G.MiniMapMailIcon, "CENTER", 0, 0)
-		EltruismMailExists:SetFrameStrata("HIGH")
+			EltruismMailExists:ClearAllPoints()
+			EltruismMailExists:SetPoint("CENTER", _G.MiniMapMailIcon, "CENTER", 0, 0)
+			EltruismMailExists:SetFrameStrata("HIGH")
 
-		EltruismMailArrive.hassetpoint = true
+			EltruismMailArrive.hassetpoint = true
 
-		if _G.MinimapCluster and _G.MinimapCluster.IndicatorFrame and _G.MinimapCluster.IndicatorFrame.MailFrame then
-			_G.MinimapCluster.IndicatorFrame.MailFrame:SetAlpha(0)
+			if _G.MinimapCluster and _G.MinimapCluster.IndicatorFrame and _G.MinimapCluster.IndicatorFrame.MailFrame then
+				_G.MinimapCluster.IndicatorFrame.MailFrame:SetAlpha(0)
+			end
 		end
 	end
 end
