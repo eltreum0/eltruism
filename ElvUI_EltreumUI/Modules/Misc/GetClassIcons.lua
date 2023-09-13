@@ -343,7 +343,6 @@ local gradient = {
 	},
 }
 
-
 --return icons for other functions
 function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert,resolution,nostring)
 	if nostring then
