@@ -167,22 +167,6 @@ local classCrests2 = {
 	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Evoker.tga",
 }
 
-local statgradients = {
-	["WARRIOR"] = {r1 = 0.60, g1 = 0.40, b1 = 0.20, r2 = 0.66, g2 = 0.53, b2 = 0.34},
-	["PALADIN"] = {r1 = 0.9, g1 = 0.46, b1 = 0.64, r2 = 0.95, g2 = 0.65, b2 = 0.83},
-	["HUNTER"] = {r1 = 0.58, g1 = 0.69, b1 = 0.29, r2 = 0.79, g2 = 1, b2 = 0.39},
-	["ROGUE"] = {r1 = 1, g1 = 0.68, b1 = 0, r2 = 1, g2 = 0.83, b2 = 0.25},
-	["PRIEST"] = {r1 = 0.65, g1 = 0.65, b1 = 0.65, r2 = 0.99, g2 = 0.99, b2 = 0.99},
-	["DEATHKNIGHT"] = {r1 = 0.79, g1 = 0.074, b1 = 0.15, r2 = 1, g2 = 0.18, b2 = 0.24},
-	["SHAMAN"] = {r1 = 0, g1 = 0.56, b1 = 0.90, r2 = 0.35, g2 = 0.74, b2 = 1},
-	["MAGE"] = {r1 = 0, g1 = 0.73, b1 = 0.83, r2 = 0.49, g2 = 0.87, b2 = 1},
-	["WARLOCK"] = {r1 = 0.50, g1 = 0.30, b1 = 0.70, r2 = 0.7, g2= 0.53, b2 = 0.83},
-	["MONK"] = {r1 = 0, g1 = 0.97, b1 = 0.45, r2 = 0.22, g2 = 0.91, b2 = 0.7},
-	["DRUID"] = {r1 = 1, g1 = 0.24, b1 = 0, r2 = 1, g2 = 0.48, b2 = 0.04},
-	["DEMONHUNTER"] = {r1 = 0.56, g1 = 0.33, b1 = 0.77, r2 = 0.74, g2 = 0.19, b2 = 1},
-	["EVOKER"] = {r1 = 0.19, g1 = 0.46, b1 = 0.53, r2 = 0.2, g2 = 0.57, b2 = 0.50},
-}
-
 --https://wowpedia.fandom.com/wiki/InventorySlotId
 local InvSlotIdTable = {
 	[1] = "HeadSlot", --left
@@ -415,8 +399,19 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then
 
 			--color the avg item level
+
 			CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradient('Horizontal', {r=classcolor.r,g= classcolor.g,b= classcolor.b,a= 0.4}, {r=classcolor.r,g= classcolor.g,b= classcolor.b,a= 0})
 			CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradient('Horizontal', {r=classcolor.r,g= classcolor.g,b= classcolor.b,a= 0}, {r=classcolor.r,g= classcolor.g,b= classcolor.b,a= 0.4})
+			--[[CharacterStatsPane.ItemLevelFrame.leftGrad:SetTexture(E.LSM:Fetch("statusbar", 'Eltreum-Fade'))
+			CharacterStatsPane.ItemLevelFrame.rightGrad:SetTexture(E.LSM:Fetch("statusbar", 'Eltreum-Fade'))
+			CharacterStatsPane.ItemLevelFrame.rightGrad:SetTexCoord(1, 0, 0, 1)
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+				CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
+				CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
+			else
+				CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
+				CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
+			end]]
 
 			--CharacterFrame:SetHeight(505)
 			CharacterFrame:SetHeight(455)
@@ -491,13 +486,21 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterStatsPane.OffenseCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismOffenseCategory", CharacterStatsPane)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetSize(linewidthsle1, 4)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.OffenseCategory.Title, "LEFT", 0, -1)
-				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-				CharacterStatsPane.OffenseCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1}, {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1})
+				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+					CharacterStatsPane.OffenseCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
+				else
+					CharacterStatsPane.OffenseCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
+				end
 				CharacterStatsPane.OffenseCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismOffenseCategoryLine2", CharacterStatsPane)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetSize(linewidthsle1, 4)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.OffenseCategory.Title, "RIGHT", -1, -1)
-				CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-				CharacterStatsPane.OffenseCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1}, {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1})
+				CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+					CharacterStatsPane.OffenseCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
+				else
+					CharacterStatsPane.OffenseCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
+				end
 
 				--defense
 				CharacterStatsPane.DefenseCategory.backdrop:Hide()
@@ -516,13 +519,21 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterStatsPane.DefenseCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismDefenseCategory", CharacterStatsPane)
 				CharacterStatsPane.DefenseCategory.Title.StatusLine:SetSize(linewidthsle2, 4)
 				CharacterStatsPane.DefenseCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.DefenseCategory.Title, "LEFT", 0, -1)
-				CharacterStatsPane.DefenseCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-				CharacterStatsPane.DefenseCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1}, {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"], a=1})
+				CharacterStatsPane.DefenseCategory.Title.StatusLine:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+					CharacterStatsPane.DefenseCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
+				else
+					CharacterStatsPane.DefenseCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
+				end
 				CharacterStatsPane.DefenseCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismDefenseCategoryLine2", CharacterStatsPane)
 				CharacterStatsPane.DefenseCategory.Title.StatusLine2:SetSize(linewidthsle2, 4)
 				CharacterStatsPane.DefenseCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.DefenseCategory.Title, "RIGHT", -1, -1)
-				CharacterStatsPane.DefenseCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-				CharacterStatsPane.DefenseCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1}, {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"], a=1})
+				CharacterStatsPane.DefenseCategory.Title.StatusLine2:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+					CharacterStatsPane.DefenseCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
+				else
+					CharacterStatsPane.DefenseCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
+				end
 
 				--fix enhancement
 				if CharacterStatsPane.EnhancementsCategory.Title.StatusLine then
@@ -893,13 +904,21 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismItemLevelCategoryLine", CharacterStatsPane)
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetSize(linewidth1, 4)
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.ItemLevelCategory.Title, "LEFT", 0, -1)
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1}, {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1})
+			CharacterStatsPane.ItemLevelCategory.Title.StatusLine:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+				CharacterStatsPane.ItemLevelCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
+			else
+				CharacterStatsPane.ItemLevelCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
+			end
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismItemLevelCategoryLine2", CharacterStatsPane)
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetSize(linewidth1, 4)
 			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.ItemLevelCategory.Title, "RIGHT", -1, -1)
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1}, {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1})
+			CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+				CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
+			else
+				CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
+			end
 
 			if ElvUI_EltreumUI:SLCheck("stats") then
 				linewidth2 = (( 300 - CharacterStatsPane.AttributesCategory.Title:GetStringWidth())/2)
@@ -909,13 +928,21 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterStatsPane.AttributesCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismAttributesCategoryLine", CharacterStatsPane)
 			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetSize(linewidth2, 4)
 			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.AttributesCategory.Title, "LEFT", 0, -1)
-			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.AttributesCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1}, {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1})
+			CharacterStatsPane.AttributesCategory.Title.StatusLine:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+				CharacterStatsPane.AttributesCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
+			else
+				CharacterStatsPane.AttributesCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
+			end
 			CharacterStatsPane.AttributesCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismAttributesCategoryLine2", CharacterStatsPane)
 			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetSize(linewidth2, 4)
 			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.AttributesCategory.Title, "RIGHT", -1, -1)
-			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.AttributesCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1}, {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1})
+			CharacterStatsPane.AttributesCategory.Title.StatusLine2:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+				CharacterStatsPane.AttributesCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
+			else
+				CharacterStatsPane.AttributesCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
+			end
 
 			if ElvUI_EltreumUI:SLCheck("stats") then
 				linewidth3 = (( 300 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
@@ -925,23 +952,39 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine", CharacterStatsPane)
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetSize(linewidth3, 4)
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.EnhancementsCategory.Title, "LEFT", 0, -1)
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1}, {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1})
+			CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+				CharacterStatsPane.EnhancementsCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
+			else
+				CharacterStatsPane.EnhancementsCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
+			end
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine2", CharacterStatsPane)
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetSize(linewidth3, 4)
 			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.EnhancementsCategory.Title, "RIGHT", -1, -1)
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1}, {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1})
+			CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+				CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
+			else
+				CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
+			end
 
 			linewidth4 = (( 193 - CharacterFrame.EltruismExtraStatsFont:GetStringWidth())/2)
 			CharacterFrame.EltruismExtraStats:SetSize(linewidth4, 4)
 			CharacterFrame.EltruismExtraStats:SetPoint("RIGHT", CharacterFrame.EltruismExtraStatsFont, "LEFT", 0, -1)
-			CharacterFrame.EltruismExtraStats:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterFrame.EltruismExtraStats:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1}, {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1})
+			CharacterFrame.EltruismExtraStats:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+				CharacterFrame.EltruismExtraStats:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
+			else
+				CharacterFrame.EltruismExtraStats:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
+			end
 			CharacterFrame.EltruismExtraStats2:SetSize(linewidth4, 4)
 			CharacterFrame.EltruismExtraStats2:SetPoint("LEFT", CharacterFrame.EltruismExtraStatsFont, "RIGHT", 0, -1)
-			CharacterFrame.EltruismExtraStats2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-			CharacterFrame.EltruismExtraStats2:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1}, {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1})
+			CharacterFrame.EltruismExtraStats2:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+				CharacterFrame.EltruismExtraStats2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
+			else
+				CharacterFrame.EltruismExtraStats2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
+			end
 
 			if ElvUI_EltreumUI:SLCheck("stats") then
 				CharacterFrame.EltruismExtraStatsFont:Hide()
@@ -963,13 +1006,21 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterStatsPane.OffenseCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine", CharacterStatsPane)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetSize((( 300 - CharacterStatsPane.OffenseCategory.Title:GetStringWidth())/2), 4)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetPoint("RIGHT", CharacterStatsPane.OffenseCategory.Title, "LEFT", 0, -1)
-				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-				CharacterStatsPane.OffenseCategory.Title.StatusLine:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1}, {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1})
+				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+					CharacterStatsPane.OffenseCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
+				else
+					CharacterStatsPane.OffenseCategory.Title.StatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
+				end
 				CharacterStatsPane.OffenseCategory.Title.StatusLine2 = CreateFrame("StatusBar", "EltruismEnhancementsCategoryLine2", CharacterStatsPane)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetSize((( 300 - CharacterStatsPane.OffenseCategory.Title:GetStringWidth())/2), 4)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetPoint("LEFT", CharacterStatsPane.OffenseCategory.Title, "RIGHT", -1, -1)
-				CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetStatusBarTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\Eltreum-Blank.tga")
-				CharacterStatsPane.OffenseCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=statgradients[E.myclass]["r2"],g=statgradients[E.myclass]["g2"],b=statgradients[E.myclass]["b2"],a= 1}, {r=statgradients[E.myclass]["r1"],g=statgradients[E.myclass]["g1"],b=statgradients[E.myclass]["b1"],a= 1})
+				CharacterStatsPane.OffenseCategory.Title.StatusLine2:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+					CharacterStatsPane.OffenseCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
+				else
+					CharacterStatsPane.OffenseCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
+				end
 			end
 		end
 

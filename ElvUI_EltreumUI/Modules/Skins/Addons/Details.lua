@@ -48,8 +48,12 @@ do
 						local thisLine = lineContainer[whichRowLine]
 						if not thisLine then return end
 						if thisLine.lineText1 then
-							local name = E:StripString(thisLine.minha_tabela:GetDisplayName())
-							thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(thisLine.colocacao .. ". " .. ElvUI_EltreumUI:ShortenString(name, 10, true), thisLine.minha_tabela:class()))
+							--local name = E:StripString(thisLine.minha_tabela:GetDisplayName())
+							--print(thisLine.minha_tabela:GetDisplayName(),name,ElvUI_EltreumUI:ShortenString(name, 10, true))
+							local name = thisLine.lineText1:GetText()
+							if not name:match("|cff") then
+								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 12, true), thisLine.minha_tabela:class()))
+							end
 						end
 					end)
 					--gradient name (heal)
@@ -57,8 +61,12 @@ do
 						local thisLine = instancia.barras[whichRowLine]
 						if not thisLine then return end
 						if thisLine.lineText1 then
-							local name = E:StripString(thisLine.minha_tabela:GetDisplayName())
-							thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(thisLine.colocacao .. ". " .. ElvUI_EltreumUI:ShortenString(name, 10, true), thisLine.minha_tabela:class()))
+							--local name = E:StripString(thisLine.minha_tabela:GetDisplayName())
+							--thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(thisLine.colocacao .. ". " .. ElvUI_EltreumUI:ShortenString(name, 10, true), thisLine.minha_tabela:class()))
+							local name = thisLine.lineText1:GetText()
+							if not name:match("|cff") then
+								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 12, true), thisLine.minha_tabela:class()))
+							end
 						end
 					end)
 				end
@@ -83,8 +91,8 @@ do
 											if not row.statusbar.shadow then
 												row.statusbar:CreateShadow()
 												row.statusbar.shadow:ClearAllPoints()
-												row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2.8, -3)
-												row.statusbar.shadow:SetPoint("TOPRIGHT", row.textura,"TOPRIGHT", 3, -14)
+												row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2.5, -3)
+												row.statusbar.shadow:SetPoint("TOPRIGHT", row.textura,"TOPRIGHT", 2.5, -14)
 											end
 										end
 										if row.minha_tabela and row.minha_tabela.name then
