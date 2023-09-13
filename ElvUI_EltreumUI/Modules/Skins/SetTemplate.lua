@@ -174,6 +174,12 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 							frame.eltruismbordertest:Hide()
 						end]]
 					end
+
+					if not E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
+						if frame.eltruismbgtexture then
+							frame.eltruismbgtexture:Hide()
+						end
+					end
 				end)
 			end
 		end
