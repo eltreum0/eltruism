@@ -2924,6 +2924,7 @@ globals = {
 	"ElvUI_EltreumUI_OnAddonCompartmentClick",
 	"EXHAUSTION_LABEL",
 	"BREATH_LABEL",
+	"C_GameRules",
 }
 max_line_length = false
 ignore = {
