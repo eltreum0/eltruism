@@ -51,10 +51,6 @@ EltruismMailExists:SetAlpha(0)
 local mailthrottle = 0
 local M = E:GetModule('Minimap')
 function ElvUI_EltreumUI:BlizzMail()
-	_G.MiniMapMailIcon:SetTexture()
-	EltruismMailExists:SetScale(E.db.general.minimap.icons.mail.scale)
-	EltruismMailArrive:SetScale(E.db.general.minimap.icons.mail.scale)
-
 	if HasNewMail() then
 
 		if E.db.ElvUI_EltreumUI.otherstuff.mailAnimation then
