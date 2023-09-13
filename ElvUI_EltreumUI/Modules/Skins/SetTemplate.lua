@@ -179,6 +179,10 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 						if frame.eltruismbgtexture then
 							frame.eltruismbgtexture:Hide()
 						end
+					else
+						if frame.eltruismbgtexture then
+							frame.eltruismbgtexture:Show()
+						end
 					end
 				end)
 			end

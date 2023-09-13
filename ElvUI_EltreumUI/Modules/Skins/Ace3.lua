@@ -35,6 +35,7 @@ local function CreateFader(frame)
 		local backupR,backupG,backupB = 1,1,1
 
 		frame:HookScript("OnEnter", function()
+			if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 			UIFrameFadeIn(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 0, 1)
 			if frame.SetBackdropBorderColor then
 				frame:SetBackdropBorderColor(0, 0, 0, 1)
@@ -51,6 +52,7 @@ local function CreateFader(frame)
 		end)
 
 		frame:HookScript("OnShow", function()
+			if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 			local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
 			if frametext and frametext.GetText and not (frame.disabled or (frame.GetButtonState and frame:GetButtonState() == "DISABLED")) then
 				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
@@ -62,6 +64,7 @@ local function CreateFader(frame)
 		end)
 
 		frame:HookScript("OnLeave", function()
+			if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 			UIFrameFadeOut(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 1, 0)
 			local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
 			if frametext and frametext.GetText and not frame.disabled then
@@ -85,6 +88,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 
 	--hooks based on elvui skin functions, just changing color/texture for the most part
 	hooksecurefunc(E,"Config_UpdateLeftButtons",function()
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		local frame = E:Config_GetWindow()
 		if not (frame and frame.leftHolder) then return end
 		local status = frame.obj.status
@@ -112,6 +116,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 	end)
 
 	hooksecurefunc(E,"Config_SetButtonColor",function(_,button, disabled)
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		local buttontext = (button.Text) or (button.text) or (_G[button:GetName()] and _G[button:GetName() .. "Text"]) --using button.Text.GetText would return the function instead
 		if disabled then
 			if not E.db.ElvUI_EltreumUI.skins.ace3.button.disabled.classcolor then
@@ -125,7 +130,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 				else
 					button:SetBackdropColor(valuecolors.r, valuecolors.g, valuecolors.b,E.db.general.backdropfadecolor.a)
 				end
-				--button:SetBackdropBorderColor(0, 0, 0, 0)
+				button:SetBackdropBorderColor(0, 0, 0, 1)
 				--button.SetBackdropBorderColor = E.noop
 			end
 		else
@@ -142,6 +147,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 	end)
 
 	hooksecurefunc(S,"Ace3_SkinTab",function(_,tab)
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		CreateFader(tab)
 		local tabtext = (tab.Text) or (tab.text) or (_G[tab:GetName()] and _G[tab:GetName() .. "Text"]) --using tab.Text.GetText would return the function instead
 		if tab.selected then
@@ -200,6 +206,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 	end)
 
 	hooksecurefunc(S,"Ace3_TabSetSelected",function(tab,selected)
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		local bd = tab.backdrop
 		if not bd then return end
 		if tab.disabled then return end
@@ -223,6 +230,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 	end)
 
 	hooksecurefunc(S,"Ace3_RefreshTree",function(tab)
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		if not tab.tree then return end
 		if not E.private.skins.ace3Enable then return end
 		local status = tab.status or tab.localstatus
