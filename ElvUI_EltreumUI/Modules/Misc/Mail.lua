@@ -57,6 +57,7 @@ function ElvUI_EltreumUI:BlizzMail()
 
 	if HasNewMail() then
 		EltruismMailArrive.MailArriveAnim:Play()
+		EltruismMailArrive:SetAlpha(1)
 
 		EltruismMailArrive.MailArriveAnim:SetScript("OnPlay", function()
 			EltruismMailArrive:SetAlpha(1)
@@ -136,8 +137,9 @@ function ElvUI_EltreumUI:ElvUIMailTexture()
 
 		EltruismMailArrive.hassetpoint = true
 
-
-		_G.MinimapCluster.IndicatorFrame.MailFrame:SetAlpha(0)
+		if _G.MinimapCluster and _G.MinimapCluster.IndicatorFrame and _G.MinimapCluster.IndicatorFrame.MailFrame then
+			_G.MinimapCluster.IndicatorFrame.MailFrame:SetAlpha(0)
+		end
 	end
 end
 hooksecurefunc(M,"UpdateSettings", ElvUI_EltreumUI.ElvUIMailTexture)
