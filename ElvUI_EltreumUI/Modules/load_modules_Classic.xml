@@ -18,6 +18,7 @@
 	<Script file='Misc/InstantLoot.lua'/>
 	<Script file='Misc/Instances.lua'/>
 	<Script file='Misc/LootText.lua'/>
+	<Script file='Misc/Mail.lua'/>
 	<Script file='Misc/PartyRaid.lua'/>
 	<Script file='Misc/QuestAutoAccept.lua'/>
 	<Script file='Misc/QuestCombat.lua'/>

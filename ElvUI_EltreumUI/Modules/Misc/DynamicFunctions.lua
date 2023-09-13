@@ -396,31 +396,3 @@ function ElvUI_EltreumUI:DynamicExperienceDatabar()
 		end
 	end
 end
-
---based on elvui mail datatext
-local mailsoundframe = CreateFrame("FRAME")
---mailsoundframe:RegisterEvent("MAIL_INBOX_UPDATE")
-mailsoundframe:RegisterEvent("UPDATE_PENDING_MAIL")
-local mailthrottle = 0
-mailsoundframe:SetScript("OnEvent", function()
-	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end
-	if not E.private.ElvUI_EltreumUI then return end
-	if not E.private.ElvUI_EltreumUI.install_version then return end
-	if not E.db.ElvUI_EltreumUI.otherstuff then return end
-	if not E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice then return end
-	if not E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext then return end
-	if not E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume then return end
-	if HasNewMail() and E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable and not InCombatLockdown() and mailthrottle == 0 then
-
-		if E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" and E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice then
-			--C_VoiceChat.SpeakText(voiceID, text, destination, rate, volume)
-			C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
-		elseif E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "sharedmedia" then
-			PlaySoundFile(E.LSM:Fetch("sound", E.db.ElvUI_EltreumUI.otherstuff.mailsound) , "Master")
-		end
-		mailthrottle = 1
-		E:Delay(2, function()
-			mailthrottle = 0
-		end)
-	end
-end)
