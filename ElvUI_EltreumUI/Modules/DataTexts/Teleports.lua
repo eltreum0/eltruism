@@ -33,6 +33,11 @@ local TeleportsItems = {
 	54452, --ethereal-portal
 	93672, --dark-portal
 	184871, --dark-portal 2?
+	142542, --tome of town portal (finally has a new animation)
+	--188952, --dominated-hearthstone
+	--162973, --greatfather-winters-hearthstone
+	--193588, --timewalkers-hearthstone
+	206195, --path of the naaru
 	110560, --garrison-hearthstone
 	140192, --dalaran-hearthstone
 	141605, --flight-masters-whistle
@@ -128,11 +133,6 @@ local TeleportsItems = {
 	17907, --frostwolf-insignia-rank-4
 	17908, --frostwolf-insignia-rank-5
 	17909, --frostwolf-insignia-rank-6
-	142542, --tome of town portal (finally has a new animation)
-	--188952, --dominated-hearthstone
-	--162973, --greatfather-winters-hearthstone
-	--193588, --timewalkers-hearthstone
-	206195, --path of the naaru
 }
 local TeleportsSpells = {
 	556, --astral-recall
