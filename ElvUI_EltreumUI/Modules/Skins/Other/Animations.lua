@@ -12,7 +12,7 @@ local Minimap = _G.Minimap
 local PlaySoundFile = _G.PlaySoundFile
 local UIFrameFadeIn = _G.UIFrameFadeIn
 local UIFrameFadeOut = _G.UIFrameFadeOut
-
+local C_GameRules = E.ClassicHC and _G.C_GameRules or nil
 
 --Dark Souls Death, my first weakaura adapted
 local darksouls = CreateFrame("FRAME", nil, WorldFrame)
