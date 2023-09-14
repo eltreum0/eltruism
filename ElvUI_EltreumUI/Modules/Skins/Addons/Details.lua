@@ -165,6 +165,7 @@ do
 									row.background.EltruismHook = true
 								end
 							end
+							row:SetHeight(21)
 						end
 					end
 				end)
