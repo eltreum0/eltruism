@@ -24,6 +24,12 @@ local format = _G.format
 
 function ElvUI_EltreumUI:SkinQuests()
 
+	--[[if E.private.skins.parchmentRemoverEnable then
+		if _G["QuestDetailScrollFrame"] then
+			_G["QuestDetailScrollFrame"]:SetBackdrop()
+		end
+	end]]
+
 	--create the button for wowhead
 	if E.db.ElvUI_EltreumUI.skins.questswowhead then
 		if E.Retail then
