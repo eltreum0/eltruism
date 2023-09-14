@@ -235,6 +235,7 @@ E:AddTag("name:eltruism:gradient", "UNIT_NAME_UPDATE", function(unit)
 
 	if UnitIsPlayer(unit) then
 		local _, unitClass = UnitClass(unit)
+		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget)
 	elseif not UnitIsPlayer(unit) then
 		local reaction = UnitReaction(unit, "player")
@@ -268,6 +269,7 @@ E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit,_,args
 
 	if UnitIsPlayer(unit) then
 		local _, unitClass = UnitClass(unit)
+		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
 	elseif not UnitIsPlayer(unit) then
 		local reaction = UnitReaction(unit, "player")
@@ -296,6 +298,7 @@ E:AddTag("name:eltruism:gradientcaps", "UNIT_NAME_UPDATE", function(unit)
 
 	if UnitIsPlayer(unit) then
 		local _, unitClass = UnitClass(unit)
+		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget)
 	elseif not UnitIsPlayer(unit) then
 		local reaction = UnitReaction(unit, "player")
@@ -332,6 +335,7 @@ E:AddTag("name:eltruism:gradientshortcaps", "UNIT_NAME_UPDATE", function(unit,_,
 
 	if UnitIsPlayer(unit) then
 		local _, unitClass = UnitClass(unit)
+		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
 	elseif not UnitIsPlayer(unit) then
 		local reaction = UnitReaction(unit, "player")
@@ -367,6 +371,7 @@ E:AddTag("name:eltruism:gradienttranslit", "UNIT_NAME_UPDATE", function(unit,_,a
 
 	if UnitIsPlayer(unit) then
 		local _, unitClass = UnitClass(unit)
+		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
 	elseif not UnitIsPlayer(unit) then
 		local reaction = UnitReaction(unit, "player")
@@ -396,6 +401,7 @@ E:AddTag("name:eltruism:gradientshorttranslit", "UNIT_NAME_UPDATE", function(uni
 
 	if UnitIsPlayer(unit) then
 		local _, unitClass = UnitClass(unit)
+		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
 	elseif not UnitIsPlayer(unit) then
 		local reaction = UnitReaction(unit, "player")
@@ -418,6 +424,7 @@ E:AddTag('eltruismname:title', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT'
 	local name = UnitName(unit)
 	if UnitIsPlayer(unit) then
 		local _, unitClass = UnitClass(unit)
+		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientName(UnitPVPName(unit), unitClass)
 	elseif not UnitIsPlayer(unit) then
 		local reaction = UnitReaction(unit, "player")
@@ -440,6 +447,7 @@ E:AddTag('eltruismguild:brackets', 'PLAYER_GUILD_UPDATE', function(unit)
 	local guildName = GetGuildInfo(unit)
 	if guildName then
 		local _, unitClass = UnitClass(unit)
+		if not unitClass then return end
 		guildName = format('<%s>', guildName)
 		return ElvUI_EltreumUI:GradientName(guildName, unitClass)
 	end
@@ -467,6 +475,7 @@ E:AddTag("name:eltruism:gradientdefaultcolors", "UNIT_NAME_UPDATE", function(uni
 
 	if UnitIsPlayer(unit) then
 		local _, unitClass = UnitClass(unit)
+		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientNameDefaultColors(name, unitClass,isTarget)
 	elseif not UnitIsPlayer(unit) then
 		local reaction = UnitReaction(unit, "player")
@@ -495,6 +504,7 @@ E:AddTag("name:eltruism:gradientdefaultcolorsshort", "UNIT_NAME_UPDATE", functio
 
 	if UnitIsPlayer(unit) then
 		local _, unitClass = UnitClass(unit)
+		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientNameDefaultColors(name, unitClass, isTarget)
 	elseif not UnitIsPlayer(unit) then
 		local reaction = UnitReaction(unit, "player")
@@ -531,6 +541,7 @@ E:AddTag("name:eltruism:caps", "UNIT_NAME_UPDATE", function(unit,_,args)
 
 	if UnitIsPlayer(unit) then
 		local _, unitClass = UnitClass(unit)
+		if not unitClass then return end
 		return "|c"..classcolorcast[unitClass]..name.."|r"
 	elseif not UnitIsPlayer(unit) then
 		local reaction = UnitReaction(unit, "player")
@@ -554,6 +565,7 @@ E:AddTagInfo("name:eltruism:caps", ElvUI_EltreumUI.Name.." "..L["Names"], L["Dis
 --show class icons on all targets
 E:AddTag("eltruism:class:all", "UNIT_NAME_UPDATE", function(unit)
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("RELEAF",classes,false,"64")
 end)
 E:AddTagInfo('eltruism:class:all', ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."Releaf.tga:0:0:0:0|t "..L["Shows Class Icons recolored by Releaf on all targets"])
@@ -562,6 +574,7 @@ E:AddTagInfo('eltruism:class:all', ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInt
 E:AddTag("eltruism:class:player", "UNIT_NAME_UPDATE", function(unit)
 	if not UnitIsPlayer(unit) then return end
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("RELEAF",classes,false,"64")
 end)
 E:AddTagInfo('eltruism:class:player', ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."Releaf.tga:0:0:0:0|t "..L["Shows Class Icons recolored by Releaf on Player targets"])
@@ -569,6 +582,7 @@ E:AddTagInfo('eltruism:class:player', ElvUI_EltreumUI.Name.." "..L["Icons"], "|T
 --alternate class icons on all targets
 E:AddTag("eltruism:blizz:all", "UNIT_NAME_UPDATE", function(unit)
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("BLIZZARD",classes,false,"64")
 end)
 E:AddTagInfo('eltruism:blizz:all', ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass)..".tga:0:0:0:0|t "..L["Shows Class Icons by Blizzard on all targets"])
@@ -577,6 +591,7 @@ E:AddTagInfo('eltruism:blizz:all', ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInt
 E:AddTag("eltruism:blizz:player", "UNIT_NAME_UPDATE", function(unit)
 	if not UnitIsPlayer(unit) then return end
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("BLIZZARD",classes,false,"64")
 end)
 E:AddTagInfo('eltruism:blizz:player', ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass)..".tga:0:0:0:0|t "..L["Shows Class Icons by Blizzard only on Player targets"])
@@ -584,6 +599,7 @@ E:AddTagInfo('eltruism:blizz:player', ElvUI_EltreumUI.Name.." "..L["Icons"], "|T
 --alternate class icons on all targets
 E:AddTag("eltruism:ReleafBorder:all", "UNIT_NAME_UPDATE", function(unit)
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("BORDER",classes,false,"64")
 end)
 E:AddTagInfo('eltruism:ReleafBorder:all', ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."IconReleaf.tga:0:0:0:0|t "..L["Shows Class Icons with borders recolored by Releaf on all targets"])
@@ -592,6 +608,7 @@ E:AddTagInfo('eltruism:ReleafBorder:all', ElvUI_EltreumUI.Name.." "..L["Icons"],
 E:AddTag("eltruism:ReleafBorder:player", "UNIT_NAME_UPDATE", function(unit)
 	if not UnitIsPlayer(unit) then return end
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("BORDER",classes,false,"64")
 end)
 E:AddTagInfo('eltruism:ReleafBorder:player', ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."IconReleaf.tga:0:0:0:0|t "..L["Shows Class Icons with borders recolored by Releaf on Player targets"])
@@ -599,6 +616,7 @@ E:AddTagInfo('eltruism:ReleafBorder:player', ElvUI_EltreumUI.Name.." "..L["Icons
 --class icons with outlines on all targets
 E:AddTag("eltruism:IconOutline:all", "UNIT_NAME_UPDATE", function(unit)
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("SHADOW",classes,false,"64")
 end)
 E:AddTagInfo("eltruism:IconOutline:all", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."Shadow.tga:0:0:0:0|t ".."Shows Class Icons with Outlines all targets")
@@ -607,6 +625,7 @@ E:AddTagInfo("eltruism:IconOutline:all", ElvUI_EltreumUI.Name.." "..L["Icons"], 
 E:AddTag("eltruism:IconOutline:player", "UNIT_NAME_UPDATE", function(unit)
 	if not UnitIsPlayer(unit) then return end
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("SHADOW",classes,false,"64")
 end)
 E:AddTagInfo("eltruism:IconOutline:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."Shadow.tga:0:0:0:0|t ".."Shows Class Icons with Outlines on Player targets")
@@ -614,6 +633,7 @@ E:AddTagInfo("eltruism:IconOutline:player", ElvUI_EltreumUI.Name.." "..L["Icons"
 --class icons with outlines on all targets
 E:AddTag("eltruism:ReleafIconOutline:all", "UNIT_NAME_UPDATE", function(unit)
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("OUTLINE",classes,false,"64")
 end)
 E:AddTagInfo("eltruism:ReleafIconOutline:all", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."1.tga:0:0:0:0|t ".."Shows Class Icons with Outlines by Releaf all targets")
@@ -622,6 +642,7 @@ E:AddTagInfo("eltruism:ReleafIconOutline:all", ElvUI_EltreumUI.Name.." "..L["Ico
 E:AddTag("eltruism:ReleafIconOutline:player", "UNIT_NAME_UPDATE", function(unit)
 	if not UnitIsPlayer(unit) then return end
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("OUTLINE",classes,false,"64")
 end)
 E:AddTagInfo("eltruism:ReleafIconOutline:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."1.tga:0:0:0:0|t ".."Shows Class Icons with Outlines by Releaf on Player targets")
@@ -629,6 +650,7 @@ E:AddTagInfo("eltruism:ReleafIconOutline:player", ElvUI_EltreumUI.Name.." "..L["
 --show class icons on all targets
 E:AddTag("eltruism:reverseclass:all", "UNIT_NAME_UPDATE", function(unit)
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("RELEAF",classes,true,"64")
 end)
 E:AddTagInfo('eltruism:reverseclass:all', ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."Releaf.tga:0:0:0:0:64:64:64:0:0:64|t "..L["Shows Flipped Class Icons recolored by Releaf on all targets"])
@@ -637,6 +659,7 @@ E:AddTagInfo('eltruism:reverseclass:all', ElvUI_EltreumUI.Name.." "..L["Icons"],
 E:AddTag("eltruism:reverseclass:player", "UNIT_NAME_UPDATE", function(unit)
 	if not UnitIsPlayer(unit) then return end
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("RELEAF",classes,true,"64")
 end)
 E:AddTagInfo('eltruism:reverseclass:player', ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."Releaf.tga:0:0:0:0:64:64:64:0:0:64|t "..L["Shows Flipped Class Icons recolored by Releaf on Player targets"])
@@ -644,6 +667,7 @@ E:AddTagInfo('eltruism:reverseclass:player', ElvUI_EltreumUI.Name.." "..L["Icons
 --alternate class icons on all targets
 E:AddTag("eltruism:reverseblizz:all", "UNIT_NAME_UPDATE", function(unit)
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("BLIZZARD",classes,true,"64")
 end)
 E:AddTagInfo('eltruism:reverseblizz:all', ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass)..".tga:0:0:0:0:64:64:64:0:0:64|t "..L["Shows Flipped Class Icons by Blizzard on all targets"])
@@ -652,6 +676,7 @@ E:AddTagInfo('eltruism:reverseblizz:all', ElvUI_EltreumUI.Name.." "..L["Icons"],
 E:AddTag("eltruism:reverseblizz:player", "UNIT_NAME_UPDATE", function(unit)
 	if not UnitIsPlayer(unit) then return end
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("BLIZZARD",classes,true,"64")
 end)
 E:AddTagInfo('eltruism:reverseblizz:player', ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass)..".tga:0:0:0:0:64:64:64:0:0:64|t "..L["Shows Flipped Class Icons by Blizzard only on Player targets"])
@@ -659,6 +684,7 @@ E:AddTagInfo('eltruism:reverseblizz:player', ElvUI_EltreumUI.Name.." "..L["Icons
 --alternate class icons on all targets
 E:AddTag("eltruism:reverseReleafBorder:all", "UNIT_NAME_UPDATE", function(unit)
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("BORDER",classes,true,"64")
 end)
 E:AddTagInfo('eltruism:reverseReleafBorder:all', ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."IconReleaf.tga:0:0:0:0:64:64:64:0:0:64|t "..L["Shows Flipped Class Icons with borders recolored by Releaf on all targets"])
@@ -667,6 +693,7 @@ E:AddTagInfo('eltruism:reverseReleafBorder:all', ElvUI_EltreumUI.Name.." "..L["I
 E:AddTag("eltruism:reverseReleafBorder:player", "UNIT_NAME_UPDATE", function(unit)
 	if not UnitIsPlayer(unit) then return end
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("BORDER",classes,true,"64")
 end)
 E:AddTagInfo('eltruism:reverseReleafBorder:player', ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."IconReleaf.tga:0:0:0:0:64:64:64:0:0:64|t "..L["Shows Flipped Class Icons with borders recolored by Releaf on Player targets"])
@@ -674,6 +701,7 @@ E:AddTagInfo('eltruism:reverseReleafBorder:player', ElvUI_EltreumUI.Name.." "..L
 --class icons with outlines on all targets
 E:AddTag("eltruism:reverseIconOutline:all", "UNIT_NAME_UPDATE", function(unit)
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("SHADOW",classes,true,"64")
 end)
 E:AddTagInfo("eltruism:reverseIconOutline:all", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."Shadow.tga:0:0:0:0:64:64:64:0:0:64|t ".."Shows Flipped Class Icons with Outlines all targets")
@@ -682,6 +710,7 @@ E:AddTagInfo("eltruism:reverseIconOutline:all", ElvUI_EltreumUI.Name.." "..L["Ic
 E:AddTag("eltruism:reverseIconOutline:player", "UNIT_NAME_UPDATE", function(unit)
 	if not UnitIsPlayer(unit) then return end
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("SHADOW",classes,true,"64")
 end)
 E:AddTagInfo("eltruism:reverseIconOutline:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."Shadow.tga:0:0:0:0:64:64:64:0:0:64|t ".."Shows Flipped Class Icons with Outlines on Player targets")
@@ -689,6 +718,7 @@ E:AddTagInfo("eltruism:reverseIconOutline:player", ElvUI_EltreumUI.Name.." "..L[
 --class icons with outlines on all targets
 E:AddTag("eltruism:reverseReleafIconOutline:all", "UNIT_NAME_UPDATE", function(unit)
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("OUTLINE",classes,true,"64")
 end)
 E:AddTagInfo("eltruism:reverseReleafIconOutline:all", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."1.tga:0:0:0:0:64:64:64:0:0:64|t ".."Shows Flipped Class Icons with Outlines by Releaf all targets")
@@ -697,6 +727,7 @@ E:AddTagInfo("eltruism:reverseReleafIconOutline:all", ElvUI_EltreumUI.Name.." ".
 E:AddTag("eltruism:reverseReleafIconOutline:player", "UNIT_NAME_UPDATE", function(unit)
 	if not UnitIsPlayer(unit) then return end
 	local _ , classes = UnitClass(unit)
+	if not classes then return end
 	return ElvUI_EltreumUI:GetClassIcons("OUTLINE",classes,true,"64")
 end)
 E:AddTagInfo("eltruism:reverseReleafIconOutline:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."1.tga:0:0:0:0:64:64:64:0:0:64|t ".."Shows Flipped Class Icons with Outlines by Releaf on Player targets")
@@ -704,7 +735,8 @@ E:AddTagInfo("eltruism:reverseReleafIconOutline:player", ElvUI_EltreumUI.Name.."
 --gradient releaf icons
 E:AddTag("eltruism:Releafgradient:player", "UNIT_NAME_UPDATE", function(unit)
 	if not UnitIsPlayer(unit) then return end
-	local _,englishClass = UnitClass(unit)
+	local _, englishClass = UnitClass(unit)
+	if not englishClass then return end
 	return ElvUI_EltreumUI:GetClassIcons("GRADIENT",englishClass,false,"64")
 end)
 E:AddTagInfo("eltruism:Releafgradient:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."Gradient.tga:0:0:0:0|t ".."Shows Releaf Icons with Gradient Colors")
@@ -713,6 +745,7 @@ E:AddTagInfo("eltruism:Releafgradient:player", ElvUI_EltreumUI.Name.." "..L["Ico
 E:AddTag("eltruism:reverseReleafgradient:player", "UNIT_NAME_UPDATE", function(unit)
 	if not UnitIsPlayer(unit) then return end
 	local _,englishClass = UnitClass(unit)
+	if not englishClass then return end
 	return ElvUI_EltreumUI:GetClassIcons("GRADIENT",englishClass,true,"64")
 end)
 E:AddTagInfo("eltruism:reverseReleafgradient:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."Gradient.tga:0:0:0:0:64:64:64:0:0:64|t ".."Shows Reversed Releaf Icons with Gradient Colors")
@@ -721,6 +754,7 @@ E:AddTagInfo("eltruism:reverseReleafgradient:player", ElvUI_EltreumUI.Name.." ".
 E:AddTag("eltruism:classSymbols:player", "UNIT_NAME_UPDATE", function(unit)
 	if not UnitIsPlayer(unit) then return end
 	local _,englishClass = UnitClass(unit)
+	if not englishClass then return end
 	return ElvUI_EltreumUI:GetClassIcons("SYMBOLS",englishClass,false,"64")
 end)
 E:AddTagInfo("eltruism:classSymbols:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\"..tostring(fileclass)..".tga:0:0:0:0|t ".."Shows Eltruism Class Symbol")
@@ -728,6 +762,7 @@ E:AddTagInfo("eltruism:classSymbols:player", ElvUI_EltreumUI.Name.." "..L["Icons
 --gradient releaf icons for all
 E:AddTag("eltruism:Releafgradient:all", "UNIT_NAME_UPDATE", function(unit)
 	local _,englishClass = UnitClass(unit)
+	if not englishClass then return end
 	return ElvUI_EltreumUI:GetClassIcons("GRADIENT",englishClass,false,"64")
 end)
 E:AddTagInfo("eltruism:Releafgradient:all", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\"..tostring(fileclass)..".tga:0:0:0:0|t ".."Shows Releaf Icons with Gradient Colors for All")
@@ -735,6 +770,7 @@ E:AddTagInfo("eltruism:Releafgradient:all", ElvUI_EltreumUI.Name.." "..L["Icons"
 --gradient releaf icons reversed for all
 E:AddTag("eltruism:reverseReleafgradient:all", "UNIT_NAME_UPDATE", function(unit)
 	local _,englishClass = UnitClass(unit)
+	if not englishClass then return end
 	return ElvUI_EltreumUI:GetClassIcons("GRADIENT",englishClass,true,"64")
 end)
 E:AddTagInfo("eltruism:reverseReleafgradient:all", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."Gradient.tga:0:0:0:0:64:64:64:0:0:64|t ".."Shows Reversed Releaf Icons with Gradient Colors for All")
@@ -1165,6 +1201,7 @@ E:AddTagInfo('eltruism:difficulty:all', ElvUI_EltreumUI.Name.." "..L["Miscellane
 E:AddTag('eltruism:targetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGET UNIT_SPELLCAST_STOP', function(unit)
 	local targetname = UnitName(unit.."target")
 	local _ , classes = UnitClass(unit.."target")
+	if not classes then return end
 	local color = classcolorcast[classes]
 	local name, _, _, startTime, endTime, _, _, spellID = UnitChannelInfo(unit)
 	if not name then
@@ -1196,6 +1233,7 @@ E:AddTagInfo('eltruism:targetcast', ElvUI_EltreumUI.Name.." "..L["Miscellaneous"
 E:AddTag('eltruism:targetcast:indicator', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARGET UNIT_SPELLCAST_STOP', function(unit)
 	local targetname = UnitName(unit.."target")
 	local _ , classes = UnitClass(unit.."target")
+	if not classes then return end
 	local color = classcolorcast[classes]
 
 	local name, _, _, startTime, endTime, _, _, spellID = UnitChannelInfo(unit)
@@ -1314,6 +1352,7 @@ E:AddTagInfo("eltruism:groupnumber", ElvUI_EltreumUI.Name.." "..L["Miscellaneous
 E:AddTag("eltruism:classcolor", 'UNIT_NAME_UPDATE', function(unit)
 	if UnitIsPlayer(unit) then
 		local _, unitClass = UnitClass(unit)
+		if not unitClass then return end
 		local cs = ElvUF.colors.class[unitClass]
 		return (cs and E:RGBToHex(cs[1], cs[2], cs[3])) or '|cFFcccccc'
 	end

@@ -1455,3 +1455,6 @@ L["Text Selected"] = true
 L["Text Enabled"] = true
 L["Default Gradient Colors"] = true
 L["Gradient Mode"] = true
+L["Mail Animation"] = true
+L["Enable Mail Animation"] = true
+L["Play a Blizzard animation when receiving mail or when new mail exists"] = true

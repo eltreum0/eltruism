@@ -1,5 +1,6 @@
 ### 3.9.8 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
+Added Mail Animation, which will show a Blizzard animation when mail arrives and exists  
 Added Resting Animation by Blizzard to Wrath and Classic  
 Added gradient to Resting Animation  
 Added a Dark mode skin for Details  
@@ -9,7 +10,9 @@ Updated various Textures to improve scaling in 1080p and 1440p
 Updated Character Panel Skin line textures  
 Updated Ace3 Skin to cover more buttons  
 Updated German locale by Dlarge  
+Fixed shadows when classbar was detached and power was set to inset on player unitframe  
 Fixed a possible error with Portrait Fix when 3D portraits were disabled  
+Fixed a rare issue when a unit's class could return nil in tags  
 Fixed a possible error with Portrait Skin and Party unitframes  
 Fixed a possible error with Loot Text when reloading  
 Fixed Ace3 Skin hiding backdrop borders  

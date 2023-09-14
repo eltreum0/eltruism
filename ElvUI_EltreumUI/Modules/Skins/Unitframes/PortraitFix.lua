@@ -388,6 +388,7 @@ local modelsRotate = {
 	[4928312] = true, --Sarkareth
 	[4928310] = true, --Sarkareth
 	[123788] = true,
+	[1569455] = true, --Chieftain Hatuun
 }
 
 --set portrait rotation based on target being npc or not

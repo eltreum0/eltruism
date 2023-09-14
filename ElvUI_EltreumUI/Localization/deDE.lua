@@ -1510,3 +1510,6 @@ L["Text Selected"] = "Text ausgewählt"
 L["Text Enabled"] = "Text aktiviert"
 L["Default Gradient Colors"] = "Standard Farbverlauf"
 L["Gradient Mode"] = "Farbverlaufsart"
+L["Mail Animation"] = true
+L["Enable Mail Animation"] = true
+L["Play a Blizzard animation when receiving mail or when new mail exists"] = true

@@ -173,6 +173,7 @@ function ElvUI_EltreumUI:Initialize()
 	--because some cvars keep resetting for some reason
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEAVING_WORLD')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LOGOUT')
+	ElvUI_EltreumUI:RegisterEvent("UPDATE_PENDING_MAIL") --for mail sound/icon
 end
 
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
@@ -336,6 +337,10 @@ function ElvUI_EltreumUI:INSPECT_READY(_,unit)
 			ElvUI_EltreumUI:InspectBg(unit)
 		end
 	end)
+end
+
+function ElvUI_EltreumUI:UPDATE_PENDING_MAIL()
+	ElvUI_EltreumUI:BlizzMail()
 end
 
 function ElvUI_EltreumUI:PLAYER_LEAVING_WORLD()
