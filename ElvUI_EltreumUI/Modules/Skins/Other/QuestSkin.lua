@@ -193,7 +193,16 @@ function ElvUI_EltreumUI:SkinQuests()
 		end
 
 		if E.Retail then
-			if _G["QuestNPCModelTextFrame"] then
+			if _G.QuestNPCModelText then
+				_G.QuestNPCModelText:SetText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum")
+			end
+
+			--[[if _G["QuestNPCModelTextFrame"] then
+				_G["QuestNPCModelTextFrame"]:SetBackdrop()
+				if _G["QuestNPCModelTextFrame"].eltruismbgtexture then
+					_G["QuestNPCModelTextFrame"].eltruismbgtexture:Hide()
+				end
+				_G["QuestModelScene"]:SetBackdrop()
 				if not _G["QuestNPCModelTextFrame"].Eltruismbg then
 					local QuestNPCModelTemplate = CreateFrame("Frame", "EltruismQuestNPCModelTemplate")
 					QuestNPCModelTemplate:SetPoint("TOPLEFT", _G["QuestModelScene"], "TOPLEFT", 0,0)
@@ -203,7 +212,10 @@ function ElvUI_EltreumUI:SkinQuests()
 					_G["QuestNPCModelTextFrame"].Eltruismbg = _G["QuestNPCModelTextFrame"]:CreateTexture() --used as a check
 					 QuestNPCModelTemplate:SetFrameStrata("LOW")
 				end
-			end
+
+				_G["QuestNPCModelNameText"]:ClearAllPoints()
+				_G["QuestNPCModelNameText"]:SetPoint("TOP", _G["QuestModelScene"],"TOP")
+			end]]
 
 			-- and (not IsAddOnLoaded("ElvUI_WindTools"))
 			if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
