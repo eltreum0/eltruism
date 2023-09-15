@@ -106,6 +106,12 @@ function ElvUI_EltreumUI:HidePopups(delay)
 				_G["GladiusButtonBackground"]:Hide()
 			end
 		end
+		if _G["BasicMessageDialog"] then
+			_G["BasicMessageDialog"]:Hide()
+		end
+		if IsAddOnLoaded("Gladdy") then
+			LibStub("AceConfigDialog-3.0"):Close("Gladdy") --using E.Libs seems delayed
+		end
 	end)
 end
 
