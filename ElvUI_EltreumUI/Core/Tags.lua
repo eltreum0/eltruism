@@ -1241,18 +1241,18 @@ E:AddTag("eltruism:hpdeficitpc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_
 		if not UnitIsPlayer(unit) then
 			local reaction = UnitReaction(unit, "player")
 			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." - "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCFRIENDLY", isTarget)
+				return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCFRIENDLY", isTarget),"_","||")
 			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." - "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCNEUTRAL", isTarget)
+				return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCNEUTRAL", isTarget),"_","||")
 			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." - "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCUNFRIENDLY", isTarget)
+				return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCUNFRIENDLY", isTarget),"_","||")
 			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." - "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCHOSTILE", isTarget)
+				return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCHOSTILE", isTarget),"_","||")
 			end
 		else
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
-			return ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." - "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), unitClass, isTarget)
+			return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), unitClass, isTarget),"_","||")
 		end
 	end
 end)
@@ -1267,19 +1267,18 @@ E:AddTag("eltruism:pchpdeficit:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_
 		if not UnitIsPlayer(unit) then
 			local reaction = UnitReaction(unit, "player")
 			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." - "..E:ShortValue(deficit)), "NPCFRIENDLY", isTarget)
+				return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), "NPCFRIENDLY", isTarget),"_","||")
 			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." - "..E:ShortValue(deficit)), "NPCNEUTRAL", isTarget)
+				return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), "NPCNEUTRAL", isTarget),"_","||")
 			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." - "..E:ShortValue(deficit)), "NPCUNFRIENDLY", isTarget)
+				return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), "NPCUNFRIENDLY", isTarget),"_","||")
 			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." - "..E:ShortValue(deficit)), "NPCHOSTILE", isTarget)
+				return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), "NPCHOSTILE", isTarget),"_","||")
 			end
 		else
 			local _, unitClass = UnitClass(unit)
 			if not unitClass then return end
-			return ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." - "..E:ShortValue(deficit)), unitClass, isTarget)
-			--ElvUI_EltreumUI:GradientName("-"..E:ShortValue(deficit), unitClass, isTarget).." | "..ElvUI_EltreumUI:GradientName(E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)), unitClass, isTarget)
+			return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), unitClass, isTarget),"_","||")
 		end
 	end
 end)
