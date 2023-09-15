@@ -12,7 +12,6 @@ local Minimap = _G.Minimap
 local PlaySoundFile = _G.PlaySoundFile
 local UIFrameFadeIn = _G.UIFrameFadeIn
 local UIFrameFadeOut = _G.UIFrameFadeOut
-local C_GameRules = E.ClassicHC and _G.C_GameRules or nil
 
 --Dark Souls Death, my first weakaura adapted
 local darksouls = CreateFrame("FRAME", nil, WorldFrame)
@@ -109,12 +108,8 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 				end
 				Minimap:Hide()
 				Minimap:SetAlpha(0)
-				if not E.Classic then
+				if E.ClassicHC then
 					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\You_Died.ogg" , "Master")
-				else
-					if not C_GameRules.IsHardcoreActive() then
-						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\You_Died.ogg" , "Master")
-					end
 				end
 				UIFrameFadeIn(darksouls, 1, 0, 1)
 				darksouls.scaler:Play()
@@ -184,12 +179,8 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 				gta.Text:SetShadowOffset(4, -4)
 				gta.Text:SetText("WASTED")
 				gta.Text:SetDrawLayer("OVERLAY")
-				if not E.Classic then
+				if E.ClassicHC then
 					gtabanner:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Wasted.tga")
-				else
-					if not C_GameRules.IsHardcoreActive() then
-						gtabanner:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Wasted.tga")
-					end
 				end
 				gtabanner:SetAlpha(0.60)
 				gtabanner:SetSize(x, 300)
@@ -204,12 +195,8 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 				end
 				Minimap:Hide()
 				Minimap:SetAlpha(0)
-				if not E.Classic then
+				if E.ClassicHC then
 					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wasted.ogg" , "Master")
-				else
-					if not C_GameRules.IsHardcoreActive() then
-						PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\wasted.ogg" , "Master")
-					end
 				end
 				UIFrameFadeIn(gta, 1, 0, 1)
 

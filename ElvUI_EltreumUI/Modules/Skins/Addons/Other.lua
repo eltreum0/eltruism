@@ -2,7 +2,6 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local tabSkinned = false
-local C_GameRules = E.ClassicHC and _G.C_GameRules or nil
 local UIFrameFadeOut = _G.UIFrameFadeOut
 
 --simple tab skin
