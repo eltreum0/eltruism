@@ -602,7 +602,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["boss"]["fader"]["range"] = false
 	E.db["unitframe"]["units"]["boss"]["health"]["attachTextTo"] = "InfoPanel"
 	E.db["unitframe"]["units"]["boss"]["health"]["position"] = "RIGHT"
-	E.db["unitframe"]["units"]["boss"]["health"]["text_format"] = "[healthcolor][eltruism:hpstatusnopc]"
+	E.db["unitframe"]["units"]["boss"]["health"]["text_format"] = "[healthcolor][eltruism:hpstatusnopc:gradient]"
 	E.db["unitframe"]["units"]["boss"]["health"]["xOffset"] = 0
 	E.db["unitframe"]["units"]["boss"]["infoPanel"]["enable"] = true
 	E.db["unitframe"]["units"]["boss"]["infoPanel"]["height"] = 12
