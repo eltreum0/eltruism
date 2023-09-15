@@ -112,6 +112,9 @@ function ElvUI_EltreumUI:HidePopups(delay)
 		if IsAddOnLoaded("Gladdy") then
 			LibStub("AceConfigDialog-3.0"):Close("Gladdy") --using E.Libs seems delayed
 		end
+
+		--hide elvui config
+		E.Libs.AceConfigDialog:Close("ElvUI")
 	end)
 end
 
