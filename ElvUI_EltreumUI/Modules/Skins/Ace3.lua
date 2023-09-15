@@ -134,8 +134,8 @@ function ElvUI_EltreumUI:Ace3Skin()
 				--button.SetBackdropBorderColor = E.noop
 			end
 		else
-			if not E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.classcolor then
-				buttontext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.r, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.g, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.b)
+			if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+				buttontext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
 			else
 				buttontext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
 			end
