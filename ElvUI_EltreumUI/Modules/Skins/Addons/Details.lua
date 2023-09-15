@@ -94,6 +94,7 @@ do
 												row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2.5, -3)
 												row.statusbar.shadow:SetPoint("TOPRIGHT", row.textura,"TOPRIGHT", 2.5, -14)
 											end
+											row:SetHeight(21)
 										end
 										if row.minha_tabela and row.minha_tabela.name then
 											local unitclass = row.minha_tabela:class() --from details api returns class of that row
@@ -144,6 +145,7 @@ do
 											if row.lineBorder then
 												row.lineBorder:SetAlpha(0)
 											end
+											row:SetHeight(21)
 										else
 											row.background:SetTexture(row.textura:GetTexture())
 										end
@@ -165,6 +167,7 @@ do
 									row.background.EltruismHook = true
 								end
 							end
+
 						end
 					end
 				end)

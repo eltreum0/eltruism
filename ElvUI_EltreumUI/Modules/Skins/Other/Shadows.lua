@@ -1061,6 +1061,8 @@ function ElvUI_EltreumUI:Shadows()
 					_G.QuestFrame,
 					_G.EquipmentFlyoutFrameButtons,
 					_G.EditModeManagerFrame,
+					_G.QuestModelScene,
+					_G.QuestNPCModelTextFrame,
 				}
 				for _, frame in pairs(retailframes) do
 					if frame and not frame.shadow then

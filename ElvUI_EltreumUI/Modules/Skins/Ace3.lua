@@ -271,6 +271,15 @@ function ElvUI_EltreumUI:Ace3Skin()
 			end
 		end
 	end)
+
+	hooksecurefunc(S,"HandleSliderFrame",function(_,frame)
+		if not frame then return end
+		if not E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.classcolor then
+			frame:GetThumbTexture():SetVertexColor(E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.r, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.g, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.b, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.a)
+		else
+			frame:GetThumbTexture():SetVertexColor(valuecolors.r, valuecolors.g, valuecolors.b,0.8)
+		end
+	end)
 end
 
 hooksecurefunc(S,"HandleTab",function(_,tab, noBackdrop)
@@ -285,6 +294,31 @@ hooksecurefunc(S,"HandleButton",function(_,button, _, _, noStyle)
 	CreateFader(button)
 end)
 
+--doesnt work for some reason
+--[[hooksecurefunc(S,"HandleCheckBox",function(_,frame)
+	if not frame then return end
+	if not E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.classcolor then
+		frame:GetCheckedTexture():SetVertexColor(E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.r, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.g, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.b, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.a)
+	else
+		frame:GetCheckedTexture():SetVertexColor(valuecolors.r, valuecolors.g, valuecolors.b,0.8)
+	end
+end)
+hooksecurefunc(S,"Ace3_SkinDropdown",function(self)
+	if self and self.obj then
+		local pullout = self.obj.dropdown
+		if pullout then
+			if pullout.button then
+				local t = pullout.button:GetNormalTexture()
+				if not E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.classcolor then
+					t:SetVertexColor(E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.r, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.g, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.b, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.a)
+				else
+					t:SetVertexColor(valuecolors.r, valuecolors.g, valuecolors.b,0.8)
+				end
+			end
+		end
+	end
+end)
+]]
 
 --for some reason buttons on macro frame dont get animation, maybe because they load too early?
 --[[

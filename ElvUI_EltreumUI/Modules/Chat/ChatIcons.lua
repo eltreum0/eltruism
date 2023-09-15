@@ -220,7 +220,8 @@ function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, 
 	if info and _G.Chat_ShouldColorChatByClass(info) then
 		local data = CH:GetPlayerInfoByGUID(arg12)
 		local classColor = data and data.classColor
-		if classColor then
+		if classColor and data.englishClass then
+			--print(data.englishClass)
 			if E.db.ElvUI_EltreumUI.chat.chaticonenable and E.db.ElvUI_EltreumUI.chat.chatgradient then
 				return ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.chat.chaticontype,data.englishClass,false,"32")..ElvUI_EltreumUI:GradientName(name, data.englishClass)
 			elseif E.db.ElvUI_EltreumUI.chat.chaticonenable and not E.db.ElvUI_EltreumUI.chat.chatgradient then
