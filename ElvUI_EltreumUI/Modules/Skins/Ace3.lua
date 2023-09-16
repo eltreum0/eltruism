@@ -36,7 +36,9 @@ local function CreateFader(frame)
 
 		frame:HookScript("OnEnter", function()
 			if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
-			UIFrameFadeIn(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 0, 1)
+			if not frame.highlight then
+				UIFrameFadeIn(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 0, 1)
+			end
 			if frame.SetBackdropBorderColor then
 				frame:SetBackdropBorderColor(0, 0, 0, 1)
 			end
