@@ -198,6 +198,10 @@ function ElvUI_EltreumUI:Shadows()
 						_G.ArcheologyDigsiteProgressBar.FillBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.ArcheologyDigsiteProgressBar.FillBar.shadow)
 					end
+					if _G.ArchaeologyFrame and not _G.ArchaeologyFrame.shadow then
+						_G.ArchaeologyFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G.ArchaeologyFrame.shadow)
+					end
 				end
 				if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
 					if E.Retail or E.Wrath then
