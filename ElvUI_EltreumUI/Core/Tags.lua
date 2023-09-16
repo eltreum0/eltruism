@@ -1110,12 +1110,13 @@ E:AddTag("eltruism:perhpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE UN
 end)
 E:AddTagInfo("eltruism:perhpstatus", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays percentage health with status icons"])
 
---gradient version
+--gradient versions
+
 --HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
 E:AddTag("eltruism:hpstatus:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
-	local isTarget = UnitIsUnit(unit,"target")
+	local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
 
 	if not UnitIsPlayer(unit) then --npc
 		if not UnitIsDead(unit) then
@@ -1143,6 +1144,7 @@ E:AddTag("eltruism:hpstatus:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTI
 		if not UnitIsDead(unit) and not UnitIsGhost(unit) then --players
 			local min, max = UnitHealth(unit), UnitHealthMax(unit)
 			return ElvUI_EltreumUI:GradientName(E:GetFormattedText('CURRENT_PERCENT', min, max, nil, true), unitClass,isTarget)
+			--return gsub(ElvUI_EltreumUI:GradientName(E:GetFormattedText('CURRENT_PERCENT', min, max, nil, true), unitClass,isTarget),"-","||")
 		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
 				return deadtexture
@@ -1171,6 +1173,117 @@ E:AddTag("eltruism:hpstatus:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTI
 	end
 end)
 E:AddTagInfo("eltruism:hpstatus:gradient", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays HP - % and a status symbol. Can be customized in Eltruism > Media"])
+
+--no percentage value of other HP tag that switches to a dead symbol or dc symbol depending on the unit status, based on elvui
+E:AddTag("eltruism:hpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
+	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
+	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
+	local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
+
+	if not UnitIsPlayer(unit) then --npc
+		if not UnitIsDead(unit) then
+			local reaction = UnitReaction(unit, "player")
+			if reaction >= 5 then
+				return ElvUI_EltreumUI:GradientName(E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1)), "NPCFRIENDLY", isTarget)
+			elseif reaction == 4 then
+				return ElvUI_EltreumUI:GradientName(E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1)), "NPCNEUTRAL", isTarget)
+			elseif reaction == 3 then
+				return ElvUI_EltreumUI:GradientName(E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1)), "NPCUNFRIENDLY", isTarget)
+			elseif reaction == 2 or reaction == 1 then
+				return ElvUI_EltreumUI:GradientName(E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1)), "NPCHOSTILE", isTarget)
+			end
+		else
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+				return deadtexture
+			else
+				return L["Dead"]
+			end
+		end
+	else
+		local _, unitClass = UnitClass(unit)
+		if not unitClass then return end
+		if not UnitIsDead(unit) and not UnitIsGhost(unit) then --players
+			return ElvUI_EltreumUI:GradientName( E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1)), unitClass,isTarget)
+		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+				return deadtexture
+			else
+				return L["Dead"]
+			end
+		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
+			else
+				return L["Offline"]
+			end
+		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
+			else
+				return L["Offline"]
+			end
+		elseif UnitIsGhost(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga:0:0:0:0|t"
+			else
+				return GetSpellInfo(8326)
+			end
+		end
+	end
+end)
+E:AddTagInfo("eltruism:hpstatusnopc:gradient", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays shortvalue HP and a status symbol from Releaf for players. Usage: [eltruism:hpstatusnopc{number,number}]"])
+
+--health deficit + perhp
+E:AddTag("eltruism:hpdeficitpc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE", function(unit)
+	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
+	local deficit = maxhp - cur
+	local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
+	if deficit > 0 and cur > 0 then
+		if not UnitIsPlayer(unit) then
+			local reaction = UnitReaction(unit, "player")
+			if reaction >= 5 then
+				return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCFRIENDLY", isTarget),"_","||")
+			elseif reaction == 4 then
+				return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCNEUTRAL", isTarget),"_","||")
+			elseif reaction == 3 then
+				return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCUNFRIENDLY", isTarget),"_","||")
+			elseif reaction == 2 or reaction == 1 then
+				return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCHOSTILE", isTarget),"_","||")
+			end
+		else
+			local _, unitClass = UnitClass(unit)
+			if not unitClass then return end
+			return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), unitClass, isTarget),"_","||")
+		end
+	end
+end)
+E:AddTagInfo("eltruism:hpdeficitpc:gradient", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays health lost in shortvalue and current health percentage"])
+
+--health deficit + perhp
+E:AddTag("eltruism:pchpdeficit:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE", function(unit)
+	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
+	local deficit = maxhp - cur
+	local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
+	if deficit > 0 and cur > 0 then
+		if not UnitIsPlayer(unit) then
+			local reaction = UnitReaction(unit, "player")
+			if reaction >= 5 then
+				return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), "NPCFRIENDLY", isTarget),"_","||")
+			elseif reaction == 4 then
+				return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), "NPCNEUTRAL", isTarget),"_","||")
+			elseif reaction == 3 then
+				return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), "NPCUNFRIENDLY", isTarget),"_","||")
+			elseif reaction == 2 or reaction == 1 then
+				return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), "NPCHOSTILE", isTarget),"_","||")
+			end
+		else
+			local _, unitClass = UnitClass(unit)
+			if not unitClass then return end
+			return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), unitClass, isTarget),"_","||")
+		end
+	end
+end)
+E:AddTagInfo("eltruism:pchpdeficit:gradient", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays current health percentage and health lost in shortvalue"])
 
 ------------------------------------------------------------------ OTHER -------------------------------------------------------------------------
 

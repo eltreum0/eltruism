@@ -852,7 +852,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 16,
-			["text_format"] = "[eltruism:raidmarker] [eltruism:hpstatusnopc]",
+			["text_format"] = "[eltruism:raidmarker] [eltruism:hpstatusnopc:gradient]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -911,7 +911,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["fontOutline"] = "OUTLINE",
 				["justifyH"] = "LEFT",
 				["size"] = 16,
-				["text_format"] = "[eltruism:hpstatusnopc]",
+				["text_format"] = "[eltruism:hpstatusnopc:gradient]",
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
@@ -956,7 +956,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 				["fontOutline"] = "OUTLINE",
 				["justifyH"] = "LEFT",
 				["size"] = 16,
-				["text_format"] = "[eltruism:hpstatusnopc]",
+				["text_format"] = "[eltruism:hpstatusnopc:gradient]",
 				["xOffset"] = 0,
 				["yOffset"] = 0
 			}
@@ -1031,7 +1031,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 14,
-			["text_format"] = "[eltruism:hpstatus]",
+			["text_format"] = "[eltruism:hpstatus:gradient]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -1122,7 +1122,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 10,
-			["text_format"] = "[eltruism:hpstatusnopc]",
+			["text_format"] = "[eltruism:hpstatusnopc:gradient]",
 			["xOffset"] = 0,
 			["yOffset"] = -1
 		}
@@ -1180,7 +1180,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 10,
-			["text_format"] = "[eltruism:hpstatusnopc]",
+			["text_format"] = "[eltruism:hpstatusnopc:gradient]",
 			["xOffset"] = 0,
 			["yOffset"] = -1
 		}
@@ -1238,7 +1238,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "OUTLINE",
 			["justifyH"] = "RIGHT",
 			["size"] = 10,
-			["text_format"] = "[eltruism:hpstatusnopc]",
+			["text_format"] = "[eltruism:hpstatusnopc:gradient]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
@@ -1285,7 +1285,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 14,
-			["text_format"] = "[eltruism:hpstatus]",
+			["text_format"] = "[eltruism:hpstatus:gradient]",
 			["xOffset"] = 2,
 			["yOffset"] = 0
 		}
@@ -1357,7 +1357,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["fontOutline"] = "THICKOUTLINE",
 			["justifyH"] = "LEFT",
 			["size"] = 11,
-			["text_format"] = "[eltruism:hpstatusnopc]",
+			["text_format"] = "[eltruism:hpstatusnopc:gradient]",
 			["xOffset"] = 2,
 			["yOffset"] = 3
 		}
@@ -1396,9 +1396,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		}
 
 	ElvUI_EltreumUI:Print(L["General Layout has been set."])
-
-	--run shadows
-	ElvUI_EltreumUI:Shadows()
 end
 
 -- Private DB

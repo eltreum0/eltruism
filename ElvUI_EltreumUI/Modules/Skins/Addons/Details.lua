@@ -91,7 +91,7 @@ do
 											if not row.statusbar.shadow then
 												row.statusbar:CreateShadow()
 												row.statusbar.shadow:ClearAllPoints()
-												row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2.5, -3)
+												row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2.5, -2.5)
 												row.statusbar.shadow:SetPoint("TOPRIGHT", row.textura,"TOPRIGHT", 2.5, -14)
 											end
 											row:SetHeight(21)
@@ -138,8 +138,8 @@ do
 											if not row.statusbar.shadow then
 												row.statusbar:CreateShadow()
 												row.statusbar.shadow:ClearAllPoints()
-												row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2.5, -3)
-												row.statusbar.shadow:SetPoint("TOPRIGHT", row.background,"TOPRIGHT", 2.5, -13)
+												row.statusbar.shadow:SetPoint("BOTTOMLEFT", row.textura,"BOTTOMLEFT", -2.5, -2.5)
+												row.statusbar.shadow:SetPoint("TOPRIGHT", row.background,"TOPRIGHT", 2.5, -14)
 											end
 											row.background:SetTexture(row.textura:GetTexture())
 											if row.lineBorder then

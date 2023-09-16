@@ -206,6 +206,9 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.loot.lootwishlistfilter = false
 	E.db.ElvUI_EltreumUI.loot.lootautoclose = true
 
+	--object frame height
+	E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight = 550
+
 	-- Misc
 	E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable = false
 	E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext = true
