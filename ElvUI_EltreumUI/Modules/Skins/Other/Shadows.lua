@@ -588,7 +588,7 @@ function ElvUI_EltreumUI:Shadows()
 							_G.PetJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.PetJournal.shadow)
 						end
-						if not _G.WardrobeFrame.shadow then
+						if _G.WardrobeFrame and not _G.WardrobeFrame.shadow then
 							_G.WardrobeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.WardrobeFrame.shadow)
 						end
@@ -1216,17 +1216,30 @@ function ElvUI_EltreumUI:Shadows()
 				--wrath only frames
 				if E.Wrath then
 					local tbcframes = {
-					_G.LFGParentFrame.backdrop,
-					_G.LFGParentFrameTab1.backdrop,
-					_G.LFGParentFrameTab2.backdrop,
-					_G.QuestLogDetailFrame.backdrop,
-					_G.LFGListingFrame.backdrop,
-					_G.LFGBrowseFrame.backdrop
+					_G.LFGParentFrame,
+					_G.LFGParentFrameTab1,
+					_G.LFGParentFrameTab2,
+					_G.QuestLogDetailFrame,
+					_G.LFGListingFrame,
+					_G.LFGBrowseFrame,
+					_G.GroupFinderFrame,
+					_G.PVPFrame,
+					_G.PVPParentFrameTab2,
+					_G.PVPParentFrameTab1,
 					}
 					for _, frame in pairs(tbcframes) do
-						if frame and not frame.shadow then
-							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(frame.shadow)
+						if frame then
+							if frame.backdrop then
+								if not frame.backdrop.shadow then
+									frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(frame.backdrop.shadow)
+								end
+							else
+								if not frame.shadow then
+									frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(frame.shadow)
+								end
+							end
 						end
 					end
 				end
