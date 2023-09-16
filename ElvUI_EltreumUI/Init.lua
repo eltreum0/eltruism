@@ -222,10 +222,12 @@ end
 
 function ElvUI_EltreumUI:PLAYER_FLAGS_CHANGED(_,unit)
 	if unit == "player" then
-		ElvUI_EltreumUI:AFKmusic()
 		ElvUI_EltreumUI:NameplateRestedOverlaps()
-		if E.db.general.afk then
-			ElvUI_EltreumUI:AFKLogo()
+		if UnitIsAFK("player") then
+			if E.db.general.afk then
+				ElvUI_EltreumUI:AFKLogo()
+			end
+			ElvUI_EltreumUI:AFKmusic()
 		end
 	end
 end

@@ -208,10 +208,14 @@ function ElvUI_EltreumUI:AFKLogo()
 		end
 
 		--model
-		local point, relativeTo, relativePoint, _, yOfs = _G.ElvUIAFKFrame.bottom.modelHolder:GetPoint()
-		_G.ElvUIAFKFrame.bottom.modelHolder:ClearAllPoints()
-		_G.ElvUIAFKFrame.bottom.modelHolder:Point(point, relativeTo, relativePoint, 250, yOfs+10)
-		_G.ElvUIAFKFrame.bottom.model:SetScale(0.9)
+		if not _G.ElvUIAFKFrame.bottom.modelHolder.EltruismAdjust then
+			local point, relativeTo, relativePoint, _, yOfs = _G.ElvUIAFKFrame.bottom.modelHolder:GetPoint()
+			_G.ElvUIAFKFrame.bottom.modelHolder:ClearAllPoints()
+			_G.ElvUIAFKFrame.bottom.modelHolder:Point(point, relativeTo, relativePoint, 250, yOfs+10)
+			_G.ElvUIAFKFrame.bottom.model:SetScale(0.9)
+
+			_G.ElvUIAFKFrame.bottom.modelHolder.EltruismAdjust = true
+		end
 
 		--time
 		_G.ElvUIAFKFrame.bottom.time:ClearAllPoints()
