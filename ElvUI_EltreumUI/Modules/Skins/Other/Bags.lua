@@ -87,10 +87,16 @@ function ElvUI_EltreumUI:BagProfessions()
 										LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])
 										_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
 									else
-										LCG.PixelGlow_Start(_G["EltruismProfessionDisenchantBagButton"], {1, 0, 0, 1}, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
+										LCG.PixelGlow_Start(_G["EltruismProfessionDisenchantBagButton"], {0.93, 0.44, 0.97, 1}, 7, 1, 3, 2, 2, 2, false, nil, 6)
 										_G["EltruismProfessionDisenchantBagButton"].isGlowing = true
 									end
-									--
+								end)
+								_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_RETICLE_CLEAR","player")
+								_G["EltruismProfessionDisenchantBagButton"]:SetScript("OnEvent", function()
+									if _G["EltruismProfessionDisenchantBagButton"].isGlowing then
+										LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])
+										_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
+									end
 								end)
 							end
 						end
