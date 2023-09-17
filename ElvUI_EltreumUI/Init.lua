@@ -126,6 +126,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 		ElvUI_EltreumUI:EltruismCell()
 	end
 	ElvUI_EltreumUI:HardcoreDeath() -- hardcore death sound/animation
+	ElvUI_EltreumUI:BagProfessions() -- hardcore death sound/animation
 end
 
 function ElvUI_EltreumUI:Initialize()

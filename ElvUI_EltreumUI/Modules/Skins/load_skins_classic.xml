@@ -19,6 +19,7 @@
 	<Script file='Nameplate/Height.lua'/>
 	<Script file='Nameplate/Model.lua'/>
 	<Script file='Other/Animations.lua'/>
+	<Script file='Other/Bags.lua'/>
 	<Script file='Other/DarkLightColors.lua'/>
 	<Script file='Other/Databars.lua'/>
 	<Script file='Other/Doom.lua'/>
@@ -26,6 +27,7 @@
 	<Script file='Other/LevelUp.lua'/>
 	<Script file='Other/Other.lua'/>
 	<Script file='Other/QuestSkin.lua'/>
+	<Script file='Other/Scale.lua'/>
 	<Script file='Other/Stealth.lua'/>
 	<Script file='Other/Tooltip.lua'/>
 	<Script file='Unitframes/GradientFunctions.lua'/>

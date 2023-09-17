@@ -1512,7 +1512,7 @@ P.ElvUI_EltreumUI = {
 		portraitfixoffset = true,
 	},
 
-	otherstuff ={
+	otherstuff = {
 		eltruismroleicons = false,
 		eltruismroleiconscustom = false,
 		eltruismroleiconscustomtank = "",
@@ -1616,5 +1616,6 @@ P.ElvUI_EltreumUI = {
 		datatextteleporttype = "ITEM",
 		datatextclasscolorbar = true,
 		datatextclasscolorbaralpha = 0.5,
+		bagProfessionIcons = false,
 	},
 }
