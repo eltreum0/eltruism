@@ -19,16 +19,15 @@ function ElvUI_EltreumUI:BagProfessions()
 							[4620679] = true,
 							[441139] = true,
 						}
-
 						for _,v in ipairs{GetProfessions()} do
 							local name, icon, _, _, _, spelloffset = GetProfessionInfo(v)
 							if name then
 								if not _G["EltruismProfession"..v.."BagButton"] then
 									if not blockprof[icon] then
-										--local _,_,spellID =  GetSpellBookItemName(name)
-										--print("original: ",name,icon,spellID)
-										--some characters don't actually know their original skill, so force the new one on them
-										--[[if spellID == 264532 then --jewelcrafting
+									--[[
+										local _,_,spellID =  GetSpellBookItemName(name)
+										print("original: ",name,icon,spellID)
+										if spellID == 264532 then --jewelcrafting
 											spellID = 195116
 										elseif spellID == 264475 then --engineering
 											if IsSpellKnown(195112) then
@@ -40,11 +39,6 @@ function ElvUI_EltreumUI:BagProfessions()
 											elseif IsSpellKnown(4036) then
 												spellID = 4036
 											end
-											--only ones that were true of the whole list that had engineering in the name
-											--Known: 264475 true
-											--Known: 4036 true
-											--Known: 264481 true
-											--none of them work
 										elseif spellID == 264494 then --inscription
 											spellID = 195115
 										elseif spellID == 264577 then --leatherworking
@@ -55,10 +49,10 @@ function ElvUI_EltreumUI:BagProfessions()
 											elseif IsSpellKnown(195126) then
 												spellID = 195126 --doesnt work
 											end
-											--spellID = 195128 --cooking
 										end
-										--print("postfix: ",name,icon,spellID)]]
-
+										--spellID = 195128 --cooking
+										--print("postfix: ",name,icon,spellID)
+									]]
 										_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
 										_G["EltruismProfession"..v.."BagButton"] = CreateFrame("Button","EltruismProfession"..v.."BagButton",_G["ElvUI_ContainerFrame"],"SecureActionButtonTemplate")
 										_G["EltruismProfession"..v.."BagButton"]:SetSize(25,25)
@@ -73,9 +67,8 @@ function ElvUI_EltreumUI:BagProfessions()
 										_G["EltruismProfession"..v.."BagButton"].icon:SetTexture(icon)
 										_G["EltruismProfession"..v.."BagButton"].icon:SetTexCoord(0.08,0.92,0.08,0.92)
 										_G["EltruismProfession"..v.."BagButton"].icon:SetAllPoints()
-
+										--using id has issues since some characters dont actually know the key spells to cast the profession, use OnClick instead
 										_G["EltruismProfession"..v.."BagButton"]:SetScript("OnClick", function()
-											--castProf(spelloffset)
 											CastSpell(spelloffset + 1, "Spell")
 										end)
 									end
