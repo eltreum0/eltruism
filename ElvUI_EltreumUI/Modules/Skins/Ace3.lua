@@ -57,10 +57,18 @@ local function CreateFader(frame)
 			if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 			local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
 			if frametext and frametext.GetText and not (frame.disabled or (frame.GetButtonState and frame:GetButtonState() == "DISABLED")) then
-				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-					frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+				if E.db.ElvUI_EltreumUI.skins.ace3.gradient then
+					local text = frametext:GetText()
+					if not text then return end
+					if not text:match("|c") then
+						frametext:SetText(ElvUI_EltreumUI:GradientName(frametext:GetText(), E.myclass, false))
+					end
 				else
-					frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+					if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+						frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+					else
+						frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+					end
 				end
 			end
 		end)
@@ -76,10 +84,18 @@ local function CreateFader(frame)
 
 		local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
 		if frametext and frametext.GetText and not frame.disabled then
-			if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-				frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+			if E.db.ElvUI_EltreumUI.skins.ace3.gradient then
+				local text = frametext:GetText()
+				if not text then return end
+				if not text:match("|c") then
+					frametext:SetText(ElvUI_EltreumUI:GradientName(frametext:GetText(), E.myclass, false))
+				end
 			else
-				frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+					frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+				else
+					frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				end
 			end
 		end
 	end
@@ -136,10 +152,18 @@ function ElvUI_EltreumUI:Ace3Skin()
 				--button.SetBackdropBorderColor = E.noop
 			end
 		else
-			if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-				buttontext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+			if E.db.ElvUI_EltreumUI.skins.ace3.gradient then
+				local text = buttontext:GetText()
+				if not text then return end
+				if not text:match("|c") then
+					buttontext:SetText(ElvUI_EltreumUI:GradientName(buttontext:GetText(), E.myclass, false))
+				end
 			else
-				buttontext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+					buttontext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+				else
+					buttontext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				end
 			end
 			--if button.SetBackdropColor then
 			--	button:SetBackdropBorderColor(0, 0, 0, 0)
@@ -175,10 +199,18 @@ function ElvUI_EltreumUI:Ace3Skin()
 					r1,g1,b1 = valuecolors.r,valuecolors.g,valuecolors.b
 				end
 				if (r == 1 and math.ceil(g*100) == 82 and b == 0) or (r == r1 and g == g1 and b == b1) then --get the other color so the disabled one is not overwritten
-					if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-						tabtext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+					if E.db.ElvUI_EltreumUI.skins.ace3.gradient then
+						local text = tabtext:GetText()
+						if not text then return end
+						if not text:match("|c") then
+							tabtext:SetText(ElvUI_EltreumUI:GradientName(tabtext:GetText(), E.myclass, false))
+						end
 					else
-						tabtext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+							tabtext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+						else
+							tabtext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+						end
 					end
 				end
 			end
@@ -196,10 +228,18 @@ function ElvUI_EltreumUI:Ace3Skin()
 			end)
 			tab:HookScript("OnEnable", function()
 				if tabtext and tabtext.GetText then
-					if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-						tabtext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+					if E.db.ElvUI_EltreumUI.skins.ace3.gradient then
+						local text = tabtext:GetText()
+						if not text then return end
+						if not text:match("|c") then
+							tabtext:SetText(ElvUI_EltreumUI:GradientName(tabtext:GetText(), E.myclass, false))
+						end
 					else
-						tabtext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+							tabtext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+						else
+							tabtext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+						end
 					end
 				end
 			end)
@@ -253,10 +293,18 @@ function ElvUI_EltreumUI:Ace3Skin()
 					end
 				else
 					if buttontext and buttontext.GetText then
-						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-							buttontext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+						if E.db.ElvUI_EltreumUI.skins.ace3.gradient then
+							local text = buttontext:GetText()
+							if not text then return end
+							if not text:match("|c") then
+								buttontext:SetText(ElvUI_EltreumUI:GradientName(buttontext:GetText(), E.myclass, false))
+							end
 						else
-							buttontext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+							if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+								buttontext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+							else
+								buttontext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+							end
 						end
 					end
 				end
