@@ -35,8 +35,8 @@
 	<Script file='Unitframes/Blizzard.lua'/>
 	<Script file='Unitframes/Castbar.lua'/>
 	<Script file='Unitframes/DispelGlow.lua'/>
-	<Script file='Unitframes/Gradient.lua'/>
 	<Script file='Unitframes/GradientPower.lua'/>
+	<Script file='Unitframes/GradientHealth.lua'/>
 	<Script file='Unitframes/Infopanel.lua'/>
 	<Script file='Unitframes/Models.lua'/>
 	<Script file='Unitframes/Orientation.lua'/>
