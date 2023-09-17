@@ -65,7 +65,6 @@ P.ElvUI_EltreumUI = {
 			enable = false,
 			texture = "ElvUI Norm1",
 			fadetime = 0.3,
-			gradient = true,
 			tab = {
 				TextEnabled = {
 					r = 0.27,
