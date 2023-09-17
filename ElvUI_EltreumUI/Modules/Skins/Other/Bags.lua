@@ -91,11 +91,31 @@ function ElvUI_EltreumUI:BagProfessions()
 										_G["EltruismProfessionDisenchantBagButton"].isGlowing = true
 									end
 								end)
+
+								--some event handling to get rid of the glow
+								_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_FAILED","player")
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_RETICLE_CLEAR","player")
-								_G["EltruismProfessionDisenchantBagButton"]:SetScript("OnEvent", function()
-									if _G["EltruismProfessionDisenchantBagButton"].isGlowing then
-										LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])
-										_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
+								_G["EltruismProfessionDisenchantBagButton"]:RegisterEvent("PLAYER_REGEN_DISABLED")
+								_G["EltruismProfessionDisenchantBagButton"]:RegisterEvent("PLAYER_REGEN_ENABLED")
+								_G["EltruismProfessionDisenchantBagButton"]:SetScript("OnEvent", function(_,event,_,_,spell)
+									if event == "UNIT_SPELLCAST_RETICLE_CLEAR" then
+										if _G["EltruismProfessionDisenchantBagButton"].isGlowing then
+											LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])
+											_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
+										end
+									elseif event == "PLAYER_REGEN_DISABLED" then
+										_G["EltruismProfessionDisenchantBagButton"]:UnregisterEvent("UNIT_SPELLCAST_RETICLE_CLEAR")
+										_G["EltruismProfessionDisenchantBagButton"]:UnregisterEvent("UNIT_SPELLCAST_FAILED")
+									elseif event == "PLAYER_REGEN_ENABLED" then
+										_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_RETICLE_CLEAR","player")
+										_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_FAILED","player")
+									elseif event == "UNIT_SPELLCAST_FAILED" then
+										if spell == 13262 then
+											if _G["EltruismProfessionDisenchantBagButton"].isGlowing then
+												LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])
+												_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
+											end
+										end
 									end
 								end)
 							end
