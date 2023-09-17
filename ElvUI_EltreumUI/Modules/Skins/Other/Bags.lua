@@ -38,7 +38,8 @@ function ElvUI_EltreumUI:BagProfessions()
 										elseif spellID == 264577 then --leatherworking
 											spellID = 195119
 										elseif spellID == 264616 then --tailoring
-											spellID = 195126
+											spellID = 3908
+											--195126
 											--spellID = 195128 --cooking
 										end
 
