@@ -37,11 +37,8 @@ function ElvUI_EltreumUI:BagProfessions()
 											spellID = 195115
 										elseif spellID == 264577 then --leatherworking
 											spellID = 195119
-
-											--264617
-											--264616
-											--spellID = 195126 --tailoring
-
+										elseif spellID == 264616 then --tailoring
+											spellID = 195126
 											--spellID = 195128 --cooking
 										end
 
@@ -81,6 +78,19 @@ function ElvUI_EltreumUI:BagProfessions()
 								_G["EltruismProfessionDisenchantBagButton"].icon:SetTexture(icon)
 								_G["EltruismProfessionDisenchantBagButton"].icon:SetTexCoord(0.08,0.92,0.08,0.92)
 								_G["EltruismProfessionDisenchantBagButton"].icon:SetAllPoints()
+								_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
+
+								local LCG = E.Libs.CustomGlow
+								_G["EltruismProfessionDisenchantBagButton"]:HookScript("OnClick",function()
+									if _G["EltruismProfessionDisenchantBagButton"].isGlowing then
+										LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])
+										_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
+									else
+										LCG.PixelGlow_Start(_G["EltruismProfessionDisenchantBagButton"], {1, 0, 0, 1}, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
+										_G["EltruismProfessionDisenchantBagButton"].isGlowing = true
+									end
+									--
+								end)
 							end
 						end
 					else
