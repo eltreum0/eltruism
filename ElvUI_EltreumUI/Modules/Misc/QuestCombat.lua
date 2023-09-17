@@ -22,12 +22,25 @@ function ElvUI_EltreumUI:QuestEncounter()
 				--ObjectiveTrackerFrame:Hide()
 				ObjectiveTrackerFrame:SetAlpha(0)
 			elseif E.Classic then
-				_G.QuestWatchFrame:Hide()
 				if IsAddOnLoaded("Questie") then
-					_G["Questie_BaseFrame"]:Hide()
+					if _G["Questie_BaseFrame"] then
+						_G["Questie_BaseFrame"]:Hide()
+					else
+						_G.QuestWatchFrame:Hide()
+					end
+				else
+					_G.QuestWatchFrame:Hide()
 				end
 			elseif E.Wrath then
-				_G.WatchFrame:Hide()
+				if IsAddOnLoaded("Questie") then
+					if _G["Questie_BaseFrame"] then
+						_G["Questie_BaseFrame"]:Hide()
+					else
+						_G.WatchFrame:Hide()
+					end
+				else
+					_G.WatchFrame:Hide()
+				end
 			end
 		end
 	end
@@ -43,12 +56,25 @@ function ElvUI_EltreumUI:QuestEncounterEnd()
 				--ObjectiveTrackerFrame:Show()
 				ObjectiveTrackerFrame:SetAlpha(1)
 			elseif E.Classic then
-				_G.QuestWatchFrame:Show()
 				if IsAddOnLoaded("Questie") then
-					_G["Questie_BaseFrame"]:Show()
+					if _G["Questie_BaseFrame"] then
+						_G["Questie_BaseFrame"]:Show()
+					else
+						_G.QuestWatchFrame:Show()
+					end
+				else
+					_G.QuestWatchFrame:Show()
 				end
 			elseif E.Wrath then
-				_G.WatchFrame:Show()
+				if IsAddOnLoaded("Questie") then
+					if _G["Questie_BaseFrame"] then
+						_G["Questie_BaseFrame"]:Show()
+					else
+						_G.WatchFrame:Show()
+					end
+				else
+					_G.WatchFrame:Show()
+				end
 			end
 		end
 	end
@@ -63,28 +89,50 @@ function ElvUI_EltreumUI:ArenaQuest()
 				--ObjectiveTrackerFrame:Hide()
 				ObjectiveTrackerFrame:SetAlpha(0)
 			elseif E.Classic then
-				_G.QuestWatchFrame:Hide()
 				if IsAddOnLoaded("Questie") then
 					if _G["Questie_BaseFrame"] then
-						_G["Questie_BaseFrame"]:Show()
+						_G["Questie_BaseFrame"]:Hide()
+					else
+						_G.QuestWatchFrame:Hide()
 					end
+				else
+					_G.QuestWatchFrame:Hide()
 				end
 			elseif E.Wrath then
-				_G.WatchFrame:Hide()
+				if IsAddOnLoaded("Questie") then
+					if _G["Questie_BaseFrame"] then
+						_G["Questie_BaseFrame"]:Hide()
+					else
+						_G.WatchFrame:Hide()
+					end
+				else
+					_G.WatchFrame:Hide()
+				end
 			end
 		elseif instanceType == "none" then
 			if E.Retail then
 				--ObjectiveTrackerFrame:Show()
 				ObjectiveTrackerFrame:SetAlpha(1)
 			elseif E.Classic then
-				_G.QuestWatchFrame:Show()
 				if IsAddOnLoaded("Questie") then
 					if _G["Questie_BaseFrame"] then
 						_G["Questie_BaseFrame"]:Show()
+					else
+						_G.QuestWatchFrame:Show()
 					end
+				else
+					_G.QuestWatchFrame:Show()
 				end
 			elseif E.Wrath then
-				_G.WatchFrame:Show()
+				if IsAddOnLoaded("Questie") then
+					if _G["Questie_BaseFrame"] then
+						_G["Questie_BaseFrame"]:Show()
+					else
+						_G.WatchFrame:Show()
+					end
+				else
+					_G.WatchFrame:Show()
+				end
 			end
 		end
 	end
@@ -96,12 +144,25 @@ function ElvUI_EltreumUI:QuestCombat()
 		if E.Retail then
 			ObjectiveTracker_Collapse()
 		elseif E.Classic then
-			_G.QuestWatchFrame:Hide()
 			if IsAddOnLoaded("Questie") then
-				_G["Questie_BaseFrame"]:Hide()
+				if _G["Questie_BaseFrame"] then
+					_G["Questie_BaseFrame"]:Hide()
+				else
+					_G.QuestWatchFrame:Hide()
+				end
+			else
+				_G.QuestWatchFrame:Hide()
 			end
 		elseif E.Wrath then
-			_G.WatchFrame:Hide()
+			if IsAddOnLoaded("Questie") then
+				if _G["Questie_BaseFrame"] then
+					_G["Questie_BaseFrame"]:Hide()
+				else
+					_G.WatchFrame:Hide()
+				end
+			else
+				_G.WatchFrame:Hide()
+			end
 		end
 	end
 end
@@ -112,11 +173,14 @@ function ElvUI_EltreumUI:QuestCombatEnd()
 		if E.Retail then
 			ObjectiveTracker_Expand()
 		elseif E.Classic then
-			_G.QuestWatchFrame:Show()
 			if IsAddOnLoaded("Questie") then
 				if _G["Questie_BaseFrame"] then
 					_G["Questie_BaseFrame"]:Show()
+				else
+					_G.QuestWatchFrame:Show()
 				end
+			else
+				_G.QuestWatchFrame:Show()
 			end
 		elseif E.Wrath then
 			_G.WatchFrame:Show()
