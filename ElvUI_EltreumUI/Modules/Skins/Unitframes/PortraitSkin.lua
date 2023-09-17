@@ -395,7 +395,7 @@ function ElvUI_EltreumUI:BlizzPortraitsGroup(frame)
 		if not frame then return end
 		if not frame.USE_PORTRAIT then return end
 		if not frame:GetName() then return end
-		if frame:GetName():match("PartyGroup") then
+		if frame:GetName():match("PartyGroup") and not frame:GetName():match("Pet") then
 			E:Delay(0, function() CreatePorfraitFrameAndTexture(_G[tostring(frame:GetName())],tostring(frame:GetName()),false,true,"party") end)
 		end
 		if frame:GetName():match("Focus") then
