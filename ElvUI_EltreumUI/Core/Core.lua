@@ -717,6 +717,8 @@ function ElvUI_EltreumUI:DevTools()
 		--addon specific cpu/memory usage
 		--/run UpdateAddOnCPUUsage() UpdateAddOnMemoryUsage() print("cpu: "..((math.floor(GetAddOnCPUUsage("ElvUI_EltreumUI")))).."ms | memory: "..((math.floor(GetAddOnMemoryUsage("ElvUI_EltreumUI")/10))/100).."mb")
 
+		ElvUI_EltreumUI:Print("Development Tools Enabled, this uses more resources to detect events")
+
 		local function LogEvent(frame, event, ...)
 			if event == "COMBAT_LOG_EVENT_UNFILTERED" or event == "COMBAT_LOG_EVENT" then
 				frame:LogEvent_Original(event, CombatLogGetCurrentEventInfo())
