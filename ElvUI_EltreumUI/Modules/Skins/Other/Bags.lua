@@ -148,50 +148,50 @@ function ElvUI_EltreumUI:BagProfessions()
 							[17] = 28029, --Enchanting
 							[18] = 51313, --Enchanting
 							--[19] = 13262, --Disenchant
-							[20] = 4036, --Engineering
-							[21] = 4037, --Engineering
-							[22] = 4038, --Engineering
-							[23] = 12656, --Engineering
-							[24] = 30350, --Engineering
-							[25] = 51306, --Engineering
-							[26] = 45357, --Inscription
-							[27] = 45358, --Inscription
-							[28] = 45359, --Inscription
-							[29] = 45360, --Inscription
-							[30] = 45361, --Inscription
-							[31] = 45363, --Inscription
-							[32] = 51005, --Milling
-							[33] = 25230, --Jewelcrafting
-							[34] = 25229, --Jewelcrafting
-							[35] = 28894, --Jewelcrafting
-							[36] = 28895, --Jewelcrafting
-							[37] = 28897, --Jewelcrafting
-							[38] = 51311, --Jewelcrafting
-							[39] = 31252, --Prospecting
-							[40] = 2108, --Leatherworking
-							[41] = 3104, --Leatherworking
-							[42] = 3811, --Leatherworking
-							[43] = 10662, --Leatherworking
-							[44] = 32549, --Leatherworking
-							[45] = 51302, --Leatherworking
-							[46] = 3908, --Tailoring
-							[47] = 3909, --Tailoring
-							[48] = 3910, --Tailoring
-							[49] = 12180, --Tailoring
-							[50] = 26790, --Tailoring
-							[51] = 51309, --Tailoring
-							[52] = 3273, --First Aid
-							[53] = 3274, --First Aid
-							[54] = 7924, --First Aid
-							[55] = 10846, --First Aid
-							[56] = 27028, --First Aid
-							[57] = 45542, --First Aid
-							[58] = 2550, --Cooking
-							[59] = 3102, --Cooking
-							[60] = 3413, --Cooking
-							[61] = 18260, --Cooking
-							[62] = 185, --Cooking
-							[63] = 2656, --Smelting
+							[19] = 4036, --Engineering
+							[20] = 4037, --Engineering
+							[21] = 4038, --Engineering
+							[22] = 12656, --Engineering
+							[23] = 30350, --Engineering
+							[24] = 51306, --Engineering
+							[25] = 45357, --Inscription
+							[26] = 45358, --Inscription
+							[27] = 45359, --Inscription
+							[28] = 45360, --Inscription
+							[29] = 45361, --Inscription
+							[30] = 45363, --Inscription
+							[31] = 51005, --Milling
+							[32] = 25230, --Jewelcrafting
+							[33] = 25229, --Jewelcrafting
+							[34] = 28894, --Jewelcrafting
+							[35] = 28895, --Jewelcrafting
+							[36] = 28897, --Jewelcrafting
+							[37] = 51311, --Jewelcrafting
+							[38] = 31252, --Prospecting
+							[39] = 2108, --Leatherworking
+							[40] = 3104, --Leatherworking
+							[41] = 3811, --Leatherworking
+							[42] = 10662, --Leatherworking
+							[43] = 32549, --Leatherworking
+							[44] = 51302, --Leatherworking
+							[45] = 3908, --Tailoring
+							[46] = 3909, --Tailoring
+							[47] = 3910, --Tailoring
+							[48] = 12180, --Tailoring
+							[49] = 26790, --Tailoring
+							[50] = 51309, --Tailoring
+							[51] = 3273, --First Aid
+							[52] = 3274, --First Aid
+							[53] = 7924, --First Aid
+							[54] = 10846, --First Aid
+							[55] = 27028, --First Aid
+							[56] = 45542, --First Aid
+							[57] = 2550, --Cooking
+							[58] = 3102, --Cooking
+							[59] = 3413, --Cooking
+							[60] = 18260, --Cooking
+							[61] = 185, --Cooking
+							[62] = 2656, --Smelting
 						}
 						for k, v in ipairs(proftable) do
 							if IsSpellKnown(v) then
@@ -224,7 +224,7 @@ function ElvUI_EltreumUI:BagProfessions()
 								_G["EltruismProfessionDisenchantBagButton"]:SetTemplate("Transparent")
 								_G["EltruismProfessionDisenchantBagButton"]:CreateBackdrop('Transparent')
 								S:HandleButton(_G["EltruismProfessionDisenchantBagButton"])
-								_G["EltruismProfessionDisenchantBagButton"]:SetPoint("TOPLEFT", _G["ElvUI_ContainerFrame"],"TOPLEFT", 11+((_G["ElvUI_ContainerFrame"].numButtons-1)*26), -3)
+								_G["EltruismProfessionDisenchantBagButton"]:SetPoint("TOPLEFT", _G["ElvUI_ContainerFrame"],"TOPLEFT", 11+((_G["ElvUI_ContainerFrame"].numButtons-1)*28), -3)
 								_G["EltruismProfessionDisenchantBagButton"]:SetAttribute('type', 'spell')
 								_G["EltruismProfessionDisenchantBagButton"]:SetAttribute('spell', 13262)
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterForClicks("AnyUp")
