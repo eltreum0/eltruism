@@ -198,6 +198,10 @@ function ElvUI_EltreumUI:Shadows()
 						_G.ArcheologyDigsiteProgressBar.FillBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.ArcheologyDigsiteProgressBar.FillBar.shadow)
 					end
+					if _G.ArchaeologyFrame and not _G.ArchaeologyFrame.shadow then
+						_G.ArchaeologyFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G.ArchaeologyFrame.shadow)
+					end
 				end
 				if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
 					if E.Retail or E.Wrath then
@@ -588,7 +592,7 @@ function ElvUI_EltreumUI:Shadows()
 							_G.PetJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.PetJournal.shadow)
 						end
-						if not _G.WardrobeFrame.shadow then
+						if _G.WardrobeFrame and not _G.WardrobeFrame.shadow then
 							_G.WardrobeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.WardrobeFrame.shadow)
 						end
@@ -1216,17 +1220,30 @@ function ElvUI_EltreumUI:Shadows()
 				--wrath only frames
 				if E.Wrath then
 					local tbcframes = {
-					_G.LFGParentFrame.backdrop,
-					_G.LFGParentFrameTab1.backdrop,
-					_G.LFGParentFrameTab2.backdrop,
-					_G.QuestLogDetailFrame.backdrop,
-					_G.LFGListingFrame.backdrop,
-					_G.LFGBrowseFrame.backdrop
+					_G.LFGParentFrame,
+					_G.LFGParentFrameTab1,
+					_G.LFGParentFrameTab2,
+					_G.QuestLogDetailFrame,
+					_G.LFGListingFrame,
+					_G.LFGBrowseFrame,
+					_G.GroupFinderFrame,
+					_G.PVPFrame,
+					_G.PVPParentFrameTab2,
+					_G.PVPParentFrameTab1,
 					}
 					for _, frame in pairs(tbcframes) do
-						if frame and not frame.shadow then
-							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(frame.shadow)
+						if frame then
+							if frame.backdrop then
+								if not frame.backdrop.shadow then
+									frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(frame.backdrop.shadow)
+								end
+							else
+								if not frame.shadow then
+									frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(frame.shadow)
+								end
+							end
 						end
 					end
 				end
@@ -1943,6 +1960,16 @@ function ElvUI_EltreumUI:Shadows()
 								_G["ElvUF_Target"].shadow:ClearAllPoints()
 								_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target_HealthBar"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
 								_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_PowerBar"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
+								if E.db.unitframe.units.target.portrait.enable and not E.db.unitframe.units.target.portrait.overlay then
+									_G["ElvUF_Target"].shadow:ClearAllPoints()
+									if E.db.unitframe.units.target.orientation == "RIGHT" then
+										_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target"].Portrait,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target_PowerBar"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									elseif E.db.unitframe.units.target.orientation == "LEFT" then
+										_G["ElvUF_Target"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Target"].Portrait,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target_HealthBar"] ,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+									end
+								end
 							end
 						end
 					else
@@ -2069,6 +2096,16 @@ function ElvUI_EltreumUI:Shadows()
 											_G["ElvUF_Player"].shadow:ClearAllPoints()
 											_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player_HealthBar"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
 											_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_PowerBar"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
+											if E.db.unitframe.units.player.portrait.enable and not E.db.unitframe.units.player.portrait.overlay then
+												_G["ElvUF_Player"].shadow:ClearAllPoints()
+												if E.db.unitframe.units.player.orientation == "RIGHT" then
+													_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player"].Portrait,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+													_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player_PowerBar"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+												elseif E.db.unitframe.units.player.orientation == "LEFT" then
+													_G["ElvUF_Player"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Player"].Portrait,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+													_G["ElvUF_Player"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Player_HealthBar"] ,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+												end
+											end
 										end
 									end
 								else
