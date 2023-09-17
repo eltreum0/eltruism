@@ -26,7 +26,7 @@ function ElvUI_EltreumUI:BagProfessions()
 									if not blockprof[icon] then
 										local _,_,spellID =  GetSpellBookItemName(name)
 
-										print(name,icon,spellID)
+										--print(name,icon,spellID)
 
 										--some characters don't actually know their original skill, so force the new one on them
 										if spellID == 264532 then --jewelcrafting
@@ -39,7 +39,7 @@ function ElvUI_EltreumUI:BagProfessions()
 											spellID = 195119
 										elseif spellID == 264616 then --tailoring
 											spellID = 3908
-											--195126
+											--195126 doesnt work
 											--spellID = 195128 --cooking
 										end
 
