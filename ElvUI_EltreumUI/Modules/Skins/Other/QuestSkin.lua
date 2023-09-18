@@ -731,7 +731,7 @@ function ElvUI_EltreumUI:SkinQuests()
 
 			--add a minimize button
 			if not _G["EltruismMinimizeQuests"] then
-				_G.QuestWatchFrame.Minimize = CreateFrame("BUTTON", "EltruismMinimizeQuests", _G.QuestWatchFrame, "MaximizeMinimizeButtonFrameTemplate")
+				_G.QuestWatchFrame.Minimize = CreateFrame("BUTTON", "EltruismMinimizeQuests", _G.ElvUIParent, "MaximizeMinimizeButtonFrameTemplate")
 				S:HandleMaxMinFrame(_G["EltruismMinimizeQuests"])
 				_G["EltruismMinimizeQuests"]:SetTemplate("Backdrop")
 				if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not _G.QuestWatchFrame.Minimize.shadow then
@@ -739,20 +739,12 @@ function ElvUI_EltreumUI:SkinQuests()
 					ElvUI_EltreumUI:ShadowColor(_G.QuestWatchFrame.Minimize.shadow)
 				end
 				_G.QuestWatchFrame.Minimize.MaximizeButton:HookScript("OnClick",function()
-					for i = 1, 35 do
-						if _G["QuestWatchLine"..i] then
-							_G["QuestWatchLine"..i]:Show()
-							_G.QuestWatchFrame.isHidden = false
-						end
-					end
+					_G.QuestWatchFrame:Show()
+					_G.QuestWatchFrame.isHidden = false
 				end)
 				_G.QuestWatchFrame.Minimize.MinimizeButton:HookScript("OnClick",function()
-					for i = 1, 35 do
-						if _G["QuestWatchLine"..i] then
-							_G["QuestWatchLine"..i]:Hide()
-							_G.QuestWatchFrame.isHidden = true
-						end
-					end
+					_G.QuestWatchFrame:Hide()
+					_G.QuestWatchFrame.isHidden = true
 				end)
 			else
 				_G.QuestWatchFrame.Minimize = _G["EltruismMinimizeQuests"]
@@ -918,11 +910,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 
 				if _G.QuestWatchFrame.isHidden then
-					for i = 1, 35 do
-						if _G["QuestWatchLine"..i] then
-							_G["QuestWatchLine"..i]:Hide()
-						end
-					end
+					_G.QuestWatchFrame:Hide()
 				end
 
 				UIParent_ManageFramePositions()
