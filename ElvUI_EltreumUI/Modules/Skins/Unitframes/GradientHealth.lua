@@ -404,7 +404,7 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 					button.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 					button.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-					if unitframe.Health.backdropTex then
+					if button.Health.backdropTex then
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 							if button.unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
 								button.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", true, true))
