@@ -2137,6 +2137,8 @@ end
 
 --Player Item Quality Texture
 function ElvUI_EltreumUI:PlayerItemQuality(unit)
+	if not E.private.skins.blizzard.enable then return end
+	if not E.private.skins.blizzard.character then return end
 	if ElvUI_EltreumUI:SLCheck('char') then return end
 	if E.db.ElvUI_EltreumUI.skins.itemquality and E.private.skins.blizzard.enable then
 		E:Delay(0, function()
@@ -2350,451 +2352,452 @@ local EltruismInspectBgTextureFader = EltruismInspectBg:CreateTexture("EltruismI
 EltruismInspectBgTextureFader:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Vignette.tga")
 
 function ElvUI_EltreumUI:InspectBg(unit)
-	if E.private.skins.blizzard.enable then
-		--inspect frame bg
-		if IsAddOnLoaded("Blizzard_InspectUI") then
-			EltruismInspectBg:SetParent(_G.InspectFrame)
+	if not E.private.skins.blizzard.enable then return end
+	if not E.private.skins.blizzard.character then return end
 
-			if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
-				local _, englishClass, _, englishRace = _G.GetPlayerInfoByGUID(unit)
-				if englishClass or englishRace then
-					if _G.InspectFrame then
-						local classcolorinspect = E:ClassColor(englishClass, true)
+	--inspect frame bg
+	if IsAddOnLoaded("Blizzard_InspectUI") then
+		EltruismInspectBg:SetParent(_G.InspectFrame)
 
-						--inspect frame expand skin
-						if not E.Retail then
-							E:Delay(0, function()
-								if InCombatLockdown() then
-									UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
-								else
-									_G.InspectNameText:ClearAllPoints()
-									_G.InspectNameText:SetPoint("TOP", _G.InspectFrame, "TOP", 0, -20)
-									_G.InspectFrame:SetWidth(450)
-									_G.InspectPaperDollItemsFrame:SetWidth(450)
-									_G.InspectHandsSlot:ClearAllPoints()
-									_G.InspectHandsSlot:SetPoint("TOPRIGHT", _G.InspectFrame, "TOPRIGHT", -45, -74)
-									_G.InspectModelFrame:ClearAllPoints()
-									_G.InspectModelFrame:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 0)
-									_G.InspectMainHandSlot:ClearAllPoints()
-									_G.InspectMainHandSlot:SetPoint("CENTER", _G.InspectFrame, "CENTER", -52, -150)
-									if not self.EltruismInspectHook then
-										_G.InspectModelFrame:HookScript("OnShow", function()
-											_G.InspectFrame:SetWidth(450)
-										end)
-										_G.InspectModelFrame:HookScript("OnHide", function()
-											_G.InspectFrame:SetWidth(384)
-										end)
-										self.EltruismInspectHook = true
-									end
+		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+			local _, englishClass, _, englishRace = _G.GetPlayerInfoByGUID(unit)
+			if englishClass or englishRace then
+				if _G.InspectFrame then
+					local classcolorinspect = E:ClassColor(englishClass, true)
 
-									if E.Wrath then
-										if not self.EltruismInspectHookWrath then
-											_G.InspectTalentFrame:HookScript("OnShow", function()
-												if InCombatLockdown() then
-													UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
+					--inspect frame expand skin
+					if not E.Retail then
+						E:Delay(0, function()
+							if InCombatLockdown() then
+								UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
+							else
+								_G.InspectNameText:ClearAllPoints()
+								_G.InspectNameText:SetPoint("TOP", _G.InspectFrame, "TOP", 0, -20)
+								_G.InspectFrame:SetWidth(450)
+								_G.InspectPaperDollItemsFrame:SetWidth(450)
+								_G.InspectHandsSlot:ClearAllPoints()
+								_G.InspectHandsSlot:SetPoint("TOPRIGHT", _G.InspectFrame, "TOPRIGHT", -45, -74)
+								_G.InspectModelFrame:ClearAllPoints()
+								_G.InspectModelFrame:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 0)
+								_G.InspectMainHandSlot:ClearAllPoints()
+								_G.InspectMainHandSlot:SetPoint("CENTER", _G.InspectFrame, "CENTER", -52, -150)
+								if not self.EltruismInspectHook then
+									_G.InspectModelFrame:HookScript("OnShow", function()
+										_G.InspectFrame:SetWidth(450)
+									end)
+									_G.InspectModelFrame:HookScript("OnHide", function()
+										_G.InspectFrame:SetWidth(384)
+									end)
+									self.EltruismInspectHook = true
+								end
+
+								if E.Wrath then
+									if not self.EltruismInspectHookWrath then
+										_G.InspectTalentFrame:HookScript("OnShow", function()
+											if InCombatLockdown() then
+												UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
+											else
+												_G.InspectFrame:SetWidth(376)
+												if E.Wrath then
+													_G.InspectFrame:SetHeight(780)
 												else
-													_G.InspectFrame:SetWidth(376)
-													if E.Wrath then
-														_G.InspectFrame:SetHeight(780)
-													else
-														_G.InspectFrame:SetHeight(650)
-													end
-													_G.InspectTalentFrameTab2:ClearAllPoints()
-													_G.InspectTalentFrameTab2:SetPoint("TOP", _G.InspectTalentFrame, "TOP", 0, -50)
-													_G.InspectTalentFrameTab1:ClearAllPoints()
-													_G.InspectTalentFrameTab1:SetPoint("RIGHT", _G.InspectTalentFrameTab2, "LEFT", 0, 0)
+													_G.InspectFrame:SetHeight(650)
+												end
+												_G.InspectTalentFrameTab2:ClearAllPoints()
+												_G.InspectTalentFrameTab2:SetPoint("TOP", _G.InspectTalentFrame, "TOP", 0, -50)
+												_G.InspectTalentFrameTab1:ClearAllPoints()
+												_G.InspectTalentFrameTab1:SetPoint("RIGHT", _G.InspectTalentFrameTab2, "LEFT", 0, 0)
 
-													_G.InspectTalentFrameScrollFrameScrollBar:SetAlpha(0)
-													_G.InspectTalentFrameScrollFrame:ClearAllPoints()
-													_G.InspectTalentFrameScrollFrame:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 12)
-													if E.Wrath then
-														_G.InspectTalentFrameScrollFrame:SetSize(300,720)
-													else
-														_G.InspectTalentFrameScrollFrame:SetSize(300,620)
-													end
-													E:Delay(0, function() _G.InspectTalentFrameScrollFrame:SetScale(0.75) end) --needs delay, maybe bc server response?
+												_G.InspectTalentFrameScrollFrameScrollBar:SetAlpha(0)
+												_G.InspectTalentFrameScrollFrame:ClearAllPoints()
+												_G.InspectTalentFrameScrollFrame:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 12)
+												if E.Wrath then
+													_G.InspectTalentFrameScrollFrame:SetSize(300,720)
+												else
+													_G.InspectTalentFrameScrollFrame:SetSize(300,620)
+												end
+												E:Delay(0, function() _G.InspectTalentFrameScrollFrame:SetScale(0.75) end) --needs delay, maybe bc server response?
 
-													if E.Wrath then
-														_G.InspectTalentFramePointsBar:ClearAllPoints()
-														_G.InspectTalentFramePointsBar:SetPoint("BOTTOM", _G.InspectTalentFrame.backdrop, "BOTTOM", 0, 0)
-														_G.InspectTalentFrameSpentPointsText:SetJustifyH("LEFT")
-														_G.InspectTalentFrameTalentPointsText:SetJustifyH("RIGHT")
-													end
+												if E.Wrath then
+													_G.InspectTalentFramePointsBar:ClearAllPoints()
+													_G.InspectTalentFramePointsBar:SetPoint("BOTTOM", _G.InspectTalentFrame.backdrop, "BOTTOM", 0, 0)
+													_G.InspectTalentFrameSpentPointsText:SetJustifyH("LEFT")
+													_G.InspectTalentFrameTalentPointsText:SetJustifyH("RIGHT")
+												end
 
-													--kill stuff
-													_G.InspectTalentFrameCloseButton:Hide()
-													if _G.InspectTalentFrameBackgroundTopRight then
-														_G.InspectTalentFrameBackgroundTopRight:Kill()
-													end
-													if _G.InspectTalentFrameBackgroundBottomLeft then
-														_G.InspectTalentFrameBackgroundBottomLeft:Kill()
-													end
-													if _G.InspectTalentFrameBackgroundBottomRight then
-														_G.InspectTalentFrameBackgroundBottomRight:Kill()
-													end
-													--increase the size of the background
-													if _G.InspectTalentFrameBackgroundTopLeft then
-														if E.Wrath then
-															if _G.InspectTalentFrameScrollFrame.backdrop then
-																_G.InspectTalentFrameScrollFrame.backdrop:Kill()
-															end
-															_G.InspectTalentFrameScrollFrame:SetScale(0.85)
-															_G.InspectTalentFrameBackgroundTopLeft:ClearAllPoints()
-															_G.InspectTalentFrameBackgroundTopLeft:SetParent(_G.InspectTalentFrame)
-															--_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 600)
-															_G.InspectTalentFrameBackgroundTopLeft:SetAllPoints(_G.InspectTalentFrameScrollFrame)
-															--_G.InspectTalentFrameBackgroundTopLeft:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 20)
-														elseif E.Classic then
-															_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 490)
+												--kill stuff
+												_G.InspectTalentFrameCloseButton:Hide()
+												if _G.InspectTalentFrameBackgroundTopRight then
+													_G.InspectTalentFrameBackgroundTopRight:Kill()
+												end
+												if _G.InspectTalentFrameBackgroundBottomLeft then
+													_G.InspectTalentFrameBackgroundBottomLeft:Kill()
+												end
+												if _G.InspectTalentFrameBackgroundBottomRight then
+													_G.InspectTalentFrameBackgroundBottomRight:Kill()
+												end
+												--increase the size of the background
+												if _G.InspectTalentFrameBackgroundTopLeft then
+													if E.Wrath then
+														if _G.InspectTalentFrameScrollFrame.backdrop then
+															_G.InspectTalentFrameScrollFrame.backdrop:Kill()
 														end
+														_G.InspectTalentFrameScrollFrame:SetScale(0.85)
+														_G.InspectTalentFrameBackgroundTopLeft:ClearAllPoints()
+														_G.InspectTalentFrameBackgroundTopLeft:SetParent(_G.InspectTalentFrame)
+														--_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 600)
+														_G.InspectTalentFrameBackgroundTopLeft:SetAllPoints(_G.InspectTalentFrameScrollFrame)
+														--_G.InspectTalentFrameBackgroundTopLeft:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 20)
+													elseif E.Classic then
+														_G.InspectTalentFrameBackgroundTopLeft:SetSize(310 , 490)
 													end
 												end
-											end)
+											end
+										end)
 
-											_G.InspectTalentFrame:HookScript("OnHide", function()
-												if InCombatLockdown() then
-													UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
-												else
-													_G.InspectFrame:SetHeight(512)
-													_G.InspectFrame:SetWidth(384)
-												end
-											end)
-											self.EltruismInspectHookWrath = true
-										end
+										_G.InspectTalentFrame:HookScript("OnHide", function()
+											if InCombatLockdown() then
+												UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r")
+											else
+												_G.InspectFrame:SetHeight(512)
+												_G.InspectFrame:SetWidth(384)
+											end
+										end)
+										self.EltruismInspectHookWrath = true
 									end
 								end
+							end
+						end)
+					else
+						_G.InspectFrame:SetWidth(450)
+						_G.InspectPaperDollItemsFrame:SetWidth(450)
+						_G.InspectHandsSlot:ClearAllPoints()
+						_G.InspectHandsSlot:SetPoint("TOPRIGHT", _G.InspectFrame, "TOPRIGHT", -8, -62)
+						_G.InspectModelFrame:ClearAllPoints()
+						_G.InspectModelFrame:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, -20)
+						_G.InspectMainHandSlot:ClearAllPoints()
+						_G.InspectMainHandSlot:SetPoint("CENTER", _G.InspectFrame, "CENTER", -24, -187)
+
+						_G.InspectFrame.ItemLevelText:ClearAllPoints()
+						_G.InspectFrame.ItemLevelText:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 165)
+						_G.InspectFrame.ItemLevelText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
+						_G.InspectFrame.ItemLevelText:SetParent(_G["InspectModelFrame"])
+
+
+						if _G.InspectPaperDollFrame.ViewButton then
+							_G.InspectPaperDollFrame.ViewButton:ClearAllPoints()
+							_G.InspectPaperDollFrame.ViewButton:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 145)
+							--make it mouseover
+							_G.InspectPaperDollFrame.ViewButton:SetAlpha(0)
+							_G.InspectPaperDollFrame.ViewButton:SetScript('OnEnter', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(1) end)
+							_G.InspectPaperDollFrame.ViewButton:SetScript('OnLeave', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(0) end)
+							_G.InspectModelFrame:SetScript('OnEnter', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(1) end)
+							_G.InspectModelFrame:SetScript('OnLeave', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(0) end)
+						end
+
+						--_G.InspectFrame.ItemLevelText:SetText(ElvUI_EltreumUI:GradientName(_G.InspectFrame.ItemLevelText:GetText(), englishClass))
+						--_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100)
+
+						if not self.EltruismInspectHookModel then
+							_G.InspectModelFrame:HookScript("OnShow", function()
+								_G.InspectFrame:SetWidth(450)
 							end)
-						else
-							_G.InspectFrame:SetWidth(450)
-							_G.InspectPaperDollItemsFrame:SetWidth(450)
-							_G.InspectHandsSlot:ClearAllPoints()
-							_G.InspectHandsSlot:SetPoint("TOPRIGHT", _G.InspectFrame, "TOPRIGHT", -8, -62)
-							_G.InspectModelFrame:ClearAllPoints()
-							_G.InspectModelFrame:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, -20)
-							_G.InspectMainHandSlot:ClearAllPoints()
-							_G.InspectMainHandSlot:SetPoint("CENTER", _G.InspectFrame, "CENTER", -24, -187)
-
-							_G.InspectFrame.ItemLevelText:ClearAllPoints()
-							_G.InspectFrame.ItemLevelText:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 165)
-							_G.InspectFrame.ItemLevelText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
-							_G.InspectFrame.ItemLevelText:SetParent(_G["InspectModelFrame"])
-
-
-							if _G.InspectPaperDollFrame.ViewButton then
-								_G.InspectPaperDollFrame.ViewButton:ClearAllPoints()
-								_G.InspectPaperDollFrame.ViewButton:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 145)
-								--make it mouseover
-								_G.InspectPaperDollFrame.ViewButton:SetAlpha(0)
-								_G.InspectPaperDollFrame.ViewButton:SetScript('OnEnter', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(1) end)
-								_G.InspectPaperDollFrame.ViewButton:SetScript('OnLeave', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(0) end)
-								_G.InspectModelFrame:SetScript('OnEnter', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(1) end)
-								_G.InspectModelFrame:SetScript('OnLeave', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(0) end)
-							end
-
-							--_G.InspectFrame.ItemLevelText:SetText(ElvUI_EltreumUI:GradientName(_G.InspectFrame.ItemLevelText:GetText(), englishClass))
-							--_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100)
-
-							if not self.EltruismInspectHookModel then
-								_G.InspectModelFrame:HookScript("OnShow", function()
-									_G.InspectFrame:SetWidth(450)
-								end)
-								_G.InspectModelFrame:HookScript("OnHide", function()
-									_G.InspectFrame:SetWidth(338)
-								end)
-								self.EltruismInspectHookmodel = true
-							end
-
-							if _G.InspectPaperDollItemsFrame.InspectTalents then
-								_G.InspectPaperDollItemsFrame.InspectTalents:ClearAllPoints()
-								_G.InspectPaperDollItemsFrame.InspectTalents:SetPoint("RIGHT", _G.InspectFrame, "BOTTOMRIGHT", -5, 15)
-							end
+							_G.InspectModelFrame:HookScript("OnHide", function()
+								_G.InspectFrame:SetWidth(338)
+							end)
+							self.EltruismInspectHookmodel = true
 						end
 
-						if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
-							classsymbolonframe = ("|T"..(classIcons[englishClass]..".tga:0:0:0:0|t"))
-						elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
-							classsymbolonframe = ("|T"..(classIconsReleafborder[englishClass]..".tga:0:0:0:0|t"))
-						else
-							classsymbolonframe = ("|T"..(classIcons[englishClass]..".tga:0:0:0:0|t"))
+						if _G.InspectPaperDollItemsFrame.InspectTalents then
+							_G.InspectPaperDollItemsFrame.InspectTalents:ClearAllPoints()
+							_G.InspectPaperDollItemsFrame.InspectTalents:SetPoint("RIGHT", _G.InspectFrame, "BOTTOMRIGHT", -5, 15)
 						end
+					end
 
-						--add class icon + colored name
-						if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
-							E:Delay(0, function()
-								if not E.Retail then
-									if _G.InspectNameText and _G.InspectNameText:GetText() and not _G.InspectNameText:GetText():match("|T") then
-										_G.InspectNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
-										if string.len(_G.InspectNameText:GetText()) >= 6 then
-											if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectNameText:GetText():match("|r") then
-												_G.InspectNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectNameText:GetText(), englishClass))
-											else
-												_G.InspectNameText:SetText(classsymbolonframe.." ".._G.InspectNameText:GetText())
-												_G.InspectNameText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
-											end
+					if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
+						classsymbolonframe = ("|T"..(classIcons[englishClass]..".tga:0:0:0:0|t"))
+					elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
+						classsymbolonframe = ("|T"..(classIconsReleafborder[englishClass]..".tga:0:0:0:0|t"))
+					else
+						classsymbolonframe = ("|T"..(classIcons[englishClass]..".tga:0:0:0:0|t"))
+					end
+
+					--add class icon + colored name
+					if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
+						E:Delay(0, function()
+							if not E.Retail then
+								if _G.InspectNameText and _G.InspectNameText:GetText() and not _G.InspectNameText:GetText():match("|T") then
+									_G.InspectNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
+									if string.len(_G.InspectNameText:GetText()) >= 6 then
+										if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectNameText:GetText():match("|r") then
+											_G.InspectNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectNameText:GetText(), englishClass))
 										else
 											_G.InspectNameText:SetText(classsymbolonframe.." ".._G.InspectNameText:GetText())
 											_G.InspectNameText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
 										end
-										_G.InspectNameText:SetShadowColor(0, 0, 0, 0.8)
-										_G.InspectNameText:SetShadowOffset(2, -1)
-										_G.InspectNameText:SetWidth(200)
-										_G.InspectNameText:SetDrawLayer("OVERLAY")
+									else
+										_G.InspectNameText:SetText(classsymbolonframe.." ".._G.InspectNameText:GetText())
+										_G.InspectNameText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
 									end
-								else
-									if _G.InspectFrameTitleText and _G.InspectFrameTitleText:GetText() and not _G.InspectFrameTitleText:GetText():match("|T") then
-										_G.InspectFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
-										if string.len(_G.InspectFrameTitleText:GetText()) >= 6 then
-											if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectFrameTitleText:GetText():match("|r") then
-												_G.InspectFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectFrameTitleText:GetText(), englishClass))
-											else
-												_G.InspectFrameTitleText:SetText(classsymbolonframe.." ".._G.InspectFrameTitleText:GetText())
-												_G.InspectFrameTitleText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
-											end
+									_G.InspectNameText:SetShadowColor(0, 0, 0, 0.8)
+									_G.InspectNameText:SetShadowOffset(2, -1)
+									_G.InspectNameText:SetWidth(200)
+									_G.InspectNameText:SetDrawLayer("OVERLAY")
+								end
+							else
+								if _G.InspectFrameTitleText and _G.InspectFrameTitleText:GetText() and not _G.InspectFrameTitleText:GetText():match("|T") then
+									_G.InspectFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
+									if string.len(_G.InspectFrameTitleText:GetText()) >= 6 then
+										if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectFrameTitleText:GetText():match("|r") then
+											_G.InspectFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectFrameTitleText:GetText(), englishClass))
 										else
 											_G.InspectFrameTitleText:SetText(classsymbolonframe.." ".._G.InspectFrameTitleText:GetText())
 											_G.InspectFrameTitleText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
 										end
-										_G.InspectFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
-										_G.InspectFrameTitleText:SetShadowOffset(2, -1)
-										_G.InspectFrameTitleText:SetWidth(200)
-										_G.InspectFrameTitleText:SetDrawLayer("OVERLAY")
+									else
+										_G.InspectFrameTitleText:SetText(classsymbolonframe.." ".._G.InspectFrameTitleText:GetText())
+										_G.InspectFrameTitleText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
 									end
+									_G.InspectFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
+									_G.InspectFrameTitleText:SetShadowOffset(2, -1)
+									_G.InspectFrameTitleText:SetWidth(200)
+									_G.InspectFrameTitleText:SetDrawLayer("OVERLAY")
 								end
-							end)
-						end
-
-						--calculate inspect ilvl
-						if not E.Retail and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
-							E:Delay(0, function()
-								if not _G["EltruismInspectIlvl"] then
-									_G.InspectFrame.Ilvl = _G.InspectFrame:CreateFontString("EltruismInspectIlvl", "OVERLAY", "GameFontNormal")
-								else
-									_G.InspectFrame.Ilvl = _G["EltruismInspectIlvl"]
-								end
-								_G.InspectFrame.Ilvl:SetSize(200, 32)
-								_G.InspectFrame.Ilvl:SetPoint("BOTTOM", _G.InspectLevelText, "BOTTOM", 0, -25) --ilvl number
-								_G.InspectFrame.Ilvl:SetParent(_G["InspectModelFrame"])
-								_G.InspectFrame.Ilvl:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b, 1)
-								_G.InspectLevelText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
-								_G.InspectFrame.Ilvl:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
-								if _G.InspectFrame and _G.InspectFrame.unit then
-									E:Delay(0.1, function() _G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel(_G.InspectFrame.unit)*100))/100) end)
-								else
-									E:Delay(0.1, function() _G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100) end)
-								end
-							end)
-						end
-
-						--add bg texture
-						if E.Retail then
-							EltruismInspectBgTextureFader:SetAllPoints(_G.InspectFrame)
-						else
-							EltruismInspectBgTextureFader:SetAllPoints(_G.InspectFrame.backdrop)
-						end
-						EltruismInspectBgTextureFader:SetParent(_G.InspectFrame)
-						EltruismInspectBgTextureFader:SetDrawLayer("ARTWORK",7)
-						EltruismInspectBgTextureFader:SetAlpha(E.db.ElvUI_EltreumUI.skins.armoryvignettealpha)
-						if not E.db.ElvUI_EltreumUI.skins.armoryvignette then
-							EltruismInspectBgTextureFader:Hide()
-						else
-							EltruismInspectBgTextureFader:Show()
-						end
-						if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
-							EltruismInspectBgTexture:SetTexture(classBgs[englishClass])
-							EltruismInspectBgTexture:SetTexCoord(0, 0.87, 0, 0.60)
-						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
-							EltruismInspectBgTexture:SetTexture(raceBgs[englishRace]) --(left, right, top, bottom)
-							EltruismInspectBgTexture:SetTexCoord(0.1, 0.55, 0, 1)
-						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" then
-							EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ragnaros")
-							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
-						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" then
-							EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\SpaceCloud")
-							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
-						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
-							EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ravnyr")
-							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
-						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "BLACK" then
-							EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\black")
-						elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
-							texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
-							EltruismInspectBgTexture:SetTexture(texturefile)
-							EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
-						end
-
-						EltruismInspectBgTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
-						if E.Wrath or E.Classic then
-							EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop)
-							EltruismInspectBgTexture:SetParent(_G.InspectFrame)
-							if _G.InspectModelFrameRotateLeftButton:IsShown() then
-								_G.InspectModelFrameRotateLeftButton:Hide()
 							end
-							if _G.InspectModelFrameRotateRightButton:IsShown() then
-								_G.InspectModelFrameRotateRightButton:Hide()
-							end
-						elseif E.Retail then
-							_G.InspectModelFrameBackgroundBotLeft:Hide()
-							_G.InspectModelFrameBackgroundBotRight:Hide()
-							_G.InspectModelFrameBackgroundTopLeft:Hide()
-							_G.InspectModelFrameBackgroundTopRight:Hide()
-							_G.InspectModelFrameBackgroundOverlay:Hide()
-							--InspectModelFrame.backdrop:Hide()
-							_G.InspectModelFrame.backdrop:SetParent(_G.InspectFrame)
-							_G.InspectModelFrame.backdrop:SetAllPoints(_G.InspectFrame)
-							_G.InspectModelFrame.backdrop:SetAlpha(0.2)
-							EltruismInspectBgTexture:SetParent(_G.InspectFrame)
-							EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame)
-						end
-						EltruismInspectBgTexture:SetDrawLayer("ARTWORK",6)
+						end)
 					end
+
+					--calculate inspect ilvl
+					if not E.Retail and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
+						E:Delay(0, function()
+							if not _G["EltruismInspectIlvl"] then
+								_G.InspectFrame.Ilvl = _G.InspectFrame:CreateFontString("EltruismInspectIlvl", "OVERLAY", "GameFontNormal")
+							else
+								_G.InspectFrame.Ilvl = _G["EltruismInspectIlvl"]
+							end
+							_G.InspectFrame.Ilvl:SetSize(200, 32)
+							_G.InspectFrame.Ilvl:SetPoint("BOTTOM", _G.InspectLevelText, "BOTTOM", 0, -25) --ilvl number
+							_G.InspectFrame.Ilvl:SetParent(_G["InspectModelFrame"])
+							_G.InspectFrame.Ilvl:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b, 1)
+							_G.InspectLevelText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+							_G.InspectFrame.Ilvl:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, E.db.general.fontStyle)
+							if _G.InspectFrame and _G.InspectFrame.unit then
+								E:Delay(0.1, function() _G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel(_G.InspectFrame.unit)*100))/100) end)
+							else
+								E:Delay(0.1, function() _G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100) end)
+							end
+						end)
+					end
+
+					--add bg texture
+					if E.Retail then
+						EltruismInspectBgTextureFader:SetAllPoints(_G.InspectFrame)
+					else
+						EltruismInspectBgTextureFader:SetAllPoints(_G.InspectFrame.backdrop)
+					end
+					EltruismInspectBgTextureFader:SetParent(_G.InspectFrame)
+					EltruismInspectBgTextureFader:SetDrawLayer("ARTWORK",7)
+					EltruismInspectBgTextureFader:SetAlpha(E.db.ElvUI_EltreumUI.skins.armoryvignettealpha)
+					if not E.db.ElvUI_EltreumUI.skins.armoryvignette then
+						EltruismInspectBgTextureFader:Hide()
+					else
+						EltruismInspectBgTextureFader:Show()
+					end
+					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+						EltruismInspectBgTexture:SetTexture(classBgs[englishClass])
+						EltruismInspectBgTexture:SetTexCoord(0, 0.87, 0, 0.60)
+					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
+						EltruismInspectBgTexture:SetTexture(raceBgs[englishRace]) --(left, right, top, bottom)
+						EltruismInspectBgTexture:SetTexCoord(0.1, 0.55, 0, 1)
+					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" then
+						EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ragnaros")
+						EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
+					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" then
+						EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\SpaceCloud")
+						EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
+					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+						EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ravnyr")
+						EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
+					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "BLACK" then
+						EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\black")
+					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
+						texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
+						EltruismInspectBgTexture:SetTexture(texturefile)
+						EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
+					end
+
+					EltruismInspectBgTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
+					if E.Wrath or E.Classic then
+						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop)
+						EltruismInspectBgTexture:SetParent(_G.InspectFrame)
+						if _G.InspectModelFrameRotateLeftButton:IsShown() then
+							_G.InspectModelFrameRotateLeftButton:Hide()
+						end
+						if _G.InspectModelFrameRotateRightButton:IsShown() then
+							_G.InspectModelFrameRotateRightButton:Hide()
+						end
+					elseif E.Retail then
+						_G.InspectModelFrameBackgroundBotLeft:Hide()
+						_G.InspectModelFrameBackgroundBotRight:Hide()
+						_G.InspectModelFrameBackgroundTopLeft:Hide()
+						_G.InspectModelFrameBackgroundTopRight:Hide()
+						_G.InspectModelFrameBackgroundOverlay:Hide()
+						--InspectModelFrame.backdrop:Hide()
+						_G.InspectModelFrame.backdrop:SetParent(_G.InspectFrame)
+						_G.InspectModelFrame.backdrop:SetAllPoints(_G.InspectFrame)
+						_G.InspectModelFrame.backdrop:SetAlpha(0.2)
+						EltruismInspectBgTexture:SetParent(_G.InspectFrame)
+						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame)
+					end
+					EltruismInspectBgTexture:SetDrawLayer("ARTWORK",6)
 				end
 			end
+		end
 
-			--add a texture based on quality too, tbc needed a timer
-			if E.db.ElvUI_EltreumUI.skins.itemquality then
-				if ElvUI_EltreumUI:SLCheck('inspect') then return end
-				E:Delay(0, function()
-					for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
-						qualityAnchorInspect = _G["Inspect"..InvSlotIdTable[InvSlotId]]
-						if qualityAnchorInspect == nil then return end
+		--add a texture based on quality too, tbc needed a timer
+		if E.db.ElvUI_EltreumUI.skins.itemquality then
+			if ElvUI_EltreumUI:SLCheck('inspect') then return end
+			E:Delay(0, function()
+				for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
+					qualityAnchorInspect = _G["Inspect"..InvSlotIdTable[InvSlotId]]
+					if qualityAnchorInspect == nil then return end
 
-						if _G["EltruismInspectItemQuality"..InvSlotName] then
-							qualityAnchorInspect.Frame = _G["EltruismInspectItemQuality"..InvSlotName]
-						else
-							qualityAnchorInspect.Frame = CreateFrame('FRAME', "EltruismInspectItemQuality"..InvSlotName, qualityAnchorInspect)
-						end
-						if _G["EltruismInspectItemQualityTexture"..InvSlotName] then
-							qualityAnchorInspect.Frame.Quality = _G["EltruismInspectItemQualityTexture"..InvSlotName]
-						else
-							qualityAnchorInspect.Frame.Quality = qualityAnchorInspect.Frame:CreateTexture("EltruismInspectItemQualityTexture"..InvSlotName, "OVERLAY")
-						end
+					if _G["EltruismInspectItemQuality"..InvSlotName] then
+						qualityAnchorInspect.Frame = _G["EltruismInspectItemQuality"..InvSlotName]
+					else
+						qualityAnchorInspect.Frame = CreateFrame('FRAME', "EltruismInspectItemQuality"..InvSlotName, qualityAnchorInspect)
+					end
+					if _G["EltruismInspectItemQualityTexture"..InvSlotName] then
+						qualityAnchorInspect.Frame.Quality = _G["EltruismInspectItemQualityTexture"..InvSlotName]
+					else
+						qualityAnchorInspect.Frame.Quality = qualityAnchorInspect.Frame:CreateTexture("EltruismInspectItemQualityTexture"..InvSlotName, "OVERLAY")
+					end
 
-						if E.Retail then
-							qualityAnchorInspect.Frame:SetFrameLevel(2)
-							qualityAnchorInspect.Frame:SetSize(140, _G["Inspect"..InvSlotName]:GetHeight() + 2)
-						else
-							qualityAnchorInspect.Frame:SetFrameLevel(_G["InspectModelFrame"]:GetFrameLevel() - 1)
-							qualityAnchorInspect.Frame:SetSize(140, _G["Inspect"..InvSlotName]:GetHeight() + 2)
-						end
+					if E.Retail then
+						qualityAnchorInspect.Frame:SetFrameLevel(2)
+						qualityAnchorInspect.Frame:SetSize(140, _G["Inspect"..InvSlotName]:GetHeight() + 2)
+					else
+						qualityAnchorInspect.Frame:SetFrameLevel(_G["InspectModelFrame"]:GetFrameLevel() - 1)
+						qualityAnchorInspect.Frame:SetSize(140, _G["Inspect"..InvSlotName]:GetHeight() + 2)
+					end
 
-						qualityAnchorInspect.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade')
-						qualityAnchorInspect.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
+					qualityAnchorInspect.Frame.Quality:SetTexture('Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade')
+					qualityAnchorInspect.Frame.Quality:SetInside() --if not then the frame will not anchor correctly
 
-						--get item (actual) quality
-						local itemLink
-						if _G.InspectFrame and _G.InspectFrame.unit then
-							itemLink = _G.GetInventoryItemLink(_G.InspectFrame.unit, InvSlotId)
-						else
-							itemLink = _G.GetInventoryItemLink("target", InvSlotId)
-						end
-						if itemLink ~= nil then
-							local quality = select(3,_G.GetItemInfo(itemLink))
-							local isSetItem = select(16, _G.GetItemInfo(itemLink))
-							if quality then
-								local r,g,b
-								if E.db.ElvUI_EltreumUI.skins.itemsetenable then
-									if isSetItem then
-										if E.db.ElvUI_EltreumUI.skins.itemsetcustomcolor then
-											r,g,b = E.db.ElvUI_EltreumUI.skins.itemsetcolor.r, E.db.ElvUI_EltreumUI.skins.itemsetcolor.g, E.db.ElvUI_EltreumUI.skins.itemsetcolor.b
-										else
-											r,g,b = P.ElvUI_EltreumUI.skins.itemsetcolor.r, P.ElvUI_EltreumUI.skins.itemsetcolor.g, P.ElvUI_EltreumUI.skins.itemsetcolor.b
-										end
+					--get item (actual) quality
+					local itemLink
+					if _G.InspectFrame and _G.InspectFrame.unit then
+						itemLink = _G.GetInventoryItemLink(_G.InspectFrame.unit, InvSlotId)
+					else
+						itemLink = _G.GetInventoryItemLink("target", InvSlotId)
+					end
+					if itemLink ~= nil then
+						local quality = select(3,_G.GetItemInfo(itemLink))
+						local isSetItem = select(16, _G.GetItemInfo(itemLink))
+						if quality then
+							local r,g,b
+							if E.db.ElvUI_EltreumUI.skins.itemsetenable then
+								if isSetItem then
+									if E.db.ElvUI_EltreumUI.skins.itemsetcustomcolor then
+										r,g,b = E.db.ElvUI_EltreumUI.skins.itemsetcolor.r, E.db.ElvUI_EltreumUI.skins.itemsetcolor.g, E.db.ElvUI_EltreumUI.skins.itemsetcolor.b
 									else
-										r,g,b = _G.GetItemQualityColor(quality)
+										r,g,b = P.ElvUI_EltreumUI.skins.itemsetcolor.r, P.ElvUI_EltreumUI.skins.itemsetcolor.g, P.ElvUI_EltreumUI.skins.itemsetcolor.b
 									end
 								else
 									r,g,b = _G.GetItemQualityColor(quality)
 								end
-								qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
-								qualityAnchorInspect.Frame.Quality:SetAlpha(1)
-								if E.Retail then
-									local borderfix = _G["Inspect"..InvSlotName]
-									if borderfix.IconBorder then
-										borderfix.IconBorder:SetVertexColor(r, g, b)
-									end
-								else
-									if _G["Inspect"..InvSlotName].backdrop then
-										--_G["Inspect"..InvSlotName].backdrop.BottomEdge:SetColorTexture(r,g,b,1)
-										_G["Inspect"..InvSlotName].backdrop.BottomEdge:Hide()
-										_G["Inspect"..InvSlotName].backdrop.TopEdge:Hide()
-										_G["Inspect"..InvSlotName].backdrop.RightEdge:Hide()
-										_G["Inspect"..InvSlotName].backdrop.LeftEdge:Hide()
-										_G["Inspect"..InvSlotName].backdrop.BottomLeftCorner:Hide()
-										_G["Inspect"..InvSlotName].backdrop.BottomRightCorner:Hide()
-										_G["Inspect"..InvSlotName].backdrop.TopLeftCorner:Hide()
-										_G["Inspect"..InvSlotName].backdrop.TopRightCorner:Hide()
+							else
+								r,g,b = _G.GetItemQualityColor(quality)
+							end
+							qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
+							qualityAnchorInspect.Frame.Quality:SetAlpha(1)
+							if E.Retail then
+								local borderfix = _G["Inspect"..InvSlotName]
+								if borderfix.IconBorder then
+									borderfix.IconBorder:SetVertexColor(r, g, b)
+								end
+							else
+								if _G["Inspect"..InvSlotName].backdrop then
+									--_G["Inspect"..InvSlotName].backdrop.BottomEdge:SetColorTexture(r,g,b,1)
+									_G["Inspect"..InvSlotName].backdrop.BottomEdge:Hide()
+									_G["Inspect"..InvSlotName].backdrop.TopEdge:Hide()
+									_G["Inspect"..InvSlotName].backdrop.RightEdge:Hide()
+									_G["Inspect"..InvSlotName].backdrop.LeftEdge:Hide()
+									_G["Inspect"..InvSlotName].backdrop.BottomLeftCorner:Hide()
+									_G["Inspect"..InvSlotName].backdrop.BottomRightCorner:Hide()
+									_G["Inspect"..InvSlotName].backdrop.TopLeftCorner:Hide()
+									_G["Inspect"..InvSlotName].backdrop.TopRightCorner:Hide()
+								end
+							end
+
+							if not E.Retail and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
+								--coloring ilvl based on the items they have
+								local qualitytable = {
+									[0] = 0,
+									[1] = 0,
+									[2] = 0,
+									[3] = 0,
+									[4] = 0,
+								}
+								local maxquality = 0
+								local numberquality = 0
+								if quality == 0 then
+									qualitytable[0] = qualitytable[0] +1
+								elseif quality == 1 then
+									qualitytable[1] = qualitytable[1] +1
+								elseif quality == 2 then
+									qualitytable[2] = qualitytable[2] + 1
+								elseif quality == 3 then
+									qualitytable[3] = qualitytable[3] + 1
+								elseif quality == 4 then
+									qualitytable[4] = qualitytable[4] + 1
+								end
+								for k, v in pairs(qualitytable) do
+									if qualitytable[k] > numberquality then
+										maxquality, numberquality = k, v
 									end
 								end
-
-								if not E.Retail and E.db.ElvUI_EltreumUI.skins.ilvlsinspect then
-									--coloring ilvl based on the items they have
-									local qualitytable = {
-										[0] = 0,
-										[1] = 0,
-										[2] = 0,
-										[3] = 0,
-										[4] = 0,
-									}
-									local maxquality = 0
-									local numberquality = 0
-									if quality == 0 then
-										qualitytable[0] = qualitytable[0] +1
-									elseif quality == 1 then
-										qualitytable[1] = qualitytable[1] +1
-									elseif quality == 2 then
-										qualitytable[2] = qualitytable[2] + 1
-									elseif quality == 3 then
-										qualitytable[3] = qualitytable[3] + 1
-									elseif quality == 4 then
-										qualitytable[4] = qualitytable[4] + 1
+								if _G.InspectFrame.Ilvl then
+									if _G.InspectFrame.Ilvl:GetText() == nil then
+										_G.InspectFrame.Ilvl:SetText("PLACEHOLDER")
 									end
-									for k, v in pairs(qualitytable) do
-										if qualitytable[k] > numberquality then
-											maxquality, numberquality = k, v
-										end
-									end
-									if _G.InspectFrame.Ilvl then
-										if _G.InspectFrame.Ilvl:GetText() == nil then
-											_G.InspectFrame.Ilvl:SetText("PLACEHOLDER")
-										end
-										if _G.InspectFrame.Ilvl:GetText() ~= nil and not _G.InspectFrame.Ilvl:GetText():match("|r") then
-											local _, _, _, hex = GetItemQualityColor(maxquality)
-											if _G.InspectFrame and _G.InspectFrame.unit then
-												_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r ".."|c"..hex..((math.floor(ElvUI_EltreumUI:GetUnitItemLevel(_G.InspectFrame.unit)*100))/100).."|r")
-											else
-												_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r ".."|c"..hex..((math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100).."|r")
-											end
+									if _G.InspectFrame.Ilvl:GetText() ~= nil and not _G.InspectFrame.Ilvl:GetText():match("|r") then
+										local _, _, _, hex = GetItemQualityColor(maxquality)
+										if _G.InspectFrame and _G.InspectFrame.unit then
+											_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r ".."|c"..hex..((math.floor(ElvUI_EltreumUI:GetUnitItemLevel(_G.InspectFrame.unit)*100))/100).."|r")
+										else
+											_G.InspectFrame.Ilvl:SetText("|cffFFCE00"..L["Item Level"]..":|r ".."|c"..hex..((math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100).."|r")
 										end
 									end
 								end
 							end
-						else
-							qualityAnchorInspect.Frame.Quality:SetAlpha(0)
 						end
+					else
+						qualityAnchorInspect.Frame.Quality:SetAlpha(0)
+					end
 
-						--align them left or right based on id since its known where they go (unless another addon changes their side...)
-						if InvSlotId == 1 or InvSlotId == 2 or InvSlotId == 3 or InvSlotId == 5 or InvSlotId == 9 or InvSlotId == 15 or InvSlotId == 18 then
+					--align them left or right based on id since its known where they go (unless another addon changes their side...)
+					if InvSlotId == 1 or InvSlotId == 2 or InvSlotId == 3 or InvSlotId == 5 or InvSlotId == 9 or InvSlotId == 15 or InvSlotId == 18 then
+						qualityAnchorInspect.Frame:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
+						qualityAnchorInspect.Frame.Quality:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
+					elseif InvSlotId == 6 or InvSlotId == 7 or InvSlotId == 8 or InvSlotId == 10 or InvSlotId == 11 or InvSlotId == 12 or InvSlotId == 13 or InvSlotId == 14 or InvSlotId == 16 then
+						qualityAnchorInspect.Frame:SetPoint("RIGHT", _G["Inspect"..InvSlotName], "LEFT", _G["Inspect"..InvSlotName]:GetWidth()+4, 0)
+						qualityAnchorInspect.Frame.Quality:SetPoint("RIGHT", _G["Inspect"..InvSlotName], "LEFT", _G["Inspect"..InvSlotName]:GetWidth()+4, 0)
+						--flip the texture since its on the other side
+						qualityAnchorInspect.Frame.Quality:SetTexCoord(1, 0, 0, 1)
+					elseif InvSlotId == 17 then --rotate for the off hand slot that is in the middle in classic/tbc/wrath
+						if not E.Retail then
+							qualityAnchorInspect.Frame:SetSize(120, _G["Inspect"..InvSlotName]:GetHeight() + 2)
+							qualityAnchorInspect.Frame.Quality:SetRotation(1.57079633)
+							qualityAnchorInspect.Frame:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
+							qualityAnchorInspect.Frame.Quality:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
+						else
 							qualityAnchorInspect.Frame:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
 							qualityAnchorInspect.Frame.Quality:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
-						elseif InvSlotId == 6 or InvSlotId == 7 or InvSlotId == 8 or InvSlotId == 10 or InvSlotId == 11 or InvSlotId == 12 or InvSlotId == 13 or InvSlotId == 14 or InvSlotId == 16 then
-							qualityAnchorInspect.Frame:SetPoint("RIGHT", _G["Inspect"..InvSlotName], "LEFT", _G["Inspect"..InvSlotName]:GetWidth()+4, 0)
-							qualityAnchorInspect.Frame.Quality:SetPoint("RIGHT", _G["Inspect"..InvSlotName], "LEFT", _G["Inspect"..InvSlotName]:GetWidth()+4, 0)
-							--flip the texture since its on the other side
-							qualityAnchorInspect.Frame.Quality:SetTexCoord(1, 0, 0, 1)
-						elseif InvSlotId == 17 then --rotate for the off hand slot that is in the middle in classic/tbc/wrath
-							if not E.Retail then
-								qualityAnchorInspect.Frame:SetSize(120, _G["Inspect"..InvSlotName]:GetHeight() + 2)
-								qualityAnchorInspect.Frame.Quality:SetRotation(1.57079633)
-								qualityAnchorInspect.Frame:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
-								qualityAnchorInspect.Frame.Quality:SetPoint("BOTTOM", _G["Inspect"..InvSlotName], "BOTTOM", 0, 37)
-							else
-								qualityAnchorInspect.Frame:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
-								qualityAnchorInspect.Frame.Quality:SetPoint("LEFT", _G["Inspect"..InvSlotName], "RIGHT", -_G["Inspect"..InvSlotName]:GetWidth()-4, 0)
-							end
 						end
 					end
-				end)
-			end
+				end
+			end)
 		end
 	end
 end

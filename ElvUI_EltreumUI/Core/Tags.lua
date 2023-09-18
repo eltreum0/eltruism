@@ -1183,14 +1183,16 @@ E:AddTag("eltruism:hpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONN
 	if not UnitIsPlayer(unit) then --npc
 		if not UnitIsDead(unit) then
 			local reaction = UnitReaction(unit, "player")
-			if reaction >= 5 then
-				return ElvUI_EltreumUI:GradientName(E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1)), "NPCFRIENDLY", isTarget)
-			elseif reaction == 4 then
-				return ElvUI_EltreumUI:GradientName(E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1)), "NPCNEUTRAL", isTarget)
-			elseif reaction == 3 then
-				return ElvUI_EltreumUI:GradientName(E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1)), "NPCUNFRIENDLY", isTarget)
-			elseif reaction == 2 or reaction == 1 then
-				return ElvUI_EltreumUI:GradientName(E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1)), "NPCHOSTILE", isTarget)
+			if reaction then
+				if reaction >= 5 then
+					return ElvUI_EltreumUI:GradientName(E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1)), "NPCFRIENDLY", isTarget)
+				elseif reaction == 4 then
+					return ElvUI_EltreumUI:GradientName(E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1)), "NPCNEUTRAL", isTarget)
+				elseif reaction == 3 then
+					return ElvUI_EltreumUI:GradientName(E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1)), "NPCUNFRIENDLY", isTarget)
+				elseif reaction == 2 or reaction == 1 then
+					return ElvUI_EltreumUI:GradientName(E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1)), "NPCHOSTILE", isTarget)
+				end
 			end
 		else
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
@@ -1241,14 +1243,16 @@ E:AddTag("eltruism:hpdeficitpc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_
 	if deficit > 0 and cur > 0 then
 		if not UnitIsPlayer(unit) then
 			local reaction = UnitReaction(unit, "player")
-			if reaction >= 5 then
-				return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCFRIENDLY", isTarget),"_","||")
-			elseif reaction == 4 then
-				return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCNEUTRAL", isTarget),"_","||")
-			elseif reaction == 3 then
-				return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCUNFRIENDLY", isTarget),"_","||")
-			elseif reaction == 2 or reaction == 1 then
-				return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCHOSTILE", isTarget),"_","||")
+			if reaction then
+				if reaction >= 5 then
+					return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCFRIENDLY", isTarget),"_","||")
+				elseif reaction == 4 then
+					return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCNEUTRAL", isTarget),"_","||")
+				elseif reaction == 3 then
+					return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCUNFRIENDLY", isTarget),"_","||")
+				elseif reaction == 2 or reaction == 1 then
+					return gsub(ElvUI_EltreumUI:GradientName(("-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))), "NPCHOSTILE", isTarget),"_","||")
+				end
 			end
 		else
 			local _, unitClass = UnitClass(unit)
@@ -1267,14 +1271,16 @@ E:AddTag("eltruism:pchpdeficit:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_
 	if deficit > 0 and cur > 0 then
 		if not UnitIsPlayer(unit) then
 			local reaction = UnitReaction(unit, "player")
-			if reaction >= 5 then
-				return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), "NPCFRIENDLY", isTarget),"_","||")
-			elseif reaction == 4 then
-				return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), "NPCNEUTRAL", isTarget),"_","||")
-			elseif reaction == 3 then
-				return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), "NPCUNFRIENDLY", isTarget),"_","||")
-			elseif reaction == 2 or reaction == 1 then
-				return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), "NPCHOSTILE", isTarget),"_","||")
+			if reaction then
+				if reaction >= 5 then
+					return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), "NPCFRIENDLY", isTarget),"_","||")
+				elseif reaction == 4 then
+					return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), "NPCNEUTRAL", isTarget),"_","||")
+				elseif reaction == 3 then
+					return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), "NPCUNFRIENDLY", isTarget),"_","||")
+				elseif reaction == 2 or reaction == 1 then
+					return gsub(ElvUI_EltreumUI:GradientName((E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit)).." _ "..E:ShortValue(deficit)), "NPCHOSTILE", isTarget),"_","||")
+				end
 			end
 		else
 			local _, unitClass = UnitClass(unit)
@@ -1392,14 +1398,16 @@ E:AddTag('eltruism:targetcast', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START UNIT_TARG
 		if UnitIsPlayer(unit.."target") then
 			return ("|c"..color..targetname.."|r")
 		elseif not UnitIsPlayer(unit.."target") then
-			if reaction >= 5 then
-				return ("|c"..classcolorcast["FRIENDLY"]..targetname.."|r")
-			elseif reaction == 4 then
-				return ("|c"..classcolorcast["NEUTRAL"]..targetname.."|r")
-			elseif reaction == 3 then
-				return ("|c"..classcolorcast["UNFRIENDLY"]..targetname.."|r")
-			elseif reaction == 2 or reaction == 1 then
-				return ("|c"..classcolorcast["HOSTILE"]..targetname.."|r")
+			if reaction then
+				if reaction >= 5 then
+					return ("|c"..classcolorcast["FRIENDLY"]..targetname.."|r")
+				elseif reaction == 4 then
+					return ("|c"..classcolorcast["NEUTRAL"]..targetname.."|r")
+				elseif reaction == 3 then
+					return ("|c"..classcolorcast["UNFRIENDLY"]..targetname.."|r")
+				elseif reaction == 2 or reaction == 1 then
+					return ("|c"..classcolorcast["HOSTILE"]..targetname.."|r")
+				end
 			end
 		end
 	end
@@ -1425,14 +1433,16 @@ E:AddTag('eltruism:targetcast:indicator', 'UNIT_NAME_UPDATE UNIT_SPELLCAST_START
 		if UnitIsPlayer(unit.."target") then
 			return (TARGET.." > |c"..color..targetname.."|r")
 		elseif not UnitIsPlayer(unit.."target") then
-			if reaction >= 5 then
-				return (TARGET.." > |c"..classcolorcast["FRIENDLY"]..targetname.."|r")
-			elseif reaction == 4 then
-				return (TARGET.." > |c"..classcolorcast["NEUTRAL"]..targetname.."|r")
-			elseif reaction == 3 then
-				return (TARGET.." > |c"..classcolorcast["UNFRIENDLY"]..targetname.."|r")
-			elseif reaction == 2 or reaction == 1 then
-				return (TARGET.." > |c"..classcolorcast["HOSTILE"]..targetname.."|r")
+			if reaction then
+				if reaction >= 5 then
+					return (TARGET.." > |c"..classcolorcast["FRIENDLY"]..targetname.."|r")
+				elseif reaction == 4 then
+					return (TARGET.." > |c"..classcolorcast["NEUTRAL"]..targetname.."|r")
+				elseif reaction == 3 then
+					return (TARGET.." > |c"..classcolorcast["UNFRIENDLY"]..targetname.."|r")
+				elseif reaction == 2 or reaction == 1 then
+					return (TARGET.." > |c"..classcolorcast["HOSTILE"]..targetname.."|r")
+				end
 			end
 		end
 	end

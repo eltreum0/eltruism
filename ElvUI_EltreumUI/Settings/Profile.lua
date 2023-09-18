@@ -1437,6 +1437,13 @@ P.ElvUI_EltreumUI = {
 			painR2 = 1,
 			painG2 = 0.30,
 			painB2 = 0,
+
+			backdropR1 = 0,
+			backdropG1 = 0,
+			backdropB1 = 0,
+			backdropR2 = 0.1,
+			backdropG2 = 0.1,
+			backdropB2 = 0.1,
 		},
 		ufcustomtexture = {
 			enable = false,

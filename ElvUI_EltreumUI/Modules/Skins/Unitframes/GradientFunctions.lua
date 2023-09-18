@@ -42,7 +42,8 @@ local unitframegradients = {
 	["INSANITY"] = {r1 = 0.50, g1 = 0.25, b1 = 1, r2 = 0.70, g2 = 0, b2 = 1}, --INSANITY
 	["FURY"] = {r1 = 0.79, g1 = 0.26, b1 = 1, r2 = 1, g2 = 0, b2 = 0.95}, --FURY
 	["PAIN"] = {r1 = 1, g1 = 0.61, b1 = 0, r2 = 1, g2 = 0.30, b2 = 0}, --PAIN
-	["ELTRUISM"] = {r1 = 0.50, g1 = 0.70, b1 = 1,r2 = 0.67, g2 = 0.95, b2 = 1} --addon gradient
+	["ELTRUISM"] = {r1 = 0.50, g1 = 0.70, b1 = 1,r2 = 0.67, g2 = 0.95, b2 = 1}, --addon gradient
+	["BACKDROP"] = {r1 = 0, g1 = 0, b1 = 0,r2 = 0.1, g2 = 0.1, b2 = 0.1}, --backdrop gradient
 }
 local unitframecustomgradients = unitframegradients
 local unitframeclass = {
@@ -125,7 +126,8 @@ function ElvUI_EltreumUI:GradientColorTableUpdate()
 		["INSANITY"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.insanityB2}, --INSANITY
 		["FURY"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.furyB2}, --FURY
 		["PAIN"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.painB2}, --PAIN
-		["ELTRUISM"] = {r1 = 0.50, g1 = 0.70, b1 = 1,r2 = 0.67, g2 = 0.95, b2 = 1} --addon gradient
+		["ELTRUISM"] = {r1 = 0.50, g1 = 0.70, b1 = 1,r2 = 0.67, g2 = 0.95, b2 = 1}, --addon gradient
+		["BACKDROP"] = {r1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.backdropR1, g1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.backdropG1, b1 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.backdropB1, r2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.backdropR2, g2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.backdropG2, b2 = E.db.ElvUI_EltreumUI.unitframes.gradientmode.backdropB2}, --backdrop gradient
 	}
 	if E.db.ElvUI_EltreumUI.unitframes.uftextureversion == "V2" then
 		unitframeclass = {

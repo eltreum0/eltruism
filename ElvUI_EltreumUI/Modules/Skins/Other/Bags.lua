@@ -20,43 +20,57 @@ function ElvUI_EltreumUI:BagProfessions()
 							[441139] = true,
 						}
 						for _,v in ipairs{GetProfessions()} do
-							local name, icon = GetProfessionInfo(v)
+							local name, icon, _, _, _, spelloffset = GetProfessionInfo(v)
 							if name then
 								if not _G["EltruismProfession"..v.."BagButton"] then
 									if not blockprof[icon] then
+									--[[
 										local _,_,spellID =  GetSpellBookItemName(name)
-
-										--print(name,icon,spellID)
-
-										--some characters don't actually know their original skill, so force the new one on them
+										print("original: ",name,icon,spellID)
 										if spellID == 264532 then --jewelcrafting
 											spellID = 195116
 										elseif spellID == 264475 then --engineering
-											spellID = 195112
+											if IsSpellKnown(195112) then
+												spellID = 195112
+											elseif IsSpellKnown(264481) then
+												spellID = 264481
+											elseif IsSpellKnown(264478) then
+												spellID = 264478
+											elseif IsSpellKnown(4036) then
+												spellID = 4036
+											end
 										elseif spellID == 264494 then --inscription
 											spellID = 195115
 										elseif spellID == 264577 then --leatherworking
 											spellID = 195119
 										elseif spellID == 264616 then --tailoring
-											spellID = 3908
-											--195126 doesnt work
-											--spellID = 195128 --cooking
+											if IsSpellKnown(3908) then
+												spellID = 3908
+											elseif IsSpellKnown(195126) then
+												spellID = 195126 --doesnt work
+											end
 										end
-
+										--spellID = 195128 --cooking
+										--print("postfix: ",name,icon,spellID)
+									]]
 										_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
 										_G["EltruismProfession"..v.."BagButton"] = CreateFrame("Button","EltruismProfession"..v.."BagButton",_G["ElvUI_ContainerFrame"],"SecureActionButtonTemplate")
 										_G["EltruismProfession"..v.."BagButton"]:SetSize(25,25)
 										_G["EltruismProfession"..v.."BagButton"]:SetTemplate("Transparent")
 										_G["EltruismProfession"..v.."BagButton"]:CreateBackdrop('Transparent')
 										S:HandleButton(_G["EltruismProfession"..v.."BagButton"])
-										_G["EltruismProfession"..v.."BagButton"]:SetPoint("TOPLEFT", _G["ElvUI_ContainerFrame"],"TOPLEFT", 11+((_G["ElvUI_ContainerFrame"].numButtons-1)*28), -3)
-										_G["EltruismProfession"..v.."BagButton"]:SetAttribute('type', 'spell')
-										_G["EltruismProfession"..v.."BagButton"]:SetAttribute('spell', spellID)
+										_G["EltruismProfession"..v.."BagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
+										--_G["EltruismProfession"..v.."BagButton"]:SetAttribute('type', 'spell')
+										--_G["EltruismProfession"..v.."BagButton"]:SetAttribute('spell', spellID)
 										_G["EltruismProfession"..v.."BagButton"]:RegisterForClicks("AnyUp")
 										_G["EltruismProfession"..v.."BagButton"].icon = _G["EltruismProfession"..v.."BagButton"]:CreateTexture(nil,"ARTWORK")
 										_G["EltruismProfession"..v.."BagButton"].icon:SetTexture(icon)
 										_G["EltruismProfession"..v.."BagButton"].icon:SetTexCoord(0.08,0.92,0.08,0.92)
 										_G["EltruismProfession"..v.."BagButton"].icon:SetAllPoints()
+										--using id has issues since some characters dont actually know the key spells to cast the profession, use OnClick instead
+										_G["EltruismProfession"..v.."BagButton"]:SetScript("OnClick", function()
+											CastSpell(spelloffset + 1, "Spell")
+										end)
 									end
 								end
 							end
@@ -71,7 +85,7 @@ function ElvUI_EltreumUI:BagProfessions()
 								_G["EltruismProfessionDisenchantBagButton"]:SetTemplate("Transparent")
 								_G["EltruismProfessionDisenchantBagButton"]:CreateBackdrop('Transparent')
 								S:HandleButton(_G["EltruismProfessionDisenchantBagButton"])
-								_G["EltruismProfessionDisenchantBagButton"]:SetPoint("TOPLEFT", _G["ElvUI_ContainerFrame"],"TOPLEFT", 11+((_G["ElvUI_ContainerFrame"].numButtons-1)*28), -3)
+								_G["EltruismProfessionDisenchantBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
 								_G["EltruismProfessionDisenchantBagButton"]:SetAttribute('type', 'spell')
 								_G["EltruismProfessionDisenchantBagButton"]:SetAttribute('spell', 13262)
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterForClicks("AnyUp")
@@ -203,7 +217,7 @@ function ElvUI_EltreumUI:BagProfessions()
 									_G["EltruismProfession"..k.."BagButton"]:SetTemplate("Transparent")
 									_G["EltruismProfession"..k.."BagButton"]:CreateBackdrop('Transparent')
 									S:HandleButton(_G["EltruismProfession"..k.."BagButton"])
-									_G["EltruismProfession"..k.."BagButton"]:SetPoint("TOPLEFT", _G["ElvUI_ContainerFrame"],"TOPLEFT", 11+((_G["ElvUI_ContainerFrame"].numButtons-1)*28), -3)
+									_G["EltruismProfession"..k.."BagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
 									_G["EltruismProfession"..k.."BagButton"]:SetAttribute('type', 'spell')
 									_G["EltruismProfession"..k.."BagButton"]:SetAttribute('spell', name)
 									_G["EltruismProfession"..k.."BagButton"]:RegisterForClicks("AnyUp")
@@ -224,7 +238,7 @@ function ElvUI_EltreumUI:BagProfessions()
 								_G["EltruismProfessionDisenchantBagButton"]:SetTemplate("Transparent")
 								_G["EltruismProfessionDisenchantBagButton"]:CreateBackdrop('Transparent')
 								S:HandleButton(_G["EltruismProfessionDisenchantBagButton"])
-								_G["EltruismProfessionDisenchantBagButton"]:SetPoint("TOPLEFT", _G["ElvUI_ContainerFrame"],"TOPLEFT", 11+((_G["ElvUI_ContainerFrame"].numButtons-1)*28), -3)
+								_G["EltruismProfessionDisenchantBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
 								_G["EltruismProfessionDisenchantBagButton"]:SetAttribute('type', 'spell')
 								_G["EltruismProfessionDisenchantBagButton"]:SetAttribute('spell', 13262)
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterForClicks("AnyUp")

@@ -209,6 +209,9 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	--object frame height
 	E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight = 550
 
+	--bags
+	E.db.ElvUI_EltreumUI.otherstuff.bagProfessionIcons = true
+
 	-- Misc
 	E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable = false
 	E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext = true
