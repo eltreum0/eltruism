@@ -742,6 +742,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					for i = 1, 35 do
 						if _G["QuestWatchLine"..i] then
 							_G["QuestWatchLine"..i]:Show()
+							_G.QuestWatchFrame.isHidden = false
 						end
 					end
 				end)
@@ -749,6 +750,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					for i = 1, 35 do
 						if _G["QuestWatchLine"..i] then
 							_G["QuestWatchLine"..i]:Hide()
+							_G.QuestWatchFrame.isHidden = true
 						end
 					end
 				end)
@@ -913,6 +915,14 @@ function ElvUI_EltreumUI:SkinQuests()
 				-- Hide unused watch lines
 				for i=watchTextIndex, MAX_QUESTWATCH_LINES do
 					_G["QuestWatchLine"..i]:Hide()
+				end
+
+				if _G.QuestWatchFrame.isHidden then
+					for i = 1, 35 do
+						if _G["QuestWatchLine"..i] then
+							_G["QuestWatchLine"..i]:Hide()
+						end
+					end
 				end
 
 				UIParent_ManageFramePositions()
