@@ -2407,15 +2407,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.gradient = ACH:Group(E:TextGradient(L["Gradient"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add gradients to Unitframes and Nameplates"], 85, 'tab')
 	ElvUI_EltreumUI.Options.args.gradient.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\gradient'
 
-	ElvUI_EltreumUI.Options.args.gradient.args.enable = ACH:Group("", nil, 1, "tab")
-	ElvUI_EltreumUI.Options.args.gradient.args.enable.inline = true
-	ElvUI_EltreumUI.Options.args.gradient.args.enable.args.gradientenable = ACH:Toggle(L["Enable Gradient"], nil, 1, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = value ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) end)
-	ElvUI_EltreumUI.Options.args.gradient.args.enable.args.orientation = ACH:Select(L["Gradient Orientation"], L["Choose the direction of the gradient"], 2, {
-		["HORIZONTAL"] = L["Horizontal"],
-		["VERTICAL"] = L["Vertical"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end)
-	ElvUI_EltreumUI.Options.args.gradient.args.enable.args.orientation.style = "radio"
-	ElvUI_EltreumUI.Options.args.gradient.args.unitframes = ACH:Group(L["UnitFrames"], nil, 2, "tab", nil, nil, function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end)
+
+	ElvUI_EltreumUI.Options.args.gradient.args.unitframes = ACH:Group(L["UnitFrames"], nil, 2, "tab", nil, nil, function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.unitframes = ACH:Group(L["Frames"], nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.enable = ACH:Group("", nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.enable.inline = true
@@ -2441,11 +2434,18 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.unitframes.args.enabletargetcastbarnoninterruptible = ACH:Toggle(L["Enable for Target Castbar (Non Interruptible)"], L["Enable Gradient colors for Target Castbar (Non Interruptible)"], 5, nil, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end)
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.unitframes.args.enabletargetcastbarinterrupted = ACH:Toggle(L["Enable for Target Castbar (Interrupted)"], L["Enable Gradient colors for Target Castbar (Interrupted)"], 5, nil, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarinterrupted end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarinterrupted = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end)
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.unitframes.args.enablepet = ACH:Toggle(L["Enable for Pet"], L["Enable Gradient colors for Pet"], 5, nil, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepet end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepet = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end)
-	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.orientation = ACH:Group(L["Gradient Power Orientation"], nil, 2, "tab")
-	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.orientation.args.orientationpower = ACH:Select(" ", nil, 2, {
+	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.orientation = ACH:Group(L["Gradient Orientation"], L["Choose the direction of the gradient"], 2, "tab")
+	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.orientation.args.description1 = ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.orientation.args.orientationhealth = ACH:Select(L["Gradient Orientation"], nil, 2, {
 		["HORIZONTAL"] = L["Horizontal"],
 		["VERTICAL"] = L["Vertical"],
-	}, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end)
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end)
+	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.orientation.args.orientationhealth.style = "radio"
+	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.orientation.args.description2 = ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.orientation.args.orientationpower = ACH:Select(L["Gradient Power Orientation"], L["Choose the direction of the gradient"], 4, {
+		["HORIZONTAL"] = L["Horizontal"],
+		["VERTICAL"] = L["Vertical"],
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end)
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.orientation.args.orientationpower.style = "radio"
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.texture = ACH:Group(L["Texture"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.texture.args.selectLSM = ACH:SharedMediaStatusbar(L["Gradient Texture"], L["Select a Texture"], 1, nil , function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture end, function(_,key) E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture = key ElvUI_EltreumUI:CustomTexture() end, function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture or not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end)
