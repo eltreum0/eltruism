@@ -1070,6 +1070,7 @@ P.ElvUI_EltreumUI = {
 			enableboss = true,
 			enablearena = true,
 			enablegroupunits = true,
+			enablebackdrop = true,
 
 			--extra for new function
 			enablepet = true,
