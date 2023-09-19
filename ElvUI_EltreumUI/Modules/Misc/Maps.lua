@@ -406,7 +406,7 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 		end
 	else
 		if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable then
-			if not Minimap.EltruismRotateSetup then
+			if not Minimap.EltruismRotate then
 				if Minimap.backdrop then
 					Minimap.backdrop:Hide()
 				end
@@ -425,7 +425,11 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 				Minimap.EltruismRotate:SetSize(Minimap:GetWidth(),Minimap:GetHeight())
 				Minimap.EltruismRotate:SetPoint("CENTER", Minimap, "CENTER", 0, 0)
 
-				Minimap.EltruismRotate:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
+				if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor then
+					Minimap.EltruismRotate:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
+				else
+					Minimap.EltruismRotate:SetVertexColor(E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b,1)
+				end
 
 				--i really dont like onupdate here, but since events dont fire all the time this is the best case use of it
 				if not onupdatesetup then
@@ -451,8 +455,15 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 					end)
 					onupdatesetup = true
 				end
-				Minimap.EltruismRotateSetup = true
 			else
+
+				Minimap.EltruismRotate:SetSize(Minimap:GetWidth()+E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset,Minimap:GetHeight()+E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset)
+				if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor then
+					Minimap.EltruismRotate:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
+				else
+					Minimap.EltruismRotate:SetVertexColor(E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b,1)
+				end
+
 				if Minimap.EltruismRotate then
 					Minimap.EltruismRotate:Show()
 				end
