@@ -129,6 +129,8 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unittexture,noOrientation)
 						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
 							if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
 								unitframe.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(classunit))
+							else
+								unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unittexture.."texture"]))
 							end
 						else
 							unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"][unittexture.."texture"]))
@@ -512,8 +514,12 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 				end
 			end
 		elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and button.Health.backdropTex then
-			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
-				button.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
+			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
+					button.Health.backdropTex:SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
+				else
+					button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"]["playertexture"]))
+				end
 			end
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
 				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
