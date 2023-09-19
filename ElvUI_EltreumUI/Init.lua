@@ -263,16 +263,25 @@ end
 function ElvUI_EltreumUI:ZONE_CHANGED()
 	ElvUI_EltreumUI:FriendlyNameplates()
 	ElvUI_EltreumUI:SkinMailZone()
+	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
+		ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
+	end
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_INDOORS()
 	ElvUI_EltreumUI:FriendlyNameplates()
 	ElvUI_EltreumUI:BattleRes()
+	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
+		ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
+	end
 end
 
 function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
 	E:Delay(5,function() ElvUI_EltreumUI:FriendlyNameplates() end)
 	ElvUI_EltreumUI:QuestItem()
+	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
+		ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
+	end
 end
 
 function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()

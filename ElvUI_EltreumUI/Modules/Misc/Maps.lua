@@ -15,13 +15,12 @@ local wipe = _G.wipe
 local UiMapPoint = _G.UiMapPoint
 local SuperTrackedFrame = _G.SuperTrackedFrame
 local S = E:GetModule('Skins')
+local valuecolors = E:ClassColor(E.myclass, true)
 
 --Conversion of Time to Arrive weakaura (new version)
 local EltruismAutopin = CreateFrame("Frame", "EltruismAutoPin")
-
 local EltruismTimeToArriveParent = CreateFrame("Frame", "EltruismTimeToArriveParent")
 EltruismTimeToArriveParent:RegisterEvent("PLAYER_ENTERING_WORLD")
-
 local EltruismTimeToArrive = CreateFrame("Frame", "EltruismTimeToArrive", UIParent)
 EltruismTimeToArrive.TimeText = EltruismTimeToArrive:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 EltruismTimeToArrive.TimeText:SetJustifyV("TOP")
@@ -30,7 +29,6 @@ EltruismTimeToArrive.TimeText:SetPoint("TOP", "SuperTrackedFrame", "BOTTOM", 0, 
 EltruismTimeToArrive.TimeText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 EltruismTimeToArrive.TimeText:SetParent(_G["SuperTrackedFrame"])
 EltruismTimeToArrive:SetParent(_G["SuperTrackedFrame"])
-
 SuperTrackedFrame.DistanceText:SetTextColor(1,1,1)
 SuperTrackedFrame.DistanceText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
 
@@ -101,7 +99,6 @@ function ElvUI_EltreumUI:WaypointTimeToArrive()
 				SuperTrackedFrame.Icon:SetVertexColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.r, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.g, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.b)
 				SuperTrackedFrame.Arrow:SetVertexColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.r, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.g, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.b)
 			else
-				local valuecolors = E:ClassColor(E.myclass, true)
 				SuperTrackedFrame.Arrow:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b)
 				SuperTrackedFrame.Icon:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b)
 			end
@@ -328,7 +325,6 @@ function ElvUI_EltreumUI:UpdateSuperTrackedColor()
 			SuperTrackedFrame.Icon:SetVertexColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.r, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.g, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.b)
 			SuperTrackedFrame.Arrow:SetVertexColor(E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.r, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.g, E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.b)
 		else
-			local valuecolors = E:ClassColor(E.myclass, true)
 			SuperTrackedFrame.Arrow:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b)
 			SuperTrackedFrame.Icon:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b)
 		end
@@ -337,5 +333,157 @@ function ElvUI_EltreumUI:UpdateSuperTrackedColor()
 		SuperTrackedFrame.Arrow:SetDesaturated(false)
 		SuperTrackedFrame.Arrow:SetVertexColor(1,1,1)
 		SuperTrackedFrame.Icon:SetVertexColor(1,1,1)
+	end
+end
+
+local onupdatesetup = false
+local TimeSinceLastUpdate2 = 0
+local ONUPDATE_INTERVAL2 = 0.01 --smooth for 60fps
+
+--add cardinal directions to minimap
+local Cardinals = CreateFrame("FRAME", "Eltruism Cardinal Directions")
+Cardinals:SetParent(Minimap)
+function ElvUI_EltreumUI:MinimapCardinalDirections()
+	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
+		if E.Retail then
+			Enum.EditModeMinimapSetting.RotateMinimap = 1
+		end
+		SetCVar("rotateMinimap",1)
+	end
+	if C_CVar.GetCVar("rotateMinimap") == 1 then
+		if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable then
+			if not Cardinals.N then
+				Cardinals.N = Cardinals:CreateFontString("EltruismNorth", "ARTWORK", "GameFontNormal")
+			end
+			Cardinals.N:SetText("N")
+			if not Cardinals.E then
+				Cardinals.E = Cardinals:CreateFontString("EltruismEast", "ARTWORK", "GameFontNormal")
+			end
+			Cardinals.E:SetText("E")
+			if not Cardinals.S then
+				Cardinals.S = Cardinals:CreateFontString("EltruismSouth", "ARTWORK", "GameFontNormal")
+			end
+			Cardinals.S:SetText("S")
+			if not Cardinals.W then
+				Cardinals.W = Cardinals:CreateFontString("EltruismWest", "ARTWORK", "GameFontNormal")
+			end
+			Cardinals.W:SetText("W")
+
+			Cardinals.N:SetPoint("BOTTOM", Minimap, "TOP", 0, -E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset)
+			Cardinals.E:SetPoint("LEFT", Minimap, "RIGHT", -E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset, 0)
+			Cardinals.S:SetPoint("TOP", Minimap, "BOTTOM", 0, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset)
+			Cardinals.W:SetPoint("RIGHT", Minimap, "LEFT", E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset, 0)
+
+			Cardinals.N:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize, E.db.general.fontStyle)
+			Cardinals.E:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize, E.db.general.fontStyle)
+			Cardinals.S:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize, E.db.general.fontStyle)
+			Cardinals.W:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize, E.db.general.fontStyle)
+
+			if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor then
+				Cardinals.N:SetTextColor(valuecolors.r,valuecolors.g,valuecolors.b)
+				Cardinals.E:SetTextColor(valuecolors.r,valuecolors.g,valuecolors.b)
+				Cardinals.S:SetTextColor(valuecolors.r,valuecolors.g,valuecolors.b)
+				Cardinals.W:SetTextColor(valuecolors.r,valuecolors.g,valuecolors.b)
+			else
+				Cardinals.N:SetTextColor(E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b)
+				Cardinals.E:SetTextColor(E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b)
+				Cardinals.S:SetTextColor(E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b)
+				Cardinals.W:SetTextColor(E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g,E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b)
+			end
+		else
+			if Cardinals.N then
+				Cardinals.N:SetText("")
+			end
+			if Cardinals.E then
+				Cardinals.E:SetText("")
+			end
+			if Cardinals.S then
+				Cardinals.S:SetText("")
+			end
+			if Cardinals.W then
+				Cardinals.W:SetText("")
+			end
+		end
+	else
+		if not Minimap.EltruismRotateSetup then
+			if Minimap.backdrop then
+				Minimap.backdrop:Hide()
+			end
+			if _G["EltruismMiniMapShadowFrame"] then
+				_G["EltruismMiniMapShadowFrame"]:Hide()
+			end
+			Minimap:SetMaskTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
+
+			--elvui forces square, force round in this case
+			_G.GetMinimapShape = function()
+				return 'ROUND'
+			end
+
+			Minimap.EltruismRotate = Minimap:CreateTexture()
+			Minimap.EltruismRotate:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\cardinals.tga")
+			Minimap.EltruismRotate:SetSize(Minimap:GetWidth(),Minimap:GetHeight())
+			Minimap.EltruismRotate:SetPoint("CENTER", Minimap, "CENTER", 0, 0)
+
+			Minimap.EltruismRotate:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
+
+			--i really dont like onupdate here, but since events dont fire all the time this is the best case use of it
+			if not onupdatesetup then
+				Cardinals:SetScript("OnUpdate",function(_, elapsed)
+					TimeSinceLastUpdate2 = TimeSinceLastUpdate2 + elapsed
+					if TimeSinceLastUpdate2 >= ONUPDATE_INTERVAL2 then
+						TimeSinceLastUpdate2 = 0
+						local _, instanceType = IsInInstance()
+						if instanceType == "none" then
+							local facing = GetPlayerFacing()
+							if facing then
+								Minimap.EltruismRotate:SetRotation(-facing)
+							end
+							if not Minimap.EltruismRotate:IsShown() then
+								Minimap.EltruismRotate:Show()
+							end
+						else
+							if Minimap.EltruismRotate:IsShown() then
+								Minimap.EltruismRotate:Hide()
+							end
+						end
+					end
+				end)
+				onupdatesetup = true
+			end
+			Minimap.EltruismRotateSetup = true
+		end
+	end
+end
+
+--setup onupdate and also get rid of it
+function ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
+	local _, instanceType = IsInInstance()
+	if instanceType == "none" then
+		if not onupdatesetup then
+			Cardinals:SetScript("OnUpdate",function(_, elapsed)
+				TimeSinceLastUpdate2 = TimeSinceLastUpdate2 + elapsed
+				if TimeSinceLastUpdate2 >= ONUPDATE_INTERVAL2 then
+					TimeSinceLastUpdate2 = 0
+					_, instanceType = IsInInstance()
+					if instanceType == "none" then
+						local facing = GetPlayerFacing()
+						if facing then
+							Minimap.EltruismRotate:SetRotation(-facing)
+						end
+						if not Minimap.EltruismRotate:IsShown() then
+							Minimap.EltruismRotate:Show()
+						end
+					else
+						if Minimap.EltruismRotate:IsShown() then
+							Minimap.EltruismRotate:Hide()
+						end
+					end
+				end
+			end)
+			onupdatesetup = true
+		end
+	else
+		onupdatesetup = false
+		Cardinals:SetScript("OnUpdate",nil)
 	end
 end

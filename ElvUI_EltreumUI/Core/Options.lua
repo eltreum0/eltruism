@@ -877,6 +877,22 @@ function ElvUI_EltreumUI:Configtable()
 			_G["WorldMapFrame"]:SetScale(value)
 		end
 	end,function() return not E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.map.args.general.args.description3 = ACH:Description(L["Flight Frame"], 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.map.args.general.args.RotateMinimap = ACH:Toggle(_G.ROTATE_MINIMAP, nil, 7, nil, false,nil,function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate end,function(_, value)
+		if value then
+			E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate = value
+			if E.Retail then
+				Enum.EditModeMinimapSetting.RotateMinimap = 1
+			end
+			SetCVar("rotateMinimap",1)
+		else
+			E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate = value
+			if E.Retail then
+				Enum.EditModeMinimapSetting.RotateMinimap = 0
+			end
+			SetCVar("rotateMinimap",0)
+		end
+	end)
 	ElvUI_EltreumUI.Options.args.map.args.eta = ACH:Group(L["Time to Arrive"], nil, 2, "tab", nil, nil, nil, not E.Retail)
 	ElvUI_EltreumUI.Options.args.map.args.eta.args.description1 = ACH:Description(L["Add a time to arrive below the waypoint"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.map.args.eta.args.description2 = ACH:Description(L["The time will be calculated based on player speed and distance"], 2, nil, nil, nil, nil, nil, "full")
