@@ -1,19 +1,27 @@
-### 3.9.8 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.9.9 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added Mail Animation, which will show a Blizzard animation when mail arrives and exists  
-Added Resting Animation by Blizzard to Wrath and Classic  
-Added gradient to Resting Animation  
-Added a Dark mode skin for Details  
-Updated Details skin Replace Texture, which will now use textures set in Details and add a shadow to them while making them look like Eltruism 7pixel texture  
-Updated Details Gradient Name function to no longer force the position number and better avoid string escape sequences  
-Updated various Textures to improve scaling in 1080p and 1440p  
-Updated Character Panel Skin line textures  
-Updated Ace3 Skin to cover more buttons  
+Added minimize and maximize buttons to Classic Era Objective Frame  
+Added gradient health tags such as [eltruism:hpstatus:gradient]  
+Added option to Rotate Minimap and updated Cardinals for it  
+Added Ace3 skin to slider and fixed some coloring  
+Added Gradient to Unitframe backdrops  
+Added some missing shadows  
+Added profession buttons to bags  
+Updated Gradient Unitframes to better follow ElvUI Unitframe Transparency Settings  
+Updated Portrait to invert Party Portrait if anchor is set to Right side  
+Updated some gradient options to be on their own frame tab  
+Updated ElvUI profiles to use the gradient tag  
+Updated mMediaTag interrupt check  
 Updated German locale by Dlarge  
-Fixed shadows when classbar was detached and power was set to inset on player unitframe  
-Fixed a possible error with Portrait Fix when 3D portraits were disabled  
-Fixed a rare issue when a unit's class could return nil in tags  
-Fixed a possible error with Portrait Skin and Party unitframes  
-Fixed a possible error with Loot Text when reloading  
-Fixed Ace3 Skin hiding backdrop borders  
-Fixed Portrait Skin overlapping the Map  
+Fixed death color and tapped color on Unitframes when Gradient was enabled  
+Fixed shadows when unitframes had portraits enabled and non spaced power  
+Fixed an error when ElvUI Character Panel skin was disabled  
+Fixed Quest Combat hide not working correctly with Questie  
+Fixed a possible error with chat class icons  
+Fixed AFK skin while traveling between zones  
+Fixed a possible issue with Unit reactions  
+Fixed Portrait showing up on Party Pets  
+Fixed death animation for Classic Era  
+Fixed AFK music not stopping  
+Fixed some Ace3 skin issues  
+Fixed Details shadow

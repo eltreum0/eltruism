@@ -1070,6 +1070,7 @@ P.ElvUI_EltreumUI = {
 			enableboss = true,
 			enablearena = true,
 			enablegroupunits = true,
+			enablebackdrop = true,
 
 			--extra for new function
 			enablepet = true,
@@ -1596,6 +1597,7 @@ P.ElvUI_EltreumUI = {
 			},
 			offset = 23,
 			fontsize = 12,
+			rotate = false,
 		},
 		archeology = {
 			archeologyfontsize = 12,

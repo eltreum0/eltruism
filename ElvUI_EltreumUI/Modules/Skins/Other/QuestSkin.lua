@@ -728,9 +728,35 @@ function ElvUI_EltreumUI:SkinQuests()
 			else
 				_G.QuestWatchFrame.HeaderBar = _G["EltruismQuestLine"]
 			end
+
+			--add a minimize button
+			if not _G["EltruismMinimizeQuests"] then
+				_G.QuestWatchFrame.Minimize = CreateFrame("BUTTON", "EltruismMinimizeQuests", _G.ElvUIParent, "MaximizeMinimizeButtonFrameTemplate")
+				S:HandleMaxMinFrame(_G["EltruismMinimizeQuests"])
+				_G["EltruismMinimizeQuests"]:SetTemplate("Backdrop")
+				if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not _G.QuestWatchFrame.Minimize.shadow then
+					_G.QuestWatchFrame.Minimize:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G.QuestWatchFrame.Minimize.shadow)
+				end
+				_G.QuestWatchFrame.Minimize.MaximizeButton:HookScript("OnClick",function()
+					_G.QuestWatchFrame:Show()
+					_G.QuestWatchFrame.isHidden = false
+				end)
+				_G.QuestWatchFrame.Minimize.MinimizeButton:HookScript("OnClick",function()
+					_G.QuestWatchFrame:Hide()
+					_G.QuestWatchFrame.isHidden = true
+				end)
+			else
+				_G.QuestWatchFrame.Minimize = _G["EltruismMinimizeQuests"]
+			end
+
 			_G.QuestWatchFrame.HeaderBar:SetSize(E.db.ElvUI_EltreumUI.skins.questsettings.sizex, E.db.ElvUI_EltreumUI.skins.questsettings.sizey)
 			_G.QuestWatchFrame.HeaderBar:SetPoint("TOP", _G.QuestWatchFrameMover, "TOP", 40, 0)
 			_G.QuestWatchFrame.HeaderBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.questsettings.texture))
+
+			_G.QuestWatchFrame.Minimize:SetSize(15,15)
+			_G.QuestWatchFrame.Minimize:SetPoint("BOTTOMRIGHT", _G.QuestWatchFrame.HeaderBar, "TOPRIGHT", 0, 10)
+
 			--_G.QuestWatchFrame.HeaderBar:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b)
 			if not E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor then
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
@@ -881,6 +907,10 @@ function ElvUI_EltreumUI:SkinQuests()
 				-- Hide unused watch lines
 				for i=watchTextIndex, MAX_QUESTWATCH_LINES do
 					_G["QuestWatchLine"..i]:Hide()
+				end
+
+				if _G.QuestWatchFrame.isHidden then
+					_G.QuestWatchFrame:Hide()
 				end
 
 				UIParent_ManageFramePositions()
