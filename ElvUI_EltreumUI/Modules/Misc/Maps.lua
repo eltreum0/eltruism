@@ -358,7 +358,7 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 		if _G["EltruismMiniMapShadowFrame"] then
 			_G["EltruismMiniMapShadowFrame"]:Hide()
 		end
-		Minimap:SetMaskTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
+		Minimap:SetMaskTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\map_circle")
 
 		--elvui forces square, force round in this case
 		_G.GetMinimapShape = function()
