@@ -112,7 +112,9 @@ function ElvUI_EltreumUI:HidePopups(delay)
 		if IsAddOnLoaded("Gladdy") then
 			LibStub("AceConfigDialog-3.0"):Close("Gladdy") --using E.Libs seems delayed
 		end
-
+		if _G["SubscriptionInterstitialFrame"] then --hide the f2p popup during install
+			_G["SubscriptionInterstitialFrame"]:Hide()
+		end
 		--hide elvui config
 		E.Libs.AceConfigDialog:Close("ElvUI")
 	end)
