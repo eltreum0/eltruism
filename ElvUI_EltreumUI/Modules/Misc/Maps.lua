@@ -405,34 +405,81 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 			end
 		end
 	else
-		if not Minimap.EltruismRotateSetup then
-			if Minimap.backdrop then
-				Minimap.backdrop:Hide()
+		if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable then
+			if not Minimap.EltruismRotateSetup then
+				if Minimap.backdrop then
+					Minimap.backdrop:Hide()
+				end
+				if _G["EltruismMiniMapShadowFrame"] then
+					_G["EltruismMiniMapShadowFrame"]:Hide()
+				end
+				Minimap:SetMaskTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
+
+				--elvui forces square, force round in this case
+				_G.GetMinimapShape = function()
+					return 'ROUND'
+				end
+
+				Minimap.EltruismRotate = Minimap:CreateTexture()
+				Minimap.EltruismRotate:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\cardinals.tga")
+				Minimap.EltruismRotate:SetSize(Minimap:GetWidth(),Minimap:GetHeight())
+				Minimap.EltruismRotate:SetPoint("CENTER", Minimap, "CENTER", 0, 0)
+
+				Minimap.EltruismRotate:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
+
+				--i really dont like onupdate here, but since events dont fire all the time this is the best case use of it
+				if not onupdatesetup then
+					Cardinals:SetScript("OnUpdate",function(_, elapsed)
+						TimeSinceLastUpdate2 = TimeSinceLastUpdate2 + elapsed
+						if TimeSinceLastUpdate2 >= ONUPDATE_INTERVAL2 then
+							TimeSinceLastUpdate2 = 0
+							local _, instanceType = IsInInstance()
+							if instanceType == "none" then
+								local facing = GetPlayerFacing()
+								if facing then
+									Minimap.EltruismRotate:SetRotation(-facing)
+								end
+								if not Minimap.EltruismRotate:IsShown() then
+									Minimap.EltruismRotate:Show()
+								end
+							else
+								if Minimap.EltruismRotate:IsShown() then
+									Minimap.EltruismRotate:Hide()
+								end
+							end
+						end
+					end)
+					onupdatesetup = true
+				end
+				Minimap.EltruismRotateSetup = true
+			else
+				if Minimap.EltruismRotate then
+					Minimap.EltruismRotate:Show()
+				end
+				onupdatesetup = false
+				ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
 			end
-			if _G["EltruismMiniMapShadowFrame"] then
-				_G["EltruismMiniMapShadowFrame"]:Hide()
+		else
+			if Minimap.EltruismRotate then
+				Minimap.EltruismRotate:Hide()
 			end
-			Minimap:SetMaskTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask")
+			Cardinals:SetScript("OnUpdate",nil)
+			onupdatesetup = false
+		end
+	end
+end
 
-			--elvui forces square, force round in this case
-			_G.GetMinimapShape = function()
-				return 'ROUND'
-			end
-
-			Minimap.EltruismRotate = Minimap:CreateTexture()
-			Minimap.EltruismRotate:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\cardinals.tga")
-			Minimap.EltruismRotate:SetSize(Minimap:GetWidth(),Minimap:GetHeight())
-			Minimap.EltruismRotate:SetPoint("CENTER", Minimap, "CENTER", 0, 0)
-
-			Minimap.EltruismRotate:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
-
-			--i really dont like onupdate here, but since events dont fire all the time this is the best case use of it
+--setup onupdate and also get rid of it
+function ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
+	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable then
+		local _, instanceType = IsInInstance()
+		if instanceType == "none" then
 			if not onupdatesetup then
 				Cardinals:SetScript("OnUpdate",function(_, elapsed)
 					TimeSinceLastUpdate2 = TimeSinceLastUpdate2 + elapsed
 					if TimeSinceLastUpdate2 >= ONUPDATE_INTERVAL2 then
 						TimeSinceLastUpdate2 = 0
-						local _, instanceType = IsInInstance()
+						_, instanceType = IsInInstance()
 						if instanceType == "none" then
 							local facing = GetPlayerFacing()
 							if facing then
@@ -450,40 +497,15 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 				end)
 				onupdatesetup = true
 			end
-			Minimap.EltruismRotateSetup = true
-		end
-	end
-end
-
---setup onupdate and also get rid of it
-function ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
-	local _, instanceType = IsInInstance()
-	if instanceType == "none" then
-		if not onupdatesetup then
-			Cardinals:SetScript("OnUpdate",function(_, elapsed)
-				TimeSinceLastUpdate2 = TimeSinceLastUpdate2 + elapsed
-				if TimeSinceLastUpdate2 >= ONUPDATE_INTERVAL2 then
-					TimeSinceLastUpdate2 = 0
-					_, instanceType = IsInInstance()
-					if instanceType == "none" then
-						local facing = GetPlayerFacing()
-						if facing then
-							Minimap.EltruismRotate:SetRotation(-facing)
-						end
-						if not Minimap.EltruismRotate:IsShown() then
-							Minimap.EltruismRotate:Show()
-						end
-					else
-						if Minimap.EltruismRotate:IsShown() then
-							Minimap.EltruismRotate:Hide()
-						end
-					end
-				end
-			end)
-			onupdatesetup = true
+		else
+			onupdatesetup = false
+			Cardinals:SetScript("OnUpdate",nil)
 		end
 	else
-		onupdatesetup = false
-		Cardinals:SetScript("OnUpdate",nil)
+		if Minimap.EltruismRotate then
+			Minimap.EltruismRotate:Hide()
+			Cardinals:SetScript("OnUpdate",nil)
+			onupdatesetup = false
+		end
 	end
 end
