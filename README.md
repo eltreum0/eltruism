@@ -47,9 +47,13 @@ Shadows, Character Panel, Quests, other AddOns are skinned\
 Cooldowns with TTS, Combat Music, Fast Loot, Loot Wishlist, Hide Talking Head, Mail Sounds, Time to Arrive to Waypoint
 ___
 ### Pictures
-[![](https://github.com/eltreum0/eltreum0.github.io/raw/main/Preview1.webp)](https://github.com/eltreum0/eltreum0.github.io/raw/main/Preview1.webp)
+[![](https://github.com/eltreum0/eltreum0.github.io/raw/main/Preview1.webp)](https://raw.githubusercontent.com/eltreum0/eltreum0.github.io/main/Preview1Full.webp)
 \
-[![](https://github.com/eltreum0/eltreum0.github.io/raw/main/Preview2.webp)](https://github.com/eltreum0/eltreum0.github.io/raw/main/Preview2.webp)
+[![](https://github.com/eltreum0/eltreum0.github.io/raw/main/Preview2.webp)](https://raw.githubusercontent.com/eltreum0/eltreum0.github.io/main/Preview2Full.webp)
+\
+[![](https://github.com/eltreum0/eltreum0.github.io/raw/main/Preview3.webp)](https://raw.githubusercontent.com/eltreum0/eltreum0.github.io/main/Preview3Full.webp)
+\
+[![](https://github.com/eltreum0/eltreum0.github.io/raw/main/Preview4.webp)](https://raw.githubusercontent.com/eltreum0/eltreum0.github.io/main/Preview4Full.webp)
 ___
 ### Credits
 > This plugin was based in **[LuckyoneUI](httpswww.tukui.orgaddons.php?id=154)** and credits go to him for allowing its use
