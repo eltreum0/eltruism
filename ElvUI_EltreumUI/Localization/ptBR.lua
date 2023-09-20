@@ -1463,3 +1463,5 @@ L["Enable Mail Animation"] = "Ativar animação nas cartas"
 L["Play a Blizzard animation when receiving mail or when new mail exists"] = "Reproduza uma animação da Blizzard ao receber uma carta ou quando houver uma carta para ser lida"
 L["Enable Gradient Backdrop"] = "Ativar fundo em gradiente"
 L["Skin Auctionator"] = "Modificar Auctionator"
+L["Gradient Backdrop Fade"] = true
+L["Change how much the Gradient Backdrop will Fade"] = true
