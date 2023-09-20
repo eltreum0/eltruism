@@ -12,13 +12,17 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 		QuestieConfig["global"]["TrackerWidth"] = 0
 		QuestieConfig["global"]["trackerbindSetTomTom"] = "left"
 		QuestieConfig["global"]["trackerFontObjective"] = E.db.general.font
-		QuestieConfig["global"]["trackerEnabled"] = false --enables/disables the actual objective tracker
+
+		--enables/disables the actual objective tracker
+		--QuestieConfig["global"]["trackerEnabled"] = false  --old value
+		_G.Questie.db.char.trackerEnabled =  false --new value
+
 		QuestieConfig["global"]["trackerFontZone"] = E.db.general.font
 		QuestieConfig["global"]["trackerFontOutline"] = "Outline"
 		QuestieConfig["global"]["trackerFontHeader"] = E.db.general.font
-		QuestieConfig["global"]["trackerBorderEnabled"] = true
+		QuestieConfig["global"]["currentBorderEnabled"] = true
 		QuestieConfig["global"]["trackerFontSizeHeader"] = 14
-		QuestieConfig["global"]["trackerBackdropFader"] = true
+		QuestieConfig["global"]["currentBackdropFader"] = true
 		QuestieConfig["global"]["trackerFontSizeObjective"] = 12
 		QuestieConfig["global"]["trackerFontQuest"] = E.db.general.font
 		QuestieConfig["global"]["trackerbindOpenQuestLog"] = "right"
@@ -35,6 +39,7 @@ function ElvUI_EltreumUI:GetQuestieProfile()
 		QuestieConfig["global"]["nameplateY"] = 0
 		QuestieConfig["global"]["nameplateTargetFrameY"] = 5
 		QuestieConfig["global"]["nameplateTargetFrameX"] = -171
+		QuestieConfig["global"]["nameplateTargetFrameEnabled"] = false
 
 		QuestieConfig["global"]["questMinimapObjectiveColors"] = true
 		QuestieConfig["global"]["questObjectiveColors"] = true
