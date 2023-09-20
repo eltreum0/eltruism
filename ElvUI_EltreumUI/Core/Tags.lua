@@ -579,6 +579,7 @@ E:AddTag("eltruism:detailsnickname", "UNIT_NAME_UPDATE", function(unit)
 				if not unitClass then return end
 				return "|c"..classcolorcast[unitClass]..nickname.."|r"
 			else
+				if not reaction then return end
 				if reaction >= 5 then
 					return "|c"..classcolorcast["FRIENDLY"]..nickname.."|r"
 				elseif reaction == 4 then
@@ -594,6 +595,7 @@ E:AddTag("eltruism:detailsnickname", "UNIT_NAME_UPDATE", function(unit)
 				if not unitClass then return end
 				return "|c"..classcolorcast[unitClass]..name.."|r"
 			else
+				if not reaction then return end
 				if reaction >= 5 then
 					return "|c"..classcolorcast["FRIENDLY"]..name.."|r"
 				elseif reaction == 4 then
@@ -610,6 +612,7 @@ E:AddTag("eltruism:detailsnickname", "UNIT_NAME_UPDATE", function(unit)
 			if not unitClass then return end
 			return "|c"..classcolorcast[unitClass]..name.."|r"
 		else
+			if not reaction then return end
 			if reaction >= 5 then
 				return "|c"..classcolorcast["FRIENDLY"]..name.."|r"
 			elseif reaction == 4 then
