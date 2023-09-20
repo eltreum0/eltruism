@@ -560,6 +560,133 @@ E:AddTag("name:eltruism:caps", "UNIT_NAME_UPDATE", function(unit,_,args)
 end)
 E:AddTagInfo("name:eltruism:caps", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in caps while being class color or reaction color, shortens over 16 characters but can be changed with {arg}"])
 
+--Details nickname using the nicktag library suggested by VXT
+local nicktag
+if IsAddOnLoaded("Details") then
+	nicktag = LibStub('NickTag-1.0')
+end
+
+--Class Color nickname
+E:AddTag("eltruism:detailsnickname", "UNIT_NAME_UPDATE", function(unit)
+	if not unit then return end
+	local name = UnitName(unit)
+	local _, unitClass = UnitClass(unit)
+	local reaction = UnitReaction(unit, "player")
+	if nicktag then
+		local nickname = nicktag:GetNickname(UnitName(unit), false, true)
+		if nickname then
+			if UnitIsPlayer(unit) then
+				if not unitClass then return end
+				return "|c"..classcolorcast[unitClass]..nickname.."|r"
+			else
+				if reaction >= 5 then
+					return "|c"..classcolorcast["FRIENDLY"]..nickname.."|r"
+				elseif reaction == 4 then
+					return "|c"..classcolorcast["NEUTRAL"]..nickname.."|r"
+				elseif reaction == 3 then
+					return "|c"..classcolorcast["UNFRIENDLY"]..nickname.."|r"
+				elseif reaction == 2 or reaction == 1 then
+					return "|c"..classcolorcast["HOSTILE"]..nickname.."|r"
+				end
+			end
+		else
+			if UnitIsPlayer(unit) then
+				if not unitClass then return end
+				return "|c"..classcolorcast[unitClass]..name.."|r"
+			else
+				if reaction >= 5 then
+					return "|c"..classcolorcast["FRIENDLY"]..name.."|r"
+				elseif reaction == 4 then
+					return "|c"..classcolorcast["NEUTRAL"]..name.."|r"
+				elseif reaction == 3 then
+					return "|c"..classcolorcast["UNFRIENDLY"]..name.."|r"
+				elseif reaction == 2 or reaction == 1 then
+					return "|c"..classcolorcast["HOSTILE"]..name.."|r"
+				end
+			end
+		end
+	else
+		if UnitIsPlayer(unit) then
+			if not unitClass then return end
+			return "|c"..classcolorcast[unitClass]..name.."|r"
+		else
+			if reaction >= 5 then
+				return "|c"..classcolorcast["FRIENDLY"]..name.."|r"
+			elseif reaction == 4 then
+				return "|c"..classcolorcast["NEUTRAL"]..name.."|r"
+			elseif reaction == 3 then
+				return "|c"..classcolorcast["UNFRIENDLY"]..name.."|r"
+			elseif reaction == 2 or reaction == 1 then
+				return "|c"..classcolorcast["HOSTILE"]..name.."|r"
+			end
+		end
+	end
+end)
+E:AddTagInfo("eltruism:detailsnickname", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays Details nickname in class color or reaction color if Details is loaded"])
+
+--Gradient nickname
+E:AddTag("eltruism:detailsnickname:gradient", "UNIT_NAME_UPDATE", function(unit)
+	local name = UnitName(unit)
+	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
+	local _, unitClass = UnitClass(unit)
+	local reaction = UnitReaction(unit, "player")
+	if nicktag then
+		local nickname = nicktag:GetNickname(UnitName(unit), false, true)
+		if nickname then
+			if UnitIsPlayer(unit) then
+				if not unitClass then return end
+				return ElvUI_EltreumUI:GradientName(nickname, unitClass,isTarget)
+			elseif not UnitIsPlayer(unit) then
+				if reaction then
+					if reaction >= 5 then
+						return ElvUI_EltreumUI:GradientName(nickname, "NPCFRIENDLY", isTarget)
+					elseif reaction == 4 then
+						return ElvUI_EltreumUI:GradientName(nickname, "NPCNEUTRAL", isTarget)
+					elseif reaction == 3 then
+						return ElvUI_EltreumUI:GradientName(nickname, "NPCUNFRIENDLY", isTarget)
+					elseif reaction == 2 or reaction == 1 then
+						return ElvUI_EltreumUI:GradientName(nickname, "NPCHOSTILE", isTarget)
+					end
+				end
+			end
+		else
+			if UnitIsPlayer(unit) then
+				if not unitClass then return end
+				return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget)
+			elseif not UnitIsPlayer(unit) then
+				if reaction then
+					if reaction >= 5 then
+						return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget)
+					elseif reaction == 4 then
+						return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget)
+					elseif reaction == 3 then
+						return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget)
+					elseif reaction == 2 or reaction == 1 then
+						return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget)
+					end
+				end
+			end
+		end
+	else
+		if UnitIsPlayer(unit) then
+			if not unitClass then return end
+			return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget)
+		elseif not UnitIsPlayer(unit) then
+			if reaction then
+				if reaction >= 5 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget)
+				elseif reaction == 4 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget)
+				elseif reaction == 3 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget)
+				elseif reaction == 2 or reaction == 1 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget)
+				end
+			end
+		end
+	end
+end)
+E:AddTagInfo("eltruism:detailsnickname:gradient", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays Details nickname in class color or reaction color if Details is loaded"])
 -------------------------------------------------------------------------- ICONS -------------------------------------------------------------------------
 
 --show class icons on all targets
