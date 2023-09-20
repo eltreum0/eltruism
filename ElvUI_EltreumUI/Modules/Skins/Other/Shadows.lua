@@ -1030,6 +1030,8 @@ function ElvUI_EltreumUI:Shadows()
 					_G.LFGDungeonReadyDialog,
 					_G.LFGDungeonReadyStatus,
 					_G.LFGListInviteDialog,
+					_G.LFGInvitePopup,
+					_G.RolePollPopup,
 					_G.PaperDollFrame,
 					_G.GroupFinderFrame,
 					_G.ZoneAbilityFrame,
