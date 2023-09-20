@@ -1514,3 +1514,4 @@ L["Mail Animation"] = true -- no need to translate
 L["Enable Mail Animation"] = "Aktiviere Mail Animation"
 L["Play a Blizzard animation when receiving mail or when new mail exists"] = "Spiele eine Blizzard-Animation ab, wenn Du E-Mails erhälst oder wenn neue E-Mails vorhanden sind."
 L["Enable Gradient Backdrop"] = true
+L["Skin Auctionator"] = true
