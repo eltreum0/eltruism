@@ -1628,6 +1628,12 @@ P.ElvUI_EltreumUI = {
 		datatextteleporttype = "ITEM",
 		datatextclasscolorbar = true,
 		datatextclasscolorbaralpha = 0.5,
+		datatextclasscolor = {
+			custom = false,
+			r = 0.27,
+			g = 0.50,
+			b = 0.70,
+		},
 		bagProfessionIcons = false,
 	},
 }

@@ -717,7 +717,8 @@ function ElvUI_EltreumUI:SkinQuests()
 			end
 
 			if IsAddOnLoaded('Questie') then
-				if _G.Questie.db.global.trackerEnabled then
+				if _G.Questie.db.char.trackerEnabled then
+				--if _G.Questie.db.global.trackerEnabled then
 					return
 				end
 			end
