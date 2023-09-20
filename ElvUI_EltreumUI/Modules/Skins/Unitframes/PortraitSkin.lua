@@ -197,8 +197,10 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 				local c = UnitClassification(frame.unit)
 				if (c == 'rare') or (c == 'rareelite') then
 					frame.EltruismPortrait.rare:SetVertexColor(1,1,1,1)
+					frame.EltruismPortrait.border:SetVertexColor(1,1,1,1)
 				elseif(c == 'elite') or (c == 'worldboss') then
 					frame.EltruismPortrait.rare:SetVertexColor(0.84,0.74,0.35,1)
+					frame.EltruismPortrait.border:SetVertexColor(0.84,0.74,0.35,1)
 				else
 					if not UnitIsPlayer(frame.unit) then
 						frame.EltruismPortrait.rare:SetVertexColor(0,0,0,0)

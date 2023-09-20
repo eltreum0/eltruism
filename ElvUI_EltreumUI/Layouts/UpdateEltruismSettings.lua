@@ -144,6 +144,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.skins.omnicd = true
 	E.db.ElvUI_EltreumUI.skins.cell = true
 	E.db.ElvUI_EltreumUI.skins.dbm = true
+	E.db.ElvUI_EltreumUI.skins.auctionator = true
 	E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate = true --elvui skin
 	E.db.ElvUI_EltreumUI.skins.ace3.enable = true --elvui skin
 

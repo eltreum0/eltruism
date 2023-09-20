@@ -1488,3 +1488,4 @@ L["Mail Animation"] = true
 L["Enable Mail Animation"] = true
 L["Play a Blizzard animation when receiving mail or when new mail exists"] = true
 L["Enable Gradient Backdrop"] = true
+L["Skin Auctionator"] = true

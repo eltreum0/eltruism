@@ -247,6 +247,7 @@ P.ElvUI_EltreumUI = {
 		cell = false,
 		cellhealthloss = false,
 		dbm = false,
+		auctionator = false,
 
 		hideABkeypress = false,
 		tbctalents = false,
@@ -1071,6 +1072,8 @@ P.ElvUI_EltreumUI = {
 			enablearena = true,
 			enablegroupunits = true,
 			enablebackdrop = true,
+			usedeadbackdrop = false,
+			classcolorbackdrop = false,
 
 			--extra for new function
 			enablepet = true,
