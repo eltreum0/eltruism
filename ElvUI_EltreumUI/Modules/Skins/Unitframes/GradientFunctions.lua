@@ -5,6 +5,8 @@ local CreateFrame = _G.CreateFrame
 local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 
 --set the variables
+--maybe recreating colors can be avoided by setting the color as a variable and then creating if it doesnt exist like maybe so:
+-- _G.Warrior1 = Warrior1 or CreateColor(r,g,b,a)
 local unitframegradients = {
 	["WARRIOR"] = {r1 = 0.427, g1 = 0.137, b1 = 0.09, r2 = 0.564, g2 = 0.431, b2 = 0.247},
 	["PALADIN"] = {r1 = 1, g1 = 0.266, b1 = 0.537, r2 = 0.956, g2 = 0.549, b2 = 0.729},
