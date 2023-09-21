@@ -9,6 +9,7 @@ local InCombatLockdown = _G.InCombatLockdown
 local embedpanel
 local DetailsHooked = false
 local RightChatDetailsHook = false
+local GetAddOnMetadata = _G.C_AddOns and _G.C_AddOns.GetAddOnMetadata or _G.GetAddOnMetadata
 
 do
 
