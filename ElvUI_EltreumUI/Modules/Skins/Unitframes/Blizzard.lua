@@ -4,7 +4,7 @@ local UnitClass = _G.UnitClass
 
 --blizzard raid frames custom textures/gradient
 function ElvUI_EltreumUI:BlizzardTexturesGradient()
-	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.blizzardraidframes then
 		if _G["CompactRaidFrameContainer"] then
 
 			if not _G["CompactRaidFrameContainer"].EltruismHook then

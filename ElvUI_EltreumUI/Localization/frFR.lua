@@ -1470,3 +1470,7 @@ L["Enable Mail Animation"] = "Activer l'animation du courrier"
 L["Play a Blizzard animation when receiving mail or when new mail exists"] = "Joue une animation de Blizzard lors de la réception d'un courrier ou lorsqu'un nouveau courrier existe."
 L["Enable Gradient Backdrop"] = "Activer le mode dégradé"
 L["Skin Auctionator"] = true
+L["Gradient Backdrop Fade"] = true
+L["Change how much the Gradient Backdrop will Fade"] = true
+L["Skin Blizzard Raid Frames"] = true
+L["Adds Gradient, Custom Textures, Shadows, Font and Role Icons to Blizzard Raid Frames"] = true

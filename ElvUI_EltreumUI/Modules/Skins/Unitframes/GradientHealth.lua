@@ -14,6 +14,351 @@ local UnitIsCharmed = _G.UnitIsCharmed
 local pairs = _G.pairs
 local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 
+--set the backdrop gradient
+function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionunit,isGroupFrame)
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
+		if not frame.EltruismDebuffExists then
+			if UnitIsPlayer(unit) then
+				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+					if E.db.unitframe.colors.transparentHealth then
+						frame.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+						frame.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+					end
+					if frame.Health.backdropTex then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
+								if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
+									frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(englishClass, true, E.db.unitframe.colors.transparentHealth, true))
+								else
+									frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(englishClass, false, E.db.unitframe.colors.transparentHealth, true))
+								end
+							else
+								if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
+									frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", true, E.db.unitframe.colors.transparentHealth))
+								else
+									frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
+								end
+							end
+						else
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
+								if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
+									frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(englishClass, true, E.db.unitframe.colors.transparentHealth, true))
+								else
+									frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(englishClass, false, E.db.unitframe.colors.transparentHealth, true))
+								end
+							else
+								if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
+									frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", true, E.db.unitframe.colors.transparentHealth))
+								else
+									frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
+								end
+							end
+						end
+					end
+				else
+					if frame.Health.backdrop.Center then
+						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
+								if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
+									frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(englishClass, true, E.db.unitframe.colors.transparentHealth, true))
+								else
+									frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(englishClass, false, E.db.unitframe.colors.transparentHealth, true))
+								end
+							else
+								if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
+									frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", true, E.db.unitframe.colors.transparentHealth))
+								else
+									frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
+								end
+							end
+						else
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
+								if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
+									frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(englishClass, true, E.db.unitframe.colors.transparentHealth, true))
+								else
+									frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(englishClass, false, E.db.unitframe.colors.transparentHealth, true))
+								end
+							else
+								if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
+									frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", true, E.db.unitframe.colors.transparentHealth))
+								else
+									frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
+								end
+							end
+						end
+					end
+				end
+			else
+				if isGroupFrame then
+					if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+						frame.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+						frame.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+						if frame.Health.backdropTex then
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
+								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+									frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+								else
+									frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+								end
+							else
+								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+									frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
+								else
+									frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
+								end
+							end
+						end
+					else
+						if frame.Health.backdrop.Center then
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
+								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+									frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+								else
+									frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+								end
+							else
+								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+									frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
+								else
+									frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
+								end
+							end
+						end
+					end
+				else
+					if not reaction then return end
+					if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+						if frame.Health.backdropTex then
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
+								if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
+									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
+										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+											if reactionunit >= 5 then
+												frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", true, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 4 then
+												frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", true, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 3 then
+												frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", true, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit <= 2 then
+												frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", true, E.db.unitframe.colors.transparentHealth, true))
+											end
+										else
+											if reactionunit >= 5 then
+												frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", true, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 4 then
+												frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", true, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 3 then
+												frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", true, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit <= 2 then
+												frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", true, E.db.unitframe.colors.transparentHealth, true))
+											end
+										end
+									else
+										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+											frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", true, E.db.unitframe.colors.transparentHealth))
+										else
+											frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", true, E.db.unitframe.colors.transparentHealth))
+										end
+									end
+								else
+									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
+										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+											if reactionunit >= 5 then
+												frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 4 then
+												frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", false, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 3 then
+												frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit <= 2 then
+												frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", false, E.db.unitframe.colors.transparentHealth, true))
+											end
+										else
+											if reactionunit >= 5 then
+												frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 4 then
+												frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", false, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 3 then
+												frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit <= 2 then
+												frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, E.db.unitframe.colors.transparentHealth, true))
+											end
+										end
+									else
+										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+											frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
+										else
+											frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
+										end
+									end
+								end
+							else
+								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
+									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+										if reactionunit >= 5 then
+											frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+										elseif reactionunit == 4 then
+											frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", false, E.db.unitframe.colors.transparentHealth, true))
+										elseif reactionunit == 3 then
+											frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+										elseif reactionunit <= 2 then
+											frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", false, E.db.unitframe.colors.transparentHealth, true))
+										end
+									else
+										if reactionunit >= 5 then
+											frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+										elseif reactionunit == 4 then
+											frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", false, E.db.unitframe.colors.transparentHealth, true))
+										elseif reactionunit == 3 then
+											frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+										elseif reactionunit <= 2 then
+											frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, E.db.unitframe.colors.transparentHealth, true))
+										end
+									end
+								else
+									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+										frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
+									else
+										frame.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
+									end
+								end
+							end
+						end
+					else
+						if frame.Health.backdrop.Center then
+							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
+								if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
+									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
+										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+											if reactionunit >= 5 then
+												frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", true, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 4 then
+												frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", true, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 3 then
+												frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", true, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 2 or reactionunit == 1 then
+												frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", true, E.db.unitframe.colors.transparentHealth, true))
+											end
+										else
+											if reactionunit >= 5 then
+												frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", true, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 4 then
+												frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", true, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 3 then
+												frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", true, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 2 or reactionunit == 1 then
+												frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation,ElvUI_EltreumUI:GradientColors("NPCHOSTILE", true, E.db.unitframe.colors.transparentHealth, true))
+											end
+										end
+									else
+										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+											frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", true, E.db.unitframe.colors.transparentHealth))
+										else
+											frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", true, E.db.unitframe.colors.transparentHealth))
+										end
+									end
+								else
+									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
+										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+											if reactionunit >= 5 then
+												frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 4 then
+												frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", false, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 3 then
+												frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 2 or reactionunit == 1 then
+												frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", false, E.db.unitframe.colors.transparentHealth, true))
+											end
+										else
+											if reactionunit >= 5 then
+												frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 4 then
+												frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", false, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 3 then
+												frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+											elseif reactionunit == 2 or reactionunit == 1 then
+												frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation,ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, E.db.unitframe.colors.transparentHealth, true))
+											end
+										end
+									else
+										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+											frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
+										else
+											frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
+										end
+									end
+								end
+							else
+								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
+									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+										if reactionunit >= 5 then
+											frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+										elseif reactionunit == 4 then
+											frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCNEUTRAL", false, E.db.unitframe.colors.transparentHealth, true))
+										elseif reactionunit == 3 then
+											frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCUNFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+										elseif reactionunit == 2 or reactionunit == 1 then
+											frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("NPCHOSTILE", false, E.db.unitframe.colors.transparentHealth, true))
+										end
+									else
+										if reactionunit >= 5 then
+											frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+										elseif reactionunit == 4 then
+											frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCNEUTRAL", false, E.db.unitframe.colors.transparentHealth, true))
+										elseif reactionunit == 3 then
+											frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCUNFRIENDLY", false, E.db.unitframe.colors.transparentHealth, true))
+										elseif reactionunit == 2 or reactionunit == 1 then
+											frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("NPCHOSTILE", false, E.db.unitframe.colors.transparentHealth, true))
+										end
+									end
+								else
+									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
+										frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
+									else
+										frame.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
+									end
+								end
+							end
+						end
+					end
+				end
+			end
+		else
+			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+				if frame.Health.backdropTex then
+					frame.Health.backdropTex:SetGradient("HORIZONTAL", {r = frame.EltruismDebuffr, g = frame.EltruismDebuffg, b = frame.EltruismDebuffb, a = frame.EltruismDebuffa}, {r = frame.EltruismDebuffr, g = frame.EltruismDebuffg, b = frame.EltruismDebuffb, a = frame.EltruismDebuffa})
+				end
+			else
+				if frame.Health.backdrop.Center then
+					frame.Health.backdrop.Center:SetGradient("HORIZONTAL", {r = frame.EltruismDebuffr, g = frame.EltruismDebuffg, b = frame.EltruismDebuffb, a = frame.EltruismDebuffa}, {r = frame.EltruismDebuffr, g = frame.EltruismDebuffg, b = frame.EltruismDebuffb, a = frame.EltruismDebuffa})
+				end
+			end
+		end
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.usedeadbackdrop then
+			if UnitIsDeadOrGhost(unit) then
+				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+					if frame.Health.backdropTex then
+						frame.Health.backdropTex:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+					end
+				else
+					if frame.Health.backdrop.Center then
+						frame.Health.backdrop.Center:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+					end
+				end
+			elseif UnitIsTapDenied(unit) then
+				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+					if frame.Health.backdropTex then
+						frame.Health.backdropTex:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+					end
+				else
+					if frame.Health.backdrop.Center then
+						frame.Health.backdrop.Center:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+					end
+				end
+			end
+		end
+	end
+end
+
 --set the textures or gradients for single units
 function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unittexture,noOrientation)
 	if UnitExists(unit) then
@@ -30,98 +375,7 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unittexture,noOrientation)
 				unitframe.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 			end
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-				if not unitframe.EltruismDebuffExists then
-					if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-						if unitframe.Health.backdropTex then
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
-									if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
-										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, true, E.db.unitframe.colors.transparentHealth))
-									else
-										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, false, E.db.unitframe.colors.transparentHealth))
-									end
-								else
-									if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
-										unitframe.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", true, E.db.unitframe.colors.transparentHealth))
-									else
-										unitframe.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
-									end
-								end
-							else
-								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
-									if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
-										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, true, E.db.unitframe.colors.transparentHealth))
-									else
-										unitframe.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, E.db.unitframe.colors.transparentHealth))
-									end
-								else
-									if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
-										unitframe.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", true, E.db.unitframe.colors.transparentHealth))
-									else
-										unitframe.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
-									end
-								end
-							end
-						end
-					else
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
-								if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
-									unitframe.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, true, E.db.unitframe.colors.transparentHealth))
-								else
-									unitframe.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, false, E.db.unitframe.colors.transparentHealth))
-								end
-							else
-								if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
-									unitframe.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", true, E.db.unitframe.colors.transparentHealth))
-								else
-									unitframe.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
-								end
-							end
-						else
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
-								if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
-									unitframe.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, true, E.db.unitframe.colors.transparentHealth))
-								else
-									unitframe.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, E.db.unitframe.colors.transparentHealth))
-								end
-							else
-								if unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
-									unitframe.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", true, E.db.unitframe.colors.transparentHealth))
-								else
-									unitframe.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
-								end
-							end
-						end
-					end
-				else
-					if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-						if unitframe.Health.backdropTex then
-							unitframe.Health.backdropTex:SetGradient("HORIZONTAL", {r = unitframe.EltruismDebuffr, g = unitframe.EltruismDebuffg, b = unitframe.EltruismDebuffb, a = unitframe.EltruismDebuffa}, {r = unitframe.EltruismDebuffr, g = unitframe.EltruismDebuffg, b = unitframe.EltruismDebuffb, a = unitframe.EltruismDebuffa})
-						end
-					else
-						unitframe.Health.backdrop.Center:SetGradient("HORIZONTAL", {r = unitframe.EltruismDebuffr, g = unitframe.EltruismDebuffg, b = unitframe.EltruismDebuffb, a = unitframe.EltruismDebuffa}, {r = unitframe.EltruismDebuffr, g = unitframe.EltruismDebuffg, b = unitframe.EltruismDebuffb, a = unitframe.EltruismDebuffa})
-					end
-				end
-				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.usedeadbackdrop then
-					if UnitIsDeadOrGhost(unit) then
-						if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-							if unitframe.Health.backdropTex then
-								unitframe.Health.backdropTex:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
-							end
-						else
-							unitframe.Health.backdrop.Center:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
-						end
-					elseif UnitIsTapDenied(unit) then
-						if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-							if unitframe.Health.backdropTex then
-								unitframe.Health.backdropTex:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
-							end
-						else
-							unitframe.Health.backdrop.Center:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
-						end
-					end
-				end
+				ElvUI_EltreumUI:ApplyGradientBackdrop(unit,unitframe,classunit,reaction)
 			end
 			if UnitIsPlayer(unit) and not UnitIsCharmed(unit) then
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
@@ -472,104 +726,11 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 			button.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 			button.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 		end
-		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-			if not button.EltruismDebuffExists then
-				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					button.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-					button.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-					if button.Health.backdropTex then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
-								if button.unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
-									button.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, true, E.db.unitframe.colors.transparentHealth))
-								else
-									button.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, E.db.unitframe.colors.transparentHealth))
-								end
-							else
-								if button.unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
-									button.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", true, E.db.unitframe.colors.transparentHealth))
-								else
-									button.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
-								end
-							end
-						else
-							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
-								if button.unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
-									button.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, true, E.db.unitframe.colors.transparentHealth))
-								else
-									button.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, false, E.db.unitframe.colors.transparentHealth))
-								end
-							else
-								if button.unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
-									button.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", true, E.db.unitframe.colors.transparentHealth))
-								else
-									button.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
-								end
-							end
-						end
-					end
-				else
-					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
-							if button.unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
-								button.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, true, E.db.unitframe.colors.transparentHealth))
-							else
-								button.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(buttonclass, false, E.db.unitframe.colors.transparentHealth))
-							end
-						else
-							if button.unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
-								button.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", true, E.db.unitframe.colors.transparentHealth))
-							else
-								button.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
-							end
-						end
-					else
-						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
-							if button.unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
-								button.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, true, E.db.unitframe.colors.transparentHealth))
-							else
-								button.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(buttonclass, false, E.db.unitframe.colors.transparentHealth))
-							end
-						else
-							if button.unit == "target" and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
-								button.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", true, E.db.unitframe.colors.transparentHealth))
-							else
-								button.Health.backdrop.Center:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors("BACKDROP", false, E.db.unitframe.colors.transparentHealth))
-							end
-						end
-					end
-				end
-			else
-				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					if button.Health.backdropTex then
-						button.Health.backdropTex:SetGradient("HORIZONTAL", {r = button.EltruismDebuffr, g = button.EltruismDebuffg, b = button.EltruismDebuffb, a = button.EltruismDebuffa}, {r = button.EltruismDebuffr, g = button.EltruismDebuffg, b = button.EltruismDebuffb, a = button.EltruismDebuffa})
-					end
-				else
-					button.Health.backdrop.Center:SetGradient("HORIZONTAL", {r = button.EltruismDebuffr, g = button.EltruismDebuffg, b = button.EltruismDebuffb, a = button.EltruismDebuffa}, {r = button.EltruismDebuffr, g = button.EltruismDebuffg, b = button.EltruismDebuffb, a = button.EltruismDebuffa})
-				end
-			end
-			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.usedeadbackdrop then
-				if UnitIsDeadOrGhost(button.unit) then
-					if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-						if button.Health.backdropTex then
-							button.Health.backdropTex:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
-						end
-					else
-						button.Health.backdrop.Center:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
-					end
-				elseif UnitIsTapDenied(button.unit) then
-					if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-						if button.Health.backdropTex then
-							button.Health.backdropTex:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
-						end
-					else
-						button.Health.backdrop.Center:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
-					end
-				end
-			end
-		end
 		if not noOrientation then
 			button.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
+		end
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
+			ElvUI_EltreumUI:ApplyGradientBackdrop(button.unit,button,buttonclass,nil,true)
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then

@@ -78,7 +78,8 @@ function ElvUI_EltreumUI:BagProfessions()
 
 						if IsSpellKnown(13262) then
 							if not _G["EltruismProfessionDisenchantBagButton"] then
-								local _, _, icon = GetSpellInfo(13262)
+								local name, _, icon = GetSpellInfo(13262)
+								--local name, _, icon, _, _, _, spellID = GetSpellInfo(13262)
 								_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
 								_G["EltruismProfessionDisenchantBagButton"] = CreateFrame("Button","EltruismProfessionDisenchantBagButton",_G["ElvUI_ContainerFrame"],"SecureActionButtonTemplate")
 								_G["EltruismProfessionDisenchantBagButton"]:SetSize(25,25)
@@ -87,8 +88,8 @@ function ElvUI_EltreumUI:BagProfessions()
 								S:HandleButton(_G["EltruismProfessionDisenchantBagButton"])
 								_G["EltruismProfessionDisenchantBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
 								_G["EltruismProfessionDisenchantBagButton"]:SetAttribute('type', 'spell')
-								_G["EltruismProfessionDisenchantBagButton"]:SetAttribute('spell', 13262)
-								_G["EltruismProfessionDisenchantBagButton"]:RegisterForClicks("AnyUp")
+								_G["EltruismProfessionDisenchantBagButton"]:SetAttribute('spell', name)
+								_G["EltruismProfessionDisenchantBagButton"]:RegisterForClicks("AnyDown")
 								_G["EltruismProfessionDisenchantBagButton"].icon = _G["EltruismProfessionDisenchantBagButton"]:CreateTexture(nil,"ARTWORK")
 								_G["EltruismProfessionDisenchantBagButton"].icon:SetTexture(icon)
 								_G["EltruismProfessionDisenchantBagButton"].icon:SetTexCoord(0.08,0.92,0.08,0.92)
@@ -96,20 +97,11 @@ function ElvUI_EltreumUI:BagProfessions()
 								_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
 
 								local LCG = E.Libs.CustomGlow
-								_G["EltruismProfessionDisenchantBagButton"]:HookScript("OnClick",function()
-									if _G["EltruismProfessionDisenchantBagButton"].isGlowing then
-										LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])
-										_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
-									else
-										LCG.PixelGlow_Start(_G["EltruismProfessionDisenchantBagButton"], {0.93, 0.44, 0.97, 1}, 7, 1, 3, 2, 2, 2, false, nil, 6)
-										_G["EltruismProfessionDisenchantBagButton"].isGlowing = true
-									end
-								end)
-
 								--some event handling to get rid of the glow
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_FAILED","player")
-								_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_START","player")
+								--_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_START","player")
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_RETICLE_CLEAR","player")
+								_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_RETICLE_TARGET","player")
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterEvent("PLAYER_REGEN_DISABLED")
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterEvent("PLAYER_REGEN_ENABLED")
 								_G["EltruismProfessionDisenchantBagButton"]:SetScript("OnEvent", function(_,event,_,_,spell)
@@ -120,22 +112,34 @@ function ElvUI_EltreumUI:BagProfessions()
 										end
 									elseif event == "PLAYER_REGEN_DISABLED" then
 										_G["EltruismProfessionDisenchantBagButton"]:UnregisterEvent("UNIT_SPELLCAST_RETICLE_CLEAR")
+										_G["EltruismProfessionDisenchantBagButton"]:UnregisterEvent("UNIT_SPELLCAST_RETICLE_TARGET")
 										_G["EltruismProfessionDisenchantBagButton"]:UnregisterEvent("UNIT_SPELLCAST_FAILED")
-										_G["EltruismProfessionDisenchantBagButton"]:UnregisterEvent("UNIT_SPELLCAST_START")
+										--_G["EltruismProfessionDisenchantBagButton"]:UnregisterEvent("UNIT_SPELLCAST_START")
 										if _G["EltruismProfessionDisenchantBagButton"].isGlowing then
 											LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])
 											_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
 										end
 									elseif event == "PLAYER_REGEN_ENABLED" then
 										_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_RETICLE_CLEAR","player")
+										_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_RETICLE_TARGET","player")
 										_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_FAILED","player")
-										_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_START","player")
-									elseif event == "UNIT_SPELLCAST_FAILED" or event == "UNIT_SPELLCAST_START" then
+										--_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_START","player")
+									elseif event == "UNIT_SPELLCAST_FAILED" then
 										if spell == 13262 then
 											if _G["EltruismProfessionDisenchantBagButton"].isGlowing then
 												LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])
 												_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
 											end
+										end
+									--[[elseif event == "UNIT_SPELLCAST_START" then
+										if spell == 13262 then
+											LCG.PixelGlow_Start(_G["EltruismProfessionDisenchantBagButton"], {0.93, 0.44, 0.97, 1}, 7, 1, 3, 2, 2, 2, false, nil, 6)
+											_G["EltruismProfessionDisenchantBagButton"].isGlowing = true
+										end]]
+									elseif event == "UNIT_SPELLCAST_RETICLE_TARGET" then
+										if spell == 13262 then
+											LCG.PixelGlow_Start(_G["EltruismProfessionDisenchantBagButton"], {0.93, 0.44, 0.97, 1}, 7, 1, 3, 2, 2, 2, false, nil, 6)
+											_G["EltruismProfessionDisenchantBagButton"].isGlowing = true
 										end
 									end
 								end)
