@@ -1517,3 +1517,5 @@ L["Enable Gradient Backdrop"] = "Aktiviere Farbverlauf Hintergrund"
 L["Skin Auctionator"] = "Skinne Auctionator"
 L["Gradient Backdrop Fade"] = true
 L["Change how much the Gradient Backdrop will Fade"] = true
+L["Skin Blizzard Raid Frames"] = true
+L["Adds Gradient, Custom Textures, Shadows, Font and Role Icons to Blizzard Raid Frames"] = true
