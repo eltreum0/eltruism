@@ -1521,6 +1521,7 @@ P.ElvUI_EltreumUI = {
 		arenaunitframes = false,
 		portraitfix = false,
 		portraitfixoffset = true,
+		blizzardraidframes = true,
 	},
 
 	otherstuff = {
