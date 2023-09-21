@@ -99,18 +99,8 @@ function ElvUI_EltreumUI:RunCommands(message)
 			ElvUI_EltreumUI:DarkMode() E:StaticPopup_Show('CONFIG_RL')
 		end
 	elseif message == 'gradient' then
-		if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = true
-			ElvUI_EltreumUI:GradientMode()
-			E:StaticPopup_Show('CONFIG_RL')
-			ElvUI_EltreumUI:Print("Gradient Enabled, please reload")
-		elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = false
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = false
-			E:StaticPopup_Show('CONFIG_RL')
-			ElvUI_EltreumUI:Print("Gradient Disabled, please reload")
-		end
+		ElvUI_EltreumUI:GradientMode()
+		E:StaticPopup_Show('CONFIG_RL')
 	elseif message == 'weakauras' then
 		E.PopupDialogs["ELTRUISMWABARWARNING"] = {
 			text = L["Overwrites some profile settings to move ActionBars, Unitframes and Powers to look more similar to a WeakAura. |cffFF0000WARNING:|r This will overwrite some of your profile settings with no way to restore"],
