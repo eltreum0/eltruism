@@ -2541,7 +2541,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 											_G.InspectNameText:SetText(classsymbolonframe.." ".._G.InspectNameText:GetText())
 											_G.InspectNameText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
 										end
-										_G.InspectNameText:SetShadowColor(0, 0, 0, 0.8) --??????
+										_G.InspectNameText:SetShadowColor(0, 0, 0, 0.8)
 										_G.InspectNameText:SetShadowOffset(2, -1)
 										_G.InspectNameText:SetWidth(200)
 										_G.InspectNameText:SetDrawLayer("OVERLAY")

@@ -58,7 +58,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[1888] = E.Wrath and 359685 or 20014, -- shield resilience? resistance? 46525
 		[926] = E.Wrath and 359895 or 13933, -- shield frost res
 		[983] = 44500, -- cloak superior agility
-		[2566] = 2317, -- +13 spellpower ????
+		[2566] = 2317, -- +13 spellpower
 		[1354] = 44556, -- cloak superior fire res
 		[1400] = 44494, -- cloak superior nature res
 		[1446] = 44590, -- cloak superior shadow res
