@@ -360,6 +360,14 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 		end
 		Minimap:SetMaskTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\map_circle")
 
+		--add a shadow texture
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+			Minimap.EltruismRotateShadow = Minimap:CreateTexture(nil, "BACKGROUND", nil, -3)
+			Minimap.EltruismRotateShadow:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\map_circle_shadow")
+			Minimap.EltruismRotateShadow:SetSize(Minimap:GetWidth(),Minimap:GetHeight())
+			Minimap.EltruismRotateShadow:SetPoint("CENTER", Minimap, "CENTER", 0, 0)
+		end
+
 		--elvui forces square, force round in this case
 		_G.GetMinimapShape = function()
 			return 'ROUND'
