@@ -54,8 +54,10 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 			end
 			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 				--unitframe.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-				unitframe.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-				unitframe.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+				if E.db.unitframe.colors.transparentHealth then
+					unitframe.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+					unitframe.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+				end
 			end
 			if UnitIsPlayer(unit) and not UnitIsCharmed(unit) then
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
@@ -121,8 +123,10 @@ end
 function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation)
 	if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 		--button.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-		button.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-		button.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+		if E.db.unitframe.colors.transparentHealth then
+			button.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+			button.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+		end
 	end
 
 	--due to raid pet, check if is player

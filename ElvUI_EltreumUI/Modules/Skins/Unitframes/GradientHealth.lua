@@ -20,8 +20,10 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 		if not frame.EltruismDebuffExists then
 			if UnitIsPlayer(unit) then
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					frame.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-					frame.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+					if E.db.unitframe.colors.transparentHealth then
+						frame.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+						frame.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+					end
 					if frame.Health.backdropTex then
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
