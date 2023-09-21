@@ -2,6 +2,7 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local UIFrameFadeOut = _G.UIFrameFadeOut
+local PlaySoundFile = _G.PlaySoundFile
 
 function ElvUI_EltreumUI:EltruismScrap()
 	E:Delay(0, function()

@@ -1,6 +1,6 @@
 local E = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 
 function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 
@@ -8,7 +8,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 		fontStyle = ""
 	end
 
-	if IsAddOnLoaded("ElvUI_SLE") then
+	if IsAddOnLoaded("ElvUI_SLE") then --TODO 10.2, might need C_AddOns.
 		E.db["sle"]["armory"]["stats"]["statLabels"]["outline"] = fontStyle
 		E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = fontStyle
 		E.db["sle"]["armory"]["stats"]["statHeaders"]["outline"] = fontStyle
@@ -25,7 +25,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 		E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = fontStyle
 		E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = fontStyle
 	end
-	if IsAddOnLoaded("ElvUI_WindTools") then
+	if IsAddOnLoaded("ElvUI_WindTools") then --TODO 10.2, might need C_AddOns.
 		E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = fontStyle
 		E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = fontStyle
 		E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = fontStyle
@@ -284,15 +284,15 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 		end
 	end
 
-	if IsAddOnLoaded('NameplateSCT') then
+	if IsAddOnLoaded('NameplateSCT') then --TODO 10.2, might need C_AddOns.
 		NameplateSCTDB["global"]["fontFlag"] = fontStyle
 	end
 
-	if IsAddOnLoaded('ProjectAzilroka') then
+	if IsAddOnLoaded('ProjectAzilroka') then --TODO 10.2, might need C_AddOns.
 		_G.ProjectAzilroka.db["stAddonManager"]["FontFlag"] = fontStyle
 	end
 
-	if IsAddOnLoaded("Questie") then
+	if IsAddOnLoaded("Questie") then --TODO 10.2, might need C_AddOns.
 		QuestieConfig["global"]["trackerFontOutline"] = fontStyle
 	end
 

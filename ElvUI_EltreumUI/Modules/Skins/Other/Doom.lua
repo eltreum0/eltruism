@@ -31,7 +31,7 @@ local wasPreviewing = false
 local ignoredSpells
 local cooldowns, animating, watching = { }, { }, { }
 local petOverlay = {1,1,1}
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 
 --createframes
 local DCP = CreateFrame("FRAME","EltruismDoomCDPulse")
@@ -87,7 +87,7 @@ end
 
 --Fork of discoteq's Doom Cooldown Pulse
 function ElvUI_EltreumUI:Doom()
-	if IsAddOnLoaded("Doom_CooldownPulse") then return end
+	if IsAddOnLoaded("Doom_CooldownPulse") then return end --TODO 10.2, might need C_AddOns.
 	if E.db.ElvUI_EltreumUI.skins.doom.enable then
 
 		--set the general elvui font
@@ -155,7 +155,7 @@ function ElvUI_EltreumUI:Doom()
 		--------------------------
 		local elapsed = 0
 		local runtimer = 0
-		local function OnUpdate(_,update) --todo: confirm this onupdate is good, afterall onupdate has a history of issues...
+		local function OnUpdate(_,update)
 			elapsed = elapsed + update
 			if wasPreviewing then
 				wasPreviewing = false
@@ -335,7 +335,7 @@ function ElvUI_EltreumUI:Doom()
 		end
 		DCP:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 
-		function DCP:PLAYER_ENTERING_WORLD() --todo: investigate, why disable in arena? maybe make an option for it
+		function DCP:PLAYER_ENTERING_WORLD() --todo: maybe make an option for it in arena
 			local inInstance,instanceType = IsInInstance()
 			if (inInstance and instanceType == "arena") then
 				self:SetScript("OnUpdate", nil)
@@ -345,8 +345,6 @@ function ElvUI_EltreumUI:Doom()
 		end
 		DCP:RegisterEvent("PLAYER_ENTERING_WORLD")
 
-
-		--todo: test these hooks and if they are needed
 		hooksecurefunc("UseAction", function(slot)
 			local actionType,itemID = GetActionInfo(slot)
 			if (actionType == "item") then

@@ -7,7 +7,7 @@ local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 local IsUsableSpell = _G.IsUsableSpell
 local GetSpellCooldown = _G.GetSpellCooldown
 local UnitExists = _G.UnitExists
@@ -32,7 +32,7 @@ function ElvUI_EltreumUI:SkillGlow()
 
 	if E.db.ElvUI_EltreumUI.glow.enable and E.private.actionbar.enable then
 		if E.Retail then
-			if not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+			if not IsAddOnLoaded("ElvUI_ActionBarMasks") then --TODO 10.2, might need C_AddOns.
 				local proc = {}
 				hooksecurefunc(LCG, "ShowOverlayGlow", function(button)
 					if button:GetAttribute("type") == "action" then
@@ -547,19 +547,19 @@ function ElvUI_EltreumUI:SkillGlow()
 											--auraid = select(10, UnitAura("player", i))
 											--print(auraid)
 											if auraid == 34936 or auraid == 17941 then --backlash and shadow trance
-												if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then --TODO 10.2, might need C_AddOns.
 													LCG.PixelGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
-												elseif E.db.ElvUI_EltreumUI.glow.autocast and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												elseif E.db.ElvUI_EltreumUI.glow.autocast and not IsAddOnLoaded("ElvUI_ActionBarMasks") then --TODO 10.2, might need C_AddOns.
 													LCG.AutoCastGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-												elseif E.db.ElvUI_EltreumUI.glow.blizzard and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												elseif E.db.ElvUI_EltreumUI.glow.blizzard and not IsAddOnLoaded("ElvUI_ActionBarMasks") then --TODO 10.2, might need C_AddOns.
 													LCG.ButtonGlow_Start(_G[buttonname], skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
 												end
 											elseif not auraid or auraid ~= 34936 or auraid ~= 17941 then
-												if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then --TODO 10.2, might need C_AddOns.
 													LCG.PixelGlow_Stop(_G[buttonname])
-												elseif E.db.ElvUI_EltreumUI.glow.autocast and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												elseif E.db.ElvUI_EltreumUI.glow.autocast and not IsAddOnLoaded("ElvUI_ActionBarMasks") then --TODO 10.2, might need C_AddOns.
 													LCG.AutoCastGlow_Stop(_G[buttonname])
-												elseif E.db.ElvUI_EltreumUI.glow.blizzard and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+												elseif E.db.ElvUI_EltreumUI.glow.blizzard and not IsAddOnLoaded("ElvUI_ActionBarMasks") then --TODO 10.2, might need C_AddOns.
 													LCG.ButtonGlow_Stop(_G[buttonname])
 												end
 											end
@@ -635,9 +635,9 @@ end
 --Skill Glow Pet
 local skillglowcolorpet = {classcolor.r, classcolor.g, classcolor.b, 1}
 function ElvUI_EltreumUI:SkillGlowPet()
-	if IsAddOnLoaded("ElvUI_ActionBarMasks") then return end
+	if IsAddOnLoaded("ElvUI_ActionBarMasks") then return end --TODO 10.2, might need C_AddOns.
 	if not UnitExists("pet") then return end
-	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end --TODO 10.2, might need C_AddOns.
 	if not E.private.ElvUI_EltreumUI then return end
 	if not E.db.ElvUI_EltreumUI then return end
 	if not E.db.ElvUI_EltreumUI.glow then return end
@@ -801,7 +801,7 @@ end
 
 --hide keypress on actionbars
 function ElvUI_EltreumUI:HideABKeyPress()
-	if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+	if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") then --TODO 10.2, might need C_AddOns.
 		if E.db.ElvUI_EltreumUI.skins.hideABkeypress then
 			for i = 1, 10 do
 				for k = 1, 12 do

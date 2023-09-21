@@ -1,9 +1,9 @@
 local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 local EltruismExpandedTalents = CreateFrame("Frame")
-local LoadAddOn = _G.LoadAddOn
+local LoadAddOn = _G.LoadAddOn --TODO 10.2, might need C_AddOns.
 
 --Reskin Blizzard Talent frame
 function ElvUI_EltreumUI:ExpandedTalents()
@@ -12,7 +12,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 		EltruismExpandedTalents:RegisterEvent("PLAYER_ENTERING_WORLD")
 		EltruismExpandedTalents:RegisterEvent("PLAYER_STARTED_MOVING")
 		EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
-			if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then
+			if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then --TODO 10.2, might need C_AddOns.
 				EltruismExpandedTalents:UnregisterAllEvents()
 				local function adjustscale()
 					_G.ClassTalentFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
@@ -30,7 +30,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 			EltruismExpandedTalents:RegisterEvent("ADDON_LOADED")
 			EltruismExpandedTalents:RegisterEvent("PLAYER_ENTERING_WORLD")
 			EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
-				if arg == "Blizzard_TalentUI" or IsAddOnLoaded("Blizzard_TalentUI") then
+				if arg == "Blizzard_TalentUI" or IsAddOnLoaded("Blizzard_TalentUI") then --TODO 10.2, might need C_AddOns.
 					local PlayerTalentFrame = _G.PlayerTalentFrame
 					local PlayerTalentFrameScrollFrameScrollBar = _G.PlayerTalentFrameScrollFrameScrollBar
 					local PlayerTalentFrameScrollFrame = _G.PlayerTalentFrameScrollFrame
@@ -141,7 +141,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 
 					-- fix glyph size
 					if E.Wrath then
-						LoadAddOn("Blizzard_GlyphUI")
+						LoadAddOn("Blizzard_GlyphUI") --TODO 10.2, might need C_AddOns.
 						_G.GlyphFrame:SetParent(_G.PlayerTalentFrame)
 
 						_G.GlyphFrame:HookScript("OnShow", function()

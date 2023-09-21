@@ -6,13 +6,13 @@ local pairs = _G.pairs
 local tostring = _G.tostring
 local tonumber = _G.tonumber
 local InCombatLockdown = _G.InCombatLockdown
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 local GetQuestItemInfo = _G.GetQuestItemInfo
 local GetItemQualityColor = _G.GetItemQualityColor
 
 --skin immersion
 function ElvUI_EltreumUI:EltruismImmersion()
-	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end --TODO 10.2, might need C_AddOns.
 	if not E.db.general.font then return end
 	if not E.db.general.fontSize then return end
 	if not E.db.general.fontStyle then return end

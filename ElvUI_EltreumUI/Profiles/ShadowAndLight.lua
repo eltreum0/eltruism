@@ -1,10 +1,10 @@
 local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 
 --Setup Shadow & Light
 function ElvUI_EltreumUI:GetSLEProfile()
-	if IsAddOnLoaded("ElvUI_SLE") then
+	if IsAddOnLoaded("ElvUI_SLE") then --TODO 10.2, might need C_AddOns.
 		-- Load Shadow & Light profile
 		E.global["sle"]["advanced"]["confirmed"] = true
 		E.global["sle"]["advanced"]["gameMenu"]["enable"] = true

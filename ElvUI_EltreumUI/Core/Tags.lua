@@ -562,7 +562,7 @@ E:AddTagInfo("name:eltruism:caps", ElvUI_EltreumUI.Name.." "..L["Names"], L["Dis
 
 --Details nickname using the nicktag library suggested by VXT
 local nicktag
-if IsAddOnLoaded("Details") then
+if IsAddOnLoaded("Details") then --TODO 10.2, might need C_AddOns.
 	nicktag = LibStub('NickTag-1.0')
 end
 

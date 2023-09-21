@@ -1,13 +1,10 @@
 local E, L = unpack(ElvUI)
 local _G = _G
 local IsInInstance = _G.IsInInstance
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 local hooksecurefunc = _G.hooksecurefunc
-local CreateFrame = _G.CreateFrame
 local InCombatLockdown = _G.InCombatLockdown
 local UnitLevel = _G.UnitLevel
-local HasNewMail = _G.HasNewMail
-local PlaySoundFile = _G.PlaySoundFile
 local _, instanceType
 local level
 local IsPlayerAtEffectiveMaxLevel = _G.IsPlayerAtEffectiveMaxLevel
@@ -93,7 +90,7 @@ function ElvUI_EltreumUI:ArenaBattlegroundGroupUnitframes()
 				E.db["unitframe"]["units"]["raid2"]["visibility"] = "hide"
 				E.db["unitframe"]["units"]["raid3"]["visibility"] = "hide"
 			elseif instanceType == "arena" then
-				if IsAddOnLoaded('GladiusEx') then
+				if IsAddOnLoaded('GladiusEx') then --TODO 10.2, might need C_AddOns.
 					E.db["unitframe"]["units"]["party"]["visibility"] = "hide"
 				end
 				if E.db.ElvUI_EltreumUI.unitframes.arenaunitframes then
@@ -104,7 +101,7 @@ function ElvUI_EltreumUI:ArenaBattlegroundGroupUnitframes()
 				E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
 				E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid21,noexists][@raid31,exists] hide;show"
 				E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid31,noexists] hide;show"
-				if E.db.ElvUI_EltreumUI.unitframes.arenaunitframes or IsAddOnLoaded("BattleGroundEnemies") then
+				if E.db.ElvUI_EltreumUI.unitframes.arenaunitframes or IsAddOnLoaded("BattleGroundEnemies") then --TODO 10.2, might need C_AddOns.
 					E.db["unitframe"]["units"]["arena"]["enable"] = true
 				end
 			end
@@ -119,7 +116,7 @@ function ElvUI_EltreumUI:ArenaBattlegroundGroupUnitframes()
 				_G["ElvUF_Arena3"]:Hide()
 				_G["ElvUF_Arena4"]:Hide()
 				_G["ElvUF_Arena5"]:Hide()
-			elseif (instanceType == "pvp" and IsAddOnLoaded("BattleGroundEnemies")) then
+			elseif (instanceType == "pvp" and IsAddOnLoaded("BattleGroundEnemies")) then --TODO 10.2, might need C_AddOns.
 				_G["ElvUF_Arena1"]:Hide()
 				_G["ElvUF_Arena2"]:Hide()
 				_G["ElvUF_Arena3"]:Hide()
@@ -366,7 +363,7 @@ end
 
 -- Inspired by Luckyone's performance option. Thanks Luckyone!
 function ElvUI_EltreumUI:EmptyDetailsTable()
-	if IsAddOnLoaded('Details') then
+	if IsAddOnLoaded('Details') then --TODO 10.2, might need C_AddOns.
 		_detalhes.encounter_spell_pool = {}
 		_detalhes.npcid_pool = {}
 		_detalhes.spell_pool = {}

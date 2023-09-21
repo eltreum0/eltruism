@@ -1,11 +1,11 @@
 local E, L = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 local SetCVar = _G.SetCVar
 
 -- AddOnSkins Profile
 function ElvUI_EltreumUI:AddonSetupAS()
-	if IsAddOnLoaded("AddOnSkins") then
+	if IsAddOnLoaded("AddOnSkins") then --TODO 10.2, might need C_AddOns.
 		ElvUI_EltreumUI:GetASProfile()
 		ElvUI_EltreumUI:Print(L["AddOnSkins profile has been set."])
 	else
@@ -15,7 +15,7 @@ end
 
 -- Immersion Profile
 function ElvUI_EltreumUI:AddonSetupImmersion()
-	if IsAddOnLoaded("Immersion") then
+	if IsAddOnLoaded("Immersion") then --TODO 10.2, might need C_AddOns.
 		ElvUI_EltreumUI:GetImmersionProfile()
 		ElvUI_EltreumUI:Print(L["Immersion profile has been set."])
 	else
@@ -25,7 +25,7 @@ end
 
 -- BigWigs Profile
 function ElvUI_EltreumUI:AddonSetupBW()
-	if IsAddOnLoaded("BigWigs") then
+	if IsAddOnLoaded("BigWigs") then --TODO 10.2, might need C_AddOns.
 		ElvUI_EltreumUI:GetBigWigsProfile()
 		ElvUI_EltreumUI:Print(L["BigWigs profile has been set."])
 	else
@@ -35,7 +35,7 @@ end
 
 -- DBM Profile
 function ElvUI_EltreumUI:AddonSetupDBM()
-	if IsAddOnLoaded("DBM-Core") then
+	if IsAddOnLoaded("DBM-Core") then --TODO 10.2, might need C_AddOns.
 		ElvUI_EltreumUI:GetDBMProfile()
 		ElvUI_EltreumUI:Print(L["DBM profile has been set."])
 	else
@@ -45,7 +45,7 @@ end
 
 -- Details Profile
 function ElvUI_EltreumUI:AddonSetupDT(style)
-	if IsAddOnLoaded("Details") then
+	if IsAddOnLoaded("Details") then --TODO 10.2, might need C_AddOns.
 		if style == "spec" then
 			ElvUI_EltreumUI:GetDetailsProfile()
 			ElvUI_EltreumUI:Print(L["Details profile using Blizzard icons has been set."])
@@ -63,7 +63,7 @@ end
 
 -- DynamicCam Profile
 function ElvUI_EltreumUI:AddonSetupDynamicCam()
-	if IsAddOnLoaded("DynamicCam") then
+	if IsAddOnLoaded("DynamicCam") then --TODO 10.2, might need C_AddOns.
 		ElvUI_EltreumUI:GetDynamicCamProfile()
 		ElvUI_EltreumUI:Print(L["Dynamic Cam profile has been set."])
 	else
@@ -73,7 +73,7 @@ end
 
 -- GladiusEx Profile
 function ElvUI_EltreumUI:AddonSetupGladiusEx()
-	if IsAddOnLoaded("GladiusEx") then
+	if IsAddOnLoaded("GladiusEx") then --TODO 10.2, might need C_AddOns.
 		ElvUI_EltreumUI:GetGladiusExProfile()
 		ElvUI_EltreumUI:Print(L["GladiusEx profile has been set."])
 	else
@@ -83,7 +83,7 @@ end
 
 -- MRT Profile
 function ElvUI_EltreumUI:AddonSetupMRT()
-	if IsAddOnLoaded("MRT") then
+	if IsAddOnLoaded("MRT") then --TODO 10.2, might need C_AddOns.
 		ElvUI_EltreumUI:GetMRTProfile()
 		ElvUI_EltreumUI:Print(L["Method Raid Tools profile has been set."])
 	else
@@ -93,7 +93,7 @@ end
 
 -- ProjectAzilroka Profile
 function ElvUI_EltreumUI:AddonSetupPA()
-	if IsAddOnLoaded("ProjectAzilroka") then
+	if IsAddOnLoaded("ProjectAzilroka") then --TODO 10.2, might need C_AddOns.
 		ElvUI_EltreumUI:GetPAProfile()
 		ElvUI_EltreumUI:Print(L["ProjectAzilroka profile has been set."])
 	else
@@ -103,7 +103,7 @@ end
 
 -- Questie Profile
 function ElvUI_EltreumUI:AddonSetupQuestie()
-	if IsAddOnLoaded("Questie") then
+	if IsAddOnLoaded("Questie") then --TODO 10.2, might need C_AddOns.
 		ElvUI_EltreumUI:GetQuestieProfile()
 		ElvUI_EltreumUI:Print(L["Questie profile has been set."])
 	else
@@ -113,21 +113,21 @@ end
 
 -- Combat Text Profile
 function ElvUI_EltreumUI:AddonSetupCombatText(addon)
-	if IsAddOnLoaded("NameplateSCT") or IsAddOnLoaded("ElvUI_FCT") then
+	if IsAddOnLoaded("NameplateSCT") or IsAddOnLoaded("ElvUI_FCT") then --TODO 10.2, might need C_AddOns.
 		SetCVar("enableFloatingCombatText", 0)
 		if E.Wrath or E.Classic then
 			SetCVar("floatingCombatTextCombatDamage", 0)
 		end
 	end
 	if addon == "NameplateSCT" then
-		if IsAddOnLoaded("NameplateSCT") then
+		if IsAddOnLoaded("NameplateSCT") then --TODO 10.2, might need C_AddOns.
 			ElvUI_EltreumUI:GetNameplateSCTProfile()
 			ElvUI_EltreumUI:Print(L["NameplateSCT profile has been set."])
 		else
 			ElvUI_EltreumUI:Print("NameplateSCT is not loaded")
 		end
 	elseif addon == "ElvUI_FCT" then
-		if IsAddOnLoaded("ElvUI_FCT") then
+		if IsAddOnLoaded("ElvUI_FCT") then --TODO 10.2, might need C_AddOns.
 			ElvUI_EltreumUI:GetFCTProfile()
 			ElvUI_EltreumUI:Print(L["Floating Combat Text profile has been set."])
 		else
@@ -138,7 +138,7 @@ end
 
 -- Gladius Profile
 function ElvUI_EltreumUI:SetupGladius()
-	if IsAddOnLoaded("Gladius") then
+	if IsAddOnLoaded("Gladius") then --TODO 10.2, might need C_AddOns.
 		ElvUI_EltreumUI:GetGladiusProfile()
 		ElvUI_EltreumUI:Print(L["Gladius profile has been set."])
 	else
@@ -148,7 +148,7 @@ end
 
 -- Gladdy Profile
 function ElvUI_EltreumUI:SetupGladdy()
-	if IsAddOnLoaded("Gladdy") then
+	if IsAddOnLoaded("Gladdy") then --TODO 10.2, might need C_AddOns.
 		ElvUI_EltreumUI:GetGladdyProfile()
 		ElvUI_EltreumUI:Print(L["Gladdy profile has been set."])
 	else
@@ -158,7 +158,7 @@ end
 
 -- Repooc's Dynamic Status Icons
 function ElvUI_EltreumUI:SetupDynamicStatusIcons()
-	if IsAddOnLoaded("ElvUI_DynamicStatusIcons") then
+	if IsAddOnLoaded("ElvUI_DynamicStatusIcons") then --TODO 10.2, might need C_AddOns.
 		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
 			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["anchorPoint"] = "BOTTOMRIGHT"
 			E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["color"]["b"] = 0.4274500310421

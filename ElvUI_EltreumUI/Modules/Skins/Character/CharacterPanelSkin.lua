@@ -6,7 +6,7 @@ local CreateFrame = _G.CreateFrame
 local max = _G.max
 local tonumber = _G.tonumber
 local math = _G.math
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 local hooksecurefunc = _G.hooksecurefunc
 local CharacterStatsPane = _G.CharacterStatsPane
 local GetItemQualityColor = _G.GetItemQualityColor
@@ -387,7 +387,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		end
 	end
 
-	if IsAddOnLoaded("Pawn") then
+	if IsAddOnLoaded("Pawn") then --TODO 10.2, might need C_AddOns.
 		if _G["PawnUI_InventoryPawnButton"] then
 			_G["PawnUI_InventoryPawnButton"]:SetFrameStrata("DIALOG")
 		end
@@ -449,7 +449,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PaperDollFrame.TitleManagerPane.ScrollBox:SetPoint("RIGHT", CharacterFrame, "RIGHT", -40, -20)
 			end
 
-			if not ElvUI_EltreumUI:SLCheck("stats") and (not IsAddOnLoaded('DejaCharacterStats')) then
+			if not ElvUI_EltreumUI:SLCheck("stats") and (not IsAddOnLoaded('DejaCharacterStats')) then --TODO 10.2, might need C_AddOns.
 				CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
 				CharacterStatsPane.ItemLevelCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, E.db.general.fontStyle)
 
@@ -464,7 +464,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame.EltruismExtraStatsFont:SetPoint("TOP", CharacterStatsPane, "BOTTOM", 0, -85) --adjusts the eltruism stats portion
 			CharacterFrame.EltruismExtraStatsFont:SetParent(CharacterStatsPane)
 
-			if ElvUI_EltreumUI:SLCheck("stats") and not IsAddOnLoaded('DejaCharacterStats') then
+			if ElvUI_EltreumUI:SLCheck("stats") and not IsAddOnLoaded('DejaCharacterStats') then --TODO 10.2, might need C_AddOns.
 
 				--item level
 				CharacterStatsPane.ItemLevelCategory.backdrop:Hide()
@@ -2356,7 +2356,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 	if not E.private.skins.blizzard.character then return end
 
 	--inspect frame bg
-	if IsAddOnLoaded("Blizzard_InspectUI") then
+	if IsAddOnLoaded("Blizzard_InspectUI") then --TODO 10.2, might need C_AddOns.
 		EltruismInspectBg:SetParent(_G.InspectFrame)
 
 		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then

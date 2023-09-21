@@ -115,7 +115,7 @@ end
 
 --cell gradient/textures
 function ElvUI_EltreumUI:EltruismCell()
-	if not IsAddOnLoaded("Cell") then return end
+	if not IsAddOnLoaded("Cell") then return end --TODO 10.2, might need C_AddOns.
 	if E.db.ElvUI_EltreumUI.skins.cell then
 		--solo
 		if _G["CellSoloFramePlayer"] then

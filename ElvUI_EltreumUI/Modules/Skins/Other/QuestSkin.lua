@@ -3,7 +3,7 @@ local S = E:GetModule('Skins')
 local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
 local CreateFrame = _G.CreateFrame
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 local hooksecurefunc = _G.hooksecurefunc
 local pairs = _G.pairs
 local GetNumQuestWatches = _G.GetNumQuestWatches
@@ -213,8 +213,8 @@ function ElvUI_EltreumUI:SkinQuests()
 				_G["QuestNPCModelNameText"]:SetPoint("TOP", _G["QuestModelScene"],"TOP")
 			end]]
 
-			-- and (not IsAddOnLoaded("ElvUI_WindTools"))
-			if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
+			-- and (not IsAddOnLoaded("ElvUI_WindTools")) --TODO 10.2, might need C_AddOns.
+			if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then --TODO 10.2, might need C_AddOns.
 				--WQs banner
 				local ObjectiveTrackerBonusBannerFrame = _G.ObjectiveTrackerBonusBannerFrame
 				if ObjectiveTrackerBonusBannerFrame then
@@ -674,7 +674,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end)
 			end
 		elseif E.Classic then
-			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
+			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then --TODO 10.2, might need C_AddOns.
 				return
 			end
 
@@ -716,7 +716,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				dontexpandanymorequests = 1
 			end
 
-			if IsAddOnLoaded('Questie') then
+			if IsAddOnLoaded('Questie') then --TODO 10.2, might need C_AddOns.
 				if _G.Questie.db.char.trackerEnabled then
 				--if _G.Questie.db.global.trackerEnabled then
 					return
@@ -917,11 +917,11 @@ function ElvUI_EltreumUI:SkinQuests()
 				UIParent_ManageFramePositions()
 			end)
 		elseif E.Wrath then
-			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
+			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then --TODO 10.2, might need C_AddOns.
 				return
 			end
 
-			if IsAddOnLoaded('Questie') then --questie overwrites the default tracker sadly instead of hooking into it
+			if IsAddOnLoaded('Questie') then --questie overwrites the default tracker sadly instead of hooking into it --TODO 10.2, might need C_AddOns.
 				if _G.Questie.db.global.trackerEnabled then
 					return
 				end

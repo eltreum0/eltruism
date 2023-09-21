@@ -2,7 +2,7 @@ local E = unpack(ElvUI)
 local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
 local CreateFrame = _G.CreateFrame
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 local hooksecurefunc = _G.hooksecurefunc
 local CharacterLevelText = _G.CharacterLevelText
 local CharacterFrameTitleText = _G.CharacterFrameTitleText
@@ -55,7 +55,7 @@ elseif E.Classic or E.Wrath then
 end
 
 function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
-	if IsAddOnLoaded("ElvUI_MerathilisUI") then
+	if IsAddOnLoaded("ElvUI_MerathilisUI") then --TODO 10.2, might need C_AddOns.
 		if E.db["mui"]["armory"]["character"]["classIcon"] then
 			return
 		end
@@ -202,10 +202,10 @@ local EltruismCharacterPanelEventFrame = CreateFrame("FRAME")
 EltruismCharacterPanelEventFrame:RegisterUnitEvent("UNIT_NAME_UPDATE", "player")
 EltruismCharacterPanelEventFrame:RegisterUnitEvent("PLAYER_ENTERING_WORLD")
 EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
-	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end --TODO 10.2, might need C_AddOns.
 	if not E.private then return end
 	if not E.private.ElvUI_EltreumUI then return end
-	if IsAddOnLoaded("ElvUI_MerathilisUI") then
+	if IsAddOnLoaded("ElvUI_MerathilisUI") then --TODO 10.2, might need C_AddOns.
 		if E.db["mui"]["armory"]["character"]["classIcon"] then
 			return
 		end

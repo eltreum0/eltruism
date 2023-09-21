@@ -1,11 +1,11 @@
 local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 local table = _G.table
 
 -- Capping profile setup
 function ElvUI_EltreumUI:GetCappingProfile()
-	if IsAddOnLoaded('Capping') then
+	if IsAddOnLoaded('Capping') then --TODO 10.2, might need C_AddOns.
 		if CappingSettings.profiles.Eltreum then
 			--local key = {[E.mynameRealm] = "Eltreum"}
 			--table.insert(CappingSettings.profileKeys, key)

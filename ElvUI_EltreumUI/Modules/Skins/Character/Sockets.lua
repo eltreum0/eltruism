@@ -24,7 +24,7 @@ local GameTooltip = _G.GameTooltip
 local GetSpellLink = _G.GetSpellLink
 local GetSpellInfo = _G.GetSpellInfo
 local GetSpellTexture = _G.GetSpellTexture
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 local type = _G.type
 local max = _G.max
 local strlenutf8 = _G.strlenutf8
@@ -2029,7 +2029,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		local playerSlotIconManager = style
 		playerSlotIconManager = playerSlotIconManager + ElvUI_EltreumUI.SlotIconManager.STYLE.ENABLED
 		self.playerSlotIconManager:SetStyle(playerSlotIconManager)
-		if IsAddOnLoaded("Blizzard_InspectUI") and E.db.ElvUI_EltreumUI.skins.socketsinspect then
+		if IsAddOnLoaded("Blizzard_InspectUI") and E.db.ElvUI_EltreumUI.skins.socketsinspect then --TODO 10.2, might need C_AddOns.
 			local inspectorSlotIconManager = style
 			inspectorSlotIconManager = inspectorSlotIconManager + ElvUI_EltreumUI.SlotIconManager.STYLE.ENABLED
 			self.inspectorSlotIconManager:SetStyle(inspectorSlotIconManager)
@@ -2043,7 +2043,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		--local args = {...}
 		--if event == "ADDON_LOADED" and args[1] == "Blizzard_InspectUI" then
 	frame:SetScript("OnEvent", function(_, event)
-		if event == "ADDON_LOADED" and IsAddOnLoaded("Blizzard_InspectUI") and E.db.ElvUI_EltreumUI.skins.socketsinspect then
+		if event == "ADDON_LOADED" and IsAddOnLoaded("Blizzard_InspectUI") and E.db.ElvUI_EltreumUI.skins.socketsinspect then --TODO 10.2, might need C_AddOns.
 			self.inspectorSlotIconManager = ElvUI_EltreumUI.SlotIconManager:new(ElvUI_EltreumUI.InspectionFrameAdapter:new())
 			local style = 0
 			style = style + ElvUI_EltreumUI.SlotIconManager.STYLE.COLOR

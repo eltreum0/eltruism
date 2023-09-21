@@ -28,6 +28,7 @@ local id
 local itemID
 local lootQuality, isQuestItem
 local lootsoundthrottle = 0
+local PlaySoundFile = _G.PlaySoundFile
 
 --wishlist popup
 local WishlistItemFrame = CreateFrame("Frame", "EltruismWishlistItem", UIParent)

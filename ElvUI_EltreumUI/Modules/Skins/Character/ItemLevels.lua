@@ -14,7 +14,7 @@ local GetInventoryItemQuality = _G.GetInventoryItemQuality
 local GetDetailedItemLevelInfo = _G.GetDetailedItemLevelInfo
 local level
 local hooksecurefunc = _G.hooksecurefunc
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 local isHooked = false
 
 --Calculate ilvl and average ilvl of player items/inspect unit
@@ -149,7 +149,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 		EltruismInspectilvls:RegisterEvent("ADDON_LOADED")
 		EltruismInspectilvls:RegisterEvent("INSPECT_READY")
 		EltruismInspectilvls:SetScript("OnEvent", function(_,event,arg)
-			if arg == "Blizzard_InspectUI" or IsAddOnLoaded("Blizzard_InspectUI") then
+			if arg == "Blizzard_InspectUI" or IsAddOnLoaded("Blizzard_InspectUI") then --TODO 10.2, might need C_AddOns.
 				EltruismInspectilvls:UnregisterEvent("ADDON_LOADED")
 				if not isHooked then
 					hooksecurefunc("InspectPaperDollItemSlotButton_Update", function(button)
