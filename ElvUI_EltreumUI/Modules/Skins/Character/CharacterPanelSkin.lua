@@ -2483,7 +2483,6 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						_G.InspectFrame.ItemLevelText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
 						_G.InspectFrame.ItemLevelText:SetParent(_G["InspectModelFrame"])
 
-
 						if _G.InspectPaperDollFrame.ViewButton then
 							_G.InspectPaperDollFrame.ViewButton:ClearAllPoints()
 							_G.InspectPaperDollFrame.ViewButton:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 145)
@@ -2526,42 +2525,50 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then
 						E:Delay(0, function()
 							if not E.Retail then
-								if _G.InspectNameText and _G.InspectNameText:GetText() and not _G.InspectNameText:GetText():match("|T") then
-									_G.InspectNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
-									if string.len(_G.InspectNameText:GetText()) >= 6 then
-										if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectNameText:GetText():match("|r") then
-											_G.InspectNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectNameText:GetText(), englishClass))
+								if _G.InspectNameText then
+									_G.InspectNameText:ClearAllPoints()
+									_G.InspectNameText:SetPoint("TOP",_G.InspectFrame,"TOP",0,-15)
+									if _G.InspectNameText:GetText() and not _G.InspectNameText:GetText():match("|T") then
+										_G.InspectNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
+										if string.len(_G.InspectNameText:GetText()) >= 6 then
+											if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectNameText:GetText():match("|r") then
+												_G.InspectNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectNameText:GetText(), englishClass))
+											else
+												_G.InspectNameText:SetText(classsymbolonframe.." ".._G.InspectNameText:GetText())
+												_G.InspectNameText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
+											end
 										else
 											_G.InspectNameText:SetText(classsymbolonframe.." ".._G.InspectNameText:GetText())
 											_G.InspectNameText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
 										end
-									else
-										_G.InspectNameText:SetText(classsymbolonframe.." ".._G.InspectNameText:GetText())
-										_G.InspectNameText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
+										_G.InspectNameText:SetShadowColor(0, 0, 0, 0.8) --??????
+										_G.InspectNameText:SetShadowOffset(2, -1)
+										_G.InspectNameText:SetWidth(200)
+										_G.InspectNameText:SetDrawLayer("OVERLAY")
 									end
-									_G.InspectNameText:SetShadowColor(0, 0, 0, 0.8)
-									_G.InspectNameText:SetShadowOffset(2, -1)
-									_G.InspectNameText:SetWidth(200)
-									_G.InspectNameText:SetDrawLayer("OVERLAY")
 								end
 							else
-								if _G.InspectFrameTitleText and _G.InspectFrameTitleText:GetText() and not _G.InspectFrameTitleText:GetText():match("|T") then
-									_G.InspectFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
-									if string.len(_G.InspectFrameTitleText:GetText()) >= 6 then
-										if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectFrameTitleText:GetText():match("|r") then
-											_G.InspectFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectFrameTitleText:GetText(), englishClass))
+								if _G.InspectFrameTitleText then
+									_G.InspectFrameTitleText:ClearAllPoints()
+									_G.InspectFrameTitleText:SetPoint("TOP",_G.InspectFrame,"TOP",0,-5)
+									if _G.InspectFrameTitleText:GetText() and not _G.InspectFrameTitleText:GetText():match("|T") then
+										_G.InspectFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
+										if string.len(_G.InspectFrameTitleText:GetText()) >= 6 then
+											if E.db.ElvUI_EltreumUI.skins.characterskingradients and not _G.InspectFrameTitleText:GetText():match("|r") then
+												_G.InspectFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.InspectFrameTitleText:GetText(), englishClass))
+											else
+												_G.InspectFrameTitleText:SetText(classsymbolonframe.." ".._G.InspectFrameTitleText:GetText())
+												_G.InspectFrameTitleText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
+											end
 										else
 											_G.InspectFrameTitleText:SetText(classsymbolonframe.." ".._G.InspectFrameTitleText:GetText())
 											_G.InspectFrameTitleText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
 										end
-									else
-										_G.InspectFrameTitleText:SetText(classsymbolonframe.." ".._G.InspectFrameTitleText:GetText())
-										_G.InspectFrameTitleText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
+										_G.InspectFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
+										_G.InspectFrameTitleText:SetShadowOffset(2, -1)
+										_G.InspectFrameTitleText:SetWidth(200)
+										_G.InspectFrameTitleText:SetDrawLayer("OVERLAY")
 									end
-									_G.InspectFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
-									_G.InspectFrameTitleText:SetShadowOffset(2, -1)
-									_G.InspectFrameTitleText:SetWidth(200)
-									_G.InspectFrameTitleText:SetDrawLayer("OVERLAY")
 								end
 							end
 						end)
