@@ -1,6 +1,6 @@
 local E, L = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
 
 function ElvUI_EltreumUI:SetupLayoutHealer()
@@ -60,7 +60,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["raid3"]["classbar"]["enable"] = false
 
 	--set Dynamic Status Icons
-	if IsAddOnLoaded("ElvUI_DynamicStatusIcons") then
+	if IsAddOnLoaded("ElvUI_DynamicStatusIcons") then --TODO 10.2, might need C_AddOns.
 		E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["anchorPoint"] = "BOTTOMRIGHT"
 		E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["color"]["b"] = 0.4274500310421
 		E.db["unitframe"]["units"]["player"]["DynamicStatusIcons"]["color"]["g"] = 0.60784178972244
@@ -384,7 +384,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["movers"]["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-100"
 	E.db["movers"]["RaidMarkerBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
 	--E.db["movers"]["MicrobarMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,140,1"
-	if IsAddOnLoaded("ElvUI_SLE") then
+	if IsAddOnLoaded("ElvUI_SLE") then --TODO 10.2, might need C_AddOns.
 		E.db["movers"]["SLE_DataPanel_1_Mover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,202"
 		E.db["movers"]["SLE_FarmSeedMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,278"
 	end
@@ -418,7 +418,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 		E.db["movers"]["VehicleLeaveButton"] = "TOPRIGHT,UIParent,TOPRIGHT,-176,-145"
 	end
 	E.db["movers"]["VehicleSeatMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-210,-150"
-	if IsAddOnLoaded("ElvUI_WindTools") then
+	if IsAddOnLoaded("ElvUI_WindTools") then --TODO 10.2, might need C_AddOns.
 		E.db["movers"]["WTRaidMarkersBarAnchor"] = "TOPLEFT,ElvUIParent,TOPLEFT,398,1"
 		E.db["movers"]["WTCustomEmoteFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-24"
 		E.db["movers"]["WTExtraItemsBar1Mover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-239,231"

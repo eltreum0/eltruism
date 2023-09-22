@@ -1,6 +1,6 @@
 local E, L = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 local CreateFrame = _G.CreateFrame
 local GetCoinIcon = _G.GetCoinIcon
 local CombatText_AddMessage = _G.CombatText_AddMessage
@@ -28,7 +28,7 @@ function ElvUI_EltreumUI:LoadCommands()
 	end
 	if E.Retail then
 		if E.db.ElvUI_EltreumUI.waypoints.waytext.enable then
-			if not IsAddOnLoaded("TomTom") then
+			if not IsAddOnLoaded("TomTom") then --TODO 10.2, might need C_AddOns.
 				self:RegisterChatCommand('way', 'WaypointTexttoCoordinate')
 				self:RegisterChatCommand('waypoint', 'WaypointTexttoCoordinate')
 			else
@@ -99,18 +99,8 @@ function ElvUI_EltreumUI:RunCommands(message)
 			ElvUI_EltreumUI:DarkMode() E:StaticPopup_Show('CONFIG_RL')
 		end
 	elseif message == 'gradient' then
-		if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = true
-			ElvUI_EltreumUI:GradientMode()
-			E:StaticPopup_Show('CONFIG_RL')
-			ElvUI_EltreumUI:Print("Gradient Enabled, please reload")
-		elseif E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = false
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = false
-			E:StaticPopup_Show('CONFIG_RL')
-			ElvUI_EltreumUI:Print("Gradient Disabled, please reload")
-		end
+		ElvUI_EltreumUI:GradientMode()
+		E:StaticPopup_Show('CONFIG_RL')
 	elseif message == 'weakauras' then
 		E.PopupDialogs["ELTRUISMWABARWARNING"] = {
 			text = L["Overwrites some profile settings to move ActionBars, Unitframes and Powers to look more similar to a WeakAura. |cffFF0000WARNING:|r This will overwrite some of your profile settings with no way to restore"],
@@ -213,7 +203,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 		print("|cff82B4ff/eltruism setup/install|r - Opens Eltruism Installer")
 		print("|cff82B4ff/eltruism loot|r - Demonstrates the LootText")
 		if E.Retail then
-			if not IsAddOnLoaded("TomTom") then
+			if not IsAddOnLoaded("TomTom") then --TODO 10.2, might need C_AddOns.
 				print("|cff82B4ff/way and /waypoint|r - Sets a map waypoint with the supplied coordinates")
 			else
 				print("|cff82B4ff/eway and /ewaypoint|r - Sets a map waypoint with the supplied coordinates")
@@ -249,10 +239,10 @@ local AddOns = {
 function ElvUI_EltreumUI:DebugMode(message)
 	local switch = strlower(message)
 	if switch == 'on' then
-		for i = 1, GetNumAddOns() do
-			local name = GetAddOnInfo(i)
+		for i = 1, GetNumAddOns() do--TODO 10.2, might need C_AddOns.
+			local name = GetAddOnInfo(i) --TODO 10.2, might need C_AddOns.
 			if not AddOns[name] and E:IsAddOnEnabled(name) then
-				DisableAddOn(name, E.myname)
+				DisableAddOn(name, E.myname) --TODO 10.2, might need C_AddOns.
 				ElvDB.EltruismDisabledAddOns[name] = i
 			end
 		end
@@ -261,7 +251,7 @@ function ElvUI_EltreumUI:DebugMode(message)
 	elseif switch == 'off' then
 		if next(ElvDB.EltruismDisabledAddOns) then
 			for name in pairs(ElvDB.EltruismDisabledAddOns) do
-				EnableAddOn(name, E.myname)
+				EnableAddOn(name, E.myname) --TODO 10.2, might need C_AddOns.
 			end
 			wipe(ElvDB.EltruismDisabledAddOns)
 			ReloadUI()
@@ -345,7 +335,7 @@ end)
 local keystone = CreateFrame("FRAME")
 keystone:RegisterEvent("ADDON_LOADED")
 keystone:SetScript("OnEvent", function(_,_,addon)
-	if (addon == "Blizzard_ChallengesUI" or IsAddOnLoaded("Blizzard_ChallengesUI")) and E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
+	if (addon == "Blizzard_ChallengesUI" or IsAddOnLoaded("Blizzard_ChallengesUI")) and E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then --TODO 10.2, might need C_AddOns.
 		keystone:UnregisterAllEvents()
 		if _G.ChallengesKeystoneFrame then
 			_G.ChallengesKeystoneFrame:HookScript("OnShow", function()

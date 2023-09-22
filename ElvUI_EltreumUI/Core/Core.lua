@@ -7,8 +7,8 @@ local UIParent = _G.UIParent
 local print = _G.print
 local unpack = _G.unpack
 local hooksecurefunc = _G.hooksecurefunc
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local DisableAddOn = _G.DisableAddOn
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
+local DisableAddOn = _G.DisableAddOn --TODO 10.2, might need C_AddOns.
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
 local SetCVar = _G.SetCVar
 local UIParentLoadAddOn = _G.UIParentLoadAddOn
@@ -18,7 +18,7 @@ local string = _G.string
 local DELETE_ITEM_CONFIRM_STRING = _G.DELETE_ITEM_CONFIRM_STRING
 local InCombatLockdown = _G.InCombatLockdown
 local HideUIPanel = _G.HideUIPanel
-local LoadAddOn = _G.LoadAddOn
+local LoadAddOn = _G.LoadAddOn --TODO 10.2, might need C_AddOns.
 local GameMenuFrame = _G.GameMenuFrame
 local UIErrorsFrame = _G.UIErrorsFrame
 local RaidWarningFrame = _G.RaidWarningFrame
@@ -43,11 +43,11 @@ function ElvUI_EltreumUI:HidePopups(delay)
 		end
 		hooksecurefunc(W, "ConstructCompatibilityFrame", WindtoolsCompatHideWhileInstall)
 	end
-	if IsAddOnLoaded("Details_Streamer") then
-		DisableAddOn("Details_Streamer")
+	if IsAddOnLoaded("Details_Streamer") then --TODO 10.2, might need C_AddOns.
+		DisableAddOn("Details_Streamer") --TODO 10.2, might need C_AddOns.
 	end
 	E:Delay(delay, function()
-		if IsAddOnLoaded("Details") and _G['_detalhes'] then
+		if IsAddOnLoaded("Details") and _G['_detalhes'] then --TODO 10.2, might need C_AddOns.
 			_G['_detalhes'].is_first_run = false
 			_G['_detalhes']:DisablePlugin ("DETAILS_PLUGIN_STREAM_OVERLAY")
 			_G['_detalhes']:DisablePlugin ("Details_Streamer")
@@ -80,10 +80,10 @@ function ElvUI_EltreumUI:HidePopups(delay)
 		if _G["CappingFrame"] then
 			_G["CappingFrame"]:Hide()
 		end
-		if IsAddOnLoaded("GladiusEx") then
+		if IsAddOnLoaded("GladiusEx") then --TODO 10.2, might need C_AddOns.
 			GladiusEx:HideFrames()
 		end
-		if IsAddOnLoaded("Gladius") then
+		if IsAddOnLoaded("Gladius") then --TODO 10.2, might need C_AddOns.
 			if _G["GladiusButtonFramearena1"] then
 				_G["GladiusButtonFramearena1"]:Hide()
 			end
@@ -109,7 +109,7 @@ function ElvUI_EltreumUI:HidePopups(delay)
 		if _G["BasicMessageDialog"] then
 			_G["BasicMessageDialog"]:Hide()
 		end
-		if IsAddOnLoaded("Gladdy") then
+		if IsAddOnLoaded("Gladdy") then --TODO 10.2, might need C_AddOns.
 			LibStub("AceConfigDialog-3.0"):Close("Gladdy") --using E.Libs seems delayed
 		end
 		if _G["SubscriptionInterstitialFrame"] then --hide the f2p popup during install
@@ -152,7 +152,7 @@ function ElvUI_EltreumUI:BlizzCombatText()
 	if not InCombatLockdown() then
 		if tostring(C_CVar.GetCVar("enableFloatingCombatText")) == "1" then
 			if E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext and not E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana then
-				if IsAddOnLoaded('ElvUI_FCT') or IsAddOnLoaded('NameplateSCT') then
+				if IsAddOnLoaded('ElvUI_FCT') or IsAddOnLoaded('NameplateSCT') then --TODO 10.2, might need C_AddOns.
 					SetCVar("enableFloatingCombatText", 0)
 					SetCVar("floatingCombatTextCombatHealing", 0)
 					SetCVar("floatingCombatTextCombatHealingAbsorbSelf", 0)
@@ -294,7 +294,7 @@ function ElvUI_EltreumUI:Anchors()
 			for i = #registered, 1, -1 do
 				local name = registered[i]:GetName()
 				if name == "ObjectiveTrackerFrame" and E.db.ElvUI_EltreumUI.quests.anchor then
-					if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
+					if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then --TODO 10.2, might need C_AddOns.
 						tremove(editMode.registeredSystemFrames, i)
 					end
 				end
@@ -401,7 +401,7 @@ function ElvUI_EltreumUI:Anchors()
 			end
 		end
 
-		if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
+		if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then --TODO 10.2, might need C_AddOns.
 			if E.db.ElvUI_EltreumUI.quests.anchor then
 				E:Delay(0, function()
 					if not _G["ObjectiveFrameHolder"] and not InCombatLockdown() and not _G.MovieFrame:IsShown() and ObjectiveTrackerFrame:IsShown() then
@@ -866,7 +866,7 @@ do
 	local isDeleteHooked = false
 	local petdetect = CreateFrame("FRAME")
 	function ElvUI_EltreumUI:DeleteItem()
-		if not isDeleteHooked and E.db.ElvUI_EltreumUI.otherstuff.delete and not IsAddOnLoaded("ConsolePort") then
+		if not isDeleteHooked and E.db.ElvUI_EltreumUI.otherstuff.delete and not IsAddOnLoaded("ConsolePort") then --TODO 10.2, might need C_AddOns.
 			hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM,"OnShow",TypeDelete) --Interface/FrameXML/StaticPopup.lua line 1965/2074
 			hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM,"OnShow",TypeDelete) --Interface/FrameXML/StaticPopup.lua line 2125
 
@@ -1000,8 +1000,8 @@ if E.Retail then
 	end)
 
 	clickbindopenbutton:SetScript('OnClick', function()
-		if not IsAddOnLoaded("Blizzard_ClickBindingUI") then
-			LoadAddOn("Blizzard_ClickBindingUI")
+		if not IsAddOnLoaded("Blizzard_ClickBindingUI") then --TODO 10.2, might need C_AddOns.
+			LoadAddOn("Blizzard_ClickBindingUI") --TODO 10.2, might need C_AddOns.
 			if not _G["ClickBindingFrame"].shadow then
 				_G["ClickBindingFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(_G["ClickBindingFrame"].shadow)
@@ -1021,7 +1021,7 @@ end
 
 --shadow and light compatibility check
 function ElvUI_EltreumUI:SLCheck(setting)
-	if not IsAddOnLoaded("ElvUI_SLE") or not setting then return false end
+	if not IsAddOnLoaded("ElvUI_SLE") or not setting then return false end --TODO 10.2, might need C_AddOns.
 	if setting == 'char' and E.db.sle.armory.character.enable then
 		return true
 	end
@@ -1043,7 +1043,7 @@ end
 
 --check for blinkii's kick on cd function
 function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
-    if IsAddOnLoaded("ElvUI_mMediaTag") and E.Retail then
+    if IsAddOnLoaded("ElvUI_mMediaTag") and E.Retail then --TODO 10.2, might need C_AddOns.
         if (E.db.mMT and E.db.mMT.interruptoncd and E.db.mMT.interruptoncd.enable) then
             return _G.mMT:mMediaTag_interruptOnCD() or false
         else

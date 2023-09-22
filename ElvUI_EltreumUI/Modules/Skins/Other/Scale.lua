@@ -1,7 +1,7 @@
 local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 
 --frame scaling
 function ElvUI_EltreumUI:FrameScales()
@@ -43,7 +43,7 @@ local taxiloadmonitor = CreateFrame("FRAME")
 taxiloadmonitor:RegisterEvent("PLAYER_ENTERING_WORLD")
 taxiloadmonitor:RegisterEvent("ADDON_LOADED")
 taxiloadmonitor:SetScript("OnEvent", function(_,_,arg)
-	if IsAddOnLoaded("Blizzard_FlightMap") or (arg == "Blizzard_FlightMap") or _G["FlightMapFrame"] then
+	if IsAddOnLoaded("Blizzard_FlightMap") or (arg == "Blizzard_FlightMap") or _G["FlightMapFrame"] then --TODO 10.2, might need C_AddOns.
 		taxiloadmonitor:UnregisterAllEvents()
 		if not E.private.ElvUI_EltreumUI then return end
 		if not E.db.ElvUI_EltreumUI then return end

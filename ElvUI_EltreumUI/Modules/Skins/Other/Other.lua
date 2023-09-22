@@ -2,7 +2,7 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 local GetSpellInfo = _G.GetSpellInfo
 local GetItemInfo = _G.GetItemInfo
 local GetItemCount = _G.GetItemCount
@@ -114,7 +114,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 		--skin and expand the tradeskills
 		WideTradeSkill:RegisterEvent("ADDON_LOADED")
 		WideTradeSkill:SetScript("OnEvent", function(_, _, arg)
-			if IsAddOnLoaded("Blizzard_TradeSkillUI") or IsAddOnLoaded("Blizzard_RuneforgeUI") or (arg == "Blizzard_TradeSkillUI") or (arg == "Blizzard_RuneforgeUI") then
+			if IsAddOnLoaded("Blizzard_TradeSkillUI") or IsAddOnLoaded("Blizzard_RuneforgeUI") or (arg == "Blizzard_TradeSkillUI") or (arg == "Blizzard_RuneforgeUI") then --TODO 10.2, might need C_AddOns.
 				WideTradeSkill:UnregisterAllEvents()
 				local TradeSkillFrame = _G.TradeSkillFrame
 				local TradeSkillDetailScrollFrame = _G.TradeSkillDetailScrollFrame
@@ -180,7 +180,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 						_G.TradeSkillRequirementText:SetParent(_G.TradeSkillFrame)]]
 
 						--Auctionator search fix
-						if IsAddOnLoaded("Auctionator") then
+						if IsAddOnLoaded("Auctionator") then --TODO 10.2, might need C_AddOns.
 							E:Delay(0, function()
 								if _G.AuctionatorTradeSkillSearch then
 									_G.AuctionatorTradeSkillSearch:ClearAllPoints()
@@ -235,7 +235,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 		--and enchanting which uses a different system apparently
 		WideTradeSkillEnchant:RegisterEvent("ADDON_LOADED")
 		WideTradeSkillEnchant:SetScript("OnEvent", function(_, _, arg)
-			if IsAddOnLoaded("Blizzard_CraftUI") or (arg == "Blizzard_CraftUI") then
+			if IsAddOnLoaded("Blizzard_CraftUI") or (arg == "Blizzard_CraftUI") then --TODO 10.2, might need C_AddOns.
 				WideTradeSkillEnchant:UnregisterAllEvents()
 				local CraftFrame = _G.CraftFrame
 				local CraftFrameAvailableFilterCheckButton = _G.CraftFrameAvailableFilterCheckButton
@@ -465,7 +465,7 @@ local tradeskilloadmonitor = CreateFrame("FRAME")
 tradeskilloadmonitor:RegisterEvent("PLAYER_ENTERING_WORLD")
 tradeskilloadmonitor:RegisterEvent("ADDON_LOADED")
 local function TSMCheck(arg)
-	if IsAddOnLoaded("Blizzard_TradeSkillUI") or (arg == "Blizzard_TradeSkillUI") or _G.ProfessionsFrame then
+	if IsAddOnLoaded("Blizzard_TradeSkillUI") or (arg == "Blizzard_TradeSkillUI") or _G.ProfessionsFrame then --TODO 10.2, might need C_AddOns.
 		tradeskilloadmonitor:UnregisterAllEvents()
 		if not E.private.ElvUI_EltreumUI then return end
 		if not E.db.ElvUI_EltreumUI then return end
@@ -476,7 +476,7 @@ local function TSMCheck(arg)
 end
 tradeskilloadmonitor:SetScript("OnEvent", function(_,_,arg)
 	--in 10.1.5 the addon load order seems to not be reliable and tsm can error, so check for tsm being enabled (because it wont be loaded)
-	if GetAddOnEnableState(E.myname,"TradeSkillMaster") == 0 then
+	if GetAddOnEnableState(E.myname,"TradeSkillMaster") == 0 then --TODO 10.2 reverses: name,character, might need C_AddOns.GetAddOnEnableState
 		TSMCheck(arg)
 	else
 		if E.Retail then
@@ -582,7 +582,7 @@ EltruismHideTalkingHead:RegisterEvent('ADDON_LOADED')
 function ElvUI_EltreumUI:EltruismHideTalkingHead()
 	if E.db.ElvUI_EltreumUI.skins.hidetalkinghead then
 		EltruismHideTalkingHead:SetScript('OnEvent', function(_, event)
-			if event == 'PLAYER_ENTERING_WORLD' or event == 'ADDON_LOADED' or IsAddOnLoaded("Blizzard_TalkingHeadUI") then
+			if event == 'PLAYER_ENTERING_WORLD' or event == 'ADDON_LOADED' or IsAddOnLoaded("Blizzard_TalkingHeadUI") then --TODO 10.2, might need C_AddOns.
 				if E.Retail then
 					local TalkingHeadFrame = _G.TalkingHeadFrame
 					if TalkingHeadFrame then

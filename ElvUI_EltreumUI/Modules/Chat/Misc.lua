@@ -4,7 +4,7 @@ local WT = E.Libs.AceAddon:GetAddon("ElvUI_WindTools", true)
 local CH = E:GetModule('Chat')
 local ChatFrame_AddMessageEventFilter = _G.ChatFrame_AddMessageEventFilter
 local ChatFrame_RemoveMessageEventFilter = _G.ChatFrame_RemoveMessageEventFilter
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 local hooksecurefunc = _G.hooksecurefunc
 local string = _G.string
 local PlaySoundFile = _G.PlaySoundFile
@@ -36,7 +36,7 @@ local leavestring
 local leavestring2
 
 local function ColorSysMsgs(_, _, message, ...)
-	if not IsAddOnLoaded("ElvUI_EltreumUI") then
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then --TODO 10.2, might need C_AddOns.
 		return
 	elseif not E.db.ElvUI_EltreumUI then
 		return
@@ -182,7 +182,7 @@ ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", ColorSysMsgs)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_INLINE_TOAST_ALERT", ColorSysMsgs)
 
 local function RoleIconMsg()
-	if not IsAddOnLoaded("ElvUI_EltreumUI") then
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then --TODO 10.2, might need C_AddOns.
 		return
 	elseif not E.db.ElvUI_EltreumUI then
 		return
@@ -303,7 +303,7 @@ ChatFrame_AddMessageEventFilter("PLAYER_ROLES_ASSIGNED", RoleIconMsg)
 --ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", ColorSysMsgs) --this is for testing purposes
 
 -- Replace Chat Icons (by abusing line reading order)
-if not IsAddOnLoaded("ElvUI_EltreumUI") then return end
+if not IsAddOnLoaded("ElvUI_EltreumUI") then return end --TODO 10.2, might need C_AddOns.
 if not E.private then return end
 if not E.private.ElvUI_EltreumUI then return end
 if not E.private.ElvUI_EltreumUI.install_version then return end
@@ -414,7 +414,7 @@ if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then
 		_G.INLINE_DAMAGER_ICON = CH.RoleIcons.DAMAGER
 	end
 
-	if IsAddOnLoaded("ElvUI_WindTools") then
+	if IsAddOnLoaded("ElvUI_WindTools") then --TODO 10.2, might need C_AddOns.
 		local CT = WT:GetModule("ChatText")
 		if E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == "ELTRUISM" or E.db.ElvUI_EltreumUI.otherstuff.roleiconstype == nil then
 			CH.RoleIcons = {

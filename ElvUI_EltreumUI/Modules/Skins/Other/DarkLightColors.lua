@@ -294,6 +294,39 @@ function ElvUI_EltreumUI:GradientMode()
 	if E.private.unitframe.enable then
 		if not E.db.movers then E.db.movers = {} end
 
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = false
+			ElvUI_EltreumUI:Print("Gradient Mode Disabled")
+		else
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = true
+			ElvUI_EltreumUI:Print("Gradient Mode Enabled")
+		end
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = false
+		else
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
+		end
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower then
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = false
+		else
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = true
+		end
+		if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
+			E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = false
+		else
+			E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = true
+		end
+		if E.db.ElvUI_EltreumUI.chat.chatgradient then
+			E.db.ElvUI_EltreumUI.chat.chatgradient = false
+		else
+			E.db.ElvUI_EltreumUI.chat.chatgradient = true
+		end
+		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = false
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayertarget = true
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits = true
+		E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
+
 		if E.db.ElvUI_EltreumUI.unitframes.darkmode then
 			E.db.ElvUI_EltreumUI.unitframes.lightmode = false
 			E.db.ElvUI_EltreumUI.unitframes.darkmode = true
@@ -338,34 +371,66 @@ function ElvUI_EltreumUI:GradientMode()
 			E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.3
 
 			--setup namecolors
-			if E.db["unitframe"]["units"]["pet"]["customTexts"] and E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
-				if E.Classic or E.Wrath then
-					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name:eltruism:gradient][happiness:discord]"
-				elseif E.Retail then
-					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name:eltruism:gradient]"
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+				if E.db["unitframe"]["units"]["pet"]["customTexts"] and E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
+					if E.Classic or E.Wrath then
+						E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name:eltruism:gradient][happiness:discord]"
+					elseif E.Retail then
+						E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name:eltruism:gradient]"
+					end
 				end
-			end
-			if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] then
-				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name:eltruism:gradient] [eltruism:class:player] [eltruism:raidmarker]"
-			end
-			if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
-				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
-			end
-			if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] then
-				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [eltruism:difficulty][name:eltruism:gradientshort]"
-			end
-			if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] then
-				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
-			end
-			if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] then
-				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:eltruism:gradientshort]"
-			end
-			if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] then
-				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
-			end
-			E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:eltruism:gradient]"
-			if not E.Classic then
-				E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:eltruism:gradientshort] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+				if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] then
+					E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[name:eltruism:gradient] [eltruism:class:player] [eltruism:raidmarker]"
+				end
+				if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
+					E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
+				end
+				if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] then
+					E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [eltruism:difficulty][name:eltruism:gradientshort]"
+				end
+				if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] then
+					E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
+				end
+				if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] then
+					E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[name:eltruism:gradientshort]"
+				end
+				if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] then
+					E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
+				end
+				E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:eltruism:gradient]"
+				if not E.Classic then
+					E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:eltruism:gradientshort] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+				end
+			else
+				if E.db["unitframe"]["units"]["pet"]["customTexts"] and E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
+					if E.Classic or E.Wrath then
+						E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name][happiness:discord]"
+					elseif E.Retail then
+						E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name]"
+					end
+				end
+				if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] then
+					E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:class:player] [eltruism:raidmarker]"
+				end
+				if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
+					E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
+				end
+				if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] then
+					E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:class:player] [eltruism:difficulty][namecolor][name:eltruism:abbreviate]"
+				end
+				if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] then
+					E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
+				end
+				if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] then
+					E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
+				end
+				if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] then
+					E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["text_format"] = "[powercolor][power:current:shortvalue]"
+				end
+				E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
+				if not E.Classic then
+					E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[namecolor][name:eltruism:abbreviate] [eltruism:IconOutline:player] [eltruism:raidmarker]"
+				end
 			end
 		elseif E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			E.db.ElvUI_EltreumUI.unitframes.lightmode = true
@@ -442,35 +507,45 @@ function ElvUI_EltreumUI:GradientMode()
 		end
 		E.db["unitframe"]["units"]["pet"]["health"]["colorPetByUnitClass"] = false
 
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = true
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = true
-		E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = true
-		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = false
-		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayertarget = true
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits = true
-		E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
-		E.db.ElvUI_EltreumUI.chat.chatgradient = true
-
 		if E.private.nameplates.enable then
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["format"] = "[name:eltruism:gradient][eltruismrealm:dash]"
-			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["format"] = "[eltruismguild:brackets]"
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["format"] = "[name:eltruism:gradient][eltruismrealm:dash]"
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["format"] = "[eltruismguild:brackets]"
 
-			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["format"] = "[name:eltruism:gradient]"
-			E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["format"] = "[eltruismnpctitle:brackets]"
+				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["format"] = "[name:eltruism:gradient]"
+				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["format"] = "[eltruismnpctitle:brackets]"
 
-			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["format"] = "[eltruismname:title][eltruismrealm:dash]"
-			E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[eltruismguild:brackets]"
+				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["format"] = "[eltruismname:title][eltruismrealm:dash]"
+				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[eltruismguild:brackets]"
 
-			if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
-				E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["name"] = "[name:eltruism:gradient]"
-				E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["title"] = "[eltruismnpctitle:brackets]"
-			end
+				if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
+					E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["name"] = "[name:eltruism:gradient]"
+					E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["title"] = "[eltruismnpctitle:brackets]"
+				end
 
-			if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
-				E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["name"] = "[eltruismname:title][eltruismrealm:dash]"
-				E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["title"] = "[eltruismnpctitle:brackets][eltruismguild:brackets]"
+				if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
+					E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["name"] = "[eltruismname:title][eltruismrealm:dash]"
+					E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["title"] = "[eltruismnpctitle:brackets][eltruismguild:brackets]"
+				end
+			else
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["name"]["format"] = "[namecolor][name][realm:dash]"
+				E.db["nameplates"]["units"]["ENEMY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
+
+				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["name"]["format"] = "[namecolor][name]"
+				E.db["nameplates"]["units"]["FRIENDLY_NPC"]["title"]["format"] = "[namecolor][npctitle:brackets]"
+
+				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["name"]["format"] = "[namecolor][name:title][realm:dash]"
+				E.db["nameplates"]["units"]["FRIENDLY_PLAYER"]["title"]["format"] = "[namecolor][guild:brackets]"
+
+				if E.global.nameplates.filters.EltreumHideNP and E.db["nameplates"]["filters"]["EltreumHideNP"] then
+					E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["name"] = "[namecolor][name]"
+					E.global["nameplates"]["filters"]["EltreumHideNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets]"
+				end
+
+				if E.global.nameplates.filters.EltreumRestedNP and E.db["nameplates"]["filters"]["EltreumRestedNP"] then
+					E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["name"] = "[namecolor][name:title][realm:dash]"
+					E.global["nameplates"]["filters"]["EltreumRestedNP"]["actions"]["tags"]["title"] = "[namecolor][npctitle:brackets][guild:brackets]"
+				end
 			end
 		end
 
@@ -478,12 +553,12 @@ function ElvUI_EltreumUI:GradientMode()
 		E:UpdateUnitFrames()
 
 		--show the chat buttons because they are attached to the chat datatext not panel
-		_G.LeftChatToggleButton:SetAlpha(1)
-		_G.LeftChatToggleButton:Show()
-		_G.RightChatToggleButton:SetAlpha(1)
-		_G.RightChatToggleButton:Show()
-
-		ElvUI_EltreumUI:Print("Gradient Mode Enabled")
+		if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then
+			_G.LeftChatToggleButton:SetAlpha(1)
+			_G.LeftChatToggleButton:Show()
+			_G.RightChatToggleButton:SetAlpha(1)
+			_G.RightChatToggleButton:Show()
+		end
 	end
 end
 

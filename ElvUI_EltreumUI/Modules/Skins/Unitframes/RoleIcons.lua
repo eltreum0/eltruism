@@ -2,7 +2,7 @@ local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local _G = _G
 local unpack = _G.unpack
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 
 --Unitframe Role Icons
 function ElvUI_EltreumUI:UnitframeRoleIcons()
@@ -74,7 +74,7 @@ function ElvUI_EltreumUI:UnitframeRoleIcons()
 				DAMAGER = 'Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Emoji\\DPS.tga',
 			}
 		end
-		if IsAddOnLoaded("ElvUI_SLE") then
+		if IsAddOnLoaded("ElvUI_SLE") then --TODO 10.2, might need C_AddOns.
 			local SLE = unpack(ElvUI_SLE)
 			SLE.rolePaths["Eltruism"] = {
 				TANK = "Interface\\addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield.tga",

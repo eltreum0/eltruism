@@ -1,9 +1,9 @@
 local E = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 
 function ElvUI_EltreumUI:SetupFontsOutlineDefault()
-	if IsAddOnLoaded("ElvUI_SLE") then
+	if IsAddOnLoaded("ElvUI_SLE") then --TODO 10.2, might need C_AddOns.
 		E.db["sle"]["armory"]["stats"]["statLabels"]["outline"] = "THICKOUTLINE"
 		E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = "THICKOUTLINE"
 		E.db["sle"]["armory"]["stats"]["statHeaders"]["outline"] = "THICKOUTLINE"
@@ -20,7 +20,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 		E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = "THICKOUTLINE"
 		E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = "THICKOUTLINE"
 	end
-	if IsAddOnLoaded("ElvUI_WindTools") then
+	if IsAddOnLoaded("ElvUI_WindTools") then --TODO 10.2, might need C_AddOns.
 		E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = "OUTLINE"
 		E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = "OUTLINE"
 		E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = "OUTLINE"
@@ -33,7 +33,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	E.db["databars"]["azerite"]["fontOutline"] = "THICKOUTLINE"
 	E.db["actionbar"]["extraActionButton"]["hotkeyFontOutline"] = "THICKOUTLINE"
 	E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontStyle"] = "THICKOUTLINE"
-	if IsAddOnLoaded('ProjectAzilroka') then
+	if IsAddOnLoaded('ProjectAzilroka') then --TODO 10.2, might need C_AddOns.
 		_G.ProjectAzilroka.db["stAddonManager"]["FontFlag"] = "THICKOUTLINE"
 	end
 	E.db["general"]["fontStyle"] = "OUTLINE"

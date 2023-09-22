@@ -327,7 +327,7 @@ end)
 local macroframe = CreateFrame("FRAME")
 macroframe:RegisterEvent("ADDON_LOADED")
 macroframe:SetScript("OnEvent",function(_,_,arg)
-	if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
+	if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then --TODO 10.2, might need C_AddOns.
 		macroframe:UnregisterAllEvents()
 		if _G["MacroFrame"] then
 			for _, button in next, {
