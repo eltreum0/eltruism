@@ -105,6 +105,7 @@ P.ElvUI_EltreumUI = {
 		classiconsreleaf = false,
 		classicarmory = false,
 		classicarmoryautostats = false,
+		classicarmoryeltruismstats = true,
 		charactermodelcam = {
 			zoomretail = -0.2,
 			xretail = 0.8,
