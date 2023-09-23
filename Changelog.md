@@ -1,6 +1,14 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 3.9.9.1
+Added an option to disable Other Stats in the Character Panel  
+Updated Backdrop Alpha to allow backdrop transparency when Health isn't transparent  
+Updated the Gradient Mode toggle  
+Fixed a double Shadow on Target Unitframe when power was Detached  
+Fixed some possible errors with Unitframes  
+Fixed Custom Textures in Dark Mode  
+Fixed Dark Mode Backdrop Texture
 ### 3.9.9
 Added Details nickname tags, [eltruism:detailsnickname] and [eltruism:detailsnickname:gradient] which will show the nickname set in Details instead of the unit name  
 Added minimize and maximize buttons to Classic Era Objective Frame  
