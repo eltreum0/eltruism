@@ -1467,3 +1467,5 @@ L["Gradient Backdrop Fade"] = "Desbotamento do fundo em gradiente"
 L["Change how much the Gradient Backdrop will Fade"] = "Altere a intensidade da cor fundo em gradiente"
 L["Skin Blizzard Raid Frames"] = "Modificar Quadros de Raide da Blizzard"
 L["Adds Gradient, Custom Textures, Shadows, Font and Role Icons to Blizzard Raid Frames"] = "Adiciona gradiente, texturas personalizadas, sombras, fontes e ícones de função aos quadros de raide da Blizzard"
+L["Add Other Stats"] = true
+L["Display stats such as Speed and Mana Regen"] = true

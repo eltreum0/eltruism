@@ -1519,3 +1519,5 @@ L["Gradient Backdrop Fade"] = "Verblassen Hintergrund Farbverlauf"
 L["Change how much the Gradient Backdrop will Fade"] = "Ändere, wie stark der Hintergrund mit Farbverlauf verblasst."
 L["Skin Blizzard Raid Frames"] = "Skinne Blizzard Schlachtzugsfenster"
 L["Adds Gradient, Custom Textures, Shadows, Font and Role Icons to Blizzard Raid Frames"] = "Fügt Farbverläufe, benutzerdefinierte Texturen, Schatten, Schriftarten und Rollensymbole zu Blizzard Schlachtzugsfenster hinzu."
+L["Add Other Stats"] = true
+L["Display stats such as Speed and Mana Regen"] = true

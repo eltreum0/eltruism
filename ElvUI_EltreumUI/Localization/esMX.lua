@@ -1493,3 +1493,5 @@ L["Gradient Backdrop Fade"] = "Desvanecimiento del fondo degradado"
 L["Change how much the Gradient Backdrop will Fade"] = "Cambia el grado de desvanecimiento del fondo degradado"
 L["Skin Blizzard Raid Frames"] = "Skin Marcos de incursión de BLIZZARD"
 L["Adds Gradient, Custom Textures, Shadows, Font and Role Icons to Blizzard Raid Frames"] = "Añade degradado, texturas personalizadas, sombras, fuentes e iconos de rol a los marcos de incursión de Blizzard"
+L["Add Other Stats"] = true
+L["Display stats such as Speed and Mana Regen"] = true
