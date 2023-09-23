@@ -29,7 +29,6 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 					if frame:GetParent() and frame:GetParent():GetObjectType() == "Button" and not E.db.ElvUI_EltreumUI.skins.elvui.button then return end
 
 					--if frame.showDispellableDebuff then return end --fix RaidDebufs
-
 					if template ~= "NoBackdrop" then
 						if not frame.EltruismBackground then
 							frame.eltruismbgtexture = frame:CreateTexture(nil, "BORDER")
@@ -130,41 +129,13 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 							frame.eltruismbordertest:Show()
 						end]]
 
-						--[[if frame:GetObjectType() == "Button" and not frame.EltruismAnimation and frame.Center then
-							local r,g,b,a = frame.Center:GetVertexColor()
-							frame:HookScript("OnEnter", function()
-								frame.Center:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,1)
-							end)
-							frame:HookScript("OnLeave", function()
-								frame.Center:SetVertexColor(r,g,b,a)
-							end)
-							frame.EltruismAnimation = true
-						end]]
-
-						--[[if not isUnitFrameElement and not isNamePlateElement and frame:GetObjectType() == "Button" and not frame.Bags and not frame.Cooldown and not frame.EltruismAnimation then
-							frame.EltruismAnimation = frame:CreateTexture(nil, "BACKGROUND", nil, 1)
-							frame.EltruismAnimation:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.ace3.texture))
-							frame.EltruismAnimation:SetVertexColor(E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.r, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.g, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.b, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.a)
-							if frame.backdrop then
-								frame.EltruismAnimation:SetInside(frame.backdrop)
-							else
-								frame.EltruismAnimation:SetInside(frame)
-							end
-							frame.EltruismAnimation:SetBlendMode("BLEND")
-							frame.EltruismAnimation:SetAlpha(0)
-
-							frame:HookScript("OnEnter", function()
-								if frame.highlight and frame.highlight:IsVisible() then return end
-								UIFrameFadeIn(frame.EltruismAnimation, 0.3, 0, 1)
-								if frame.SetBackdropBorderColor then
-									frame:SetBackdropBorderColor(0, 0, 0, 0)
-									frame.SetBackdropBorderColor = E.noop
-								end
-							end)
-							frame:HookScript("OnLeave", function()
-								if frame.highlight and frame.highlight:IsVisible() then return end
-								UIFrameFadeOut(frame.EltruismAnimation, 0.3, 1, 0)
-							end)
+						--[[if frame.Text then
+							frame.Text:SetShadowColor(0, 1, 0, 0.8)
+							frame.Text:SetShadowOffset(2, -2)
+						end
+						if frame.text then
+							frame.text:SetShadowColor(1, 0, 0, 0.8)
+							frame.text:SetShadowOffset(2, -2)
 						end]]
 					else
 						if frame.eltruismbgtexture then
