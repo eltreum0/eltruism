@@ -61,6 +61,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbar = true
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarinterrupted = true
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.enabletargetcastbarnoninterruptible = true
+	E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits = true
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorplayercastbar = true
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar = true
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation = "VERTICAL"

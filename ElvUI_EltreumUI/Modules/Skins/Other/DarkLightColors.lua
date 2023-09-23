@@ -296,45 +296,26 @@ function ElvUI_EltreumUI:GradientMode()
 
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = false
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = false
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = false
+			E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = false
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = false
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop = false
+			E.db.ElvUI_EltreumUI.chat.chatgradient = false
 			ElvUI_EltreumUI:Print("Gradient Mode Disabled")
+			E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = true
 		else
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = true
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = true
+			E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = true
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = true
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop = true
+			E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = false
+			E.db.ElvUI_EltreumUI.chat.chatgradient = true
 			ElvUI_EltreumUI:Print("Gradient Mode Enabled")
 		end
-		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = false
-		else
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
-		end
-		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower then
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = false
-		else
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = true
-		end
-		if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-			E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = false
-		else
-			E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = true
-		end
-		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars then
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = false
-		else
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = true
-		end
-		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop = false
-		else
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop = true
-		end
-		if E.db.ElvUI_EltreumUI.chat.chatgradient then
-			E.db.ElvUI_EltreumUI.chat.chatgradient = false
-		else
-			E.db.ElvUI_EltreumUI.chat.chatgradient = true
-		end
-		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = false
-		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayertarget = true
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits = true
+
 		E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
 
 		if E.db.ElvUI_EltreumUI.unitframes.darkmode then
