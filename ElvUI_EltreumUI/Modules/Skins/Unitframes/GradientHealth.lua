@@ -700,7 +700,9 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 	if buttonclass and button.Health then
 		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			button.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-			button.Health.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+			if button.Health.backdropTex then
+				button.Health.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+			end
 			if E.db.unitframe.colors.transparentHealth then
 				button.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 			end
