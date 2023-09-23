@@ -316,6 +316,16 @@ function ElvUI_EltreumUI:GradientMode()
 		else
 			E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = true
 		end
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars then
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = false
+		else
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = true
+		end
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop = false
+		else
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop = true
+		end
 		if E.db.ElvUI_EltreumUI.chat.chatgradient then
 			E.db.ElvUI_EltreumUI.chat.chatgradient = false
 		else
