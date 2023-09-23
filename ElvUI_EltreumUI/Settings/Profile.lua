@@ -1036,6 +1036,7 @@ P.ElvUI_EltreumUI = {
 			classcolortargetcastbar = false,
 
 			enableaurabars = false,
+			enablebackdrop = false,
 
 			gradientXP = false,
 			gradientXPcolors ={
@@ -1072,7 +1073,6 @@ P.ElvUI_EltreumUI = {
 			enableboss = true,
 			enablearena = true,
 			enablegroupunits = true,
-			enablebackdrop = true,
 			usedeadbackdrop = false,
 			classcolorbackdrop = false,
 
