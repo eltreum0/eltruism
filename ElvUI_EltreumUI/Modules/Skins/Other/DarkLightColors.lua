@@ -199,7 +199,7 @@ function ElvUI_EltreumUI:LightMode()
 		E.db["unitframe"]["units"]["boss"]["colorOverride"] = "USE_DEFAULT"
 		E.db["unitframe"]["colors"]["transparentAurabars"] = true
 		E.db["unitframe"]["colors"]["transparentCastbar"] = true
-		E.db["unitframe"]["colors"]["transparentHealth"] = true
+		E.db["unitframe"]["colors"]["transparentHealth"] = false
 		E.db["unitframe"]["colors"]["transparentPower"] = false
 		E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.6
 		E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.6
