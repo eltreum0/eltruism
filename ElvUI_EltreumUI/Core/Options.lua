@@ -1069,6 +1069,7 @@ function ElvUI_EltreumUI:Configtable()
 			return 'https://www.tukui.org/classic-addons.php?id=49'
 		end
 	end)]]
+	ElvUI_EltreumUI.Options.args.support.args.site = ACH:Input(ElvUI_EltreumUI.Name, "", 9, false, "full", function() return 'https://eltruism.com/' end)
 	ElvUI_EltreumUI.Options.args.support.args.curse = ACH:Input(L["Addon on CurseForge:"], "", 10, false, "full", function() return 'https://www.curseforge.com/wow/addons/elvui-eltruism' end)
 	ElvUI_EltreumUI.Options.args.support.args.wago = ACH:Input(L["Addon on Wago:"], "", 10, false, "full", function() return 'https://addons.wago.io/addons/elvui-eltruism' end)
 
