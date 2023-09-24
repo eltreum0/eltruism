@@ -165,7 +165,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["skins"]["widgets"]["checkBox"]["enable"] = true
 		E.private["WT"]["skins"]["widgets"]["checkBox"]["classColor"] = true
 		E.private["WT"]["skins"]["widgets"]["checkBox"]["texture"] = "ElvUI Norm1"
-		E.private["WT"]["skins"]["widgets"]["slider"]["enable"] = true
+		E.private["WT"]["skins"]["widgets"]["slider"]["enable"] = false
 		E.private["WT"]["skins"]["widgets"]["slider"]["classColor"] = true
 		E.private["WT"]["skins"]["widgets"]["slider"]["texture"] = "ElvUI Norm1"
 		E.private["WT"]["skins"]["widgets"]["tab"]["enable"] = false

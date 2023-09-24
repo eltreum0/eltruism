@@ -1462,3 +1462,5 @@ L["Gradient Backdrop Fade"] = true
 L["Change how much the Gradient Backdrop will Fade"] = true
 L["Skin Blizzard Raid Frames"] = true
 L["Adds Gradient, Custom Textures, Shadows, Font and Role Icons to Blizzard Raid Frames"] = true
+L["Add Other Stats"] = true
+L["Display stats such as Speed and Mana Regen"] = true

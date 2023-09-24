@@ -199,7 +199,7 @@ function ElvUI_EltreumUI:LightMode()
 		E.db["unitframe"]["units"]["boss"]["colorOverride"] = "USE_DEFAULT"
 		E.db["unitframe"]["colors"]["transparentAurabars"] = true
 		E.db["unitframe"]["colors"]["transparentCastbar"] = true
-		E.db["unitframe"]["colors"]["transparentHealth"] = true
+		E.db["unitframe"]["colors"]["transparentHealth"] = false
 		E.db["unitframe"]["colors"]["transparentPower"] = false
 		E.db["unitframe"]["units"]["player"]["portrait"]["overlayAlpha"] = 0.6
 		E.db["unitframe"]["units"]["target"]["portrait"]["overlayAlpha"] = 0.6
@@ -296,35 +296,26 @@ function ElvUI_EltreumUI:GradientMode()
 
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = false
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = false
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = false
+			E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = false
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = false
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop = false
+			E.db.ElvUI_EltreumUI.chat.chatgradient = false
 			ElvUI_EltreumUI:Print("Gradient Mode Disabled")
+			E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = true
 		else
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = true
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = true
+			E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = true
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = true
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop = true
+			E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = false
+			E.db.ElvUI_EltreumUI.chat.chatgradient = true
 			ElvUI_EltreumUI:Print("Gradient Mode Enabled")
 		end
-		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = false
-		else
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
-		end
-		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower then
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = false
-		else
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = true
-		end
-		if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
-			E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = false
-		else
-			E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = true
-		end
-		if E.db.ElvUI_EltreumUI.chat.chatgradient then
-			E.db.ElvUI_EltreumUI.chat.chatgradient = false
-		else
-			E.db.ElvUI_EltreumUI.chat.chatgradient = true
-		end
-		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = false
-		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable = false
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableplayertarget = true
-		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits = true
+
 		E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
 
 		if E.db.ElvUI_EltreumUI.unitframes.darkmode then
@@ -581,45 +572,5 @@ function ElvUI_EltreumUI:ShamanTextureMode()
 			hooksecurefunc(UF, 'Construct_Totems', TotemBackground)
 			TotemBackground()
 		end
-	end
-end
-
---a more grey and less dark background
-function ElvUI_EltreumUI:GreyBg()
-	E.db["general"]["backdropcolor"]["b"] = 0.098039215686275
-	E.db["general"]["backdropcolor"]["g"] = 0.098039215686275
-	E.db["general"]["backdropcolor"]["r"] = 0.098039215686275
-	E.db["general"]["backdropfadecolor"]["a"] = 0.80000001192093
-	E.db["general"]["backdropfadecolor"]["b"] = 0.13725490196078
-	E.db["general"]["backdropfadecolor"]["g"] = 0.13725490196078
-	E.db["general"]["backdropfadecolor"]["r"] = 0.13725490196078
-
-	E.db.ElvUI_EltreumUI.unitframes.greybackground = true
-	E:UpdateMediaItems()
-	ElvUI_EltreumUI:Print("ElvUI set to Grey Background")
-end
-
---the traditional black/dark background
-function ElvUI_EltreumUI:BlackBg()
-	E.db["general"]["backdropcolor"]["b"] = 0.098039215686275
-	E.db["general"]["backdropcolor"]["g"] = 0.098039215686275
-	E.db["general"]["backdropcolor"]["r"] = 0.098039215686275
-	E.db["general"]["backdropfadecolor"]["a"] = 0.70000001788139
-	E.db["general"]["backdropfadecolor"]["b"] = 0
-	E.db["general"]["backdropfadecolor"]["g"] = 0
-	E.db["general"]["backdropfadecolor"]["r"] = 0
-
-	E.db.ElvUI_EltreumUI.unitframes.greybackground = false
-	E:UpdateMediaItems()
-	ElvUI_EltreumUI:Print("ElvUI set to Black Background")
-end
-
-function ElvUI_EltreumUI:CheckBackground()
-	if not E.db.ElvUI_EltreumUI.unitframes.greybackground then
-		ElvUI_EltreumUI:GreyBg()
-	elseif E.db.ElvUI_EltreumUI.unitframes.greybackground then
-		ElvUI_EltreumUI:BlackBg()
-	else
-		ElvUI_EltreumUI:GreyBg()
 	end
 end

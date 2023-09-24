@@ -1540,7 +1540,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 					local consumable = enchantInfo:getConsumableItem()
 					local formula = enchantInfo:getFormulaItem()
 					local receipe = enchantInfo:getReceipeSpell()
-					local texture = consumable and consumable:getTextureName() or formula and formula:getTextureName() or receipe and receipe:getTextureName() or "INTERFACE/ICONS/INV_Misc_QuestionMark"
+					local texture = consumable and consumable:getTextureName() or formula and formula:getTextureName() or receipe and receipe:getTextureName() or 134400--"INTERFACE/ICONS/INV_Misc_QuestionMark"
 					if consumable then
 						tooltip:AddHyperlink(consumable:getLink())
 					elseif formula then

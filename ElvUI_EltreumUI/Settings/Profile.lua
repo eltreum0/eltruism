@@ -105,6 +105,7 @@ P.ElvUI_EltreumUI = {
 		classiconsreleaf = false,
 		classicarmory = false,
 		classicarmoryautostats = false,
+		classicarmoryeltruismstats = true,
 		charactermodelcam = {
 			zoomretail = -0.2,
 			xretail = 0.8,
@@ -1035,6 +1036,7 @@ P.ElvUI_EltreumUI = {
 			classcolortargetcastbar = false,
 
 			enableaurabars = false,
+			enablebackdrop = false,
 
 			gradientXP = false,
 			gradientXPcolors ={
@@ -1071,7 +1073,6 @@ P.ElvUI_EltreumUI = {
 			enableboss = true,
 			enablearena = true,
 			enablegroupunits = true,
-			enablebackdrop = true,
 			usedeadbackdrop = false,
 			classcolorbackdrop = false,
 

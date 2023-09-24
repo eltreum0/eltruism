@@ -440,18 +440,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option2:Enable()
 			_G.PluginInstallFrame.Option2:Show()
 			_G.PluginInstallFrame.Option2:SetScript('OnClick', function()
-				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-					E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = false
-					E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = false
-					E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = false
-					E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = true
-					E:UpdateMediaItems()
-					E:UpdateUnitFrames()
-
-					ElvUI_EltreumUI:Print("Gradient Mode Disabled")
-				else
-					ElvUI_EltreumUI:GradientMode()
-				end
+				ElvUI_EltreumUI:GradientMode()
 			end)
 			_G.PluginInstallFrame.Option2:SetText(L["Gradient Mode"])
 			_G.PluginInstallFrame.Option2:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gradient","ENTERING") end)

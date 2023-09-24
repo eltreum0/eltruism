@@ -19,7 +19,9 @@ local function SkinAuctionator()
 		--shopping
 		S:HandleFrame(_G["AuctionatorShoppingFrame"])
 		_G["AuctionatorShoppingFrame"]:SetBackdrop()
-		_G["AuctionatorShoppingFrame"].eltruismbgtexture:Hide()
+		if _G["AuctionatorShoppingFrame"].eltruismbgtexture then
+			_G["AuctionatorShoppingFrame"].eltruismbgtexture:Hide()
+		end
 		S:HandleFrame(_G["AuctionatorShoppingFrame"].ShoppingResultsInset)
 		if not E.Retail then
 			_G["AuctionatorShoppingFrame"].ShoppingResultsInset:SetBackdrop()
@@ -31,18 +33,26 @@ local function SkinAuctionator()
 			end
 		else
 			_G["AuctionatorShoppingFrame"].ShoppingResultsInset:CreateBackdrop()
-			_G["AuctionatorShoppingFrame"].ShoppingResultsInset.eltruismbgtexture:Hide()
+			if _G["AuctionatorShoppingFrame"].ShoppingResultsInset.eltruismbgtexture then
+				_G["AuctionatorShoppingFrame"].ShoppingResultsInset.eltruismbgtexture:Hide()
+			end
 		end
 		S:HandleFrame(_G["AuctionatorShoppingFrame"].SearchOptions)
 		_G["AuctionatorShoppingFrame"].SearchOptions:SetBackdrop()
-		_G["AuctionatorShoppingFrame"].SearchOptions.eltruismbgtexture:Hide()
+		if _G["AuctionatorShoppingFrame"].SearchOptions.eltruismbgtexture then
+			_G["AuctionatorShoppingFrame"].SearchOptions.eltruismbgtexture:Hide()
+		end
 		S:HandleFrame(_G["AuctionatorShoppingFrame"].ResultsListing)
 		_G["AuctionatorShoppingFrame"].ResultsListing:SetBackdrop()
-		_G["AuctionatorShoppingFrame"].ResultsListing.eltruismbgtexture:Hide()
+		if _G["AuctionatorShoppingFrame"].ResultsListing.eltruismbgtexture then
+			_G["AuctionatorShoppingFrame"].ResultsListing.eltruismbgtexture:Hide()
+		end
 		_G["AuctionatorShoppingFrame"].RecentsContainer.Inset:Hide()
 		S:HandleFrame(_G["AuctionatorShoppingFrame"].ListsContainer)
 		_G["AuctionatorShoppingFrame"].ListsContainer:SetBackdrop()
-		_G["AuctionatorShoppingFrame"].ListsContainer.eltruismbgtexture:Hide()
+		if _G["AuctionatorShoppingFrame"].ListsContainer.eltruismbgtexture then
+			_G["AuctionatorShoppingFrame"].ListsContainer.eltruismbgtexture:Hide()
+		end
 		if not E.Retail then
 			_G["AuctionatorShoppingFrame"].ListsContainer.Inset:Hide()
 			_G["AuctionatorShoppingFrame"].ListsContainer:CreateBackdrop()
@@ -58,9 +68,30 @@ local function SkinAuctionator()
 		S:HandleButton(_G["AuctionatorShoppingFrame"].SearchOptions.SearchButton)
 		S:HandleButton(_G["AuctionatorShoppingFrame"].SearchOptions.MoreButton)
 		S:HandleButton(_G["AuctionatorShoppingFrame"].SearchOptions.AddToListButton)
+		S:HandleFrame(_G["AuctionatorImportListFrame"])
+		S:HandleCloseButton(_G["AuctionatorImportListFrame"].CloseDialog)
+		S:HandleButton(_G["AuctionatorImportListFrame"].Import)
+		S:HandleTrimScrollBar(_G["AuctionatorImportListFrame"].ScrollBar)
+		_G["AuctionatorImportListFrame"].Inset:Hide()
+		S:HandleFrame(_G["AuctionatorExportListFrame"])
+		S:HandleCloseButton(_G["AuctionatorExportListFrame"].CloseDialog)
+		S:HandleButton(_G["AuctionatorExportListFrame"].Export)
+		S:HandleButton(_G["AuctionatorExportListFrame"].UnselectAll)
+		S:HandleButton(_G["AuctionatorExportListFrame"].SelectAll)
+		S:HandleTrimScrollBar(_G["AuctionatorExportListFrame"].ScrollBar)
+		_G["AuctionatorExportListFrame"].Inset:Hide()
 		--S:HandleCloseButton(_G["AuctionatorShoppingFrame"].SearchOptions.ResetSearchStringButton) --makes button too small and theres too many of them
-		S:HandleButton(_G["AuctionatorShoppingFrame"].ContainerTabs.ListsTab)
-		S:HandleButton(_G["AuctionatorShoppingFrame"].ContainerTabs.RecentsTab)
+		S:HandleTab(_G["AuctionatorShoppingFrame"].ContainerTabs.ListsTab)
+		_G["AuctionatorShoppingFrame"].ContainerTabs.ListsTab:SetHeight(25)
+		_G["AuctionatorShoppingFrame"].ContainerTabs.ListsTab.Text:ClearAllPoints()
+		_G["AuctionatorShoppingFrame"].ContainerTabs.ListsTab.Text:SetPoint("CENTER",_G["AuctionatorShoppingFrame"].ContainerTabs.ListsTab)
+		_G["AuctionatorShoppingFrame"].ContainerTabs.ListsTab.Text.SetPoint = E.noop
+		S:HandleTab(_G["AuctionatorShoppingFrame"].ContainerTabs.RecentsTab)
+		_G["AuctionatorShoppingFrame"].ContainerTabs.RecentsTab:SetHeight(25)
+		_G["AuctionatorShoppingFrame"].ContainerTabs.RecentsTab.Text:ClearAllPoints()
+		_G["AuctionatorShoppingFrame"].ContainerTabs.RecentsTab.Text:SetPoint("CENTER",_G["AuctionatorShoppingFrame"].ContainerTabs.RecentsTab)
+		_G["AuctionatorShoppingFrame"].ContainerTabs.RecentsTab.Text.SetPoint = E.noop
+
 		S:HandleEditBox(_G["AuctionatorShoppingFrame"].SearchOptions.SearchString)
 		S:HandleTrimScrollBar(_G["AuctionatorShoppingFrame"].ResultsListing.ScrollArea.ScrollBar)
 		S:HandleTrimScrollBar(_G["AuctionatorShoppingFrame"].RecentsContainer.ScrollBar)
@@ -93,32 +124,50 @@ local function SkinAuctionator()
 		--selling
 		S:HandleFrame(_G["AuctionatorSellingFrame"])
 		_G["AuctionatorSellingFrame"]:SetBackdrop()
-		_G["AuctionatorSellingFrame"].eltruismbgtexture:Hide()
+		if _G["AuctionatorSellingFrame"].eltruismbgtexture:Hide() then
+			_G["AuctionatorSellingFrame"].eltruismbgtexture:Hide()
+		end
 		S:HandleFrame(_G["AuctionatorSellingFrame"].BagListing)
 		_G["AuctionatorSellingFrame"].BagListing:SetBackdrop()
-		_G["AuctionatorSellingFrame"].BagListing.eltruismbgtexture:Hide()
+		if _G["AuctionatorSellingFrame"].BagListing.eltruismbgtexture:Hide() then
+			_G["AuctionatorSellingFrame"].BagListing.eltruismbgtexture:Hide()
+		end
 		_G["AuctionatorSellingFrame"].BagListing:CreateBackdrop()
 		_G["AuctionatorSellingFrame"].BagListing.ScrollBox:SetTemplate()
 		_G["AuctionatorSellingFrame"].BagListing.ScrollBox:SetBackdrop()
-		_G["AuctionatorSellingFrame"].BagListing.ScrollBox.eltruismbgtexture:Hide()
+		if _G["AuctionatorSellingFrame"].BagListing.ScrollBox.eltruismbgtexture then
+			_G["AuctionatorSellingFrame"].BagListing.ScrollBox.eltruismbgtexture:Hide()
+		end
 		S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].BagListing.ScrollBar)
 		if _G["AuctionatorBuyFrame"] then
 			if _G["AuctionatorBuyFrame"].CurrentPrices then
 				S:HandleTrimScrollBar(_G["AuctionatorBuyFrame"].CurrentPrices.SearchResultsListing.ScrollArea.ScrollBar)
+				S:HandleButton(_G["AuctionatorBuyFrame"].CurrentPrices.RefreshButton)
+				S:HandleButton(_G["AuctionatorBuyFrame"].CurrentPrices.BuyButton)
+				S:HandleButton(_G["AuctionatorBuyFrame"].CurrentPrices.CancelButton)
+				handlechildtab(_G["AuctionatorBuyFrame"].CurrentPrices.SearchResultsListing.HeaderContainer)
+				_G["AuctionatorBuyFrame"].CurrentPrices.Inset:Hide()
+				_G["AuctionatorBuyFrame"].CurrentPrices:CreateBackdrop()
 			end
 			S:HandleButton(_G["AuctionatorBuyFrame"].ReturnButton)
 			S:HandleButton(_G["AuctionatorBuyFrame"].HistoryButton)
-			S:HandleButton(_G["AuctionatorBuyFrame"].CurrentPrices.RefreshButton)
-			S:HandleButton(_G["AuctionatorBuyFrame"].CurrentPrices.BuyButton)
-			S:HandleButton(_G["AuctionatorBuyFrame"].CurrentPrices.CancelButton)
-			handlechildtab(_G["AuctionatorBuyFrame"].CurrentPrices.SearchResultsListing.HeaderContainer)
-			_G["AuctionatorBuyFrame"].CurrentPrices.Inset:Hide()
-			_G["AuctionatorBuyFrame"].CurrentPrices:CreateBackdrop()
+			if _G["AuctionatorBuyFrame"].HistoryPrices then
+				S:HandleButton(_G["AuctionatorBuyFrame"].HistoryPrices.RealmHistoryButton)
+				S:HandleButton(_G["AuctionatorBuyFrame"].HistoryPrices.PostingHistoryButton)
+				handlechildtab(_G["AuctionatorBuyFrame"].HistoryPrices.RealmHistoryResultsListing.HeaderContainer)
+				handlechildtab(_G["AuctionatorBuyFrame"].HistoryPrices.ResultsListing.HeaderContainer)
+				S:HandleTrimScrollBar(_G["AuctionatorBuyFrame"].HistoryPrices.RealmHistoryResultsListing.ScrollArea.ScrollBar)
+				S:HandleTrimScrollBar(_G["AuctionatorBuyFrame"].HistoryPrices.ResultsListing.ScrollArea.ScrollBar)
+				_G["AuctionatorBuyFrame"].HistoryPrices.Inset:Hide()
+				_G["AuctionatorBuyFrame"].HistoryPrices:CreateBackdrop()
+			end
 		end
 		if _G["AuctionatorSellingFrame"].CurrentPricesListing then
 			S:HandleFrame(_G["AuctionatorSellingFrame"].CurrentPricesListing.ScrollArea)
 			_G["AuctionatorSellingFrame"].CurrentPricesListing.ScrollArea:SetBackdrop()
-			_G["AuctionatorSellingFrame"].CurrentPricesListing.ScrollArea.eltruismbgtexture:Hide()
+			if _G["AuctionatorSellingFrame"].CurrentPricesListing.ScrollArea.eltruismbgtexture then
+				_G["AuctionatorSellingFrame"].CurrentPricesListing.ScrollArea.eltruismbgtexture:Hide()
+			end
 			_G["AuctionatorSellingFrame"].CurrentPricesListing.ScrollArea:CreateBackdrop()
 			S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].CurrentPricesListing.ScrollArea.ScrollBar)
 			handlechildtab(_G["AuctionatorSellingFrame"].CurrentPricesListing.HeaderContainer)
@@ -140,7 +189,20 @@ local function SkinAuctionator()
 			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Price.MoneyInput.GoldBox)
 			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Price.MoneyInput.SilverBox)
 		end
-		S:HandleButton(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon)
+
+		--also based on simpy's skin but different
+		if _G["AuctionatorSellingFrame"].AuctionatorSaleItem and not _G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop then
+			_G["AuctionatorSellingFrame"].AuctionatorSaleItem:CreateBackdrop()
+			_G["AuctionatorSellingFrame"].AuctionatorSaleItem:StyleButton()
+			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop:SetPoint("TOPLEFT",_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon,"TOPLEFT",-1,1)
+			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop:SetPoint("BOTTOMRIGHT",_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon,"BOTTOMRIGHT",1,-1)
+			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.Icon:SetTexCoord(unpack(E.TexCoords))
+			hooksecurefunc(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconBorder,"SetVertexColor", function(_,r,g,b)
+				_G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop:SetBackdropBorderColor(r, g, b, 1)
+				_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconBorder:SetAlpha(0)
+			end)
+		end
+
 		if _G["AuctionatorSellingFrame"].PricesTabsContainer then
 			S:HandleTab(_G["AuctionatorSellingFrame"].PricesTabsContainer.CurrentPricesTab)
 			S:HandleTab(_G["AuctionatorSellingFrame"].PricesTabsContainer.PriceHistoryTab)
@@ -186,6 +248,15 @@ local function SkinAuctionator()
 					v:Kill()
 				end
 			end
+
+			S:HandleFrame(_G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices)
+			S:HandleFrame(_G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices.ResultsListing)
+			_G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices.ResultsListing.Center:Hide()
+			if _G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices.ResultsListing.eltruismbgtexture then
+				_G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices.ResultsListing.eltruismbgtexture:Hide()
+			end
+			S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices.ResultsListing.ScrollArea.ScrollBar)
+			handlechildtab(_G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices.ResultsListing.HeaderContainer)
 		end
 
 		--buying
@@ -197,19 +268,39 @@ local function SkinAuctionator()
 			_G["AuctionatorBuyCommodityFrame"].Inset:Hide()
 			S:HandleFrame(_G["AuctionatorBuyCommodityFrame"].ResultsListing.ScrollArea)
 			_G["AuctionatorBuyCommodityFrame"].ResultsListing.ScrollArea:SetBackdrop()
-			_G["AuctionatorBuyCommodityFrame"].ResultsListing.ScrollArea.eltruismbgtexture:Hide()
+			if _G["AuctionatorBuyCommodityFrame"].ResultsListing.ScrollArea.eltruismbgtexture then
+				_G["AuctionatorBuyCommodityFrame"].ResultsListing.ScrollArea.eltruismbgtexture:Hide()
+			end
 			_G["AuctionatorBuyCommodityFrame"].ResultsListing.ScrollArea:CreateBackdrop()
 			handlechildtab(_G["AuctionatorBuyCommodityFrame"].ResultsListing.HeaderContainer)
+
+			S:HandleFrame(_G["AuctionatorBuyCommodityFrame"].FinalConfirmationDialog)
+			S:HandleButton(_G["AuctionatorBuyCommodityFrame"].FinalConfirmationDialog.AcceptButton)
+			S:HandleButton(_G["AuctionatorBuyCommodityFrame"].FinalConfirmationDialog.CancelButton)
+
+			--based on simpy's skin
+			if _G["AuctionatorBuyCommodityFrame"].IconAndName and not _G["AuctionatorBuyCommodityFrame"].IconAndName.backdrop then
+				_G["AuctionatorBuyCommodityFrame"].IconAndName:CreateBackdrop()
+				_G["AuctionatorBuyCommodityFrame"].IconAndName:StyleButton()
+				_G["AuctionatorBuyCommodityFrame"].IconAndName.backdrop:SetPoint("TOPLEFT",_G["AuctionatorBuyCommodityFrame"].IconAndName.Icon,"TOPLEFT",-1,1)
+				_G["AuctionatorBuyCommodityFrame"].IconAndName.backdrop:SetPoint("BOTTOMRIGHT",_G["AuctionatorBuyCommodityFrame"].IconAndName.Icon,"BOTTOMRIGHT",1,-1)
+				_G["AuctionatorBuyCommodityFrame"].IconAndName.Icon:SetTexCoord(unpack(E.TexCoords))
+				S:HandleIconBorder(_G["AuctionatorBuyCommodityFrame"].IconAndName.QualityBorder, _G["AuctionatorBuyCommodityFrame"].IconAndName.backdrop)
+			end
 		end
 
 		--cancelling
 		S:HandleFrame(_G["AuctionatorCancellingFrame"])
 		_G["AuctionatorCancellingFrame"]:SetBackdrop()
-		_G["AuctionatorCancellingFrame"].eltruismbgtexture:Hide()
+		if _G["AuctionatorCancellingFrame"].eltruismbgtexture then
+			_G["AuctionatorCancellingFrame"].eltruismbgtexture:Hide()
+		end
 		S:HandleEditBox(_G["AuctionatorCancellingFrame"].SearchFilter)
 		S:HandleFrame(_G["AuctionatorCancellingFrame"].ResultsListing)
 		_G["AuctionatorCancellingFrame"].ResultsListing:SetBackdrop()
-		_G["AuctionatorCancellingFrame"].ResultsListing.eltruismbgtexture:Hide()
+		if _G["AuctionatorCancellingFrame"].ResultsListing.eltruismbgtexture then
+			_G["AuctionatorCancellingFrame"].ResultsListing.eltruismbgtexture:Hide()
+		end
 		S:HandleTrimScrollBar(_G["AuctionatorCancellingFrame"].ResultsListing.ScrollArea.ScrollBar)
 		_G["AuctionatorCancellingFrame"].HistoricalPriceInset:Hide()
 		handlechildtab(_G["AuctionatorCancellingFrame"].ResultsListing.HeaderContainer)
@@ -224,11 +315,19 @@ local function SkinAuctionator()
 		--config
 		S:HandleFrame(_G["AuctionatorConfigFrame"])
 		_G["AuctionatorConfigFrame"]:SetBackdrop()
-		_G["AuctionatorConfigFrame"].eltruismbgtexture:Hide()
+		if _G["AuctionatorConfigFrame"].eltruismbgtexture then
+			_G["AuctionatorConfigFrame"].eltruismbgtexture:Hide()
+		end
 		S:HandleEditBox(_G["AuctionatorConfigFrame"].DiscordLink.InputBox)
 		S:HandleEditBox(_G["AuctionatorConfigFrame"].BugReportLink.InputBox)
 		S:HandleButton(_G["AuctionatorConfigFrame"].ScanButton)
 		S:HandleButton(_G["AuctionatorConfigFrame"].OptionsButton)
+
+		for _,v in pairs{_G["AuctionatorConfigFrame"]:GetChildren()} do
+			if v.BorderLeftMiddle then
+				v:Hide()
+			end
+		end
 
 		_G.AuctionatorShoppingFrame.EltruismSkin = true
 	end
