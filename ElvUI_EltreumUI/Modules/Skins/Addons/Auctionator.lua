@@ -124,12 +124,12 @@ local function SkinAuctionator()
 		--selling
 		S:HandleFrame(_G["AuctionatorSellingFrame"])
 		_G["AuctionatorSellingFrame"]:SetBackdrop()
-		if _G["AuctionatorSellingFrame"].eltruismbgtexture:Hide() then
+		if _G["AuctionatorSellingFrame"].eltruismbgtexture then
 			_G["AuctionatorSellingFrame"].eltruismbgtexture:Hide()
 		end
 		S:HandleFrame(_G["AuctionatorSellingFrame"].BagListing)
 		_G["AuctionatorSellingFrame"].BagListing:SetBackdrop()
-		if _G["AuctionatorSellingFrame"].BagListing.eltruismbgtexture:Hide() then
+		if _G["AuctionatorSellingFrame"].BagListing.eltruismbgtexture then
 			_G["AuctionatorSellingFrame"].BagListing.eltruismbgtexture:Hide()
 		end
 		_G["AuctionatorSellingFrame"].BagListing:CreateBackdrop()
