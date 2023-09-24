@@ -20,7 +20,6 @@
 	<Script file='Nameplate/Model.lua'/>
 	<Script file='Other/Animations.lua'/>
 	<Script file='Other/Bags.lua'/>
-	<Script file='Other/DarkLightColors.lua'/>
 	<Script file='Other/Databars.lua'/>
 	<Script file='Other/Doom.lua'/>
 	<Script file='Other/ExpandedTalents.lua'/>
