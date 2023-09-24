@@ -62,11 +62,16 @@ function ElvUI_EltreumUI:ToggleTransparentStatusBar(isTransparent, statusBar, ba
 			local texture = E.LSM:Fetch('statusbar', UF.db.statusbar)
 			statusBar:SetStatusBarTexture(texture)
 			UF:Update_StatusBar(statusBar.bg or statusBar.BG, texture)
-			--[[if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop and (statusBar:GetName():match("HealthBar")) then --was causing the black color
-				if (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
-					statusBar:SetStatusBarTexture(0, 0, 0, 1)
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop and (statusBar:GetName():match("HealthBar")) then --was causing the black color
+				if E.db.ElvUI_EltreumUI.unitframes.darkmode then
+					statusBar:SetStatusBarTexture(0,0,0,1)
+				elseif E.db.ElvUI_EltreumUI.unitframes.lightmode then
+					if backdropTex then
+						backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+						--backdropTex:SetTexture(E.db.general.backdropfadecolor.r, E.db.general.backdropfadecolor.g, E.db.general.backdropfadecolor.b, E.db.general.backdropfadecolor.a)
+					end
 				end
-			end]]
+			end
 			if adjustBackdropPoints then
 				UF:SetStatusBarBackdropPoints(statusBar, barTexture, backdropTex, orientation, reverseFill)
 			end
