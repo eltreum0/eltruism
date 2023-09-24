@@ -58,7 +58,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 							end
 						end
 					end
-				else
+				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
 					if frame.Health.backdrop.Center then
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
@@ -113,7 +113,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 								end
 							end
 						end
-					else
+					elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
 						if frame.Health.backdrop.Center then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolorbackdrop then
 								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
@@ -228,7 +228,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 								end
 							end
 						end
-					else
+					elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
 						if frame.Health.backdrop.Center then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
 								if (unit == "target" or unit == "targettarget") and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
@@ -332,7 +332,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 				if frame.Health.backdropTex then
 					frame.Health.backdropTex:SetGradient("HORIZONTAL", {r = frame.EltruismDebuffr, g = frame.EltruismDebuffg, b = frame.EltruismDebuffb, a = frame.EltruismDebuffa}, {r = frame.EltruismDebuffr, g = frame.EltruismDebuffg, b = frame.EltruismDebuffb, a = frame.EltruismDebuffa})
 				end
-			else
+			elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
 				if frame.Health.backdrop.Center then
 					frame.Health.backdrop.Center:SetGradient("HORIZONTAL", {r = frame.EltruismDebuffr, g = frame.EltruismDebuffg, b = frame.EltruismDebuffb, a = frame.EltruismDebuffa}, {r = frame.EltruismDebuffr, g = frame.EltruismDebuffg, b = frame.EltruismDebuffb, a = frame.EltruismDebuffa})
 				end
@@ -344,7 +344,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 					if frame.Health.backdropTex then
 						frame.Health.backdropTex:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 					end
-				else
+				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
 					if frame.Health.backdrop.Center then
 						frame.Health.backdrop.Center:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.health_backdrop_dead.r, g = E.db.unitframe.colors.health_backdrop_dead.g, b = E.db.unitframe.colors.health_backdrop_dead.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 					end
@@ -354,7 +354,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 					if frame.Health.backdropTex then
 						frame.Health.backdropTex:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 					end
-				else
+				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
 					if frame.Health.backdrop.Center then
 						frame.Health.backdrop.Center:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 					end
@@ -767,7 +767,7 @@ end
 
 local forced = false
 function ElvUI_EltreumUI:GradientUF(unit)
-	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
 
 		--main issue = the toggle for some units like boss and arena wont work bc it checks for boss1,boss2... instead of just boss
 		ElvUI_EltreumUI:ApplyUnitGradient("player", "Player", "player")
@@ -858,7 +858,7 @@ function ElvUI_EltreumUI:GradientUF(unit)
 		end
 
 		--group/raid unitframes
-		if ((IsInGroup() and UnitExists(unit)) or forced) and (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
+		if ((IsInGroup() and UnitExists(unit)) or forced) then
 			--party/raid
 			if _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsShown() then
 				--print("party spam")
