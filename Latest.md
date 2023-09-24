@@ -1,4 +1,4 @@
-### 3.9.9.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 3.9.9.2 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
 Added Details nickname tags, [eltruism:detailsnickname] and [eltruism:detailsnickname:gradient] which will show the nickname set in Details instead of the unit name  
 Added minimize and maximize buttons to Classic Era Objective Frame  
@@ -27,6 +27,7 @@ Updated mMediaTag interrupt check
 Updated the Gradient Mode toggle  
 Updated German locale by Dlarge  
 Updated Questie profile  
+Fixed an issue where colors were being forced when gradient was enabled but neither Light nor Dark modes were selected  
 Fixed death color and tapped color on Unitframes when Gradient was enabled by adding an option for it  
 Fixed an issue where Custom Gradients were not applying to the Class Texture for Eltruism Datatext  
 Fixed an issue with Custom Texture and No Class Textures in Group Unitframes  

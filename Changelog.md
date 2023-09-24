@@ -2,6 +2,8 @@
 The future is uncertain
 ___
 ### 3.9.9.1
+Fixed an issue where colors were being forced when gradient was enabled but neither Light nor Dark modes were selected  
+### 3.9.9.1
 Added an option to disable Other Stats in the Character Panel  
 Updated Backdrop Alpha to allow backdrop transparency when Health isn't transparent  
 Updated the Gradient Mode toggle  
