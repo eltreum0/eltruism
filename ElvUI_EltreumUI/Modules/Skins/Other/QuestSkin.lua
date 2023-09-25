@@ -295,6 +295,47 @@ function ElvUI_EltreumUI:SkinQuests()
 								block.currentLine.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, E.db.general.fontStyle)
 								block.currentLine.Text:SetTextColor(mult, mult, mult)
 								block.currentLine.Text:SetWordWrap(true)
+
+								--inspired by blinkii's skin, color
+								local text = block.currentLine.Text:GetText()
+								if block.currentLine.Check then
+									block.currentLine.Check:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\checkmark.tga")
+								end
+
+								if text ~= nil then
+									local left, right, questtext = string.match(text, "^(%d-)/(%d-) (.+)")
+									local questtext2,left2, right2 = string.match(text, "(.+): (%d-)/(%d-)$")
+									local left3, right3, questtext3 = strmatch(text, "^- (%d-)/(%d-) (.+)")
+									if left then
+										local percentagedone = (tonumber(left) / tonumber(right)) * 100 or 0
+										local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+										local hexstring = E:RGBToHex(r, g, b)
+										block.currentLine.Text:SetText(format("%s%s/%s|r %s|r%s",hexstring,left,right,hexstring,questtext))
+										if percentagedone >= 100 or block.currentLine.Check then
+											block.currentLine.Text:SetTextColor(0.12, 1, 0.12)
+										end
+									elseif left2 then
+										local percentagedone = (tonumber(left2) / tonumber(right2)) * 100 or 0
+										local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+										local hexstring = E:RGBToHex(r, g, b)
+										block.currentLine.Text:SetText(format("%s|r %s%s/%s|r",questtext2,hexstring,left2,right2))
+										if percentagedone >= 100 or block.currentLine.Check then
+											block.currentLine.Text:SetTextColor(0.12, 1, 0.12)
+										end
+									elseif left3 then
+										local percentagedone = (tonumber(left3) / tonumber(right3)) * 100 or 0
+										local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+										local hexstring = E:RGBToHex(r, g, b)
+										block.currentLine.Text:SetText(format("- %s%s/%s|r %s|r%s",hexstring,left3,right3,hexstring,questtext3))
+										if percentagedone >= 100 or block.currentLine.Check then
+											block.currentLine.Text:SetTextColor(0.12, 1, 0.12)
+										end
+									else
+										if text == _G.QUEST_WATCH_QUEST_READY or block.currentLine.Check then
+											block.currentLine.Text:SetTextColor(0.12, 1, 0.12)
+										end
+									end
+								end
 							end
 						end
 						if block.itemButton then
@@ -338,8 +379,8 @@ function ElvUI_EltreumUI:SkinQuests()
 							if not ElvUI_EltreumUI:SLCheck('quest') then
 								module.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize*1.5, E.db.general.fontStyle)
 							end
-							if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-								module.Header.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+							if E.db.ElvUI_EltreumUI.skins.questsettings.customcolortitle then
+								module.Header.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customrtitle, E.db.ElvUI_EltreumUI.skins.questsettings.customgtitle, E.db.ElvUI_EltreumUI.skins.questsettings.custombtitle)
 							else
 								module.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 							end
@@ -585,6 +626,9 @@ function ElvUI_EltreumUI:SkinQuests()
 									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 								end
 							end
+							if line.Check then
+								line.Text:SetTextColor(0.12, 1, 0.12)
+							end
 						end
 					end
 				end
@@ -619,6 +663,9 @@ function ElvUI_EltreumUI:SkinQuests()
 								else
 									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 								end
+							end
+							if line.Check then
+								line.Text:SetTextColor(0.12, 1, 0.12)
 							end
 						end
 					end
@@ -778,8 +825,8 @@ function ElvUI_EltreumUI:SkinQuests()
 			InvisFrameHeaderBar:SetInside()
 			local QuestWatchFrameTitle = _G.QuestWatchFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 			QuestWatchFrameTitle:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+3, E.db.general.fontStyle)
-			if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-				QuestWatchFrameTitle:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+			if E.db.ElvUI_EltreumUI.skins.questsettings.customcolortitle then
+				QuestWatchFrameTitle:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customrtitle, E.db.ElvUI_EltreumUI.skins.questsettings.customgtitle, E.db.ElvUI_EltreumUI.skins.questsettings.custombtitle)
 			else
 				QuestWatchFrameTitle:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 			end
@@ -854,6 +901,31 @@ function ElvUI_EltreumUI:SkinQuests()
 								watchText:SetText(" - "..text)
 								watchText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, E.db.general.fontStyle)
 								--watchText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+
+								--inspired by blinkii's skin, color
+								local textclassic = watchText:GetText()
+								if textclassic ~= nil then
+									local left, right, questtext = strmatch(textclassic, "^(%d-)/(%d-) (.+)")
+									local questtext2,left2, right2 = strmatch(textclassic, "(.+): (%d-)/(%d-)$")
+									local left3, right3, questtext3 = strmatch(textclassic, "^- (%d-)/(%d-) (.+)")
+									if left then
+										local percentagedone = (tonumber(left) / tonumber(right)) * 100 or 0
+										local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+										local hexstring = E:RGBToHex(r, g, b)
+										watchText:SetText(format("%s%s/%s|r %s|r%s",hexstring,left,right,hexstring,questtext))
+									elseif left2 then
+										local percentagedone = (tonumber(left2) / tonumber(right2)) * 100 or 0
+										local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+										local hexstring = E:RGBToHex(r, g, b)
+										watchText:SetText(format("%s|r %s%s/%s|r",questtext2,hexstring,left2,right2))
+									elseif left3 then
+										local percentagedone = (tonumber(left3) / tonumber(right3)) * 100 or 0
+										local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+										local hexstring = E:RGBToHex(r, g, b)
+										watchText:SetText(format("- %s%s/%s|r %s|r%s",hexstring,left3,right3,hexstring,questtext3))
+									end
+								end
+
 								-- Color the objectives
 								if ( finished ) then
 									watchText:SetTextColor(0, 1, 0)
@@ -953,6 +1025,31 @@ function ElvUI_EltreumUI:SkinQuests()
 						line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, E.db.general.fontStyle)
 						line.text:SetTextColor(0.8, 0.8, 0.8)
 						line.text:SetWidth(250)
+
+						--inspired by blinkii's skin, color
+						local textwrath = line.text:GetText()
+						if textwrath ~= nil then
+							local left, right, questtext = strmatch(textwrath, "^(%d-)/(%d-) (.+)")
+							local questtext2,left2, right2 = strmatch(textwrath, "(.+): (%d-)/(%d-)$")
+							local left3, right3, questtext3 = strmatch(textwrath, "^- (%d-)/(%d-) (.+)")
+							if left then
+								local percentagedone = (tonumber(left) / tonumber(right)) * 100 or 0
+								local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+								local hexstring = E:RGBToHex(r, g, b)
+								line.text:SetText(format("%s%s/%s|r %s|r%s",hexstring,left,right,hexstring,questtext))
+							elseif left2 then
+								local percentagedone = (tonumber(left2) / tonumber(right2)) * 100 or 0
+								local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+								local hexstring = E:RGBToHex(r, g, b)
+								line.text:SetText(format("%s|r %s%s/%s|r",questtext2,hexstring,left2,right2))
+							elseif left3 then
+								local percentagedone = (tonumber(left3) / tonumber(right3)) * 100 or 0
+								local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+								local hexstring = E:RGBToHex(r, g, b)
+								line.text:SetText(format("- %s%s/%s|r %s|r%s",hexstring,left3,right3,hexstring,questtext3))
+							end
+						end
+
 					end
 					if line.dash then
 						line.dash:Hide()
@@ -993,8 +1090,8 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				local WatchFrameTitle = _G.WatchFrameTitle
 				WatchFrameTitle:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+3, E.db.general.fontStyle)
-				if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-					WatchFrameTitle:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+				if E.db.ElvUI_EltreumUI.skins.questsettings.customcolortitle then
+					WatchFrameTitle:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customrtitle, E.db.ElvUI_EltreumUI.skins.questsettings.customgtitle, E.db.ElvUI_EltreumUI.skins.questsettings.custombtitle)
 				else
 					WatchFrameTitle:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 				end
