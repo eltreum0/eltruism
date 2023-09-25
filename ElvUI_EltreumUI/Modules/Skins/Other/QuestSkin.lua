@@ -626,6 +626,9 @@ function ElvUI_EltreumUI:SkinQuests()
 									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 								end
 							end
+							if line.Check then
+								line.Text:SetTextColor(0.12, 1, 0.12)
+							end
 						end
 					end
 				end
@@ -660,6 +663,9 @@ function ElvUI_EltreumUI:SkinQuests()
 								else
 									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 								end
+							end
+							if line.Check then
+								line.Text:SetTextColor(0.12, 1, 0.12)
 							end
 						end
 					end
