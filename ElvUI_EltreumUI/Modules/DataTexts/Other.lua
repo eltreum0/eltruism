@@ -31,8 +31,9 @@ local function EltruismHonorDatatext(dt)
 	elseif E.Classic then
 		--local kills, honor = GetPVPThisWeekStats()
 		local _, honor = GetPVPThisWeekStats()
+		local rank = UnitPVPRank("player")
 		--local lastweekkills, _, lastweekhonor = GetPVPLastWeekStats()
-		dt.text:SetFormattedText('%s: %s%s|r', HONOR, ElvUI[1].media.hexvaluecolor, honor)
+		dt.text:SetFormattedText('%s: %s%s|r %s: %s%s|r', HONOR, ElvUI[1].media.hexvaluecolor, honor,RANK,ElvUI[1].media.hexvaluecolor,rank)
 	elseif E.Retail then
 		local retailconquest = C_CurrencyInfo.GetCurrencyInfo(1602)
 		local retailhonor = C_CurrencyInfo.GetCurrencyInfo(1792)
