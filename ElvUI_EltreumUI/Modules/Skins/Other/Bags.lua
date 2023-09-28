@@ -342,6 +342,7 @@ function ElvUI_EltreumUI:BagProfessions()
 							_G["EltruismProfessionDisenchantBagButton"]:SetParent()
 							_G["EltruismProfessionDisenchantBagButton"]:Hide()
 						end
+						_G["ElvUI_ContainerFrame"].numButtons = 0
 					end
 				elseif event == "PLAYER_REGEN_ENABLED" then
 					if _G["ElvUI_ContainerFrame"].numButtons then
@@ -359,6 +360,7 @@ function ElvUI_EltreumUI:BagProfessions()
 							for k, v in ipairs(proftable) do
 								if IsSpellKnown(v) then
 									if _G["EltruismProfession"..k.."BagButton"] then
+										_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
 										_G["EltruismProfession"..k.."BagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
 										_G["EltruismProfession"..k.."BagButton"]:SetParent(_G["ElvUI_ContainerFrame"])
 										_G["EltruismProfession"..k.."BagButton"]:Show()
