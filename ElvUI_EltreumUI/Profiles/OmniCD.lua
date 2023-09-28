@@ -367,7 +367,7 @@ function ElvUI_EltreumUI:GetOmniCDProfile(profile)
 						["textures"] = {
 							["statusBar"] = {
 								["BG"] = "ElvUI Norm1",
-								["bar"] = "Asphyxia",
+								["bar"] = "Asphyxia-Norm",
 							},
 						},
 						["fonts"] = {
@@ -757,7 +757,7 @@ function ElvUI_EltreumUI:GetOmniCDProfile(profile)
 						["textures"] = {
 							["statusBar"] = {
 								["BG"] = "ElvUI Norm1",
-								["bar"] = "Asphyxia",
+								["bar"] = "Asphyxia-Norm",
 							},
 						},
 					},

@@ -593,6 +593,11 @@ function ElvUI_EltreumUI:FixChatToggles()
 					end
 				end
 			end
+
+			if E.db["datatexts"]["panels"]["EltruismDataText"]["backdrop"] then
+				_G.LeftChatPanel.backdrop:Show()
+				_G.RightChatPanel.backdrop:Show()
+			end
 		end
 
 		--fix if the value changed since install
