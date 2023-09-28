@@ -8,8 +8,75 @@ local GetSpellInfo = _G.GetSpellInfo
 function ElvUI_EltreumUI:BagProfessions()
 	if E.db.ElvUI_EltreumUI.otherstuff.bagProfessionIcons then
 		if _G["ElvUI_ContainerFrame"] and not _G["ElvUI_ContainerFrame"].EltruismHook then
+			local proftable = {
+				[1] = 3101, --Alchemy
+				[2] = 2259, --Alchemy
+				[3] = 3464, --Alchemy
+				[4] = 11611, --Alchemy
+				[5] = 28596, --Alchemy
+				[6] = 51304, --Alchemy
+				[7] = 3100, --Blacksmithing
+				[8] = 2018, --Blacksmithing
+				[9] = 3538, --Blacksmithing
+				[10] = 9785, --Blacksmithing
+				[11] = 29844, --Blacksmithing
+				[12] = 51300, --Blacksmithing
+				[13] = 7411, --Enchanting
+				[14] = 7412, --Enchanting
+				[15] = 7413, --Enchanting
+				[16] = 13920, --Enchanting
+				[17] = 28029, --Enchanting
+				[18] = 51313, --Enchanting
+				--[19] = 13262, --Disenchant
+				[19] = 4036, --Engineering
+				[20] = 4037, --Engineering
+				[21] = 4038, --Engineering
+				[22] = 12656, --Engineering
+				[23] = 30350, --Engineering
+				[24] = 51306, --Engineering
+				[25] = 45357, --Inscription
+				[26] = 45358, --Inscription
+				[27] = 45359, --Inscription
+				[28] = 45360, --Inscription
+				[29] = 45361, --Inscription
+				[30] = 45363, --Inscription
+				[31] = 51005, --Milling
+				[32] = 25230, --Jewelcrafting
+				[33] = 25229, --Jewelcrafting
+				[34] = 28894, --Jewelcrafting
+				[35] = 28895, --Jewelcrafting
+				[36] = 28897, --Jewelcrafting
+				[37] = 51311, --Jewelcrafting
+				[38] = 31252, --Prospecting
+				[39] = 2108, --Leatherworking
+				[40] = 3104, --Leatherworking
+				[41] = 3811, --Leatherworking
+				[42] = 10662, --Leatherworking
+				[43] = 32549, --Leatherworking
+				[44] = 51302, --Leatherworking
+				[45] = 3908, --Tailoring
+				[46] = 3909, --Tailoring
+				[47] = 3910, --Tailoring
+				[48] = 12180, --Tailoring
+				[49] = 26790, --Tailoring
+				[50] = 51309, --Tailoring
+				[51] = 3273, --First Aid
+				[52] = 3274, --First Aid
+				[53] = 7924, --First Aid
+				[54] = 10846, --First Aid
+				[55] = 27028, --First Aid
+				[56] = 45542, --First Aid
+				[57] = 2550, --Cooking
+				[58] = 3102, --Cooking
+				[59] = 3413, --Cooking
+				[60] = 18260, --Cooking
+				[61] = 185, --Cooking
+				[62] = 2656, --Smelting
+			}
+
 			_G["ElvUI_ContainerFrame"]:HookScript("OnShow", function()
 				if not _G["ElvUI_ContainerFrame"].numButtons then
+					if InCombatLockdown() then return end
 					_G["ElvUI_ContainerFrame"].numButtons = 0
 					if E.Retail then
 						local blockprof = {
@@ -58,6 +125,7 @@ function ElvUI_EltreumUI:BagProfessions()
 										_G["EltruismProfession"..v.."BagButton"]:SetSize(25,25)
 										_G["EltruismProfession"..v.."BagButton"]:SetTemplate("Transparent")
 										_G["EltruismProfession"..v.."BagButton"]:CreateBackdrop('Transparent')
+										_G["EltruismProfession"..v.."BagButton"].backdrop.Center:Hide()
 										S:HandleButton(_G["EltruismProfession"..v.."BagButton"])
 										_G["EltruismProfession"..v.."BagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
 										--_G["EltruismProfession"..v.."BagButton"]:SetAttribute('type', 'spell')
@@ -85,6 +153,7 @@ function ElvUI_EltreumUI:BagProfessions()
 								_G["EltruismProfessionDisenchantBagButton"]:SetSize(25,25)
 								_G["EltruismProfessionDisenchantBagButton"]:SetTemplate("Transparent")
 								_G["EltruismProfessionDisenchantBagButton"]:CreateBackdrop('Transparent')
+								_G["EltruismProfessionDisenchantBagButton"].backdrop.Center:Hide()
 								S:HandleButton(_G["EltruismProfessionDisenchantBagButton"])
 								_G["EltruismProfessionDisenchantBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
 								_G["EltruismProfessionDisenchantBagButton"]:SetAttribute('type', 'spell')
@@ -148,71 +217,6 @@ function ElvUI_EltreumUI:BagProfessions()
 							end
 						end
 					else
-						local proftable = {
-							[1] = 3101, --Alchemy
-							[2] = 2259, --Alchemy
-							[3] = 3464, --Alchemy
-							[4] = 11611, --Alchemy
-							[5] = 28596, --Alchemy
-							[6] = 51304, --Alchemy
-							[7] = 3100, --Blacksmithing
-							[8] = 2018, --Blacksmithing
-							[9] = 3538, --Blacksmithing
-							[10] = 9785, --Blacksmithing
-							[11] = 29844, --Blacksmithing
-							[12] = 51300, --Blacksmithing
-							[13] = 7411, --Enchanting
-							[14] = 7412, --Enchanting
-							[15] = 7413, --Enchanting
-							[16] = 13920, --Enchanting
-							[17] = 28029, --Enchanting
-							[18] = 51313, --Enchanting
-							--[19] = 13262, --Disenchant
-							[19] = 4036, --Engineering
-							[20] = 4037, --Engineering
-							[21] = 4038, --Engineering
-							[22] = 12656, --Engineering
-							[23] = 30350, --Engineering
-							[24] = 51306, --Engineering
-							[25] = 45357, --Inscription
-							[26] = 45358, --Inscription
-							[27] = 45359, --Inscription
-							[28] = 45360, --Inscription
-							[29] = 45361, --Inscription
-							[30] = 45363, --Inscription
-							[31] = 51005, --Milling
-							[32] = 25230, --Jewelcrafting
-							[33] = 25229, --Jewelcrafting
-							[34] = 28894, --Jewelcrafting
-							[35] = 28895, --Jewelcrafting
-							[36] = 28897, --Jewelcrafting
-							[37] = 51311, --Jewelcrafting
-							[38] = 31252, --Prospecting
-							[39] = 2108, --Leatherworking
-							[40] = 3104, --Leatherworking
-							[41] = 3811, --Leatherworking
-							[42] = 10662, --Leatherworking
-							[43] = 32549, --Leatherworking
-							[44] = 51302, --Leatherworking
-							[45] = 3908, --Tailoring
-							[46] = 3909, --Tailoring
-							[47] = 3910, --Tailoring
-							[48] = 12180, --Tailoring
-							[49] = 26790, --Tailoring
-							[50] = 51309, --Tailoring
-							[51] = 3273, --First Aid
-							[52] = 3274, --First Aid
-							[53] = 7924, --First Aid
-							[54] = 10846, --First Aid
-							[55] = 27028, --First Aid
-							[56] = 45542, --First Aid
-							[57] = 2550, --Cooking
-							[58] = 3102, --Cooking
-							[59] = 3413, --Cooking
-							[60] = 18260, --Cooking
-							[61] = 185, --Cooking
-							[62] = 2656, --Smelting
-						}
 						for k, v in ipairs(proftable) do
 							if IsSpellKnown(v) then
 								if not _G["EltruismProfession"..k.."BagButton"] then
@@ -222,6 +226,7 @@ function ElvUI_EltreumUI:BagProfessions()
 									_G["EltruismProfession"..k.."BagButton"]:SetSize(25,25)
 									_G["EltruismProfession"..k.."BagButton"]:SetTemplate("Transparent")
 									_G["EltruismProfession"..k.."BagButton"]:CreateBackdrop('Transparent')
+									_G["EltruismProfession"..k.."BagButton"].backdrop.Center:Hide()
 									S:HandleButton(_G["EltruismProfession"..k.."BagButton"])
 									_G["EltruismProfession"..k.."BagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
 									_G["EltruismProfession"..k.."BagButton"]:SetAttribute('type', 'spell')
@@ -243,6 +248,7 @@ function ElvUI_EltreumUI:BagProfessions()
 								_G["EltruismProfessionDisenchantBagButton"]:SetSize(25,25)
 								_G["EltruismProfessionDisenchantBagButton"]:SetTemplate("Transparent")
 								_G["EltruismProfessionDisenchantBagButton"]:CreateBackdrop('Transparent')
+								_G["EltruismProfessionDisenchantBagButton"].backdrop.Center:Hide()
 								S:HandleButton(_G["EltruismProfessionDisenchantBagButton"])
 								_G["EltruismProfessionDisenchantBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
 								_G["EltruismProfessionDisenchantBagButton"]:SetAttribute('type', 'spell')
@@ -304,6 +310,71 @@ function ElvUI_EltreumUI:BagProfessions()
 				end
 			end)
 			_G["ElvUI_ContainerFrame"].EltruismHook = true
+
+
+			local combatcheck = CreateFrame("Frame")
+			combatcheck:RegisterEvent("PLAYER_REGEN_DISABLED")
+			combatcheck:RegisterEvent("PLAYER_REGEN_ENABLED")
+			combatcheck:SetScript("OnEvent", function(_, event)
+				if event == "PLAYER_REGEN_DISABLED" then
+					if _G["ElvUI_ContainerFrame"].numButtons then
+						if E.Retail then
+							for _,v in ipairs{GetProfessions()} do
+								if _G["EltruismProfession"..v.."BagButton"] then
+									_G["EltruismProfession"..v.."BagButton"]:ClearAllPoints()
+									_G["EltruismProfession"..v.."BagButton"]:SetParent()
+									_G["EltruismProfession"..v.."BagButton"]:Hide()
+								end
+							end
+						else
+							for k, v in ipairs(proftable) do
+								if IsSpellKnown(v) then
+									if _G["EltruismProfession"..k.."BagButton"] then
+										_G["EltruismProfession"..k.."BagButton"]:ClearAllPoints()
+										_G["EltruismProfession"..k.."BagButton"]:SetParent()
+										_G["EltruismProfession"..k.."BagButton"]:Hide()
+									end
+								end
+							end
+						end
+						if _G["EltruismProfessionDisenchantBagButton"] then
+							_G["EltruismProfessionDisenchantBagButton"]:ClearAllPoints()
+							_G["EltruismProfessionDisenchantBagButton"]:SetParent()
+							_G["EltruismProfessionDisenchantBagButton"]:Hide()
+						end
+					end
+				elseif event == "PLAYER_REGEN_ENABLED" then
+					if _G["ElvUI_ContainerFrame"].numButtons then
+						_G["ElvUI_ContainerFrame"].numButtons = 0
+						if E.Retail then
+							for _,v in ipairs{GetProfessions()} do
+								_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
+								if _G["EltruismProfession"..v.."BagButton"] then
+									_G["EltruismProfession"..v.."BagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
+									_G["EltruismProfession"..v.."BagButton"]:SetParent(_G["ElvUI_ContainerFrame"])
+									_G["EltruismProfession"..v.."BagButton"]:Show()
+								end
+							end
+						else
+							for k, v in ipairs(proftable) do
+								if IsSpellKnown(v) then
+									if _G["EltruismProfession"..k.."BagButton"] then
+										_G["EltruismProfession"..k.."BagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
+										_G["EltruismProfession"..k.."BagButton"]:SetParent(_G["ElvUI_ContainerFrame"])
+										_G["EltruismProfession"..k.."BagButton"]:Show()
+									end
+								end
+							end
+						end
+						if _G["EltruismProfessionDisenchantBagButton"] then
+							_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
+							_G["EltruismProfessionDisenchantBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
+							_G["EltruismProfessionDisenchantBagButton"]:SetParent(_G["ElvUI_ContainerFrame"])
+							_G["EltruismProfessionDisenchantBagButton"]:Show()
+						end
+					end
+				end
+			end)
 		end
 	end
 end
