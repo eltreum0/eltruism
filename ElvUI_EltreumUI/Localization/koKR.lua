@@ -1,6 +1,5 @@
 ﻿local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "koKR")
 if not L then return end
-
 -- Core
 L["4K resolution detected, setting fonts to default mode."] = true
 L["1440p resolution detected, setting fonts to outline mode."] = true

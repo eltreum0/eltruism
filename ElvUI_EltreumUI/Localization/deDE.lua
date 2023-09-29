@@ -1,8 +1,5 @@
-﻿-- German localization by Khornan | Dlarge
---local L = LibStub("AceLocale-3.0"):NewLocale("ElvUI_EltreumUI", "deDE")
-local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "deDE")
+﻿local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "deDE") -- German localization by Khornan | Dlarge
 if not L then return end
-
 -- Core
 L["4K resolution detected, setting fonts to default mode."] = "4K Auflösung erkannt, Schriftart wird auf Standard gesetzt."
 L["1440p resolution detected, setting fonts to outline mode."] = "1440p Auflösung erkannt, die Schriftart wird auf Kontur gesetzt."

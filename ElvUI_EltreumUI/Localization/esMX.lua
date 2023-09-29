@@ -1,8 +1,5 @@
-﻿-- DeepL esMX translation
---local L = LibStub("AceLocale-3.0"):NewLocale("ElvUI_EltreumUI", "esES")
-local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "esMX")
+﻿local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "esMX") -- DeepL esMX translation
 if not L then return end
-
 -- Core
 L["4K resolution detected, setting fonts to default mode."] = "Se ha detectado la resolución 4K y se ha establecido el modo de fuentes por default."
 L["1440p resolution detected, setting fonts to outline mode."] = "Se ha detectado una resolución de 1440p y se ha configurado el modo de contorno de las fuentes."
