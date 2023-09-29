@@ -468,3 +468,129 @@ function ElvUI_EltreumUI:RestIcon(frame)
 	end
 end
 hooksecurefunc(UF,"Configure_RestingIndicator", ElvUI_EltreumUI.RestIcon)
+
+--LFG Spec Icons, based on https://wago.io/cFpgwuLe0
+function ElvUI_EltreumUI:DungeonRoleIcons()
+	if E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons then
+
+		-- Localized performance variables
+		local roleSortOrder = _G.LFG_LIST_GROUP_DATA_ROLE_ORDER
+		local classSortOrder = _G.LFG_LIST_GROUP_DATA_CLASS_ORDER
+		local raidClassColors = _G.RAID_CLASS_COLORS
+
+		-- Build tables to look up the official blizzard sort index, so we can sort colors
+		local roleIndex = {}
+		local classIndex = {}
+
+		for i=1, #roleSortOrder do
+			roleIndex[roleSortOrder[i]] = i
+		end
+
+		for i=1, #classSortOrder do
+			classIndex[classSortOrder[i]] = i
+		end
+
+		--C_LFGList.GetSearchResultMemberInfo returns a localized name for the spec, which would fail in other languages, so get the localized name and icon for the spec before running
+		local GetSpecializationInfoForClassID = _G.GetSpecializationInfoForClassID
+		local iconTable = {}
+		for classID = 1, 13 do --13 classes in retail
+			if GetClassInfo(classID) then --nil check for classic
+				local className = select(2, GetClassInfo(classID))
+				iconTable[className] = {}
+				for i = 1, 4 do --druids have 4 in retail
+					--local id, name, description, icon, role, isRecommended, isAllowed  = GetSpecializationInfoForClassID(classID, specIndex)
+					local _, name, _, icon = GetSpecializationInfoForClassID(classID, i)
+					if name and icon then --nil check for classic
+						iconTable[className][name] = icon
+					end
+				end
+			end
+		end
+
+		local function SearchEntry_Update(entry)
+			-- Don't do any work if the panel isn't visible
+			if not _G.LFGListFrame.SearchPanel:IsShown() then return end
+
+			-- Grab data packages from API
+			local resultInfo = C_LFGList.GetSearchResultInfo(entry.resultID)
+			-- Data dump
+			local activityTable = C_LFGList.GetActivityInfoTable(resultInfo.activityID)
+			local categoryID = activityTable.categoryID
+
+			-- Hide our textures that may already exist for the group from a previous run
+			for i = 1, 5 do
+				if entry.DataDisplay.Enumerate[i] then
+					entry.DataDisplay.Enumerate[i]:Hide()
+					entry.DataDisplay.Enumerate[i.."b"]:Hide()
+					--entry.DataDisplay.Enumerate:Show()
+				end
+			end
+
+			--If we're not in dungeon LFG or arena LFG, don't do any work
+			if categoryID == 2 or categoryID == 4 or categoryID == 7 then
+				-- Max players allowed for activity, e.g. 5 for dungeons and 3 for arena 3v3
+				local maxNumPlayers = activityTable.maxNumPlayers
+				-- Current number of players in the group
+				local numMembers = resultInfo.numMembers
+
+				-- Table that will contain data about the members in the group
+				local members = {}
+
+				-- For each member, insert role, class, sorting data, and class color for later reference
+				for i=1, numMembers do
+					--local role, class, classLocalized, specLocalized = C_LFGList.GetSearchResultMemberInfo(resultID, i);
+					local role, class, classLocalized, specLocalized = C_LFGList.GetSearchResultMemberInfo(entry.resultID, i)
+					local icon = iconTable[class][specLocalized]
+					members[#members+1] = {role, class, classLocalized, specLocalized, roleIndex[role], classIndex[class], raidClassColors[class],icon}
+				end
+
+				-- Dungeon LFG sorting - cares about role
+				if categoryID == 2 then
+					table.sort(members, function(a,b)
+						if a[5] ~= b[5] then
+							return a[5] < b[5]
+						else
+							return a[6] < b[6]
+						end
+					end)
+				else-- PvP LFG sorting - does not care about role
+					table.sort(members, function(a,b)
+						return a[6] < b[6]
+					end)
+				end
+
+				-- Set the parent point
+				entry.DataDisplay:SetPoint("RIGHT", entry.DataDisplay:GetParent(), "RIGHT", 0, -5)
+
+				for i = 1, numMembers do
+					-- Get the class color from our member table
+					local r, g, b, _ = members[i][7]:GetRGBA()
+					-- If a texture slot for the group doesn't already exist, create one
+					if not entry.DataDisplay.Enumerate[i] then
+						entry.DataDisplay.Enumerate[i] = entry.DataDisplay:CreateTexture(nil, "BORDER")
+						entry.DataDisplay.Enumerate[i]:SetSize(17, 17)
+
+						entry.DataDisplay.Enumerate[i.."b"] = entry.DataDisplay:CreateTexture(nil, "BACKGROUND")
+						--entry.DataDisplay.Enumerate[i.."b"]:SetSize(17, 3)
+						entry.DataDisplay.Enumerate[i.."b"]:SetSize(20, 20)
+					end
+					-- Reposition the color texture based on where the the player should be
+					-- Some dynamic magic going on here to allow it to be correctly positioned based on how many slots are available in the group, for PvP uses
+					--entry.DataDisplay.Enumerate[i]:SetPoint("RIGHT", entry.DataDisplay.Enumerate, "RIGHT", -13 - 18*(maxNumPlayers-i), -1)
+					entry.DataDisplay.Enumerate[i]:SetPoint("RIGHT", entry.DataDisplay.Enumerate, "RIGHT", -13 - 21*(maxNumPlayers-i), -1)
+					entry.DataDisplay.Enumerate[i]:Show()
+					entry.DataDisplay.Enumerate[i]:SetTexture(members[i][8])
+					entry.DataDisplay.Enumerate[i]:SetTexCoord(0.08,0.92,0.08,0.92)
+					--[[entry.DataDisplay.Enumerate[i.."b"]:SetPoint("RIGHT", entry.DataDisplay.Enumerate, "RIGHT", -13 - 18*(maxNumPlayers-i), -12) --  -85, -67 -49
+					entry.DataDisplay.Enumerate[i.."b"]:Show()
+					entry.DataDisplay.Enumerate[i.."b"]:SetColorTexture(r, g, b, 0.75)]]
+					entry.DataDisplay.Enumerate[i.."b"]:SetPoint("CENTER", entry.DataDisplay.Enumerate[i], "CENTER", 0, 0)
+					entry.DataDisplay.Enumerate[i.."b"]:Show()
+					entry.DataDisplay.Enumerate[i.."b"]:SetColorTexture(r, g, b, 0.75)
+					entry.DataDisplay.Enumerate:Hide()
+				end
+			end
+		end
+		hooksecurefunc("LFGListSearchEntry_Update", SearchEntry_Update)
+	end
+end

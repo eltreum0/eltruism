@@ -375,6 +375,7 @@ P.ElvUI_EltreumUI = {
 				b = 0,
 			},
 		},
+		groupfinderSpecIcons = true,
 		hidetalkinghead = false,
 		playerdeath = false,
 		playerdeathgta = false,
