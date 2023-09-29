@@ -1222,7 +1222,7 @@ function ElvUI_EltreumUI:Shadows()
 				--wrath only frames
 				if E.Wrath then
 					local tbcframes = {
-					_G.LFGParentFrame,
+					--_G.LFGParentFrame,
 					_G.LFGParentFrameTab1,
 					_G.LFGParentFrameTab2,
 					_G.QuestLogDetailFrame,
