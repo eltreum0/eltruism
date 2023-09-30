@@ -495,6 +495,13 @@ function ElvUI_EltreumUI:SkinQuests()
 								frame.Text:SetTextColor(1, 1, 1) --dungeon obj text
 								frame.Text:SetWordWrap(true)
 							end
+							if frame.Icon and frame.Icon:GetAtlas() then
+								if frame.Icon:GetAtlas() == "Objective-Nub" then
+									frame.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\questnub.tga")
+								elseif frame.Icon:GetAtlas() == "Tracker-Check" then
+									frame.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\checkmark.tga")
+								end
+							end
 						end
 					end
 				end)
