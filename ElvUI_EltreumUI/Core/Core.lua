@@ -413,6 +413,12 @@ function ElvUI_EltreumUI:Anchors()
 					ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 					ObjectiveTracker_UpdateHeight()
 
+					Enum.EditModeObjectiveTrackerSetting.Opacity = 0 --fix nineslice
+					ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
+					if ObjectiveTrackerFrame.NineSlice then
+						ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
+					end
+
 					--test nil function to prevent it firing and causing taints
 					--_G.ObjectiveTrackerFrame.ApplySystemAnchor = E.noop
 					_G.ObjectiveTrackerFrame.ApplySystemAnchor = nil
@@ -454,7 +460,13 @@ function ElvUI_EltreumUI:Anchors()
 							end
 						--end)
 						Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
-						ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
+						ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 82800
+
+						Enum.EditModeObjectiveTrackerSetting.Opacity = 0 --fix nineslice
+						ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
+						if ObjectiveTrackerFrame.NineSlice then
+							ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
+						end
 						--ObjectiveTrackerFrame:SetHeight(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight)
 						--ObjectiveTracker_UpdateHeight()
 					end
