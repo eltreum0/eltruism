@@ -354,7 +354,7 @@ function ElvUI_EltreumUI:Anchors()
 						tremove(editMode.registeredSystemFrames, i)
 					end
 				end
-				if E.private.skins.blizzard.enable and E.private.skins.blizzard.loot then
+				--[[if E.private.skins.blizzard.enable and E.private.skins.blizzard.loot then
 					if name == "LootFrame" then
 						tremove(editMode.registeredSystemFrames, i)
 					end
@@ -384,7 +384,7 @@ function ElvUI_EltreumUI:Anchors()
 					if name == "PlayerCastingBarFrame" and E.private.unitframe.disabledBlizzardFrames.castbar then
 						tremove(editMode.registeredSystemFrames, i)
 					end
-				end
+				end]]
 
 				--[[TalkingHeadFrame
 				DurabilityFrame
@@ -401,70 +401,69 @@ function ElvUI_EltreumUI:Anchors()
 			end
 		end
 
-		if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then --TODO 10.2, might need C_AddOns.
-			if E.db.ElvUI_EltreumUI.quests.anchor then
-				E:Delay(0, function()
-					if not _G["ObjectiveFrameHolder"] and not InCombatLockdown() and not _G.MovieFrame:IsShown() and ObjectiveTrackerFrame:IsShown() then
-						local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
-						holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
-						holder:SetSize(130, 22)
+		--add objective frame anchor back in
+		if E.db.ElvUI_EltreumUI.quests.anchor then
+			E:Delay(0, function()
+				if not _G["ObjectiveFrameHolder"] and not InCombatLockdown() and not _G.MovieFrame:IsShown() and ObjectiveTrackerFrame:IsShown() then
+					local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
+					holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
+					holder:SetSize(130, 22)
 
+					Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
+					ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
+					ObjectiveTracker_UpdateHeight()
+
+					--test nil function to prevent it firing and causing taints
+					--_G.ObjectiveTrackerFrame.ApplySystemAnchor = E.noop
+					_G.ObjectiveTrackerFrame.ApplySystemAnchor = nil
+					_G.ObjectiveTrackerFrame.AnchorSelectionFrame = nil
+					_G.ObjectiveTrackerFrame.SetPointOverride = nil
+					_G.ObjectiveTrackerFrame.isRightManagedFrame = false
+					_G.ObjectiveTrackerFrame.breakSnappedFramesOnSave = false
+					--[[_G.ObjectiveTrackerFrame.SnapToFrame = nil
+					_G.ObjectiveTrackerFrame.ClearAllPointsOverride = nil
+					--_G.ObjectiveTrackerFrame.BreakFromFrameManager = E.noop
+					--_G.ObjectiveTrackerFrame.OnAnyEditModeSystemAnchorChanged = E.noop
+					--_G.ObjectiveTrackerFrame.ResetToDefaultPosition = E.noop
+					--_G.ObjectiveTrackerFrame.UpdateMagnetismRegistration = E.noop
+					--_G.ObjectiveTrackerFrame.UpdateSystemSetting = E.noop
+					--_G.ObjectiveTrackerFrame.SetSnappedToFrame = E.noop
+					--_G.ObjectiveTrackerFrame.SetPointBase = E.noop --causes issues for some people for some reason
+					--_G.ObjectiveTrackerFrame.ClearAllPointsBase = nil
+					local function returnfalse()
+						return false
+					end
+					_G.ObjectiveTrackerFrame.CanBeMoved = returnfalse()]]
+
+					_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
+					_G.ObjectiveTrackerFrame:SetMovable(true)
+					_G.ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
+					_G.ObjectiveTrackerFrame:ClearAllPoints()
+					_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
+					E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,general,blizzUIImprovements", nil, 'ElvUI_EltreumUI,quests')
+					ObjectiveTrackerFrame:UnregisterEvent("ADDON_ACTION_BLOCKED")
+
+					local function SetObjectivePoint()
+						--E:Delay(0, function()
+							if not InCombatLockdown() then
+								_G.ObjectiveTrackerFrame.isRightManagedFrame = false
+								_G.ObjectiveTrackerFrame.breakSnappedFramesOnSave = false
+								_G.ObjectiveTrackerFrame:ClearAllPoints()
+								_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
+								_G.ObjectiveTrackerFrame.editModeSystemAnchorDirty = false
+							end
+						--end)
 						Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 						ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
-						ObjectiveTracker_UpdateHeight()
-
-						--test nil function to prevent it firing and causing taints
-						--_G.ObjectiveTrackerFrame.ApplySystemAnchor = E.noop
-						_G.ObjectiveTrackerFrame.ApplySystemAnchor = nil
-						_G.ObjectiveTrackerFrame.AnchorSelectionFrame = nil
-						_G.ObjectiveTrackerFrame.SetPointOverride = nil
-						_G.ObjectiveTrackerFrame.isRightManagedFrame = false
-						_G.ObjectiveTrackerFrame.breakSnappedFramesOnSave = false
-						--[[_G.ObjectiveTrackerFrame.SnapToFrame = nil
-						_G.ObjectiveTrackerFrame.ClearAllPointsOverride = nil
-						--_G.ObjectiveTrackerFrame.BreakFromFrameManager = E.noop
-						--_G.ObjectiveTrackerFrame.OnAnyEditModeSystemAnchorChanged = E.noop
-						--_G.ObjectiveTrackerFrame.ResetToDefaultPosition = E.noop
-						--_G.ObjectiveTrackerFrame.UpdateMagnetismRegistration = E.noop
-						--_G.ObjectiveTrackerFrame.UpdateSystemSetting = E.noop
-						--_G.ObjectiveTrackerFrame.SetSnappedToFrame = E.noop
-						--_G.ObjectiveTrackerFrame.SetPointBase = E.noop --causes issues for some people for some reason
-						--_G.ObjectiveTrackerFrame.ClearAllPointsBase = nil
-						local function returnfalse()
-							return false
-						end
-						_G.ObjectiveTrackerFrame.CanBeMoved = returnfalse()]]
-
-						_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
-						_G.ObjectiveTrackerFrame:SetMovable(true)
-						_G.ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
-						_G.ObjectiveTrackerFrame:ClearAllPoints()
-						_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
-						E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,general,blizzUIImprovements", nil, 'ElvUI_EltreumUI,quests')
-						ObjectiveTrackerFrame:UnregisterEvent("ADDON_ACTION_BLOCKED")
-
-						local function SetObjectivePoint()
-							--E:Delay(0, function()
-								if not InCombatLockdown() then
-									_G.ObjectiveTrackerFrame.isRightManagedFrame = false
-									_G.ObjectiveTrackerFrame.breakSnappedFramesOnSave = false
-									_G.ObjectiveTrackerFrame:ClearAllPoints()
-									_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
-									_G.ObjectiveTrackerFrame.editModeSystemAnchorDirty = false
-								end
-							--end)
-							Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
-							ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
-							--ObjectiveTrackerFrame:SetHeight(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight)
-							--ObjectiveTracker_UpdateHeight()
-						end
-						hooksecurefunc("ObjectiveTracker_UpdateHeight", SetObjectivePoint)
-						--hooksecurefunc(_G.ObjectiveTrackerFrame, "SetPointBase", SetObjectivePoint)
-						hooksecurefunc(_G.ObjectiveTrackerFrame, "OnAnyEditModeSystemAnchorChanged", SetObjectivePoint)
-						hooksecurefunc(_G.ObjectiveTrackerFrame, "ResetToDefaultPosition", SetObjectivePoint)
+						--ObjectiveTrackerFrame:SetHeight(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight)
+						--ObjectiveTracker_UpdateHeight()
 					end
-				end)
-			end
+					hooksecurefunc("ObjectiveTracker_UpdateHeight", SetObjectivePoint)
+					--hooksecurefunc(_G.ObjectiveTrackerFrame, "SetPointBase", SetObjectivePoint)
+					hooksecurefunc(_G.ObjectiveTrackerFrame, "OnAnyEditModeSystemAnchorChanged", SetObjectivePoint)
+					hooksecurefunc(_G.ObjectiveTrackerFrame, "ResetToDefaultPosition", SetObjectivePoint)
+				end
+			end)
 		end
 	end
 end
