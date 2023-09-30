@@ -100,6 +100,32 @@ function ElvUI_EltreumUI:DarkMode()
 		if not E.Classic then
 			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:eltruism:gradientshort] [eltruism:IconOutline:player] [eltruism:raidmarker]"
 		end
+		E.db["unitframe"]["units"]["boss"]["health"]["text_format"] = "[healthcolor][eltruism:hpstatusnopc:gradient]"
+		if E.db["unitframe"]["units"]["party"]["customTexts"] and E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"] then
+			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["text_format"] = "[eltruism:raidmarker] [eltruism:hpstatusnopc:gradient]"
+		end
+
+		if E.db["unitframe"]["units"]["arena"]["customTexts"] and E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] then
+			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"]["text_format"] = "[eltruism:hpstatusnopc:gradient]"
+		end
+		if E.db["unitframe"]["units"]["raid1"]["customTexts"] and E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Health"] then
+			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Health"]["text_format"] = "[eltruism:hpstatusnopc:gradient]"
+		end
+		if E.db["unitframe"]["units"]["raid2"]["customTexts"] and E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Health"] then
+			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Health"]["text_format"] = "[eltruism:hpstatusnopc:gradient]"
+		end
+		if E.db["unitframe"]["units"]["raid3"]["customTexts"] and E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Health"] then
+			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Health"]["text_format"] = "[eltruism:hpstatusnopc:gradient]"
+		end
+		if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"] then
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["text_format"] = "[eltruism:hpstatusnopc:gradient]"
+		end
+		if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] = "[eltruism:hpstatusnopc:gradient]"
+		end
+		if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] then
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["text_format"] = "[eltruism:hpstatus:gradient]"
+		end
 
 		E.db.ElvUI_EltreumUI.unitframes.lightmode = false
 		E.db.ElvUI_EltreumUI.unitframes.darkmode = true
@@ -234,6 +260,32 @@ function ElvUI_EltreumUI:LightMode()
 		if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] then
 			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["text_format"] = "[power:current:shortvalue]"
 		end
+		E.db["unitframe"]["units"]["boss"]["health"]["text_format"] = "[healthcolor][eltruism:hpstatusnopc]"
+		if E.db["unitframe"]["units"]["party"]["customTexts"] and E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"] then
+			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["text_format"] = "[eltruism:raidmarker] [eltruism:hpstatusnopc]"
+		end
+		if E.db["unitframe"]["units"]["arena"]["customTexts"] and E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] then
+			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"]["text_format"] = "[eltruism:hpstatusnopc]"
+		end
+		if E.db["unitframe"]["units"]["raid1"]["customTexts"] and E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Health"] then
+			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Health"]["text_format"] = "[eltruism:hpstatusnopc]"
+		end
+		if E.db["unitframe"]["units"]["raid2"]["customTexts"] and E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Health"] then
+			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Health"]["text_format"] = "[eltruism:hpstatusnopc]"
+		end
+		if E.db["unitframe"]["units"]["raid3"]["customTexts"] and E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Health"] then
+			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Health"]["text_format"] = "[eltruism:hpstatusnopc]"
+		end
+		if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"] then
+			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["text_format"] = "[eltruism:hpstatusnopc]"
+		end
+		if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] then
+			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] = "[eltruism:hpstatusnopc]"
+		end
+		if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] then
+			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["text_format"] = "[eltruism:hpstatus]"
+		end
+
 		E.db["unitframe"]["units"]["tank"]["name"]["text_format"] = "[name:long:status]"
 		if not E.Classic then
 			E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:eltruism:abbreviate] [eltruism:IconOutline:player] [eltruism:raidmarker]"
