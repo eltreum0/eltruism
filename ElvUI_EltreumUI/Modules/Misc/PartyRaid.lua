@@ -468,3 +468,129 @@ function ElvUI_EltreumUI:RestIcon(frame)
 	end
 end
 hooksecurefunc(UF,"Configure_RestingIndicator", ElvUI_EltreumUI.RestIcon)
+
+--LFG Spec Icons, based on https://wago.io/cFpgwuLe0
+function ElvUI_EltreumUI:DungeonRoleIcons()
+	if E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons then
+		local role_order = _G.LFG_LIST_GROUP_DATA_ROLE_ORDER
+		local class_order = _G.LFG_LIST_GROUP_DATA_CLASS_ORDER
+		local raidClassColors = _G.RAID_CLASS_COLORS
+
+		local roleIndex = {}
+		local classIndex = {}
+
+		for i=1, #role_order do
+			roleIndex[role_order[i]] = i
+		end
+
+		for i=1, #class_order do
+			classIndex[class_order[i]] = i
+		end
+
+		--C_LFGList.GetSearchResultMemberInfo returns a localized name for the spec, which would fail in other languages, so get the localized name and icon for the spec before running
+		local GetSpecializationInfoForClassID = _G.GetSpecializationInfoForClassID
+		local iconTable = {}
+		for classID = 1, 13 do --13 classes in retail
+			if GetClassInfo(classID) then --nil check for classic
+				local className = select(2, GetClassInfo(classID))
+				iconTable[className] = {}
+				for i = 1, 4 do --druids have 4 in retail
+					--local id, name, description, icon, role, isRecommended, isAllowed  = GetSpecializationInfoForClassID(classID, specIndex)
+					local _, name, _, icon = GetSpecializationInfoForClassID(classID, i)
+					if name and icon then --nil check for classic
+						iconTable[className][name] = icon
+					end
+				end
+			end
+		end
+
+		local function SearchEntry_Update(entry)
+			if not _G.LFGListFrame.SearchPanel:IsShown() then return end
+			local resultInfo = C_LFGList.GetSearchResultInfo(entry.resultID)
+			local activityTable = C_LFGList.GetActivityInfoTable(resultInfo.activityID)
+			local categoryID = activityTable.categoryID
+
+			-- reset textures
+			for i = 1, 5 do
+				if entry.DataDisplay.Enumerate[i] then
+					entry.DataDisplay.Enumerate[i]:Hide()
+					entry.DataDisplay.Enumerate[i.."b"]:Hide()
+				end
+			end
+
+			--only in dungeon or arena listings
+			if categoryID == 2 or categoryID == 4 or categoryID == 7 then
+				local maxNumPlayers = activityTable.maxNumPlayers
+				local numMembers = resultInfo.numMembers
+				local partymembers = {}
+
+				for i=1, numMembers do
+					local role, class, _, specLocalized = C_LFGList.GetSearchResultMemberInfo(entry.resultID, i)
+					local icon = iconTable[class][specLocalized]
+					partymembers[#partymembers+1] = {roleIndex[role], classIndex[class], raidClassColors[class],icon}
+				end
+
+				if categoryID == 2 then --sort dungeon members
+					table.sort(partymembers, function(a,b)
+						if a[1] ~= b[1] then
+							return a[1] < b[1]
+						else
+							return a[2] < b[2]
+						end
+					end)
+				else
+					table.sort(partymembers, function(a,b)
+						return a[2] < b[2]
+					end)
+				end
+
+				entry.DataDisplay:SetPoint("RIGHT", entry.DataDisplay:GetParent(), "RIGHT", 0, -5)
+
+				for i = 1, numMembers do
+					if not entry.DataDisplay.Enumerate[i] then
+						entry.DataDisplay.Enumerate[i] = entry.DataDisplay:CreateTexture(nil, "BORDER")
+						entry.DataDisplay.Enumerate[i]:SetSize(17, 17)
+						entry.DataDisplay.Enumerate[i.."b"] = entry.DataDisplay:CreateTexture(nil, "BACKGROUND")
+						entry.DataDisplay.Enumerate[i.."b"]:SetSize(20, 20)
+					end
+
+					entry.DataDisplay.Enumerate[i]:SetPoint("RIGHT", entry.DataDisplay.Enumerate, "RIGHT", -13 - 21*(maxNumPlayers-i), -1)
+					entry.DataDisplay.Enumerate[i]:Show()
+					entry.DataDisplay.Enumerate[i]:SetTexture(partymembers[i][4])
+					entry.DataDisplay.Enumerate[i]:SetTexCoord(0.08,0.92,0.08,0.92)
+
+					local r, g, b, _ = partymembers[i][3]:GetRGBA()
+					entry.DataDisplay.Enumerate[i.."b"]:SetPoint("CENTER", entry.DataDisplay.Enumerate[i], "CENTER", 0, 0)
+					entry.DataDisplay.Enumerate[i.."b"]:Show()
+					entry.DataDisplay.Enumerate[i.."b"]:SetColorTexture(r, g, b, 0.75)
+					entry.DataDisplay.Enumerate:Hide()
+				end
+			end
+		end
+		hooksecurefunc("LFGListSearchEntry_Update", SearchEntry_Update)
+	end
+end
+
+--fix taint by replacing the function with the same function https://github.com/0xbs/premade-groups-filter/issues/64#issuecomment-1001230231
+local function LFMPlus_GetPlaystyleString(playstyle,activityInfo)
+	if activityInfo and playstyle ~= (0 or nil) and C_LFGList.GetLfgCategoryInfo(activityInfo.categoryID).showPlaystyleDropdown then
+		local typeStr
+		if activityInfo.isMythicPlusActivity then
+			typeStr = "GROUP_FINDER_PVE_PLAYSTYLE"
+		elseif activityInfo.isRatedPvpActivity then
+			typeStr = "GROUP_FINDER_PVP_PLAYSTYLE"
+		elseif activityInfo.isCurrentRaidActivity then
+			typeStr = "GROUP_FINDER_PVE_RAID_PLAYSTYLE"
+		elseif activityInfo.isMythicActivity then
+			typeStr = "GROUP_FINDER_PVE_MYTHICZERO_PLAYSTYLE"
+		end
+
+		return typeStr and _G[typeStr .. tostring(playstyle)] or nil
+	else
+		return nil
+	end
+end
+
+C_LFGList.GetPlaystyleString = function(playstyle,activityInfo)
+	return LFMPlus_GetPlaystyleString(playstyle, activityInfo)
+end

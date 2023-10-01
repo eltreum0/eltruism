@@ -97,6 +97,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 		if E.myclass == 'HUNTER' then
 			ElvUI_EltreumUI:ExpandedStable() --expands pet stable for hunters
 		end
+		ElvUI_EltreumUI:DungeonRoleIcons() -- add spec icons to the lfg frame
 	elseif E.Wrath or E.Classic then
 		ElvUI_EltreumUI:ClassicSockets() --adds sockets and enchants into the character panel, based on Kibs Item Level by Kibsgaard
 		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
@@ -126,7 +127,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 		ElvUI_EltreumUI:EltruismCell()
 	end
 	ElvUI_EltreumUI:HardcoreDeath() -- hardcore death sound/animation
-	ElvUI_EltreumUI:BagProfessions() -- hardcore death sound/animation
+	ElvUI_EltreumUI:BagProfessions() -- add profession buttons to bags
 end
 
 function ElvUI_EltreumUI:Initialize()

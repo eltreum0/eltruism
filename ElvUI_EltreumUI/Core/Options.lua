@@ -86,6 +86,8 @@ local DONATORS = {
 	'|cffB50909Ante|r',
 	'|cffB50909Spectated|r',
 	'|cffB50909Volo|r',
+	'|cffB50909seba4287|r',
+	'|cffB50909orangepaw3|r',
 }
 
 local TRANSLATORS = {
@@ -1031,7 +1033,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.discord.args.discordlink = ACH:Input("", "", 3, false, "full", function() return 'https://discord.gg/rBXNxUY6pk' end)
 
 	--credits
-	ElvUI_EltreumUI.Options.args.credits = ACH:Group(E:TextGradient(L["Credits"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Credits and Licenses"], 87)
+	ElvUI_EltreumUI.Options.args.credits = ACH:Group(E:TextGradient(L["Credits"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Credits and Licenses"], 88)
 	ElvUI_EltreumUI.Options.args.credits.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\credits'
 	ElvUI_EltreumUI.Options.args.credits.args.author = ACH:Group(L["Author"], nil, 1)
 	ElvUI_EltreumUI.Options.args.credits.args.author.inline = true
@@ -1056,7 +1058,7 @@ function ElvUI_EltreumUI:Configtable()
 	end, 10, "medium")
 
 	--support
-	ElvUI_EltreumUI.Options.args.support = ACH:Group(E:TextGradient(GAMEMENU_SUPPORT, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Direct links to GitHub, CurseForge, Wago and Tukui"], 88, 'tab')
+	ElvUI_EltreumUI.Options.args.support = ACH:Group(E:TextGradient(GAMEMENU_SUPPORT, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Direct links to GitHub, CurseForge, Wago and Tukui"], 89, 'tab')
 	ElvUI_EltreumUI.Options.args.support.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support'
 	ElvUI_EltreumUI.Options.args.support.args.changelog = ACH:Input(L["Changelog"], "", 7, false, "full", function() return 'https://github.com/eltreum0/eltruism/blob/main/Changelog.md' end)
 	ElvUI_EltreumUI.Options.args.support.args.issues = ACH:Input(L["Report issues and problems here:"], "", 8, false, "full", function() return 'https://github.com/eltreum0/eltruism/issues' end)
@@ -2353,6 +2355,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.party.args.general.args.battleres = ACH:Toggle(L["Show a Battle Resurrection Count and Cooldown Frame"], L["Enables a frame that shows a cooldown and count for battle resurrections while in an instance that has them"], 6, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.bres end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bres = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
 	ElvUI_EltreumUI.Options.args.party.args.general.args.description3 = ACH:Description(COMBAT_LOG, 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.party.args.general.args.autocombatlog = ACH:Toggle(L["Enable Automatic Combat Log"], nil, 8, nil, false, "full", function() return E.db.ElvUI_EltreumUI.cvars.combatlog end, function(_, value) E.db.ElvUI_EltreumUI.cvars.combatlog = value end)
+	ElvUI_EltreumUI.Options.args.party.args.general.args.description4 = ACH:Description(_G.DUNGEONS_BUTTON, 9, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.party.args.general.args.groupfinderSpecIcons = ACH:Toggle(E.NewSign..L["Add Spec Icons to the Group Finder Listing"], nil, 10, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons end, function(_, value) E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
 	ElvUI_EltreumUI.Options.args.party.args.instances = ACH:Group(L["Instances"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.party.args.instances.args.description1 = ACH:Description(L["Instance Texts"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.party.args.instances.args.enable = ACH:Toggle(L["Enable"], nil, 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.instances.enable end, function(_, value) E.db.ElvUI_EltreumUI.skins.instances.enable = value end)
@@ -3295,6 +3299,66 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.skins.args.databars.args.archeology.args.fontsize = ACH:Range(L["Font Size"], nil, 6, { min = 4, max = 40, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontsize end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontsize = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.databars.args.archeology.args.fontx = ACH:Range(L["Text X offset"], nil, 7, { min = -100, max = 100, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.databars.args.archeology.args.fonty = ACH:Range(L["Text Y offset"], nil, 7, { min = -100, max = 100, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety = value E:StaticPopup_Show('CONFIG_RL') end)
+
+	--changelog
+	ElvUI_EltreumUI.Options.args.changelog = ACH:Group(E.NewSign..E:TextGradient(L["Changelog"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Check what has changed in the current version of Eltruism"], 87, 'tab')
+	ElvUI_EltreumUI.Options.args.changelog.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\changelog'
+	ElvUI_EltreumUI.Options.args.changelog.args.description1 = ACH:Description(E:TextGradient("v"..ElvUI_EltreumUI.Version, 0.50, 0.70, 1, 0.67, 0.95, 1), 1, "large", nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.changelog.args.description2 = ACH:Description(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), 2, "medium", 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.changelog.args.description3 = ACH:Description([[
+Added Details nickname tags, [eltruism:detailsnickname] and [eltruism:detailsnickname:gradient] which will show the nickname set in Details instead of the unit name
+Added minimize and maximize buttons to Classic Era Objective Frame
+Added gradient health tags such as [eltruism:hpstatus:gradient]
+Added custom color option for Class Texture Eltruism Datatext
+Added an option to disable Other Stats in the Character Panel
+Added option to Rotate Minimap and updated Cardinals for it
+Added an option to disable skinning Blizzard raid frames
+Added Ace3 skin to slider and fixed some coloring
+Added Gradient to Unitframe backdrops
+Added some missing shadows
+Added profession buttons to bags
+Added a skin for Auctionator
+]], 3, "small", nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.changelog.args.description4 = ACH:Description(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), 4, "medium", 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.changelog.args.description5 = ACH:Description([[
+Updated Unitframe Gradients to now more correctly use ElvUI Unitframe Transparency setting instead of Eltruism backdrop alpha
+Updated the Gradient enable/disable function and command "/eltruism gradient" to also swap tags to gradient and non gradient
+Updated Inspect frame Name to fix the default UI issue of the name not being centered
+Updated Rare Portrait border to also color the border when an enemy is Rare or Elite
+Updated Backdrop Alpha to allow backdrop transparency when Health isn't transparent
+Updated Gradient Unitframes to better follow ElvUI Unitframe Transparency Settings
+Updated the Gradient Reverse for target to also reverse target of target colors
+Updated Portrait to invert Party Portrait if anchor is set to Right side
+Updated Gradient Power Backdrop Fade to also apply to Health Backdrop
+Updated some gradient options to be on their own frame tab
+Updated ElvUI profiles to use the gradient tag
+Updated mMediaTag interrupt check
+Updated the Gradient Mode toggle
+Updated German locale by Dlarge
+Updated Questie profile
+]], 5, "small", nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.changelog.args.description6 = ACH:Description(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), 6, "medium", 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.changelog.args.description7 = ACH:Description([[
+Fixed an issue where colors were being forced when gradient was enabled but neither Light nor Dark modes were selected
+Fixed death color and tapped color on Unitframes when Gradient was enabled by adding an option for it
+Fixed an issue where Custom Gradients were not applying to the Class Texture for Eltruism Datatext
+Fixed an issue with Custom Texture and No Class Textures in Group Unitframes
+Fixed shadows when unitframes had portraits enabled and non spaced power
+Fixed a double Shadow on Target Unitframe when power was Detached
+Fixed an error when ElvUI Character Panel skin was disabled
+Fixed Quest Combat hide not working correctly with Questie
+Fixed a possible error with chat class icons
+Fixed AFK skin while traveling between zones
+Fixed a possible issue with Unit reactions
+Fixed some possible errors with Unitframes
+Fixed Portrait showing up on Party Pets
+Fixed death animation for Classic Era
+Fixed Custom Textures in Dark Mode
+Fixed Dark Mode Backdrop Texture
+Fixed AFK music not stopping
+Fixed some Ace3 skin issues
+Fixed Details shadow
+]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
 	ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)

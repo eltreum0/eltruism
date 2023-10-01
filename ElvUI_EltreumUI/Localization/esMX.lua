@@ -1,8 +1,5 @@
-﻿-- DeepL esMX translation
---local L = LibStub("AceLocale-3.0"):NewLocale("ElvUI_EltreumUI", "esES")
-local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "esMX")
+﻿local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "esMX") -- DeepL esMX translation
 if not L then return end
-
 -- Core
 L["4K resolution detected, setting fonts to default mode."] = "Se ha detectado la resolución 4K y se ha establecido el modo de fuentes por default."
 L["1440p resolution detected, setting fonts to outline mode."] = "Se ha detectado una resolución de 1440p y se ha configurado el modo de contorno de las fuentes."
@@ -1495,3 +1492,4 @@ L["Skin Blizzard Raid Frames"] = "Skin Marcos de incursión de BLIZZARD"
 L["Adds Gradient, Custom Textures, Shadows, Font and Role Icons to Blizzard Raid Frames"] = "Añade degradado, texturas personalizadas, sombras, fuentes e iconos de rol a los marcos de incursión de Blizzard"
 L["Add Other Stats"] = true
 L["Display stats such as Speed and Mana Regen"] = true
+L["Add Spec Icons to the Group Finder Listing"] = true

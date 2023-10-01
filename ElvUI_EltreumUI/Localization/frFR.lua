@@ -1474,3 +1474,4 @@ L["Skin Blizzard Raid Frames"] = "Skin Cadres de raid de Blizzard"
 L["Adds Gradient, Custom Textures, Shadows, Font and Role Icons to Blizzard Raid Frames"] = "Ajoute un dégradé, des textures personnalisées, des ombres, une police et des icônes de rôle aux cadres de raid de Blizzard."
 L["Add Other Stats"] = true
 L["Display stats such as Speed and Mana Regen"] = true
+L["Add Spec Icons to the Group Finder Listing"] = true

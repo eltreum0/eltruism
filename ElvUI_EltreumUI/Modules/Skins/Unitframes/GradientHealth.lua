@@ -14,6 +14,18 @@ local UnitIsCharmed = _G.UnitIsCharmed
 local pairs = _G.pairs
 local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 
+--function to check if colormixin tables are equal, if they are return false since its used to do something after that
+function ElvUI_EltreumUI:ColorMixinTableMatching(table1,table2)
+	local r1,g1,b1,a1 = table1.r,table1.g,table1.b,table1.a
+	local r2,g2,b2,a2 = table2.r,table2.g,table2.b,table2.a
+	if r1 == r2 and g1 == g2 and b1 == b2 and a1 == a2 then
+		return false
+	else
+		return true
+	end
+end
+
+
 --set the backdrop gradient
 function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionunit,isGroupFrame)
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
@@ -359,6 +371,16 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 						frame.Health.backdrop.Center:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.tapped.r, g = E.db.unitframe.colors.tapped.g, b = E.db.unitframe.colors.tapped.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
 					end
 				end
+			elseif not UnitIsConnected(unit) then
+				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+					if frame.Health.backdropTex then
+						frame.Health.backdropTex:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.disconnected.r, g = E.db.unitframe.colors.disconnected.g, b = E.db.unitframe.colors.disconnected.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.disconnected.r, g = E.db.unitframe.colors.disconnected.g, b = E.db.unitframe.colors.disconnected.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+					end
+				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
+					if frame.Health.backdrop.Center then
+						frame.Health.backdrop.Center:SetGradient("HORIZONTAL", {r = E.db.unitframe.colors.disconnected.r, g = E.db.unitframe.colors.disconnected.g, b = E.db.unitframe.colors.disconnected.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r = E.db.unitframe.colors.disconnected.r, g = E.db.unitframe.colors.disconnected.g, b = E.db.unitframe.colors.disconnected.b, a = E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+					end
+				end
 			end
 		end
 	end
@@ -371,6 +393,10 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unittexture,noOrientation)
 		reaction = UnitReaction(unit, "player")
 		unitframe = _G["ElvUF_"..name]
 		if unitframe and unitframe.Health then
+			--[[if not unitframe.Health.EltruismColor1 then
+				unitframe.Health.EltruismColor1 = {r = 0, g = 0, b = 0, a = 0}
+				unitframe.Health.EltruismColor2 = {r = 0, g = 0, b = 0, a = 0}
+			end]]
 			if not noOrientation then
 				unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
 			end
@@ -447,6 +473,13 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unittexture,noOrientation)
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
 								if (unit == "target" or unit == "targettarget") and E.db.ElvUI_EltreumUI.unitframes.gradientmode.reversetarget then
 									unitframe.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, true, E.db.unitframe.colors.transparentHealth))
+									--issue is getting the correct color from the texture instead of the function, hm
+									--[[local color1,color2 = ElvUI_EltreumUI:GradientColors(classunit, true, E.db.unitframe.colors.transparentHealth)
+									if ElvUI_EltreumUI:ColorMixinTableMatching(color1,unitframe.Health.EltruismColor1) and ElvUI_EltreumUI:ColorMixinTableMatching(color2,unitframe.Health.EltruismColor2) then
+										unitframe.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, true, E.db.unitframe.colors.transparentHealth))
+										unitframe.Health.EltruismColor1 = color1
+										unitframe.Health.EltruismColor2 = color2
+									end]]
 								else
 									unitframe.Health.backdropTex:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(classunit, false, E.db.unitframe.colors.transparentHealth))
 								end

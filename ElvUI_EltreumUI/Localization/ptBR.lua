@@ -1469,3 +1469,4 @@ L["Skin Blizzard Raid Frames"] = "Modificar Quadros de Raide da Blizzard"
 L["Adds Gradient, Custom Textures, Shadows, Font and Role Icons to Blizzard Raid Frames"] = "Adiciona gradiente, texturas personalizadas, sombras, fontes e ícones de função aos quadros de raide da Blizzard"
 L["Add Other Stats"] = true
 L["Display stats such as Speed and Mana Regen"] = true
+L["Add Spec Icons to the Group Finder Listing"] = true

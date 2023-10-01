@@ -305,7 +305,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckMerathilisUI(L["Gradient BigWigs"], L["BigWigs Queue Timer"], "db.ElvUI_EltreumUI.skins.bigwigs", "private.mui.skins.addonSkins.bw.queueTimer.enable")
 	CheckWindTools(L["Gradient BigWigs"], L["BigWigs Queue Timer"], "db.ElvUI_EltreumUI.skins.bigwigs", "private.WT.skins.addons.bigWigsQueueTimer")
 	CheckToxiUI(L["Gradient Zone Text"], "Blizzard Fonts", "db.ElvUI_EltreumUI.skins.zones", "db.TXUI.blizzardFonts.enabled")
-	CheckToxiUI(L["Gradient"], "Gradient Mode", "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "db.TXUI.themes.gradientMode.enabled")
+	CheckToxiUI(L["Gradient"], "Gradient Mode", "db.ElvUI_EltreumUI.unitframes.gradientmode.enable", "db.TXUI.themes.gradientMode.enabled")
 	CheckMerathilisUI(L["Gradient Zone/Mail/Quest Text"], L["Zone Text"], "db.ElvUI_EltreumUI.skins.zones", "db.mui.media.zoneText.enable")
 	CheckMerathilisUI(L["Gradient Zone/Mail/Quest Text"], L["Mail Text"], "db.ElvUI_EltreumUI.skins.zones", "db.mui.media.miscText.mail.enable")
 	CheckMerathilisUI(L["Tooltip\nGradient Name and Health"], L["Tooltip\nGradient Name"], "db.ElvUI_EltreumUI.skins.gradienttooltip", "db.mui.gradient.enable") --currently merathilis ui does not do anything with the tooltip option (no db entry toggle), only general disable of gradient works

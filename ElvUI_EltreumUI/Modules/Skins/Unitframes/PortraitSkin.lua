@@ -106,6 +106,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 		--if not UnitExists(frame.unit) then return end
 		if not E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom or (E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcircle and E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom) then
 			frame.EltruismPortrait.portrait:SetMask("")
+			frame.EltruismPortrait.portrait:Show()
 			frame.EltruismPortrait.border:Show()
 			frame.EltruismPortrait.rare:SetAlpha(1)
 			frame.EltruismPortrait.edge:SetAlpha(1)
@@ -218,10 +219,12 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 				frame.EltruismPortrait.border:Hide()
 				frame.EltruismPortrait.rare:SetAlpha(0)
 				frame.EltruismPortrait.edge:SetAlpha(0)
+				frame.EltruismPortrait.portrait:Show()
 			else
 				frame.EltruismPortrait.border:Hide()
 				frame.EltruismPortrait.rare:SetAlpha(0)
 				frame.EltruismPortrait.edge:SetAlpha(0)
+				frame.EltruismPortrait.portrait:Hide()
 			end
 
 			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcircle then
@@ -269,14 +272,16 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 			frame.EltruismPortrait.edge:SetAlpha(1)
 		end
 
-		if E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcircle and E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
-			frame.EltruismPortrait.border:Show()
-			frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
-		elseif E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom and not E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcircle then
-			frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\clearmask.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
-			frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
-			frame.EltruismPortrait.portrait:SetMask("")
-			frame.EltruismPortrait.border:Hide()
+		if E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
+			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcircle then
+				frame.EltruismPortrait.border:Show()
+				frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
+			else
+				frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\clearmask.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+				frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
+				frame.EltruismPortrait.portrait:SetMask("")
+				frame.EltruismPortrait.border:Hide()
+			end
 		end
 
 		if not E.db.ElvUI_EltreumUI.unitframes.portrait[db].rare or E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "CIRCLE" or E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then

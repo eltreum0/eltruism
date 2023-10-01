@@ -375,6 +375,7 @@ P.ElvUI_EltreumUI = {
 				b = 0,
 			},
 		},
+		groupfinderSpecIcons = true,
 		hidetalkinghead = false,
 		playerdeath = false,
 		playerdeathgta = false,
@@ -937,7 +938,7 @@ P.ElvUI_EltreumUI = {
 				position = {
 					align = "LEFT",
 					x = -42,
-					y = 18,
+					y = 1,
 				},
 				custom = false,
 				edge = true,

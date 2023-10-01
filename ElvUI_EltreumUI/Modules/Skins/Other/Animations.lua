@@ -108,7 +108,7 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 				end
 				Minimap:Hide()
 				Minimap:SetAlpha(0)
-				if E.ClassicHC then
+				if not E.ClassicHC then
 					PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\You_Died.ogg" , "Master")
 				end
 				UIFrameFadeIn(darksouls, 1, 0, 1)

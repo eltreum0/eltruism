@@ -1,6 +1,5 @@
 ﻿local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "itIT")
 if not L then return end
-
 -- Core
 L["4K resolution detected, setting fonts to default mode."] = true
 L["1440p resolution detected, setting fonts to outline mode."] = true
@@ -1467,3 +1466,4 @@ L["Skin Blizzard Raid Frames"] = true
 L["Adds Gradient, Custom Textures, Shadows, Font and Role Icons to Blizzard Raid Frames"] = true
 L["Add Other Stats"] = true
 L["Display stats such as Speed and Mana Regen"] = true
+L["Add Spec Icons to the Group Finder Listing"] = true
