@@ -1813,7 +1813,7 @@ E:AddTag("eltruism:lowmana", 'UNIT_POWER_FREQUENT', function(unit,_,args)
 	if percentage == nil then
 		percentage = 1
 	end
-	if (E.Retail or E.Wrath) and UnitIsUnit("player", unit) then
+	if UnitIsUnit("player", unit) then
 		local role
 		if E.Retail then
 			local currentSpec = GetSpecialization()
@@ -1823,7 +1823,7 @@ E:AddTag("eltruism:lowmana", 'UNIT_POWER_FREQUENT', function(unit,_,args)
 		elseif E.Wrath then
 			role = GetTalentGroupRole(GetActiveTalentGroup())
 		end
-		if role == 'HEALER' then
+		if role == 'HEALER' or E.Classic then
 			if (UnitPower("player")/UnitPowerMax("player")) < (tonumber(percentage) * 0.01) then
 				if not manaspam then
 					DoEmote("OOM")
