@@ -14,6 +14,14 @@ function ElvUI_EltreumUI:ExpandedTalents()
 		EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
 			if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then --TODO 10.2, might need C_AddOns.
 				EltruismExpandedTalents:UnregisterAllEvents()
+
+				_G.ClassTalentFrame:SetMovable(true)
+				_G.ClassTalentFrame:EnableMouse(true)
+				_G.ClassTalentFrame:RegisterForDrag("LeftButton")
+				_G.ClassTalentFrame:SetScript("OnDragStart", _G.ClassTalentFrame.StartMoving)
+				_G.ClassTalentFrame:SetScript("OnDragStop", _G.ClassTalentFrame.StopMovingOrSizing)
+				_G.ClassTalentFrame:SetClampedToScreen(true)
+
 				local function adjustscale()
 					_G.ClassTalentFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
 				end
