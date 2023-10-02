@@ -621,9 +621,17 @@ function ElvUI_EltreumUI:SkinQuests()
 									line.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 								end
 							else -- its the subtext
-								line.Text:SetTextColor(1, 1, 1)
-								if line.Text.colorStyle then
-									line.Text.colorStyle = {r = mult * 1, g = mult * 1, b = mult * 1}
+								local text = line.Text:GetText()
+								if text == _G.QUEST_WATCH_QUEST_READY then
+									block.currentLine.Text:SetTextColor(0, 1, 0)
+									if line.Text.colorStyle then
+										line.Text.colorStyle = {r = 0, g = 1, b = 0}
+									end
+								else
+									line.Text:SetTextColor(1, 1, 1)
+									if line.Text.colorStyle then
+										line.Text.colorStyle = {r = mult * 1, g = mult * 1, b = mult * 1}
+									end
 								end
 							end
 							if ( line.Dash ) then
@@ -659,9 +667,17 @@ function ElvUI_EltreumUI:SkinQuests()
 									line.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 								end
 							else -- its the subtext
-								line.Text:SetTextColor(mult, mult, mult)
-								if line.Text.colorStyle then
-									line.Text.colorStyle = {r = mult, g = mult, b = mult}
+								local text = line.Text:GetText()
+								if text == _G.QUEST_WATCH_QUEST_READY then
+									block.currentLine.Text:SetTextColor(0.12, 1, 0.12)
+									if line.Text.colorStyle then
+										line.Text.colorStyle = {r = 0.12, g = 1, b = 0.12}
+									end
+								else
+									line.Text:SetTextColor(mult, mult, mult)
+									if line.Text.colorStyle then
+										line.Text.colorStyle = {r = mult, g = mult, b = mult}
+									end
 								end
 							end
 							if ( line.Dash ) then
