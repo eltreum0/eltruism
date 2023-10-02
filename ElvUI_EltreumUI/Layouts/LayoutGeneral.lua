@@ -415,6 +415,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["general"]["minimap"]["icons"]["mail"]["scale"] = 1.2
 		E.db["general"]["minimap"]["icons"]["mail"]["texture"] = "Mail1"
 		E.db["general"]["minimap"]["icons"]["mail"]["xOffset"] = 0
+		E.db["general"]["itemLevel"]["itemLevelRarity"] = false
 
 		E.db["general"]["minimap"]["icons"]["mail"]["yOffset"] = 0
 		if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then

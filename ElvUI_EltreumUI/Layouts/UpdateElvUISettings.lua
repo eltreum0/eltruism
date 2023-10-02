@@ -134,5 +134,8 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 	E.db["unitframe"]["units"]["raid2"]["privateAuras"]["parent"]["offsetY"] = 5
 	E.db["unitframe"]["units"]["raid3"]["privateAuras"]["parent"]["offsetY"] = 5
 
+	--disable rairity color, so that items color by lowest ilvl > highest
+	E.db["general"]["itemLevel"]["itemLevelRarity"] = false
+
 	ElvUI_EltreumUI:Print(L["Settings for ElvUI were updated."])
 end
