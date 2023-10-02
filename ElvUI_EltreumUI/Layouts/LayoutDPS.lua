@@ -1261,7 +1261,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["targettarget"]["name"]["text_format"] = ""
 	E.db["unitframe"]["units"]["targettarget"]["portrait"]["paused"] = true
 	E.db["unitframe"]["units"]["targettarget"]["power"]["attachTextTo"] = "Power"
-	E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 16
+	E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 15
 	E.db["unitframe"]["units"]["targettarget"]["power"]["position"] = "RIGHT"
 	E.db["unitframe"]["units"]["targettarget"]["power"]["width"] = "spaced"
 	E.db["unitframe"]["units"]["targettarget"]["power"]["xOffset"] = -2
