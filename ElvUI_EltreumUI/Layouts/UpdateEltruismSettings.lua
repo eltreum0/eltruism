@@ -184,6 +184,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 	E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable = true
 	E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.autopin = true
 	E.db.ElvUI_EltreumUI.waypoints.waytext.enable = true
+	E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.enable = true
 
 	-- Quests
 	E.db.ElvUI_EltreumUI.quests.arena = true
