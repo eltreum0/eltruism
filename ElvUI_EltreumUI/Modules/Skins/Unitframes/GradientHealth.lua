@@ -25,7 +25,6 @@ function ElvUI_EltreumUI:ColorMixinTableMatching(table1,table2)
 	end
 end
 
-
 --set the backdrop gradient
 function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionunit,isGroupFrame)
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
@@ -392,16 +391,26 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unittexture,noOrientation)
 		_, classunit = UnitClass(unit)
 		reaction = UnitReaction(unit, "player")
 		unitframe = _G["ElvUF_"..name]
+
+		local isPlayer = UnitIsPlayer(unit)
+		local isCharmed = UnitIsCharmed(unit)
+		local isActualPlayer = false
 		if unitframe and unitframe.Health then
-			--[[if not unitframe.Health.EltruismColor1 then
-				unitframe.Health.EltruismColor1 = {r = 0, g = 0, b = 0, a = 0}
-				unitframe.Health.EltruismColor2 = {r = 0, g = 0, b = 0, a = 0}
-			end]]
+			if unitframe.realUnit then
+				if name == "Player" and unitframe.unit == "vehicle" then
+					isPlayer = false
+					isActualPlayer = false
+				end
+				if name == "Pet" and unitframe.unit == "player" then
+					isPlayer = true
+					isActualPlayer = true
+					classunit = E.myclass
+				end
+			end
 			if not noOrientation then
 				unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
 			end
 			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-				--unitframe.Health.backdrop:SetBackdropColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				unitframe.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				if unitframe.Health.backdropTex then
 					unitframe.Health.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
@@ -413,7 +422,7 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unittexture,noOrientation)
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
 				ElvUI_EltreumUI:ApplyGradientBackdrop(unit,unitframe,classunit,reaction)
 			end
-			if UnitIsPlayer(unit) and not UnitIsCharmed(unit) then
+			if (isPlayer and not isCharmed) or isActualPlayer then
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["enable"..unittexture] then
 						if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then

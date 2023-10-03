@@ -698,6 +698,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer()
 	E.db["unitframe"]["units"]["party"]["roleIcon"]["yOffset"] = 0
 	E.db["unitframe"]["units"]["party"]["raidRoleIcons"]["xOffset"] = 0
 	E.db["unitframe"]["units"]["party"]["raidRoleIcons"]["yOffset"] = 0
+	E.db["unitframe"]["units"]["party"]["raidRoleIcons"]["scale"] = 1
 	E.db["unitframe"]["units"]["party"]["sortDir"] = "DESC"
 	E.db["unitframe"]["units"]["party"]["summonIcon"]["attachToObject"] = "Health"
 	E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 9

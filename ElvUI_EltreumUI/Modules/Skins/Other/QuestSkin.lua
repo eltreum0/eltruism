@@ -222,16 +222,11 @@ function ElvUI_EltreumUI:SkinQuests()
 					ObjectiveTrackerBonusBannerFrame.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					ObjectiveTrackerBonusBannerFrame.Title:SetShadowOffset(2,-2)
 					ObjectiveTrackerBonusBannerFrame.Title:SetText("") --so that the text doesn't show up when it shouldnt
-					ObjectiveTrackerBonusBannerFrame.Icon:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")
-					ObjectiveTrackerBonusBannerFrame.Icon:SetTexCoord(0.482422, 0.785156, 0.00195312, 0.294922)
-					ObjectiveTrackerBonusBannerFrame.Icon2:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")
-					ObjectiveTrackerBonusBannerFrame.Icon2:SetTexCoord(0.482422, 0.785156, 0.00195312, 0.294922)
-					ObjectiveTrackerBonusBannerFrame.Icon3:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")
-					ObjectiveTrackerBonusBannerFrame.Icon3:SetTexCoord(0.482422, 0.785156, 0.00195312, 0.294922)
-					ObjectiveTrackerBonusBannerFrame.BG1:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")
-					ObjectiveTrackerBonusBannerFrame.BG1:SetTexCoord(0.00195312, 0.818359, 0.359375, 0.507812)
-					ObjectiveTrackerBonusBannerFrame.BG2:SetTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\bonusobjectives")
-					ObjectiveTrackerBonusBannerFrame.BG2:SetTexCoord(0.00195312, 0.818359, 0.359375, 0.507812)
+					ObjectiveTrackerBonusBannerFrame.BG1:SetDesaturated(true)
+					ObjectiveTrackerBonusBannerFrame.BG2:SetDesaturated(true)
+					ObjectiveTrackerBonusBannerFrame.Icon:SetDesaturated(true)
+					ObjectiveTrackerBonusBannerFrame.Icon2:SetDesaturated(true)
+					ObjectiveTrackerBonusBannerFrame.Icon3:SetDesaturated(true)
 					ObjectiveTrackerBonusBannerFrame.BG1:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-bg
 					ObjectiveTrackerBonusBannerFrame.BG2:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-bg
 					ObjectiveTrackerBonusBannerFrame.Icon:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-icon
@@ -621,9 +616,17 @@ function ElvUI_EltreumUI:SkinQuests()
 									line.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 								end
 							else -- its the subtext
-								line.Text:SetTextColor(1, 1, 1)
-								if line.Text.colorStyle then
-									line.Text.colorStyle = {r = mult * 1, g = mult * 1, b = mult * 1}
+								local text = line.Text:GetText()
+								if text == _G.QUEST_WATCH_QUEST_READY then
+									block.currentLine.Text:SetTextColor(0, 1, 0)
+									if line.Text.colorStyle then
+										line.Text.colorStyle = {r = 0, g = 1, b = 0}
+									end
+								else
+									line.Text:SetTextColor(1, 1, 1)
+									if line.Text.colorStyle then
+										line.Text.colorStyle = {r = mult * 1, g = mult * 1, b = mult * 1}
+									end
 								end
 							end
 							if ( line.Dash ) then
@@ -659,9 +662,17 @@ function ElvUI_EltreumUI:SkinQuests()
 									line.Text:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 								end
 							else -- its the subtext
-								line.Text:SetTextColor(mult, mult, mult)
-								if line.Text.colorStyle then
-									line.Text.colorStyle = {r = mult, g = mult, b = mult}
+								local text = line.Text:GetText()
+								if text == _G.QUEST_WATCH_QUEST_READY then
+									block.currentLine.Text:SetTextColor(0.12, 1, 0.12)
+									if line.Text.colorStyle then
+										line.Text.colorStyle = {r = 0.12, g = 1, b = 0.12}
+									end
+								else
+									line.Text:SetTextColor(mult, mult, mult)
+									if line.Text.colorStyle then
+										line.Text.colorStyle = {r = mult, g = mult, b = mult}
+									end
 								end
 							end
 							if ( line.Dash ) then
