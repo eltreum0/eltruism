@@ -225,9 +225,12 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout()
 			end
 		end
 		if not alreadyimported then
-			local numlayouts = Enum.EditModePresetLayoutsMeta.NumValues
-			tinsert(layoutstable.layouts, numlayouts + 1, taintpreventlayout)
-			layoutstable.activeLayout = numlayouts + 1
+			--local numlayouts = Enum.EditModePresetLayoutsMeta.NumValues
+			local numlayouts = #layoutstable.layouts+1
+			--tinsert(layoutstable.layouts, numlayouts + 1, taintpreventlayout)
+			layoutstable.layouts[tonumber(numlayouts)] = taintpreventlayout
+			--layoutstable.activeLayout = numlayouts + 1
+			layoutstable.activeLayout = numlayouts + 2
 			C_EditMode.SaveLayouts(layoutstable) --if not called then layout wont apply because its not saved
 			C_EditMode.SetActiveLayout(layoutstable.activeLayout)
 		end
