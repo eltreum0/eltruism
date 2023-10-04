@@ -68,10 +68,17 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 							end
 							--possible widget shadows
 							if E.db.ElvUI_EltreumUI.skins.shadow.enable then
-								if frame:GetParent() and frame:GetParent():GetParent() and frame:GetParent():GetParent().widgetContainer then
-									if not frame.shadow then
-										frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-										ElvUI_EltreumUI:ShadowColor(frame.shadow)
+								if frame:GetParent() and frame:GetParent():GetParent() then
+									if frame:GetParent():GetParent().widgetContainer then
+										if not frame.shadow then
+											frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+											ElvUI_EltreumUI:ShadowColor(frame.shadow)
+										end
+										if frame:GetParent():GetParent().Label then
+											local _,size = frame:GetParent():GetParent().Label:GetFont()
+											frame:GetParent():GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, E.db.general.fontStyle)
+											--frame:GetParent():GetParent().Label:SetShadowOffset(2,-2)
+										end
 									end
 								end
 							end
