@@ -95,14 +95,14 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 													frame:GetParent().obj.EltruismHookLabel = true
 												end
 											end
-											if frame:GetParent().obj.label then
+											if frame:GetParent().obj.label and frame:GetParent().obj.label.SetTextColor then
 												if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
 													frame:GetParent().obj.label:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
 												else
 													frame:GetParent().obj.label:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
 												end
 											end
-											if frame:GetParent().obj.titletext then
+											if frame:GetParent().obj.titletext and frame:GetParent().obj.titletext.SetTextColor then
 												if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
 													frame:GetParent().obj.titletext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
 												else
