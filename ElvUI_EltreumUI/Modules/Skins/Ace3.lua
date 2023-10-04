@@ -292,7 +292,15 @@ function ElvUI_EltreumUI:Ace3Skin()
 				frame:GetCheckedTexture():SetVertexColor(valuecolors.r, valuecolors.g, valuecolors.b,0.8)
 			end
 		end
+	end)
 
+	hooksecurefunc(S,"HandleNextPrevButton",function(_,btn) --actually skins dropdowns too
+		if not btn then return end
+		if not E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.classcolor then
+			btn:GetNormalTexture():SetVertexColor(E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.r, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.g, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.b, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.a)
+		else
+			btn:GetNormalTexture():SetVertexColor(valuecolors.r, valuecolors.g, valuecolors.b,0.8)
+		end
 	end)
 
 	hooksecurefunc(S,"Ace3_CheckBoxSetDesaturated",function(frame,value)
