@@ -283,15 +283,17 @@ function ElvUI_EltreumUI:Ace3Skin()
 		end
 	end)
 
-	--doesnt seem to work at all
-	--[[hooksecurefunc(S,"HandleCheckBox",function(_,frame)
+	hooksecurefunc(S,"HandleCheckBox",function(_,frame)
 		if not frame then return end
-		if not E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.classcolor then
-			frame:SetVertexColor(E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.r, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.g, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.b, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.a)
-		else
-			frame:SetVertexColor(valuecolors.r, valuecolors.g, valuecolors.b,0.8)
+		if frame.SetCheckedTexture then
+			if not E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.classcolor then
+				frame:GetCheckedTexture():SetVertexColor(E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.r, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.g, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.b, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.a)
+			else
+				frame:GetCheckedTexture():SetVertexColor(valuecolors.r, valuecolors.g, valuecolors.b,0.8)
+			end
 		end
-	end)]]
+
+	end)
 
 	hooksecurefunc(S,"Ace3_CheckBoxSetDesaturated",function(frame,value)
 		if not frame then return end
