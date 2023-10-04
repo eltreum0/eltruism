@@ -208,7 +208,7 @@ function ElvUI_EltreumUI:ResizeInstall()
 end
 
 --create new edit mode layout and switch to it to prevent possible issues with movers/taints
-local function NewRetailEditModeLayout()
+function ElvUI_EltreumUI:NewRetailEditModeLayout()
 	local layoutstable = C_EditMode.GetLayouts()
 	if not layoutstable.layouts then return end
 	local alreadyimported = false
@@ -338,7 +338,7 @@ ElvUI_EltreumUI.InstallerData = {
 				E:SetupChat()
 				if E.Retail then
 					ChatFrame_RemoveChannel(_G.ChatFrame1, "services") --get rid of the gold seller chat
-					NewRetailEditModeLayout()
+					ElvUI_EltreumUI:NewRetailEditModeLayout()
 				else --remove lfg spam from general and creat tab for it
 					if lfg then
 						ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
