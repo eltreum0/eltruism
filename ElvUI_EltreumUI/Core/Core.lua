@@ -294,9 +294,7 @@ function ElvUI_EltreumUI:Anchors()
 			for i = #registered, 1, -1 do
 				local name = registered[i]:GetName()
 				if name == "ObjectiveTrackerFrame" and E.db.ElvUI_EltreumUI.quests.anchor then
-					if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then --TODO 10.2, might need C_AddOns.
-						tremove(editMode.registeredSystemFrames, i)
-					end
+					tremove(editMode.registeredSystemFrames, i)
 				end
 				if name == "ArcheologyDigsiteProgressBar" then
 					tremove(editMode.registeredSystemFrames, i)
@@ -426,6 +424,9 @@ function ElvUI_EltreumUI:Anchors()
 					_G.ObjectiveTrackerFrame.SetPointOverride = nil
 					_G.ObjectiveTrackerFrame.isRightManagedFrame = false
 					_G.ObjectiveTrackerFrame.breakSnappedFramesOnSave = false
+					--_G.ObjectiveTrackerFrame.ignoreFramePositionManager = true
+					--local frameContainer = _G.ObjectiveTrackerFrame:GetManagedFrameContainer();
+					--frameContainer:RemoveManagedFrame(_G.ObjectiveTrackerFrame)
 					--[[_G.ObjectiveTrackerFrame.SnapToFrame = nil
 					_G.ObjectiveTrackerFrame.ClearAllPointsOverride = nil
 					--_G.ObjectiveTrackerFrame.BreakFromFrameManager = E.noop
@@ -460,7 +461,7 @@ function ElvUI_EltreumUI:Anchors()
 							end
 						--end)
 						Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
-						ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 82800
+						ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 
 						Enum.EditModeObjectiveTrackerSetting.Opacity = 0 --fix nineslice
 						ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
@@ -468,7 +469,6 @@ function ElvUI_EltreumUI:Anchors()
 							ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
 						end
 						--ObjectiveTrackerFrame:SetHeight(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight)
-						--ObjectiveTracker_UpdateHeight()
 					end
 					hooksecurefunc("ObjectiveTracker_UpdateHeight", SetObjectivePoint)
 					--hooksecurefunc(_G.ObjectiveTrackerFrame, "SetPointBase", SetObjectivePoint)
