@@ -1519,3 +1519,4 @@ L["Adds Gradient, Custom Textures, Shadows, Font and Role Icons to Blizzard Raid
 L["Add Other Stats"] = "Andere Stats hinzufügen"
 L["Display stats such as Speed and Mana Regen"] = "Zeige Statistiken wie Geschwindigkeit und Manaregeneration an."
 L["Add Spec Icons to the Group Finder Listing"] = true
+L["Font Shadow"] = true
