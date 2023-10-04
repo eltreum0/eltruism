@@ -222,6 +222,7 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout()
 		for i = 1, #layoutstable.layouts do
 			if layoutstable.layouts[i].layoutName == "EltruismTaintPreventer" then
 				alreadyimported = true
+				layoutstable.layouts[i] = taintpreventlayout
 			end
 		end
 		if not alreadyimported then
