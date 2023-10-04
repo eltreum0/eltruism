@@ -307,7 +307,8 @@ local function Update(self)
 
 	local classification = self.classification
 	local frameType = self.frameType
-	if frameType and frameType == 'ENEMY_NPC' then
+	if frameType then
+	--if frameType and frameType == 'ENEMY_NPC' then
 		if classification == 'worldboss' or bossIDs[self.npcID] then
 			if E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss == "CUSTOM" then
 				element:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss)
@@ -402,10 +403,8 @@ local function Update_ClassificationIndicator(_, nameplate)
 
 	 -- add your settings here
 	local db = plateDB.eliteIcon
-	 -- if db and db.enable and (nameplate.frameType == 'FRIENDLY_NPC' or nameplate.frameType == 'ENEMY_NPC') then
-
-	 -- only for demo
-	if db and (nameplate.frameType == 'ENEMY_NPC') then
+	if db and db.enable and (nameplate.frameType == 'FRIENDLY_NPC' or nameplate.frameType == 'ENEMY_NPC') then
+	--if db and (nameplate.frameType == 'ENEMY_NPC') then
 		if not nameplate:IsElementEnabled('EltruismClassificationIndicator') then
 			nameplate:EnableElement('EltruismClassificationIndicator')
 		end
