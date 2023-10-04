@@ -25,8 +25,8 @@ If applicable, add screenshots to help explain your problem.
 
 **Addon Versions (please complete the following information):**
  - ElvUI version: [e.g. 12.60]
- - AddonSkins version: [e.g. 4.5.4]
- - Any other addons used: [e.g. Details, BigWigs, ProjectAzilroka so on]
+ - Eltruism version: [e.g. 3.9.0]
+ - Any other addons used: [e.g. Details, BigWigs, ProjectAzilroka and so on]
 
 **Additional context**
 Add any other context about the problem here.
