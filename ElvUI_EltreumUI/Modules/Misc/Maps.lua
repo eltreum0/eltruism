@@ -494,7 +494,7 @@ end
 
 --setup onupdate and also get rid of it
 function ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
-	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable then
+	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable and E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
 		local _, instanceType = IsInInstance()
 		if instanceType == "none" then
 			if not onupdatesetup then
