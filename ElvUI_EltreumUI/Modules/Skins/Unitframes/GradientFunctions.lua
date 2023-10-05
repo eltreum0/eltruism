@@ -251,6 +251,47 @@ end
 local colorupdateframe = CreateFrame("FRAME")
 colorupdateframe:RegisterEvent("PLAYER_ENTERING_WORLD")
 colorupdateframe:RegisterEvent("PLAYER_STARTED_MOVING")
+colorupdateframe:RegisterEvent("PLAYER_LOGIN")
+
+--10.1 event order list
+--[[local eventorder = {
+	["ADDON_LOADED"] = true,
+	["UPDATE_BINDINGS"] = true,
+	["UPDATE_FLOATING_CHAT_WINDOWS"] = true,
+	["UI_SCALE_CHANGED"] = true,
+	["CVAR_UPDATE"] = true,
+	["UPDATE_FACTION"] = true,
+	["OPEN_SPLASH_SCREEN"] = true,
+	["VARIABLES_LOADED"] = true,
+	["UPDATE_MACROS"] = true,
+	["UPDATE_CHAT_WINDOWS"] = true,
+	["UPDATE_CHAT_COLOR"] = true,
+	["UPDATE_CHAT_COLOR_NAME_BY_CLASS"] = true,
+	["DISPLAY_SIZE_CHANGED"] = true,
+	["PLAYER_TALENT_UPDATE"] = true,
+	["PLAYER_PVP_TALENT_UPDATE"] = true,
+	["UPDATE_INVENTORY_DURABILITY"] = true,
+	["BAG_UPDATE"] = true,
+	["BAG_CONTAINER_UPDATE"] = true,
+	["UPDATE_VEHICLE_ACTIONBAR"] = true,
+	["SKILL_LINES_CHANGED"] = true,
+	["CURRENCY_DISPLAY_UPDATE"] = true,
+	["VEHICLE_ANGLE_SHOW"] = true,
+	["VEHICLE_POWER_SHOW"] = true,
+	["SPELL_ACTIVATION_OVERLAY_HIDE"] = true,
+	["MOUNT_JOURNAL_SEARCH_UPDATED"] = true,
+	["TRANSMOG_SEARCH_UPDATED"] = true,
+	["COMPACT_UNIT_FRAME_PROFILES_LOADED"] = true,
+	["INITIAL_CLUBS_LOADED"] = true,
+	["CONTENT_TRACKING_LIST_UPDATE"] = true,
+	["EDIT_MODE_LAYOUTS_UPDATED"] = true,
+	["MENTORSHIP_STATUS_CHANGED"] = true,
+	["TRAIT_CONFIG_LIST_UPDATED"] = true,
+	["CALENDAR_ACTION_PENDING"] = true,
+	--THEN FINALLY
+	["PLAYER_LOGIN"] = false,
+}]]
+
 colorupdateframe:SetScript("OnEvent", function()
 	colorupdateframe:UnregisterAllEvents()
 	ElvUI_EltreumUI:GradientColorTableUpdate()
