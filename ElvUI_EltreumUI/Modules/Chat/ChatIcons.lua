@@ -138,6 +138,9 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 
 			--Volo
 			["Völo-Benediction"] = DonatorsIcon,
+
+			--Jaraxal
+			["Grymley-Scilla"] = DonatorsIcon,
 		}
 
 		--Discord MVPs
