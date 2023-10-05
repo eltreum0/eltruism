@@ -1859,7 +1859,6 @@ function ElvUI_EltreumUI:Shadows()
 										frame.shadow:SetPoint("TOPLEFT", frame.InfoPanel,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
 										frame.shadow:SetPoint("TOPRIGHT", frame.InfoPanel,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
 									end
-
 									if E.db.unitframe.units.boss.power.enable then
 										if E.db.unitframe.units.boss.power.width == "spaced" then
 											frame.shadow:ClearAllPoints()
@@ -1883,9 +1882,6 @@ function ElvUI_EltreumUI:Shadows()
 											end
 										end
 									end
-
-
-
 									ElvUI_EltreumUI:ShadowColor(frame.shadow)
 								end
 							end
