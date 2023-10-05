@@ -1146,6 +1146,13 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 
+				if _G.BattleFieldFrame and _G.BattleFieldFrame.backdrop then
+					if not _G.BattleFieldFrame.backdrop.shadow then
+						_G.BattleFieldFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G.BattleFieldFrame.backdrop.shadow)
+					end
+				end
+
 				--Shaman Totem things
 				if E.Wrath then
 					if E.myclass == "SHAMAN" and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.totembar) and E.db.actionbar.totemBar.enable then
