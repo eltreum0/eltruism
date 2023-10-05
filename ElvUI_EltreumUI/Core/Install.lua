@@ -239,6 +239,7 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout()
 		C_EditMode.SaveLayouts(layoutstable) --if not called then layout wont apply because its not saved
 		C_EditMode.SetActiveLayout(layoutstable.activeLayout)
 	end
+	ElvUI_EltreumUI:Print(L["Importing"].." ".._G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT)
 end
 
 -- Installer Steps
