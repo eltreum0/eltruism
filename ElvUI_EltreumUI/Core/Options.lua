@@ -206,6 +206,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.databasecheck = ACH:Execute(L["Run Database Check"], L["Perform a Database Check if you are updating from a very old version as some settings have changed places and the Database Check will convert them"], 7, function() ElvUI_EltreumUI:DatabaseConversions(true) end,nil,false,'full')
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.description4 = ACH:Description(L["Clear Details! Damage Meter tables to free up memory"], 8, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.detailscache= ACH:Execute(L["Clear Details Tables"], L["Set Details tables to be empty"], 9, function() ElvUI_EltreumUI:EmptyDetailsTable() end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.description5 = ACH:Description(E.Retail and _G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT or "", 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.blizzeditmodelayout = ACH:Execute(E.Retail and E.NewSign.._G.HUD_EDIT_MODE_IMPORT_LAYOUT.." ".._G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT or "", nil, 11, function() ElvUI_EltreumUI:NewRetailEditModeLayout() end,nil,false,'full',nil,nil,nil, not E.Retail)
 
 	--addons
 	ElvUI_EltreumUI.Options.args.addons = ACH:Group(E:TextGradient(L["Addons"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Install or update other Addon profiles"], 85, 'tab')
@@ -3251,6 +3253,7 @@ function ElvUI_EltreumUI:Configtable()
 	}, false, "full", function() return E.db.ElvUI_EltreumUI.skins.detailsmode end, function(_, value) E.db.ElvUI_EltreumUI.skins.detailsmode = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.details end)
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.Details.args.gradientmode.style = "radio"
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.Details.args.gradientname = ACH:Toggle(E.NewSign..L["Gradient Name"], L["Add gradient to Names"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.detailsgradientname end, function(_, value) E.db.ElvUI_EltreumUI.skins.detailsgradientname = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.details end)
+	ElvUI_EltreumUI.Options.args.skins.args.addons.args.Details.args.gradientnamefontshadow = ACH:Toggle(E.NewSign..L["Font Shadow"], nil, 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.detailsgradientnameshadow end, function(_, value) E.db.ElvUI_EltreumUI.skins.detailsgradientnameshadow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.details end)
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.Details.args.texture = ACH:Toggle(L["Replace Texture"], L["Replace Details Bar Texture"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.detailstextureoverwrite end, function(_, value) E.db.ElvUI_EltreumUI.skins.detailstextureoverwrite = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.details end)
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.Details.args.embed = ACH:Toggle(L["Embed"], L["Simple Right Chat Embed"], 5, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.detailsembed end, function(_, value) E.db.ElvUI_EltreumUI.skins.detailsembed = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.Details.args.hide = ACH:Toggle(L["Hide Out of Combat"], nil, 6, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.detailsembedooc end, function(_, value) E.db.ElvUI_EltreumUI.skins.detailsembedooc = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.detailsembed end)
@@ -3330,8 +3333,9 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.changelog = ACH:Group(E.NewSign..E:TextGradient(L["Changelog"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Check what has changed in the current version of Eltruism"], 87, 'tab')
 	ElvUI_EltreumUI.Options.args.changelog.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\changelog'
 	ElvUI_EltreumUI.Options.args.changelog.args.description1 = ACH:Description(E:TextGradient("v"..ElvUI_EltreumUI.Version, 0.50, 0.70, 1, 0.67, 0.95, 1), 1, "large", nil, nil, nil, nil, "full")
-	ElvUI_EltreumUI.Options.args.changelog.args.description2 = ACH:Description(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), 2, "medium", 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.changelog.args.description3 = ACH:Description([[
+	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 2)
+	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
+	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
 Added Details nickname tags, [eltruism:detailsnickname] and [eltruism:detailsnickname:gradient] which will show the nickname set in Details instead of the unit name
 Added minimize and maximize buttons to Classic Era Objective Frame
 Added gradient health tags such as [eltruism:hpstatus:gradient]
@@ -3345,8 +3349,9 @@ Added some missing shadows
 Added profession buttons to bags
 Added a skin for Auctionator
 ]], 3, "small", nil, nil, nil, nil, "full")
-	ElvUI_EltreumUI.Options.args.changelog.args.description4 = ACH:Description(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), 4, "medium", 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.changelog.args.description5 = ACH:Description([[
+	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
+	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
+	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
 Updated Unitframe Gradients to now more correctly use ElvUI Unitframe Transparency setting instead of Eltruism backdrop alpha
 Updated the Gradient enable/disable function and command "/eltruism gradient" to also swap tags to gradient and non gradient
 Updated Inspect frame Name to fix the default UI issue of the name not being centered
@@ -3363,8 +3368,9 @@ Updated the Gradient Mode toggle
 Updated German locale by Dlarge
 Updated Questie profile
 ]], 5, "small", nil, nil, nil, nil, "full")
-	ElvUI_EltreumUI.Options.args.changelog.args.description6 = ACH:Description(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), 6, "medium", 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.changelog.args.description7 = ACH:Description([[
+	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
+	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
+	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
 Fixed an issue where colors were being forced when gradient was enabled but neither Light nor Dark modes were selected
 Fixed death color and tapped color on Unitframes when Gradient was enabled by adding an option for it
 Fixed an issue where Custom Gradients were not applying to the Class Texture for Eltruism Datatext

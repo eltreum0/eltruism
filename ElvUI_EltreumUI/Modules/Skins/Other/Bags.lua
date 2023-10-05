@@ -170,6 +170,7 @@ function ElvUI_EltreumUI:BagProfessions()
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED","player")
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_RETICLE_CLEAR","player")
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_RETICLE_TARGET","player")
+								_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED","player")
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterEvent("PLAYER_REGEN_DISABLED")
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterEvent("PLAYER_REGEN_ENABLED")
 								_G["EltruismProfessionDisenchantBagButton"]:SetScript("OnEvent", function(_,event,_,_,spell)
@@ -183,6 +184,7 @@ function ElvUI_EltreumUI:BagProfessions()
 										_G["EltruismProfessionDisenchantBagButton"]:UnregisterEvent("UNIT_SPELLCAST_RETICLE_TARGET")
 										_G["EltruismProfessionDisenchantBagButton"]:UnregisterEvent("UNIT_SPELLCAST_FAILED")
 										_G["EltruismProfessionDisenchantBagButton"]:UnregisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+										_G["EltruismProfessionDisenchantBagButton"]:UnregisterEvent("UNIT_SPELLCAST_INTERRUPTED")
 										if _G["EltruismProfessionDisenchantBagButton"].isGlowing then
 											LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])
 											_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
@@ -192,7 +194,15 @@ function ElvUI_EltreumUI:BagProfessions()
 										_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_RETICLE_TARGET","player")
 										_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_FAILED","player")
 										_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED","player")
+										_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED","player")
 									elseif event == "UNIT_SPELLCAST_FAILED" then
+										if spell == 13262 then
+											if _G["EltruismProfessionDisenchantBagButton"].isGlowing then
+												LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])
+												_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
+											end
+										end
+									elseif event == "UNIT_SPELLCAST_INTERRUPTED" then
 										if spell == 13262 then
 											if _G["EltruismProfessionDisenchantBagButton"].isGlowing then
 												LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])
@@ -274,6 +284,7 @@ function ElvUI_EltreumUI:BagProfessions()
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_FAILED","player")
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_START","player")
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_FAILED_QUIET","player")
+								_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED","player")
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterEvent("PLAYER_REGEN_DISABLED")
 								_G["EltruismProfessionDisenchantBagButton"]:RegisterEvent("PLAYER_REGEN_ENABLED")
 								_G["EltruismProfessionDisenchantBagButton"]:SetScript("OnEvent", function(_,event,_,_,spell)
@@ -286,6 +297,7 @@ function ElvUI_EltreumUI:BagProfessions()
 										_G["EltruismProfessionDisenchantBagButton"]:UnregisterEvent("UNIT_SPELLCAST_FAILED_QUIET")
 										_G["EltruismProfessionDisenchantBagButton"]:UnregisterEvent("UNIT_SPELLCAST_FAILED")
 										_G["EltruismProfessionDisenchantBagButton"]:UnregisterEvent("UNIT_SPELLCAST_START")
+										_G["EltruismProfessionDisenchantBagButton"]:UnregisterEvent("UNIT_SPELLCAST_INTERRUPTED")
 										if _G["EltruismProfessionDisenchantBagButton"].isGlowing then
 											LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])
 											_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
@@ -294,7 +306,15 @@ function ElvUI_EltreumUI:BagProfessions()
 										_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_FAILED_QUIET","player")
 										_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_FAILED","player")
 										_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_START","player")
+										_G["EltruismProfessionDisenchantBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED","player")
 									elseif event == "UNIT_SPELLCAST_FAILED" or event == "UNIT_SPELLCAST_START" then
+										if spell == 13262 then
+											if _G["EltruismProfessionDisenchantBagButton"].isGlowing then
+												LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])
+												_G["EltruismProfessionDisenchantBagButton"].isGlowing = false
+											end
+										end
+									elseif event == "UNIT_SPELLCAST_INTERRUPTED" then
 										if spell == 13262 then
 											if _G["EltruismProfessionDisenchantBagButton"].isGlowing then
 												LCG.PixelGlow_Stop(_G["EltruismProfessionDisenchantBagButton"])

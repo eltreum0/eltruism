@@ -389,74 +389,76 @@ end
 hooksecurefunc(UF,"RaidRoleUpdate", ElvUI_EltreumUI.LeaderIcon)
 
 --use new flipbook animation to recreate the blizzard resting animation
-local EltruismPlayerRestLoop = CreateFrame("FRAME","EltruismPlayerRestLoop")
-EltruismPlayerRestLoop:SetSize(20,20)
-EltruismPlayerRestLoop.RestTexture = EltruismPlayerRestLoop:CreateTexture(nil, "ARTWORK")
-EltruismPlayerRestLoop.RestTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Rest\\UIUnitFrameRestingFlipBook.tga")
-EltruismPlayerRestLoop.RestTexture:SetSize(512, 512)
-EltruismPlayerRestLoop.RestTexture:SetAllPoints(EltruismPlayerRestLoop)
-EltruismPlayerRestLoop.RestTexture:SetParentKey("EltruismPlayerRestLoopFlipBook")
-EltruismPlayerRestLoop.PlayerRestLoopAnim = EltruismPlayerRestLoop:CreateAnimationGroup()
-EltruismPlayerRestLoop.PlayerRestLoopAnim:SetLooping("REPEAT")
-EltruismPlayerRestLoop.PlayerRestLoopFlipBook = EltruismPlayerRestLoop.PlayerRestLoopAnim:CreateAnimation("FlipBook")
-EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetFlipBookColumns(6)
-EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetFlipBookRows(7)
-EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetFlipBookFrames(42)
-EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetFlipBookFrameHeight(60)
-EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetFlipBookFrameWidth(60)
-EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetChildKey("EltruismPlayerRestLoopFlipBook")
-EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetOrder(1)
-EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetDuration(1.5)
-
 function ElvUI_EltreumUI:RestIcon(frame)
 	if not frame then return end
 	if frame.RestingIndicator and E.db.unitframe.units.player.enable and E.db.unitframe.units.player.RestIcon.enable and E.db.ElvUI_EltreumUI.unitframes.blizzardresticon then
 		if not frame.RestingIndicator.EltruismHook then
-			EltruismPlayerRestLoop:ClearAllPoints()
-			--EltruismPlayerRestLoop:SetParent(frame)
-			EltruismPlayerRestLoop:SetPoint("CENTER", frame.RestingIndicator, "CENTER", 0, 0)
-			EltruismPlayerRestLoop:SetFrameStrata('MEDIUM')
-			EltruismPlayerRestLoop:SetScale(E.db.unitframe.units.player.RestIcon.size/15)
+			if not _G["EltruismPlayerRestLoop"] then
+				local EltruismPlayerRestLoop = CreateFrame("FRAME","EltruismPlayerRestLoop")
+				EltruismPlayerRestLoop:SetSize(20,20)
+				EltruismPlayerRestLoop.RestTexture = EltruismPlayerRestLoop:CreateTexture("EltruismPlayerRestLoopRestTexture", "ARTWORK")
+				EltruismPlayerRestLoop.RestTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Rest\\UIUnitFrameRestingFlipBook.tga")
+				EltruismPlayerRestLoop.RestTexture:SetSize(512, 512)
+				EltruismPlayerRestLoop.RestTexture:SetAllPoints(EltruismPlayerRestLoop)
+				EltruismPlayerRestLoop.RestTexture:SetParentKey("EltruismPlayerRestLoopFlipBook")
+				EltruismPlayerRestLoop.PlayerRestLoopAnim = EltruismPlayerRestLoop:CreateAnimationGroup()
+				EltruismPlayerRestLoop.PlayerRestLoopAnim:SetLooping("REPEAT")
+				EltruismPlayerRestLoop.PlayerRestLoopFlipBook = EltruismPlayerRestLoop.PlayerRestLoopAnim:CreateAnimation("FlipBook")
+				EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetFlipBookColumns(6)
+				EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetFlipBookRows(7)
+				EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetFlipBookFrames(42)
+				EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetFlipBookFrameHeight(60)
+				EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetFlipBookFrameWidth(60)
+				EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetChildKey("EltruismPlayerRestLoopFlipBook")
+				EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetOrder(1)
+				EltruismPlayerRestLoop.PlayerRestLoopFlipBook:SetDuration(1.5)
+			end
+
+			_G["EltruismPlayerRestLoop"]:ClearAllPoints()
+			--_G["EltruismPlayerRestLoop"]:SetParent(frame)
+			_G["EltruismPlayerRestLoop"]:SetPoint("CENTER", frame.RestingIndicator, "CENTER", 0, 0)
+			_G["EltruismPlayerRestLoop"]:SetFrameStrata('MEDIUM')
+			_G["EltruismPlayerRestLoop"]:SetScale(E.db.unitframe.units.player.RestIcon.size/15)
 			hooksecurefunc(frame.RestingIndicator, 'PostUpdate', function()
 				if frame.RestingIndicator:IsShown() then
-					EltruismPlayerRestLoop:Show()
-					EltruismPlayerRestLoop.PlayerRestLoopAnim:Play()
+					_G["EltruismPlayerRestLoop"]:Show()
+					_G["EltruismPlayerRestLoop"].PlayerRestLoopAnim:Play()
 				else
-					EltruismPlayerRestLoop:Hide()
-					EltruismPlayerRestLoop.PlayerRestLoopAnim:Stop()
+					_G["EltruismPlayerRestLoop"]:Hide()
+					_G["EltruismPlayerRestLoop"].PlayerRestLoopAnim:Stop()
 				end
-				--EltruismPlayerRestLoop.RestTexture:SetDesaturated(true)
+				--_G["EltruismPlayerRestLoopRestTexture"]:SetDesaturated(true)
 				if E.db.ElvUI_EltreumUI.unitframes.blizzardresticongradient then
-					if not EltruismPlayerRestLoop.RestTexture.Gradient then
+					if not _G["EltruismPlayerRestLoopRestTexture"].Gradient then
 						if (E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor) then
-							EltruismPlayerRestLoop.RestTexture:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(E.myclass))
+							_G["EltruismPlayerRestLoopRestTexture"]:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColorsCustom(E.myclass))
 						else
-							EltruismPlayerRestLoop.RestTexture:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
+							_G["EltruismPlayerRestLoopRestTexture"]:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
 						end
-						EltruismPlayerRestLoop.RestTexture.Gradient = true
+						_G["EltruismPlayerRestLoopRestTexture"].Gradient = true
 					end
 				else
 					local r,g,b,a = frame.RestingIndicator:GetVertexColor()
-					EltruismPlayerRestLoop.RestTexture:SetVertexColor(r,g,b,a)
+					_G["EltruismPlayerRestLoopRestTexture"]:SetVertexColor(r,g,b,a)
 				end
 			end)
 
 			--basically if i use SetParent the game crashes, have to hook the alpha and set it on the frame instead
 			hooksecurefunc(frame,'SetAlpha', function(_,alpha)
-				EltruismPlayerRestLoop:SetAlpha(alpha)
+				_G["EltruismPlayerRestLoop"]:SetAlpha(alpha)
 			end)
 
 			--hook afk to hide it while afk, needs a delay
 			if _G.ElvUIAFKFrame then
 				_G.ElvUIAFKFrame:HookScript("OnShow", function()
 					E:Delay(0.05, function()
-						EltruismPlayerRestLoop:SetAlpha(0)
+						_G["EltruismPlayerRestLoop"]:SetAlpha(0)
 					end)
 				end)
 				_G.ElvUIAFKFrame:HookScript("OnHide", function()
 					E:Delay(0.05, function()
 						if IsResting() and _G["ElvUF_Player"] and _G["ElvUF_Player"]:GetAlpha() == 1 then
-							EltruismPlayerRestLoop:SetAlpha(1)
+							_G["EltruismPlayerRestLoop"]:SetAlpha(1)
 						end
 					end)
 				end)
@@ -465,7 +467,7 @@ function ElvUI_EltreumUI:RestIcon(frame)
 			frame.RestingIndicator.EltruismHook = true
 		end
 		frame.RestingIndicator:SetTexture()
-		EltruismPlayerRestLoop:SetScale(E.db.unitframe.units.player.RestIcon.size/15)
+		_G["EltruismPlayerRestLoop"]:SetScale(E.db.unitframe.units.player.RestIcon.size/15)
 	end
 end
 hooksecurefunc(UF,"Configure_RestingIndicator", ElvUI_EltreumUI.RestIcon)

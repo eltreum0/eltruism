@@ -1518,4 +1518,5 @@ L["Skin Blizzard Raid Frames"] = "Skinne Blizzard Schlachtzugsfenster"
 L["Adds Gradient, Custom Textures, Shadows, Font and Role Icons to Blizzard Raid Frames"] = "Fügt Farbverläufe, benutzerdefinierte Texturen, Schatten, Schriftarten und Rollensymbole zu Blizzard Schlachtzugsfenster hinzu."
 L["Add Other Stats"] = "Andere Stats hinzufügen"
 L["Display stats such as Speed and Mana Regen"] = "Zeige Statistiken wie Geschwindigkeit und Manaregeneration an."
-L["Add Spec Icons to the Group Finder Listing"] = "Specsymbole zur Gruppensucherliste hinzufügen"
+L["Add Spec Icons to the Group Finder Listing"] = true
+L["Font Shadow"] = true
