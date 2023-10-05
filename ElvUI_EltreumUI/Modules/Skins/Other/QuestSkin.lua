@@ -306,28 +306,36 @@ function ElvUI_EltreumUI:SkinQuests()
 										local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
 										local hexstring = E:RGBToHex(r, g, b)
 										block.currentLine.Text:SetText(format("%s%s/%s|r %s|r%s",hexstring,left,right,hexstring,questtext))
-										if percentagedone >= 100 or block.currentLine.Check then
+										if percentagedone >= 100 or (block.currentLine.Check and block.currentLine.Check:IsShown()) then
 											block.currentLine.Text:SetTextColor(0.12, 1, 0.12)
+										else
+											block.currentLine.Text:SetTextColor(0.85, 0.85, 0.85)
 										end
 									elseif left2 then
 										local percentagedone = (tonumber(left2) / tonumber(right2)) * 100 or 0
 										local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
 										local hexstring = E:RGBToHex(r, g, b)
 										block.currentLine.Text:SetText(format("%s|r %s%s/%s|r",questtext2,hexstring,left2,right2))
-										if percentagedone >= 100 or block.currentLine.Check then
+										if percentagedone >= 100 or (block.currentLine.Check and block.currentLine.Check:IsShown()) then
 											block.currentLine.Text:SetTextColor(0.12, 1, 0.12)
+										else
+											block.currentLine.Text:SetTextColor(0.85, 0.85, 0.85)
 										end
 									elseif left3 then
 										local percentagedone = (tonumber(left3) / tonumber(right3)) * 100 or 0
 										local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
 										local hexstring = E:RGBToHex(r, g, b)
 										block.currentLine.Text:SetText(format("- %s%s/%s|r %s|r%s",hexstring,left3,right3,hexstring,questtext3))
-										if percentagedone >= 100 or block.currentLine.Check then
+										if percentagedone >= 100 or (block.currentLine.Check and block.currentLine.Check:IsShown()) then
 											block.currentLine.Text:SetTextColor(0.12, 1, 0.12)
+										else
+											block.currentLine.Text:SetTextColor(0.85, 0.85, 0.85)
 										end
 									else
-										if text == _G.QUEST_WATCH_QUEST_READY or block.currentLine.Check then
+										if text == _G.QUEST_WATCH_QUEST_READY or (block.currentLine.Check and block.currentLine.Check:IsShown()) then
 											block.currentLine.Text:SetTextColor(0.12, 1, 0.12)
+										else
+											block.currentLine.Text:SetTextColor(0.85, 0.85, 0.85)
 										end
 									end
 								end
@@ -636,7 +644,7 @@ function ElvUI_EltreumUI:SkinQuests()
 									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 								end
 							end
-							if line.Check then
+							if line.Check and line.Check:IsShown() then
 								line.Text:SetTextColor(0.12, 1, 0.12)
 							end
 						end
@@ -682,7 +690,7 @@ function ElvUI_EltreumUI:SkinQuests()
 									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 								end
 							end
-							if line.Check then
+							if line.Check and line.Check:IsShown() then
 								line.Text:SetTextColor(0.12, 1, 0.12)
 							end
 						end
