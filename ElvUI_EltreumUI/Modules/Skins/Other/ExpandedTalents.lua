@@ -11,6 +11,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 		EltruismExpandedTalents:RegisterEvent("ADDON_LOADED")
 		EltruismExpandedTalents:RegisterEvent("PLAYER_ENTERING_WORLD")
 		EltruismExpandedTalents:RegisterEvent("PLAYER_STARTED_MOVING")
+		EltruismExpandedTalents:RegisterEvent("PLAYER_LOGIN")
 		EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
 			if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then --TODO 10.2, might need C_AddOns.
 				EltruismExpandedTalents:UnregisterAllEvents()

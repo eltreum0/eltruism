@@ -467,6 +467,7 @@ function ElvUI_EltreumUI:CastCursor()
 		-- Run
 		--this is kinda of a roundabout way of getting this to working here
 		cursorframe:RegisterEvent("PLAYER_STARTED_MOVING")
+		cursorframe:RegisterEvent("PLAYER_LOGIN")
 		cursorframe:SetScript("OnEvent", function()
 			if InCombatLockdown() then UIErrorsFrame:AddMessage("|cffFF0000"..ERR_NOT_IN_COMBAT.."|r") end
 			if not InCombatLockdown() then
