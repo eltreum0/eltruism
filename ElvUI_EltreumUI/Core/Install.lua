@@ -8,7 +8,6 @@ local UIFrameFadeIn = _G.UIFrameFadeIn
 local UIFrameFadeOut = _G.UIFrameFadeOut
 local hooksecurefunc = _G.hooksecurefunc
 local Enum = _G.Enum
-local tinsert = _G.table.insert
 local CHAT_LABEL = _G.CHAT_LABEL
 
 -- Set version & reload on "Finished"
