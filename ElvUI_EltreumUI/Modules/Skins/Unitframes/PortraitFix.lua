@@ -624,6 +624,9 @@ pewcheck:SetScript("OnEvent",function()
 			if _G["EltruismPetPowerBarEffect"] then
 				_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
 			end
+			if _G["EltruismPetEffect"] then
+				_G["EltruismPetEffect"]:SetAlpha(0)
+			end
 		end)
 	end
 end)
@@ -643,6 +646,21 @@ flagcheck:SetScript("OnEvent",function()
 				end
 				if _G["EltruismPlayerPowerBarEffect"] then
 					_G["EltruismPlayerPowerBarEffect"]:SetAlpha(0)
+				end
+			end
+		end)
+	end
+	if _G["ElvUF_Pet"] and E.db.unitframe.units.pet.fader.enable and E.db.unitframe.units.pet.fader.minAlpha == 0 then
+		E:Delay(0, function()
+			if _G["ElvUF_Pet"]:GetAlpha() == 0 then
+				if _G["ElvUF_Pet"].Portrait3D then
+					_G["ElvUF_Pet"].Portrait3D:Hide()
+				end
+				if _G["EltruismPetEffect"] then
+					_G["EltruismPetEffect"]:SetAlpha(0)
+				end
+				if _G["EltruismPetPowerBarEffect"] then
+					_G["EltruismPetPowerBarEffect"]:SetAlpha(0)
 				end
 			end
 		end)
