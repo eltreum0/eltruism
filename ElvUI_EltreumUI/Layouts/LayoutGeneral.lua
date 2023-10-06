@@ -149,6 +149,11 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 13
 		E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = -1
 
+		--bag search
+		E.db["bags"]["spinner"]["color"]["r"] = valuecolors.r
+		E.db["bags"]["spinner"]["color"]["g"] = valuecolors.g
+		E.db["bags"]["spinner"]["color"]["b"] = valuecolors.b
+
 		--paging
 		if E.Retail or E.Wrath then
 			E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"

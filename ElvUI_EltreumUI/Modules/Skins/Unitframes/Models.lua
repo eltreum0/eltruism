@@ -531,22 +531,20 @@ function ElvUI_EltreumUI:PetUFEffects()
 
 			if petbar then
 				peteffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
+				peteffect:ClearAllPoints()
 				peteffect:SetParent(petbar.Health)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					peteffect:ClearAllPoints()
 					peteffect:SetAllPoints(petbar.Health:GetStatusBarTexture())
 					peteffect:SetInside(petbar.Health:GetStatusBarTexture(), 0, 0)
 					peteffect:SetFrameLevel(petbar.Health:GetFrameLevel())
 					peteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-				--elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
 				else
-					peteffect:ClearAllPoints()
 					peteffect:SetAllPoints(petbar.Health)
 					peteffect:SetInside(petbar.Health, 0, 0)
 					peteffect:SetFrameLevel(petbar.Health:GetFrameLevel()-1)
 					peteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
 				end
-				--peteffect:AddMaskTexture(petbar.Health:GetStatusBarTexture())
+
 			end
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
@@ -571,7 +569,6 @@ function ElvUI_EltreumUI:PetUFEffects()
 				end
 			end
 			if petpowerbar then
-				--powerbareffectpet:SetAlpha(1)
 				powerbareffectpet:ClearAllPoints()
 				powerbareffectpet:SetAllPoints(petpowerbar:GetStatusBarTexture())
 				powerbareffectpet:SetFrameLevel(petpowerbar:GetFrameLevel())

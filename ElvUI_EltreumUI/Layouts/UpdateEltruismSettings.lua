@@ -238,6 +238,8 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 
 	E.db.ElvUI_EltreumUI.otherstuff.roleiconstype = "EMOJI"
 
+	E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.playerdeathsound = "Frankly thats a skill issue"
+
 	E.db.ElvUI_EltreumUI.otherstuff.delete = true
 	E.db.ElvUI_EltreumUI.otherstuff.gamemenu = true
 

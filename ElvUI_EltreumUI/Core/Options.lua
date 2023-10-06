@@ -88,6 +88,7 @@ local DONATORS = {
 	'|cffB50909Volo|r',
 	'|cffB50909seba4287|r',
 	'|cffB50909orangepaw3|r',
+	'|cffB50909Jaraxal|r',
 }
 
 local TRANSLATORS = {
@@ -1101,7 +1102,6 @@ function ElvUI_EltreumUI:Configtable()
 			E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight = value
 			ObjectiveTrackerFrame.editModeHeight = value
 			Enum.EditModeObjectiveTrackerSetting.Height = value
-			--ObjectiveTrackerFrame:SetHeight(value)
 			ObjectiveTracker_UpdateHeight()
 		end
 	end, function() return not E.db.ElvUI_EltreumUI.quests.anchor end, not E.Retail)
@@ -2906,16 +2906,19 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.roleicons.args.description1 = ACH:Description(L["Replace role icons with Eltruism role icons"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.roleicons.args.enable = ACH:Toggle(L["Enable Eltruism Icons"], nil, 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.roleicons.args.select = ACH:Select(" ", nil, 3, {
-		["ELTRUISM"] = "Eltruism "..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\sword',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\pharmacy',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\shield',':20:20'),
-		["ATWOODELVUI"] = 'ElvUI '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\ElvUI\\Tank',':20:20'),
-		["ATWOODGLOW"] = 'Glow '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Glow\\Tank',':20:20'),
-		["ATWOODGRAVED"] = 'Atwood '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Graved\\Tank',':20:20'),
-		["ATWOODGREY"] = 'Grey '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\Grey\\Tank',':20:20'),
-		["ATWOODWHITE"] = 'White '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Atwood\\White\\Tank',':20:20'),
-		["RELEAF"] = 'Releaf '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Releaf\\Tank',':20:20'),
-		["IOS"] = 'iOS '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\iOS\\Tank',':20:20'),
-		["MATERIAL"] = 'Material '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Material\\Tank',':20:20'),
-		["EMOJI"] = 'Emoji '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Emoji\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Emoji\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\Emoji\\Tank',':20:20'),
+		["ELTRUISM"] = "Eltruism "..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ELTRUISM\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ELTRUISM\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ELTRUISM\\Tank',':20:20'),
+		["ATWOODELVUI"] = 'ElvUI '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ATWOODELVUI\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ATWOODELVUI\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ATWOODELVUI\\Tank',':20:20'),
+		["ATWOODGLOW"] = 'Glow '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ATWOODGLOW\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ATWOODGLOW\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ATWOODGLOW\\Tank',':20:20'),
+		["ATWOODGRAVED"] = 'Atwood '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ATWOODGRAVED\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ATWOODGRAVED\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ATWOODGRAVED\\Tank',':20:20'),
+		["ATWOODGREY"] = 'Grey '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ATWOODGREY\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ATWOODGREY\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ATWOODGREY\\Tank',':20:20'),
+		["ATWOODWHITE"] = 'White '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ATWOODWHITE\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ATWOODWHITE\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ATWOODWHITE\\Tank',':20:20'),
+		["RELEAF"] = 'Releaf '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\RELEAF\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\RELEAF\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\RELEAF\\Tank',':20:20'),
+		["IOS"] = 'iOS '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\IOS\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\IOS\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\IOS\\Tank',':20:20'),
+		["MATERIAL"] = 'Material '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\MATERIAL\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\MATERIAL\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\MATERIAL\\Tank',':20:20'),
+		["EMOJI"] = 'Emoji '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\EMOJI\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\EMOJI\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\EMOJI\\Tank',':20:20'),
+		["ICONIC"] = 'Iconic '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ICONIC\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ICONIC\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\ICONIC\\Tank',':20:20'),
+		["SIMPLE"] = 'Simple '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\SIMPLE\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\SIMPLE\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\SIMPLE\\Tank',':20:20'),
+		["RPG"] = 'RPG '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\RPG\\DPS',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\RPG\\Healer',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Unitframes\\RPG\\Tank',':20:20'),
 		["CUSTOM"] = 'Custom',
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.roleiconstype end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.roleiconstype = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons end)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.roleicons.args.select.style = "radio"
@@ -2930,6 +2933,9 @@ function ElvUI_EltreumUI:Configtable()
 		"IOS",
 		"MATERIAL",
 		"EMOJI",
+		"ICONIC",
+		"SIMPLE",
+		"RPG",
 		"CUSTOM"
 	}
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.roleicons.args.custom = ACH:Group(L["Name of file inside Interface\\Addons"],nil,4)
