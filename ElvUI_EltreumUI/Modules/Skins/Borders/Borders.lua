@@ -978,7 +978,26 @@ hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraBorders) --aura (minimap) bo
 function ElvUI_EltreumUI:UFAuraBorders(button)
 	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf and E.private.auras.enable then
 		if E.db.ElvUI_EltreumUI.borders.classcolor then
-			classcolor = E:ClassColor(E.myclass, true)
+			if button:GetParent() and button:GetParent().__owner and button:GetParent().__owner.unit then
+				if UnitIsPlayer(button:GetParent().__owner.unit) then
+					local _, classunit = UnitClass(button:GetParent().__owner.unit)
+					classcolor = E:ClassColor(classunit, true)
+				else
+					local reactiontarget = UnitReaction(button:GetParent().__owner.unit, "player")
+					classcolor = {}
+					if reactiontarget >= 5 then
+						classcolor.r,classcolor.g,classcolor.b = ElvUI_EltreumUI:GetClassColorsRGB("NPCFRIENDLY")
+					elseif reactiontarget == 4 then
+						classcolor.r,classcolor.g,classcolor.b = ElvUI_EltreumUI:GetClassColorsRGB("NPCNEUTRAL")
+					elseif reactiontarget == 3 then
+						classcolor.r,classcolor.g,classcolor.b = ElvUI_EltreumUI:GetClassColorsRGB("NPCUNFRIENDLY")
+					elseif reactiontarget == 2 or reactiontarget == 1 then
+						classcolor.r,classcolor.g,classcolor.b = ElvUI_EltreumUI:GetClassColorsRGB("NPCHOSTILE")
+					end
+				end
+			else
+				classcolor = E:ClassColor(E.myclass, true)
+			end
 		elseif not E.db.ElvUI_EltreumUI.borders.classcolor then
 			classcolor = {
 				r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
@@ -986,26 +1005,26 @@ function ElvUI_EltreumUI:UFAuraBorders(button)
 				b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
 			}
 		end
-
 		local auraborder
 		if not _G["EltruismAuraBorder"..button:GetName()] then
 			auraborder = CreateFrame("Frame", "EltruismAuraBorder"..button:GetName(), button, BackdropTemplateMixin and "BackdropTemplate")
+			auraborder:SetPoint("CENTER", button, "CENTER", 0, 0)
+			auraborder:SetBackdrop({
+				edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
+				edgeSize = E.db.ElvUI_EltreumUI.borders.aurasize,
+			})
+			auraborder:SetFrameStrata("MEDIUM")
+			auraborder:SetFrameLevel(4)
+			if button:GetName():match("Debuffs") then
+				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufdebuffsizex, E.db.ElvUI_EltreumUI.borders.ufdebuffsizey)
+			else
+				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufbuffsizex, E.db.ElvUI_EltreumUI.borders.ufbuffsizey)
+			end
+			auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 		else
 			auraborder = _G["EltruismAuraBorder"..button:GetName()]
+			auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 		end
-		if button:GetName():match("Debuffs") then
-			auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufdebuffsizex, E.db.ElvUI_EltreumUI.borders.ufdebuffsizey)
-		else
-			auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufbuffsizex, E.db.ElvUI_EltreumUI.borders.ufbuffsizey)
-		end
-		auraborder:SetPoint("CENTER", button, "CENTER", 0, 0)
-		auraborder:SetBackdrop({
-			edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
-			edgeSize = E.db.ElvUI_EltreumUI.borders.aurasize,
-		})
-		auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-		auraborder:SetFrameStrata("MEDIUM")
-		auraborder:SetFrameLevel(4)
 	end
 end
 hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraBorders) --uf aura borders
@@ -1015,6 +1034,22 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 
 		if E.db.unitframe.units.target.enable then
 			if UnitExists("target") then
+				if E.db.unitframe.units.target.buffs.enable then
+					local number = E.db.unitframe.units.target.buffs.numrows * E.db.unitframe.units.target.buffs.perrow or 2
+					for i = 1, number do
+						if _G["ElvUF_TargetBuffsButton"..i] then
+							ElvUI_EltreumUI:UFAuraBorders(_G["ElvUF_TargetBuffsButton"..i])
+						end
+					end
+				end
+				if E.db.unitframe.units.target.debuffs.enable then
+					local number = E.db.unitframe.units.target.debuffs.numrows * E.db.unitframe.units.target.debuffs.perrow or 2
+					for i = 1, number do
+						if _G["ElvUF_TargetDebuffsButton"..i] then
+							ElvUI_EltreumUI:UFAuraBorders(_G["ElvUF_TargetDebuffsButton"..i])
+						end
+					end
+				end
 				if UnitIsPlayer("target") then
 					local _, targetclass = UnitClass("target")
 					if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable and targetborder ~= nil then
