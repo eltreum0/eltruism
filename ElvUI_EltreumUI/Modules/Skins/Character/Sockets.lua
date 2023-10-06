@@ -1555,7 +1555,8 @@ function ElvUI_EltreumUI:ClassicSockets()
 						end
 						tooltip:AddHyperlink(spellInfo:getLink())
 					else
-						tooltip:AddText(string.format("Unknown enchant #%d", enchantInfo:getId()))
+						local spellInfo = ElvUI_EltreumUI.SpellInfo:new("enchant:" .. KIBC_EnchantToSpellID[enchantInfo:getId()])
+						tooltip:AddText(string.format("Unknown enchant #%d", enchantInfo:getId()).." ID:"..spellInfo.spellId)
 					end
 					self:_AddIcon(slotName, texture, tooltip)
 				elseif self:IsSlotEnchantRequired(slotName) then
