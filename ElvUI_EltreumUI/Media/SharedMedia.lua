@@ -217,3 +217,7 @@ E.Media.RestIcons.Eltruism02 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures
 
 --target
 E.Media.Arrows.Eltruism01 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\ArrowEltruism.tga]]
+local width = GetPhysicalScreenSize()
+if width == 1920 then
+	E.Media.Arrows.Eltruism01 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\ArrowEltruism1080.tga]]
+end
