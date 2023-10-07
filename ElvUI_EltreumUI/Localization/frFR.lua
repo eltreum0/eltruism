@@ -1476,3 +1476,6 @@ L["Add Other Stats"] = true
 L["Display stats such as Speed and Mana Regen"] = true
 L["Add Spec Icons to the Group Finder Listing"] = true
 L["Font Shadow"] = true
+L["Add Dungeon Score to Group Finder Listing"] = true
+L["Country Style"] = true
+L["Flag"] = true
