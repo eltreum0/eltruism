@@ -189,7 +189,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 											if frame:GetParent():GetParent().Label then
 												local _,size = frame:GetParent():GetParent().Label:GetFont()
 												frame:GetParent():GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, E.db.general.fontStyle)
-												--frame:GetParent():GetParent().Label:SetShadowOffset(2,-2)
+												frame:GetParent():GetParent().Label:SetShadowOffset(2,-2)
 											end
 										end
 									end
