@@ -230,7 +230,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 						local name = entry.Name:GetText() or ""
 						local r, g, b = C_ChallengeMode.GetDungeonScoreRarityColor(score):GetRGB()
 						local hex = E:RGBToHex(r, g, b, 'ff')
-						entry.Name:SetText("|c"..hex..score.."|r "..name)
+						entry.Name:SetText("[|c"..hex..score.."|r] "..name)
 						entry.Name:SetWidth(176)
 					end
 				end
