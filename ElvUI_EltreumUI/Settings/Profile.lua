@@ -378,6 +378,7 @@ P.ElvUI_EltreumUI = {
 		},
 		groupfinderSpecIcons = true,
 		groupfinderDungeonScore = true,
+		groupfinderIconStyle = "TEXT",
 		hidetalkinghead = false,
 		playerdeath = false,
 		playerdeathgta = false,

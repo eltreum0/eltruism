@@ -19,6 +19,22 @@ local REGION_COLORED = {
 	["MEX"] = "|cFF006341M|r|cFFFFFFFFE|r|cFFC8102EX|r",
 	["BR"] = "|cFF009739B|r|cFFFEDD00Z|r|cFF0062FFL|r"
 }
+local REGION_FLAG = {
+	["DE"] = E:TextureString("Interface/Addons/ElvUI_EltreumUI/Media/Textures/Countries/Germany",':20:20'),
+	["FR"] = E:TextureString("Interface/Addons/ElvUI_EltreumUI/Media/Textures/Countries/France",':20:20'),
+	["GB"] = E:TextureString("Interface/Addons/ElvUI_EltreumUI/Media/Textures/Countries/UnitedKingdom",':20:20'),
+	["IT"] = E:TextureString("Interface/Addons/ElvUI_EltreumUI/Media/Textures/Countries/Italy",':20:20'),
+	["ES"] = E:TextureString("Interface/Addons/ElvUI_EltreumUI/Media/Textures/Countries/Spain",':20:20'),
+	["RU"] = E:TextureString("Interface/Addons/ElvUI_EltreumUI/Media/Textures/Countries/Russia",':20:20'),
+	["PT"] = E:TextureString("Interface/Addons/ElvUI_EltreumUI/Media/Textures/Countries/Portugal",':20:20'),
+	["OCE"] = E:TextureString("Interface/Addons/ElvUI_EltreumUI/Media/Textures/Countries/Australia",':20:20'),
+	["US-P"] = E:TextureString("Interface/Addons/ElvUI_EltreumUI/Media/Textures/Countries/UnitedStates",':20:20'),
+	["US-M"] = E:TextureString("Interface/Addons/ElvUI_EltreumUI/Media/Textures/Countries/UnitedStates",':20:20'),
+	["US-C"] = E:TextureString("Interface/Addons/ElvUI_EltreumUI/Media/Textures/Countries/UnitedStates",':20:20'),
+	["US-E"] = E:TextureString("Interface/Addons/ElvUI_EltreumUI/Media/Textures/Countries/UnitedStates",':20:20'),
+	["MEX"] = E:TextureString("Interface/Addons/ElvUI_EltreumUI/Media/Textures/Countries/Mexico",':20:20'),
+	["BR"] = E:TextureString("Interface/Addons/ElvUI_EltreumUI/Media/Textures/Countries/Brazil",':20:20'),
+}
 local REALMS = {
 	[1] = {
 		["OCE"] = {
@@ -243,7 +259,11 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 						end
 						local region
 						if REGION_COLORED[GetRegion(resultInfo.leaderName)] then
-							region = REGION_COLORED[GetRegion(resultInfo.leaderName)]
+							if E.db.ElvUI_EltreumUI.skins.groupfinderIconStyle == "TEXT" then
+								region = REGION_COLORED[GetRegion(resultInfo.leaderName)]
+							else
+								region = REGION_FLAG[GetRegion(resultInfo.leaderName)]
+							end
 						else
 							region = "???"
 						end
