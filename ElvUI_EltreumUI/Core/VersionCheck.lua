@@ -205,6 +205,11 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture = false
 	end
 
+	--fix in case the typo in the config caused this to be a file name instead
+	if (E.private.ElvUI_EltreumUI.combatmusic.bossmusic ~= nil and E.private.ElvUI_EltreumUI.combatmusic.bossmusic ~= false and E.private.ElvUI_EltreumUI.combatmusic.bossmusic ~= true) then
+		E.private.ElvUI_EltreumUI.combatmusic.bossmusic = false
+	end
+
 	--changes only for my profiles
 	if E.private.ElvUI_EltreumUI.install_version and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
 		return

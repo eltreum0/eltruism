@@ -204,22 +204,12 @@ LSM:Register("background", "Eltreum-Tile09", [[Interface\Addons\ElvUI_EltreumUI\
 LSM:Register("background", "Eltreum-Tile10", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\FrameBG\framebg10.tga]])
 
 --other combat icons
-E.Media.CombatIcons.Eltruism01 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Combat\fight1.tga]]
-E.Media.CombatIcons.Eltruism02 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Combat\fight2.tga]]
-E.Media.CombatIcons.Eltruism03 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Combat\fight3.tga]]
-E.Media.CombatIcons.Eltruism04 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Combat\fight4.tga]]
-E.Media.CombatIcons.Eltruism05 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Combat\fight5.tga]]
-E.Media.CombatIcons.Eltruism06 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Combat\fight6.tga]]
-E.Media.CombatIcons.Eltruism07 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Combat\fight7.tga]]
-E.Media.CombatIcons.Eltruism08 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Combat\fight8.tga]]
-E.Media.CombatIcons.Eltruism09 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Combat\fight9.tga]]
-E.Media.CombatIcons.Eltruism10 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Combat\fight10.tga]]
-E.Media.CombatIcons.Eltruism11 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Combat\fight11.tga]]
-E.Media.CombatIcons.Eltruism12 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Combat\fight12.tga]]
-E.Media.CombatIcons.Eltruism13 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Combat\fight13.tga]]
-E.Media.CombatIcons.Eltruism14 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Combat\fight14.tga]]
-E.Media.CombatIcons.Eltruism15 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Combat\fight15.tga]]
-E.Media.CombatIcons.Eltruism16 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Combat\fight16.tga]]
+for i = 1, 9 do
+	E.Media.CombatIcons["Eltruism0"..i] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Combat\\fight"..i..".tga"
+end
+for i = 10, 28 do
+	E.Media.CombatIcons["Eltruism"..i] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Combat\\fight"..i..".tga"
+end
 
 --other rest icons
 E.Media.RestIcons.Eltruism01 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\Rest\rest1.tga]]
@@ -227,3 +217,7 @@ E.Media.RestIcons.Eltruism02 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures
 
 --target
 E.Media.Arrows.Eltruism01 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\ArrowEltruism.tga]]
+local width = GetPhysicalScreenSize()
+if width == 1920 then
+	E.Media.Arrows.Eltruism01 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\ArrowEltruism1080.tga]]
+end
