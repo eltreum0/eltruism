@@ -185,6 +185,36 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 			end
 		end
 
+		--filter spam
+		local function filterTable(t, id)
+			for j = #t, 1, -1 do
+				if (t[j] == id) then
+					tremove(t, j)
+					break
+				end
+			end
+		end
+		local function UpdateResultList(frame)
+			local results = frame.results
+			if (not frame:IsShown()) then
+				return
+			end
+			if #results > 0 then
+				for _, id in ipairs(results) do
+					local searchResultInfo = C_LFGList.GetSearchResultInfo(id)
+					if searchResultInfo then
+						local score = searchResultInfo.leaderOverallDungeonScore or 0
+						if score < 1 and searchResultInfo.voiceChat ~= "" then --no score and voice chat? its spam
+							filterTable(results, id)
+							_G.LFGListSearchPanel_UpdateResults(frame)
+						end
+					end
+				end
+			end
+		end
+		hooksecurefunc("LFGListSearchPanel_UpdateResultList", UpdateResultList)
+
+		--add spec icons and IO and region
 		local function SearchEntry_Update(entry)
 			if not _G.LFGListFrame.SearchPanel:IsShown() then return end
 			local resultInfo = C_LFGList.GetSearchResultInfo(entry.resultID)
