@@ -3,11 +3,6 @@ local _G = _G
 local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 
 function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
-
-	if E.Retail and fontStyle == "NONE" then
-		fontStyle = ""
-	end
-
 	if IsAddOnLoaded("ElvUI_SLE") then --TODO 10.2, might need C_AddOns.
 		E.db["sle"]["armory"]["stats"]["statLabels"]["outline"] = fontStyle
 		E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = fontStyle
