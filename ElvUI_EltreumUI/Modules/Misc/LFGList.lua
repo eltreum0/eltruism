@@ -4,20 +4,20 @@ local select = _G.select
 
 --region table adapted from https://wago.io/JhmeKOgMw
 local REGION_COLORED = {
-	["DE"] = "|cFF000000D|r|cFFDD0000E|r|cFFFFCE00U|r",
-	["FR"] = "|cFF002654F|r|cFFFFFFFFR|r|cFFED2939A|r",
-	["GB"] = "|cFFFFFFFFG|r|cFFC8102EB|r|cFF012169R|r",
-	["IT"] = "|cFF008C45I|r|cFFF4F9FFT|r|cFFCD212AA|r",
-	["ES"] = "|cFF8B0D11E|r|cFFFCB507S|r|cFF8B0D11P|r",
-	["RU"] = "|cFFFFFFFFR|r|cFF1C3578U|r|cFFE4181CS|r",
-	["PT"] = "|cFF046A38P|r|cFFDA291CR|r|cFFFFE900T|r",
-	["OCE"] = "|cFF012169O|r|cFFE4002BC|r|cFFFFFFFFE|r",
-	["US-P"] = "|cFF3C3B6EU|r|cFFB22234S|r-|cFFFFFFFFP|r",
-	["US-M"] = "|cFF3C3B6EU|r|cFFB22234S|r-|cFFFFFFFFM|r",
-	["US-C"] = "|cFF3C3B6EU|r|cFFB22234S|r-|cFFFFFFFFC|r",
-	["US-E"] = "|cFF3C3B6EU|r|cFFB22234S|r-|cFFFFFFFFE|r",
+	["DE"] = "|cFF878787D|r|cFFDD0000E|r|cFFFFCE00U|r",
+	["FR"] = "|cFF0062FFF|r|cFFFFFFFFR|r|cFFED2939A|r",
+	["GB"] = "|cFFFFFFFFG|r|cFFC8102EB|r|cFF0062FFR|r",
+	["IT"] = "|cFF00FF7EI|r|cFFF4F9FFT|r|cFFCD212AA|r",
+	["ES"] = "|cFFfa020aE|r|cFFFCB507S|r|cFFfa020aP|r",
+	["RU"] = "|cFFFFFFFFR|r|cFF0062FFU|r|cFFE4181CS|r",
+	["PT"] = "|cFF05fa82P|r|cFFDA291CR|r|cFFFFE900T|r",
+	["OCE"] = "|cFF0062FFO|r|cFFE4002BC|r|cFFFFFFFFE|r",
+	["US-P"] = "|cFF0062FFU|r|cFFfa0221S|r-|cFFFFFFFFP|r",
+	["US-M"] = "|cFF0062FFU|r|cFFfa0221S|r-|cFFFFFFFFM|r",
+	["US-C"] = "|cFF0062FFU|r|cFFfa0221S|r-|cFFFFFFFFC|r",
+	["US-E"] = "|cFF0062FFU|r|cFFfa0221S|r-|cFFFFFFFFE|r",
 	["MEX"] = "|cFF006341M|r|cFFFFFFFFE|r|cFFC8102EX|r",
-	["BR"] = "|cFF009739B|r|cFFFEDD00Z|r|cFF012169L|r"
+	["BR"] = "|cFF009739B|r|cFFFEDD00Z|r|cFF0062FFL|r"
 }
 local REGION_REALMS
 local REGION_REALMS_EU = {
