@@ -84,12 +84,69 @@ local REALMS = {
 		["MEX"] = {"Drakkari", "Quel'Thalas", "Ragnaros"},
 		["BR"] = {"Azralon", "Gallywix", "Goldrinn", "Nemesis", "Tol Barad"}
 	},
-	[2] = {
-		["KOR"] = {
-			"Azshara", "Cenarius", "Dalaran", "Garona", "Gul'dan", "Hellscream",
-			"Hyjal", "Malfurion", "Norgannon", "Zul'jin", "Alexstrasza", "Deathwing",
-			"Rexxar", "Wildhammer", "Windrunner", "Burning Legion", "Durotan", "Stormrage"
+	[3] = {
+		["DE"] = {
+			"Aegwynn", "Alexstrasza", "Alleria", "Aman’Thul", "Aman'Thul", "Ambossar",
+			"Anetheron", "Antonidas", "Anub'arak", "Area52", "Arthas",
+			"Arygos", "Azshara", "Baelgun", "Blackhand", "Blackmoore",
+			"Blackrock", "Blutkessel", "Dalvengyr", "DasKonsortium",
+			"DasSyndikat", "DerMithrilorden", "DerRatvonDalaran",
+			"DerAbyssischeRat", "Destromath", "Dethecus", "DieAldor",
+			"DieArguswacht", "DieNachtwache", "DieSilberneHand", "DieTodeskrallen",
+			"DieewigeWacht", "DunMorogh", "Durotan", "Echsenkessel", "Eredar",
+			"FestungderStürme", "Forscherliga", "Frostmourne", "Frostwolf",
+			"Garrosh", "Gilneas", "Gorgonnash", "Gul'dan", "Kargath", "Kel'Thuzad",
+			"Khaz'goroth", "Kil'jaeden", "Krag'jin", "KultderVerdammten", "Lordaeron",
+			"Lothar", "Madmortem", "Mal'Ganis", "Malfurion", "Malorne", "Malygos", "Mannoroth",
+			"Mug'thol", "Nathrezim", "Nazjatar", "Nefarian", "Nera'thor", "Nethersturm",
+			"Norgannon", "Nozdormu", "Onyxia", "Perenolde", "Proudmoore", "Rajaxx", "Rexxar",
+			"Sen'jin", "Shattrath", "Taerar", "Teldrassil", "Terrordar", "Theradras", "Thrall",
+			"Tichondrius", "Tirion", "Todeswache", "Ulduar", "Un'Goro", "Vek'lor", "Wrathbringer",
+			"Ysera", "ZirkeldesCenarius", "Zuluhed"
 		},
+		["FR"] = {
+			"Arakarahm", "Arathi", "Archimonde", "Chantséternels", "Cho’gall", "Cho'gall",
+			"ConfrérieduThorium", "ConseildesOmbres", "Dalaran", "Drek’Thar", "Drek'Thar",
+			"Eitrigg", "Eldre’Thalas", "Eldre'Thalas", "Elune", "Garona", "Hyjal", "Illidan",
+			"Kael’thas", "Kael'thas", "KhazModan", "KirinTor", "Krasus", "LaCroisadeécarlate",
+			"LesClairvoyants", "LesSentinelles", "MarécagedeZangar", "Medivh", "Naxxramas",
+			"Ner’zhul", "Ner'zhul", "Rashgarroth", "Sargeras", "Sinstralis", "Suramar",
+			"Templenoir", "Throk’Feroth", "Throk'Feroth", "Uldaman", "Varimathras", "Vol’jin",
+			"Vol'jin", "Ysondre"
+		},
+		["GB"] = {
+			"AeriePeak", "Agamaggan", "Aggramar", "Ahn'Qiraj", "Al'Akir", "Alonsus", "Anachronos",
+			"Arathor", "ArenaPass", "ArenaPass1", "ArgentDawn", "Aszune", "Auchindoun", "AzjolNerub",
+			"Azuremyst", "Balnazzar", "Blade'sEdge", "Bladefist", "Bloodfeather", "Bloodhoof", "Bloodscalp",
+			"Boulderfist", "BronzeDragonflight", "Bronzebeard", "BurningBlade", "BurningLegion", "BurningSteppes",
+			"C'Thun", "ChamberofAspects", "Chromaggus", "ColinasPardas", "Crushridge", "CultedelaRivenoire",
+			"Daggerspine", "DarkmoonFaire", "Darksorrow", "Darkspear", "Deathwing", "DefiasBrotherhood",
+			"Dentarg", "Doomhammer", "Draenor", "Dragonblight", "Dragonmaw", "Drak'thul", "Dunemaul",
+			"EarthenRing", "EmeraldDream", "Emeriss", "Eonar", "Executus", "Frostmane", "Frostwhisper",
+			"Genjuros", "Ghostlands", "GrimBatol", "Hakkar", "Haomarush", "Hellfire", "Hellscream",
+			"Jaedenar", "Karazhan", "Kazzak", "Khadgar", "Kilrogg", "Kor'gall", "KulTiras", "LaughingSkull",
+			"Lightbringer", "Lightning'sBlade", "Magtheridon", "Mazrigos", "Moonglade", "Nagrand",
+			"Neptulon" , "Nordrassil", "Outland", "Quel'Thalas", "Ragnaros", "Ravencrest", "Ravenholdt",
+			"Runetotem", "Saurfang", "ScarshieldLegion", "Shadowsong", "ShatteredHalls", "ShatteredHand",
+			"Silvermoon", "Skullcrusher", "Spinebreaker", "Sporeggar", "SteamwheedleCartel", "Stormrage",
+			"Stormreaver", "Stormscale", "Sunstrider", "Sylvanas", "Talnivarr", "TarrenMill", "Terenas",
+			"Terokkar", "TheMaelstrom", "TheSha'tar", "TheVentureCo", "Thunderhorn", "Trollbane", "Turalyon",
+			"Twilight'sHammer", "TwistingNether", "Vashj", "Vek'nilash", "Wildhammer", "Xavius", "Zenedar"
+		},
+		["IT"] = {
+			"Nemesis", "Pozzodell'Eternità"
+		},
+		["ES"] = {
+			"DunModr", "EuskalEncounter", "Exodar", "LosErrantes", "Minahonda", "Sanguino", "Shen'dralar",
+			"Tyrande", "Uldum", "Zul'jin"
+		},
+		["RU"] = {
+			"Азурегос", "Борейскаятундра", "ВечнаяПесня", "Галакронд", "Голдринн", "Гордунни",
+			"Гордунни", "Гром", "Дракономор", "Корольлич", "Пиратскаябухта", "Подземье", "ПропускнаАрену1",
+			"Разувий", "Ревущийфьорд", "СвежевательДуш", "Седогрив", "СтражСмерти", "Термоштепсель",
+			"ТкачСмерти", "ЧерныйШрам", "Ясеневыйлес"
+		},
+		["PT"] = {"Aggra(Português)"}
 	},
 }
 
