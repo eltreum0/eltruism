@@ -19,142 +19,79 @@ local REGION_COLORED = {
 	["MEX"] = "|cFF006341M|r|cFFFFFFFFE|r|cFFC8102EX|r",
 	["BR"] = "|cFF009739B|r|cFFFEDD00Z|r|cFF0062FFL|r"
 }
-local REGION_REALMS
-local REGION_REALMS_EU = {
-	["DE"] = {
-		"Aegwynn", "Alexstrasza", "Alleria", "Aman’Thul", "Aman'Thul", "Ambossar",
-		"Anetheron", "Antonidas", "Anub'arak", "Area52", "Arthas",
-		"Arygos", "Azshara", "Baelgun", "Blackhand", "Blackmoore",
-		"Blackrock", "Blutkessel", "Dalvengyr", "DasKonsortium",
-		"DasSyndikat", "DerMithrilorden", "DerRatvonDalaran",
-		"DerAbyssischeRat", "Destromath", "Dethecus", "DieAldor",
-		"DieArguswacht", "DieNachtwache", "DieSilberneHand", "DieTodeskrallen",
-		"DieewigeWacht", "DunMorogh", "Durotan", "Echsenkessel", "Eredar",
-		"FestungderStürme", "Forscherliga", "Frostmourne", "Frostwolf",
-		"Garrosh", "Gilneas", "Gorgonnash", "Gul'dan", "Kargath", "Kel'Thuzad",
-		"Khaz'goroth", "Kil'jaeden", "Krag'jin", "KultderVerdammten", "Lordaeron",
-		"Lothar", "Madmortem", "Mal'Ganis", "Malfurion", "Malorne", "Malygos", "Mannoroth",
-		"Mug'thol", "Nathrezim", "Nazjatar", "Nefarian", "Nera'thor", "Nethersturm",
-		"Norgannon", "Nozdormu", "Onyxia", "Perenolde", "Proudmoore", "Rajaxx", "Rexxar",
-		"Sen'jin", "Shattrath", "Taerar", "Teldrassil", "Terrordar", "Theradras", "Thrall",
-		"Tichondrius", "Tirion", "Todeswache", "Ulduar", "Un'Goro", "Vek'lor", "Wrathbringer",
-		"Ysera", "ZirkeldesCenarius", "Zuluhed"
+local REALMS = {
+	[1] = {
+		["OCE"] = {
+			"Aman'Thul", "Barthilas", "Caelestrasz", "Dath'Remar", "Dreadmaul",
+			"Frostmourne", "Gundrak", "Jubei'Thos", "Khaz'goroth", "Nagrand",
+			"Saurfang", "Thaurissan"
+		},
+		["US-P"] = {
+			"Aerie Peak", "Anvilmar", "Arathor", "Antonidas", "Azuremyst",
+			"Baelgun", "Blade's Edge", "Bladefist", "Bronzebeard", "Cenarius",
+			"Darrowmere", "Draenor", "Dragonblight", "Echo Isles", "Galakrond",
+			"Gnomeregan", "Hyjal", "Kilrogg", "Korialstrasz", "Lightbringer",
+			"Misha", "Moonrunner", "Nordrassil", "Proudmoore", "Shadowsong",
+			"Shu'Halo", "Silvermoon", "Skywall", "Suramar", "Uldum", "Uther",
+			"Velen", "Windrunner", "Blackrock", "Blackwing Lair", "Bonechewer",
+			"Boulderfist", "Coilfang", "Crushridge", "Daggerspine", "Dark Iron",
+			"Destromath", "Dethecus", "Dragonmaw", "Dunemaul", "Frostwolf",
+			"Gorgonnash", "Gurubashi", "Kalecgos", "Kil'Jaeden", "Lethon", "Maiev",
+			"Nazjatar", "Ner'zhul", "Onyxia", "Rivendare", "Shattered Halls",
+			"Spinebreaker", "Spirestone", "Stonemaul", "Stormscale", "Tichondrius",
+			"Ursin", "Vashj", "Blackwater Raiders", "Cenarion Circle",
+			"Feathermoon", "Sentinels", "Silver Hand", "The Scryers",
+			"Wyrmrest Accord", "The Venture Co"
+		},
+		["US-M"] = {
+			"Azjol-Nerub", "AzjolNerub", "Doomhammer", "Icecrown", "Perenolde",
+			"Terenas", "Zangarmarsh", "Kel'Thuzad", "Darkspear", "Deathwing",
+			"Bloodscalp", "Nathrezim", "Shadow Council"
+		},
+		["US-C"] = {
+			"Aegwynn", "Agamaggan", "Aggramar", "Akama", "Alexstrasza", "Alleria",
+			"Archimonde", "Azgalor", "Azshara", "Balnazzar", "Blackhand",
+			"Blood Furnace", "Borean Tundra", "Burning Legion", "Cairne",
+			"Cho'gall", "Chromaggus", "Dawnbringer", "Dentarg", "Detheroc",
+			"Drak'tharon", "Drak'thul", "Draka", "Eitrigg", "Emerald Dream",
+			"Farstriders", "Fizzcrank", "Frostmane", "Garithos", "Garona",
+			"Ghostlands", "Greymane", "Grizzly Hills", "Gul'dan", "Hakkar",
+			"Hellscream", "Hydraxis", "Illidan", "Kael'thas", "Khaz Modan",
+			"Kirin Tor", "Korgath", "Kul Tiras", "Laughing Skull", "Lightninghoof",
+			"Madoran", "Maelstrom", "Mal'Ganis", "Malfurion", "Malorne", "Malygos",
+			"Mok'Nathal", "Moon Guard", "Mug'thol", "Muradin", "Nesingwary",
+			"Quel'Dorei", "Ravencrest", "Rexxar", "Runetotem", "Sargeras",
+			"Scarlet Crusade", "Sen'Jin", "Sisters of Elune", "Staghelm",
+			"Stormreaver", "Terokkar", "The Underbog", "Thorium Brotherhood",
+			"Thunderhorn", "Thunderlord", "Twisting Nether", "Vek'nilash",
+			"Whisperwind", "Wildhammer", "Winterhoof"
+		},
+		["US-E"] = {
+			"Altar of Storms", "Alterac Mountains", "Andorhal", "Anetheron",
+			"Anub'arak", "Area 52", "Argent Dawn", "Arthas", "Arygos", "Auchindoun",
+			"Black Dragonflight", "Bleeding Hollow", "Bloodhoof", "Burning Blade",
+			"Dalaran", "Dalvengyr", "Demon Soul", "Drenden", "Durotan", "Duskwood",
+			"Earthen Ring", "Eldre'Thalas", "Elune", "Eonar", "Eredar", "Executus",
+			"Exodar", "Fenris", "Firetree", "Garrosh", "Gilneas", "Gorefiend",
+			"Grizzly Hills", "Haomarush", "Jaedenar", "Kargath", "Khadgar",
+			"Lightning's Blade", "Llane", "Lothar", "Magtheridon", "Mannoroth",
+			"Medivh", "Nazgrel", "Norgannon", "Ravenholdt", "Scilla", "Shadowmoon",
+			"Shandris", "Shattered Hand", "Skullcrusher", "Smolderthorn",
+			"Steamwheedle Cartel", "Stormrage", "Tanaris", "The Forgotten Coast",
+			"Thrall", "Tortheldrin", "Trollbane", "Turalyon", "Uldaman",
+			"Undermine", "Warsong", "Ysera", "Ysondre", "Zul'jin", "Zuluhed"
+		},
+		["MEX"] = {"Drakkari", "Quel'Thalas", "Ragnaros"},
+		["BR"] = {"Azralon", "Gallywix", "Goldrinn", "Nemesis", "Tol Barad"}
 	},
-	["FR"] = {
-		"Arakarahm", "Arathi", "Archimonde", "Chantséternels", "Cho’gall", "Cho'gall",
-		"ConfrérieduThorium", "ConseildesOmbres", "Dalaran", "Drek’Thar", "Drek'Thar",
-		"Eitrigg", "Eldre’Thalas", "Eldre'Thalas", "Elune", "Garona", "Hyjal", "Illidan",
-		"Kael’thas", "Kael'thas", "KhazModan", "KirinTor", "Krasus", "LaCroisadeécarlate",
-		"LesClairvoyants", "LesSentinelles", "MarécagedeZangar", "Medivh", "Naxxramas",
-		"Ner’zhul", "Ner'zhul", "Rashgarroth", "Sargeras", "Sinstralis", "Suramar",
-		"Templenoir", "Throk’Feroth", "Throk'Feroth", "Uldaman", "Varimathras", "Vol’jin",
-		"Vol'jin", "Ysondre"
+	[2] = {
+		["KOR"] = {
+			"Azshara", "Cenarius", "Dalaran", "Garona", "Gul'dan", "Hellscream",
+			"Hyjal", "Malfurion", "Norgannon", "Zul'jin", "Alexstrasza", "Deathwing",
+			"Rexxar", "Wildhammer", "Windrunner", "Burning Legion", "Durotan", "Stormrage"
+		},
 	},
-	["GB"] = {
-		"AeriePeak", "Agamaggan", "Aggramar", "Ahn'Qiraj", "Al'Akir", "Alonsus", "Anachronos",
-		"Arathor", "ArenaPass", "ArenaPass1", "ArgentDawn", "Aszune", "Auchindoun", "AzjolNerub",
-		"Azuremyst", "Balnazzar", "Blade'sEdge", "Bladefist", "Bloodfeather", "Bloodhoof", "Bloodscalp",
-		"Boulderfist", "BronzeDragonflight", "Bronzebeard", "BurningBlade", "BurningLegion", "BurningSteppes",
-		"C'Thun", "ChamberofAspects", "Chromaggus", "ColinasPardas", "Crushridge", "CultedelaRivenoire",
-		"Daggerspine", "DarkmoonFaire", "Darksorrow", "Darkspear", "Deathwing", "DefiasBrotherhood",
-		"Dentarg", "Doomhammer", "Draenor", "Dragonblight", "Dragonmaw", "Drak'thul", "Dunemaul",
-		"EarthenRing", "EmeraldDream", "Emeriss", "Eonar", "Executus", "Frostmane", "Frostwhisper",
-		"Genjuros", "Ghostlands", "GrimBatol", "Hakkar", "Haomarush", "Hellfire", "Hellscream",
-		"Jaedenar", "Karazhan", "Kazzak", "Khadgar", "Kilrogg", "Kor'gall", "KulTiras", "LaughingSkull",
-		"Lightbringer", "Lightning'sBlade", "Magtheridon", "Mazrigos", "Moonglade", "Nagrand",
-		"Neptulon" , "Nordrassil", "Outland", "Quel'Thalas", "Ragnaros", "Ravencrest", "Ravenholdt",
-		"Runetotem", "Saurfang", "ScarshieldLegion", "Shadowsong", "ShatteredHalls", "ShatteredHand",
-		"Silvermoon", "Skullcrusher", "Spinebreaker", "Sporeggar", "SteamwheedleCartel", "Stormrage",
-		"Stormreaver", "Stormscale", "Sunstrider", "Sylvanas", "Talnivarr", "TarrenMill", "Terenas",
-		"Terokkar", "TheMaelstrom", "TheSha'tar", "TheVentureCo", "Thunderhorn", "Trollbane", "Turalyon",
-		"Twilight'sHammer", "TwistingNether", "Vashj", "Vek'nilash", "Wildhammer", "Xavius", "Zenedar"
-	},
-	["IT"] = {
-		"Nemesis", "Pozzodell'Eternità"
-	},
-	["ES"] = {
-		"DunModr", "EuskalEncounter", "Exodar", "LosErrantes", "Minahonda", "Sanguino", "Shen'dralar",
-		"Tyrande", "Uldum", "Zul'jin"
-	},
-	["RU"] = {
-		"Азурегос", "Борейскаятундра", "ВечнаяПесня", "Галакронд", "Голдринн", "Гордунни",
-		"Гордунни", "Гром", "Дракономор", "Корольлич", "Пиратскаябухта", "Подземье", "ПропускнаАрену1",
-		"Разувий", "Ревущийфьорд", "СвежевательДуш", "Седогрив", "СтражСмерти", "Термоштепсель",
-		"ТкачСмерти", "ЧерныйШрам", "Ясеневыйлес"
-	},
-	["PT"] = {"Aggra(Português)"}
 }
-local REGION_REALMS_US = {
-	["OCE"] = {
-		"Aman'Thul", "Barthilas", "Caelestrasz", "Dath'Remar", "Dreadmaul",
-		"Frostmourne", "Gundrak", "Jubei'Thos", "Khaz'goroth", "Nagrand",
-		"Saurfang", "Thaurissan"
-	},
-	["US-P"] = {
-		"Aerie Peak", "Anvilmar", "Arathor", "Antonidas", "Azuremyst",
-		"Baelgun", "Blade's Edge", "Bladefist", "Bronzebeard", "Cenarius",
-		"Darrowmere", "Draenor", "Dragonblight", "Echo Isles", "Galakrond",
-		"Gnomeregan", "Hyjal", "Kilrogg", "Korialstrasz", "Lightbringer",
-		"Misha", "Moonrunner", "Nordrassil", "Proudmoore", "Shadowsong",
-		"Shu'Halo", "Silvermoon", "Skywall", "Suramar", "Uldum", "Uther",
-		"Velen", "Windrunner", "Blackrock", "Blackwing Lair", "Bonechewer",
-		"Boulderfist", "Coilfang", "Crushridge", "Daggerspine", "Dark Iron",
-		"Destromath", "Dethecus", "Dragonmaw", "Dunemaul", "Frostwolf",
-		"Gorgonnash", "Gurubashi", "Kalecgos", "Kil'Jaeden", "Lethon", "Maiev",
-		"Nazjatar", "Ner'zhul", "Onyxia", "Rivendare", "Shattered Halls",
-		"Spinebreaker", "Spirestone", "Stonemaul", "Stormscale", "Tichondrius",
-		"Ursin", "Vashj", "Blackwater Raiders", "Cenarion Circle",
-		"Feathermoon", "Sentinels", "Silver Hand", "The Scryers",
-		"Wyrmrest Accord", "The Venture Co"
-	},
-	["US-M"] = {
-		"Azjol-Nerub", "AzjolNerub", "Doomhammer", "Icecrown", "Perenolde",
-		"Terenas", "Zangarmarsh", "Kel'Thuzad", "Darkspear", "Deathwing",
-		"Bloodscalp", "Nathrezim", "Shadow Council"
-	},
-	["US-C"] = {
-		"Aegwynn", "Agamaggan", "Aggramar", "Akama", "Alexstrasza", "Alleria",
-		"Archimonde", "Azgalor", "Azshara", "Balnazzar", "Blackhand",
-		"Blood Furnace", "Borean Tundra", "Burning Legion", "Cairne",
-		"Cho'gall", "Chromaggus", "Dawnbringer", "Dentarg", "Detheroc",
-		"Drak'tharon", "Drak'thul", "Draka", "Eitrigg", "Emerald Dream",
-		"Farstriders", "Fizzcrank", "Frostmane", "Garithos", "Garona",
-		"Ghostlands", "Greymane", "Grizzly Hills", "Gul'dan", "Hakkar",
-		"Hellscream", "Hydraxis", "Illidan", "Kael'thas", "Khaz Modan",
-		"Kirin Tor", "Korgath", "Kul Tiras", "Laughing Skull", "Lightninghoof",
-		"Madoran", "Maelstrom", "Mal'Ganis", "Malfurion", "Malorne", "Malygos",
-		"Mok'Nathal", "Moon Guard", "Mug'thol", "Muradin", "Nesingwary",
-		"Quel'Dorei", "Ravencrest", "Rexxar", "Runetotem", "Sargeras",
-		"Scarlet Crusade", "Sen'Jin", "Sisters of Elune", "Staghelm",
-		"Stormreaver", "Terokkar", "The Underbog", "Thorium Brotherhood",
-		"Thunderhorn", "Thunderlord", "Twisting Nether", "Vek'nilash",
-		"Whisperwind", "Wildhammer", "Winterhoof"
-	},
-	["US-E"] = {
-		"Altar of Storms", "Alterac Mountains", "Andorhal", "Anetheron",
-		"Anub'arak", "Area 52", "Argent Dawn", "Arthas", "Arygos", "Auchindoun",
-		"Black Dragonflight", "Bleeding Hollow", "Bloodhoof", "Burning Blade",
-		"Dalaran", "Dalvengyr", "Demon Soul", "Drenden", "Durotan", "Duskwood",
-		"Earthen Ring", "Eldre'Thalas", "Elune", "Eonar", "Eredar", "Executus",
-		"Exodar", "Fenris", "Firetree", "Garrosh", "Gilneas", "Gorefiend",
-		"Grizzly Hills", "Haomarush", "Jaedenar", "Kargath", "Khadgar",
-		"Lightning's Blade", "Llane", "Lothar", "Magtheridon", "Mannoroth",
-		"Medivh", "Nazgrel", "Norgannon", "Ravenholdt", "Scilla", "Shadowmoon",
-		"Shandris", "Shattered Hand", "Skullcrusher", "Smolderthorn",
-		"Steamwheedle Cartel", "Stormrage", "Tanaris", "The Forgotten Coast",
-		"Thrall", "Tortheldrin", "Trollbane", "Turalyon", "Uldaman",
-		"Undermine", "Warsong", "Ysera", "Ysondre", "Zul'jin", "Zuluhed"
-	},
-	["MEX"] = {"Drakkari", "Quel'Thalas", "Ragnaros"},
-	["BR"] = {"Azralon", "Gallywix", "Goldrinn", "Nemesis", "Tol Barad"}
-}
-if GetCurrentRegion() == 3 then
-	REGION_REALMS = REGION_REALMS_EU
-end
-
-if GetCurrentRegion() == 1 then
-	REGION_REALMS = REGION_REALMS_US
-end
 
 --LFG Spec Icons, based on https://wago.io/cFpgwuLe0
 function ElvUI_EltreumUI:DungeonRoleIcons()
@@ -198,32 +135,34 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 			local categoryID = activityTable.categoryID
 
 			--start of the io/region thing
-			if E.Retail then
-				if GetCurrentRegion() == 3 or GetCurrentRegion() == 1 then
-					local function GetRegion(name)
-						if not name then return nil end
-						local leaderRealm = name:match("%-(.+)")
-						if leaderRealm then
-							leaderRealm = leaderRealm:lower():gsub(" ", "")
-						else
-							leaderRealm = GetRealmName():lower():gsub(" ", "")
-						end
-						for region, regionRealms in pairs(REGION_REALMS) do
-							for _, realm in pairs(regionRealms) do
-								if realm:lower():gsub(" ", "") == leaderRealm then
-									return region
+			if E.db.ElvUI_EltreumUI.skins.groupfinderDungeonScore then
+				if E.Retail then
+					if REALMS[GetCurrentRegion()] then
+						local function GetRegion(name)
+							if not name then return nil end
+							local leaderRealm = name:match("%-(.+)")
+							if leaderRealm then
+								leaderRealm = leaderRealm:lower():gsub(" ", "")
+							else
+								leaderRealm = GetRealmName():lower():gsub(" ", "")
+							end
+							for region, regionRealms in pairs(REALMS[GetCurrentRegion()]) do
+								for _, realm in pairs(regionRealms) do
+									if realm:lower():gsub(" ", "") == leaderRealm then
+										return region
+									end
 								end
 							end
 						end
-					end
-					local region
-					if REGION_COLORED[GetRegion(resultInfo.leaderName)] then
-						region = REGION_COLORED[GetRegion(resultInfo.leaderName)]
-					else
-						region = "???"
-					end
-					if entry.ActivityName:GetText() ~= nil and entry.ActivityName:GetText() ~= "" then
-						entry.ActivityName:SetFormattedText("%s %s", region,entry.ActivityName:GetText())
+						local region
+						if REGION_COLORED[GetRegion(resultInfo.leaderName)] then
+							region = REGION_COLORED[GetRegion(resultInfo.leaderName)]
+						else
+							region = "???"
+						end
+						if entry.ActivityName:GetText() ~= nil and entry.ActivityName:GetText() ~= "" then
+							entry.ActivityName:SetFormattedText("%s %s", region,entry.ActivityName:GetText())
+						end
 					end
 					if entry.Name:GetText() ~= nil then
 						local score = resultInfo.leaderOverallDungeonScore or 0
