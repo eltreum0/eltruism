@@ -1,4 +1,19 @@
 local classIconsReleaf = {
+	["16"] ={
+		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\WarriorReleaf.tga",
+		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\PaladinReleaf.tga",
+		["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\HunterReleaf.tga",
+		["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\RogueReleaf.tga",
+		["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\PriestReleaf.tga",
+		["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DeathKnightReleaf.tga",
+		["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\ShamanReleaf.tga",
+		["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\MageReleaf.tga",
+		["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\WarlockReleaf.tga",
+		["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\MonkReleaf.tga",
+		["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DruidReleaf.tga",
+		["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DemonHunterReleaf.tga",
+		["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\EvokerReleaf.tga",
+	},
 	["32"] ={
 		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\WarriorReleaf.tga",
 		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\PaladinReleaf.tga",
@@ -46,6 +61,21 @@ local classIconsReleaf = {
 	},
 }
 local classIconsBlizzard = {
+	["16"] ={
+		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Warrior.tga",
+		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Paladin.tga",
+		["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Hunter.tga",
+		["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Rogue.tga",
+		["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Priest.tga",
+		["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DeathKnight.tga",
+		["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Shaman.tga",
+		["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Mage.tga",
+		["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Warlock.tga",
+		["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Monk.tga",
+		["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Druid.tga",
+		["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DemonHunter.tga",
+		["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Evoker.tga",
+	},
 	["32"] ={
 		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\Warrior.tga",
 		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\Paladin.tga",
@@ -93,6 +123,21 @@ local classIconsBlizzard = {
 	},
 }
 local classIconsBorder = {
+	["16"] = {
+		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\WarriorIconReleaf.tga",
+		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\PaladinIconReleaf.tga",
+		["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\HunterIconReleaf.tga",
+		["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\RogueIconReleaf.tga",
+		["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\PriestIconReleaf.tga",
+		["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DeathKnightIconReleaf.tga",
+		["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\ShamanIconReleaf.tga",
+		["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\MageIconReleaf.tga",
+		["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\WarlockIconReleaf.tga",
+		["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\MonkIconReleaf.tga",
+		["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DruidIconReleaf.tga",
+		["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DemonHunterIconReleaf.tga",
+		["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\EvokerIconReleaf.tga",
+	},
 	["32"] = {
 		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\WarriorIconReleaf.tga",
 		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\PaladinIconReleaf.tga",
@@ -140,6 +185,21 @@ local classIconsBorder = {
 	},
 }
 local classIconsShadow = {
+	["16"] = {
+		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\WarriorShadow.tga",
+		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\PaladinShadow.tga",
+		["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\HunterShadow.tga",
+		["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\RogueShadow.tga",
+		["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\PriestShadow.tga",
+		["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DeathKnightShadow.tga",
+		["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\ShamanShadow.tga",
+		["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\MageShadow.tga",
+		["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\WarlockShadow.tga",
+		["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\MonkShadow.tga",
+		["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DruidShadow.tga",
+		["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DemonHunterShadow.tga",
+		["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\EvokerShadow.tga",
+	},
 	["32"] = {
 		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\WarriorShadow.tga",
 		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\PaladinShadow.tga",
@@ -187,6 +247,21 @@ local classIconsShadow = {
 	},
 }
 local classIconsOutline = {
+	["16"] = {
+		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Warrior1.tga",
+		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Paladin1.tga",
+		["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Hunter1.tga",
+		["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Rogue1.tga",
+		["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Priest1.tga",
+		["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DeathKnight1.tga",
+		["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Shaman1.tga",
+		["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Mage1.tga",
+		["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Warlock1.tga",
+		["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Monk1.tga",
+		["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Druid1.tga",
+		["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DemonHunter1.tga",
+		["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\Evoker1.tga",
+	},
 	["32"] = {
 		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\Warrior1.tga",
 		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\Paladin1.tga",
@@ -234,6 +309,21 @@ local classIconsOutline = {
 	},
 }
 local OriginalIcons = {
+	["16"] = {
+		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\WarriorOriginal.tga",
+		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\PaladinOriginal.tga",
+		["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\HunterOriginal.tga",
+		["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\RogueOriginal.tga",
+		["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\PriestOriginal.tga",
+		["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DeathKnightOriginal.tga",
+		["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\ShamanOriginal.tga",
+		["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\MageOriginal.tga",
+		["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\WarlockOriginal.tga",
+		["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\MonkOriginal.tga",
+		["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DruidOriginal.tga",
+		["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DemonHunterOriginal.tga",
+		["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\EvokerOriginal.tga",
+	},
 	["32"] = {
 		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\WarriorOriginal.tga",
 		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\PaladinOriginal.tga",
@@ -296,6 +386,21 @@ local classSymbols = {
 	["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\Evoker.tga",
 }
 local gradient = {
+	["16"] = {
+		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\WarriorGradient.tga",
+		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\PaladinGradient.tga",
+		["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\HunterGradient.tga",
+		["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\RogueGradient.tga",
+		["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\PriestGradient.tga",
+		["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DeathKnightGradient.tga",
+		["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\ShamanGradient.tga",
+		["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\MageGradient.tga",
+		["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\WarlockGradient.tga",
+		["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\MonkGradient.tga",
+		["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DruidGradient.tga",
+		["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DemonHunterGradient.tga",
+		["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\EvokerGradient.tga",
+	},
 	["32"] = {
 		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\WarriorGradient.tga",
 		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\PaladinGradient.tga",
