@@ -545,7 +545,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath = ACH:Group(L["Name of file inside Interface\\Addons"], nil, 7)
 	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath.inline = true
 	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath.args.description1 = ACH:Description(L["Example: "].."mymusic.mp3", 1)
-	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath.args.input = ACH:Input("", "", 3, false, "full", function() return E.private.ElvUI_EltreumUI.combatmusic.bossfile end, function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossmusic = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.combatmusic.bossmusic end)
+	ElvUI_EltreumUI.Options.args.combatmusic.args.boss.args.filepath.args.input = ACH:Input("", "", 3, false, "full", function() return E.private.ElvUI_EltreumUI.combatmusic.bossfile end, function(_, value) E.private.ElvUI_EltreumUI.combatmusic.bossfile = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.combatmusic.bossmusic end)
 
 	--cooldown
 	ElvUI_EltreumUI.Options.args.cooldown = ACH:Group(E:TextGradient(L["Cooldown"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Show a pulsing cooldown and let it speak the spell name"], 85, 'tab')
