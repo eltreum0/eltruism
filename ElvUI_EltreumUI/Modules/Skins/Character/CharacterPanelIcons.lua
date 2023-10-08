@@ -14,7 +14,7 @@ local TokenFrame = _G.TokenFrame
 local string = _G.string
 local classsymbolonframe
 local CharacterModelScene = _G.CharacterModelScene
-local numCharacters =  4 --number of letters in the name
+local numCharacters =  3 --number of letters in the name
 local classIcons = {
 	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Warrior",
 	["PALADIN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Paladin",
