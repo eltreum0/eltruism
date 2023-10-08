@@ -29,6 +29,7 @@ local invertframes = {
 	["boss"] = true,
 	["target"] = true,
 	["targettarget"] = true,
+	["arena"] = true,
 }
 
 --set the backdrop gradient
