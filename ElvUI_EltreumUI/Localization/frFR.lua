@@ -1479,3 +1479,4 @@ L["Font Shadow"] = true
 L["Add Dungeon Score to Group Finder Listing"] = true
 L["Country Style"] = true
 L["Flag"] = true
+L["Add Class Icons to the Group Finder Listing"] = true
