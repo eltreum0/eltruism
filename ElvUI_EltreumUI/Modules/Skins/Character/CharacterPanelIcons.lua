@@ -75,7 +75,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
 				CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
 				CharacterNameText:SetShadowOffset(2, -1)
-				if string.len(CharacterNameText:GetText()) >= 6 then
+				if string.len(CharacterNameText:GetText()) >= 4 then
 					if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 						CharacterNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterNameText:GetText(), E.myclass))
 					else
@@ -251,7 +251,7 @@ EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
 						CharacterNameText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
 						CharacterNameText:SetShadowColor(0, 0, 0, 0.8)
 						CharacterNameText:SetShadowOffset(2, -1)
-						if string.len(CharacterNameText:GetText()) >= 6 then
+						if string.len(CharacterNameText:GetText()) >= 4 then
 							if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 								CharacterNameText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterNameText:GetText(), E.myclass))
 							else
