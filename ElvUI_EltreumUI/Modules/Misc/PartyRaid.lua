@@ -173,67 +173,69 @@ function ElvUI_EltreumUI:BattleRes()
 end
 
 --set correct role for wrath
-function ElvUI_EltreumUI:SetGroupRoleWrath()
-	if E.Wrath and IsInGroup() and not InCombatLockdown() then
-		local _, _, spent1 = _G.GetTalentTabInfo(1)
-		local _, _, spent2 = _G.GetTalentTabInfo(2)
-		local _, _, spent3 = _G.GetTalentTabInfo(3)
+--[[
+	function ElvUI_EltreumUI:SetGroupRoleWrath()
+		if E.Wrath and IsInGroup() and not InCombatLockdown() then
+			local _, _, spent1 = _G.GetTalentTabInfo(1)
+			local _, _, spent2 = _G.GetTalentTabInfo(2)
+			local _, _, spent3 = _G.GetTalentTabInfo(3)
 
-		if E.myclass == 'WARLOCK' or E.myclass == 'MAGE' or E.myclass == 'HUNTER' or E.myclass == 'ROGUE' then
-			SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
-		else
-			if E.myclass == 'SHAMAN' then
-				if spent3 < spent1 and spent3 < spent2 then
-					SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
-				elseif spent3 > spent1 and spent3 > spent2 then
-					SetTalentGroupRole(GetActiveTalentGroup(),"HEALER")
+			if E.myclass == 'WARLOCK' or E.myclass == 'MAGE' or E.myclass == 'HUNTER' or E.myclass == 'ROGUE' then
+				SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
+			else
+				if E.myclass == 'SHAMAN' then
+					if spent3 < spent1 and spent3 < spent2 then
+						SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
+					elseif spent3 > spent1 and spent3 > spent2 then
+						SetTalentGroupRole(GetActiveTalentGroup(),"HEALER")
+					end
+				elseif E.myclass == 'PRIEST' then
+					if spent3 < spent1 and spent3 < spent2 then
+						SetTalentGroupRole(GetActiveTalentGroup(),"HEALER")
+					elseif spent3 > spent1 and spent3 > spent2 then
+						SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
+					end
+				elseif E.myclass == 'DRUID' then
+					if spent3 > spent1 and spent3 > spent2 then
+						SetTalentGroupRole(GetActiveTalentGroup(),"HEALER")
+					elseif spent1 > spent3 and spent1 > spent2 then
+						SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
+					end
+				elseif E.myclass == 'WARRIOR' then
+					if spent3 > spent1 and spent3 > spent2 then
+						SetTalentGroupRole(GetActiveTalentGroup(),"TANK")
+					elseif spent3 < spent1 and spent3 < spent2 then
+						SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
+					end
+				elseif E.myclass == 'PALADIN' then
+					if spent1 > spent3 and spent1 > spent2 then
+						SetTalentGroupRole(GetActiveTalentGroup(),"HEALER")
+					elseif spent2 > spent1 and spent2 > spent3 then
+						SetTalentGroupRole(GetActiveTalentGroup(),"TANK")
+					elseif spent3 > spent1 and spent3 > spent2 then
+						SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
+					end
+				--elseif E.myclass == 'DEATHKNIGHT' then --too many variables since dk doesnt even need specific talents and just needs gear
+					--if spent3 > spent1 and spent3 > spent2 then
+						--SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
+					--end
 				end
-			elseif E.myclass == 'PRIEST' then
-				if spent3 < spent1 and spent3 < spent2 then
-					SetTalentGroupRole(GetActiveTalentGroup(),"HEALER")
-				elseif spent3 > spent1 and spent3 > spent2 then
-					SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
-				end
-			elseif E.myclass == 'DRUID' then
-				if spent3 > spent1 and spent3 > spent2 then
-					SetTalentGroupRole(GetActiveTalentGroup(),"HEALER")
-				elseif spent1 > spent3 and spent1 > spent2 then
-					SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
-				end
-			elseif E.myclass == 'WARRIOR' then
-				if spent3 > spent1 and spent3 > spent2 then
-					SetTalentGroupRole(GetActiveTalentGroup(),"TANK")
-				elseif spent3 < spent1 and spent3 < spent2 then
-					SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
-				end
-			elseif E.myclass == 'PALADIN' then
-				if spent1 > spent3 and spent1 > spent2 then
-					SetTalentGroupRole(GetActiveTalentGroup(),"HEALER")
-				elseif spent2 > spent1 and spent2 > spent3 then
-					SetTalentGroupRole(GetActiveTalentGroup(),"TANK")
-				elseif spent3 > spent1 and spent3 > spent2 then
-					SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
-				end
-			--[[elseif E.myclass == 'DEATHKNIGHT' then --too many variables since dk doesnt even need specific talents and just needs gear
-				if spent3 > spent1 and spent3 > spent2 then
-					SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
-				end]]
 			end
 		end
 	end
-end
 
-local roleframe = CreateFrame("FRAME")
-roleframe:RegisterEvent("GROUP_JOINED")
-roleframe:RegisterEvent("GROUP_ROSTER_UPDATE")
-roleframe:RegisterEvent("PLAYER_ENTERING_WORLD")
-roleframe:SetScript("OnEvent", function()
-	if E.Wrath then
-		ElvUI_EltreumUI:SetGroupRoleWrath()
-	else
-		roleframe:UnregisterAllEvents()
-	end
-end)
+	local roleframe = CreateFrame("FRAME")
+	roleframe:RegisterEvent("GROUP_JOINED")
+	roleframe:RegisterEvent("GROUP_ROSTER_UPDATE")
+	roleframe:RegisterEvent("PLAYER_ENTERING_WORLD")
+	roleframe:SetScript("OnEvent", function()
+		if E.Wrath then
+			ElvUI_EltreumUI:SetGroupRoleWrath()
+		else
+			roleframe:UnregisterAllEvents()
+		end
+	end)
+]]
 
 --automatic combat logging
 function ElvUI_EltreumUI:AutoCombatLog()
