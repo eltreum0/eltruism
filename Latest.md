@@ -1,48 +1,52 @@
-### 3.9.9.2 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 4.0.0 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added Details nickname tags, [eltruism:detailsnickname] and [eltruism:detailsnickname:gradient] which will show the nickname set in Details instead of the unit name  
-Added minimize and maximize buttons to Classic Era Objective Frame  
-Added gradient health tags such as [eltruism:hpstatus:gradient]  
-Added custom color option for Class Texture Eltruism Datatext  
-Added an option to disable Other Stats in the Character Panel  
-Added option to Rotate Minimap and updated Cardinals for it  
-Added an option to disable skinning Blizzard raid frames  
-Added Ace3 skin to slider and fixed some coloring  
-Added Gradient to Unitframe backdrops  
-Added some missing shadows  
-Added profession buttons to bags  
-Added a skin for Auctionator  
-Updated Unitframe Gradients to now more correctly use ElvUI Unitframe Transparency setting instead of Eltruism backdrop alpha  
-Updated the Gradient enable/disable function and command "/eltruism gradient" to also swap tags to gradient and non gradient  
-Updated Inspect frame Name to fix the default UI issue of the name not being centered  
-Updated Rare Portrait border to also color the border when an enemy is Rare or Elite  
-Updated Backdrop Alpha to allow backdrop transparency when Health isn't transparent  
-Updated Gradient Unitframes to better follow ElvUI Unitframe Transparency Settings  
-Updated the Gradient Reverse for target to also reverse target of target colors  
-Updated Portrait to invert Party Portrait if anchor is set to Right side  
-Updated Gradient Power Backdrop Fade to also apply to Health Backdrop  
-Updated some gradient options to be on their own frame tab  
-Updated ElvUI profiles to use the gradient tag  
-Updated mMediaTag interrupt check  
-Updated the Gradient Mode toggle  
+Added Blizzard Dungeon Score to the LFG Listing in Retail, which also has a spam blocking element  
+Added a possible fix for the GetPlaystyleString taint in Retail  
+Added a button to import the Edit Mode Layout in Retail  
+Added more font outline options in Eltruism > Media  
+Added an option to increase the shadows in Details  
+Added [eltruism:longhpstatusnopc:gradient] tag  
+Added Spec Icons in the LFG Listing in Retail  
+Added Class Icons in the LFG Listing in Wrath  
+Added Rank to Honor Datatext in Classic  
+Added in game Changelog  
+Added more role icons  
+Updated custom Nameplate Classification Icons to also work on friendly units  
+Updated Party Borders frame strata to avoid issues with the party frames  
+Updated Unitframe Aura Borders to update color when the target changes  
+Updated Quests Skin adding progress coloring and new checkmark texture  
+Updated Talents Scale to also allow talents to be moveable in Retail  
+Updated Bag Profession Icons to better handle the Disenchant button  
+Updated ElvUI Skin to also add text shadows to widgets if possible  
+Updated the toggling of colors when using Light Mode/Dark Mode  
+Updated Quests Skin adding option to change the title color  
+Updated [eltruism:lowmana] to also work in Wrath/Classic  
+Updated some Quest Options to be inside the Quests tab  
+Updated ElvUI Profile to disable Item Rarity Color  
+Updated Gradient to load earlier when logging in  
+Updated Gradient to not overwrite Offline color  
+Updated Leader Icon skin to desaturate tanks  
+Updated Spellcrit datatext in Wrath/Classic  
+Updated Nameplate Arrow Texture for 1080p  
+Updated transparency when using gradient  
+Updated Ace3 skin to color more elements  
+Updated Edit Mode Layout in Retail  
 Updated German locale by Dlarge  
-Updated Questie profile  
-Fixed an issue where colors were being forced when gradient was enabled but neither Light nor Dark modes were selected  
-Fixed death color and tapped color on Unitframes when Gradient was enabled by adding an option for it  
-Fixed an issue where Custom Gradients were not applying to the Class Texture for Eltruism Datatext  
-Fixed an issue with Custom Texture and No Class Textures in Group Unitframes  
-Fixed shadows when unitframes had portraits enabled and non spaced power  
-Fixed a double Shadow on Target Unitframe when power was Detached  
-Fixed an error when ElvUI Character Panel skin was disabled  
-Fixed Quest Combat hide not working correctly with Questie  
-Fixed a possible error with chat class icons  
-Fixed AFK skin while traveling between zones  
-Fixed a possible issue with Unit reactions  
-Fixed some possible errors with Unitframes  
-Fixed Portrait showing up on Party Pets  
-Fixed death animation for Classic Era  
-Fixed Custom Textures in Dark Mode  
-Fixed Dark Mode Backdrop Texture  
-Fixed AFK music not stopping  
-Fixed some Ace3 skin issues  
-Fixed Details shadow
+Updated Paladin Symbol Texture  
+Updated Target Portrait Fix  
+Updated Windtools profile  
+Updated Minimap Skin  
+Updated Shadows  
+Fixed a possible issue with the player name in the character panel that would cause it to not be gradient  
+Fixed a possible issue with the Profession Bag Icons that would prevent Bags from opening in combat  
+Fixed the offline/online chat text coloring when a character has a similar name  
+Fixed an issue where Death Animation sound would not play in Classic Era  
+Fixed an issue that would cause Boss Combat Music to not play  
+Fixed a possible issue with the Blizzard Raid frames skin  
+Fixed a possible issue with the Auctionator Skin  
+Fixed the fading of the Pet Model while AFK  
+Fixed Gradient Health when in a vehicle  
+Fixed a possible double Death Animation  
+Fixed Hit Datatext for Classic Hunters  
+Fixed Honor datatext in Classic  
+Fixed Haste Datatext in Classic
