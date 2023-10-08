@@ -310,28 +310,52 @@ end
 --scale the world map in retail
 function ElvUI_EltreumUI:WorldMapScale()
 	if E.db.ElvUI_EltreumUI.otherstuff.worldmapscale then
-		if _G["WorldMapFrame"] and E.Retail then
-			_G["WorldMapFrame"]:HookScript("OnShow", function()
-				_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
-			end)
+		if _G["WorldMapFrame"] then
+			if not E.Classic then
+				_G["WorldMapFrame"]:HookScript("OnShow", function()
+					_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
+					if E.Wrath then
+						if not _G["WorldMapFrame"]:IsMouseEnabled() then
+							_G["WorldMapFrame"]:SetMovable(true)
+							_G["WorldMapFrame"]:EnableMouse(true)
+							_G["WorldMapFrame"]:RegisterForDrag("LeftButton")
+							_G["WorldMapFrame"]:SetScript("OnDragStart", _G["WorldMapFrame"].StartMoving)
+							_G["WorldMapFrame"]:SetScript("OnDragStop", _G["WorldMapFrame"].StopMovingOrSizing)
+							_G["WorldMapFrame"]:SetClampedToScreen(true)
+							_G["WorldMapFrame"].MiniBorderFrame:HookScript("OnShow", function()
+								if _G["WorldMapFrame"].shadow then
+									_G["WorldMapFrame"].shadow:Hide()
+								end
+							end)
+							_G["WorldMapFrame"].MiniBorderFrame:HookScript("OnHide", function()
+								if _G["WorldMapFrame"].shadow then
+									_G["WorldMapFrame"].shadow:Show()
+								end
+							end)
+						end
+					end
+				end)
+			end
 
 			--make the bounty select mouseover
-			for _, v in pairs({_G["WorldMapFrame"]:GetChildren()}) do
-				if v and v.BountyDropDown and v.BountyDropdownButton then
-					v:SetAlpha(0)
-					v:SetScript('OnEnter', function() v:SetAlpha(1) v.BountyDropdownButton:SetAlpha(1) end)
-					v:SetScript('OnLeave', function() v:SetAlpha(0) v.BountyDropdownButton:SetAlpha(0) end)
-					v.BountyDropdownButton:SetScript('OnEnter', function() v:SetAlpha(1) v.BountyDropdownButton:SetAlpha(1) end)
-					v.BountyDropdownButton:SetScript('OnLeave', function() v:SetAlpha(0) v.BountyDropdownButton:SetAlpha(0) end)
+			if E.Retail then
+				for _, v in pairs({_G["WorldMapFrame"]:GetChildren()}) do
+					if v and v.BountyDropDown and v.BountyDropdownButton then
+						v:SetAlpha(0)
+						v:SetScript('OnEnter', function() v:SetAlpha(1) v.BountyDropdownButton:SetAlpha(1) end)
+						v:SetScript('OnLeave', function() v:SetAlpha(0) v.BountyDropdownButton:SetAlpha(0) end)
+						v.BountyDropdownButton:SetScript('OnEnter', function() v:SetAlpha(1) v.BountyDropdownButton:SetAlpha(1) end)
+						v.BountyDropdownButton:SetScript('OnLeave', function() v:SetAlpha(0) v.BountyDropdownButton:SetAlpha(0) end)
 
-					--skin the bounty button
-					S:HandleButton(v.BountyDropdownButton)
-					v.BountyDropdownButton:SetNormalTexture(E.Media.Textures.ArrowUp)
-					v.BountyDropdownButton:SetPushedTexture(E.Media.Textures.ArrowUp)
-					v.BountyDropdownButton:SetDisabledTexture(E.Media.Textures.ArrowUp)
-					v.BountyDropdownButton:GetNormalTexture():SetRotation(-1.57)
-					v.BountyDropdownButton:GetPushedTexture():SetRotation(-1.57)
-					v.BountyDropdownButton:GetDisabledTexture():SetRotation(-1.57)
+						--skin the bounty button
+						S:HandleButton(v.BountyDropdownButton)
+						v.BountyDropdownButton:SetNormalTexture(E.Media.Textures.ArrowUp)
+						v.BountyDropdownButton:SetPushedTexture(E.Media.Textures.ArrowUp)
+						v.BountyDropdownButton:SetDisabledTexture(E.Media.Textures.ArrowUp)
+						v.BountyDropdownButton:GetNormalTexture():SetRotation(-1.57)
+						v.BountyDropdownButton:GetPushedTexture():SetRotation(-1.57)
+						v.BountyDropdownButton:GetDisabledTexture():SetRotation(-1.57)
+					end
 				end
 			end
 		end

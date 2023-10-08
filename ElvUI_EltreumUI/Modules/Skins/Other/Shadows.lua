@@ -1239,6 +1239,7 @@ function ElvUI_EltreumUI:Shadows()
 					_G.PVPFrame,
 					_G.PVPParentFrameTab2,
 					_G.PVPParentFrameTab1,
+					_G.WorldMapFrame.MiniBorderFrame,
 					}
 					for _, frame in pairs(tbcframes) do
 						if frame then

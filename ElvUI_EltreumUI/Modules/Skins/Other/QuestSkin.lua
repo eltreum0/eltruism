@@ -1015,21 +1015,6 @@ function ElvUI_EltreumUI:SkinQuests()
 				UIParent_ManageFramePositions()
 			end)
 		elseif E.Wrath then
-			--for wrath
-			local WorldMapFrame = _G.WorldMapFrame
-			if WorldMapFrame then
-				WorldMapFrame:HookScript("OnShow", function()
-					if not WorldMapFrame:IsMouseEnabled() then
-						WorldMapFrame:SetMovable(true)
-						WorldMapFrame:EnableMouse(true)
-						WorldMapFrame:RegisterForDrag("LeftButton")
-						WorldMapFrame:SetScript("OnDragStart", WorldMapFrame.StartMoving)
-						WorldMapFrame:SetScript("OnDragStop", WorldMapFrame.StopMovingOrSizing)
-						WorldMapFrame:SetClampedToScreen(true)
-					end
-				end)
-			end
-
 			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then --TODO 10.2, might need C_AddOns.
 				return
 			end

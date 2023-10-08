@@ -875,14 +875,14 @@ function ElvUI_EltreumUI:Configtable()
 			_G["FlightMapFrame"]:SetScale(value)
 		end
 	end)
-	ElvUI_EltreumUI.Options.args.map.args.general.args.description2 = ACH:Description(L["WORLD_MAP"], 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
-	ElvUI_EltreumUI.Options.args.map.args.general.args.worldmapscaletoggle = ACH:Toggle(L["Enable World Map Scaling"], nil, 4, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscale = value end, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.map.args.general.args.description2 = ACH:Description(L["WORLD_MAP"], 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Classic)
+	ElvUI_EltreumUI.Options.args.map.args.general.args.worldmapscaletoggle = ACH:Toggle(L["Enable World Map Scaling"], nil, 4, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscale = value end, nil, E.Classic)
 	ElvUI_EltreumUI.Options.args.map.args.general.args.worldmapscale = ACH:Range(L["World Map Scale"], nil, 5, { min = 0.1, max = 3, step = 0.01 }, 'double', function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue end,
 	function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue = value
-		if _G["WorldMapFrame"] and E.Retail then
+		if _G["WorldMapFrame"] and not E.Classic then
 			_G["WorldMapFrame"]:SetScale(value)
 		end
-	end,function() return not E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end, not E.Retail)
+	end,function() return not E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end, E.Classic)
 	ElvUI_EltreumUI.Options.args.map.args.general.args.description3 = ACH:Description(L["Flight Frame"], 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.map.args.general.args.RotateMinimap = ACH:Toggle(E.NewSign.._G.ROTATE_MINIMAP, nil, 7, nil, false,nil,function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.map.args.eta = ACH:Group(L["Time to Arrive"], nil, 2, "tab", nil, nil, nil, not E.Retail)
