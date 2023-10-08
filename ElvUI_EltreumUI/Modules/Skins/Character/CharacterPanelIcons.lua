@@ -88,33 +88,44 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				end
 			end
 		elseif E.Retail and not self.ischarpanelHooked then
-			hooksecurefunc('PaperDollFrame_SetLevel', function()
-				CharacterFrameTitleText:ClearAllPoints()
-				CharacterFrameTitleText:SetPoint('TOP', CharacterModelScene, 0, 50)
-				CharacterFrameTitleText:SetParent(CharacterFrame)
-				CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
-				CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-				CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
-				CharacterFrameTitleText:SetShadowOffset(2, -1)
 
-				CharacterLevelText:ClearAllPoints()
-				CharacterLevelText:SetPoint('TOP', CharacterFrameTitleText, 'BOTTOM', 0, 0)
-
-				CharacterLevelText:SetDrawLayer("OVERLAY")
-				if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
+			local function UpdateNameGradient()
+				E:Delay(0, function()
+					CharacterFrameTitleText:ClearAllPoints()
+					CharacterFrameTitleText:SetPoint('TOP', CharacterModelScene, 0, 50)
+					CharacterFrameTitleText:SetParent(CharacterFrame)
 					CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
-					if string.len(CharacterFrameTitleText:GetText()) >= 6 then
-						if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-							CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
+					CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+					CharacterFrameTitleText:SetShadowColor(0, 0, 0, 0.8)
+					CharacterFrameTitleText:SetShadowOffset(2, -1)
+
+					CharacterLevelText:ClearAllPoints()
+					CharacterLevelText:SetPoint('TOP', CharacterFrameTitleText, 'BOTTOM', 0, 0)
+
+					CharacterLevelText:SetDrawLayer("OVERLAY")
+					if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
+						CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, E.db.general.fontStyle)
+						if string.len(CharacterFrameTitleText:GetText()) >= 6 then
+							if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+								CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
+							else
+								CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+								CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							end
 						else
 							CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
 							CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 						end
-					else
-						CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
-						CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					end
-				end
+				end)
+			end
+
+			hooksecurefunc('PaperDollFrame_SetLevel', function()
+				UpdateNameGradient()
+			end)
+
+			hooksecurefunc('PaperDollTitlesPane_Update', function()
+				UpdateNameGradient()
 			end)
 
 			hooksecurefunc("CharacterFrame_Collapse", function()
