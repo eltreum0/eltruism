@@ -191,44 +191,50 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 			if GetClassInfo(classID) then --nil check for classic
 				local className = select(2, GetClassInfo(classID))
 				iconTable[className] = {}
-				for i = 1, 4 do --druids have 4 in retail
-					--local id, name, description, icon, role, isRecommended, isAllowed = GetSpecializationInfoForClassID(classID, specIndex)
-					local _, name, _, icon = GetSpecializationInfoForClassID(classID, i)
-					if name and icon then --nil check for classic
-						iconTable[className][name] = icon
+				if E.Retail then
+					for i = 1, 4 do --druids have 4 in retail
+						--local id, name, description, icon, role, isRecommended, isAllowed = GetSpecializationInfoForClassID(classID, specIndex)
+						local _, name, _, icon = GetSpecializationInfoForClassID(classID, i)
+						if name and icon then --nil check for classic
+							iconTable[className][name] = icon
+						end
 					end
+				else
+					iconTable[className] = _G.CLASS_ICON_TCOORDS[className]
 				end
 			end
 		end
 
 		--filter spam
-		local function filterTable(t, id)
-			for j = #t, 1, -1 do
-				if (t[j] == id) then
-					tremove(t, j)
-					break
+		if E.Retail then
+			local function filterTable(t, id)
+				for j = #t, 1, -1 do
+					if (t[j] == id) then
+						tremove(t, j)
+						break
+					end
 				end
 			end
-		end
-		local function UpdateResultList(frame)
-			local results = frame.results
-			if (not frame:IsShown()) then
-				return
-			end
-			if #results > 0 then
-				for _, id in ipairs(results) do
-					local searchResultInfo = C_LFGList.GetSearchResultInfo(id)
-					if searchResultInfo then
-						local score = searchResultInfo.leaderOverallDungeonScore or 0
-						if score < 1 and searchResultInfo.voiceChat ~= "" then --no score and voice chat? its spam
-							filterTable(results, id)
-							_G.LFGListSearchPanel_UpdateResults(frame)
+			local function UpdateResultList(frame)
+				local results = frame.results
+				if (not frame:IsShown()) then
+					return
+				end
+				if #results > 0 then
+					for _, id in ipairs(results) do
+						local searchResultInfo = C_LFGList.GetSearchResultInfo(id)
+						if searchResultInfo then
+							local score = searchResultInfo.leaderOverallDungeonScore or 0
+							if score < 1 and searchResultInfo.voiceChat ~= "" then --no score and voice chat? its spam
+								filterTable(results, id)
+								_G.LFGListSearchPanel_UpdateResults(frame)
+							end
 						end
 					end
 				end
 			end
+			hooksecurefunc("LFGListSearchPanel_UpdateResultList", UpdateResultList)
 		end
-		hooksecurefunc("LFGListSearchPanel_UpdateResultList", UpdateResultList)
 
 		--add spec icons and IO and region
 		local function SearchEntry_Update(entry)
@@ -299,7 +305,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 
 				for i=1, numMembers do
 					local role, class, _, specLocalized = C_LFGList.GetSearchResultMemberInfo(entry.resultID, i)
-					local icon = iconTable[class][specLocalized]
+					local icon = E.Retail and iconTable[class][specLocalized] or iconTable[class]
 					partymembers[#partymembers+1] = {roleIndex[role], classIndex[class], raidClassColors[class],icon}
 				end
 
@@ -329,8 +335,13 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 
 					entry.DataDisplay.Enumerate[i]:SetPoint("RIGHT", entry.DataDisplay.Enumerate, "RIGHT", -13 - 21*(maxNumPlayers-i), -1)
 					entry.DataDisplay.Enumerate[i]:Show()
-					entry.DataDisplay.Enumerate[i]:SetTexture(partymembers[i][4])
-					entry.DataDisplay.Enumerate[i]:SetTexCoord(0.08,0.92,0.08,0.92)
+					if E.Retail then
+						entry.DataDisplay.Enumerate[i]:SetTexture(partymembers[i][4])
+						entry.DataDisplay.Enumerate[i]:SetTexCoord(0.08,0.92,0.08,0.92)
+					else
+						entry.DataDisplay.Enumerate[i]:SetTexture("Interface\\GLUES\\CHARACTERCREATE\\UI-CHARACTERCREATE-CLASSES")
+						entry.DataDisplay.Enumerate[i]:SetTexCoord(unpack(partymembers[i][4]))
+					end
 
 					local r, g, b, _ = partymembers[i][3]:GetRGBA()
 					entry.DataDisplay.Enumerate[i.."b"]:SetPoint("CENTER", entry.DataDisplay.Enumerate[i], "CENTER", 0, 0)
