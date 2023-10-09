@@ -1197,7 +1197,7 @@ function ElvUI_EltreumUI:Shadows()
 			if E.db.ElvUI_EltreumUI.skins.shadow.blizzard then
 				--wrath/classic frames
 				local classicframes = {
-					_G.HelpFrame,
+					_G.HelpFrame.backdrop,
 					_G.QuestLogFrame.backdrop,
 					_G.CharacterFrame.backdrop,
 					_G.SpellBookFrame.backdrop,
@@ -1234,6 +1234,7 @@ function ElvUI_EltreumUI:Shadows()
 					_G.LFGParentFrameTab2,
 					_G.QuestLogDetailFrame,
 					_G.LFGListingFrame,
+					_G.LFGListCreateRoleDialog,
 					_G.LFGBrowseFrame,
 					_G.GroupFinderFrame,
 					_G.PVPFrame,
