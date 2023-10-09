@@ -67,22 +67,6 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 								frame.eltruismbgtexture:SetVertexColor(E.db.ElvUI_EltreumUI.skins.elvui.color.r,E.db.ElvUI_EltreumUI.skins.elvui.color.g,E.db.ElvUI_EltreumUI.skins.elvui.color.b,E.db.ElvUI_EltreumUI.skins.elvui.color.a)
 							end
 
-							--possible widget shadows
-							if E.db.ElvUI_EltreumUI.skins.shadow.enable then
-								if frame:GetParent() and frame:GetParent():GetParent() then
-									if frame:GetParent():GetParent().widgetContainer then
-										if not frame.shadow then
-											frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-											ElvUI_EltreumUI:ShadowColor(frame.shadow)
-											if frame:GetParent():GetParent().Label then
-												local _,size = frame:GetParent():GetParent().Label:GetFont()
-												frame:GetParent():GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, E.db.general.fontStyle)
-												frame:GetParent():GetParent().Label:SetShadowOffset(2,-2)
-											end
-										end
-									end
-								end
-							end
 							frame.EltruismBackground = true
 						else
 							if frame.eltruismbgtexture then
@@ -91,51 +75,56 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 						end
 
 						--[[
-						frame:SetBackdrop({
-							edgeFile = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\border\\Eltreum-Border-1.tga",
-							bgFile = glossTex and (type(glossTex) == 'string' and glossTex or E.media.glossTex) or E.media.blankTex,
-							edgeSize = 3,
-						})
-						--frame.backdrop:SetOutside()
-						if frame.callbackBackdropColor then
-							frame:callbackBackdropColor()
-						else
-							frame:SetBackdropColor(0, 0, 0, frame.customBackdropAlpha or (template == 'Transparent' and 1) or 1)
-						end
-						local borderr, borderg, borderb, bordera = 0,0,0,1
-						if frame.forcedBorderColors then
-							borderr, borderg, borderb, bordera = unpack(frame.forcedBorderColors)
-						end
-
-						frame:SetBackdropBorderColor(borderr, borderg, borderb, bordera)
-						]]
-
-						--[[frame.testmask = frame:CreateMaskTexture()
-						frame.testmask:SetAllPoints(frame)
-						frame.testmask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask.TGA", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
-						frame:AddMaskTexture(frame.testmask) --errors because frame doesnt have method, needs texture...
-						]]
-
-						--[[if not frame.shadow then
-							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(frame.shadow)
-						end]]
-						--[[if not frame.eltruismbordertest then
-							local classcolor = E:ClassColor(E.myclass, true)
-							local offset = (E.PixelMode and 13) or 14
-							frame.eltruismbordertest = CreateFrame("Frame", nil, frame, BackdropTemplateMixin and "BackdropTemplate")
-							frame.eltruismbordertest:SetPoint("CENTER", frame, "CENTER", 0, 0)
-							frame.eltruismbordertest:SetBackdrop({
-								edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
-								edgeSize = offset,
+							frame:SetBackdrop({
+								edgeFile = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\border\\Eltreum-Border-1.tga",
+								bgFile = glossTex and (type(glossTex) == 'string' and glossTex or E.media.glossTex) or E.media.blankTex,
+								edgeSize = 3,
 							})
-							frame.eltruismbordertest:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-							--frame.eltruismbordertest:SetFrameLevel(1)
-							frame.eltruismbordertest:SetFrameStrata(frame:GetFrameStrata())
-							frame.eltruismbordertest:SetOutside(frame, offset-1.5, offset-1.5, nil, true)
-						else
-							frame.eltruismbordertest:Show()
-						end]]
+							--frame.backdrop:SetOutside()
+							if frame.callbackBackdropColor then
+								frame:callbackBackdropColor()
+							else
+								frame:SetBackdropColor(0, 0, 0, frame.customBackdropAlpha or (template == 'Transparent' and 1) or 1)
+							end
+							local borderr, borderg, borderb, bordera = 0,0,0,1
+							if frame.forcedBorderColors then
+								borderr, borderg, borderb, bordera = unpack(frame.forcedBorderColors)
+							end
+
+							frame:SetBackdropBorderColor(borderr, borderg, borderb, bordera)
+						]]
+
+						--[[
+							frame.testmask = frame:CreateMaskTexture()
+							frame.testmask:SetAllPoints(frame)
+							frame.testmask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask.TGA", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+							frame:AddMaskTexture(frame.testmask) --errors because frame doesnt have method, needs texture...
+						]]
+
+						--[[
+							if not frame.shadow then
+								frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(frame.shadow)
+							end
+						]]
+						--[[
+							if not frame.eltruismbordertest then
+								local classcolor = E:ClassColor(E.myclass, true)
+								local offset = (E.PixelMode and 13) or 14
+								frame.eltruismbordertest = CreateFrame("Frame", nil, frame, BackdropTemplateMixin and "BackdropTemplate")
+								frame.eltruismbordertest:SetPoint("CENTER", frame, "CENTER", 0, 0)
+								frame.eltruismbordertest:SetBackdrop({
+									edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
+									edgeSize = offset,
+								})
+								frame.eltruismbordertest:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+								--frame.eltruismbordertest:SetFrameLevel(1)
+								frame.eltruismbordertest:SetFrameStrata(frame:GetFrameStrata())
+								frame.eltruismbordertest:SetOutside(frame, offset-1.5, offset-1.5, nil, true)
+							else
+								frame.eltruismbordertest:Show()
+							end
+						]]
 					else
 						if frame.eltruismbgtexture then
 							frame.eltruismbgtexture:Hide()
@@ -287,6 +276,23 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 								end
 							end
 						end)
+					end
+
+					--possible widget shadows
+					if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+						if frame:GetParent() and frame:GetParent():GetParent() then
+							if frame:GetParent():GetParent().widgetContainer then
+								if not frame.shadow then
+									frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(frame.shadow)
+									if frame:GetParent():GetParent().Label then
+										local _,size = frame:GetParent():GetParent().Label:GetFont()
+										frame:GetParent():GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, E.db.general.fontStyle)
+										frame:GetParent():GetParent().Label:SetShadowOffset(2,-2)
+									end
+								end
+							end
+						end
 					end
 
 					if not E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
