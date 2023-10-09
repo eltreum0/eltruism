@@ -87,6 +87,8 @@ end
 --skin tooltip
 function ElvUI_EltreumUI:Tooltip()
 	if (GameTooltip and GameTooltip:IsForbidden()) then return end
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end --TODO 10.2, might need C_AddOns.
+	if not E.db.ElvUI_EltreumUI then return end
 
 	--gradient
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.private.tooltip.enable and E.db.ElvUI_EltreumUI.skins.gradienttooltip then
