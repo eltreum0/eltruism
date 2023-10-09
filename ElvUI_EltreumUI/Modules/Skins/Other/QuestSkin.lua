@@ -295,8 +295,9 @@ function ElvUI_EltreumUI:SkinQuests()
 								local text = block.currentLine.Text:GetText()
 								if block.currentLine.Check then
 									block.currentLine.Check:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\checkmark.tga")
+									local _,frame = block.currentLine.Check:GetPoint()
 									block.currentLine.Check:ClearAllPoints()
-									block.currentLine.Check:SetPoint("RIGHT", block.currentLine,"LEFT", -3,0)
+									block.currentLine.Check:SetPoint("RIGHT", frame,"LEFT", 5,0)
 								end
 
 								if text ~= nil then
@@ -364,8 +365,9 @@ function ElvUI_EltreumUI:SkinQuests()
 							else
 								line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 							end
+							local _,frame = line.Dash:GetPoint()
 							line.Dash:ClearAllPoints()
-							line.Dash:SetPoint("RIGHT", line, "LEFT", 0,0)
+							line.Dash:SetPoint("RIGHT", frame, "LEFT", 5,0)
 						end
 					end)
 				end
