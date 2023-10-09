@@ -136,15 +136,6 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 						else
 							frame.eltruismbordertest:Show()
 						end]]
-
-						--[[if frame.Text then
-							frame.Text:SetShadowColor(0, 1, 0, 0.8)
-							frame.Text:SetShadowOffset(2, -2)
-						end
-						if frame.text then
-							frame.text:SetShadowColor(1, 0, 0, 0.8)
-							frame.text:SetShadowOffset(2, -2)
-						end]]
 					else
 						if frame.eltruismbgtexture then
 							frame.eltruismbgtexture:Hide()
