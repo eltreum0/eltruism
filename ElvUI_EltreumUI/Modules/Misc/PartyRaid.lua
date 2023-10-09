@@ -172,9 +172,9 @@ function ElvUI_EltreumUI:BattleRes()
 	end
 end
 
---set correct role for wrath
-function ElvUI_EltreumUI:SetGroupRoleWrath()
-	if E.Wrath and IsInGroup() and not InCombatLockdown() then
+--set correct role for classic
+function ElvUI_EltreumUI:SetGroupRoleClassic()
+	if E.Classic and IsInGroup() and not InCombatLockdown() then
 		local _, _, spent1 = _G.GetTalentTabInfo(1)
 		local _, _, spent2 = _G.GetTalentTabInfo(2)
 		local _, _, spent3 = _G.GetTalentTabInfo(3)
@@ -214,10 +214,10 @@ function ElvUI_EltreumUI:SetGroupRoleWrath()
 				elseif spent3 > spent1 and spent3 > spent2 then
 					SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
 				end
-			--[[elseif E.myclass == 'DEATHKNIGHT' then --too many variables since dk doesnt even need specific talents and just needs gear
-				if spent3 > spent1 and spent3 > spent2 then
-					SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
-				end]]
+			--elseif E.myclass == 'DEATHKNIGHT' then --too many variables since dk doesnt even need specific talents and just needs gear
+				--if spent3 > spent1 and spent3 > spent2 then
+					--SetTalentGroupRole(GetActiveTalentGroup(),"DAMAGER")
+				--end
 			end
 		end
 	end
@@ -228,12 +228,13 @@ roleframe:RegisterEvent("GROUP_JOINED")
 roleframe:RegisterEvent("GROUP_ROSTER_UPDATE")
 roleframe:RegisterEvent("PLAYER_ENTERING_WORLD")
 roleframe:SetScript("OnEvent", function()
-	if E.Wrath then
-		ElvUI_EltreumUI:SetGroupRoleWrath()
+	if E.Classic then
+		ElvUI_EltreumUI:SetGroupRoleClassic()
 	else
 		roleframe:UnregisterAllEvents()
 	end
 end)
+
 
 --automatic combat logging
 function ElvUI_EltreumUI:AutoCombatLog()

@@ -452,13 +452,13 @@ function ElvUI_EltreumUI:Anchors()
 
 					local function SetObjectivePoint()
 						--E:Delay(0, function()
-							if not InCombatLockdown() then
+							--if not InCombatLockdown() then
 								_G.ObjectiveTrackerFrame.isRightManagedFrame = false
 								_G.ObjectiveTrackerFrame.breakSnappedFramesOnSave = false
 								_G.ObjectiveTrackerFrame:ClearAllPoints()
 								_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
 								_G.ObjectiveTrackerFrame.editModeSystemAnchorDirty = false
-							end
+							--end
 						--end)
 						Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 						ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
@@ -468,7 +468,6 @@ function ElvUI_EltreumUI:Anchors()
 						if ObjectiveTrackerFrame.NineSlice then
 							ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
 						end
-						--ObjectiveTrackerFrame:SetHeight(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight)
 					end
 					hooksecurefunc("ObjectiveTracker_UpdateHeight", SetObjectivePoint)
 					--hooksecurefunc(_G.ObjectiveTrackerFrame, "SetPointBase", SetObjectivePoint)

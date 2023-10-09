@@ -1078,8 +1078,14 @@ function ElvUI_EltreumUI:SkinQuests()
 
 					end
 					if line.dash then
-						line.dash:Hide()
+						--line.dash:Hide()
+						line.dash:ClearAllPoints()
+						line.dash:SetPoint("RIGHT", line,"LEFT",-2,0)
 					end
+				end
+
+				if line and line.questID then
+					print(line.questID)
 				end
 
 				local WatchFrame = _G.WatchFrame
@@ -1090,6 +1096,32 @@ function ElvUI_EltreumUI:SkinQuests()
 				else
 					WatchFrame.HeaderBar = _G["EltruismQuestLine"]
 				end
+
+				if WatchFrameLines.poiTable and not InCombatLockdown() then --fix new button point
+					if WatchFrameLines.poiTable.completed then
+						for _,v in pairs(WatchFrameLines.poiTable.completed) do
+							if v then
+								local point, relativeTo, relativePoint = v:GetPoint()
+								if point then
+									v:ClearAllPoints()
+									v:SetPoint(point, relativeTo, relativePoint, -7, -3)
+								end
+							end
+						end
+					end
+					if WatchFrameLines.poiTable.numeric then
+						for _,v in pairs(WatchFrameLines.poiTable.numeric) do
+							if v then
+								local point, relativeTo, relativePoint = v:GetPoint()
+								if point then
+									v:ClearAllPoints()
+									v:SetPoint(point, relativeTo, relativePoint, -7, -3)
+								end
+							end
+						end
+					end
+				end
+
 				WatchFrame.HeaderBar:SetSize(E.db.ElvUI_EltreumUI.skins.questsettings.sizex, E.db.ElvUI_EltreumUI.skins.questsettings.sizey)
 				WatchFrame.HeaderBar:SetPoint("TOP", WatchFrame, "TOP", 0, -23)
 				WatchFrame.HeaderBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.questsettings.texture))
@@ -1156,8 +1188,6 @@ function ElvUI_EltreumUI:SkinQuests()
 						else
 							Button:SetPoint("RIGHT", Anchor, "RIGHT", 120, -10)
 						end
-					--elseif Anchor == nil then
-						--Button:SetPoint("LEFT", _G["WatchFrameLine"..i.."Text"], "LEFT", -40, -10)
 						if not (Button.QuestTexture) then
 							if _G["EltruismQuestTexture"] then
 								Button.QuestTexture = _G["EltruismQuestTexture"]

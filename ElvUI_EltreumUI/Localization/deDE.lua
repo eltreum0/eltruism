@@ -1520,3 +1520,7 @@ L["Add Other Stats"] = "Andere Stats hinzufügen"
 L["Display stats such as Speed and Mana Regen"] = "Zeige Statistiken wie Geschwindigkeit und Manaregeneration an."
 L["Add Spec Icons to the Group Finder Listing"] = "Specsymbole zu der Gruppensuche hinzufügen"
 L["Font Shadow"] = "Schriftart Schatten"
+L["Add Dungeon Score to Group Finder Listing"] = true
+L["Country Style"] = true
+L["Flag"] = true
+L["Add Class Icons to the Group Finder Listing"] = true

@@ -875,14 +875,14 @@ function ElvUI_EltreumUI:Configtable()
 			_G["FlightMapFrame"]:SetScale(value)
 		end
 	end)
-	ElvUI_EltreumUI.Options.args.map.args.general.args.description2 = ACH:Description(L["WORLD_MAP"], 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
-	ElvUI_EltreumUI.Options.args.map.args.general.args.worldmapscaletoggle = ACH:Toggle(L["Enable World Map Scaling"], nil, 4, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscale = value end, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.map.args.general.args.description2 = ACH:Description(L["WORLD_MAP"], 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Classic)
+	ElvUI_EltreumUI.Options.args.map.args.general.args.worldmapscaletoggle = ACH:Toggle(L["Enable World Map Scaling"], nil, 4, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscale = value end, nil, E.Classic)
 	ElvUI_EltreumUI.Options.args.map.args.general.args.worldmapscale = ACH:Range(L["World Map Scale"], nil, 5, { min = 0.1, max = 3, step = 0.01 }, 'double', function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue end,
 	function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue = value
-		if _G["WorldMapFrame"] and E.Retail then
+		if _G["WorldMapFrame"] and not E.Classic then
 			_G["WorldMapFrame"]:SetScale(value)
 		end
-	end,function() return not E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end, not E.Retail)
+	end,function() return not E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end, E.Classic)
 	ElvUI_EltreumUI.Options.args.map.args.general.args.description3 = ACH:Description(L["Flight Frame"], 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.map.args.general.args.RotateMinimap = ACH:Toggle(E.NewSign.._G.ROTATE_MINIMAP, nil, 7, nil, false,nil,function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.map.args.eta = ACH:Group(L["Time to Arrive"], nil, 2, "tab", nil, nil, nil, not E.Retail)
@@ -2390,9 +2390,15 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.party.args.general.args.battleres = ACH:Toggle(L["Show a Battle Resurrection Count and Cooldown Frame"], L["Enables a frame that shows a cooldown and count for battle resurrections while in an instance that has them"], 6, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.bres end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bres = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
 	ElvUI_EltreumUI.Options.args.party.args.general.args.description3 = ACH:Description(COMBAT_LOG, 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.party.args.general.args.autocombatlog = ACH:Toggle(L["Enable Automatic Combat Log"], nil, 8, nil, false, "full", function() return E.db.ElvUI_EltreumUI.cvars.combatlog end, function(_, value) E.db.ElvUI_EltreumUI.cvars.combatlog = value end)
-	ElvUI_EltreumUI.Options.args.party.args.general.args.description4 = ACH:Description(_G.DUNGEONS_BUTTON, 9, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
-	ElvUI_EltreumUI.Options.args.party.args.general.args.groupfinderSpecIcons = ACH:Toggle(E.NewSign..L["Add Spec Icons to the Group Finder Listing"], nil, 10, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons end, function(_, value) E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.party.args.general.args.description4 = ACH:Description(_G.DUNGEONS_BUTTON, 9, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Classic)
+	ElvUI_EltreumUI.Options.args.party.args.general.args.groupfinderSpecIcons = ACH:Toggle(E.Retail and E.NewSign..L["Add Spec Icons to the Group Finder Listing"] or E.NewSign..L["Add Class Icons to the Group Finder Listing"], nil, 10, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons end, function(_, value) E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons = value E:StaticPopup_Show('CONFIG_RL') end, nil, E.Classic)
 	ElvUI_EltreumUI.Options.args.party.args.general.args.groupfinderDungeonScore = ACH:Toggle(E.NewSign..L["Add Dungeon Score to Group Finder Listing"], nil, 11, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.groupfinderDungeonScore end, function(_, value) E.db.ElvUI_EltreumUI.skins.groupfinderDungeonScore = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.party.args.general.args.groupfinderIconStyle = ACH:Select(L["Country Style"], nil, 12, {
+		["TEXT"] = L["Text"],
+		["FLAG"] = L["Flag"],
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.skins.groupfinderIconStyle end, function(_, value) E.db.ElvUI_EltreumUI.skins.groupfinderIconStyle = value end, function() return not E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.party.args.general.args.groupfinderIconStyle.style = "radio"
+
 	ElvUI_EltreumUI.Options.args.party.args.instances = ACH:Group(L["Instances"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.party.args.instances.args.description1 = ACH:Description(L["Instance Texts"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.party.args.instances.args.enable = ACH:Toggle(L["Enable"], nil, 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.instances.enable end, function(_, value) E.db.ElvUI_EltreumUI.skins.instances.enable = value end)
@@ -3350,60 +3356,64 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 2)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added Details nickname tags, [eltruism:detailsnickname] and [eltruism:detailsnickname:gradient] which will show the nickname set in Details instead of the unit name
-Added minimize and maximize buttons to Classic Era Objective Frame
-Added gradient health tags such as [eltruism:hpstatus:gradient]
-Added custom color option for Class Texture Eltruism Datatext
-Added an option to disable Other Stats in the Character Panel
-Added option to Rotate Minimap and updated Cardinals for it
-Added an option to disable skinning Blizzard raid frames
-Added Ace3 skin to slider and fixed some coloring
-Added Gradient to Unitframe backdrops
-Added some missing shadows
-Added profession buttons to bags
-Added a skin for Auctionator
+Added Blizzard Dungeon Score to the LFG Listing in Retail, which also has a spam blocking element
+Added a possible fix for the GetPlaystyleString taint in Retail
+Added a button to import the Edit Mode Layout in Retail
+Added more font outline options in Eltruism > Media
+Added an option to increase the shadows in Details
+Added [eltruism:longhpstatusnopc:gradient] tag
+Added Spec Icons in the LFG Listing in Retail
+Added Class Icons in the LFG Listing in Wrath
+Added Rank to Honor Datatext in Classic
+Added in game Changelog
+Added more role icons
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Unitframe Gradients to now more correctly use ElvUI Unitframe Transparency setting instead of Eltruism backdrop alpha
-Updated the Gradient enable/disable function and command "/eltruism gradient" to also swap tags to gradient and non gradient
-Updated Inspect frame Name to fix the default UI issue of the name not being centered
-Updated Rare Portrait border to also color the border when an enemy is Rare or Elite
-Updated Backdrop Alpha to allow backdrop transparency when Health isn't transparent
-Updated Gradient Unitframes to better follow ElvUI Unitframe Transparency Settings
-Updated the Gradient Reverse for target to also reverse target of target colors
-Updated Portrait to invert Party Portrait if anchor is set to Right side
-Updated Gradient Power Backdrop Fade to also apply to Health Backdrop
-Updated some gradient options to be on their own frame tab
-Updated ElvUI profiles to use the gradient tag
-Updated mMediaTag interrupt check
-Updated the Gradient Mode toggle
+Updated custom Nameplate Classification Icons to also work on friendly units
+Updated Party Borders frame strata to avoid issues with the party frames
+Updated Unitframe Aura Borders to update color when the target changes
+Updated Quests Skin adding progress coloring and new checkmark texture
+Updated Talents Scale to also allow talents to be moveable in Retail
+Updated Bag Profession Icons to better handle the Disenchant button
+Updated ElvUI Skin to also add text shadows to widgets if possible
+Updated the toggling of colors when using Light Mode/Dark Mode
+Updated Quests Skin adding option to change the title color
+Updated [eltruism:lowmana] to also work in Wrath/Classic
+Updated some Quest Options to be inside the Quests tab
+Updated ElvUI Profile to disable Item Rarity Color
+Updated Gradient to load earlier when logging in
+Updated Gradient to not overwrite Offline color
+Updated Leader Icon skin to desaturate tanks
+Updated Spellcrit datatext in Wrath/Classic
+Updated Nameplate Arrow Texture for 1080p
+Updated transparency when using gradient
+Updated Ace3 skin to color more elements
+Updated Edit Mode Layout in Retail
 Updated German locale by Dlarge
-Updated Questie profile
+Updated Paladin Symbol Texture
+Updated Target Portrait Fix
+Updated Windtools profile
+Updated Minimap Skin
+Updated Shadows
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue where colors were being forced when gradient was enabled but neither Light nor Dark modes were selected
-Fixed death color and tapped color on Unitframes when Gradient was enabled by adding an option for it
-Fixed an issue where Custom Gradients were not applying to the Class Texture for Eltruism Datatext
-Fixed an issue with Custom Texture and No Class Textures in Group Unitframes
-Fixed shadows when unitframes had portraits enabled and non spaced power
-Fixed a double Shadow on Target Unitframe when power was Detached
-Fixed an error when ElvUI Character Panel skin was disabled
-Fixed Quest Combat hide not working correctly with Questie
-Fixed a possible error with chat class icons
-Fixed AFK skin while traveling between zones
-Fixed a possible issue with Unit reactions
-Fixed some possible errors with Unitframes
-Fixed Portrait showing up on Party Pets
-Fixed death animation for Classic Era
-Fixed Custom Textures in Dark Mode
-Fixed Dark Mode Backdrop Texture
-Fixed AFK music not stopping
-Fixed some Ace3 skin issues
-Fixed Details shadow
+Fixed a possible issue with the player name in the character panel that would cause it to not be gradient
+Fixed a possible issue with the Profession Bag Icons that would prevent Bags from opening in combat
+Fixed the offline/online chat text coloring when a character has a similar name
+Fixed an issue where Death Animation sound would not play in Classic Era
+Fixed an issue that would cause Boss Combat Music to not play
+Fixed a possible issue with the Blizzard Raid frames skin
+Fixed a possible issue with the Auctionator Skin
+Fixed the fading of the Pet Model while AFK
+Fixed Gradient Health when in a vehicle
+Fixed a possible double Death Animation
+Fixed Hit Datatext for Classic Hunters
+Fixed Honor datatext in Classic
+Fixed Haste Datatext in Classic
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[

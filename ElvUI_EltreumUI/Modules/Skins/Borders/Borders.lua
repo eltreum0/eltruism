@@ -280,7 +280,7 @@ function ElvUI_EltreumUI:Borders()
 						else
 							partyborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 						end
-						partyborder:SetFrameStrata("MEDIUM")
+						partyborder:SetFrameStrata("LOW")
 					end
 				end
 			end
