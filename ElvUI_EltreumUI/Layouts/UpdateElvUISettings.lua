@@ -87,7 +87,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[eltruism:classification][name]"
 
-	E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "none"
+	E.db["nameplates"]["units"]["TARGET"]["glowStyle"] = "style4" --arrow
 
 	--luckyone based optimizations
 	E.db["auras"]["buffs"]["seperateOwn"] = 0 -- do not sort auras
