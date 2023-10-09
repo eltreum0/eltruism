@@ -27,8 +27,16 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 					end
 				end
 			end)
+			hooksecurefunc(OmniCD.Party,"SetExBorder",function(_, icon)
+				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+					if not icon.shadow then
+						icon:CreateShadow(2) --prevent shadow overlap
+						ElvUI_EltreumUI:ShadowColor(icon.shadow)
+					end
+				end
+			end)
 		end
-
+		--SetExStatusBarColor
 		--interrupt bars shadows/gradient/position
 		hooksecurefunc(OmniCD.Party,"GetStatusBar",function(_, icon)
 			 if icon and icon.statusBar then
