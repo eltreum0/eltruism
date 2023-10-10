@@ -3358,6 +3358,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 2)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
+Added /eltruism autoupdate command, which will run the Eltruism Update function when a new version is installed
 Added Blizzard Dungeon Score to the LFG Listing in Retail, which also has a spam blocking element
 Added a possible fix for the GetPlaystyleString taint in Retail
 Added a button to import the Edit Mode Layout in Retail
@@ -3410,12 +3411,15 @@ Updated Shadows
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
 Fixed a possible issue with the player name in the character panel that would cause it to not be gradient
 Fixed a possible issue with the Profession Bag Icons that would prevent Bags from opening in combat
+Fixed an error with Priest unitframe model in Classic since the model was removed
 Fixed the offline/online chat text coloring when a character has a similar name
 Fixed an issue where Death Animation sound would not play in Classic Era
+Fixed Font Outline since Shadow outlines are not a real font setting
 Fixed an issue that would cause Boss Combat Music to not play
 Fixed a possible issue with the Blizzard Raid frames skin
 Fixed a possible issue with the Auctionator Skin
 Fixed OmniCD skin missing shadows on extra bars
+Added alpha settings to custom color shadows
 Fixed the fading of the Pet Model while AFK
 Fixed Gradient Health when in a vehicle
 Fixed a possible double Death Animation

@@ -1,6 +1,11 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.0.1
+Added /eltruism autoupdate command, which will run the Eltruism Update function when a new version is installed  
+Added alpha settings to custom color shadows  
+Fixed an error with Priest unitframe model in Classic since the model was removed  
+Fixed Font Outline since Shadow outlines are not a real font setting
 ### 4.0.0
 Added Blizzard Dungeon Score to the LFG Listing in Retail, which also has a spam blocking element  
 Added a possible fix for the GetPlaystyleString taint in Retail  
