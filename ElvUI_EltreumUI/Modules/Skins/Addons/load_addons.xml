@@ -13,4 +13,5 @@
 	<Script file='Other.lua'/>
 	<Script file='RareScanner.lua'/>
 	<Script file='SimulationCraft.lua'/>
+	<Script file='WeakAuras.lua'/>
 </Ui>
