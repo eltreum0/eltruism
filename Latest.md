@@ -13,6 +13,7 @@ Added Rank to Honor Datatext in Classic
 Added a mover for Raid Utility  
 Added in game Changelog  
 Added more role icons  
+Updated Eltruism DataText Texture to better follow the position of the Datatext  
 Updated custom Nameplate Classification Icons to also work on friendly units  
 Updated gradient on Boss, Arena and Target of Target frames to invert colors  
 Updated Party Borders frame strata to avoid issues with the party frames  
