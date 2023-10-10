@@ -200,7 +200,12 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 						end
 					end
 				else
-					iconTable[className] = _G.CLASS_ICON_TCOORDS[className]
+					--iconTable[className] = _G.CLASS_ICON_TCOORDS[className]
+					--get rid of the border
+					iconTable[className][1] = _G.CLASS_ICON_TCOORDS[className][1] + 0.02
+					iconTable[className][2] = _G.CLASS_ICON_TCOORDS[className][2] - 0.02
+					iconTable[className][3] = _G.CLASS_ICON_TCOORDS[className][3] + 0.02
+					iconTable[className][4] = _G.CLASS_ICON_TCOORDS[className][4] - 0.02
 				end
 			end
 		end
