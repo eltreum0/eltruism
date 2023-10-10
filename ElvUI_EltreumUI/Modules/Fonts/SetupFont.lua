@@ -108,6 +108,8 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 			E.db["general"]["totems"]["font"] = fontvalue
 		end
 		E.db["general"]["addonCompartment"]["font"] = fontvalue
+		E.db["general"]["guildBank"]["countFont"] = fontvalue
+		E.db["general"]["guildBank"]["itemLevelFontOutline"] = fontvalue
 		E.db["bags"]["countFont"] = fontvalue
 		E.db["bags"]["itemInfoFont"] = fontvalue
 		E.db["bags"]["itemLevelFont"] = fontvalue

@@ -450,7 +450,12 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["general"]["minimap"]["timeFont"] = "Kimberley"
 		E.db["general"]["addonCompartment"]["fontOutline"] = "OUTLINE"
 		E.db["general"]["addonCompartment"]["font"] = "Kimberley"
-
+		E.db["general"]["guildBank"]["countFont"] = "Kimberley"
+		E.db["general"]["guildBank"]["countFontOutline"] = "OUTLINE"
+		E.db["general"]["guildBank"]["countFontSize"] = 12
+		E.db["general"]["guildBank"]["itemLevelFont"] = "Kimberley"
+		E.db["general"]["guildBank"]["itemLevelFontOutline"] = "OUTLINE"
+		E.db["general"]["guildBank"]["itemLevelFontSize"] = 12
 		E.db["general"]["objectiveFrameAutoHideInKeystone"] = false
 		E.db["general"]["objectiveFrameHeight"] = 550
 		E.db["general"]["resurrectSound"] = true
