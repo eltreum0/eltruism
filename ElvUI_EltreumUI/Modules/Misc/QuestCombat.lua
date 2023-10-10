@@ -183,7 +183,15 @@ function ElvUI_EltreumUI:QuestCombatEnd()
 				_G.QuestWatchFrame:Show()
 			end
 		elseif E.Wrath then
-			_G.WatchFrame:Show()
+			if IsAddOnLoaded("Questie") then --TODO 10.2, might need C_AddOns.
+				if _G["Questie_BaseFrame"] then
+					_G["Questie_BaseFrame"]:Show()
+				else
+					_G.WatchFrame:Show()
+				end
+			else
+				_G.WatchFrame:Show()
+			end
 		end
 	end
 end
