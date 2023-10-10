@@ -117,52 +117,74 @@ if E.Retail then
 end
 
 --add class color bar on the bottom
-local bottomclassbar = CreateFrame("FRAME")
+local EltruismDataTextTexture = CreateFrame("FRAME")
 function ElvUI_EltreumUI:BottomDatabarTexture()
-	if E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar and not bottomclassbar.texture then
+	local gradtop = false
+	local relativePoint = "BOTTOM"
+	local _
+	if _G["DTPanelEltruismDataTextMover"] then
+		_, _, relativePoint = _G["DTPanelEltruismDataTextMover"]:GetPoint()
+	end
+
+	if E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar and not EltruismDataTextTexture.texture then
 		local width = ceil(E.screenWidth)
-		bottomclassbar:SetSize(width,16)
-		bottomclassbar:SetPoint("BOTTOM", UIParent)
-		bottomclassbar.texture = bottomclassbar:CreateTexture(nil,"BACKGROUND")
-		bottomclassbar:SetFrameStrata("BACKGROUND")
-		bottomclassbar:SetFrameLevel(1)
-		bottomclassbar.texture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade2.tga")
-		bottomclassbar.texture:SetSize(width,23)
-		bottomclassbar.texture:SetPoint("BOTTOM", UIParent)
+		EltruismDataTextTexture:SetSize(width,16)
+		EltruismDataTextTexture.texture = EltruismDataTextTexture:CreateTexture(nil,"BACKGROUND")
+		EltruismDataTextTexture:SetFrameStrata("BACKGROUND")
+		EltruismDataTextTexture:SetFrameLevel(1)
+		EltruismDataTextTexture.texture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade2.tga")
+		EltruismDataTextTexture.texture:SetSize(width,23)
+		EltruismDataTextTexture.texture:SetPoint("BOTTOM", EltruismDataTextTexture)
+		if _G["DTPanelEltruismDataTextMover"] then
+			EltruismDataTextTexture:SetPoint("BOTTOM", _G["DTPanelEltruismDataTextMover"],"BOTTOM",0,0)
+			if relativePoint:match("TOP") then
+				gradtop = true
+				EltruismDataTextTexture.texture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade3.tga")
+			end
+		else
+			EltruismDataTextTexture:SetPoint("BOTTOM", UIParent)
+		end
 		if E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.custom then
-			bottomclassbar.texture:SetVertexColor(E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.r, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.g, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.b, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha)
+			EltruismDataTextTexture.texture:SetVertexColor(E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.r, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.g, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.b, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha)
 		else
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-					bottomclassbar.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColorsCustom(E.myclass, false, true, false, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha))
+					EltruismDataTextTexture.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColorsCustom(E.myclass, gradtop, true, false, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha))
 				else
-					bottomclassbar.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColors(E.myclass, false, true, false, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha))
+					EltruismDataTextTexture.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColors(E.myclass, gradtop, true, false, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha))
 				end
 			else
-				bottomclassbar.texture:SetVertexColor(classcolor.r, classcolor.g, classcolor.b, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha)
+				EltruismDataTextTexture.texture:SetVertexColor(classcolor.r, classcolor.g, classcolor.b, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha)
 			end
 		end
 	end
 
-	if bottomclassbar.texture then
+	if EltruismDataTextTexture.texture then
+		if relativePoint:match("TOP") then
+			gradtop = true
+			EltruismDataTextTexture.texture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade3.tga")
+		elseif relativePoint:match("BOTTOM") then
+			gradtop = false
+			EltruismDataTextTexture.texture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade2.tga")
+		end
 		if E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.custom then
-			bottomclassbar.texture:SetVertexColor(E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.r, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.g, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.b, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha)
+			EltruismDataTextTexture.texture:SetVertexColor(E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.r, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.g, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.b, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha)
 		else
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-					bottomclassbar.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColorsCustom(E.myclass, false, true, false, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha))
+					EltruismDataTextTexture.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColorsCustom(E.myclass, gradtop, true, false, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha))
 				else
-					bottomclassbar.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColors(E.myclass, false, true, false, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha))
+					EltruismDataTextTexture.texture:SetGradient("VERTICAL", ElvUI_EltreumUI:GradientColors(E.myclass, gradtop, true, false, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha))
 				end
 			else
-				bottomclassbar.texture:SetVertexColor(classcolor.r, classcolor.g, classcolor.b, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha)
+				EltruismDataTextTexture.texture:SetVertexColor(classcolor.r, classcolor.g, classcolor.b, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha)
 			end
 		end
 
 		if not E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar then
-			bottomclassbar:Hide()
+			EltruismDataTextTexture:Hide()
 		else
-			bottomclassbar:Show()
+			EltruismDataTextTexture:Show()
 		end
 	end
 end
