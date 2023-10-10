@@ -220,7 +220,9 @@ function ElvUI_EltreumUI:Anchors()
 	E:CreateMover(RaidWarningFrame, "MoverRaidWarningFrame", "Raid Warning Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
 
 	if E.private.general.raidUtility then
-		E:CreateMover(_G.RaidUtility_ShowButton, "MoverRaidUtility", "Raid Utility", nil, nil, nil, "ALL,RAID,ELTREUMUI")
+		if _G.RaidUtility_ShowButton then
+			E:CreateMover(_G.RaidUtility_ShowButton, "MoverRaidUtility", "Raid Utility", nil, nil, nil, "ALL,RAID,ELTREUMUI")
+		end
 	end
 
 	if _G["GhostFrame"] then
