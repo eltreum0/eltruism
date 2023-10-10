@@ -75,7 +75,7 @@ elseif E.Wrath then
 	}
 else
 	classModels = {
-		["PRIEST"] = "spells/christmassnowrain.m2",
+		["PRIEST"] = "spells/holy_precast_high_base.m2",--"spells/snowball_impact_chest.m2", --"spells/christmassnowrain.m2" was strangely removed
 		["WARRIOR"] = "spells/disarm_impact_chest.m2",
 		["ROGUE"] = "spells/sandvortex_state_base.m2", --"spells/corrosivesandbreath.m2",
 		["PALADIN"] = "spells/holy_precast_uber_base.m2",
