@@ -833,6 +833,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.LootFrame,
 				_G.AddonCompartmentFrame,
 				_G.GroupLootHistoryFrame,
+				_G.OpacityFrame,
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame and not frame.shadow then
@@ -1207,7 +1208,6 @@ function ElvUI_EltreumUI:Shadows()
 					_G.MailFrameTab1.backdrop,
 					_G.MailFrameTab2.backdrop,
 					_G.MerchantFrame.backdrop,
-					_G.WorldMapFrame,
 					--_G.WorldMapFrame.ScrollContainer,
 					_G.CharacterFrameTab4.backdrop, --only in classic though
 					_G.CharacterFrameTab5.backdrop, --only in classic though
@@ -1241,6 +1241,7 @@ function ElvUI_EltreumUI:Shadows()
 					_G.PVPParentFrameTab2,
 					_G.PVPParentFrameTab1,
 					_G.WorldMapFrame.MiniBorderFrame,
+					_G.WorldMapFrame.BorderFrame,
 					}
 					for _, frame in pairs(tbcframes) do
 						if frame then
@@ -1255,6 +1256,19 @@ function ElvUI_EltreumUI:Shadows()
 									ElvUI_EltreumUI:ShadowColor(frame.shadow)
 								end
 							end
+						end
+					end
+				end
+
+				--classic only frames
+				if E.Classic then
+					local eraframes = {
+						_G.WorldMapFrame,
+					}
+					for _, frame in pairs(eraframes) do
+						if frame and not frame.shadow then
+							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(frame.shadow)
 						end
 					end
 				end

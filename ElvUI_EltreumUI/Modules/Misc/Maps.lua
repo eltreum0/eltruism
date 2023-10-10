@@ -315,23 +315,14 @@ function ElvUI_EltreumUI:WorldMapScale()
 				_G["WorldMapFrame"]:HookScript("OnShow", function()
 					_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
 					if E.Wrath then
-						if not _G["WorldMapFrame"]:IsMouseEnabled() then
+						if not _G["WorldMapFrame"].EltruismMoveable then
 							_G["WorldMapFrame"]:SetMovable(true)
 							_G["WorldMapFrame"]:EnableMouse(true)
 							_G["WorldMapFrame"]:RegisterForDrag("LeftButton")
 							_G["WorldMapFrame"]:SetScript("OnDragStart", _G["WorldMapFrame"].StartMoving)
 							_G["WorldMapFrame"]:SetScript("OnDragStop", _G["WorldMapFrame"].StopMovingOrSizing)
 							_G["WorldMapFrame"]:SetClampedToScreen(true)
-							_G["WorldMapFrame"].MiniBorderFrame:HookScript("OnShow", function()
-								if _G["WorldMapFrame"].shadow then
-									_G["WorldMapFrame"].shadow:Hide()
-								end
-							end)
-							_G["WorldMapFrame"].MiniBorderFrame:HookScript("OnHide", function()
-								if _G["WorldMapFrame"].shadow then
-									_G["WorldMapFrame"].shadow:Show()
-								end
-							end)
+							_G["WorldMapFrame"].EltruismMoveable = true
 						end
 					end
 				end)
