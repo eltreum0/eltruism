@@ -557,12 +557,16 @@ function ElvUI_EltreumUI:SkinMailZone()
 				self.ZoneSkinned = true
 			end
 
-			if _G.OpenMailBodyText then
-				_G.OpenMailBodyText:SetFont("P", E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+			--[[if _G.OpenMailBodyText then
+				if E.Retail then
+					_G.OpenMailBodyText:SetFont("P", E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, "OUTLINE")
+				else
+					_G.OpenMailBodyText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, "OUTLINE")
+				end
 			end
 			if E.Retail then
-				_G.SendMailBodyEditBox:SetFont("P", E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-			end
+				_G.SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, "OUTLINE")
+			end]]
 		end
 	end
 end
