@@ -3366,6 +3366,7 @@ Added an option to increase the shadows in Details
 Added [eltruism:longhpstatusnopc:gradient] tag
 Added Spec Icons in the LFG Listing in Retail
 Added Class Icons in the LFG Listing in Wrath
+Added a simple skin to WeakAuras Options
 Added Rank to Honor Datatext in Classic
 Added a mover for Raid Utility
 Added in game Changelog
