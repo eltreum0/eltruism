@@ -390,6 +390,7 @@ local modelsRotate = {
 	[123788] = true,
 	[1569455] = true, --Chieftain Hatuun
 	[4184229] = true, --Orizmu
+	[126289] = true, --Emperor Vek'lor/Vek'nilash
 }
 
 --set portrait rotation based on target being npc or not
