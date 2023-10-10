@@ -166,6 +166,14 @@ function ElvUI_EltreumUI:RunCommands(message)
 			hideOnEscape = false,
 		}
 		E:StaticPopup_Show('ELTRUISMSETTINGSWARNING')
+	elseif message == 'autoupdate' then
+		if not E.db.ElvUI_EltreumUI.autoupdate then
+			E.db.ElvUI_EltreumUI.autoupdate = true
+			ElvUI_EltreumUI:Print("Auto Update of Eltruism settings during a new version enabled")
+		else
+			E.db.ElvUI_EltreumUI.autoupdate = false
+			ElvUI_EltreumUI:Print("Auto Update of Eltruism settings during a new version disabled")
+		end
 	elseif message == 'detailshide' then
 		if not E.db.ElvUI_EltreumUI.skins.detailsembedooc then
 			E.db.ElvUI_EltreumUI.skins.detailsembedooc = true
@@ -222,6 +230,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 		end
 		print("|cff82B4ff/eltruism weakauras|r - Toggles actionbars to be similar to WeakAuras, will overwrite settings")
 		print("|cff82B4ff/eltruism elvuiskin|r - Toggles ElvUI Skin")
+		print("|cff82B4ff/eltruism autoupdate|r - Enables automatically updating Eltruism settings")
 	end
 end
 

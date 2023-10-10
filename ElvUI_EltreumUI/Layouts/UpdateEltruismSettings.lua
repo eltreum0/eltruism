@@ -4,7 +4,7 @@ local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
 
 --Settings that would be true but became false by default per request,
 --now a function that can be used to set them while importing the profiles
-function ElvUI_EltreumUI:UpdateEltruismSettings()
+function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 
 	--to make sure everything resets during import
 	E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA = false
@@ -263,5 +263,9 @@ function ElvUI_EltreumUI:UpdateEltruismSettings()
 		E.db.ElvUI_EltreumUI.cvars.autohidenpcname = true
 	end
 
-	ElvUI_EltreumUI:Print(L["Settings for Eltruism were applied."])
+	if update then
+		ElvUI_EltreumUI:Print(L["Auto Update is enabled, updating Eltruism settings."])
+	else
+		ElvUI_EltreumUI:Print(L["Settings for Eltruism were applied."])
+	end
 end
