@@ -21,7 +21,7 @@ function ElvUI_EltreumUI:ShadowColor(shadow)
 		if E.db.ElvUI_EltreumUI.skins.shadow.classcolor then
 			shadow:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
 		elseif E.db.ElvUI_EltreumUI.skins.shadow.customcolor then
-			shadow:SetBackdropBorderColor(E.db.ElvUI_EltreumUI.skins.shadow.r, E.db.ElvUI_EltreumUI.skins.shadow.g, E.db.ElvUI_EltreumUI.skins.shadow.b, 1)
+			shadow:SetBackdropBorderColor(E.db.ElvUI_EltreumUI.skins.shadow.r, E.db.ElvUI_EltreumUI.skins.shadow.g, E.db.ElvUI_EltreumUI.skins.shadow.b, E.db.ElvUI_EltreumUI.skins.shadow.a)
 		end
 	end
 end

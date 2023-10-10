@@ -199,6 +199,7 @@ P.ElvUI_EltreumUI = {
 			r = 0.27,
 			g = 0.50,
 			b = 0.70,
+			a = 1,
 			raid = true,
 			aura = false,
 			ufaura = false,
