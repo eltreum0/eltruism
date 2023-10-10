@@ -221,7 +221,7 @@ function ElvUI_EltreumUI:Anchors()
 
 	if E.private.general.raidUtility then
 		if _G.RaidUtility_ShowButton then
-			E:CreateMover(_G.RaidUtility_ShowButton, "MoverRaidUtility", "Raid Utility", nil, nil, nil, "ALL,ELTREUMUI")
+			E:CreateMover(_G.RaidUtility_ShowButton, "MoverRaidUtility", "Raid Utility", nil, nil, nil, "ALL,RAID,ELTREUMUI")
 		end
 	end
 
