@@ -96,7 +96,7 @@ function ElvUI_EltreumUI:CooldownEnable()
 		textsize = ( (cooldownsize / 3) + 1)
 	end
 
-	EltruismCooldownText:SetFont(E.media.normFont, textsize, E.db.general.fontStyle)
+	EltruismCooldownText:SetFont(E.media.normFont, textsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 	EltruismCooldownText:SetTextColor(1, 1, 1)
 	EltruismCooldownText:SetPoint("CENTER")
 	EltruismCooldownIcon:SetTexture(nil)

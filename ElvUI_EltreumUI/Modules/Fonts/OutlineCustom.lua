@@ -281,6 +281,11 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 		end
 	end
 
+	if E.db["datatexts"]["panels"]["EltruismTime"] and E.db["datatexts"]["panels"]["EltruismTime"]["enable"] then
+		E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["fontOutline"] = fontStyle
+	end
+
+	fontStyle = ElvUI_EltreumUI:FontFlag(fontStyle)
 	if IsAddOnLoaded('NameplateSCT') then --TODO 10.2, might need C_AddOns.
 		NameplateSCTDB["global"]["fontFlag"] = fontStyle
 	end
@@ -291,9 +296,5 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 
 	if IsAddOnLoaded("Questie") then --TODO 10.2, might need C_AddOns.
 		QuestieConfig["global"]["trackerFontOutline"] = fontStyle
-	end
-
-	if E.db["datatexts"]["panels"]["EltruismTime"] and E.db["datatexts"]["panels"]["EltruismTime"]["enable"] then
-		E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["fontOutline"] = fontStyle
 	end
 end

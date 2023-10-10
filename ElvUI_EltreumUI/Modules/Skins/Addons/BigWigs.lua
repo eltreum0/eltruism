@@ -286,7 +286,7 @@ do
 					else
 						frame:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass, false, false))
 					end
-					frame.text:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+					frame.text:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 					if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs then
 						frame:SetWidth(width-1)
 						if not frame.shadow then

@@ -76,7 +76,7 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 									end
 
 									--font
-									_G["CompactRaidGroup"..k.."Member"..l].name:SetFont(E.LSM:Fetch("font", E.db.general.font), 10, E.db.general.fontStyle)
+									_G["CompactRaidGroup"..k.."Member"..l].name:SetFont(E.LSM:Fetch("font", E.db.general.font), 10, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 
 									--role icons
 									local role = UnitGroupRolesAssigned(_G["CompactRaidGroup"..k.."Member"..l].displayedUnit)
@@ -138,7 +138,7 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 								end
 
 								--font
-								_G["CompactRaidFrame"..i].name:SetFont(E.LSM:Fetch("font", E.db.general.font), 10, E.db.general.fontStyle)
+								_G["CompactRaidFrame"..i].name:SetFont(E.LSM:Fetch("font", E.db.general.font), 10, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 
 								--role icons
 								local role = UnitGroupRolesAssigned(_G["CompactRaidFrame"..i].displayedUnit)

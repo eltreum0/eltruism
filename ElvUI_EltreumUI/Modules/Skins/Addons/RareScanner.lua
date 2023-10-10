@@ -72,7 +72,7 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 
 				--add a description so people dont wonder what it is
 				local Desc = v:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-				Desc:SetFont(E.media.normFont, 10, E.db.general.fontStyle)
+				Desc:SetFont(E.media.normFont, 10, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				Desc:SetTextColor(1, 1, 1)
 				Desc:SetText(L["MAP_SEARCHER_TOOLTIP_TITLE"])
 				Desc:SetPoint("RIGHT", v, "LEFT", 0, 0)

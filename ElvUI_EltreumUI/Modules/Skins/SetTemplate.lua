@@ -287,7 +287,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 									ElvUI_EltreumUI:ShadowColor(frame.shadow)
 									if frame:GetParent():GetParent().Label then
 										local _,size = frame:GetParent():GetParent().Label:GetFont()
-										frame:GetParent():GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, E.db.general.fontStyle)
+										frame:GetParent():GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 										--frame:GetParent():GetParent().Label:SetShadowOffset(2,-2)
 									end
 									-- hook for when label gets added
@@ -295,7 +295,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 										frame:GetParent():GetParent():HookScript("OnShow", function(widget)
 											if widget.Label then
 												local _,size = widget.Label:GetFont()
-												widget.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, E.db.general.fontStyle)
+												widget.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 												--widget.Label:SetShadowOffset(2,-2)
 											end
 										end)

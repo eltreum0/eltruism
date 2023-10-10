@@ -38,11 +38,11 @@ function ElvUI_EltreumUI:LootText()
 
 		--use elvui general font
 		if E.db.ElvUI_EltreumUI.loot.loottext.fontsetting then
-			string:SetFont(E.media.normFont, E.db.ElvUI_EltreumUI.loot.loottext.fontsize, E.db.general.fontStyle)
+			string:SetFont(E.media.normFont, E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 		elseif E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg then
-			string:SetFont(E.private.general.dmgfont, E.db.ElvUI_EltreumUI.loot.loottext.fontsize, E.db.general.fontStyle)
+			string:SetFont(E.private.general.dmgfont, E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 		elseif E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable then
-			string:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.loot.loottext.fontLSM), E.db.ElvUI_EltreumUI.loot.loottext.fontsize, E.db.general.fontStyle)
+			string:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.loot.loottext.fontLSM), E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 		end
 
 		string:SetText(message)
