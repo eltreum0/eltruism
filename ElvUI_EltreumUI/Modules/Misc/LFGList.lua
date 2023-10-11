@@ -250,45 +250,47 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 
 			--start of the io/region thing
 			if E.db.ElvUI_EltreumUI.skins.groupfinderDungeonScore then
-				if E.Retail then
-					if REALMS[GetCurrentRegion()] then
-						local function GetRegion(name)
-							if not name then return nil end
-							local leaderRealm = name:match("%-(.+)")
-							if leaderRealm then
-								leaderRealm = leaderRealm:lower():gsub(" ", "")
-							else
-								leaderRealm = GetRealmName():lower():gsub(" ", "")
-							end
-							for region, regionRealms in pairs(REALMS[GetCurrentRegion()]) do
-								for _, realm in pairs(regionRealms) do
-									if realm:lower():gsub(" ", "") == leaderRealm then
-										return region
+				if categoryID == 2 or categoryID == 7 then --not in arenas (4)
+					if E.Retail then
+						if REALMS[GetCurrentRegion()] then
+							local function GetRegion(name)
+								if not name then return nil end
+								local leaderRealm = name:match("%-(.+)")
+								if leaderRealm then
+									leaderRealm = leaderRealm:lower():gsub(" ", "")
+								else
+									leaderRealm = GetRealmName():lower():gsub(" ", "")
+								end
+								for region, regionRealms in pairs(REALMS[GetCurrentRegion()]) do
+									for _, realm in pairs(regionRealms) do
+										if realm:lower():gsub(" ", "") == leaderRealm then
+											return region
+										end
 									end
 								end
 							end
-						end
-						local region
-						if REGION_COLORED[GetRegion(resultInfo.leaderName)] then
-							if E.db.ElvUI_EltreumUI.skins.groupfinderIconStyle == "TEXT" then
-								region = REGION_COLORED[GetRegion(resultInfo.leaderName)]
+							local region
+							if REGION_COLORED[GetRegion(resultInfo.leaderName)] then
+								if E.db.ElvUI_EltreumUI.skins.groupfinderIconStyle == "TEXT" then
+									region = REGION_COLORED[GetRegion(resultInfo.leaderName)]
+								else
+									region = REGION_FLAG[GetRegion(resultInfo.leaderName)]
+								end
 							else
-								region = REGION_FLAG[GetRegion(resultInfo.leaderName)]
+								region = "???"
 							end
-						else
-							region = "???"
+							if entry.ActivityName:GetText() ~= nil and entry.ActivityName:GetText() ~= "" then
+								entry.ActivityName:SetFormattedText("%s %s", region,entry.ActivityName:GetText())
+							end
 						end
-						if entry.ActivityName:GetText() ~= nil and entry.ActivityName:GetText() ~= "" then
-							entry.ActivityName:SetFormattedText("%s %s", region,entry.ActivityName:GetText())
+						if entry.Name:GetText() ~= nil then
+							local score = resultInfo.leaderOverallDungeonScore or 0
+							local name = entry.Name:GetText() or ""
+							local r, g, b = C_ChallengeMode.GetDungeonScoreRarityColor(score):GetRGB()
+							local hex = E:RGBToHex(r, g, b, 'ff')
+							entry.Name:SetText("[|c"..hex..score.."|r] "..name)
+							entry.Name:SetWidth(176)
 						end
-					end
-					if entry.Name:GetText() ~= nil then
-						local score = resultInfo.leaderOverallDungeonScore or 0
-						local name = entry.Name:GetText() or ""
-						local r, g, b = C_ChallengeMode.GetDungeonScoreRarityColor(score):GetRGB()
-						local hex = E:RGBToHex(r, g, b, 'ff')
-						entry.Name:SetText("[|c"..hex..score.."|r] "..name)
-						entry.Name:SetWidth(176)
 					end
 				end
 			end
