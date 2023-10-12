@@ -134,6 +134,15 @@ local function SkinAuctionator()
 				frame.Icon:SetTexCoord(unpack(E.TexCoords))
 				frame.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
 			end
+			if frame.AddButton and not frame.EltruismAddButtonHook then
+				hooksecurefunc(frame,"AddButton",function(a,b,c)
+					if b.Icon then
+						b.Icon:SetTexCoord(unpack(E.TexCoords))
+						b.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
+					end
+				end)
+				frame.EltruismAddButtonHook = true
+			end
 			if frame:GetObjectType() ~= "Texture" then
 				for i = 1, frame:GetNumChildren() do
 					local subframe = select(i, frame:GetChildren())
@@ -163,19 +172,20 @@ local function SkinAuctionator()
 			end
 			if frame:GetObjectType() ~= "Texture" then
 				for i = 1, frame:GetNumRegions() do
-					local subframe = select(i, frame:GetRegions())
-					if subframe then
-						if subframe:GetObjectType() == "Frame" then
-							S:HandleFrame(subframe)
-							subframe:SetBackdrop()
-						elseif subframe:GetObjectType() == "Button" then
-							S:HandleButton(subframe)
-						elseif subframe:GetObjectType() == "EditBox" then
-							S:HandleEditBox(subframe)
-							subframe:SetTemplate()
-						elseif subframe:GetObjectType() == "CheckButton" then
-							S:HandleButton(subframe)
+					local subregion = select(i, frame:GetRegions())
+					if subregion then
+						if subregion:GetObjectType() == "Frame" then
+							S:HandleFrame(subregion)
+							subregion:SetBackdrop()
+						elseif subregion:GetObjectType() == "Button" then
+							S:HandleButton(subregion)
+						elseif subregion:GetObjectType() == "EditBox" then
+							S:HandleEditBox(subregion)
+							subregion:SetTemplate()
+						elseif subregion:GetObjectType() == "CheckButton" then
+							S:HandleButton(subregion)
 						end
+						handlesubregions(subregion)
 					end
 				end
 			end
