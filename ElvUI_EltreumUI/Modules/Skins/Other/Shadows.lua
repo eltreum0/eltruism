@@ -2223,6 +2223,9 @@ function ElvUI_EltreumUI:Shadows()
 								_G["ElvUF_Player"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player"].shadow)
 							end
+							if _G["ElvUF_Player_HealthBar"] and _G["ElvUF_Player_HealthBar"].shadow then
+								_G["ElvUF_Player_HealthBar"].shadow:Hide()
+							end
 							if E.db.unitframe.units.player.power.width == "inset" or E.db.unitframe.units.player.power.width == "fill" then
 								if _G["ElvUF_Player"] and _G["ElvUF_Player"].shadow then
 									_G["ElvUF_Player"].shadow:ClearAllPoints()
@@ -2852,7 +2855,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 
-				--targetr power detached
+				--target power detached
 				if E.db.unitframe.units.target.power.detachFromFrame then
 					if _G["ElvUF_Target_PowerBar"].shadow then
 						_G["ElvUF_Target_PowerBar"].shadow:Show()
