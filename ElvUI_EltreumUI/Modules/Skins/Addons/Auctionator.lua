@@ -128,25 +128,79 @@ local function SkinAuctionator()
 			_G["AuctionatorSellingFrame"].eltruismbgtexture:Hide()
 		end
 
-
-
 		local function handlesubframe(frame)
+			if frame.eltruismbgtexture then frame.eltruismbgtexture:Hide() end
 			if frame.Icon then
 				frame.Icon:SetTexCoord(unpack(E.TexCoords))
 				frame.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
 			end
-			for i = 1, frame:GetNumChildren() do
-				local subframe = select(i, frame:GetChildren())
-				if subframe then
-					if subframe:GetObjectType() == "Frame" then
-						S:HandleFrame(subframe)
-					elseif subframe:GetObjectType() == "Button" then
-						S:HandleButton(subframe)
+			if frame:GetObjectType() ~= "Texture" then
+				for i = 1, frame:GetNumChildren() do
+					local subframe = select(i, frame:GetChildren())
+					if subframe then
+						if subframe:GetObjectType() == "Frame" then
+							S:HandleFrame(subframe)
+							subframe:SetBackdrop()
+						elseif subframe:GetObjectType() == "Button" then
+							S:HandleButton(subframe)
+						elseif subframe:GetObjectType() == "EditBox" then
+							S:HandleEditBox(subframe)
+							subframe:SetTemplate()
+						elseif subframe:GetObjectType() == "CheckButton" then
+							S:HandleButton(subframe)
+						end
+						handlesubframe(subframe)
 					end
-					handlesubframe(subframe)
 				end
 			end
 		end
+
+		local function handlesubregions(frame)
+			if frame.eltruismbgtexture then frame.eltruismbgtexture:Hide() end
+			if frame.Icon then --doesnt seem to find any
+				frame.Icon:SetTexCoord(unpack(E.TexCoords))
+				frame.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
+			end
+			if frame:GetObjectType() ~= "Texture" then
+				for i = 1, frame:GetNumRegions() do
+					local subframe = select(i, frame:GetRegions())
+					if subframe then
+						if subframe:GetObjectType() == "Frame" then
+							S:HandleFrame(subframe)
+							subframe:SetBackdrop()
+						elseif subframe:GetObjectType() == "Button" then
+							S:HandleButton(subframe)
+						elseif subframe:GetObjectType() == "EditBox" then
+							S:HandleEditBox(subframe)
+							subframe:SetTemplate()
+						elseif subframe:GetObjectType() == "CheckButton" then
+							S:HandleButton(subframe)
+						end
+					end
+				end
+			end
+		end
+
+		hooksecurefunc(_G.Auctionator.Groups,"OpenCustomiseView",function()
+			if not _G["AuctionatorGroupsCustomiseFrame"].EltruismSkin then
+				S:HandleFrame(_G["AuctionatorGroupsCustomiseFrame"])
+				S:HandleButton(_G["AuctionatorGroupsCustomiseFrame"].NewGroupButton)
+				S:HandleTrimScrollBar(_G["AuctionatorGroupsCustomiseFrame"].View.ScrollBar)
+
+				handlesubframe(_G["AuctionatorGroupsCustomiseFrame"].View.ScrollBox)
+				if _G["AuctionatorGroupsCustomiseFrame"].View.ScrollBox.ScrollTarget then
+					handlesubregions(_G["AuctionatorGroupsCustomiseFrame"].View.ScrollBox.ScrollTarget)
+				end
+
+				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G["AuctionatorGroupsCustomiseFrame"].shadow then
+					_G["AuctionatorGroupsCustomiseFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G["AuctionatorGroupsCustomiseFrame"].shadow)
+				end
+
+				_G["AuctionatorGroupsCustomiseFrame"].EltruismSkin = true
+			end
+		end)
+
 		if not _G["AuctionatorSellingFrame"].BagListing.EltruismViewHook then --items update late, and they might also change, so hook view
 			_G["AuctionatorSellingFrame"].BagListing:HookScript("OnShow", function()
 				E:Delay(0, function()
@@ -155,7 +209,6 @@ local function SkinAuctionator()
 			end)
 			_G["AuctionatorSellingFrame"].BagListing.EltruismViewHook = true
 		end
-
 		if _G["AuctionatorSellingFrame"].BagListing then
 			local header = _G["AuctionatorSellingFrame"].BagListing
 			for i = 1, header:GetNumChildren() do
@@ -170,10 +223,6 @@ local function SkinAuctionator()
 			end
 		end
 		S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].BagListing.View.ScrollBar)
-
-
-
-
 
 		if _G["AuctionatorBuyFrame"] then
 			if _G["AuctionatorBuyFrame"].CurrentPrices then
@@ -269,8 +318,8 @@ local function SkinAuctionator()
 			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.StackPrice.MoneyInput.GoldBox)
 			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.StackPrice.MoneyInput.SilverBox)
 			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.StackPrice.MoneyInput.CopperBox)
-			S:HandleButton(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Stacks.NumStacks)
-			S:HandleButton(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Stacks.StackSize)
+			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Stacks.NumStacks)
+			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Stacks.StackSize)
 			S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices.RealmHistoryResultsListing.ScrollArea.ScrollBar)
 			S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].BuyFrame.CurrentPrices.SearchResultsListing.ScrollArea.ScrollBar)
 			handlechildtab(_G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices.RealmHistoryResultsListing.HeaderContainer)
