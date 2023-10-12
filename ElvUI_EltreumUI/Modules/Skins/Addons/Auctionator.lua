@@ -197,6 +197,15 @@ local function SkinAuctionator()
 					ElvUI_EltreumUI:ShadowColor(_G["AuctionatorGroupsCustomiseFrame"].shadow)
 				end
 
+				for i = 1, _G["AuctionatorGroupsCustomiseFrame"]:GetNumChildren() do
+					local subframe = select(i, _G["AuctionatorGroupsCustomiseFrame"]:GetChildren())
+					if subframe then
+						if subframe:GetObjectType() == "Button" then
+							S:HandleButton(subframe)
+						end
+					end
+				end
+
 				_G["AuctionatorGroupsCustomiseFrame"].EltruismSkin = true
 			end
 		end)
