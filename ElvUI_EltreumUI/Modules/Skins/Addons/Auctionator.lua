@@ -227,6 +227,7 @@ local function SkinAuctionator()
 			if not _G["AuctionatorGroupsCustomiseFrame"].EltruismSkin then
 				S:HandleFrame(_G["AuctionatorGroupsCustomiseFrame"])
 				S:HandleButton(_G["AuctionatorGroupsCustomiseFrame"].NewGroupButton)
+				S:HandleButton(_G["AuctionatorGroupsCustomiseFrame"].BackButton)
 				S:HandleTrimScrollBar(_G["AuctionatorGroupsCustomiseFrame"].View.ScrollBar)
 
 				handlesubframe(_G["AuctionatorGroupsCustomiseFrame"].View.ScrollBox)
@@ -237,15 +238,6 @@ local function SkinAuctionator()
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G["AuctionatorGroupsCustomiseFrame"].shadow then
 					_G["AuctionatorGroupsCustomiseFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(_G["AuctionatorGroupsCustomiseFrame"].shadow)
-				end
-
-				for i = 1, _G["AuctionatorGroupsCustomiseFrame"]:GetNumChildren() do
-					local subframe = select(i, _G["AuctionatorGroupsCustomiseFrame"]:GetChildren())
-					if subframe then
-						if subframe:GetObjectType() == "Button" then
-							S:HandleButton(subframe)
-						end
-					end
 				end
 
 				_G["AuctionatorGroupsCustomiseFrame"].EltruismSkin = true
@@ -261,17 +253,7 @@ local function SkinAuctionator()
 			_G["AuctionatorSellingFrame"].BagListing.EltruismViewHook = true
 		end
 		if _G["AuctionatorSellingFrame"].BagListing then
-			local header = _G["AuctionatorSellingFrame"].BagListing
-			for i = 1, header:GetNumChildren() do
-				local group = select(i, header:GetChildren())
-				if group then
-					if group:GetObjectType() == "Frame" then
-						S:HandleFrame(group)
-					elseif group:GetObjectType() == "Button" then
-						S:HandleButton(group)
-					end
-				end
-			end
+			S:HandleButton(_G["AuctionatorSellingFrame"].BagListing.CustomiseButton)
 		end
 		S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].BagListing.View.ScrollBar)
 
