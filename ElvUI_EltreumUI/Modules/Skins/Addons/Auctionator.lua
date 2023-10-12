@@ -21,6 +21,10 @@ local function SkinAuctionator()
 			S:HandleFrame(_G["AuctionatorPageStatusDialogFrame"])
 		end
 
+		if _G["AuctionatorSellingPopupFrame"] then
+			S:HandleFrame(_G["AuctionatorSellingPopupFrame"])
+		end
+
 		--shopping
 		S:HandleFrame(_G["AuctionatorShoppingFrame"])
 		_G["AuctionatorShoppingFrame"]:SetBackdrop()
