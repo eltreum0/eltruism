@@ -134,11 +134,19 @@ local function SkinAuctionator()
 				frame.Icon:SetTexCoord(unpack(E.TexCoords))
 				frame.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
 			end
+			if frame.NormalTexture then
+				frame.NormalTexture:SetAlpha(0)
+				frame.NormalTexture.SetAlpha = E.noop
+			end
+			if frame.HighlightTexture then
+				frame.HighlightTexture:SetAlpha(0)
+				frame.HighlightTexture.SetAlpha = E.noop
+			end
 			if frame.AddButton and not frame.EltruismAddButtonHook then
-				hooksecurefunc(frame,"AddButton",function(a,b,c)
-					if b.Icon then
-						b.Icon:SetTexCoord(unpack(E.TexCoords))
-						b.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
+				hooksecurefunc(frame,"AddButton",function(_,item)
+					if item.Icon then
+						item.Icon:SetTexCoord(unpack(E.TexCoords))
+						item.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
 					end
 				end)
 				frame.EltruismAddButtonHook = true
@@ -150,6 +158,14 @@ local function SkinAuctionator()
 						if subframe:GetObjectType() == "Frame" then
 							S:HandleFrame(subframe)
 							subframe:SetBackdrop()
+							if subframe.NormalTexture then
+								subframe.NormalTexture:SetAlpha(0)
+								subframe.NormalTexture.SetAlpha = E.noop
+							end
+							if subframe.HighlightTexture then
+								subframe.HighlightTexture:SetAlpha(0)
+								subframe.HighlightTexture.SetAlpha = E.noop
+							end
 						elseif subframe:GetObjectType() == "Button" then
 							S:HandleButton(subframe)
 						elseif subframe:GetObjectType() == "EditBox" then
@@ -170,6 +186,14 @@ local function SkinAuctionator()
 				frame.Icon:SetTexCoord(unpack(E.TexCoords))
 				frame.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
 			end
+			if frame.NormalTexture then
+				frame.NormalTexture:SetAlpha(0)
+				frame.NormalTexture.SetAlpha = E.noop
+			end
+			if frame.HighlightTexture then
+				frame.HighlightTexture:SetAlpha(0)
+				frame.HighlightTexture.SetAlpha = E.noop
+			end
 			if frame:GetObjectType() ~= "Texture" then
 				for i = 1, frame:GetNumRegions() do
 					local subregion = select(i, frame:GetRegions())
@@ -177,6 +201,14 @@ local function SkinAuctionator()
 						if subregion:GetObjectType() == "Frame" then
 							S:HandleFrame(subregion)
 							subregion:SetBackdrop()
+							if subregion.NormalTexture then
+								subregion.NormalTexture:SetAlpha(0)
+								subregion.NormalTexture.SetAlpha = E.noop
+							end
+							if subregion.HighlightTexture then
+								subregion.HighlightTexture:SetAlpha(0)
+								subregion.HighlightTexture.SetAlpha = E.noop
+							end
 						elseif subregion:GetObjectType() == "Button" then
 							S:HandleButton(subregion)
 						elseif subregion:GetObjectType() == "EditBox" then
