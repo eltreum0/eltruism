@@ -40,13 +40,13 @@ WishlistItemFrame.Text = WishlistItemFrame:CreateFontString(nil, "BACKGROUND", "
 WishlistItemFrame.Text:SetSize(800, 72)
 WishlistItemFrame.Text:SetPoint("CENTER", "EltruismWishlistItem", "CENTER", 0, 16)
 WishlistItemFrame.Text:SetTextColor(1, 1, 1)
-WishlistItemFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
+WishlistItemFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 WishlistItemFrame.Text:SetText("You have looted")
 
 WishlistItemFrame.Text2 = WishlistItemFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
 WishlistItemFrame.Text2:SetSize(418, 72)
 WishlistItemFrame.Text2:SetPoint("CENTER", "EltruismWishlistItem", "CENTER", 0, -14)
-WishlistItemFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 24, E.db.general.fontStyle)
+WishlistItemFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 24, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 
 WishlistItemFrame.StatusLine = CreateFrame("StatusBar", "EltruismWishlistItem", WishlistItemFrame)
 WishlistItemFrame.StatusLine:SetSize(418, 3)

@@ -91,7 +91,7 @@ function ElvUI_EltreumUI:Doom()
 	if E.db.ElvUI_EltreumUI.skins.doom.enable then
 
 		--set the general elvui font
-		DCP.TextFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.doom.iconSize/5, E.db.general.fontStyle)
+		DCP.TextFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.doom.iconSize/5, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 
 		--create shadow
 		if not DCP.shadow then

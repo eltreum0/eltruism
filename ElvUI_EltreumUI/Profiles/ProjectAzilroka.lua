@@ -45,7 +45,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 	PA.db["stAddonManager"]["FontSize"] = 15
 	PA.db["stAddonManager"]["NumAddOns"] = 20
 	PA.db["stAddonManager"]["ButtonHeight"] = 20
-	PA.db["stAddonManager"]["FontFlag"] = E.db.general.fontStyle
+	PA.db["stAddonManager"]["FontFlag"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
 	PA.db["stAddonManager"]["ButtonWidth"] = 20
 	PA.db["stAddonManager"]["ClassColor"] = true
 	PA.db["stAddonManager"]["Font"] = E.db.general.font

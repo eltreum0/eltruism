@@ -219,6 +219,12 @@ function ElvUI_EltreumUI:Anchors()
 
 	E:CreateMover(RaidWarningFrame, "MoverRaidWarningFrame", "Raid Warning Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
 
+	if E.private.general.raidUtility and E.private.unitframe.disabledBlizzardFrames.raid then
+		if _G.RaidUtility_ShowButton then
+			E:CreateMover(_G.RaidUtility_ShowButton, "MoverRaidUtility", "Raid Utility", nil, nil, nil, "ALL,RAID,ELTREUMUI")
+		end
+	end
+
 	if _G["GhostFrame"] then
 		E:CreateMover(_G["GhostFrame"], "GhostFrameMover", "Ghost Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
 	end
@@ -231,17 +237,9 @@ function ElvUI_EltreumUI:Anchors()
 		E:CreateMover(UIErrorsFrame, "MoverUIERRORS", "UI Error Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
 		if E.db.ElvUI_EltreumUI.skins.blizzframes.errorframe then
 			if E.db.ElvUI_EltreumUI.skins.blizzframes.errorframecustomfont then
-				if E.db.general.fontStyle == "NONE" then
-					UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefont), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, "")
-				else
-					UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefont), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, E.db.general.fontStyle)
-				end
+				UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefont), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 			else
-				if E.db.general.fontStyle == "NONE" then
-					UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, "")
-				else
-					UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, E.db.general.fontStyle)
-				end
+				UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 			end
 		end
 	end
@@ -872,6 +870,17 @@ end
 --set value between two other values
 function ElvUI_EltreumUI:Interval(value, minValue, maxValue)
 	return math.max(minValue, math.min(maxValue, value))
+end
+
+function ElvUI_EltreumUI:FontFlag(style)
+	if strsub(style, 0, 6) == 'SHADOW' then
+		style = strsub(style, 7)
+		if not style then style = '' end
+		return style
+	else
+		if style == 'NONE' then style = '' end
+		return style
+	end
 end
 
 --for fps testing

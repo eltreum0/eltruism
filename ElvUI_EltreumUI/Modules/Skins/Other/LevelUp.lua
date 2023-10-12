@@ -36,12 +36,12 @@ function ElvUI_EltreumUI:SkinLevelUp()
 						if toast.currentDisplayingToast.Title then
 							toast.currentDisplayingToast.Title:SetShadowColor(0, 0, 0, 0.8)
 							toast.currentDisplayingToast.Title:SetShadowOffset(2, -2)
-							--toast.currentDisplayingToast.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 30, E.db.general.fontStyle) --font size doesnt adjust so it kinda breaks level up
+							--toast.currentDisplayingToast.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 30, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)) --font size doesnt adjust so it kinda breaks level up
 						end
 						if toast.currentDisplayingToast.SubTitle then
 							toast.currentDisplayingToast.SubTitle:SetShadowColor(0, 0, 0, 0.8)
 							toast.currentDisplayingToast.SubTitle:SetShadowOffset(2, -2)
-							--toast.currentDisplayingToast.SubTitle:SetFont(E.LSM:Fetch("font", E.db.general.font), 17, E.db.general.fontStyle) --font size doesnt adjust so it kinda breaks level up
+							--toast.currentDisplayingToast.SubTitle:SetFont(E.LSM:Fetch("font", E.db.general.font), 17, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)) --font size doesnt adjust so it kinda breaks level up
 						end
 					end
 				end)
@@ -78,11 +78,11 @@ function ElvUI_EltreumUI:SkinLevelUp()
 				BossBanner.Title:SetTextColor(1, 1, 1, 1)
 				BossBanner.Title:SetShadowColor(0, 0, 0, 0.8)
 				BossBanner.Title:SetShadowOffset(2, -1)
-				BossBanner.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 30, E.db.general.fontStyle)
+				BossBanner.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), 30, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				BossBanner.SubTitle:SetTextColor(1, 1, 1, 1)
 				BossBanner.SubTitle:SetShadowColor(0, 0, 0, 0.8)
 				BossBanner.SubTitle:SetShadowOffset(2, -1)
-				BossBanner.SubTitle:SetFont(E.LSM:Fetch("font", E.db.general.font), 17, E.db.general.fontStyle)
+				BossBanner.SubTitle:SetFont(E.LSM:Fetch("font", E.db.general.font), 17, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				--/script BossBanner:Show()
 			end
 		end
@@ -112,7 +112,7 @@ if E.Wrath or E.Classic then
 	LevelUpFrame.Text:SetSize(418, 72)
 	LevelUpFrame.Text:SetPoint("CENTER", "EltruismLevelUp", "CENTER", 0, 16)
 	LevelUpFrame.Text:SetTextColor(1, 1, 1)
-	LevelUpFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, E.db.general.fontStyle)
+	LevelUpFrame.Text:SetFont(E.LSM:Fetch("font", E.db.general.font), 18, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 	LevelUpFrame.Text:SetText(LEVEL_UP_YOU_REACHED)
 
 	LevelUpFrame.Text2 = LevelUpFrame:CreateFontString(nil, "BACKGROUND", "GameFontNormal")
@@ -123,7 +123,7 @@ if E.Wrath or E.Classic then
 	else
 		LevelUpFrame.Text2:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 	end
-	LevelUpFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 42, E.db.general.fontStyle)
+	LevelUpFrame.Text2:SetFont(E.LSM:Fetch("font", E.db.general.font), 42, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 
 	LevelUpFrame.StatusLine = CreateFrame("StatusBar", "EltruismLevelUp", LevelUpFrame)
 	LevelUpFrame.StatusLine:SetSize(418, 3)

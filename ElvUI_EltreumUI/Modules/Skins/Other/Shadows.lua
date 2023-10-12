@@ -21,7 +21,7 @@ function ElvUI_EltreumUI:ShadowColor(shadow)
 		if E.db.ElvUI_EltreumUI.skins.shadow.classcolor then
 			shadow:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
 		elseif E.db.ElvUI_EltreumUI.skins.shadow.customcolor then
-			shadow:SetBackdropBorderColor(E.db.ElvUI_EltreumUI.skins.shadow.r, E.db.ElvUI_EltreumUI.skins.shadow.g, E.db.ElvUI_EltreumUI.skins.shadow.b, 1)
+			shadow:SetBackdropBorderColor(E.db.ElvUI_EltreumUI.skins.shadow.r, E.db.ElvUI_EltreumUI.skins.shadow.g, E.db.ElvUI_EltreumUI.skins.shadow.b, E.db.ElvUI_EltreumUI.skins.shadow.a)
 		end
 	end
 end
@@ -833,6 +833,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.LootFrame,
 				_G.AddonCompartmentFrame,
 				_G.GroupLootHistoryFrame,
+				_G.OpacityFrame,
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame and not frame.shadow then
@@ -1197,7 +1198,7 @@ function ElvUI_EltreumUI:Shadows()
 			if E.db.ElvUI_EltreumUI.skins.shadow.blizzard then
 				--wrath/classic frames
 				local classicframes = {
-					_G.HelpFrame,
+					_G.HelpFrame.backdrop,
 					_G.QuestLogFrame.backdrop,
 					_G.CharacterFrame.backdrop,
 					_G.SpellBookFrame.backdrop,
@@ -1207,7 +1208,6 @@ function ElvUI_EltreumUI:Shadows()
 					_G.MailFrameTab1.backdrop,
 					_G.MailFrameTab2.backdrop,
 					_G.MerchantFrame.backdrop,
-					_G.WorldMapFrame,
 					--_G.WorldMapFrame.ScrollContainer,
 					_G.CharacterFrameTab4.backdrop, --only in classic though
 					_G.CharacterFrameTab5.backdrop, --only in classic though
@@ -1234,12 +1234,14 @@ function ElvUI_EltreumUI:Shadows()
 					_G.LFGParentFrameTab2,
 					_G.QuestLogDetailFrame,
 					_G.LFGListingFrame,
+					_G.LFGListCreateRoleDialog,
 					_G.LFGBrowseFrame,
 					_G.GroupFinderFrame,
 					_G.PVPFrame,
 					_G.PVPParentFrameTab2,
 					_G.PVPParentFrameTab1,
 					_G.WorldMapFrame.MiniBorderFrame,
+					_G.WorldMapFrame.BorderFrame,
 					}
 					for _, frame in pairs(tbcframes) do
 						if frame then
@@ -1254,6 +1256,19 @@ function ElvUI_EltreumUI:Shadows()
 									ElvUI_EltreumUI:ShadowColor(frame.shadow)
 								end
 							end
+						end
+					end
+				end
+
+				--classic only frames
+				if E.Classic then
+					local eraframes = {
+						_G.WorldMapFrame,
+					}
+					for _, frame in pairs(eraframes) do
+						if frame and not frame.shadow then
+							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(frame.shadow)
 						end
 					end
 				end

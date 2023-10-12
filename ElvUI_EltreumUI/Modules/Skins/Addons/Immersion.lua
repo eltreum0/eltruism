@@ -107,7 +107,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 						v:StyleButton()
 						v.hover:SetVertexColor(classcolor.r, classcolor.g,classcolor.b, 0.7) --hover color
 						v.pushed:SetColorTexture(classcolor.r, classcolor.g,classcolor.b, 0.8) --pushed color
-						v.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+3, E.db.general.fontStyle)
+						v.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+3, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 						v.Label:SetShadowOffset(1,-1)
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 							if v and not v.shadow then
@@ -134,7 +134,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 						local r,g,b = GetItemQualityColor(quality)
 						--_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetBackdropBorderColor(r, g, b)
 						_G["ImmersionQuestInfoItem" .. i].Name:SetTextColor(r, g, b)
-						_G["ImmersionQuestInfoItem" .. i].Name:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+						_G["ImmersionQuestInfoItem" .. i].Name:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 					end
 				end
 			end
@@ -152,7 +152,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 						local r,g,b = GetItemQualityColor(quality)
 						--_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetBackdropBorderColor(r, g, b)
 						_G["ImmersionProgressItem" .. i].Name:SetTextColor(r, g, b)
-						_G["ImmersionProgressItem" .. i].Name:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+						_G["ImmersionProgressItem" .. i].Name:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 					end
 				end
 			end

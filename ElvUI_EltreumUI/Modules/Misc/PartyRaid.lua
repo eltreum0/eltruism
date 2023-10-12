@@ -125,12 +125,12 @@ function ElvUI_EltreumUI:BattleRes()
 
 			spellcount:SetParent(bresframe)
 			spellcount:SetPoint("CENTER", spellicon)
-			spellcount:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 4, E.db.general.fontStyle)
+			spellcount:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 4, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 			spellcount:SetTextColor(1, 1, 1)
 
 			spellcd:SetParent(bresframe)
 			spellcd:SetPoint("LEFT", spellicon, "RIGHT", 10, 0)
-			spellcd:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 4, E.db.general.fontStyle)
+			spellcd:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 4, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 			spellcd:SetTextColor(1, 1, 1)
 			bresframe:SetScript('OnUpdate', function(_, elapsed)
 				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed

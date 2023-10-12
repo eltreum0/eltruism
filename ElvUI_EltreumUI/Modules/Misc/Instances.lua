@@ -35,7 +35,7 @@ instancedifficulty:SetScript("OnEvent", function()
 	if (instanceType == "raid" or instanceType == "party" or instanceType == "scenario") and E.db.ElvUI_EltreumUI.skins.instances.enable and not (mapID == 1662 or mapID == 582 or mapID == 590) then
 		instancedifficulty:Show()
 		instancedifficulty.Text:Show()
-		instancedifficulty.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.instances.fontsize, E.db.general.fontStyle)
+		instancedifficulty.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.instances.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 
 		local DifficultyID = select(3, GetInstanceInfo()) --https://wowpedia.fandom.com/wiki/DifficultyID
 

@@ -200,7 +200,12 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 						end
 					end
 				else
-					iconTable[className] = _G.CLASS_ICON_TCOORDS[className]
+					--iconTable[className] = _G.CLASS_ICON_TCOORDS[className]
+					--get rid of the border
+					iconTable[className][1] = _G.CLASS_ICON_TCOORDS[className][1] + 0.02
+					iconTable[className][2] = _G.CLASS_ICON_TCOORDS[className][2] - 0.02
+					iconTable[className][3] = _G.CLASS_ICON_TCOORDS[className][3] + 0.02
+					iconTable[className][4] = _G.CLASS_ICON_TCOORDS[className][4] - 0.02
 				end
 			end
 		end
@@ -245,45 +250,47 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 
 			--start of the io/region thing
 			if E.db.ElvUI_EltreumUI.skins.groupfinderDungeonScore then
-				if E.Retail then
-					if REALMS[GetCurrentRegion()] then
-						local function GetRegion(name)
-							if not name then return nil end
-							local leaderRealm = name:match("%-(.+)")
-							if leaderRealm then
-								leaderRealm = leaderRealm:lower():gsub(" ", "")
-							else
-								leaderRealm = GetRealmName():lower():gsub(" ", "")
-							end
-							for region, regionRealms in pairs(REALMS[GetCurrentRegion()]) do
-								for _, realm in pairs(regionRealms) do
-									if realm:lower():gsub(" ", "") == leaderRealm then
-										return region
+				if categoryID == 2 or categoryID == 7 then --not in arenas (4)
+					if E.Retail then
+						if REALMS[GetCurrentRegion()] then
+							local function GetRegion(name)
+								if not name then return nil end
+								local leaderRealm = name:match("%-(.+)")
+								if leaderRealm then
+									leaderRealm = leaderRealm:lower():gsub(" ", "")
+								else
+									leaderRealm = GetRealmName():lower():gsub(" ", "")
+								end
+								for region, regionRealms in pairs(REALMS[GetCurrentRegion()]) do
+									for _, realm in pairs(regionRealms) do
+										if realm:lower():gsub(" ", "") == leaderRealm then
+											return region
+										end
 									end
 								end
 							end
-						end
-						local region
-						if REGION_COLORED[GetRegion(resultInfo.leaderName)] then
-							if E.db.ElvUI_EltreumUI.skins.groupfinderIconStyle == "TEXT" then
-								region = REGION_COLORED[GetRegion(resultInfo.leaderName)]
+							local region
+							if REGION_COLORED[GetRegion(resultInfo.leaderName)] then
+								if E.db.ElvUI_EltreumUI.skins.groupfinderIconStyle == "TEXT" then
+									region = REGION_COLORED[GetRegion(resultInfo.leaderName)]
+								else
+									region = REGION_FLAG[GetRegion(resultInfo.leaderName)]
+								end
 							else
-								region = REGION_FLAG[GetRegion(resultInfo.leaderName)]
+								region = "???"
 							end
-						else
-							region = "???"
+							if entry.ActivityName:GetText() ~= nil and entry.ActivityName:GetText() ~= "" then
+								entry.ActivityName:SetFormattedText("%s %s", region,entry.ActivityName:GetText())
+							end
 						end
-						if entry.ActivityName:GetText() ~= nil and entry.ActivityName:GetText() ~= "" then
-							entry.ActivityName:SetFormattedText("%s %s", region,entry.ActivityName:GetText())
+						if entry.Name:GetText() ~= nil then
+							local score = resultInfo.leaderOverallDungeonScore or 0
+							local name = entry.Name:GetText() or ""
+							local r, g, b = C_ChallengeMode.GetDungeonScoreRarityColor(score):GetRGB()
+							local hex = E:RGBToHex(r, g, b, 'ff')
+							entry.Name:SetText("[|c"..hex..score.."|r] "..name)
+							entry.Name:SetWidth(176)
 						end
-					end
-					if entry.Name:GetText() ~= nil then
-						local score = resultInfo.leaderOverallDungeonScore or 0
-						local name = entry.Name:GetText() or ""
-						local r, g, b = C_ChallengeMode.GetDungeonScoreRarityColor(score):GetRGB()
-						local hex = E:RGBToHex(r, g, b, 'ff')
-						entry.Name:SetText("[|c"..hex..score.."|r] "..name)
-						entry.Name:SetWidth(176)
 					end
 				end
 			end
@@ -329,6 +336,9 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 					if not entry.DataDisplay.Enumerate[i] then
 						entry.DataDisplay.Enumerate[i] = entry.DataDisplay:CreateTexture(nil, "BORDER")
 						entry.DataDisplay.Enumerate[i]:SetSize(17, 17)
+
+					end
+					if not entry.DataDisplay.Enumerate[i.."b"] then
 						entry.DataDisplay.Enumerate[i.."b"] = entry.DataDisplay:CreateTexture(nil, "BACKGROUND")
 						entry.DataDisplay.Enumerate[i.."b"]:SetSize(20, 20)
 					end

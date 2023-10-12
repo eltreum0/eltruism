@@ -116,7 +116,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["b"] = 1
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["g"] = 1
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["defaultColor"] = true
-		E.db["unitframe"]["units"]["player"]["CombatIcon"]["texture"] = "Eltruism10"
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["texture"] = "Eltruism16"
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["size"] = 14
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = -7
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = -7
@@ -450,7 +450,12 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["general"]["minimap"]["timeFont"] = "Kimberley"
 		E.db["general"]["addonCompartment"]["fontOutline"] = "OUTLINE"
 		E.db["general"]["addonCompartment"]["font"] = "Kimberley"
-
+		E.db["general"]["guildBank"]["countFont"] = "Kimberley"
+		E.db["general"]["guildBank"]["countFontOutline"] = "OUTLINE"
+		E.db["general"]["guildBank"]["countFontSize"] = 12
+		E.db["general"]["guildBank"]["itemLevelFont"] = "Kimberley"
+		E.db["general"]["guildBank"]["itemLevelFontOutline"] = "OUTLINE"
+		E.db["general"]["guildBank"]["itemLevelFontSize"] = 12
 		E.db["general"]["objectiveFrameAutoHideInKeystone"] = false
 		E.db["general"]["objectiveFrameHeight"] = 550
 		E.db["general"]["resurrectSound"] = true
@@ -1427,6 +1432,7 @@ function ElvUI_EltreumUI:SetupPrivate()
 	E.private["general"]["nameplateFontSize"] = 10
 	E.private["general"]["nameplateLargeFont"] = "Kimberley"
 	E.private["general"]["nameplateLargeFontSize"] = 10
+	E.private["general"]["raidUtility"] = true
 	if E.Retail then
 		E.private["general"]["minimap"]["hideTracking"] = true
 	end

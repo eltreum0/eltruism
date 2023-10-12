@@ -491,10 +491,10 @@ end)
 function ElvUI_EltreumUI:SkinMailZone()
 	if E.db.ElvUI_EltreumUI.skins.zones then
 		if not ElvUI_EltreumUI:SLCheck("media") then
-			_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, E.db.general.fontStyle)
-			_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, E.db.general.fontStyle)
-			_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
-			_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, E.db.general.fontStyle)
+			_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+			_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+			_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+			_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 			if E.db.general.fontStyle ~= "NONE" then
 				_G.ZoneTextString:SetShadowColor(0,0,0,1)
 				_G.ZoneTextString:SetShadowOffset(1, -1)
@@ -557,20 +557,16 @@ function ElvUI_EltreumUI:SkinMailZone()
 				self.ZoneSkinned = true
 			end
 
-			if _G.OpenMailBodyText then
-				if E.db.general.fontStyle == "NONE" then
-					_G.OpenMailBodyText:SetFont("P", E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, "")
+			--[[if _G.OpenMailBodyText then
+				if E.Retail then
+					_G.OpenMailBodyText:SetFont("P", E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, "OUTLINE")
 				else
-					_G.OpenMailBodyText:SetFont("P", E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
+					_G.OpenMailBodyText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, "OUTLINE")
 				end
 			end
 			if E.Retail then
-				if E.db.general.fontStyle == "NONE" then
-					_G.SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, "")
-				else
-					_G.SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, E.db.general.fontStyle)
-				end
-			end
+				_G.SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, "OUTLINE")
+			end]]
 		end
 	end
 end

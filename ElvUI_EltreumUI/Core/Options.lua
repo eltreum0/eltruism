@@ -369,7 +369,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.enable = ACH:Toggle(L["Enable"], nil, 4, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.borders end,function(_, value) E.db.ElvUI_EltreumUI.borders.borders = value ElvUI_EltreumUI:ShowHideBorders() ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.enableautoadjust = ACH:Toggle(L["Enable Auto-adjusting the actionbar spacing and position"], L["Adjusts actionbar spacing and position based on borders being enabled or not"], 5, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust end,function(_, value) E.db.ElvUI_EltreumUI.borders.borderautoadjust = value ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.description2 = ACH:Description(L["Choose the Border Texture to be used:"], 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
-	ElvUI_EltreumUI.Options.args.borders.args.general.args.bordertexture = ACH:SharedMediaBorder("", nil, 7, "full", function() return E.db.ElvUI_EltreumUI.borders.texture end, function(_,key) E.db.ElvUI_EltreumUI.borders.texture = key ElvUI_EltreumUI:Borders() end, function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end)
+	ElvUI_EltreumUI.Options.args.borders.args.general.args.bordertexture = ACH:SharedMediaBorder("", nil, 7, "full", function() return E.db.ElvUI_EltreumUI.borders.texture end, function(_,key) E.db.ElvUI_EltreumUI.borders.texture = key ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end, function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end)
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.classcolors = ACH:Toggle(L["Use Class Colors"], nil, 8, nil, false,nil,function() return E.db.ElvUI_EltreumUI.borders.classcolor end,function(_, value) E.db.ElvUI_EltreumUI.borders.classcolor = value ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end,function() return not E.db.ElvUI_EltreumUI.borders.borders end)
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.colorborders = ACH:Color(L["Custom Color"], nil, 9, false, nil, function()
 		local customcolorborders = E.db.ElvUI_EltreumUI.borders.bordercolors
@@ -3228,7 +3228,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.skins.args.shadows.args.description4 = ACH:Description(L["Custom Color"], 8, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.skins.args.shadows.args.classcolors = ACH:Toggle(L["Use Class Colors"], nil, 9, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.shadow.classcolor end, function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.classcolor = value E:StaticPopup_Show('CONFIG_RL') end, function() return E.db.ElvUI_EltreumUI.skins.shadow.customcolor or not E.db.ElvUI_EltreumUI.skins.shadow.enable end)
 	ElvUI_EltreumUI.Options.args.skins.args.shadows.args.customcolorenable = ACH:Toggle(L["Enable Custom Colors"], nil, 10, nil, false, nil, function() return E.db.ElvUI_EltreumUI.skins.shadow.customcolor end, function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.customcolor = value E:StaticPopup_Show('CONFIG_RL') end, function() return E.db.ElvUI_EltreumUI.skins.shadow.classcolor or not E.db.ElvUI_EltreumUI.skins.shadow.enable end)
-	ElvUI_EltreumUI.Options.args.skins.args.shadows.args.customcolor = ACH:Color(L["Custom Color"], nil, 11, false, nil, function() return E.db.ElvUI_EltreumUI.skins.shadow.r, E.db.ElvUI_EltreumUI.skins.shadow.g, E.db.ElvUI_EltreumUI.skins.shadow.b, 1, P.ElvUI_EltreumUI.skins.shadow.r, P.ElvUI_EltreumUI.skins.shadow.g, P.ElvUI_EltreumUI.skins.shadow.b, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.skins.shadow.r, E.db.ElvUI_EltreumUI.skins.shadow.g, E.db.ElvUI_EltreumUI.skins.shadow.b = r, g, b E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable or not E.db.ElvUI_EltreumUI.skins.shadow.customcolor end)
+	ElvUI_EltreumUI.Options.args.skins.args.shadows.args.customcolor = ACH:Color(L["Custom Color"], nil, 11, true, nil, function() return E.db.ElvUI_EltreumUI.skins.shadow.r, E.db.ElvUI_EltreumUI.skins.shadow.g, E.db.ElvUI_EltreumUI.skins.shadow.b, E.db.ElvUI_EltreumUI.skins.shadow.a, P.ElvUI_EltreumUI.skins.shadow.r, P.ElvUI_EltreumUI.skins.shadow.g, P.ElvUI_EltreumUI.skins.shadow.b, P.ElvUI_EltreumUI.skins.shadow.a end, function(_, r, g, b, a) E.db.ElvUI_EltreumUI.skins.shadow.r, E.db.ElvUI_EltreumUI.skins.shadow.g, E.db.ElvUI_EltreumUI.skins.shadow.b, E.db.ElvUI_EltreumUI.skins.shadow.a = r, g, b, a E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable or not E.db.ElvUI_EltreumUI.skins.shadow.customcolor end)
 	ElvUI_EltreumUI.Options.args.skins.args.quests = ACH:Group(L["Quests"], nil, 2, "tab")
 	--ElvUI_EltreumUI.Options.args.skins.args.quests.args.objectiveframe = ACH:Group(L["Objective Frame"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.skins.args.quests.args.description3 = ACH:Description(L["Skin Objective Frame"], 5, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
@@ -3308,6 +3308,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.otheraddons.args.dbm = ACH:Toggle(L["Skin DBM"], nil, 27, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.dbm end, function(_, value) E.db.ElvUI_EltreumUI.skins.dbm = value E:StaticPopup_Show('CONFIG_RL') end, function() return not IsAddOnLoaded("DBM-Core") end) --TODO 10.2, might need C_AddOns.
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.otheraddons.args.description14 = ACH:Description("Auctionator", 28, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.otheraddons.args.auctionator = ACH:Toggle(E.NewSign..L["Skin Auctionator"], nil, 29, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.auctionator end, function(_, value) E.db.ElvUI_EltreumUI.skins.auctionator = value E:StaticPopup_Show('CONFIG_RL') end, function() return not IsAddOnLoaded("Auctionator") end) --TODO 10.2, might need C_AddOns.
+	ElvUI_EltreumUI.Options.args.skins.args.addons.args.otheraddons.args.description15 = ACH:Description("WeakAuras Options", 30, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.skins.args.addons.args.otheraddons.args.weakaurasoptions = ACH:Toggle(E.NewSign..L["Skin"].." WeakAuras Options", nil, 31, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.weakaurasoptions end, function(_, value) E.db.ElvUI_EltreumUI.skins.weakaurasoptions = value E:StaticPopup_Show('CONFIG_RL') end, function() return not IsAddOnLoaded("WeakAuras") end) --TODO 10.2, might need C_AddOns.
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.elvui = ACH:Group("ElvUI", nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.elvui.args.description1 = ACH:Description(L["Skin ElvUI"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.elvui.args.enable = ACH:Toggle(L["Add a texture to ElvUI Backgrounds"], nil, 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate end, function(_, value) E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate = value E:StaticPopup_Show('CONFIG_RL') end)
@@ -3356,6 +3358,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 2)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
+Added /eltruism autoupdate command, which will run the Eltruism Update function when a new version is installed
 Added Blizzard Dungeon Score to the LFG Listing in Retail, which also has a spam blocking element
 Added a possible fix for the GetPlaystyleString taint in Retail
 Added a button to import the Edit Mode Layout in Retail
@@ -3364,14 +3367,18 @@ Added an option to increase the shadows in Details
 Added [eltruism:longhpstatusnopc:gradient] tag
 Added Spec Icons in the LFG Listing in Retail
 Added Class Icons in the LFG Listing in Wrath
+Added a simple skin to WeakAuras Options
 Added Rank to Honor Datatext in Classic
+Added a mover for Raid Utility
 Added in game Changelog
 Added more role icons
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
+Updated Eltruism DataText Texture to better follow the position of the Datatext
 Updated custom Nameplate Classification Icons to also work on friendly units
+Updated gradient on Boss, Arena and Target of Target frames to invert colors
 Updated Party Borders frame strata to avoid issues with the party frames
 Updated Unitframe Aura Borders to update color when the target changes
 Updated Quests Skin adding progress coloring and new checkmark texture
@@ -3385,6 +3392,7 @@ Updated some Quest Options to be inside the Quests tab
 Updated ElvUI Profile to disable Item Rarity Color
 Updated Gradient to load earlier when logging in
 Updated Gradient to not overwrite Offline color
+Updated World Map scale to also work in Wrath
 Updated Leader Icon skin to desaturate tanks
 Updated Spellcrit datatext in Wrath/Classic
 Updated Nameplate Arrow Texture for 1080p
@@ -3403,11 +3411,15 @@ Updated Shadows
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
 Fixed a possible issue with the player name in the character panel that would cause it to not be gradient
 Fixed a possible issue with the Profession Bag Icons that would prevent Bags from opening in combat
+Fixed an error with Priest unitframe model in Classic since the model was removed
 Fixed the offline/online chat text coloring when a character has a similar name
 Fixed an issue where Death Animation sound would not play in Classic Era
+Fixed Font Outline since Shadow outlines are not a real font setting
 Fixed an issue that would cause Boss Combat Music to not play
 Fixed a possible issue with the Blizzard Raid frames skin
 Fixed a possible issue with the Auctionator Skin
+Fixed OmniCD skin missing shadows on extra bars
+Added alpha settings to custom color shadows
 Fixed the fading of the Pet Model while AFK
 Fixed Gradient Health when in a vehicle
 Fixed a possible double Death Animation

@@ -5,6 +5,7 @@ P.ElvUI_EltreumUI = {
 
 	dev = false,
 	deepLwarning = true,
+	autoupdate = false,
 
 	chat = {
 		enable = false,
@@ -199,6 +200,7 @@ P.ElvUI_EltreumUI = {
 			r = 0.27,
 			g = 0.50,
 			b = 0.70,
+			a = 1,
 			raid = true,
 			aura = false,
 			ufaura = false,
@@ -254,6 +256,7 @@ P.ElvUI_EltreumUI = {
 		cellhealthloss = false,
 		dbm = false,
 		auctionator = false,
+		weakaurasoptions = false,
 
 		hideABkeypress = false,
 		tbctalents = false,

@@ -16,7 +16,7 @@ function ElvUI_EltreumUI:GetNameplateSCTProfile()
 			["enableMSQ"] = false,
 			["truncate"] = false,
 			["modOffTargetStrata"] = true,
-			["fontFlag"] = E.db.general.fontStyle,
+			["fontFlag"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 			["font"] = E.db.general.font,
 			["strata"] = {
 				["target"] = "BACKGROUND",

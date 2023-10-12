@@ -79,6 +79,7 @@ LSM:Register("statusbar", "Eltreum-20%", [[Interface\Addons\ElvUI_EltreumUI\Medi
 LSM:Register("statusbar", "Eltreum-30%", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-30pc.tga]])
 LSM:Register("statusbar", "Eltreum-Fade", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\EltreumFade.tga]])
 LSM:Register("statusbar", "Eltreum-Fade2", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\EltreumFade2.tga]])
+LSM:Register("statusbar", "Eltreum-Fade3", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\EltreumFade3.tga]])
 LSM:Register("statusbar", "Eltreum-Transparent", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Transparent.tga]])
 
 --from dragonflight/10.0

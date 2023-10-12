@@ -1,6 +1,11 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.0.1
+Added /eltruism autoupdate command, which will run the Eltruism Update function when a new version is installed  
+Added alpha settings to custom color shadows  
+Fixed an error with Priest unitframe model in Classic since the model was removed  
+Fixed Font Outline since Shadow outlines are not a real font setting
 ### 4.0.0
 Added Blizzard Dungeon Score to the LFG Listing in Retail, which also has a spam blocking element  
 Added a possible fix for the GetPlaystyleString taint in Retail  
@@ -10,10 +15,14 @@ Added an option to increase the shadows in Details
 Added [eltruism:longhpstatusnopc:gradient] tag  
 Added Spec Icons in the LFG Listing in Retail  
 Added Class Icons in the LFG Listing in Wrath  
+Added a simple skin to WeakAuras Options  
 Added Rank to Honor Datatext in Classic  
+Added a mover for Raid Utility  
 Added in game Changelog  
 Added more role icons  
+Updated Eltruism DataText Texture to better follow the position of the Datatext  
 Updated custom Nameplate Classification Icons to also work on friendly units  
+Updated gradient on Boss, Arena and Target of Target frames to invert colors  
 Updated Party Borders frame strata to avoid issues with the party frames  
 Updated Unitframe Aura Borders to update color when the target changes  
 Updated Quests Skin adding progress coloring and new checkmark texture  
@@ -27,6 +36,7 @@ Updated some Quest Options to be inside the Quests tab
 Updated ElvUI Profile to disable Item Rarity Color  
 Updated Gradient to load earlier when logging in  
 Updated Gradient to not overwrite Offline color  
+Updated World Map scale to also work in Wrath  
 Updated Leader Icon skin to desaturate tanks  
 Updated Spellcrit datatext in Wrath/Classic  
 Updated Nameplate Arrow Texture for 1080p  
@@ -46,6 +56,7 @@ Fixed an issue where Death Animation sound would not play in Classic Era
 Fixed an issue that would cause Boss Combat Music to not play  
 Fixed a possible issue with the Blizzard Raid frames skin  
 Fixed a possible issue with the Auctionator Skin  
+Fixed OmniCD skin missing shadows on extra bars  
 Fixed the fading of the Pet Model while AFK  
 Fixed Gradient Health when in a vehicle  
 Fixed a possible double Death Animation  
