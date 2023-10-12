@@ -133,6 +133,7 @@ local function SkinAuctionator()
 			if frame.Icon then
 				frame.Icon:SetTexCoord(unpack(E.TexCoords))
 				frame.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
+				frame.IconSelectedHighlight:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
 			end
 			if frame.NormalTexture then
 				frame.NormalTexture:SetAlpha(0)
@@ -185,6 +186,7 @@ local function SkinAuctionator()
 			if frame.Icon then --doesnt seem to find any
 				frame.Icon:SetTexCoord(unpack(E.TexCoords))
 				frame.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
+				frame.IconSelectedHighlight:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
 			end
 			if frame.NormalTexture then
 				frame.NormalTexture:SetAlpha(0)
@@ -320,6 +322,7 @@ local function SkinAuctionator()
 				_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconBorder:SetAlpha(0)
 			end)]]
 			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
+			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconSelectedHighlight:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
 		end
 
 		if _G["AuctionatorSellingFrame"].PricesTabsContainer then
