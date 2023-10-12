@@ -16,6 +16,11 @@ end
 local function SkinAuctionator()
 	if _G.AuctionatorShoppingFrame and not _G.AuctionatorShoppingFrame.EltruismSkin then
 
+		--scanning thing
+		if not E.Retail then
+			S:HandleFrame(_G["AuctionatorPageStatusDialogFrame"])
+		end
+
 		--shopping
 		S:HandleFrame(_G["AuctionatorShoppingFrame"])
 		_G["AuctionatorShoppingFrame"]:SetBackdrop()
