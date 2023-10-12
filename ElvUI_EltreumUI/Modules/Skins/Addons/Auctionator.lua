@@ -127,18 +127,54 @@ local function SkinAuctionator()
 		if _G["AuctionatorSellingFrame"].eltruismbgtexture then
 			_G["AuctionatorSellingFrame"].eltruismbgtexture:Hide()
 		end
-		S:HandleFrame(_G["AuctionatorSellingFrame"].BagListing)
-		_G["AuctionatorSellingFrame"].BagListing:SetBackdrop()
-		if _G["AuctionatorSellingFrame"].BagListing.eltruismbgtexture then
-			_G["AuctionatorSellingFrame"].BagListing.eltruismbgtexture:Hide()
+
+
+
+		local function handlesubframe(frame)
+			if frame.Icon then
+				frame.Icon:SetTexCoord(unpack(E.TexCoords))
+				frame.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
+			end
+			for i = 1, frame:GetNumChildren() do
+				local subframe = select(i, frame:GetChildren())
+				if subframe then
+					if subframe:GetObjectType() == "Frame" then
+						S:HandleFrame(subframe)
+					elseif subframe:GetObjectType() == "Button" then
+						S:HandleButton(subframe)
+					end
+					handlesubframe(subframe)
+				end
+			end
 		end
-		_G["AuctionatorSellingFrame"].BagListing:CreateBackdrop()
-		_G["AuctionatorSellingFrame"].BagListing.ScrollBox:SetTemplate()
-		_G["AuctionatorSellingFrame"].BagListing.ScrollBox:SetBackdrop()
-		if _G["AuctionatorSellingFrame"].BagListing.ScrollBox.eltruismbgtexture then
-			_G["AuctionatorSellingFrame"].BagListing.ScrollBox.eltruismbgtexture:Hide()
+		if not _G["AuctionatorSellingFrame"].BagListing.EltruismViewHook then --items update late, and they might also change, so hook view
+			_G["AuctionatorSellingFrame"].BagListing:HookScript("OnShow", function()
+				E:Delay(0, function()
+					handlesubframe(_G["AuctionatorSellingFrame"].BagListing.View.ScrollBox.ItemListingFrame)
+				end)
+			end)
+			_G["AuctionatorSellingFrame"].BagListing.EltruismViewHook = true
 		end
-		S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].BagListing.ScrollBar)
+
+		if _G["AuctionatorSellingFrame"].BagListing then
+			local header = _G["AuctionatorSellingFrame"].BagListing
+			for i = 1, header:GetNumChildren() do
+				local group = select(i, header:GetChildren())
+				if group then
+					if group:GetObjectType() == "Frame" then
+						S:HandleFrame(group)
+					elseif group:GetObjectType() == "Button" then
+						S:HandleButton(group)
+					end
+				end
+			end
+		end
+		S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].BagListing.View.ScrollBar)
+
+
+
+
+
 		if _G["AuctionatorBuyFrame"] then
 			if _G["AuctionatorBuyFrame"].CurrentPrices then
 				S:HandleTrimScrollBar(_G["AuctionatorBuyFrame"].CurrentPrices.SearchResultsListing.ScrollArea.ScrollBar)
@@ -192,15 +228,16 @@ local function SkinAuctionator()
 
 		--also based on simpy's skin but different
 		if _G["AuctionatorSellingFrame"].AuctionatorSaleItem and not _G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop then
-			_G["AuctionatorSellingFrame"].AuctionatorSaleItem:CreateBackdrop()
+			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.Icon:SetTexCoord(unpack(E.TexCoords))
 			_G["AuctionatorSellingFrame"].AuctionatorSaleItem:StyleButton()
+			--[[_G["AuctionatorSellingFrame"].AuctionatorSaleItem:CreateBackdrop()
 			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop:SetPoint("TOPLEFT",_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon,"TOPLEFT",-1,1)
 			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop:SetPoint("BOTTOMRIGHT",_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon,"BOTTOMRIGHT",1,-1)
-			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.Icon:SetTexCoord(unpack(E.TexCoords))
 			hooksecurefunc(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconBorder,"SetVertexColor", function(_,r,g,b)
 				_G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop:SetBackdropBorderColor(r, g, b, 1)
 				_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconBorder:SetAlpha(0)
-			end)
+			end)]]
+			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
 		end
 
 		if _G["AuctionatorSellingFrame"].PricesTabsContainer then
