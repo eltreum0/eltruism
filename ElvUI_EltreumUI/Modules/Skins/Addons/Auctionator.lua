@@ -21,10 +21,6 @@ local function SkinAuctionator()
 			S:HandleFrame(_G["AuctionatorPageStatusDialogFrame"])
 		end
 
-		if _G["AuctionatorSellingPopupFrame"] then
-			S:HandleFrame(_G["AuctionatorSellingPopupFrame"])
-		end
-
 		--shopping
 		S:HandleFrame(_G["AuctionatorShoppingFrame"])
 		_G["AuctionatorShoppingFrame"]:SetBackdrop()
@@ -253,6 +249,15 @@ local function SkinAuctionator()
 
 				_G["AuctionatorGroupsCustomiseFrame"].EltruismSkin = true
 			end
+		end)
+
+		hooksecurefunc(_G.Auctionator.Selling,"ShowPopup",function()
+			E:Delay(0, function()
+				if not _G["AuctionatorSellingPopupFrame"].EltruismSkin then
+					S:HandleFrame(_G["AuctionatorSellingPopupFrame"])
+					_G["AuctionatorSellingPopupFrame"].EltruismSkin = true
+				end
+			end)
 		end)
 
 		if not _G["AuctionatorSellingFrame"].BagListing.EltruismViewHook then --items update late, and they might also change, so hook view
