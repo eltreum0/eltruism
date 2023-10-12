@@ -4,13 +4,9 @@ local DT = E:GetModule("DataTexts")
 local InCombatLockdown = _G.InCombatLockdown
 local UIErrorsFrame = _G.UIErrorsFrame
 local ERR_NOT_IN_COMBAT = _G.ERR_NOT_IN_COMBAT
-local strjoin = _G.strjoin
 
-local lastPanelEltruismConfig
-local displayStringEltruismconfig = ''
 local function EltruismConfigOnEvent(self)
-	lastPanelEltruismConfig = self
-	self.text:SetFormattedText(displayStringEltruismconfig, E.global.datatexts.settings.ElvUI.Label ~= '' and E.global.datatexts.settings.ElvUI.Label or 'Eltruism')
+	self.text:SetText('|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogodev.tga:14:14:0:0|t'..E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1))
 end
 
 local function EltruismConfigOnEnter()
@@ -31,9 +27,4 @@ local function EltruismConfigOnClick(_, button)
 		end
 	end
 end
-
-local function EltruismConfigValueColorUpdate(_,hex)
-	displayStringEltruismconfig = strjoin('', hex, '%s|r')
-	if lastPanelEltruismConfig then EltruismConfigOnEvent(lastPanelEltruismConfig) end
-end
-DT:RegisterDatatext('Eltruism', nil, nil, EltruismConfigOnEvent, nil, EltruismConfigOnClick, EltruismConfigOnEnter, nil, L["Eltruism Config"], nil, EltruismConfigValueColorUpdate)
+DT:RegisterDatatext('Eltruism', nil, nil, EltruismConfigOnEvent, nil, EltruismConfigOnClick, EltruismConfigOnEnter, nil, L["Eltruism Config"])
