@@ -143,6 +143,7 @@ function ElvUI_EltreumUI:BagProfessions()
 							end
 						end
 
+						--disenchant
 						if IsSpellKnown(13262) then
 							if not _G["EltruismProfessionDisenchantBagButton"] then
 								local name, _, icon = GetSpellInfo(13262)
@@ -225,6 +226,90 @@ function ElvUI_EltreumUI:BagProfessions()
 								end)
 							end
 						end
+
+						--lockpick
+						if IsSpellKnown(1804) then
+							if not _G["EltruismProfessionLockpickBagButton"] then
+								local name, _, icon = GetSpellInfo(1804)
+								--local name, _, icon, _, _, _, spellID = GetSpellInfo(13262)
+								_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
+								_G["EltruismProfessionLockpickBagButton"] = CreateFrame("Button","EltruismProfessionLockpickBagButton",_G["ElvUI_ContainerFrame"],"SecureActionButtonTemplate")
+								_G["EltruismProfessionLockpickBagButton"]:SetSize(25,25)
+								_G["EltruismProfessionLockpickBagButton"]:SetTemplate("Transparent")
+								_G["EltruismProfessionLockpickBagButton"]:CreateBackdrop('Transparent')
+								_G["EltruismProfessionLockpickBagButton"].backdrop.Center:Hide()
+								S:HandleButton(_G["EltruismProfessionLockpickBagButton"])
+								_G["EltruismProfessionLockpickBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
+								_G["EltruismProfessionLockpickBagButton"]:SetAttribute('type', 'spell')
+								_G["EltruismProfessionLockpickBagButton"]:SetAttribute('spell', name)
+								_G["EltruismProfessionLockpickBagButton"]:RegisterForClicks("AnyDown")
+								_G["EltruismProfessionLockpickBagButton"].icon = _G["EltruismProfessionLockpickBagButton"]:CreateTexture(nil,"ARTWORK")
+								_G["EltruismProfessionLockpickBagButton"].icon:SetTexture(icon)
+								_G["EltruismProfessionLockpickBagButton"].icon:SetTexCoord(0.08,0.92,0.08,0.92)
+								_G["EltruismProfessionLockpickBagButton"].icon:SetAllPoints()
+								_G["EltruismProfessionLockpickBagButton"].isGlowing = false
+
+								local LCG = E.Libs.CustomGlow
+								--some event handling to get rid of the glow
+								_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_FAILED","player")
+								_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED","player")
+								_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_RETICLE_CLEAR","player")
+								_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_RETICLE_TARGET","player")
+								_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED","player")
+								_G["EltruismProfessionLockpickBagButton"]:RegisterEvent("PLAYER_REGEN_DISABLED")
+								_G["EltruismProfessionLockpickBagButton"]:RegisterEvent("PLAYER_REGEN_ENABLED")
+								_G["EltruismProfessionLockpickBagButton"]:SetScript("OnEvent", function(_,event,_,_,spell)
+									if event == "UNIT_SPELLCAST_RETICLE_CLEAR" then
+										if _G["EltruismProfessionLockpickBagButton"].isGlowing then
+											LCG.PixelGlow_Stop(_G["EltruismProfessionLockpickBagButton"])
+											_G["EltruismProfessionLockpickBagButton"].isGlowing = false
+										end
+									elseif event == "PLAYER_REGEN_DISABLED" then
+										_G["EltruismProfessionLockpickBagButton"]:UnregisterEvent("UNIT_SPELLCAST_RETICLE_CLEAR")
+										_G["EltruismProfessionLockpickBagButton"]:UnregisterEvent("UNIT_SPELLCAST_RETICLE_TARGET")
+										_G["EltruismProfessionLockpickBagButton"]:UnregisterEvent("UNIT_SPELLCAST_FAILED")
+										_G["EltruismProfessionLockpickBagButton"]:UnregisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+										_G["EltruismProfessionLockpickBagButton"]:UnregisterEvent("UNIT_SPELLCAST_INTERRUPTED")
+										if _G["EltruismProfessionLockpickBagButton"].isGlowing then
+											LCG.PixelGlow_Stop(_G["EltruismProfessionLockpickBagButton"])
+											_G["EltruismProfessionLockpickBagButton"].isGlowing = false
+										end
+									elseif event == "PLAYER_REGEN_ENABLED" then
+										_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_RETICLE_CLEAR","player")
+										_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_RETICLE_TARGET","player")
+										_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_FAILED","player")
+										_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED","player")
+										_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED","player")
+									elseif event == "UNIT_SPELLCAST_FAILED" then
+										if spell == 1804 then
+											if _G["EltruismProfessionLockpickBagButton"].isGlowing then
+												LCG.PixelGlow_Stop(_G["EltruismProfessionLockpickBagButton"])
+												_G["EltruismProfessionLockpickBagButton"].isGlowing = false
+											end
+										end
+									elseif event == "UNIT_SPELLCAST_INTERRUPTED" then
+										if spell == 1804 then
+											if _G["EltruismProfessionLockpickBagButton"].isGlowing then
+												LCG.PixelGlow_Stop(_G["EltruismProfessionLockpickBagButton"])
+												_G["EltruismProfessionLockpickBagButton"].isGlowing = false
+											end
+										end
+									elseif event == "UNIT_SPELLCAST_SUCCEEDED" then
+										if spell == 1804 then
+											if _G["EltruismProfessionLockpickBagButton"].isGlowing then
+												LCG.PixelGlow_Stop(_G["EltruismProfessionLockpickBagButton"])
+												_G["EltruismProfessionLockpickBagButton"].isGlowing = false
+											end
+										end
+									elseif event == "UNIT_SPELLCAST_RETICLE_TARGET" then
+										if spell == 1804 then
+											LCG.PixelGlow_Start(_G["EltruismProfessionLockpickBagButton"], {0.93, 0.44, 0.97, 1}, 7, 1, 3, 2, 2, 2, false, nil, 6)
+											_G["EltruismProfessionLockpickBagButton"].isGlowing = true
+										end
+									end
+								end)
+							end
+						end
 					else
 						for k, v in ipairs(proftable) do
 							if IsSpellKnown(v) then
@@ -249,6 +334,7 @@ function ElvUI_EltreumUI:BagProfessions()
 							end
 						end
 
+						--disenchant
 						if IsSpellKnown(13262) then
 							if not _G["EltruismProfessionDisenchantBagButton"] then
 								local _, _, icon = GetSpellInfo(13262)
@@ -325,6 +411,84 @@ function ElvUI_EltreumUI:BagProfessions()
 								end)
 							end
 						end
+
+						--lockpick
+						if IsSpellKnown(1804) then
+							if not _G["EltruismProfessionLockpickBagButton"] then
+								local _, _, icon = GetSpellInfo(1804)
+								_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
+								_G["EltruismProfessionLockpickBagButton"] = CreateFrame("Button","EltruismProfessionLockpickBagButton",_G["ElvUI_ContainerFrame"],"SecureActionButtonTemplate")
+								_G["EltruismProfessionLockpickBagButton"]:SetSize(25,25)
+								_G["EltruismProfessionLockpickBagButton"]:SetTemplate("Transparent")
+								_G["EltruismProfessionLockpickBagButton"]:CreateBackdrop('Transparent')
+								_G["EltruismProfessionLockpickBagButton"].backdrop.Center:Hide()
+								S:HandleButton(_G["EltruismProfessionLockpickBagButton"])
+								_G["EltruismProfessionLockpickBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
+								_G["EltruismProfessionLockpickBagButton"]:SetAttribute('type', 'spell')
+								_G["EltruismProfessionLockpickBagButton"]:SetAttribute('spell', 1804)
+								_G["EltruismProfessionLockpickBagButton"]:RegisterForClicks("AnyUp")
+								_G["EltruismProfessionLockpickBagButton"].icon = _G["EltruismProfessionLockpickBagButton"]:CreateTexture(nil,"ARTWORK")
+								_G["EltruismProfessionLockpickBagButton"].icon:SetTexture(icon)
+								_G["EltruismProfessionLockpickBagButton"].icon:SetTexCoord(0.08,0.92,0.08,0.92)
+								_G["EltruismProfessionLockpickBagButton"].icon:SetAllPoints()
+								_G["EltruismProfessionLockpickBagButton"].isGlowing = false
+
+								local LCG = E.Libs.CustomGlow
+								_G["EltruismProfessionLockpickBagButton"]:HookScript("OnClick",function()
+									if _G["EltruismProfessionLockpickBagButton"].isGlowing then
+										LCG.PixelGlow_Stop(_G["EltruismProfessionLockpickBagButton"])
+										_G["EltruismProfessionLockpickBagButton"].isGlowing = false
+									else
+										LCG.PixelGlow_Start(_G["EltruismProfessionLockpickBagButton"], {0.93, 0.44, 0.97, 1}, 7, 1, 3, 2, 2, 2, false, nil, 6)
+										_G["EltruismProfessionLockpickBagButton"].isGlowing = true
+									end
+								end)
+
+								--some event handling to get rid of the glow
+								_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_FAILED","player")
+								_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_START","player")
+								_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_FAILED_QUIET","player")
+								_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED","player")
+								_G["EltruismProfessionLockpickBagButton"]:RegisterEvent("PLAYER_REGEN_DISABLED")
+								_G["EltruismProfessionLockpickBagButton"]:RegisterEvent("PLAYER_REGEN_ENABLED")
+								_G["EltruismProfessionLockpickBagButton"]:SetScript("OnEvent", function(_,event,_,_,spell)
+									if event == "UNIT_SPELLCAST_FAILED_QUIET" then
+										if _G["EltruismProfessionLockpickBagButton"].isGlowing then
+											LCG.PixelGlow_Stop(_G["EltruismProfessionLockpickBagButton"])
+											_G["EltruismProfessionLockpickBagButton"].isGlowing = false
+										end
+									elseif event == "PLAYER_REGEN_DISABLED" then
+										_G["EltruismProfessionLockpickBagButton"]:UnregisterEvent("UNIT_SPELLCAST_FAILED_QUIET")
+										_G["EltruismProfessionLockpickBagButton"]:UnregisterEvent("UNIT_SPELLCAST_FAILED")
+										_G["EltruismProfessionLockpickBagButton"]:UnregisterEvent("UNIT_SPELLCAST_START")
+										_G["EltruismProfessionLockpickBagButton"]:UnregisterEvent("UNIT_SPELLCAST_INTERRUPTED")
+										if _G["EltruismProfessionLockpickBagButton"].isGlowing then
+											LCG.PixelGlow_Stop(_G["EltruismProfessionLockpickBagButton"])
+											_G["EltruismProfessionLockpickBagButton"].isGlowing = false
+										end
+									elseif event == "PLAYER_REGEN_ENABLED" then
+										_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_FAILED_QUIET","player")
+										_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_FAILED","player")
+										_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_START","player")
+										_G["EltruismProfessionLockpickBagButton"]:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED","player")
+									elseif event == "UNIT_SPELLCAST_FAILED" or event == "UNIT_SPELLCAST_START" then
+										if spell == 1804 then
+											if _G["EltruismProfessionLockpickBagButton"].isGlowing then
+												LCG.PixelGlow_Stop(_G["EltruismProfessionLockpickBagButton"])
+												_G["EltruismProfessionLockpickBagButton"].isGlowing = false
+											end
+										end
+									elseif event == "UNIT_SPELLCAST_INTERRUPTED" then
+										if spell == 1804 then
+											if _G["EltruismProfessionLockpickBagButton"].isGlowing then
+												LCG.PixelGlow_Stop(_G["EltruismProfessionLockpickBagButton"])
+												_G["EltruismProfessionLockpickBagButton"].isGlowing = false
+											end
+										end
+									end
+								end)
+							end
+						end
 					end
 				end
 			end)
@@ -360,6 +524,11 @@ function ElvUI_EltreumUI:BagProfessions()
 							_G["EltruismProfessionDisenchantBagButton"]:SetParent()
 							_G["EltruismProfessionDisenchantBagButton"]:Hide()
 						end
+						if _G["EltruismProfessionLockpickBagButton"] then
+							_G["EltruismProfessionLockpickBagButton"]:ClearAllPoints()
+							_G["EltruismProfessionLockpickBagButton"]:SetParent()
+							_G["EltruismProfessionLockpickBagButton"]:Hide()
+						end
 						_G["ElvUI_ContainerFrame"].numButtons = 0
 					end
 				elseif event == "PLAYER_REGEN_ENABLED" then
@@ -394,6 +563,12 @@ function ElvUI_EltreumUI:BagProfessions()
 							_G["EltruismProfessionDisenchantBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
 							_G["EltruismProfessionDisenchantBagButton"]:SetParent(_G["ElvUI_ContainerFrame"])
 							_G["EltruismProfessionDisenchantBagButton"]:Show()
+						end
+						if _G["EltruismProfessionLockpickBagButton"] then
+							_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
+							_G["EltruismProfessionLockpickBagButton"]:SetPoint("BOTTOMLEFT", _G["ElvUI_ContainerFrameEditBox"],"TOPLEFT", (_G["ElvUI_ContainerFrame"].numButtons-1)*28, 3)
+							_G["EltruismProfessionLockpickBagButton"]:SetParent(_G["ElvUI_ContainerFrame"])
+							_G["EltruismProfessionLockpickBagButton"]:Show()
 						end
 					end
 				end
