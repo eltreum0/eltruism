@@ -1083,15 +1083,11 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 
 					end
-					if line.dash then
+					--[[if line.dash then
 						--line.dash:Hide()
 						line.dash:ClearAllPoints()
 						line.dash:SetPoint("RIGHT", line,"LEFT",-2,0)
-					end
-				end
-
-				if line and line.questID then
-					print(line.questID)
+					end]]
 				end
 
 				local WatchFrame = _G.WatchFrame
