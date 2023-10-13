@@ -1480,3 +1480,4 @@ L["Add Dungeon Score to Group Finder Listing"] = "Ajouter le score de donjon à 
 L["Country Style"] = "Style de Pays"
 L["Flag"] = "Drapeau"
 L["Add Class Icons to the Group Finder Listing"] = "Ajouter des icônes de classe à la liste de recherche de groupe"
+L["Map not found"] = true

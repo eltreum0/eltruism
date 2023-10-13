@@ -1524,3 +1524,4 @@ L["Add Dungeon Score to Group Finder Listing"] = "Dungeonscore zur Gruppenfinder
 L["Country Style"] = "Länderstil"
 L["Flag"] = "Flagge"
 L["Add Class Icons to the Group Finder Listing"] = "Klassensymbole zur Gruppenfinderliste hinzufügen"
+L["Map not found"] = true
