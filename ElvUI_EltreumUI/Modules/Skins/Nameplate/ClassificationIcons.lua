@@ -117,6 +117,8 @@ local bossIDs = {
 	["201792"] = true,
 	["209207"] = true,
 	["209208"] = true,
+	["203679"] = true,
+	["203678"] = true,
 
 	-- raid VOTI
 	["190245"] = true, --Broodkeeper-Diurna
