@@ -883,6 +883,101 @@ function ElvUI_EltreumUI:FontFlag(style)
 	end
 end
 
+--apply recommended ElvUI perforamnce optimizations
+function ElvUI_EltreumUI:PerformanceOptimization()
+	--ElvUI
+	E.private["general"]["pixelPerfect"] = true
+	E.db["unitframe"]["thinBorders"] = true
+	E.db["nameplates"]["thinBorders"] = true
+	E.db["unitframe"]["units"]["target"]["healPrediction"]["enable"] = false
+	E.db["unitframe"]["units"]["player"]["healPrediction"]["enable"] = false
+	E.db["unitframe"]["units"]["party"]["healPrediction"]["enable"] = false
+	E.db["unitframe"]["units"]["raid1"]["healPrediction"]["enable"] = false
+	E.db["unitframe"]["units"]["raid2"]["healPrediction"]["enable"] = false
+	E.db["unitframe"]["units"]["raid3"]["healPrediction"]["enable"] = false
+	E.db["unitframe"]["units"]["raidpet"]["healPrediction"]["enable"] = false
+	E.db["unitframe"]["units"]["tank"]["healPrediction"]["enable"] = false
+
+	E.db["auras"]["buffs"]["seperateOwn"] = 0 -- do not sort auras
+	E.db["auras"]["debuffs"]["seperateOwn"] = 0 -- do not sort auras
+	E.db["auras"]["cooldown"]["override"] = false
+	E.db["chat"]["fade"] = false -- do not fade chat
+	E.db["unitframe"]["units"]["assist"]["enable"] = false --disable assist/tank frames
+	E.db["unitframe"]["units"]["tank"]["enable"] = false --disable assist/tank frames
+	E.db["unitframe"]["units"]["boss"]["fader"]["smooth"] = 0 --used to be 0.25
+	E.db["unitframe"]["units"]["player"]["fader"]["smooth"] = 0 --used to be 0.25
+	E.db["unitframe"]["units"]["target"]["fader"]["smooth"] = 0 --used to be 0.25
+	E.db["unitframe"]["units"]["targettarget"]["fader"]["smooth"] = 0
+	E.db["unitframe"]["units"]["focus"]["fader"]["smooth"] = 0 --used to be 0.25
+	E.db["unitframe"]["units"]["pet"]["fader"]["smooth"] = 0 --used to be 0.25
+	E.db["unitframe"]["units"]["arena"]["fader"]["smooth"] = 0
+	E.db["unitframe"]["units"]["boss"]["fader"]["smooth"] = 0
+	E.db["unitframe"]["units"]["party"]["fader"]["smooth"] = 0
+	E.db["unitframe"]["units"]["raid1"]["fader"]["smooth"] = 0
+	E.db["unitframe"]["units"]["raid2"]["fader"]["smooth"] = 0
+	E.db["unitframe"]["units"]["raid3"]["fader"]["smooth"] = 0
+	E.db["general"]["altPowerBar"]["smoothbars"] = false --was true
+	E.db["nameplates"]["smoothbars"] = false --was true
+	E.db["unitframe"]["smoothbars"] = false --was true
+	E.db["tooltip"]["inspectDataEnable"] = false --was true
+	E.db["tooltip"]["mythicDataEnable"] = false --was true
+	E.db["tooltip"]["role"] = false --was true
+	E.db["tooltip"]["targetInfo"] = false --was true
+	E.db["tooltip"]["showMount"] = false --was true
+
+	--Eltruism
+	E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable = false
+	E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly = true
+	E.db.ElvUI_EltreumUI.chat.enable = false
+	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition = false
+	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow = false
+	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate = false
+	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = false
+	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect = false
+	E.db.ElvUI_EltreumUI.nameplates.classification.enable = false
+	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = false
+	E.db.ElvUI_EltreumUI.skins.shadow.nameplates = false
+	E.db.ElvUI_EltreumUI.skins.shadow.nppower = false
+	E.db.ElvUI_EltreumUI.skins.shadow.npcastbar = false
+	E.db.ElvUI_EltreumUI.skins.shadow.npportraits = false
+	E.db.ElvUI_EltreumUI.skins.shadow.npauras = false
+	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight = false
+	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel = false
+	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow = false
+	E.db.ElvUI_EltreumUI.nameplates.auras.enable = false
+	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP = false
+	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation = false
+	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor = false
+	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower = false
+	E.db.ElvUI_EltreumUI.unitframes.models.powerbar = false
+	E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable = false
+	E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enableaurabars = false
+	E.db.ElvUI_EltreumUI.unitframes.portraitfix = false
+	E.db.ElvUI_EltreumUI.skins.shadow.aura = false
+	E.db.ElvUI_EltreumUI.skins.shadow.ufaura = false
+	E.db.ElvUI_EltreumUI.skins.bigwigs = false
+	E.db.ElvUI_EltreumUI.skins.shadow.bigwigs = false
+	E.db.ElvUI_EltreumUI.skins.details = false
+	E.db.ElvUI_EltreumUI.skins.bugsack = false
+	E.db.ElvUI_EltreumUI.skins.warpdeplete = false
+	E.db.ElvUI_EltreumUI.skins.omnicd = false
+	E.db.ElvUI_EltreumUI.skins.cell = false
+	E.db.ElvUI_EltreumUI.skins.dbm = false
+	E.db.ElvUI_EltreumUI.glow.enable = false
+	E.db.ElvUI_EltreumUI.cursors.cursor.enable = false
+	E.db.ElvUI_EltreumUI.cursors.cursor.cooldown = false
+	E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable = false
+	E.db.ElvUI_EltreumUI.loot.loottext.enable = false
+	E.private.ElvUI_EltreumUI.nameplatepower.enable = false
+	E.db.ElvUI_EltreumUI.quests.anchor = false
+	E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = false
+	E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = false
+	E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = false
+	E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = false
+	E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop = false
+	E.db.ElvUI_EltreumUI.chat.chatgradient = false
+end
+
 --for fps testing
 --[[
 local framerate = CreateFrame("Frame", nil, UIParent)

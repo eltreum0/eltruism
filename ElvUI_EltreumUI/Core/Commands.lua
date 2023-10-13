@@ -121,6 +121,21 @@ function ElvUI_EltreumUI:RunCommands(message)
 			hideOnEscape = false,
 		}
 		E:StaticPopup_Show('ELTRUISMWABARWARNING')
+
+	elseif message == 'performance' then
+		E.PopupDialogs["ELTRUISMPERFORMANCE"] = {
+			text = L["Disabling a number of functions in ElvUI and Eltruism to optimize performance"],
+			OnAccept = function()
+				ElvUI_EltreumUI:PerformanceOptimization()
+				ReloadUI()
+			end,
+			button1 = ACCEPT,
+			button2 = CANCEL,
+			timeout = 0,
+			whileDead = 1,
+			hideOnEscape = false,
+		}
+		E:StaticPopup_Show('ELTRUISMPERFORMANCE')
 	elseif message == 'background' then
 		if E.db.ElvUI_EltreumUI.unitframes.greybackground then
 			ElvUI_EltreumUI:BlackBg()
