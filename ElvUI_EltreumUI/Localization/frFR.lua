@@ -1481,3 +1481,5 @@ L["Country Style"] = "Style de Pays"
 L["Flag"] = "Drapeau"
 L["Add Class Icons to the Group Finder Listing"] = "Ajouter des icônes de classe à la liste de recherche de groupe"
 L["Map not found"] = true
+L["Hide Auras"] = true
+L["Hide Auras on Nameplates that are not in Combat"] = true
