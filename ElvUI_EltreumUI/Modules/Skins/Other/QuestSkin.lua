@@ -365,9 +365,9 @@ function ElvUI_EltreumUI:SkinQuests()
 							else
 								line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 							end
-							local _,frame = line.Dash:GetPoint()
-							line.Dash:ClearAllPoints()
-							line.Dash:SetPoint("RIGHT", frame, "LEFT", 5,0)
+							--local _,frame = line.Dash:GetPoint()
+							--line.Dash:ClearAllPoints()
+							--line.Dash:SetPoint("RIGHT", frame, "LEFT", 5,0)
 						end
 					end)
 				end
