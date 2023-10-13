@@ -1186,7 +1186,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 					if Anchor ~= nil then
 						if questside:match("RIGHT") then
-							Button:SetPoint("LEFT", Anchor, "LEFT", -40, -10)
+							Button:SetPoint("LEFT", Anchor, "LEFT", -60, -10)
 						else
 							Button:SetPoint("RIGHT", Anchor, "RIGHT", 120, -10)
 						end
