@@ -303,7 +303,7 @@ function ElvUI_EltreumUI:BagProfessions()
 										end
 									elseif event == "UNIT_SPELLCAST_RETICLE_TARGET" then
 										if spell == 1804 then
-											LCG.PixelGlow_Start(_G["EltruismProfessionLockpickBagButton"], {0.93, 0.44, 0.97, 1}, 7, 1, 3, 2, 2, 2, false, nil, 6)
+											LCG.PixelGlow_Start(_G["EltruismProfessionLockpickBagButton"], {1, 0.96, 0.41, 1}, 7, 1, 3, 2, 2, 2, false, nil, 6)
 											_G["EltruismProfessionLockpickBagButton"].isGlowing = true
 										end
 									end
@@ -439,7 +439,7 @@ function ElvUI_EltreumUI:BagProfessions()
 										LCG.PixelGlow_Stop(_G["EltruismProfessionLockpickBagButton"])
 										_G["EltruismProfessionLockpickBagButton"].isGlowing = false
 									else
-										LCG.PixelGlow_Start(_G["EltruismProfessionLockpickBagButton"], {0.93, 0.44, 0.97, 1}, 7, 1, 3, 2, 2, 2, false, nil, 6)
+										LCG.PixelGlow_Start(_G["EltruismProfessionLockpickBagButton"], {1, 0.96, 0.41, 1}, 7, 1, 3, 2, 2, 2, false, nil, 6)
 										_G["EltruismProfessionLockpickBagButton"].isGlowing = true
 									end
 								end)
