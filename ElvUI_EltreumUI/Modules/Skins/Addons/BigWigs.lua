@@ -302,11 +302,15 @@ do
 				iconBd:Show()
 			end
 
+			--bw offsets fonts down, use font height to offset it back up
+			local _, fontHeightLabel = bar.candyBarLabel:GetFont()
+			local _, fontHeightDuration = bar.candyBarDuration:GetFont()
+
 			bar.candyBarLabel:ClearAllPoints()
-			bar.candyBarLabel:SetPoint("TOPLEFT", bar.candyBarBar, "TOPLEFT", 0, 12)
+			bar.candyBarLabel:SetPoint("TOPLEFT", bar.candyBarBar, "TOPLEFT", 0, 2+fontHeightLabel)
 
 			bar.candyBarDuration:ClearAllPoints()
-			bar.candyBarDuration:SetPoint("TOPRIGHT", bar.candyBarBar, "TOPRIGHT", 0, 12)
+			bar.candyBarDuration:SetPoint("TOPRIGHT", bar.candyBarBar, "TOPRIGHT", 0, 2+fontHeightDuration)
 
 			bd:Show()
 		end
