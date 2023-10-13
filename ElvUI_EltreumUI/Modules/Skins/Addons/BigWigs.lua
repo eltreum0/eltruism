@@ -266,6 +266,60 @@ do
 			BarStopped = removeStyle,
 			GetStyleName = function() return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:14:14:0:0|t |cff82B4ffEltruism|r" end,
 		})
+
+		local function styleBar2(bar)
+			local bd = bar.candyBarBackdrop
+
+			bd:SetTemplate("Transparent")
+			bd:SetOutside(bar)
+			if not E.PixelMode and bd.iborder then
+				bd.iborder:Show()
+				bd.oborder:Show()
+			end
+
+			local tex = bar:GetIcon()
+			if tex then
+				local icon = bar.candyBarIconFrame
+				bar:SetIcon(nil)
+				icon:SetTexture(tex)
+				icon:Show()
+				if bar.iconPosition == "RIGHT" then --icon position
+					icon:SetPoint("BOTTOMLEFT", bar, "BOTTOMRIGHT", E.PixelMode and 1 or 5, 0)
+				else
+					icon:SetPoint("BOTTOMRIGHT", bar, "BOTTOMLEFT", E.PixelMode and -5 or -10, 0)
+				end
+				icon:SetSize(bar:GetHeight()*1.5, bar:GetHeight()*1.5) --icon size
+				bar:Set("bigwigs:restoreicon", tex)
+
+				local iconBd = bar.candyBarIconFrameBackdrop
+
+				iconBd:SetTemplate("Transparent")
+				iconBd:SetOutside(bar.candyBarIconFrame)
+				if not E.PixelMode and iconBd.iborder then
+					iconBd.iborder:Show()
+					iconBd.oborder:Show()
+				end
+				iconBd:Show()
+			end
+
+			bar.candyBarLabel:ClearAllPoints()
+			bar.candyBarLabel:SetPoint("TOPLEFT", bar.candyBarBar, "TOPLEFT", 0, 15)
+
+			bar.candyBarDuration:ClearAllPoints()
+			bar.candyBarDuration:SetPoint("TOPRIGHT", bar.candyBarBar, "TOPRIGHT", 0, 16)
+
+			bd:Show()
+		end
+
+		_G.BigWigsAPI:RegisterBarStyle("Eltruism Top Text", {
+			apiVersion = 1,
+			version = 10,
+			barSpacing = E.PixelMode and 20 or 15, --bar space
+			barHeight = 15, --bar height
+			ApplyStyle = styleBar2,
+			BarStopped = removeStyle,
+			GetStyleName = function() return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:14:14:0:0|t |cff82B4ffEltruism Top Text|r" end,
+		})
 	end
 	S:AddCallbackForAddon('BigWigs_Plugins', "EltruismBigWigsStyle", ElvUI_EltreumUI.BigWigsStyle)
 
