@@ -480,6 +480,7 @@ P.ElvUI_EltreumUI = {
 			restedoverlap = false,
 			hideSwipe = false,
 			hidedebuffsnontarget = false,
+			hideaurasnoncombat = false,
 			npglow = false,
 		},
 		nptextureversion = "V1",
