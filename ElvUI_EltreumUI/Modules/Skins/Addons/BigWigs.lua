@@ -303,10 +303,10 @@ do
 			end
 
 			bar.candyBarLabel:ClearAllPoints()
-			bar.candyBarLabel:SetPoint("TOPLEFT", bar.candyBarBar, "TOPLEFT", 0, 15)
+			bar.candyBarLabel:SetPoint("TOPLEFT", bar.candyBarBar, "TOPLEFT", 0, 12)
 
 			bar.candyBarDuration:ClearAllPoints()
-			bar.candyBarDuration:SetPoint("TOPRIGHT", bar.candyBarBar, "TOPRIGHT", 0, 16)
+			bar.candyBarDuration:SetPoint("TOPRIGHT", bar.candyBarBar, "TOPRIGHT", 0, 12)
 
 			bd:Show()
 		end
