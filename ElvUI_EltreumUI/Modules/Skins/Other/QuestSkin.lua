@@ -1180,16 +1180,19 @@ function ElvUI_EltreumUI:SkinQuests()
 						return
 					end
 					local _, Anchor = Button:GetPoint()
-					Button:ClearAllPoints()
+
 					if _G["WatchFrameItem"..i.."HotKey"] then
 						_G["WatchFrameItem"..i.."HotKey"]:SetText("")
 					end
 					if Anchor ~= nil then
+						Button:ClearAllPoints()
 						if questside:match("RIGHT") then
 							Button:SetPoint("LEFT", Anchor, "LEFT", -60, -10)
 						else
 							Button:SetPoint("RIGHT", Anchor, "RIGHT", 120, -10)
 						end
+						Button:UnregisterEvent("PLAYER_TARGET_CHANGED")
+
 						if not (Button.QuestTexture) then
 							if _G["EltruismQuestTexture"] then
 								Button.QuestTexture = _G["EltruismQuestTexture"]
