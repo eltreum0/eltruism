@@ -273,6 +273,14 @@ local function SkinAuctionator()
 		end
 		S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].BagListing.View.ScrollBar)
 
+		if _G["AuctionatorItemHistoryFrame"] then
+			S:HandleFrame(_G["AuctionatorItemHistoryFrame"])
+			S:HandleButton(_G["AuctionatorItemHistoryFrame"].Close)
+			S:HandleButton(_G["AuctionatorItemHistoryFrame"].Dock)
+			S:HandleTrimScrollBar(_G["AuctionatorItemHistoryFrame"].ResultsListing.ScrollArea.ScrollBar)
+			handlechildtab(_G["AuctionatorItemHistoryFrame"].ResultsListing.HeaderContainer)
+		end
+
 		if _G["AuctionatorBuyFrame"] then
 			if _G["AuctionatorBuyFrame"].CurrentPrices then
 				S:HandleTrimScrollBar(_G["AuctionatorBuyFrame"].CurrentPrices.SearchResultsListing.ScrollArea.ScrollBar)
