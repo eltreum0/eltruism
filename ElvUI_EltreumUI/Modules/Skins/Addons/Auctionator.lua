@@ -23,10 +23,6 @@ local function SkinAuctionator()
 
 		--shopping
 		S:HandleFrame(_G["AuctionatorShoppingFrame"])
-		_G["AuctionatorShoppingFrame"]:SetBackdrop()
-		if _G["AuctionatorShoppingFrame"].eltruismbgtexture then
-			_G["AuctionatorShoppingFrame"].eltruismbgtexture:Hide()
-		end
 		S:HandleFrame(_G["AuctionatorShoppingFrame"].ShoppingResultsInset)
 		if not E.Retail then
 			_G["AuctionatorShoppingFrame"].ShoppingResultsInset:SetBackdrop()
@@ -473,6 +469,11 @@ local function SkinAuctionator()
 			if v.BorderLeftMiddle then
 				v:Hide()
 			end
+		end
+
+		_G["AuctionatorShoppingFrame"]:SetBackdrop()
+		if _G["AuctionatorShoppingFrame"].eltruismbgtexture then
+			_G["AuctionatorShoppingFrame"].eltruismbgtexture:Hide()
 		end
 
 		_G.AuctionatorShoppingFrame.EltruismSkin = true
