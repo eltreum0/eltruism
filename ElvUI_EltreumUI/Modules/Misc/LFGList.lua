@@ -279,7 +279,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 							else
 								region = "???"
 							end
-							if entry.ActivityName:GetText() ~= nil and entry.ActivityName:GetText() ~= "" then
+							if entry.ActivityName:GetText() ~= nil and entry.ActivityName:GetText() ~= "" and not entry.ActivityName:GetText():match("|T") then
 								entry.ActivityName:SetFormattedText("%s %s", region,entry.ActivityName:GetText())
 							end
 						end
