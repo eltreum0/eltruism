@@ -141,6 +141,9 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 
 			--Jaraxal
 			["Grymley-Scilla"] = DonatorsIcon,
+
+			--Marynia
+			["Sarmyte-Azralon"] = DonatorsIcon,
 		}
 
 		--Discord MVPs

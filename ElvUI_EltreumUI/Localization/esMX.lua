@@ -1498,3 +1498,6 @@ L["Add Dungeon Score to Group Finder Listing"] = "Añadir puntuación de mazmorr
 L["Country Style"] = "Estilo de país"
 L["Flag"] = "Bandera"
 L["Add Class Icons to the Group Finder Listing"] = "Añadir iconos de clase al buscador de grupos"
+L["Map not found"] = true
+L["Hide Auras"] = true
+L["Hide Auras on Nameplates that are not in Combat"] = true

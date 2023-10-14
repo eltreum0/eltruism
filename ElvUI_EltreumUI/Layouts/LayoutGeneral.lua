@@ -95,6 +95,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		--general pixel perfect things
 		E.private["general"]["pixelPerfect"] = true
 		E.db["unitframe"]["thinBorders"] = true
+		E.db["nameplates"]["thinBorders"] = true
 
 		--transparent things
 		E.db["unitframe"]["colors"]["transparentAurabars"] = true

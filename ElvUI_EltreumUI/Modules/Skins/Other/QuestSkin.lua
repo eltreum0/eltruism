@@ -365,9 +365,9 @@ function ElvUI_EltreumUI:SkinQuests()
 							else
 								line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 							end
-							local _,frame = line.Dash:GetPoint()
-							line.Dash:ClearAllPoints()
-							line.Dash:SetPoint("RIGHT", frame, "LEFT", 5,0)
+							--local _,frame = line.Dash:GetPoint()
+							--line.Dash:ClearAllPoints()
+							--line.Dash:SetPoint("RIGHT", frame, "LEFT", 5,0)
 						end
 					end)
 				end
@@ -1083,15 +1083,11 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 
 					end
-					if line.dash then
+					--[[if line.dash then
 						--line.dash:Hide()
 						line.dash:ClearAllPoints()
 						line.dash:SetPoint("RIGHT", line,"LEFT",-2,0)
-					end
-				end
-
-				if line and line.questID then
-					print(line.questID)
+					end]]
 				end
 
 				local WatchFrame = _G.WatchFrame
@@ -1184,16 +1180,19 @@ function ElvUI_EltreumUI:SkinQuests()
 						return
 					end
 					local _, Anchor = Button:GetPoint()
-					Button:ClearAllPoints()
+
 					if _G["WatchFrameItem"..i.."HotKey"] then
 						_G["WatchFrameItem"..i.."HotKey"]:SetText("")
 					end
 					if Anchor ~= nil then
+						Button:ClearAllPoints()
 						if questside:match("RIGHT") then
-							Button:SetPoint("LEFT", Anchor, "LEFT", -40, -10)
+							Button:SetPoint("LEFT", Anchor, "LEFT", -60, -10)
 						else
 							Button:SetPoint("RIGHT", Anchor, "RIGHT", 120, -10)
 						end
+						Button:UnregisterEvent("PLAYER_TARGET_CHANGED")
+
 						if not (Button.QuestTexture) then
 							if _G["EltruismQuestTexture"] then
 								Button.QuestTexture = _G["EltruismQuestTexture"]

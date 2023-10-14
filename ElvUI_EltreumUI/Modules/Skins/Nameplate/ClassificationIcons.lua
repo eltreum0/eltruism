@@ -13,73 +13,84 @@ local hooksecurefunc = _G.hooksecurefunc
 
 --based on blinkii's idea
 local bossIDs = {
-	--DF
-	--AA
+
+	-- Algeth'ar Academy
 	["194181"] = true,
 	["191736"] = true,
 	["196482"] = true,
 	["190609"] = true,
-	--BH
+
+	-- Brackenhide Hollow
 	["186122"] = true,
 	["186124"] = true,
 	["186125"] = true,
 	["186120"] = true,
 	["186121"] = true,
 	["186116"] = true,
-	--HOF
+
+	-- Halls of Infusion
 	["189719"] = true,
 	["189729"] = true,
 	["189722"] = true,
 	["189727"] = true,
-	--NEL
+
+	-- Neltharus
 	["189901"] = true,
 	["189478"] = true,
 	["181861"] = true,
 	["189340"] = true,
-	--RLP
+
+	-- Ruby Life Pools
 	["188252"] = true,
 	["189232"] = true,
 	["190485"] = true,
 	["190484"] = true,
-	--TAV
+
+	-- The Azure Vault
 	["186738"] = true,
 	["186644"] = true,
 	["186739"] = true,
 	["199614"] = true,
-	--TNO
+
+	-- The Nokhud Offensive
 	["186615"] = true,
 	["195723"] = true,
 	["186338"] = true,
 	["186151"] = true,
 	["186616"] = true,
 	["186339"] = true,
-	--ULD
+
+	-- Uldaman: Legacy of Tyr
 	["184125"] = true,
 	["184124"] = true,
 	["184018"] = true,
 	["184422"] = true,
-	-- DF S1
-	--HOV
+
+	-- Halls of Valor
 	["95674"] = true,
 	["99868"] = true,
 	["94960"] = true,
 	["95833"] = true,
 	["95675"] = true,
 	["95676"] = true,
-	-- COS
+
+	-- Court of Stars
 	["104218"] = true,
 	["104217"] = true,
 	["104215"] = true,
-	-- SBG
+
+	-- Shadowmoon Burial Grounds
 	["76407"] = true,
 	["75452"] = true,
 	["75509"] = true,
-	-- TJS
+
+	-- Temple of the Jade Serpent
 	["56448"] = true,
 	["59051"] = true,
 	["59726"] = true,
 	["56732"] = true,
 	["56439"] = true,
+
 	-- Neltharion's Lair
 	["91007"] = true,
 	["91005"] = true,
@@ -117,8 +128,51 @@ local bossIDs = {
 	["201792"] = true,
 	["209207"] = true,
 	["209208"] = true,
+	["203679"] = true,
+	["203678"] = true,
 
-	-- raid VOTI
+	--Darkheart Thicket
+	["103344"] = true, --oakheart
+	["99192"] = true, --shade-of-xavius
+	["96512"] = true, --archdruid-glaidalis
+	["99200"] = true, --dresaron
+
+	--Black Rook Hold
+	["94923"] = true, --lord-kurtalos-ravencrest
+	["98542"] = true, --amalgam-of-souls
+	["98696"] = true, --illysanna-ravencrest
+	["98949"] = true, --smashspite-the-hateful
+
+	-- Waycrest Manor
+	["131527"] = true, --lord-waycrest
+	["131667"] = true, --soulbound-goliath
+	["131863"] = true, --raal-the-gluttonous
+	["144324"] = true, --gorak-tul
+	["135360"] = true, --sister-briar
+
+	--Atal'Dazar
+	["143577"] = true, --rezan
+	["129399"] = true, --volkaal
+	["129412"] = true, --yazma
+	["129614"] = true, --priestess-alunza
+
+	--The Everbloom
+	["83846"] = true, --yalnu
+	["81522"] = true, --witherbark
+	["82682"] = true, --archmage-sol
+	["83894"] = true, --dulhu
+	["83892"] = true, --life-warden-gola
+	["83893"] = true, --earthshaper-telu
+	["84550"] = true, --xeritac
+
+	--Throne of the Tides
+	["40788"] = true, --mindbender-ghursha
+	["40765"] = true, --commander-ulthok
+	["40586"] = true, --lady-nazjar
+	["44566"] = true, --ozumat
+	["40825"] = true, --erunak-stonespeaker
+
+	-- Vault of the Incarnates
 	["190245"] = true, --Broodkeeper-Diurna
 	["184972"] = true, --Eranog
 	["189492"] = true, --Raszageth
@@ -130,7 +184,8 @@ local bossIDs = {
 	["187768"] = true, --Dathea-Stormlash
 	["187772"] = true, --Opalfang
 	["187767"] = true, --Embar-Firepath
-	-- raid Aberrus
+
+	-- Aberrus, the Shadowed Crucible
 	["200913"] = true, --Thadrion
 	["200918"] = true, --Rionthus
 	["199659"] = true, --Warlord Kagni
@@ -145,14 +200,12 @@ local bossIDs = {
 	["201934"] = true, --Shadowflame Amalgamation
 	["200912"] = true, --Neldris
 
-	--storm fury bosses
+	-- The Primalist Future (storm fury bosses)
 	["199502"] = true, --glakis-winters-wrath
 	["199667"] = true, --nimbulatus-storms-wrath
 	["199664"] = true, --seismodor-earths-wrath
 
-	--world bosses
-
-	--dragonflight
+	--dragonflight world bosses
 	["193534"] = true, --strunraan
 	["193532"] = true, --bazual
 	["193535"] = true, --basrikron
@@ -160,7 +213,7 @@ local bossIDs = {
 	["203220"] = true, --Vakan
 	["199853"] = true, --Gholna
 
-	--shadowlands
+	--shadowlands world bosses
 	["167524"] = true, --valinor
 	["182466"] = true, --antros
 	["178958"] = true, --morgeth
@@ -169,7 +222,7 @@ local bossIDs = {
 	["167526"] = true, --nurgash-muckformed
 	["169035"] = true, --nathanos-blightcaller
 
-	--bfa
+	--bfa world bosses
 	["154638"] = true, --grand-empress-shekzara
 	["160970"] = true, --vuklaz-the-earthbreaker
 	["152671"] = true, --wekemara
@@ -185,7 +238,7 @@ local bossIDs = {
 	["136385"] = true, --azurethos
 	["140163"] = true, --warbringer-yenajz
 
-	--legion
+	--legion world bosses
 	["109943"] = true, --ana-mouz
 	["121124"] = true, --apocron
 	["117239"] = true, --brutallus
@@ -204,13 +257,13 @@ local bossIDs = {
 	["106982"] = true, --reaver-jdorn
 	["112350"] = true, --withered-jim
 
-	--wod
+	--wod world bosses
 	["81252"] = true, --drov-the-ruiner
 	["81535"] = true, --tarlna-the-ageless
 	["83746"] = true, --rukhmar
 	["94015"] = true, --supreme-lord-kazzak
 
-	--mop
+	--mop world bosses
 	["60491"] = true, --sha-of-anger
 	["62346"] = true, --galleon
 	["69099"] = true, --nalak
@@ -221,7 +274,7 @@ local bossIDs = {
 	["71953"] = true, --xuen
 	["71955"] = true, --yulon
 
-	--cataclysm
+	--cataclysm world bosses
 	["50063"] = true, --akmahat
 	["50056"] = true, --garr
 	["50089"] = true, --julak-doom
@@ -229,11 +282,11 @@ local bossIDs = {
 	["40728"] = true, --whale-shark
 	["50061"] = true, --xariona
 
-	--tbc
+	--tbc world bosses
 	["18728"] = true, --doom-lord-kazzak
 	["17711"] = true, --doomwalker
 
-	--classic
+	--classic world bosses
 	["6109"] = true, --azuregos
 	["15205"] = true, --baron-kazum
 	["15305"] = true, --lord-skwol

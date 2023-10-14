@@ -14,7 +14,8 @@ local tostring = _G.tostring
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitClass = _G.UnitClass
 local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder,focuscastbarborder
-local bordertexture,classcolor,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder
+local bordertexture,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder
+local classcolor = E:ClassColor(E.myclass, true)
 local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction
 local MinimapBorder,LeftChatBorder,RightChatBorder,totemborderfly,focustargetborder
 local raid1borderholder,raid2borderholder,raid3borderholder,partyborderholder = {},{},{}, {}

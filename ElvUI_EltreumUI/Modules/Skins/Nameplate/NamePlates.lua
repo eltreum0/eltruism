@@ -85,6 +85,15 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 							end
 						end
 
+						--hide debuffs if they are not in combat
+						if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideaurasnoncombat then
+							if not UnitAffectingCombat(unit) then
+								button:Hide()
+							else
+								button:Show()
+							end
+						end
+
 						--print("np button spam "..math.random(1,99))
 						if button.Cooldown.timer then
 							if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
@@ -180,6 +189,16 @@ function ElvUI_EltreumUI:PostUpdateIconBuff(unit, button)
 				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 					TimeSinceLastUpdate = 0
+
+					--hide buffs if they are not in combat
+					if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideaurasnoncombat then
+						if not UnitAffectingCombat(unit) then
+							button:Hide()
+						else
+							button:Show()
+						end
+					end
+
 					if button.Cooldown.timer then
 						if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe then
 							button.Cooldown:SetSwipeColor(0, 0, 0, 0)

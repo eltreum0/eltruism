@@ -16,6 +16,11 @@ end
 local function SkinAuctionator()
 	if _G.AuctionatorShoppingFrame and not _G.AuctionatorShoppingFrame.EltruismSkin then
 
+		--scanning thing
+		if not E.Retail then
+			S:HandleFrame(_G["AuctionatorPageStatusDialogFrame"])
+		end
+
 		--shopping
 		S:HandleFrame(_G["AuctionatorShoppingFrame"])
 		_G["AuctionatorShoppingFrame"]:SetBackdrop()
@@ -127,18 +132,155 @@ local function SkinAuctionator()
 		if _G["AuctionatorSellingFrame"].eltruismbgtexture then
 			_G["AuctionatorSellingFrame"].eltruismbgtexture:Hide()
 		end
-		S:HandleFrame(_G["AuctionatorSellingFrame"].BagListing)
-		_G["AuctionatorSellingFrame"].BagListing:SetBackdrop()
-		if _G["AuctionatorSellingFrame"].BagListing.eltruismbgtexture then
-			_G["AuctionatorSellingFrame"].BagListing.eltruismbgtexture:Hide()
+
+		local function handlesubframe(frame)
+			if frame.eltruismbgtexture then frame.eltruismbgtexture:Hide() end
+			if frame.Icon then
+				frame.Icon:SetTexCoord(unpack(E.TexCoords))
+				frame.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
+				frame.IconSelectedHighlight:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
+			end
+			if frame.NormalTexture then
+				frame.NormalTexture:SetAlpha(0)
+				frame.NormalTexture.SetAlpha = E.noop
+			end
+			if frame.HighlightTexture then
+				frame.HighlightTexture:SetAlpha(0)
+				frame.HighlightTexture.SetAlpha = E.noop
+			end
+			if frame.AddButton and not frame.EltruismAddButtonHook then
+				hooksecurefunc(frame,"AddButton",function(_,item)
+					if item.Icon then
+						item.Icon:SetTexCoord(unpack(E.TexCoords))
+						item.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
+					end
+				end)
+				frame.EltruismAddButtonHook = true
+			end
+			if frame:GetObjectType() ~= "Texture" then
+				for i = 1, frame:GetNumChildren() do
+					local subframe = select(i, frame:GetChildren())
+					if subframe then
+						if subframe:GetObjectType() == "Frame" then
+							S:HandleFrame(subframe)
+							subframe:SetBackdrop()
+							if subframe.NormalTexture then
+								subframe.NormalTexture:SetAlpha(0)
+								subframe.NormalTexture.SetAlpha = E.noop
+							end
+							if subframe.HighlightTexture then
+								subframe.HighlightTexture:SetAlpha(0)
+								subframe.HighlightTexture.SetAlpha = E.noop
+							end
+						elseif subframe:GetObjectType() == "Button" then
+							S:HandleButton(subframe)
+						elseif subframe:GetObjectType() == "EditBox" then
+							S:HandleEditBox(subframe)
+							subframe:SetTemplate()
+						elseif subframe:GetObjectType() == "CheckButton" then
+							S:HandleButton(subframe)
+						end
+						handlesubframe(subframe)
+					end
+				end
+			end
 		end
-		_G["AuctionatorSellingFrame"].BagListing:CreateBackdrop()
-		_G["AuctionatorSellingFrame"].BagListing.ScrollBox:SetTemplate()
-		_G["AuctionatorSellingFrame"].BagListing.ScrollBox:SetBackdrop()
-		if _G["AuctionatorSellingFrame"].BagListing.ScrollBox.eltruismbgtexture then
-			_G["AuctionatorSellingFrame"].BagListing.ScrollBox.eltruismbgtexture:Hide()
+
+		local function handlesubregions(frame)
+			if frame.eltruismbgtexture then frame.eltruismbgtexture:Hide() end
+			if frame.Icon then --doesnt seem to find any
+				frame.Icon:SetTexCoord(unpack(E.TexCoords))
+				frame.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
+				frame.IconSelectedHighlight:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
+			end
+			if frame.NormalTexture then
+				frame.NormalTexture:SetAlpha(0)
+				frame.NormalTexture.SetAlpha = E.noop
+			end
+			if frame.HighlightTexture then
+				frame.HighlightTexture:SetAlpha(0)
+				frame.HighlightTexture.SetAlpha = E.noop
+			end
+			if frame:GetObjectType() ~= "Texture" then
+				for i = 1, frame:GetNumRegions() do
+					local subregion = select(i, frame:GetRegions())
+					if subregion then
+						if subregion:GetObjectType() == "Frame" then
+							S:HandleFrame(subregion)
+							subregion:SetBackdrop()
+							if subregion.NormalTexture then
+								subregion.NormalTexture:SetAlpha(0)
+								subregion.NormalTexture.SetAlpha = E.noop
+							end
+							if subregion.HighlightTexture then
+								subregion.HighlightTexture:SetAlpha(0)
+								subregion.HighlightTexture.SetAlpha = E.noop
+							end
+						elseif subregion:GetObjectType() == "Button" then
+							S:HandleButton(subregion)
+						elseif subregion:GetObjectType() == "EditBox" then
+							S:HandleEditBox(subregion)
+							subregion:SetTemplate()
+						elseif subregion:GetObjectType() == "CheckButton" then
+							S:HandleButton(subregion)
+						end
+						handlesubregions(subregion)
+					end
+				end
+			end
 		end
-		S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].BagListing.ScrollBar)
+
+		hooksecurefunc(_G.Auctionator.Groups,"OpenCustomiseView",function()
+			if not _G["AuctionatorGroupsCustomiseFrame"].EltruismSkin then
+				S:HandleFrame(_G["AuctionatorGroupsCustomiseFrame"])
+				S:HandleButton(_G["AuctionatorGroupsCustomiseFrame"].NewGroupButton)
+				S:HandleButton(_G["AuctionatorGroupsCustomiseFrame"].BackButton)
+				S:HandleTrimScrollBar(_G["AuctionatorGroupsCustomiseFrame"].View.ScrollBar)
+
+				handlesubframe(_G["AuctionatorGroupsCustomiseFrame"].View.ScrollBox)
+				if _G["AuctionatorGroupsCustomiseFrame"].View.ScrollBox.ScrollTarget then
+					handlesubregions(_G["AuctionatorGroupsCustomiseFrame"].View.ScrollBox.ScrollTarget)
+				end
+
+				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not _G["AuctionatorGroupsCustomiseFrame"].shadow then
+					_G["AuctionatorGroupsCustomiseFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G["AuctionatorGroupsCustomiseFrame"].shadow)
+				end
+
+				_G["AuctionatorGroupsCustomiseFrame"].EltruismSkin = true
+			end
+		end)
+
+		hooksecurefunc(_G.Auctionator.Selling,"ShowPopup",function()
+			E:Delay(0, function()
+				if not _G["AuctionatorSellingPopupFrame"].EltruismSkin then
+					S:HandleFrame(_G["AuctionatorSellingPopupFrame"])
+					_G["AuctionatorSellingPopupFrame"].EltruismSkin = true
+				end
+			end)
+		end)
+
+		if not _G["AuctionatorSellingFrame"].BagListing.EltruismViewHook then --items update late, and they might also change, so hook view
+			_G["AuctionatorSellingFrame"].BagListing:HookScript("OnShow", function()
+				E:Delay(0, function()
+					handlesubframe(_G["AuctionatorSellingFrame"].BagListing.View.ScrollBox.ItemListingFrame)
+				end)
+			end)
+			_G["AuctionatorSellingFrame"].BagListing.EltruismViewHook = true
+		end
+		if _G["AuctionatorSellingFrame"].BagListing then
+			S:HandleButton(_G["AuctionatorSellingFrame"].BagListing.CustomiseButton)
+		end
+		S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].BagListing.View.ScrollBar)
+
+		if _G["AuctionatorItemHistoryFrame"] then
+			S:HandleFrame(_G["AuctionatorItemHistoryFrame"])
+			S:HandleButton(_G["AuctionatorItemHistoryFrame"].Close)
+			S:HandleButton(_G["AuctionatorItemHistoryFrame"].Dock)
+			S:HandleTrimScrollBar(_G["AuctionatorItemHistoryFrame"].ResultsListing.ScrollArea.ScrollBar)
+			handlechildtab(_G["AuctionatorItemHistoryFrame"].ResultsListing.HeaderContainer)
+		end
+
 		if _G["AuctionatorBuyFrame"] then
 			if _G["AuctionatorBuyFrame"].CurrentPrices then
 				S:HandleTrimScrollBar(_G["AuctionatorBuyFrame"].CurrentPrices.SearchResultsListing.ScrollArea.ScrollBar)
@@ -192,15 +334,17 @@ local function SkinAuctionator()
 
 		--also based on simpy's skin but different
 		if _G["AuctionatorSellingFrame"].AuctionatorSaleItem and not _G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop then
-			_G["AuctionatorSellingFrame"].AuctionatorSaleItem:CreateBackdrop()
+			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.Icon:SetTexCoord(unpack(E.TexCoords))
 			_G["AuctionatorSellingFrame"].AuctionatorSaleItem:StyleButton()
+			--[[_G["AuctionatorSellingFrame"].AuctionatorSaleItem:CreateBackdrop()
 			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop:SetPoint("TOPLEFT",_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon,"TOPLEFT",-1,1)
 			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop:SetPoint("BOTTOMRIGHT",_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon,"BOTTOMRIGHT",1,-1)
-			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.Icon:SetTexCoord(unpack(E.TexCoords))
 			hooksecurefunc(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconBorder,"SetVertexColor", function(_,r,g,b)
 				_G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop:SetBackdropBorderColor(r, g, b, 1)
 				_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconBorder:SetAlpha(0)
-			end)
+			end)]]
+			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
+			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconSelectedHighlight:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
 		end
 
 		if _G["AuctionatorSellingFrame"].PricesTabsContainer then
@@ -232,8 +376,8 @@ local function SkinAuctionator()
 			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.StackPrice.MoneyInput.GoldBox)
 			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.StackPrice.MoneyInput.SilverBox)
 			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.StackPrice.MoneyInput.CopperBox)
-			S:HandleButton(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Stacks.NumStacks)
-			S:HandleButton(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Stacks.StackSize)
+			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Stacks.NumStacks)
+			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Stacks.StackSize)
 			S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices.RealmHistoryResultsListing.ScrollArea.ScrollBar)
 			S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].BuyFrame.CurrentPrices.SearchResultsListing.ScrollArea.ScrollBar)
 			handlechildtab(_G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices.RealmHistoryResultsListing.HeaderContainer)
