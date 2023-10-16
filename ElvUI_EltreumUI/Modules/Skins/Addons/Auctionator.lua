@@ -23,10 +23,6 @@ local function SkinAuctionator()
 
 		--shopping
 		S:HandleFrame(_G["AuctionatorShoppingFrame"])
-		_G["AuctionatorShoppingFrame"]:SetBackdrop()
-		if _G["AuctionatorShoppingFrame"].eltruismbgtexture then
-			_G["AuctionatorShoppingFrame"].eltruismbgtexture:Hide()
-		end
 		S:HandleFrame(_G["AuctionatorShoppingFrame"].ShoppingResultsInset)
 		if not E.Retail then
 			_G["AuctionatorShoppingFrame"].ShoppingResultsInset:SetBackdrop()
@@ -336,9 +332,11 @@ local function SkinAuctionator()
 		if _G["AuctionatorSellingFrame"].AuctionatorSaleItem and not _G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop then
 			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.Icon:SetTexCoord(unpack(E.TexCoords))
 			_G["AuctionatorSellingFrame"].AuctionatorSaleItem:StyleButton()
-			--[[_G["AuctionatorSellingFrame"].AuctionatorSaleItem:CreateBackdrop()
+			_G["AuctionatorSellingFrame"].AuctionatorSaleItem:CreateBackdrop()
+			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.EmptySlot:Hide()
 			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop:SetPoint("TOPLEFT",_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon,"TOPLEFT",-1,1)
 			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop:SetPoint("BOTTOMRIGHT",_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon,"BOTTOMRIGHT",1,-1)
+			--[[
 			hooksecurefunc(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconBorder,"SetVertexColor", function(_,r,g,b)
 				_G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop:SetBackdropBorderColor(r, g, b, 1)
 				_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconBorder:SetAlpha(0)
@@ -471,6 +469,11 @@ local function SkinAuctionator()
 			if v.BorderLeftMiddle then
 				v:Hide()
 			end
+		end
+
+		_G["AuctionatorShoppingFrame"]:SetBackdrop()
+		if _G["AuctionatorShoppingFrame"].eltruismbgtexture then
+			_G["AuctionatorShoppingFrame"].eltruismbgtexture:Hide()
 		end
 
 		_G.AuctionatorShoppingFrame.EltruismSkin = true

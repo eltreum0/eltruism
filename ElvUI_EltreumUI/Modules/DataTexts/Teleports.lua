@@ -651,9 +651,11 @@ local function EltruismTeleportsOnClick(self)
 			end
 			_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'item')
 			local nameitem, itemLink = GetItemInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
-			local itemid = itemLink:match("item:(%d+)")
-			_G["EltruismHearthStoneSecureButton"].id = tostring(itemid)
-			_G["EltruismHearthStoneSecureButton"]:SetAttribute('item', nameitem)
+			if itemLink then
+				local itemid = itemLink:match("item:(%d+)")
+				_G["EltruismHearthStoneSecureButton"].id = tostring(itemid)
+				_G["EltruismHearthStoneSecureButton"]:SetAttribute('item', nameitem)
+			end
 		else
 			_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'item')
 			local namehs = GetItemInfo(6948)
