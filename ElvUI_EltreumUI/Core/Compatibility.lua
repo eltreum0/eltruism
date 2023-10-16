@@ -178,12 +178,34 @@ local function GetDatabaseRealValue(path)
 	return accessTable, accessKey, accessValue
 end
 
-local function GetCheckCompatibilityFunction(targetAddonName, targetAddonLocales,isToggleInstead)
+local function GetCheckCompatibilityFunction(targetAddonName, targetAddonLocales,isToggleInstead,notElvUIDB)
 	if not IsAddOnLoaded(targetAddonName) then
 		return E.noop
 	end
-
-	if not isToggleInstead then
+	if notElvUIDB then
+		return function(myModuleName, targetAddonModuleName, myDB, targetAddonDB,targetAddonKey)
+			if not (myDB and targetAddonDB and type(myDB) == "string" and type(targetAddonDB) == "string") then
+				return
+			end
+			local myTable, myKey, myValue = GetDatabaseRealValue(myDB)
+			if myValue and _G[targetAddonDB][targetAddonKey] then
+				AddButtonToCompatibilityFrame({
+					module1 = myModuleName,
+					plugin1 = select(2,GetAddOnInfo("ElvUI_EltreumUI")), --TODO 10.2, might need C_AddOns.
+					func1 = function()
+						myTable[myKey] = true
+						_G[targetAddonDB][targetAddonKey] = false
+					end,
+					module2 = targetAddonModuleName,
+					plugin2 = targetAddonLocales,
+					func2 = function()
+						myTable[myKey] = false
+						_G[targetAddonDB][targetAddonKey] = true
+					end
+				})
+			end
+		end
+	elseif not isToggleInstead then
 		return function(myModuleName, targetAddonModuleName, myDB, targetAddonDB)
 			if not (myDB and targetAddonDB and type(myDB) == "string" and type(targetAddonDB) == "string") then
 				return
@@ -251,6 +273,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	local CheckCQL = GetCheckCompatibilityFunction("ClassicQuestLog", select(2,GetAddOnInfo("ClassicQuestLog")),true) --TODO 10.2, might need C_AddOns.
 	local CheckSorha = GetCheckCompatibilityFunction("SorhaQuestLog", select(2,GetAddOnInfo("SorhaQuestLog")),true) --TODO 10.2, might need C_AddOns.
 	local CheckDoom = GetCheckCompatibilityFunction("Doom_CooldownPulse", select(2,GetAddOnInfo("Doom_CooldownPulse")),true) --TODO 10.2, might need C_AddOns.
+	local CheckRaiderIO = GetCheckCompatibilityFunction("RaiderIO", select(2,GetAddOnInfo("RaiderIO")),false,true) --TODO 10.2, might need C_AddOns.
 
 	--Character Panel
 	CheckMerathilisUI(L["Character Panel"].."\n"..L["Class Icons"], L["Character Panel"].."\n"..L["Class Icons"], "db.ElvUI_EltreumUI.skins.classicarmory", "db.mui.armory.character.enable")
@@ -352,6 +375,9 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckWunderUI(L["Portrait Skin"], "Ring Portraits", "db.ElvUI_EltreumUI.unitframes.portrait.enable", "db.WunderUI.skins.elvUIIcons.ringIcons.enabled")
 	CheckToxiUI(L["A.F.K"].."\n"..L["Skin"], "AFK Mode", "db.ElvUI_EltreumUI.otherstuff.afklogo", "db.TXUI.addons.afkMode.enabled")
 	CheckToxiUI(L["Role Icons"], "Role Icons", "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "db.TXUI.elvUIIcons.roleIcons.enabled")
+
+	--non elvui addon dbs
+	CheckRaiderIO(L["Dungeon Score"].."\n"..L["Flags"], L["RaiderIO Tooltip"], "db.ElvUI_EltreumUI.skins.groupfinderDungeonScore", "RaiderIO_Config","showDropDownCopyURL")
 
 	if _G["EltruismCompatibilityFrame"].numModules > 0 then
 		_G["EltruismCompatibilityFrame"]:Show()
