@@ -25,6 +25,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		--Setup Eltruism DataText
 		ElvUI_EltreumUI:SetupDataText()
 
+		--make Aura Filters use Textured Icons
+		ElvUI_EltreumUI:AuraFiltersUpdate()
+
 		--SetupShadowAndLight
 		if IsAddOnLoaded("ElvUI_SLE") then --TODO 10.2, might need C_AddOns.
 			ElvUI_EltreumUI:GetSLEProfile()
