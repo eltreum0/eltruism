@@ -13,6 +13,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.skins.auctionator = true
 		E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate = true --elvui skin
 		E.db.ElvUI_EltreumUI.skins.ace3.enable = true --elvui skin
+		E.db.ElvUI_EltreumUI.skins.elvui.texture = "Eltreum-Tile03"
 
 		ElvUI_EltreumUI:Print(L["Auto Update is enabled, updating Eltruism settings."])
 	else
@@ -157,6 +158,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.skins.auctionator = true
 		E.db.ElvUI_EltreumUI.skins.weakaurasoptions = true
 		E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate = true --elvui skin
+		E.db.ElvUI_EltreumUI.skins.elvui.texture = "Eltreum-Tile03"
 		E.db.ElvUI_EltreumUI.skins.ace3.enable = true --elvui skin
 
 		-- Borders

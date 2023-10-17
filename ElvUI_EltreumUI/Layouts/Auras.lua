@@ -1,5 +1,43 @@
 local E, L = unpack(ElvUI)
 
+--apply textured icon on profile import, ty Repooc
+local function doApplyToAll(db, dbEntry, dbValue)
+    if not db then return end
+    for _, spell in pairs(db) do
+        if dbValue ~= nil then
+            spell[dbEntry] = dbValue
+        else
+            return spell[dbEntry]
+        end
+    end
+end
+
+local function BuffIndicator_ApplyToAll(dbEntry, dbValue, profile, pet)
+    if profile then
+        return doApplyToAll(E.db.unitframe.filters.aurawatch, dbEntry, dbValue)
+    elseif pet then
+        return doApplyToAll(E.global.unitframe.aurawatch.PET, dbEntry, dbValue)
+    else
+        return doApplyToAll(E.global.unitframe.aurawatch[E.myclass], dbEntry, dbValue)
+    end
+end
+
+function ElvUI_EltreumUI:AuraFiltersUpdate()
+	BuffIndicator_ApplyToAll('style', 'texturedIcon', E.db.unitframe.units['party'].buffIndicator.profileSpecific, false)
+	BuffIndicator_ApplyToAll('style', 'texturedIcon', E.db.unitframe.units['raid1'].buffIndicator.profileSpecific, false)
+	BuffIndicator_ApplyToAll('style', 'texturedIcon', E.db.unitframe.units['raid2'].buffIndicator.profileSpecific, false)
+	BuffIndicator_ApplyToAll('style', 'texturedIcon', E.db.unitframe.units['raid3'].buffIndicator.profileSpecific, false)
+	BuffIndicator_ApplyToAll('style', 'texturedIcon', E.db.unitframe.units['raidpet'].buffIndicator.profileSpecific, true)
+	BuffIndicator_ApplyToAll('style', 'texturedIcon', E.db.unitframe.units['tank'].buffIndicator.profileSpecific, false)
+	BuffIndicator_ApplyToAll('style', 'texturedIcon', E.db.unitframe.units['assist'].buffIndicator.profileSpecific, false)
+	BuffIndicator_ApplyToAll('style', 'texturedIcon', E.db.unitframe.units['boss'].buffIndicator.profileSpecific, false)
+	BuffIndicator_ApplyToAll('style', 'texturedIcon', E.db.unitframe.units['player'].buffIndicator.profileSpecific, false)
+	BuffIndicator_ApplyToAll('style', 'texturedIcon', E.db.unitframe.units['target'].buffIndicator.profileSpecific, false)
+	BuffIndicator_ApplyToAll('style', 'texturedIcon', E.db.unitframe.units['focus'].buffIndicator.profileSpecific, false)
+	BuffIndicator_ApplyToAll('style', 'texturedIcon', nil, false) --class
+	BuffIndicator_ApplyToAll('style', 'texturedIcon', nil, true) --pet
+end
+
 --Eltruism/Default ElvUI filters
 
 --Unitframes
