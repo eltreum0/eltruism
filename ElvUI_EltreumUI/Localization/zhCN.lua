@@ -1471,3 +1471,4 @@ L["Add Class Icons to the Group Finder Listing"] = true
 L["Map not found"] = true
 L["Hide Auras"] = true
 L["Hide Auras on Nameplates that are not in Combat"] = true
+L["Pause and Desaturate Portrait if Dead"] = true

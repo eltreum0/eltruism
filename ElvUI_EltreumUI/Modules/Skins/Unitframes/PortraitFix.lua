@@ -427,20 +427,22 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotation()
 					end
 
 					--pause if dead
-					if UnitIsDead("target") then
-						E:Delay(0,function()
-							if _G["ElvUF_Target"].Portrait3D then
-								_G["ElvUF_Target"].Portrait3D:SetPaused(true)
-								_G["ElvUF_Target"].Portrait3D:SetDesaturation(1)
-							end
-						end)
-					else
-						E:Delay(0,function()
-							if _G["ElvUF_Target"].Portrait3D then
-								_G["ElvUF_Target"].Portrait3D:SetPaused(false)
-								_G["ElvUF_Target"].Portrait3D:SetDesaturation(0)
-							end
-						end)
+					if E.db.ElvUI_EltreumUI.unitframes.portraitdead then
+						if UnitIsDead("target") then
+							E:Delay(0,function()
+								if _G["ElvUF_Target"].Portrait3D then
+									_G["ElvUF_Target"].Portrait3D:SetPaused(true)
+									_G["ElvUF_Target"].Portrait3D:SetDesaturation(1)
+								end
+							end)
+						else
+							E:Delay(0,function()
+								if _G["ElvUF_Target"].Portrait3D then
+									_G["ElvUF_Target"].Portrait3D:SetPaused(false)
+									_G["ElvUF_Target"].Portrait3D:SetDesaturation(0)
+								end
+							end)
+						end
 					end
 
 					if newrotation ~= originalrotation then
@@ -498,20 +500,22 @@ function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
 
 
 					--pause if dead
-					if UnitIsDead("player") then
-						E:Delay(0,function()
-							if _G["ElvUF_Player"].Portrait3D then
-								_G["ElvUF_Player"].Portrait3D:SetPaused(true)
-								_G["ElvUF_Player"].Portrait3D:SetDesaturation(1)
-							end
-						end)
-					else
-						E:Delay(0,function()
-							if _G["ElvUF_Player"].Portrait3D then
-								_G["ElvUF_Player"].Portrait3D:SetPaused(false)
-								_G["ElvUF_Player"].Portrait3D:SetDesaturation(0)
-							end
-						end)
+					if E.db.ElvUI_EltreumUI.unitframes.portraitdead then
+						if UnitIsDead("player") then
+							E:Delay(0,function()
+								if _G["ElvUF_Player"].Portrait3D then
+									_G["ElvUF_Player"].Portrait3D:SetPaused(true)
+									_G["ElvUF_Player"].Portrait3D:SetDesaturation(1)
+								end
+							end)
+						else
+							E:Delay(0,function()
+								if _G["ElvUF_Player"].Portrait3D then
+									_G["ElvUF_Player"].Portrait3D:SetPaused(false)
+									_G["ElvUF_Player"].Portrait3D:SetDesaturation(0)
+								end
+							end)
+						end
 					end
 
 					if newrotation and newrotation ~= originalrotation then
