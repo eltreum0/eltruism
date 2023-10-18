@@ -300,6 +300,19 @@ local function SkinAuctionator()
 				_G["AuctionatorBuyFrame"].HistoryPrices:CreateBackdrop()
 			end
 		end
+		if _G["AuctionatorBuyItemFrame"] then
+			S:HandleButton(_G["AuctionatorBuyItemFrame"].BackButton)
+			S:HandleButton(_G["AuctionatorBuyItemFrame"].BuyDialog.Buy)
+			S:HandleButton(_G["AuctionatorBuyItemFrame"].BuyDialog.Cancel)
+			S:HandleFrame(_G["AuctionatorBuyItemFrame"].BuyDialog)
+			if _G["AuctionatorBuyItemFrame"].ResultsListing then
+				S:HandleFrame(_G["AuctionatorBuyItemFrame"].ResultsListing)
+				handlechildtab(_G["AuctionatorBuyItemFrame"].ResultsListing.HeaderContainer)
+				S:HandleTrimScrollBar(_G["AuctionatorBuyItemFrame"].ResultsListing.ScrollArea.ScrollBar)
+				_G["AuctionatorBuyItemFrame"].Inset:Hide()
+			end
+		end
+
 		if _G["AuctionatorSellingFrame"].CurrentPricesListing then
 			S:HandleFrame(_G["AuctionatorSellingFrame"].CurrentPricesListing.ScrollArea)
 			_G["AuctionatorSellingFrame"].CurrentPricesListing.ScrollArea:SetBackdrop()
