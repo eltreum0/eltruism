@@ -377,7 +377,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckToxiUI(L["Role Icons"], "Role Icons", "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "db.TXUI.elvUIIcons.roleIcons.enabled")
 
 	--non elvui addon dbs
-	CheckRaiderIO(L["Dungeon Score"].."\n"..L["Flags"], L["RaiderIO Tooltip"], "db.ElvUI_EltreumUI.skins.groupfinderDungeonScore", "RaiderIO_Config","showDropDownCopyURL")
+	--CheckRaiderIO(L["Dungeon Score"].."\n"..L["Flags"], L["RaiderIO Tooltip"], "db.ElvUI_EltreumUI.skins.groupfinderDungeonScore", "RaiderIO_Config","showDropDownCopyURL")
 
 	if _G["EltruismCompatibilityFrame"].numModules > 0 then
 		_G["EltruismCompatibilityFrame"]:Show()
