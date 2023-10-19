@@ -1045,27 +1045,26 @@ end)
 E:AddTagInfo("eltruism:leader:emoji", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Leader\\Leader1.tga:0:0:0:0|t"..L["Shows the Leader Icon as an Emoji Crown"])
 
 --combat icon idea for other units
-E:AddTag("eltruism:combatindicator", 'UNIT_HEALTH', function(unit)
-	local texture = E.db["unitframe"]["units"]["player"]["CombatIcon"]["texture"]
+E:AddTag("eltruism:combatindicator", 'UNIT_HEALTH PLAYER_FLAGS_CHANGED', function(unit)
 	if UnitAffectingCombat(unit) then
-		if texture == "DEFAULT" then
+		if E.db.unitframe.units.player.CombatIcon.texture == "DEFAULT" then
 			return "|TInterface\\CharacterFrame\\UI-StateIcon:0:0:0:0:64:64:34:59:6:29|t"
-		elseif texture == "PLATINUM" then
+		elseif E.db.unitframe.units.player.CombatIcon.texture == "PLATINUM" then
 			return "|TInterface\\Challenges\\ChallengeMode_Medal_Platinum:0:0:0:0|t"
-		elseif texture == "ATTACK" then
+		elseif E.db.unitframe.units.player.CombatIcon.texture == "ATTACK" then
 			return "|TInterface\\CURSOR\\Attack:0:0:0:0|t"
-		elseif texture == "ALERT" then
+		elseif E.db.unitframe.units.player.CombatIcon.texture == "ALERT" then
 			return "|TInterface\\DialogFrame\\UI-Dialog-Icon-AlertNew:0:0:0:0|t"
-		elseif texture == "ALERT2" then
+		elseif E.db.unitframe.units.player.CombatIcon.texture == "ALERT2" then
 			return "|TInterface\\OptionsFrame\\UI-OptionsFrame-NewFeatureIcon:0:0:0:0|t"
-		elseif texture == "ARTHAS" then
+		elseif E.db.unitframe.units.player.CombatIcon.texture == "ARTHAS" then
 			return "|TInterface\\LFGFRAME\\UI-LFR-PORTRAIT:0:0:0:0|t"
-		elseif texture == "SKULL" then
+		elseif E.db.unitframe.units.player.CombatIcon.texture == "SKULL" then
 			return "|TInterface\\LootFrame\\LootPanel-Icon:0:0:0:0|t"
-		elseif texture == "COMBAT" then
+		elseif E.db.unitframe.units.player.CombatIcon.texture == "COMBAT" then
 			return "|TInterface\\Addons\\ElvUI\\Core\\Media\\Textures\\Combat.tga:0:0:0:0|t"
 		else
-			return "|TInterface\\CharacterFrame\\UI-StateIcon:0:0:0:0:64:64:34:59:6:29|t"
+			return E:TextureString(E.Media.CombatIcons[E.db.unitframe.units.player.CombatIcon.texture],':20:20')--  "|T"..E.Media.CombatIcons[texture]..":0:0:0|t"
 		end
 	end
 end)
