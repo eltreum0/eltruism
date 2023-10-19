@@ -208,7 +208,7 @@ LSM:Register("background", "Eltreum-Tile10", [[Interface\Addons\ElvUI_EltreumUI\
 for i = 1, 9 do
 	E.Media.CombatIcons["Eltruism0"..i] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Combat\\fight"..i..".tga"
 end
-for i = 10, 28 do
+for i = 10, 29 do
 	E.Media.CombatIcons["Eltruism"..i] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Combat\\fight"..i..".tga"
 end
 
