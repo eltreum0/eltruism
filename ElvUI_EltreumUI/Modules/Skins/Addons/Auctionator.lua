@@ -135,14 +135,21 @@ local function SkinAuctionator()
 				frame.Icon:SetTexCoord(unpack(E.TexCoords))
 				frame.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
 				frame.IconSelectedHighlight:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
-			end
-			if frame.NormalTexture then
-				frame.NormalTexture:SetAlpha(0)
-				frame.NormalTexture.SetAlpha = E.noop
-			end
-			if frame.HighlightTexture then
-				frame.HighlightTexture:SetAlpha(0)
-				frame.HighlightTexture.SetAlpha = E.noop
+				if frame.NormalTexture then
+					frame.NormalTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
+				end
+				if frame.HighlightTexture then
+					frame.HighlightTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
+				end
+			else
+				if frame.NormalTexture then
+					frame.NormalTexture:SetAlpha(0)
+					frame.NormalTexture.SetAlpha = E.noop
+				end
+				if frame.HighlightTexture then
+					frame.HighlightTexture:SetAlpha(0)
+					frame.HighlightTexture.SetAlpha = E.noop
+				end
 			end
 			if frame.AddButton and not frame.EltruismAddButtonHook then
 				hooksecurefunc(frame,"AddButton",function(_,item)
@@ -339,6 +346,16 @@ local function SkinAuctionator()
 		if _G["AuctionatorSellingFrame"].AuctionatorSaleItem.Price then
 			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Price.MoneyInput.GoldBox)
 			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Price.MoneyInput.SilverBox)
+		end
+
+		--handle radio buttons
+		if _G["AuctionatorSellingFrame"].AuctionatorSaleItem.Duration then
+			for i = 1, _G["AuctionatorSellingFrame"].AuctionatorSaleItem.Duration:GetNumChildren() do
+				local subframe = select(i, _G["AuctionatorSellingFrame"].AuctionatorSaleItem.Duration:GetChildren())
+				if subframe and subframe.RadioButton then
+					S:HandleRadioButton(subframe.RadioButton)
+				end
+			end
 		end
 
 		--also based on simpy's skin but different
