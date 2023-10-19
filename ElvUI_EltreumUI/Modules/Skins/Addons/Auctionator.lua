@@ -137,12 +137,10 @@ local function SkinAuctionator()
 				frame.IconSelectedHighlight:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
 			end
 			if frame.NormalTexture then
-				frame.NormalTexture:SetAlpha(0)
-				frame.NormalTexture.SetAlpha = E.noop
+				frame.NormalTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
 			end
 			if frame.HighlightTexture then
-				frame.HighlightTexture:SetAlpha(0)
-				frame.HighlightTexture.SetAlpha = E.noop
+				frame.HighlightTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
 			end
 			if frame.AddButton and not frame.EltruismAddButtonHook then
 				hooksecurefunc(frame,"AddButton",function(_,item)
