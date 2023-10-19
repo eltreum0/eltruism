@@ -348,6 +348,16 @@ local function SkinAuctionator()
 			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Price.MoneyInput.SilverBox)
 		end
 
+		--handle radio buttons
+		if _G["AuctionatorSellingFrame"].AuctionatorSaleItem.Duration then
+			for i = 1, _G["AuctionatorSellingFrame"].AuctionatorSaleItem.Duration:GetNumChildren() do
+				local subframe = select(i, _G["AuctionatorSellingFrame"].AuctionatorSaleItem.Duration:GetChildren())
+				if subframe and subframe.RadioButton then
+					S:HandleRadioButton(subframe.RadioButton)
+				end
+			end
+		end
+
 		--also based on simpy's skin but different
 		if _G["AuctionatorSellingFrame"].AuctionatorSaleItem and not _G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop then
 			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.Icon:SetTexCoord(unpack(E.TexCoords))
