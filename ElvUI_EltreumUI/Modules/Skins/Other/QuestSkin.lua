@@ -1021,15 +1021,12 @@ function ElvUI_EltreumUI:SkinQuests()
 				UIParent_ManageFramePositions()
 			end)
 		elseif E.Wrath then
-			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then --TODO 10.2, might need C_AddOns.
-				return
-			end
-
 			if IsAddOnLoaded('Questie') then --questie overwrites the default tracker sadly instead of hooking into it --TODO 10.2, might need C_AddOns.
 				if _G.Questie.db.global.trackerEnabled then
 					return
 				end
 			end
+
 			--from blizzard's FrameXML/WatchFrame.lua
 			local questside
 			if _G.ObjectiveFrameMover then
@@ -1083,11 +1080,11 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 
 					end
-					--[[if line.dash then
-						--line.dash:Hide()
-						line.dash:ClearAllPoints()
-						line.dash:SetPoint("RIGHT", line,"LEFT",-2,0)
-					end]]
+					if line.dash then
+						line.dash:Hide()
+						--line.dash:ClearAllPoints()
+						--line.dash:SetPoint("RIGHT", line,"LEFT",-2,0)
+					end
 				end
 
 				local WatchFrame = _G.WatchFrame
