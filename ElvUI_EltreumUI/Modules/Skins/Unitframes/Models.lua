@@ -25,35 +25,33 @@ local UnitReaction = _G.UnitReaction
 
 --models table, because each version has different texture paths
 --its based on the color of the model, not the name/theme
-local classModels = {}
-if E.Retail then
-	classModels = {
-		["PRIEST"] = 590934,
-		["PALADIN"] = 130593,
-		--["PALADIN"] = 165575,
-		["HUNTER"] = 1251379,
-		["SHAMAN"] = 130552,
-		["MAGE"] = 235339,
-		--["MAGE"] = 1538774,
-		["WARLOCK"] = 3185115,
-		["DEMONHUNTER"] = 235337,
-		["DRUID"] = 2575322,
-		["WARRIOR"] = 1684062,
-		["ROGUE"] = 3152583,
-		["DEATHKNIGHT"] = 130476,
-		["MONK"] = 3513377,
-		["NPCFRIENDLY"] = 1726751,
-		["NPCUNFRIENDLY"] = 1965208,
-		["NPCHOSTILE"] = 235284,
-		["NPCNEUTRAL"] = 1306105,
-		["EVOKER"] = 130525,
-		---130623 --shadowmoon tbc w/ meteors
-		--130551, --icecrown very very blue
-		--130525, --hellfire
-		--4234796 smoky stormwind
-		--937003 fire
-	}
-elseif E.Wrath then
+local classModels = {
+	["PRIEST"] = 590934,
+	["PALADIN"] = 130593,
+	--["PALADIN"] = 165575,
+	["HUNTER"] = 1251379,
+	["SHAMAN"] = 130552,
+	["MAGE"] = 235339,
+	--["MAGE"] = 1538774,
+	["WARLOCK"] = 3185115,
+	["DEMONHUNTER"] = 235337,
+	["DRUID"] = 2575322,
+	["WARRIOR"] = 1684062,
+	["ROGUE"] = 3152583,
+	["DEATHKNIGHT"] = 130476,
+	["MONK"] = 3513377,
+	["NPCFRIENDLY"] = 1726751,
+	["NPCUNFRIENDLY"] = 1965208,
+	["NPCHOSTILE"] = 235284,
+	["NPCNEUTRAL"] = 1306105,
+	["EVOKER"] = 130525,
+	---130623 --shadowmoon tbc w/ meteors
+	--130551, --icecrown very very blue
+	--130525, --hellfire
+	--4234796 smoky stormwind
+	--937003 fire
+}
+if E.Wrath then
 	classModels = {
 		["MAGE"] = "environments/stars/nexusraid_runeeffects_starry.m2",
 		["PALADIN"] = "environments/stars/netherstormskybox.m2", --spells/dragonbreath_arcane.m2
@@ -73,7 +71,7 @@ elseif E.Wrath then
 		--["PALADIN"] = "spells/arcanebreath.m2",
 		--["NPCFRIENDLY"] = "spells/spells/cycloneearth_state.m2",
 	}
-else
+elseif E.Classic then
 	classModels = {
 		["PRIEST"] = "spells/snowballpowdery_impact_base.m2",--"spells/snowball_impact_chest.m2", --"spells/christmassnowrain.m2" was strangely removed
 		["WARRIOR"] = "spells/disarm_impact_chest.m2",
