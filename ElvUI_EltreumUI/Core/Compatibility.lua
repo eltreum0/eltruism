@@ -183,24 +183,29 @@ local function GetCheckCompatibilityFunction(targetAddonName, targetAddonLocales
 		return E.noop
 	end
 	if notElvUIDB then
-		return function(myModuleName, targetAddonModuleName, myDB, targetAddonDB,targetAddonKey)
-			if not (myDB and targetAddonDB and type(myDB) == "string" and type(targetAddonDB) == "string") then
-				return
-			end
+		return function(myModuleName, targetAddonModuleName, myDB, targetAddonDB)
 			local myTable, myKey, myValue = GetDatabaseRealValue(myDB)
-			if myValue and _G[targetAddonDB][targetAddonKey] then
+			if myValue and targetAddonDB then
 				AddButtonToCompatibilityFrame({
 					module1 = myModuleName,
 					plugin1 = select(2,GetAddOnInfo("ElvUI_EltreumUI")), --TODO 10.2, might need C_AddOns.
 					func1 = function()
 						myTable[myKey] = true
-						_G[targetAddonDB][targetAddonKey] = false
+						--targetAddonDB = false
+						if targetAddonName == "Questie" then
+							local QuestieTracker = _G.QuestieLoader:ImportModule("QuestieTracker")
+							QuestieTracker:Disable()
+						end
 					end,
 					module2 = targetAddonModuleName,
 					plugin2 = targetAddonLocales,
 					func2 = function()
 						myTable[myKey] = false
-						_G[targetAddonDB][targetAddonKey] = true
+						--targetAddonDB = true
+						if targetAddonName == "Questie" then
+							local QuestieTracker = _G.QuestieLoader:ImportModule("QuestieTracker")
+							QuestieTracker:Enable()
+						end
 					end
 				})
 			end
@@ -273,7 +278,8 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	local CheckCQL = GetCheckCompatibilityFunction("ClassicQuestLog", select(2,GetAddOnInfo("ClassicQuestLog")),true) --TODO 10.2, might need C_AddOns.
 	local CheckSorha = GetCheckCompatibilityFunction("SorhaQuestLog", select(2,GetAddOnInfo("SorhaQuestLog")),true) --TODO 10.2, might need C_AddOns.
 	local CheckDoom = GetCheckCompatibilityFunction("Doom_CooldownPulse", select(2,GetAddOnInfo("Doom_CooldownPulse")),true) --TODO 10.2, might need C_AddOns.
-	local CheckRaiderIO = GetCheckCompatibilityFunction("RaiderIO", select(2,GetAddOnInfo("RaiderIO")),false,true) --TODO 10.2, might need C_AddOns.
+	--local CheckRaiderIO = GetCheckCompatibilityFunction("RaiderIO", select(2,GetAddOnInfo("RaiderIO")),false,true) --TODO 10.2, might need C_AddOns.
+	local CheckQuestie = GetCheckCompatibilityFunction("Questie", select(2,GetAddOnInfo("Questie")),false,true) --TODO 10.2, might need C_AddOns.
 
 	--Character Panel
 	CheckMerathilisUI(L["Character Panel"].."\n"..L["Class Icons"], L["Character Panel"].."\n"..L["Class Icons"], "db.ElvUI_EltreumUI.skins.classicarmory", "db.mui.armory.character.enable")
@@ -378,7 +384,8 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckToxiUI(L["Role Icons"], "Role Icons", "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "db.TXUI.elvUIIcons.roleIcons.enabled")
 
 	--non elvui addon dbs
-	--CheckRaiderIO(L["Dungeon Score"].."\n"..L["Flags"], L["RaiderIO Tooltip"], "db.ElvUI_EltreumUI.skins.groupfinderDungeonScore", "RaiderIO_Config","showDropDownCopyURL")
+	--CheckRaiderIO(L["Dungeon Score"].."\n"..L["Flags"], L["RaiderIO Tooltip"], "db.ElvUI_EltreumUI.skins.groupfinderDungeonScore", _G.RaiderIO_Config.showDropDownCopyURL)
+	CheckQuestie(L["Quests Skin"], L["Quests Skin"], "db.ElvUI_EltreumUI.skins.quests", _G.Questie["db"]["char"]["trackerEnabled"]) --questie doesnt check the db actually, very weird, has to call the function, which causes a reload sadly
 
 	if _G["EltruismCompatibilityFrame"].numModules > 0 then
 		_G["EltruismCompatibilityFrame"]:Show()
