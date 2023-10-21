@@ -8,6 +8,8 @@ local function handlechildtab(frame)
 		if v:IsObjectType('Button') then
 			if v.Text then
 				S:HandleTab(v)
+				v.Text:ClearAllPoints()
+				v.Text:SetPoint("CENTER", v, "CENTER", 0, 0)
 			end
 		end
 	end
@@ -27,6 +29,7 @@ local function SkinAuctionator()
 		if not E.Retail then
 			_G["AuctionatorShoppingFrame"].ShoppingResultsInset:SetBackdrop()
 			_G["AuctionatorShoppingFrame"].ListsContainer:CreateBackdrop()
+			S:HandleButton(_G["AuctionatorShoppingFrame"].LoadAllPagesButton)
 			for _, v in pairs{_G["AuctionatorShoppingFrame"].ShoppingResultsInset:GetChildren()} do
 				if v.BorderBottomLeft then
 					v:Kill()
