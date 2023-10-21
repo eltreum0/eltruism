@@ -606,6 +606,12 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["isTarget"] = true
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["requireTarget"] = false
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["alpha"] = 100
+		--reset this because other plugins seem to change it
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = false
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = false
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["power"] = false
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["flash"]["enable"] = false
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["texture"]["enable"] = false
 
 		-- Non targeted enemies
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["actions"]["alpha"] = 100 --20 --test 100% alpha
