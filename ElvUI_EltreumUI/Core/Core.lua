@@ -23,7 +23,6 @@ local GameMenuFrame = _G.GameMenuFrame
 local UIErrorsFrame = _G.UIErrorsFrame
 local RaidWarningFrame = _G.RaidWarningFrame
 local tostring = _G.tostring
-local tremove = _G.tremove
 local math = _G.math
 local PlaySound = _G.PlaySound
 local W
@@ -287,44 +286,7 @@ function ElvUI_EltreumUI:Anchors()
 			_G.BossBanner:UnregisterAllEvents()
 			E:DisableMover('BossBannerMover')
 		end
-
-		--add objective frame anchor back in
-		if E.db.ElvUI_EltreumUI.quests.anchor then
-			E:Delay(0, function()
-				if not _G["ObjectiveFrameHolder"] and not InCombatLockdown() and not _G.MovieFrame:IsShown() and ObjectiveTrackerFrame:IsShown() then
-					local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
-					holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
-					holder:SetSize(130, 22)
-					holder:SetClampedToScreen(true)
-
-					ObjectiveTrackerFrame:BreakFromFrameManager()
-					Enum.EditModeObjectiveTrackerSetting.Opacity = 0 --fix nineslice
-					ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
-					if ObjectiveTrackerFrame.NineSlice then
-						ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
-					end
-
-					_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
-					_G.ObjectiveTrackerFrame:SetMovable(true)
-					_G.ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
-					_G.ObjectiveTrackerFrame:ClearAllPoints()
-					_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
-					E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,general,blizzUIImprovements", nil, 'ElvUI_EltreumUI,quests')
-
-					ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
-				end
-			end)
-		end
 	end
-end
-
---adapted from ObjectiveTracker_UpdateHeight()
-function ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
-	local isScenarioBlockShowing = _G.ScenarioBlocksFrame and _G.ScenarioBlocksFrame:IsShown()
-	local scenarioBlockHeight = isScenarioBlockShowing and (_G.ScenarioBlocksFrame:GetHeight() + _G.ObjectiveTrackerBlocksFrame.ScenarioHeader:GetHeight() + 10) or 0
-
-	local newHeight = math.max(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight, scenarioBlockHeight)
-	ObjectiveTrackerFrame:SetHeight(newHeight)
 end
 
 --World text Scale

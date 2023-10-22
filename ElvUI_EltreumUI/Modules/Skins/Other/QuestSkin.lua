@@ -22,6 +22,7 @@ if E.Retail then
 end
 local format = _G.format
 
+--skin objective frame depending on verison
 function ElvUI_EltreumUI:SkinQuests()
 
 	--[[if E.private.skins.parchmentRemoverEnable then
@@ -1319,6 +1320,48 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 			end)
 			_G.WatchFrame_Update()
+		end
+	end
+end
+
+--adapted from ObjectiveTracker_UpdateHeight()
+function ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
+	local isScenarioBlockShowing = _G.ScenarioBlocksFrame and _G.ScenarioBlocksFrame:IsShown()
+	local scenarioBlockHeight = isScenarioBlockShowing and (_G.ScenarioBlocksFrame:GetHeight() + _G.ObjectiveTrackerBlocksFrame.ScenarioHeader:GetHeight() + 10) or 0
+
+	local newHeight = math.max(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight, scenarioBlockHeight)
+	ObjectiveTrackerFrame:SetHeight(newHeight)
+end
+
+--add objective frame anchor back in
+function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
+	if E.db.ElvUI_EltreumUI.quests.anchor then
+		if not _G["ObjectiveFrameHolder"] then
+			local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
+			holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
+			holder:SetSize(130, 22)
+			holder:SetClampedToScreen(true)
+
+			ObjectiveTrackerFrame:BreakFromFrameManager()
+			Enum.EditModeObjectiveTrackerSetting.Opacity = 0 --fix nineslice
+			ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
+			if ObjectiveTrackerFrame.NineSlice then
+				ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
+			end
+
+			_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
+			_G.ObjectiveTrackerFrame:SetMovable(true)
+			_G.ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
+			_G.ObjectiveTrackerFrame:ClearAllPoints()
+			_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
+			E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,general,blizzUIImprovements", nil, 'ElvUI_EltreumUI,quests')
+
+			ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
+		else
+			ObjectiveTrackerFrame:BreakFromFrameManager()
+			_G.ObjectiveTrackerFrame:ClearAllPoints()
+			_G.ObjectiveTrackerFrame:SetPoint("TOP", _G["ObjectiveFrameHolder"], "TOP")
+			ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
 		end
 	end
 end
