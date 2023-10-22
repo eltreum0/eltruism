@@ -448,7 +448,11 @@ function ElvUI_EltreumUI:SkinQuests()
 							bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(bar.shadow)
 							if progressBar.block and progressBar.Bar.Icon then
-								E:Delay(0,function()
+								if not progressBar.backdrop.shadow then
+									progressBar.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(progressBar.backdrop.shadow)
+								end
+								--[[E:Delay(0,function()
 									if progressBar.Bar.Icon:IsShown() then
 										if not progressBar.block.shadow then
 											progressBar.block:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -466,7 +470,7 @@ function ElvUI_EltreumUI:SkinQuests()
 											progressBar.block.shadow:Hide()
 										end
 									end
-								end)
+								end)]]
 							end
 						end
 
