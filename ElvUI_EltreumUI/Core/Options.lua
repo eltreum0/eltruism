@@ -1113,8 +1113,6 @@ function ElvUI_EltreumUI:Configtable()
 			ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
 		end
 	end, function() return not E.db.ElvUI_EltreumUI.quests.anchor end, not E.Retail)
-
-
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.description5 = ACH:Description(" ", 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.wowhead = ACH:Toggle(L["Enable Wowhead Button on Quest Log"], L["Show a button for Wowhead quest links"], 11, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.questswowhead end, function(_, value) E.db.ElvUI_EltreumUI.skins.questswowhead = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.description6 = ACH:Description(" ", 12, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")

@@ -312,16 +312,12 @@ function ElvUI_EltreumUI:Anchors()
 					holder:SetSize(130, 22)
 					holder:SetClampedToScreen(true)
 
-
 					ObjectiveTrackerFrame:BreakFromFrameManager()
-
-
 					Enum.EditModeObjectiveTrackerSetting.Opacity = 0 --fix nineslice
 					ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
 					if ObjectiveTrackerFrame.NineSlice then
 						ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
 					end
-
 
 					_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
 					_G.ObjectiveTrackerFrame:SetMovable(true)
@@ -329,7 +325,6 @@ function ElvUI_EltreumUI:Anchors()
 					_G.ObjectiveTrackerFrame:ClearAllPoints()
 					_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
 					E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,general,blizzUIImprovements", nil, 'ElvUI_EltreumUI,quests')
-
 
 					ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
 
