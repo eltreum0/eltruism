@@ -1103,16 +1103,14 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.objectiveheight = ACH:Range(L["Objective Frame Height"], L["Height of the objective tracker. Increase size to be able to see more objectives."], 9, { min = 100, max = 900, step = 1 }, "full",
 	function()
 		if ObjectiveTrackerFrame then
-			return ObjectiveTrackerFrame.editModeHeight
+			return E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight
 		else
 			return 1
 		end
 	end, function(_, value)
 		if ObjectiveTrackerFrame then
 			E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight = value
-			ObjectiveTrackerFrame.editModeHeight = value
-			Enum.EditModeObjectiveTrackerSetting.Height = value
-			ObjectiveTracker_UpdateHeight()
+			ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
 		end
 	end, function() return not E.db.ElvUI_EltreumUI.quests.anchor end, not E.Retail)
 

@@ -291,9 +291,9 @@ function ElvUI_EltreumUI:Anchors()
 		if not InCombatLockdown() then
 			for i = #registered, 1, -1 do
 				local name = registered[i]:GetName()
-				if name == "ObjectiveTrackerFrame" and E.db.ElvUI_EltreumUI.quests.anchor then
+				--[[if name == "ObjectiveTrackerFrame" and E.db.ElvUI_EltreumUI.quests.anchor then
 					tremove(editMode.registeredSystemFrames, i)
-				end
+				end]]
 				if name == "ArcheologyDigsiteProgressBar" then
 					tremove(editMode.registeredSystemFrames, i)
 					_G.ArcheologyDigsiteProgressBar.ApplySystemAnchor = nil
@@ -310,10 +310,11 @@ function ElvUI_EltreumUI:Anchors()
 					local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
 					holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
 					holder:SetSize(130, 22)
+					holder:SetClampedToScreen(true)
 
-					Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
-					ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
-					ObjectiveTracker_UpdateHeight()
+
+					ObjectiveTrackerFrame:BreakFromFrameManager()
+
 
 					Enum.EditModeObjectiveTrackerSetting.Opacity = 0 --fix nineslice
 					ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
@@ -321,30 +322,6 @@ function ElvUI_EltreumUI:Anchors()
 						ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
 					end
 
-					--test nil function to prevent it firing and causing taints
-					--_G.ObjectiveTrackerFrame.ApplySystemAnchor = E.noop
-					_G.ObjectiveTrackerFrame.ApplySystemAnchor = nil
-					_G.ObjectiveTrackerFrame.AnchorSelectionFrame = nil
-					_G.ObjectiveTrackerFrame.SetPointOverride = nil
-					_G.ObjectiveTrackerFrame.isRightManagedFrame = false
-					_G.ObjectiveTrackerFrame.breakSnappedFramesOnSave = false
-					--_G.ObjectiveTrackerFrame.ignoreFramePositionManager = true
-					--local frameContainer = _G.ObjectiveTrackerFrame:GetManagedFrameContainer();
-					--frameContainer:RemoveManagedFrame(_G.ObjectiveTrackerFrame)
-					--[[_G.ObjectiveTrackerFrame.SnapToFrame = nil
-					_G.ObjectiveTrackerFrame.ClearAllPointsOverride = nil
-					--_G.ObjectiveTrackerFrame.BreakFromFrameManager = E.noop
-					--_G.ObjectiveTrackerFrame.OnAnyEditModeSystemAnchorChanged = E.noop
-					--_G.ObjectiveTrackerFrame.ResetToDefaultPosition = E.noop
-					--_G.ObjectiveTrackerFrame.UpdateMagnetismRegistration = E.noop
-					--_G.ObjectiveTrackerFrame.UpdateSystemSetting = E.noop
-					--_G.ObjectiveTrackerFrame.SetSnappedToFrame = E.noop
-					--_G.ObjectiveTrackerFrame.SetPointBase = E.noop --causes issues for some people for some reason
-					--_G.ObjectiveTrackerFrame.ClearAllPointsBase = nil
-					local function returnfalse()
-						return false
-					end
-					_G.ObjectiveTrackerFrame.CanBeMoved = returnfalse()]]
 
 					_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
 					_G.ObjectiveTrackerFrame:SetMovable(true)
@@ -352,9 +329,11 @@ function ElvUI_EltreumUI:Anchors()
 					_G.ObjectiveTrackerFrame:ClearAllPoints()
 					_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
 					E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,general,blizzUIImprovements", nil, 'ElvUI_EltreumUI,quests')
-					ObjectiveTrackerFrame:UnregisterEvent("ADDON_ACTION_BLOCKED")
 
-					local function SetObjectivePoint()
+
+					ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
+
+					--[[local function SetObjectivePoint()
 						E:Delay(0, function()
 							if not InCombatLockdown() then
 								_G.ObjectiveTrackerFrame.isRightManagedFrame = false
@@ -376,11 +355,20 @@ function ElvUI_EltreumUI:Anchors()
 					hooksecurefunc("ObjectiveTracker_UpdateHeight", SetObjectivePoint)
 					--hooksecurefunc(_G.ObjectiveTrackerFrame, "SetPointBase", SetObjectivePoint)
 					hooksecurefunc(_G.ObjectiveTrackerFrame, "OnAnyEditModeSystemAnchorChanged", SetObjectivePoint)
-					hooksecurefunc(_G.ObjectiveTrackerFrame, "ResetToDefaultPosition", SetObjectivePoint)
+					hooksecurefunc(_G.ObjectiveTrackerFrame, "ResetToDefaultPosition", SetObjectivePoint)]]
 				end
 			end)
 		end
 	end
+end
+
+--adapted from ObjectiveTracker_UpdateHeight()
+function ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
+	local isScenarioBlockShowing = _G.ScenarioBlocksFrame and _G.ScenarioBlocksFrame:IsShown()
+	local scenarioBlockHeight = isScenarioBlockShowing and (_G.ScenarioBlocksFrame:GetHeight() + _G.ObjectiveTrackerBlocksFrame.ScenarioHeader:GetHeight() + 10) or 0
+
+	local newHeight = math.max(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight, scenarioBlockHeight)
+	ObjectiveTrackerFrame:SetHeight(newHeight)
 end
 
 --World text Scale
