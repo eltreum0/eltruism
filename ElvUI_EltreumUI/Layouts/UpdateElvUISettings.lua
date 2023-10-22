@@ -79,7 +79,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["defaultColor"] = true
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["xOffset"] = 7
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = -7
-	E.db["unitframe"]["units"]["target"]["CombatIcon"]["texture"] = "Eltruism09"
+	E.db["unitframe"]["units"]["target"]["CombatIcon"]["texture"] = "Eltruism16"
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["size"] = 14
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = true
 
