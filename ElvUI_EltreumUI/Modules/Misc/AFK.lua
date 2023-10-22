@@ -47,7 +47,8 @@ local classMusic = {
 	["HUNTER"] = 1417326,
 	["ROGUE"] = 1417273,
 	["PRIEST"] = 1417367,
-	["DEATHKNIGHT"] = 229831,
+	["DEATHKNIGHT"] = 229831, --works in wrath
+	--/script PlaySound(14960)
 	["SHAMAN"] = 528163,
 	["MAGE"] = 1417264,
 	["WARLOCK"] = 1417356,
