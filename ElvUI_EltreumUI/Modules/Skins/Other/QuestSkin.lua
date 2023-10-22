@@ -1163,6 +1163,9 @@ function ElvUI_EltreumUI:SkinQuests()
 						return
 					end
 					local _, Anchor = Button:GetPoint()
+					if Button.eltruismbgtexture then
+						Button.eltruismbgtexture:Hide()
+					end
 
 					if _G["WatchFrameItem"..i.."HotKey"] then
 						_G["WatchFrameItem"..i.."HotKey"]:SetText("")
