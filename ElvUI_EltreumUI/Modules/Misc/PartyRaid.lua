@@ -350,10 +350,10 @@ function ElvUI_EltreumUI:RestIcon(frame)
 			_G["EltruismPlayerRestLoop"]:SetScale(E.db.unitframe.units.player.RestIcon.size/15)
 			hooksecurefunc(frame.RestingIndicator, 'PostUpdate', function()
 				if frame.RestingIndicator:IsShown() then
-					_G["EltruismPlayerRestLoop"]:SetAlpha(1)
+					_G["EltruismPlayerRestLoop"]:Show()
 					_G["EltruismPlayerRestLoop"].PlayerRestLoopAnim:Play()
 				else
-					_G["EltruismPlayerRestLoop"]:SetAlpha(0)
+					_G["EltruismPlayerRestLoop"]:Hide()
 					_G["EltruismPlayerRestLoop"].PlayerRestLoopAnim:Stop()
 				end
 				--_G["EltruismPlayerRestLoopRestTexture"]:SetDesaturated(true)
