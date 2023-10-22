@@ -452,25 +452,6 @@ function ElvUI_EltreumUI:SkinQuests()
 									progressBar.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 									ElvUI_EltreumUI:ShadowColor(progressBar.backdrop.shadow)
 								end
-								--[[E:Delay(0,function()
-									if progressBar.Bar.Icon:IsShown() then
-										if not progressBar.block.shadow then
-											progressBar.block:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-											ElvUI_EltreumUI:ShadowColor(progressBar.block.shadow)
-										end
-										if progressBar.block.shadow then
-											progressBar.block.shadow:ClearAllPoints()
-											progressBar.block.shadow:SetPoint("TOPLEFT", progressBar.Bar.Icon, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
-											progressBar.block.shadow:SetPoint("BOTTOMRIGHT", progressBar.Bar.Icon, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-											progressBar.block.shadow:Show()
-											progressBar.block.shadow:SetParent(progressBar.Bar)
-										end
-									else
-										if progressBar.block.shadow then
-											progressBar.block.shadow:Hide()
-										end
-									end
-								end)]]
 							end
 						end
 
