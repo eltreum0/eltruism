@@ -279,28 +279,13 @@ function ElvUI_EltreumUI:Anchors()
 	if E.Retail then
 		E:CreateMover(_G.RaidBossEmoteFrame, "MoverRaidBossEmoteFrame", "Raid/Boss Emote Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
 		E:CreateMover(EltreumArcheologyAnchor, "MoverEltreumArcheologyAnchor", "EltruismArcheology", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
+		_G.ArcheologyDigsiteProgressBar:BreakFromFrameManager()
+		_G.ArcheologyDigsiteProgressBar:ClearAllPoints()
+		_G.ArcheologyDigsiteProgressBar:SetPoint("CENTER", _G["EltruismArcheology"], "CENTER", 0, 0)
 
 		if E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss then
 			_G.BossBanner:UnregisterAllEvents()
 			E:DisableMover('BossBannerMover')
-		end
-
-		--based in elvui, attempt at preventing taints
-		local editMode = _G.EditModeManagerFrame
-		local registered = editMode.registeredSystemFrames
-		if not InCombatLockdown() then
-			for i = #registered, 1, -1 do
-				local name = registered[i]:GetName()
-				--[[if name == "ObjectiveTrackerFrame" and E.db.ElvUI_EltreumUI.quests.anchor then
-					tremove(editMode.registeredSystemFrames, i)
-				end]]
-				if name == "ArcheologyDigsiteProgressBar" then
-					tremove(editMode.registeredSystemFrames, i)
-					_G.ArcheologyDigsiteProgressBar.ApplySystemAnchor = nil
-					_G.ArcheologyDigsiteProgressBar.HighlightSystem = E.noop
-					_G.ArcheologyDigsiteProgressBar.ClearHighlight = E.noop
-				end
-			end
 		end
 
 		--add objective frame anchor back in
@@ -327,30 +312,6 @@ function ElvUI_EltreumUI:Anchors()
 					E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,general,blizzUIImprovements", nil, 'ElvUI_EltreumUI,quests')
 
 					ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
-
-					--[[local function SetObjectivePoint()
-						E:Delay(0, function()
-							if not InCombatLockdown() then
-								_G.ObjectiveTrackerFrame.isRightManagedFrame = false
-								_G.ObjectiveTrackerFrame.breakSnappedFramesOnSave = false
-								_G.ObjectiveTrackerFrame:ClearAllPoints()
-								_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
-								_G.ObjectiveTrackerFrame.editModeSystemAnchorDirty = false
-							end
-						end)
-						Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
-						ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
-
-						Enum.EditModeObjectiveTrackerSetting.Opacity = 0 --fix nineslice
-						ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
-						if ObjectiveTrackerFrame.NineSlice then
-							ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
-						end
-					end
-					hooksecurefunc("ObjectiveTracker_UpdateHeight", SetObjectivePoint)
-					--hooksecurefunc(_G.ObjectiveTrackerFrame, "SetPointBase", SetObjectivePoint)
-					hooksecurefunc(_G.ObjectiveTrackerFrame, "OnAnyEditModeSystemAnchorChanged", SetObjectivePoint)
-					hooksecurefunc(_G.ObjectiveTrackerFrame, "ResetToDefaultPosition", SetObjectivePoint)]]
 				end
 			end)
 		end
