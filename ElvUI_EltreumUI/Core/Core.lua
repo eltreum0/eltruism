@@ -355,15 +355,15 @@ function ElvUI_EltreumUI:Anchors()
 					ObjectiveTrackerFrame:UnregisterEvent("ADDON_ACTION_BLOCKED")
 
 					local function SetObjectivePoint()
-						--E:Delay(0, function()
-							--if not InCombatLockdown() then
+						E:Delay(0, function()
+							if not InCombatLockdown() then
 								_G.ObjectiveTrackerFrame.isRightManagedFrame = false
 								_G.ObjectiveTrackerFrame.breakSnappedFramesOnSave = false
 								_G.ObjectiveTrackerFrame:ClearAllPoints()
 								_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
 								_G.ObjectiveTrackerFrame.editModeSystemAnchorDirty = false
-							--end
-						--end)
+							end
+						end)
 						Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 						ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
 
