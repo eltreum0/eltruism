@@ -1354,7 +1354,7 @@ function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 			_G.ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
 			_G.ObjectiveTrackerFrame:ClearAllPoints()
 			_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
-			E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,general,blizzUIImprovements", nil, 'ElvUI_EltreumUI,quests')
+			E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,GENERAL", nil, 'ElvUI_EltreumUI,quests')
 
 			ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
 		else
