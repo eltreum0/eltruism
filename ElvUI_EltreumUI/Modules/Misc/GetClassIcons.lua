@@ -449,7 +449,15 @@ local gradient = {
 }
 
 --return icons for other functions
+local ScreenWidth = GetScreenWidth()
 function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert,resolution,nostring)
+	if ScreenWidth < 2000 then
+		if resolution == "32" then
+			resolution = "16"
+		elseif resolution == "64" then
+			resolution = "32"
+		end
+	end
 	if nostring then
 		if icon == "RELEAF" then
 			return classIconsReleaf[resolution][unitclass]
