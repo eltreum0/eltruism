@@ -736,6 +736,16 @@ function ElvUI_EltreumUI:PerformanceOptimization()
 	E.db["tooltip"]["role"] = false --was true
 	E.db["tooltip"]["targetInfo"] = false --was true
 	E.db["tooltip"]["showMount"] = false --was true
+	E.db["unitframe"]["units"]["boss"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["player"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["target"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["party"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["raid1"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["raid2"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["raid3"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["focus"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["pet"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["targettarget"]["portrait"]["enable"] = false
 
 	--Eltruism
 	E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable = false
