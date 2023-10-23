@@ -43,7 +43,11 @@ function ElvUI_EltreumUI:SkinQuests()
 			wowheadbutton:SetWidth(x)
 			wowheadbutton:SetHeight(y)
 			wowheadbutton:SetParent(_G.QuestLogFrame)
-			wowheadbutton:SetPoint("LEFT", _G.QuestFramePushQuestButton, "LEFT", -x-2, 0)
+			if E.db.ElvUI_EltreumUI.skins.quests then
+				wowheadbutton:SetPoint("LEFT", _G.QuestFramePushQuestButton, "LEFT", -x-2, 0)
+			else
+				wowheadbutton:SetPoint("TOPLEFT", _G.QuestLogFrame, "TOPLEFT", 15, -15)
+			end
 		elseif E.Wrath then
 			local x, y = _G.QuestLogFrameTrackButton:GetSize()
 			wowheadbutton:SetWidth(x)
