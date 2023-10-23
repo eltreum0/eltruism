@@ -1368,3 +1368,18 @@ function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 		end
 	end
 end
+
+--because the objective is removed from frame manager, when swapping to another layout that isnt it can error when trying to export it, so break it from manager again
+if E.Retail then
+	local editmodecheck = CreateFrame("FRAME")
+	editmodecheck:RegisterEvent("EDIT_MODE_LAYOUTS_UPDATED")
+	editmodecheck:SetScript("OnEvent",function()
+		if not E.private.ElvUI_EltreumUI then return end
+		if not E.private.ElvUI_EltreumUI.install_version then return end
+		if not E.db.ElvUI_EltreumUI then return end
+		if not E.db.ElvUI_EltreumUI.quests then return end
+		if E.db.ElvUI_EltreumUI.quests.anchor then
+			ElvUI_EltreumUI:ObjectiveTrackerAnchor()
+		end
+	end)
+end
