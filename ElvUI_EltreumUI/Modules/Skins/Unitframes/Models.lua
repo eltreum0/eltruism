@@ -25,35 +25,33 @@ local UnitReaction = _G.UnitReaction
 
 --models table, because each version has different texture paths
 --its based on the color of the model, not the name/theme
-local classModels = {}
-if E.Retail then
-	classModels = {
-		["PRIEST"] = 590934,
-		["PALADIN"] = 130593,
-		--["PALADIN"] = 165575,
-		["HUNTER"] = 1251379,
-		["SHAMAN"] = 130552,
-		["MAGE"] = 235339,
-		--["MAGE"] = 1538774,
-		["WARLOCK"] = 3185115,
-		["DEMONHUNTER"] = 235337,
-		["DRUID"] = 2575322,
-		["WARRIOR"] = 1684062,
-		["ROGUE"] = 3152583,
-		["DEATHKNIGHT"] = 130476,
-		["MONK"] = 3513377,
-		["NPCFRIENDLY"] = 1726751,
-		["NPCUNFRIENDLY"] = 1965208,
-		["NPCHOSTILE"] = 235284,
-		["NPCNEUTRAL"] = 1306105,
-		["EVOKER"] = 130525,
-		---130623 --shadowmoon tbc w/ meteors
-		--130551, --icecrown very very blue
-		--130525, --hellfire
-		--4234796 smoky stormwind
-		--937003 fire
-	}
-elseif E.Wrath then
+local classModels = {
+	["PRIEST"] = 590934,
+	["PALADIN"] = 130593,
+	--["PALADIN"] = 165575,
+	["HUNTER"] = 1251379,
+	["SHAMAN"] = 130552,
+	["MAGE"] = 235339,
+	--["MAGE"] = 1538774,
+	["WARLOCK"] = 3185115,
+	["DEMONHUNTER"] = 235337,
+	["DRUID"] = 2575322,
+	["WARRIOR"] = 1684062,
+	["ROGUE"] = 3152583,
+	["DEATHKNIGHT"] = 130476,
+	["MONK"] = 3513377,
+	["NPCFRIENDLY"] = 1726751,
+	["NPCUNFRIENDLY"] = 1965208,
+	["NPCHOSTILE"] = 235284,
+	["NPCNEUTRAL"] = 1306105,
+	["EVOKER"] = 130525,
+	---130623 --shadowmoon tbc w/ meteors
+	--130551, --icecrown very very blue
+	--130525, --hellfire
+	--4234796 smoky stormwind
+	--937003 fire
+}
+if E.Wrath then
 	classModels = {
 		["MAGE"] = "environments/stars/nexusraid_runeeffects_starry.m2",
 		["PALADIN"] = "environments/stars/netherstormskybox.m2", --spells/dragonbreath_arcane.m2
@@ -73,7 +71,7 @@ elseif E.Wrath then
 		--["PALADIN"] = "spells/arcanebreath.m2",
 		--["NPCFRIENDLY"] = "spells/spells/cycloneearth_state.m2",
 	}
-else
+elseif E.Classic then
 	classModels = {
 		["PRIEST"] = "spells/snowballpowdery_impact_base.m2",--"spells/snowball_impact_chest.m2", --"spells/christmassnowrain.m2" was strangely removed
 		["WARRIOR"] = "spells/disarm_impact_chest.m2",
@@ -125,13 +123,13 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 				playereffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
 				playereffect:SetParent(playerbar.Health)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					playereffect:SetAllPoints(playerbar.Health:GetStatusBarTexture())
+					--playereffect:SetAllPoints(playerbar.Health:GetStatusBarTexture())
 					playereffect:SetInside(playerbar.Health:GetStatusBarTexture(), 0, 0)
 					playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel())
 					playereffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
 				--elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
 				else
-					playereffect:SetAllPoints(playerbar.Health)
+					--playereffect:SetAllPoints(playerbar.Health)
 					playereffect:SetInside(playerbar.Health, 0, 0)
 					playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel()-1)
 					playereffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
@@ -163,8 +161,8 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 
 			if powerbar then
 				--powerbareffectplayer:SetAlpha(1)
-				powerbareffectplayer:ClearAllPoints()
-				powerbareffectplayer:SetAllPoints(powerbar:GetStatusBarTexture())
+				--powerbareffectplayer:ClearAllPoints()
+				--powerbareffectplayer:SetAllPoints(powerbar:GetStatusBarTexture())
 				powerbareffectplayer:SetFrameLevel(powerbar:GetFrameLevel())
 				powerbareffectplayer:SetInside(powerbar:GetStatusBarTexture(), 0, 0)
 				powerbareffectplayer:SetParent(powerbar)
@@ -226,15 +224,15 @@ function ElvUI_EltreumUI:TargetUFEffects()
 				targeteffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
 				targeteffect:SetParent(targetbar.Health)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					targeteffect:ClearAllPoints()
-					targeteffect:SetAllPoints(targetbar.Health:GetStatusBarTexture())
+					--targeteffect:ClearAllPoints()
+					--targeteffect:SetAllPoints(targetbar.Health:GetStatusBarTexture())
 					targeteffect:SetInside(targetbar.Health:GetStatusBarTexture(), 0, 0)
 					targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel())
 					targeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
 				--elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
 				else
-					targeteffect:ClearAllPoints()
-					targeteffect:SetAllPoints(targetbar.Health)
+					--targeteffect:ClearAllPoints()
+					--targeteffect:SetAllPoints(targetbar.Health)
 					targeteffect:SetInside(targetbar.Health, 0, 0)
 					targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel()-1)
 					targeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
@@ -266,8 +264,8 @@ function ElvUI_EltreumUI:TargetUFEffects()
 			end
 			if targetpowerbar then
 				--powerbareffecttarget:SetAlpha(1)
-				powerbareffecttarget:ClearAllPoints()
-				powerbareffecttarget:SetAllPoints(targetpowerbar:GetStatusBarTexture())
+				--powerbareffecttarget:ClearAllPoints()
+				--powerbareffecttarget:SetAllPoints(targetpowerbar:GetStatusBarTexture())
 				powerbareffecttarget:SetFrameLevel(targetpowerbar:GetFrameLevel())
 				powerbareffecttarget:SetInside(targetpowerbar:GetStatusBarTexture(), 0, 0)
 				powerbareffecttarget:SetParent(targetpowerbar)
@@ -327,15 +325,15 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 				targeteffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
 				targettargeteffect:SetParent(targettargetbar.Health)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					targettargeteffect:ClearAllPoints()
-					targettargeteffect:SetAllPoints(targettargetbar.Health:GetStatusBarTexture())
+					--targettargeteffect:ClearAllPoints()
+					--targettargeteffect:SetAllPoints(targettargetbar.Health:GetStatusBarTexture())
 					targettargeteffect:SetInside(targettargetbar.Health:GetStatusBarTexture(), 0, 0)
 					targettargeteffect:SetFrameLevel(targettargetbar.Health:GetFrameLevel())
 					targettargeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
 				--elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
 				else
-					targettargeteffect:ClearAllPoints()
-					targettargeteffect:SetAllPoints(targettargetbar.Health)
+					--targettargeteffect:ClearAllPoints()
+					--targettargeteffect:SetAllPoints(targettargetbar.Health)
 					targettargeteffect:SetInside(targettargetbar.Health, 0, 0)
 					targettargeteffect:SetFrameLevel(targettargetbar.Health:GetFrameLevel()-1)
 					targettargeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
@@ -368,8 +366,8 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 
 			if targettargetpowerbar then
 				--powerbareffecttargettarget:SetAlpha(1)
-				powerbareffecttargettarget:ClearAllPoints()
-				powerbareffecttargettarget:SetAllPoints(targettargetpowerbar:GetStatusBarTexture())
+				--powerbareffecttargettarget:ClearAllPoints()
+				--powerbareffecttargettarget:SetAllPoints(targettargetpowerbar:GetStatusBarTexture())
 				powerbareffecttargettarget:SetFrameLevel(targettargetpowerbar:GetFrameLevel())
 				powerbareffecttargettarget:SetInside(targettargetpowerbar:GetStatusBarTexture(), 0, 0)
 				powerbareffecttargettarget:SetParent(targettargetpowerbar)
@@ -433,15 +431,15 @@ function ElvUI_EltreumUI:FocusUFEffects()
 				focuseffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
 				focuseffect:SetParent(focusbar.Health)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					focuseffect:ClearAllPoints()
-					focuseffect:SetAllPoints(focusbar.Health:GetStatusBarTexture())
+					--focuseffect:ClearAllPoints()
+					--focuseffect:SetAllPoints(focusbar.Health:GetStatusBarTexture())
 					focuseffect:SetInside(focusbar.Health:GetStatusBarTexture(), 0, 0)
 					focuseffect:SetFrameLevel(focusbar.Health:GetFrameLevel())
 					focuseffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
 				--elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
 				else
-					focuseffect:ClearAllPoints()
-					focuseffect:SetAllPoints(focusbar.Health)
+					--focuseffect:ClearAllPoints()
+					--focuseffect:SetAllPoints(focusbar.Health)
 					focuseffect:SetInside(focusbar.Health, 0, 0)
 					focuseffect:SetFrameLevel(focusbar.Health:GetFrameLevel()-1)
 					focuseffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
@@ -473,8 +471,8 @@ function ElvUI_EltreumUI:FocusUFEffects()
 			end
 			if focuspowerbar then
 				--powerbareffectfocus:SetAlpha(1)
-				powerbareffectfocus:ClearAllPoints()
-				powerbareffectfocus:SetAllPoints(focuspowerbar:GetStatusBarTexture())
+				--powerbareffectfocus:ClearAllPoints()
+				--powerbareffectfocus:SetAllPoints(focuspowerbar:GetStatusBarTexture())
 				powerbareffectfocus:SetFrameLevel(focuspowerbar:GetFrameLevel())
 				powerbareffectfocus:SetInside(focuspowerbar:GetStatusBarTexture(), 0, 0)
 				powerbareffectfocus:SetParent(focuspowerbar)
@@ -531,15 +529,15 @@ function ElvUI_EltreumUI:PetUFEffects()
 
 			if petbar then
 				peteffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
-				peteffect:ClearAllPoints()
+				--peteffect:ClearAllPoints()
 				peteffect:SetParent(petbar.Health)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					peteffect:SetAllPoints(petbar.Health:GetStatusBarTexture())
+					--peteffect:SetAllPoints(petbar.Health:GetStatusBarTexture())
 					peteffect:SetInside(petbar.Health:GetStatusBarTexture(), 0, 0)
 					peteffect:SetFrameLevel(petbar.Health:GetFrameLevel())
 					peteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
 				else
-					peteffect:SetAllPoints(petbar.Health)
+					--peteffect:SetAllPoints(petbar.Health)
 					peteffect:SetInside(petbar.Health, 0, 0)
 					peteffect:SetFrameLevel(petbar.Health:GetFrameLevel()-1)
 					peteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
@@ -569,8 +567,8 @@ function ElvUI_EltreumUI:PetUFEffects()
 				end
 			end
 			if petpowerbar then
-				powerbareffectpet:ClearAllPoints()
-				powerbareffectpet:SetAllPoints(petpowerbar:GetStatusBarTexture())
+				--powerbareffectpet:ClearAllPoints()
+				--powerbareffectpet:SetAllPoints(petpowerbar:GetStatusBarTexture())
 				powerbareffectpet:SetFrameLevel(petpowerbar:GetFrameLevel())
 				powerbareffectpet:SetInside(petpowerbar:GetStatusBarTexture(), 0, 0)
 				powerbareffectpet:SetParent(petpowerbar)
@@ -631,7 +629,7 @@ function ElvUI_EltreumUI:CastbarEffects()
 
 			if castbar then
 				castbareffectplayer:SetAlpha(1)
-				castbareffectplayer:SetAllPoints(castbar:GetStatusBarTexture())
+				--castbareffectplayer:SetAllPoints(castbar:GetStatusBarTexture())
 				castbareffectplayer:SetFrameLevel(castbar:GetFrameLevel())
 				castbareffectplayer:SetInside(castbar:GetStatusBarTexture(), 0, 0)
 				castbareffectplayer:SetParent(castbar)
@@ -639,8 +637,8 @@ function ElvUI_EltreumUI:CastbarEffects()
 
 			if targetcastbar then
 				castbareffecttarget:SetAlpha(1)
-				castbareffecttarget:ClearAllPoints()
-				castbareffecttarget:SetAllPoints(targetcastbar:GetStatusBarTexture())
+				--castbareffecttarget:ClearAllPoints()
+				--castbareffecttarget:SetAllPoints(targetcastbar:GetStatusBarTexture())
 				castbareffecttarget:SetFrameLevel(targetcastbar:GetFrameLevel())
 				castbareffecttarget:SetInside(targetcastbar:GetStatusBarTexture(), 0, 0)
 				castbareffecttarget:SetParent(targetcastbar)

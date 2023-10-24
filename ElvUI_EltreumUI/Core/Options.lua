@@ -1103,20 +1103,16 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.objectiveheight = ACH:Range(L["Objective Frame Height"], L["Height of the objective tracker. Increase size to be able to see more objectives."], 9, { min = 100, max = 900, step = 1 }, "full",
 	function()
 		if ObjectiveTrackerFrame then
-			return ObjectiveTrackerFrame.editModeHeight
+			return E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight
 		else
 			return 1
 		end
 	end, function(_, value)
 		if ObjectiveTrackerFrame then
 			E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight = value
-			ObjectiveTrackerFrame.editModeHeight = value
-			Enum.EditModeObjectiveTrackerSetting.Height = value
-			ObjectiveTracker_UpdateHeight()
+			ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
 		end
 	end, function() return not E.db.ElvUI_EltreumUI.quests.anchor end, not E.Retail)
-
-
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.description5 = ACH:Description(" ", 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.wowhead = ACH:Toggle(L["Enable Wowhead Button on Quest Log"], L["Show a button for Wowhead quest links"], 11, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.questswowhead end, function(_, value) E.db.ElvUI_EltreumUI.skins.questswowhead = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.description6 = ACH:Description(" ", 12, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
@@ -3219,6 +3215,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.skins.args.shadows.args.chat = ACH:Toggle(CHAT_LABEL, L["Add Shadows to the Chat Frames"], 3, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.shadow.chat end, function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.chat = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable end)
 	ElvUI_EltreumUI.Options.args.skins.args.shadows.args.blizzelvui = ACH:Toggle(L["Blizzard/ElvUI"], L["Add Shadows to general Blizzard/ElvUI frames"], 3, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.shadow.blizzard end, function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.blizzard = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable end)
 	ElvUI_EltreumUI.Options.args.skins.args.shadows.args.tooltip = ACH:Toggle(L["Tooltip"], L["Add Shadows to Tooltips"], 3, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.shadow.tooltip end, function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.tooltip = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable end)
+	ElvUI_EltreumUI.Options.args.skins.args.shadows.args.datatexts = ACH:Toggle(L["DataTexts"], nil, 3, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.shadow.datatexts end, function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.datatexts = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable end)
 	ElvUI_EltreumUI.Options.args.skins.args.shadows.args.unitframes = ACH:Toggle(L["UnitFrames"], L["Add Shadows to the Unitframes"], 3, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.shadow.unitframes end, function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.unitframes = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable end)
 	ElvUI_EltreumUI.Options.args.skins.args.shadows.args.raid = ACH:Toggle(L["Raid"], L["Add Shadows to Raid Frames"], 3, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.shadow.raid end, function(_, value) E.db.ElvUI_EltreumUI.skins.shadow.raid = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.shadow.enable end)
 	ElvUI_EltreumUI.Options.args.skins.args.shadows.args.description2 = ACH:Description(L["Other Shadows (can become CPU/Memory Intensive)"], 4, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
@@ -3364,74 +3361,40 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 2)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added /eltruism autoupdate command, which will run the Eltruism Update function when a new version is installed
-Added Blizzard Dungeon Score to the LFG Listing in Retail, which also has a spam blocking element
-Added a possible fix for the GetPlaystyleString taint in Retail
-Added a button to import the Edit Mode Layout in Retail
-Added more font outline options in Eltruism > Media
-Added an option to increase the shadows in Details
-Added [eltruism:longhpstatusnopc:gradient] tag
-Added Spec Icons in the LFG Listing in Retail
-Added Class Icons in the LFG Listing in Wrath
-Added a simple skin to WeakAuras Options
-Added Rank to Honor Datatext in Classic
-Added a mover for Raid Utility
-Added in game Changelog
-Added more role icons
+Added a new button in Eltruism > Media, that will automatically apply texture mode to all aura indicators, such as Party/Raid Unitframes
+Added /eltruism performance command, which will disable several Eltruism and ElvUI settings in order to maximize performance
+Added another style to BigWigs, Eltruism Top Text, which will show the texts above the progress bar
+Added an option to change the Time to Arrive on Waypoints to be class colored
+Added options to disable the Pause/Grey on portrait while the unit is dead
+Added an option to hide Auras on Nameplates when they are not in combat
+Added Questie Tracker to the compatibility check
+Added Lockpicking to the Profession Bag Buttons
+Added a toggle for Datatext shadows
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Eltruism DataText Texture to better follow the position of the Datatext
-Updated custom Nameplate Classification Icons to also work on friendly units
-Updated gradient on Boss, Arena and Target of Target frames to invert colors
-Updated Party Borders frame strata to avoid issues with the party frames
-Updated Unitframe Aura Borders to update color when the target changes
-Updated Quests Skin adding progress coloring and new checkmark texture
-Updated Talents Scale to also allow talents to be moveable in Retail
-Updated Bag Profession Icons to better handle the Disenchant button
-Updated ElvUI Skin to also add text shadows to widgets if possible
-Updated the toggling of colors when using Light Mode/Dark Mode
-Updated Quests Skin adding option to change the title color
-Updated [eltruism:lowmana] to also work in Wrath/Classic
-Updated some Quest Options to be inside the Quests tab
-Updated ElvUI Profile to disable Item Rarity Color
-Updated Gradient to load earlier when logging in
-Updated Gradient to not overwrite Offline color
-Updated World Map scale to also work in Wrath
-Updated Leader Icon skin to desaturate tanks
-Updated Spellcrit datatext in Wrath/Classic
-Updated Nameplate Arrow Texture for 1080p
-Updated transparency when using gradient
-Updated Ace3 skin to color more elements
-Updated Edit Mode Layout in Retail
+Updated Objective Frame Anchor in Retail to better handle removing it from Edit Mode, this also prevents some taints
+Updated [eltruism:combatindicator] to use any texture set in the player combat indicator
+Updated Waypoint Coordinate Inputs to also support TomTom inputs (#Zone X Y)
+Updated Gradient Backdrop to also work with Offline and Tap Denied states
+Updated Resting Icon animation to better hide during cinematics
+Updated target combat indicator to be the same as player
+Updated power models when the power bar is transparent
+Updated profile to use Tile3 on the ElvUI Skin
+Updated Portrait Fix with a few models
 Updated German locale by Dlarge
-Updated Paladin Symbol Texture
-Updated Target Portrait Fix
-Updated Windtools profile
-Updated Minimap Skin
-Updated Shadows
+Updated Auctionator Skin
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed a possible issue with the player name in the character panel that would cause it to not be gradient
-Fixed a possible issue with the Profession Bag Icons that would prevent Bags from opening in combat
-Fixed an error with Priest unitframe model in Classic since the model was removed
-Fixed the offline/online chat text coloring when a character has a similar name
-Fixed an issue where Death Animation sound would not play in Classic Era
-Fixed Font Outline since Shadow outlines are not a real font setting
-Fixed an issue that would cause Boss Combat Music to not play
-Fixed a possible issue with the Blizzard Raid frames skin
-Fixed a possible issue with the Auctionator Skin
-Fixed OmniCD skin missing shadows on extra bars
-Added alpha settings to custom color shadows
-Fixed the fading of the Pet Model while AFK
-Fixed Gradient Health when in a vehicle
-Fixed a possible double Death Animation
-Fixed Hit Datatext for Classic Hunters
-Fixed Honor datatext in Classic
-Fixed Haste Datatext in Classic
+Fixed an issue where entries could be duplicated in the LFG Spec Icons option due to other addons also adding text
+Fixed an issue where raid control could error when Blizzard Raid frames were enabled
+Fixed a possible issue with the Ace3 skin where the database was not loaded for tabs
+Fixed a possible issue with the Teleports Datatext where the item could be invalid
+Fixed World Quest Icon in the Quest Skin
+Fixed Shadows when power is detached
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[

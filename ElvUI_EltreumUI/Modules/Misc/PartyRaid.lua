@@ -344,7 +344,7 @@ function ElvUI_EltreumUI:RestIcon(frame)
 			end
 
 			_G["EltruismPlayerRestLoop"]:ClearAllPoints()
-			--_G["EltruismPlayerRestLoop"]:SetParent(frame)
+			--_G["EltruismPlayerRestLoop"]:SetParent(frame) --this can crash the game, and also show/hide calls can (during cinematic)
 			_G["EltruismPlayerRestLoop"]:SetPoint("CENTER", frame.RestingIndicator, "CENTER", 0, 0)
 			_G["EltruismPlayerRestLoop"]:SetFrameStrata('MEDIUM')
 			_G["EltruismPlayerRestLoop"]:SetScale(E.db.unitframe.units.player.RestIcon.size/15)
@@ -375,6 +375,20 @@ function ElvUI_EltreumUI:RestIcon(frame)
 			--basically if i use SetParent the game crashes, have to hook the alpha and set it on the frame instead
 			hooksecurefunc(frame,'SetAlpha', function(_,alpha)
 				_G["EltruismPlayerRestLoop"]:SetAlpha(alpha)
+			end)
+
+			_G["EltruismPlayerRestLoop"]:RegisterEvent("CINEMATIC_STOP")
+			_G["EltruismPlayerRestLoop"]:RegisterEvent("CINEMATIC_START")
+			local cinematiccheck = false
+			_G["EltruismPlayerRestLoop"]:SetScript("OnEvent",function(_,event)
+				if event == "CINEMATIC_START" then
+					_G["EltruismPlayerRestLoop"]:SetAlpha(0) --cant use hide or show or it crashes too
+					cinematiccheck = _G["EltruismPlayerRestLoop"]:IsShown()
+				else
+					if cinematiccheck then
+						_G["EltruismPlayerRestLoop"]:SetAlpha(1)
+					end
+				end
 			end)
 
 			--hook afk to hide it while afk, needs a delay

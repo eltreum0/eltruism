@@ -22,6 +22,7 @@ if E.Retail then
 end
 local format = _G.format
 
+--skin objective frame depending on verison
 function ElvUI_EltreumUI:SkinQuests()
 
 	--[[if E.private.skins.parchmentRemoverEnable then
@@ -42,7 +43,11 @@ function ElvUI_EltreumUI:SkinQuests()
 			wowheadbutton:SetWidth(x)
 			wowheadbutton:SetHeight(y)
 			wowheadbutton:SetParent(_G.QuestLogFrame)
-			wowheadbutton:SetPoint("LEFT", _G.QuestFramePushQuestButton, "LEFT", -x-2, 0)
+			if E.db.ElvUI_EltreumUI.skins.quests then
+				wowheadbutton:SetPoint("LEFT", _G.QuestFramePushQuestButton, "LEFT", -x-2, 0)
+			else
+				wowheadbutton:SetPoint("TOPLEFT", _G.QuestLogFrame, "TOPLEFT", 15, -15)
+			end
 		elseif E.Wrath then
 			local x, y = _G.QuestLogFrameTrackButton:GetSize()
 			wowheadbutton:SetWidth(x)
@@ -448,25 +453,10 @@ function ElvUI_EltreumUI:SkinQuests()
 							bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(bar.shadow)
 							if progressBar.block and progressBar.Bar.Icon then
-								E:Delay(0,function()
-									if progressBar.Bar.Icon:IsShown() then
-										if not progressBar.block.shadow then
-											progressBar.block:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-											ElvUI_EltreumUI:ShadowColor(progressBar.block.shadow)
-										end
-										if progressBar.block.shadow then
-											progressBar.block.shadow:ClearAllPoints()
-											progressBar.block.shadow:SetPoint("TOPLEFT", progressBar.Bar.Icon, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
-											progressBar.block.shadow:SetPoint("BOTTOMRIGHT", progressBar.Bar.Icon, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-											progressBar.block.shadow:Show()
-											progressBar.block.shadow:SetParent(progressBar.Bar)
-										end
-									else
-										if progressBar.block.shadow then
-											progressBar.block.shadow:Hide()
-										end
-									end
-								end)
+								if not progressBar.backdrop.shadow then
+									progressBar.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(progressBar.backdrop.shadow)
+								end
 							end
 						end
 
@@ -1021,15 +1011,12 @@ function ElvUI_EltreumUI:SkinQuests()
 				UIParent_ManageFramePositions()
 			end)
 		elseif E.Wrath then
-			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then --TODO 10.2, might need C_AddOns.
-				return
-			end
-
 			if IsAddOnLoaded('Questie') then --questie overwrites the default tracker sadly instead of hooking into it --TODO 10.2, might need C_AddOns.
 				if _G.Questie.db.global.trackerEnabled then
 					return
 				end
 			end
+
 			--from blizzard's FrameXML/WatchFrame.lua
 			local questside
 			if _G.ObjectiveFrameMover then
@@ -1083,11 +1070,11 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 
 					end
-					--[[if line.dash then
-						--line.dash:Hide()
-						line.dash:ClearAllPoints()
-						line.dash:SetPoint("RIGHT", line,"LEFT",-2,0)
-					end]]
+					if line.dash then
+						line.dash:Hide()
+						--line.dash:ClearAllPoints()
+						--line.dash:SetPoint("RIGHT", line,"LEFT",-2,0)
+					end
 				end
 
 				local WatchFrame = _G.WatchFrame
@@ -1180,6 +1167,9 @@ function ElvUI_EltreumUI:SkinQuests()
 						return
 					end
 					local _, Anchor = Button:GetPoint()
+					if Button.eltruismbgtexture then
+						Button.eltruismbgtexture:Hide()
+					end
 
 					if _G["WatchFrameItem"..i.."HotKey"] then
 						_G["WatchFrameItem"..i.."HotKey"]:SetText("")
@@ -1339,4 +1329,61 @@ function ElvUI_EltreumUI:SkinQuests()
 			_G.WatchFrame_Update()
 		end
 	end
+end
+
+--adapted from ObjectiveTracker_UpdateHeight()
+function ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
+	local isScenarioBlockShowing = _G.ScenarioBlocksFrame and _G.ScenarioBlocksFrame:IsShown()
+	local scenarioBlockHeight = isScenarioBlockShowing and (_G.ScenarioBlocksFrame:GetHeight() + _G.ObjectiveTrackerBlocksFrame.ScenarioHeader:GetHeight() + 10) or 0
+
+	local newHeight = math.max(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight, scenarioBlockHeight)
+	ObjectiveTrackerFrame:SetHeight(newHeight)
+end
+
+--add objective frame anchor back in
+function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
+	if E.db.ElvUI_EltreumUI.quests.anchor then
+		if not _G["ObjectiveFrameHolder"] then
+			local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
+			holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
+			holder:SetSize(130, 22)
+			holder:SetClampedToScreen(true)
+
+			ObjectiveTrackerFrame:BreakFromFrameManager()
+			Enum.EditModeObjectiveTrackerSetting.Opacity = 0 --fix nineslice
+			ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
+			if ObjectiveTrackerFrame.NineSlice then
+				ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
+			end
+
+			_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
+			_G.ObjectiveTrackerFrame:SetMovable(true)
+			_G.ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
+			_G.ObjectiveTrackerFrame:ClearAllPoints()
+			_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
+			E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,GENERAL", nil, 'ElvUI_EltreumUI,quests')
+
+			ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
+		else
+			ObjectiveTrackerFrame:BreakFromFrameManager()
+			_G.ObjectiveTrackerFrame:ClearAllPoints()
+			_G.ObjectiveTrackerFrame:SetPoint("TOP", _G["ObjectiveFrameHolder"], "TOP")
+			ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
+		end
+	end
+end
+
+--because the objective is removed from frame manager, when swapping to another layout that isnt it can error when trying to export it, so break it from manager again
+if E.Retail then
+	local editmodecheck = CreateFrame("FRAME")
+	editmodecheck:RegisterEvent("EDIT_MODE_LAYOUTS_UPDATED")
+	editmodecheck:SetScript("OnEvent",function()
+		if not E.private.ElvUI_EltreumUI then return end
+		if not E.private.ElvUI_EltreumUI.install_version then return end
+		if not E.db.ElvUI_EltreumUI then return end
+		if not E.db.ElvUI_EltreumUI.quests then return end
+		if E.db.ElvUI_EltreumUI.quests.anchor then
+			ElvUI_EltreumUI:ObjectiveTrackerAnchor()
+		end
+	end)
 end

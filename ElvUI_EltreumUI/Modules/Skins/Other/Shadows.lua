@@ -2914,8 +2914,9 @@ function ElvUI_EltreumUI:Shadows()
 				LeftChatShadow:Hide()
 				RightChatShadow:Hide()
 			end
-
-			--datatext shadow
+		end
+		------------------------------------------------------------------------------------------------------datatext
+		if E.db.ElvUI_EltreumUI.skins.shadow.datatexts then
 			E:Delay(1, function()
 				for i = 0, 10 do
 					if _G["ElvUI_DTPanel"..tostring(i)] then

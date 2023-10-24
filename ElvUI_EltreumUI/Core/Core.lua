@@ -23,7 +23,6 @@ local GameMenuFrame = _G.GameMenuFrame
 local UIErrorsFrame = _G.UIErrorsFrame
 local RaidWarningFrame = _G.RaidWarningFrame
 local tostring = _G.tostring
-local tremove = _G.tremove
 local math = _G.math
 local PlaySound = _G.PlaySound
 local W
@@ -279,106 +278,13 @@ function ElvUI_EltreumUI:Anchors()
 	if E.Retail then
 		E:CreateMover(_G.RaidBossEmoteFrame, "MoverRaidBossEmoteFrame", "Raid/Boss Emote Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
 		E:CreateMover(EltreumArcheologyAnchor, "MoverEltreumArcheologyAnchor", "EltruismArcheology", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
+		_G.ArcheologyDigsiteProgressBar:BreakFromFrameManager()
+		_G.ArcheologyDigsiteProgressBar:ClearAllPoints()
+		_G.ArcheologyDigsiteProgressBar:SetPoint("CENTER", _G["EltruismArcheology"], "CENTER", 0, 0)
 
 		if E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss then
 			_G.BossBanner:UnregisterAllEvents()
 			E:DisableMover('BossBannerMover')
-		end
-
-		--based in elvui, attempt at preventing taints
-		local editMode = _G.EditModeManagerFrame
-		local registered = editMode.registeredSystemFrames
-		if not InCombatLockdown() then
-			for i = #registered, 1, -1 do
-				local name = registered[i]:GetName()
-				if name == "ObjectiveTrackerFrame" and E.db.ElvUI_EltreumUI.quests.anchor then
-					tremove(editMode.registeredSystemFrames, i)
-				end
-				if name == "ArcheologyDigsiteProgressBar" then
-					tremove(editMode.registeredSystemFrames, i)
-					_G.ArcheologyDigsiteProgressBar.ApplySystemAnchor = nil
-					_G.ArcheologyDigsiteProgressBar.HighlightSystem = E.noop
-					_G.ArcheologyDigsiteProgressBar.ClearHighlight = E.noop
-				end
-			end
-		end
-
-		--add objective frame anchor back in
-		if E.db.ElvUI_EltreumUI.quests.anchor then
-			E:Delay(0, function()
-				if not _G["ObjectiveFrameHolder"] and not InCombatLockdown() and not _G.MovieFrame:IsShown() and ObjectiveTrackerFrame:IsShown() then
-					local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
-					holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
-					holder:SetSize(130, 22)
-
-					Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
-					ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
-					ObjectiveTracker_UpdateHeight()
-
-					Enum.EditModeObjectiveTrackerSetting.Opacity = 0 --fix nineslice
-					ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
-					if ObjectiveTrackerFrame.NineSlice then
-						ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
-					end
-
-					--test nil function to prevent it firing and causing taints
-					--_G.ObjectiveTrackerFrame.ApplySystemAnchor = E.noop
-					_G.ObjectiveTrackerFrame.ApplySystemAnchor = nil
-					_G.ObjectiveTrackerFrame.AnchorSelectionFrame = nil
-					_G.ObjectiveTrackerFrame.SetPointOverride = nil
-					_G.ObjectiveTrackerFrame.isRightManagedFrame = false
-					_G.ObjectiveTrackerFrame.breakSnappedFramesOnSave = false
-					--_G.ObjectiveTrackerFrame.ignoreFramePositionManager = true
-					--local frameContainer = _G.ObjectiveTrackerFrame:GetManagedFrameContainer();
-					--frameContainer:RemoveManagedFrame(_G.ObjectiveTrackerFrame)
-					--[[_G.ObjectiveTrackerFrame.SnapToFrame = nil
-					_G.ObjectiveTrackerFrame.ClearAllPointsOverride = nil
-					--_G.ObjectiveTrackerFrame.BreakFromFrameManager = E.noop
-					--_G.ObjectiveTrackerFrame.OnAnyEditModeSystemAnchorChanged = E.noop
-					--_G.ObjectiveTrackerFrame.ResetToDefaultPosition = E.noop
-					--_G.ObjectiveTrackerFrame.UpdateMagnetismRegistration = E.noop
-					--_G.ObjectiveTrackerFrame.UpdateSystemSetting = E.noop
-					--_G.ObjectiveTrackerFrame.SetSnappedToFrame = E.noop
-					--_G.ObjectiveTrackerFrame.SetPointBase = E.noop --causes issues for some people for some reason
-					--_G.ObjectiveTrackerFrame.ClearAllPointsBase = nil
-					local function returnfalse()
-						return false
-					end
-					_G.ObjectiveTrackerFrame.CanBeMoved = returnfalse()]]
-
-					_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
-					_G.ObjectiveTrackerFrame:SetMovable(true)
-					_G.ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
-					_G.ObjectiveTrackerFrame:ClearAllPoints()
-					_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
-					E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,general,blizzUIImprovements", nil, 'ElvUI_EltreumUI,quests')
-					ObjectiveTrackerFrame:UnregisterEvent("ADDON_ACTION_BLOCKED")
-
-					local function SetObjectivePoint()
-						--E:Delay(0, function()
-							--if not InCombatLockdown() then
-								_G.ObjectiveTrackerFrame.isRightManagedFrame = false
-								_G.ObjectiveTrackerFrame.breakSnappedFramesOnSave = false
-								_G.ObjectiveTrackerFrame:ClearAllPoints()
-								_G.ObjectiveTrackerFrame:Point("TOP", holder, "TOP")
-								_G.ObjectiveTrackerFrame.editModeSystemAnchorDirty = false
-							--end
-						--end)
-						Enum.EditModeObjectiveTrackerSetting.Height = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
-						ObjectiveTrackerFrame.editModeHeight = E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight or 800
-
-						Enum.EditModeObjectiveTrackerSetting.Opacity = 0 --fix nineslice
-						ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
-						if ObjectiveTrackerFrame.NineSlice then
-							ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
-						end
-					end
-					hooksecurefunc("ObjectiveTracker_UpdateHeight", SetObjectivePoint)
-					--hooksecurefunc(_G.ObjectiveTrackerFrame, "SetPointBase", SetObjectivePoint)
-					hooksecurefunc(_G.ObjectiveTrackerFrame, "OnAnyEditModeSystemAnchorChanged", SetObjectivePoint)
-					hooksecurefunc(_G.ObjectiveTrackerFrame, "ResetToDefaultPosition", SetObjectivePoint)
-				end
-			end)
 		end
 	end
 end
@@ -830,6 +736,16 @@ function ElvUI_EltreumUI:PerformanceOptimization()
 	E.db["tooltip"]["role"] = false --was true
 	E.db["tooltip"]["targetInfo"] = false --was true
 	E.db["tooltip"]["showMount"] = false --was true
+	E.db["unitframe"]["units"]["boss"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["player"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["target"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["party"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["raid1"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["raid2"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["raid3"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["focus"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["pet"]["portrait"]["enable"] = false
+	E.db["unitframe"]["units"]["targettarget"]["portrait"]["enable"] = false
 
 	--Eltruism
 	E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable = false

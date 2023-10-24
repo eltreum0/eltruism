@@ -152,25 +152,27 @@ local function AddButtonToCompatibilityFrame(data)
 	end)
 end
 
-local function GetDatabaseRealValue(path)
-	local accessTable, accessKey, accessValue = nil, nil, E
-
+local function GetDatabaseRealValue(path,accessValue)
+	local accessTable, accessKey = nil, nil
 	for _, key in ipairs {strsplit(".", path)} do
 		if key and strlen(key) > 0 then
-			if accessValue and accessValue[key] ~= nil then
-				if type(accessValue[key]) == "boolean" then
-					accessTable = accessValue
+			if accessValue then
+				if type(accessValue) == "function" then return end
+				if accessValue[key] ~= nil then
+					if type(accessValue[key]) == "boolean" then
+						accessTable = accessValue
+						accessKey = key
+					end
+					accessValue = accessValue[key]
+				elseif accessValue[key] == nil then --its the default value so not exported/present
+					accessTable = true
 					accessKey = key
+				else
+					if E.db.ElvUI_EltreumUI.dev then
+						ElvUI_EltreumUI:Print("[Compatibility] database path not found\n" .. path)
+					end
+					return
 				end
-				accessValue = accessValue[key]
-			elseif accessValue[key] == nil then --its the default value so not exported/present
-				accessTable = true
-				accessKey = key
-			else
-				if E.db.ElvUI_EltreumUI.dev then
-					ElvUI_EltreumUI:Print("[Compatibility] database path not found\n" .. path)
-				end
-				return
 			end
 		end
 	end
@@ -183,24 +185,25 @@ local function GetCheckCompatibilityFunction(targetAddonName, targetAddonLocales
 		return E.noop
 	end
 	if notElvUIDB then
-		return function(myModuleName, targetAddonModuleName, myDB, targetAddonDB,targetAddonKey)
+		return function(myModuleName, targetAddonModuleName, myDB, targetAddonDB, targetAddonDBsub)
 			if not (myDB and targetAddonDB and type(myDB) == "string" and type(targetAddonDB) == "string") then
 				return
 			end
-			local myTable, myKey, myValue = GetDatabaseRealValue(myDB)
-			if myValue and _G[targetAddonDB][targetAddonKey] then
+			local myTable, myKey, myValue = GetDatabaseRealValue(myDB, E)
+			local targetTable, targetKey, targetValue = GetDatabaseRealValue(targetAddonDBsub, _G[targetAddonDB])
+			if myValue and targetValue then
 				AddButtonToCompatibilityFrame({
 					module1 = myModuleName,
 					plugin1 = select(2,GetAddOnInfo("ElvUI_EltreumUI")), --TODO 10.2, might need C_AddOns.
 					func1 = function()
 						myTable[myKey] = true
-						_G[targetAddonDB][targetAddonKey] = false
+						targetTable[targetKey] = false
 					end,
 					module2 = targetAddonModuleName,
 					plugin2 = targetAddonLocales,
 					func2 = function()
 						myTable[myKey] = false
-						_G[targetAddonDB][targetAddonKey] = true
+						targetTable[targetKey] = true
 					end
 				})
 			end
@@ -210,8 +213,8 @@ local function GetCheckCompatibilityFunction(targetAddonName, targetAddonLocales
 			if not (myDB and targetAddonDB and type(myDB) == "string" and type(targetAddonDB) == "string") then
 				return
 			end
-			local myTable, myKey, myValue = GetDatabaseRealValue(myDB)
-			local targetTable, targetKey, targetValue = GetDatabaseRealValue(targetAddonDB)
+			local myTable, myKey, myValue = GetDatabaseRealValue(myDB, E)
+			local targetTable, targetKey, targetValue = GetDatabaseRealValue(targetAddonDB, E)
 			if myValue and targetValue then
 				AddButtonToCompatibilityFrame({
 					module1 = myModuleName,
@@ -234,7 +237,7 @@ local function GetCheckCompatibilityFunction(targetAddonName, targetAddonLocales
 			if not (myDB and targetAddon) then
 				return
 			end
-			local myTable, myKey, myValue = GetDatabaseRealValue(myDB)
+			local myTable, myKey, myValue = GetDatabaseRealValue(myDB, E)
 			if myValue and IsAddOnLoaded(targetAddon) then --TODO 10.2, might need C_AddOns.
 				AddButtonToCompatibilityFrame({
 					module1 = myModuleName,
@@ -273,7 +276,8 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	local CheckCQL = GetCheckCompatibilityFunction("ClassicQuestLog", select(2,GetAddOnInfo("ClassicQuestLog")),true) --TODO 10.2, might need C_AddOns.
 	local CheckSorha = GetCheckCompatibilityFunction("SorhaQuestLog", select(2,GetAddOnInfo("SorhaQuestLog")),true) --TODO 10.2, might need C_AddOns.
 	local CheckDoom = GetCheckCompatibilityFunction("Doom_CooldownPulse", select(2,GetAddOnInfo("Doom_CooldownPulse")),true) --TODO 10.2, might need C_AddOns.
-	local CheckRaiderIO = GetCheckCompatibilityFunction("RaiderIO", select(2,GetAddOnInfo("RaiderIO")),false,true) --TODO 10.2, might need C_AddOns.
+	--local CheckRaiderIO = GetCheckCompatibilityFunction("RaiderIO", select(2,GetAddOnInfo("RaiderIO")),false,true) --TODO 10.2, might need C_AddOns.
+	local CheckQuestie = GetCheckCompatibilityFunction("Questie", select(2,GetAddOnInfo("Questie")),false,true) --TODO 10.2, might need C_AddOns.
 
 	--Character Panel
 	CheckMerathilisUI(L["Character Panel"].."\n"..L["Class Icons"], L["Character Panel"].."\n"..L["Class Icons"], "db.ElvUI_EltreumUI.skins.classicarmory", "db.mui.armory.character.enable")
@@ -352,11 +356,12 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckWindTools("Ace3", L["Widgets"].." "..L["Tree Group Button"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.WT.skins.widgets.treeGroupButton.enable")
 	CheckWindTools("Ace3", L["Widgets"].." "..L["Slider"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.WT.skins.widgets.slider.enable")
 	CheckWindTools("Ace3", L["Widgets"].." "..L["CheckBox"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.WT.skins.widgets.checkBox.enable")
-	CheckMerathilisUI("Ace3", L["Widgets"].." "..L["Button"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.mui.skins.widgets.button.enable")
-	CheckMerathilisUI("Ace3", L["Widgets"].." "..L["Tab"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.mui.skins.widgets.tab.enable")
-	CheckMerathilisUI("Ace3", L["Widgets"].." "..L["Tree Group Button"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.mui.skins.widgets.treeGroupButton.enable")
-	CheckMerathilisUI("Ace3", L["Widgets"].." "..L["Slider"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.mui.skins.widgets.slider.enable")
-	CheckMerathilisUI("Ace3", L["Widgets"].." "..L["CheckBox"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.mui.skins.widgets.checkBox.enable")
+	--CheckMerathilisUI("Ace3", L["Widgets"].." "..L["Button"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.mui.skins.widgets.button.enable")
+	--CheckMerathilisUI("Ace3", L["Widgets"].." "..L["Tab"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.mui.skins.widgets.tab.enable")
+	--CheckMerathilisUI("Ace3", L["Widgets"].." "..L["Tree Group Button"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.mui.skins.widgets.treeGroupButton.enable")
+	--CheckMerathilisUI("Ace3", L["Widgets"].." "..L["Slider"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.mui.skins.widgets.slider.enable")
+	--CheckMerathilisUI("Ace3", L["Widgets"].." "..L["CheckBox"], "db.ElvUI_EltreumUI.skins.ace3.enable", "private.mui.skins.widgets.checkBox.enable")
+	CheckMerathilisUI("Ace3", "Ace3", "db.ElvUI_EltreumUI.skins.ace3.enable", "private.mui.skins.addonSkins.ace3")
 
 	--other
 	CheckMerathilisUI(L["Combat Alert"], L["Combat Alert"], "db.ElvUI_EltreumUI.loot.loottext.combatindicator", "db.mui.CombatAlert.enable")
@@ -379,6 +384,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 
 	--non elvui addon dbs
 	--CheckRaiderIO(L["Dungeon Score"].."\n"..L["Flags"], L["RaiderIO Tooltip"], "db.ElvUI_EltreumUI.skins.groupfinderDungeonScore", "RaiderIO_Config","showDropDownCopyURL")
+	CheckQuestie(L["Quests Skin"], L["Quests Skin"], "db.ElvUI_EltreumUI.skins.quests", "Questie","db.char.trackerEnabled")
 
 	if _G["EltruismCompatibilityFrame"].numModules > 0 then
 		_G["EltruismCompatibilityFrame"]:Show()
