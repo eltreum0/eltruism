@@ -208,7 +208,7 @@ LSM:Register("background", "Eltreum-Tile10", [[Interface\Addons\ElvUI_EltreumUI\
 for i = 1, 9 do
 	E.Media.CombatIcons["Eltruism0"..i] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Combat\\fight"..i..".tga"
 end
-for i = 10, 43 do
+for i = 10, 45 do
 	E.Media.CombatIcons["Eltruism"..i] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Combat\\fight"..i..".tga"
 end
 
@@ -219,6 +219,6 @@ E.Media.RestIcons.Eltruism02 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures
 --target
 E.Media.Arrows.Eltruism01 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\ArrowEltruism.tga]]
 local width = GetPhysicalScreenSize()
-if width == 1920 then
+if width < 2000 then
 	E.Media.Arrows.Eltruism01 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\ArrowEltruism1080.tga]]
 end
