@@ -699,13 +699,15 @@ E:AddTag("name:eltruism:gradientshortfirst", "UNIT_NAME_UPDATE", function(unit,_
 	local name = UnitName(unit)
 	if not name then return end
 	if not args then args = 16 end
+	--name = "Mannequin d'entraïnement aux dégäts de zone"
 	if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
 		name = ElvUI_EltreumUI:ShortenString(name, tonumber(args),false,true)
 	end
 	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
-	if string.len(name) > tonumber(args) then --second for players
+	--this would end up removing some of the shortened text in this case
+	--[[if string.len(name) > tonumber(args) then --second for players
 		name = E:ShortenString(name, tonumber(args))
-	end
+	end]]
 
 	if UnitIsPlayer(unit) then
 		local _, unitClass = UnitClass(unit)
