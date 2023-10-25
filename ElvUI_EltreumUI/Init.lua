@@ -295,6 +295,7 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	ElvUI_EltreumUI:NameplateCustomOptions()
 	ElvUI_EltreumUI:DynamicUFPortraitRotation()
 	ElvUI_EltreumUI:TargetUFEffects()
+	ElvUI_EltreumUI:TargetCombatIconClass()
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
 		ElvUI_EltreumUI:BordersTargetChanged()
 	end
