@@ -872,6 +872,12 @@ function ElvUI_EltreumUI:SkinQuests()
 					_G.QuestWatchFrame.HeaderBar:SetAlpha(1)
 				end
 
+				--hide/show minimize depending on having tracked quests
+				if GetNumQuestWatches() == 0 then
+					_G.QuestWatchFrame.Minimize:Hide()
+				else
+					_G.QuestWatchFrame.Minimize:Show()
+				end
 
 				local numObjectives
 				local questWatchMaxWidth = 0
