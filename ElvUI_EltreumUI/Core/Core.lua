@@ -667,7 +667,7 @@ do
 				text = E:ShortenString(text,length)
 			else
 				if firstname then
-					local first, last = text:match('^(%a*)%s(.*)$')
+					local first, last = text:match('^(%a*)(.*)$')
 					if first and last then
 						text = first.." "..last:gsub('(%S+)', shortenReplace)
 					else
