@@ -1538,6 +1538,7 @@ P.ElvUI_EltreumUI = {
 		portraitfixoffset = true,
 		portraitdead = true,
 		blizzardraidframes = true,
+		classcombaticons = false,
 	},
 
 	otherstuff = {

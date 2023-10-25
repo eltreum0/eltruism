@@ -277,7 +277,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	local CheckSorha = GetCheckCompatibilityFunction("SorhaQuestLog", select(2,GetAddOnInfo("SorhaQuestLog")),true) --TODO 10.2, might need C_AddOns.
 	local CheckDoom = GetCheckCompatibilityFunction("Doom_CooldownPulse", select(2,GetAddOnInfo("Doom_CooldownPulse")),true) --TODO 10.2, might need C_AddOns.
 	--local CheckRaiderIO = GetCheckCompatibilityFunction("RaiderIO", select(2,GetAddOnInfo("RaiderIO")),false,true) --TODO 10.2, might need C_AddOns.
-	local CheckQuestie = GetCheckCompatibilityFunction("Questie", select(2,GetAddOnInfo("Questie")),false,true) --TODO 10.2, might need C_AddOns.
+	--local CheckQuestie = GetCheckCompatibilityFunction("Questie", select(2,GetAddOnInfo("Questie")),false,true) --TODO 10.2, might need C_AddOns.
 
 	--Character Panel
 	CheckMerathilisUI(L["Character Panel"].."\n"..L["Class Icons"], L["Character Panel"].."\n"..L["Class Icons"], "db.ElvUI_EltreumUI.skins.classicarmory", "db.mui.armory.character.enable")
@@ -384,7 +384,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 
 	--non elvui addon dbs
 	--CheckRaiderIO(L["Dungeon Score"].."\n"..L["Flags"], L["RaiderIO Tooltip"], "db.ElvUI_EltreumUI.skins.groupfinderDungeonScore", "RaiderIO_Config","showDropDownCopyURL")
-	CheckQuestie(L["Quests Skin"], L["Quests Skin"], "db.ElvUI_EltreumUI.skins.quests", "Questie","db.char.trackerEnabled")
+	--CheckQuestie(L["Quests Skin"], L["Quests Skin"], "db.ElvUI_EltreumUI.skins.quests", "Questie","db.char.trackerEnabled")
 
 	if _G["EltruismCompatibilityFrame"].numModules > 0 then
 		_G["EltruismCompatibilityFrame"]:Show()

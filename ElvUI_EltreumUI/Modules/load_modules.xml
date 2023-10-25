@@ -12,6 +12,7 @@
 	<Script file='DataTexts/Teleports.lua'/>
 	<Script file='Misc/AFK.lua'/>
 	<Script file='Misc/CombatEvents.lua'/>
+	<Script file='Misc/CombatIcons.lua'/>
 	<Script file='Misc/DynamicFunctions.lua'/>
 	<Script file='Misc/GetClassIcons.lua'/>
 	<Script file='Misc/LFGList.lua'/>
