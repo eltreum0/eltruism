@@ -37,7 +37,7 @@ local targeticons = {
 
 --change target combat icon based on its class
 function ElvUI_EltreumUI:TargetCombatIconClass()
-	if E.db.ElvUI_EltreumUI.unitframes.classcombaticon then
+	if E.db.ElvUI_EltreumUI.unitframes.classcombaticons then
 		if UnitExists("target") and UnitIsPlayer("target") and E.db.unitframe.units.target.CombatIcon.enable then
 			local _,targetclass = UnitClass("target")
 			if _G["ElvUF_Target"] and _G["ElvUF_Target"].CombatIndicator then
