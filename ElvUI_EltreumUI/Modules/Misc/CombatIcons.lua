@@ -40,12 +40,14 @@ function ElvUI_EltreumUI:TargetCombatIconClass()
 	if E.db.ElvUI_EltreumUI.unitframes.classcombaticons then
 		if E.db.unitframe.units.target.CombatIcon.enable then
 			if _G["ElvUF_Target"] and _G["ElvUF_Target"].CombatIndicator then
-				if UnitExists("target") and UnitIsPlayer("target") then
-					local _,targetclass = UnitClass("target")
-					local texturetarget = targeticons[targetclass]
-					_G["ElvUF_Target"].CombatIndicator:SetTexture(E.Media.CombatIcons[texturetarget])
-				else
-					_G["ElvUF_Target"].CombatIndicator:SetTexture(E.Media.CombatIcons[E.db.unitframe.units.target.CombatIcon.texture])
+				if UnitExists("target") then
+					if UnitIsPlayer("target") then
+						local _,targetclass = UnitClass("target")
+						local texturetarget = targeticons[targetclass]
+						_G["ElvUF_Target"].CombatIndicator:SetTexture(E.Media.CombatIcons[texturetarget])
+					else
+						_G["ElvUF_Target"].CombatIndicator:SetTexture(E.Media.CombatIcons[E.db.unitframe.units.target.CombatIcon.texture])
+					end
 				end
 			end
 		end
