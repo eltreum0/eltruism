@@ -694,6 +694,42 @@ E:AddTag("eltruism:detailsnickname:gradient", "UNIT_NAME_UPDATE", function(unit)
 end)
 E:AddTagInfo("eltruism:detailsnickname:gradient", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays Details nickname in class color or reaction color if Details is loaded"])
 
+--gradient short but dont abbreviate first name
+E:AddTag("name:eltruism:gradientshortfirst", "UNIT_NAME_UPDATE", function(unit,_,args)
+	local name = UnitName(unit)
+	if not name then return end
+	if not args then args = 16 end
+	--name = "Mannequin d'entraïnement aux dégäts de zone"
+	if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
+		name = ElvUI_EltreumUI:ShortenString(name, tonumber(args),false,true)
+	end
+	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
+	--this would end up removing some of the shortened text in this case
+	--[[if string.len(name) > tonumber(args) then --second for players
+		name = E:ShortenString(name, tonumber(args))
+	end]]
+
+	if UnitIsPlayer(unit) then
+		local _, unitClass = UnitClass(unit)
+		if not unitClass then return end
+		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
+	elseif not UnitIsPlayer(unit) then
+		local reaction = UnitReaction(unit, "player")
+		if reaction then
+			if reaction >= 5 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY", isTarget)
+			elseif reaction == 4 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL", isTarget)
+			elseif reaction == 3 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY", isTarget)
+			elseif reaction == 2 or reaction == 1 then
+				return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE", isTarget)
+			end
+		end
+	end
+end)
+E:AddTagInfo("name:eltruism:gradientshortfirst", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
+
 -------------------------------------------------------------------------- ICONS -------------------------------------------------------------------------
 
 --show class icons on all targets
