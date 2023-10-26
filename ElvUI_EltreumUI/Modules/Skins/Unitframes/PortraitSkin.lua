@@ -13,7 +13,6 @@ local notexcoord = {
 --create and update the portraits
 local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,SettingUpdate)
 	if not frame then return end
-	if not frame.USE_PORTRAIT then return end
 	if not frame.unit then return end
 
 	if db == "party" and E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align == "RIGHT" then
@@ -367,6 +366,12 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 				frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\maskcircle.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
 			end
 		end
+	end
+
+	if E.db.ElvUI_EltreumUI.unitframes.portrait[db].enable then
+		frame.EltruismPortrait:Show()
+	else
+		frame.EltruismPortrait:Hide()
 	end
 end
 

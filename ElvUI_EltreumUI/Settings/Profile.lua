@@ -895,6 +895,7 @@ P.ElvUI_EltreumUI = {
 			shadow = true,
 			gradient = true,
 			player = {
+				enable = true,
 				style = "SYMBOLS",
 				type = "BLIZZARD",
 				size = 92,
@@ -918,6 +919,7 @@ P.ElvUI_EltreumUI = {
 				}
 			},
 			target = {
+				enable = true,
 				style = "SYMBOLS",
 				type = "BLIZZARD",
 				size = 92,
@@ -941,6 +943,7 @@ P.ElvUI_EltreumUI = {
 				}
 			},
 			party = {
+				enable = true,
 				style = "SYMBOLS",
 				type = "BLIZZARD",
 				size = 92,
@@ -964,6 +967,7 @@ P.ElvUI_EltreumUI = {
 				}
 			},
 			targettarget = {
+				enable = true,
 				style = "SYMBOLS",
 				type = "BLIZZARD",
 				size = 92,
@@ -987,6 +991,7 @@ P.ElvUI_EltreumUI = {
 				}
 			},
 			focus = {
+				enable = true,
 				style = "SYMBOLS",
 				type = "BLIZZARD",
 				size = 88,
@@ -1010,6 +1015,7 @@ P.ElvUI_EltreumUI = {
 				}
 			},
 			focustarget = {
+				enable = true,
 				style = "SYMBOLS",
 				type = "BLIZZARD",
 				size = 57,
