@@ -785,13 +785,6 @@ function ElvUI_EltreumUI:SkinQuests()
 				dontexpandanymorequests = 1
 			end
 
-			if IsAddOnLoaded('Questie') then --TODO 10.2, might need C_AddOns.
-				if _G.Questie.db.char.trackerEnabled then
-				--if _G.Questie.db.global.trackerEnabled then
-					return
-				end
-			end
-
 			--add quest header like retail/wrath
 			if not _G["EltruismQuestLine"] then
 				_G.QuestWatchFrame.HeaderBar = CreateFrame("StatusBar", "EltruismQuestLine", _G.QuestWatchFrame)
@@ -1017,11 +1010,6 @@ function ElvUI_EltreumUI:SkinQuests()
 				UIParent_ManageFramePositions()
 			end)
 		elseif E.Wrath then
-			if IsAddOnLoaded('Questie') then --questie overwrites the default tracker sadly instead of hooking into it --TODO 10.2, might need C_AddOns.
-				if _G.Questie.db.global.trackerEnabled then
-					return
-				end
-			end
 
 			--from blizzard's FrameXML/WatchFrame.lua
 			local questside
