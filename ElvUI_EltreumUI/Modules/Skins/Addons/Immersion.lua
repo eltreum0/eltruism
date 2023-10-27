@@ -101,10 +101,12 @@ function ElvUI_EltreumUI:EltruismImmersion()
 				for _, v in pairs{_G["ImmersionFrame"].TitleButtons:GetChildren()} do
 					if v and not v.IsSkinned then
 						S:HandleButton(v)
-						v:CreateBackdrop('Transparent')
+						--v:CreateBackdrop('Transparent')
 						v.Hilite:Hide()
 						v.Overlay:Hide()
 						v:StyleButton()
+						v.Center:Show()
+						v.Center:SetAlpha(E.db.general.backdropfadecolor.a)
 						v.hover:SetVertexColor(classcolor.r, classcolor.g,classcolor.b, 0.7) --hover color
 						v.pushed:SetColorTexture(classcolor.r, classcolor.g,classcolor.b, 0.8) --pushed color
 						v.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+3, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
