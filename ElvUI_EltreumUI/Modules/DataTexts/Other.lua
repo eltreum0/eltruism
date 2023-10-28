@@ -39,4 +39,4 @@ local function EltruismHonorDatatext(dt)
 	dt.text:SetFormattedText('%s: %s%s|r %s: %s%s|r', arg2, E.media.hexvaluecolor, arg4, arg5, E.media.hexvaluecolor, arg7)
 end
 
-DT:RegisterDatatext(format('Eltruism Honor/%s Points', E.Retail and 'Conquest' or 'Arena'), CURRENCY, {'CHAT_MSG_CURRENCY', 'CURRENCY_DISPLAY_UPDATE'}, EltruismHonorDatatext, nil, nil, nil, nil, E.Retail and L["Eltruism Honor/Conquest Points"] or L["Eltruism Honor/Arena Points"])
+DT:RegisterDatatext(format('Eltruism Honor/%s Points', E.Retail and 'Conquest' or 'Arena'), CURRENCY, {'CHAT_MSG_CURRENCY', 'CURRENCY_DISPLAY_UPDATE', 'PLAYER_PVP_KILLS_CHANGED'}, EltruismHonorDatatext, nil, nil, nil, nil, E.Retail and L["Eltruism Honor/Conquest Points"] or L["Eltruism Honor/Arena Points"])
