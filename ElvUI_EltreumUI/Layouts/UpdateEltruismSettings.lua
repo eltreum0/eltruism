@@ -14,6 +14,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate = true --elvui skin
 		E.db.ElvUI_EltreumUI.skins.ace3.enable = true --elvui skin
 		E.db.ElvUI_EltreumUI.skins.elvui.texture = "Eltreum-Tile03"
+		E.db.ElvUI_EltreumUI.unitframes.classcombaticons = true --class based combat icons
 
 		ElvUI_EltreumUI:Print(L["Auto Update is enabled, updating Eltruism settings."])
 	else
@@ -94,6 +95,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.unitframes.lightmode = false
 		E.db.ElvUI_EltreumUI.unitframes.uftextureversion = "V2"
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect = true
+		E.db.ElvUI_EltreumUI.unitframes.classcombaticons = true --class based combat icons
 
 		-- Skins
 		E.db.ElvUI_EltreumUI.skins.levelbossinstance = true

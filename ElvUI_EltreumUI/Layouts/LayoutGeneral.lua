@@ -115,7 +115,8 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["party"]["CombatIcon"]["defaultColor"] = true
 		E.db["unitframe"]["units"]["party"]["CombatIcon"]["enable"] = false
 		E.db["unitframe"]["units"]["party"]["CombatIcon"]["texture"] = "Eltruism16"
-		E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "TOPRIGHT"
+
+		--[[E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "TOPRIGHT"
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["a"] = 0.80000001192093
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["b"] = 1
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["g"] = 1
@@ -133,7 +134,23 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = -7
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["texture"] = "Eltruism16"
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["size"] = 14
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = true]]
+
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "TOPRIGHT"
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["defaultColor"] = true
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["texture"] = "Eltruism16"
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["size"] = 25
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = -12
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = 11
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["enable"] = true
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["anchorPoint"] = "TOPLEFT"
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["defaultColor"] = true
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["xOffset"] = 12
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = 11
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["texture"] = "Eltruism16"
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["size"] = 25
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = true
+
 
 		--private auras
 		E.db["movers"]["PrivateAurasMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-287,-150"
