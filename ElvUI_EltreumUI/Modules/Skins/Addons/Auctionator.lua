@@ -168,8 +168,8 @@ local function SkinAuctionator()
 					local subframe = select(i, frame:GetChildren())
 					if subframe then
 						if subframe:GetObjectType() == "Frame" then
-							S:HandleFrame(subframe)
-							subframe:SetBackdrop()
+							--S:HandleFrame(subframe) --causes erors in non pixel perfect mode (non thin mode)
+							--subframe:SetBackdrop()
 							if subframe.NormalTexture then
 								subframe.NormalTexture:SetAlpha(0)
 								subframe.NormalTexture.SetAlpha = E.noop
