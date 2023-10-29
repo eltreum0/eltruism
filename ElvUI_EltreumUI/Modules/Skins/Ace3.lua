@@ -57,12 +57,18 @@ local function CreateFader(frame)
 		frame:HookScript("OnShow", function()
 			if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 			local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
-			if frametext and frametext.GetText and not (frame.disabled or (frame.GetButtonState and frame:GetButtonState() == "DISABLED")) then
-				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-					frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-				else
-					frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-				end
+			if frametext and frametext.GetText then
+				E:Delay(0,function() --the disable is delayed so delay running to run after it
+					if not (frame.disabled or (frame.GetButtonState and frame:GetButtonState() == "DISABLED")) then
+						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+							frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+						else
+							frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+						end
+					else
+						frametext:SetTextColor(0.5, 0.5, 0.5)
+					end
+				end)
 			end
 		end)
 
