@@ -1527,5 +1527,5 @@ L["Add Class Icons to the Group Finder Listing"] = "Klassensymbole zur Gruppenfi
 L["Map not found"] = "Karte nicht gefunden"
 L["Hide Auras"] = "Auren verstecken"
 L["Hide Auras on Nameplates that are not in Combat"] = "Auren verstecken auf Namensplaketten die nicht im Kampf sind"
-L["Pause and Desaturate Portrait if Dead"] = true
-L["Change Combat Indicators to be class based"] = true
+L["Pause and Desaturate Portrait if Dead"] = "Pausiere und entsättige das Porträt, wenn es tot ist"
+L["Change Combat Indicators to be class based"] = "Kampfindikatoren so ändern, dass sie klassenbasiert sind"
