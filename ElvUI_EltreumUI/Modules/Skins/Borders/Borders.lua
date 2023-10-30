@@ -839,7 +839,7 @@ function ElvUI_EltreumUI:Borders()
 		end
 
 		-- minimap
-		if E.private.general.minimap.enable ~= false and E.db.ElvUI_EltreumUI.borders.minimapborder then
+		if E.private.general.minimap.enable ~= false and E.db.ElvUI_EltreumUI.borders.minimapborder and not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
 			if not _G["EltruismMiniMapBorderFrame"] then
 				MinimapBorder = CreateFrame("Frame", "EltruismMiniMapBorderFrame", _G["Minimap"], BackdropTemplateMixin and "BackdropTemplate")
 			else
