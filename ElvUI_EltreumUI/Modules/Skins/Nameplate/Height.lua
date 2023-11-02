@@ -29,6 +29,7 @@ tableupdate:SetScript("OnEvent",function()
 	}
 end)
 function ElvUI_EltreumUI:NameplateCustomOptions(unit)
+	if not E.private.nameplates.enable then return end
 	if (E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight) and unit and unit.unit and unit.unit:match("nameplate") then
 
 		--check if its not explosive
