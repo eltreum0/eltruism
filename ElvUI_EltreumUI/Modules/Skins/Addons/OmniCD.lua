@@ -68,6 +68,17 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 					S:HandleStatusBar(icon.statusBar.CastingBar)
 				end
 
+				--recreate the left border, which doesn't exist anymore
+				if not icon.statusBar.borderLeft then
+					icon.statusBar.borderLeft = icon.statusBar:CreateTexture()
+					icon.statusBar.borderLeft:SetColorTexture(OmniCD.db.icons.borderColor.r, OmniCD.db.icons.borderColor.g, OmniCD.db.icons.borderColor.b)
+					icon.statusBar.borderLeft:SetPoint("TOPLEFT", icon.statusBar, "TOPLEFT", 0, 0)
+					icon.statusBar.borderLeft:SetPoint("BOTTOMLEFT", icon.statusBar, "BOTTOMLEFT", 0, 0)
+					hooksecurefunc(icon.statusBar.borderRight,"SetColorTexture", function(_,r,g,b)
+						icon.statusBar.borderLeft:SetColorTexture(r, g, b)
+					end)
+				end
+
 				--gradient on the BG
 				if icon.class and not icon.EltruismHook then
 					hooksecurefunc(icon.statusBar.BG,"SetVertexColor", function(bar)
