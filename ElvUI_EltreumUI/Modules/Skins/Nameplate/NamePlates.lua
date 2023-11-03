@@ -112,7 +112,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 							debufftime = tonumber(button.Cooldown.timer.text:GetText())
 							if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow then
 								if debufftime ~= nil and debufftime <= E.db.ElvUI_EltreumUI.glow.numberdebuff and debufftime > 0 then
-									if UnitIsUnit(button.caster, "player") then
+									if button.caster and UnitIsUnit(button.caster, "player") then
 										if E.db.ElvUI_EltreumUI.glow.pixel then
 											LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
