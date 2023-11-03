@@ -386,7 +386,7 @@ function ElvUI_EltreumUI:Borders()
 								raid2border = _G["EltruismRaid2Group"..l.."Border"..k]
 							end
 							table.insert(raid2borderholder, raid2border)
-							raid2border:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
+							raid2border:SetSize(E.db.ElvUI_EltreumUI.borders.raid2sizex, E.db.ElvUI_EltreumUI.borders.raid2sizey)
 							raid2border:SetPoint("CENTER", _G['ElvUF_Raid2Group'..l..'UnitButton'..k], "CENTER")
 							raid2border:SetParent(_G['ElvUF_Raid2Group'..l..'UnitButton'..k])
 							raid2border:SetBackdrop({
@@ -416,7 +416,7 @@ function ElvUI_EltreumUI:Borders()
 								raid3border = _G["EltruismRaid3Group"..l.."Border"..k]
 							end
 							table.insert(raid3borderholder, raid3border)
-							raid3border:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
+							raid3border:SetSize(E.db.ElvUI_EltreumUI.borders.raid40sizex, E.db.ElvUI_EltreumUI.borders.raid40sizey)
 							raid3border:SetPoint("CENTER", _G['ElvUF_Raid3Group'..l..'UnitButton'..k], "CENTER")
 							raid3border:SetParent(_G['ElvUF_Raid3Group'..l..'UnitButton'..k])
 							raid3border:SetBackdrop({
