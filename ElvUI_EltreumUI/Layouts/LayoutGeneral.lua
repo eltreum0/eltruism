@@ -136,21 +136,20 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["size"] = 14
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = true]]
 
-		E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "TOPRIGHT"
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "RIGHT"
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["defaultColor"] = true
-		E.db["unitframe"]["units"]["player"]["CombatIcon"]["texture"] = "Eltruism16"
-		E.db["unitframe"]["units"]["player"]["CombatIcon"]["size"] = 25
-		E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = -12
-		E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = 11
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["texture"] = "Eltruism15"
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["size"] = 30
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = 15
+		E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = 0
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["enable"] = true
-		E.db["unitframe"]["units"]["target"]["CombatIcon"]["anchorPoint"] = "TOPLEFT"
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["anchorPoint"] = "LEFT"
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["defaultColor"] = true
-		E.db["unitframe"]["units"]["target"]["CombatIcon"]["xOffset"] = 12
-		E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = 11
-		E.db["unitframe"]["units"]["target"]["CombatIcon"]["texture"] = "Eltruism16"
-		E.db["unitframe"]["units"]["target"]["CombatIcon"]["size"] = 25
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["xOffset"] = -15
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = 0
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["texture"] = "Eltruism29"
+		E.db["unitframe"]["units"]["target"]["CombatIcon"]["size"] = 30
 		E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = true
-
 
 		--private auras
 		E.db["movers"]["PrivateAurasMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-287,-150"
