@@ -56,6 +56,11 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 			--[[if button.caster ~= "player" then
 				button:Hide()
 			end]]
+
+			--[[if UnitIsUnit(button.caster, "player") then
+				button:SetSize(50,50)
+			end]]
+
 			button.Cooldown:SetFrameStrata('DIALOG')
 			TimeSinceLastUpdate = 0
 			if not button.Cooldown or not button.Cooldown:IsShown() then
@@ -107,41 +112,43 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 							debufftime = tonumber(button.Cooldown.timer.text:GetText())
 							if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow then
 								if debufftime ~= nil and debufftime <= E.db.ElvUI_EltreumUI.glow.numberdebuff and debufftime > 0 then
-									if E.db.ElvUI_EltreumUI.glow.pixel then
-										LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
-										if E.db.ElvUI_EltreumUI.glow.gradient then
-											for k,v in pairs({button._PixelGlow:GetRegions()}) do
-												local r,g,b = v:GetVertexColor()
-												v:SetVertexColor(r-(k/20),g-(k/20),b-(k/20),1)
+									if button.caster and UnitIsUnit(button.caster, "player") then
+										if E.db.ElvUI_EltreumUI.glow.pixel then
+											LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
+											if E.db.ElvUI_EltreumUI.glow.gradient then
+												for k,v in pairs({button._PixelGlow:GetRegions()}) do
+													local r,g,b = v:GetVertexColor()
+													v:SetVertexColor(r-(k/20),g-(k/20),b-(k/20),1)
+												end
 											end
-										end
-									elseif E.db.ElvUI_EltreumUI.glow.autocast then
-										--LCG.AutoCastGlow_Start(button, glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-										LCG.AutoCastGlow_Start(button, glowcolor, 8, 1, 1.5, 1, 1)
-										if E.db.ElvUI_EltreumUI.glow.gradient then
-											for k,v in pairs({button._AutoCastGlow:GetRegions()}) do
-												local r,g,b = v:GetVertexColor()
-												v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),1)
+										elseif E.db.ElvUI_EltreumUI.glow.autocast then
+											--LCG.AutoCastGlow_Start(button, glowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+											LCG.AutoCastGlow_Start(button, glowcolor, 8, 1, 1.5, 1, 1)
+											if E.db.ElvUI_EltreumUI.glow.gradient then
+												for k,v in pairs({button._AutoCastGlow:GetRegions()}) do
+													local r,g,b = v:GetVertexColor()
+													v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),1)
+												end
 											end
-										end
-									elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-										LCG.ButtonGlow_Start(button, glowcolor, 0.5)
-										button._ButtonGlow.outerGlow:SetScale(1.15)
-										if E.db.ElvUI_EltreumUI.glow.gradient then
-											if E.db.ElvUI_EltreumUI.glow.colorclass then
-												button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
-											else
-												button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r - 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g - 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b - 0.2, a = 1}, {r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r + 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g + 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b + 0.2, a = 1})
+										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+											LCG.ButtonGlow_Start(button, glowcolor, 0.5)
+											button._ButtonGlow.outerGlow:SetScale(1.15)
+											if E.db.ElvUI_EltreumUI.glow.gradient then
+												if E.db.ElvUI_EltreumUI.glow.colorclass then
+													button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
+												else
+													button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r - 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g - 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b - 0.2, a = 1}, {r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r + 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g + 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b + 0.2, a = 1})
+												end
 											end
+										elseif E.db.ElvUI_EltreumUI.glow.procglow then
+											proc.color = glowcolor
+											proc.duration = E.db.ElvUI_EltreumUI.glow.proc.duration
+											proc.startAnim = E.db.ElvUI_EltreumUI.glow.proc.startAnimation
+											proc.frameLevel = E.db.ElvUI_EltreumUI.glow.proc.frameLevel
+											proc.xOffset = E.db.ElvUI_EltreumUI.glow.proc.xOffset
+											proc.yOffset = E.db.ElvUI_EltreumUI.glow.proc.yOffset
+											LCG.ProcGlow_Start(button, proc)
 										end
-									elseif E.db.ElvUI_EltreumUI.glow.procglow then
-										proc.color = glowcolor
-										proc.duration = E.db.ElvUI_EltreumUI.glow.proc.duration
-										proc.startAnim = E.db.ElvUI_EltreumUI.glow.proc.startAnimation
-										proc.frameLevel = E.db.ElvUI_EltreumUI.glow.proc.frameLevel
-										proc.xOffset = E.db.ElvUI_EltreumUI.glow.proc.xOffset
-										proc.yOffset = E.db.ElvUI_EltreumUI.glow.proc.yOffset
-										LCG.ProcGlow_Start(button, proc)
 									end
 								else
 									if E.db.ElvUI_EltreumUI.glow.pixel then

@@ -397,6 +397,7 @@ local modelsRotate = {
 	[5154480] = true, --new druid moonkin form
 	[3952432] = true, --Prowling Inferno Elemental
 	[1786281] = true, --Reagent Skeleton Skinnaur
+	[1949828] = true, --Sian'Shim
 }
 
 --set portrait rotation based on target being npc or not
