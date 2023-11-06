@@ -293,7 +293,6 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	ElvUI_EltreumUI:NameplatePower()
 	ElvUI_EltreumUI:NameplateModel()
 	ElvUI_EltreumUI:NameplateCustomOptions()
-	ElvUI_EltreumUI:DynamicUFPortraitRotation()
 	ElvUI_EltreumUI:TargetUFEffects()
 	ElvUI_EltreumUI:TargetCombatIconClass()
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then

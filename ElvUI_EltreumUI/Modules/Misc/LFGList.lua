@@ -342,7 +342,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 					end
 					if not entry.DataDisplay.Enumerate[i.."b"] then
 						entry.DataDisplay.Enumerate[i.."b"] = entry.DataDisplay:CreateTexture(nil, "BACKGROUND")
-						entry.DataDisplay.Enumerate[i.."b"]:SetSize(20, 20)
+						entry.DataDisplay.Enumerate[i.."b"]:SetSize(19, 19)
 					end
 
 					entry.DataDisplay.Enumerate[i]:SetPoint("RIGHT", entry.DataDisplay.Enumerate, "RIGHT", -13 - 21*(maxNumPlayers-i), -1)

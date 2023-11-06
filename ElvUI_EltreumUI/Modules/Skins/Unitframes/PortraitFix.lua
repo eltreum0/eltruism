@@ -1,11 +1,10 @@
 local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local targetmodel, playermodel
-local UnitExists = _G.UnitExists
 local UnitIsDead = _G.UnitIsDead
 local hooksecurefunc = _G.hooksecurefunc
 local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
+local UF = E:GetModule('UnitFrames')
 
 local druidfix = {
 	[1272625] = true, --""druidbear2_artifact1.m2",
@@ -400,161 +399,109 @@ local modelsRotate = {
 	[1949828] = true, --Sian'Shim
 }
 
---set portrait rotation based on target being npc or not
-function ElvUI_EltreumUI:DynamicUFPortraitRotation()
-	if E.db.ElvUI_EltreumUI.unitframes.portraitfix and E.private.unitframe.enable then
-		if E.db.unitframe.units.target.enable and E.db.unitframe.units.target.portrait.enable and E.db.unitframe.units.target.portrait.style == "3D" then
-			if UnitExists("target") and _G["ElvUF_Target"] then
-				E:Delay(0, function()
+local targetlike = {
+	["boss1"] = true,
+	["boss2"] = true,
+	["boss3"] = true,
+	["boss4"] = true,
+	["boss5"] = true,
+	["boss6"] = true,
+	["boss7"] = true,
+	["boss8"] = true,
+	["arena1"] = true,
+	["arena2"] = true,
+	["arena3"] = true,
+	["arena4"] = true,
+	["arena5"] = true,
+	["targettarget"] = true,
+}
 
-					local originalrotation = E.db["unitframe"]["units"]["target"]["portrait"]["rotation"]
-					local newrotation
+local playerlike = {
+	["focus"] = true,
+	["focustarget"] = true,
+	["party1"] = true,
+	["party2"] = true,
+	["party3"] = true,
+	["party4"] = true,
+	["party5"] = true,
+}
 
-					--fix camera rotation by get the model id
-					if _G["ElvUF_Target"].Portrait3D then
-						targetmodel = _G["ElvUF_Target"].Portrait3D:GetModelFileID()
-						if modelsRotate[targetmodel]then
-							newrotation = 291
-						else
-							newrotation = 0
-						end
-						if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
-							if targetmodel == 1273833 or druidfix[targetmodel] or targetmodel == 926251 or targetmodel == 1043712 then
-								E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = -0.59 --shaman/druid things
-							elseif targetmodel == 1505169 then
-								E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = 0.2 --bear
-							elseif targetmodel == 4207724 then
-								E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = 0.6 --dracthyr
-							else
-								E.db["unitframe"]["units"]["target"]["portrait"]["xOffset"] = 0
-							end
-						end
-					end
+--fix portrait rotation since they dont align correctly due to how blizzard makes models
+function ElvUI_EltreumUI:PortraitFix(unit)
+	if self.playerModel then
+		local model = self:GetModelFileID()
+		local newrotation
+		local xOffset = 0
 
-					--pause if dead
-					if E.db.ElvUI_EltreumUI.unitframes.portraitdead then
-						if UnitIsDead("target") then
-							E:Delay(0,function()
-								if _G["ElvUF_Target"].Portrait3D then
-									_G["ElvUF_Target"].Portrait3D:SetPaused(true)
-									_G["ElvUF_Target"].Portrait3D:SetDesaturation(1)
-								end
-							end)
-						else
-							E:Delay(0,function()
-								if _G["ElvUF_Target"].Portrait3D then
-									_G["ElvUF_Target"].Portrait3D:SetPaused(false)
-									_G["ElvUF_Target"].Portrait3D:SetDesaturation(0)
-								end
-							end)
-						end
-					end
-
-					if newrotation ~= originalrotation then
-						E.db["unitframe"]["units"]["target"]["portrait"]["rotation"] = newrotation
-					end
-
-					--force update portrait
-					if _G["ElvUF_Target"].Portrait3D and _G["ElvUF_Target"].Portrait3D.ForceUpdate then
-						_G["ElvUF_Target"].Portrait3D:ForceUpdate()
-					end
-				end)
+		--pause if dead or ghost
+		if E.db.ElvUI_EltreumUI.unitframes.portraitdead then
+			if UnitIsDead(unit) or UnitIsGhost(unit) then
+				self:SetPaused(true)
+				self:SetDesaturation(1)
+			else
+				self:SetPaused(false)
+				self:SetDesaturation(0)
 			end
+		end
+
+		if unit == 'player' or playerlike[unit] then
+			if not model then return end
+			if modelsRotate[model]then
+				newrotation = 0
+			elseif model == 926251 then
+				newrotation = 99
+			else
+				newrotation = 67--3
+			end
+			if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
+				if model == 1273833 then
+					xOffset = -0.59 --cat
+				elseif model == 1505169 then
+					xOffset = 0.62 --bear
+				elseif model == 4207724 then
+					xOffset = 0.5 --dracthyr
+				elseif druidfix[model] or model == 926251 then
+					xOffset = -0.39 --other bears
+				elseif model == 1043712 then
+					xOffset = -1 --shaman raptor
+				else
+					xOffset = 0
+				end
+			end
+		elseif unit == 'target' or targetlike[unit] then
+			if not model then return end
+			if modelsRotate[model]then
+				newrotation = 291
+			else
+				newrotation = 0
+			end
+			if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
+				if model == 1273833 or druidfix[model] or model == 926251 or model == 1043712 then
+					xOffset = -0.59 --cat
+				elseif model == 1505169 then
+					xOffset = 0.2 --bear
+				elseif model == 4207724 then
+					xOffset = 0.6 --dracthyr
+				else
+					xOffset = 0
+				end
+			end
+		end
+
+		if newrotation then
+			local db = self.db
+			if not db then return end
+			db.rotation = newrotation
+			self:SetRotation(rad(newrotation))
+			self:SetViewTranslation(xOffset * 100, db.yOffset * 100)
+		else
+			--prob couldnt get model bc it was nil from PEW, so reset stuff
+			self:SetRotation(0)
+			self:SetViewTranslation(0, 0)
 		end
 	end
 end
-
---because sometimes player portrait gets replaced and has wrong rotation too
-function ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
-	if E.db.ElvUI_EltreumUI.unitframes.portraitfix and E.private.unitframe.enable then
-		if E.db.unitframe.units.player.enable and E.db.unitframe.units.player.portrait.enable and E.db.unitframe.units.player.portrait.style == "3D" then
-			if UnitExists("player") and _G["ElvUF_Player"] then
-				E:Delay(0, function()
-
-					local originalrotation = E.db["unitframe"]["units"]["player"]["portrait"]["rotation"]
-					local newrotation
-
-					--fix camera rotation by get the model id
-					if _G["ElvUF_Player"].Portrait3D then
-						playermodel = _G["ElvUF_Player"].Portrait3D:GetModelFileID()
-						if playermodel then
-							if modelsRotate[playermodel]then
-								newrotation = 0
-							elseif playermodel == 926251 then
-								newrotation = 99
-							else
-								newrotation = 67--39
-							end
-							if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
-								if playermodel == 1273833 then
-									E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.59 --cat
-								elseif playermodel == 1505169 then
-									E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0.62 --bear
-								elseif playermodel == 4207724 then
-									E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0.5 --dracthyr
-								elseif druidfix[playermodel] or playermodel == 926251 then
-									E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -0.39 --other bears
-								elseif playermodel == 1043712 then
-									E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = -1 --shaman raptor
-								else
-									E.db["unitframe"]["units"]["player"]["portrait"]["xOffset"] = 0
-								end
-							end
-						end
-					end
-
-
-					--pause if dead
-					if E.db.ElvUI_EltreumUI.unitframes.portraitdead then
-						if UnitIsDead("player") then
-							E:Delay(0,function()
-								if _G["ElvUF_Player"].Portrait3D then
-									_G["ElvUF_Player"].Portrait3D:SetPaused(true)
-									_G["ElvUF_Player"].Portrait3D:SetDesaturation(1)
-								end
-							end)
-						else
-							E:Delay(0,function()
-								if _G["ElvUF_Player"].Portrait3D then
-									_G["ElvUF_Player"].Portrait3D:SetPaused(false)
-									_G["ElvUF_Player"].Portrait3D:SetDesaturation(0)
-								end
-							end)
-						end
-					end
-
-					if newrotation and newrotation ~= originalrotation then
-						E.db["unitframe"]["units"]["player"]["portrait"]["rotation"] = newrotation
-					end
-
-					--force update portrait
-					if _G["ElvUF_Player"].Portrait3D and _G["ElvUF_Player"].Portrait3D.ForceUpdate then
-						_G["ElvUF_Player"].Portrait3D:ForceUpdate()
-					end
-				end)
-			end
-		end
-	end
-end
-
---check for druid things, ofc
-local shapeshiftcheck = CreateFrame("FRAME")
-shapeshiftcheck:RegisterUnitEvent("UNIT_MODEL_CHANGED", "target")
-shapeshiftcheck:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
-shapeshiftcheck:SetScript("OnEvent", function(_,_,unit)
-	if unit == "target" then
-		ElvUI_EltreumUI:DynamicUFPortraitRotation()
-	elseif unit == "player" then
-		ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
-		ElvUI_EltreumUI:DynamicUFPortraitRotation()
-	end
-end)
-
-local playerdiedcheck = CreateFrame("FRAME")
-playerdiedcheck:RegisterEvent("PLAYER_DEAD")
-playerdiedcheck:SetScript("OnEvent", function()
-	ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
-end)
+hooksecurefunc(UF, "PortraitUpdate", ElvUI_EltreumUI.PortraitFix)
 
 --hoping this is a temporary fix and blizzard actually fixes models not inherithing the parent's alpha
 
@@ -686,7 +633,6 @@ if E.db.unitframe.units.player.fader.smooth > 0 then
 			if endAlpha == 0 then
 				if frame.Portrait3D then
 					frame.Portrait3D:Hide()
-					frame.FixRotationEltruism = false
 				end
 				if frame:GetName() ~= nil then
 					if frame:GetName():match("Player") then
@@ -708,8 +654,6 @@ if E.db.unitframe.units.player.fader.smooth > 0 then
 			elseif endAlpha == 1 then
 				if frame.Portrait3D then
 					frame.Portrait3D:Show()
-					ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
-					frame.FixRotationEltruism = true
 				end
 				if frame:GetName() ~= nil and frame:GetName():match("Player") then
 					if frame:GetName():match("Player") then
@@ -752,7 +696,6 @@ if E.db.unitframe.units.player.fader.smooth > 0 then
 			if endAlpha == 0 then
 				if frame.Portrait3D then
 					frame.Portrait3D:Hide()
-					frame.FixRotationEltruism = false
 				end
 				if frame:GetName() ~= nil then
 					if frame:GetName():match("Player") then
@@ -774,10 +717,6 @@ if E.db.unitframe.units.player.fader.smooth > 0 then
 			elseif endAlpha == 1 then
 				if frame.Portrait3D then
 					frame.Portrait3D:Show()
-					if not frame.FixRotationEltruism then
-						ElvUI_EltreumUI:DynamicUFPortraitRotationPlayer()
-						frame.FixRotationEltruism = true
-					end
 				end
 				if frame:GetName() ~= nil then
 					if frame:GetName():match("Player") then

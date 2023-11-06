@@ -69,16 +69,13 @@ do
 	local function EltruismGetTitleNPC(unit, custom)
 		if UnitIsPlayer(unit) or (E.Wrath and UnitAffectingCombat('player') and IsInInstance()) then return end
 
-		E.ScanTooltip:SetOwner(_G.UIParent, 'ANCHOR_NONE')
-		E.ScanTooltip:SetUnit(unit)
-		E.ScanTooltip:Show()
-
 		-- similar to TT.GetLevelLine
-		local ttLine = _G[format('ElvUI_ScanTooltipTextLeft%d', GetCVarBool('colorblindmode') and 3 or 2)]
-		local ttText = ttLine and ttLine:GetText()
-		local ttLower = ttText and strlower(ttText)
+		local info = E.ScanTooltip:GetUnitInfo(unit)
+		local line = info and info.lines[GetCVarBool('colorblindmode') and 3 or 2]
+		local ttText = line and line.leftText
 
-		if ttLower and not ttLower:match(LEVEL) and not ttText:match(LEVEL) then
+		local ttLower = ttText and strlower(ttText)
+		if ttLower and not strfind(ttLower, LEVEL) and not strfind(ttText,LEVEL) then
 			local reaction = UnitReaction(unit, "player")
 			if reaction then
 				if not custom then
