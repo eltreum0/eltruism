@@ -633,7 +633,6 @@ if E.db.unitframe.units.player.fader.smooth > 0 then
 			if endAlpha == 0 then
 				if frame.Portrait3D then
 					frame.Portrait3D:Hide()
-					frame.FixRotationEltruism = false
 				end
 				if frame:GetName() ~= nil then
 					if frame:GetName():match("Player") then
@@ -655,7 +654,6 @@ if E.db.unitframe.units.player.fader.smooth > 0 then
 			elseif endAlpha == 1 then
 				if frame.Portrait3D then
 					frame.Portrait3D:Show()
-					frame.FixRotationEltruism = true
 				end
 				if frame:GetName() ~= nil and frame:GetName():match("Player") then
 					if frame:GetName():match("Player") then
