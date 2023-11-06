@@ -517,11 +517,9 @@ playerdeath:SetScript("OnEvent", function()
 			if _G["ElvUF_Player"] and _G["ElvUF_Player"].Portrait3D then
 				E:Delay(0,function()
 					if UnitIsDead("player") or UnitIsGhost("player") then
-						print("DEAD")
 						_G["ElvUF_Player"].Portrait3D:SetPaused(true)
 						_G["ElvUF_Player"].Portrait3D:SetDesaturation(1)
 					else
-						print("ALIVE")
 						_G["ElvUF_Player"].Portrait3D:SetPaused(false)
 						_G["ElvUF_Player"].Portrait3D:SetDesaturation(0)
 					end
