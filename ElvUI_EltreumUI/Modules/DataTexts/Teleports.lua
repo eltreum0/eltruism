@@ -37,6 +37,7 @@ local TeleportsItems = {
 	--188952, --dominated-hearthstone
 	--162973, --greatfather-winters-hearthstone
 	--193588, --timewalkers-hearthstone
+	--208704, --deepdwellers-earthen-hearthstone
 	206195, --path of the naaru
 	110560, --garrison-hearthstone
 	140192, --dalaran-hearthstone
