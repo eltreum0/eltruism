@@ -75,8 +75,8 @@ do
 		local ttText = line and line.leftText
 
 		local ttLower = ttText and strlower(ttText)
-		--if ttLower and not strfind(ttLower, LEVEL) then
-		if ttLower and not ttLower:match(LEVEL) and not ttText:match(LEVEL) then
+		if ttLower and not strfind(ttLower, LEVEL) then
+		--if ttLower and not ttLower:match(LEVEL) and not ttText:match(LEVEL) then
 			local reaction = UnitReaction(unit, "player")
 			if reaction then
 				if not custom then
