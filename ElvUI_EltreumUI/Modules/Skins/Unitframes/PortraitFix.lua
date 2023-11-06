@@ -505,6 +505,32 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 end
 hooksecurefunc(UF, "PortraitUpdate", ElvUI_EltreumUI.PortraitFix)
 
+--handling player death
+local playerdeath = CreateFrame("FRAME")
+playerdeath:RegisterEvent("PLAYER_DEAD")
+playerdeath:RegisterEvent("PLAYER_UNGHOST")
+playerdeath:RegisterEvent("PLAYER_ALIVE")
+playerdeath:RegisterUnitEvent("UNIT_FLAGS","player")
+playerdeath:SetScript("OnEvent", function()
+	if E.db.ElvUI_EltreumUI.unitframes.portraitfix and E.private.unitframe.enable then
+		if E.db.unitframe.units.player.enable and E.db.unitframe.units.player.portrait.enable and E.db.unitframe.units.player.portrait.style == "3D" then
+			if _G["ElvUF_Player"] and _G["ElvUF_Player"].Portrait3D then
+				E:Delay(0,function()
+					if UnitIsDead("player") or UnitIsGhost("player") then
+						print("DEAD")
+						_G["ElvUF_Player"].Portrait3D:SetPaused(true)
+						_G["ElvUF_Player"].Portrait3D:SetDesaturation(1)
+					else
+						print("ALIVE")
+						_G["ElvUF_Player"].Portrait3D:SetPaused(false)
+						_G["ElvUF_Player"].Portrait3D:SetDesaturation(0)
+					end
+				end)
+			end
+		end
+	end
+end)
+
 --hoping this is a temporary fix and blizzard actually fixes models not inherithing the parent's alpha
 
 --fix alpha on login
