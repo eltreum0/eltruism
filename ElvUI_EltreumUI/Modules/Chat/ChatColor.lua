@@ -3,6 +3,7 @@ local _G = _G
 
 --chat without backdrop
 function ElvUI_EltreumUI:TransparentChat()
+	if not E.private.chat.enable then return end
 	E.db["chat"]["fadeUndockedTabs"] = true
 	E.db["chat"]["panelBackdrop"] = "HIDEBOTH"
 	E.db["chat"]["panelTabTransparency"] = true
@@ -55,6 +56,7 @@ end
 
 --chat with backdrop
 function ElvUI_EltreumUI:DarkChat()
+	if not E.private.chat.enable then return end
 	E.db["chat"]["fadeUndockedTabs"] = false
 	E.db["chat"]["panelBackdrop"] = "SHOWBOTH"
 	E.db["chat"]["panelTabTransparency"] = false

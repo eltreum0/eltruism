@@ -210,6 +210,7 @@ end
 --Add class icons next to player names in chat
 function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, _, _, arg12)
 	if not arg2 then return end -- guild deaths is called here with no arg2
+	if not E.private.chat.enable then return end
 
 	local chatType = strsub(event, 10)
 	local subType = strsub(chatType, 1, 7)
