@@ -98,6 +98,9 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["size"] = 30
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = true
 
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["textPosition"] = "RIGHT"
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["textPosition"] = "RIGHT"
+
 
 	E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
 

@@ -429,79 +429,105 @@ local playerlike = {
 --fix portrait rotation since they dont align correctly due to how blizzard makes models
 function ElvUI_EltreumUI:PortraitFix(unit)
 	if self.playerModel then
-		local model = self:GetModelFileID()
-		local newrotation
-		local xOffset = 0
+		if E.db.ElvUI_EltreumUI.unitframes.portraitfix then
+			local model = self:GetModelFileID()
+			local newrotation
+			local xOffset = 0
 
-		--pause if dead or ghost
-		if E.db.ElvUI_EltreumUI.unitframes.portraitdead then
-			if UnitIsDead(unit) or UnitIsGhost(unit) then
-				self:SetPaused(true)
-				self:SetDesaturation(1)
-			else
-				self:SetPaused(false)
-				self:SetDesaturation(0)
-			end
-		end
-
-		if unit == 'player' or playerlike[unit] then
-			if not model then return end
-			if modelsRotate[model]then
-				newrotation = 0
-			elseif model == 926251 then
-				newrotation = 99
-			else
-				newrotation = 67--3
-			end
-			if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
-				if model == 1273833 then
-					xOffset = -0.59 --cat
-				elseif model == 1505169 then
-					xOffset = 0.62 --bear
-				elseif model == 4207724 then
-					xOffset = 0.5 --dracthyr
-				elseif druidfix[model] or model == 926251 then
-					xOffset = -0.39 --other bears
-				elseif model == 1043712 then
-					xOffset = -1 --shaman raptor
+			--pause if dead or ghost
+			if E.db.ElvUI_EltreumUI.unitframes.portraitdead then
+				if UnitIsDead(unit) or UnitIsGhost(unit) then
+					self:SetPaused(true)
+					self:SetDesaturation(1)
 				else
-					xOffset = 0
+					self:SetPaused(false)
+					self:SetDesaturation(0)
 				end
 			end
-		elseif unit == 'target' or targetlike[unit] then
-			if not model then return end
-			if modelsRotate[model]then
-				newrotation = 291
-			else
-				newrotation = 0
-			end
-			if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
-				if model == 1273833 or druidfix[model] or model == 926251 or model == 1043712 then
-					xOffset = -0.59 --cat
-				elseif model == 1505169 then
-					xOffset = 0.2 --bear
-				elseif model == 4207724 then
-					xOffset = 0.6 --dracthyr
+
+			if unit == 'player' or playerlike[unit] then
+				if not model then return end
+				if modelsRotate[model]then
+					newrotation = 0
+				elseif model == 926251 then
+					newrotation = 99
 				else
-					xOffset = 0
+					newrotation = 67--3
+				end
+				if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
+					if model == 1273833 then
+						xOffset = -0.59 --cat
+					elseif model == 1505169 then
+						xOffset = 0.62 --bear
+					elseif model == 4207724 then
+						xOffset = 0.5 --dracthyr
+					elseif druidfix[model] or model == 926251 then
+						xOffset = -0.39 --other bears
+					elseif model == 1043712 then
+						xOffset = -1 --shaman raptor
+					else
+						xOffset = 0
+					end
+				end
+			elseif unit == 'target' or targetlike[unit] then
+				if not model then return end
+				if modelsRotate[model]then
+					newrotation = 291
+				else
+					newrotation = 0
+				end
+				if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
+					if model == 1273833 or druidfix[model] or model == 926251 or model == 1043712 then
+						xOffset = -0.59 --cat
+					elseif model == 1505169 then
+						xOffset = 0.2 --bear
+					elseif model == 4207724 then
+						xOffset = 0.6 --dracthyr
+					else
+						xOffset = 0
+					end
 				end
 			end
-		end
 
-		if newrotation then
-			local db = self.db
-			if not db then return end
-			db.rotation = newrotation
-			self:SetRotation(rad(newrotation))
-			self:SetViewTranslation(xOffset * 100, db.yOffset * 100)
-		else
-			--prob couldnt get model bc it was nil from PEW, so reset stuff
-			self:SetRotation(0)
-			self:SetViewTranslation(0, 0)
+			if newrotation then
+				local db = self.db
+				if not db then return end
+				db.rotation = newrotation
+				self:SetRotation(rad(newrotation))
+				self:SetViewTranslation(xOffset * 100, db.yOffset * 100)
+			else
+				--prob couldnt get model bc it was nil from PEW, so reset stuff
+				self:SetRotation(0)
+				self:SetViewTranslation(0, 0)
+			end
 		end
 	end
 end
 hooksecurefunc(UF, "PortraitUpdate", ElvUI_EltreumUI.PortraitFix)
+
+--handling player death
+local playerdeath = CreateFrame("FRAME")
+playerdeath:RegisterEvent("PLAYER_DEAD")
+playerdeath:RegisterEvent("PLAYER_UNGHOST")
+playerdeath:RegisterEvent("PLAYER_ALIVE")
+playerdeath:RegisterUnitEvent("UNIT_FLAGS","player")
+playerdeath:SetScript("OnEvent", function()
+	if E.db.ElvUI_EltreumUI.unitframes.portraitfix and E.private.unitframe.enable then
+		if E.db.unitframe.units.player.enable and E.db.unitframe.units.player.portrait.enable and E.db.unitframe.units.player.portrait.style == "3D" then
+			if _G["ElvUF_Player"] and _G["ElvUF_Player"].Portrait3D then
+				E:Delay(0,function()
+					if UnitIsDead("player") or UnitIsGhost("player") then
+						_G["ElvUF_Player"].Portrait3D:SetPaused(true)
+						_G["ElvUF_Player"].Portrait3D:SetDesaturation(1)
+					else
+						_G["ElvUF_Player"].Portrait3D:SetPaused(false)
+						_G["ElvUF_Player"].Portrait3D:SetDesaturation(0)
+					end
+				end)
+			end
+		end
+	end
+end)
 
 --hoping this is a temporary fix and blizzard actually fixes models not inherithing the parent's alpha
 
