@@ -108,8 +108,8 @@ function ElvUI_EltreumUI:Borders()
 					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
 				})
 				playerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				playerborder:SetFrameStrata("LOW")
-
+				playerborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.playerstrata)
+				playerborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.playerlevel)
 				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.player.infoPanel.enable then
 					playerborder:SetPoint("CENTER", _G.ElvUF_Player, "CENTER", 0, E.db.unitframe.units.player.infoPanel.height)
 				end
@@ -146,7 +146,8 @@ function ElvUI_EltreumUI:Borders()
 					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetcastsize,
 				})
 				playercastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				playercastbarborder:SetFrameStrata("MEDIUM")
+				playercastbarborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.playercaststrata)
+				playercastbarborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.playercastlevel)
 			end
 
 			--target
@@ -167,8 +168,8 @@ function ElvUI_EltreumUI:Borders()
 					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
 				})
 				targetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				targetborder:SetFrameStrata("LOW")
-				--targetborder:SetFrameLevel(12)
+				targetborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.targetstrata)
+				targetborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.targetlevel)
 
 				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.target.infoPanel.enable then
 					targetborder:SetPoint("CENTER", _G.ElvUF_Target, "CENTER", 0, E.db.unitframe.units.target.infoPanel.height)
@@ -206,7 +207,8 @@ function ElvUI_EltreumUI:Borders()
 					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetcastsize,
 				})
 				targetcastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				targetcastbarborder:SetFrameStrata("MEDIUM")
+				targetcastbarborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.targetcaststrata)
+				targetcastbarborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.targetcastlevel)
 			end
 
 			--target of target
@@ -227,8 +229,8 @@ function ElvUI_EltreumUI:Borders()
 					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
 				})
 				targettargetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				targettargetborder:SetFrameStrata("LOW")
-
+				targettargetborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.targettargetstrata)
+				targettargetborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.targettargetlevel)
 				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.targettarget.infoPanel.enable then
 					targettargetborder:SetPoint("CENTER", _G.ElvUF_TargetTarget, "CENTER", 0, E.db.unitframe.units.targettarget.infoPanel.height)
 				end
@@ -252,8 +254,8 @@ function ElvUI_EltreumUI:Borders()
 					edgeSize = E.db.ElvUI_EltreumUI.borders.petsize,
 				})
 				petborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				petborder:SetFrameStrata("LOW")
-
+				petborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.petstrata)
+				petborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.petlevel)
 				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.pet.infoPanel.enable then
 					petborder:SetPoint("CENTER", _G.ElvUF_Pet, "CENTER", 0, E.db.unitframe.units.pet.infoPanel.height)
 				end
@@ -281,7 +283,8 @@ function ElvUI_EltreumUI:Borders()
 						else
 							partyborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 						end
-						partyborder:SetFrameStrata("LOW")
+						partyborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.partystrata)
+						partyborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.partylevel)
 					end
 				end
 			end
@@ -311,7 +314,8 @@ function ElvUI_EltreumUI:Borders()
 								else
 									raid1border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 								end
-								raid1border:SetFrameStrata("MEDIUM")
+								raid1border:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.raidstrata)
+								raid1border:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.raidlevel)
 							end
 						end
 					end
@@ -340,7 +344,8 @@ function ElvUI_EltreumUI:Borders()
 										else
 											raid1border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 										end
-										raid1border:SetFrameStrata("MEDIUM")
+										raid1border:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.raidstrata)
+										raid1border:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.raidlevel)
 									end
 								end
 							end
@@ -366,7 +371,8 @@ function ElvUI_EltreumUI:Borders()
 									else
 										raid1border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 									end
-									raid1border:SetFrameStrata("MEDIUM")
+									raid1border:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.raidstrata)
+									raid1border:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.raidlevel)
 								end
 							end
 						end
@@ -398,7 +404,8 @@ function ElvUI_EltreumUI:Borders()
 							else
 								raid2border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 							end
-							raid2border:SetFrameStrata("MEDIUM")
+							raid2border:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.raid2strata)
+							raid2border:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.raid2level)
 						end
 					end
 				end
@@ -429,6 +436,8 @@ function ElvUI_EltreumUI:Borders()
 								raid3border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 							end
 							raid3border:SetFrameStrata("MEDIUM")
+							raid3border:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.raid40strata)
+							raid3border:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.raid40level)
 						end
 					end
 				end
@@ -452,7 +461,8 @@ function ElvUI_EltreumUI:Borders()
 					edgeSize = E.db.ElvUI_EltreumUI.borders.focussize,
 				})
 				focusborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				focusborder:SetFrameStrata("LOW")
+				focusborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.focusstrata)
+				focusborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.focuslevel)
 
 				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.focus.infoPanel.enable then
 					focusborder:SetPoint("CENTER", _G.ElvUF_Focus, "CENTER", 0, E.db.unitframe.units.focus.infoPanel.height)
@@ -490,7 +500,8 @@ function ElvUI_EltreumUI:Borders()
 					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetcastsize,
 				})
 				focuscastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				focuscastbarborder:SetFrameStrata("MEDIUM")
+				focuscastbarborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.focuscaststrata)
+				focuscastbarborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.focuscastlevel)
 			end
 
 			--focustarget
@@ -512,6 +523,8 @@ function ElvUI_EltreumUI:Borders()
 				})
 				focustargetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				focustargetborder:SetFrameStrata("LOW")
+				focuscastbarborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.focuscaststrata)
+				focuscastbarborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.focuscastlevel)
 
 				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.focustarget.infoPanel.enable then
 					focustargetborder:SetPoint("CENTER", _G.ElvUF_FocusTarget, "CENTER", 0, E.db.unitframe.units.focustarget.infoPanel.height)
@@ -548,11 +561,11 @@ function ElvUI_EltreumUI:Borders()
 						else
 							bossborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 						end
-						bossborder:SetFrameStrata("MEDIUM")
+						bossborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.bossstrata)
+						bossborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.bosslevel)
 					end
 				end
 			end
-
 		end
 
 		--elvui action bars (has to be split because it bar can be different sizes)
@@ -577,7 +590,8 @@ function ElvUI_EltreumUI:Borders()
 							edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder1:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-						--barborder1:SetFrameLevel(1)
+						barborder1:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.bar1strata)
+						barborder1:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.bar1level)
 					end
 				end
 				createbar1borders()
@@ -603,7 +617,8 @@ function ElvUI_EltreumUI:Borders()
 							edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder2:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-						--barborder2:SetFrameLevel(1)
+						barborder2:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.bar2strata)
+						barborder2:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.bar2level)
 					end
 				end
 				createbar2borders()
@@ -629,7 +644,8 @@ function ElvUI_EltreumUI:Borders()
 							edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder3:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-						--barborder3:SetFrameLevel(1)
+						barborder3:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.bar3strata)
+						barborder3:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.bar3level)
 					end
 				end
 				createbar3borders()
@@ -655,7 +671,8 @@ function ElvUI_EltreumUI:Borders()
 							edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder4:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-						--barborder4:SetFrameLevel(1)
+						barborder4:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.bar4strata)
+						barborder4:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.bar4level)
 					end
 				end
 				createbar4borders()
@@ -681,7 +698,8 @@ function ElvUI_EltreumUI:Borders()
 							edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder5:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-						--barborder5:SetFrameLevel(1)
+						barborder5:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.bar5strata)
+						barborder5:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.bar5level)
 					end
 				end
 				createbar5borders()
@@ -707,7 +725,8 @@ function ElvUI_EltreumUI:Borders()
 							edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize,
 						})
 						barborder6:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-						--barborder6:SetFrameLevel(1)
+						barborder6:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.bar6strata)
+						barborder6:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.bar6level)
 					end
 				end
 				createbar6borders()
@@ -733,7 +752,8 @@ function ElvUI_EltreumUI:Borders()
 							edgeSize = E.db.ElvUI_EltreumUI.borders.stanceedgesize,
 						})
 						stanceborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-						--stanceborder:SetFrameLevel(1)
+						stanceborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.stancestrata)
+						stanceborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.stancelevel)
 					end
 				end
 				createstanceborders()
@@ -759,7 +779,8 @@ function ElvUI_EltreumUI:Borders()
 							edgeSize = E.db.ElvUI_EltreumUI.borders.petactionedgesize,
 						})
 						petactionborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-						--petactionborder:SetFrameLevel(1)
+						petactionborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.petabstrata)
+						petactionborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.petablevel)
 					end
 				end
 				createstancepetactionborders()
@@ -789,7 +810,8 @@ function ElvUI_EltreumUI:Borders()
 						edgeSize = E.db.ElvUI_EltreumUI.borders.totemedgesize,
 					})
 					totemborderaction:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-					--totemborderaction:SetFrameLevel(1)
+					totemborderaction:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.totemstrata)
+					totemborderaction:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.totemlevel)
 				end
 			end
 			createtotemborders()
@@ -835,7 +857,8 @@ function ElvUI_EltreumUI:Borders()
 				edgeSize = E.db.ElvUI_EltreumUI.borders.powerbarsize,
 			})
 			powerbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			powerbarborder:SetFrameStrata("MEDIUM")
+			powerbarborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.powerbarstrata)
+			powerbarborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.powerbarlevel)
 		end
 
 		-- minimap
@@ -853,8 +876,8 @@ function ElvUI_EltreumUI:Borders()
 				edgeSize = E.db.ElvUI_EltreumUI.borders.minimapsize,
 			})
 			MinimapBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			MinimapBorder:SetFrameStrata("MEDIUM")
-			MinimapBorder:SetFrameLevel(2)
+			MinimapBorder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.minimapstrata)
+			MinimapBorder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.minimaplevel)
 
 			if not E.db.datatexts.panels.MinimapPanel.backdrop or not E.db.datatexts.panels.MinimapPanel.enable then
 				MinimapBorder:SetPoint("CENTER", _G["MinimapBackdrop"],"CENTER", 0, 0)
@@ -910,7 +933,8 @@ function ElvUI_EltreumUI:Borders()
 				edgeSize = E.db.ElvUI_EltreumUI.borders.chatsize, --13
 			})
 			LeftChatBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			LeftChatBorder:SetFrameStrata("MEDIUM")
+			LeftChatBorder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.leftchatstrata)
+			LeftChatBorder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.leftchatlevel)
 
 			--right chat
 			if not _G["EltruismRightChatBorderFrame"] then
@@ -926,7 +950,8 @@ function ElvUI_EltreumUI:Borders()
 				edgeSize = E.db.ElvUI_EltreumUI.borders.chatsize, --13
 			})
 			RightChatBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			RightChatBorder:SetFrameStrata("MEDIUM")
+			RightChatBorder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.rightchatstrata)
+			RightChatBorder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.rightchatlevel)
 
 			if E.db.chat.panelBackdrop == "RIGHT" then
 				LeftChatBorder:Hide()
@@ -937,7 +962,6 @@ function ElvUI_EltreumUI:Borders()
 				RightChatBorder:Hide()
 			end
 		end
-
 	end
 end
 
