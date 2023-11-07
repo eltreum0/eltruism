@@ -3425,40 +3425,38 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 2)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added a new button in Eltruism > Media, that will automatically apply texture mode to all aura indicators, such as Party/Raid Unitframes
-Added /eltruism performance command, which will disable several Eltruism and ElvUI settings in order to maximize performance
-Added another style to BigWigs, Eltruism Top Text, which will show the texts above the progress bar
-Added an option to change the Time to Arrive on Waypoints to be class colored
-Added options to disable the Pause/Grey on portrait while the unit is dead
-Added an option to hide Auras on Nameplates when they are not in combat
-Added Questie Tracker to the compatibility check
-Added Lockpicking to the Profession Bag Buttons
-Added a toggle for Datatext shadows
+Added [name:eltruism:gradientshortfirst] tag, which will display the first name fully but abbreviate the rest
+Added a check for resolutions lower than 2000 pixels wide to get a downscaled version of some icons
+Added an option to make Combat Icons class based on the Player and Target unitframes
+Added portraits to the list of things to be disabled with /eltruism performance
+Added options to change the Strata and Level of the Borders
+Added several new combat icons
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Objective Frame Anchor in Retail to better handle removing it from Edit Mode, this also prevents some taints
-Updated [eltruism:combatindicator] to use any texture set in the player combat indicator
-Updated Waypoint Coordinate Inputs to also support TomTom inputs (#Zone X Y)
-Updated Gradient Backdrop to also work with Offline and Tap Denied states
-Updated Resting Icon animation to better hide during cinematics
-Updated target combat indicator to be the same as player
-Updated power models when the power bar is transparent
-Updated profile to use Tile3 on the ElvUI Skin
-Updated Portrait Fix with a few models
-Updated German locale by Dlarge
-Updated Auctionator Skin
+Updated Ace3 skin to better handle disabled buttons and also when their state changes
+Updated the Quest Minimize button in Classic to hide if no quests are being tracked
+Updated Wowhead button to better position itself when the skin is disabled
+Updated OmniCD skin due to a change in it's Icon and Statusbar
+Updated Portraits Skin to be independent of ElvUI Portraits
+Updated Honor Datatext to change with pvp kills in Classic
+Updated Auctionator skin to better handle some resolutions
+Updated Compatibility to not check for Questie for now
+Updated Immersion skin to better color the buttons
+Updated Portrait Fix due to ElvUI Portrait changes
+Updated German translation by Dlarge
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue where entries could be duplicated in the LFG Spec Icons option due to other addons also adding text
-Fixed an issue where raid control could error when Blizzard Raid frames were enabled
-Fixed a possible issue with the Ace3 skin where the database was not loaded for tabs
-Fixed a possible issue with the Teleports Datatext where the item could be invalid
-Fixed World Quest Icon in the Quest Skin
-Fixed Shadows when power is detached
+Fixed an issue with Borders for Raid2 and Raid3 where they were using Raid1 settings instead of their own
+Fixed an issue where the Progress Bar in Quests would sometimes flash due to the backdrop
+Fixed an error when attempting to copy the Edit mode layout to clipboard
+Fixed Minimap shadows showing up when the Minimap was set to rotate
+Fixed Nameplate Debuff Glow when other players debuffs were showing
+Fixed Nameplate Height when ElvUI nameplates were disabled
+Fixed the size of the class border in the LFG skin
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
