@@ -721,12 +721,16 @@ P.ElvUI_EltreumUI = {
 		aurasizey = 54,
 		debuffaurasizex = 54,
 		debuffaurasizey = 54,
+		aurastrata = "MEDIUM",
+		auralevel = 4,
 
 		auraborderuf = true,
 		ufbuffsizex = 54,
 		ufbuffsizey = 48,
 		ufdebuffsizex = 54,
 		ufdebuffsizey = 48,
+		auraufstrata = "MEDIUM",
+		aurauflevel = 4,
 
 		chatborder = true,
 		leftchatborderx = 432,

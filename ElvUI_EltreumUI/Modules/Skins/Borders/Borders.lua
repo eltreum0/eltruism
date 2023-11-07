@@ -994,8 +994,8 @@ function ElvUI_EltreumUI:AuraBorders(button)
 			edgeSize = E.db.ElvUI_EltreumUI.borders.aurasize,
 		})
 		auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-		auraborder:SetFrameStrata("MEDIUM")
-		auraborder:SetFrameLevel(4)
+		auraborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.aurastrata)
+		auraborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.auralevel)
 	end
 end
 hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraBorders) --aura (minimap) borders
@@ -1038,8 +1038,8 @@ function ElvUI_EltreumUI:UFAuraBorders(button)
 				edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
 				edgeSize = E.db.ElvUI_EltreumUI.borders.aurasize,
 			})
-			auraborder:SetFrameStrata("MEDIUM")
-			auraborder:SetFrameLevel(4)
+			auraborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.auraufstrata)
+			auraborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.aurauflevel)
 			if button:GetName():match("Debuffs") then
 				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufdebuffsizex, E.db.ElvUI_EltreumUI.borders.ufdebuffsizey)
 			else
@@ -1437,7 +1437,8 @@ function ElvUI_EltreumUI:RegenerateBlizzRaidBorders()
 						else
 							raid1border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 						end
-						raid1border:SetFrameStrata("MEDIUM")
+						raid1border:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.raidstrata)
+						raid1border:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.raidlevel)
 					end
 				end
 			end
@@ -1463,7 +1464,8 @@ function ElvUI_EltreumUI:RegenerateBlizzRaidBorders()
 					else
 						raid1border:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					end
-					raid1border:SetFrameStrata("MEDIUM")
+					raid1border:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.raidstrata)
+					raid1border:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.raidlevel)
 				end
 			end
 		end
