@@ -895,6 +895,8 @@ P.ElvUI_EltreumUI = {
 		stancexborder = 49,
 		stanceyborder = 42,
 		stanceedgesize = 13,
+		stancestrata = "LOW",
+		stancelevel = 3,
 
 		petactionborders = false,
 		petactionxborder = 49,
