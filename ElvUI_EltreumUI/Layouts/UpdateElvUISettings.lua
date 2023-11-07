@@ -98,9 +98,22 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["size"] = 30
 	E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = true
 
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["fontSize"] = 15
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["size"] = 25
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["spacing"] = 12
 	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["textPosition"] = "RIGHT"
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["textXOffset"] = 9
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["textYOffset"] = 0
+	E.db["nameplates"]["units"]["FRIENDLY_NPC"]["questIcon"]["xOffset"] = 15
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["font"] = "Kimberley"
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["fontSize"] = 15
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["size"] = 25
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["spacing"] = 12
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["textPosition"] = "RIGHT"
-
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["textXOffset"] = 9
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["textYOffset"] = 0
+	E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["xOffset"] = 15
 
 	E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
 
