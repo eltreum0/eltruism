@@ -408,6 +408,8 @@ function ElvUI_EltreumUI:SkinQuests()
 								else
 									module.Header.EltruismStatusLine = CreateFrame("StatusBar", "EltruismLine", module.Header)
 								end
+								module.Header.EltruismStatusLine:SetMinMaxValues(0, 100)
+								module.Header.EltruismStatusLine:SetValue(100)
 								module.Header.EltruismStatusLine:SetSize(E.db.ElvUI_EltreumUI.skins.questsettings.sizex, E.db.ElvUI_EltreumUI.skins.questsettings.sizey)
 								module.Header.EltruismStatusLine:SetPoint("BOTTOM", module.Header, 0, 0)
 								module.Header.EltruismStatusLine:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.questsettings.texture))
@@ -786,6 +788,8 @@ function ElvUI_EltreumUI:SkinQuests()
 			--add quest header like retail/wrath
 			if not _G["EltruismQuestLine"] then
 				_G.QuestWatchFrame.HeaderBar = CreateFrame("StatusBar", "EltruismQuestLine", _G.QuestWatchFrame)
+				_G.QuestWatchFrame.HeaderBar:SetMinMaxValues(0, 100)
+				_G.QuestWatchFrame.HeaderBar:SetValue(100)
 			else
 				_G.QuestWatchFrame.HeaderBar = _G["EltruismQuestLine"]
 			end
@@ -1074,6 +1078,8 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				if not _G["EltruismQuestLine"] then
 					WatchFrame.HeaderBar = CreateFrame("StatusBar", "EltruismQuestLine", WatchFrameLines)
+					WatchFrame.HeaderBar:SetMinMaxValues(0, 100)
+					WatchFrame.HeaderBar:SetValue(100)
 				else
 					WatchFrame.HeaderBar = _G["EltruismQuestLine"]
 				end
