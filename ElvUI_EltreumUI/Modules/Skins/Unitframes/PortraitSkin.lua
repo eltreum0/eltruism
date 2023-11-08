@@ -13,6 +13,7 @@ local notexcoord = {
 --create and update the portraits
 local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,SettingUpdate)
 	if not frame then return end
+	if not frame.USE_PORTRAIT then return end
 	if not frame.unit then return end
 
 	if db == "party" and E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align == "RIGHT" then
