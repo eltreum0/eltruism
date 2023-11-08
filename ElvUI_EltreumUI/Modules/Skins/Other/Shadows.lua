@@ -313,7 +313,7 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G.TradeSkillFrame.shadow)
 						end
 					else
-						if not _G.TradeSkillFrame.backdrop.shadow then
+						if  _G.TradeSkillFrame.backdrop and not _G.TradeSkillFrame.backdrop.shadow then
 							_G.TradeSkillFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.TradeSkillFrame.backdrop.shadow)
 						end
