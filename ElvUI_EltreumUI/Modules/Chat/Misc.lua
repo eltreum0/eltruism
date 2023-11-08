@@ -232,6 +232,7 @@ if not E.private.ElvUI_EltreumUI.install_version then return end
 if not E.db then return end
 if not E.db.ElvUI_EltreumUI then return end
 if not E.db.ElvUI_EltreumUI.otherstuff then return end
+if not E.private.chat.enable then return end
 
 local sizeString = "\":"..E.db["chat"]["fontSize"]..":"..E.db["chat"]["fontSize"].."\""
 if E.db.ElvUI_EltreumUI.otherstuff.eltruismroleicons then

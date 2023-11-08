@@ -4,6 +4,7 @@ Added [name:eltruism:gradientshortfirst] tag, which will display the first name 
 Added a check for resolutions lower than 2000 pixels wide to get a downscaled version of some icons  
 Added an option to make Combat Icons class based on the Player and Target unitframes  
 Added portraits to the list of things to be disabled with /eltruism performance  
+Added options to change the Strata and Level of the Borders  
 Added several new combat icons  
 Updated Ace3 skin to better handle disabled buttons and also when their state changes  
 Updated the Quest Minimize button in Classic to hide if no quests are being tracked  

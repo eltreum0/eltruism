@@ -9,6 +9,7 @@ local leftfaderbutton = 1 -- when 1 it can fade, when 0 it cannot
 local rightfaderbutton = 1 -- same as above
 
 function ElvUI_EltreumUI:DynamicChatFade()
+	if not E.private.chat.enable then return end
 	if E.db.ElvUI_EltreumUI.chat.invertclick then
 		leftfaderbutton = 0
 		rightfaderbutton = 0

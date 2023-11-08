@@ -183,7 +183,7 @@ do
 		end
 
 		--add a basic embed if addonskins is not loaded
-		if E.db.ElvUI_EltreumUI.skins.detailsembed then
+		if E.db.ElvUI_EltreumUI.skins.detailsembed and E.private.chat.enable then
 			local checkembed = true
 			if IsAddOnLoaded("AddOnSkins") or IsAddOnLoaded("ElvUI_MerathilisUI") then --TODO 10.2, might need C_AddOns.
 				if IsAddOnLoaded("AddOnSkins") then --TODO 10.2, might need C_AddOns.

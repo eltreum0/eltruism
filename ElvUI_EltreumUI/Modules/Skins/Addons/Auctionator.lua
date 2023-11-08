@@ -343,18 +343,18 @@ local function SkinAuctionator()
 			S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].PostingHistoryListing.ScrollArea.ScrollBar)
 			handlechildtab(_G["AuctionatorSellingFrame"].PostingHistoryListing.HeaderContainer)
 		end
-		if _G["AuctionatorSellingFrame"].AuctionatorSaleItem.Quantity then
-			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Quantity.InputBox)
+		if _G["AuctionatorSellingFrame"].SaleItemFrame.Quantity then
+			S:HandleEditBox(_G["AuctionatorSellingFrame"].SaleItemFrame.Quantity.InputBox)
 		end
-		if _G["AuctionatorSellingFrame"].AuctionatorSaleItem.Price then
-			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Price.MoneyInput.GoldBox)
-			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Price.MoneyInput.SilverBox)
+		if _G["AuctionatorSellingFrame"].SaleItemFrame.Price then
+			S:HandleEditBox(_G["AuctionatorSellingFrame"].SaleItemFrame.Price.MoneyInput.GoldBox)
+			S:HandleEditBox(_G["AuctionatorSellingFrame"].SaleItemFrame.Price.MoneyInput.SilverBox)
 		end
 
 		--handle radio buttons
-		if _G["AuctionatorSellingFrame"].AuctionatorSaleItem.Duration then
-			for i = 1, _G["AuctionatorSellingFrame"].AuctionatorSaleItem.Duration:GetNumChildren() do
-				local subframe = select(i, _G["AuctionatorSellingFrame"].AuctionatorSaleItem.Duration:GetChildren())
+		if _G["AuctionatorSellingFrame"].SaleItemFrame.Duration then
+			for i = 1, _G["AuctionatorSellingFrame"].SaleItemFrame.Duration:GetNumChildren() do
+				local subframe = select(i, _G["AuctionatorSellingFrame"].SaleItemFrame.Duration:GetChildren())
 				if subframe and subframe.RadioButton then
 					S:HandleRadioButton(subframe.RadioButton)
 				end
@@ -362,20 +362,20 @@ local function SkinAuctionator()
 		end
 
 		--also based on simpy's skin but different
-		if _G["AuctionatorSellingFrame"].AuctionatorSaleItem and not _G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop then
-			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.Icon:SetTexCoord(unpack(E.TexCoords))
-			_G["AuctionatorSellingFrame"].AuctionatorSaleItem:StyleButton()
-			_G["AuctionatorSellingFrame"].AuctionatorSaleItem:CreateBackdrop()
-			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.EmptySlot:Hide()
-			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop:SetPoint("TOPLEFT",_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon,"TOPLEFT",-1,1)
-			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop:SetPoint("BOTTOMRIGHT",_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon,"BOTTOMRIGHT",1,-1)
+		if _G["AuctionatorSellingFrame"].SaleItemFrame and not _G["AuctionatorSellingFrame"].SaleItemFrame.backdrop then
+			_G["AuctionatorSellingFrame"].SaleItemFrame.Icon.Icon:SetTexCoord(unpack(E.TexCoords))
+			_G["AuctionatorSellingFrame"].SaleItemFrame:StyleButton()
+			_G["AuctionatorSellingFrame"].SaleItemFrame:CreateBackdrop()
+			_G["AuctionatorSellingFrame"].SaleItemFrame.Icon.EmptySlot:Hide()
+			_G["AuctionatorSellingFrame"].SaleItemFrame.backdrop:SetPoint("TOPLEFT",_G["AuctionatorSellingFrame"].SaleItemFrame.Icon,"TOPLEFT",-1,1)
+			_G["AuctionatorSellingFrame"].SaleItemFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["AuctionatorSellingFrame"].SaleItemFrame.Icon,"BOTTOMRIGHT",1,-1)
 			--[[
-			hooksecurefunc(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconBorder,"SetVertexColor", function(_,r,g,b)
-				_G["AuctionatorSellingFrame"].AuctionatorSaleItem.backdrop:SetBackdropBorderColor(r, g, b, 1)
-				_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconBorder:SetAlpha(0)
+			hooksecurefunc(_G["AuctionatorSellingFrame"].SaleItemFrame.Icon.IconBorder,"SetVertexColor", function(_,r,g,b)
+				_G["AuctionatorSellingFrame"].SaleItemFrame.backdrop:SetBackdropBorderColor(r, g, b, 1)
+				_G["AuctionatorSellingFrame"].SaleItemFrame.Icon.IconBorder:SetAlpha(0)
 			end)]]
-			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
-			_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Icon.IconSelectedHighlight:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
+			_G["AuctionatorSellingFrame"].SaleItemFrame.Icon.IconBorder:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
+			_G["AuctionatorSellingFrame"].SaleItemFrame.Icon.IconSelectedHighlight:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\itemBorder.tga")
 		end
 
 		if _G["AuctionatorSellingFrame"].PricesTabsContainer then
@@ -401,14 +401,14 @@ local function SkinAuctionator()
 			S:HandleButton(_G["AuctionatorSellingFrame"].BuyFrame.CurrentPrices.CancelButton)
 			S:HandleButton(_G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices.RealmHistoryButton)
 			S:HandleButton(_G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices.PostingHistoryButton)
-			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.UnitPrice.MoneyInput.GoldBox)
-			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.UnitPrice.MoneyInput.SilverBox)
-			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.UnitPrice.MoneyInput.CopperBox)
-			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.StackPrice.MoneyInput.GoldBox)
-			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.StackPrice.MoneyInput.SilverBox)
-			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.StackPrice.MoneyInput.CopperBox)
-			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Stacks.NumStacks)
-			S:HandleEditBox(_G["AuctionatorSellingFrame"].AuctionatorSaleItem.Stacks.StackSize)
+			S:HandleEditBox(_G["AuctionatorSellingFrame"].SaleItemFrame.UnitPrice.MoneyInput.GoldBox)
+			S:HandleEditBox(_G["AuctionatorSellingFrame"].SaleItemFrame.UnitPrice.MoneyInput.SilverBox)
+			S:HandleEditBox(_G["AuctionatorSellingFrame"].SaleItemFrame.UnitPrice.MoneyInput.CopperBox)
+			S:HandleEditBox(_G["AuctionatorSellingFrame"].SaleItemFrame.StackPrice.MoneyInput.GoldBox)
+			S:HandleEditBox(_G["AuctionatorSellingFrame"].SaleItemFrame.StackPrice.MoneyInput.SilverBox)
+			S:HandleEditBox(_G["AuctionatorSellingFrame"].SaleItemFrame.StackPrice.MoneyInput.CopperBox)
+			S:HandleEditBox(_G["AuctionatorSellingFrame"].SaleItemFrame.Stacks.NumStacks)
+			S:HandleEditBox(_G["AuctionatorSellingFrame"].SaleItemFrame.Stacks.StackSize)
 			S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices.RealmHistoryResultsListing.ScrollArea.ScrollBar)
 			S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].BuyFrame.CurrentPrices.SearchResultsListing.ScrollArea.ScrollBar)
 			handlechildtab(_G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices.RealmHistoryResultsListing.HeaderContainer)
