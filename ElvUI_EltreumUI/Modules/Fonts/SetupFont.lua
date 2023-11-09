@@ -206,6 +206,21 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		E.db["unitframe"]["units"]["targettargettarget"]["buffs"]["countFont"] = fontvalue
 		E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = fontvalue
 
+		E.private["general"]["nameplateFont"] = fontvalue
+		E.private["general"]["nameplateLargeFont"] = fontvalue
+		E.db["general"]["fonts"]["worldsubzone"]["font"] = fontvalue
+		E.db["general"]["fonts"]["worldzone"]["font"] = fontvalue
+		E.db["general"]["fonts"]["pvpsubzone"]["font"] = fontvalue
+		E.db["general"]["fonts"]["pvpzone"]["font"] = fontvalue
+		E.db["general"]["fonts"]["objective"]["font"] = fontvalue
+		E.db["general"]["fonts"]["questtitle"]["font"] = fontvalue
+		E.db["general"]["fonts"]["questtext"]["font"] = fontvalue
+		E.db["general"]["fonts"]["questsmall"]["font"] = fontvalue
+		E.db["general"]["fonts"]["cooldown"]["font"] = fontvalue
+		E.db["general"]["fonts"]["mailbody"]["font"] = fontvalue
+		E.db["general"]["fonts"]["talkingtext"]["font"] = fontvalue
+		E.db["general"]["fonts"]["talkingtitle"]["font"] = fontvalue
+
 		-- Custom Text: Party
 		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
 		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"] then

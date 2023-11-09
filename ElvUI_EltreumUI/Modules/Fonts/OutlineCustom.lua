@@ -135,7 +135,22 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	E.db["nameplates"]["units"]["PLAYER"]["power"]["text"]["fontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["PLAYER"]["title"]["fontOutline"] = fontStyle
 
-		-- Custom Texts
+	E.private["general"]["nameplateFontOutline"] = fontStyle
+	E.private["general"]["nameplateLargeFontOutline"] = fontStyle
+	E.db["general"]["fonts"]["cooldown"]["outline"] = fontStyle
+	E.db["general"]["fonts"]["mailbody"]["outline"] = fontStyle
+	E.db["general"]["fonts"]["objective"]["outline"] = fontStyle
+	E.db["general"]["fonts"]["pvpsubzone"]["outline"] = fontStyle
+	E.db["general"]["fonts"]["pvpzone"]["outline"] = fontStyle
+	E.db["general"]["fonts"]["questsmall"]["outline"] = fontStyle
+	E.db["general"]["fonts"]["questtext"]["outline"] = fontStyle
+	E.db["general"]["fonts"]["talkingtext"]["outline"] = fontStyle
+	E.db["general"]["fonts"]["talkingtitle"]["outline"] = fontStyle
+	E.db["general"]["fonts"]["worldsubzone"]["outline"] = fontStyle
+	E.db["general"]["fonts"]["worldzone"]["outline"] = fontStyle
+	E.db["general"]["fonts"]["questtitle"]["outline"] = fontStyle
+
+	-- Custom Texts
 	if E.db["unitframe"]["units"]["player"]["customTexts"] then
 		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] then
 			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["fontOutline"] = fontStyle

@@ -490,83 +490,66 @@ end)
 
 function ElvUI_EltreumUI:SkinMailZone()
 	if E.db.ElvUI_EltreumUI.skins.zones then
-		if not ElvUI_EltreumUI:SLCheck("media") then
-			_G.ZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 42, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-			_G.SubZoneTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 28, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-			_G.PVPInfoTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-			_G.PVPArenaTextString:SetFont(E.LSM:Fetch('font', E.db.general.font), 20, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-			if E.db.general.fontStyle ~= "NONE" then
-				_G.ZoneTextString:SetShadowColor(0,0,0,1)
-				_G.ZoneTextString:SetShadowOffset(1, -1)
-				_G.SubZoneTextString:SetShadowColor(0,0,0,1)
-				_G.SubZoneTextString:SetShadowOffset(1, -1)
-			end
+		if E.db.general.fontStyle ~= "NONE" then
+			_G.ZoneTextString:SetShadowColor(0,0,0,1)
+			_G.ZoneTextString:SetShadowOffset(1, -1)
+			_G.SubZoneTextString:SetShadowColor(0,0,0,1)
+			_G.SubZoneTextString:SetShadowOffset(1, -1)
+		end
 
-			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not self.ZoneSkinned then
-				_G.ZoneTextFrame:HookScript("OnUpdate", function()
-					--_G.ZoneTextString:SetWidth(512)
-					--_G.ZoneTextString:SetMaxLines(1)
-					--_G.ZoneTextString:SetWordWrap(false)
-					--_G.ZoneTextString:SetText("Putricide's Laboratory of Alchemical Horrors and Fun") --debug for length
-					if _G.ZoneTextString:GetText() ~= nil and not _G.ZoneTextString:GetText():match("|r|c") then
-						local r,g,b = _G.ZoneTextString:GetTextColor()
-						local r2 = r-0.3
-						if r2 < 0 then r2 = 0 end
-						local g2 = g-0.3
-						if g2 < 0 then g2 = 0 end
-						local b2 = b-0.3
-						if b2 < 0 then b2 = 0 end
-						_G.ZoneTextString:SetText(E:TextGradient(_G.ZoneTextString:GetText(), r, g, b, r2, g2, b2))
-					end
-					if _G.PVPInfoTextString:GetText() ~= nil and not _G.PVPInfoTextString:GetText():match("|r|c") then
-						local r,g,b = _G.PVPInfoTextString:GetTextColor()
-						local r2 = r-0.3
-						if r2 < 0 then r2 = 0 end
-						local g2 = g-0.3
-						if g2 < 0 then g2 = 0 end
-						local b2 = b-0.3
-						if b2 < 0 then b2 = 0 end
-						_G.PVPInfoTextString:SetText(E:TextGradient(_G.PVPInfoTextString:GetText(), r, g, b, r2, g2, b2))
-					end
-				end)
-				_G.SubZoneTextFrame:HookScript("OnUpdate", function()
-					--_G.SubZoneTextString:SetWidth(512)
-					--_G.SubZoneTextString:SetMaxLines(1)
-					--_G.SubZoneTextString:SetWordWrap(false)
-					if _G.SubZoneTextString:GetText() ~= nil and not _G.SubZoneTextString:GetText():match("|r|c") then
-						local r,g,b = _G.SubZoneTextString:GetTextColor()
-						local r2 = r-0.3
-						if r2 < 0 then r2 = 0 end
-						local g2 = g-0.3
-						if g2 < 0 then g2 = 0 end
-						local b2 = b-0.3
-						if b2 < 0 then b2 = 0 end
-						_G.SubZoneTextString:SetText(E:TextGradient(_G.SubZoneTextString:GetText(), r, g, b, r2, g2, b2))
-					end
-					if _G.PVPArenaTextString:GetText() ~= nil and not _G.PVPArenaTextString:GetText():match("|r|c") then
-						local r,g,b = _G.PVPArenaTextString:GetTextColor()
-						local r2 = r-0.3
-						if r2 < 0 then r2 = 0 end
-						local g2 = g-0.3
-						if g2 < 0 then g2 = 0 end
-						local b2 = b-0.3
-						if b2 < 0 then b2 = 0 end
-						_G.PVPArenaTextString:SetText(E:TextGradient(_G.PVPArenaTextString:GetText(), r, g, b, r2, g2, b2))
-					end
-				end)
-				self.ZoneSkinned = true
-			end
-
-			--[[if _G.OpenMailBodyText then
-				if E.Retail then
-					_G.OpenMailBodyText:SetFont("P", E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, "OUTLINE")
-				else
-					_G.OpenMailBodyText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, "OUTLINE")
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not self.ZoneSkinned then
+			_G.ZoneTextFrame:HookScript("OnUpdate", function()
+				--_G.ZoneTextString:SetWidth(512)
+				--_G.ZoneTextString:SetMaxLines(1)
+				--_G.ZoneTextString:SetWordWrap(false)
+				--_G.ZoneTextString:SetText("Putricide's Laboratory of Alchemical Horrors and Fun") --debug for length
+				if _G.ZoneTextString:GetText() ~= nil and not _G.ZoneTextString:GetText():match("|r|c") then
+					local r,g,b = _G.ZoneTextString:GetTextColor()
+					local r2 = r-0.3
+					if r2 < 0 then r2 = 0 end
+					local g2 = g-0.3
+					if g2 < 0 then g2 = 0 end
+					local b2 = b-0.3
+					if b2 < 0 then b2 = 0 end
+					_G.ZoneTextString:SetText(E:TextGradient(_G.ZoneTextString:GetText(), r, g, b, r2, g2, b2))
 				end
-			end
-			if E.Retail then
-				_G.SendMailBodyEditBox:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize, "OUTLINE")
-			end]]
+				if _G.PVPInfoTextString:GetText() ~= nil and not _G.PVPInfoTextString:GetText():match("|r|c") then
+					local r,g,b = _G.PVPInfoTextString:GetTextColor()
+					local r2 = r-0.3
+					if r2 < 0 then r2 = 0 end
+					local g2 = g-0.3
+					if g2 < 0 then g2 = 0 end
+					local b2 = b-0.3
+					if b2 < 0 then b2 = 0 end
+					_G.PVPInfoTextString:SetText(E:TextGradient(_G.PVPInfoTextString:GetText(), r, g, b, r2, g2, b2))
+				end
+			end)
+			_G.SubZoneTextFrame:HookScript("OnUpdate", function()
+				--_G.SubZoneTextString:SetWidth(512)
+				--_G.SubZoneTextString:SetMaxLines(1)
+				--_G.SubZoneTextString:SetWordWrap(false)
+				if _G.SubZoneTextString:GetText() ~= nil and not _G.SubZoneTextString:GetText():match("|r|c") then
+					local r,g,b = _G.SubZoneTextString:GetTextColor()
+					local r2 = r-0.3
+					if r2 < 0 then r2 = 0 end
+					local g2 = g-0.3
+					if g2 < 0 then g2 = 0 end
+					local b2 = b-0.3
+					if b2 < 0 then b2 = 0 end
+					_G.SubZoneTextString:SetText(E:TextGradient(_G.SubZoneTextString:GetText(), r, g, b, r2, g2, b2))
+				end
+				if _G.PVPArenaTextString:GetText() ~= nil and not _G.PVPArenaTextString:GetText():match("|r|c") then
+					local r,g,b = _G.PVPArenaTextString:GetTextColor()
+					local r2 = r-0.3
+					if r2 < 0 then r2 = 0 end
+					local g2 = g-0.3
+					if g2 < 0 then g2 = 0 end
+					local b2 = b-0.3
+					if b2 < 0 then b2 = 0 end
+					_G.PVPArenaTextString:SetText(E:TextGradient(_G.PVPArenaTextString:GetText(), r, g, b, r2, g2, b2))
+				end
+			end)
+			self.ZoneSkinned = true
 		end
 	end
 end
