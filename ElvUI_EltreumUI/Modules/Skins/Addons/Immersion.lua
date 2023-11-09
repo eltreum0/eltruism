@@ -117,6 +117,10 @@ function ElvUI_EltreumUI:EltruismImmersion()
 								ElvUI_EltreumUI:ShadowColor(v.shadow)
 							end
 						end
+						local point, relativeTo, relativePoint, xOfs, yOfs = v:GetPoint()
+						v:ClearAllPoints()
+						v:SetPoint(point,relativeTo,relativePoint,xOfs,yOfs-5)
+
 						v.IsSkinned = true
 					end
 				end
