@@ -26,7 +26,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 	E.db["general"]["fonts"]["pvpzone"]["font"] = "Kimberley"
 	E.db["general"]["fonts"]["pvpzone"]["outline"] = "OUTLINE"
 	E.db["general"]["fonts"]["pvpzone"]["size"] = 22
-	E.db["general"]["fonts"]["objective"]["enable"] = true
+	E.db["general"]["fonts"]["objective"]["enable"] = false
 	E.db["general"]["fonts"]["objective"]["font"] = "Kimberley"
 	E.db["general"]["fonts"]["objective"]["outline"] = "OUTLINE"
 	E.db["general"]["fonts"]["objective"]["size"] = 12
@@ -42,9 +42,14 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 	E.db["general"]["fonts"]["questsmall"]["font"] = "Kimberley"
 	E.db["general"]["fonts"]["questsmall"]["outline"] = "OUTLINE"
 	E.db["general"]["fonts"]["questsmall"]["size"] = 13
+	E.db["general"]["fonts"]["cooldown"]["enable"] = true
 	E.db["general"]["fonts"]["cooldown"]["font"] = "Kimberley"
 	E.db["general"]["fonts"]["cooldown"]["outline"] = "OUTLINE"
 	E.db["general"]["fonts"]["cooldown"]["size"] = 20
+	E.db["general"]["fonts"]["errortext"]["enable"] = true
+	E.db["general"]["fonts"]["errortext"]["font"] = "Kimberley"
+	E.db["general"]["fonts"]["errortext"]["outline"] = "OUTLINE"
+	E.db["general"]["fonts"]["errortext"]["size"] = 14
 	E.db["general"]["fonts"]["mailbody"]["enable"] = true
 	E.db["general"]["fonts"]["mailbody"]["font"] = "Kimberley"
 	E.db["general"]["fonts"]["mailbody"]["outline"] = "OUTLINE"
@@ -57,6 +62,10 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 	E.db["general"]["fonts"]["talkingtitle"]["font"] = "Kimberley"
 	E.db["general"]["fonts"]["talkingtitle"]["outline"] = "OUTLINE"
 	E.db["general"]["fonts"]["talkingtitle"]["size"] = 20
+	E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["countFontOutline"] = "OUTLINE"
 
 	E.db["general"]["guildBank"]["countFont"] = "Kimberley"
 

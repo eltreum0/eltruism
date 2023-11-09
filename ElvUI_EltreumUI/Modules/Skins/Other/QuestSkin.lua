@@ -370,6 +370,7 @@ function ElvUI_EltreumUI:SkinQuests()
 							else
 								line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 							end
+							line.Dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							--local _,frame = line.Dash:GetPoint()
 							--line.Dash:ClearAllPoints()
 							--line.Dash:SetPoint("RIGHT", frame, "LEFT", 5,0)
@@ -639,6 +640,7 @@ function ElvUI_EltreumUI:SkinQuests()
 								else
 									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 								end
+								line.Dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							end
 							if line.Check and line.Check:IsShown() then
 								line.Text:SetTextColor(0.12, 1, 0.12)
@@ -685,6 +687,7 @@ function ElvUI_EltreumUI:SkinQuests()
 								else
 									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 								end
+								line.Dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							end
 							if line.Check and line.Check:IsShown() then
 								line.Text:SetTextColor(0.12, 1, 0.12)

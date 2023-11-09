@@ -234,13 +234,6 @@ function ElvUI_EltreumUI:Anchors()
 		UIErrorsFrame:Hide()
 	else
 		E:CreateMover(UIErrorsFrame, "MoverUIERRORS", "UI Error Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
-		if E.db.ElvUI_EltreumUI.skins.blizzframes.errorframe then
-			if E.db.ElvUI_EltreumUI.skins.blizzframes.errorframecustomfont then
-				UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefont), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-			else
-				UIErrorsFrame:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.blizzframes.errorframefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-			end
-		end
 	end
 
 	--fix tutorial frames getting in the way

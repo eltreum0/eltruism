@@ -105,6 +105,8 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["fontOutline"] = fontStyle
 	E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["fontOutline"] = fontStyle
 	E.db["unitframe"]["units"]["tank"]["rdebuffs"]["fontOutline"] = fontStyle
+	E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = fontStyle
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["countFontOutline"] = fontStyle
 	E.db["nameplates"]["cooldown"]["fonts"]["fontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["castbar"]["fontOutline"] = fontStyle
 	E.db["nameplates"]["units"]["ENEMY_NPC"]["health"]["text"]["fontOutline"] = fontStyle
@@ -138,6 +140,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	E.private["general"]["nameplateFontOutline"] = fontStyle
 	E.private["general"]["nameplateLargeFontOutline"] = fontStyle
 	E.db["general"]["fonts"]["cooldown"]["outline"] = fontStyle
+	E.db["general"]["fonts"]["errortext"]["outline"] = fontStyle
 	E.db["general"]["fonts"]["mailbody"]["outline"] = fontStyle
 	E.db["general"]["fonts"]["objective"]["outline"] = fontStyle
 	E.db["general"]["fonts"]["pvpsubzone"]["outline"] = fontStyle
