@@ -1,7 +1,7 @@
 local E, L = unpack(ElvUI)
 local valuecolors = E:ClassColor(E.myclass, true)
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local tostring = _G.tostring
 local SetCVar = _G.SetCVar
 local math = _G.math
@@ -29,21 +29,21 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		ElvUI_EltreumUI:AuraFiltersUpdate()
 
 		--SetupShadowAndLight
-		if IsAddOnLoaded("ElvUI_SLE") then --TODO 10.2, might need C_AddOns.
+		if IsAddOnLoaded("ElvUI_SLE") then
 			ElvUI_EltreumUI:GetSLEProfile()
 		end
 
 		-- AddOnSkins Profile
-		if IsAddOnLoaded('AddOnSkins') then --TODO 10.2, might need C_AddOns.
+		if IsAddOnLoaded('AddOnSkins') then
 			ElvUI_EltreumUI:AddonSetupAS()
 		end
 
-		if IsAddOnLoaded("ProjectAzilroka") then --TODO 10.2, might need C_AddOns.
+		if IsAddOnLoaded("ProjectAzilroka") then
 			--E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-5,-226"
 			E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-205"
 		end
 
-		if IsAddOnLoaded("ElvUI_WindTools") then --TODO 10.2, might need C_AddOns.
+		if IsAddOnLoaded("ElvUI_WindTools") then
 			ElvUI_EltreumUI:GetWindToolsProfile()
 		end
 
@@ -813,7 +813,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			E.db["datatexts"]["panels"]["RightChatDataPanel"]["middle"] = "BfA Missions"
 			E.db["datatexts"]["panels"]["RightChatDataPanel"]["panelTransparency"] = true
 			E.db["datatexts"]["panels"]["RightChatDataPanel"]["backdrop"] = false
-			if IsAddOnLoaded("ElvUI_SLE") then --TODO 10.2, might need C_AddOns.
+			if IsAddOnLoaded("ElvUI_SLE") then
 				E.db["datatexts"]["panels"]["MinimapPanel"][2] = "S&L Friends"
 			else
 				E.db["datatexts"]["panels"]["MinimapPanel"][2] = "Friends"

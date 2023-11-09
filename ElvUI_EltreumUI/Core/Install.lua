@@ -2,7 +2,7 @@ local E, L = unpack(ElvUI)
 local _G = _G
 local ReloadUI = _G.ReloadUI
 local PlaySound = _G.PlaySound
-local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 local UIFrameFadeIn = _G.UIFrameFadeIn
 local UIFrameFadeOut = _G.UIFrameFadeOut
@@ -325,7 +325,7 @@ ElvUI_EltreumUI.InstallerData = {
 			if E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' or E.myclas == 'EVOKER' then
 				_G.PluginInstallFrame.Desc2:SetText('|cff82B4ff'..L["You can support the group with your class, if you select DPS/Tank then its recommended to click Alternative Frames after clicking DPS/Tank"]..'|r')
 			end
-			if IsAddOnLoaded("Plater") or IsAddOnLoaded("TidyPlates") or IsAddOnLoaded("Kui_Nameplates") or IsAddOnLoaded("TidyPlates_ThreatPlates") then --TODO 10.2, might need C_AddOns.
+			if IsAddOnLoaded("Plater") or IsAddOnLoaded("TidyPlates") or IsAddOnLoaded("Kui_Nameplates") or IsAddOnLoaded("TidyPlates_ThreatPlates") then
 				_G.PluginInstallFrame.Desc3:SetText('|cFFFF0000'..L["You have another Nameplate Addon installed and loaded, and many nameplate features will not work with it"]..'|r')
 				_G.PluginInstallFrame.Desc4:SetText(L["Importance: "]..'|cFFFF0000'..L["Very High (but Optional)"]..'|r')
 			else
@@ -571,7 +571,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("detailsreleafsolid","ENTERING") end)
 			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option3:SetText('Releaf Solid')
-			if (not IsAddOnLoaded("Details")) then --TODO 10.2, might need C_AddOns.
+			if (not IsAddOnLoaded("Details")) then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				_G.PluginInstallFrame.Desc1:SetText("Details"..L[" is not installed or enabled"])
 				_G.PluginInstallFrame.Desc2:SetText(L["Details is an advanced combat parser"])
@@ -607,13 +607,13 @@ ElvUI_EltreumUI.InstallerData = {
 			end
 			_G.PluginInstallFrame.Desc2:SetText(L["Import DBM or BigWigs profiles for dungeons and raids. (Uses DBM English Calanon and Bigwigs Voice)"])
 			if E.Wrath then
-				if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then --TODO 10.2, might need C_AddOns.
+				if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
 					_G.PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladdy"])
-				elseif IsAddOnLoaded("Gladius") and IsAddOnLoaded("Gladdy") then --TODO 10.2, might need C_AddOns.
+				elseif IsAddOnLoaded("Gladius") and IsAddOnLoaded("Gladdy") then
 					_G.PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladdy (Gladius can be found in Eltruism settings)"])
-				elseif not IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then --TODO 10.2, might need C_AddOns.
+				elseif not IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
 					_G.PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladius"])
-				elseif not IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then --TODO 10.2, might need C_AddOns.
+				elseif not IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
 					_G.PluginInstallFrame.Desc3:SetText(L["Gladdy and Gladius are not installed or enabled"])
 				end
 			end
@@ -635,22 +635,22 @@ ElvUI_EltreumUI.InstallerData = {
 			if E.Wrath then
 				_G.PluginInstallFrame.Option4:Enable()
 				_G.PluginInstallFrame.Option4:Show()
-				if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then --TODO 10.2, might need C_AddOns.
+				if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
 					_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
 					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladdy","ENTERING") end)
 					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 					_G.PluginInstallFrame.Option4:SetText('Gladdy')
-				elseif IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then --TODO 10.2, might need C_AddOns.
+				elseif IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
 					_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
 					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladdy","ENTERING") end)
 					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 					_G.PluginInstallFrame.Option4:SetText('Gladdy')
-				elseif not IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then --TODO 10.2, might need C_AddOns.
+				elseif not IsAddOnLoaded("Gladdy") and IsAddOnLoaded("Gladius") then
 					_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladius() end)
 					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladius","ENTERING") end)
 					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 					_G.PluginInstallFrame.Option4:SetText('Gladius')
-				elseif not IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then --TODO 10.2, might need C_AddOns.
+				elseif not IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
 					_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:SetupGladdy() end)
 					_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladdy","ENTERING") end)
 					_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
@@ -660,44 +660,44 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
 				_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
 			end
-			if (not IsAddOnLoaded("Questie")) and (E.Classic or E.Wrath) then --TODO 10.2, might need C_AddOns.
+			if (not IsAddOnLoaded("Questie")) and (E.Classic or E.Wrath) then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				_G.PluginInstallFrame.Desc1:SetText(L["Questie is not installed or enabled"])
 				_G.PluginInstallFrame.Option1:Disable()
 			end
-			if (not IsAddOnLoaded("GladiusEx")) and E.Retail then --TODO 10.2, might need C_AddOns.
+			if (not IsAddOnLoaded("GladiusEx")) and E.Retail then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				_G.PluginInstallFrame.Desc1:SetText("GladiusEx"..L[" is not installed or enabled"])
 				_G.PluginInstallFrame.Option1:Disable()
 			end
-			if (not IsAddOnLoaded("DBM-Core")) then --TODO 10.2, might need C_AddOns.
+			if (not IsAddOnLoaded("DBM-Core")) then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				_G.PluginInstallFrame.Desc2:SetText(L["DBM is not installed or enabled so BigWigs will be used"])
 				_G.PluginInstallFrame.Option2:Disable()
 			end
-			if (not IsAddOnLoaded("BigWigs")) then --TODO 10.2, might need C_AddOns.
+			if (not IsAddOnLoaded("BigWigs")) then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				_G.PluginInstallFrame.Desc2:SetText(L["BigWigs is not installed or enabled so DBM will be used"])
 				_G.PluginInstallFrame.Option3:Disable()
 			end
-			if (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) then --TODO 10.2, might need C_AddOns.
+			if (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				_G.PluginInstallFrame.Desc2:SetText(L["Both DBM and BigWigs are not installed or enabled"])
 				_G.PluginInstallFrame.Option2:Disable()
 				_G.PluginInstallFrame.Option3:Disable()
 			end
-			if not IsAddOnLoaded("Gladdy") and (E.Wrath) and not IsAddOnLoaded("Gladius") then --TODO 10.2, might need C_AddOns.
+			if not IsAddOnLoaded("Gladdy") and (E.Wrath) and not IsAddOnLoaded("Gladius") then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				_G.PluginInstallFrame.Desc3:SetText(L["Both Gladdy and Gladius are not installed or enabled"])
 				_G.PluginInstallFrame.Option4:Disable()
 			end
-			if E.Retail and ((not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("GladiusEx"))) then --TODO 10.2, might need C_AddOns.
+			if E.Retail and ((not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("GladiusEx"))) then
 				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
-			if E.Classic and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs"))) then --TODO 10.2, might need C_AddOns.
+			if E.Classic and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs"))) then
 				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
-			if (E.Wrath) and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("Gladdy")) and (not IsAddOnLoaded("Gladius"))) then --TODO 10.2, might need C_AddOns.
+			if (E.Wrath) and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("Gladdy")) and (not IsAddOnLoaded("Gladius"))) then
 				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
 		end,
@@ -706,7 +706,7 @@ ElvUI_EltreumUI.InstallerData = {
 			ElvUI_EltreumUI.InstallerData.StepTitles[1] = L["Welcome"]
 			isfirstpage = false
 			_G.PluginInstallFrame.SubTitle:SetFormattedText(L["PVP/PVE Addons"].." 2")
-			if IsAddOnLoaded("BattleGroundEnemies") then --TODO 10.2, might need C_AddOns.
+			if IsAddOnLoaded("BattleGroundEnemies") then
 				_G.PluginInstallFrame.Desc1:SetText(L["Import BattlegroundEnemies profile for battlegrounds"])
 				_G.PluginInstallFrame.Option1:Enable()
 				_G.PluginInstallFrame.Option1:Show()
@@ -720,7 +720,7 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option1:Show()
 				_G.PluginInstallFrame.Option1:SetText("Battleground\nEnemies")
 			end
-			if IsAddOnLoaded("Capping") then --TODO 10.2, might need C_AddOns.
+			if IsAddOnLoaded("Capping") then
 				_G.PluginInstallFrame.Desc2:SetText(L["Import Capping profile for battlegrounds"])
 				_G.PluginInstallFrame.Option2:Enable()
 				_G.PluginInstallFrame.Option2:Show()
@@ -735,7 +735,7 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option2:SetText("Capping")
 			end
 			if E.Retail then
-				if IsAddOnLoaded("WarpDeplete") then --TODO 10.2, might need C_AddOns.
+				if IsAddOnLoaded("WarpDeplete") then
 					_G.PluginInstallFrame.Desc3:SetText(L["Import WarpDeplete profile for Mythic Plus"]..", "..L["WarpDeplete profile requires an import per class in order to have the correct texture"])
 					_G.PluginInstallFrame.Option3:Enable()
 					_G.PluginInstallFrame.Option3:Show()
@@ -750,7 +750,7 @@ ElvUI_EltreumUI.InstallerData = {
 					_G.PluginInstallFrame.Option3:SetText(L["WarpDeplete"])
 				end
 
-				if IsAddOnLoaded("OmniCD") then --TODO 10.2, might need C_AddOns.
+				if IsAddOnLoaded("OmniCD") then
 					_G.PluginInstallFrame.Desc4:SetText(L["Import OmniCD profile"])
 					_G.PluginInstallFrame.Option4:Enable()
 					_G.PluginInstallFrame.Option4:Show()
@@ -776,7 +776,7 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
 				_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
 			end
-			if not ( IsAddOnLoaded("WarpDeplete") or IsAddOnLoaded("Capping") or IsAddOnLoaded("BattleGroundEnemies") or IsAddOnLoaded("OmniCD") ) then --TODO 10.2, might need C_AddOns.
+			if not ( IsAddOnLoaded("WarpDeplete") or IsAddOnLoaded("Capping") or IsAddOnLoaded("BattleGroundEnemies") or IsAddOnLoaded("OmniCD") ) then
 				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			--else
 				--_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["Your current settings will be lost, please back them up"]..'|r')
@@ -819,33 +819,33 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
 			_G.PluginInstallFrame.Option4:SetText(L["DynamicCam"])
 
-			if (not IsAddOnLoaded("NameplateSCT")) and IsAddOnLoaded("ElvUI_FCT") then --TODO 10.2, might need C_AddOns.
+			if (not IsAddOnLoaded("NameplateSCT")) and IsAddOnLoaded("ElvUI_FCT") then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				_G.PluginInstallFrame.Desc1:SetText(L["Import a profile for Simpy's ElvUI FCT configured for Eltruism"])
 				_G.PluginInstallFrame.Option1:Disable()
 			end
-			if (not IsAddOnLoaded("ElvUI_FCT")) and IsAddOnLoaded("NameplateSCT") then --TODO 10.2, might need C_AddOns.
+			if (not IsAddOnLoaded("ElvUI_FCT")) and IsAddOnLoaded("NameplateSCT") then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				_G.PluginInstallFrame.Desc1:SetText(L["Import a profile for NameplateSCT configured for Eltruism"])
 				_G.PluginInstallFrame.Option2:Disable()
 			end
-			if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then --TODO 10.2, might need C_AddOns.
+			if (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				_G.PluginInstallFrame.Desc1:SetText(L["NameplateSCT and ElvUI FCT are not installed or enabled"])
 				_G.PluginInstallFrame.Option1:Disable()
 				_G.PluginInstallFrame.Option2:Disable()
 			end
-			if (not IsAddOnLoaded("Immersion")) then --TODO 10.2, might need C_AddOns.
+			if (not IsAddOnLoaded("Immersion")) then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				_G.PluginInstallFrame.Desc2:SetText("Immersion"..L[" is not installed or enabled"])
 				_G.PluginInstallFrame.Option3:Disable()
 			end
-			if (not IsAddOnLoaded("DynamicCam")) then --TODO 10.2, might need C_AddOns.
+			if (not IsAddOnLoaded("DynamicCam")) then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				_G.PluginInstallFrame.Desc3:SetText("Dynamic Cam"..L[" is not installed or enabled"])
 				_G.PluginInstallFrame.Option4:Disable()
 			end
-			if (not IsAddOnLoaded("DynamicCam")) and (not IsAddOnLoaded("Immersion")) and (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then --TODO 10.2, might need C_AddOns.
+			if (not IsAddOnLoaded("DynamicCam")) and (not IsAddOnLoaded("Immersion")) and (not IsAddOnLoaded("ElvUI_FCT")) and (not IsAddOnLoaded("NameplateSCT")) then
 				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
 		end,

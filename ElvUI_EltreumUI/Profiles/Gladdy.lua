@@ -1,11 +1,11 @@
 local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local table = _G.table
 
 -- Gladdy profile setup
 function ElvUI_EltreumUI:GetGladdyProfile()
-	if IsAddOnLoaded("Gladdy") then --TODO 10.2, might need C_AddOns.
+	if IsAddOnLoaded("Gladdy") then
 		if GladdyXZ.profiles.Eltreum then
 			--local key = {[E.mynameRealm] = "Eltreum"}
 			--table.insert(GladdyXZ.profileKeys, key)

@@ -9,7 +9,7 @@ local table = _G.table
 local pairs = _G.pairs
 local UnitExists = _G.UnitExists
 local UnitReaction = _G.UnitReaction
-local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local tostring = _G.tostring
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitClass = _G.UnitClass
@@ -569,7 +569,7 @@ function ElvUI_EltreumUI:Borders()
 		end
 
 		--elvui action bars (has to be split because it bar can be different sizes)
-		if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") then --TODO 10.2, might need C_AddOns.
+		if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") then
 			--action bar 1
 			if E.db.ElvUI_EltreumUI.borders.bar1borders and E.db.actionbar.bar1.enabled then
 				local borders1 = {}
@@ -885,7 +885,7 @@ function ElvUI_EltreumUI:Borders()
 				MinimapBorder:SetPoint("CENTER", _G["ElvUI_MinimapHolder"],"CENTER", 0, 0)
 			end
 
-			if IsAddOnLoaded("ElvUI_SLE") and E.private.sle.minimap.rectangle then --Shadow and Light Rectangle Minimap --TODO 10.2, might need C_AddOns.
+			if IsAddOnLoaded("ElvUI_SLE") and E.private.sle.minimap.rectangle then --Shadow and Light Rectangle Minimap
 				rectangleminimapdetect:SetPoint("TOPRIGHT", _G["Minimap"].backdrop ,"TOPRIGHT", 0, 0)
 				rectangleminimapdetect:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", 0, 0)
 
@@ -902,7 +902,7 @@ function ElvUI_EltreumUI:Borders()
 					_G.Minimap.location:ClearAllPoints()
 					_G.Minimap.location:SetPoint('TOP', _G.Minimap, 'TOP', 0, -15)
 				end)
-			elseif IsAddOnLoaded("ElvUI_WindTools") and E.db.WT.maps.rectangleMinimap.enable then --Windtools rectangle minimap --TODO 10.2, might need C_AddOns.
+			elseif IsAddOnLoaded("ElvUI_WindTools") and E.db.WT.maps.rectangleMinimap.enable then --Windtools rectangle minimap
 				MinimapBorder:SetPoint("CENTER", _G["MinimapBackdrop"] ,"CENTER", 0, 0)
 
 				updatelocationpos:RegisterEvent("ZONE_CHANGED")
@@ -1236,7 +1236,7 @@ updatetargettarget:RegisterUnitEvent("UNIT_TARGET", "target")
 updatetargettarget:RegisterUnitEvent("ENCOUNTER_START")
 updatetargettarget:RegisterUnitEvent("PLAYER_FOCUS_CHANGED")
 updatetargettarget:SetScript("OnEvent", function()
-	if not IsAddOnLoaded("ElvUI_EltreumUI") then --TODO 10.2, might need C_AddOns.
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
 	elseif not E.private.ElvUI_EltreumUI then
 		return

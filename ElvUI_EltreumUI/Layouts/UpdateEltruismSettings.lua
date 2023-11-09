@@ -1,6 +1,6 @@
 local E, L = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 
 --Settings that would be true but became false by default per request,
 --now a function that can be used to set them while importing the profiles
@@ -241,7 +241,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 			E.db.ElvUI_EltreumUI.otherstuff.afkmusic.playerclass = false
 		end
 		E.db.ElvUI_EltreumUI.otherstuff.screenshot = true
-		if IsAddOnLoaded('NameplateSCT') or IsAddOnLoaded('ElvUI_FCT') then --TODO 10.2, might need C_AddOns.
+		if IsAddOnLoaded('NameplateSCT') or IsAddOnLoaded('ElvUI_FCT') then
 			E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = true
 		end
 		E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = true

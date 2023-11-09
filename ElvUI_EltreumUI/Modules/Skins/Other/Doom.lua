@@ -31,7 +31,7 @@ local wasPreviewing = false
 local ignoredSpells
 local cooldowns, animating, watching = { }, { }, { }
 local petOverlay = {1,1,1}
-local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 
 --createframes
 local DCP = CreateFrame("FRAME","EltruismDoomCDPulse")
@@ -87,7 +87,7 @@ end
 
 --Fork of discoteq's Doom Cooldown Pulse
 function ElvUI_EltreumUI:Doom()
-	if IsAddOnLoaded("Doom_CooldownPulse") then return end --TODO 10.2, might need C_AddOns.
+	if IsAddOnLoaded("Doom_CooldownPulse") then return end
 	if E.db.ElvUI_EltreumUI.skins.doom.enable then
 
 		--set the general elvui font

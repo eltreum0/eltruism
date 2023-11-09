@@ -1,6 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 
 local unitframegradients = {
 	["WARRIOR"] = {r1 = 0.42745098039216, g1 = 0.13725490196078, b1 = 0.090196078431373, r2 = 0.56470588235294, g2 = 0.43137254901961, b2 = 0.24705882352941},
@@ -20,7 +20,7 @@ local unitframegradients = {
 
 -- Setup Windtools
 function ElvUI_EltreumUI:GetWindToolsProfile()
-	if IsAddOnLoaded("ElvUI_WindTools") then --TODO 10.2, might need C_AddOns.
+	if IsAddOnLoaded("ElvUI_WindTools") then
 		E.global["WT"]["core"]["loginMessage"] = false --changed in 2.43
 		E.private["WT"]["maps"]["minimapButtons"]["backdrop"] = false
 		E.private["WT"]["maps"]["minimapButtons"]["backdropSpacing"] = 0

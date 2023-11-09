@@ -3,7 +3,7 @@ local S = E:GetModule('Skins')
 local _G = _G
 local classcolor = E:ClassColor(E.myclass, true)
 local CreateFrame = _G.CreateFrame
-local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 local pairs = _G.pairs
 local GetNumQuestWatches = _G.GetNumQuestWatches
@@ -218,8 +218,8 @@ function ElvUI_EltreumUI:SkinQuests()
 				_G["QuestNPCModelNameText"]:SetPoint("TOP", _G["QuestModelScene"],"TOP")
 			end]]
 
-			-- and (not IsAddOnLoaded("ElvUI_WindTools")) --TODO 10.2, might need C_AddOns.
-			if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then --TODO 10.2, might need C_AddOns.
+			-- and (not IsAddOnLoaded("ElvUI_WindTools"))
+			if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 				--WQs banner
 				local ObjectiveTrackerBonusBannerFrame = _G.ObjectiveTrackerBonusBannerFrame
 				if ObjectiveTrackerBonusBannerFrame then
@@ -746,7 +746,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end)
 			end
 		elseif E.Classic then
-			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then --TODO 10.2, might need C_AddOns.
+			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
 				return
 			end
 

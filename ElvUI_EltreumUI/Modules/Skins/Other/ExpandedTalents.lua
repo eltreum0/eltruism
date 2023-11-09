@@ -1,9 +1,9 @@
 local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local EltruismExpandedTalents = CreateFrame("Frame")
-local LoadAddOn = _G.LoadAddOn --TODO 10.2, might need C_AddOns.
+local LoadAddOn = _G.C_AddOns and _G.C_AddOns.LoadAddOn or _G.LoadAddOn
 
 --Reskin Blizzard Talent frame
 function ElvUI_EltreumUI:ExpandedTalents()
@@ -13,7 +13,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 		EltruismExpandedTalents:RegisterEvent("PLAYER_STARTED_MOVING")
 		EltruismExpandedTalents:RegisterEvent("PLAYER_LOGIN")
 		EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
-			if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then --TODO 10.2, might need C_AddOns.
+			if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then
 				EltruismExpandedTalents:UnregisterAllEvents()
 
 				_G.ClassTalentFrame:SetMovable(true)
@@ -39,7 +39,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 			EltruismExpandedTalents:RegisterEvent("ADDON_LOADED")
 			EltruismExpandedTalents:RegisterEvent("PLAYER_ENTERING_WORLD")
 			EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
-				if arg == "Blizzard_TalentUI" or IsAddOnLoaded("Blizzard_TalentUI") then --TODO 10.2, might need C_AddOns.
+				if arg == "Blizzard_TalentUI" or IsAddOnLoaded("Blizzard_TalentUI") then
 					local PlayerTalentFrame = _G.PlayerTalentFrame
 					local PlayerTalentFrameScrollFrameScrollBar = _G.PlayerTalentFrameScrollFrameScrollBar
 					local PlayerTalentFrameScrollFrame = _G.PlayerTalentFrameScrollFrame
@@ -150,7 +150,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 
 					-- fix glyph size
 					if E.Wrath then
-						LoadAddOn("Blizzard_GlyphUI") --TODO 10.2, might need C_AddOns.
+						LoadAddOn("Blizzard_GlyphUI")
 						_G.GlyphFrame:SetParent(_G.PlayerTalentFrame)
 
 						_G.GlyphFrame:HookScript("OnShow", function()

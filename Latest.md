@@ -1,26 +1,15 @@
-### 4.0.3 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 4.0.4 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added [name:eltruism:gradientshortfirst] tag, which will display the first name fully but abbreviate the rest  
-Added a check for resolutions lower than 2000 pixels wide to get a downscaled version of some icons  
-Added an option to make Combat Icons class based on the Player and Target unitframes  
-Added portraits to the list of things to be disabled with /eltruism performance  
-Added options to change the Strata and Level of the Borders  
-Added several new combat icons  
-Updated Ace3 skin to better handle disabled buttons and also when their state changes  
-Updated the Quest Minimize button in Classic to hide if no quests are being tracked  
-Updated Wowhead button to better position itself when the skin is disabled  
-Updated OmniCD skin due to a change in it's Icon and Statusbar  
-Updated Portraits Skin to be independent of ElvUI Portraits  
-Updated Honor Datatext to change with pvp kills in Classic  
-Updated Auctionator skin to better handle some resolutions  
-Updated Compatibility to not check for Questie for now  
-Updated Immersion skin to better color the buttons  
-Updated Portrait Fix due to ElvUI Portrait changes  
-Updated German translation by Dlarge  
-Fixed an issue with Borders for Raid2 and Raid3 where they were using Raid1 settings instead of their own  
-Fixed an issue where the Progress Bar in Quests would sometimes flash due to the backdrop  
-Fixed an error when attempting to copy the Edit mode layout to clipboard  
-Fixed Minimap shadows showing up when the Minimap was set to rotate  
-Fixed Nameplate Debuff Glow when other players debuffs were showing  
-Fixed Nameplate Height when ElvUI nameplates were disabled  
-Fixed the size of the class border in the LFG skin
+Added the ability for Font Outline and Font functions in Eltruism > Media to apply to any Custom Text found in the unitframes  
+Updated Details profiles to no longer use auto align in order to avoid the truncated text  
+Updated Portraits to once again require ElvUI portraits due to how the function updates  
+Updated Zone Texts, Error Frame Text and others to use ElvUI settings added in 13.48  
+Updated Immersion skin to add a small gap between buttons  
+Updated Nameplate Threat Gradient to run better  
+Updated C_AddOns references  
+Fixed an issue where strata and level options for the unitframe aura border were in the auras section  
+Fixed a possible error with Shadows when backdrops were not found  
+Fixed an issue when attempting to scale the Professions frame  
+Fixed shadows in the Focus and Focus Target unitframes  
+Fixed text color on Ace3 buttons when clicked  
+Fixed an error in the Auctionator Skin
