@@ -2,6 +2,18 @@
 The future is uncertain
 ___
 ### 4.0.3
+Added the ability for Font Outline and Font functions in Eltruism > Media to apply to any Custom Text found in the unitframes  
+Updated Portraits to once again require ElvUI portraits due to how the function updates  
+Updated Zone Texts, Error Frame Text and others to use ElvUI settings added in 13.48  
+Updated Immersion skin to add a small gap between buttons  
+Updated Nameplate Threat Gradient to run better  
+Fixed an issue where strata and level options for the unitframe aura border were in the auras section  
+Fixed a possible error with Shadows when backdrops were not found  
+Fixed an issue when attempting to scale the Professions frame  
+Fixed shadows in the Focus and Focus Target unitframes  
+Fixed text color on Ace3 buttons when clicked  
+Fixed an error in the Auctionator Skin
+### 4.0.3
 Added [name:eltruism:gradientshortfirst] tag, which will display the first name fully but abbreviate the rest  
 Added a check for resolutions lower than 2000 pixels wide to get a downscaled version of some icons  
 Added an option to make Combat Icons class based on the Player and Target unitframes  
