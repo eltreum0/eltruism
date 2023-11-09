@@ -151,148 +151,164 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	E.db["general"]["fonts"]["questtitle"]["outline"] = fontStyle
 
 	-- Custom Texts
-	if E.db["unitframe"]["units"]["player"]["customTexts"] then
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPvP"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPvP"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStance"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStance"]["fontOutline"] = fontStyle
+	local currentprofile
+	for character, charprofile in pairs (ElvDB.profileKeys) do
+		if character:match(E.myname) then
+			currentprofile = charprofile
 		end
 	end
-	if E.db["unitframe"]["units"]["target"]["customTexts"] then
-		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetofTarget"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetofTarget"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"]["fontOutline"] = fontStyle
-		end
-	end
-	if E.db["unitframe"]["units"]["targettarget"]["customTexts"] then
-		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"] then
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] then
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] then
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"]["fontOutline"] = fontStyle
-		end
-	end
-	if E.db["unitframe"]["units"]["pet"]["customTexts"] then
-		if E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
-			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["fontOutline"] = fontStyle
-		end
-	end
-	if E.db["unitframe"]["units"]["party"]["customTexts"] then
-		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] then
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"] then
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"] then
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"] then
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"]["fontOutline"] = fontStyle
-		end
-	end
-	if E.db["unitframe"]["units"]["arena"]["customTexts"] then
-		if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] then
-			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"] then
-			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"] then
-			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"]["fontOutline"] = fontStyle
-		end
-	end
-	if E.db["unitframe"]["units"]["raid1"]["customTexts"] then
-		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Health"] then
-			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Health"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Name"] then
-			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Name"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Absorb"] then
-			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Absorb"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumGroup"] then
-			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumGroup"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumStatus"]["fontOutline"] = fontStyle
-		end
-	end
-	if E.db["unitframe"]["units"]["raid2"]["customTexts"] then
-		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumGroup"] then
-			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumGroup"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Health"] then
-			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Health"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Name"] then
-			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Name"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Absorb"] then
-			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Absorb"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumStatus"]["fontOutline"] = fontStyle
-		end
-	end
-	if E.db["unitframe"]["units"]["raid3"]["customTexts"] then
-		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Absorb"] then
-			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Absorb"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumGroup"] then
-			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumGroup"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Health"] then
-			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Health"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Name"] then
-			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Name"]["fontOutline"] = fontStyle
-		end
-		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumStatus"]["fontOutline"] = fontStyle
+	for profile, data in pairs(ElvDB.profiles) do
+		if profile == currentprofile then
+			if data then
+				if data.unitframe then
+					if data.unitframe.units then
+						if data.unitframe.units.player then
+							if data.unitframe.units.player.customTexts then
+								for _, customText in next, data.unitframe.units.player.customTexts do
+									if customText then
+										customText["fontOutline"] = fontStyle
+									end
+								end
+							end
+						end
+						if data.unitframe.units.target then
+							if data.unitframe.units.target.customTexts then
+								for _, customText in next, data.unitframe.units.target.customTexts do
+									if customText then
+										customText["fontOutline"] = fontStyle
+									end
+								end
+							end
+						end
+						if data.unitframe.units.targettarget then
+							if data.unitframe.units.targettarget.customTexts then
+								for _, customText in next, data.unitframe.units.targettarget.customTexts do
+									if customText then
+										customText["fontOutline"] = fontStyle
+									end
+								end
+							end
+						end
+						if data.unitframe.units.targettargettarget then
+							if data.unitframe.units.targettargettarget.customTexts then
+								for _, customText in next, data.unitframe.units.targettargettarget.customTexts do
+									if customText then
+										customText["fontOutline"] = fontStyle
+									end
+								end
+							end
+						end
+						if data.unitframe.units.pet then
+							if data.unitframe.units.pet.customTexts then
+								for _, customText in next, data.unitframe.units.pet.customTexts do
+									if customText then
+										customText["fontOutline"] = fontStyle
+									end
+								end
+							end
+						end
+						if data.unitframe.units.pettarget then
+							if data.unitframe.units.pettarget.customTexts then
+								for _, customText in next, data.unitframe.units.pettarget.customTexts do
+									if customText then
+										customText["fontOutline"] = fontStyle
+									end
+								end
+							end
+						end
+						if data.unitframe.units.focus then
+							if data.unitframe.units.focus.customTexts then
+								for _, customText in next, data.unitframe.units.focus.customTexts do
+									if customText then
+										customText["fontOutline"] = fontStyle
+									end
+								end
+							end
+						end
+						if data.unitframe.units.focustarget then
+							if data.unitframe.units.focustarget.customTexts then
+								for _, customText in next, data.unitframe.units.focustarget.customTexts do
+									if customText then
+										customText["fontOutline"] = fontStyle
+									end
+								end
+							end
+						end
+						if data.unitframe.units.arena then
+							if data.unitframe.units.arena.customTexts then
+								for _, customText in next, data.unitframe.units.arena.customTexts do
+									if customText then
+										customText["fontOutline"] = fontStyle
+									end
+								end
+							end
+						end
+						if data.unitframe.units.boss then
+							if data.unitframe.units.boss.customTexts then
+								for _, customText in next, data.unitframe.units.boss.customTexts do
+									if customText then
+										customText["fontOutline"] = fontStyle
+									end
+								end
+							end
+						end
+						if data.unitframe.units.party then
+							if data.unitframe.units.party.customTexts then
+								for _, customText in next, data.unitframe.units.party.customTexts do
+									if customText then
+										customText["fontOutline"] = fontStyle
+									end
+								end
+							end
+						end
+						if data.unitframe.units.raid1 then
+							if data.unitframe.units.raid1.customTexts then
+								for _, customText in next, data.unitframe.units.raid1.customTexts do
+									if customText then
+										customText["fontOutline"] = fontStyle
+									end
+								end
+							end
+						end
+						if data.unitframe.units.raid2 then
+							if data.unitframe.units.raid2.customTexts then
+								for _, customText in next, data.unitframe.units.raid2.customTexts do
+									if customText then
+										customText["fontOutline"] = fontStyle
+									end
+								end
+							end
+						end
+						if data.unitframe.units.raid3 then
+							if data.unitframe.units.raid3.customTexts then
+								for _, customText in next, data.unitframe.units.raid3.customTexts do
+									if customText then
+										customText["fontOutline"] = fontStyle
+									end
+								end
+							end
+						end
+						if data.unitframe.units.raidpet then
+							if data.unitframe.units.raidpet.customTexts then
+								for _, customText in next, data.unitframe.units.raidpet.customTexts do
+									if customText then
+										customText["fontOutline"] = fontStyle
+									end
+								end
+							end
+						end
+						if data.unitframe.units.tank then
+							if data.unitframe.units.tank.customTexts then
+								for _, customText in next, data.unitframe.units.tank.customTexts do
+									if customText then
+										customText["fontOutline"] = fontStyle
+									end
+								end
+							end
+						end
+					end
+				end
+			end
 		end
 	end
 
@@ -302,7 +318,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 
 	fontStyle = ElvUI_EltreumUI:FontFlag(fontStyle)
 	if IsAddOnLoaded('NameplateSCT') then --TODO 10.2, might need C_AddOns.
-		NameplateSCTDB["global"]["fontFlag"] = fontStyle
+		_G.NameplateSCTDB["global"]["fontFlag"] = fontStyle
 	end
 
 	if IsAddOnLoaded('ProjectAzilroka') then --TODO 10.2, might need C_AddOns.

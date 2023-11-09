@@ -221,187 +221,166 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		E.db["general"]["fonts"]["talkingtext"]["font"] = fontvalue
 		E.db["general"]["fonts"]["talkingtitle"]["font"] = fontvalue
 
-		-- Custom Text: Party
-		E.db["unitframe"]["units"]["party"]["customTexts"] = E.db["unitframe"]["units"]["party"]["customTexts"] or {}
-		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"] then
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"] then
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"] then
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"]["font"] = fontvalue
-		end
-		if E.Retail then
-			if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] then
-				E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["font"] = fontvalue
+		-- Custom Texts
+		local currentprofile
+		for character, charprofile in pairs (ElvDB.profileKeys) do
+			if character:match(E.myname) then
+				currentprofile = charprofile
 			end
 		end
-
-		-- Custom Text: Arena
-		E.db["unitframe"]["units"]["arena"]["customTexts"] = E.db["unitframe"]["units"]["arena"]["customTexts"] or {}
-		if E.Retail or E.Wrath then
-			if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] then
-				E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"]["font"] = fontvalue
+		for profile, data in pairs(ElvDB.profiles) do
+			if profile == currentprofile then
+				if data then
+					if data.unitframe then
+						if data.unitframe.units then
+							if data.unitframe.units.player then
+								if data.unitframe.units.player.customTexts then
+									for _, customText in next, data.unitframe.units.player.customTexts do
+										if customText then
+											customText["font"] = fontvalue
+										end
+									end
+								end
+							end
+							if data.unitframe.units.target then
+								if data.unitframe.units.target.customTexts then
+									for _, customText in next, data.unitframe.units.target.customTexts do
+										if customText then
+											customText["font"] = fontvalue
+										end
+									end
+								end
+							end
+							if data.unitframe.units.targettarget then
+								if data.unitframe.units.targettarget.customTexts then
+									for _, customText in next, data.unitframe.units.targettarget.customTexts do
+										if customText then
+											customText["font"] = fontvalue
+										end
+									end
+								end
+							end
+							if data.unitframe.units.targettargettarget then
+								if data.unitframe.units.targettargettarget.customTexts then
+									for _, customText in next, data.unitframe.units.targettargettarget.customTexts do
+										if customText then
+											customText["font"] = fontvalue
+										end
+									end
+								end
+							end
+							if data.unitframe.units.pet then
+								if data.unitframe.units.pet.customTexts then
+									for _, customText in next, data.unitframe.units.pet.customTexts do
+										if customText then
+											customText["font"] = fontvalue
+										end
+									end
+								end
+							end
+							if data.unitframe.units.pettarget then
+								if data.unitframe.units.pettarget.customTexts then
+									for _, customText in next, data.unitframe.units.pettarget.customTexts do
+										if customText then
+											customText["font"] = fontvalue
+										end
+									end
+								end
+							end
+							if data.unitframe.units.focus then
+								if data.unitframe.units.focus.customTexts then
+									for _, customText in next, data.unitframe.units.focus.customTexts do
+										if customText then
+											customText["font"] = fontvalue
+										end
+									end
+								end
+							end
+							if data.unitframe.units.focustarget then
+								if data.unitframe.units.focustarget.customTexts then
+									for _, customText in next, data.unitframe.units.focustarget.customTexts do
+										if customText then
+											customText["font"] = fontvalue
+										end
+									end
+								end
+							end
+							if data.unitframe.units.arena then
+								if data.unitframe.units.arena.customTexts then
+									for _, customText in next, data.unitframe.units.arena.customTexts do
+										if customText then
+											customText["font"] = fontvalue
+										end
+									end
+								end
+							end
+							if data.unitframe.units.boss then
+								if data.unitframe.units.boss.customTexts then
+									for _, customText in next, data.unitframe.units.boss.customTexts do
+										if customText then
+											customText["font"] = fontvalue
+										end
+									end
+								end
+							end
+							if data.unitframe.units.party then
+								if data.unitframe.units.party.customTexts then
+									for _, customText in next, data.unitframe.units.party.customTexts do
+										if customText then
+											customText["font"] = fontvalue
+										end
+									end
+								end
+							end
+							if data.unitframe.units.raid1 then
+								if data.unitframe.units.raid1.customTexts then
+									for _, customText in next, data.unitframe.units.raid1.customTexts do
+										if customText then
+											customText["font"] = fontvalue
+										end
+									end
+								end
+							end
+							if data.unitframe.units.raid2 then
+								if data.unitframe.units.raid2.customTexts then
+									for _, customText in next, data.unitframe.units.raid2.customTexts do
+										if customText then
+											customText["font"] = fontvalue
+										end
+									end
+								end
+							end
+							if data.unitframe.units.raid3 then
+								if data.unitframe.units.raid3.customTexts then
+									for _, customText in next, data.unitframe.units.raid3.customTexts do
+										if customText then
+											customText["font"] = fontvalue
+										end
+									end
+								end
+							end
+							if data.unitframe.units.raidpet then
+								if data.unitframe.units.raidpet.customTexts then
+									for _, customText in next, data.unitframe.units.raidpet.customTexts do
+										if customText then
+											customText["font"] = fontvalue
+										end
+									end
+								end
+							end
+							if data.unitframe.units.tank then
+								if data.unitframe.units.tank.customTexts then
+									for _, customText in next, data.unitframe.units.tank.customTexts do
+										if customText then
+											customText["font"] = fontvalue
+										end
+									end
+								end
+							end
+						end
+					end
+				end
 			end
-			if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"] then
-				E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"]["font"] = fontvalue
-			end
-			if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"] then
-				E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"]["font"] = fontvalue
-			end
-		elseif E.Classic then
-			if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] then
-				E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"]["font"] = fontvalue
-			end
-			if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"] then
-				E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"]["font"] = fontvalue
-			end
-			if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"] then
-				E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"]["font"] = fontvalue
-			end
-		end
-		if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"]["font"] = fontvalue
-		end
-
-		-- Custom Text: Pet
-		E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
-		if E.Retail then
-			if E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
-				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["font"] = fontvalue
-			end
-		elseif E.Wrath or E.Classic then
-			if E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
-				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["font"] = fontvalue
-			end
-		end
-
-		-- Custom Text: Player
-		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
-		if E.Retail then
-			if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] then
-				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["font"] = fontvalue
-			end
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPvP"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPvP"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStance"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStance"]["font"] = fontvalue
-		end
-
-		-- Custom Text: Raid1
-		E.db["unitframe"]["units"]["raid1"]["customTexts"] = E.db["unitframe"]["units"]["raid1"]["customTexts"] or {}
-		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumGroup"] then
-			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumGroup"]["font"] = fontvalue
-		end
-		if E.Retail then
-			if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Absorb"] then
-				E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Absorb"]["font"] = fontvalue
-			end
-		end
-		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Health"] then
-			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Health"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Name"] then
-			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Name"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumStatus"]["font"] = fontvalue
-		end
-
-		-- Custom Text: Raid2
-		E.db["unitframe"]["units"]["raid2"]["customTexts"] = E.db["unitframe"]["units"]["raid2"]["customTexts"] or {}
-		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumGroup"] then
-			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumGroup"]["font"] = fontvalue
-		end
-		if E.Retail then
-			if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Absorb"] then
-				E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Absorb"]["font"] = fontvalue
-			end
-		end
-		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Health"] then
-			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Health"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Name"] then
-			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Name"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumStatus"]["font"] = fontvalue
-		end
-
-		-- Custom Text: Raid3
-		E.db["unitframe"]["units"]["raid3"]["customTexts"] = E.db["unitframe"]["units"]["raid3"]["customTexts"] or {}
-		if E.Retail then
-			if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Absorb"] then
-				E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Absorb"]["font"] = fontvalue
-			end
-		end
-		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumGroup"] then
-			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumGroup"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Health"] then
-			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Health"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Name"] then
-			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Name"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumStatus"]["font"] = fontvalue
-		end
-
-		-- Custom Text: Target
-		E.db["unitframe"]["units"]["target"]["customTexts"] = E.db["unitframe"]["units"]["target"]["customTexts"] or {}
-		if E.Retail then
-			if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] then
-				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["font"] = fontvalue
-			end
-		end
-		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetofTarget"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetofTarget"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"]["font"] = fontvalue
-		end
-
-		-- Custom Text: TargetTarget
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"] = E.db["unitframe"]["units"]["targettarget"]["customTexts"] or {}
-		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"] then
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] then
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] then
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["font"] = fontvalue
-		end
-		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"]["font"] = fontvalue
 		end
 
 		if E.db["datatexts"]["panels"]["EltruismTime"] and E.db["datatexts"]["panels"]["EltruismTime"]["enable"] then
@@ -410,53 +389,53 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 
 	--FCT font
 	if IsAddOnLoaded("ElvUI_FCT") then --TODO 10.2, might need C_AddOns.
-		ElvFCT["nameplates"]["frames"]["Player"]["font"] = fontvalue
-		ElvFCT["nameplates"]["frames"]["Player"]["critFont"] = fontvalue
-		ElvFCT["nameplates"]["frames"]["FriendlyPlayer"]["font"] = fontvalue
-		ElvFCT["nameplates"]["frames"]["FriendlyPlayer"]["critFont"] = fontvalue
-		ElvFCT["nameplates"]["frames"]["FriendlyNPC"]["font"] = fontvalue
-		ElvFCT["nameplates"]["frames"]["FriendlyNPC"]["critFont"] = fontvalue
-		ElvFCT["nameplates"]["frames"]["EnemyNPC"]["font"] = fontvalue
-		ElvFCT["nameplates"]["frames"]["EnemyNPC"]["critFont"] = fontvalue
-		ElvFCT["nameplates"]["frames"]["EnemyPlayer"]["font"] = fontvalue
-		ElvFCT["nameplates"]["frames"]["EnemyPlayer"]["critFont"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Player"]["font"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Player"]["critFont"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Target"]["font"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Target"]["critFont"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["TargetTarget"]["font"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["TargetTarget"]["critFont"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["TargetTargetTarget"]["font"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["TargetTargetTarget"]["critFont"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Focus"]["font"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Focus"]["critFont"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["FocusTarget"]["font"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["FocusTarget"]["critFont"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Pet"]["font"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Pet"]["critFont"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["PetTarget"]["font"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["PetTarget"]["critFont"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Tank"]["font"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Tank"]["critFont"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Assist"]["font"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Assist"]["critFont"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Boss"]["font"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Boss"]["critFont"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Raid1"]["font"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Raid1"]["critFont"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Raid2"]["font"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Raid2"]["critFont"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Raid3"]["font"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Raid3"]["critFont"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["RaidPet"]["font"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["RaidPet"]["critFont"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Party"]["font"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Party"]["critFont"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Arena"]["font"] = fontvalue
-		ElvFCT["unitframes"]["frames"]["Arena"]["critFont"] = fontvalue
+		_G.ElvFCT["nameplates"]["frames"]["Player"]["font"] = fontvalue
+		_G.ElvFCT["nameplates"]["frames"]["Player"]["critFont"] = fontvalue
+		_G.ElvFCT["nameplates"]["frames"]["FriendlyPlayer"]["font"] = fontvalue
+		_G.ElvFCT["nameplates"]["frames"]["FriendlyPlayer"]["critFont"] = fontvalue
+		_G.ElvFCT["nameplates"]["frames"]["FriendlyNPC"]["font"] = fontvalue
+		_G.ElvFCT["nameplates"]["frames"]["FriendlyNPC"]["critFont"] = fontvalue
+		_G.ElvFCT["nameplates"]["frames"]["EnemyNPC"]["font"] = fontvalue
+		_G.ElvFCT["nameplates"]["frames"]["EnemyNPC"]["critFont"] = fontvalue
+		_G.ElvFCT["nameplates"]["frames"]["EnemyPlayer"]["font"] = fontvalue
+		_G.ElvFCT["nameplates"]["frames"]["EnemyPlayer"]["critFont"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Player"]["font"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Player"]["critFont"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Target"]["font"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Target"]["critFont"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["TargetTarget"]["font"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["TargetTarget"]["critFont"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["TargetTargetTarget"]["font"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["TargetTargetTarget"]["critFont"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Focus"]["font"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Focus"]["critFont"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["FocusTarget"]["font"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["FocusTarget"]["critFont"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Pet"]["font"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Pet"]["critFont"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["PetTarget"]["font"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["PetTarget"]["critFont"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Tank"]["font"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Tank"]["critFont"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Assist"]["font"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Assist"]["critFont"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Boss"]["font"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Boss"]["critFont"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Raid1"]["font"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Raid1"]["critFont"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Raid2"]["font"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Raid2"]["critFont"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Raid3"]["font"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Raid3"]["critFont"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["RaidPet"]["font"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["RaidPet"]["critFont"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Party"]["font"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Party"]["critFont"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Arena"]["font"] = fontvalue
+		_G.ElvFCT["unitframes"]["frames"]["Arena"]["critFont"] = fontvalue
 	end
 	if IsAddOnLoaded('NameplateSCT') then --TODO 10.2, might need C_AddOns.
-		NameplateSCTDB["global"]["font"] = fontvalue
+		_G.NameplateSCTDB["global"]["font"] = fontvalue
 	end
 
 	if IsAddOnLoaded('ProjectAzilroka') then --TODO 10.2, might need C_AddOns.
@@ -464,10 +443,10 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	end
 
 	if IsAddOnLoaded("Questie") then --TODO 10.2, might need C_AddOns.
-		QuestieConfig["global"]["trackerFontObjective"] = E.db.general.font
-		QuestieConfig["global"]["trackerFontZone"] = E.db.general.font
-		QuestieConfig["global"]["trackerFontHeader"] = E.db.general.font
-		QuestieConfig["global"]["trackerFontQuest"] = E.db.general.font
+		_G.QuestieConfig["global"]["trackerFontObjective"] = E.db.general.font
+		_G.QuestieConfig["global"]["trackerFontZone"] = E.db.general.font
+		_G.QuestieConfig["global"]["trackerFontHeader"] = E.db.general.font
+		_G.QuestieConfig["global"]["trackerFontQuest"] = E.db.general.font
 	end
 
 	E:StaggeredUpdateAll()
