@@ -116,26 +116,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["party"]["CombatIcon"]["enable"] = false
 		E.db["unitframe"]["units"]["party"]["CombatIcon"]["texture"] = "Eltruism16"
 
-		--[[E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "TOPRIGHT"
-		E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["a"] = 0.80000001192093
-		E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["b"] = 1
-		E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["g"] = 1
-		E.db["unitframe"]["units"]["player"]["CombatIcon"]["defaultColor"] = true
-		E.db["unitframe"]["units"]["player"]["CombatIcon"]["texture"] = "Eltruism16"
-		E.db["unitframe"]["units"]["player"]["CombatIcon"]["size"] = 14
-		E.db["unitframe"]["units"]["player"]["CombatIcon"]["xOffset"] = -7
-		E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = -7
-		E.db["unitframe"]["units"]["player"]["CombatIcon"]["enable"] = true
-		E.db["unitframe"]["units"]["target"]["CombatIcon"]["anchorPoint"] = "TOPLEFT"
-		E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["b"] = 1
-		E.db["unitframe"]["units"]["target"]["CombatIcon"]["color"]["g"] = 1
-		E.db["unitframe"]["units"]["target"]["CombatIcon"]["defaultColor"] = true
-		E.db["unitframe"]["units"]["target"]["CombatIcon"]["xOffset"] = 7
-		E.db["unitframe"]["units"]["target"]["CombatIcon"]["yOffset"] = -7
-		E.db["unitframe"]["units"]["target"]["CombatIcon"]["texture"] = "Eltruism16"
-		E.db["unitframe"]["units"]["target"]["CombatIcon"]["size"] = 14
-		E.db["unitframe"]["units"]["target"]["CombatIcon"]["enable"] = true]]
-
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["anchorPoint"] = "RIGHT"
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["defaultColor"] = true
 		E.db["unitframe"]["units"]["player"]["CombatIcon"]["texture"] = "Eltruism15"
@@ -242,6 +222,60 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["focustarget"]["health"]["orientation"] = "HORIZONTAL"
 		E.db["unitframe"]["units"]["arena"]["health"]["orientation"] = "HORIZONTAL"
 		E.db["unitframe"]["units"]["boss"]["health"]["orientation"] = "HORIZONTAL"
+
+		--new fonts
+		E.private["general"]["nameplateFont"] = "Kimberley"
+		E.private["general"]["nameplateFontOutline"] = "OUTLINE"
+		E.private["general"]["nameplateLargeFont"] = "Kimberley"
+		E.private["general"]["nameplateLargeFontOutline"] = "OUTLINE"
+		E.private["general"]["nameplateLargeFontSize"] = 11
+		E.db["general"]["fonts"]["worldsubzone"]["enable"] = true
+		E.db["general"]["fonts"]["worldsubzone"]["font"] = "Kimberley"
+		E.db["general"]["fonts"]["worldsubzone"]["outline"] = "OUTLINE"
+		E.db["general"]["fonts"]["worldsubzone"]["size"] = 28
+		E.db["general"]["fonts"]["worldzone"]["enable"] = true
+		E.db["general"]["fonts"]["worldzone"]["font"] = "Kimberley"
+		E.db["general"]["fonts"]["worldzone"]["outline"] = "OUTLINE"
+		E.db["general"]["fonts"]["worldzone"]["size"] = 42
+		E.db["general"]["fonts"]["pvpsubzone"]["enable"] = true
+		E.db["general"]["fonts"]["pvpsubzone"]["font"] = "Kimberley"
+		E.db["general"]["fonts"]["pvpsubzone"]["outline"] = "OUTLINE"
+		E.db["general"]["fonts"]["pvpsubzone"]["size"] = 20
+		E.db["general"]["fonts"]["pvpzone"]["enable"] = true
+		E.db["general"]["fonts"]["pvpzone"]["font"] = "Kimberley"
+		E.db["general"]["fonts"]["pvpzone"]["outline"] = "OUTLINE"
+		E.db["general"]["fonts"]["pvpzone"]["size"] = 22
+		E.db["general"]["fonts"]["objective"]["enable"] = true
+		E.db["general"]["fonts"]["objective"]["font"] = "Kimberley"
+		E.db["general"]["fonts"]["objective"]["outline"] = "OUTLINE"
+		E.db["general"]["fonts"]["objective"]["size"] = 12
+		E.db["general"]["fonts"]["questtitle"]["enable"] = true
+		E.db["general"]["fonts"]["questtitle"]["font"] = "Kimberley"
+		E.db["general"]["fonts"]["questtitle"]["outline"] = "OUTLINE"
+		E.db["general"]["fonts"]["questtitle"]["size"] = 18
+		E.db["general"]["fonts"]["questtext"]["enable"] = true
+		E.db["general"]["fonts"]["questtext"]["font"] = "Kimberley"
+		E.db["general"]["fonts"]["questtext"]["outline"] = "OUTLINE"
+		E.db["general"]["fonts"]["questtext"]["size"] = 14
+		E.db["general"]["fonts"]["questsmall"]["enable"] = true
+		E.db["general"]["fonts"]["questsmall"]["font"] = "Kimberley"
+		E.db["general"]["fonts"]["questsmall"]["outline"] = "OUTLINE"
+		E.db["general"]["fonts"]["questsmall"]["size"] = 13
+		E.db["general"]["fonts"]["cooldown"]["font"] = "Kimberley"
+		E.db["general"]["fonts"]["cooldown"]["outline"] = "OUTLINE"
+		E.db["general"]["fonts"]["cooldown"]["size"] = 20
+		E.db["general"]["fonts"]["mailbody"]["enable"] = true
+		E.db["general"]["fonts"]["mailbody"]["font"] = "Kimberley"
+		E.db["general"]["fonts"]["mailbody"]["outline"] = "OUTLINE"
+		E.db["general"]["fonts"]["mailbody"]["size"] = 14
+		E.db["general"]["fonts"]["talkingtext"]["enable"] = true
+		E.db["general"]["fonts"]["talkingtext"]["font"] = "Kimberley"
+		E.db["general"]["fonts"]["talkingtext"]["outline"] = "OUTLINE"
+		E.db["general"]["fonts"]["talkingtext"]["size"] = 18
+		E.db["general"]["fonts"]["talkingtitle"]["enable"] = true
+		E.db["general"]["fonts"]["talkingtitle"]["font"] = "Kimberley"
+		E.db["general"]["fonts"]["talkingtitle"]["outline"] = "OUTLINE"
+		E.db["general"]["fonts"]["talkingtitle"]["size"] = 20
 
 		-- unitframe colors
 		E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = valuecolors.b
