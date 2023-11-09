@@ -258,24 +258,24 @@ function ElvUI_EltreumUI:Shadows()
 							_G.GuildBankTab6.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.GuildBankTab6.Button.shadow)
 						end
-						if not _G.GuildBankFrameTab1.backdrop.shadow then
+						if _G.GuildBankFrameTab1.backdrop and not _G.GuildBankFrameTab1.backdrop.shadow then
 							_G.GuildBankFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrameTab1.backdrop.shadow)
 						end
-						if not _G.GuildBankFrameTab2.backdrop.shadow then
+						if _G.GuildBankFrameTab2.backdrop and not _G.GuildBankFrameTab2.backdrop.shadow then
 							_G.GuildBankFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrameTab2.backdrop.shadow)
 						end
-						if not _G.GuildBankFrameTab3.backdrop.shadow then
+						if _G.GuildBankFrameTab3.backdrop and not _G.GuildBankFrameTab3.backdrop.shadow then
 							_G.GuildBankFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrameTab3.backdrop.shadow)
 						end
-						if not _G.GuildBankFrameTab4.backdrop.shadow then
+						if _G.GuildBankFrameTab4.backdrop and not _G.GuildBankFrameTab4.backdrop.shadow then
 							_G.GuildBankFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrameTab4.backdrop.shadow)
 						end
 					else
-						if not _G.GuildBankFrame.backdrop.shadow then
+						if _G.GuildBankFrame.backdrop and not _G.GuildBankFrame.backdrop.shadow then
 							_G.GuildBankFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrame.backdrop.shadow)
 						end
@@ -288,7 +288,7 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G.ClassTrainerFrame.shadow)
 						end
 					else
-						if not _G.ClassTrainerFrame.backdrop.shadow then
+						if _G.ClassTrainerFrame.backdrop and not _G.ClassTrainerFrame.backdrop.shadow then
 							_G.ClassTrainerFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.ClassTrainerFrame.backdrop.shadow)
 						end
@@ -313,7 +313,7 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G.TradeSkillFrame.shadow)
 						end
 					else
-						if  _G.TradeSkillFrame.backdrop and not _G.TradeSkillFrame.backdrop.shadow then
+						if _G.TradeSkillFrame.backdrop and not _G.TradeSkillFrame.backdrop.shadow then
 							_G.TradeSkillFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.TradeSkillFrame.backdrop.shadow)
 						end
@@ -529,11 +529,11 @@ function ElvUI_EltreumUI:Shadows()
 								_G.CovenantMissionFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G.CovenantMissionFrame.shadow)
 							end
-							if not _G.CovenantMissionFrameTab1.backdrop.shadow then
+							if _G.CovenantMissionFrameTab1.backdrop and not _G.CovenantMissionFrameTab1.backdrop.shadow then
 								_G.CovenantMissionFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G.CovenantMissionFrameTab1.backdrop.shadow)
 							end
-							if not _G.CovenantMissionFrameTab2.backdrop.shadow then
+							if _G.CovenantMissionFrameTab2.backdrop and not _G.CovenantMissionFrameTab2.backdrop.shadow then
 								_G.CovenantMissionFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G.CovenantMissionFrameTab2.backdrop.shadow)
 							end
