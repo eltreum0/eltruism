@@ -1,6 +1,10 @@
 local E, L = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local EnableAddOn = _G.C_AddOns and _G.C_AddOns.EnableAddOn or _G.EnableAddOn
+local DisableAddOn = _G.C_AddOns and _G.C_AddOns.DisableAddOn or _G.DisableAddOn
+local GetAddOnInfo = _G.C_AddOns and _G.C_AddOns.GetAddOnInfo or _G.GetAddOnInfo
+local GetNumAddOns = _G.C_AddOns and _G.C_AddOns.GetNumAddOns or _G.GetNumAddOns
 local CreateFrame = _G.CreateFrame
 local GetCoinIcon = _G.GetCoinIcon
 local CombatText_AddMessage = _G.CombatText_AddMessage
@@ -28,7 +32,7 @@ function ElvUI_EltreumUI:LoadCommands()
 	end
 	if E.Retail then
 		if E.db.ElvUI_EltreumUI.waypoints.waytext.enable then
-			if not IsAddOnLoaded("TomTom") then --TODO 10.2, might need C_AddOns.
+			if not IsAddOnLoaded("TomTom") then
 				self:RegisterChatCommand('way', 'WaypointTexttoCoordinate')
 				self:RegisterChatCommand('waypoint', 'WaypointTexttoCoordinate')
 			else
@@ -226,7 +230,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 		print("|cff82B4ff/eltruism setup/install|r - Opens Eltruism Installer")
 		print("|cff82B4ff/eltruism loot|r - Demonstrates the LootText")
 		if E.Retail then
-			if not IsAddOnLoaded("TomTom") then --TODO 10.2, might need C_AddOns.
+			if not IsAddOnLoaded("TomTom") then
 				print("|cff82B4ff/way and /waypoint|r - Sets a map waypoint with the supplied coordinates")
 			else
 				print("|cff82B4ff/eway and /ewaypoint|r - Sets a map waypoint with the supplied coordinates")
@@ -263,10 +267,10 @@ local AddOns = {
 function ElvUI_EltreumUI:DebugMode(message)
 	local switch = strlower(message)
 	if switch == 'on' then
-		for i = 1, GetNumAddOns() do--TODO 10.2, might need C_AddOns.
-			local name = GetAddOnInfo(i) --TODO 10.2, might need C_AddOns.
+		for i = 1, GetNumAddOns() do
+			local name = GetAddOnInfo(i)
 			if not AddOns[name] and E:IsAddOnEnabled(name) then
-				DisableAddOn(name, E.myname) --TODO 10.2, might need C_AddOns.
+				DisableAddOn(name, E.myname)
 				ElvDB.EltruismDisabledAddOns[name] = i
 			end
 		end
@@ -275,7 +279,7 @@ function ElvUI_EltreumUI:DebugMode(message)
 	elseif switch == 'off' then
 		if next(ElvDB.EltruismDisabledAddOns) then
 			for name in pairs(ElvDB.EltruismDisabledAddOns) do
-				EnableAddOn(name, E.myname) --TODO 10.2, might need C_AddOns.
+				EnableAddOn(name, E.myname)
 			end
 			wipe(ElvDB.EltruismDisabledAddOns)
 			ReloadUI()
@@ -359,7 +363,7 @@ end)
 local keystone = CreateFrame("FRAME")
 keystone:RegisterEvent("ADDON_LOADED")
 keystone:SetScript("OnEvent", function(_,_,addon)
-	if (addon == "Blizzard_ChallengesUI" or IsAddOnLoaded("Blizzard_ChallengesUI")) and E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then --TODO 10.2, might need C_AddOns.
+	if (addon == "Blizzard_ChallengesUI" or IsAddOnLoaded("Blizzard_ChallengesUI")) and E.db.ElvUI_EltreumUI.otherstuff.mpluskeys then
 		keystone:UnregisterAllEvents()
 		if _G.ChallengesKeystoneFrame then
 			_G.ChallengesKeystoneFrame:HookScript("OnShow", function()

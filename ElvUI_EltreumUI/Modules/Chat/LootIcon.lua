@@ -1,6 +1,6 @@
 local E = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local ChatFrame_AddMessageEventFilter = _G.ChatFrame_AddMessageEventFilter
 local ChatFrame_RemoveMessageEventFilter = _G.ChatFrame_RemoveMessageEventFilter
 local GetItemIcon = _G.GetItemIcon
@@ -37,7 +37,7 @@ local classcolorsescape = {
 --Forked from Chat Loot Icons by Stanzilla which is Public Domain, modified to do more things
 local function AddLootIcons(_, _, message, ...)
 	local _, _, _, _, _, _, _, _, _, _, guid = ...
-	if not IsAddOnLoaded("ElvUI_EltreumUI") then --TODO 10.2, might need C_AddOns.
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then
 		return
 	elseif not E.db.ElvUI_EltreumUI then
 		return

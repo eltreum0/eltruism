@@ -12,6 +12,7 @@ local GetItemInfo = _G.GetItemInfo
 local GetItemQualityColor = _G.GetItemQualityColor
 local GameTooltip = _G.GameTooltip
 local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 
 --gradient tooltip health
 local function SetTooltipGradient(unit)
@@ -87,7 +88,7 @@ end
 --skin tooltip
 function ElvUI_EltreumUI:Tooltip()
 	if (GameTooltip and GameTooltip:IsForbidden()) then return end
-	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end --TODO 10.2, might need C_AddOns.
+	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end
 	if not E.db.ElvUI_EltreumUI then return end
 
 	--gradient

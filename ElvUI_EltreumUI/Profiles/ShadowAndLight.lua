@@ -1,6 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 
 --Setup Shadow & Light
 function ElvUI_EltreumUI:GetSLEProfile()
@@ -95,8 +95,6 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["bags"]["equipmentmanager"]["enable"] = true
 
 		--- Media
-		E.db["sle"]["media"]["fonts"]["gossip"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["gossip"]["fontSize"] = 11
 		E.db["sle"]["media"]["fonts"]["mail"]["font"] = E.db.general.font
 		E.db["sle"]["media"]["fonts"]["mail"]["fontOutline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
 		E.db["sle"]["media"]["fonts"]["mail"]["fontSize"] = 11
@@ -106,18 +104,9 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["font"] = E.db.general.font
 		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["fontOutline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
 		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["fontSize"] = 15
-		E.db["sle"]["media"]["fonts"]["pvp"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["pvp"]["fontOutline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
-		E.db["sle"]["media"]["fonts"]["pvp"]["fontSize"] = 20
 		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["font"] = E.db.general.font
 		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["fontOutline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
 		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["fontSize"] = 22
-		E.db["sle"]["media"]["fonts"]["subzone"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["subzone"]["fontOutline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
-		E.db["sle"]["media"]["fonts"]["subzone"]["fontSize"] = 28
-		E.db["sle"]["media"]["fonts"]["zone"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["zone"]["fontOutline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
-		E.db["sle"]["media"]["fonts"]["zone"]["fontSize"] = 48
 		E.db["sle"]["media"]["fonts"]["scenarioStage"]["HeaderText"]["font"] = E.db.general.font
 		E.db["sle"]["media"]["fonts"]["scenarioStage"]["HeaderText"]["fontSize"] = 16
 		E.db["sle"]["media"]["fonts"]["scenarioStage"]["HeaderText"]["fontOutline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)

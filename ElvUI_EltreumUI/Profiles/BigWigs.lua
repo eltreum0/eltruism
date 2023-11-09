@@ -1,25 +1,18 @@
 local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
-local LoadAddOn = _G.LoadAddOn --TODO 10.2, might need C_AddOns.
---local bigwigstype
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local LoadAddOn = _G.C_AddOns and _G.C_AddOns.LoadAddOn or _G.LoadAddOn
 
 -- BigWigs profile setup
 function ElvUI_EltreumUI:GetBigWigsProfile()
 
-	if not IsAddOnLoaded("BigWigs_Core") then --TODO 10.2, might need C_AddOns.
-		LoadAddOn("BigWigs_Core") --TODO 10.2, might need C_AddOns.
+	if not IsAddOnLoaded("BigWigs_Core") then
+		LoadAddOn("BigWigs_Core")
 	end
 
-	if not IsAddOnLoaded("BigWigs_Plugins") then --TODO 10.2, might need C_AddOns.
-		LoadAddOn("BigWigs_Plugins") --TODO 10.2, might need C_AddOns.
+	if not IsAddOnLoaded("BigWigs_Plugins") then
+		LoadAddOn("BigWigs_Plugins")
 	end
-
-	--[[if E.Retail then
-		bigwigstype = BigWigs3DB
-	else
-		bigwigstype = BigWigsClassicDB
-	end]]
 
 	local bigwigstype = BigWigs3DB
 

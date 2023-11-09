@@ -37,6 +37,7 @@ local GetSpecialization = _G.GetSpecialization
 local GetShapeshiftFormInfo = _G.GetShapeshiftFormInfo
 local select = _G.select
 local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 
 --level difference table based on blizzard's
 local eltruismdif = {
@@ -559,7 +560,7 @@ E:AddTagInfo("name:eltruism:caps", ElvUI_EltreumUI.Name.." "..L["Names"], L["Dis
 
 --Details nickname using the nicktag library suggested by VXT
 local nicktag
-if IsAddOnLoaded("Details") then --TODO 10.2, might need C_AddOns.
+if IsAddOnLoaded("Details") then
 	nicktag = LibStub('NickTag-1.0')
 end
 

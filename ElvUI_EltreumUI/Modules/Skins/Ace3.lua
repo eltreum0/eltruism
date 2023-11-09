@@ -387,10 +387,11 @@ end)
 
 --for some reason buttons on macro frame dont get animation, maybe because they load too early?
 --[[
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local macroframe = CreateFrame("FRAME")
 macroframe:RegisterEvent("ADDON_LOADED")
 macroframe:SetScript("OnEvent",function(_,_,arg)
-	if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then --TODO 10.2, might need C_AddOns.
+	if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
 		macroframe:UnregisterAllEvents()
 		if _G["MacroFrame"] then
 			for _, button in next, {

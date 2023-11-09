@@ -5,7 +5,7 @@ local UF = E:GetModule('UnitFrames')
 local A = E:GetModule('Auras')
 local pairs = _G.pairs
 local CreateFrame = _G.CreateFrame
-local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 local EltruismBlizzShadows = CreateFrame("Frame")
 local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
@@ -30,7 +30,7 @@ end
 function ElvUI_EltreumUI:Shadows()
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 		local benikdettached = false
-		if IsAddOnLoaded("ElvUI_BenikUI") then --TODO 10.2, might need C_AddOns.
+		if IsAddOnLoaded("ElvUI_BenikUI") then
 			benikdettached = E.db.benikui.unitframes.player.detachPortrait
 		end
 		------------------------------------------------------------------------------------------------------blizzard frames
@@ -38,15 +38,15 @@ function ElvUI_EltreumUI:Shadows()
 			EltruismBlizzShadows:RegisterEvent("ADDON_LOADED")
 			EltruismBlizzShadows:RegisterEvent("PLAYER_ENTERING_WORLD")
 			EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
-				--[[if (arg == "Blizzard_PetBattleUI") or IsAddOnLoaded("Blizzard_PetBattleUI") or _G.PetBattleFrame then --todo look into pet battle shadows but they are unnamed --TODO 10.2, might need C_AddOns.
+				--[[if (arg == "Blizzard_PetBattleUI") or IsAddOnLoaded("Blizzard_PetBattleUI") or _G.PetBattleFrame then --todo look into pet battle shadows but they are unnamed
 				end]]
-				if (arg == "Blizzard_AdventureMap") or IsAddOnLoaded("Blizzard_AdventureMap") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_AdventureMap") or IsAddOnLoaded("Blizzard_AdventureMap") then
 					if _G.AdventureMapQuestChoiceDialog and not _G.AdventureMapQuestChoiceDialog.shadow then
 						_G.AdventureMapQuestChoiceDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.AdventureMapQuestChoiceDialog.shadow)
 					end
 				end
-				if (arg == "Blizzard_ArtifactUI") or IsAddOnLoaded("Blizzard_ArtifactUI") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_ArtifactUI") or IsAddOnLoaded("Blizzard_ArtifactUI") then
 					if _G.ArtifactFrame and not _G.ArtifactFrame.shadow then
 						_G.ArtifactFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.ArtifactFrame.shadow)
@@ -60,8 +60,8 @@ function ElvUI_EltreumUI:Shadows()
 						ElvUI_EltreumUI:ShadowColor(_G.ArtifactFrameTab2.backdrop.shadow)
 					end
 				end
-				if (arg == "WeakAurasOptions") or IsAddOnLoaded("WeakAurasOptions") then --TODO 10.2, might need C_AddOns.
-					if IsAddOnLoaded("ElvUI_WindTools") then --TODO 10.2, might need C_AddOns.
+				if (arg == "WeakAurasOptions") or IsAddOnLoaded("WeakAurasOptions") then
+					if IsAddOnLoaded("ElvUI_WindTools") then
 						if E.private.WT.skins.addons.weakAuras then
 							E:Delay(0, function()
 								if _G["WeakAurasOptions"] and not _G["WeakAurasOptions"].shadow then
@@ -72,7 +72,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 				end
-				if (arg == "Blizzard_PerksProgram") or IsAddOnLoaded("Blizzard_PerksProgram") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_PerksProgram") or IsAddOnLoaded("Blizzard_PerksProgram") then
 					if _G.PerksProgramFrame then
 						if _G.PerksProgramFrame.ProductsFrame then
 							if _G.PerksProgramFrame.ProductsFrame.PerksProgramProductDetailsContainerFrame and not _G.PerksProgramFrame.ProductsFrame.PerksProgramProductDetailsContainerFrame.shadow then
@@ -127,7 +127,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 				end
-				if (arg == "Blizzard_ProfessionsCustomerOrders") or IsAddOnLoaded("Blizzard_ProfessionsCustomerOrders") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_ProfessionsCustomerOrders") or IsAddOnLoaded("Blizzard_ProfessionsCustomerOrders") then
 					if _G.ProfessionsCustomerOrdersFrame and not _G.ProfessionsCustomerOrdersFrame.shadow then
 						_G.ProfessionsCustomerOrdersFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.ProfessionsCustomerOrdersFrame.shadow)
@@ -146,19 +146,19 @@ function ElvUI_EltreumUI:Shadows()
 						ElvUI_EltreumUI:ShadowColor(_G.ProfessionsCustomerOrdersFrame.Form.QualityDialog.shadow)
 					end
 				end
-				if (arg == "Blizzard_GenericTraitUI") or IsAddOnLoaded("Blizzard_GenericTraitUI") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_GenericTraitUI") or IsAddOnLoaded("Blizzard_GenericTraitUI") then
 					if _G.GenericTraitFrame and not _G.GenericTraitFrame.shadow then
 						_G.GenericTraitFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.GenericTraitFrame.shadow)
 					end
 				end
-				if (arg == "Blizzard_TalkingHeadUI") or IsAddOnLoaded("Blizzard_TalkingHeadUI") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_TalkingHeadUI") or IsAddOnLoaded("Blizzard_TalkingHeadUI") then
 					if _G.TalkingHeadFrame and not _G.TalkingHeadFrame.shadow then
 						_G.TalkingHeadFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.TalkingHeadFrame.shadow)
 					end
 				end
-				if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then
 					if _G.ClassTalentFrame and not _G.ClassTalentFrame.shadow then
 						_G.ClassTalentFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.ClassTalentFrame.shadow)
@@ -177,13 +177,13 @@ function ElvUI_EltreumUI:Shadows()
 						ElvUI_EltreumUI:ShadowColor(_G.ClassTalentLoadoutImportDialog.shadow)
 					end
 				end
-				if (arg == "Blizzard_ItemInteractionUI") or IsAddOnLoaded("Blizzard_ItemInteractionUI") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_ItemInteractionUI") or IsAddOnLoaded("Blizzard_ItemInteractionUI") then
 					if _G.ItemInteractionFrame and not _G.ItemInteractionFrame.shadow then
 						_G.ItemInteractionFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.ItemInteractionFrame.shadow)
 					end
 				end
-				if (arg == "Blizzard_OrderHallUI") or IsAddOnLoaded("Blizzard_OrderHallUI") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_OrderHallUI") or IsAddOnLoaded("Blizzard_OrderHallUI") then
 					if _G.OrderHallCommandBar and not _G.OrderHallCommandBar.shadow then
 						_G.OrderHallCommandBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.OrderHallCommandBar.shadow)
@@ -193,7 +193,7 @@ function ElvUI_EltreumUI:Shadows()
 						ElvUI_EltreumUI:ShadowColor(_G.OrderHallTalentFrame.shadow)
 					end
 				end
-				if (arg == "Blizzard_ArchaeologyUI") or IsAddOnLoaded("Blizzard_ArchaeologyUI") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_ArchaeologyUI") or IsAddOnLoaded("Blizzard_ArchaeologyUI") then
 					if _G.ArcheologyDigsiteProgressBar and _G.ArcheologyDigsiteProgressBar.FillBar and not _G.ArcheologyDigsiteProgressBar.FillBar.shadow then
 						_G.ArcheologyDigsiteProgressBar.FillBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.ArcheologyDigsiteProgressBar.FillBar.shadow)
@@ -203,7 +203,7 @@ function ElvUI_EltreumUI:Shadows()
 						ElvUI_EltreumUI:ShadowColor(_G.ArchaeologyFrame.shadow)
 					end
 				end
-				if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
 					if E.Retail or E.Wrath then
 						if not _G.MacroFrame.shadow then
 							_G.MacroFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -216,19 +216,19 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 				end
-				if (arg == "Blizzard_DeathRecap") or IsAddOnLoaded("Blizzard_DeathRecap") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_DeathRecap") or IsAddOnLoaded("Blizzard_DeathRecap") then
 					if not _G.DeathRecapFrame.shadow then
 						_G.DeathRecapFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.DeathRecapFrame.shadow)
 					end
 				end
-				if (arg == "Blizzard_FlightMap") or IsAddOnLoaded("Blizzard_FlightMap") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_FlightMap") or IsAddOnLoaded("Blizzard_FlightMap") then
 					if not _G.FlightMapFrame.shadow then
 						_G.FlightMapFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.FlightMapFrame.shadow)
 					end
 				end
-				if (arg == "Blizzard_GuildBankUI") or IsAddOnLoaded("Blizzard_GuildBankUI") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_GuildBankUI") or IsAddOnLoaded("Blizzard_GuildBankUI") then
 					if E.Retail then
 						if not _G.GuildBankFrame.shadow then
 							_G.GuildBankFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -281,7 +281,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 				end
-				if (arg == "Blizzard_TrainerUI") or IsAddOnLoaded("Blizzard_TrainerUI") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_TrainerUI") or IsAddOnLoaded("Blizzard_TrainerUI") then
 					if E.Retail then
 						if not _G.ClassTrainerFrame.shadow then
 							_G.ClassTrainerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -294,19 +294,19 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 				end
-				if (arg == "Blizzard_ItemSocketingUI") or IsAddOnLoaded("Blizzard_ItemSocketingUI") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_ItemSocketingUI") or IsAddOnLoaded("Blizzard_ItemSocketingUI") then
 					if not _G.ItemSocketingFrame.shadow then
 						_G.ItemSocketingFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.ItemSocketingFrame.shadow)
 					end
 				end
-				if (arg == "Blizzard_ItemUpgradeUI") or IsAddOnLoaded("Blizzard_ItemUpgradeUI") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_ItemUpgradeUI") or IsAddOnLoaded("Blizzard_ItemUpgradeUI") then
 					if not _G.ItemUpgradeFrame.shadow then
 						_G.ItemUpgradeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.ItemUpgradeFrame.shadow)
 					end
 				end
-				if (arg == "Blizzard_TradeSkillUI") or IsAddOnLoaded("Blizzard_TradeSkillUI") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_TradeSkillUI") or IsAddOnLoaded("Blizzard_TradeSkillUI") then
 					if E.Retail then
 						if not _G.TradeSkillFrame.shadow then
 							_G.TradeSkillFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -319,25 +319,25 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 				end
-				if (arg == "Blizzard_ChromieTimeUI") or IsAddOnLoaded("Blizzard_ChromieTimetUI") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_ChromieTimeUI") or IsAddOnLoaded("Blizzard_ChromieTimetUI") then
 					if not _G.ChromieTimeFrame.shadow then
 						_G.ChromieTimeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.ChromieTimeFrame.shadow)
 					end
 				end
-				if (arg == "Blizzard_BlackMarketUI") or IsAddOnLoaded("Blizzard_BlackMarketUI") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_BlackMarketUI") or IsAddOnLoaded("Blizzard_BlackMarketUI") then
 					if not _G.BlackMarketFrame.shadow then
 						_G.BlackMarketFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.BlackMarketFrame.shadow)
 					end
 				end
-				if (arg == "Blizzard_BindingUI") or IsAddOnLoaded("Blizzard_BindingUI") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_BindingUI") or IsAddOnLoaded("Blizzard_BindingUI") then
 					if not _G.KeyBindingFrame.shadow then
 						_G.KeyBindingFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.KeyBindingFrame.shadow)
 					end
 				end
-				if (arg == "Blizzard_InspectUI") or IsAddOnLoaded("Blizzard_InspectUI") then --TODO 10.2, might need C_AddOns.
+				if (arg == "Blizzard_InspectUI") or IsAddOnLoaded("Blizzard_InspectUI") then
 					if E.Retail then
 						if _G.InspectFrame and not _G.InspectFrame.shadow then
 							_G.InspectFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -363,7 +363,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 				if E.private.skins.blizzard.enable then
-					if (arg == "Blizzard_TalentUI") or IsAddOnLoaded("Blizzard_TalentUI") then --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_TalentUI") or IsAddOnLoaded("Blizzard_TalentUI") then
 						if E.Retail then
 							if not _G.PlayerTalentFrame.shadow then
 								_G.PlayerTalentFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -400,7 +400,7 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G.PlayerTalentFrameTab2.backdrop.shadow)
 						end
 					end
-					if (arg == "Blizzard_Calendar") or IsAddOnLoaded("Blizzard_Calendar") then --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_Calendar") or IsAddOnLoaded("Blizzard_Calendar") then
 						if not _G.CalendarFrame.shadow then
 							_G.CalendarFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.CalendarFrame.shadow)
@@ -410,7 +410,7 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G.CalendarViewHolidayFrame.shadow)
 						end
 					end
-					if (arg == "Blizzard_Communities") or IsAddOnLoaded("Blizzard_Communities") then --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_Communities") or IsAddOnLoaded("Blizzard_Communities") then
 						if _G.CommunitiesFrame then
 							if not _G.CommunitiesFrame.shadow then
 								_G.CommunitiesFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -482,7 +482,7 @@ function ElvUI_EltreumUI:Shadows()
 							end
 						end
 					end
-					if (arg == "Blizzard_GuildControlUI") or IsAddOnLoaded("Blizzard_GuildControlUI") then --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_GuildControlUI") or IsAddOnLoaded("Blizzard_GuildControlUI") then
 						if _G.CommunitiesGuildLogFrame and not _G.CommunitiesGuildLogFrame.shadow then
 							_G.CommunitiesGuildLogFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.CommunitiesGuildLogFrame.shadow)
@@ -492,7 +492,7 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G.GuildControlUI.shadow)
 						end
 					end
-					if (arg == "Blizzard_AchievementUI") or IsAddOnLoaded("Blizzard_AchievementUI") then --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_AchievementUI") or IsAddOnLoaded("Blizzard_AchievementUI") then
 						if E.Retail then
 							if _G.AchievementFrame and not _G.AchievementFrame.shadow then
 								_G.AchievementFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -517,7 +517,7 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G.AchievementFrameTab2.backdrop.shadow)
 						end
 					end
-					if (arg == "Blizzard_GarrisonUI") or IsAddOnLoaded("Blizzard_GarrisonUI") then --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_GarrisonUI") or IsAddOnLoaded("Blizzard_GarrisonUI") then
 						if _G.GarrisonLandingPage then
 							if not _G.GarrisonLandingPage.shadow then
 								_G.GarrisonLandingPage:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -539,7 +539,7 @@ function ElvUI_EltreumUI:Shadows()
 							end
 						end
 					end
-					if (arg == "Blizzard_CovenantSanctum") or IsAddOnLoaded("Blizzard_CovenantSanctum") then --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_CovenantSanctum") or IsAddOnLoaded("Blizzard_CovenantSanctum") then
 						if _G.CovenantSanctumFrame then
 							if not _G.CovenantSanctumFrame.shadow then
 								_G.CovenantSanctumFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -547,7 +547,7 @@ function ElvUI_EltreumUI:Shadows()
 							end
 						end
 					end
-					if (arg == "Blizzard_Soulbinds") or IsAddOnLoaded("Blizzard_Soulbinds") then --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_Soulbinds") or IsAddOnLoaded("Blizzard_Soulbinds") then
 						if _G.SoulbindViewer then
 							if not _G.SoulbindViewer.shadow then
 								_G.SoulbindViewer:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -555,7 +555,7 @@ function ElvUI_EltreumUI:Shadows()
 							end
 						end
 					end
-					if (arg == "Blizzard_Collections") or IsAddOnLoaded("Blizzard_Collections") then --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_Collections") or IsAddOnLoaded("Blizzard_Collections") then
 						if not _G.CollectionsJournal.shadow then
 							_G.CollectionsJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.CollectionsJournal.shadow)
@@ -597,26 +597,26 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G.WardrobeFrame.shadow)
 						end
 					end
-					if (arg == "Blizzard_PVPUI") or IsAddOnLoaded("Blizzard_PVPUI") then --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_PVPUI") or IsAddOnLoaded("Blizzard_PVPUI") then
 						if not _G.PVPUIFrame.shadow then
 							_G.PVPUIFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.PVPUIFrame.shadow)
 						end
 					end
-					if (arg == "Blizzard_PlayerChoice") or IsAddOnLoaded("Blizzard_PlayerChoice") then --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_PlayerChoice") or IsAddOnLoaded("Blizzard_PlayerChoice") then
 						if not _G.PlayerChoiceFrame.shadow then
 							_G.PlayerChoiceFrame:CreateBackdrop('Transparent')
 							_G.PlayerChoiceFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.PlayerChoiceFrame.shadow)
 						end
 					end
-					if (arg == "Blizzard_VoidStorageUI") or IsAddOnLoaded("Blizzard_VoidStorageUI") then --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_VoidStorageUI") or IsAddOnLoaded("Blizzard_VoidStorageUI") then
 						if not _G.VoidStorageFrame.shadow then
 							_G.VoidStorageFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.VoidStorageFrame.shadow)
 						end
 					end
-					if (arg == "Blizzard_ChallengesUI") or IsAddOnLoaded("Blizzard_ChallengesUI") then --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_ChallengesUI") or IsAddOnLoaded("Blizzard_ChallengesUI") then
 						if not _G.PVEFrame.shadow then
 							_G.PVEFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.PVEFrame.shadow)
@@ -626,7 +626,7 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G.ChallengesKeystoneFrame.shadow)
 						end
 					end
-					if (arg == "Blizzard_Professions") or IsAddOnLoaded("Blizzard_Professions") then --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_Professions") or IsAddOnLoaded("Blizzard_Professions") then
 						if _G.ProfessionsFrame and not _G.ProfessionsFrame.shadow then
 							_G.ProfessionsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.ProfessionsFrame.shadow)
@@ -645,7 +645,7 @@ function ElvUI_EltreumUI:Shadows()
 							end
 						end
 					end
-					if (arg == "Blizzard_EncounterJournal") or IsAddOnLoaded("Blizzard_EncounterJournal") then --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_EncounterJournal") or IsAddOnLoaded("Blizzard_EncounterJournal") then
 
 						--fix the overflow button
 						if _G.EncounterJournalNavBarOverflowButton and not _G.EncounterJournalNavBarOverflowButton.EltruismSkin then
@@ -699,7 +699,7 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G.EncounterJournalMonthlyActivitiesTab.backdrop.shadow)
 						end
 					end
-					if (arg == "Blizzard_WeeklyRewards") or IsAddOnLoaded("Blizzard_WeeklyRewards") then  --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_WeeklyRewards") or IsAddOnLoaded("Blizzard_WeeklyRewards") then
 						if not _G.WeeklyRewardsFrame.shadow then
 							_G.WeeklyRewardsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.WeeklyRewardsFrame.shadow)
@@ -707,7 +707,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 				if E.Retail then
-					if (arg == "Blizzard_AuctionHouseUI") or IsAddOnLoaded("Blizzard_AuctionHouseUI") then --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_AuctionHouseUI") or IsAddOnLoaded("Blizzard_AuctionHouseUI") then
 						if _G.AuctionHouseFrame then
 							if _G.AuctionHouseFrame and not _G.AuctionHouseFrame.shadow then
 								_G.AuctionHouseFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -728,7 +728,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 				elseif E.Wrath or E.Classic then
-					if (arg == "Blizzard_AuctionUI") or IsAddOnLoaded("Blizzard_AuctionUI") then --TODO 10.2, might need C_AddOns.
+					if (arg == "Blizzard_AuctionUI") or IsAddOnLoaded("Blizzard_AuctionUI") then
 						if _G.AuctionFrame and _G.AuctionFrame.backdrop and not _G.AuctionFrame.backdrop.shadow then
 							_G.AuctionFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.AuctionFrame.backdrop.shadow)
@@ -923,7 +923,7 @@ function ElvUI_EltreumUI:Shadows()
 				if not E.db.datatexts.panels.MinimapPanel.backdrop or not E.db.datatexts.panels.MinimapPanel.enable then
 					MinimapShadow:SetPoint("BOTTOMLEFT", _G["Minimap"] ,"BOTTOMLEFT", 0, 0)
 				end
-				if IsAddOnLoaded("ElvUI_SLE") and E.private.sle.minimap.rectangle then --Shadow and Light Rectangle Minimap  --TODO 10.2, might need C_AddOns.
+				if IsAddOnLoaded("ElvUI_SLE") and E.private.sle.minimap.rectangle then --Shadow and Light Rectangle Minimap
 					if E.db.datatexts.panels.MinimapPanel.backdrop and E.db.datatexts.panels.MinimapPanel.enable then
 						MinimapShadow:SetPoint("TOPRIGHT", _G["Minimap"].backdrop ,"TOPRIGHT", 0, 0)
 						MinimapShadow:SetPoint("BOTTOMLEFT", _G["MinimapPanel"] ,"BOTTOMLEFT", 0, 0)
@@ -931,7 +931,7 @@ function ElvUI_EltreumUI:Shadows()
 						MinimapShadow:SetPoint("TOPRIGHT", _G["Minimap"].backdrop ,"TOPRIGHT", 0, 0)
 						MinimapShadow:SetPoint("BOTTOMLEFT", _G["Minimap"].backdrop ,"BOTTOMLEFT", 0, 0)
 					end
-				elseif IsAddOnLoaded("ElvUI_WindTools") and E.db.WT.maps.rectangleMinimap.enable then --Windtools rectangle minimap  --TODO 10.2, might need C_AddOns.
+				elseif IsAddOnLoaded("ElvUI_WindTools") and E.db.WT.maps.rectangleMinimap.enable then --Windtools rectangle minimap
 					MinimapShadow:SetAllPoints(_G["Minimap"].backdrop)
 					if E.db.datatexts.panels.MinimapPanel.backdrop and E.db.datatexts.panels.MinimapPanel.enable then
 						if _G["MinimapPanel"] and not _G["MinimapPanel"].shadow then
@@ -1004,7 +1004,7 @@ function ElvUI_EltreumUI:Shadows()
 		end
 		------------------------------------------------------------------------------------------------------version specific
 		if E.Retail then
-			if IsAddOnLoaded("Rarity") then --TODO 10.2, might need C_AddOns.
+			if IsAddOnLoaded("Rarity") then
 				local rarityalreadyloads = {
 					_G.CollectionsJournalTab1.backdrop,
 					_G.CollectionsJournalTab2.backdrop,
@@ -1275,7 +1275,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--leatrix causing issues yet again
-			if IsAddOnLoaded("Leatrix_Maps") then --TODO 10.2, might need C_AddOns.
+			if IsAddOnLoaded("Leatrix_Maps") then
 				if LeaMapsDB["NoMapBorder"] == "On" then
 					if _G.WorldMapFrame.shadow then
 						_G.WorldMapFrame.shadow:Hide()
@@ -1321,7 +1321,7 @@ function ElvUI_EltreumUI:Shadows()
 		if E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
 
 			--general action bars
-			if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") and not IsAddOnLoaded("Masque") then --TODO 10.2, might need C_AddOns.
+			if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") and not IsAddOnLoaded("Masque") then
 				--elvui action bars
 				for i = 1, 15 do
 					for k = 1, 12 do
@@ -2700,7 +2700,7 @@ function ElvUI_EltreumUI:Shadows()
 								_G["ElvUF_Target"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Target_InfoPanel"],"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length+2)
 							end
 							local benikdettachedtarget = false
-							if IsAddOnLoaded("ElvUI_BenikUI") then --TODO 10.2, might need C_AddOns.
+							if IsAddOnLoaded("ElvUI_BenikUI") then
 								benikdettachedtarget = E.db.benikui.unitframes.target.detachPortrait
 							end
 							if E.db.unitframe.units.target.portrait.enable and E.db.unitframe.units.target.portrait.style ~= "3D" and not benikdettachedtarget and not _G["ElvUF_Target"].USE_PORTRAIT_OVERLAY then
@@ -3103,7 +3103,7 @@ function ElvUI_EltreumUI:Shadows()
 			end)
 		end
 		------------------------------------------------------------------------------------------------------other addons
-		if IsAddOnLoaded('ProjectAzilroka') then --TODO 10.2, might need C_AddOns.
+		if IsAddOnLoaded('ProjectAzilroka') then
 			if _G.stAMFrame and not _G.stAMFrame.shadow then
 				_G.stAMFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(_G.stAMFrame.shadow)
@@ -3120,7 +3120,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		if IsAddOnLoaded("ElvUI_WindTools") then --TODO 10.2, might need C_AddOns.
+		if IsAddOnLoaded("ElvUI_WindTools") then
 			if _G["WTEventTracker"] and not _G["WTEventTracker"].shadow then
 				_G["WTEventTracker"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(_G["WTEventTracker"].shadow)
@@ -3314,7 +3314,7 @@ hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) --n
 
 function ElvUI_EltreumUI:AuraShadows(button)
 	if not button then return end
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) and not IsAddOnLoaded("Masque") then --TODO 10.2, might need C_AddOns.
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) and not IsAddOnLoaded("Masque") then
 		if button and not button.shadow then
 			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			ElvUI_EltreumUI:ShadowColor(button.shadow)
@@ -3325,7 +3325,7 @@ hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows) --aura (minimap) sh
 
 function ElvUI_EltreumUI:UFAuraShadows(button)
 	if not button then return end
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.ufaura and not IsAddOnLoaded("Masque") then --TODO 10.2, might need C_AddOns.
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.ufaura and not IsAddOnLoaded("Masque") then
 		if button and not button.shadow then
 			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			ElvUI_EltreumUI:ShadowColor(button.shadow)

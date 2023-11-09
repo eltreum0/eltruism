@@ -1,6 +1,6 @@
 local E, L = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 
 function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	if not E.db.movers then E.db.movers = {} end
@@ -56,7 +56,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		E.private["general"]["dmgfont"] = fontvalue
 		E.private["general"]["namefont"] = fontvalue
 		if E.Retail then
-			if IsAddOnLoaded("ElvUI_SLE") then --TODO 10.2, might need C_AddOns.
+			if IsAddOnLoaded("ElvUI_SLE") then
 				E.db["sle"]["armory"]["character"]["durability"]["font"] = fontvalue
 				E.db["sle"]["armory"]["character"]["enchant"]["font"] = fontvalue
 				E.db["sle"]["armory"]["character"]["ilvl"]["font"] = fontvalue
@@ -87,7 +87,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 				E.db["sle"]["skins"]["merchant"]["list"]["nameFont"] = fontvalue
 				E.db["sle"]["skins"]["merchant"]["list"]["subFont"] = fontvalue
 			end
-			if IsAddOnLoaded("ElvUI_WindTools") then --TODO 10.2, might need C_AddOns.
+			if IsAddOnLoaded("ElvUI_WindTools") then
 				E.private["WT"]["skins"]["ime"]["label"]["name"] = fontvalue
 				E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["name"] = fontvalue
 				E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["name"] = fontvalue
@@ -391,7 +391,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		end
 
 	--FCT font
-	if IsAddOnLoaded("ElvUI_FCT") then --TODO 10.2, might need C_AddOns.
+	if IsAddOnLoaded("ElvUI_FCT") then
 		_G.ElvFCT["nameplates"]["frames"]["Player"]["font"] = fontvalue
 		_G.ElvFCT["nameplates"]["frames"]["Player"]["critFont"] = fontvalue
 		_G.ElvFCT["nameplates"]["frames"]["FriendlyPlayer"]["font"] = fontvalue
@@ -437,15 +437,15 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		_G.ElvFCT["unitframes"]["frames"]["Arena"]["font"] = fontvalue
 		_G.ElvFCT["unitframes"]["frames"]["Arena"]["critFont"] = fontvalue
 	end
-	if IsAddOnLoaded('NameplateSCT') then --TODO 10.2, might need C_AddOns.
+	if IsAddOnLoaded('NameplateSCT') then
 		_G.NameplateSCTDB["global"]["font"] = fontvalue
 	end
 
-	if IsAddOnLoaded('ProjectAzilroka') then --TODO 10.2, might need C_AddOns.
+	if IsAddOnLoaded('ProjectAzilroka') then
 		_G.ProjectAzilroka.db["stAddonManager"]["Font"] = fontvalue
 	end
 
-	if IsAddOnLoaded("Questie") then --TODO 10.2, might need C_AddOns.
+	if IsAddOnLoaded("Questie") then
 		_G.QuestieConfig["global"]["trackerFontObjective"] = E.db.general.font
 		_G.QuestieConfig["global"]["trackerFontZone"] = E.db.general.font
 		_G.QuestieConfig["global"]["trackerFontHeader"] = E.db.general.font

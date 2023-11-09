@@ -2,7 +2,7 @@ local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local UIPanelWindows = _G.UIPanelWindows
-local IsAddOnLoaded = _G.IsAddOnLoaded --TODO 10.2, might need C_AddOns.
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local WardrobeFrame
 local WardrobeTransmogFrame
 local WardrobeOutfitDropDown
@@ -13,7 +13,7 @@ local EltruismWiderTransmog = CreateFrame("Frame", "EltruismWiderTransmog")
 EltruismWiderTransmog:RegisterEvent("ADDON_LOADED")
 EltruismWiderTransmog:SetScript("OnEvent", function(_, _, arg)
 	--print("widetransmog spam")
-	if (arg == "Blizzard_Collections") or IsAddOnLoaded("Blizzard_Collections") then --TODO 10.2, might need C_AddOns.
+	if (arg == "Blizzard_Collections") or IsAddOnLoaded("Blizzard_Collections") then
 		EltruismWiderTransmog:UnregisterAllEvents()
 		WardrobeFrame = _G.WardrobeFrame
 		WardrobeTransmogFrame = _G.WardrobeTransmogFrame

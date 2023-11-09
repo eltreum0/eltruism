@@ -2,6 +2,7 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 
 --main function to hook/set gradient/textures/shadows
 local function hookCell(frame,region,solo)
@@ -115,7 +116,7 @@ end
 
 --cell gradient/textures
 function ElvUI_EltreumUI:EltruismCell()
-	if not IsAddOnLoaded("Cell") then return end --TODO 10.2, might need C_AddOns.
+	if not IsAddOnLoaded("Cell") then return end
 	if E.db.ElvUI_EltreumUI.skins.cell then
 		--solo
 		if _G["CellSoloFramePlayer"] then

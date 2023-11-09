@@ -1,10 +1,10 @@
 local E, L= unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
-local IsAddOnLoaded = _G.IsAddOnLoaded
-local GetAddOnInfo = _G.GetAddOnInfo  --TODO 10.2, might need C_AddOns.
-local DisableAddOn = _G.DisableAddOn --TODO 10.2, might need C_AddOns.
-local EnableAddOn = _G.EnableAddOn --TODO 10.2, might need C_AddOns.
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local EnableAddOn = _G.C_AddOns and _G.C_AddOns.EnableAddOn or _G.EnableAddOn
+local DisableAddOn = _G.C_AddOns and _G.C_AddOns.DisableAddOn or _G.DisableAddOn
+local GetAddOnInfo = _G.C_AddOns and _G.C_AddOns.GetAddOnInfo or _G.GetAddOnInfo
 local select = _G.select
 local gsub = _G.gsub
 local ipairs = _G.ipairs
@@ -76,7 +76,7 @@ local function ConstructCompatibilityFrame()
 	bottomDesc:SetJustifyH("CENTER")
 	bottomDesc:SetWidth(530)
 	bottomDesc:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-	bottomDesc:SetText(E.NewSign ..format(L["If you find the %s option has issues, alert me via Discord or GitHub issue."], select(2,GetAddOnInfo("ElvUI_EltreumUI")))) --TODO 10.2, might need C_AddOns.
+	bottomDesc:SetText(E.NewSign ..format(L["If you find the %s option has issues, alert me via Discord or GitHub issue."], select(2,GetAddOnInfo("ElvUI_EltreumUI"))))
 	bottomDesc:SetPoint("BOTTOM", frame, "BOTTOM", 0, 10)
 
 	local completeButton = CreateFrame("Button", "EltruismCompatibilityFrameCompleteButton", frame, "UIPanelButtonTemplate, BackdropTemplate")
@@ -194,7 +194,7 @@ local function GetCheckCompatibilityFunction(targetAddonName, targetAddonLocales
 			if myValue and targetValue then
 				AddButtonToCompatibilityFrame({
 					module1 = myModuleName,
-					plugin1 = select(2,GetAddOnInfo("ElvUI_EltreumUI")), --TODO 10.2, might need C_AddOns.
+					plugin1 = select(2,GetAddOnInfo("ElvUI_EltreumUI")),
 					func1 = function()
 						myTable[myKey] = true
 						targetTable[targetKey] = false
@@ -218,7 +218,7 @@ local function GetCheckCompatibilityFunction(targetAddonName, targetAddonLocales
 			if myValue and targetValue then
 				AddButtonToCompatibilityFrame({
 					module1 = myModuleName,
-					plugin1 = select(2,GetAddOnInfo("ElvUI_EltreumUI")), --TODO 10.2, might need C_AddOns.
+					plugin1 = select(2,GetAddOnInfo("ElvUI_EltreumUI")),
 					func1 = function()
 						myTable[myKey] = true
 						targetTable[targetKey] = false
@@ -238,19 +238,19 @@ local function GetCheckCompatibilityFunction(targetAddonName, targetAddonLocales
 				return
 			end
 			local myTable, myKey, myValue = GetDatabaseRealValue(myDB, E)
-			if myValue and IsAddOnLoaded(targetAddon) then --TODO 10.2, might need C_AddOns.
+			if myValue and IsAddOnLoaded(targetAddon) then
 				AddButtonToCompatibilityFrame({
 					module1 = myModuleName,
-					plugin1 = select(2,GetAddOnInfo("ElvUI_EltreumUI")), --TODO 10.2, might need C_AddOns.
+					plugin1 = select(2,GetAddOnInfo("ElvUI_EltreumUI")),
 					func1 = function()
 						myTable[myKey] = true
-						DisableAddOn(targetAddon) --TODO 10.2, might need C_AddOns.
+						DisableAddOn(targetAddon)
 					end,
 					module2 = "AddOn:",
-					plugin2 = select(2,GetAddOnInfo(targetAddon)), --TODO 10.2, might need C_AddOns.
+					plugin2 = select(2,GetAddOnInfo(targetAddon)),
 					func2 = function()
 						myTable[myKey] = false
-						EnableAddOn(targetAddon) --TODO 10.2, might need C_AddOns.
+						EnableAddOn(targetAddon)
 					end
 				})
 			end
@@ -263,21 +263,21 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	ConstructCompatibilityFrame()
 
 	--ElvUI plugins
-	local CheckMerathilisUI = GetCheckCompatibilityFunction("ElvUI_MerathilisUI", select(2,GetAddOnInfo("ElvUI_MerathilisUI")),false) --TODO 10.2, might need C_AddOns.
-	local CheckWindTools = GetCheckCompatibilityFunction("ElvUI_WindTools", select(2,GetAddOnInfo("ElvUI_WindTools")),false) --TODO 10.2, might need C_AddOns.
-	local CheckmMediaTag = GetCheckCompatibilityFunction("ElvUI_mMediaTag", select(2,GetAddOnInfo("ElvUI_mMediaTag")),false) --TODO 10.2, might need C_AddOns.
-	local CheckWunderUI = GetCheckCompatibilityFunction("WunderUI", select(2,GetAddOnInfo("WunderUI")),false) --TODO 10.2, might need C_AddOns.
-	local CheckToxiUI = GetCheckCompatibilityFunction("ElvUI_ToxiUI", select(2,GetAddOnInfo("ElvUI_ToxiUI")),false) --TODO 10.2, might need C_AddOns.
+	local CheckMerathilisUI = GetCheckCompatibilityFunction("ElvUI_MerathilisUI", select(2,GetAddOnInfo("ElvUI_MerathilisUI")),false)
+	local CheckWindTools = GetCheckCompatibilityFunction("ElvUI_WindTools", select(2,GetAddOnInfo("ElvUI_WindTools")),false)
+	local CheckmMediaTag = GetCheckCompatibilityFunction("ElvUI_mMediaTag", select(2,GetAddOnInfo("ElvUI_mMediaTag")),false)
+	local CheckWunderUI = GetCheckCompatibilityFunction("WunderUI", select(2,GetAddOnInfo("WunderUI")),false)
+	local CheckToxiUI = GetCheckCompatibilityFunction("ElvUI_ToxiUI", select(2,GetAddOnInfo("ElvUI_ToxiUI")),false)
 
 	--other addons that are disable/enable
-	local CheckDeja = GetCheckCompatibilityFunction("DejaCharacterStats", select(2,GetAddOnInfo("DejaCharacterStats")),true) --TODO 10.2, might need C_AddOns.
-	local CheckKaliel = GetCheckCompatibilityFunction("!KalielsTracker", select(2,GetAddOnInfo("!KalielsTracker")),true) --TODO 10.2, might need C_AddOns.
-	local CheckWabbit = GetCheckCompatibilityFunction("Who Framed Watcher Wabbit", select(2,GetAddOnInfo("Who Framed Watcher Wabbit")),true) --TODO 10.2, might need C_AddOns.
-	local CheckCQL = GetCheckCompatibilityFunction("ClassicQuestLog", select(2,GetAddOnInfo("ClassicQuestLog")),true) --TODO 10.2, might need C_AddOns.
-	local CheckSorha = GetCheckCompatibilityFunction("SorhaQuestLog", select(2,GetAddOnInfo("SorhaQuestLog")),true) --TODO 10.2, might need C_AddOns.
-	local CheckDoom = GetCheckCompatibilityFunction("Doom_CooldownPulse", select(2,GetAddOnInfo("Doom_CooldownPulse")),true) --TODO 10.2, might need C_AddOns.
-	--local CheckRaiderIO = GetCheckCompatibilityFunction("RaiderIO", select(2,GetAddOnInfo("RaiderIO")),false,true) --TODO 10.2, might need C_AddOns.
-	--local CheckQuestie = GetCheckCompatibilityFunction("Questie", select(2,GetAddOnInfo("Questie")),false,true) --TODO 10.2, might need C_AddOns.
+	local CheckDeja = GetCheckCompatibilityFunction("DejaCharacterStats", select(2,GetAddOnInfo("DejaCharacterStats")),true)
+	local CheckKaliel = GetCheckCompatibilityFunction("!KalielsTracker", select(2,GetAddOnInfo("!KalielsTracker")),true)
+	local CheckWabbit = GetCheckCompatibilityFunction("Who Framed Watcher Wabbit", select(2,GetAddOnInfo("Who Framed Watcher Wabbit")),true)
+	local CheckCQL = GetCheckCompatibilityFunction("ClassicQuestLog", select(2,GetAddOnInfo("ClassicQuestLog")),true)
+	local CheckSorha = GetCheckCompatibilityFunction("SorhaQuestLog", select(2,GetAddOnInfo("SorhaQuestLog")),true)
+	local CheckDoom = GetCheckCompatibilityFunction("Doom_CooldownPulse", select(2,GetAddOnInfo("Doom_CooldownPulse")),true)
+	--local CheckRaiderIO = GetCheckCompatibilityFunction("RaiderIO", select(2,GetAddOnInfo("RaiderIO")),false,true)
+	--local CheckQuestie = GetCheckCompatibilityFunction("Questie", select(2,GetAddOnInfo("Questie")),false,true)
 
 	--Character Panel
 	CheckMerathilisUI(L["Character Panel"].."\n"..L["Class Icons"], L["Character Panel"].."\n"..L["Class Icons"], "db.ElvUI_EltreumUI.skins.classicarmory", "db.mui.armory.character.enable")
