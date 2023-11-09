@@ -248,7 +248,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["general"]["fonts"]["objective"]["enable"] = true
 		E.db["general"]["fonts"]["objective"]["font"] = "Kimberley"
 		E.db["general"]["fonts"]["objective"]["outline"] = "OUTLINE"
-		E.db["general"]["fonts"]["objective"]["size"] = 23
+		E.db["general"]["fonts"]["objective"]["size"] = 12
 		E.db["general"]["fonts"]["questtitle"]["enable"] = true
 		E.db["general"]["fonts"]["questtitle"]["font"] = "Kimberley"
 		E.db["general"]["fonts"]["questtitle"]["outline"] = "OUTLINE"
@@ -260,7 +260,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["general"]["fonts"]["questsmall"]["enable"] = true
 		E.db["general"]["fonts"]["questsmall"]["font"] = "Kimberley"
 		E.db["general"]["fonts"]["questsmall"]["outline"] = "OUTLINE"
-		E.db["general"]["fonts"]["questsmall"]["size"] = 12
+		E.db["general"]["fonts"]["questsmall"]["size"] = 13
 		E.db["general"]["fonts"]["cooldown"]["font"] = "Kimberley"
 		E.db["general"]["fonts"]["cooldown"]["outline"] = "OUTLINE"
 		E.db["general"]["fonts"]["cooldown"]["size"] = 20
