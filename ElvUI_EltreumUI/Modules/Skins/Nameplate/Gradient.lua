@@ -22,6 +22,9 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 
 		-- if gradient use gradient mode
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
+			if not InCombatLockdown() or UnitIsDead("player") then
+				nameplate.CurrentlyBeingTanked = nil
+			end
 			if status == 3 then -- securely tanking
 				if self.isTank then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
@@ -42,6 +45,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("BADTHREAT", false, false))
 					end
 				end
+				nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.unit)
 			elseif status == 2 then -- insecurely tanking
 				if self.isTank then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
@@ -62,6 +66,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREATTRANSITION", false, false))
 					end
 				end
+				nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.unit)
 			elseif status == 1 then -- not tanking but threat higher than tank
 				if self.isTank then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
@@ -82,6 +87,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("BADTHREATTRANSITION", false, false))
 					end
 				end
+				nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.unit)
 			else -- not tanking at all
 				if self.isTank then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
@@ -96,6 +102,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 						nameplate.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColors("GOODTHREAT", false, false))
 					end
 				end
+				nameplate.CurrentlyBeingTanked = UnitGUID(nameplate.unit)
 			end
 		end
 	end
