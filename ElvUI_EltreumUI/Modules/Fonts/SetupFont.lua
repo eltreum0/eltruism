@@ -205,6 +205,8 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		E.db["unitframe"]["units"]["target"]["debuffs"]["countFont"] = fontvalue
 		E.db["unitframe"]["units"]["targettargettarget"]["buffs"]["countFont"] = fontvalue
 		E.db["unitframe"]["units"]["targettargettarget"]["debuffs"]["countFont"] = fontvalue
+		E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = fontvalue
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = fontvalue
 
 		E.private["general"]["nameplateFont"] = fontvalue
 		E.private["general"]["nameplateLargeFont"] = fontvalue

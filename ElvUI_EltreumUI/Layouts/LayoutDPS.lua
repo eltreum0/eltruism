@@ -771,8 +771,11 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["pet"]["health"]["colorHappiness"] = false
 	E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
 	E.db["unitframe"]["units"]["pet"]["buffs"]["anchorPoint"] = "TOP"
-	E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "FRAME"
 	E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["pet"]["buffs"]["attachTo"] = "FRAME"
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["countFontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
 	E.db["unitframe"]["units"]["pet"]["buffs"]["growthX"] = "LEFT"
 	E.db["unitframe"]["units"]["pet"]["buffs"]["spacing"] = 1

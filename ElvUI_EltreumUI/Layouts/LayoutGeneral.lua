@@ -208,6 +208,11 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
 		E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = "Blacklist,Dispellable,RaidBuffsElvUI,TurtleBuffs"
 
+		E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Kimberley"
+		E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "OUTLINE"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Kimberley"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFontOutline"] = "OUTLINE"
+
 		--fix possible issue
 		E.db["unitframe"]["units"]["party"]["health"]["orientation"] = "HORIZONTAL"
 		E.db["unitframe"]["units"]["player"]["health"]["orientation"] = "HORIZONTAL"

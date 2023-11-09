@@ -62,6 +62,10 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 	E.db["general"]["fonts"]["talkingtitle"]["font"] = "Kimberley"
 	E.db["general"]["fonts"]["talkingtitle"]["outline"] = "OUTLINE"
 	E.db["general"]["fonts"]["talkingtitle"]["size"] = 20
+	E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "OUTLINE"
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Kimberley"
+	E.db["unitframe"]["units"]["pet"]["debuffs"]["countFontOutline"] = "OUTLINE"
 
 	E.db["general"]["guildBank"]["countFont"] = "Kimberley"
 
