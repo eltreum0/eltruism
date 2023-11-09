@@ -138,6 +138,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	E.private["general"]["nameplateFontOutline"] = "OUTLINE"
 	E.private["general"]["nameplateLargeFontOutline"] = "OUTLINE"
 	E.db["general"]["fonts"]["cooldown"]["outline"] = "THICKOUTLINE"
+	E.db["general"]["fonts"]["errortext"]["outline"] = "OUTLINE"
 	E.db["general"]["fonts"]["mailbody"]["outline"] = "OUTLINE"
 	E.db["general"]["fonts"]["objective"]["outline"] = "OUTLINE"
 	E.db["general"]["fonts"]["pvpsubzone"]["outline"] = "OUTLINE"

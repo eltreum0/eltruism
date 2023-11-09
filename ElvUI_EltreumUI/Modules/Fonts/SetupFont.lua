@@ -217,6 +217,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		E.db["general"]["fonts"]["questtext"]["font"] = fontvalue
 		E.db["general"]["fonts"]["questsmall"]["font"] = fontvalue
 		E.db["general"]["fonts"]["cooldown"]["font"] = fontvalue
+		E.db["general"]["fonts"]["errortext"]["font"] = fontvalue
 		E.db["general"]["fonts"]["mailbody"]["font"] = fontvalue
 		E.db["general"]["fonts"]["talkingtext"]["font"] = fontvalue
 		E.db["general"]["fonts"]["talkingtitle"]["font"] = fontvalue

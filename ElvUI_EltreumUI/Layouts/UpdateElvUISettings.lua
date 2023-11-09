@@ -45,6 +45,9 @@ function ElvUI_EltreumUI:UpdateElvUISettings()
 	E.db["general"]["fonts"]["cooldown"]["font"] = "Kimberley"
 	E.db["general"]["fonts"]["cooldown"]["outline"] = "OUTLINE"
 	E.db["general"]["fonts"]["cooldown"]["size"] = 20
+	E.db["general"]["fonts"]["errortext"]["font"] = "Kimberley"
+	E.db["general"]["fonts"]["errortext"]["outline"] = "OUTLINE"
+	E.db["general"]["fonts"]["errortext"]["size"] = 14
 	E.db["general"]["fonts"]["mailbody"]["enable"] = true
 	E.db["general"]["fonts"]["mailbody"]["font"] = "Kimberley"
 	E.db["general"]["fonts"]["mailbody"]["outline"] = "OUTLINE"
