@@ -3430,10 +3430,12 @@ Added the ability for Font Outline and Font functions in Eltruism > Media to app
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
+Updated Details profiles to no longer use auto align in order to avoid the truncated text
 Updated Portraits to once again require ElvUI portraits due to how the function updates
 Updated Zone Texts, Error Frame Text and others to use ElvUI settings added in 13.48
 Updated Immersion skin to add a small gap between buttons
 Updated Nameplate Threat Gradient to run better
+Updated C_AddOns references
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
