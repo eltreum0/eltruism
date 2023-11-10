@@ -291,6 +291,7 @@ function ElvUI_EltreumUI:NewVersionCheck()
 		ElvUI_EltreumUI:Print("Welcome to version "..version..". If you have any issues please join the |TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinydisc.tga:0:0:0:0|t Discord for help")
 		if E.db.ElvUI_EltreumUI.autoupdate then
 			ElvUI_EltreumUI:UpdateEltruismSettings(true)
+			ElvUI_EltreumUI:UpdateElvUISettings(true)
 		end
 	end
 end
