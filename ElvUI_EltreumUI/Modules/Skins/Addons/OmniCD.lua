@@ -75,7 +75,9 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 					icon.statusBar.borderLeft:SetPoint("TOPLEFT", icon.statusBar, "TOPLEFT", 0, 0)
 					icon.statusBar.borderLeft:SetPoint("BOTTOMLEFT", icon.statusBar, "BOTTOMLEFT", 0, 0)
 					hooksecurefunc(icon.statusBar.borderRight,"SetColorTexture", function(_,r,g,b)
-						icon.statusBar.borderLeft:SetColorTexture(r, g, b)
+						if icon.statusBar and icon.statusBar.borderLeft then
+							icon.statusBar.borderLeft:SetColorTexture(r, g, b)
+						end
 					end)
 				end
 
