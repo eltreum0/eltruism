@@ -2461,10 +2461,15 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.party.args.general.args.description4 = ACH:Description(_G.DUNGEONS_BUTTON, 9, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Classic)
 	ElvUI_EltreumUI.Options.args.party.args.general.args.groupfinderSpecIcons = ACH:Toggle(E.Retail and E.NewSign..L["Add Spec Icons to the Group Finder Listing"] or E.NewSign..L["Add Class Icons to the Group Finder Listing"], nil, 10, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons end, function(_, value) E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons = value E:StaticPopup_Show('CONFIG_RL') end, nil, E.Classic)
 	ElvUI_EltreumUI.Options.args.party.args.general.args.groupfinderDungeonScore = ACH:Toggle(E.NewSign..L["Add Dungeon Score to Group Finder Listing"], nil, 11, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.groupfinderDungeonScore end, function(_, value) E.db.ElvUI_EltreumUI.skins.groupfinderDungeonScore = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.party.args.general.args.groupfinderSpecIconsType = ACH:Select(L["Style"], nil, 12, {
+		["SPEC"] = L["Spec"],
+		["CLASS"] = CLASS,
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.skins.groupfinderSpecIconsType end, function(_, value) E.db.ElvUI_EltreumUI.skins.groupfinderSpecIconsType = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.party.args.general.args.groupfinderSpecIconsType.style = "radio"
 	ElvUI_EltreumUI.Options.args.party.args.general.args.groupfinderIconStyle = ACH:Select(L["Country Style"], nil, 12, {
 		["TEXT"] = L["Text"],
 		["FLAG"] = L["Flag"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.skins.groupfinderIconStyle end, function(_, value) E.db.ElvUI_EltreumUI.skins.groupfinderIconStyle = value end, function() return not E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons end, not E.Retail)
+	}, false, nil, function() return E.db.ElvUI_EltreumUI.skins.groupfinderIconStyle end, function(_, value) E.db.ElvUI_EltreumUI.skins.groupfinderIconStyle = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons end, not E.Retail)
 	ElvUI_EltreumUI.Options.args.party.args.general.args.groupfinderIconStyle.style = "radio"
 
 	ElvUI_EltreumUI.Options.args.party.args.instances = ACH:Group(L["Instances"], nil, 2, "tab")
