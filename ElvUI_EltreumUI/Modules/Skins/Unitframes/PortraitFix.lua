@@ -29,6 +29,14 @@ local druidfix = {
 	[2068158] = true, --"druidtravelkultiran.m2",
 	[1818256] = true, --"druidtravelzandalaritroll.m2",
 	[1378642] = true, --"doe.m2",
+	[1980608] = true, --kul tiran bear
+	[2021536] = true, -- kul tiran cat
+	[1274669] = true, -- artifact cat ashamane
+	[1273834] = true, -- artifact cat wood type
+	[1273835] = true, -- artifact cat jungle type
+	[1273904] = true, --artifact cat incarnation
+	[1306665] = true, --artifact cat bird
+	[5099283] = true, --cat druid of the flame
 	--[926251] = true, --"wolfdraenor.m2",
 	--[1043712] = true, --"raptor2.m2",
 }
@@ -426,6 +434,14 @@ local playerlike = {
 	["party5"] = true,
 }
 
+local groupunits = {
+	["party1"] = true,
+	["party2"] = true,
+	["party3"] = true,
+	["party4"] = true,
+	["party5"] = true,
+}
+
 --fix portrait rotation since they dont align correctly due to how blizzard makes models
 function ElvUI_EltreumUI:PortraitFix(unit)
 	if self.playerModel then
@@ -457,16 +473,20 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 				if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
 					if model == 1273833 then
 						xOffset = -0.59 --cat
+						if groupunits[unit] or self:GetParent().unitframeType == "party" then
+							xOffset = -1
+						end
 					elseif model == 1505169 then
 						xOffset = 0.62 --bear
 					elseif model == 4207724 then
 						xOffset = 0.5 --dracthyr
 					elseif druidfix[model] or model == 926251 then
 						xOffset = -0.39 --other bears
+						if groupunits[unit] or self:GetParent().unitframeType == "party" then
+							xOffset = -1
+						end
 					elseif model == 1043712 then
 						xOffset = -1 --shaman raptor
-					else
-						xOffset = 0
 					end
 				end
 			elseif unit == 'target' or targetlike[unit] then
@@ -498,7 +518,13 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 			else
 				--prob couldnt get model bc it was nil from PEW, so reset stuff
 				self:SetRotation(0)
-				self:SetViewTranslation(0, 0)
+				if xOffset ~= 0 then
+					local db = self.db
+					if not db then return end
+					self:SetViewTranslation(xOffset * 100, db.yOffset * 100)
+				else
+					self:SetViewTranslation(0, 0)
+				end
 			end
 		end
 	end
