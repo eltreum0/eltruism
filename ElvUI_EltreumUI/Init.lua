@@ -250,7 +250,6 @@ function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED(event)
 	ElvUI_EltreumUI:QuestCombatEnd()
 	ElvUI_EltreumUI:MinimapHide(event)
 	ElvUI_EltreumUI:DatatextHide(event)
-	ElvUI_EltreumUI:NameplateCustomOptions()
 end
 
 function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED(event)
@@ -292,7 +291,6 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 	ElvUI_EltreumUI:NamePlateOptions()
 	ElvUI_EltreumUI:NameplatePower()
 	ElvUI_EltreumUI:NameplateModel()
-	ElvUI_EltreumUI:NameplateCustomOptions()
 	ElvUI_EltreumUI:TargetUFEffects()
 	ElvUI_EltreumUI:TargetCombatIconClass()
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
