@@ -37,6 +37,7 @@ local druidfix = {
 	[1273904] = true, --artifact cat incarnation
 	[1306665] = true, --artifact cat bird
 	[5099283] = true, --cat druid of the flame
+	[1509765] = true, --druid passanger travel form bird
 	--[926251] = true, --"wolfdraenor.m2",
 	--[1043712] = true, --"raptor2.m2",
 }
