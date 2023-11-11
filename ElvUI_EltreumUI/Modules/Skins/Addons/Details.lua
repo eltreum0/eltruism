@@ -51,10 +51,11 @@ do
 						if thisLine.lineText1 then
 							--local name = E:StripString(thisLine.minha_tabela:GetDisplayName())
 							--print(thisLine.minha_tabela:GetDisplayName(),name,ElvUI_EltreumUI:ShortenString(name, 10, true))
-							local name = thisLine.lineText1:GetText()
-							if not name:match("|cff") then
-								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 12, true), thisLine.minha_tabela:class()))
-							end
+							local name = E:StripString(thisLine.lineText1:GetText())
+							--local name = thisLine.lineText1:GetText()
+							--if not name:match("|cff") then
+								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 13, true), thisLine.minha_tabela:class()))
+							--end
 							if E.db.ElvUI_EltreumUI.skins.detailsgradientnameshadow then
 								thisLine.lineText1:SetShadowOffset(2, -2)
 							end
@@ -66,11 +67,12 @@ do
 						if not thisLine then return end
 						if thisLine.lineText1 then
 							--local name = E:StripString(thisLine.minha_tabela:GetDisplayName())
+							local name = E:StripString(thisLine.lineText1:GetText())
 							--thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(thisLine.colocacao .. ". " .. ElvUI_EltreumUI:ShortenString(name, 10, true), thisLine.minha_tabela:class()))
-							local name = thisLine.lineText1:GetText()
-							if not name:match("|cff") then
-								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 12, true), thisLine.minha_tabela:class()))
-							end
+							--local name = thisLine.lineText1:GetText()
+							--if not name:match("|cff") then
+								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 13, true), thisLine.minha_tabela:class()))
+							--end
 							if E.db.ElvUI_EltreumUI.skins.detailsgradientnameshadow then
 								thisLine.lineText1:SetShadowOffset(2, -2)
 							end
