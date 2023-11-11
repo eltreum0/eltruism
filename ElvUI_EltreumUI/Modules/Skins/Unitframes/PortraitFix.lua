@@ -508,9 +508,6 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 						xOffset = 0 --druid things
 					elseif model == 1273833 or druidshamanfix[model] or model == 926251 or model == 1043712 then
 						xOffset = -0.59 --druid things
-						if self:GetParent().unitframeType == "party" then
-							xOffset = -1
-						end
 					elseif model == 1505169 then
 						xOffset = 0.25 --bear
 					elseif model == 4207724 then
