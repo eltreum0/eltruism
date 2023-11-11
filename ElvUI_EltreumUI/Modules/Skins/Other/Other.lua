@@ -47,6 +47,11 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 						bar.StatusBar:SetAllPoints(bar)
 						bar:SetPoint("CENTER", _G.MirrorTimerContainer, "CENTER")
 
+						if bar.Text then --fix text not being centered
+							bar.Text:ClearAllPoints()
+							bar.Text:SetPoint("CENTER",bar,"CENTER")
+						end
+
 						--shadows
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard then
 							if not bar.shadow then
