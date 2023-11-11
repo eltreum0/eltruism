@@ -435,14 +435,6 @@ local playerlike = {
 	["party5"] = true,
 }
 
-local groupunits = {
-	["party1"] = true,
-	["party2"] = true,
-	["party3"] = true,
-	["party4"] = true,
-	["party5"] = true,
-}
-
 --fix portrait rotation since they dont align correctly due to how blizzard makes models
 function ElvUI_EltreumUI:PortraitFix(unit)
 	if self.playerModel then
@@ -474,7 +466,7 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 				if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
 					if model == 1273833 then
 						xOffset = -0.59 --cat
-						if groupunits[unit] or self:GetParent().unitframeType == "party" then
+						if self:GetParent().unitframeType == "party" then
 							xOffset = -1
 						end
 					elseif model == 1505169 then
@@ -483,7 +475,7 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 						xOffset = 0.5 --dracthyr
 					elseif druidfix[model] or model == 926251 then
 						xOffset = -0.39 --other bears
-						if groupunits[unit] or self:GetParent().unitframeType == "party" then
+						if self:GetParent().unitframeType == "party" then
 							xOffset = -1
 						end
 					elseif model == 1043712 then
