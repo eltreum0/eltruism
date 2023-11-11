@@ -6,7 +6,7 @@ local hooksecurefunc = _G.hooksecurefunc
 local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 local UF = E:GetModule('UnitFrames')
 
-local druidfix = {
+local druidshamanfix = {
 	[1272625] = true, --""druidbear2_artifact1.m2",
 	[1272606] = true, --""druidbear2_artifact2.m2",
 	[1272605] = true, --""druidbear2_artifact3.m2",
@@ -38,6 +38,7 @@ local druidfix = {
 	[1306665] = true, --artifact cat bird
 	[5099283] = true, --cat druid of the flame
 	[1509765] = true, --druid passanger travel form bird
+	[3071370] = true, --shaman ghost wolf glyph
 	--[926251] = true, --"wolfdraenor.m2",
 	--[1043712] = true, --"raptor2.m2",
 }
@@ -473,7 +474,7 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 						xOffset = 0.62 --bear
 					elseif model == 4207724 then
 						xOffset = 0.5 --dracthyr
-					elseif druidfix[model] or model == 926251 then
+					elseif druidshamanfix[model] or model == 926251 then
 						xOffset = -0.39 --other bears
 						if self:GetParent().unitframeType == "party" then
 							xOffset = -1
@@ -490,7 +491,7 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 					newrotation = 0
 				end
 				if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
-					if model == 1273833 or druidfix[model] or model == 926251 or model == 1043712 then
+					if model == 1273833 or druidshamanfix[model] or model == 926251 or model == 1043712 then
 						xOffset = -0.59 --cat
 					elseif model == 1505169 then
 						xOffset = 0.2 --bear
