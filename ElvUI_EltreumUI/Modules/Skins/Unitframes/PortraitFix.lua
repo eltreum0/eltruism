@@ -6,7 +6,7 @@ local hooksecurefunc = _G.hooksecurefunc
 local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 local UF = E:GetModule('UnitFrames')
 
-local druidfix = {
+local druidshamanfix = {
 	[1272625] = true, --""druidbear2_artifact1.m2",
 	[1272606] = true, --""druidbear2_artifact2.m2",
 	[1272605] = true, --""druidbear2_artifact3.m2",
@@ -29,6 +29,18 @@ local druidfix = {
 	[2068158] = true, --"druidtravelkultiran.m2",
 	[1818256] = true, --"druidtravelzandalaritroll.m2",
 	[1378642] = true, --"doe.m2",
+	[1980608] = true, --kul tiran bear
+	[2021536] = true, -- kul tiran cat
+	[1274669] = true, -- artifact cat ashamane
+	[1273834] = true, -- artifact cat wood type
+	[1273835] = true, -- artifact cat jungle type
+	[1273904] = true, --artifact cat incarnation
+	[1306665] = true, --artifact cat bird
+	[5099283] = true, --cat druid of the flame
+	[1509765] = true, --druid passanger travel form bird
+	[3071370] = true, --shaman ghost wolf glyph
+	[4734292] = true,
+	[5091437] = true,
 	--[926251] = true, --"wolfdraenor.m2",
 	--[1043712] = true, --"raptor2.m2",
 }
@@ -451,22 +463,28 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 					newrotation = 0
 				elseif model == 926251 then
 					newrotation = 99
+				elseif model == 5091437 then
+					newrotation = 28 --druid qonzu bird
 				else
 					newrotation = 67--3
 				end
 				if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
 					if model == 1273833 then
 						xOffset = -0.59 --cat
+						if self:GetParent().unitframeType == "party" then
+							xOffset = -1
+						end
 					elseif model == 1505169 then
 						xOffset = 0.62 --bear
 					elseif model == 4207724 then
 						xOffset = 0.5 --dracthyr
-					elseif druidfix[model] or model == 926251 then
+					elseif druidshamanfix[model] or model == 926251 then
 						xOffset = -0.39 --other bears
+						if self:GetParent().unitframeType == "party" then
+							xOffset = -1
+						end
 					elseif model == 1043712 then
 						xOffset = -1 --shaman raptor
-					else
-						xOffset = 0
 					end
 				end
 			elseif unit == 'target' or targetlike[unit] then
@@ -477,10 +495,15 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 					newrotation = 0
 				end
 				if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
-					if model == 1273833 or druidfix[model] or model == 926251 or model == 1043712 then
-						xOffset = -0.59 --cat
+					if model == 5091437 then
+						xOffset = 0 --druid things
+					elseif model == 1273833 or druidshamanfix[model] or model == 926251 or model == 1043712 then
+						xOffset = -0.59 --druid things
+						if self:GetParent().unitframeType == "party" then
+							xOffset = -1
+						end
 					elseif model == 1505169 then
-						xOffset = 0.2 --bear
+						xOffset = 0.25 --bear
 					elseif model == 4207724 then
 						xOffset = 0.6 --dracthyr
 					else
@@ -498,7 +521,13 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 			else
 				--prob couldnt get model bc it was nil from PEW, so reset stuff
 				self:SetRotation(0)
-				self:SetViewTranslation(0, 0)
+				if xOffset ~= 0 then
+					local db = self.db
+					if not db then return end
+					self:SetViewTranslation(xOffset * 100, db.yOffset * 100)
+				else
+					self:SetViewTranslation(0, 0)
+				end
 			end
 		end
 	end

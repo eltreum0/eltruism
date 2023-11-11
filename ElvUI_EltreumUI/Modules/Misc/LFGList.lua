@@ -191,7 +191,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 			if GetClassInfo(classID) then --nil check for classic
 				local className = select(2, GetClassInfo(classID))
 				iconTable[className] = {}
-				if E.Retail then
+				if E.Retail and E.db.ElvUI_EltreumUI.skins.groupfinderSpecIconsType == "SPEC" then
 					for i = 1, 4 do --druids have 4 in retail
 						--local id, name, description, icon, role, isRecommended, isAllowed = GetSpecializationInfoForClassID(classID, specIndex)
 						local _, name, _, icon = GetSpecializationInfoForClassID(classID, i)
@@ -279,7 +279,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 							else
 								region = "???"
 							end
-							if entry.ActivityName:GetText() ~= nil and entry.ActivityName:GetText() ~= "" and not entry.ActivityName:GetText():match("|T") then
+							if entry.ActivityName:GetText() ~= nil and entry.ActivityName:GetText() ~= "" and not entry.ActivityName:GetText():match(region) then
 								entry.ActivityName:SetFormattedText("%s %s", region,entry.ActivityName:GetText())
 							end
 						end
@@ -347,7 +347,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 
 					entry.DataDisplay.Enumerate[i]:SetPoint("RIGHT", entry.DataDisplay.Enumerate, "RIGHT", -13 - 21*(maxNumPlayers-i), -1)
 					entry.DataDisplay.Enumerate[i]:Show()
-					if E.Retail then
+					if E.Retail and E.db.ElvUI_EltreumUI.skins.groupfinderSpecIconsType == "SPEC" then
 						entry.DataDisplay.Enumerate[i]:SetTexture(partymembers[i][4])
 						entry.DataDisplay.Enumerate[i]:SetTexCoord(0.08,0.92,0.08,0.92)
 					else

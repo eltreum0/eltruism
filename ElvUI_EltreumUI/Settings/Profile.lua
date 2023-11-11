@@ -377,6 +377,7 @@ P.ElvUI_EltreumUI = {
 			},
 		},
 		groupfinderSpecIcons = true,
+		groupfinderSpecIconsType = "SPEC",
 		groupfinderDungeonScore = true,
 		groupfinderIconStyle = "TEXT",
 		hidetalkinghead = false,

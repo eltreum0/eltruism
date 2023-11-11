@@ -69,13 +69,18 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 				end
 
 				--recreate the left border, which doesn't exist anymore
-				if not icon.statusBar.borderLeft then
-					icon.statusBar.borderLeft = icon.statusBar:CreateTexture()
-					icon.statusBar.borderLeft:SetColorTexture(OmniCD.db.icons.borderColor.r, OmniCD.db.icons.borderColor.g, OmniCD.db.icons.borderColor.b)
-					icon.statusBar.borderLeft:SetPoint("TOPLEFT", icon.statusBar, "TOPLEFT", 0, 0)
-					icon.statusBar.borderLeft:SetPoint("BOTTOMLEFT", icon.statusBar, "BOTTOMLEFT", 0, 0)
+				if icon.statusBar.borderRight and icon.statusBar.borderRight.SetColorTexture then
 					hooksecurefunc(icon.statusBar.borderRight,"SetColorTexture", function(_,r,g,b)
-						icon.statusBar.borderLeft:SetColorTexture(r, g, b)
+						if not icon.statusBar then return end
+						if not icon.statusBar.borderLeft then
+							icon.statusBar.borderLeft = icon.statusBar:CreateTexture()
+							icon.statusBar.borderLeft:SetColorTexture(OmniCD.db.icons.borderColor.r, OmniCD.db.icons.borderColor.g, OmniCD.db.icons.borderColor.b)
+							icon.statusBar.borderLeft:SetPoint("TOPLEFT", icon.statusBar, "TOPLEFT", 0, 0)
+							icon.statusBar.borderLeft:SetPoint("BOTTOMLEFT", icon.statusBar, "BOTTOMLEFT", 0, 0)
+							icon.statusBar.borderLeft:SetColorTexture(r, g, b)
+						else
+							icon.statusBar.borderLeft:SetColorTexture(r, g, b)
+						end
 					end)
 				end
 
