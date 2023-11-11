@@ -363,7 +363,7 @@ function ElvUI_EltreumUI:SkillGlow()
 				end)
 			end
 
-			if E.myclass == 'PALADIN' or E.myclass == 'WARRIOR' or E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DEATHKNIGHT' then
+			if (E.myclass == 'PALADIN' or E.myclass == 'WARRIOR' or E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DEATHKNIGHT') and not IsAddOnLoaded("SpellActivationOverlay") then
 				--classic glow proc list
 				local SPELL_ID = {
 
