@@ -215,7 +215,7 @@ function ElvUI_EltreumUI:Castbar_CheckInterrupt(unit)
 			else
 				self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2noninterruptible,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2noninterruptible,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2noninterruptible,a= 1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1noninterruptible,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1noninterruptible,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1noninterruptible,a= 1})
 			end
-		else
+		elseif (not self.notInterruptible) and (not ElvUI_EltreumUI:CheckmMediaTagInterrupt()) then
 			if UnitIsPlayer(unit) then
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.classcolortargetcastbar then
 					self:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR1custom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG1custom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB1custom,a= 1}, {r=E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarR2custom,g= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarG2custom,b= E.db.ElvUI_EltreumUI.unitframes.gradientmode.targetcastbarB2custom,a= 1})
