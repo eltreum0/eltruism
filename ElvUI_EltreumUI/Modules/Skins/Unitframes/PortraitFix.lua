@@ -491,6 +491,9 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 						end
 					elseif model == 1043712 then
 						xOffset = -1 --shaman raptor
+						if self:GetParent().unitframeType == "party" then
+							xOffset = -2.3
+						end
 					end
 				end
 			elseif unit == 'target' or targetlike[unit] then
