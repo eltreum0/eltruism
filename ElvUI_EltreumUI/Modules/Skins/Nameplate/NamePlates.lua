@@ -420,6 +420,7 @@ function ElvUI_EltreumUI:SetStyleFilters()
 			E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["enable"] = false
 		end
 	end
+	NP:ConfigureAll() --update style filters using the same call that is on the Enable button in the style filter
 end
 
 -- Nameplate options for Border and Glow and Texture
