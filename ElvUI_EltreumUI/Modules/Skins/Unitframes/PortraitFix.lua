@@ -439,10 +439,16 @@ local playerlike = {
 }
 
 --fix portrait rotation since they dont align correctly due to how blizzard makes models
+local modelcheck = CreateFrame("PlayerModel", "EltruismPortraitFixModel")
 function ElvUI_EltreumUI:PortraitFix(unit)
 	if self.playerModel then
 		if E.db.ElvUI_EltreumUI.unitframes.portraitfix then
 			local model = self:GetModelFileID()
+			if not model then
+				modelcheck:SetUnit(unit) --use a different model to get the file id since the file id is nil when the frame has 0 alpha from fader
+				model = modelcheck:GetModelFileID()
+				modelcheck:ClearModel()
+			end
 			local newrotation
 			local xOffset = 0
 

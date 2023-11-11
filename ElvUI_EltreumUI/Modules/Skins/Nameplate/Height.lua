@@ -29,8 +29,12 @@ tableupdate:SetScript("OnEvent",function()
 	}
 end)
 function ElvUI_EltreumUI:NameplateCustomOptions(unit)
+	if not unit then return end
+	if not unit.unit then return end
+	if not unit.Health then return end
+	if not unit.Health:IsShown() then return end
 	if not E.private.nameplates.enable then return end
-	if (E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight) and unit and unit.unit and unit.unit:match("nameplate") then
+	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight then --and unit.unit:match("nameplate") then --unit is always nameplate
 
 		--check if its not explosive
 		--[[if (unit.unitGUID and unit.unitGUID:match("-120651-")) or UnitIsUnit(unit.unit,"player") then

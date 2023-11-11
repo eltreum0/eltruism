@@ -225,10 +225,6 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 		powerbareffect:Hide()
 		EltreumPowerAnchor = nil
 	end
-	if not UnitExists("target") then return end
-	if not UnitCanAttack("player", "target") then return end
-	if not C_NamePlate.GetNamePlateForUnit("target") then return end
-	if UnitIsDead("target") then return end
 	if not E.private.ElvUI_EltreumUI then return end
 	if not E.private.ElvUI_EltreumUI.install_version then return end
 	if not E.private.ElvUI_EltreumUI.nameplatepower then return end
@@ -822,8 +818,10 @@ end
 local EltruismPowerBarEventsFrame = CreateFrame("FRAME")
 EltruismPowerBarEventsFrame:RegisterUnitEvent("UNIT_POWER_FREQUENT", "player")
 EltruismPowerBarEventsFrame:SetScript("OnEvent", function()
-	ElvUI_EltreumUI:NameplatePowerTextUpdate()
-	ElvUI_EltreumUI:NameplatePower()
+	if UnitExists("target") then
+		ElvUI_EltreumUI:NameplatePowerTextUpdate()
+		ElvUI_EltreumUI:NameplatePower()
+	end
 end)
 
 --update prediction
@@ -831,16 +829,20 @@ local EltruismPowerBarPredictionEventsFrame = CreateFrame("FRAME")
 EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 EltruismPowerBarPredictionEventsFrame:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
 EltruismPowerBarPredictionEventsFrame:SetScript("OnEvent", function()
-	ElvUI_EltreumUI:PowerPrediction()
+	if UnitExists("target") then
+		ElvUI_EltreumUI:PowerPrediction()
+	end
 end)
 
 --update when model changes (for druids mostly)
 local EltruismPowerBarModelCheck = CreateFrame("FRAME")
 EltruismPowerBarModelCheck:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
 EltruismPowerBarModelCheck:SetScript("OnEvent", function()
-	ElvUI_EltreumUI:NameplatePowerTextUpdate()
-	ElvUI_EltreumUI:NameplatePower()
-	ElvUI_EltreumUI:PowerPrediction()
+	if UnitExists("target") then
+		ElvUI_EltreumUI:NameplatePowerTextUpdate()
+		ElvUI_EltreumUI:NameplatePower()
+		ElvUI_EltreumUI:PowerPrediction()
+	end
 end)
 
 --update buff/debuff position automatically
