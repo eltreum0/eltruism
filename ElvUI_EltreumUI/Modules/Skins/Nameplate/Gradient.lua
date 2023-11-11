@@ -18,6 +18,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 	nameplate, db = self.__owner, NP.db.threat
 	sf = NP:StyleFilterChanges(nameplate)
 	if status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) and not sf.HealthColor then
+		if not nameplate.Health then return end
 		--NP:Health_SetColors(nameplate, true)
 
 		-- if gradient use gradient mode
