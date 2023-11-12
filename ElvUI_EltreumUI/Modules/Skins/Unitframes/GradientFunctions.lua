@@ -251,9 +251,9 @@ end
 local colorupdateframe = CreateFrame("FRAME")
 colorupdateframe:RegisterEvent("PLAYER_ENTERING_WORLD")
 colorupdateframe:RegisterEvent("PLAYER_STARTED_MOVING")
-colorupdateframe:RegisterEvent("PLAYER_LOGIN")
+colorupdateframe:RegisterEvent("FIRST_FRAME_RENDERED")
 
---10.1 event order list
+--10.2 event order list
 --[[local eventorder = {
 	["ADDON_LOADED"] = true,
 	["UPDATE_BINDINGS"] = true,
@@ -290,6 +290,7 @@ colorupdateframe:RegisterEvent("PLAYER_LOGIN")
 	["CALENDAR_ACTION_PENDING"] = true,
 	--THEN FINALLY
 	["PLAYER_LOGIN"] = false,
+	--there is also FIRST_FRAME_RENDERED
 }]]
 
 colorupdateframe:SetScript("OnEvent", function()
