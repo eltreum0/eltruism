@@ -107,7 +107,7 @@ function ElvUI_EltreumUI:Doom()
 		end
 
 		---set the main script
-		DCP:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
+		DCP:SetScript("OnEvent", function(selftable, event, ...) selftable[event](selftable, ...) end)
 
 		-----------------------
 		-- Utility Functions --
@@ -244,7 +244,6 @@ function ElvUI_EltreumUI:Doom()
 					DCPT:SetTexture(nil)
 					DCP.shadow:SetAlpha(0)
 					DCPT:SetVertexColor(1,1,1)
-
 				else
 					if (not DCPT:GetTexture()) then
 						if (animating[1][3] ~= nil and E.db.ElvUI_EltreumUI.skins.doom.showSpellName) then
@@ -252,6 +251,9 @@ function ElvUI_EltreumUI:Doom()
 						end
 						if E.db.ElvUI_EltreumUI.skins.doom.tts then
 							local tts = GetSpellInfo(animating[1][3])
+							if not tts then
+								tts = tostring(animating[1][3])
+							end
 							if E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil and tts ~= nil then
 								C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
 							end
@@ -303,11 +305,7 @@ function ElvUI_EltreumUI:Doom()
 		function DCP:UNIT_SPELLCAST_SUCCEEDED(unit,_,spellID)
 			if (unit == "player") then
 				watching[spellID] = {GetTime(),"spell",spellID}
-				if (not self:IsMouseEnabled()) then
-					self:SetScript("OnUpdate", OnUpdate)
-				else
-					self:SetScript("OnUpdate", nil)
-				end
+				self:SetScript("OnUpdate", OnUpdate)
 			end
 		end
 		DCP:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
@@ -318,22 +316,20 @@ function ElvUI_EltreumUI:Doom()
 				if (bit.band(sourceFlags,COMBATLOG_OBJECT_TYPE_PET) == COMBATLOG_OBJECT_TYPE_PET and bit.band(sourceFlags,COMBATLOG_OBJECT_AFFILIATION_MINE) == COMBATLOG_OBJECT_AFFILIATION_MINE) then
 					local name = GetSpellInfo(spellID)
 					local index = GetPetActionIndexByName(name)
-					if (index and not select(7,GetPetActionInfo(index))) then
+					if index then
 						watching[spellID] = {GetTime(),"pet",index}
-					elseif (not index and spellID) then
+					elseif spellID then
 						watching[spellID] = {GetTime(),"spell",spellID}
 					else
 						return
 					end
-					if (not self:IsMouseEnabled()) then
-						self:SetScript("OnUpdate", OnUpdate)
-					else
-						self:SetScript("OnUpdate", nil)
-					end
+					self:SetScript("OnUpdate", OnUpdate)
 				end
 			end
 		end
-		DCP:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+		if E.db.ElvUI_EltreumUI.skins.doom.pet then
+			DCP:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+		end
 
 		function DCP:PLAYER_ENTERING_WORLD() --todo: maybe make an option for it in arena
 			local inInstance,instanceType = IsInInstance()
