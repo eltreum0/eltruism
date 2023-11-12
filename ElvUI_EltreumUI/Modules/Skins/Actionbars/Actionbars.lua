@@ -656,7 +656,6 @@ function ElvUI_EltreumUI:SkillGlowPet()
 			local _, _, _, _, _, autoCastEnabled = GetPetActionInfo(i)
 			local button = _G['PetActionButton'..i]
 			if autoCastEnabled then
-				print(autoCastEnabled,GetPetActionInfo(i))
 				AutoCastShine_AutoCastStop(button.AutoCastShine)
 				button.AutoCastShine:Hide()
 				if E.db.ElvUI_EltreumUI.glow.pixel then
