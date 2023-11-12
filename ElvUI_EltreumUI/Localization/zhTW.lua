@@ -1477,3 +1477,4 @@ L["Hide Auras"] = true
 L["Hide Auras on Nameplates that are not in Combat"] = true
 L["Pause and Desaturate Portrait if Dead"] = true
 L["Change Combat Indicators to be class based"] = true
+L["Show Pet Spells"] = true
