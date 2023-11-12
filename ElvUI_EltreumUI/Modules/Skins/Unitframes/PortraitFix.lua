@@ -41,6 +41,7 @@ local druidshamanfix = {
 	[3071370] = true, --shaman ghost wolf glyph
 	[4734292] = true,
 	[5091437] = true,
+	[5008711] = true,
 	--[926251] = true, --"wolfdraenor.m2",
 	--[1043712] = true, --"raptor2.m2",
 }
@@ -491,6 +492,9 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 						end
 					elseif model == 1043712 then
 						xOffset = -1 --shaman raptor
+						if self:GetParent().unitframeType == "party" then
+							xOffset = -2.3
+						end
 					end
 				end
 			elseif unit == 'target' or targetlike[unit] then
@@ -505,9 +509,6 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 						xOffset = 0 --druid things
 					elseif model == 1273833 or druidshamanfix[model] or model == 926251 or model == 1043712 then
 						xOffset = -0.59 --druid things
-						if self:GetParent().unitframeType == "party" then
-							xOffset = -1
-						end
 					elseif model == 1505169 then
 						xOffset = 0.25 --bear
 					elseif model == 4207724 then

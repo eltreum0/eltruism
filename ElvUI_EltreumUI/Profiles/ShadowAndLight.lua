@@ -4,7 +4,7 @@ local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoa
 
 --Setup Shadow & Light
 function ElvUI_EltreumUI:GetSLEProfile()
-	if IsAddOnLoaded("ElvUI_SLE") then --TODO 10.2, might need C_AddOns.
+	if IsAddOnLoaded("ElvUI_SLE") then
 		-- Load Shadow & Light profile
 		E.global["sle"]["advanced"]["confirmed"] = true
 		E.global["sle"]["advanced"]["gameMenu"]["enable"] = true
