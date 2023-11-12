@@ -481,15 +481,17 @@ local function TSMCheck(arg)
 end
 tradeskilloadmonitor:SetScript("OnEvent", function(_,_,arg)
 	--in 10.1.5 the addon load order seems to not be reliable and tsm can error, so check for tsm being enabled (because it wont be loaded)
-	if GetAddOnEnableState(E.myname,"TradeSkillMaster") == 0 then --TODO 10.2 reverses: name,character, might need C_AddOns.GetAddOnEnableState
-		TSMCheck(arg)
-	else
-		if E.Retail then
-			tradeskilloadmonitor:UnregisterAllEvents()
-			S:AddCallbackForAddon('TradeSkillMaster', "EltruismTSMWorkaround", ElvUI_EltreumUI.EnchantScroll)
-		else
+	if E.Retail then
+		if GetAddOnEnableState("TradeSkillMaster",E.myname) == 0 then --TODO 10.2 reverses: name,character, might need C_AddOns.GetAddOnEnableState
 			TSMCheck(arg)
+		else
+			if E.Retail then
+				tradeskilloadmonitor:UnregisterAllEvents()
+				S:AddCallbackForAddon('TradeSkillMaster', "EltruismTSMWorkaround", ElvUI_EltreumUI.EnchantScroll)
+			end
 		end
+	else
+		TSMCheck(arg)
 	end
 end)
 
