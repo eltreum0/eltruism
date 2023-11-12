@@ -41,6 +41,7 @@ local druidshamanfix = {
 	[3071370] = true, --shaman ghost wolf glyph
 	[4734292] = true,
 	[5091437] = true,
+	[5008711] = true,
 	--[926251] = true, --"wolfdraenor.m2",
 	--[1043712] = true, --"raptor2.m2",
 }
