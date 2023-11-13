@@ -464,13 +464,15 @@ function ElvUI_EltreumUI:SkillGlow()
 						for i=1, NUM_ACTIONBAR_BUTTONS do
 							button = bar.buttons[i]
 							local buttonname = button:GetName()
-							if _G[buttonname].GetSpellId and _G[buttonname]:GetSpellId() then
+							proc = _G[buttonname].abilityID
+							--[[if _G[buttonname].GetSpellId and _G[buttonname]:GetSpellId() then
 								proc = _G[buttonname]:GetSpellId()
-							end
-							if SPELL_ID[proc] and not (E.Wrath and proc == 34026)then
+							end]]
+							if SPELL_ID[proc] and not (E.Wrath and proc == 34026) then
 								local USABLE, NO_MANA = IsUsableSpell(proc)
 								local cd = GetSpellCooldown(proc)
-								if (UnitExists("target") and UnitCanAttack("player", "target") and cd == 0 and USABLE and not NO_MANA) and _G[buttonname].GetSpellId and _G[buttonname]:GetSpellId() == proc then
+								--if (UnitExists("target") and UnitCanAttack("player", "target") and cd == 0 and USABLE and not NO_MANA) and _G[buttonname].GetSpellId and _G[buttonname]:GetSpellId() == proc then
+								if (UnitExists("target") and UnitCanAttack("player", "target") and cd == 0 and USABLE and not NO_MANA) and proc then
 									if E.myclass == 'PALADIN' then
 										if proc == 27138 or proc == 10314 or proc == 10313 or proc == 10312 or proc == 5615 or proc == 5614 or proc == 879 then
 											local unittype = UnitCreatureType("target")
