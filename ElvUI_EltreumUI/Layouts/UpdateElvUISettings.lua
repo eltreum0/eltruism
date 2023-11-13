@@ -107,6 +107,10 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["textXOffset"] = 9
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["textYOffset"] = 0
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["xOffset"] = 15
+
+		E.db["actionbar"]["targetReticleColor"]["b"] = valuecolors.b
+		E.db["actionbar"]["targetReticleColor"]["g"] = valuecolors.g
+		E.db["actionbar"]["targetReticleColor"]["r"] = valuecolors.r
 	else
 		E.private["general"]["nameplateFont"] = "Kimberley"
 		E.private["general"]["nameplateFontOutline"] = "OUTLINE"
@@ -294,6 +298,10 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 		E.db["tooltip"]["role"] = false --was true
 		E.db["tooltip"]["targetInfo"] = false --was true
 		E.db["tooltip"]["showMount"] = false --was true
+
+		E.db["actionbar"]["targetReticleColor"]["b"] = valuecolors.b
+		E.db["actionbar"]["targetReticleColor"]["g"] = valuecolors.g
+		E.db["actionbar"]["targetReticleColor"]["r"] = valuecolors.r
 
 		--rest icon
 		E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["a"] = 1.00

@@ -684,6 +684,10 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["actionbar"]["cooldown"]["threshold"] = 5
 		E.db["actionbar"]["cooldown"]["fonts"]["enable"] = false
 
+		E.db["actionbar"]["targetReticleColor"]["b"] = valuecolors.b
+		E.db["actionbar"]["targetReticleColor"]["g"] = valuecolors.g
+		E.db["actionbar"]["targetReticleColor"]["r"] = valuecolors.r
+
 		E.db["actionbar"]["bar1"]["buttonsPerRow"] = 7
 		E.db["actionbar"]["bar2"]["buttonsPerRow"] = 12
 		E.db["actionbar"]["bar3"]["buttonsPerRow"] = 12
