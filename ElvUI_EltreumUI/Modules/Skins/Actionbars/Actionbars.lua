@@ -617,7 +617,7 @@ function ElvUI_EltreumUI:SkillGlow()
 
 				local classicglowframe = CreateFrame("FRAME")
 				classicglowframe:RegisterEvent("PLAYER_STARTED_MOVING")
-				classicglowframe:RegisterEvent("PLAYER_LOGIN")
+				classicglowframe:RegisterEvent("FIRST_FRAME_RENDERED")
 				--classicglowframe:RegisterEvent('ACTIONBAR_UPDATE_USABLE')
 				classicglowframe:SetScript("OnEvent", function()
 					classicglowframe:UnregisterAllEvents()
@@ -653,7 +653,7 @@ function ElvUI_EltreumUI:SkillGlowPet()
 		end
 		local procpet = {}
 		for i = 1, NUM_PET_ACTION_SLOTS, 1 do
-			local _, _, _, _, _, autoCastEnabled, _ = GetPetActionInfo(i)
+			local _, _, _, _, _, autoCastEnabled = GetPetActionInfo(i)
 			local button = _G['PetActionButton'..i]
 			if autoCastEnabled then
 				AutoCastShine_AutoCastStop(button.AutoCastShine)
@@ -715,10 +715,10 @@ end
 local petcdcheck = CreateFrame("FRAME")
 petcdcheck:RegisterEvent("PET_BAR_UPDATE")
 petcdcheck:RegisterEvent("PLAYER_STARTED_MOVING")
-petcdcheck:RegisterEvent("PLAYER_LOGIN")
+petcdcheck:RegisterEvent("FIRST_FRAME_RENDERED")
 petcdcheck:SetScript("OnEvent", function()
 	petcdcheck:UnregisterEvent("PLAYER_STARTED_MOVING")
-	petcdcheck:UnregisterEvent("PLAYER_LOGIN")
+	petcdcheck:UnregisterEvent("FIRST_FRAME_RENDERED")
 	ElvUI_EltreumUI:SkillGlowPet()
 end)
 --hooksecurefunc(AB, "UpdatePet", ElvUI_EltreumUI.SkillGlowPet)
