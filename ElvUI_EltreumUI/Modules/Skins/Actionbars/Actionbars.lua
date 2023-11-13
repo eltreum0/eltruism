@@ -370,7 +370,7 @@ function ElvUI_EltreumUI:SkillGlow()
 					--victory rush
 					[34428] = true,
 					--kill command
-					[34026] = true,
+					[34026] = E.Classic and true or false,
 					--riposte
 					[14251] = true,
 
@@ -408,11 +408,11 @@ function ElvUI_EltreumUI:SkillGlow()
 					[56815] = true,
 
 					--mongoose bite (always works on wotlk)
-					--[[[36916] = true,
-					[14271] = true,
-					[14270] = true,
-					[14269] = true,
-					[1495] = true,]]
+					[36916] = E.Classic and true or false,
+					[14271] = E.Classic and true or false,
+					[14270] = E.Classic and true or false,
+					[14269] = E.Classic and true or false,
+					[1495] = E.Classic and true or false,
 
 					--counterattack
 					[27067] = true,
@@ -420,14 +420,14 @@ function ElvUI_EltreumUI:SkillGlow()
 					[20909] = true,
 					[19306] = true,
 
-					--[[--exorcism --different in wrath
-					[27138] = true,
-					[10314] = true,
-					[10313] = true,
-					[10312] = true,
-					[5615] = true,
-					[5614] = true,
-					[879] = true,]]
+					--exorcism --different in wrath
+					[27138] = E.Classic and true or false,
+					[10314] = E.Classic and true or false,
+					[10313] = E.Classic and true or false,
+					[10312] = E.Classic and true or false,
+					[5615] = E.Classic and true or false,
+					[5614] = E.Classic and true or false,
+					[879] = E.Classic and true or false,
 
 					--hammer of wrath
 					[27180] = true,
@@ -449,12 +449,19 @@ function ElvUI_EltreumUI:SkillGlow()
 					[686] = true,]]
 				}
 
-				local proc
-				--local auraid, _
+				local exorcism = {
+					[27138] = true,
+					[10314] = true,
+					[10313] = true,
+					[10312] = true,
+					[5615] = true,
+					[5614] = true,
+					[879] = true,
+				}
+
 				function ElvUI_EltreumUI:ClassicGlow(barName)
 					local bar = AB["handledBars"][barName]
 					if not bar then return end
-					local button
 					local procFrame = CreateFrame('frame')
 					procFrame:RegisterEvent('ACTIONBAR_UPDATE_USABLE')
 					procFrame:RegisterEvent('ACTIONBAR_UPDATE_STATE')
@@ -462,19 +469,19 @@ function ElvUI_EltreumUI:SkillGlow()
 					procFrame:RegisterEvent('PLAYER_TARGET_CHANGED')
 					procFrame:SetScript('OnEvent', function()
 						for i=1, NUM_ACTIONBAR_BUTTONS do
-							button = bar.buttons[i]
+							local button = bar.buttons[i]
 							local buttonname = button:GetName()
-							proc = _G[buttonname].abilityID
+							local proc = _G[buttonname].abilityID
 							--[[if _G[buttonname].GetSpellId and _G[buttonname]:GetSpellId() then
 								proc = _G[buttonname]:GetSpellId()
 							end]]
-							if SPELL_ID[proc] and not (E.Wrath and proc == 34026) then
+							if SPELL_ID[proc] then
 								local USABLE, NO_MANA = IsUsableSpell(proc)
 								local cd = GetSpellCooldown(proc)
 								--if (UnitExists("target") and UnitCanAttack("player", "target") and cd == 0 and USABLE and not NO_MANA) and _G[buttonname].GetSpellId and _G[buttonname]:GetSpellId() == proc then
-								if (UnitExists("target") and UnitCanAttack("player", "target") and cd == 0 and USABLE and not NO_MANA) and proc then
+								if (UnitExists("target") and UnitCanAttack("player", "target") and cd == 0 and USABLE and not NO_MANA) then
 									if E.myclass == 'PALADIN' then
-										if proc == 27138 or proc == 10314 or proc == 10313 or proc == 10312 or proc == 5615 or proc == 5614 or proc == 879 then
+										if exorcism[proc] then
 											local unittype = UnitCreatureType("target")
 											--if unittype == "Demon" or unittype == "Dämon" or unittype == "Demonio" or unittype == "Démon" or unittype == "Demone" or unittype == "Demônio" or unittype == "Демон" or unittype == "악마" or unittype == "恶魔" or unittype == "惡魔" or unittype == "Undead" or unittype == "Untoter" or unittype == "No-muerto" or unittype == "Mort-vivant" or unittype == "Non Morto" or unittype == "Renegado" or unittype == "Нежить" or unittype == "언데드" or unittype == "亡灵" or unittype == "不死族" then
 											if unittype == _G.PET_TYPE_DEMON or unittype == _G.BATTLE_PET_DAMAGE_NAME_4 then
@@ -604,7 +611,7 @@ function ElvUI_EltreumUI:SkillGlow()
 										LCG.ButtonGlow_Stop(_G[buttonname])
 									end
 								end
-							elseif SPELL_ID[proc] == nil then
+							else
 								if E.db.ElvUI_EltreumUI.glow.pixel then
 									LCG.PixelGlow_Stop(_G[buttonname])
 								elseif E.db.ElvUI_EltreumUI.glow.autocast then
