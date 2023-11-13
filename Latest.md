@@ -1,15 +1,15 @@
-### 4.0.4 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 4.0.5 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added the ability for Font Outline and Font functions in Eltruism > Media to apply to any Custom Text found in the unitframes  
-Updated Details profiles to no longer use auto align in order to avoid the truncated text  
-Updated Portraits to once again require ElvUI portraits due to how the function updates  
-Updated Zone Texts, Error Frame Text and others to use ElvUI settings added in 13.48  
-Updated Immersion skin to add a small gap between buttons  
-Updated Nameplate Threat Gradient to run better  
-Updated C_AddOns references  
-Fixed an issue where strata and level options for the unitframe aura border were in the auras section  
-Fixed a possible error with Shadows when backdrops were not found  
-Fixed an issue when attempting to scale the Professions frame  
-Fixed shadows in the Focus and Focus Target unitframes  
-Fixed text color on Ace3 buttons when clicked  
-Fixed an error in the Auctionator Skin
+Added an option to show Classes instead of Specs in the LFG Skin in Retail  
+Added a toggle for showing Pet cooldowns on the Cooldown module  
+Added ElvUI settings to the /eltruism autoupdate command  
+Updated Action Bar 4 paging on Classic Era when playing a Priest due to Mind Control  
+Updated Custom Glow on Classic/Wrath to use new ElvUI functions and perform better  
+Updated some functions such as Nameplate Threat Gradient to be faster  
+Updated a few function events to load after the loading screen  
+Updated Portrait Fix with more models  
+Fixed an issue where the Font options in Eltruism > Media would not apply if you were on a character that had the same name as others in other realms  
+Fixed an issue with the Enchant Button when Tradeskillmaster is enabled  
+Fixed an error during install for Shamans and Druids on Classic Era  
+Fixed a few textures being black due to ElvUI changes  
+Fixed an error with the OmniCD skin
