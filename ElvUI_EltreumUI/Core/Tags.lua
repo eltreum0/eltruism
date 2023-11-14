@@ -1744,7 +1744,7 @@ end)
 E:AddTagInfo('eltruism:targetcast:indicator', ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows Target of Spellcast, does not work for Mouseover casts. Includes a Target > indicator"])
 
 -- Line Break
-E:AddTag("eltruism:newline", "UNIT_NAME_UPDATE", function()
+E:AddTag("eltruism:newline", "PLAYER_LOGOUT", function()
 	return "\n"
 end)
 E:AddTagInfo("eltruism:newline", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Adds a line break"])
