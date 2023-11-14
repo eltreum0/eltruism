@@ -3431,27 +3431,29 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 2)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added the ability for Font Outline and Font functions in Eltruism > Media to apply to any Custom Text found in the unitframes
+Added an option to show Classes instead of Specs in the LFG Skin in Retail
+Added a toggle for showing Pet cooldowns on the Cooldown module
+Added ElvUI settings to the /eltruism autoupdate command
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Details profiles to no longer use auto align in order to avoid the truncated text
-Updated Portraits to once again require ElvUI portraits due to how the function updates
-Updated Zone Texts, Error Frame Text and others to use ElvUI settings added in 13.48
-Updated Immersion skin to add a small gap between buttons
-Updated Nameplate Threat Gradient to run better
-Updated C_AddOns references
+Updated Action Bar 4 paging on Classic Era when playing a Priest due to Mind Control
+Updated Custom Glow on Classic/Wrath to use new ElvUI functions and perform better
+Updated some functions such as Nameplate Threat Gradient to be faster
+Updated Cooldown for the Text to Speech to also work with Items
+Updated a few function events to load after the loading screen
+Updated Portrait Fix with more models
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue where strata and level options for the unitframe aura border were in the auras section
-Fixed a possible error with Shadows when backdrops were not found
-Fixed an issue when attempting to scale the Professions frame
-Fixed shadows in the Focus and Focus Target unitframes
-Fixed text color on Ace3 buttons when clicked
-Fixed an error in the Auctionator Skin
+Fixed an issue where the Font options in Eltruism > Media would not apply if you were on a character that had the same name as others in other realms
+Fixed an issue with the Ace3 skin where a selected button or tab could have disabled color
+Fixed an issue with the Enchant Button when Tradeskillmaster is enabled
+Fixed an error during install for Shamans and Druids on Classic Era
+Fixed a few textures being black due to ElvUI changes
+Fixed an error with the OmniCD skin
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[

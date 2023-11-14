@@ -6,6 +6,7 @@ Added ElvUI settings to the /eltruism autoupdate command
 Updated Action Bar 4 paging on Classic Era when playing a Priest due to Mind Control  
 Updated Custom Glow on Classic/Wrath to use new ElvUI functions and perform better  
 Updated some functions such as Nameplate Threat Gradient to be faster  
+Updated Cooldown for the Text to Speech to also work with Items  
 Updated a few function events to load after the loading screen  
 Updated Portrait Fix with more models  
 Fixed an issue where the Font options in Eltruism > Media would not apply if you were on a character that had the same name as others in other realms  
