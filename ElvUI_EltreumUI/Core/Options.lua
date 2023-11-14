@@ -3450,6 +3450,7 @@ Updated Portrait Fix with more models
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
 Fixed an issue where the Font options in Eltruism > Media would not apply if you were on a character that had the same name as others in other realms
+Fixed the filter on Target Aura, Dispellable was causing other player's debuffs to show up on classses that could dispel it
 Fixed an issue with the Ace3 skin where a selected button or tab could have disabled color
 Fixed an issue with the Enchant Button when Tradeskillmaster is enabled
 Fixed an error during install for Shamans and Druids on Classic Era
