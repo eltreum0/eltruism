@@ -105,8 +105,8 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	end
 	if not E.Classic then
 		ElvUI_EltreumUI:DungeonRoleIcons() -- add spec icons to the lfg frame
-		ElvUI_EltreumUI:WorldMapScale() -- set world map scale
 	end
+	ElvUI_EltreumUI:WorldMapScale() -- set world map scale
 	if E.private.nameplates.enable then
 		ElvUI_EltreumUI:NamePlateOptions() --adds dynamic class based color filters to elvui nameplates
 		ElvUI_EltreumUI:DynamicLevelStyleFilter() --shows or hides level filter on np based on player level
