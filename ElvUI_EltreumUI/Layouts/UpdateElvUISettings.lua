@@ -111,6 +111,10 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 		E.db["actionbar"]["targetReticleColor"]["b"] = valuecolors.b
 		E.db["actionbar"]["targetReticleColor"]["g"] = valuecolors.g
 		E.db["actionbar"]["targetReticleColor"]["r"] = valuecolors.r
+
+		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
+			ElvUI_EltreumUI:AlternativeGroupsDPS()
+		end
 	else
 		E.private["general"]["nameplateFont"] = "Kimberley"
 		E.private["general"]["nameplateFontOutline"] = "OUTLINE"
