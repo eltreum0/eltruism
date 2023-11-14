@@ -3440,6 +3440,7 @@ Added ElvUI settings to the /eltruism autoupdate command
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
 Updated Action Bar 4 paging on Classic Era when playing a Priest due to Mind Control
 Updated Custom Glow on Classic/Wrath to use new ElvUI functions and perform better
+Updated Tank/DPS Layout to use the Alternate Party UnitFrames as the default
 Updated some functions such as Nameplate Threat Gradient to be faster
 Updated Cooldown for the Text to Speech to also work with Items
 Updated a few function events to load after the loading screen
