@@ -24,7 +24,7 @@ local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoa
 
 --Author list
 local AUTHORS = {
-	'|cff82B4ffEltreum|r',
+	E:TextGradient("Eltreum", 0.50, 0.70, 1, 0.67, 0.95, 1),
 }
 
 -- Credits and Thank yous list
