@@ -249,7 +249,7 @@ function ElvUI_EltreumUI:Doom()
 						if (animating[1][3] ~= nil and E.db.ElvUI_EltreumUI.skins.doom.showSpellName) then
 							DCP.TextFrame:SetText(animating[1][3])
 						end
-						if E.db.ElvUI_EltreumUI.skins.doom.tts then
+						if E.db.ElvUI_EltreumUI.skins.doom.tts and animating[1][3] then --and animating[1][3] ~= nil then
 							local tts = GetSpellInfo(animating[1][3])
 							if not tts then
 								tts = tostring(animating[1][3])
