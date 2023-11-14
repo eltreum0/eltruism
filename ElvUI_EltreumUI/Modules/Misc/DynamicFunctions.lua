@@ -295,7 +295,6 @@ function ElvUI_EltreumUI:ActionPagingSwap()
 			E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = ""
 			E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = ""
 			E.db["actionbar"]["bar4"]["paging"]["EVOKER"] = ""
-
 		elseif E.db.actionbar.bar4.visibility == "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show" then
 			E.db["actionbar"]["bar1"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 			E.db["actionbar"]["bar4"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"

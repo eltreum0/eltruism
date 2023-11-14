@@ -198,7 +198,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["unitframe"]["units"]["tank"]["buffs"]["priority"] = "Blacklist,TurtleBuffs,RaidBuffsElvUI"
 		E.db["unitframe"]["units"]["assist"]["buffs"]["priority"] = "Blacklist,TurtleBuffs,RaidBuffsElvUI"
 		--E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,CCDebuffs,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
-		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
+		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
 		E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = "Blacklist,Dispellable,blockNoDuration,PlayerBuffs,nonPersonal,RaidBuffsElvUI,TurtleBuffs"
 		E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
 		E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,MyPet"
@@ -683,6 +683,10 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["actionbar"]["cooldown"]["targetAuraIndicator"]["r"] = valuecolors.r
 		E.db["actionbar"]["cooldown"]["threshold"] = 5
 		E.db["actionbar"]["cooldown"]["fonts"]["enable"] = false
+
+		E.db["actionbar"]["targetReticleColor"]["b"] = valuecolors.b
+		E.db["actionbar"]["targetReticleColor"]["g"] = valuecolors.g
+		E.db["actionbar"]["targetReticleColor"]["r"] = valuecolors.r
 
 		E.db["actionbar"]["bar1"]["buttonsPerRow"] = 7
 		E.db["actionbar"]["bar2"]["buttonsPerRow"] = 12

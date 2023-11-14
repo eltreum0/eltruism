@@ -156,7 +156,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	-- Custom Texts
 	local currentprofile
 	for character, charprofile in pairs (ElvDB.profileKeys) do
-		if character:match(E.myname) then
+		if character:match(E.myname) and character:match(E.myrealm) then
 			currentprofile = charprofile
 		end
 	end

@@ -113,7 +113,7 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Bõõbs-Bloodsail Buccaneers"] = DonatorsIcon,
 			["Bööbs-Bloodsail Buccaneers"] = DonatorsIcon,
 			["NÏpples-Bloodsail Buccaneers"] = DonatorsIcon,
-			["BioVenom-Bloodsail Buccaneers"] = DonatorsIcon,
+			["Biovenom-Bloodsail Buccaneers"] = DonatorsIcon,
 
 			--Ante
 			["Boss-TarrenMill"] = DonatorsIcon,
