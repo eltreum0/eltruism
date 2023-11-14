@@ -359,7 +359,6 @@ ElvUI_EltreumUI.InstallerData = {
 				end
 				ElvUI_EltreumUI:SetupGeneralLayout()
 				ElvUI_EltreumUI:SetupLayoutDPS()
-				ElvUI_EltreumUI:AlternativeGroupsDPS() --make alternate party frames the default
 				ElvUI_EltreumUI:SetupNamePlates()
 				ElvUI_EltreumUI:ResolutionOutline()
 				ElvUI_EltreumUI:UpdateEltruismSettings()
@@ -404,7 +403,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option2:SetText(L["Healer"])
 
-			--[[if E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
+			if E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
 				_G.PluginInstallFrame.Option3:SetText(L["Alternative\nFrames"])
 				_G.PluginInstallFrame.Option3:Enable()
 				_G.PluginInstallFrame.Option3:Show()
@@ -414,7 +413,7 @@ ElvUI_EltreumUI.InstallerData = {
 			else
 				_G.PluginInstallFrame.Option3:SetScript('OnEnter', nil)
 				_G.PluginInstallFrame.Option3:SetScript('OnLeave', nil)
-			end]]
+			end
 
 			_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
 			_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
