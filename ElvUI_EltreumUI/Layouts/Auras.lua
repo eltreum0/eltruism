@@ -52,7 +52,7 @@ local EltruismFocusDebuffs = "Blacklist,Personal,CCDebuffs"
 local EltruismGroupBuffs = 'Blacklist,TurtleBuffs'
 local EltruismGroupDebuffs = 'Blacklist,Boss,RaidDebuffs,CCDebuffs,Dispellable,Whitelist'
 
-local EltruismAuraTarget = 'Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs'
+local EltruismAuraTarget = 'Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs'
 local EltruismAuraPlayer = 'Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs'
 local AlternativeAura = 'Blacklist,blockNoDuration,Personal,Dispellable'
 

@@ -221,6 +221,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 				E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 16;[bonusbar:5] 11; [bonusbar:1] 7;"
 			end
 		end
+		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
 		--fixingold = true
 		--E.private.ElvUI_EltreumUI.install_version = "4.0.5"
 	end

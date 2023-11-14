@@ -115,6 +115,8 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 			E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-258"
 		end
+
+		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
 	else
 		E.private["general"]["nameplateFont"] = "Kimberley"
 		E.private["general"]["nameplateFontOutline"] = "OUTLINE"
@@ -306,6 +308,12 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 		E.db["actionbar"]["targetReticleColor"]["b"] = valuecolors.b
 		E.db["actionbar"]["targetReticleColor"]["g"] = valuecolors.g
 		E.db["actionbar"]["targetReticleColor"]["r"] = valuecolors.r
+
+		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
+			E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-258"
+		end
+
+		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
 
 		--rest icon
 		E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["a"] = 1.00
