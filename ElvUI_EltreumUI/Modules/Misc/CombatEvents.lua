@@ -1,6 +1,6 @@
 local E = unpack(ElvUI)
 local _G = _G
-local C_CVar = _G.C_CVar
+local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
 local IsInInstance = _G.IsInInstance
 local PlayMusic = _G.PlayMusic
 local tostring = _G.tostring
@@ -18,7 +18,7 @@ local list = {}
 
 --play music during combat
 function ElvUI_EltreumUI:CombatMusic(event, event2)
-	if E.private.ElvUI_EltreumUI.combatmusic.enable and tostring(C_CVar.GetCVar('Sound_EnableMusic')) == '1' then
+	if E.private.ElvUI_EltreumUI.combatmusic.enable and tostring(GetCVar('Sound_EnableMusic')) == '1' then
 		_, instanceType = IsInInstance()
 		soundfile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.musicfile
 		if E.db.ElvUI_EltreumUI.otherstuff.musicshuffle then
@@ -45,7 +45,7 @@ function ElvUI_EltreumUI:CombatMusic(event, event2)
 end
 
 function ElvUI_EltreumUI:StopCombatMusic(event, event2)
-	if E.private.ElvUI_EltreumUI.combatmusic.enable and tostring(C_CVar.GetCVar('Sound_EnableMusic')) == '1' then
+	if E.private.ElvUI_EltreumUI.combatmusic.enable and tostring(GetCVar('Sound_EnableMusic')) == '1' then
 		if dontstop == 1 then
 			if event == 'PLAYER_REGEN_ENABLED' and event2 == nil and dontstopboss == 0 then
 				StopMusic()
@@ -57,7 +57,7 @@ end
 
 --play music during boss fights
 function ElvUI_EltreumUI:BossMusic(event)
-	if E.private.ElvUI_EltreumUI.combatmusic.bossmusic and tostring(C_CVar.GetCVar('Sound_EnableMusic')) == '1' then
+	if E.private.ElvUI_EltreumUI.combatmusic.bossmusic and tostring(GetCVar('Sound_EnableMusic')) == '1' then
 		soundfileboss = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.bossfile
 		if event == 'ENCOUNTER_START' then
 			if dontstop == 1 then
@@ -70,7 +70,7 @@ function ElvUI_EltreumUI:BossMusic(event)
 end
 
 function ElvUI_EltreumUI:StopBossMusic(event)
-	if E.private.ElvUI_EltreumUI.combatmusic.bossmusic and tostring(C_CVar.GetCVar('Sound_EnableMusic')) == '1' then
+	if E.private.ElvUI_EltreumUI.combatmusic.bossmusic and tostring(GetCVar('Sound_EnableMusic')) == '1' then
 		if dontstopboss == 1 then
 			if event == 'ENCOUNTER_END' then
 				StopMusic()

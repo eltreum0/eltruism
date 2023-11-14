@@ -1,7 +1,7 @@
 local E, L = unpack(ElvUI)
 local _G = _G
 local pairs = _G.pairs
-local SetCVar = _G.SetCVar
+local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
 
 -- for rare nameplates

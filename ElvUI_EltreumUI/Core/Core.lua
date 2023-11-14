@@ -1,6 +1,5 @@
 local E, L = unpack(ElvUI)
 local _G = _G
-local C_CVar = _G.C_CVar
 local S = E:GetModule('Skins')
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
@@ -11,7 +10,6 @@ local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoa
 local DisableAddOn = _G.C_AddOns and _G.C_AddOns.DisableAddOn or _G.DisableAddOn
 local LoadAddOn = _G.C_AddOns and _G.C_AddOns.LoadAddOn or _G.LoadAddOn
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
-local SetCVar = _G.SetCVar
 local UIParentLoadAddOn = _G.UIParentLoadAddOn
 local GetCursorInfo = _G.GetCursorInfo
 local GetItemInfo = _G.GetItemInfo
@@ -26,6 +24,8 @@ local tostring = _G.tostring
 local math = _G.math
 local PlaySound = _G.PlaySound
 local W
+local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
+local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
@@ -149,7 +149,7 @@ function ElvUI_EltreumUI:BlizzCombatText()
 		return
 	end
 	if not InCombatLockdown() then
-		if tostring(C_CVar.GetCVar("enableFloatingCombatText")) == "1" then
+		if tostring(GetCVar("enableFloatingCombatText")) == "1" then
 			if E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext and not E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana then
 				if IsAddOnLoaded('ElvUI_FCT') or IsAddOnLoaded('NameplateSCT') then
 					SetCVar("enableFloatingCombatText", 0)
@@ -160,7 +160,7 @@ function ElvUI_EltreumUI:BlizzCombatText()
 				end
 			end
 		end
-		if tostring(C_CVar.GetCVar("floatingCombatTextEnergyGains")) == "0" or tostring(C_CVar.GetCVar("enableFloatingCombatText")) == "0" then
+		if tostring(GetCVar("floatingCombatTextEnergyGains")) == "0" or tostring(GetCVar("enableFloatingCombatText")) == "0" then
 			if E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana then
 				SetCVar("floatingCombatTextEnergyGains", 1)
 				SetCVar("enableFloatingCombatText", 1) ----this is damage taken without this the floating resource will not work

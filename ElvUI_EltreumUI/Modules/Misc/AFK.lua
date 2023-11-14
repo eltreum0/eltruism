@@ -1,10 +1,10 @@
 local E = unpack(ElvUI)
 local _G = _G
-local C_CVar = _G.C_CVar
+local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
 local UnitIsAFK = _G.UnitIsAFK
-local SetCVar = _G.SetCVar
+local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local PlayMusic = _G.PlayMusic
 local PlaySound = _G.PlaySound
 local StopMusic = _G.StopMusic
@@ -83,14 +83,14 @@ local classicMusic = {
 }
 
 -- with the help of Repooc, Simpy and Acidweb (not in order :D)
-local musicSettingLoadingIn = C_CVar.GetCVar('Sound_EnableMusic')
+local musicSettingLoadingIn = GetCVar('Sound_EnableMusic')
 local musicSetting = musicSettingLoadingIn
 local classicmusicstopper = nil
 local willplay = nil
 function ElvUI_EltreumUI:AFKmusic()
 	if E.db.ElvUI_EltreumUI.otherstuff.afkmusic.enable then
 		if UnitIsAFK("player") then
-			musicSetting = tonumber(C_CVar.GetCVar('Sound_EnableMusic'))
+			musicSetting = tonumber(GetCVar('Sound_EnableMusic'))
 			SetCVar("Sound_EnableMusic", 1)
 			if E.Retail then
 				if E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial then

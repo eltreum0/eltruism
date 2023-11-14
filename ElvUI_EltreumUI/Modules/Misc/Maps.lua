@@ -5,6 +5,7 @@ local UIParent = _G.UIParent
 local IsInInstance = _G.IsInInstance
 local S = E:GetModule('Skins')
 local valuecolors = E:ClassColor(E.myclass, true)
+local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 
 --Conversion of Time to Arrive weakaura (new version)
 if E.Retail then

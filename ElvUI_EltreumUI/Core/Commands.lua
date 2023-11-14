@@ -16,6 +16,7 @@ local GetContainerItemInfo = E.Retail and C_Container.GetContainerItemInfo or _G
 local UseContainerItem = E.Retail and C_Container.UseContainerItem or _G.UseContainerItem
 local next = _G.next
 local SendChatMessage = _G.SendChatMessage
+local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 
 
 -- Register on init

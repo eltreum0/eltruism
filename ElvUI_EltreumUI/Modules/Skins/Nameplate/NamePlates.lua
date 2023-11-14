@@ -21,9 +21,9 @@ local GetShapeshiftForm = _G.GetShapeshiftForm
 local IsInInstance = _G.IsInInstance
 local WorldMapFrame = _G.WorldMapFrame
 local tostring = _G.tostring
-local C_CVar = _G.C_CVar
+local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
 local InCombatLockdown = _G.InCombatLockdown
-local SetCVar = _G.SetCVar
+local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local TimeSinceLastUpdate
 local debufftime
 local _, targetclass
@@ -728,14 +728,14 @@ end
 function ElvUI_EltreumUI:FriendlyNameplates()
 	_, instanceType = IsInInstance()
 	mapID = WorldMapFrame:GetMapID()
-	nameplateShowOnlyNames = tostring(C_CVar.GetCVar('nameplateShowOnlyNames'))
-	nameplateShowFriends = tostring(C_CVar.GetCVar('nameplateShowFriends'))
+	nameplateShowOnlyNames = tostring(GetCVar('nameplateShowOnlyNames'))
+	nameplateShowFriends = tostring(GetCVar('nameplateShowFriends'))
 	--print(mapID, instanceType)
 	if not InCombatLockdown() then
 		if E.Retail then
-			local UnitNameHostleNPC = C_CVar.GetCVar('UnitNameHostleNPC')
-			local UnitNameInteractiveNPC =C_CVar.GetCVar('UnitNameInteractiveNPC')
-			local UnitNameNPC = C_CVar.GetCVar('UnitNameNPC')
+			local UnitNameHostleNPC = GetCVar('UnitNameHostleNPC')
+			local UnitNameInteractiveNPC = GetCVar('UnitNameInteractiveNPC')
+			local UnitNameNPC = GetCVar('UnitNameNPC')
 			if E.db.ElvUI_EltreumUI.cvars.autohidenpcname then
 				if instanceType == "none" then
 					if UnitNameHostleNPC == "1" then

@@ -11,10 +11,10 @@ local GetItemIcon = _G.GetItemIcon
 local GetItemQualityColor = _G.GetItemQualityColor
 local tonumber = _G.tonumber
 local UIFrameFadeIn = _G.UIFrameFadeIn
-local GetCVarBool = _G.GetCVarBool
+local GetCVarBool = _G.C_CVar and _G.C_CVar.GetCVarBool or _G.GetCVarBool
+local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
 local IsModifiedClick = _G.IsModifiedClick
 local LootSlot = _G.LootSlot
-local C_CVar = _G.C_CVar
 local GetLootSlotInfo = _G.GetLootSlotInfo
 local GetLootSlotType = _G.GetLootSlotType
 local CloseLoot = _G.CloseLoot
@@ -141,7 +141,7 @@ local function InstantLoot(_, event,_, arg2)
 				return
 			else
 				--print("fastlootfilter")
-				if C_CVar.GetCVar('autoLootDefault') == 1 then
+				if GetCVar('autoLootDefault') == 1 then
 					ElvUI_EltreumUI:Print("Autoloot is enabled, please disable it to use Loot Filtering")
 				end
 				for i = GetNumLootItems(), 1, -1 do
@@ -161,7 +161,7 @@ local function InstantLoot(_, event,_, arg2)
 			end
 		end
 		if E.db.ElvUI_EltreumUI.loot.lootwishlistfilter then
-			if C_CVar.GetCVar('autoLootDefault') == 1 then
+			if GetCVar('autoLootDefault') == 1 then
 				ElvUI_EltreumUI:Print("Autoloot is enabled, please disable it to use Wishlist Loot Filtering")
 			end
 			if event == 'LOOT_BIND_CONFIRM' then
