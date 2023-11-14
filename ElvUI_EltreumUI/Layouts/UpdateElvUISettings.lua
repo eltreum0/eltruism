@@ -272,7 +272,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["textYOffset"] = 0
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["questIcon"]["xOffset"] = 15
 
-		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,Dispellable,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
+		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
 
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["name"]["format"] = "[eltruism:classification][name]"
 
@@ -312,8 +312,6 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 			E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-258"
 		end
-
-		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
 
 		--rest icon
 		E.db["unitframe"]["units"]["player"]["RestIcon"]["color"]["a"] = 1.00
