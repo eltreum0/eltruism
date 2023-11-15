@@ -1,4 +1,5 @@
-local E, L, _, P = unpack(ElvUI)
+local E, _, _, P = unpack(ElvUI)
+local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local _G = _G
 local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 local tinsert = _G.table.insert
