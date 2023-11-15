@@ -54,7 +54,19 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 			end
 			if E.db.unitframe.colors.transparentHealth and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
 				if unitframe.Health and unitframe.Health.backdrop then
-					unitframe.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+					if E.db.unitframe.thinBorders then
+						unitframe.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+					else
+						unitframe.Health.backdrop.Center:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+					end
+					if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+						if unitframe.Health.bg then
+							unitframe.Health.bg:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+						end
+						if unitframe.Health.backdropTex then
+							unitframe.Health.backdropTex:SetVertexColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+						end
+					end
 				end
 			end
 			if UnitIsPlayer(unit) and not UnitIsCharmed(unit) then
