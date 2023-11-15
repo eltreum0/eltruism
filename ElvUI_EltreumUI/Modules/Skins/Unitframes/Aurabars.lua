@@ -23,7 +23,7 @@ function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to a
 								bar.EltruismSparkPlayer = true
 							end
 							if E.db.unitframe.colors.transparentAurabars then
-								bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.3,g= g-0.3,b=b-0.3,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r,g= g,b= b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+								bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.3,g= g-0.3,b=b-0.3,a= E.db.general.backdropfadecolor.a}, {r=r,g= g,b= b,a= E.db.general.backdropfadecolor.a})
 							else
 								bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.3,g= g-0.3,b= b-0.3,a= 1}, {r=r,g= g,b= b,a= 1})
 							end
@@ -39,7 +39,7 @@ function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to a
 								bar.EltruismSparkTarget = true
 							end
 							if E.db.unitframe.colors.transparentAurabars then
-								bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r,g= g,b= b,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha}, {r=r-0.3,g= g-0.3,b= b-0.3,a= E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha})
+								bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r,g= g,b= b,a= E.db.general.backdropfadecolor.a}, {r=r-0.3,g= g-0.3,b= b-0.3,a= E.db.general.backdropfadecolor.a})
 							else
 								bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r,g= g,b= b,a= 1}, {r=r-0.3,g= g-0.3,b= b-0.3,a= 1})
 							end

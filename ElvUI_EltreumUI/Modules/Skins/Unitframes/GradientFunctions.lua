@@ -322,9 +322,13 @@ local function bgfade(isBG)
 end
 
 --return the backdrop alpha
-local function bgalpha(alpha)
+local function bgalpha(alpha,isBG)
 	if alpha then
-		return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+		if isBG then
+			return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
+		else
+			return E.db.general.backdropfadecolor.a
+		end
 	else
 		return 1
 	end
@@ -341,9 +345,9 @@ function ElvUI_EltreumUI:GradientColors(unitclass, invert, alpha, isBG, customal
 		end
 	else
 		if invert then
-			return {r=ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= bgalpha(alpha)}, {r=ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1),a= bgalpha(alpha)}
+			return {r=ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= bgalpha(alpha,isBG)}, {r=ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1),a= bgalpha(alpha,isBG)}
 		else
-			return {r=ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1),a= bgalpha(alpha)}, {r=ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= bgalpha(alpha)}
+			return {r=ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1),a= bgalpha(alpha,isBG)}, {r=ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= bgalpha(alpha,isBG)}
 		end
 	end
 end
@@ -359,9 +363,9 @@ function ElvUI_EltreumUI:GradientColorsCustom(unitclass, invert, alpha, isBG, cu
 		end
 	else
 		if invert then
-			return {r=ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= bgalpha(alpha)}, {r=ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1),a= bgalpha(alpha)}
+			return {r=ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= bgalpha(alpha,isBG)}, {r=ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1),a= bgalpha(alpha,isBG)}
 		else
-			return {r=ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1),a= bgalpha(alpha)}, {r=ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= bgalpha(alpha)}
+			return {r=ElvUI_EltreumUI:Interval(color.r1 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g1 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b1 - bgfade(isBG), 0, 1),a= bgalpha(alpha,isBG)}, {r=ElvUI_EltreumUI:Interval(color.r2 - bgfade(isBG), 0, 1),g= ElvUI_EltreumUI:Interval(color.g2 - bgfade(isBG), 0, 1),b= ElvUI_EltreumUI:Interval(color.b2 - bgfade(isBG), 0, 1),a= bgalpha(alpha,isBG)}
 		end
 	end
 end

@@ -44,6 +44,9 @@ function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
 			if E.db.unitframe.colors.transparentPower and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
 				unitframe.Power.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 				unitframe.Power.BG:SetVertexColor(E.db.unitframe.colors.power_backdrop.r,E.db.unitframe.colors.power_backdrop.g,E.db.unitframe.colors.power_backdrop.b,E.db.general.backdropfadecolor.a)
+				if unitframe.Power.backdropTex then
+					unitframe.Power.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+				end
 				if not unitframe.Power.EltruismTransparencyFix and E.db.unitframe.thinBorders then
 					unitframe.Power.backdrop:ClearAllPoints()
 					unitframe.Power.backdrop:SetAllPoints(unitframe.Power:GetStatusBarTexture())
@@ -148,6 +151,13 @@ function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 		_, powertype = UnitPowerType(groupunitframe.unit)
 		if powertype then
 			if groupunitframe.Power then
+				if E.db.unitframe.colors.transparentPower and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
+					groupunitframe.Power.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+					groupunitframe.Power.BG:SetVertexColor(E.db.unitframe.colors.power_backdrop.r,E.db.unitframe.colors.power_backdrop.g,E.db.unitframe.colors.power_backdrop.b,E.db.general.backdropfadecolor.a)
+					if groupunitframe.Power.backdropTex then
+						groupunitframe.Power.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+					end
+				end
 				if powertypes[powertype] then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom then
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower == "HORIZONTAL" then

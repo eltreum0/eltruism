@@ -52,10 +52,9 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 			if not noOrientation then
 				unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
 			end
-			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-				unitframe.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-				if E.db.unitframe.colors.transparentHealth then
-					unitframe.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+			if E.db.unitframe.colors.transparentHealth and not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
+				if unitframe.Health and unitframe.Health.backdrop then
+					unitframe.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 				end
 			end
 			if UnitIsPlayer(unit) and not UnitIsCharmed(unit) then
@@ -173,12 +172,6 @@ end
 
 --set the textures for group units
 function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation)
-	if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-		button.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-		if E.db.unitframe.colors.transparentHealth then
-			button.Health:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
-		end
-	end
 
 	--due to raid pet, check if is player
 	if UnitIsPlayer(button.unit) then
@@ -193,6 +186,7 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation)
 		end
 		groupbar = ElvUI_EltreumUI:UnitframeClassTexture(buttonclass)
 		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+			button.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
 					button.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
