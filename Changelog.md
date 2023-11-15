@@ -1,6 +1,16 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.0.5.1
+Added a gradient to Dead, Ghost and Disconnected unitframes when using the dead backdrop setting  
+Added backdrop alpha to the power of unitframes  
+Updated the Class Combat Icon to use the Nameplate Icons such as Rare and Boss for the target  
+Updated profile Backdrop alpha from 0.7 to 0.8 as default  
+Updated Custom Glow to work with SpellActivationOverlay  
+Updated Nameplate Classification Boss IDs  
+Fixed issues with the backdrop alpha on unitframes where the health would also use the alpha  
+Fixed a possible error with the Cooldown TTS where it would spam "nil"  
+Fixed Auctionator skin not working sometimes
 ### 4.0.5
 Added an option to show Classes instead of Specs in the LFG Skin in Retail  
 Added a toggle for showing Pet cooldowns on the Cooldown module  
