@@ -19,6 +19,7 @@ local instanceok
 local currentCharges, cooldownStart, cooldownDuration
 local cooldown
 local GetPartyAssignment = _G.GetPartyAssignment
+local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 
 --PlaySound(61850)
 --PlaySound(61851)

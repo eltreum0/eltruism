@@ -46,8 +46,50 @@ function ElvUI_EltreumUI:TargetCombatIconClass()
 						local _,targetclass = UnitClass("target")
 						local texturetarget = targeticons[targetclass]
 						_G["ElvUF_Target"].CombatIndicator:SetTexture(E.Media.CombatIcons[texturetarget])
+						_G["ElvUF_Target"].CombatIndicator:SetVertexColor(1, 1, 1, 1)
 					else
-						_G["ElvUF_Target"].CombatIndicator:SetTexture(E.Media.CombatIcons[E.db.unitframe.units.target.CombatIcon.texture])
+						local classification = UnitClassification("target")
+						if not classification then return end
+						local guid = UnitGUID("target")
+						if not guid then return end
+						local bossID = select(6, strsplit('-', guid))
+						if not bossID then return end
+						local isBoss = ElvUI_EltreumUI:GetBossIconTextureAndID(false,true,bossID)
+						if isBoss then
+							classification = 'worldboss'
+						end
+						if(classification == 'rare') then
+							if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite == "CUSTOM" then
+								_G["ElvUF_Target"].CombatIndicator:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrare)
+							else
+								_G["ElvUF_Target"].CombatIndicator:SetTexture(ElvUI_EltreumUI:GetBossIconTextureAndID(E.db.ElvUI_EltreumUI.nameplates.classification.icontyperare))
+							end
+							_G["ElvUF_Target"].CombatIndicator:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.rareR, E.db.ElvUI_EltreumUI.nameplates.classification.rareG, E.db.ElvUI_EltreumUI.nameplates.classification.rareB, 1)
+						elseif(classification == 'rareelite') then
+							if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite == "CUSTOM" then
+								_G["ElvUF_Target"].CombatIndicator:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customrareelite)
+							else
+								_G["ElvUF_Target"].CombatIndicator:SetTexture(ElvUI_EltreumUI:GetBossIconTextureAndID(E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite))
+							end
+							_G["ElvUF_Target"].CombatIndicator:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteR, E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteG, E.db.ElvUI_EltreumUI.nameplates.classification.rareeliteB, 1)
+						elseif(classification == 'elite') then
+							if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite == "CUSTOM" then
+								_G["ElvUF_Target"].CombatIndicator:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customelite)
+							else
+								_G["ElvUF_Target"].CombatIndicator:SetTexture(ElvUI_EltreumUI:GetBossIconTextureAndID(E.db.ElvUI_EltreumUI.nameplates.classification.icontypeelite))
+							end
+							_G["ElvUF_Target"].CombatIndicator:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.eliteR, E.db.ElvUI_EltreumUI.nameplates.classification.eliteG, E.db.ElvUI_EltreumUI.nameplates.classification.eliteB, 1)
+						elseif(classification == 'worldboss') then
+							if E.db.ElvUI_EltreumUI.nameplates.classification.icontyperareelite == "CUSTOM" then
+								_G["ElvUF_Target"].CombatIndicator:SetTexture([[Interface\AddOns\]]..E.db.ElvUI_EltreumUI.nameplates.classification.customboss)
+							else
+								_G["ElvUF_Target"].CombatIndicator:SetTexture(ElvUI_EltreumUI:GetBossIconTextureAndID(E.db.ElvUI_EltreumUI.nameplates.classification.icontypeboss))
+							end
+							_G["ElvUF_Target"].CombatIndicator:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR, E.db.ElvUI_EltreumUI.nameplates.classification.bossG, E.db.ElvUI_EltreumUI.nameplates.classification.bossB, 1)
+						else
+							_G["ElvUF_Target"].CombatIndicator:SetTexture(E.Media.CombatIcons[E.db.unitframe.units.target.CombatIcon.texture])
+							_G["ElvUF_Target"].CombatIndicator:SetVertexColor(1, 1, 1, 1)
+						end
 					end
 				end
 			end

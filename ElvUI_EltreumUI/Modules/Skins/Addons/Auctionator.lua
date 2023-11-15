@@ -524,9 +524,9 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 			ElvUI_EltreumUI:SkinAuctionator()
 			if E.Retail then
 				_G["AuctionHouseFrame"]:HookScript("OnShow",function()
-					ElvUI_EltreumUI:SkinAuctionator()
 					if not tabSkinned then
 						E:Delay(0, function()
+							ElvUI_EltreumUI:SkinAuctionator()
 							for _, j in pairs{_G["AuctionHouseFrame"]:GetChildren()} do
 								if j:GetNumChildren() >= 3 then
 									for _, v in pairs{j:GetChildren()} do
@@ -548,9 +548,9 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 				end)
 			else
 				_G["AuctionFrame"]:HookScript("OnShow",function()
-					ElvUI_EltreumUI:SkinAuctionator()
 					if not tabSkinned then
 						E:Delay(0, function()
+							ElvUI_EltreumUI:SkinAuctionator()
 							for i = 4, 8 do
 								if _G["AuctionFrameTab"..i] then
 									S:HandleTab(_G["AuctionFrameTab"..i])

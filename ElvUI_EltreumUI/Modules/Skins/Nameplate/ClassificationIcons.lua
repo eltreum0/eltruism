@@ -200,6 +200,19 @@ local bossIDs = {
 	["201934"] = true, --Shadowflame Amalgamation
 	["200912"] = true, --Neldris
 
+	--Amirdrassil, the Dream's Hope
+	["209333"] = true, -- Gnarlroot
+	["200926"] = true, -- Igira the Cruel
+	["208478"] = true, -- Volcoross
+	["208363"] = true, -- Council of Dreams
+	["208365"] = true, -- Council of Dreams
+	["208367"] = true, -- Council of Dreams
+	["208445"] = true, -- Larodar, the Keeper of the Flame
+	["206172"] = true, -- Nymue, Weaver of the Cycle
+	["200927"] = true, -- Smolderon
+	["209090"] = true, -- Tindral Sageswift, Seer of the Flame
+	["204931"] = true, -- Fyrakk the Blazing
+
 	-- The Primalist Future (storm fury bosses)
 	["199502"] = true, --glakis-winters-wrath
 	["199667"] = true, --nimbulatus-storms-wrath
@@ -212,6 +225,7 @@ local bossIDs = {
 	["193533"] = true, --liskanoth
 	["203220"] = true, --Vakan
 	["199853"] = true, --Gholna
+	["209574"] = true, --Aurostor
 
 	--shadowlands world bosses
 	["167524"] = true, --valinor
@@ -350,6 +364,18 @@ local textureDB = {
 	["TYPE21"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\reaper2.tga",
 	["TYPE22"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull10.tga",
 }
+
+function ElvUI_EltreumUI:GetBossIconTextureAndID(textureType,isbossID,bossID)
+	if textureType then
+		return textureDB[textureType]
+	elseif isbossID then
+		if bossIDs[bossID] then
+			return true
+		else
+			return false
+		end
+	end
+end
 
 local function Update(self)
 	local element = self.EltruismClassificationIndicator

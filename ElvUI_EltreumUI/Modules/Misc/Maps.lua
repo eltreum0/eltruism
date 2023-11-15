@@ -5,6 +5,7 @@ local UIParent = _G.UIParent
 local IsInInstance = _G.IsInInstance
 local S = E:GetModule('Skins')
 local valuecolors = E:ClassColor(E.myclass, true)
+local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 
 --Conversion of Time to Arrive weakaura (new version)
 if E.Retail then
@@ -389,22 +390,20 @@ end
 function ElvUI_EltreumUI:WorldMapScale()
 	if E.db.ElvUI_EltreumUI.otherstuff.worldmapscale then
 		if _G["WorldMapFrame"] then
-			if not E.Classic then
-				_G["WorldMapFrame"]:HookScript("OnShow", function()
-					_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
-					if E.Wrath then
-						if not _G["WorldMapFrame"].EltruismMoveable then
-							_G["WorldMapFrame"]:SetMovable(true)
-							_G["WorldMapFrame"]:EnableMouse(true)
-							_G["WorldMapFrame"]:RegisterForDrag("LeftButton")
-							_G["WorldMapFrame"]:SetScript("OnDragStart", _G["WorldMapFrame"].StartMoving)
-							_G["WorldMapFrame"]:SetScript("OnDragStop", _G["WorldMapFrame"].StopMovingOrSizing)
-							_G["WorldMapFrame"]:SetClampedToScreen(true)
-							_G["WorldMapFrame"].EltruismMoveable = true
-						end
+			_G["WorldMapFrame"]:HookScript("OnShow", function()
+				_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
+				if not E.Retail then
+					if not _G["WorldMapFrame"].EltruismMoveable then
+						_G["WorldMapFrame"]:SetMovable(true)
+						_G["WorldMapFrame"]:EnableMouse(true)
+						_G["WorldMapFrame"]:RegisterForDrag("LeftButton")
+						_G["WorldMapFrame"]:SetScript("OnDragStart", _G["WorldMapFrame"].StartMoving)
+						_G["WorldMapFrame"]:SetScript("OnDragStop", _G["WorldMapFrame"].StopMovingOrSizing)
+						_G["WorldMapFrame"]:SetClampedToScreen(true)
+						_G["WorldMapFrame"].EltruismMoveable = true
 					end
-				end)
-			end
+				end
+			end)
 
 			--make the bounty select mouseover
 			if E.Retail then

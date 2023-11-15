@@ -230,7 +230,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 				end
 			elseif not E.db.ElvUI_EltreumUI.borders.borders then
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.7
+					E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.8
 				end
 
 				if E.db["datatexts"]["panels"]["EltruismDataText"] and E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] then

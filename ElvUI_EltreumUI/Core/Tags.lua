@@ -38,6 +38,7 @@ local GetShapeshiftFormInfo = _G.GetShapeshiftFormInfo
 local select = _G.select
 local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local GetCVarBool = _G.C_AddOns and _G.C_AddOns.GetCVarBool or _G.GetCVarBool
 
 --level difference table based on blizzard's
 local eltruismdif = {

@@ -410,6 +410,7 @@ local modelsRotate = {
 	[3952432] = true, --Prowling Inferno Elemental
 	[1786281] = true, --Reagent Skeleton Skinnaur
 	[1949828] = true, --Sian'Shim
+	[4259454] = true, --Ysera
 }
 
 local targetlike = {

@@ -5,7 +5,7 @@ local UnitChannelInfo = _G.UnitChannelInfo or _G.ChannelInfo
 local isRetail = _G.select(4, _G.GetBuildInfo())>=90000
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
-local SetCVar = _G.SetCVar
+local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local next = _G.next
 local min = _G.min
 local floor = _G.floor

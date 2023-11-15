@@ -127,7 +127,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 			end)
 
 			for i = 1, 10 do
-				if _G["ImmersionQuestInfoItem" .. i] then
+				if _G["ImmersionQuestInfoItem" .. i] and not _G["ImmersionQuestInfoItem" .. i].EltruismSkin then
 					_G["ImmersionQuestInfoItem" .. i].NameFrame:StripTextures()
 					_G["ImmersionQuestInfoItem" .. i].NameFrame:CreateBackdrop('Transparent')
 					_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:ClearAllPoints()
@@ -142,10 +142,11 @@ function ElvUI_EltreumUI:EltruismImmersion()
 						_G["ImmersionQuestInfoItem" .. i].Name:SetTextColor(r, g, b)
 						_G["ImmersionQuestInfoItem" .. i].Name:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 					end
+					_G["ImmersionQuestInfoItem" .. i].EltruismSkin = true
 				end
 			end
 			for i = 1, 10 do
-				if _G["ImmersionProgressItem" .. i] then
+				if _G["ImmersionProgressItem" .. i] and not _G["ImmersionProgressItem" .. i].EltruismSkin then
 					_G["ImmersionProgressItem" .. i].NameFrame:StripTextures()
 					_G["ImmersionProgressItem" .. i].NameFrame:CreateBackdrop('Transparent')
 					_G["ImmersionProgressItem" .. i].NameFrame.backdrop:ClearAllPoints()
@@ -160,6 +161,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 						_G["ImmersionProgressItem" .. i].Name:SetTextColor(r, g, b)
 						_G["ImmersionProgressItem" .. i].Name:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 					end
+					_G["ImmersionProgressItem" .. i].EltruismSkin = true
 				end
 			end
 		end
