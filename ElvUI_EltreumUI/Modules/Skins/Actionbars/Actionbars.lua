@@ -31,99 +31,98 @@ function ElvUI_EltreumUI:SkillGlow()
 	end
 
 	if E.db.ElvUI_EltreumUI.glow.enable and E.private.actionbar.enable then
-		if E.Retail then
-			if not IsAddOnLoaded("ElvUI_ActionBarMasks") then
-				local proc = {}
-				hooksecurefunc(LCG, "ShowOverlayGlow", function(button)
-					if button:GetAttribute("type") == "action" then
-						if E.db.ElvUI_EltreumUI.glow.pixel then
-							LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
-							if E.db.ElvUI_EltreumUI.glow.gradient then
-								for k,v in pairs({button._PixelGlow:GetRegions()}) do
-									local r,g,b = v:GetVertexColor()
-									v:SetVertexColor((r-(k/20)),(g-(k/20)),(b-(k/20)),1)
-								end
-							end
-							if button.AutoCastShine then
-								button.AutoCastShine:Hide()
-							end
-							if button._ButtonGlow then
-								button._ButtonGlow:Hide()
-							end
-							if button._ProcGlow then
-								button._ProcGlow:Hide()
-							end
-						elseif E.db.ElvUI_EltreumUI.glow.autocast then
-							LCG.AutoCastGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
-							if button._PixelGlow then
-								button._PixelGlow:Hide()
-							end
-							if button._ButtonGlow then
-								button._ButtonGlow:Hide()
-							end
-							if button._ProcGlow then
-								button._ProcGlow:Hide()
-							end
-							if E.db.ElvUI_EltreumUI.glow.gradient then
-								for k,v in pairs({button._AutoCastGlow:GetRegions()}) do
-									local r,g,b = v:GetVertexColor()
-									v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),1)
-								end
-							end
-						elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-							LCG.ButtonGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
-							if button._PixelGlow then
-								button._PixelGlow:Hide()
-							end
-							if button.AutoCastShine then
-								button.AutoCastShine:Hide()
-							end
-							if button._ProcGlow then
-								button._ProcGlow:Hide()
-							end
-							button._ButtonGlow.outerGlow:SetScale(1.15)
-							if E.db.ElvUI_EltreumUI.glow.gradient then
-								if E.db.ElvUI_EltreumUI.glow.colorclass then
-									button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
-								else
-									button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r - 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g - 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b - 0.2, a = 1}, {r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r + 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g + 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b + 0.2, a = 1})
-								end
-							end
-						elseif E.db.ElvUI_EltreumUI.glow.procglow then
-							proc.color = skillglowcolor
-							proc.duration = E.db.ElvUI_EltreumUI.glow.proc.duration
-							proc.startAnim = E.db.ElvUI_EltreumUI.glow.proc.startAnimation
-							proc.frameLevel = E.db.ElvUI_EltreumUI.glow.proc.frameLevel
-							proc.xOffset = E.db.ElvUI_EltreumUI.glow.proc.xOffset
-							proc.yOffset = E.db.ElvUI_EltreumUI.glow.proc.yOffset
-							if button._PixelGlow then
-								button._PixelGlow:Hide()
-							end
-							if button.AutoCastShine then
-								button.AutoCastShine:Hide()
-							end
-							if button._ButtonGlow then
-								button._ButtonGlow:Hide()
-							end
-							LCG.ProcGlow_Start(button, proc)
-
-							--proc uses an atlas so gradient is not a thing
-						end
-					end
-				end)
-				hooksecurefunc(LCG, "HideOverlayGlow", function(button)
+		if not IsAddOnLoaded("ElvUI_ActionBarMasks") then
+			local proc = {}
+			hooksecurefunc(LCG, "ShowOverlayGlow", function(button)
+				if button:GetAttribute("type") == "action" then
 					if E.db.ElvUI_EltreumUI.glow.pixel then
-						LCG.PixelGlow_Stop(button)
+						LCG.PixelGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberpixel, E.db.ElvUI_EltreumUI.glow.frequencypixel, E.db.ElvUI_EltreumUI.glow.lengthpixel, E.db.ElvUI_EltreumUI.glow.thicknesspixel, E.db.ElvUI_EltreumUI.glow.pixelxOffset, E.db.ElvUI_EltreumUI.glow.pixelyOffset, E.db.ElvUI_EltreumUI.glow.borderpixel, nil, 6)
+						if E.db.ElvUI_EltreumUI.glow.gradient then
+							for k,v in pairs({button._PixelGlow:GetRegions()}) do
+								local r,g,b = v:GetVertexColor()
+								v:SetVertexColor((r-(k/20)),(g-(k/20)),(b-(k/20)),1)
+							end
+						end
+						if button.AutoCastShine then
+							button.AutoCastShine:Hide()
+						end
+						if button._ButtonGlow then
+							button._ButtonGlow:Hide()
+						end
+						if button._ProcGlow then
+							button._ProcGlow:Hide()
+						end
 					elseif E.db.ElvUI_EltreumUI.glow.autocast then
-						LCG.AutoCastGlow_Stop(button)
+						LCG.AutoCastGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.numberauto, E.db.ElvUI_EltreumUI.glow.frequencyauto, E.db.ElvUI_EltreumUI.glow.autoscale, E.db.ElvUI_EltreumUI.glow.autoxOffset, E.db.ElvUI_EltreumUI.glow.autoyOffset)
+						if button._PixelGlow then
+							button._PixelGlow:Hide()
+						end
+						if button._ButtonGlow then
+							button._ButtonGlow:Hide()
+						end
+						if button._ProcGlow then
+							button._ProcGlow:Hide()
+						end
+						if E.db.ElvUI_EltreumUI.glow.gradient then
+							for k,v in pairs({button._AutoCastGlow:GetRegions()}) do
+								local r,g,b = v:GetVertexColor()
+								v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),1)
+							end
+						end
 					elseif E.db.ElvUI_EltreumUI.glow.blizzard then
-						LCG.ButtonGlow_Stop(button)
+						LCG.ButtonGlow_Start(button, skillglowcolor, E.db.ElvUI_EltreumUI.glow.frequencyblizz)
+						if button._PixelGlow then
+							button._PixelGlow:Hide()
+						end
+						if button.AutoCastShine then
+							button.AutoCastShine:Hide()
+						end
+						if button._ProcGlow then
+							button._ProcGlow:Hide()
+						end
+						button._ButtonGlow.outerGlow:SetScale(1.15)
+						if E.db.ElvUI_EltreumUI.glow.gradient then
+							if E.db.ElvUI_EltreumUI.glow.colorclass then
+								button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(E.myclass))
+							else
+								button._ButtonGlow.outerGlow:SetGradient("HORIZONTAL",{r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r - 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g - 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b - 0.2, a = 1}, {r = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.r + 0.2, g = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.g + 0.2, b = E.db.ElvUI_EltreumUI.glow.glowcustomcolor.b + 0.2, a = 1})
+							end
+						end
 					elseif E.db.ElvUI_EltreumUI.glow.procglow then
-						LCG.ProcGlow_Stop(button)
+						proc.color = skillglowcolor
+						proc.duration = E.db.ElvUI_EltreumUI.glow.proc.duration
+						proc.startAnim = E.db.ElvUI_EltreumUI.glow.proc.startAnimation
+						proc.frameLevel = E.db.ElvUI_EltreumUI.glow.proc.frameLevel
+						proc.xOffset = E.db.ElvUI_EltreumUI.glow.proc.xOffset
+						proc.yOffset = E.db.ElvUI_EltreumUI.glow.proc.yOffset
+						if button._PixelGlow then
+							button._PixelGlow:Hide()
+						end
+						if button.AutoCastShine then
+							button.AutoCastShine:Hide()
+						end
+						if button._ButtonGlow then
+							button._ButtonGlow:Hide()
+						end
+						LCG.ProcGlow_Start(button, proc)
+
+						--proc uses an atlas so gradient is not a thing
 					end
-				end)
-			end
-		else
+				end
+			end)
+			hooksecurefunc(LCG, "HideOverlayGlow", function(button)
+				if E.db.ElvUI_EltreumUI.glow.pixel then
+					LCG.PixelGlow_Stop(button)
+				elseif E.db.ElvUI_EltreumUI.glow.autocast then
+					LCG.AutoCastGlow_Stop(button)
+				elseif E.db.ElvUI_EltreumUI.glow.blizzard then
+					LCG.ButtonGlow_Stop(button)
+				elseif E.db.ElvUI_EltreumUI.glow.procglow then
+					LCG.ProcGlow_Stop(button)
+				end
+			end)
+		end
+		if not E.Retail then
 			--classic shaman totem bar glow when totems are not active in combat
 			if E.myclass == 'SHAMAN' and E.db.ElvUI_EltreumUI.glow.enabletotem and E.db.unitframe.units.player.classbar.enable then
 				local totemglowholder = CreateFrame("FRAME")
