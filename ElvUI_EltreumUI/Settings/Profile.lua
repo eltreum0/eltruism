@@ -1088,7 +1088,7 @@ P.ElvUI_EltreumUI = {
 			useUFtexture = false,
 			customcolor = false,
 
-			bgfade = 0.6,
+			bgfade = 0,
 
 			classcolorplayercastbar = false,
 			classcolortargetcastbar = false,
