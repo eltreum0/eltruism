@@ -212,6 +212,7 @@ local bossIDs = {
 	["193533"] = true, --liskanoth
 	["203220"] = true, --Vakan
 	["199853"] = true, --Gholna
+	["209574"] = true, --Aurostor
 
 	--shadowlands world bosses
 	["167524"] = true, --valinor
