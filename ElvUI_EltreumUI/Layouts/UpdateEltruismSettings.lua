@@ -16,6 +16,8 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.skins.elvui.texture = "Eltreum-Tile03"
 		E.db.ElvUI_EltreumUI.unitframes.classcombaticons = true --class based combat icons
 
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.8
+
 		ElvUI_EltreumUI:Print(L["Auto Update is enabled, updating Eltruism settings."])
 	else
 		--to make sure everything resets during import
@@ -84,7 +86,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower = true
 		E.db.ElvUI_EltreumUI.unitframes.models.powerbar = true
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture = "ElvUI Norm1"
-		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.7
+		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.8
 		E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable = true
 		E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enableaurabars = true
 		E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture = 'Eltreum-Fade'
