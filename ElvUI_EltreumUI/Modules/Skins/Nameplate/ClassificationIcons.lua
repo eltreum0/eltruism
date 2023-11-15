@@ -352,6 +352,18 @@ local textureDB = {
 	["TYPE22"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull10.tga",
 }
 
+function ElvUI_EltreumUI:GetBossIconTextureAndID(textureType,isbossID,bossID)
+	if textureType then
+		return textureDB[textureType]
+	elseif isbossID then
+		if bossIDs[bossID] then
+			return true
+		else
+			return false
+		end
+	end
+end
+
 local function Update(self)
 	local element = self.EltruismClassificationIndicator
 
