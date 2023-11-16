@@ -92,8 +92,10 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 		end
 
 		--loot roll
-		for i = 1, 4 do
-			local frame = _G["ElvUI_LootRollFrame"..i]
+		local M = E:GetModule('Misc')
+		local maxBars = E.Retail and E.db.general.lootRoll.maxBars or _G.NUM_GROUP_LOOT_FRAMES or 4
+		for i = 1, maxBars do
+			local frame = M:LootRoll_GetFrame(i)
 			if frame then
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 					if not frame.status.shadow then
