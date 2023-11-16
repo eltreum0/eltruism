@@ -1900,7 +1900,7 @@ E:AddTag("eltruism:healermana", 'UNIT_NAME_UPDATE UNIT_POWER_FREQUENT UNIT_MAXPO
 	if role and role == 'HEALER' then
 		local mana = UnitPower(unit, Enum.PowerType.Mana)
 		if mana ~= 0 then
-			return math.floor((mana/mana)*100)
+			return math.floor((mana/mana)*100).."%"
 		else
 			return 0
 		end
