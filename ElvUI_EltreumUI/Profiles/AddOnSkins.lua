@@ -40,6 +40,8 @@ function ElvUI_EltreumUI:GetASProfile()
 		AS.db["DBMSkinHalf"] = true
 		AS.db["DBMFontFlag"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
 		AS.db["DBMFont"] = E.db.general.font
+		AS.db["Font"] = E.db.general.font
+		AS.db["FontFlag"] =  ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
 		AS.db["DBMRadarTrans"] = true
 		AS.db["HideChatFrame"] = "ChatFrame4"
 		AS.db["TransparentEmbed"] = true

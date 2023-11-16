@@ -396,7 +396,34 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	end
 
 	if IsAddOnLoaded('ProjectAzilroka') then
+		_G.ProjectAzilroka.db["iFilger"]["Enhancements"]["StatusBarFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["iFilger"]["Enhancements"]["StackCountFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["iFilger"]["FocusDebuffs"]["StatusBarFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["iFilger"]["FocusDebuffs"]["StackCountFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["iFilger"]["RaidDebuffs"]["StatusBarFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["iFilger"]["RaidDebuffs"]["StackCountFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["iFilger"]["TargetDebuffs"]["StatusBarFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["iFilger"]["TargetDebuffs"]["StackCountFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["iFilger"]["FocusBuffs"]["StatusBarFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["iFilger"]["FocusBuffs"]["StackCountFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["iFilger"]["Procs"]["StatusBarFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["iFilger"]["Procs"]["StackCountFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["iFilger"]["Cooldowns"]["StatusBarFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["iFilger"]["Cooldowns"]["StackCountFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["iFilger"]["Buffs"]["StatusBarFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["iFilger"]["Buffs"]["StackCountFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["iFilger"]["ItemCooldowns"]["StatusBarFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["iFilger"]["ItemCooldowns"]["StackCountFontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["BrokerLDB"]["FontFlag"] = fontStyle
+		_G.ProjectAzilroka.db["MasterExperience"]["FontFlag"] = fontStyle
+
 		_G.ProjectAzilroka.db["stAddonManager"]["FontFlag"] = fontStyle
+	end
+
+	if IsAddOnLoaded('AddOnSkins') then
+		local AS = unpack(AddOnSkins)
+		AS["DBMFontFlag"] = fontStyle
+		AS["FontFlag"] =  fontStyle
 	end
 
 	if IsAddOnLoaded("Questie") then
@@ -418,6 +445,10 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 		E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = fontStyle
 		E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = fontStyle
 		E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = fontStyle
+		E.db["sle"]["actionbar"]["vehicle"]["hotkeyFontOutline"] = fontStyle
+		E.db["sle"]["actionbar"]["vehicle"]["macroFontOutline"] = fontStyle
+		E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = fontStyle
+		E.db["sle"]["nameplates"]["threat"]["fontOutline"] = fontStyle
 	end
 	if IsAddOnLoaded("ElvUI_WindTools") then
 		E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = fontStyle
@@ -427,5 +458,9 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = fontStyle
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = fontStyle
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = fontStyle
+		E.db["WT"]["item"]["itemLevel"]["flyout"]["font"]["style"] = fontStyle
+		E.db["WT"]["item"]["itemLevel"]["scrappingMachine"]["font"]["style"] = fontStyle
+		E.private["WT"]["skins"]["bigWigsSkin"]["queueTimer"]["countDown"]["style"] = fontStyle
+		E.private["WT"]["skins"]["rollResult"]["style"] = fontStyle
 	end
 end

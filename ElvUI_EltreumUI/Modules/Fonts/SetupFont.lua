@@ -438,12 +438,39 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		_G.ElvFCT["unitframes"]["frames"]["Arena"]["font"] = fontvalue
 		_G.ElvFCT["unitframes"]["frames"]["Arena"]["critFont"] = fontvalue
 	end
+
 	if IsAddOnLoaded('NameplateSCT') then
 		_G.NameplateSCTDB["global"]["font"] = fontvalue
 	end
 
 	if IsAddOnLoaded('ProjectAzilroka') then
 		_G.ProjectAzilroka.db["stAddonManager"]["Font"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["Enhancements"]["StackCountFont"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["Enhancements"]["StatusBarFont"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["FocusDebuffs"]["StackCountFont"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["FocusDebuffs"]["StatusBarFont"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["RaidDebuffs"]["StackCountFont"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["RaidDebuffs"]["StatusBarFont"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["TargetDebuffs"]["StackCountFont"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["TargetDebuffs"]["StatusBarFont"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["FocusBuffs"]["StackCountFont"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["FocusBuffs"]["StatusBarFont"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["Procs"]["StackCountFont"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["Procs"]["StatusBarFont"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["Cooldowns"]["StackCountFont"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["Cooldowns"]["StatusBarFont"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["Buffs"]["StackCountFont"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["Buffs"]["StatusBarFont"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["ItemCooldowns"]["StackCountFont"] = fontvalue
+		_G.ProjectAzilroka.db["iFilger"]["ItemCooldowns"]["StatusBarFont"] = fontvalue
+		_G.ProjectAzilroka.db["BrokerLDB"]["Font"] = fontvalue
+		_G.ProjectAzilroka.db["MasterExperience"]["Font"] = fontvalue
+	end
+
+	if IsAddOnLoaded('AddOnSkins') then
+		local AS = unpack(AddOnSkins)
+		AS.db["DBMFont"] = fontvalue
+		AS.db["Font"] = fontvalue
 	end
 
 	if IsAddOnLoaded("Questie") then
@@ -481,7 +508,12 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		E.db["sle"]["afk"]["defaultTexts"]["SL_Time"]["font"] = fontvalue
 		E.db["sle"]["skins"]["merchant"]["list"]["nameFont"] = fontvalue
 		E.db["sle"]["skins"]["merchant"]["list"]["subFont"] = fontvalue
+		E.db["sle"]["actionbar"]["vehicle"]["hotkeyFont"] = fontvalue
+		E.db["sle"]["actionbar"]["vehicle"]["macroFont"] = fontvalue
+		E.db["sle"]["nameplates"]["targetcount"]["font"] = fontvalue
+		E.db["sle"]["nameplates"]["threat"]["font"] = fontvalue
 	end
+
 	if IsAddOnLoaded("ElvUI_WindTools") then
 		E.private["WT"]["skins"]["ime"]["label"]["name"] = fontvalue
 		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["name"] = fontvalue
@@ -489,6 +521,10 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		E.db["WT"]["item"]["inspect"]["levelText"]["name"] = fontvalue
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["name"] = fontvalue
 		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["name"] = fontvalue
+		E.db["WT"]["item"]["itemLevel"]["flyout"]["font"]["name"] = fontvalue
+		E.db["WT"]["item"]["itemLevel"]["scrappingMachine"]["font"]["name"] = fontvalue
+		E.private["WT"]["skins"]["bigWigsSkin"]["queueTimer"]["countDown"]["name"] = fontvalue
+		E.private["WT"]["skins"]["rollResult"]["name"] = fontvalue
 	end
 
 	E:StaggeredUpdateAll()
