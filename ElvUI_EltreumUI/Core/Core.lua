@@ -802,6 +802,13 @@ function ElvUI_EltreumUI:PerformanceOptimization()
 	E.db.ElvUI_EltreumUI.chat.chatgradient = false
 end
 
+--color picker wheel better masking
+local bettermask = _G.ColorPickerFrame:CreateMaskTexture()
+bettermask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\map_circle.TGA", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+bettermask:SetPoint("TOPRIGHT", _G.ColorPickerWheel, "TOPRIGHT", 3, 3)
+bettermask:SetPoint("BOTTOMLEFT", _G.ColorPickerWheel, "BOTTOMLEFT", -2, -2)
+_G.ColorPickerWheel:AddMaskTexture(bettermask)
+
 --for fps testing
 --[[
 local framerate = CreateFrame("Frame", nil, UIParent)
