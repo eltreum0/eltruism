@@ -1895,10 +1895,15 @@ E:AddTag("eltruism:lowhealth", "UNIT_HEALTH UNIT_MAXHEALTH", function(unit,_,arg
 end)
 E:AddTagInfo("eltruism:lowhealth", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Plays a voiced emote when you have low health. Usage: [eltruism:lowhealth{1}] as an example of 1%"])
 
-E:AddTag("eltruism:healermana", 'UNIT_POWER_FREQUENT UNIT_MAXPOWER', function(unit)
+E:AddTag("eltruism:healermana", 'UNIT_NAME_UPDATE UNIT_POWER_FREQUENT UNIT_MAXPOWER', function(unit)
 	local role = UnitGroupRolesAssigned(unit)
 	if role and role == 'HEALER' then
-		return math.floor((UnitPower(unit, Enum.PowerType.Mana)/UnitPowerMax(unit, Enum.PowerType.Mana))*100)
+		local mana = UnitPower(unit, Enum.PowerType.Mana)
+		if mana ~= 0 then
+			return math.floor((mana/mana)*100).."%"
+		else
+			return 0
+		end
 	end
 end)
 E:AddTagInfo("eltruism:healermana", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows mana if the unit is a healer"])

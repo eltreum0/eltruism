@@ -149,7 +149,6 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.private["WT"]["skins"]["blizzard"]["weeklyRewards"] = false
 		E.private["WT"]["skins"]["blizzard"]["worldMap"] = false
 		E.private["WT"]["skins"]["elvui"]["enable"] = false
-		E.private["WT"]["skins"]["errorMessage"]["size"] = 18
 		E.private["WT"]["skins"]["ime"]["label"]["name"] = E.db.general.font
 		E.private["WT"]["skins"]["removeParchment"] = false
 		E.private["WT"]["skins"]["shadow"] = false

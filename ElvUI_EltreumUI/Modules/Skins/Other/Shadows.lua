@@ -835,6 +835,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.GroupLootHistoryFrame,
 				_G.OpacityFrame,
 				_G.TicketStatusFrameButton,
+				_G.ColorPickerFrame,
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame and not frame.shadow then
