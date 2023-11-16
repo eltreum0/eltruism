@@ -275,6 +275,14 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 									frame.Name:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
 								end
 							end
+
+							if frame.Header and frame.Header.Text and frame.Header.Text.SetText then
+								if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+									frame.Header.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+								else
+									frame.Header.Text:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+								end
+							end
 						end)
 					end
 
