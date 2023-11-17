@@ -411,6 +411,7 @@ local modelsRotate = {
 	[1786281] = true, --Reagent Skeleton Skinnaur
 	[1949828] = true, --Sian'Shim
 	[4259454] = true, --Ysera
+	[797708] = true, --Stacks
 }
 
 local targetlike = {
