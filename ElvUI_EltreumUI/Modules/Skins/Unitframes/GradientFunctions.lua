@@ -326,7 +326,7 @@ end
 local function bgalpha(alpha, isHealth)
 	if alpha then
 		if isHealth then
-			return E.db.general.backdropfadecolor.a
+			return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha
 		else
 			return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
 		end
