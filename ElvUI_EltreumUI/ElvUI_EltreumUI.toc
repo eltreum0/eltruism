@@ -11,7 +11,7 @@
 ## OptionalDeps: ElvUI_SLE, ElvUI_WindTools, ProjectAzilroka, AddOnSkins
 ## DefaultState: enabled
 ## X-Interface: 100200
-## X-ElvUI: 13.51
+## X-ElvUI: 13.52
 ## X-Tukui-ProjectID: 209
 ## X-Curse-Project-ID: 459494
 ## X-Wago-ID: vEGPqEN1
