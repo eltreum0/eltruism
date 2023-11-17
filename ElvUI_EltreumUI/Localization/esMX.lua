@@ -1504,3 +1504,5 @@ L["Hide Auras on Nameplates that are not in Combat"] = "Ocultar Auras en Placas 
 L["Pause and Desaturate Portrait if Dead"] = "Pausar y desaturar retrato si está muerto"
 L["Change Combat Indicators to be class based"] = "Cambiar los indicadores de combate para que se basen en la clase"
 L["Show Pet Spells"] = "Mostrar Hechizos de Mascota"
+L["Health Alpha"] = true
+L["Change the transparency of the health"] = true
