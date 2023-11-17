@@ -252,6 +252,7 @@ local colorupdateframe = CreateFrame("FRAME")
 colorupdateframe:RegisterEvent("PLAYER_ENTERING_WORLD")
 colorupdateframe:RegisterEvent("PLAYER_STARTED_MOVING")
 colorupdateframe:RegisterEvent("FIRST_FRAME_RENDERED")
+colorupdateframe:RegisterEvent("PLAYER_LOGIN")
 
 --10.2 event order list
 --[[local eventorder = {
