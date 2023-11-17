@@ -36,7 +36,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 			end
 		end)
 	else
-		if E.db.ElvUI_EltreumUI.skins.tbctalents and E.private.skins.blizzard.enable and E.private.skins.blizzard.character then
+		if E.db.ElvUI_EltreumUI.skins.tbctalents and E.private.skins.blizzard.enable and E.private.skins.blizzard.talent then
 			EltruismExpandedTalents:RegisterEvent("ADDON_LOADED")
 			EltruismExpandedTalents:RegisterEvent("PLAYER_ENTERING_WORLD")
 			EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
