@@ -1719,6 +1719,7 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('SoftTargetInteract', 3) --3 enables, 0 disables
 	SetCVar('SoftTargetInteractArc', 2)
 	SetCVar('SoftTargetNameplateInteract', 1)
+	SetCVar('SoftTargetLowPriorityIcons', 1)
 
 	if E.Retail then
 		--this makes it so that the non nameplate names are hidden
