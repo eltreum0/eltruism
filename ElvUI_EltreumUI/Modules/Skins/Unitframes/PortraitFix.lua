@@ -454,7 +454,7 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 				model = modelcheck:GetModelFileID()
 				modelcheck:ClearModel()
 			end
-			local newrotation
+			local newrotation = 0
 			local xOffset = 0
 
 			--pause if dead or ghost
@@ -485,7 +485,7 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 						if self:GetParent().unitframeType == "party" then
 							xOffset = -1
 						end
-					elseif model == 1505169 or 5143717 then
+					elseif model == 1505169 or model == 5143717 then
 						xOffset = 0.62 --bear
 					elseif model == 4207724 then
 						xOffset = 0.5 --dracthyr
@@ -503,30 +503,25 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 				end
 			elseif unit == 'target' or targetlike[unit] then
 				if not model then return end
-				if modelsRotate[model]then
+				if modelsRotate[model] then
 					newrotation = 291
-				else
-					newrotation = 0
 				end
 				if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
 					if model == 5091437 then
 						xOffset = 0 --druid things
 					elseif model == 1273833 or druidshamanfix[model] or model == 926251 or model == 1043712 then
 						xOffset = -0.59 --druid things
-					elseif model == 1505169 or 5143717 then
+					elseif model == 1505169 or model == 5143717 then
 						xOffset = 0.25 --bear
 					elseif model == 4207724 then
 						xOffset = 0.6 --dracthyr
-					else
-						xOffset = 0
 					end
 				end
 			end
 
-			if newrotation then
+			if newrotation ~= 0 then
 				local db = self.db
 				if not db then return end
-				db.rotation = newrotation
 				self:SetRotation(rad(newrotation))
 				self:SetViewTranslation(xOffset * 100, db.yOffset * 100)
 			else
