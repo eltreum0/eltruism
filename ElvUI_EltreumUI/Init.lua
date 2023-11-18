@@ -131,6 +131,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	end
 	ElvUI_EltreumUI:HardcoreDeath() -- hardcore death sound/animation
 	ElvUI_EltreumUI:BagProfessions() -- add profession buttons to bags
+	ElvUI_EltreumUI:OriginalClassColors() --original mage and warlock class colors
 end
 
 function ElvUI_EltreumUI:Initialize()
