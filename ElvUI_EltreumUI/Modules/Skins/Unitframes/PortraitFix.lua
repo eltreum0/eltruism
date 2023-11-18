@@ -412,6 +412,8 @@ local modelsRotate = {
 	[1949828] = true, --Sian'Shim
 	[4259454] = true, --Ysera
 	[797708] = true, --Stacks
+	[794489] = true, --General Jakra'zet
+	[1928040] = true, --Zul the Prophet
 }
 
 local targetlike = {
