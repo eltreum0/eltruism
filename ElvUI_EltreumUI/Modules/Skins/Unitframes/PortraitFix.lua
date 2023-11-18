@@ -414,6 +414,7 @@ local modelsRotate = {
 	[797708] = true, --Stacks
 	[794489] = true, --General Jakra'zet
 	[1928040] = true, --Zul the Prophet
+	[2031732] = true, --Rexxar
 }
 
 local targetlike = {
