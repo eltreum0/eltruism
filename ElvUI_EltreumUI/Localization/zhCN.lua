@@ -1476,3 +1476,4 @@ L["Change Combat Indicators to be class based"] = true
 L["Show Pet Spells"] = true
 L["Health Alpha"] = true
 L["Change the transparency of the health"] = true
+L["Make Mage and Warlock use their original Class Colors"] = true
