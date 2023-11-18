@@ -20,7 +20,7 @@ local isHooked = false
 --Calculate ilvl and average ilvl of player items/inspect unit
 local EltruismInspectilvls = CreateFrame("Frame")
 function ElvUI_EltreumUI:UpdateAvgIlvl()
-	if E.db.ElvUI_EltreumUI.skins.ilvls then
+	if E.db.ElvUI_EltreumUI.skins.ilvls and E.private.skins.blizzard.enable and E.private.skins.blizzard.character then
 		local leftside = {
 			["CharacterHeadSlot"] = true,
 			["CharacterNeckSlot"] = true,

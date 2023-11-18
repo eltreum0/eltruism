@@ -252,6 +252,7 @@ local colorupdateframe = CreateFrame("FRAME")
 colorupdateframe:RegisterEvent("PLAYER_ENTERING_WORLD")
 colorupdateframe:RegisterEvent("PLAYER_STARTED_MOVING")
 colorupdateframe:RegisterEvent("FIRST_FRAME_RENDERED")
+colorupdateframe:RegisterEvent("PLAYER_LOGIN")
 
 --10.2 event order list
 --[[local eventorder = {
@@ -325,7 +326,7 @@ end
 local function bgalpha(alpha, isHealth)
 	if alpha then
 		if isHealth then
-			return E.db.general.backdropfadecolor.a
+			return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha
 		else
 			return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha
 		end

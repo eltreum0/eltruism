@@ -35,6 +35,8 @@ function ElvUI_EltreumUI:ClassicSockets()
 	if not E.db.ElvUI_EltreumUI.skins.sockets then
 		return
 	end
+	if not E.private.skins.blizzard.enable then return end
+	if not E.private.skins.blizzard.character then return end
 
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ENCHANT TABLES
 	local KIBC_EnchantToSpellID = {

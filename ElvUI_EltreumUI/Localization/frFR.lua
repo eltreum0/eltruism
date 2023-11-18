@@ -1486,3 +1486,6 @@ L["Hide Auras on Nameplates that are not in Combat"] = "Cacher les auras sur les
 L["Pause and Desaturate Portrait if Dead"] = "Mettre en pause et désaturer le portrait en cas de mort"
 L["Change Combat Indicators to be class based"] = "Modifier les indicateurs de combat pour qu'ils soient basés sur la classe"
 L["Show Pet Spells"] = "Afficher les sorts des familiers"
+L["Health Alpha"] = true
+L["Change the transparency of the health"] = true
+L["Make Mage and Warlock use their original Class Colors"] = true

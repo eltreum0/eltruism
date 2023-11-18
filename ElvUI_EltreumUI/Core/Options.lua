@@ -1014,11 +1014,11 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.media.args.general.args.description4 = ACH:Description(L["Change the ElvUI background"], 13, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.media.args.general.args.greybg = ACH:Execute(L["Grey Background"], L["This will set the background to be a grey color"], 14, function() ElvUI_EltreumUI:GreyBg() end, nil, true)
 	ElvUI_EltreumUI.Options.args.media.args.general.args.darkbg = ACH:Execute(L["Black Background"], L["This will set the background to be a black color"], 14, function() ElvUI_EltreumUI:BlackBg() end, nil, true)
-	ElvUI_EltreumUI.Options.args.media.args.general.args.description5 = ACH:Description(L["Dynamic Datatext that changes according to class to show Ammo or Soul Shards when playing Hunter, Warrior, Rogue or Warlock"], 16, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail)
-	ElvUI_EltreumUI.Options.args.media.args.general.args.dynamicdatatext = ACH:Toggle(L["Enable"], L["Enable the Dynamic Datatext"], 17, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext = value end, nil, E.Retail)
-	ElvUI_EltreumUI.Options.args.media.args.general.args.description6 = ACH:Description(L["WeakAuras Action Bar"], 18, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.media.args.general.args.description6 = ACH:Description(E.NewSign..L["Class Colors"], 15, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.media.args.general.args.magewarlockclasscolor = ACH:Toggle(L["Make Mage and Warlock use their original Class Colors"], nil, 16, nil, false,'full',function() return E.db.ElvUI_EltreumUI.skins.oldclasscolors end,function(_, value) E.db.ElvUI_EltreumUI.skins.oldclasscolors = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.media.args.general.args.description7 = ACH:Description(L["WeakAuras Action Bar"], 18, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.media.args.general.args.weakaurasactionbar = ACH:Toggle(L["Move ActionBars and Power to be similar to WeakAuras"], L["Overwrites some profile settings to move ActionBars, Unitframes and Powers to look more similar to a WeakAura. |cffFF0000WARNING:|r This will overwrite some of your profile settings with no way to restore"], 19, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA = value ElvUI_EltreumUI:WeakAurasLikeActionBars(value) E:StaticPopup_Show('CONFIG_RL') end)
-	ElvUI_EltreumUI.Options.args.media.args.general.args.description7 = ACH:Description(" ", 20, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.media.args.general.args.description8 = ACH:Description(" ", 20, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.media.args.general.args.paging = ACH:Execute(L["Swap Action Paging and visibility for Bar1 and Bar4"], nil, 21, function() ElvUI_EltreumUI:ActionPagingSwap() E:StaticPopup_Show('CONFIG_RL') end,nil,true, "full")
 	ElvUI_EltreumUI.Options.args.media.args.general.args.aurafilters = ACH:Execute(L["Aura Indicator"].." "..L["Textured Icon"].." "..L["Style"], nil, 22, function() ElvUI_EltreumUI:AuraFiltersUpdate() end,nil,true, "full")
 	ElvUI_EltreumUI.Options.args.media.args.tags = ACH:Group(L["Tags"], nil, 2, "tab")
@@ -1527,17 +1527,20 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.playerdeathhardcore = ACH:Toggle(E.NewSign..L["Play a sound when you Die in Hardcore"], nil, 19, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.playerdeathhardcore end, function(_, value) E.db.ElvUI_EltreumUI.skins.playerdeathhardcore = value end, nil, not E.ClassicHC)
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.guildmemberdeathhardcore = ACH:Toggle(E.NewSign..L["Enable Animation and Sound when Guild Member Dies"], nil, 20, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.guildmemberdeathhardcore end, function(_, value) E.db.ElvUI_EltreumUI.skins.guildmemberdeathhardcore = value end, nil, not E.ClassicHC)
 	ElvUI_EltreumUI.Options.args.misc.args.datatext = ACH:Group(L["DataTexts"], nil, 2)
-	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.description1 = ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.xp = ACH:Toggle(L["Dynamically toggle the mouseover of the Experience Bar"], L["Shows XP bar when below max level, makes it mouseover when max level"], 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = value E:StaticPopup_Show('CONFIG_RL') end)
-	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.bottomclasstexture = ACH:Toggle(E.NewSign..L["Class Color Texture with Eltruism Datatext"], nil, 3, nil, false, "double", function() return E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar = value ElvUI_EltreumUI:BottomDatabarTexture() end)
-	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.bottomclasstexturealpha = ACH:Range(E.NewSign..L["Alpha"], nil, 4, { min = 0, max = 1, step = 0.01 }, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha = value ElvUI_EltreumUI:BottomDatabarTexture() end, function() return not E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar end)
-	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.enablecustomcolorbottomclasstexture = ACH:Toggle(E.NewSign..L["Enable Custom Colors"], nil, 5, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.custom end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.custom = value ElvUI_EltreumUI:BottomDatabarTexture() end, function() return not E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar end)
-	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.customcolorbottomclasstexture = ACH:Color(L["Custom Color"], nil, 6, false, nil, function() local dr = P.ElvUI_EltreumUI.otherstuff.datatextclasscolor.r local dg = P.ElvUI_EltreumUI.otherstuff.datatextclasscolor.g local db = P.ElvUI_EltreumUI.otherstuff.datatextclasscolor.b return E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.r, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.g, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.b, 1, dr, dg, db, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.r, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.g, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.b = r, g, b ElvUI_EltreumUI:BottomDatabarTexture() end, function() return not E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.custom or not E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar end)
-	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.description2 = ACH:Description(L["Datatext Hiding"], 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.leftdatatexthide = ACH:Toggle(L["Hide Left Chat Datatext out of Combat"], nil, 8, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.datatexts.panels.LeftChatDataPanel.enable end)
-	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.rightdatatexthide = ACH:Toggle(L["Hide Right Chat Datatext out of Combat"], nil, 8, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.datatexts.panels.RightChatDataPanel.enable end)
-	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.description3 = ACH:Description(L["Eltruism Hearthstones/Teleports"], 9, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.teleporttype = ACH:Select(L["Select which type of teleports to use on double click"], nil, 10, {
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.description1 = ACH:Description(L["Dynamic Datatext that changes according to class to show Ammo or Soul Shards when playing Hunter, Warrior, Rogue or Warlock"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.dynamicdatatext = ACH:Toggle(L["Enable"], L["Enable the Dynamic Datatext"], 2, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext = value end, nil, E.Retail)
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.description2 = ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.xp = ACH:Toggle(L["Dynamically toggle the mouseover of the Experience Bar"], L["Shows XP bar when below max level, makes it mouseover when max level"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.dynamicxpbar = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.description3 = ACH:Description(" ", 5, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.bottomclasstexture = ACH:Toggle(E.NewSign..L["Class Color Texture with Eltruism Datatext"], nil, 6, nil, false, "double", function() return E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar = value ElvUI_EltreumUI:BottomDatabarTexture() end)
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.bottomclasstexturealpha = ACH:Range(E.NewSign..L["Alpha"], nil, 7, { min = 0, max = 1, step = 0.01 }, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha = value ElvUI_EltreumUI:BottomDatabarTexture() end, function() return not E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar end)
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.enablecustomcolorbottomclasstexture = ACH:Toggle(E.NewSign..L["Enable Custom Colors"], nil, 8, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.custom end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.custom = value ElvUI_EltreumUI:BottomDatabarTexture() end, function() return not E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar end)
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.customcolorbottomclasstexture = ACH:Color(L["Custom Color"], nil, 9, false, nil, function() local dr = P.ElvUI_EltreumUI.otherstuff.datatextclasscolor.r local dg = P.ElvUI_EltreumUI.otherstuff.datatextclasscolor.g local db = P.ElvUI_EltreumUI.otherstuff.datatextclasscolor.b return E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.r, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.g, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.b, 1, dr, dg, db, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.r, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.g, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.b = r, g, b ElvUI_EltreumUI:BottomDatabarTexture() end, function() return not E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.custom or not E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar end)
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.description4 = ACH:Description(L["Datatext Hiding"], 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.leftdatatexthide = ACH:Toggle(L["Hide Left Chat Datatext out of Combat"], nil, 11, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.leftdatatextcombatshow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.datatexts.panels.LeftChatDataPanel.enable end)
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.rightdatatexthide = ACH:Toggle(L["Hide Right Chat Datatext out of Combat"], nil, 11, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.rightdatatextcombatshow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.datatexts.panels.RightChatDataPanel.enable end)
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.description5 = ACH:Description(L["Eltruism Hearthstones/Teleports"], 12, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.teleporttype = ACH:Select(L["Select which type of teleports to use on double click"], nil, 13, {
 		["ITEM"] = _G.ITEMS,
 		["SPELL"] = _G.SPELLS,
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype = value end)
@@ -1634,12 +1637,13 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.appearance.args.skinblizzraid = ACH:Toggle(E.NewSign..L["Skin Blizzard Raid Frames"], L["Adds Gradient, Custom Textures, Shadows, Font and Role Icons to Blizzard Raid Frames"], 12, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.blizzardraidframes end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.blizzardraidframes = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.appearance.args.description6 = ACH:Description(L["Combat Indicator"], 13, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.appearance.args.skincombaticons = ACH:Toggle(E.NewSign..L["Change Combat Indicators to be class based"], nil, 14, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.classcombaticons end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.classcombaticons = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.backdrop = ACH:Group(L["Backdrops"], nil, 2, "tab")
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.backdrop = ACH:Group(L["Health"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.backdrop.args.description1 = ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.backdrop.args.hide = ACH:Toggle(L["Hide Backdrop"], L["Sets the Backdrop as Transparent/Hidden"], 2, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.backdrop.args.texture = ACH:SharedMediaStatusbar(L["Backdrop Texture"], L["Select a Texture"], 3, "full", function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture end, function(_,key) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture = key end, function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable or E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.backdrop.args.description2 = ACH:Description(" ", 4, nil, nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.backdrop.args.backdropalpha = ACH:Range(L["Backdrop Alpha"], L["Change the transparency of the backdrop"], 5, { min = 0, max = 1, step = 0.01 }, "full", function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.backdrop.args.healthalpha = ACH:Range(L["Health Alpha"], L["Change the transparency of the health"], 5, { min = 0, max = 1, step = 0.01 }, "full", function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.healthalpha = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait = ACH:Group(L["Portrait"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.general = ACH:Group(L["General"], nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.general.args.description1 = ACH:Description(L["Target Portrait Fix"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
@@ -3432,40 +3436,26 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 2)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added a gradient to Dead, Ghost and Disconnected unitframes when using the dead backdrop setting
-Added an option to show Classes instead of Specs in the LFG Skin in Retail
-Added a toggle for showing Pet cooldowns on the Cooldown module
-Added ElvUI settings to the /eltruism autoupdate command
-Added backdrop alpha to the power of unitframes
+Added several fonts and font outlines that were missing to the settings in Eltruism > Media
+Added shadows and improved the mask on the Color Picker Wheel
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated the Class Combat Icon to use the Nameplate Icons such as Rare and Boss for the target
-Updated Action Bar 4 paging on Classic Era when playing a Priest due to Mind Control
-Updated Custom Glow on Classic/Wrath to use new ElvUI functions and perform better
-Updated Tank/DPS Layout to use the Alternate Party UnitFrames as the default
-Updated some functions such as Nameplate Threat Gradient to be faster
-Updated Cooldown for the Text to Speech to also work with Items
-Updated a few function events to load after the loading screen
-Updated profile Backdrop alpha from 0.7 to 0.8 as default
-Updated Custom Glow to work with SpellActivationOverlay
-Updated Nameplate Classification Boss IDs
-Updated Portrait Fix with more models
+Updated [eltruism:healermana] to better deal with value when the unit does not have mana
+Updated Eltruism localization by allowing it to follow ElvUI locale
+Updated DBM profile to remove range references
+Updated default values for the Backdrop Fade
+Updated Retail Method Raid Tools profile
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue where the Font options in Eltruism > Media would not apply if you were on a character that had the same name as others in other realms
-Fixed the filter on Target Aura, Dispellable was causing other player's debuffs to show up on classses that could dispel it
-Fixed issues with the backdrop alpha on unitframes where the health would also use the alpha
-Fixed an issue with the Ace3 skin where a selected button or tab could have disabled color
-Fixed an issue with the Enchant Button when Tradeskillmaster is enabled
-Fixed a possible error with the Cooldown TTS where it would spam "nil"
-Fixed an error during install for Shamans and Druids on Classic Era
-Fixed a few textures being black due to ElvUI changes
-Fixed Auctionator skin not working sometimes
-Fixed an error with the OmniCD skin
+Fixed an issue where Gradient backdrop for Power would apply when Gradient Backdrop was disabled
+Fixed an error with the Windtools profile due to the removal of Error Text
+Fixed some functions not firing during login due to Event changes
+Fixed an error in Classic Era due to Roles while in a Group
+Fixed Shadows/Gradient on ElvUI Loot frames
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[

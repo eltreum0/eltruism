@@ -817,4 +817,5 @@ function ElvUI_EltreumUI:RestoreNameplateNames()
 	SetCVar('UnitNameFriendlyPetName', 1)
 	SetCVar('UnitNameEnemyPlayerName', 1)
 	SetCVar('UnitNameEnemyTotemName', 1)
+	SetCVar('UnitNameNonCombatCreatureName', 1)
 end

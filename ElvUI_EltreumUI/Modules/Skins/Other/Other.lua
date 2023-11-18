@@ -618,3 +618,30 @@ if E.Classic then
 	E.oUF.colors.class['SHAMAN']["g"] = 0.44
 	E.oUF.colors.class['SHAMAN']["b"] = 0.87
 end
+
+--make mage and warlock use their original class colors
+function ElvUI_EltreumUI:OriginalClassColors()
+	if E.db.ElvUI_EltreumUI.skins.oldclasscolors then
+		_G.RAID_CLASS_COLORS['MAGE']["r"] = 0.41
+		_G.RAID_CLASS_COLORS['MAGE']["g"] = 0.8
+		_G.RAID_CLASS_COLORS['MAGE']["b"] = 0.94
+		_G.RAID_CLASS_COLORS['MAGE']["colorStr"] = "ff69CCF0"
+		E.oUF.colors.class['MAGE'][1] = 0.41
+		E.oUF.colors.class['MAGE'][2] = 0.8
+		E.oUF.colors.class['MAGE'][3] = 0.94
+		E.oUF.colors.class['MAGE']["r"] = 0.41
+		E.oUF.colors.class['MAGE']["g"] = 0.8
+		E.oUF.colors.class['MAGE']["b"] = 0.94
+
+		_G.RAID_CLASS_COLORS['WARLOCK']["r"] = 0.58
+		_G.RAID_CLASS_COLORS['WARLOCK']["g"] = 0.51
+		_G.RAID_CLASS_COLORS['WARLOCK']["b"] = 0.79
+		_G.RAID_CLASS_COLORS['WARLOCK']["colorStr"] = "9482C9"
+		E.oUF.colors.class['WARLOCK'][1] = 0.58
+		E.oUF.colors.class['WARLOCK'][2] = 0.51
+		E.oUF.colors.class['WARLOCK'][3] = 0.79
+		E.oUF.colors.class['WARLOCK']["r"] = 0.58
+		E.oUF.colors.class['WARLOCK']["g"] = 0.51
+		E.oUF.colors.class['WARLOCK']["b"] = 0.79
+	end
+end

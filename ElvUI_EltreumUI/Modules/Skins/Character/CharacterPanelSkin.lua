@@ -2220,7 +2220,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 	if not E.private.skins.blizzard.enable then return end
 	if not E.private.skins.blizzard.character then return end
 	if ElvUI_EltreumUI:SLCheck('char') then return end
-	if E.db.ElvUI_EltreumUI.skins.itemquality and E.private.skins.blizzard.enable then
+	if E.db.ElvUI_EltreumUI.skins.itemquality and E.private.skins.blizzard.enable and E.private.skins.blizzard.character then
 		E:Delay(0, function()
 			for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
 				qualityAnchor = _G["Character"..InvSlotIdTable[InvSlotId]]

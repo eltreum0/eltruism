@@ -407,6 +407,7 @@ P.ElvUI_EltreumUI = {
 		gradienttooltipoffset1 = -0.2,
 		gradienttooltipoffset2 = 0.2,
 		professionscale = 1,
+		oldclasscolors = false,
 	},
 
 	cursors = {
@@ -1515,6 +1516,7 @@ P.ElvUI_EltreumUI = {
 			castbartexture = "Eltreum-Blank",
 			backdroptexture = "Eltreum-Blank",
 			backdropalpha = 1,
+			healthalpha = 0.7,
 			backdrophidden = false,
 			targettexture = "Eltreum-Blank",
 			playertexture = "Eltreum-Blank",

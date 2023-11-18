@@ -286,8 +286,17 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 						end)
 					end
 
-					--possible widget shadows
+
 					if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+						--saved instances shadow
+						if frame:GetParent() and frame:GetParent().key and frame:GetParent().key == "SavedInstancesTooltip" then
+							if not frame.shadow then
+								frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(frame.shadow)
+							end
+						end
+
+						--possible widget shadows
 						if frame:GetParent() and frame:GetParent():GetParent() then
 							if frame:GetParent():GetParent().widgetContainer then
 								if not frame.shadow then

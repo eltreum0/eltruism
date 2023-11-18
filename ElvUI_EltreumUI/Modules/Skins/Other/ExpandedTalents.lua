@@ -12,6 +12,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 		EltruismExpandedTalents:RegisterEvent("PLAYER_ENTERING_WORLD")
 		EltruismExpandedTalents:RegisterEvent("PLAYER_STARTED_MOVING")
 		EltruismExpandedTalents:RegisterEvent("FIRST_FRAME_RENDERED")
+		EltruismExpandedTalents:RegisterEvent("PLAYER_LOGIN")
 		EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
 			if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then
 				EltruismExpandedTalents:UnregisterAllEvents()
@@ -35,7 +36,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 			end
 		end)
 	else
-		if E.db.ElvUI_EltreumUI.skins.tbctalents and E.private.skins.blizzard.enable then
+		if E.db.ElvUI_EltreumUI.skins.tbctalents and E.private.skins.blizzard.enable and E.private.skins.blizzard.talent then
 			EltruismExpandedTalents:RegisterEvent("ADDON_LOADED")
 			EltruismExpandedTalents:RegisterEvent("PLAYER_ENTERING_WORLD")
 			EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
