@@ -415,6 +415,10 @@ local modelsRotate = {
 	[794489] = true, --General Jakra'zet
 	[1928040] = true, --Zul the Prophet
 	[2031732] = true, --Rexxar
+	[2123282] = true, --Valorcall Defender
+	[2123284] = true, --Valorcall Defender
+	[2123291] = true, --Stromgarde Rifleman
+	[2123288] = true, --Stromgarde Rifleman
 }
 
 local targetlike = {
