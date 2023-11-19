@@ -424,6 +424,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["movers"]["MoverEltruismInstanceDifficulty"] = "TOPRIGHT,UIParent,TOPRIGHT,-146,-21"
 		E.db["movers"]["MoverRaidWarningFrame"] = "TOP,UIParent,TOP,0,-182"
 		E.db["movers"]["TorghastChoiceToggle"] = "BOTTOM,ElvUIParent,BOTTOM,0,398"
+		E.db["movers"]["AddonCompartmentMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-4,-4"
 
 		--its actually alt power on some fights like vigilant guardian
 		E.db["unitframe"]["units"]["party"]["classbar"]["enable"] = false

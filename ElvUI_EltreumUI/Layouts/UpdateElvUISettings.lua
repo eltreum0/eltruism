@@ -114,6 +114,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 
 		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 			E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-258"
+			E.db["movers"]["AddonCompartmentMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-4,-4"
 		end
 
 		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
@@ -311,6 +312,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 
 		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 			E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-258"
+			E.db["movers"]["AddonCompartmentMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-4,-4"
 		end
 
 		--rest icon
