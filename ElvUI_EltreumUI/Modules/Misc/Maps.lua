@@ -391,8 +391,10 @@ function ElvUI_EltreumUI:WorldMapScale()
 	if E.db.ElvUI_EltreumUI.otherstuff.worldmapscale then
 		if _G["WorldMapFrame"] then
 			_G["WorldMapFrame"]:HookScript("OnShow", function()
-				_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
 				if not E.Retail then
+					if not IsAddOnLoaded("Leatrix_Maps") then
+						_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
+					end
 					if not _G["WorldMapFrame"].EltruismMoveable then
 						_G["WorldMapFrame"]:SetMovable(true)
 						_G["WorldMapFrame"]:EnableMouse(true)
@@ -402,6 +404,8 @@ function ElvUI_EltreumUI:WorldMapScale()
 						_G["WorldMapFrame"]:SetClampedToScreen(true)
 						_G["WorldMapFrame"].EltruismMoveable = true
 					end
+				else
+					_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
 				end
 			end)
 
