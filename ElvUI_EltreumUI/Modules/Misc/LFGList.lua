@@ -393,4 +393,5 @@ C_LFGList.GetPlaystyleString = function(playstyle,activityInfo)
 end
 
 --i dont like it but it taints otherwise
-C_LFGList.SetEntryTitle = function() return end
+--C_LFGList.SetEntryTitle = function() return end
+_G.LFGListEntryCreation_SetTitleFromActivityInfo = function() return end
