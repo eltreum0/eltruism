@@ -243,6 +243,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 
 		--add spec icons and IO and region
 		local function SearchEntry_Update(entry)
+			if _G.LFGListFrame.EntryCreation:IsShown() then return end
 			if not _G.LFGListFrame.SearchPanel:IsShown() then return end
 			local resultInfo = C_LFGList.GetSearchResultInfo(entry.resultID)
 			local activityTable = C_LFGList.GetActivityInfoTable(resultInfo.activityID)
@@ -390,3 +391,7 @@ end
 C_LFGList.GetPlaystyleString = function(playstyle,activityInfo)
 	return LFMPlus_GetPlaystyleString(playstyle, activityInfo)
 end
+
+--i dont like it but it taints otherwise
+--C_LFGList.SetEntryTitle = function() return end
+_G.LFGListEntryCreation_SetTitleFromActivityInfo = function() return end

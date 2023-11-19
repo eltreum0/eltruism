@@ -673,11 +673,13 @@ function ElvUI_EltreumUI:Configtable()
 			SetCVar('SoftTargetIconInteract', 1)
 			SetCVar('SoftTargetIconGameObject', 1)
 			SetCVar('SoftTargetNameplateInteract', 1)
+			SetCVar('SoftTargetLowPriorityIcons', 1)
 		else
 			SetCVar('SoftTargetInteract', 0)
 			SetCVar('SoftTargetIconInteract', 0)
 			SetCVar('SoftTargetIconGameObject', 0)
 			SetCVar('SoftTargetNameplateInteract', 0)
+			SetCVar('SoftTargetLowPriorityIcons', 0)
 		end
 	 end, nil)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.description2 = ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
