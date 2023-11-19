@@ -114,6 +114,8 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 
 		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 			E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-258"
+		end
+		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
 			E.db["movers"]["AddonCompartmentMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-4,-4"
 		end
 
@@ -312,6 +314,8 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 
 		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 			E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-258"
+		end
+		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
 			E.db["movers"]["AddonCompartmentMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-4,-4"
 		end
 
