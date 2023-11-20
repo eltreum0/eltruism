@@ -364,7 +364,7 @@ function ElvUI_EltreumUI:SkinQuests()
 								block.itemButton:SetPoint("TOPLEFT", block.HeaderText, "TOPLEFT", -60, -3)
 							else
 								block.itemButton:ClearAllPoints()
-								block.itemButton:SetPoint("TOPRIGHT", block.HeaderText, "TOPRIGHT", 60, -3)
+								block.itemButton:SetPoint("TOPRIGHT", block.HeaderText, "TOPRIGHT", 80, -3)
 							end
 						end
 						if block.groupFinderButton and E.db.ElvUI_EltreumUI.skins.shadow.enable and not block.groupFinderButton.shadow then
