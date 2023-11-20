@@ -1489,3 +1489,4 @@ L["Show Pet Spells"] = "Afficher les sorts des familiers"
 L["Health Alpha"] = true
 L["Change the transparency of the health"] = true
 L["Make Mage and Warlock use their original Class Colors"] = true
+L["Enable Gradient Class Bar"] = true

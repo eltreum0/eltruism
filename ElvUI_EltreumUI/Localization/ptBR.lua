@@ -1484,3 +1484,4 @@ L["Show Pet Spells"] = "Mostrar habilidades de animais de estimação"
 L["Health Alpha"] = true
 L["Change the transparency of the health"] = true
 L["Make Mage and Warlock use their original Class Colors"] = true
+L["Enable Gradient Class Bar"] = true
