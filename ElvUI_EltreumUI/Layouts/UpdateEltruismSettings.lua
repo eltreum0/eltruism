@@ -15,6 +15,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.skins.ace3.enable = true --elvui skin
 		E.db.ElvUI_EltreumUI.skins.elvui.texture = "Eltreum-Tile03"
 		E.db.ElvUI_EltreumUI.unitframes.classcombaticons = true --class based combat icons
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar = true
 
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.8
 
@@ -83,6 +84,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientReputation = true
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor = true
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower = true
+		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar = true
 		E.db.ElvUI_EltreumUI.unitframes.models.powerbar = true
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture = "ElvUI Norm1"
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.8

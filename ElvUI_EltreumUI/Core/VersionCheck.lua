@@ -224,6 +224,10 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
 		--fixingold = true
 		--E.private.ElvUI_EltreumUI.install_version = "4.0.5"
+	elseif E.private.ElvUI_EltreumUI.install_version >= "4.0.5" and E.private.ElvUI_EltreumUI.install_version < "4.0.7" then
+		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower then
+			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar = true
+		end
 	end
 end
 

@@ -239,7 +239,7 @@ end
 
 --additional power gradient/combo/runes as well
 function ElvUI_EltreumUI:UFClassPower_SetBarColor(bar, r, g, b)
-	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r= r - 0.3,g= g - 0.3,b= b - 0.3,a= 1}, {r=r,g= g,b= b,a= 1})
 		if E.db.unitframe.units.player.classbar.fill == "spaced" then
 			bar.bg:SetAlpha(0)
@@ -333,38 +333,38 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 		end
 
 		--gradient additional power, transparent other frames if power tranparency is enabled
-		if not isHooked then
-			if _G["ElvUF_Player_ClassBar"] then
-				if E.db.unitframe.colors.transparentPower then --make class bar follow power transparency
-					_G["ElvUF_Player_ClassBar"]:SetAlpha(E.db.general.backdropfadecolor.a)
-				end
+		if _G["ElvUF_Player_ClassBar"] then
+			if E.db.unitframe.colors.transparentPower then --make class bar follow power transparency
+				_G["ElvUF_Player_ClassBar"]:SetAlpha(E.db.general.backdropfadecolor.a)
 			end
-			if _G["ElvUF_Player_Runes"] then
-				if E.db.unitframe.colors.transparentPower then --make class bar follow power transparency
-					_G["ElvUF_Player_Runes"]:SetAlpha(E.db.general.backdropfadecolor.a)
-				end
+		end
+		if _G["ElvUF_Player_Runes"] then
+			if E.db.unitframe.colors.transparentPower then --make class bar follow power transparency
+				_G["ElvUF_Player_Runes"]:SetAlpha(E.db.general.backdropfadecolor.a)
 			end
-			if _G["ElvUF_Player_Stagger"] then
-				if E.db.unitframe.colors.transparentPower then --make monk's stagger follow power transparency
-					_G["ElvUF_Player_Stagger"]:SetAlpha(E.db.general.backdropfadecolor.a)
-				end
+		end
+		if _G["ElvUF_Player_Stagger"] then
+			if E.db.unitframe.colors.transparentPower then --make monk's stagger follow power transparency
+				_G["ElvUF_Player_Stagger"]:SetAlpha(E.db.general.backdropfadecolor.a)
 			end
-			if _G["ElvUF_Player"] and _G["ElvUF_Player"].Totems then
-				if E.db.unitframe.colors.transparentPower then --make wrath shaman totems follow power transparency
-					_G["ElvUF_Player"].Totems:SetAlpha(E.db.general.backdropfadecolor.a)
-				end
+		end
+		if _G["ElvUF_Player"] and _G["ElvUF_Player"].Totems then
+			if E.db.unitframe.colors.transparentPower then --make wrath shaman totems follow power transparency
+				_G["ElvUF_Player"].Totems:SetAlpha(E.db.general.backdropfadecolor.a)
 			end
-			if _G["ElvUF_Player_AdditionalPowerBar"] then
-				if E.db.unitframe.colors.transparentPower then --make additional power follow power transparency
-					_G["ElvUF_Player_AdditionalPowerBar"]:SetAlpha(E.db.general.backdropfadecolor.a)
-					_G["ElvUF_Player_AdditionalPowerBar"].ClipFrame:SetAlpha(E.db.general.backdropfadecolor.a)
-				end
-				hooksecurefunc(_G["ElvUF_Player_AdditionalPowerBar"], "SetStatusBarColor", function(_,r,g,b) --i knew the vertex thing from details could be useful
-					_G["ElvUF_Player_AdditionalPowerBar"]:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= 1}, {r=r,g= g,b= b,a= 1})
-					if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
-						_G["ElvUF_Player_AdditionalPowerBar"].bg:SetAlpha(E.db.general.backdropfadecolor.a)
-					end
-				end)
+		end
+		if _G["ElvUF_Player_AdditionalPowerBar"] then
+			if E.db.unitframe.colors.transparentPower then --make additional power follow power transparency
+				_G["ElvUF_Player_AdditionalPowerBar"]:SetAlpha(E.db.general.backdropfadecolor.a)
+				_G["ElvUF_Player_AdditionalPowerBar"].ClipFrame:SetAlpha(E.db.general.backdropfadecolor.a)
+			end
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and not isHooked then
+					hooksecurefunc(_G["ElvUF_Player_AdditionalPowerBar"], "SetStatusBarColor", function(_,r,g,b) --i knew the vertex thing from details could be useful
+						_G["ElvUF_Player_AdditionalPowerBar"]:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= 1}, {r=r,g= g,b= b,a= 1})
+						if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
+							_G["ElvUF_Player_AdditionalPowerBar"].bg:SetAlpha(E.db.general.backdropfadecolor.a)
+						end
+					end)
 				isHooked = true
 			end
 		end
@@ -375,7 +375,7 @@ hooksecurefunc(UF, "PostUpdatePowerColor", ElvUI_EltreumUI.GradientPower)
 
 --gradient stagger because its special
 function ElvUI_EltreumUI:GradientStagger()
-	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		if not isHookedstagger then
 			staggerframe = _G["ElvUF_Player_Stagger"]
 			if staggerframe then

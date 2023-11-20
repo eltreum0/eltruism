@@ -1423,6 +1423,7 @@ P.ElvUI_EltreumUI = {
 
 			enablepower = false,
 			enablepowercustom = false,
+			enableclassbar = false,
 
 			manaR1 = 0.49,
 			manaG1 = 0.71,
