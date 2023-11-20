@@ -16,6 +16,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.skins.elvui.texture = "Eltreum-Tile03"
 		E.db.ElvUI_EltreumUI.unitframes.classcombaticons = true --class based combat icons
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar = true
+		E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.bgdisable = true
 
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha = 0.8
 
@@ -234,6 +235,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 
 		-- Misc
 		E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable = false
+		E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.bgdisable = true
 		E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext = true
 		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.enable = true
 		if E.Retail then
