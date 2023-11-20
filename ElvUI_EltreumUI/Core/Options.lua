@@ -3439,26 +3439,29 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 2)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added several fonts and font outlines that were missing to the settings in Eltruism > Media
-Added shadows and improved the mask on the Color Picker Wheel
+Added an option to use the original colors of Mage and Warlock instead of the new ones added in Legion
+Added an option to disable the Gradient Class Bar separately from the Power Gradient
+Added options to change the Alpha of Health separately from the Backdrop
+Added more models to the Portrait Fix
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated [eltruism:healermana] to better deal with value when the unit does not have mana
-Updated Eltruism localization by allowing it to follow ElvUI locale
-Updated DBM profile to remove range references
-Updated default values for the Backdrop Fade
-Updated Retail Method Raid Tools profile
+Updated the Dynamic Datatext option to show on the Datatext tab of Eltruism > Misc
+Updated locales to remove duplicate entries and add a few missing ones
+Updated the LFG skin with a possible fix for the create group taint
+Updated Quest Item button to move to the correct size in Retail
+Updated Smart Class Bar to remove it since ElvUI is adding it
+Updated CVars during install to hide critters
+Updated mover for the Addon Compartment
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue where Gradient backdrop for Power would apply when Gradient Backdrop was disabled
-Fixed an error with the Windtools profile due to the removal of Error Text
-Fixed some functions not firing during login due to Event changes
-Fixed an error in Classic Era due to Roles while in a Group
-Fixed Shadows/Gradient on ElvUI Loot frames
+Fixed a possible issue with Leatrix Maps in Classic when attempting to move/adjust the size of the Map
+Fixed a possible issue with free to play accounts when the Subscription Warning shows up
+Fixed an issue where the backdrop alpha of unitframes didn't work on group units
+Fixed an issue with [eltruism:healermana] where it would not update
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
