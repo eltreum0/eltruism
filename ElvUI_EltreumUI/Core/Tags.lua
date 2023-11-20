@@ -1902,7 +1902,7 @@ E:AddTag("eltruism:healermana", 'UNIT_NAME_UPDATE UNIT_POWER_FREQUENT UNIT_MAXPO
 		if mana ~= 0 then
 			return math.floor((mana/mana)*100).."%"
 		else
-			return 0
+			return "0%"
 		end
 	end
 end)
