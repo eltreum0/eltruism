@@ -1,12 +1,11 @@
 ﻿local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "zhCN")
 if not L then return end
--- Core
+
 L["4K resolution detected, setting fonts to default mode."] = "检测到4K分辨率，字体已设为默认模式。"
 L["1440p resolution detected, setting fonts to outline mode."] = "检测到1440p分辨率，字体已设为Outline模式。"
 L["1080p resolution detected, setting fonts to outline mode."] = "检测到1080p分辨率，字体已设为Outline模式。"
 L["Fonts were set to Outline due to your resolution."] = "因为你的分辨率设置，字体已设为Outline模式。"
 L["EltruismConsumablesWA"] = true
---Install
 L["General CVars have been set."] = "通用CVars参数已被设置。"
 L["NamePlate CVars have been set."] = "姓名版CVars参数已被设置。"
 L["AddOnSkins profile has been set."] = "AddOnSkins配置文件已被设置。"
@@ -82,29 +81,14 @@ L["You need to be using an Eltruism profile in order to use this function"] = "�
 L["Debuff filters were setup"] = "Debuff过滤器设置完成"
 L["Buff filters were setup"] = "Buff过滤器设置完成"
 L["ElvUI Chat has been set."] = "ElvUI聊天框设置完成"
--- Datatext
 L["Eltruism Ammo"] = "Eltruism 弹药"
 L["Open Eltruism Configuration Panel"] = "打开Eltruism配置面板"
 L["Eltruism Config"] = "Eltruism设置"
--- Fonts
 L["Your custom font has been set."] = "你的自定义字体已被设置"
-L["Kimberley Font has been set."] = "Kimberley字体已被设置"
-L["Exo2 Font has been set."] = "Exo2字体已被设置"
-L["GothamNarrow Black Font has been set."] = "GothamNarrow Black字体已被设置"
-L["Roboto Font has been set."] = "Roboto字体已被设置"
-L["Crystalzcuhei Font has been set."] = "Crystalzcuhei字体已被设置"
---LootText
-L["Silver"] = "银" -- the coin type exactly as it is in game, or the function will not work for the location
-L["Gold"] = "金" -- the coin type exactly as it is in game, or the function will not work for the location
-L["Copper"] = "铜" -- the coin type exactly as it is in game, or the function will not work for the location
-L["Soul Ash"] = "灵魂灰尘" -- the currency exactly as it is in game, or the function will not work for the location
---Options
 L["Installer"] = "安装器"
-L["Nameplates"] = "姓名版"
 L["Clear Details! Damage Meter tables to free up memory"] = "清空伤害统计来释放内存"
 L["Clear Details Tables"] = "清空伤害统计"
 L["Set Details tables to be empty"] = "将Details统计设为空白"
-L["Install"] = "安装"
 L["A.F.K"] = "暂离" -- away from keyboard, can be longer in other languages
 L["Play music while you are AFK"] = "当你暂离时播放音乐"
 L["Enable"] = "启用"
@@ -289,7 +273,7 @@ L["Medium"] = true
 L["High"] = true
 L["Dialog"] = true
 L["Change the Horizontal Position of LootText (Default = 0)"] = true
-L["Set X offset"] = true
+L["Set X Offset"] = true
 L["Change the Vertical Position of LootText (Default = 200)"] = true
 L["Change the font of LootText to be the ElvUI Default Font found in General"] = true
 L["Use ElvUI General Font"] = true
@@ -320,9 +304,6 @@ L["In order to use this feature, simply go to your Weakaura, and go to its Group
 L["Setting "] = true
 L[" or "] = true
 L[" as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero"] = true
-L["All weakauras"] = true
-L["Boss nameplate at base"] = true
-L["Executes next to nameplates"] = true
 L["Join the Discord if you have any questions or issues"] = true
 L["Keep in mind the discord is in English"] = true
 L["Changelog"] = true
@@ -331,7 +312,6 @@ L["Choose a version to see its changelog"] = true
 L["Author"] = true
 L["Credits and Thank yous"] = true
 L["License"] = true
-L["New commits, basically a preview of fixes or upcoming features"] = true
 L["Report issues and problems here:"] = true
 L["Addon on Tukui:"] = true
 L["Addon on CurseForge:"] = true
@@ -382,7 +362,6 @@ L["The time will be calculated based on player speed and distance"] = true
 L["If the player is not moving then *** will show up since time cannot be calculated"] = true
 L["If you move away from the waypoint the time will just increase"] = true
 L["Add an ETA to waypoints"] = true --translation note: eta means estimated time to arrive
-L["Enable the /way and /waypoint commands"] = true -- do not translate /way and /waypoint since the commands are not translated
 L["You can type /way or /waypoint"] = true -- do not translate /way and /waypoint since the commands are not translated
 L["Use formats such as:"] = true
 L["XX YY, XX.XX YY.YY, XX,XX YY,YY and XXX YYY"] = true
@@ -740,7 +719,6 @@ L["Backdrops"] = true
 L["Backdrop Texture"] = true
 L["Backdrop Alpha"] = true
 L["Change the transparency of the backdrop"] = true
-L["Font"] = true
 L["Nameplate Powerbar Font"] = true
 L["Choose a font for the Nameplate Powerbar Text"] = true
 L["Nameplate Powerbar Font Size"] = true
@@ -759,7 +737,6 @@ L["Color 2"] = true
 L["Toggle the Click Casting Menu"] = true
 L["Instance Texts"] = true
 L["Instance Text Color"] = true
-L["Font Size"] = true
 L["Instance text Font Size"] = true
 L["Dungeon"] = true
 L["The text displayed when in a normal dungeon"] = true
@@ -1478,3 +1455,7 @@ L["Health Alpha"] = true
 L["Change the transparency of the health"] = true
 L["Make Mage and Warlock use their original Class Colors"] = true
 L["Enable Gradient Class Bar"] = true
+L["Combat Text"] = true
+L["Disable music during combat in instances"] = true
+L["Add mouse over to the right chat panel"] = true
+L["Use Custom Font"] = true

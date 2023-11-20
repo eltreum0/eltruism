@@ -268,15 +268,10 @@ function ElvUI_EltreumUI:LootText()
 							local lootTexture = info["iconFileID"]
 							local lootName = info["name"]
 							local lootQuantity = amount
-							if itemLink:match(L["Soul Ash"]) then
-								CombatText_AddMessage("|T ".. 3743738 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..lootQuantity.." x "..itemLink, CombatText_StandardScroll, 255, 255, 255)
-							end
-							if not itemLink:match(L["Soul Ash"]) then
-								if lootQuantity >= 2 then
-									CombatText_AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, 255, 255, 255)
-								else
-									CombatText_AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootName, CombatText_StandardScroll, 255, 255, 255)
-								end
+							if lootQuantity >= 2 then
+								CombatText_AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootQuantity.." x "..lootName, CombatText_StandardScroll, 255, 255, 255)
+							else
+								CombatText_AddMessage("|T ".. lootTexture ..":18:18:0:0:64:64:5:59:5:59|t|t".."  "..lootName, CombatText_StandardScroll, 255, 255, 255)
 							end
 						end
 					end
