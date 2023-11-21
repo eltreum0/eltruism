@@ -75,7 +75,6 @@ EltruismWiderTransmog:SetScript("OnEvent", function(_, _, arg)
 					WardrobeCollectionFrame.ItemsCollectionFrame.RightEdge:Hide()
 					WardrobeCollectionFrame.ItemsCollectionFrame.LeftEdge:Hide()
 
-
 					--in case of thick borders/2pixels
 					WardrobeCollectionFrame.ItemsCollectionFrame.NineSlice.BottomEdge:Hide()
 					WardrobeCollectionFrame.ItemsCollectionFrame.NineSlice.BottomLeftCorner:Hide()
@@ -91,7 +90,6 @@ EltruismWiderTransmog:SetScript("OnEvent", function(_, _, arg)
 					if WardrobeCollectionFrame.ItemsCollectionFrame.iborder then
 						WardrobeCollectionFrame.ItemsCollectionFrame.iborder:Hide()
 					end
-
 
 					WardrobeCollectionFrame.SetsTransmogFrame.TopLeftCorner:Hide()
 					WardrobeCollectionFrame.SetsTransmogFrame.BottomRightCorner:Hide()
