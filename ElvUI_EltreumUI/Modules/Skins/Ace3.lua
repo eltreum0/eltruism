@@ -6,7 +6,7 @@ local UIFrameFadeIn = _G.UIFrameFadeIn
 local valuecolors = E:ClassColor(E.myclass, true)
 local S = E:GetModule('Skins')
 
-local function CreateFader(frame)
+local function CreateFader(frame,isTree)
 	if not E.private.ElvUI_EltreumUI then return end
 	if not E.private.ElvUI_EltreumUI.install_version then return end
 	if not E.db.ElvUI_EltreumUI then return end
@@ -136,7 +136,13 @@ local function CreateFader(frame)
 
 		frame:HookScript("OnLeave", function()
 			if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
-			UIFrameFadeOut(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 1, 0)
+			if isTree then
+				if not frame.selected then
+					UIFrameFadeOut(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 1, 0)
+				end
+			else
+				UIFrameFadeOut(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 1, 0)
+			end
 			local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
 			if frametext and frametext.GetText and not frame.disabled then
 				frametext:SetTextColor(backupR,backupG,backupB)
@@ -338,7 +344,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 						button.highlight:SetVertexColor(valuecolors.r, valuecolors.g, valuecolors.b, 0.3)
 					end
 				end
-				CreateFader(button)
+				CreateFader(button,true)
 			end
 		end
 	end)

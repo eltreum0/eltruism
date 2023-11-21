@@ -1,12 +1,11 @@
 ﻿local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "itIT")
 if not L then return end
--- Core
+
 L["4K resolution detected, setting fonts to default mode."] = true
 L["1440p resolution detected, setting fonts to outline mode."] = true
 L["1080p resolution detected, setting fonts to outline mode."] = true
 L["Fonts were set to Outline due to your resolution."] = true
 L["EltruismConsumablesWA"] = true
---Install
 L["General CVars have been set."] = true
 L["NamePlate CVars have been set."] = true
 L["AddOnSkins profile has been set."] = true
@@ -82,28 +81,14 @@ L["You need to be using an Eltruism profile in order to use this function"] = tr
 L["Debuff filters were setup"] = true
 L["Buff filters were setup"] = true
 L["ElvUI Chat has been set."] = true
--- Datatext
 L["Eltruism Ammo"] = true
 L["Open Eltruism Configuration Panel"] = true
 L["Eltruism Config"] = true
--- Fonts
 L["Your custom font has been set."] = true
-L["Kimberley Font has been set."] = true
-L["Exo2 Font has been set."] = true
-L["GothamNarrow Black Font has been set."] = true
-L["Roboto Font has been set."] = true
-L["Crystalzcuhei Font has been set."] = true
---LootText
-L["Silver"] = true -- the coin type exactly as it is in game, or the function will not work for the location
-L["Gold"] = true -- the coin type exactly as it is in game, or the function will not work for the location
-L["Copper"] = true -- the coin type exactly as it is in game, or the function will not work for the location
-L["Soul Ash"] = true -- the currency exactly as it is in game, or the function will not work for the location
---Options
 L["Installer"] = true
 L["Clear Details! Damage Meter tables to free up memory"] = true
 L["Clear Details Tables"] = true
 L["Set Details tables to be empty"] = true
-L["Install"] = true
 L["A.F.K"] = true -- away from keyboard, can be longer in other languages
 L["Play music while you are AFK"] = true
 L["Enable"] = true
@@ -239,7 +224,6 @@ L["Enable the Dynamic Datatext"] = true
 L["Expand the Talents to show the entire tree"] = true
 L["Expanded Talents"] = true
 L["Expand Talents to cover the full tree"] = true
-L["Nameplates"] = true
 L["Class Colored Nameplate Options"] = true
 L["Hover"] = true
 L["Change the color of the hover to be class colored"] = true
@@ -288,7 +272,7 @@ L["Medium"] = true
 L["High"] = true
 L["Dialog"] = true
 L["Change the Horizontal Position of LootText (Default = 0)"] = true
-L["Set X offset"] = true
+L["Set X Offset"] = true
 L["Change the Vertical Position of LootText (Default = 200)"] = true
 L["Change the font of LootText to be the ElvUI Default Font found in General"] = true
 L["Use ElvUI General Font"] = true
@@ -319,9 +303,6 @@ L["In order to use this feature, simply go to your Weakaura, and go to its Group
 L["Setting "] = true
 L[" or "] = true
 L[" as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero"] = true
-L["All weakauras"] = true
-L["Boss nameplate at base"] = true
-L["Executes next to nameplates"] = true
 L["Join the Discord if you have any questions or issues"] = true
 L["Keep in mind the discord is in English"] = true
 L["Changelog"] = true
@@ -330,7 +311,6 @@ L["Choose a version to see its changelog"] = true
 L["Author"] = true
 L["Credits and Thank yous"] = true
 L["License"] = true
-L["New commits, basically a preview of fixes or upcoming features"] = true
 L["Report issues and problems here:"] = true
 L["Addon on Tukui:"] = true
 L["Addon on CurseForge:"] = true
@@ -382,7 +362,6 @@ L["Credits"] = true
 L["If the player is not moving then *** will show up since time cannot be calculated"] = true
 L["If you move away from the waypoint the time will just increase"] = true
 L["Add an ETA to waypoints"] = true --translation note: eta means estimated time to arrive
-L["Enable the /way and /waypoint commands"] = true -- do not translate /way and /waypoint since the commands are not translated
 L["You can type /way or /waypoint"] = true -- do not translate /way and /waypoint since the commands are not translated
 L["Use formats such as:"] = true
 L["XX YY, XX.XX YY.YY, XX,XX YY,YY and XXX YYY"] = true
@@ -412,8 +391,6 @@ L["Shows Class Icons with borders recolored by Releaf on Player targets"] = true
 L["Hybrid"] = true
 L["ElvUI NamePlates were setup."] = true
 L["NamePlate Style Filters were set."] = true
-
---missing texts from February 2022
 L["Eltruism Installer"] = true
 L["Launch Eltruism Installer"] = true
 L["Reset/Update Eltruism Settings"] = true
@@ -654,7 +631,6 @@ L["Shaman Fire Totem"] = true
 L["Shaman Earth Totem"] = true
 L["Shaman Water Totem"] = true
 L["Shaman Air Totem"] = true
---didnt export earlier
 L["Use Type Colors"] = true
 L["Grey Background"] = true
 L["Black Background"] = true
@@ -744,8 +720,6 @@ L["Backdrops"] = true
 L["Backdrop Texture"] = true
 L["Backdrop Alpha"] = true
 L["Change the transparency of the backdrop"] = true
-L["Font"] = true
-L["Font Size"] = true
 L["Nameplate Powerbar Font"] = true
 L["Choose a font for the Nameplate Powerbar Text"] = true
 L["Nameplate Powerbar Font Size"] = true
@@ -1481,3 +1455,7 @@ L["Show Pet Spells"] = true
 L["Health Alpha"] = true
 L["Change the transparency of the health"] = true
 L["Make Mage and Warlock use their original Class Colors"] = true
+L["Enable Gradient Class Bar"] = true
+L["Combat Text"] = true
+L["Disable music during combat in instances"] = true
+L["Add mouse over to the right chat panel"] = true

@@ -34,7 +34,7 @@ function ElvUI_EltreumUI:Shadows()
 			benikdettached = E.db.benikui.unitframes.player.detachPortrait
 		end
 		------------------------------------------------------------------------------------------------------blizzard frames
-		if E.db.ElvUI_EltreumUI.skins.shadow.blizzard then
+		if E.db.ElvUI_EltreumUI.skins.shadow.blizzard and E.private.skins.blizzard.enable then
 			EltruismBlizzShadows:RegisterEvent("ADDON_LOADED")
 			EltruismBlizzShadows:RegisterEvent("PLAYER_ENTERING_WORLD")
 			EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
@@ -878,27 +878,6 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end)
 
-			--elvui config shadows
-			hooksecurefunc(E, "ToggleOptions", function()
-				local frame = E:Config_GetWindow()
-				if frame and not frame.shadow then
-					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(frame.shadow)
-				end
-			end)
-
-			--statusreport
-			hooksecurefunc(E, "ShowStatusReport", function()
-				if _G["ElvUIStatusReport"] and not _G["ElvUIStatusReport"].shadow then
-					_G["ElvUIStatusReport"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(_G["ElvUIStatusReport"].shadow)
-				end
-				if _G["ElvUIStatusPlugins"] and not _G["ElvUIStatusPlugins"].shadow then
-					_G["ElvUIStatusPlugins"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(_G["ElvUIStatusPlugins"].shadow)
-				end
-			end)
-
 			--mirror timer shadow
 			if not E.Retail then
 				for i = 1, 3 do
@@ -1304,6 +1283,27 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 			end
+
+			--elvui config shadows
+			hooksecurefunc(E, "ToggleOptions", function()
+				local frame = E:Config_GetWindow()
+				if frame and not frame.shadow then
+					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(frame.shadow)
+				end
+			end)
+
+			--statusreport
+			hooksecurefunc(E, "ShowStatusReport", function()
+				if _G["ElvUIStatusReport"] and not _G["ElvUIStatusReport"].shadow then
+					_G["ElvUIStatusReport"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G["ElvUIStatusReport"].shadow)
+				end
+				if _G["ElvUIStatusPlugins"] and not _G["ElvUIStatusPlugins"].shadow then
+					_G["ElvUIStatusPlugins"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G["ElvUIStatusPlugins"].shadow)
+				end
+			end)
 		end
 		------------------------------------------------------------------------------------------------------action bars
 		if E.db.ElvUI_EltreumUI.skins.shadow.actionbars then

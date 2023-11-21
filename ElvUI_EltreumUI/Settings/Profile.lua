@@ -463,7 +463,6 @@ P.ElvUI_EltreumUI = {
 			ClassColorGlow = false,
 			ClassBorderNameplate = false,
 			nameplatetexture = false,
-			classbarautohide = false,
 			targetclasstexture = false,
 			enableHealthHeight = false,
 			outofcombatHeight = 4,
@@ -1424,6 +1423,7 @@ P.ElvUI_EltreumUI = {
 
 			enablepower = false,
 			enablepowercustom = false,
+			enableclassbar = false,
 
 			manaR1 = 0.49,
 			manaG1 = 0.71,

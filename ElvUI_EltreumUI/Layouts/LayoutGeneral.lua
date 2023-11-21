@@ -424,6 +424,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["movers"]["MoverEltruismInstanceDifficulty"] = "TOPRIGHT,UIParent,TOPRIGHT,-146,-21"
 		E.db["movers"]["MoverRaidWarningFrame"] = "TOP,UIParent,TOP,0,-182"
 		E.db["movers"]["TorghastChoiceToggle"] = "BOTTOM,ElvUIParent,BOTTOM,0,398"
+		E.db["movers"]["AddonCompartmentMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-8,-5"
 
 		--its actually alt power on some fights like vigilant guardian
 		E.db["unitframe"]["units"]["party"]["classbar"]["enable"] = false
@@ -1720,6 +1721,8 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('SoftTargetInteractArc', 2)
 	SetCVar('SoftTargetNameplateInteract', 1)
 	SetCVar('SoftTargetLowPriorityIcons', 1)
+	SetCVar('SoftTargetIconEnemy', 0)
+	SetCVar('SoftTargetIconFriend', 0)
 
 	if E.Retail then
 		--this makes it so that the non nameplate names are hidden

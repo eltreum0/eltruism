@@ -354,9 +354,17 @@ function ElvUI_EltreumUI:SkinQuests()
 								block.itemButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(block.itemButton.shadow)
 							end
+							if _G.ObjectiveFrameMover then
+								questside = _G.ObjectiveFrameMover:GetPoint()
+							else
+								questside = "RIGHT"
+							end
 							if questside:match("RIGHT") then
 								block.itemButton:ClearAllPoints()
 								block.itemButton:SetPoint("TOPLEFT", block.HeaderText, "TOPLEFT", -60, -3)
+							else
+								block.itemButton:ClearAllPoints()
+								block.itemButton:SetPoint("TOPRIGHT", block.HeaderText, "TOPRIGHT", 80, -3)
 							end
 						end
 						if block.groupFinderButton and E.db.ElvUI_EltreumUI.skins.shadow.enable and not block.groupFinderButton.shadow then

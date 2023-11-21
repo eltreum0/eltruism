@@ -419,6 +419,8 @@ local modelsRotate = {
 	[2123284] = true, --Valorcall Defender
 	[2123291] = true, --Stromgarde Rifleman
 	[2123288] = true, --Stromgarde Rifleman
+	[534761] = true, --Wrathion (old model)
+	[353670] = true, --Anduin Wrynn (old model)
 }
 
 local targetlike = {

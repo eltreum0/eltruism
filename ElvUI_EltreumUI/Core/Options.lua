@@ -674,12 +674,16 @@ function ElvUI_EltreumUI:Configtable()
 			SetCVar('SoftTargetIconGameObject', 1)
 			SetCVar('SoftTargetNameplateInteract', 1)
 			SetCVar('SoftTargetLowPriorityIcons', 1)
+			SetCVar('SoftTargetIconEnemy', 0)
+			SetCVar('SoftTargetIconFriend', 0)
 		else
 			SetCVar('SoftTargetInteract', 0)
 			SetCVar('SoftTargetIconInteract', 0)
 			SetCVar('SoftTargetIconGameObject', 0)
 			SetCVar('SoftTargetNameplateInteract', 0)
 			SetCVar('SoftTargetLowPriorityIcons', 0)
+			SetCVar('SoftTargetIconEnemy', 0)
+			SetCVar('SoftTargetIconFriend', 0)
 		end
 	 end, nil)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.description2 = ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
@@ -1293,8 +1297,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.cursor.args.size.args.cursorcursorthickness = ACH:Range(L["Combat Cursor Thickness (Default: 5)"], L["Set the thickness of the combat cursor"], 7, { min = 1, max = 10, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.cursors.cursorcursor.thickness end, function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcursor.thickness = value ElvUI_EltreumUI:CastCursor() end)
 	ElvUI_EltreumUI.Options.args.cursor.args.position = ACH:Group(L["Cursor Position"], nil, 2, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end)
 	ElvUI_EltreumUI.Options.args.cursor.args.position.args.description1 = ACH:Description(L["Cursor Position"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.cursor.args.position.args.coooldownx = ACH:Range(L["Set X offset"], nil, 2, { min = -200, max = 200, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx end, function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx = value end, function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable or not E.db.ElvUI_EltreumUI.cursors.cursor.cooldown end)
-	ElvUI_EltreumUI.Options.args.cursor.args.position.args.coooldowny = ACH:Range(L["Set Y offset"], nil, 2, { min = -200, max = 200, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety end, function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety = value end, function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable or not E.db.ElvUI_EltreumUI.cursors.cursor.cooldown end)
+	ElvUI_EltreumUI.Options.args.cursor.args.position.args.coooldownx = ACH:Range(L["Set X Offset"], nil, 2, { min = -200, max = 200, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx end, function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsetx = value end, function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable or not E.db.ElvUI_EltreumUI.cursors.cursor.cooldown end)
+	ElvUI_EltreumUI.Options.args.cursor.args.position.args.coooldowny = ACH:Range(L["Set Y Offset"], nil, 2, { min = -200, max = 200, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety end, function(_, value) E.db.ElvUI_EltreumUI.cursors.cursor.cooldownoffsety = value end, function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable or not E.db.ElvUI_EltreumUI.cursors.cursor.cooldown end)
 	ElvUI_EltreumUI.Options.args.cursor.args.colors = ACH:Group(L["Cursor Colors"], nil, 2, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end)
 	ElvUI_EltreumUI.Options.args.cursor.args.colors.args.description1 = ACH:Description(L["Cursor Colors "], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.cursor.args.colors.args.castclasscolor = ACH:Toggle(L["Class Colored Casts"], L["Use Class Colors for Cast"], 2, nil, false, nil, function() return E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor end,function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor = value ElvUI_EltreumUI:CastCursor() end)
@@ -2540,14 +2544,13 @@ function ElvUI_EltreumUI:Configtable()
 	--gradient
 	ElvUI_EltreumUI.Options.args.gradient = ACH:Group(E:TextGradient(L["Gradient"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add gradients to Unitframes and Nameplates"], 85, 'tab')
 	ElvUI_EltreumUI.Options.args.gradient.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\gradient'
-
-
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes = ACH:Group(L["UnitFrames"], nil, 2, "tab", nil, nil, function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.unitframes = ACH:Group(L["Frames"], nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.enable = ACH:Group("", nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.enable.inline = true
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.enable.args.gradientenable = ACH:Toggle(L["Enable Gradient (Requires Dark or Light Modes)"], L["Enable Gradient colors for Health"], 2, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = value ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return (not E.db.ElvUI_EltreumUI.unitframes.lightmode and not E.db.ElvUI_EltreumUI.unitframes.darkmode) or not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.enable.args.powerenable = ACH:Toggle(L["Enable Gradient Power"], L["Enable Gradient Power Colors"], 3, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower = value ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
+	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.enable.args.classbarenable = ACH:Toggle(E.NewSign..L["Enable Gradient Class Bar"], nil, 3, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar = value ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.enable.args.aurabarsenable = ACH:Toggle(L["Enable Gradient Aurabars"], nil, 3, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = value ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.enable.args.backdropenable = ACH:Toggle(E.NewSign..L["Enable Gradient Backdrop"], nil, 3, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop = value ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.gradient.args.unitframes.args.unitframes.args.description1 = ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
@@ -2782,8 +2785,6 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.nameplates.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\nameplate'
 	ElvUI_EltreumUI.Options.args.nameplates.args.general = ACH:Group(L["General"], nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.nameplates.args.general.args.misc = ACH:Group(L["Misc"], nil, 1, "tab")
-	ElvUI_EltreumUI.Options.args.nameplates.args.general.args.misc.args.description1 = ACH:Description(L["Smart Classbar"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.nameplates.args.general.args.misc.args.classbarautohide = ACH:Toggle(L["Enable Smart Classbar"], L["Automatically hide the Classbar if the Target is Friendly, show if it is an enemy"], 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide end, function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide = value end)
 	ElvUI_EltreumUI.Options.args.nameplates.args.general.args.misc.args.description2 = ACH:Description(L["Hide Cooldown Swipe"], 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.nameplates.args.general.args.misc.args.hidecdswipenp = ACH:Toggle(L["Hide Cooldown Swipe on Buffs and Debuffs"], L["Toggle On and Off"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe end, function(_, value) E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.hideSwipe = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.nameplates.args.general.args.misc.args.description3 = ACH:Description(L["Hide Debuffs on Non Target"], 5, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
@@ -3438,26 +3439,29 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 2)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added several fonts and font outlines that were missing to the settings in Eltruism > Media
-Added shadows and improved the mask on the Color Picker Wheel
+Added an option to use the original colors of Mage and Warlock instead of the new ones added in Legion
+Added an option to disable the Gradient Class Bar separately from the Power Gradient
+Added options to change the Alpha of Health separately from the Backdrop
+Added more models to the Portrait Fix
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated [eltruism:healermana] to better deal with value when the unit does not have mana
-Updated Eltruism localization by allowing it to follow ElvUI locale
-Updated DBM profile to remove range references
-Updated default values for the Backdrop Fade
-Updated Retail Method Raid Tools profile
+Updated the Dynamic Datatext option to show on the Datatext tab of Eltruism > Misc
+Updated locales to remove duplicate entries and add a few missing ones
+Updated the LFG skin with a possible fix for the create group taint
+Updated Quest Item button to move to the correct size in Retail
+Updated Smart Class Bar to remove it since ElvUI is adding it
+Updated CVars during install to hide critters
+Updated mover for the Addon Compartment
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue where Gradient backdrop for Power would apply when Gradient Backdrop was disabled
-Fixed an error with the Windtools profile due to the removal of Error Text
-Fixed some functions not firing during login due to Event changes
-Fixed an error in Classic Era due to Roles while in a Group
-Fixed Shadows/Gradient on ElvUI Loot frames
+Fixed a possible issue with Leatrix Maps in Classic when attempting to move/adjust the size of the Map
+Fixed a possible issue with free to play accounts when the Subscription Warning shows up
+Fixed an issue where the backdrop alpha of unitframes didn't work on group units
+Fixed an issue with [eltruism:healermana] where it would not update
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
