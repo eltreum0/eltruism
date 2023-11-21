@@ -100,22 +100,22 @@ EltruismWiderTransmog:SetScript("OnEvent", function(_, _, arg)
 				WardrobeCollectionFrame.SetsTransmogFrame.LeftEdge:Hide()
 
 				--in case of thick borders/2pixels
-				WardrobeCollectionFrame.SetsTransmogFrame.NineSlice.BottomEdge:Hide()
-				WardrobeCollectionFrame.SetsTransmogFrame.NineSlice.BottomLeftCorner:Hide()
-				WardrobeCollectionFrame.SetsTransmogFrame.NineSlice.BottomRightCorner:Hide()
-				WardrobeCollectionFrame.SetsTransmogFrame.NineSlice.LeftEdge:Hide()
-				WardrobeCollectionFrame.SetsTransmogFrame.NineSlice.RightEdge:Hide()
-				WardrobeCollectionFrame.SetsTransmogFrame.NineSlice.TopEdge:Hide()
-				WardrobeCollectionFrame.SetsTransmogFrame.NineSlice.TopLeftCorner:Hide()
-				WardrobeCollectionFrame.SetsTransmogFrame.NineSlice.TopRightCorner:Hide()
-				if WardrobeCollectionFrame.SetsTransmogFrame.oborder then
-					WardrobeCollectionFrame.SetsTransmogFrame.oborder:Hide()
+				if E.private.skins.blizzard.enable then
+					WardrobeCollectionFrame.SetsTransmogFrame.NineSlice.BottomEdge:Hide()
+					WardrobeCollectionFrame.SetsTransmogFrame.NineSlice.BottomLeftCorner:Hide()
+					WardrobeCollectionFrame.SetsTransmogFrame.NineSlice.BottomRightCorner:Hide()
+					WardrobeCollectionFrame.SetsTransmogFrame.NineSlice.LeftEdge:Hide()
+					WardrobeCollectionFrame.SetsTransmogFrame.NineSlice.RightEdge:Hide()
+					WardrobeCollectionFrame.SetsTransmogFrame.NineSlice.TopEdge:Hide()
+					WardrobeCollectionFrame.SetsTransmogFrame.NineSlice.TopLeftCorner:Hide()
+					WardrobeCollectionFrame.SetsTransmogFrame.NineSlice.TopRightCorner:Hide()
+					if WardrobeCollectionFrame.SetsTransmogFrame.oborder then
+						WardrobeCollectionFrame.SetsTransmogFrame.oborder:Hide()
+					end
+					if WardrobeCollectionFrame.SetsTransmogFrame.iborder then
+						WardrobeCollectionFrame.SetsTransmogFrame.iborder:Hide()
+					end
 				end
-				if WardrobeCollectionFrame.SetsTransmogFrame.iborder then
-					WardrobeCollectionFrame.SetsTransmogFrame.iborder:Hide()
-				end
-
-
 			end
 		end)
 	end
