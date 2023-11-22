@@ -2539,22 +2539,12 @@ function ElvUI_EltreumUI:Shadows()
 									_G["ElvUF_Target"].shadow:ClearAllPoints()
 									_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT",_G["ElvUF_Target_HealthBar"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
 									_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-									if _G["ElvUF_Target_ClassBar"]:IsShown() then
-										_G["ElvUF_Target"].shadow:ClearAllPoints()
-										_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length - (E.db.unitframe.units.target.classbar.height/2))
-										_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-									end
 								end
 							elseif E.db.unitframe.units.target.power.width == "fill" then
 								if _G["ElvUF_Target"] and _G["ElvUF_Target"].shadow then
 									_G["ElvUF_Target"].shadow:ClearAllPoints()
 									_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target_HealthBar"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
 									_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_PowerBar"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-									if _G["ElvUF_Target_ClassBar"]:IsShown() then
-										_G["ElvUF_Target"].shadow:ClearAllPoints()
-										_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length - (E.db.unitframe.units.target.classbar.height/2))
-										_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-									end
 								end
 							else
 								if E.db.unitframe.units.target.power.offset == 0 then
@@ -2669,22 +2659,12 @@ function ElvUI_EltreumUI:Shadows()
 									_G["ElvUF_TargetTarget"].shadow:ClearAllPoints()
 									_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT",_G["ElvUF_TargetTarget_HealthBar"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
 									_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-									if _G["ElvUF_TargetTarget_ClassBar"]:IsShown() then
-										_G["ElvUF_TargetTarget"].shadow:ClearAllPoints()
-										_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length - (E.db.unitframe.units.targettarget.classbar.height/2))
-										_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-									end
 								end
 							elseif E.db.unitframe.units.targettarget.power.width == "fill" then
 								if _G["ElvUF_TargetTarget"] and _G["ElvUF_TargetTarget"].shadow then
 									_G["ElvUF_TargetTarget"].shadow:ClearAllPoints()
 									_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget_HealthBar"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
 									_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget_PowerBar"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-									if _G["ElvUF_TargetTarget_ClassBar"]:IsShown() then
-										_G["ElvUF_TargetTarget"].shadow:ClearAllPoints()
-										_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length - (E.db.unitframe.units.targettarget.classbar.height/2))
-										_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-									end
 								end
 							else
 								if E.db.unitframe.units.targettarget.power.offset == 0 then
