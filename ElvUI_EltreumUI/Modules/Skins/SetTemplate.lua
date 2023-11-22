@@ -286,7 +286,6 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 						end)
 					end
 
-
 					if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 						--saved instances shadow
 						if frame:GetParent() and frame:GetParent().key and frame:GetParent().key == "SavedInstancesTooltip" then
@@ -331,6 +330,11 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 						if frame.eltruismbgtexture then
 							frame.eltruismbgtexture:Show()
 						end
+					end
+
+					if frame == _G.QuestInfoItemHighlight then --fix the highlight
+						frame:SetBackdropBorderColor(1, 1, 0)
+						frame:SetBackdropColor(0, 0, 0, 0)
 					end
 				end)
 			end
