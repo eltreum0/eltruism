@@ -219,7 +219,7 @@ function ElvUI_EltreumUI:Anchors()
 
 	E:CreateMover(RaidWarningFrame, "MoverRaidWarningFrame", "Raid Warning Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
 
-	if E.private.general.raidUtility and E.private.unitframe.disabledBlizzardFrames.raid then
+	if E.private.general.raidUtility and E.private.unitframe.disabledBlizzardFrames.raid and E.private.unitframe.disabledBlizzardFrames.party then
 		if _G.RaidUtility_ShowButton then
 			E:CreateMover(_G.RaidUtility_ShowButton, "MoverRaidUtility", "Raid Utility", nil, nil, nil, "ALL,RAID,ELTREUMUI")
 		end
