@@ -21,6 +21,7 @@ local next = _G.next
 local EltruismAutoComplete = CreateFrame("FRAME", "EltruismAutoCompleteFrame")
 function ElvUI_EltreumUI:AutoAcceptQuests()
 	if E.db.ElvUI_EltreumUI.quests.autoaccept then
+		local lastgossip
 		EltruismAutoComplete:RegisterEvent("QUEST_GREETING")
 		EltruismAutoComplete:RegisterEvent("GOSSIP_SHOW")
 		EltruismAutoComplete:RegisterEvent("QUEST_DETAIL")
@@ -288,7 +289,10 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 												if E.db.ElvUI_EltreumUI.dev then
 													ElvUI_EltreumUI:Print("one gossip option found, selecting it")
 												end
-												C_GossipInfo.SelectOption(gossipInfoTable[i].gossipOptionID)
+												if lastgossip ~= gossipInfoTable[i].gossipOptionID then
+													C_GossipInfo.SelectOption(gossipInfoTable[i].gossipOptionID)
+													lastgossip = gossipInfoTable[i].gossipOptionID
+												end
 											end
 										elseif #gossipInfoTable == 0 then
 											if E.db.ElvUI_EltreumUI.dev then
@@ -330,7 +334,10 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 									if E.db.ElvUI_EltreumUI.dev then
 										ElvUI_EltreumUI:Print("one gossip option found, selecting it")
 									end
-									C_GossipInfo.SelectOption(gossipInfoTable[1].gossipOptionID)
+									if lastgossip ~= gossipInfoTable[1].gossipOptionID then
+										C_GossipInfo.SelectOption(gossipInfoTable[1].gossipOptionID)
+										lastgossip = gossipInfoTable[1].gossipOptionID
+									end
 								end
 							else
 								if E.db.ElvUI_EltreumUI.dev then
