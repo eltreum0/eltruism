@@ -229,40 +229,13 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								ElvUI_EltreumUI:Print("active quest detected, searching for option")
 							end
 							for i, _ in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
-								--local _, _, _, _, isComplete = active[i]
 								if active[i].isComplete then
 									completed = completed + 1
-									--[[if E.db.ElvUI_EltreumUI.dev then
-										ElvUI_EltreumUI:Print("iterate and select already active quest")
-									end
-									C_GossipInfo.SelectActiveQuest(i)]]
 								elseif active[i].isComplete ~= true then
 									notcomplete = notcomplete +1
 								end
-									--[[if active[i+1] and active[i+1].isComplete then
-										--ElvUI_EltreumUI:Print("cool")
-									else
-										ElvUI_EltreumUI:Print("nope")
-									end]]
-
-								--[[ElvUI_EltreumUI:Print("selecting gossip instead")
-								local gossipInfoTable = C_GossipInfo.GetOptions()
-								for i = 1, C_GossipInfo.GetNumOptions() do
-									if gossipInfoTable[i].type == "gossip" or gossipInfoTable[i].type == "chatbubble" then --chatbubble is for sanctum stuff
-										if NPC_ID == 153897 then
-											return
-										else
-											C_GossipInfo.SelectOption(i)
-										end
-									end
-								end]]
-								--local numberleft = C_GossipInfo.GetNumActiveQuests()
-								--if i == numberleft then
-									loopcomplete = true
-								--end
+								loopcomplete = true
 							end
-
-							--ElvUI_EltreumUI:Print(completed, notcomplete)
 							if loopcomplete then
 								for i, k in next, C_GossipInfo.GetActiveQuests() do
 									if completed >= 1 then
@@ -334,10 +307,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 									if E.db.ElvUI_EltreumUI.dev then
 										ElvUI_EltreumUI:Print("one gossip option found, selecting it")
 									end
-									if lastgossip ~= gossipInfoTable[1].gossipOptionID then
-										C_GossipInfo.SelectOption(gossipInfoTable[1].gossipOptionID)
-										lastgossip = gossipInfoTable[1].gossipOptionID
-									end
+									C_GossipInfo.SelectOption(gossipInfoTable[1].gossipOptionID)
 								end
 							else
 								if E.db.ElvUI_EltreumUI.dev then
@@ -354,65 +324,6 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								end
 							end
 						end
-						--[[elseif E.Classic then
-							if (GetNumGossipAvailableQuests() > 0) then
-								if E.db.ElvUI_EltreumUI.dev then
-									ElvUI_EltreumUI:Print("number of available quests > 0")
-								end
-								local questlist = {GetGossipAvailableQuests()}
-								local i = 1
-								while(questlist[i]) do
-									if E.db.ElvUI_EltreumUI.dev then
-										ElvUI_EltreumUI:Print("tried to select quests with while "..math.random(1,99))
-									end
-									SelectGossipAvailableQuest(i)
-									i = i + 1
-								end
-							end
-							if (GetNumGossipActiveQuests() > 0) then
-								if E.db.ElvUI_EltreumUI.dev then
-									ElvUI_EltreumUI:Print("number of active quests > 0")
-								end
-								for i = 1, GetNumGossipActiveQuests() do
-									if E.db.ElvUI_EltreumUI.dev then
-										ElvUI_EltreumUI:Print("tried to select and accept quests in a loop"..math.random(1,99))
-									end
-									SelectGossipActiveQuest(i)
-									if E.Retail then
-										if not E.db.ElvUI_EltreumUI.quests.acceptdaily then
-											if QuestIsDaily() then
-												if E.db.ElvUI_EltreumUI.dev then
-													ElvUI_EltreumUI:Print("its a daily quest")
-												end
-												return
-											elseif QuestIsWeekly() then
-												if E.db.ElvUI_EltreumUI.dev then
-													ElvUI_EltreumUI:Print("its a weekly quest")
-												end
-												return
-											else
-												AcceptQuest()
-											end
-										else
-											AcceptQuest()
-										end
-										if (GetNumQuestChoices() <= 0) then
-											if E.db.ElvUI_EltreumUI.dev then
-												ElvUI_EltreumUI:Print("no quest choices")
-											end
-											return
-										end
-									elseif E.Wrath or E.Classic then
-										AcceptQuest()
-										if (GetNumQuestChoices() <= 0) then
-											return
-										end
-									end
-
-									i = i + 1
-								end
-							end
-						end]]
 					end
 				end
 				if event == 'QUEST_PROGRESS' then
@@ -425,36 +336,26 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						end
 						return
 					else
-						--if E.Retail or E.Wrath then
-							if C_GossipInfo.GetNumActiveQuests() == 0 then --maybe npc only has 1 quest, or its laurent from revendreth and it has a turn in with 0
-								if E.db.ElvUI_EltreumUI.dev then
-									ElvUI_EltreumUI:Print("unable to determine if quest completed, trying anyway")
-								end
-								CompleteQuest()
-								--GetQuestPortraitTurnIn()
-								--C_QuestOffer.
-							end
-							for i, _ in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
-								local questdump = C_GossipInfo.GetActiveQuests()
-								--local _, _, _, _, isComplete = questdump[i]
-								if not questdump[i].isComplete then
-									if E.db.ElvUI_EltreumUI.dev then
-										ElvUI_EltreumUI:Print("quest not completed")
-									end
-									return
-								elseif questdump[i].isComplete then
-									if E.db.ElvUI_EltreumUI.dev then
-										ElvUI_EltreumUI:Print("quest completed, turning in")
-									end
-									CompleteQuest()
-								end
-							end
-						--[[elseif E.Classic then
+						if C_GossipInfo.GetNumActiveQuests() == 0 then --maybe npc only has 1 quest, or its laurent from revendreth and it has a turn in with 0
 							if E.db.ElvUI_EltreumUI.dev then
-								ElvUI_EltreumUI:Print("tried to complete quest")
+								ElvUI_EltreumUI:Print("unable to determine if quest completed, trying anyway")
 							end
 							CompleteQuest()
-						end]]
+						end
+						for i, _ in next, C_GossipInfo.GetActiveQuests() do --quests already grabbed
+							local questdump = C_GossipInfo.GetActiveQuests()
+							if not questdump[i].isComplete then
+								if E.db.ElvUI_EltreumUI.dev then
+									ElvUI_EltreumUI:Print("quest not completed")
+								end
+								return
+							elseif questdump[i].isComplete then
+								if E.db.ElvUI_EltreumUI.dev then
+									ElvUI_EltreumUI:Print("quest completed, turning in")
+								end
+								CompleteQuest()
+							end
+						end
 					end
 				end
 				if event == 'QUEST_COMPLETE' then
@@ -467,53 +368,12 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						end
 						return
 					else
-						--if E.Retail or E.Wrath then
-							--[[local active = C_GossipInfo.GetActiveQuests()
-							local notcomplete = 0
-							local completed = 0
-							local hasgossip = false
-							if active then
-								ElvUI_EltreumUI:Print("has gossip")
-								hasgossip = true
-								for i, k in next, C_GossipInfo.GetActiveQuests() do
-									if active[i] and active[i].isComplete then
-										ElvUI_EltreumUI:Print("111111")
-										completed = completed + 1
-									elseif active[i] and not active[i].isComplete then
-										ElvUI_EltreumUI:Print("33333")
-										notcomplete = notcomplete + 1
-									end
-									ElvUI_EltreumUI:Print(completed, notcomplete)
-								end
-							elseif active == nil then
-								ElvUI_EltreumUI:Print("no gossip")
+						if GetNumQuestChoices() <= 1 then
+							if E.db.ElvUI_EltreumUI.dev then
+								ElvUI_EltreumUI:Print("tried to select reward and complete")
 							end
-							if not hasgossip then
-								ElvUI_EltreumUI:Print("22222222")
-							end]]
-
-							if GetNumQuestChoices() <= 1 then
-								if E.db.ElvUI_EltreumUI.dev then
-									ElvUI_EltreumUI:Print("tried to select reward and complete")
-								end
-								GetQuestReward(GetNumQuestChoices())
-							end
-						--[[elseif E.Classic then
-							if GetNumQuestChoices() == 1 then
-								GetQuestReward(1)
-								if E.db.ElvUI_EltreumUI.dev then
-									ElvUI_EltreumUI:Print("tried to select reward and complete")
-								end
-								QuestFrameCompleteButton:Click()
-							end
-							if GetNumQuestChoices() == 0 then
-								if E.db.ElvUI_EltreumUI.dev then
-									ElvUI_EltreumUI:Print("tried to complete")
-								end
-								QuestFrameCompleteButton:Click()
-								QuestFrameCompleteQuestButton:Click()
-							end
-						end]]
+							GetQuestReward(GetNumQuestChoices())
+						end
 					end
 				end
 			end
