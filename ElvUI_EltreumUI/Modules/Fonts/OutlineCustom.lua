@@ -427,7 +427,8 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	end
 
 	if IsAddOnLoaded("Questie") then
-		QuestieConfig["global"]["trackerFontOutline"] = fontStyle
+		local profile = _G.QuestieConfig["profileKeys"][E.mynameRealm]
+		_G.QuestieConfig["profiles"][profile]["trackerFontOutline"] = ElvUI_EltreumUI:FontFlag(fontStyle)
 	end
 
 	if IsAddOnLoaded("ElvUI_SLE") then
