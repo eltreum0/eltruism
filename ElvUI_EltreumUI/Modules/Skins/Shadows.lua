@@ -361,6 +361,30 @@ function ElvUI_EltreumUI:Shadows()
 						_G.InspectFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.InspectFrameTab3.backdrop.shadow)
 					end
+					if IsAddOnLoaded("ElvUI_WindTools") then
+						if E.db.WT.item.inspect.inspect then
+							if _G["InspectFrame"] then
+								_G["InspectFrame"]:HookScript("OnShow", function()
+									E:Delay(1, function()
+										if _G["InspectFrame"].inspectFrame then
+											if not _G["InspectFrame"].inspectFrame.shadow then
+												_G["InspectFrame"].inspectFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+												ElvUI_EltreumUI:ShadowColor(_G["InspectFrame"].inspectFrame.shadow)
+											end
+											if _G["InspectFrame"].inspectFrame.statsFrame and not _G["InspectFrame"].inspectFrame.statsFrame.shadow then
+												_G["InspectFrame"].inspectFrame.statsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+												ElvUI_EltreumUI:ShadowColor(_G["InspectFrame"].inspectFrame.statsFrame.shadow)
+											end
+										end
+										if _G["InspectFrame"].inspectFrame and _G["InspectFrame"].inspectFrame.inspectFrame and not _G["InspectFrame"].inspectFrame.inspectFrame.shadow then
+											_G["InspectFrame"].inspectFrame.inspectFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+											ElvUI_EltreumUI:ShadowColor(_G["InspectFrame"].inspectFrame.inspectFrame.shadow)
+										end
+									end)
+								end)
+							end
+						end
+					end
 				end
 				if E.private.skins.blizzard.enable then
 					if (arg == "Blizzard_TalentUI") or IsAddOnLoaded("Blizzard_TalentUI") then
@@ -3332,6 +3356,17 @@ function ElvUI_EltreumUI:Shadows()
 			if _G["ParagonReputation_Toast"] and not _G["ParagonReputation_Toast"].shadow then
 				_G["ParagonReputation_Toast"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(_G["ParagonReputation_Toast"].shadow)
+			end
+
+			if E.db.WT.item.inspect.player then
+				if _G["PaperDollFrame"] then
+					_G["PaperDollFrame"]:HookScript("OnShow",function()
+						if _G["PaperDollFrame"].inspectFrame and _G["PaperDollFrame"].inspectFrame.backdrop and not _G["PaperDollFrame"].inspectFrame.backdrop.shadow then
+							_G["PaperDollFrame"].inspectFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G["PaperDollFrame"].inspectFrame.backdrop.shadow)
+						end
+					end)
+				end
 			end
 		end
 	end
