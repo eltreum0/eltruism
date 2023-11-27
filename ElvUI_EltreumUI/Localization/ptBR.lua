@@ -1456,3 +1456,5 @@ L["Make Mage and Warlock use their original Class Colors"] = "Fazer com que o Ma
 L["Enable Gradient Class Bar"] = "Ativar a barra de classe gradiente"
 L["Combat Text"] = "Texto de combate"
 L["Disable music during combat in instances"] = "Desativar a música durante o combate em instâncias"
+L["Hide Event Toaster Frame"] = true
+L["Hide the toaster frame, such as when you level up"] = true

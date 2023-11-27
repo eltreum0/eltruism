@@ -1456,3 +1456,5 @@ L["Enable Gradient Class Bar"] = true
 L["Combat Text"] = true
 L["Disable music during combat in instances"] = true
 L["Add mouse over to the right chat panel"] = true
+L["Hide Event Toaster Frame"] = true
+L["Hide the toaster frame, such as when you level up"] = true

@@ -1456,3 +1456,5 @@ L["Combat Text"] = "Texte de combat"
 L["Disable music during combat in instances"] = "Désactiver la musique pendant le combat dans les instances"
 L["Add mouse over to the right chat panel"] = "Ajouter le survol de la souris dans le panneau de discussion de droite"
 L["Nameplate Power Bar"] = "Barre d'alimentation de la Plaque de Nom"
+L["Hide Event Toaster Frame"] = true
+L["Hide the toaster frame, such as when you level up"] = true
