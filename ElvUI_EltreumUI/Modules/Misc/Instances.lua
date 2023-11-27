@@ -24,7 +24,7 @@ if E.Retail then
 	instancedifficulty:RegisterEvent("PLAYER_DIFFICULTY_CHANGED")
 	instancedifficulty:RegisterEvent("GUILD_PARTY_STATE_UPDATED")
 end
-E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismInstanceDifficulty", nil, nil, nil, "ALL,SOLO,ELTREUMUI,PARTY,RAID", nil, 'ElvUI_EltreumUI,partyraidsettings')
+E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismInstanceDifficulty", nil, nil, nil, "ALL,SOLO,ELTREUMUI,PARTY,RAID", nil, 'ElvUI_EltreumUI,party,instances')
 
 instancedifficulty:SetScript("OnEvent", function()
 	if not E.private.ElvUI_EltreumUI then return end

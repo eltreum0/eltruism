@@ -75,7 +75,7 @@ local spellcount = bresframe:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 local spellcd = bresframe:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 bresframe:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 342, -28)
 if E.Retail then
-	E:CreateMover(bresframe, "MoverEltruismBRES", "EltruismBattleRes", nil, nil, nil, "ALL,PARTY,RAID,ELTREUMUI", nil, 'ElvUI_EltreumUI,partyraidsettings')
+	E:CreateMover(bresframe, "MoverEltruismBRES", "EltruismBattleRes", nil, nil, nil, "ALL,PARTY,RAID,ELTREUMUI", nil, 'ElvUI_EltreumUI,party')
 end
 bresframe:SetParent(UIParent)
 bresframe:SetAlpha(0)

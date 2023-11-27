@@ -1,55 +1,61 @@
 local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
-local LoadAddOn = _G.C_AddOns and _G.C_AddOns.LoadAddOn or _G.LoadAddOn
 
 -- Questie profile setup
 function ElvUI_EltreumUI:GetQuestieProfile()
 	if not E.Retail then
-		if not IsAddOnLoaded("Questie") then
-			LoadAddOn("Questie")
+		if IsAddOnLoaded("Questie") then
+			if QuestieConfig.profiles.Eltreum then
+				table.insert(QuestieConfig.profileKeys, E.mynameRealm)
+				QuestieConfig["profileKeys"][E.mynameRealm] = "Eltreum"
+			else
+				QuestieConfig["profiles"]["Eltreum"] = {}
+				QuestieConfig["profiles"]["Eltreum"] = {
+					["trackerFontOutline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
+
+					["trackerFontHeader"] = E.db.general.font,
+					["trackerFontObjective"] = E.db.general.font,
+					["trackerFontZone"] = E.db.general.font,
+					["trackerFontQuest"] = E.db.general.font,
+
+					["trackerFontSizeHeader"] = 14,
+					["trackerFontSizeZone"] = 13,
+					["trackerFontSizeQuest"] = 12,
+					["trackerFontSizeObjective"] = 12,
+
+					["nameplateTargetFrameX"] = -252,
+					["nameplateTargetFrameY"] = 17,
+
+					["questMinimapObjectiveColors"] = true,
+
+					["nameplateX"] = 146,
+					["nameplateY"] = 0,
+					["nameplateTargetFrameEnabled"] = true,
+
+					["alwaysGlowMinimap"] = true,
+					["questObjectiveColors"] = true,
+					["collapseCompletedQuests"] = true,
+					["nameplateTargetFrameScale"] = 1,
+					["trackerSortObjectives"] = "byProximity",
+					["soundOnQuestComplete"] = true,
+
+
+
+					["trackerEnabled"] = false,
+					["onlyPartyShared"] = true,
+					["hideTrackerInCombat"] = false,
+					["mapShowHideEnabled"] = false,
+					["mapCoordinatesEnabled"] = false,
+					["disableYellComms"] = true,
+					["globalTrackerLocation"] = false,
+					["currentBorderEnabled"] = true,
+					["currentBackdropFader"] = true,
+					["trackerbindOpenQuestLog"] = "right",
+					["trackerColorObjectives"] = "whiteAndGreen",
+				}
+				QuestieConfig["profileKeys"][E.mynameRealm] = "Eltreum"
+			end
 		end
-		QuestieConfig["global"]["TrackerWidth"] = 0
-		QuestieConfig["global"]["trackerbindSetTomTom"] = "left"
-		QuestieConfig["global"]["trackerFontObjective"] = E.db.general.font
-
-		--enables/disables the actual objective tracker
-		--QuestieConfig["global"]["trackerEnabled"] = false  --old value
-		_G.Questie.db.char.trackerEnabled =  false --new value
-
-		QuestieConfig["global"]["trackerFontZone"] = E.db.general.font
-		QuestieConfig["global"]["trackerFontOutline"] = "Outline"
-		QuestieConfig["global"]["trackerFontHeader"] = E.db.general.font
-		QuestieConfig["global"]["currentBorderEnabled"] = true
-		QuestieConfig["global"]["trackerFontSizeHeader"] = 14
-		QuestieConfig["global"]["currentBackdropFader"] = true
-		QuestieConfig["global"]["trackerFontSizeObjective"] = 12
-		QuestieConfig["global"]["trackerFontQuest"] = E.db.general.font
-		QuestieConfig["global"]["trackerbindOpenQuestLog"] = "right"
-		QuestieConfig["global"]["trackerFontSizeQuest"] = 12
-		QuestieConfig["global"]["trackerSortObjectives"] = "byProximity"
-		QuestieConfig["global"]["trackerColorObjectives"] = "whiteAndGreen"
-
-		QuestieConfig["global"]["dbmHUDEnable"] = false
-		QuestieConfig["global"]["DBMHUDZoom"] = 200
-		QuestieConfig["global"]["dbmHUDRadius"] = 4
-		QuestieConfig["global"]["dbmHUDShowQuest"] = false
-
-		QuestieConfig["global"]["nameplateX"] = -25
-		QuestieConfig["global"]["nameplateY"] = 0
-		QuestieConfig["global"]["nameplateTargetFrameY"] = 5
-		QuestieConfig["global"]["nameplateTargetFrameX"] = -171
-		QuestieConfig["global"]["nameplateTargetFrameEnabled"] = false
-
-		QuestieConfig["global"]["questMinimapObjectiveColors"] = true
-		QuestieConfig["global"]["questObjectiveColors"] = true
-
-		QuestieConfig["global"]["mapCoordinatesEnabled"] = false
-		QuestieConfig["global"]["disableYellComms"] = true
-		QuestieConfig["global"]["globalTrackerLocation"] = false
-		QuestieConfig["global"]["hideTrackerInCombat"] = false
-		QuestieConfig["global"]["mapShowHideEnabled"] = false
-		QuestieConfig["global"]["onlyPartyShared"] = true
-		QuestieConfig["global"]["collapseCompletedQuests"] = true
 	end
 end

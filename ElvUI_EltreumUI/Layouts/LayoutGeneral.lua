@@ -1540,7 +1540,6 @@ function ElvUI_EltreumUI:SetupDataText()
 
 	--create panel
 	E.DataTexts:BuildPanelFrame('EltruismDataText')
-	E.DataTexts:BuildPanelFrame('EltruismTime')
 
 	--config the panel
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["backdrop"] = false
@@ -1559,6 +1558,10 @@ function ElvUI_EltreumUI:SetupDataText()
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["visibility"] = "[petbattle] hide;show"
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["height"] = 23
 
+	--create panel
+	E.DataTexts:BuildPanelFrame('EltruismTime')
+
+	--config the panel
 	E.global["datatexts"]["customPanels"]["EltruismTime"]["backdrop"] = false
 	E.global["datatexts"]["customPanels"]["EltruismTime"]["panelTransparency"] = false
 	E.global["datatexts"]["customPanels"]["EltruismTime"]["border"] = false

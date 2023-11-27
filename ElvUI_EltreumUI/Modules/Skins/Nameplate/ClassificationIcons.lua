@@ -365,9 +365,38 @@ local textureDB = {
 	["TYPE22"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull10.tga",
 }
 
-function ElvUI_EltreumUI:GetBossIconTextureAndID(textureType,isbossID,bossID)
+local textureDB64 = {
+	["TYPE1"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\star.tga",
+	["TYPE2"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\star2.tga",
+	["TYPE3"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\star3.tga",
+	["TYPE4"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\star4.tga",
+	["TYPE5"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\star5.tga",
+	["TYPE6"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\star6.tga",
+	["TYPE7"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\star7.tga",
+	["TYPE8"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\dragon.tga",
+	["TYPE9"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\dragon2.tga",
+	["TYPE10"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\treasure.tga",
+	["TYPE11"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\skull.tga",
+	["TYPE12"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\skull2.tga",
+	["TYPE13"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\skull3.tga",
+	["TYPE14"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\skull4.tga",
+	["TYPE15"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\skull5.tga",
+	["TYPE16"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\skull6.tga",
+	["TYPE17"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\skull7.tga",
+	["TYPE18"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\skull8.tga",
+	["TYPE19"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\skull9.tga",
+	["TYPE20"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\reaper.tga",
+	["TYPE21"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\reaper2.tga",
+	["TYPE22"] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\64\\skull10.tga",
+}
+
+function ElvUI_EltreumUI:GetBossIconTextureAndID(textureType,isbossID,bossID,resolution)
 	if textureType then
-		return textureDB[textureType]
+		if resolution then
+			return textureDB64[textureType]
+		else
+			return textureDB[textureType]
+		end
 	elseif isbossID then
 		if bossIDs[bossID] then
 			return true

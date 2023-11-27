@@ -474,10 +474,11 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	end
 
 	if IsAddOnLoaded("Questie") then
-		_G.QuestieConfig["global"]["trackerFontObjective"] = E.db.general.font
-		_G.QuestieConfig["global"]["trackerFontZone"] = E.db.general.font
-		_G.QuestieConfig["global"]["trackerFontHeader"] = E.db.general.font
-		_G.QuestieConfig["global"]["trackerFontQuest"] = E.db.general.font
+		local profile = _G.QuestieConfig["profileKeys"][E.mynameRealm]
+		_G.QuestieConfig["profiles"][profile]["trackerFontObjective"] = fontvalue
+		_G.QuestieConfig["profiles"][profile]["trackerFontZone"] = fontvalue
+		_G.QuestieConfig["profiles"][profile]["trackerFontHeader"] = fontvalue
+		_G.QuestieConfig["profiles"][profile]["trackerFontQuest"] = fontvalue
 	end
 
 	if IsAddOnLoaded("ElvUI_SLE") then

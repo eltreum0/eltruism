@@ -392,7 +392,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 
 	fontStyle = ElvUI_EltreumUI:FontFlag(fontStyle)
 	if IsAddOnLoaded('NameplateSCT') then
-		_G.NameplateSCTDB["global"]["fontFlag"] = fontStyle
+		_G.NameplateSCTDB["global"]["fontFlag"] = ElvUI_EltreumUI:FontFlag(fontStyle)
 	end
 
 	if IsAddOnLoaded('ProjectAzilroka') then
@@ -427,7 +427,8 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	end
 
 	if IsAddOnLoaded("Questie") then
-		QuestieConfig["global"]["trackerFontOutline"] = fontStyle
+		local profile = _G.QuestieConfig["profileKeys"][E.mynameRealm]
+		_G.QuestieConfig["profiles"][profile]["trackerFontOutline"] = ElvUI_EltreumUI:FontFlag(fontStyle)
 	end
 
 	if IsAddOnLoaded("ElvUI_SLE") then

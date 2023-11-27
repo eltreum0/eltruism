@@ -2539,22 +2539,12 @@ function ElvUI_EltreumUI:Shadows()
 									_G["ElvUF_Target"].shadow:ClearAllPoints()
 									_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT",_G["ElvUF_Target_HealthBar"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
 									_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-									if _G["ElvUF_Target_ClassBar"]:IsShown() then
-										_G["ElvUF_Target"].shadow:ClearAllPoints()
-										_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length - (E.db.unitframe.units.target.classbar.height/2))
-										_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-									end
 								end
 							elseif E.db.unitframe.units.target.power.width == "fill" then
 								if _G["ElvUF_Target"] and _G["ElvUF_Target"].shadow then
 									_G["ElvUF_Target"].shadow:ClearAllPoints()
 									_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target_HealthBar"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
 									_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target_PowerBar"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-									if _G["ElvUF_Target_ClassBar"]:IsShown() then
-										_G["ElvUF_Target"].shadow:ClearAllPoints()
-										_G["ElvUF_Target"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Target"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length - (E.db.unitframe.units.target.classbar.height/2))
-										_G["ElvUF_Target"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Target"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-									end
 								end
 							else
 								if E.db.unitframe.units.target.power.offset == 0 then
@@ -2669,22 +2659,12 @@ function ElvUI_EltreumUI:Shadows()
 									_G["ElvUF_TargetTarget"].shadow:ClearAllPoints()
 									_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT",_G["ElvUF_TargetTarget_HealthBar"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
 									_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-									if _G["ElvUF_TargetTarget_ClassBar"]:IsShown() then
-										_G["ElvUF_TargetTarget"].shadow:ClearAllPoints()
-										_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length - (E.db.unitframe.units.targettarget.classbar.height/2))
-										_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-									end
 								end
 							elseif E.db.unitframe.units.targettarget.power.width == "fill" then
 								if _G["ElvUF_TargetTarget"] and _G["ElvUF_TargetTarget"].shadow then
 									_G["ElvUF_TargetTarget"].shadow:ClearAllPoints()
 									_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget_HealthBar"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
 									_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget_PowerBar"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-									if _G["ElvUF_TargetTarget_ClassBar"]:IsShown() then
-										_G["ElvUF_TargetTarget"].shadow:ClearAllPoints()
-										_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length - (E.db.unitframe.units.targettarget.classbar.height/2))
-										_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-									end
 								end
 							else
 								if E.db.unitframe.units.targettarget.power.offset == 0 then
@@ -3277,13 +3257,81 @@ function ElvUI_EltreumUI:Shadows()
 		end
 
 		if IsAddOnLoaded("ElvUI_WindTools") then
-			if _G["WTEventTracker"] and not _G["WTEventTracker"].shadow then
-				_G["WTEventTracker"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(_G["WTEventTracker"].shadow)
+			if _G["WTEventTracker"] and _G["WTEventTracker"].backdrop and not _G["WTEventTracker"].backdrop.shadow then
+				_G["WTEventTracker"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(_G["WTEventTracker"].backdrop.shadow)
 			end
 			if _G["WTContacts"] and not _G["WTContacts"].shadow then
 				_G["WTContacts"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(_G["WTContacts"].shadow)
+			end
+			if _G["WTGameBarMiddlePanel"] and not _G["WTGameBarMiddlePanel"].shadow then
+				_G["WTGameBarMiddlePanel"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(_G["WTGameBarMiddlePanel"].shadow)
+			end
+			if _G["WTGameBarLeftPanel"] and not _G["WTGameBarLeftPanel"].shadow then
+				_G["WTGameBarLeftPanel"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(_G["WTGameBarLeftPanel"].shadow)
+			end
+			if _G["WTGameBarRightPanel"] and not _G["WTGameBarRightPanel"].shadow then
+				_G["WTGameBarRightPanel"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(_G["WTGameBarRightPanel"].shadow)
+			end
+
+			for i = 1, 5 do
+				if _G["WTExtraItemsBar"..i] then
+					if _G["WTExtraItemsBar"..i].backdrop and _G["WTExtraItemsBar"..i].backdrop:IsShown() then
+						if not _G["WTExtraItemsBar"..i].backdrop.shadow then
+							_G["WTExtraItemsBar"..i].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G["WTExtraItemsBar"..i].backdrop.shadow)
+						end
+					else
+						for k = 1, 12 do
+							if _G["WTExtraItemsBar"..i.."Button"..k] and not _G["WTExtraItemsBar"..i.."Button"..k].shadow then
+								_G["WTExtraItemsBar"..i.."Button"..k]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["WTExtraItemsBar"..i.."Button"..k].shadow)
+							end
+						end
+					end
+				end
+			end
+
+			local WT = E.Libs.AceAddon:GetAddon("ElvUI_WindTools", true)
+			local MB = WT:GetModule("MinimapButtons")
+			if MB.bar then
+				if MB.bar.backdrop and MB.bar.backdrop:IsShown() then
+					MB.bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(MB.bar.shadow)
+				else
+					if MB.SetButtonMouseOver then
+						hooksecurefunc(MB,"SetButtonMouseOver", function(_,button)
+							if button and button.backdrop and not button.backdrop.shadow then
+								button.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(button.backdrop.shadow)
+							end
+						end)
+					end
+					for _, v in pairs({MB.bar:GetChildren()}) do
+						if v and v.backdrop and not v.backdrop.shadow then
+							v.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(v.backdrop.shadow)
+						end
+					end
+				end
+			end
+			local LL = WT:GetModule("LFGList")
+			if LL.UpdateRightPanel then
+				hooksecurefunc(LL,"UpdateRightPanel", function()
+					if LL.rightPanel and not LL.rightPanel.shadow then
+						LL.rightPanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(LL.rightPanel.shadow)
+					end
+				end)
+			end
+
+			if _G["ParagonReputation_Toast"] and not _G["ParagonReputation_Toast"].shadow then
+				_G["ParagonReputation_Toast"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(_G["ParagonReputation_Toast"].shadow)
 			end
 		end
 	end

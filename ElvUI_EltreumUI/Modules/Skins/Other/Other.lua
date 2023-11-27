@@ -11,8 +11,6 @@ local WideTradeSkill = CreateFrame("Frame")
 WideTradeSkill:RegisterEvent("PLAYER_ENTERING_WORLD")
 local WideTradeSkillEnchant = CreateFrame("Frame")
 WideTradeSkillEnchant:RegisterEvent("PLAYER_ENTERING_WORLD")
-local dontexpandanymoreEnchant = 0
-local dontexpandanymore = 0
 local skillbutton,skillTitle
 local vellumbutton,disenchantbutton
 local string = _G.string
@@ -132,7 +130,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 				local TradeSkillCreateButton = _G.TradeSkillCreateButton
 				local TradeSkillCancelButton = _G.TradeSkillCancelButton
 
-				if dontexpandanymore == 0 then
+				if not TradeSkillFrame.EltruismExpand then
 					-- Create the additional rows
 					--local numSkills = _G.TRADE_SKILLS_DISPLAYED
 					--local numSkills = 8
@@ -152,7 +150,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 						skillTitle = _G["TradeSkillSkill"..i]
 						skillTitle:SetWidth(335)
 					end
-					dontexpandanymore = 1
+					TradeSkillFrame.EltruismExpand = true
 				end
 
 				TradeSkillFrame:HookScript("OnShow", function()
@@ -258,9 +256,11 @@ function ElvUI_EltreumUI:SkinProfessions()
 
 				CraftFrame:HookScript("OnShow", function()
 					E:Delay(0, function()
-						if not CraftFrame.backdrop.shadow then
-							CraftFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(CraftFrame.backdrop.shadow)
+						if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard and E.private.skins.blizzard.enable then
+							if CraftFrame.backdrop and not CraftFrame.backdrop.shadow then
+								CraftFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(CraftFrame.backdrop.shadow)
+							end
 						end
 						CraftFrame:SetWidth(765)
 						CraftFrame:SetHeight(550)
@@ -296,15 +296,16 @@ function ElvUI_EltreumUI:SkinProfessions()
 						_G.CraftFramePointsText:ClearAllPoints()
 						_G.CraftFramePointsText:SetPoint("LEFT", _G.CraftFramePointsLabel, "RIGHT", 5, 0)
 
-						CraftCancelButton:ClearAllPoints()
-						CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
+						_G.CraftCancelButton:ClearAllPoints()
+						_G.CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
 
-						if dontexpandanymoreEnchant == 0 then
+						_G.CRAFTS_DISPLAYED = 22 --declare outside due to era pet training
+
+						if not CraftFrame.EltruismExpanded then
 							-- Create the additional rows
 							--local numCrafts = CRAFTS_DISPLAYED
 							local numCrafts = 8
 							--CRAFTS_DISPLAYED = CRAFTS_DISPLAYED + 14
-							_G.CRAFTS_DISPLAYED = 22
 							for i = numCrafts + 1, 22 do
 								local craftbutton = CreateFrame("Button", "Craft" .. i, CraftFrame, "CraftButtonTemplate")
 								craftbutton:SetID(i)
@@ -312,12 +313,13 @@ function ElvUI_EltreumUI:SkinProfessions()
 								craftbutton:ClearAllPoints()
 								craftbutton:SetPoint("TOPLEFT", _G["Craft" .. (i - 1)], "BOTTOMLEFT", 0, 1)
 							end
+
 							--increase the width of the rows so the title fits
 							for i = 1, 8 do
 								local craftTitle = _G["Craft"..i]
 								craftTitle:Width(335)
 							end
-							dontexpandanymoreEnchant = 1
+							CraftFrame.EltruismExpanded = true
 						end
 
 						CraftCreateButton:ClearAllPoints()
