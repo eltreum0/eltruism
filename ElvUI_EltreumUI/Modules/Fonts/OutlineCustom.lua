@@ -464,4 +464,8 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 		E.private["WT"]["skins"]["bigWigsSkin"]["queueTimer"]["countDown"]["style"] = fontStyle
 		E.private["WT"]["skins"]["rollResult"]["style"] = fontStyle
 	end
+	if IsAddOnLoaded("ElvUI_mMediaTag") then
+		E.db["mMT"]["dockdatatext"]["fontflag"] = fontStyle
+		E.db["mMT"]["objectivetracker"]["fontflag"] = fontStyle
+	end
 end
