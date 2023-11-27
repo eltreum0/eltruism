@@ -281,6 +281,10 @@ function ElvUI_EltreumUI:Anchors()
 			E:DisableMover('BossBannerMover')
 		end
 	end
+
+	if E.db.ElvUI_EltreumUI.skins.blizzframes.hideeventoaster then
+		_G.EventToastManagerFrame:UnregisterAllEvents()
+	end
 end
 
 --World text Scale

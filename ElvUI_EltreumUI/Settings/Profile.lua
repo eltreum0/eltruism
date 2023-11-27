@@ -270,6 +270,7 @@ P.ElvUI_EltreumUI = {
 			hidealert = false,
 			hidezone = false,
 			hideboss = false,
+			hideeventoaster = false,
 			bossScale = 1,
 		},
 		instances = {
