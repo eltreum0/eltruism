@@ -3354,7 +3354,7 @@ function ElvUI_EltreumUI:Shadows()
 
 			local WT = E.Libs.AceAddon:GetAddon("ElvUI_WindTools", true)
 			local MB = WT:GetModule("MinimapButtons")
-			if MB.bar then
+			if MB and MB.bar then
 				if MB.bar.backdrop and MB.bar.backdrop:IsShown() then
 					MB.bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(MB.bar.shadow)
@@ -3376,7 +3376,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 			local LL = WT:GetModule("LFGList")
-			if LL.UpdateRightPanel then
+			if LL and LL.UpdateRightPanel then
 				hooksecurefunc(LL,"UpdateRightPanel", function()
 					if LL.rightPanel and not LL.rightPanel.shadow then
 						LL.rightPanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -3398,6 +3398,24 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G["PaperDollFrame"].inspectFrame.backdrop.shadow)
 						end
 					end)
+				end
+			end
+
+			local RM = WT:GetModule("RaidMarkers")
+			if RM and RM.bar then
+				if RM.bar.backdrop and RM.bar.backdrop:IsShown() then
+					if not RM.bar.backdrop.shadow then
+						RM.bar.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(RM.bar.backdrop.shadow)
+					end
+				else
+					for i = 1, RM.bar:GetNumChildren() do
+						local button = select(i, RM.bar:GetChildren())
+						if button and button.backdrop and button.backdrop:IsShown() and not button.backdrop.shadow then
+							button.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(button.backdrop.shadow)
+						end
+					end
 				end
 			end
 		end
