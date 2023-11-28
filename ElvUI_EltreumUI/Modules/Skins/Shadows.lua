@@ -46,6 +46,20 @@ function ElvUI_EltreumUI:Shadows()
 						ElvUI_EltreumUI:ShadowColor(_G.AdventureMapQuestChoiceDialog.shadow)
 					end
 				end
+				if (arg == "Blizzard_BattlefieldMap") or IsAddOnLoaded("Blizzard_BattlefieldMap") then
+					if _G.BattleFieldFrame and _G.BattleFieldFrame.backdrop then
+						if not _G.BattleFieldFrame.backdrop.shadow then
+							_G.BattleFieldFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.BattleFieldFrame.backdrop.shadow)
+						end
+					end
+					if _G.BattlefieldMapFrame and _G.BattlefieldMapFrame.backdrop then
+						if not _G.BattlefieldMapFrame.backdrop.shadow then
+							_G.BattlefieldMapFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.BattlefieldMapFrame.backdrop.shadow)
+						end
+					end
+				end
 				if (arg == "Blizzard_ArtifactUI") or IsAddOnLoaded("Blizzard_ArtifactUI") then
 					if _G.ArtifactFrame and not _G.ArtifactFrame.shadow then
 						_G.ArtifactFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -1152,13 +1166,6 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 
-				if _G.BattleFieldFrame and _G.BattleFieldFrame.backdrop then
-					if not _G.BattleFieldFrame.backdrop.shadow then
-						_G.BattleFieldFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.BattleFieldFrame.backdrop.shadow)
-					end
-				end
-
 				--Shaman Totem things
 				if E.Wrath then
 					if E.myclass == "SHAMAN" and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.totembar) and E.db.actionbar.totemBar.enable then
@@ -1304,6 +1311,31 @@ function ElvUI_EltreumUI:Shadows()
 					if not button.shadow then
 						button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(button.shadow)
+					end
+				end
+			end
+
+			--elvui bag bar
+			if _G["ElvUIBagBar"] then
+				if _G["ElvUIBagBar"].backdrop and _G["ElvUIBagBar"].backdrop:IsShown() then
+					if not _G["ElvUIBagBar"].backdrop.shadow then
+						_G["ElvUIBagBar"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G["ElvUIBagBar"].backdrop.shadow)
+					end
+				else
+					if _G["KeyRingButton"] and not _G["KeyRingButton"].shadow then
+						_G["KeyRingButton"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G["KeyRingButton"].shadow)
+					end
+					if _G["MainMenuBarBackpackButton"] and not _G["MainMenuBarBackpackButton"].shadow then
+						_G["MainMenuBarBackpackButton"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G["MainMenuBarBackpackButton"].shadow)
+					end
+					for i = 0, 3 do
+						if _G["CharacterBag"..i.."Slot"] and not _G["CharacterBag"..i.."Slot"].shadow then
+							_G["CharacterBag"..i.."Slot"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G["CharacterBag"..i.."Slot"].shadow)
+						end
 					end
 				end
 			end

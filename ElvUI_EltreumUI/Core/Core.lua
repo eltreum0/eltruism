@@ -285,6 +285,35 @@ function ElvUI_EltreumUI:Anchors()
 	if E.db.ElvUI_EltreumUI.skins.blizzframes.hideeventoaster then
 		_G.EventToastManagerFrame:UnregisterAllEvents()
 	end
+
+	if not IsAddOnLoaded("Blizzard_BattlefieldMap") then
+		LoadAddOn("Blizzard_BattlefieldMap")
+		if not _G.BattlefieldMapFrame.EltruismMover then
+			E:CreateMover(_G.BattlefieldMapFrame, "MoverBattlefieldMapFrame", "BattlefieldMapFrame", nil, nil, nil, "ALL,ELTREUMUI")
+			_G.BattlefieldMapFrame.EltruismMover = true
+		end
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard and E.private.skins.blizzard.enable then
+			if _G.BattlefieldMapFrame and _G.BattlefieldMapFrame.backdrop then
+				if not _G.BattlefieldMapFrame.backdrop.shadow then
+					_G.BattlefieldMapFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G.BattlefieldMapFrame.backdrop.shadow)
+				end
+			end
+		end
+	else
+		if not _G.BattlefieldMapFrame.EltruismMover then
+			E:CreateMover(_G.BattlefieldMapFrame, "MoverBattlefieldMapFrame", "BattlefieldMapFrame", nil, nil, nil, "ALL,ELTREUMUI")
+			_G.BattlefieldMapFrame.EltruismMover = true
+		end
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard and E.private.skins.blizzard.enable then
+			if _G.BattlefieldMapFrame and _G.BattlefieldMapFrame.backdrop then
+				if not _G.BattlefieldMapFrame.backdrop.shadow then
+					_G.BattlefieldMapFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G.BattlefieldMapFrame.backdrop.shadow)
+				end
+			end
+		end
+	end
 end
 
 --World text Scale
