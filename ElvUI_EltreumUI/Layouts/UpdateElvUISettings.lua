@@ -8,6 +8,13 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 	if update then
 		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 			E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,199,-258"
+			local width = GetPhysicalScreenSize()
+			if width == 1920 then
+				E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-266,268"
+				E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,294,268"
+				E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 240
+				E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 240
+			end
 		end
 		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then
 			E.db["movers"]["AddonCompartmentMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-8,-5"
