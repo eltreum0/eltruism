@@ -245,6 +245,9 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 							end
 
 							if frame.name and frame.name.SetText then
+								if frame.objectType and frame.objectType == "item" then
+									return
+								end
 								if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
 									frame.name:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
 								else
@@ -269,6 +272,9 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 							end
 
 							if frame.Name and frame.Name.SetText then
+								if frame.objectType and frame.objectType == "item" then
+									return
+								end
 								if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
 									frame.Name:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
 								else
