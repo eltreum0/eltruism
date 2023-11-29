@@ -1458,3 +1458,4 @@ L["Shows Class Icons with borders recolored by Releaf on Player targets"] = "Zei
 L["Shows Class Icons with borders recolored by Releaf on all targets"] = "Zeigt Klassensymbole mit von Releaf neu eingefärbten Rändern auf allen Zielen an"
 L["Hide Event Toaster Frame"] = true
 L["Hide the toaster frame, such as when you level up"] = true
+L["Reverse Gradient"] = true

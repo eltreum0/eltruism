@@ -1458,3 +1458,4 @@ L["Add mouse over to the right chat panel"] = true
 L["Use Custom Font"] = true
 L["Hide Event Toaster Frame"] = true
 L["Hide the toaster frame, such as when you level up"] = true
+L["Reverse Gradient"] = true

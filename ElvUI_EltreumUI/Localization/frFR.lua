@@ -1458,3 +1458,4 @@ L["Add mouse over to the right chat panel"] = "Ajouter le survol de la souris da
 L["Nameplate Power Bar"] = "Barre d'alimentation de la Plaque de Nom"
 L["Hide Event Toaster Frame"] = true
 L["Hide the toaster frame, such as when you level up"] = true
+L["Reverse Gradient"] = true

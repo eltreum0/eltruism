@@ -1458,3 +1458,4 @@ L["Combat Text"] = "Texto de combate"
 L["Disable music during combat in instances"] = "Desativar a música durante o combate em instâncias"
 L["Hide Event Toaster Frame"] = true
 L["Hide the toaster frame, such as when you level up"] = true
+L["Reverse Gradient"] = true

@@ -1458,3 +1458,4 @@ L["Combat Text"] = "Texto de combate"
 L["Add mouse over to the right chat panel"] = "Añadir mouse over al panel de chat derecho"
 L["Hide Event Toaster Frame"] = true
 L["Hide the toaster frame, such as when you level up"] = true
+L["Reverse Gradient"] = true
