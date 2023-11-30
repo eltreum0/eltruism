@@ -1459,3 +1459,5 @@ L["Add mouse over to the right chat panel"] = true
 L["Hide Event Toaster Frame"] = true
 L["Hide the toaster frame, such as when you level up"] = true
 L["Reverse Gradient"] = true
+L["Displays the name of the unit with abbreviation, accepts length args"] = true
+L["Displays the current target of the unit, accepts length args"] = true
