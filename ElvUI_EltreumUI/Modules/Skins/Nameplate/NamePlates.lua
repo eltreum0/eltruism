@@ -576,6 +576,88 @@ function ElvUI_EltreumUI:NamePlateOptions()
 			end
 		end
 
+		--automatically hide classbar when targeting friendly targets
+		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide then
+			--add spec info for retail
+
+			if E.Retail then
+				currentSpec = GetSpecialization()
+				if currentSpec then
+					id, _ = GetSpecializationInfo(currentSpec)
+				end
+			end
+			if UnitExists("target") and UnitCanAttack("player", "target") then
+				if E.Retail then
+					--print(id)
+					if E.myclass == 'DEATHKNIGHT' then
+						_G["ElvNP_TargetClassPowerRunes"]:Show()
+					elseif E.myclass == 'PALADIN' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
+						_G["ElvNP_TargetClassPowerClassPower"]:Show()
+					elseif E.myclass == 'DRUID' then
+						stance = GetShapeshiftForm()
+						if stance == 2 then --its a cat
+							_G["ElvNP_TargetClassPowerClassPower"]:Show()
+						else
+							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+						end
+					elseif E.myclass == 'MONK' then
+						if id == 269 then
+							_G["ElvNP_TargetClassPowerClassPower"]:Show()
+						elseif id == 268 then
+							_G["ElvNP_TargetClassPowerStagger"]:Show()
+						end
+					elseif E.myclass == 'MAGE' then
+						if id == 62 then
+							_G["ElvNP_TargetClassPowerClassPower"]:Show()
+						end
+					end
+				elseif E.Wrath or E.Classic then
+					if E.myclass == 'ROGUE' then
+						_G["ElvNP_TargetClassPowerClassPower"]:Show()
+					elseif E.myclass == 'DEATHKNIGHT' then
+						_G["ElvNP_TargetClassPowerRunes"]:Show()
+					elseif E.myclass == 'DRUID' then
+						stance = GetShapeshiftForm()
+						if stance == 2 then --its a cat
+							_G["ElvNP_TargetClassPowerClassPower"]:Show()
+						else
+							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+						end
+					end
+				end
+			elseif UnitExists("target") and (not UnitCanAttack("player", "target")) then
+				if E.Retail then
+					if E.myclass == 'DEATHKNIGHT' then
+						_G["ElvNP_TargetClassPowerRunes"]:Hide()
+					elseif E.myclass == 'PALADIN' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
+						_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+					elseif E.myclass == 'DRUID' then
+							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+					elseif E.myclass == 'MONK' then
+						if id == 269 then
+							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+						elseif id == 268 then
+							_G["ElvNP_TargetClassPowerStagger"]:Hide()
+						end
+					elseif E.myclass == 'MAGE' then
+						if id == 62 then
+							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+						end
+					end
+				elseif E.Wrath or E.Classic then
+					if E.myclass == 'ROGUE' then
+						_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+					elseif E.myclass == 'DEATHKNIGHT' then
+						_G["ElvNP_TargetClassPowerRunes"]:Hide()
+					elseif E.myclass == 'DRUID' then
+						_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+					elseif E.myclass == 'DEATHKNIGHT' then
+						_G["ElvNP_TargetClassPowerRunes"]:Hide()
+					end
+				end
+			end
+		end
+
 		--automatically set the execute % based on class
 		if E.global.nameplates.filters.EltreumExecute and E.db["nameplates"]["filters"]["EltreumExecute"] and E.db["nameplates"]["filters"]["EltreumExecute"]["triggers"]["enable"] then
 			if E.Retail then
