@@ -17,7 +17,6 @@ Updated Pet Custom Glow to better handle when the pet is summoned
 Updated Target Combat Icons to be higher resolution on unitframes  
 Updated size and position of Player and Target castbars in 1080p  
 Updated Quest Item button to move to the correct size in Retail  
-Updated Smart Class Bar to remove it since ElvUI is adding it  
 Updated quest auto accept to better handle gossip dialogs  
 Updated Questie profile to handle the new Ace profiles  
 Updated the position of the Addon Compartment frame  
