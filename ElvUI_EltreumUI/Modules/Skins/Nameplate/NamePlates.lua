@@ -14,8 +14,6 @@ local tonumber = _G.tonumber
 local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
 local UnitIsPlayer = _G.UnitIsPlayer
-local GetSpecialization = _G.GetSpecialization
-local GetSpecializationInfo = _G.GetSpecializationInfo
 local UnitCanAttack = _G.UnitCanAttack
 local GetShapeshiftForm = _G.GetShapeshiftForm
 local IsInInstance = _G.IsInInstance
@@ -28,8 +26,6 @@ local TimeSinceLastUpdate
 local debufftime
 local _, targetclass
 local reactiontarget
-local id
-local currentSpec
 local stance
 local instanceType
 local mapID
@@ -578,17 +574,8 @@ function ElvUI_EltreumUI:NamePlateOptions()
 
 		--automatically hide classbar when targeting friendly targets
 		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide then
-			--add spec info for retail
-
-			if E.Retail then
-				currentSpec = GetSpecialization()
-				if currentSpec then
-					id, _ = GetSpecializationInfo(currentSpec)
-				end
-			end
 			if UnitExists("target") and UnitCanAttack("player", "target") then
 				if E.Retail then
-					--print(id)
 					if E.myclass == 'DEATHKNIGHT' then
 						_G["ElvNP_TargetClassPowerRunes"]:Show()
 					elseif E.myclass == 'PALADIN' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
@@ -601,13 +588,13 @@ function ElvUI_EltreumUI:NamePlateOptions()
 							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 						end
 					elseif E.myclass == 'MONK' then
-						if id == 269 then
+						if ElvUI_EltreumUI.Spec == 269 then
 							_G["ElvNP_TargetClassPowerClassPower"]:Show()
-						elseif id == 268 then
+						elseif ElvUI_EltreumUI.Spec == 268 then
 							_G["ElvNP_TargetClassPowerStagger"]:Show()
 						end
 					elseif E.myclass == 'MAGE' then
-						if id == 62 then
+						if ElvUI_EltreumUI.Spec == 62 then
 							_G["ElvNP_TargetClassPowerClassPower"]:Show()
 						end
 					end
@@ -634,13 +621,13 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					elseif E.myclass == 'DRUID' then
 							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 					elseif E.myclass == 'MONK' then
-						if id == 269 then
+						if ElvUI_EltreumUI.Spec == 269 then
 							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
-						elseif id == 268 then
+						elseif ElvUI_EltreumUI.Spec == 268 then
 							_G["ElvNP_TargetClassPowerStagger"]:Hide()
 						end
 					elseif E.myclass == 'MAGE' then
-						if id == 62 then
+						if ElvUI_EltreumUI.Spec == 62 then
 							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 						end
 					end

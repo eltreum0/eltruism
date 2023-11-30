@@ -206,17 +206,6 @@ function ElvUI_EltreumUI:PowerPrediction()
 	end
 end
 
---so that the power updates when spec changes
-function ElvUI_EltreumUI:GetSpec()
-	--print("getspec spam "..math.random(1,99))
-	if E.Retail then
-		currentSpec = GetSpecialization()
-		if currentSpec then
-			id, _ = GetSpecializationInfo(currentSpec)
-		end
-	end
-end
-
 --Main function
 function ElvUI_EltreumUI:NameplatePower(nameplate)
 	--print("nameplate power spam "..math.random(1,99))

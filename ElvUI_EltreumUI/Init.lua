@@ -28,6 +28,7 @@ ElvUI_EltreumUI.CreditsList = {}
 ElvUI_EltreumUI.Config = {}
 --ElvUI_EltreumUI.Name = '|cff82B4ffEltruism|r'
 ElvUI_EltreumUI.Name = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1)
+ElvUI_EltreumUI.Spec = 0
 
 function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	if not E.private.ElvUI_EltreumUI.install_version then
@@ -92,7 +93,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	if E.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
-		ElvUI_EltreumUI:GetSpec() --checks player spec
 		if E.myclass == 'HUNTER' then
 			ElvUI_EltreumUI:ExpandedStable() --expands pet stable for hunters
 		end
@@ -310,7 +310,7 @@ function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		ElvUI_EltreumUI:FixChatToggles()
 		if E.Retail then
-			ElvUI_EltreumUI:GetSpec()
+			ElvUI_EltreumUI.Spec = GetSpecializationInfo(newtalentretail)
 		end
 		if E.Retail or E.Wrath then
 			ElvUI_EltreumUI:NamePlateOptions()
