@@ -1461,3 +1461,4 @@ L["Hide the toaster frame, such as when you level up"] = "Esconde o quadro de an
 L["Reverse Gradient"] = "Inverter o Gradiente"
 L["Displays the name of the unit with abbreviation, accepts length args"] = "Mostra o nome abreviado da unidade, aceita argumento de tamanho"
 L["Displays the current target of the unit, accepts length args"] = "Mostra o nome do alvo da unidade, aceita argumento de tamanho"
+L["Circle"] = "Círculo"
