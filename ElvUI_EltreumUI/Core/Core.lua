@@ -26,6 +26,7 @@ local PlaySound = _G.PlaySound
 local W
 local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
+local utf8sub = _G.string.utf8sub
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)

@@ -39,6 +39,8 @@ local select = _G.select
 local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local GetCVarBool = _G.C_AddOns and _G.C_AddOns.GetCVarBool or _G.GetCVarBool
+local utf8sub = _G.string.utf8sub
+local utf8lower = _G.string.utf8lower
 
 --level difference table based on blizzard's
 local eltruismdif = {
@@ -65,6 +67,21 @@ function ElvUI_EltreumUI:firstToUpper(str)
 	return (str:gsub("^%l", string.upper))
 end
 local fileclass = ElvUI_EltreumUI:firstToUpper(string.lower(E.myclass))
+
+--copy of elvui abbrev
+local function Abbrev(name)
+	local letters, lastWord = '', strmatch(name, '.+%s(.+)$')
+	if lastWord then
+		for word in gmatch(name, '.-%s') do
+			local firstLetter = utf8sub(gsub(word, '^[%s%p]*', ''), 1, 1)
+			if firstLetter ~= utf8lower(firstLetter) then
+				letters = format('%s%s. ', letters, firstLetter)
+			end
+		end
+		name = format('%s%s', letters, lastWord)
+	end
+	return name
+end
 
 --from elvui, modified for gradient
 do
@@ -258,6 +275,7 @@ E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit,_,args
 	local name = UnitName(unit)
 	if not name then return end
 	if not args then args = 16 end
+	args = tonumber(args)
 	if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
 		name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
 	end
@@ -323,7 +341,7 @@ E:AddTag("name:eltruism:gradientshortcaps", "UNIT_NAME_UPDATE", function(unit,_,
 	if not namecheck then return end
 	local name = string.upper(namecheck)
 	if not args then args = 16 end
-
+	args = tonumber(args)
 	if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
 		name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
 	end
@@ -529,7 +547,7 @@ E:AddTag("name:eltruism:caps", "UNIT_NAME_UPDATE", function(unit,_,args)
 	if not namecheck then return end
 	local name = string.upper(namecheck)
 	if not args then args = 16 end
-
+	args = tonumber(args)
 	if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
 		name = ElvUI_EltreumUI:ShortenString(name, tonumber(args))
 	end
@@ -698,6 +716,7 @@ E:AddTag("name:eltruism:gradientshortfirst", "UNIT_NAME_UPDATE", function(unit,_
 	local name = UnitName(unit)
 	if not name then return end
 	if not args then args = 16 end
+	args = tonumber(args)
 	--name = "Mannequin d'entraïnement aux dégäts de zone"
 	if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
 		name = ElvUI_EltreumUI:ShortenString(name, tonumber(args),false,true)
@@ -729,6 +748,35 @@ E:AddTag("name:eltruism:gradientshortfirst", "UNIT_NAME_UPDATE", function(unit,_
 end)
 E:AddTagInfo("name:eltruism:gradientshortfirst", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color, shortens over 16 characters"])
 
+--elvui name abbrev but with args
+E:AddTag("name:eltruism:abbrev", "UNIT_NAME_UPDATE", function(unit,_,args)
+	local name = UnitName(unit)
+	if not name then return end
+	if not args then args = 16 end
+	args = tonumber(args)
+	if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
+		name = Abbrev(name)
+	end
+	if name then
+		return E:ShortenString(name, args)
+	end
+end)
+E:AddTagInfo("name:eltruism:abbrev", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the name of the unit with abbreviation, accepts length args"])
+
+--elvui target name abbrev but with args
+E:AddTag("target:eltruism:abbrev", 'UNIT_TARGET', function(unit,_,args)
+	local targetName = UnitName(unit..'target')
+	if not targetName then return end
+	if not args then args = 16 end
+	args = tonumber(args)
+	if string.len(targetName) > tonumber(args) then --first for npcs with multiple names/titles
+		targetName = Abbrev(targetName)
+	end
+	if targetName then
+		return E:ShortenString(targetName, args)
+	end
+end)
+E:AddTagInfo("target:eltruism:abbrev", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the current target of the unit, accepts length args"])
 -------------------------------------------------------------------------- ICONS -------------------------------------------------------------------------
 
 --show class icons on all targets
