@@ -574,6 +574,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 
 		--automatically hide classbar when targeting friendly targets
 		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide then
+			print(ElvUI_EltreumUI.Spec)
 			if UnitExists("target") and UnitCanAttack("player", "target") then
 				if E.Retail then
 					if E.myclass == 'DEATHKNIGHT' then

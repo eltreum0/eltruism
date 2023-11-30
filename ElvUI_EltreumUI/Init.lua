@@ -97,6 +97,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 			ElvUI_EltreumUI:ExpandedStable() --expands pet stable for hunters
 		end
 		ElvUI_EltreumUI:ObjectiveTrackerAnchor()
+		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
 	elseif E.Wrath or E.Classic then
 		ElvUI_EltreumUI:ClassicSockets() --adds sockets and enchants into the character panel, based on Kibs Item Level by Kibsgaard
 		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
@@ -304,14 +305,14 @@ local currenttalentwrath = E.Wrath and GetActiveTalentGroup()
 function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 	local newtalentretail = E.Retail and GetSpecialization()
 	local newtalentwrath = E.Wrath and GetActiveTalentGroup()
+	if E.Retail then
+		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
+	end
 	if (E.Retail and currenttalentretail ~= newtalentretail) or (E.Wrath and currenttalentwrath ~= newtalentwrath) then
 		currenttalentretail = newtalentretail
 		currenttalentwrath = newtalentwrath
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		ElvUI_EltreumUI:FixChatToggles()
-		if E.Retail then
-			ElvUI_EltreumUI.Spec = GetSpecializationInfo(newtalentretail)
-		end
 		if E.Retail or E.Wrath then
 			ElvUI_EltreumUI:NamePlateOptions()
 			ElvUI_EltreumUI:Shadows()
