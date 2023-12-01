@@ -22,15 +22,15 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Tyriendal-Stormrage"] = EltreumIcon,
 			["Lastwill-Stormrage"] = EltreumIcon,
 			["Auramaster-Stormrage"] = EltreumIcon,
-			["Futuria-Stormrage"] = EltreumIcon,
+			["Exelion-Stormrage"] = EltreumIcon,
 			["Repairs-Stormrage"] = EltreumIcon,
 			["Brihtnes-Stormrage"] = EltreumIcon,
 			["Insidium-Stormrage"] = EltreumIcon,
 			["Chromatus-Stormrage"] = EltreumIcon,
 
 			--Retail Horde
-			["Antarcticus-Area 52"] = EltreumIcon,
-			["Eltreum-Area 52"] = EltreumIcon,
+			["Antarcticus-Area52"] = EltreumIcon,
+			["Eltreum-Area52"] = EltreumIcon,
 
 			--Wrath
 			["Antarcticus-Faerlina"] = EltreumIcon,
@@ -47,6 +47,15 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 
 			--Era Hardcore
 			["Eltreum-DefiasPillager"] = EltreumIcon,
+
+			--Era Season of Discovery
+			["Eltreum-LivingFlame"] = EltreumIcon,
+			["Auramaster-Living Flame"] = EltreumIcon,
+			["Effecta-Living Flame"] = EltreumIcon,
+			["Exelion-Living Flame"] = EltreumIcon,
+			["Insidium-Living Flame"] = EltreumIcon,
+			["Missiles-Living Flame"] = EltreumIcon,
+			["Repairs-Living Flame"] = EltreumIcon,
 		}
 
 		--Donators
