@@ -50,12 +50,12 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 
 			--Era Season of Discovery
 			["Eltreum-LivingFlame"] = EltreumIcon,
-			["Auramaster-Living Flame"] = EltreumIcon,
-			["Effecta-Living Flame"] = EltreumIcon,
-			["Exelion-Living Flame"] = EltreumIcon,
-			["Insidium-Living Flame"] = EltreumIcon,
-			["Missiles-Living Flame"] = EltreumIcon,
-			["Repairs-Living Flame"] = EltreumIcon,
+			["Auramaster-LivingFlame"] = EltreumIcon,
+			["Effecta-LivingFlame"] = EltreumIcon,
+			["Exelion-LivingFlame"] = EltreumIcon,
+			["Insidium-LivingFlame"] = EltreumIcon,
+			["Missiles-LivingFlame"] = EltreumIcon,
+			["Repairs-LivingFlame"] = EltreumIcon,
 		}
 
 		--Donators
