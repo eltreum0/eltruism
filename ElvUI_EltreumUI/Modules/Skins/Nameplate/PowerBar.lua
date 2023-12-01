@@ -821,6 +821,20 @@ EltruismPowerBarPredictionEventsFrame:SetScript("OnEvent", function()
 	end
 end)
 
+--nameplate events for classic since nameplate range is so small
+if E.Classic then
+	local EltruismPowerBarNameplateEventsFrame = CreateFrame("FRAME")
+	EltruismPowerBarNameplateEventsFrame:RegisterEvent("NAME_PLATE_UNIT_ADDED")
+	EltruismPowerBarNameplateEventsFrame:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
+	EltruismPowerBarNameplateEventsFrame:SetScript("OnEvent", function()
+		if UnitExists("target") and UnitCanAttack("player", "target") and C_NamePlate.GetNamePlateForUnit("target") ~= nil and not UnitIsDead("target") then
+			ElvUI_EltreumUI:NameplatePower()
+		else
+			EltreumPowerBar:Hide()
+		end
+	end)
+end
+
 --update when model changes (for druids mostly)
 local EltruismPowerBarModelCheck = CreateFrame("FRAME")
 EltruismPowerBarModelCheck:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
