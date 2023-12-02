@@ -49,13 +49,13 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			["Eltreum-DefiasPillager"] = EltreumIcon,
 
 			--Era Season of Discovery
-			["Eltreum-LivingFlame"] = EltreumIcon,
-			["Auramaster-LivingFlame"] = EltreumIcon,
-			["Effecta-LivingFlame"] = EltreumIcon,
-			["Exelion-LivingFlame"] = EltreumIcon,
-			["Insidium-LivingFlame"] = EltreumIcon,
-			["Missiles-LivingFlame"] = EltreumIcon,
-			["Repairs-LivingFlame"] = EltreumIcon,
+			["Player-5815-029B0939"] = EltreumIcon,
+			["Player-5815-02ABCED4"] = EltreumIcon,
+			["Player-5815-02ABCE57"] = EltreumIcon,
+			["Player-5815-02ABD315"] = EltreumIcon,
+			["Player-5815-02ABD3B9"] = EltreumIcon,
+			["Player-5815-02ABDC2E"] = EltreumIcon,
+			["Player-5815-02ABDDBF"] = EltreumIcon,
 		}
 
 		--Donators
