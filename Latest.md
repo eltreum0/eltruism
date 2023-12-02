@@ -3,7 +3,7 @@ ___
 Added an option to use the original colors of Mage and Warlock instead of the new ones added in Legion  
 Added [name:eltruism:abbrev] and [target:eltruism:abbrev] tags, which accept length args  
 Added an option to disable the Gradient Class Bar separately from the Power Gradient  
-Addded several addon fonts to the font function, such as NameplateSCT and mMediaTag  
+Added several addon fonts to the font function, such as NameplateSCT and mMediaTag  
 Added several shadows to Windtools frames when Windtools shadows is disabled  
 Added options to change the Alpha of Health separately from the Backdrop  
 Added an option to hide the Event Toaster Frame  
