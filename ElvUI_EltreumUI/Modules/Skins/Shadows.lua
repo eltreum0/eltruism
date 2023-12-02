@@ -1374,46 +1374,65 @@ function ElvUI_EltreumUI:Shadows()
 			if E.private.actionbar.enable and not IsAddOnLoaded("ElvUI_ActionBarMasks") and not IsAddOnLoaded("Masque") then
 				--elvui action bars
 				for i = 1, 15 do
-					for k = 1, 12 do
-						local slots = {_G["ElvUI_Bar"..i..'Button'..k]}
-						for _, button in pairs(slots) do
-							if button and not button.shadow and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders["bar"..i.."borders"]) then
-								button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(button.shadow)
+					if E.db.actionbar["bar"..i] and E.db.actionbar["bar"..i].backdrop then
+						if _G["ElvUI_Bar"..i] and _G["ElvUI_Bar"..i].backdrop then
+							_G["ElvUI_Bar"..i].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G["ElvUI_Bar"..i].backdrop.shadow)
+						end
+					else
+						for k = 1, 12 do
+							local slots = {_G["ElvUI_Bar"..i..'Button'..k]}
+							for _, button in pairs(slots) do
+								if button and not button.shadow and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders["bar"..i.."borders"]) then
+									button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(button.shadow)
+								end
 							end
 						end
 					end
 				end
 
 				--pet bars
-				for i = 1, 12 do
-					local button = _G["PetActionButton"..i]
-					if not button then
-						break
-					else
-						if not button.shadow and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.petactionborders) then
-							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(button.shadow)
+				if E.db.actionbar.barPet and E.db.actionbar.barPet.backdrop then
+					if _G["ElvUI_BarPet"] and _G["ElvUI_BarPet"].backdrop then
+						if not _G["ElvUI_BarPet"].backdrop.shadow then
+							_G["ElvUI_BarPet"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G["ElvUI_BarPet"].backdrop.shadow)
 						end
 					end
-				end
-				if _G["ElvUI_BarPet"].backdrop and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.petactionborders) then
-					if not _G["ElvUI_BarPet"].backdrop.shadow then
-						_G["ElvUI_BarPet"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G["ElvUI_BarPet"].backdrop.shadow)
+				else
+					if not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.petactionborders) then
+						for i = 1, 12 do
+							local button = _G["PetActionButton"..i]
+							if not button then
+								break
+							else
+								if not button.shadow and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.petactionborders) then
+									button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(button.shadow)
+								end
+							end
+						end
 					end
 				end
 
 				--stances
-				if not _G["EltruismStanceBorder1"] and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.stanceborders) then
-					for i = 1, 12 do
-						local button = _G["ElvUI_StanceBarButton"..i]
-						if not button then
-							break
-						else
-							if not button.shadow then
-								button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(button.shadow)
+				if E.db.actionbar.stanceBar and E.db.actionbar.stanceBar.backdrop then
+					if _G["ElvUI_StanceBar"] and _G["ElvUI_StanceBar"].backdrop then
+						_G["ElvUI_StanceBar"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G["ElvUI_StanceBar"].backdrop.shadow)
+					end
+				else
+					if not _G["EltruismStanceBorder1"] and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.stanceborders) then
+						for i = 1, 12 do
+							local button = _G["ElvUI_StanceBarButton"..i]
+							if not button then
+								break
+							else
+								if not button.shadow then
+									button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(button.shadow)
+								end
 							end
 						end
 					end
