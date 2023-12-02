@@ -1949,7 +1949,7 @@ function ElvUI_EltreumUI:Shadows()
 						if not E.db.unitframe.units.target.castbar.iconAttached then
 							if E.db.unitframe.units.target.castbar.iconPosition == "RIGHT" then
 								if E.db.unitframe.units.target.castbar.iconAttachedTo == "Castbar" then
-									if E.db.unitframe.units.target.castbar.height < E.db.unitframe.units.target.castbar.iconSize then
+									if E.db.unitframe.units.target.castbar.height < E.db.unitframe.units.target.castbar.iconSize and E.db.unitframe.units.target.castbar.iconXOffset ~= 0 then
 										if not _G["ElvUF_Target_CastBar"].Holder.shadow then
 											_G["ElvUF_Target_CastBar"].Holder:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 											ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Target_CastBar"].Holder.shadow)
@@ -1981,7 +1981,7 @@ function ElvUI_EltreumUI:Shadows()
 								end
 							else
 								if E.db.unitframe.units.target.castbar.iconAttachedTo == "Castbar" then
-									if E.db.unitframe.units.target.castbar.height < E.db.unitframe.units.target.castbar.iconSize and E.db.unitframe.units.target.castbar.iconXOffset ~= 0 then
+									if E.db.unitframe.units.target.castbar.height < E.db.unitframe.units.target.castbar.iconSize then
 										if not _G["ElvUF_Target_CastBar"].Holder.shadow then
 											_G["ElvUF_Target_CastBar"].Holder:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 											ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Target_CastBar"].Holder.shadow)
@@ -2015,10 +2015,10 @@ function ElvUI_EltreumUI:Shadows()
 						elseif E.db.unitframe.units.target.castbar.iconAttached then
 							if E.db.unitframe.units.target.orientation == "RIGHT" then
 								_G["ElvUF_Target_CastBar"].shadow:ClearAllPoints()
-								_G["ElvUF_Target_CastBar"].shadow:SetPoint("TOPLEFT",_G["ElvUF_Target_CastBar"].backdrop, "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
-								_G["ElvUF_Target_CastBar"].shadow:SetPoint("BOTTOMLEFT",_G["ElvUF_Target_CastBar"].backdrop, "BOTTOMLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
 								_G["ElvUF_Target_CastBar"].shadow:SetPoint("TOPRIGHT",_G["ElvUF_Target_CastBar"].Icon, "TOPRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
 								_G["ElvUF_Target_CastBar"].shadow:SetPoint("BOTTOMRIGHT",_G["ElvUF_Target_CastBar"].Icon, "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
+								_G["ElvUF_Target_CastBar"].shadow:SetPoint("TOPLEFT",_G["ElvUF_Target_CastBar"].backdrop, "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
+								_G["ElvUF_Target_CastBar"].shadow:SetPoint("BOTTOMLEFT",_G["ElvUF_Target_CastBar"].backdrop, "BOTTOMLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
 							else
 								_G["ElvUF_Target_CastBar"].shadow:ClearAllPoints()
 								_G["ElvUF_Target_CastBar"].shadow:SetPoint("TOPLEFT",_G["ElvUF_Target_CastBar"].Icon, "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
