@@ -14,8 +14,6 @@ local tonumber = _G.tonumber
 local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
 local UnitIsPlayer = _G.UnitIsPlayer
-local GetSpecialization = _G.GetSpecialization
-local GetSpecializationInfo = _G.GetSpecializationInfo
 local UnitCanAttack = _G.UnitCanAttack
 local GetShapeshiftForm = _G.GetShapeshiftForm
 local IsInInstance = _G.IsInInstance
@@ -28,8 +26,6 @@ local TimeSinceLastUpdate
 local debufftime
 local _, targetclass
 local reactiontarget
-local id
-local currentSpec
 local stance
 local instanceType
 local mapID
@@ -571,6 +567,81 @@ function ElvUI_EltreumUI:NamePlateOptions()
 					elseif E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V3" then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = "Eltreum-Class-DeathKnightV3"
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
+					end
+				end
+			end
+		end
+
+		--automatically hide classbar when targeting friendly targets
+		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide then
+			if UnitExists("target") then
+				if UnitCanAttack("player", "target") then
+					if E.Retail then
+						if E.myclass == 'DEATHKNIGHT' then
+							_G["ElvNP_TargetClassPowerRunes"]:Show()
+						elseif E.myclass == 'PALADIN' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
+							_G["ElvNP_TargetClassPowerClassPower"]:Show()
+						elseif E.myclass == 'DRUID' then
+							stance = GetShapeshiftForm()
+							if stance == 2 then --its a cat
+								_G["ElvNP_TargetClassPowerClassPower"]:Show()
+							else
+								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+							end
+						elseif E.myclass == 'MONK' then
+							if ElvUI_EltreumUI.Spec == 269 then
+								_G["ElvNP_TargetClassPowerClassPower"]:Show()
+							elseif ElvUI_EltreumUI.Spec == 268 then
+								_G["ElvNP_TargetClassPowerStagger"]:Show()
+							end
+						elseif E.myclass == 'MAGE' then
+							if ElvUI_EltreumUI.Spec == 62 then
+								_G["ElvNP_TargetClassPowerClassPower"]:Show()
+							end
+						end
+					else
+						if E.myclass == 'ROGUE' then
+							_G["ElvNP_TargetClassPowerClassPower"]:Show()
+						elseif E.myclass == 'DEATHKNIGHT' then
+							_G["ElvNP_TargetClassPowerRunes"]:Show()
+						elseif E.myclass == 'DRUID' then
+							stance = GetShapeshiftForm()
+							if stance == 2 then --its a cat
+								_G["ElvNP_TargetClassPowerClassPower"]:Show()
+							else
+								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+							end
+						end
+					end
+				elseif (not UnitCanAttack("player", "target")) then
+					if E.Retail then
+						if E.myclass == 'DEATHKNIGHT' then
+							_G["ElvNP_TargetClassPowerRunes"]:Hide()
+						elseif E.myclass == 'PALADIN' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
+							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+						elseif E.myclass == 'DRUID' then
+								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+						elseif E.myclass == 'MONK' then
+							if ElvUI_EltreumUI.Spec == 269 then
+								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+							elseif ElvUI_EltreumUI.Spec == 268 then
+								_G["ElvNP_TargetClassPowerStagger"]:Hide()
+							end
+						elseif E.myclass == 'MAGE' then
+							if ElvUI_EltreumUI.Spec == 62 then
+								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+							end
+						end
+					else
+						if E.myclass == 'ROGUE' then
+							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+						elseif E.myclass == 'DEATHKNIGHT' then
+							_G["ElvNP_TargetClassPowerRunes"]:Hide()
+						elseif E.myclass == 'DRUID' then
+							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+						elseif E.myclass == 'DEATHKNIGHT' then
+							_G["ElvNP_TargetClassPowerRunes"]:Hide()
+						end
 					end
 				end
 			end

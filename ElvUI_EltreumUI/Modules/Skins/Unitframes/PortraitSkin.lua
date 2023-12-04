@@ -191,6 +191,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 			else
 				frame.EltruismPortrait.border:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.portrait[db].color.r,E.db.ElvUI_EltreumUI.unitframes.portrait[db].color.g,E.db.ElvUI_EltreumUI.unitframes.portrait[db].color.b,1)
 				frame.EltruismPortrait.edge:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.portrait[db].color.r,E.db.ElvUI_EltreumUI.unitframes.portrait[db].color.g,E.db.ElvUI_EltreumUI.unitframes.portrait[db].color.b,1)
+				frame.EltruismPortrait.rare:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.portrait[db].color.r,E.db.ElvUI_EltreumUI.unitframes.portrait[db].color.g,E.db.ElvUI_EltreumUI.unitframes.portrait[db].color.b,1)
 			end
 
 			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].rare and E.db.ElvUI_EltreumUI.unitframes.portrait[db].type == "CIRCLE" then
@@ -199,9 +200,11 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 				if (c == 'rare') or (c == 'rareelite') then
 					frame.EltruismPortrait.rare:SetVertexColor(1,1,1,1)
 					frame.EltruismPortrait.border:SetVertexColor(1,1,1,1)
+					frame.EltruismPortrait.edge:SetVertexColor(1,1,1,1)
 				elseif(c == 'elite') or (c == 'worldboss') then
 					frame.EltruismPortrait.rare:SetVertexColor(0.84,0.74,0.35,1)
 					frame.EltruismPortrait.border:SetVertexColor(0.84,0.74,0.35,1)
+					frame.EltruismPortrait.edge:SetVertexColor(0.84,0.74,0.35,1)
 				else
 					if not UnitIsPlayer(frame.unit) then
 						frame.EltruismPortrait.rare:SetVertexColor(0,0,0,0)

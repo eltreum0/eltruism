@@ -1,6 +1,6 @@
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
-local id, _, powertype,powernumber,tablepowernumber
+local _, powertype,powernumber,tablepowernumber
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local IsPlayerSpell = _G.IsPlayerSpell
@@ -12,8 +12,6 @@ local UnitPowerMax = _G.UnitPowerMax
 local UnitPower = _G.UnitPower
 local UnitPowerType = _G.UnitPowerType
 local rad = _G.UnitPowerType
-local GetSpecialization = _G.GetSpecialization
-local GetSpecializationInfo = _G.GetSpecializationInfo
 local UnitExists = _G.UnitExists
 local UnitCanAttack = _G.UnitCanAttack
 local C_NamePlate = _G.C_NamePlate
@@ -57,7 +55,7 @@ local shamanhex = 0
 local shamanbolt = 8
 local shamanlavaburst = 10
 local huntersteadyshot = 0
-local druideclipse,costTable,currentSpec
+local druideclipse,costTable
 local predictioncolorr, predictioncolorg, predictioncolorb
 local isSetup, isSetupprediction = false, false
 local maxpower = 0
@@ -206,17 +204,6 @@ function ElvUI_EltreumUI:PowerPrediction()
 	end
 end
 
---so that the power updates when spec changes
-function ElvUI_EltreumUI:GetSpec()
-	--print("getspec spam "..math.random(1,99))
-	if E.Retail then
-		currentSpec = GetSpecialization()
-		if currentSpec then
-			id, _ = GetSpecializationInfo(currentSpec)
-		end
-	end
-end
-
 --Main function
 function ElvUI_EltreumUI:NameplatePower(nameplate)
 	--print("nameplate power spam "..math.random(1,99))
@@ -302,7 +289,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						EltreumPowerBar:SetStatusBarColor(E.db.unitframe.colors.power.MANA.r, E.db.unitframe.colors.power.MANA.g, E.db.unitframe.colors.power.MANA.b) --its mana so color like mana
 					end
 					if E.Retail then
-						if E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' or (E.myclass == 'MAGE' and id == 62) then
+						if E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' or (E.myclass == 'MAGE' and ElvUI_EltreumUI.Spec == 62) then
 							if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
 								if E.db.ElvUI_EltreumUI.skins.shadow.nppower then
 									if _G["ElvNP_TargetClassPowerClassPower"] and _G["ElvNP_TargetClassPowerClassPower"]:IsShown() then
@@ -454,7 +441,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					end
 				elseif stance == 4 then
 					if E.Retail then --this is where it gets tricky due to talents and specs 4 is either moonkin OR tree of life if resto and not talented into moonkin affinity
-						if id == 103 then --moonkin
+						if ElvUI_EltreumUI.Spec == 103 then --moonkin
 							if E.private.ElvUI_EltreumUI.nameplatepower.astral then
 								EltreumPowerBar:Show()
 								if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
@@ -649,7 +636,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				end
 			elseif E.myclass == 'PRIEST' then
 				if E.Retail then
-					if id == 258 then
+					if ElvUI_EltreumUI.Spec == 258 then
 						if E.private.ElvUI_EltreumUI.nameplatepower.insanity then
 							EltreumPowerBar:Show()
 							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
@@ -661,7 +648,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
 							end
 						end
-					elseif id == 256 or id == 257 then
+					elseif ElvUI_EltreumUI.Spec == 256 or ElvUI_EltreumUI.Spec == 257 then
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 							EltreumPowerBar:Show()
 							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
@@ -699,7 +686,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				end
 			elseif E.myclass == 'SHAMAN' then
 				if E.Retail then
-					if id == 262 or id == 263 then
+					if ElvUI_EltreumUI.Spec == 262 or ElvUI_EltreumUI.Spec == 263 then
 						if E.private.ElvUI_EltreumUI.nameplatepower.maelstrom then
 							EltreumPowerBar:Show()
 							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
@@ -711,7 +698,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
 							end
 						end
-					elseif id == 264 then
+					elseif ElvUI_EltreumUI.Spec == 264 then
 						if E.private.ElvUI_EltreumUI.nameplatepower.mana then
 							EltreumPowerBar:Show()
 							if not E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient then
@@ -834,6 +821,20 @@ EltruismPowerBarPredictionEventsFrame:SetScript("OnEvent", function()
 	end
 end)
 
+--nameplate events for classic since nameplate range is so small
+if E.Classic then
+	local EltruismPowerBarNameplateEventsFrame = CreateFrame("FRAME")
+	EltruismPowerBarNameplateEventsFrame:RegisterEvent("NAME_PLATE_UNIT_ADDED")
+	EltruismPowerBarNameplateEventsFrame:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
+	EltruismPowerBarNameplateEventsFrame:SetScript("OnEvent", function()
+		if UnitExists("target") and UnitCanAttack("player", "target") and C_NamePlate.GetNamePlateForUnit("target") ~= nil and not UnitIsDead("target") then
+			ElvUI_EltreumUI:NameplatePower()
+		else
+			EltreumPowerBar:Hide()
+		end
+	end)
+end
+
 --update when model changes (for druids mostly)
 local EltruismPowerBarModelCheck = CreateFrame("FRAME")
 EltruismPowerBarModelCheck:RegisterUnitEvent("UNIT_MODEL_CHANGED", "player")
@@ -857,7 +858,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 				if E.myclass == 'MONK' or E.myclass == 'ROGUE' or E.myclass == 'DEATHKNIGHT' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' or E.myclass == 'DRUID' or E.myclass == 'EVOKER' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
-				elseif E.myclass == "MAGE" and id == 62 then --62 is arcane --E.myclass== 'MAGE' or
+				elseif E.myclass == "MAGE" and ElvUI_EltreumUI.Spec == 62 then --62 is arcane --E.myclass== 'MAGE' or
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 26
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 26
 				else
@@ -900,10 +901,10 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
 					end
 				elseif E.Retail then
-					if id == 64 or id == 63 or id == 270 or id == 256 or id == 257 or id == 264 then
+					if ElvUI_EltreumUI.Spec == 64 or ElvUI_EltreumUI.Spec == 63 or ElvUI_EltreumUI.Spec == 270 or ElvUI_EltreumUI.Spec == 256 or ElvUI_EltreumUI.Spec == 257 or ElvUI_EltreumUI.Spec == 264 then
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
-					elseif id == 65 or id == 66 or id == 70 or id == 265 or id == 266 or id == 267 or E.myclass == 'EVOKER' then --paladin specs bc of holy power and warlocks bc of soul shards
+					elseif ElvUI_EltreumUI.Spec == 65 or ElvUI_EltreumUI.Spec == 66 or ElvUI_EltreumUI.Spec == 70 or ElvUI_EltreumUI.Spec == 265 or ElvUI_EltreumUI.Spec == 266 or ElvUI_EltreumUI.Spec == 267 or E.myclass == 'EVOKER' then --paladin specs bc of holy power and warlocks bc of soul shards
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 					end
@@ -931,7 +932,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.insanity then
 				if E.Retail then
-					if id == 258 then
+					if ElvUI_EltreumUI.Spec == 258 then
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
 					end
@@ -939,7 +940,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.maelstrom then
 				if E.Retail then
-					if id == 262 or id == 263 then
+					if ElvUI_EltreumUI.Spec == 262 or ElvUI_EltreumUI.Spec == 263 then
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
 					end

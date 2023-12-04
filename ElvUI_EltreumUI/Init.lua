@@ -28,6 +28,7 @@ ElvUI_EltreumUI.CreditsList = {}
 ElvUI_EltreumUI.Config = {}
 --ElvUI_EltreumUI.Name = '|cff82B4ffEltruism|r'
 ElvUI_EltreumUI.Name = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1)
+ElvUI_EltreumUI.Spec = 0
 
 function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	if not E.private.ElvUI_EltreumUI.install_version then
@@ -92,11 +93,11 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	if E.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
-		ElvUI_EltreumUI:GetSpec() --checks player spec
 		if E.myclass == 'HUNTER' then
 			ElvUI_EltreumUI:ExpandedStable() --expands pet stable for hunters
 		end
 		ElvUI_EltreumUI:ObjectiveTrackerAnchor()
+		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
 	elseif E.Wrath or E.Classic then
 		ElvUI_EltreumUI:ClassicSockets() --adds sockets and enchants into the character panel, based on Kibs Item Level by Kibsgaard
 		ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
@@ -304,14 +305,14 @@ local currenttalentwrath = E.Wrath and GetActiveTalentGroup()
 function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 	local newtalentretail = E.Retail and GetSpecialization()
 	local newtalentwrath = E.Wrath and GetActiveTalentGroup()
+	if E.Retail then
+		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
+	end
 	if (E.Retail and currenttalentretail ~= newtalentretail) or (E.Wrath and currenttalentwrath ~= newtalentwrath) then
 		currenttalentretail = newtalentretail
 		currenttalentwrath = newtalentwrath
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		ElvUI_EltreumUI:FixChatToggles()
-		if E.Retail then
-			ElvUI_EltreumUI:GetSpec()
-		end
 		if E.Retail or E.Wrath then
 			ElvUI_EltreumUI:NamePlateOptions()
 			ElvUI_EltreumUI:Shadows()

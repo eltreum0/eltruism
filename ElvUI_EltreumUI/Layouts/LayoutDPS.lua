@@ -415,6 +415,10 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["movers"]["ElvUF_RaidpetMover"] = "TOPLEFT,ElvUIParent,BOTTOMLEFT,4,736"
 	E.db["movers"]["ElvUF_TankMover"] = "BOTTOM,ElvUIParent,BOTTOM,-155,39"
 	E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,293,268"
+	if width == 1920 then
+		E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-266,268"
+		E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,294,268"
+	end
 	E.db["movers"]["ElvUF_TargetMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,299"
 	E.db["movers"]["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-438,299"
 	E.db["movers"]["ElvUIBagMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,23"
@@ -690,7 +694,6 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["party"]["castbar"]["timeToHold"] = 0.6
 	E.db["unitframe"]["units"]["party"]["castbar"]["width"] = 200
 	E.db["unitframe"]["units"]["party"]["castbar"]["xOffsetText"] = 2
-
 	E.db["unitframe"]["units"]["party"]["colorOverride"] = "FORCE_OFF"
 	E.db["unitframe"]["units"]["party"]["debuffs"]["countFontOutline"] = "OUTLINE"
 	E.db["unitframe"]["units"]["party"]["debuffs"]["xOffset"] = 5
@@ -868,6 +871,9 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["player"]["castbar"]["iconSize"] = 29
 	E.db["unitframe"]["units"]["player"]["castbar"]["iconXOffset"] = 0
 	E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 242
+	if width == 1920 then
+		E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 240
+	end
 	E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["b"] = 1
 	E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["g"] = 1
 	E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["r"] = 1
@@ -1207,6 +1213,9 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["target"]["castbar"]["iconSize"] = 29
 	E.db["unitframe"]["units"]["target"]["castbar"]["iconXOffset"] = 0
 	E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 242
+	if width == 1920 then
+		E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 240
+	end
 	E.db["unitframe"]["units"]["target"]["castbar"]["timeToHold"] = 0.6
 	E.db["unitframe"]["units"]["target"]["debuffs"]["countFont"] = "Kimberley"
 	E.db["unitframe"]["units"]["target"]["debuffs"]["countFontOutline"] = "OUTLINE"

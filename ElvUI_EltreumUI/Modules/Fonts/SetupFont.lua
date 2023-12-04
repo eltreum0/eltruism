@@ -528,6 +528,11 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		E.private["WT"]["skins"]["rollResult"]["name"] = fontvalue
 	end
 
+	if IsAddOnLoaded("ElvUI_mMediaTag") then
+		E.db["mMT"]["dockdatatext"]["font"] = fontvalue
+		E.db["mMT"]["objectivetracker"]["font"] = fontvalue
+	end
+
 	E:StaggeredUpdateAll()
 
 	if custom then
