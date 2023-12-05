@@ -1226,6 +1226,8 @@ function ElvUI_EltreumUI:Shadows()
 					_G.MailFrameTab1.backdrop,
 					_G.MailFrameTab2.backdrop,
 					_G.MerchantFrame.backdrop,
+					_G.MerchantFrameTab1.backdrop,
+					_G.MerchantFrameTab2.backdrop,
 					_G.CharacterFrameTab4.backdrop, --only in classic though
 					_G.CharacterFrameTab5.backdrop, --only in classic though
 					_G.FriendsFrameTab5.backdrop, --only in classic though
