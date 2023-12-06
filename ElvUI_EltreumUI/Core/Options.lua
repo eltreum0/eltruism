@@ -56,6 +56,7 @@ local THANKYOU = {
 	'|cff960000Atwood|r - for some of the role icons',
 	'|cffB50909Dlarge|r - for the German localization',
 	'|cff33937FFang2hou|r - for the compatibility function',
+	E:TextGradient("Meowcactus", 1, 0.49, 0.04, 1, 0.96, 0.41),
 }
 
 local DONATORS = {
