@@ -1226,6 +1226,8 @@ function ElvUI_EltreumUI:Shadows()
 					_G.MailFrameTab1.backdrop,
 					_G.MailFrameTab2.backdrop,
 					_G.MerchantFrame.backdrop,
+					_G.MerchantFrameTab1.backdrop,
+					_G.MerchantFrameTab2.backdrop,
 					_G.CharacterFrameTab4.backdrop, --only in classic though
 					_G.CharacterFrameTab5.backdrop, --only in classic though
 					_G.FriendsFrameTab5.backdrop, --only in classic though
@@ -3252,6 +3254,40 @@ function ElvUI_EltreumUI:Shadows()
 									else
 										_G["ElvUF_Pet"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Pet_HealthBar"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
 										_G["ElvUF_Pet"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Pet_HealthBar"] ,"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									end
+								end
+							end
+						end
+					end
+					if not E.Classic then
+						if E.db.unitframe.units.focus.infoPanel.enable then ------TODO might need to look into right orientation
+							if _G["ElvUF_Focus_HealthBar"].shadow then
+								_G["ElvUF_Focus_HealthBar"].shadow:Hide()
+							end
+							if not _G["ElvUF_Focus"].shadow then
+								_G["ElvUF_Focus"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Focus"].shadow)
+							end
+							if _G["ElvUF_Focus"].shadow then
+								_G["ElvUF_Focus"].shadow:Show()
+								_G["ElvUF_Focus"].shadow:ClearAllPoints()
+								if E.db.unitframe.thinBorders then
+									_G["ElvUF_Focus"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Focus_HealthBar"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+									_G["ElvUF_Focus"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Focus_HealthBar"] ,"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+									_G["ElvUF_Focus"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Focus_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									_G["ElvUF_Focus"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Focus_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									if E.db.unitframe.units.focus.portrait.enable and E.db.unitframe.units.focus.portrait.style ~= "3D" and not benikdettached and not _G["ElvUF_Focus"].USE_PORTRAIT_OVERLAY then
+										_G["ElvUF_Focus"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Focus"].Portrait,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+										_G["ElvUF_Focus"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Focus_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									end
+								else
+									_G["ElvUF_Focus"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Focus_HealthBar"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length-1, E.db.ElvUI_EltreumUI.skins.shadow.length+1)
+									_G["ElvUF_Focus"].shadow:SetPoint("TOPRIGHT", _G["ElvUF_Focus_HealthBar"],"TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length+1, E.db.ElvUI_EltreumUI.skins.shadow.length+1)
+									_G["ElvUF_Focus"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Focus_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length-1, -E.db.ElvUI_EltreumUI.skins.shadow.length-1)
+									_G["ElvUF_Focus"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Focus_InfoPanel"],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length+1, -E.db.ElvUI_EltreumUI.skins.shadow.length-1)
+									if E.db.unitframe.units.focus.portrait.enable and E.db.unitframe.units.focus.portrait.style ~= "3D" and not benikdettached and not _G["ElvUF_Focus"].USE_PORTRAIT_OVERLAY then
+										_G["ElvUF_Focus"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Focus"].Portrait,"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length-1, E.db.ElvUI_EltreumUI.skins.shadow.length+1)
+										_G["ElvUF_Focus"].shadow:SetPoint("BOTTOMLEFT", _G["ElvUF_Focus_InfoPanel"],"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length-1, -E.db.ElvUI_EltreumUI.skins.shadow.length-1)
 									end
 								end
 							end

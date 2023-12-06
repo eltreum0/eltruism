@@ -167,7 +167,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 		E:UpdateMediaItems()
 	elseif message == 'modeldebug' then
 		if E.db.unitframe.units.target.portrait.enable and E.db.unitframe.units.target.portrait.style == "3D" and UnitExists("target") then
-			ElvUI_EltreumUI:Print(UnitName("target").." "..UnitCreatureType("target").." ".._G["ElvUF_Target"].Portrait3D:GetModelFileID())
+			ElvUI_EltreumUI:Print(UnitName("target").." ".._G["ElvUF_Target"].Portrait3D:GetModelFileID())
 		else
 			ElvUI_EltreumUI:Print("Target either doesn't exist or doesn't have 3D model portrait enabled")
 		end

@@ -422,6 +422,7 @@ local modelsRotate = {
 	[534761] = true, --Wrathion (old model)
 	[353670] = true, --Anduin Wrynn (old model)
 	[124366] = true, --high elf (old model)
+	[124368] = true, --Dark Strand Adept
 }
 
 local targetlike = {
