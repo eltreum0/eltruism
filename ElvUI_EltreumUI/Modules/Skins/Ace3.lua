@@ -44,7 +44,7 @@ local function CreateFader(frame,isTree)
 				frame:SetBackdropBorderColor(0, 0, 0, 1)
 			end
 			local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
-			if frametext and frametext.GetText and not frame.disabled then
+			if frametext and frametext.GetText and not frame.disabled and not (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
 				backupR,backupG,backupB = frametext:GetTextColor()
 				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
 					frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
@@ -144,19 +144,10 @@ local function CreateFader(frame,isTree)
 				UIFrameFadeOut(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 1, 0)
 			end
 			local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
-			if frametext and frametext.GetText and not frame.disabled then
+			if frametext and frametext.GetText and not frame.disabled and not (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
 				frametext:SetTextColor(backupR,backupG,backupB)
 			end
 		end)
-
-		local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
-		if frametext and frametext.GetText and not frame.disabled then
-			if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-				frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-			else
-				frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-			end
-		end
 	end
 end
 
