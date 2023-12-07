@@ -21,7 +21,7 @@ local next = _G.next
 local EltruismAutoComplete = CreateFrame("FRAME", "EltruismAutoCompleteFrame")
 function ElvUI_EltreumUI:AutoAcceptQuests()
 	if E.db.ElvUI_EltreumUI.quests.autoaccept then
-		local lastgossip
+		local lastgossip = -1
 		EltruismAutoComplete:RegisterEvent("QUEST_GREETING")
 		EltruismAutoComplete:RegisterEvent("GOSSIP_SHOW")
 		EltruismAutoComplete:RegisterEvent("QUEST_DETAIL")
