@@ -262,9 +262,11 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 												if E.db.ElvUI_EltreumUI.dev then
 													ElvUI_EltreumUI:Print("one gossip option found, selecting it")
 												end
-												if lastgossip ~= gossipInfoTable[i].gossipOptionID then
-													C_GossipInfo.SelectOption(gossipInfoTable[i].gossipOptionID)
-													lastgossip = gossipInfoTable[i].gossipOptionID
+												if gossipInfoTable[i] and gossipInfoTable[i].gossipOptionID then
+													if lastgossip ~= gossipInfoTable[i].gossipOptionID then
+														C_GossipInfo.SelectOption(gossipInfoTable[i].gossipOptionID)
+														lastgossip = gossipInfoTable[i].gossipOptionID
+													end
 												end
 											end
 										elseif #gossipInfoTable == 0 then

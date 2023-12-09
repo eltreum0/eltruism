@@ -2330,14 +2330,19 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 
-				--AdditionalPowerBar
-				if E.myclass == 'DRUID' or E.myclass == 'SHAMAN' or E.myclass == 'PRIEST' then
-					local additionalpowerbar = _G["ElvUF_Player_AdditionalPowerBar"]
-					if additionalpowerbar ~= nil then
-						if not _G["ElvUF_Player_AdditionalPowerBar"].shadow then
-							_G["ElvUF_Player_AdditionalPowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_AdditionalPowerBar"].shadow)
-						end
+				--player classbar
+				if E.db.unitframe.units.player.classbar.enable and E.db.unitframe.units.player.classbar.fill ~= "spaced" then
+					if _G["ElvUF_Player_ClassBar"] and not _G["ElvUF_Player_ClassBar"].shadow then
+						_G["ElvUF_Player_ClassBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_ClassBar"].shadow)
+					end
+					if _G["ElvUF_Player_AdditionalPowerBar"] and not _G["ElvUF_Player_AdditionalPowerBar"].shadow then
+						_G["ElvUF_Player_AdditionalPowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_AdditionalPowerBar"].shadow)
+					end
+					if _G["ElvUF_Player_Stagger"] and not _G["ElvUF_Player_Stagger"].shadow then
+						_G["ElvUF_Player_Stagger"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_Stagger"].shadow)
 					end
 				end
 
@@ -2452,13 +2457,8 @@ function ElvUI_EltreumUI:Shadows()
 									elseif E.db.unitframe.units.player.power.width == "fill" then
 										if _G["ElvUF_Player"] and _G["ElvUF_Player"].shadow then
 											_G["ElvUF_Player"].shadow:ClearAllPoints()
-											_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player_HealthBar"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length + (E.db.unitframe.units.player.classbar.height/1.2))
+											_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player_HealthBar"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
 											_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player_PowerBar"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-											if _G["ElvUF_Player_ClassBar"]:IsShown() then
-												_G["ElvUF_Player"].shadow:ClearAllPoints()
-												_G["ElvUF_Player"].shadow:SetPoint("TOPLEFT", _G["ElvUF_Player"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length - (E.db.unitframe.units.player.classbar.height/2))
-												_G["ElvUF_Player"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_Player"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-											end
 										end
 									else
 										if _G["ElvUF_Player"] and _G["ElvUF_Player"].shadow then
@@ -2846,25 +2846,6 @@ function ElvUI_EltreumUI:Shadows()
 							_G["ElvUF_TargetTarget"].shadow:ClearAllPoints()
 							_G["ElvUF_TargetTarget"].shadow:SetPoint("TOPLEFT", _G["ElvUF_TargetTarget_HealthBar"], "TOPLEFT",-E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
 							_G["ElvUF_TargetTarget"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_TargetTarget"], "BOTTOMRIGHT",E.db.ElvUI_EltreumUI.skins.shadow.length,-E.db.ElvUI_EltreumUI.skins.shadow.length)
-						end
-					end
-				end
-
-				--player classbar
-				if E.db.unitframe.units.player.classbar.fill ~= "spaced" and E.db.unitframe.units.player.power.enable then
-					if E.db.unitframe.units.player.classbar.detachFromFrame then
-						if _G["ElvUF_Player_ClassBar"] then
-							if not _G["ElvUF_Player_ClassBar"].shadow then
-								_G["ElvUF_Player_ClassBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_ClassBar"].shadow)
-							end
-						end
-					else
-						if _G["ElvUF_Player_Stagger"] and _G["ElvUF_Player_Stagger"].shadow then
-							_G["ElvUF_Player_Stagger"].shadow:Hide()
-						end
-						if _G["ElvUF_Player_AdditionalPowerBar"] and _G["ElvUF_Player_AdditionalPowerBar"].shadow then
-							_G["ElvUF_Player_AdditionalPowerBar"].shadow:Hide()
 						end
 					end
 				end
