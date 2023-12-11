@@ -1727,6 +1727,7 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('SoftTargetLowPriorityIcons', 1)
 	SetCVar('SoftTargetIconEnemy', 0)
 	SetCVar('SoftTargetIconFriend', 0)
+	SetCVar('WorldTextMinSize', 6)
 
 	if E.Retail then
 		--this makes it so that the non nameplate names are hidden
@@ -1739,8 +1740,6 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar('displaySpellActivationOverlays', 1)
 
 		SetCVar('minimapTrackingShowAll', 1) --return old tracking on right click
-
-		SetCVar('WorldTextMinSize', 6)
 
 		SetCVar('missingTransmogSourceInItemTooltips', 1)
 
