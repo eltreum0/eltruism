@@ -224,7 +224,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 				frame.EltruismPortrait.edge:SetAlpha(0)
 				frame.EltruismPortrait.portrait:Show()
 			else
-				frame.EltruismPortrait.border:Hide()
+				frame.EltruismPortrait.border:SetAlpha(0)
 				frame.EltruismPortrait.rare:SetAlpha(0)
 				frame.EltruismPortrait.edge:SetAlpha(0)
 				frame.EltruismPortrait.portrait:Hide()
