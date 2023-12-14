@@ -315,16 +315,11 @@ local function EltruismStatsDatatext2(dt)
 		local tspellpower = ATTACK_POWER..": "..ElvUI[1].media.hexvaluecolor..spellpower.."|r"
 
 		--hit rating
-		local tspellhit
-		if E.Wrath then
-			tspellhit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetCombatRatingBonus(8)).."|r" --GetCombatRatingBonus(CR_HIT_SPELL)
-		else
-			tspellhit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", (GetCombatRatingBonus(8)/7)).."|r" --GetCombatRatingBonus(CR_HIT_SPELL)
-		end
+		local tspellhit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetCombatRatingBonus(8)).."|r" --GetCombatRatingBonus(CR_HIT_SPELL)
 		local tmeleehit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetCombatRatingBonus(6)).."|r" --GetCombatRatingBonus(CR_HIT_MELEE)
 		local trangedhit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetCombatRatingBonus(7)).."|r" --GetCombatRatingBonus(CR_HIT_RANGED)
 		if E.Classic then
-			tspellhit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetSpellHitModifier()).."|r" --GetCombatRatingBonus(CR_HIT_SPELL)
+			tspellhit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", (GetSpellHitModifier()/7)).."|r" --GetCombatRatingBonus(CR_HIT_SPELL)
 			tmeleehit = HIT..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetHitModifier()).."|r" --GetCombatRatingBonus(CR_HIT_MELEE)
 			trangedhit = tmeleehit
 		end
