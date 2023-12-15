@@ -530,7 +530,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 
 	if IsAddOnLoaded("ElvUI_mMediaTag") then
 		E.db["mMT"]["dockdatatext"]["font"] = fontvalue
-		E.db["mMT"]["objectivetracker"]["font"] = fontvalue
+		E.db["mMT"]["objectivetracker"]["font"]["font"] = fontvalue
 	end
 
 	E:StaggeredUpdateAll()
