@@ -103,6 +103,7 @@ LSM:Register("font", "OptimusPrinceps", [[Interface\Addons\ElvUI_EltreumUI\Media
 LSM:Register("font", "Pricedown", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\pricedown.ttf]])
 LSM:Register("font", "Reckoner", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Reckoner.ttf]])
 LSM:Register("font", "Reckoner Bold", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Reckoner_Bold.ttf]])
+LSM:Register("font", "Avquest", [[Interface\Addons\ElvUI_EltreumUI\Media\Fonts\Avquest.ttf]])
 
 -- Sound
 LSM:Register("sound", "bruh", [[Interface\Addons\ElvUI_EltreumUI\Media\Sound\bruh.ogg]])
