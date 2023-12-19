@@ -10,3 +10,4 @@ Pepsi-Cyr-lat - MIT License by Dmitry Astakhov, available at https://fontlibrary
 Noto Sans - Open Font License available at https://fonts.google.com/noto/specimen/Noto+Sans
 Inter - Open Font License available at https://fonts.google.com/specimen/Inter
 Reckoner - Free license available at https://www.dafont.com/reckoner.font
+Avquest - Free license available at http://moorstation.org/typoasis/designers/gemnew/home.htm
