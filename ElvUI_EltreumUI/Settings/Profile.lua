@@ -263,6 +263,7 @@ P.ElvUI_EltreumUI = {
 		tbctalents = false,
 		expandedtalentscale = 1,
 		stealtheffect = false,
+		screenvignette = false,
 		blizzframes = {
 			hideerrorframe = false,
 			raidbossframe = true,

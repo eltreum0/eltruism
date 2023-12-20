@@ -204,6 +204,10 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect = true
 		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture = false
 	end
+	if E.db.ElvUI_EltreumUI.skins.stealtheffect and E.db.ElvUI_EltreumUI.skins.screenvignette then
+		E.db.ElvUI_EltreumUI.skins.screenvignette = false
+		E.db.ElvUI_EltreumUI.skins.stealtheffect = true
+	end
 
 	--fix in case the typo in the config caused this to be a file name instead
 	if (E.private.ElvUI_EltreumUI.combatmusic.bossmusic ~= nil and E.private.ElvUI_EltreumUI.combatmusic.bossmusic ~= false and E.private.ElvUI_EltreumUI.combatmusic.bossmusic ~= true) then
