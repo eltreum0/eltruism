@@ -1462,3 +1462,5 @@ L["Reverse Gradient"] = "Invertir Gradiente"
 L["Displays the name of the unit with abbreviation, accepts length args"] = "Muestra el nombre de la unidad con abreviatura, acepta args de longitud"
 L["Displays the current target of the unit, accepts length args"] = "Muestra el objetivo actual de la unidad, acepta args de longitud"
 L["Circle"] = "Círculo"
+L["Vignette"] = true
+L["Add a vignette effect always"] = true
