@@ -1462,3 +1462,5 @@ L["Reverse Gradient"] = "Farbverlauf umkehren"
 L["Displays the name of the unit with abbreviation, accepts length args"] = "Zeigt den Namen der Einheit mit Abkürzung an und akzeptiert Längenargumente"
 L["Displays the current target of the unit, accepts length args"] = "Zeigt das aktuelle Ziel der Einheit an und akzeptiert Längenargumente"
 L["Circle"] = "Kreis"
+L["Vignette"] = true -- no need to translate
+L["Add a vignette effect always"] = "Füge einen Vignetteneffekt hinzu"
