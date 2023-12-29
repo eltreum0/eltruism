@@ -794,6 +794,7 @@ function ElvUI_EltreumUI:PerformanceOptimization()
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassColorGlow = false
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate = false
 	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = false
+	E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.classbarautohide = false
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect = false
 	E.db.ElvUI_EltreumUI.nameplates.classification.enable = false
 	E.db.ElvUI_EltreumUI.nameplates.nameplatepower.gradient = false
