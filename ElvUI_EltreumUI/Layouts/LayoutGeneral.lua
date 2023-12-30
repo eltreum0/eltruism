@@ -57,7 +57,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["auras"]["buffs"]["seperateOwn"] = 0 -- do not sort auras
 	E.db["auras"]["debuffs"]["seperateOwn"] = 0 -- do not sort auras
 	E.db["auras"]["cooldown"]["override"] = false
-	E.db["chat"]["fade"] = false -- do not fade chat
+	E.db["chat"]["fade"] = true -- fade text again
 	E.db["unitframe"]["units"]["assist"]["enable"] = false --disable assist/tank frames
 	E.db["unitframe"]["units"]["tank"]["enable"] = false --disable assist/tank frames
 	E.db["unitframe"]["units"]["boss"]["fader"]["smooth"] = 0 --used to be 0.25
