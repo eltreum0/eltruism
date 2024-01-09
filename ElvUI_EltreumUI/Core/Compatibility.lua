@@ -374,6 +374,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	CheckWindTools(L["Fast Loot"], L["Fast Loot"], "db.ElvUI_EltreumUI.loot.fastloot", "db.WT.item.fastLoot.enable")
 	CheckWindTools(L["Auto Type Delete"], L["Auto Type Delete"], "db.ElvUI_EltreumUI.otherstuff.delete", "db.WT.item.delete.enable")
 	CheckWindTools(L["Add Spec Icons to the Group Finder Listing"], L["LFG List"], "db.ElvUI_EltreumUI.skins.groupfinderSpecIcons", "private.WT.misc.lfgList.enable")
+	--CheckMerathilisUI(L["Add Spec Icons to the Group Finder Listing"], L["LFG List"], "db.ElvUI_EltreumUI.skins.groupfinderSpecIcons", "db.mui.misc.lfgInfo.enable") --actually is tooltip only
 	CheckWunderUI(L["Role Icons"], L["Role Icons"], "db.ElvUI_EltreumUI.otherstuff.eltruismroleicons", "db.WunderUI.skins.elvUIIcons.roleIcons.enabled")
 	CheckWunderUI(L["Portrait Skin"], "Ring Portraits", "db.ElvUI_EltreumUI.unitframes.portrait.enable", "db.WunderUI.skins.elvUIIcons.ringIcons.enabled")
 	CheckToxiUI(L["A.F.K"].."\n"..L["Skin"], "AFK Mode", "db.ElvUI_EltreumUI.otherstuff.afklogo", "db.TXUI.addons.afkMode.enabled")
