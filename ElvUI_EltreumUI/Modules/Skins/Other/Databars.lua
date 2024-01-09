@@ -3,13 +3,12 @@ local DB = E:GetModule('DataBars')
 local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
-local InCombatLockdown = _G.InCombatLockdown
 local classcolor = E:ClassColor(E.myclass, true)
 
 --gradient xp
 function ElvUI_EltreumUI:GradientDatabarXP()
 	if _G["ElvUI_ExperienceBar"] and E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXP then
-		_G["ElvUI_ExperienceBar"]:GetStatusBarTexture():SetGradient("HORIZONTAL", { r = E.db.databars.colors.experience.r, g = E.db.databars.colors.experience.g, b = E.db.databars.colors.experience.b, a = E.db.databars.colors.experience.a}, { r = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, g = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, b = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, a = E.db.databars.colors.experience.a})
+		_G["ElvUI_ExperienceBar"]:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPdirection, { r = E.db.databars.colors.experience.r, g = E.db.databars.colors.experience.g, b = E.db.databars.colors.experience.b, a = E.db.databars.colors.experience.a}, { r = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.r, g = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.g, b = E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientXPcolors.b, a = E.db.databars.colors.experience.a})
 	end
 end
 hooksecurefunc(DB, 'ExperienceBar_Update', ElvUI_EltreumUI.GradientDatabarXP)
