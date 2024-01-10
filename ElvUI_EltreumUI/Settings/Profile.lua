@@ -1100,6 +1100,7 @@ P.ElvUI_EltreumUI = {
 			enablebackdrop = false,
 
 			gradientXP = false,
+			gradientXPdirection = "HORIZONTAL",
 			gradientXPcolors ={
 				r = 0.8,
 				g = 0.4,

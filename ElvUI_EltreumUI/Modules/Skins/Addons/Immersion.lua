@@ -83,6 +83,12 @@ function ElvUI_EltreumUI:EltruismImmersion()
 		_G["ImmersionFrame"].TalkBox.MainFrame.Sheen:StripTextures()
 		_G["ImmersionFrame"].TalkBox.MainFrame.Overlay:StripTextures()
 
+		if _G["ImmersionFrame"].TalkBox.TextFrame then
+			if _G["ImmersionFrame"].TalkBox.TextFrame.SpeechProgress then
+				_G["ImmersionFrame"].TalkBox.TextFrame.SpeechProgress:SetFont(E.LSM:Fetch("font", E.db.general.font), 16, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+			end
+		end
+
 		--update buttons on events/show
 		local function updatebuttons()
 			if not E.db.general then return end
