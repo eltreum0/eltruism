@@ -1028,9 +1028,9 @@ function ElvUI_EltreumUI:GetMRTProfile()
 					},
 				},
 				["Logging"] = {
-					["enable5ppLegion"] = true,
-					["enableLFR"] = true,
-					["enabled"] = true,
+					["enable5ppLegion"] = false,
+					["enableLFR"] = false,
+					["enabled"] = false,
 				},
 				["MarksBar"] = {
 					["Show"] = {
