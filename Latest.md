@@ -1,22 +1,14 @@
-### 4.0.8 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 4.0.9 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added an option to show the Stealth Vignette at all times  
-Added Path of Twisted Time to the teleport list  
-Added more models to the Portrait Fix  
-Added more 1080p optimizations  
-Added Loot Method DataText  
-Added AvQuest Font  
-Updated Ace3 skin to better handle disabled buttons/tabs  
-Updated OmniCD skin to be able to be disabled on Classic  
-Updated German locale by Dlarge  
-Updated Shadows for classbars  
-Updated Battlefield Mover  
-Fixed an issue with the Raid Warning when ElvUI unitframes were disabled  
-Fixed an error with the Quest Skin in Classic when using custom colors  
-Fixed an issue where the Portrait Skin could show up on certain frames  
-Fixed an issue with the LFG Skin where titles could not be changed  
-Fixed an issue where Pet Borders could not be changed in Classic  
-Fixed an issue with Shadows when castbar icons were attached  
-Fixed an issue with Shadows when using Actionbar backdrops  
-Fixed a possible issue with the Quest Auto Accept  
-Fixed the Hit Stat calculation in Classic
+Added an Allowed list to Cooldown Module where only spells on the list will be announced/shown  
+Added an option to set the maximum length for the Cooldown module  
+Added an option for vertical gradient Experience Databar  
+Added an option for Custom Class Icons in Chat  
+Fixed a possible error with the AvQuest font  
+Added Greyscale Class Icons  
+Added Metal Lord font  
+Updated animation scale for Cooldown to allow for bigger icons  
+Updated Immersion skin to fix a font  
+Updated Player Castbar mover  
+Fixed a possible issue with the Quest Skin  
+Fixed incorrect tags on player unitframe

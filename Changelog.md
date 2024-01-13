@@ -1,6 +1,19 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.0.9
+Added an Allowed list to Cooldown Module where only spells on the list will be announced/shown  
+Added an option to set the maximum length for the Cooldown module  
+Added an option for vertical gradient Experience Databar  
+Added an option for Custom Class Icons in Chat  
+Fixed a possible error with the AvQuest font  
+Added Greyscale Class Icons  
+Added Metal Lord font  
+Updated animation scale for Cooldown to allow for bigger icons  
+Updated Immersion skin to fix a font  
+Updated Player Castbar mover  
+Fixed a possible issue with the Quest Skin  
+Fixed incorrect tags on player unitframe
 ### 4.0.8
 Added an option to show the Stealth Vignette at all times  
 Added Path of Twisted Time to the teleport list  
