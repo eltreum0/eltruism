@@ -404,6 +404,8 @@ P.ElvUI_EltreumUI = {
 			tts = false,
 			ttsvoice = nil,
 			ttsvolume = 100,
+			allowing = false,
+			ignoring = true,
 		},
 		ilvltooltip = true,
 		gradienttooltip = true,

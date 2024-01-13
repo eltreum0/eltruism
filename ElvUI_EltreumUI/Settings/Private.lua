@@ -4,6 +4,7 @@ local E, L, V, P, G = unpack(ElvUI)
 V.ElvUI_EltreumUI = {
 
 	doomignored = "",
+	doomallowed = "",
 
 	nameplatepower = {
 		enable = false,
