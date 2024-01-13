@@ -210,8 +210,16 @@ function ElvUI_EltreumUI:Doom()
 							watching[i] = nil
 						else
 							if (cooldown.enabled ~= 0) then
-								if (cooldown.duration and cooldown.duration > E.db.ElvUI_EltreumUI.skins.doom.graceperiod and cooldown.texture) then --controls grace period
-									cooldowns[i] = getCooldownDetails
+								if E.db.ElvUI_EltreumUI.skins.doom.gracelimit ~= 0 then
+									if cooldown.duration and cooldown.texture then
+										if (cooldown.duration > E.db.ElvUI_EltreumUI.skins.doom.graceperiod) and (cooldown.duration <= E.db.ElvUI_EltreumUI.skins.doom.gracelimit) then --controls grace period
+											cooldowns[i] = getCooldownDetails
+										end
+									end
+								else
+									if (cooldown.duration and cooldown.duration > E.db.ElvUI_EltreumUI.skins.doom.graceperiod and cooldown.texture) then --controls grace period
+										cooldowns[i] = getCooldownDetails
+									end
 								end
 							end
 							if (not (cooldown.enabled == 0 and v[2] == "spell")) then

@@ -400,6 +400,7 @@ P.ElvUI_EltreumUI = {
 			holdTime = 0,
 			showSpellName = false,
 			graceperiod = 10,
+			gracelimit = 0,
 			tts = false,
 			ttsvoice = nil,
 			ttsvolume = 100,
