@@ -1,3 +1,5 @@
+local E = unpack(ElvUI)
+
 local classIconsReleaf = {
 	["16"] ={
 		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\WarriorReleaf.tga",
@@ -539,6 +541,8 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert,resolution,nostring
 			return classSymbols[unitclass]
 		elseif icon == "BW" then
 			return blackandwhite[resolution][unitclass]
+		elseif icon == "CUSTOM" then
+			return E.private.ElvUI_EltreumUI.chat.customicons[unitclass]
 		end
 	else
 		if not invert then
@@ -560,6 +564,8 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert,resolution,nostring
 				return "|T"..classSymbols[unitclass]..":0:0:0:0|t"
 			elseif icon == "BW" then
 				return  "|T"..blackandwhite[resolution][unitclass]..":0:0:0:0|t"
+			elseif icon == "CUSTOM" then
+				return "|T"..E.private.ElvUI_EltreumUI.chat.customicons[unitclass]..":0:0:0:0|t"
 			end
 		else
 			if icon == "RELEAF" then
@@ -579,7 +585,9 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert,resolution,nostring
 			elseif icon == "SYMBOLS" then
 				return "|T"..classSymbols[unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
 			elseif icon == "BW" then
-				return  "|T"..blackandwhite[resolution][unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
+				return "|T"..blackandwhite[resolution][unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
+			elseif icon == "CUSTOM" then
+				return "|T"..E.private.ElvUI_EltreumUI.chat.customicons[unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
 			end
 		end
 	end

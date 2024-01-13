@@ -20,6 +20,24 @@ V.ElvUI_EltreumUI = {
 		focus = true,
 	},
 
+	chat = {
+		customicons = {
+			["WARRIOR"] = "",
+			["PALADIN"] = "",
+			["HUNTER"] = "",
+			["ROGUE"] = "",
+			["PRIEST"] = "",
+			["DEATHKNIGHT"] = "",
+			["SHAMAN"] = "",
+			["MAGE"] = "",
+			["WARLOCK"] = "",
+			["MONK"] = "",
+			["DRUID"] = "",
+			["DEMONHUNTER"] = "",
+			["EVOKER"] = "",
+		},
+	},
+
 	combatmusic = {
 		enable = false,
 		musicfile = "None",
