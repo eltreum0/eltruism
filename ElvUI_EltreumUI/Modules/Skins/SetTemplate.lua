@@ -326,6 +326,20 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 								end
 							end
 						end
+
+						--petbattle
+						if frame:GetParent() and frame:GetParent().PetType then
+							if not frame.shadow then
+								frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(frame.shadow)
+							end
+						end
+						if frame:GetParent() and frame:GetParent() == _G["ElvUIPetBattleActionBar"] then
+							if not frame.shadow then
+								frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(frame.shadow)
+							end
+						end
 					end
 
 					if not E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
