@@ -28,7 +28,7 @@ local GetActionTexture = _G.GetActionTexture
 local GetInventoryItemID = _G.GetInventoryItemID
 local GetInventoryItemTexture = _G.GetInventoryItemTexture
 local wasPreviewing = false
-local ignoredSpells
+local listedSpells
 local cooldowns, animating, watching = { }, { }, { }
 local petOverlay = {1,1,1}
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
@@ -100,10 +100,17 @@ function ElvUI_EltreumUI:Doom()
 		end
 
 		--load in the ignored spells
-		ignoredSpells = { }
-		local list = {strsplit("," ,E.private.ElvUI_EltreumUI.doomignored)}
-		for _,v in ipairs(list) do
-			ignoredSpells[v] = true
+		listedSpells = {}
+		if E.db.ElvUI_EltreumUI.skins.doom.ignoring then
+			local list = {strsplit("," ,E.private.ElvUI_EltreumUI.doomignored)}
+			for _,v in ipairs(list) do
+				listedSpells[v] = true
+			end
+		elseif E.db.ElvUI_EltreumUI.skins.doom.allowing then
+			local list = {strsplit("," ,E.private.ElvUI_EltreumUI.doomallowed)}
+			for _,v in ipairs(list) do
+				listedSpells[v] = true
+			end
 		end
 
 		---set the main script
@@ -206,16 +213,47 @@ function ElvUI_EltreumUI:Doom()
 						end
 
 						local cooldown = getCooldownDetails()
-						if ((ignoredSpells[cooldown.name] ~= nil)) then
-							watching[i] = nil
-						else
-							if (cooldown.enabled ~= 0) then
-								if (cooldown.duration and cooldown.duration > E.db.ElvUI_EltreumUI.skins.doom.graceperiod and cooldown.texture) then --controls grace period
-									cooldowns[i] = getCooldownDetails
+						if E.db.ElvUI_EltreumUI.skins.doom.allowing then
+							if not listedSpells[tostring(i)] then
+								watching[i] = nil
+							else
+								if (cooldown.enabled ~= 0) then
+									if E.db.ElvUI_EltreumUI.skins.doom.gracelimit ~= 0 then
+										if cooldown.duration and cooldown.texture then
+											if (cooldown.duration > E.db.ElvUI_EltreumUI.skins.doom.graceperiod) and (cooldown.duration <= E.db.ElvUI_EltreumUI.skins.doom.gracelimit) then --controls grace period
+												cooldowns[i] = getCooldownDetails
+											end
+										end
+									else
+										if (cooldown.duration and cooldown.duration > E.db.ElvUI_EltreumUI.skins.doom.graceperiod and cooldown.texture) then --controls grace period
+											cooldowns[i] = getCooldownDetails
+										end
+									end
+								end
+								if (not (cooldown.enabled == 0 and v[2] == "spell")) then
+									watching[i] = nil
 								end
 							end
-							if (not (cooldown.enabled == 0 and v[2] == "spell")) then
+						elseif E.db.ElvUI_EltreumUI.skins.doom.ignoring then
+							if listedSpells[tostring(i)] then
 								watching[i] = nil
+							else
+								if (cooldown.enabled ~= 0) then
+									if E.db.ElvUI_EltreumUI.skins.doom.gracelimit ~= 0 then
+										if cooldown.duration and cooldown.texture then
+											if (cooldown.duration > E.db.ElvUI_EltreumUI.skins.doom.graceperiod) and (cooldown.duration <= E.db.ElvUI_EltreumUI.skins.doom.gracelimit) then --controls grace period
+												cooldowns[i] = getCooldownDetails
+											end
+										end
+									else
+										if (cooldown.duration and cooldown.duration > E.db.ElvUI_EltreumUI.skins.doom.graceperiod and cooldown.texture) then --controls grace period
+											cooldowns[i] = getCooldownDetails
+										end
+									end
+								end
+								if (not (cooldown.enabled == 0 and v[2] == "spell")) then
+									watching[i] = nil
+								end
 							end
 						end
 					end

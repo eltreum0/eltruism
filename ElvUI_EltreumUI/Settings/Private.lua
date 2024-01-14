@@ -4,6 +4,7 @@ local E, L, V, P, G = unpack(ElvUI)
 V.ElvUI_EltreumUI = {
 
 	doomignored = "",
+	doomallowed = "",
 
 	nameplatepower = {
 		enable = false,
@@ -17,6 +18,24 @@ V.ElvUI_EltreumUI = {
 		runic = true,
 		fury = true,
 		focus = true,
+	},
+
+	chat = {
+		customicons = {
+			["WARRIOR"] = "",
+			["PALADIN"] = "",
+			["HUNTER"] = "",
+			["ROGUE"] = "",
+			["PRIEST"] = "",
+			["DEATHKNIGHT"] = "",
+			["SHAMAN"] = "",
+			["MAGE"] = "",
+			["WARLOCK"] = "",
+			["MONK"] = "",
+			["DRUID"] = "",
+			["DEMONHUNTER"] = "",
+			["EVOKER"] = "",
+		},
 	},
 
 	combatmusic = {
