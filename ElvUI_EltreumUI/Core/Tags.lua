@@ -864,6 +864,40 @@ E:AddTag("eltruism:ReleafIconOutline:player", "UNIT_NAME_UPDATE", function(unit)
 end)
 E:AddTagInfo("eltruism:ReleafIconOutline:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."1.tga:0:0:0:0|t ".."Shows Class Icons with Outlines by Releaf on Player targets")
 
+--greyscale class icons on all targets
+E:AddTag("eltruism:greyscaleclass:all", "UNIT_NAME_UPDATE", function(unit)
+	local _ , classes = UnitClass(unit)
+	if not classes then return end
+	return ElvUI_EltreumUI:GetClassIcons("BW",classes,false,"64")
+end)
+E:AddTagInfo("eltruism:greyscaleclass:all", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."BW.tga:0:0:0:0|t ".."Shows Greyscale Class Icons on all targets")
+
+--greyscale class icons on players
+E:AddTag("eltruism:greyscaleclass:player", "UNIT_NAME_UPDATE", function(unit)
+	if not UnitIsPlayer(unit) then return end
+	local _ , classes = UnitClass(unit)
+	if not classes then return end
+	return ElvUI_EltreumUI:GetClassIcons("BW",classes,false,"64")
+end)
+E:AddTagInfo("eltruism:greyscaleclass:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."BW.tga:0:0:0:0|t ".."Shows Greyscale Class Icons on Player targets")
+
+--reverse greyscale class icons on all targets
+E:AddTag("eltruism:reversegreyscaleclass:all", "UNIT_NAME_UPDATE", function(unit)
+	local _ , classes = UnitClass(unit)
+	if not classes then return end
+	return ElvUI_EltreumUI:GetClassIcons("BW",classes,true,"64")
+end)
+E:AddTagInfo("eltruism:reversegreyscaleclass:all", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."BW.tga:0:0:0:0:64:64:64:0:0:64|t ".."Shows Flipped Greyscale Icons on all targets")
+
+--reverse greyscale class icons on players
+E:AddTag("eltruism:reversegreyscaleclass:player", "UNIT_NAME_UPDATE", function(unit)
+	if not UnitIsPlayer(unit) then return end
+	local _ , classes = UnitClass(unit)
+	if not classes then return end
+	return ElvUI_EltreumUI:GetClassIcons("BW",classes,true,"64")
+end)
+E:AddTagInfo("eltruism:reversegreyscaleclass:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."BW.tga:0:0:0:0:64:64:64:0:0:64|t ".."Shows Flipped Greyscale Class Icons on Player targets")
+
 --show class icons on all targets
 E:AddTag("eltruism:reverseclass:all", "UNIT_NAME_UPDATE", function(unit)
 	local _ , classes = UnitClass(unit)
