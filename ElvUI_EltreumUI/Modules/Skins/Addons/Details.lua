@@ -232,7 +232,7 @@ do
 					end
 					if _G["DetailsBaseFrame1"] then
 						_G["DetailsBaseFrame1"]:ClearAllPoints()
-						_G["DetailsBaseFrame1"]:SetPoint("LEFT", embedpanel, "LEFT",0,-10)
+						_G["DetailsBaseFrame1"]:SetPoint("TOPLEFT", embedpanel, "TOPLEFT",0,-20)
 					end
 				end
 
