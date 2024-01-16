@@ -739,7 +739,7 @@ end
 function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 
 	--due to raid pet, check if is player
-	if UnitIsPlayer(button.unit) then
+	if UnitIsPlayer(button.unit) then --C_LFGInfo.IsInLFGFollowerDungeon() could be used
 		_, buttonclass = UnitClass(button.unit)
 	else
 		buttonclass = "NPCFRIENDLY"
