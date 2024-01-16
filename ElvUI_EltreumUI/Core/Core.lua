@@ -841,12 +841,19 @@ function ElvUI_EltreumUI:PerformanceOptimization()
 end
 
 --color picker wheel better masking
-local bettermask = _G.ColorPickerFrame:CreateMaskTexture()
-bettermask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\map_circle.TGA", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
-bettermask:SetPoint("TOPRIGHT", _G.ColorPickerWheel, "TOPRIGHT", 3, 3)
-bettermask:SetPoint("BOTTOMLEFT", _G.ColorPickerWheel, "BOTTOMLEFT", -2, -2)
-_G.ColorPickerWheel:AddMaskTexture(bettermask)
-
+if E.Retail then
+	local bettermask = _G.ColorPickerFrame:CreateMaskTexture()
+	bettermask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\map_circle.TGA", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+	bettermask:SetPoint("TOPRIGHT", _G.ColorPickerFrame.Content.ColorPicker.Wheel, "TOPRIGHT", 3, 3)
+	bettermask:SetPoint("BOTTOMLEFT", _G.ColorPickerFrame.Content.ColorPicker.Wheel, "BOTTOMLEFT", -2, -2)
+	_G.ColorPickerFrame.Content.ColorPicker.Wheel:AddMaskTexture(bettermask)
+else
+	local bettermask = _G.ColorPickerFrame:CreateMaskTexture()
+	bettermask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\map_circle.TGA", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+	bettermask:SetPoint("TOPRIGHT", _G.ColorPickerWheel, "TOPRIGHT", 3, 3)
+	bettermask:SetPoint("BOTTOMLEFT", _G.ColorPickerWheel, "BOTTOMLEFT", -2, -2)
+	_G.ColorPickerWheel:AddMaskTexture(bettermask)
+end
 --for fps testing
 --[[
 local framerate = CreateFrame("Frame", nil, UIParent)
