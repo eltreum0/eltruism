@@ -53,7 +53,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 			end
 		end
 		if not frame.EltruismDebuffExists then
-			if UnitIsPlayer(unit) then
+			if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 					if frame.Health.backdropTex then
 						frame.Health.backdropTex:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
@@ -407,7 +407,7 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 		reaction = UnitReaction(unit, "player")
 		unitframe = _G["ElvUF_"..name]
 
-		local isPlayer = UnitIsPlayer(unit)
+		local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
 		local isCharmed = UnitIsCharmed(unit)
 		local isActualPlayer = false
 		if unitframe and unitframe.Health then
@@ -739,7 +739,7 @@ end
 function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 
 	--due to raid pet, check if is player
-	if UnitIsPlayer(button.unit) then --C_LFGInfo.IsInLFGFollowerDungeon() could be used
+	if UnitIsPlayer(button.unit) or (E.Retail and UnitInPartyIsAI(button.unit)) then --C_LFGInfo.IsInLFGFollowerDungeon() could be used
 		_, buttonclass = UnitClass(button.unit)
 	else
 		buttonclass = "NPCFRIENDLY"

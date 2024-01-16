@@ -26,7 +26,7 @@ local function SetTooltipGradient(unit)
 		local tooltipname = _G["GameTooltipTextLeft1"]:GetText()
 		if tooltipname and classunit and reaction then
 			tooltipname = E:StripString(tooltipname)
-			if UnitIsPlayer(unit) and classunit then
+			if (UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))) and classunit then
 				_G["GameTooltipTextLeft1"]:SetText(ElvUI_EltreumUI:GradientName(tooltipname, classunit))
 			else
 				if reaction and reaction >= 5 then
@@ -41,7 +41,7 @@ local function SetTooltipGradient(unit)
 			end
 		end
 
-		if UnitIsPlayer(unit) then
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 				_G.GameTooltipStatusBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(classunit, false, false))
 			else

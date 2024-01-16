@@ -196,7 +196,7 @@ function ElvUI_EltreumUI:TargetUFEffects()
 
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
 				--targeteffect:ClearModel()
-				if UnitIsPlayer("target") and targetclass then
+				if (UnitIsPlayer("target") or (E.Retail and UnitInPartyIsAI("target"))) and targetclass then
 					targeteffect:SetModel(classModels[targetclass])
 				else
 					if reactiontarget then
@@ -298,7 +298,7 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 			_, targettargetclass = UnitClass("targettarget")
 
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
-				if UnitIsPlayer("targettarget") and targettargetclass then
+				if (UnitIsPlayer("targettarget") or (E.Retail and UnitInPartyIsAI("targettarget"))) and targettargetclass then
 					targettargeteffect:SetModel(classModels[targettargetclass])
 				else
 					if reactiontargettarget then
@@ -403,7 +403,7 @@ function ElvUI_EltreumUI:FocusUFEffects()
 
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
 				--focuseffect:ClearModel()
-				if UnitIsPlayer("focus") and focusclass then
+				if (UnitIsPlayer("focus") or (E.Retail and UnitInPartyIsAI("focus"))) and focusclass then
 					focuseffect:SetModel(classModels[focusclass])
 				else
 					if reactionfocus then
