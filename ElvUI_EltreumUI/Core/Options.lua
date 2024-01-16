@@ -3470,34 +3470,30 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 2)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added an option to show the Stealth Vignette at all times
-Added Path of Twisted Time to the teleport list
-Added more models to the Portrait Fix
-Added more 1080p optimizations
-Added Loot Method DataText
-Added AvQuest Font
+Added an Allowed list to Cooldown Module where only spells on the list will be announced/shown
+Added an option to set the maximum length for the Cooldown module
+Added greyscaletags such as [eltruism:greyscaleclass:player]
+Added an option for vertical gradient Experience Databar
+Added an option for Custom Class Icons in Chat
+Added Greyscale Class Icons
+Added Metal Lord font
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Ace3 skin to better handle disabled buttons/tabs
-Updated OmniCD skin to be able to be disabled on Classic
-Updated German locale by Dlarge
-Updated Shadows for classbars
-Updated Battlefield Mover
+Updated gradient and tags to also apply to Followers while in Follower dungeons
+Updated animation scale for Cooldown to allow for bigger icons
+Updated Color Picker Wheel mask for 10.2.5
+Updated Immersion skin to fix a font
+Updated Player Castbar mover
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue with the Raid Warning when ElvUI unitframes were disabled
-Fixed an error with the Quest Skin in Classic when using custom colors
-Fixed an issue where the Portrait Skin could show up on certain frames
-Fixed an issue with the LFG Skin where titles could not be changed
-Fixed an issue where Pet Borders could not be changed in Classic
-Fixed an issue with Shadows when castbar icons were attached
-Fixed an issue with Shadows when using Actionbar backdrops
-Fixed a possible issue with the Quest Auto Accept
-Fixed the Hit Stat calculation in Classic
+Fixed an issue with the Details embed where it would not properly position
+Fixed a possible error with the AvQuest font
+Fixed a possible issue with the Quest Skin
+Fixed incorrect tags on player unitframe
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
