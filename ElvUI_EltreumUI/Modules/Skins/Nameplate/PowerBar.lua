@@ -767,7 +767,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					if E.Retail then
 						powerbareffect:SetModel(1715069) --better for retail, inspired by asakawa's bar model
 						powerbareffect:MakeCurrentCameraCustom()
-						powerbareffect:SetTransform(CreateVector3D(-0.035, 0, 0),CreateVector3D(rad(270), 0, 0),0.785)
+						powerbareffect:SetTransform( CreateVector3D(-0.035, 0, 0), CreateVector3D(4.7123889803847, 0, 0), 0.785) --was rad(270) but that started breaking in 10.2.5
 						powerbareffect:SetPortraitZoom(1)
 						powerbareffect:SetAlpha(0.4) --might do this
 					else

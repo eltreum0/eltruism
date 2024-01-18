@@ -249,7 +249,7 @@ E:AddTag("name:eltruism:gradient", "UNIT_NAME_UPDATE", function(unit)
 	local name = UnitName(unit)
 	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 
-	if UnitIsPlayer(unit) then
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget)
@@ -284,7 +284,7 @@ E:AddTag("name:eltruism:gradientshort", "UNIT_NAME_UPDATE", function(unit,_,args
 		name = E:ShortenString(name, tonumber(args))
 	end
 
-	if UnitIsPlayer(unit) then
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
@@ -313,7 +313,7 @@ E:AddTag("name:eltruism:gradientcaps", "UNIT_NAME_UPDATE", function(unit)
 	local name = string.upper(namecheck)
 	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 
-	if UnitIsPlayer(unit) then
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget)
@@ -350,7 +350,7 @@ E:AddTag("name:eltruism:gradientshortcaps", "UNIT_NAME_UPDATE", function(unit,_,
 		name = E:ShortenString(name, tonumber(args))
 	end
 
-	if UnitIsPlayer(unit) then
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
@@ -386,7 +386,7 @@ E:AddTag("name:eltruism:gradienttranslit", "UNIT_NAME_UPDATE", function(unit,_,a
 		end
 	end
 
-	if UnitIsPlayer(unit) then
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
@@ -416,7 +416,7 @@ E:AddTag("name:eltruism:gradientshorttranslit", "UNIT_NAME_UPDATE", function(uni
 	end
 	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 
-	if UnitIsPlayer(unit) then
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
@@ -439,7 +439,7 @@ E:AddTagInfo("name:eltruism:gradientshorttranslit", ElvUI_EltreumUI.Name.." "..L
 
 E:AddTag('eltruismname:title', 'UNIT_NAME_UPDATE INSTANCE_ENCOUNTER_ENGAGE_UNIT', function(unit)
 	local name = UnitName(unit)
-	if UnitIsPlayer(unit) then
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientName(UnitPVPName(unit), unitClass)
@@ -490,7 +490,7 @@ E:AddTag("name:eltruism:gradientdefaultcolors", "UNIT_NAME_UPDATE", function(uni
 	local name = UnitName(unit)
 	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 
-	if UnitIsPlayer(unit) then
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientNameDefaultColors(name, unitClass,isTarget)
@@ -519,7 +519,7 @@ E:AddTag("name:eltruism:gradientdefaultcolorsshort", "UNIT_NAME_UPDATE", functio
 	end
 	local isTarget = UnitIsUnit(unit,"target") and not unit:match("nameplate") and not unit:match("party")
 
-	if UnitIsPlayer(unit) then
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientNameDefaultColors(name, unitClass, isTarget)
@@ -556,7 +556,7 @@ E:AddTag("name:eltruism:caps", "UNIT_NAME_UPDATE", function(unit,_,args)
 		name = E:ShortenString(name, tonumber(args))
 	end
 
-	if UnitIsPlayer(unit) then
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
 		return "|c"..classcolorcast[unitClass]..name.."|r"
@@ -592,7 +592,7 @@ E:AddTag("eltruism:detailsnickname", "UNIT_NAME_UPDATE", function(unit)
 	if nicktag then
 		local nickname = nicktag:GetNickname(UnitName(unit), false, true)
 		if nickname then
-			if UnitIsPlayer(unit) then
+			if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 				if not unitClass then return end
 				return "|c"..classcolorcast[unitClass]..nickname.."|r"
 			else
@@ -609,7 +609,7 @@ E:AddTag("eltruism:detailsnickname", "UNIT_NAME_UPDATE", function(unit)
 				end
 			end
 		else
-			if UnitIsPlayer(unit) then
+			if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 				if not unitClass then return end
 				return "|c"..classcolorcast[unitClass]..name.."|r"
 			else
@@ -627,7 +627,7 @@ E:AddTag("eltruism:detailsnickname", "UNIT_NAME_UPDATE", function(unit)
 			end
 		end
 	else
-		if UnitIsPlayer(unit) then
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			if not unitClass then return end
 			return "|c"..classcolorcast[unitClass]..name.."|r"
 		else
@@ -656,7 +656,7 @@ E:AddTag("eltruism:detailsnickname:gradient", "UNIT_NAME_UPDATE", function(unit)
 	if nicktag then
 		local nickname = nicktag:GetNickname(UnitName(unit), false, true)
 		if nickname then
-			if UnitIsPlayer(unit) then
+			if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 				if not unitClass then return end
 				return ElvUI_EltreumUI:GradientName(nickname, unitClass,isTarget)
 			elseif not UnitIsPlayer(unit) then
@@ -673,7 +673,7 @@ E:AddTag("eltruism:detailsnickname:gradient", "UNIT_NAME_UPDATE", function(unit)
 				end
 			end
 		else
-			if UnitIsPlayer(unit) then
+			if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 				if not unitClass then return end
 				return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget)
 			elseif not UnitIsPlayer(unit) then
@@ -691,7 +691,7 @@ E:AddTag("eltruism:detailsnickname:gradient", "UNIT_NAME_UPDATE", function(unit)
 			end
 		end
 	else
-		if UnitIsPlayer(unit) then
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			if not unitClass then return end
 			return ElvUI_EltreumUI:GradientName(name, unitClass,isTarget)
 		elseif not UnitIsPlayer(unit) then
@@ -727,7 +727,7 @@ E:AddTag("name:eltruism:gradientshortfirst", "UNIT_NAME_UPDATE", function(unit,_
 		name = E:ShortenString(name, tonumber(args))
 	end]]
 
-	if UnitIsPlayer(unit) then
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
 		return ElvUI_EltreumUI:GradientName(name, unitClass, isTarget)
@@ -863,6 +863,40 @@ E:AddTag("eltruism:ReleafIconOutline:player", "UNIT_NAME_UPDATE", function(unit)
 	return ElvUI_EltreumUI:GetClassIcons("OUTLINE",classes,false,"64")
 end)
 E:AddTagInfo("eltruism:ReleafIconOutline:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."1.tga:0:0:0:0|t ".."Shows Class Icons with Outlines by Releaf on Player targets")
+
+--greyscale class icons on all targets
+E:AddTag("eltruism:greyscaleclass:all", "UNIT_NAME_UPDATE", function(unit)
+	local _ , classes = UnitClass(unit)
+	if not classes then return end
+	return ElvUI_EltreumUI:GetClassIcons("BW",classes,false,"64")
+end)
+E:AddTagInfo("eltruism:greyscaleclass:all", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."BW.tga:0:0:0:0|t ".."Shows Greyscale Class Icons on all targets")
+
+--greyscale class icons on players
+E:AddTag("eltruism:greyscaleclass:player", "UNIT_NAME_UPDATE", function(unit)
+	if not UnitIsPlayer(unit) then return end
+	local _ , classes = UnitClass(unit)
+	if not classes then return end
+	return ElvUI_EltreumUI:GetClassIcons("BW",classes,false,"64")
+end)
+E:AddTagInfo("eltruism:greyscaleclass:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."BW.tga:0:0:0:0|t ".."Shows Greyscale Class Icons on Player targets")
+
+--reverse greyscale class icons on all targets
+E:AddTag("eltruism:reversegreyscaleclass:all", "UNIT_NAME_UPDATE", function(unit)
+	local _ , classes = UnitClass(unit)
+	if not classes then return end
+	return ElvUI_EltreumUI:GetClassIcons("BW",classes,true,"64")
+end)
+E:AddTagInfo("eltruism:reversegreyscaleclass:all", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."BW.tga:0:0:0:0:64:64:64:0:0:64|t ".."Shows Flipped Greyscale Icons on all targets")
+
+--reverse greyscale class icons on players
+E:AddTag("eltruism:reversegreyscaleclass:player", "UNIT_NAME_UPDATE", function(unit)
+	if not UnitIsPlayer(unit) then return end
+	local _ , classes = UnitClass(unit)
+	if not classes then return end
+	return ElvUI_EltreumUI:GetClassIcons("BW",classes,true,"64")
+end)
+E:AddTagInfo("eltruism:reversegreyscaleclass:player", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."BW.tga:0:0:0:0:64:64:64:0:0:64|t ".."Shows Flipped Greyscale Class Icons on Player targets")
 
 --show class icons on all targets
 E:AddTag("eltruism:reverseclass:all", "UNIT_NAME_UPDATE", function(unit)
@@ -1812,7 +1846,7 @@ E:AddTag("eltruism:smartlevel", 'UNIT_LEVEL PLAYER_LEVEL_UP', function(unit)
 	if E.Retail and (UnitIsWildBattlePet(unit) or UnitIsBattlePetCompanion(unit)) then
 		return UnitBattlePetLevel(unit)
 	elseif level == playerlevel then
-		if UnitIsPlayer(unit) then
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			return nil
 		else
 			return level
@@ -1879,7 +1913,7 @@ E:AddTagInfo("eltruism:groupnumber", ElvUI_EltreumUI.Name.." "..L["Miscellaneous
 
 --Class color but only for players, from elvui but without the npc stuff
 E:AddTag("eltruism:classcolor", 'UNIT_NAME_UPDATE', function(unit)
-	if UnitIsPlayer(unit) then
+	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
 		local cs = ElvUF.colors.class[unitClass]

@@ -26,7 +26,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 	_, classunit = UnitClass(unit)
 	reaction = UnitReaction(unit, "player")
 	if UnitExists(unit) then
-		if UnitIsPlayer(unit) then
+		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			if classunit then
 				namebar = ElvUI_EltreumUI:UnitframeClassTexture(classunit)
 			end
@@ -69,7 +69,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 					end
 				end
 			end
-			if UnitIsPlayer(unit) and not UnitIsCharmed(unit) then
+			if (UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))) and not UnitIsCharmed(unit) then
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect then
@@ -186,7 +186,7 @@ end
 function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation)
 
 	--due to raid pet, check if is player
-	if UnitIsPlayer(button.unit) then
+	if UnitIsPlayer(button.unit) or (E.Retail and UnitInPartyIsAI(button.unit)) then
 		_, buttonclass = UnitClass(button.unit)
 	else
 		buttonclass = "NPCFRIENDLY"
