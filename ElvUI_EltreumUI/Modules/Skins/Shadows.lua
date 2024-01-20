@@ -1350,13 +1350,15 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--elvui config shadows
-			hooksecurefunc(E, "ToggleOptions", function()
-				local frame = E:Config_GetWindow()
-				if frame and not frame.shadow then
-					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(frame.shadow)
-				end
-			end)
+			if E.private.skins.blizzard.enable then
+				hooksecurefunc(E, "ToggleOptions", function()
+					local frame = E:Config_GetWindow()
+					if frame and not frame.shadow then
+						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(frame.shadow)
+					end
+				end)
+			end
 
 			--statusreport
 			hooksecurefunc(E, "ShowStatusReport", function()
