@@ -1,6 +1,11 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.0.9.1
+Added /eltruism paging command to quickly swap action paging between Bar1 and Bar4  
+Updated Shadows to not apply to ElvUI frame if Ace skin is disabled  
+Updated German locale by Dlarge  
+Fixed an error during install due to a database change in Shadow and Light
 ### 4.0.9
 Added an Allowed list to Cooldown Module where only spells on the list will be announced/shown  
 Added an option to set the maximum length for the Cooldown module  
