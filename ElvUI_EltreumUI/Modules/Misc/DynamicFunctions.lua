@@ -295,6 +295,8 @@ function ElvUI_EltreumUI:ActionPagingSwap()
 			E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = ""
 			E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = ""
 			E.db["actionbar"]["bar4"]["paging"]["EVOKER"] = ""
+
+			ElvUI_EltreumUI:Print("Actionbar Paging swapped to Bar1")
 		elseif E.db.actionbar.bar4.visibility == "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show" then
 			E.db["actionbar"]["bar1"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 			E.db["actionbar"]["bar4"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
@@ -349,8 +351,10 @@ function ElvUI_EltreumUI:ActionPagingSwap()
 			E.db["actionbar"]["bar1"]["paging"]["WARLOCK"] = ""
 			E.db["actionbar"]["bar1"]["paging"]["WARRIOR"] = ""
 			E.db["actionbar"]["bar1"]["paging"]["EVOKER"] = ""
+
+			ElvUI_EltreumUI:Print("Actionbar Paging swapped to Bar4")
 		else
-				E.db["actionbar"]["bar1"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+			E.db["actionbar"]["bar1"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 			E.db["actionbar"]["bar4"]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
 			E.db["actionbar"]["bar2"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 			E.db["actionbar"]["bar3"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
@@ -403,8 +407,11 @@ function ElvUI_EltreumUI:ActionPagingSwap()
 			E.db["actionbar"]["bar1"]["paging"]["WARLOCK"] = ""
 			E.db["actionbar"]["bar1"]["paging"]["WARRIOR"] = ""
 			E.db["actionbar"]["bar1"]["paging"]["EVOKER"] = ""
+
+			ElvUI_EltreumUI:Print("Actionbar Paging set to Bar4")
 		end
-		ElvUI_EltreumUI:Print("Actionbar Pagin swapped")
+
+		E:StaticPopup_Show('CONFIG_RL')
 	end
 end
 
