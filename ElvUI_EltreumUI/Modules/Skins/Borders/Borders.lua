@@ -44,11 +44,16 @@ function ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
 	return classcolorreaction[unitclass]["r1"],classcolorreaction[unitclass]["g1"],classcolorreaction[unitclass]["b1"]
 end
 
+local PowerReadjust = {
+	["offset"] = true,
+	["spaced"] = true,
+}
+
 --Borders on frames
 function ElvUI_EltreumUI:Borders()
 	if E.db.ElvUI_EltreumUI.borders.borders then
 		--borders not nice with transparent power
-		if E.db.unitframe.units.player.power.width == "spaced" then
+		if PowerReadjust[E.db.unitframe.units.player.power.width] then
 			E.db.unitframe.colors.transparentPower = false
 		end
 
@@ -98,7 +103,7 @@ function ElvUI_EltreumUI:Borders()
 					playerborder = _G["EltruismPlayerBorder"]
 				end
 				playerborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayer, E.db.ElvUI_EltreumUI.borders.yplayer)
-				if E.db.unitframe.units.player.power.width == "spaced" then
+				if PowerReadjust[E.db.unitframe.units.player.power.width] then
 					playerborder:SetPoint("CENTER", _G.ElvUF_Player_HealthBar, "CENTER", 0, 0)
 				else
 					playerborder:SetPoint("CENTER", _G.ElvUF_Player, "CENTER", 0, 0)
@@ -158,7 +163,7 @@ function ElvUI_EltreumUI:Borders()
 					targetborder = _G["EltruismTargetBorder"]
 				end
 				targetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xtarget, E.db.ElvUI_EltreumUI.borders.ytarget)
-				if E.db.unitframe.units.target.power.width == "spaced" then
+				if PowerReadjust[E.db.unitframe.units.target.power.width] then
 					targetborder:SetPoint("CENTER", _G.ElvUF_Target_HealthBar, "CENTER", 0 ,0)
 				else
 					targetborder:SetPoint("CENTER", _G.ElvUF_Target, "CENTER", 0 ,0)
@@ -219,7 +224,7 @@ function ElvUI_EltreumUI:Borders()
 					targettargetborder = _G["EltruismTargetTargetBorder"]
 				end
 				targettargetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xtargettarget, E.db.ElvUI_EltreumUI.borders.ytargettarget)
-				if E.db.unitframe.units.targettarget.power.width == "spaced" then
+				if PowerReadjust[E.db.unitframe.units.targettarget.power.width] then
 					targettargetborder:SetPoint("CENTER", _G.ElvUF_TargetTarget_HealthBar, "CENTER", 0 ,0)
 				else
 					targettargetborder:SetPoint("CENTER", _G.ElvUF_TargetTarget, "CENTER", 0 ,0)
@@ -244,7 +249,7 @@ function ElvUI_EltreumUI:Borders()
 					petborder = _G["EltruismPetBorder"]
 				end
 				petborder:SetSize(E.db.ElvUI_EltreumUI.borders.petsizex, E.db.ElvUI_EltreumUI.borders.petsizey)
-				if E.db.unitframe.units.pet.power.width == "spaced" then
+				if PowerReadjust[E.db.unitframe.units.pet.power.width] then
 					petborder:SetPoint("CENTER", _G.ElvUF_Pet_HealthBar,"CENTER", 0, 0)
 				else
 					petborder:SetPoint("CENTER", _G.ElvUF_Pet,"CENTER", 0, 0)
@@ -271,7 +276,11 @@ function ElvUI_EltreumUI:Borders()
 							partyborder = _G["EltruismPartyBorder"..i]
 						end
 						partyborder:SetSize(E.db.ElvUI_EltreumUI.borders.partysizex, E.db.ElvUI_EltreumUI.borders.partysizey)
-						partyborder:SetPoint("CENTER", _G["ElvUF_PartyGroup1UnitButton"..i], "CENTER")
+						if PowerReadjust[E.db.unitframe.units.party.power.width] then
+							partyborder:SetPoint("CENTER", _G["ElvUF_PartyGroup1UnitButton"..i.."_HealthBar"], "CENTER")
+						else
+							partyborder:SetPoint("CENTER", _G["ElvUF_PartyGroup1UnitButton"..i], "CENTER")
+						end
 						partyborder:SetParent(_G["ElvUF_PartyGroup1UnitButton"..i])
 						table.insert(partyborderholder, partyborder)
 						partyborder:SetBackdrop({
@@ -303,7 +312,11 @@ function ElvUI_EltreumUI:Borders()
 								end
 								table.insert(raid1borderholder, raid1border)
 								raid1border:SetSize(E.db.ElvUI_EltreumUI.borders.raidsizex, E.db.ElvUI_EltreumUI.borders.raidsizey)
-								raid1border:SetPoint("CENTER", _G['ElvUF_Raid1Group'..l..'UnitButton'..k], "CENTER")
+								if PowerReadjust[E.db.unitframe.units.raid1.power.width] then
+									raid1border:SetPoint("CENTER", _G['ElvUF_Raid1Group'..l..'UnitButton'..k.."_HealthBar"], "CENTER")
+								else
+									raid1border:SetPoint("CENTER", _G['ElvUF_Raid1Group'..l..'UnitButton'..k], "CENTER")
+								end
 								raid1border:SetParent(_G['ElvUF_Raid1Group'..l..'UnitButton'..k])
 								raid1border:SetBackdrop({
 									edgeFile = bordertexture,
@@ -393,7 +406,11 @@ function ElvUI_EltreumUI:Borders()
 							end
 							table.insert(raid2borderholder, raid2border)
 							raid2border:SetSize(E.db.ElvUI_EltreumUI.borders.raid2sizex, E.db.ElvUI_EltreumUI.borders.raid2sizey)
-							raid2border:SetPoint("CENTER", _G['ElvUF_Raid2Group'..l..'UnitButton'..k], "CENTER")
+							if PowerReadjust[E.db.unitframe.units.raid2.power.width] then
+								raid2border:SetPoint("CENTER", _G['ElvUF_Raid2Group'..l..'UnitButton'..k.."_HealthBar"], "CENTER")
+							else
+								raid2border:SetPoint("CENTER", _G['ElvUF_Raid2Group'..l..'UnitButton'..k], "CENTER")
+							end
 							raid2border:SetParent(_G['ElvUF_Raid2Group'..l..'UnitButton'..k])
 							raid2border:SetBackdrop({
 								edgeFile = bordertexture,
@@ -424,7 +441,11 @@ function ElvUI_EltreumUI:Borders()
 							end
 							table.insert(raid3borderholder, raid3border)
 							raid3border:SetSize(E.db.ElvUI_EltreumUI.borders.raid40sizex, E.db.ElvUI_EltreumUI.borders.raid40sizey)
-							raid3border:SetPoint("CENTER", _G['ElvUF_Raid3Group'..l..'UnitButton'..k], "CENTER")
+							if PowerReadjust[E.db.unitframe.units.raid3.power.width] then
+								raid3border:SetPoint("CENTER", _G['ElvUF_Raid3Group'..l..'UnitButton'..k.."_HealthBar"], "CENTER")
+							else
+								raid3border:SetPoint("CENTER", _G['ElvUF_Raid3Group'..l..'UnitButton'..k], "CENTER")
+							end
 							raid3border:SetParent(_G['ElvUF_Raid3Group'..l..'UnitButton'..k])
 							raid3border:SetBackdrop({
 								edgeFile = bordertexture,
@@ -451,7 +472,7 @@ function ElvUI_EltreumUI:Borders()
 					focusborder = _G["EltruismFocusBorder"]
 				end
 				focusborder:SetSize(E.db.ElvUI_EltreumUI.borders.xfocus, E.db.ElvUI_EltreumUI.borders.yfocus)
-				if E.db.unitframe.units.focus.power.width == "spaced" then
+				if PowerReadjust[E.db.unitframe.units.focus.power.width] then
 					focusborder:SetPoint("CENTER", _G.ElvUF_Focus_HealthBar, "CENTER", 0, 0)
 				else
 					focusborder:SetPoint("CENTER", _G.ElvUF_Focus, "CENTER", 0, 0)
@@ -512,7 +533,7 @@ function ElvUI_EltreumUI:Borders()
 					focustargetborder = _G["EltruismFocusTargetBorder"]
 				end
 				focustargetborder:SetSize(E.db.ElvUI_EltreumUI.borders.xfocustarget, E.db.ElvUI_EltreumUI.borders.yfocustarget)
-				if E.db.unitframe.units.focustarget.power.width == "spaced" then
+				if PowerReadjust[E.db.unitframe.units.focustarget.power.width] then
 					focustargetborder:SetPoint("CENTER", _G.ElvUF_FocusTarget_HealthBar, "CENTER", 0, 0)
 				else
 					focustargetborder:SetPoint("CENTER", _G.ElvUF_FocusTarget, "CENTER", 0, 0)
@@ -534,15 +555,18 @@ function ElvUI_EltreumUI:Borders()
 			--boss
 			if E.db.ElvUI_EltreumUI.borders.bossborder and E.db.unitframe.units.boss.enable and not E.Classic then
 				for i = 1,8 do
-					local bossmembers = {_G["ElvUF_Boss"..i]}
-					for _, v in pairs(bossmembers) do
+					if _G["ElvUF_Boss"..i] then
 						if not _G["EltruismBossBorder"..i] then
-							bossborder = CreateFrame("Frame", "EltruismBossBorder"..i, v, BackdropTemplateMixin and "BackdropTemplate")
+							bossborder = CreateFrame("Frame", "EltruismBossBorder"..i, _G["ElvUF_Boss"..i], BackdropTemplateMixin and "BackdropTemplate")
 						else
 							bossborder = _G["EltruismBossBorder"..i]
 						end
 						bossborder:SetSize(E.db.ElvUI_EltreumUI.borders.xboss, E.db.ElvUI_EltreumUI.borders.yboss)
-						bossborder:SetPoint("CENTER", v, "CENTER")
+						if PowerReadjust[E.db.unitframe.units.boss.power.width] then
+							bossborder:SetPoint("CENTER", _G["ElvUF_Boss"..i.."_HealthBar"], "CENTER")
+						else
+							bossborder:SetPoint("CENTER", _G["ElvUF_Boss"..i], "CENTER")
+						end
 						bossborder:SetBackdrop({
 							edgeFile = bordertexture,
 							edgeSize = E.db.ElvUI_EltreumUI.borders.bosssize,
