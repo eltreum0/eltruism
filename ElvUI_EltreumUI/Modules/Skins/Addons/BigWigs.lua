@@ -9,21 +9,14 @@ do
 	function ElvUI_EltreumUI:EltruismBigWigs()
 		if E.db.ElvUI_EltreumUI.skins.bigwigs then
 			local candy = _G.LibStub("LibCandyBar-3.0")
-
-			local bigwigstype = BigWigs3DB
-			--[[if E.Retail then
-				bigwigstype = BigWigs3DB
-			else
-				bigwigstype = BigWigsClassicDB
-			end]]
-			local currentprofile = bigwigstype["profileKeys"][E.mynameRealm]
+			local currentprofile = BigWigs3DB["profileKeys"][E.mynameRealm]
 
 			--fix db since colors are missing
-			if bigwigstype["namespaces"] then
-				if not bigwigstype["namespaces"]["BigWigs_Plugins_Colors"] then
-					bigwigstype["namespaces"]["BigWigs_Plugins_Colors"] = {}
-					bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] = {}
-					bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile] = {
+			if BigWigs3DB["namespaces"] then
+				if not BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"] then
+					BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"] = {}
+					BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] = {}
+					BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile] = {
 						["barColor"] = {
 							["BigWigs_Plugins_Colors"] = {
 								["default"] = {
@@ -44,9 +37,9 @@ do
 						},
 					}
 				end
-				bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] = bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] or {}
-				if not bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile] then
-					bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile] = {
+				BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] or {}
+				if not BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile] then
+					BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile] = {
 						["barColor"] = {
 							["BigWigs_Plugins_Colors"] = {
 								["default"] = {
@@ -67,8 +60,8 @@ do
 						},
 					}
 				end
-				if not bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"] then
-					bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"] = {
+				if not BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"] then
+					BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"] = {
 						["BigWigs_Plugins_Colors"] = {
 							["default"] = {
 								0.5098039507865906, -- [1]
@@ -78,8 +71,8 @@ do
 						},
 					}
 				end
-				if not bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"] then
-					bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"] = {
+				if not BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"] then
+					BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"] = {
 						["BigWigs_Plugins_Colors"] = {
 							["default"] = {
 								0.7098039388656616, -- [1]
@@ -96,18 +89,18 @@ do
 				local r,g,b = self.candyBarBar:GetStatusBarColor()
 
 				if E.db.ElvUI_EltreumUI.skins.bigwigscustomcolor then
-					currentprofile = bigwigstype["profileKeys"][E.mynameRealm]
+					currentprofile = BigWigs3DB["profileKeys"][E.mynameRealm]
 					r = tostring(r)
 					g = tostring(g)
 					b = tostring(b)
 
 					--so there is something strange going on where if not converted to string the values are not equal, guess wow drops some decimal places and rounds them differently so tostring is used to avoid that issue
-					local r1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][1])
-					local g1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][2])
-					local b1 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][3])
-					local r2 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][1])
-					local g2 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][2])
-					local b2 = tostring(bigwigstype["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][3])
+					local r1 = tostring(BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][1])
+					local g1 = tostring(BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][2])
+					local b1 = tostring(BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barColor"]["BigWigs_Plugins_Colors"]["default"][3])
+					local r2 = tostring(BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][1])
+					local g2 = tostring(BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][2])
+					local b2 = tostring(BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"][currentprofile]["barEmphasized"]["BigWigs_Plugins_Colors"]["default"][3])
 
 					if (r == r1 and g == g1 and b == b1) then -- its normal bar
 						self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr1,g= E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg1,b= E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb1,a= 0.7}, {r=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalr2,g=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalg2,b=E.db.ElvUI_EltreumUI.skins.bigwigscustomnormalb2,a= 0.7})
