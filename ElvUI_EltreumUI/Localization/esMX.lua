@@ -1249,6 +1249,7 @@ L["Sets the Backdrop as Transparent/Hidden"] = "Establece el fondo como transpar
 L["Setting "] = "Configuración"
 L["settings configured for "] = "ajustes configurados para"
 L["Settings for ElvUI were updated."] = "Los ajustes de ElvUI fueron actualizados."
+L["Setup Aura Filters to be Eltruism defaults"] = true
 L["Setup Aura Filters to show all"] = "Configurar los filtros de Aura para mostrar todo"
 L["Setup CVars"] = "Configurar CVars"
 L["Setup Media"] = "Medios de comunicación de configuración"

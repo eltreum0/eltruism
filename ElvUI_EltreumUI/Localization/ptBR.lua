@@ -1465,6 +1465,7 @@ L["Unitframe Aura Border X offset"] = "Deslocamento X da Borda da Aura de Bônus
 L["Unitframe Aura Border Y offset"] = "Deslocamento Y da Borda da Aura de Bônus dos Painéis"
 L["Unitframe Aura"] = "Aura em Painel de Unidades"
 L["Unitframe Auras"] = "Auras dos Painéis"
+L["Unitframe Colors"] = true
 L["Unitframe Custom Color"] = "Personalize a Cor das Placas de Identificação"
 L["Unitframe Fill Orientation"] = "Orientação de preenchimento da Placa de Identificação"
 L["Unitframe Models"] = "Modelos em Placas de Identificação"

@@ -1446,9 +1446,6 @@ L["Transparent\nChat"] = "Transparenter\nChat"
 L["Tree Group Button"] = "Baumgruppen Taster"
 L["Turn the effect on"] = "Schalte den Effekt ein"
 L["Type 1"] = "Typ 1"
-
-
-
 L["Type 10"] = "Typ 10"
 L["Type 2"] = "Typ 2"
 L["Type 3"] = "Typ 3"
