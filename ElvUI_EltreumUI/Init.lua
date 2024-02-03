@@ -44,6 +44,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 			ElvUI_EltreumUI:Print("French Translation is from DeepL and is in testing, feedback is welcome. - La traduction française provient de DeepL et est en cours de test, les commentaires sont les bienvenus.\n Type /eltruism translate to turn this message off")
 		end
 	end
+	ElvUI_EltreumUI:OriginalClassColors() --original mage and warlock class colors, also shaman blue in classic
 	ElvUI_EltreumUI:CheckCompatibility() -- check for other stuff that might conflict
 	ElvUI_EltreumUI:VersionCheckInit() --checks for old versions
 	ElvUI_EltreumUI:LoadCommands() --loads chat commands
@@ -132,7 +133,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	end
 	ElvUI_EltreumUI:HardcoreDeath() -- hardcore death sound/animation
 	ElvUI_EltreumUI:BagProfessions() -- add profession buttons to bags
-	ElvUI_EltreumUI:OriginalClassColors() --original mage and warlock class colors
 end
 
 function ElvUI_EltreumUI:Initialize()

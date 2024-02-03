@@ -1471,7 +1471,6 @@ L["Enable only for listed Spells"] = true
 L["Allowed Spells, use a comma to separate spells"] = true
 L["List of spells allowed, use a comma to separate spells"] = true
 L["Path to file"] = true
-
 L["LootText"] = true
 L["Model Rotation"] = true
 L["Setup Aura Filters to be Eltruism/ElvUI defaults"] = true
@@ -1539,3 +1538,4 @@ L["Cast Bar"] = true
 L["Gradient"] = true
 L["OmniCD profile has been set."] = true
 L["Displays NPC title in gradient"] = true
+L["Make Shamans Blue instead of Pink"] = true

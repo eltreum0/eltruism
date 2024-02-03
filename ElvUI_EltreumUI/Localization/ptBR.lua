@@ -1593,3 +1593,4 @@ L["Displays Details nickname in class color or reaction color if Details is load
 L["DPS/Tank Layout has been set."] = true
 L["Your ElvUI version is higher than expected for Eltruism, please update Eltruism or you might run into issues.\n|cffFF0000(You are likely having errors right now!)|r"] = true
 L["Enable a toast showing up when you level up"] = true
+L["Make Shamans Blue instead of Pink"] = true

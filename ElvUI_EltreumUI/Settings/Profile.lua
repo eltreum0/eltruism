@@ -413,6 +413,7 @@ P.ElvUI_EltreumUI = {
 		gradienttooltipoffset2 = 0.2,
 		professionscale = 1,
 		oldclasscolors = false,
+		classicblueshaman = true,
 	},
 
 	cursors = {
