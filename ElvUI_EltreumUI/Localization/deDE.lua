@@ -1362,7 +1362,6 @@ L["Such as the Zones, Mail and others"] = "Wie z.B. die Zonen, Mails und andere"
 L["Supporters"] = "Unterstützer"
 L["Swap Action Paging and visibility for Bar1 and Bar4"] = "Tausche Aktionsleisten Wechsel und Sichtbarkeit für Leiste 1 und Leiste 4"
 L["Tags"] = true -- no need to translate
-L["Tank"] = true -- no need to translate
 L["Tapped NPC"] = "Ausgewählter NPC"
 L["Target Border"] = "Zielrahmen"
 L["Target Castbar (Interrupted)"] = "Zielzauberleiste (unterbrochen)"

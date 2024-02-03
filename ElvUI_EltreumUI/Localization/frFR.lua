@@ -1362,7 +1362,6 @@ L["Such as the Zones, Mail and others"] = "Comme les Zones, Mail et autres"
 L["Supporters"] = "Supporteurs"
 L["Swap Action Paging and visibility for Bar1 and Bar4"] = "Swap Action Paging et visibilité pour Bar1 et Bar4"
 L["Tags"] = true
-L["Tank"] = true
 L["Tapped NPC"] = "PNJ exploité"
 L["Target Border"] = "Bordure de la cible"
 L["Target Castbar (Interrupted)"] = "Target Castbar (Interrompu)"

@@ -1362,7 +1362,6 @@ L["Such as the Zones, Mail and others"] = true
 L["Supporters"] = true
 L["Swap Action Paging and visibility for Bar1 and Bar4"] = true
 L["Tags"] = true
-L["Tank"] = true
 L["Tapped NPC"] = true
 L["Target Border"] = true
 L["Target Castbar (Interrupted)"] = true
