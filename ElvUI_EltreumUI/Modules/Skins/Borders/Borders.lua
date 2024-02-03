@@ -52,6 +52,10 @@ local PowerReadjust = {
 --Borders on frames
 function ElvUI_EltreumUI:Borders()
 	if E.db.ElvUI_EltreumUI.borders.borders then
+		if E.Classic and not E.db.ElvUI_EltreumUI.skins.classicblueshaman then
+			classcolorreaction["SHAMAN"] = {r1 = 0.95686066150665, g1 = 0.54901838302612, b1 = 0.72941017150879}
+		end
+
 		--borders not nice with transparent power
 		if PowerReadjust[E.db.unitframe.units.player.power.width] then
 			E.db.unitframe.colors.transparentPower = false
