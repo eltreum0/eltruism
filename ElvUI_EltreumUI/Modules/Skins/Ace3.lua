@@ -16,6 +16,7 @@ local function CreateFader(frame,isTree)
 	if not E.db.ElvUI_EltreumUI.skins.ace3.button then return end
 	if not E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor then return end
 	if not E.db.ElvUI_EltreumUI.skins.ace3.tab then return end
+	ElvUI_EltreumUI:OriginalClassColors() --early so color is correct
 
 	if not frame.EltruismAnimation then
 		frame.EltruismAnimation = frame:CreateTexture(nil, "BACKGROUND", nil, 1)
