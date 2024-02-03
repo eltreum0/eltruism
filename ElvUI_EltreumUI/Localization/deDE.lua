@@ -1471,3 +1471,4 @@ L["Enable only for listed Spells"] = "Nur für aufgelistete Zauber aktivieren"
 L["Allowed Spells, use a comma to separate spells"] = "Zulässige Zaubersprüche, verwende ein Komma, um Zaubersprüche zu trennen"
 L["List of spells allowed, use a comma to separate spells"] = "Liste der zulässigen Zaubersprüche. Verwende ein Komma, um Zaubersprüche zu trennen"
 L["Path to file"] = "Pfad zur Datei"
+L["Make Shamans Blue instead of Pink"] = true

@@ -1471,3 +1471,4 @@ L["Enable only for listed Spells"] = "Habilitar sólo para los Hechizos listados
 L["Allowed Spells, use a comma to separate spells"] = "Hechizos permitidos, utilice una coma para separar los hechizos"
 L["List of spells allowed, use a comma to separate spells"] = "Lista de hechizos permitidos, utilice una coma para separar los hechizos"
 L["Path to file"] = "Ruta al archivo"
+L["Make Shamans Blue instead of Pink"] = true

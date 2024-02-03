@@ -1471,3 +1471,4 @@ L["Enable only for listed Spells"] = "Activer uniquement pour les sorts listés"
 L["Allowed Spells, use a comma to separate spells"] = "Sorts autorisés, utiliser une virgule pour séparer les sorts"
 L["List of spells allowed, use a comma to separate spells"] = "Liste des sorts autorisés, utiliser une virgule pour séparer les sorts"
 L["Path to file"] = "Chemin d'accès au fichier"
+L["Make Shamans Blue instead of Pink"] = true

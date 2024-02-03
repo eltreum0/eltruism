@@ -1471,3 +1471,4 @@ L["Enable only for listed Spells"] = true
 L["Allowed Spells, use a comma to separate spells"] = true
 L["List of spells allowed, use a comma to separate spells"] = true
 L["Path to file"] = true
+L["Make Shamans Blue instead of Pink"] = true

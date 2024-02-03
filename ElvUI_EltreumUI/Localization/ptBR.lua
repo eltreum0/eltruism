@@ -1471,3 +1471,4 @@ L["Enable only for listed Spells"] = "Habilitar ícone apenas para os feitiços 
 L["Allowed Spells, use a comma to separate spells"] = "Feitiços permitidos, use uma vírgula para separar os feitiços"
 L["List of spells allowed, use a comma to separate spells"] = "Lista de feitiços permitidos, use uma vírgula para separar os feitiços"
 L["Path to file"] = "Caminho para o arquivo"
+L["Make Shamans Blue instead of Pink"] = true
