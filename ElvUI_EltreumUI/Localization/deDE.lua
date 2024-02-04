@@ -1550,3 +1550,5 @@ L["Your World of Warcraft version is not expected to be compatible with Eltruism
 L["Your World of Warcraft version is older than Eltruism, you might run into issues!"] = "Deine World of Warcraft Version ist älter als Eltruism, Du könntest auf Probleme stoßen!"
 L["Zone Text"] = "Zonentext"
 L["|cffff0000Private Servers are unsupported!"] = "|cffff0000Private Server werden nicht unterstützt!"
+--lines after reordering
+L["Displays % - HP and a status symbol. Can be customized in Eltruism > Media"] = true
