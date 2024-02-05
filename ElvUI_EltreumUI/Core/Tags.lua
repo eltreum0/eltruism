@@ -1259,13 +1259,13 @@ E:AddTag("eltruism:hpstatus:reverse", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTIO
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
 	if not UnitIsPlayer(unit) then --npc
 		if not UnitIsDead(unit) then
-			local min, max = UnitHealth(unit), UnitHealthMax(unit)
-			if max == 0 then max = 1 end
-			local perc = min / max * 100
-			if min == max then
-				return E:ShortValue(min, nil)
+			local min1, max1 = UnitHealth(unit), UnitHealthMax(unit)
+			if max1 == 0 then max1 = 1 end
+			local perc = min1 / max1 * 100
+			if min1 == max1 then
+				return E:ShortValue(min1, nil)
 			else
-				return format('%.1f%% - %s', perc, E:ShortValue(min, nil))
+				return format('%.1f%% - %s', perc, E:ShortValue(min1, nil))
 			end
 		else
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
@@ -1276,13 +1276,14 @@ E:AddTag("eltruism:hpstatus:reverse", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTIO
 		end
 	else
 		if not UnitIsDead(unit) and not UnitIsGhost(unit) then --players
-			local min, max = UnitHealth(unit), UnitHealthMax(unit)
-			if max == 0 then max = 1 end
-			local perc = min / max * 100
-			if min == max then
-				return E:ShortValue(min, nil)
+			local min1, max1 = UnitHealth(unit), UnitHealthMax(unit)
+			if not max1 then max1 = 1 end
+			if max1 == 0 then max1 = 1 end
+			local perc = min1 / max1 * 100
+			if min1 == max1 then
+				return E:ShortValue(min1, nil)
 			else
-				return format('%.1f%% - %s', perc, E:ShortValue(min, nil))
+				return format('%.1f%% - %s', perc, E:ShortValue(min1, nil))
 			end
 		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
 			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
