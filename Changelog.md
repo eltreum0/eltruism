@@ -1,6 +1,13 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.0.9.2
+Added an option to disable the Blue Shaman class color in Classic Era  
+Added [eltruism:hpstatus:reverse] tag  
+Updated German translation by Dlarge  
+Fixed an issue where the texture color of backgrounds would be replaced in dark mode  
+Fixed an issue with borders when using offset or spaced power on some frames  
+Fixed an error in the Auctionator skin after an Auctionator update  
 ### 4.0.9.1
 Added /eltruism paging command to quickly swap action paging between Bar1 and Bar4  
 Updated Shadows to not apply to ElvUI frame if Ace skin is disabled  
