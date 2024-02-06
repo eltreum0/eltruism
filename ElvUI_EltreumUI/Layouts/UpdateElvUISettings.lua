@@ -347,7 +347,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 
 		--disable rairity color, so that items color by lowest ilvl > highest
 		E.db["general"]["itemLevel"]["itemLevelRarity"] = false
-	end
 
-	ElvUI_EltreumUI:Print(L["Settings for ElvUI were updated."])
+		ElvUI_EltreumUI:Print(L["Settings for ElvUI were updated."])
+	end
 end
