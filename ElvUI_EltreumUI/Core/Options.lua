@@ -3473,10 +3473,12 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
 Added an Allowed list to Cooldown Module where only spells on the list will be announced/shown
 Added /eltruism paging command to quickly swap action paging between Bar1 and Bar4
+Added an option to disable the Blue Shaman class color in Classic Era
 Added an option to set the maximum length for the Cooldown module
 Added greyscaletags such as [eltruism:greyscaleclass:player]
 Added an option for vertical gradient Experience Databar
 Added an option for Custom Class Icons in Chat
+Added [eltruism:hpstatus:reverse] tag
 Added Greyscale Class Icons
 Added Metal Lord font
 ]], 3, "small", nil, nil, nil, nil, "full")
@@ -3494,8 +3496,11 @@ Updated Player Castbar mover
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
+Fixed an issue where the texture color of backgrounds would be replaced in dark mode
+Fixed an issue with borders when using offset or spaced power on some frames
 Fixed an issue with the Details embed where it would not properly position
 Fixed an error during install due to a database change in Shadow and Light
+Fixed an error in the Auctionator skin after an Auctionator update
 Fixed a possible error with the AvQuest font
 Fixed a possible issue with the Quest Skin
 Fixed incorrect tags on player unitframe
