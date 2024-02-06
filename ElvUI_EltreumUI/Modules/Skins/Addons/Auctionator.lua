@@ -238,7 +238,8 @@ function ElvUI_EltreumUI:SkinAuctionator()
 					end
 				end
 
-				hooksecurefunc(_G.Auctionator.Groups,"OpenCustomiseView",function()
+				--auctionator removed this frame
+				--[[hooksecurefunc(_G.Auctionator.Groups,"OpenCustomiseView",function()
 					if not _G["AuctionatorGroupsCustomiseFrame"].EltruismSkin then
 						S:HandleFrame(_G["AuctionatorGroupsCustomiseFrame"])
 						S:HandleButton(_G["AuctionatorGroupsCustomiseFrame"].NewGroupButton)
@@ -257,7 +258,7 @@ function ElvUI_EltreumUI:SkinAuctionator()
 
 						_G["AuctionatorGroupsCustomiseFrame"].EltruismSkin = true
 					end
-				end)
+				end)]]
 
 				hooksecurefunc(_G.Auctionator.Selling,"ShowPopup",function()
 					E:Delay(0, function()
@@ -276,9 +277,9 @@ function ElvUI_EltreumUI:SkinAuctionator()
 					end)
 					_G["AuctionatorSellingFrame"].BagListing.EltruismViewHook = true
 				end
-				if _G["AuctionatorSellingFrame"].BagListing then
-					S:HandleButton(_G["AuctionatorSellingFrame"].BagListing.CustomiseButton)
-				end
+				--[[if _G["AuctionatorSellingFrame"].BagListing then
+					S:HandleButton(_G["AuctionatorSellingFrame"].BagListing.CustomiseButton) --auctionator removed this frame
+				end]]
 				S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].BagListing.View.ScrollBar)
 
 				if _G["AuctionatorItemHistoryFrame"] then
