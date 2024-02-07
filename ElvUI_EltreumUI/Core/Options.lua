@@ -94,6 +94,7 @@ local DONATORS = {
 	'|cffB50909BlazeFury|r',
 	'|cffB50909Marynia|r',
 	'|cffB50909Garrgamell|r',
+	'|cffB50909dartworth|r',
 }
 
 local TRANSLATORS = {
