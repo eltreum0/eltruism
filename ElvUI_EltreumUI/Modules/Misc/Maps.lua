@@ -593,7 +593,8 @@ function ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable and E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
 		local _, instanceType = IsInInstance()
 		if instanceType == "none" then
-			if not onupdatesetup then
+			if Minimap.EltruismRotate and not onupdatesetup then
+				Minimap.EltruismRotate:Show()
 				Cardinals:SetScript("OnUpdate",function(_, elapsed)
 					TimeSinceLastUpdate2 = TimeSinceLastUpdate2 + elapsed
 					if TimeSinceLastUpdate2 >= ONUPDATE_INTERVAL2 then
@@ -617,6 +618,9 @@ function ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
 				onupdatesetup = true
 			end
 		else
+			if Minimap.EltruismRotate then
+				Minimap.EltruismRotate:Hide()
+			end
 			onupdatesetup = false
 			Cardinals:SetScript("OnUpdate",nil)
 		end
