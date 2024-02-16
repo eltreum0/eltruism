@@ -284,6 +284,9 @@ function ElvUI_EltreumUI:Anchors()
 
 	if E.db.ElvUI_EltreumUI.skins.blizzframes.hideeventoaster then
 		_G.EventToastManagerFrame:UnregisterAllEvents()
+		if E.Retail then
+			_G.ChallengeModeCompleteBanner:UnregisterAllEvents()
+		end
 	end
 
 	if not IsAddOnLoaded("Blizzard_BattlefieldMap") then
