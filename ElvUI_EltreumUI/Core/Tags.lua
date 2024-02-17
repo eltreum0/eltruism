@@ -1026,6 +1026,15 @@ E:AddTag("eltruism:reverseReleafgradient:all", "UNIT_NAME_UPDATE", function(unit
 end)
 E:AddTagInfo("eltruism:reverseReleafgradient:all", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\"..tostring(fileclass).."Gradient.tga:0:0:0:0:64:64:64:0:0:64|t ".."Shows Reversed Releaf Icons with Gradient Colors for All")
 
+--U.GG class icons
+E:AddTag("eltruism:classIcon:ugg", "UNIT_NAME_UPDATE", function(unit)
+	if not UnitIsPlayer(unit) then return end
+	local _,englishClass = UnitClass(unit)
+	if not englishClass then return end
+	return ElvUI_EltreumUI:GetClassIcons("UGG",englishClass,false,"64")
+end)
+E:AddTagInfo("eltruism:classIcon:ugg", ElvUI_EltreumUI.Name.." "..L["Icons"], "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ClassSymbols\\"..tostring(fileclass).."UGG.tga:0:0:0:0|t ".."Shows U.GG Class Icons")
+
 -- Releaf Logo
 E:AddTag("releaf", "UNIT_NAME_UPDATE", function()
 	local color = E:ClassColor(E.myclass, true)
