@@ -511,6 +511,68 @@ local blackandwhite = {
 		["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\EvokerBW.tga",
 	},
 }
+local UGG = {
+	["16"] = {
+		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\WarriorUGG.tga",
+		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\PaladinUGG.tga",
+		["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\HunterUGG.tga",
+		["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\RogueUGG.tga",
+		["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\PriestUGG.tga",
+		["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DeathKnightUGG.tga",
+		["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\ShamanUGG.tga",
+		["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\MageUGG.tga",
+		["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\WarlockUGG.tga",
+		["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\MonkUGG.tga",
+		["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DruidUGG.tga",
+		["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\DemonHunterUGG.tga",
+		["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\16\\EvokerUGG.tga",
+	},
+	["32"] = {
+		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\WarriorUGG.tga",
+		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\PaladinUGG.tga",
+		["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\HunterUGG.tga",
+		["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\RogueUGG.tga",
+		["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\PriestUGG.tga",
+		["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\DeathKnightUGG.tga",
+		["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\ShamanUGG.tga",
+		["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\MageUGG.tga",
+		["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\WarlockUGG.tga",
+		["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\MonkUGG.tga",
+		["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\DruidUGG.tga",
+		["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\DemonHunterUGG.tga",
+		["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\EvokerUGG.tga",
+	},
+	["64"] = {
+		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\64\\WarriorUGG.tga",
+		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\64\\PaladinUGG.tga",
+		["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\64\\HunterUGG.tga",
+		["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\64\\RogueUGG.tga",
+		["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\64\\PriestUGG.tga",
+		["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\64\\DeathKnightUGG.tga",
+		["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\64\\ShamanUGG.tga",
+		["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\64\\MageUGG.tga",
+		["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\64\\WarlockUGG.tga",
+		["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\64\\MonkUGG.tga",
+		["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\64\\DruidUGG.tga",
+		["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\64\\DemonHunterUGG.tga",
+		["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\64\\EvokerUGG.tga",
+	},
+	["128"] = {
+		["WARRIOR"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\WarriorUGG.tga",
+		["PALADIN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\PaladinUGG.tga",
+		["HUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\HunterUGG.tga",
+		["ROGUE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\RogueUGG.tga",
+		["PRIEST"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\PriestUGG.tga",
+		["DEATHKNIGHT"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\DeathKnightUGG.tga",
+		["SHAMAN"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\ShamanUGG.tga",
+		["MAGE"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\MageUGG.tga",
+		["WARLOCK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\WarlockUGG.tga",
+		["MONK"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\MonkUGG.tga",
+		["DRUID"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\DruidUGG.tga",
+		["DEMONHUNTER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\DemonHunterUGG.tga",
+		["EVOKER"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\EvokerUGG.tga",
+	},
+}
 
 --return icons for other functions
 local ScreenWidth = GetScreenWidth()
@@ -541,6 +603,8 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert,resolution,nostring
 			return classSymbols[unitclass]
 		elseif icon == "BW" then
 			return blackandwhite[resolution][unitclass]
+		elseif icon == "UGG" then
+			return UGG[resolution][unitclass]
 		elseif icon == "CUSTOM" then
 			return E.private.ElvUI_EltreumUI.chat.customicons[unitclass]
 		end
@@ -564,6 +628,8 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert,resolution,nostring
 				return "|T"..classSymbols[unitclass]..":0:0:0:0|t"
 			elseif icon == "BW" then
 				return  "|T"..blackandwhite[resolution][unitclass]..":0:0:0:0|t"
+			elseif icon == "UGG" then
+				return  "|T"..UGG[resolution][unitclass]..":0:0:0:0|t"
 			elseif icon == "CUSTOM" then
 				return "|T"..E.private.ElvUI_EltreumUI.chat.customicons[unitclass]..":0:0:0:0|t"
 			end
@@ -586,6 +652,8 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert,resolution,nostring
 				return "|T"..classSymbols[unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
 			elseif icon == "BW" then
 				return "|T"..blackandwhite[resolution][unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
+			elseif icon == "UGG" then
+				return "|T"..UGG[resolution][unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
 			elseif icon == "CUSTOM" then
 				return "|T"..E.private.ElvUI_EltreumUI.chat.customicons[unitclass]..":0:0:0:0:64:64:64:0:0:64|t"
 			end

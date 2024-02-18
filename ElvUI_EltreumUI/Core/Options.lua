@@ -140,6 +140,18 @@ local TRANSLATORS_STRING = tconcat(TRANSLATORS, '|n')
 
 local FrameStrataLevels = { BACKGROUND = 'BACKGROUND', LOW = 'LOW', MEDIUM = 'MEDIUM', HIGH = 'HIGH', DIALOG = 'DIALOG', TOOLTIP = 'TOOLTIP' }
 
+local PortraitStyles = {
+	["RELEAF"] = "Releaf",
+	["OUTLINE"] = L["Outline"],
+	["BLIZZARD"] = L["Blizzard"],
+	["BORDER"] = L["Border"],
+	["SHADOW"] = L["Shadow"],
+	["ORIGINAL"] = L["Original"],
+	["GRADIENT"] = L["Gradient"],
+	["SYMBOLS"] = L["Symbols"],
+	["UGG"] = L["U.GG"],
+}
+
 -- Eltruism ingame options
 function ElvUI_EltreumUI:Configtable()
 	-- Add Eltruism version on top of the ElvUI config
@@ -1265,7 +1277,8 @@ function ElvUI_EltreumUI:Configtable()
 		["OUTLINE"] = 'Outline '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\DeathKnight1',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\Hunter1',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\Shaman1',':20:20'),
 		["ORIGINAL"] = 'Original '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\DeathKnightOriginal',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\HunterOriginal',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\ShamanOriginal',':20:20'),
 		["GRADIENT"] = 'Gradient '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\DeathKnightGradient',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\HunterGradient',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\ShamanGradient',':20:20'),
-		["BW"] = 'Black & White '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\DeathKnightBW',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\HunterBW',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\ShamanBW',':20:20'),
+		["BW"] = 'Grey '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\DeathKnightBW',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\HunterBW',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\ShamanBW',':20:20'),
+		["UGG"] = 'U.GG '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\DeathKnightUGG',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\HunterUGG',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\ShamanUGG',':20:20'),
 		["CUSTOM"] = 'Custom',
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.chat.chaticontype end, function(_, value) E.db.ElvUI_EltreumUI.chat.chaticontype = value end, function() return not E.db.ElvUI_EltreumUI.chat.chaticonenable end)
 	ElvUI_EltreumUI.Options.args.chat.args.classicons.args.classicons.style = "radio"
@@ -1710,16 +1723,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.description1 = ACH:Description(" ", 8, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.custom = ACH:Toggle(L["Enable Custom Textures"], nil, 9, nil, false, 'full', function() return E.db.ElvUI_EltreumUI.unitframes.portrait.player.custom end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.player.custom = value if value == true and E.db.ElvUI_EltreumUI.unitframes.portrait.player.customcircle then E.db.ElvUI_EltreumUI.unitframes.portrait.player.type = "CIRCLE" end ElvUI_EltreumUI:BlizzPortraitSettingUpdate("player") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.player.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.customcircle = ACH:Toggle(L["RAID_TARGET_2"], nil, 10, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.player.customcircle end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.player.customcircle = value if value == true then E.db.ElvUI_EltreumUI.unitframes.portrait.player.type = "CIRCLE" end ElvUI_EltreumUI:BlizzPortraitSettingUpdate("player") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.player.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.player.custom end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 11, {
-		["RELEAF"] = "Releaf",
-		["OUTLINE"] = L["Outline"],
-		["BLIZZARD"] = L["Blizzard"],
-		["BORDER"] = L["Border"],
-		["SHADOW"] = L["Shadow"],
-		["ORIGINAL"] = L["Original"],
-		["GRADIENT"] = L["Gradient"],
-		["SYMBOLS"] = L["Symbols"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.player.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.player.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("player") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.player.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.player.custom end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 11, PortraitStyles, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.player.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.player.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("player") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.player.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.player.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.texture.style = "radio"
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target = ACH:Group(L["Target"], nil, 21, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.enable = ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("target") end)
@@ -1745,16 +1749,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.description1 = ACH:Description(" ", 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.custom = ACH:Toggle(L["Enable Custom Textures"], nil, 8, nil, false, 'full', function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.custom end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.custom = value if value == true and E.db.ElvUI_EltreumUI.unitframes.portrait.target.customcircle then E.db.ElvUI_EltreumUI.unitframes.portrait.target.type = "CIRCLE" end ElvUI_EltreumUI:BlizzPortraitSettingUpdate("target") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.customcircle = ACH:Toggle(L["RAID_TARGET_2"], nil, 9, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.customcircle end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.customcircle = value if value == true then E.db.ElvUI_EltreumUI.unitframes.portrait.target.type = "CIRCLE" end ElvUI_EltreumUI:BlizzPortraitSettingUpdate("target") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.target.custom end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 10, {
-		["RELEAF"] = "Releaf",
-		["OUTLINE"] = L["Outline"],
-		["BLIZZARD"] = L["Blizzard"],
-		["BORDER"] = L["Border"],
-		["SHADOW"] = L["Shadow"],
-		["ORIGINAL"] = L["Original"],
-		["GRADIENT"] = L["Gradient"],
-		["SYMBOLS"] = L["Symbols"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("target") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.target.custom end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 10, PortraitStyles, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("target") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.target.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.texture.style = "radio"
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus = ACH:Group(L["Focus"], nil, 22, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end, E.Classic or E.ClassicHC)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus.args.enable = ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focus") end)
@@ -1780,16 +1775,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus.args.description1 = ACH:Description(" ", 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus.args.custom = ACH:Toggle(L["Enable Custom Textures"], nil, 8, nil, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focus.custom end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focus.custom = value if value == true and E.db.ElvUI_EltreumUI.unitframes.portrait.focus.customcircle then E.db.ElvUI_EltreumUI.unitframes.portrait.focus.type = "CIRCLE" end ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focus") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus.args.customcircle = ACH:Toggle(L["RAID_TARGET_2"], nil, 9, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focus.customcircle end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focus.customcircle = value if value == true then E.db.ElvUI_EltreumUI.unitframes.portrait.focus.type = "CIRCLE" end ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focus") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.focus.custom end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 10, {
-		["RELEAF"] = "Releaf",
-		["OUTLINE"] = L["Outline"],
-		["BLIZZARD"] = L["Blizzard"],
-		["BORDER"] = L["Border"],
-		["SHADOW"] = L["Shadow"],
-		["ORIGINAL"] = L["Original"],
-		["GRADIENT"] = L["Gradient"],
-		["SYMBOLS"] = L["Symbols"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focus.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focus.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focus") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.focus.custom end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 10, PortraitStyles, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focus.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focus.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focus") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.focus.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus.args.texture.style = "radio"
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focustarget = ACH:Group(L["FocusTarget"], nil, 22, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end, E.Classic or E.ClassicHC)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focustarget.args.enable = ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focustarget") end)
@@ -1815,16 +1801,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focustarget.args.description1 = ACH:Description(" ", 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focustarget.args.custom = ACH:Toggle(L["Enable Custom Textures"], nil, 8, nil, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.custom end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.custom = value if value == true and E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.customcircle then E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.type = "CIRCLE" end ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focustarget") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focustarget.args.customcircle = ACH:Toggle(L["RAID_TARGET_2"], nil, 9, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.customcircle end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.customcircle = value if value == true then E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.type = "CIRCLE" end ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focustarget") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.custom end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focustarget.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 10, {
-		["RELEAF"] = "Releaf",
-		["OUTLINE"] = L["Outline"],
-		["BLIZZARD"] = L["Blizzard"],
-		["BORDER"] = L["Border"],
-		["SHADOW"] = L["Shadow"],
-		["ORIGINAL"] = L["Original"],
-		["GRADIENT"] = L["Gradient"],
-		["SYMBOLS"] = L["Symbols"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focustarget") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.custom end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focustarget.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 10, PortraitStyles, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focustarget") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focustarget.args.texture.style = "radio"
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.targettarget = ACH:Group(L["TargetTarget"], nil, 22, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.targettarget.args.enable = ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("targettarget") end)
@@ -1850,16 +1827,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.targettarget.args.description1 = ACH:Description(" ", 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.targettarget.args.custom = ACH:Toggle(L["Enable Custom Textures"], nil, 8, nil, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.custom end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.custom = value if value == true and E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.customcircle then E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.type = "CIRCLE" end ElvUI_EltreumUI:BlizzPortraitSettingUpdate("targettarget") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.targettarget.args.customcircle = ACH:Toggle(L["RAID_TARGET_2"], nil, 9, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.customcircle end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.customcircle = value if value == true then E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.type = "CIRCLE" end ElvUI_EltreumUI:BlizzPortraitSettingUpdate("targettarget") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.custom end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.targettarget.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 10, {
-		["RELEAF"] = "Releaf",
-		["OUTLINE"] = L["Outline"],
-		["BLIZZARD"] = L["Blizzard"],
-		["BORDER"] = L["Border"],
-		["SHADOW"] = L["Shadow"],
-		["ORIGINAL"] = L["Original"],
-		["GRADIENT"] = L["Gradient"],
-		["SYMBOLS"] = L["Symbols"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("targettarget") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.custom end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.targettarget.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 10, PortraitStyles, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("targettarget") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.targettarget.args.texture.style = "radio"
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party = ACH:Group(L["Party"], nil, 23, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.enable = ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("party") end)
@@ -1885,16 +1853,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.description1 = ACH:Description(" ", 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.custom = ACH:Toggle(L["Enable Custom Textures"], nil, 8, nil, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.custom end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.custom = value if value == true and E.db.ElvUI_EltreumUI.unitframes.portrait.party.customcircle then E.db.ElvUI_EltreumUI.unitframes.portrait.party.type = "CIRCLE" end ElvUI_EltreumUI:BlizzPortraitSettingUpdate("party") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.customcircle = ACH:Toggle(L["RAID_TARGET_2"], nil, 9, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.customcircle end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.customcircle = value if value == true then E.db.ElvUI_EltreumUI.unitframes.portrait.party.type = "CIRCLE" end ElvUI_EltreumUI:BlizzPortraitSettingUpdate("party") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.party.custom end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 10, {
-		["RELEAF"] = "Releaf",
-		["OUTLINE"] = L["Outline"],
-		["BLIZZARD"] = L["Blizzard"],
-		["BORDER"] = L["Border"],
-		["SHADOW"] = L["Shadow"],
-		["ORIGINAL"] = L["Original"],
-		["GRADIENT"] = L["Gradient"],
-		["SYMBOLS"] = L["Symbols"],
-	}, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("party") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.party.custom end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.texture = ACH:Select(L["Texture"], L["Choose the texture type"], 10, PortraitStyles, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("party") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.party.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.texture.style = "radio"
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.infopanel = ACH:Group(L["Information Panel"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.infopanel.args.description1 = ACH:Description(L["Information Panel"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
