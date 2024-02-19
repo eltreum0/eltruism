@@ -150,6 +150,7 @@ local PortraitStyles = {
 	["GRADIENT"] = L["Gradient"],
 	["SYMBOLS"] = L["Symbols"],
 	["UGG"] = L["U.GG"],
+	["UGGGREY"] = L["U.GG Grey"],
 }
 
 -- Eltruism ingame options
@@ -1279,6 +1280,7 @@ function ElvUI_EltreumUI:Configtable()
 		["GRADIENT"] = 'Gradient '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\DeathKnightGradient',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\HunterGradient',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\ShamanGradient',':20:20'),
 		["BW"] = 'Grey '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\DeathKnightBW',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\HunterBW',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\ShamanBW',':20:20'),
 		["UGG"] = 'U.GG '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\DeathKnightUGG',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\HunterUGG',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\ShamanUGG',':20:20'),
+		["UGGGREY"] = 'U.GG Grey'..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\DeathKnightUGGBW',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\HunterUGGBW',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\ShamanUGGBW',':20:20'),
 		["CUSTOM"] = 'Custom',
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.chat.chaticontype end, function(_, value) E.db.ElvUI_EltreumUI.chat.chaticontype = value end, function() return not E.db.ElvUI_EltreumUI.chat.chaticonenable end)
 	ElvUI_EltreumUI.Options.args.chat.args.classicons.args.classicons.style = "radio"
