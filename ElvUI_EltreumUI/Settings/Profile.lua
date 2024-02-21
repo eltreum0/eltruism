@@ -264,6 +264,7 @@ P.ElvUI_EltreumUI = {
 		expandedtalentscale = 1,
 		stealtheffect = false,
 		screenvignette = false,
+		screenvignettealpha = 1,
 		blizzframes = {
 			hideerrorframe = false,
 			raidbossframe = true,
