@@ -41,7 +41,10 @@ function ElvUI_EltreumUI:StealthOptions()
 		end)
 	elseif E.db.ElvUI_EltreumUI.skins.screenvignette then
 		StealthOptionsFrame:Show()
+		StealthOptionsFrame:SetAlpha(E.db.ElvUI_EltreumUI.skins.screenvignettealpha)
 		StealthOptionsFrame:UnregisterAllEvents()
 		ElvUI_EltreumUI:UnregisterEvent('UPDATE_STEALTH')
+	else
+		StealthOptionsFrame:Hide()
 	end
 end

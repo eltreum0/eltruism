@@ -95,6 +95,7 @@ local DONATORS = {
 	'|cffB50909Marynia|r',
 	'|cffB50909Garrgamell|r',
 	'|cffB50909dartworth|r',
+	'|cffB50909Rocket Surgery|r',
 }
 
 local TRANSLATORS = {
@@ -150,6 +151,7 @@ local PortraitStyles = {
 	["GRADIENT"] = L["Gradient"],
 	["SYMBOLS"] = L["Symbols"],
 	["UGG"] = L["U.GG"],
+	["UGGGREY"] = L["U.GG Grey"],
 }
 
 -- Eltruism ingame options
@@ -1279,6 +1281,7 @@ function ElvUI_EltreumUI:Configtable()
 		["GRADIENT"] = 'Gradient '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\DeathKnightGradient',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\HunterGradient',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\ShamanGradient',':20:20'),
 		["BW"] = 'Grey '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\DeathKnightBW',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\HunterBW',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\ShamanBW',':20:20'),
 		["UGG"] = 'U.GG '..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\DeathKnightUGG',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\HunterUGG',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\ShamanUGG',':20:20'),
+		["UGGGREY"] = 'U.GG Grey'..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\DeathKnightUGGBW',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\HunterUGGBW',':20:20')..E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\32\\ShamanUGGBW',':20:20'),
 		["CUSTOM"] = 'Custom',
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.chat.chaticontype end, function(_, value) E.db.ElvUI_EltreumUI.chat.chaticontype = value end, function() return not E.db.ElvUI_EltreumUI.chat.chaticonenable end)
 	ElvUI_EltreumUI.Options.args.chat.args.classicons.args.classicons.style = "radio"
@@ -1508,21 +1511,22 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.autoscreenshot = ACH:Toggle(L["Enable"], L["Automatically take Screenshots such as when leveling up"], 10, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.screenshot end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.screenshot = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.description6 = ACH:Description(L["Vignette"], 11, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.stealthvignette = ACH:Toggle(L["Add a vignette effect while in stealth"], L["Turn the effect on"], 12, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.stealtheffect end, function(_, value) E.db.ElvUI_EltreumUI.skins.stealtheffect = value E:StaticPopup_Show('CONFIG_RL') end, function() return E.db.ElvUI_EltreumUI.skins.screenvignette end)
-	ElvUI_EltreumUI.Options.args.misc.args.general.args.everywherevignette = ACH:Toggle(E.NewSign..L["Add a vignette effect always"], L["Turn the effect on"], 12, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.screenvignette end, function(_, value) E.db.ElvUI_EltreumUI.skins.screenvignette = value E:StaticPopup_Show('CONFIG_RL') end, function() return E.db.ElvUI_EltreumUI.skins.stealtheffect end)
-	ElvUI_EltreumUI.Options.args.misc.args.general.args.description7 = ACH:Description(L["Item Deletion"], 13, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.misc.args.general.args.delete = ACH:Toggle(L["Automatically type DELETE on the popup"], L["Will not delete the item, will simply type DELETE instead you needing to type it"], 14, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.delete end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.delete = value E:StaticPopup_Show('CONFIG_RL') end)
-	ElvUI_EltreumUI.Options.args.misc.args.general.args.description8 = ACH:Description(L["Play a Sound when receiving mail"], 15, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundenable = ACH:Toggle(L["Enable"], nil, 16, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable = value E:StaticPopup_Show('CONFIG_RL') end)
-	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundselect = ACH:Select(SOUND, nil, 17, { ["tts"] = L["Text to Speech"], ["sharedmedia"] = CUSTOM, }, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype = value end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.everywherevignette = ACH:Toggle(E.NewSign..L["Add a vignette effect always"], L["Turn the effect on"], 13, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.screenvignette end, function(_, value) E.db.ElvUI_EltreumUI.skins.screenvignette = value E:StaticPopup_Show('CONFIG_RL') end, function() return E.db.ElvUI_EltreumUI.skins.stealtheffect end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.everywherevignettealpha = ACH:Range(E.NewSign..L["Alpha"], nil, 14, { min = 0, max = 1, step = 0.01 }, nil, function() return E.db.ElvUI_EltreumUI.skins.screenvignettealpha end, function(_, value) E.db.ElvUI_EltreumUI.skins.screenvignettealpha = value ElvUI_EltreumUI:StealthOptions() end, function() return not E.db.ElvUI_EltreumUI.skins.screenvignette end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.description7 = ACH:Description(L["Item Deletion"], 15, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.delete = ACH:Toggle(L["Automatically type DELETE on the popup"], L["Will not delete the item, will simply type DELETE instead you needing to type it"], 16, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.delete end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.delete = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.description8 = ACH:Description(L["Play a Sound when receiving mail"], 17, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundenable = ACH:Toggle(L["Enable"], nil, 18, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundselect = ACH:Select(SOUND, nil, 19, { ["tts"] = L["Text to Speech"], ["sharedmedia"] = CUSTOM, }, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype = value end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable end)
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundselect.style = "radio"
-	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundLSM = ACH:SharedMediaSound(L["Select a Sound"], L["Choose a Sound from SharedMedia files"], 18, "double", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsound end, function(_,key) E.db.ElvUI_EltreumUI.otherstuff.mailsound = key E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" end)
-	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundTTS = ACH:Input(L["Text to Speech announcement"], nil, 19, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext end, function(_, value)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundLSM = ACH:SharedMediaSound(L["Select a Sound"], L["Choose a Sound from SharedMedia files"], 20, "double", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsound end, function(_,key) E.db.ElvUI_EltreumUI.otherstuff.mailsound = key E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundTTS = ACH:Input(L["Text to Speech announcement"], nil, 21, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext end, function(_, value)
 		E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext = tostring(value)
 		if E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice ~= nil then
 			C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, tostring(value) , Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume)
 		end
 	end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "sharedmedia" end)
-	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundTTSconfig = ACH:Select(L["Text to Speech Config"], nil, 20, function()
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundTTSconfig = ACH:Select(L["Text to Speech Config"], nil, 22, function()
 		local Voices = {}
 		for _, v in pairs(C_VoiceChat.GetTtsVoices()) do
 			--Voices[i] = v.voiceID
@@ -1530,11 +1534,11 @@ function ElvUI_EltreumUI:Configtable()
 		end
 		return Voices
 	end, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice = tonumber(value) C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume) end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end)
-	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundTTSvolume = ACH:Range(VOLUME, nil, 21, { min = 1, max = 100, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume = value end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end)
-	ElvUI_EltreumUI.Options.args.misc.args.general.args.description9 = ACH:Description(L["Mail Animation"], 22, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundTTSvolume = ACH:Range(VOLUME, nil, 23, { min = 1, max = 100, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume = value end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.description9 = ACH:Description(L["Mail Animation"], 24, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailAnimation = ACH:Toggle(E.NewSign..L["Enable Mail Animation"], L["Play a Blizzard animation when receiving mail or when new mail exists"], 23, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailAnimation end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailAnimation = value E:StaticPopup_Show('CONFIG_RL') end)
-	ElvUI_EltreumUI.Options.args.misc.args.general.args.description10 = ACH:Description(_G.TRADE_SKILLS, 24, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.misc.args.general.args.bagProfessionIcons = ACH:Toggle(E.NewSign..L["Add Profession Buttons to Bags"], nil, 25, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.bagProfessionIcons end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bagProfessionIcons = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.description10 = ACH:Description(_G.TRADE_SKILLS, 25, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.bagProfessionIcons = ACH:Toggle(E.NewSign..L["Add Profession Buttons to Bags"], nil, 26, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.bagProfessionIcons end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bagProfessionIcons = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.misc.args.combat = ACH:Group(L["Combat"], nil, 2)
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.description1 = ACH:Description(L["Show Buffs in Arena and hide them outside (will overwrite Eltruism default settings)"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.arenabuffs = ACH:Toggle(L["Enable"], nil, 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.arenabuffs end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.arenabuffs = value E:StaticPopup_Show('CONFIG_RL') end)

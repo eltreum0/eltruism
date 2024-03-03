@@ -1,27 +1,13 @@
-### 4.0.9.2 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 4.1.0 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added an Allowed list to Cooldown Module where only spells on the list will be announced/shown  
-Added /eltruism paging command to quickly swap action paging between Bar1 and Bar4  
-Added an option to disable the Blue Shaman class color in Classic Era  
-Added an option to set the maximum length for the Cooldown module  
-Added greyscaletags such as [eltruism:greyscaleclass:player]  
-Added an option for vertical gradient Experience Databar  
-Added an option for Custom Class Icons in Chat  
-Added [eltruism:hpstatus:reverse] tag  
-Added Greyscale Class Icons  
-Added Metal Lord font  
-Updated gradient and tags to also apply to Followers while in Follower dungeons  
-Updated Shadows to not apply to ElvUI frame if Ace skin is disabled  
-Updated animation scale for Cooldown to allow for bigger icons  
-Updated Color Picker Wheel mask for 10.2.5  
-Updated Immersion skin to fix a font  
-Updated German locale by Dlarge  
-Updated Player Castbar mover  
-Fixed an issue where the texture color of backgrounds would be replaced in dark mode  
-Fixed an issue with borders when using offset or spaced power on some frames  
-Fixed an issue with the Details embed where it would not properly position  
-Fixed an error during install due to a database change in Shadow and Light  
-Fixed an error in the Auctionator skin after an Auctionator update  
-Fixed a possible error with the AvQuest font  
-Fixed a possible issue with the Quest Skin  
-Fixed incorrect tags on player unitframe
+Added the Mythic Plus completion toast to the Hide Toasts option  
+Added U.GG class icons to Details, Tags and Portraits  
+Added shadows to the top and bottom panels from ElvUI  
+Updated Rotate Minimap to hide the Cardinals when in instances since the API doesn't exist there  
+Updated Shadows to include Unitframe Aura shadows when Masque is loaded  
+Updated Vignette Texture and added an option to change its Alpha  
+Fixed a possible issue with the Old Class colors option due to an out of sync load order from the game  
+Fixed an issue with Unitframe Power when using Dark Mode and Transparent Power  
+Fixed a possible issue in Season of Discovery with the two new Enchants  
+Fixed classbar shadows when detached from unitframes  
+Fixed a possible issue with Party Custom Textures

@@ -103,6 +103,8 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[804] = 13522, --enchant-cloak-lesser-shadow-resistance
 		[256] = 7861, --enchant-cloak-lesser-fire-resistance
 		--[1897] = 20031, --enchant-weapon-superior-striking
+		[7223] = 435903, --enchant-chest-retricutioner
+		[7210] = 435481, --enchant-weapon-dismantle
 
 		---- old list
 		[15] = 2831, -- Reinforced (+$k1 Armor)
