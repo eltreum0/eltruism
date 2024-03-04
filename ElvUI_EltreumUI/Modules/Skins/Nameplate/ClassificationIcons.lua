@@ -338,6 +338,34 @@ local bossIDs = {
 	["36296"] = true, --Apothecary Hummel <Crown Chemical Co.>
 	["36565"] = true, --Apothecary Baxter <Crown Chemical Co.>
 	["36272"] = true, --Apothecary Frye <Crown Chemical Co.>
+
+	--SOD bosses
+
+	--blackfathom
+	["202699"] = true, --baron-aquanis
+	["201722"] = true, --ghamoo-ra
+	["204068"] = true, --lady-sarevess
+	["204921"] = true, --gelihast
+	["207356"] = true, --lorgus-jett
+	["209678"] = true, --twilight-lord-kelris
+	["213334"] = true, --akumai
+
+	---gnomeregan
+	["7361"] = true, --grubbis
+	["7079"] = true, --viscous-fallout
+	["6235"] = true, --electrocutioner-6000
+	["6229"] = true, --crowd-pummeler-9-60
+	["6228"] = true, --dark-iron-ambassador
+	["7800"] = true, --mekgineer-thermaplugg
+
+	--sod event bosses
+	["212804"] = true, --centrius
+	["212707"] = true, --larodar
+	["212803"] = true, --ceredwyn
+	["212801"] = true, --jubei
+	["212730"] = true, --tojara
+	["212802"] = true, --moogul-the-sly
+	["218690"] = true, --khadamu
 }
 
 local textureDB = {
