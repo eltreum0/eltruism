@@ -3,7 +3,7 @@ if not L then return end
 
 L[" and "] = true
 L[" and import its settings"] = true
-L[" as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero"] =  true
+L[" as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero"] = true
 L[" is not installed or enabled"] = true
 L[" or "] = true
 L[" This can be a very demanding feature, it's not recommended to use models for performance."] = true
