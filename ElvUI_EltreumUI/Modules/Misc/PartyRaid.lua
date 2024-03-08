@@ -176,13 +176,12 @@ end
 --set correct role for classic
 function ElvUI_EltreumUI:SetGroupRoleClassic()
 	if E.Wrath and IsInGroup() and not InCombatLockdown() then
-		local _, _, spent1 = _G.GetTalentTabInfo(1)
-		local _, _, spent2 = _G.GetTalentTabInfo(2)
-		local _, _, spent3 = _G.GetTalentTabInfo(3)
-
 		if E.myclass == 'WARLOCK' or E.myclass == 'MAGE' or E.myclass == 'HUNTER' or E.myclass == 'ROGUE' then
 			UnitSetRole("player","DAMAGER")
 		else
+			local _, _, spent1 = _G.GetTalentTabInfo(1)
+			local _, _, spent2 = _G.GetTalentTabInfo(2)
+			local _, _, spent3 = _G.GetTalentTabInfo(3)
 			if E.myclass == 'SHAMAN' then
 				if spent3 < spent1 and spent3 < spent2 then
 					UnitSetRole("player","DAMAGER")
@@ -228,9 +227,17 @@ local roleframe = CreateFrame("FRAME")
 roleframe:RegisterEvent("GROUP_JOINED")
 roleframe:RegisterEvent("GROUP_ROSTER_UPDATE")
 roleframe:RegisterEvent("PLAYER_ENTERING_WORLD")
+local rolethrottle = 0
 roleframe:SetScript("OnEvent", function()
 	if E.Wrath then
-		ElvUI_EltreumUI:SetGroupRoleClassic()
+		local function ClearThrottle()
+			rolethrottle = 0
+		end
+		if rolethrottle == 0 then
+			rolethrottle = 1
+			ElvUI_EltreumUI:SetGroupRoleClassic()
+			E:Delay(10, ClearThrottle)
+		end
 	else
 		roleframe:UnregisterAllEvents()
 	end
