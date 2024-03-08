@@ -237,7 +237,7 @@ roleframe:SetScript("OnEvent", function()
 		if rolethrottle == 0 then
 			rolethrottle = 1
 			ElvUI_EltreumUI:SetGroupRoleClassic()
-			E:Delay(3, ClearThrottle)
+			E:Delay(10, ClearThrottle)
 		end
 	else
 		roleframe:UnregisterAllEvents()
