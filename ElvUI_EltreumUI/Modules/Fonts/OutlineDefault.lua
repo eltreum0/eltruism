@@ -153,152 +153,177 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	E.db["general"]["fonts"]["worldzone"]["outline"] = "OUTLINE"
 
 	-- Custom Texts
-	if E.db["unitframe"]["units"]["player"]["customTexts"] then
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPvP"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPvP"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPlayerAbsorb"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStatus"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStance"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumStance"]["fontOutline"] = "OUTLINE"
+	local currentprofile
+	for character, charprofile in pairs (ElvDB.profileKeys) do
+		if character:match(E.myname) and character:match(E.myrealm) then
+			currentprofile = charprofile
 		end
 	end
-	if E.db["unitframe"]["units"]["target"]["customTexts"] then
-		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetofTarget"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetofTarget"]["fontOutline"] = "OUTLINE"
-		end
-		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetAbsorb"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumStatus"]["fontOutline"] = "THICKOUTLINE"
-		end
-	end
-	if E.db["unitframe"]["units"]["targettarget"]["customTexts"] then
-		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"] then
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] then
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["fontOutline"] = "OUTLINE"
-		end
-		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] then
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumStatus"]["fontOutline"] = "THICKOUTLINE"
-		end
-	end
-	if E.db["unitframe"]["units"]["pet"]["customTexts"] then
-		if E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
-			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["fontOutline"] = "THICKOUTLINE"
-		end
-	end
-	if E.db["unitframe"]["units"]["party"]["customTexts"] then
-		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"] then
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyAbsorb"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"] then
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyHealth"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"] then
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyName"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"] then
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumPartyPower"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["party"]["customTexts"]["EltreumStatus"]["fontOutline"] = "THICKOUTLINE"
-		end
-	end
-	if E.db["unitframe"]["units"]["arena"]["customTexts"] then
-		if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"] then
-			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaHealth"]["fontOutline"] = "OUTLINE"
-		end
-		if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"] then
-			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaName"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"] then
-			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumArenaPower"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["arena"]["customTexts"]["EltreumStatus"]["fontOutline"] = "THICKOUTLINE"
-		end
-	end
-	if E.db["unitframe"]["units"]["raid1"]["customTexts"] then
-		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Health"] then
-			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Health"]["fontOutline"] = "OUTLINE"
-		end
-		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Name"] then
-			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Name"]["fontOutline"] = "OUTLINE"
-		end
-		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Absorb"] then
-			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumRaid1Absorb"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumGroup"] then
-			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumGroup"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["raid1"]["customTexts"]["EltreumStatus"]["fontOutline"] = "THICKOUTLINE"
-		end
-	end
-	if E.db["unitframe"]["units"]["raid2"]["customTexts"] then
-		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumGroup"] then
-			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumGroup"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Health"] then
-			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Health"]["fontOutline"] = "OUTLINE"
-		end
-		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Name"] then
-			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Name"]["fontOutline"] = "OUTLINE"
-		end
-		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Absorb"] then
-			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumRaid2Absorb"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["raid2"]["customTexts"]["EltreumStatus"]["fontOutline"] = "THICKOUTLINE"
-		end
-	end
-	if E.db["unitframe"]["units"]["raid3"]["customTexts"] then
-		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Absorb"] then
-			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Absorb"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumGroup"] then
-			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumGroup"]["fontOutline"] = "THICKOUTLINE"
-		end
-		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Health"] then
-			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Health"]["fontOutline"] = "OUTLINE"
-		end
-		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Name"] then
-			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumRaid3Name"]["fontOutline"] = "OUTLINE"
-		end
-		if E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumStatus"] then
-			E.db["unitframe"]["units"]["raid3"]["customTexts"]["EltreumStatus"]["fontOutline"] = "THICKOUTLINE"
+	for profile, data in pairs(ElvDB.profiles) do
+		if profile == currentprofile then
+			if data then
+				if data.unitframe then
+					if data.unitframe.units then
+						if data.unitframe.units.player then
+							if data.unitframe.units.player.customTexts then
+								for _, customText in next, data.unitframe.units.player.customTexts do
+									if customText then
+										customText["fontOutline"] = "THICKOUTLINE"
+									end
+								end
+							end
+						end
+						if data.unitframe.units.target then
+							if data.unitframe.units.target.customTexts then
+								for _, customText in next, data.unitframe.units.target.customTexts do
+									if customText then
+										customText["fontOutline"] = "THICKOUTLINE"
+									end
+								end
+							end
+						end
+						if data.unitframe.units.targettarget then
+							if data.unitframe.units.targettarget.customTexts then
+								for _, customText in next, data.unitframe.units.targettarget.customTexts do
+									if customText then
+										customText["fontOutline"] = "THICKOUTLINE"
+									end
+								end
+							end
+						end
+						if data.unitframe.units.targettargettarget then
+							if data.unitframe.units.targettargettarget.customTexts then
+								for _, customText in next, data.unitframe.units.targettargettarget.customTexts do
+									if customText then
+										customText["fontOutline"] = "THICKOUTLINE"
+									end
+								end
+							end
+						end
+						if data.unitframe.units.pet then
+							if data.unitframe.units.pet.customTexts then
+								for _, customText in next, data.unitframe.units.pet.customTexts do
+									if customText then
+										customText["fontOutline"] = "THICKOUTLINE"
+									end
+								end
+							end
+						end
+						if data.unitframe.units.pettarget then
+							if data.unitframe.units.pettarget.customTexts then
+								for _, customText in next, data.unitframe.units.pettarget.customTexts do
+									if customText then
+										customText["fontOutline"] = "THICKOUTLINE"
+									end
+								end
+							end
+						end
+						if data.unitframe.units.focus then
+							if data.unitframe.units.focus.customTexts then
+								for _, customText in next, data.unitframe.units.focus.customTexts do
+									if customText then
+										customText["fontOutline"] = "THICKOUTLINE"
+									end
+								end
+							end
+						end
+						if data.unitframe.units.focustarget then
+							if data.unitframe.units.focustarget.customTexts then
+								for _, customText in next, data.unitframe.units.focustarget.customTexts do
+									if customText then
+										customText["fontOutline"] = "THICKOUTLINE"
+									end
+								end
+							end
+						end
+						if data.unitframe.units.arena then
+							if data.unitframe.units.arena.customTexts then
+								for _, customText in next, data.unitframe.units.arena.customTexts do
+									if customText then
+										customText["fontOutline"] = "THICKOUTLINE"
+									end
+								end
+							end
+						end
+						if data.unitframe.units.boss then
+							if data.unitframe.units.boss.customTexts then
+								for _, customText in next, data.unitframe.units.boss.customTexts do
+									if customText then
+										customText["fontOutline"] = "THICKOUTLINE"
+									end
+								end
+							end
+						end
+						if data.unitframe.units.party then
+							if data.unitframe.units.party.customTexts then
+								for _, customText in next, data.unitframe.units.party.customTexts do
+									if customText then
+										customText["fontOutline"] = "THICKOUTLINE"
+									end
+								end
+							end
+						end
+						if data.unitframe.units.raid1 then
+							if data.unitframe.units.raid1.customTexts then
+								for _, customText in next, data.unitframe.units.raid1.customTexts do
+									if customText then
+										customText["fontOutline"] = "THICKOUTLINE"
+									end
+								end
+							end
+						end
+						if data.unitframe.units.raid2 then
+							if data.unitframe.units.raid2.customTexts then
+								for _, customText in next, data.unitframe.units.raid2.customTexts do
+									if customText then
+										customText["fontOutline"] = "THICKOUTLINE"
+									end
+								end
+							end
+						end
+						if data.unitframe.units.raid3 then
+							if data.unitframe.units.raid3.customTexts then
+								for _, customText in next, data.unitframe.units.raid3.customTexts do
+									if customText then
+										customText["fontOutline"] = "THICKOUTLINE"
+									end
+								end
+							end
+						end
+						if data.unitframe.units.raidpet then
+							if data.unitframe.units.raidpet.customTexts then
+								for _, customText in next, data.unitframe.units.raidpet.customTexts do
+									if customText then
+										customText["fontOutline"] = "THICKOUTLINE"
+									end
+								end
+							end
+						end
+						if data.unitframe.units.tank then
+							if data.unitframe.units.tank.customTexts then
+								for _, customText in next, data.unitframe.units.tank.customTexts do
+									if customText then
+										customText["fontOutline"] = "THICKOUTLINE"
+									end
+								end
+							end
+						end
+					end
+				end
+			end
 		end
 	end
 
-	if E.db["datatexts"]["panels"]["EltruismTime"] and E.db["datatexts"]["panels"]["EltruismTime"]["enable"] then
-		E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["fontOutline"] = "THICKOUTLINE"
+	--Custom Datatext Panels
+	for profile,data in pairs(ElvDB.global) do
+		if profile == "datatexts" and data then
+			if data.customPanels then
+				for _, customPanel in next, data.customPanels do
+					if customPanel then
+						customPanel["fonts"]["fontOutline"] = "THICKOUTLINE"
+					end
+				end
+			end
+		end
 	end
 end
