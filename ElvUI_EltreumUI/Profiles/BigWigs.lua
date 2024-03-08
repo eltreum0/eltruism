@@ -170,7 +170,11 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		end
 
 		-- Set the profile
-		table.insert(BigWigs3DB.profileKeys, E.mynameRealm)
-		BigWigs3DB["profileKeys"][E.mynameRealm] = "Eltreum"
+		if BigWigs3DB["profileKeys"][E.mynameRealm] then
+			BigWigs3DB["profileKeys"][E.mynameRealm] = "Eltreum"
+		else
+			table.insert(BigWigs3DB.profileKeys, E.mynameRealm)
+			BigWigs3DB["profileKeys"][E.mynameRealm] = "Eltreum"
+		end
 	end
 end
