@@ -230,6 +230,7 @@ roleframe:RegisterEvent("PLAYER_ENTERING_WORLD")
 local rolethrottle = 0
 roleframe:SetScript("OnEvent", function()
 	if E.Wrath then
+		roleframe:RegisterEvent("PLAYER_ROLES_ASSIGNED")
 		local function ClearThrottle()
 			rolethrottle = 0
 		end
