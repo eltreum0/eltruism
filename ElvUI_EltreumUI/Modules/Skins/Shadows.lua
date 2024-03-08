@@ -3830,7 +3830,7 @@ function ElvUI_EltreumUI:ChatBubblesShadows()
 end
 hooksecurefunc(M, "LoadChatBubbles", ElvUI_EltreumUI.ChatBubblesShadows)
 
-
+--Datatexts
 function ElvUI_EltreumUI:DataTextShadows(name)
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.datatexts then
 		local panel = DT:FetchFrame(name)
