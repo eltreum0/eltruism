@@ -175,7 +175,7 @@ end
 
 --set correct role for classic
 function ElvUI_EltreumUI:SetGroupRoleClassic()
-	if E.Wrath and IsInGroup() and not InCombatLockdown() then
+	if E.Wrath and not InCombatLockdown() then
 		if E.myclass == 'WARLOCK' or E.myclass == 'MAGE' or E.myclass == 'HUNTER' or E.myclass == 'ROGUE' then
 			UnitSetRole("player","DAMAGER")
 		else
