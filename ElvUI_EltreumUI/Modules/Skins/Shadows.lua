@@ -14,6 +14,7 @@ local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
 local timermonitor = CreateFrame("FRAME")
 local select = _G.select
 local valuecolors = E:ClassColor(E.myclass, true)
+local DT = E:GetModule('DataTexts')
 
 --simple function to set shadow color
 function ElvUI_EltreumUI:ShadowColor(shadow)
@@ -1019,7 +1020,6 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--datatexts
-			local DT = E:GetModule('DataTexts')
 			if DT.tooltip then
 				if not DT.tooltip.shadow then
 					DT.tooltip:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -3465,23 +3465,6 @@ function ElvUI_EltreumUI:Shadows()
 				RightChatShadow:Hide()
 			end
 		end
-		------------------------------------------------------------------------------------------------------datatext
-		if E.db.ElvUI_EltreumUI.skins.shadow.datatexts then
-			E:Delay(1, function()
-				for i = 0, 10 do
-					if _G["ElvUI_DTPanel"..tostring(i)] then
-						if _G["ElvUI_DTPanel"..tostring(i)].template and _G["ElvUI_DTPanel"..tostring(i)].template ~= 'NoBackdrop' then
-							if not _G["ElvUI_DTPanel"..tostring(i)].shadow then
-								_G["ElvUI_DTPanel"..tostring(i)]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(_G["ElvUI_DTPanel"..tostring(i)].shadow)
-							end
-						end
-					else
-						break
-					end
-				end
-			end)
-		end
 		------------------------------------------------------------------------------------------------------other addons
 		if IsAddOnLoaded('ProjectAzilroka') then
 			if _G.stAMFrame and not _G.stAMFrame.shadow then
@@ -3846,3 +3829,14 @@ function ElvUI_EltreumUI:ChatBubblesShadows()
 	end
 end
 hooksecurefunc(M, "LoadChatBubbles", ElvUI_EltreumUI.ChatBubblesShadows)
+
+
+function ElvUI_EltreumUI:DataTextShadows(name)
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.datatexts then
+		local panel = DT:FetchFrame(name)
+		if not panel then return end
+		panel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+		ElvUI_EltreumUI:ShadowColor(panel.shadow)
+	end
+end
+hooksecurefunc(DT,"BuildPanelFrame", ElvUI_EltreumUI.DataTextShadows)
