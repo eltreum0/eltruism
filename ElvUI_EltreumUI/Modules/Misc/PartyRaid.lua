@@ -184,6 +184,7 @@ function ElvUI_EltreumUI:SetGroupRoleClassic()
 		elseif UnitGroupRolesAssigned("player") == "HEALER" then
 			isHealer = true
 		end
+		print(isDPS,isTank,isHealer,E.myclass,_G.GetTalentTabInfo(1),_G.GetTalentTabInfo(2),_G.GetTalentTabInfo(3))
 		if E.myclass == 'WARLOCK' or E.myclass == 'MAGE' or E.myclass == 'HUNTER' or E.myclass == 'ROGUE' then
 			if not isDPS then
 				UnitSetRole("player","DAMAGER")
