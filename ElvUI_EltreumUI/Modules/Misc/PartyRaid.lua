@@ -174,7 +174,7 @@ function ElvUI_EltreumUI:BattleRes()
 end
 
 --set correct role for classic
-local isTank, isHealer, isDPS
+local isTank, isHealer, isDPS = false,false,false
 function ElvUI_EltreumUI:SetGroupRoleClassic()
 	if E.Wrath and not InCombatLockdown() then
 		if UnitGroupRolesAssigned("player") == "DAMAGER" then
@@ -203,7 +203,7 @@ function ElvUI_EltreumUI:SetGroupRoleClassic()
 					end
 				end
 			elseif E.myclass == 'PRIEST' then
-				if spent3 < spent1 and spent3 < spent2 then
+				if spent1 > spent3 and spent2 > spent3 then
 					if not isHealer then
 						UnitSetRole("player","HEALER")
 					end
