@@ -273,6 +273,7 @@ roleframe:RegisterEvent("GROUP_JOINED")
 roleframe:RegisterEvent("GROUP_ROSTER_UPDATE")
 roleframe:RegisterEvent("PLAYER_ENTERING_WORLD")
 roleframe:RegisterEvent("PLAYER_ROLES_ASSIGNED")
+roleframe:RegisterEvent("GROUP_LEFT")
 roleframe:SetScript("OnEvent", function()
 	if E.Wrath then
 		ElvUI_EltreumUI:SetGroupRoleClassic()
