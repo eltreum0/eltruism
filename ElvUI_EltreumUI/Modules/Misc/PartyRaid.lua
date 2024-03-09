@@ -179,10 +179,16 @@ function ElvUI_EltreumUI:SetGroupRoleClassic()
 	if E.Wrath and not InCombatLockdown() then
 		if UnitGroupRolesAssigned("player") == "DAMAGER" then
 			isDPS = true
+			isTank = false
+			isHealer = false
 		elseif UnitGroupRolesAssigned("player") == "TANK" then
 			isTank = true
+			isDPS = false
+			isHealer = false
 		elseif UnitGroupRolesAssigned("player") == "HEALER" then
 			isHealer = true
+			isTank = false
+			isDPS = false
 		end
 		if E.myclass == 'WARLOCK' or E.myclass == 'MAGE' or E.myclass == 'HUNTER' or E.myclass == 'ROGUE' then
 			if not isDPS then
