@@ -19,13 +19,14 @@ function ElvUI_EltreumUI:EltruismImmersion()
 	if not E.LSM:Fetch("font", E.db.general.font) then return end
 	if E.db.ElvUI_EltreumUI.skins.immersion then
 		local frames = {
-			_G["ImmersionFrame"].TalkBox.BackgroundFrame,
+			--_G["ImmersionFrame"].TalkBox.BackgroundFrame,
 			_G["ImmersionFrame"].TalkBox.Elements,
 			_G["ImmersionFrame"].TalkBox.PortraitFrame,
 		}
 		for _, v in pairs(frames) do
 			S:HandleFrame(v)
 		end
+		S:HandleFrame(_G["ImmersionFrame"].TalkBox.BackgroundFrame) --would create double shadow
 
 		if _G["ImmersionFrame"].TalkBox.ReputationBar then
 			S:HandleStatusBar(_G["ImmersionFrame"].TalkBox.ReputationBar)
