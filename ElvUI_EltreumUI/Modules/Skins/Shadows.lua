@@ -3835,8 +3835,14 @@ function ElvUI_EltreumUI:DataTextShadows(name)
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.datatexts then
 		local panel = DT:FetchFrame(name)
 		if not panel then return end
-		panel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-		ElvUI_EltreumUI:ShadowColor(panel.shadow)
+		E:Delay(0.5, function() --needs a delay to wait for the panel setup
+			if not panel.template then return end
+			if panel.template ~= 'NoBackdrop' then
+				panel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(panel.shadow)
+			end
+		end)
+
 	end
 end
 hooksecurefunc(DT,"BuildPanelFrame", ElvUI_EltreumUI.DataTextShadows)
