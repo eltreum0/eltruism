@@ -176,48 +176,79 @@ end
 --set correct role for classic
 function ElvUI_EltreumUI:SetGroupRoleClassic()
 	if E.Wrath and not InCombatLockdown() then
+		local _, isTank, isHealer, isDPS = GetLFGRoles()
 		if E.myclass == 'WARLOCK' or E.myclass == 'MAGE' or E.myclass == 'HUNTER' or E.myclass == 'ROGUE' then
-			UnitSetRole("player","DAMAGER")
+			if not isDPS then
+				UnitSetRole("player","DAMAGER")
+			end
 		else
 			local _, _, spent1 = _G.GetTalentTabInfo(1)
 			local _, _, spent2 = _G.GetTalentTabInfo(2)
 			local _, _, spent3 = _G.GetTalentTabInfo(3)
 			if E.myclass == 'SHAMAN' then
 				if spent3 < spent1 and spent3 < spent2 then
-					UnitSetRole("player","DAMAGER")
+					if not isDPS then
+						UnitSetRole("player","DAMAGER")
+					end
 				elseif spent3 > spent1 and spent3 > spent2 then
-					UnitSetRole("player","HEALER")
+					if not isHealer then
+						UnitSetRole("player","HEALER")
+					end
 				end
 			elseif E.myclass == 'PRIEST' then
 				if spent3 < spent1 and spent3 < spent2 then
-					UnitSetRole("player","HEALER")
+					if not isHealer then
+						UnitSetRole("player","HEALER")
+					end
 				elseif spent3 > spent1 and spent3 > spent2 then
-					UnitSetRole("player","DAMAGER")
+					if not isDPS then
+						UnitSetRole("player","DAMAGER")
+					end
 				end
 			elseif E.myclass == 'DRUID' then
 				if spent3 > spent1 and spent3 > spent2 then
-					UnitSetRole("player","HEALER")
+					if not isHealer then
+						UnitSetRole("player","HEALER")
+					end
 				elseif spent1 > spent3 and spent1 > spent2 then
-					UnitSetRole("player","DAMAGER")
+					if not isDPS then
+						UnitSetRole("player","DAMAGER")
+					end
 				end
 			elseif E.myclass == 'WARRIOR' then
 				if spent3 > spent1 and spent3 > spent2 then
-					UnitSetRole("player","TANK")
+					if not isTank then
+						UnitSetRole("player","TANK")
+					end
 				elseif spent3 < spent1 and spent3 < spent2 then
-					UnitSetRole("player","DAMAGER")
+					if not isDPS then
+						UnitSetRole("player","DAMAGER")
+					end
 				end
 			elseif E.myclass == 'PALADIN' then
 				if spent1 > spent3 and spent1 > spent2 then
-					UnitSetRole("player","HEALER")
+					if not isHealer then
+						UnitSetRole("player","HEALER")
+					end
 				elseif spent2 > spent1 and spent2 > spent3 then
-					UnitSetRole("player","TANK")
+					if not isTank then
+						UnitSetRole("player","TANK")
+					end
 				elseif spent3 > spent1 and spent3 > spent2 then
-					UnitSetRole("player","DAMAGER")
+					if not isDPS then
+						UnitSetRole("player","DAMAGER")
+					end
 				end
-			--elseif E.myclass == 'DEATHKNIGHT' then --too many variables since dk doesnt even need specific talents and just needs gear
-				--if spent3 > spent1 and spent3 > spent2 then
-					--UnitSetRole("player","DAMAGER")
-				--end
+			elseif E.myclass == 'DEATHKNIGHT' then --only check for the blade barrier talent
+				if select(5, GetTalentInfo(1, 21)) > 0 then
+					if not isTank then
+						UnitSetRole("player","TANK")
+					end
+				else
+					if not isDPS then
+						UnitSetRole("player","DAMAGER")
+					end
+				end
 			end
 		end
 	end
@@ -228,22 +259,13 @@ roleframe:RegisterEvent("GROUP_JOINED")
 roleframe:RegisterEvent("GROUP_ROSTER_UPDATE")
 roleframe:RegisterEvent("PLAYER_ENTERING_WORLD")
 roleframe:RegisterEvent("PLAYER_ROLES_ASSIGNED")
-local rolethrottle = 0
 roleframe:SetScript("OnEvent", function()
 	if E.Wrath then
-		local function ClearThrottle()
-			rolethrottle = 0
-		end
-		if rolethrottle == 0 then
-			rolethrottle = 1
-			ElvUI_EltreumUI:SetGroupRoleClassic()
-			E:Delay(10, ClearThrottle)
-		end
+		ElvUI_EltreumUI:SetGroupRoleClassic()
 	else
 		roleframe:UnregisterAllEvents()
 	end
 end)
-
 
 --automatic combat logging
 function ElvUI_EltreumUI:AutoCombatLog()
