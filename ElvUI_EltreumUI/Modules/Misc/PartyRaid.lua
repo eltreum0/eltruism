@@ -198,7 +198,7 @@ function ElvUI_EltreumUI:SetGroupRoleClassic()
 			local _, _, spent1 = _G.GetTalentTabInfo(1)
 			local _, _, spent2 = _G.GetTalentTabInfo(2)
 			local _, _, spent3 = _G.GetTalentTabInfo(3)
-			print(isDPS,isTank,isHealer,E.myclass,spent1,spent2,spent3)
+			--print(isDPS,isTank,isHealer,E.myclass,spent1,spent2,spent3)
 			if E.myclass == 'SHAMAN' then
 				if spent3 < spent1 and spent3 < spent2 then
 					if not isDPS then
@@ -253,7 +253,7 @@ function ElvUI_EltreumUI:SetGroupRoleClassic()
 						UnitSetRole("player","DAMAGER")
 					end
 				end
-			elseif E.myclass == 'DEATHKNIGHT' then --only check for the blade barrier talent
+			--[[elseif E.myclass == 'DEATHKNIGHT' then --only check for the blade barrier talent
 				if select(5, GetTalentInfo(1, 21)) > 0 then
 					if not isTank then
 						UnitSetRole("player","TANK")
@@ -262,7 +262,7 @@ function ElvUI_EltreumUI:SetGroupRoleClassic()
 					if not isDPS then
 						UnitSetRole("player","DAMAGER")
 					end
-				end
+				end]]
 			end
 		end
 	end
@@ -272,8 +272,8 @@ local roleframe = CreateFrame("FRAME")
 roleframe:RegisterEvent("GROUP_JOINED")
 roleframe:RegisterEvent("GROUP_ROSTER_UPDATE")
 roleframe:RegisterEvent("PLAYER_ENTERING_WORLD")
-roleframe:RegisterEvent("PLAYER_ROLES_ASSIGNED")
-roleframe:RegisterEvent("GROUP_LEFT")
+--roleframe:RegisterEvent("PLAYER_ROLES_ASSIGNED")
+--roleframe:RegisterEvent("GROUP_LEFT")
 roleframe:SetScript("OnEvent", function()
 	if E.Wrath then
 		ElvUI_EltreumUI:SetGroupRoleClassic()
