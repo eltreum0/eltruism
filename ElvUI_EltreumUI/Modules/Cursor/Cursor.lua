@@ -29,7 +29,6 @@ local QUAD_COORD_FUNC
 function ElvUI_EltreumUI:CursorInit()
 	if E.db.ElvUI_EltreumUI.cursors.cursor.enable then
 		ElvUI_EltreumUI:CastCursor()
-		ElvUI_EltreumUI:CurrentTypeofCursor()
 		if E.db.ElvUI_EltreumUI.cursors.cursor.cooldown then
 			ElvUI_EltreumUI:CooldownEnable() --starts cursor module with cooldowns
 		end
@@ -45,26 +44,36 @@ local Cursor = CreateFrame("Frame", "EltruismCursorCursor", rootFrame)
 --Detect the current cursor for options
 function ElvUI_EltreumUI:CurrentTypeofCursor()
 	currentring = E.db.ElvUI_EltreumUI.cursors.cursor.ring
-	if currentring:match("ring1") then
+	if currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring1.tga' then
 		currentring = '|cff82B4ffType 1|r'
-	elseif currentring:match("ring2") then
+	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring2.tga' then
 		currentring = '|cff82B4ffType 2|r'
-	elseif currentring:match("ring3") then
+	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring3.tga' then
 		currentring = '|cff82B4ffType 3|r'
-	elseif currentring:match("ring4") then
+	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring4.tga' then
 		currentring = '|cff82B4ffType 4|r'
-	elseif currentring:match("ring5") then
+	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring5.tga' then
 		currentring = '|cff82B4ffType 5|r'
-	elseif currentring:match("ring6") then
+	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring6.tga' then
 		currentring = '|cff82B4ffType 6|r'
-	elseif currentring:match("ring7") then
+	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring7.tga' then
 		currentring = '|cff82B4ffType 7|r'
-	elseif currentring:match("ring8") then
+	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring8.tga' then
 		currentring = '|cff82B4ffType 8|r'
-	elseif currentring:match("ring9") then
+	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring9.tga' then
 		currentring = '|cff82B4ffType 9|r'
-	elseif currentring:match("ring10") then
+	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring10.tga' then
 		currentring = '|cff82B4ffType 10|r'
+	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring11.tga' then
+		currentring = '|cff82B4ffType 11|r'
+	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring12.tga' then
+		currentring = '|cff82B4ffType 12|r'
+	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring13.tga' then
+		currentring = '|cff82B4ffType 13|r'
+	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring14.tga' then
+		currentring = '|cff82B4ffType 14|r'
+	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring15.tga' then
+		currentring = '|cff82B4ffType 15|r'
 	end
 	return currentring
 end
