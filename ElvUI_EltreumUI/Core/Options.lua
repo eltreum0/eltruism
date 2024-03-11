@@ -3370,8 +3370,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.skins.args.databars.args.archeology.args.fontx = ACH:Range(L["Text X offset"], nil, 7, { min = -100, max = 100, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.databars.args.archeology.args.fonty = ACH:Range(L["Text Y offset"], nil, 7, { min = -100, max = 100, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety = value E:StaticPopup_Show('CONFIG_RL') end)
 
-
-	ElvUI_EltreumUI.Options.args.linebreak = ACH:Group(E:TextGradient(" ", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 86)
+	--line break so these non options are not with the others
+	ElvUI_EltreumUI.Options.args.linebreak = ACH:Group(" ", nil, 86)
 	ElvUI_EltreumUI.Options.args.linebreak.disabled = true
 
 	--weakauras anchor
