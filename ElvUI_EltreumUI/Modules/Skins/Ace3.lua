@@ -172,6 +172,62 @@ function ElvUI_EltreumUI:Ace3Skin()
 		if _G.PluginInstallOption4Button then CreateFader(_G.PluginInstallOption4Button) end
 	end
 
+	if _G.LFDQueueFrameTypeDropDownName then
+		if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+			_G.LFDQueueFrameTypeDropDownName:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+		else
+			_G.LFDQueueFrameTypeDropDownName:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+		end
+	end
+
+	if _G.LFDQueueFrameRandomScrollFrameChildFrameTitle then
+		if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+			_G.LFDQueueFrameRandomScrollFrameChildFrameTitle:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+		else
+			_G.LFDQueueFrameRandomScrollFrameChildFrameTitle:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+		end
+	end
+
+	if _G.LFDQueueFrameRandomScrollFrameChildFrameRewardsLabel then
+		if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+			_G.LFDQueueFrameRandomScrollFrameChildFrameRewardsLabel:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+		else
+			_G.LFDQueueFrameRandomScrollFrameChildFrameRewardsLabel:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+		end
+	end
+
+	if _G.LFDQueueFrameFollowerTitle then
+		if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+			_G.LFDQueueFrameFollowerTitle:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+		else
+			_G.LFDQueueFrameFollowerTitle:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+		end
+	end
+
+	if _G.RaidFinderQueueFrameSelectionDropDownName then
+		if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+			_G.RaidFinderQueueFrameSelectionDropDownName:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+		else
+			_G.RaidFinderQueueFrameSelectionDropDownName:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+		end
+	end
+
+	if _G.RaidFinderQueueFrameScrollFrameChildFrameTitle then
+		if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+			_G.RaidFinderQueueFrameScrollFrameChildFrameTitle:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+		else
+			_G.RaidFinderQueueFrameScrollFrameChildFrameTitle:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+		end
+	end
+
+	if _G.RaidFinderQueueFrameScrollFrameChildFrameRewardsLabel then
+		if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+			_G.RaidFinderQueueFrameScrollFrameChildFrameRewardsLabel:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+		else
+			_G.RaidFinderQueueFrameScrollFrameChildFrameRewardsLabel:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+		end
+	end
+
 	--hooks based on elvui skin functions, just changing color/texture for the most part
 	hooksecurefunc(E,"Config_UpdateLeftButtons",function()
 		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
