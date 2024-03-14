@@ -154,10 +154,10 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 
 	-- Custom Texts
 	local currentprofile
-	for character, charprofile in pairs (ElvDB.profileKeys) do
-		if character:match(E.myname) and character:match(E.myrealm) then
-			currentprofile = charprofile
-		end
+	if ElvDB.profileKeys[E.mynameRealm] then
+		currentprofile = ElvDB.profileKeys[E.mynameRealm]
+	else
+		currentprofile = false
 	end
 	for profile, data in pairs(ElvDB.profiles) do
 		if profile == currentprofile then

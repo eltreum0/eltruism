@@ -227,10 +227,10 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 
 	-- Custom Texts
 	local currentprofile
-	for character, charprofile in pairs (ElvDB.profileKeys) do
-		if character:match(E.myname) then
-			currentprofile = charprofile
-		end
+	if ElvDB.profileKeys[E.mynameRealm] then
+		currentprofile = ElvDB.profileKeys[E.mynameRealm]
+	else
+		currentprofile = false
 	end
 	for profile, data in pairs(ElvDB.profiles) do
 		if profile == currentprofile then
