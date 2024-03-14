@@ -52,14 +52,16 @@ function ElvUI_EltreumUI:ExpandedTalents()
 
 					EltruismExpandedTalents:UnregisterAllEvents()
 					--hide the scroll
-					if PlayerTalentFrameScrollFrameScrollBar then
-						PlayerTalentFrameScrollFrameScrollBar:ClearAllPoints()
-						PlayerTalentFrameScrollFrameScrollBar:Hide()
+					if not E.Cata then
+						if PlayerTalentFrameScrollFrameScrollBar then
+							PlayerTalentFrameScrollFrameScrollBar:ClearAllPoints()
+							PlayerTalentFrameScrollFrameScrollBar:Hide()
+						end
 					end
 					--increase the size of the whole frame
 					if PlayerTalentFrame then
 						--PlayerTalentFrame:SetScale(0.8,0.8) --should be around this scale for wrath
-						if E.Wrath then
+						if E.Wrath and not E.Cata then
 							PlayerTalentFrame:SetSize(376, 780)
 						elseif E.Classic then
 							PlayerTalentFrame:SetSize(376, 670)
@@ -75,14 +77,14 @@ function ElvUI_EltreumUI:ExpandedTalents()
 
 					if PlayerTalentFrameScrollFrame then
 						--increase the size of the actual frame that has the talent buttons
-						if E.Wrath then
+						if E.Wrath and not E.Cata then
 							PlayerTalentFrameScrollFrame:SetSize( 280 , 720)
 						elseif E.Classic then
 							PlayerTalentFrameScrollFrame:SetSize( 280 , 470)
 						end
 						--set the position
 						PlayerTalentFrameScrollFrame:ClearAllPoints()
-						if E.Wrath then
+						if E.Wrath and not E.Cata then
 							PlayerTalentFrameScrollFrame:SetPoint("CENTER", PlayerTalentFrame, 0, 20)
 						else
 							PlayerTalentFrameScrollFrame:SetPoint("TOP", PlayerTalentFrame, "TOP", -22, -37)
@@ -91,7 +93,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 
 					--increase the size of the background
 					if PlayerTalentFrameBackgroundTopLeft then
-						if E.Wrath then
+						if E.Wrath and not E.Cata then
 							if PlayerTalentFrameScrollFrame.backdrop then
 								PlayerTalentFrameScrollFrame.backdrop:Kill()
 							end
@@ -150,7 +152,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 					end
 
 					-- fix glyph size
-					if E.Wrath then
+					if E.Wrath and not E.Cata then
 						LoadAddOn("Blizzard_GlyphUI")
 						_G.GlyphFrame:SetParent(_G.PlayerTalentFrame)
 
