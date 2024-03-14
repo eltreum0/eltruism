@@ -225,7 +225,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 				if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
-					if E.Retail or E.Wrath then
+					if E.Retail or E.Wrath or E.Cata then
 						if not _G.MacroFrame.shadow then
 							_G.MacroFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.MacroFrame.shadow)
@@ -538,10 +538,19 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if (arg == "Blizzard_AchievementUI") or IsAddOnLoaded("Blizzard_AchievementUI") then
-						if E.Retail then
-							if _G.AchievementFrame and not _G.AchievementFrame.shadow then
-								_G.AchievementFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(_G.AchievementFrame.shadow)
+						if E.Retail or E.Cata then
+							if _G.AchievementFrame then
+								if _G.AchievementFrame.backdrop then
+									if not _G.AchievementFrame.backdrop.shadow then
+										_G.AchievementFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(_G.AchievementFrame.backdrop.shadow)
+									end
+								else
+									if not _G.AchievementFrame.shadow then
+										_G.AchievementFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(_G.AchievementFrame.shadow)
+									end
+								end
 							end
 							if _G.AchievementFrameTab3 and _G.AchievementFrameTab3.backdrop and not _G.AchievementFrameTab3.backdrop.shadow then
 								_G.AchievementFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -772,7 +781,7 @@ function ElvUI_EltreumUI:Shadows()
 							end
 						end
 					end
-				elseif E.Wrath or E.Classic then
+				else
 					if (arg == "Blizzard_AuctionUI") or IsAddOnLoaded("Blizzard_AuctionUI") then
 						if _G.AuctionFrame and _G.AuctionFrame.backdrop and not _G.AuctionFrame.backdrop.shadow then
 							_G.AuctionFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -1144,7 +1153,7 @@ function ElvUI_EltreumUI:Shadows()
 					ElvUI_EltreumUI:ShadowColor(_G.BossButton.shadow)
 				end
 			end
-		elseif E.Wrath or E.Classic then
+		else
 
 			if E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
 				--totems
@@ -1173,7 +1182,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--Shaman Totem things
-				if E.Wrath then
+				if E.Wrath or E.Cata then
 					if E.myclass == "SHAMAN" and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.totembar) and E.db.actionbar.totemBar.enable then
 						local totemframes = {
 							_G.MultiCastSummonSpellButton,
@@ -1239,6 +1248,7 @@ function ElvUI_EltreumUI:Shadows()
 					_G.GuildInfoFrame.backdrop,
 					_G.WorldMapFrame.MiniBorderFrame.backdrop,
 					_G.WorldMapFrame.BorderFrame.backdrop,
+					_G.SpellBookFrame,
 				}
 				for _, frame in pairs(classicframes) do
 					if frame and not frame.shadow then
@@ -1248,7 +1258,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--wrath only frames
-				if E.Wrath then
+				if E.Wrath or E.Cata then
 					local tbcframes = {
 					--_G.LFGParentFrame,
 					_G.LFGParentFrameTab1,
