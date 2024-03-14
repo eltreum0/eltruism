@@ -1249,6 +1249,8 @@ function ElvUI_EltreumUI:Shadows()
 					_G.WorldMapFrame.MiniBorderFrame.backdrop,
 					_G.WorldMapFrame.BorderFrame.backdrop,
 					_G.SpellBookFrame,
+					_G.QuestModelScene,
+					_G.QuestNPCModelTextFrame,
 				}
 				for _, frame in pairs(classicframes) do
 					if frame and not frame.shadow then
