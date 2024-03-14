@@ -329,7 +329,11 @@ function ElvUI_EltreumUI:GetPlayerSpec()
 	local spent2 = select(3,_G.GetTalentTabInfo(2))
 	local spent3 = select(3,_G.GetTalentTabInfo(3))
 	for i=1, _G.GetNumTalentTabs() do
-		name, _, spent = _G.GetTalentTabInfo(i)
+		if not E.Cata then
+			name, _, spent = _G.GetTalentTabInfo(i)
+		else
+			_, name, _, _, spent = _G.GetTalentTabInfo(i)
+		end
 		if spent > 0 and (not points or spent > points) then
 			spec, points = name, spent
 		end
