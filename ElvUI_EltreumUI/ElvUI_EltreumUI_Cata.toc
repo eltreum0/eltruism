@@ -1,7 +1,7 @@
 ## Interface: 40400
 ## Author: Eltreum
 ## Version: 4.1.0
-## Title: |cff1784d1ElvUI|r |cff587AADE|r|cff5D82B2l|r|cff638BB8t|r|cff6993BEr|r|cff6F9CC4u|r|cff75A4CAi|r|cff7BADD0s|r|cff81B6D6m|r |cff8CC7E1W|r|cff92CFE7r|r|cff98D8EDa|r|cff9EE0F3t|r|cffA4E9F9h|r
+## Title: |cff1784d1ElvUI|r |cff587aadE|r|cff5d81b2l|r|cff6288b7t|r|cff678fbbr|r|cff6c96c0u|r|cff709dc5i|r|cff75a4cas|r|cff7aabcfm|r |cff84bad8C|r|cff89c1dda|r|cff8ec8e2t|r|cff93cfe7a|r|cff97d6ecc|r|cff9cddf1l|r|cffa1e4f5y|r|cffa6ebfas|r|cffabf2ffm
 ## Notes: Eltruism is an ElvUI plugin with profiles and other features not available in ElvUI
 ## Notes-deDE: Eltruism ist ein ElvUI Plugin mit Profilen und anderen Funktionen, die in ElvUI nicht verfügbar sind
 ## Dependencies: ElvUI
