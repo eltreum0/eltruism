@@ -454,6 +454,14 @@ function ElvUI_EltreumUI:Shadows()
 							_G.CalendarViewHolidayFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.CalendarViewHolidayFrame.shadow)
 						end
+						if _G.CalendarContextMenu then
+							_G.CalendarContextMenu:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.CalendarContextMenu.shadow)
+						end
+						if _G.CalendarCreateEventFrame then
+							_G.CalendarCreateEventFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.CalendarCreateEventFrame.shadow)
+						end
 					end
 					if (arg == "Blizzard_Communities") or IsAddOnLoaded("Blizzard_Communities") then
 						if _G.CommunitiesFrame then
@@ -870,7 +878,6 @@ function ElvUI_EltreumUI:Shadows()
 				_G.PVPMatchResults,
 				_G.MajorFactionRenownFrame,
 				_G.SubscriptionInterstitialFrame,
-				--_G.ImmersionFrame.TalkBox,
 				_G.ReadyStatus,
 				_G.QuickKeybindTooltip,
 				_G.WorldMapTooltip,
@@ -890,6 +897,11 @@ function ElvUI_EltreumUI:Shadows()
 				_G.OpacityFrame,
 				_G.TicketStatusFrameButton,
 				_G.ColorPickerFrame,
+				_G.ChannelFrame,
+				_G.QuestModelScene,
+				_G.QuestNPCModelTextFrame,
+				_G.SpellBookFrame,
+				_G.DressUpFrame,
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame and not frame.shadow then
@@ -1072,7 +1084,6 @@ function ElvUI_EltreumUI:Shadows()
 					_G.ZoneAbilityFrame,
 					_G.ReputationFrame,
 					_G.TokenFrame,
-					_G.SpellBookFrame,
 					_G.FriendsFrame,
 					_G.RecruitAFriendRewardsFrame,
 					_G.MerchantFrame,
@@ -1091,7 +1102,6 @@ function ElvUI_EltreumUI:Shadows()
 					_G.PVEFrameTab2.backdrop,
 					_G.PVEFrameTab3.backdrop,
 					_G.CollectionsJournal,
-					_G.DressUpFrame,
 					_G.DressUpFrame.OutfitDetailsPanel,
 					_G.WeeklyRewardsFrame,
 					_G.CovenantPreviewFrame,
@@ -1102,8 +1112,6 @@ function ElvUI_EltreumUI:Shadows()
 					_G.QuestFrame,
 					_G.EquipmentFlyoutFrameButtons,
 					_G.EditModeManagerFrame,
-					_G.QuestModelScene,
-					_G.QuestNPCModelTextFrame,
 				}
 				for _, frame in pairs(retailframes) do
 					if frame and not frame.shadow then
@@ -1248,9 +1256,6 @@ function ElvUI_EltreumUI:Shadows()
 					_G.GuildInfoFrame.backdrop,
 					_G.WorldMapFrame.MiniBorderFrame.backdrop,
 					_G.WorldMapFrame.BorderFrame.backdrop,
-					_G.SpellBookFrame,
-					_G.QuestModelScene,
-					_G.QuestNPCModelTextFrame,
 				}
 				for _, frame in pairs(classicframes) do
 					if frame and not frame.shadow then
