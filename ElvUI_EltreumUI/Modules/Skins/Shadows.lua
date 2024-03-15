@@ -902,6 +902,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.QuestNPCModelTextFrame,
 				_G.SpellBookFrame,
 				_G.DressUpFrame,
+				_G.CopyChatFrame,
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame and not frame.shadow then
