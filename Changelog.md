@@ -14,6 +14,7 @@ Updated Font application in Media to now better apply to datatexts
 Updated options layout to split non options from the others  
 Updated Datatext shadows to better apply to Datatext panels  
 Updated Role Function to once again work in Wrath  
+Updated ElvUI and Ace3 Skin  
 Fixed an issue where fonts could be applied to other ElvUI profiles if the names of the characters matched  
 Fixed a possible issue with the Power Bar where it could have wrong starting values  
 Fixed an issue where BigWigs profile could overwrite current profiles  
