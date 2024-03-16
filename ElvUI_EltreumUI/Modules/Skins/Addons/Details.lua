@@ -54,7 +54,7 @@ do
 							local name = E:StripString(thisLine.lineText1:GetText())
 							--local name = thisLine.lineText1:GetText()
 							--if not name:match("|cff") then
-								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 13, true), thisLine.minha_tabela:class()))
+								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 11, true), thisLine.minha_tabela:class()))
 							--end
 							if E.db.ElvUI_EltreumUI.skins.detailsgradientnameshadow then
 								thisLine.lineText1:SetShadowOffset(2, -2)
@@ -71,7 +71,7 @@ do
 							--thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(thisLine.colocacao .. ". " .. ElvUI_EltreumUI:ShortenString(name, 10, true), thisLine.minha_tabela:class()))
 							--local name = thisLine.lineText1:GetText()
 							--if not name:match("|cff") then
-								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 13, true), thisLine.minha_tabela:class()))
+								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 11, true), thisLine.minha_tabela:class()))
 							--end
 							if E.db.ElvUI_EltreumUI.skins.detailsgradientnameshadow then
 								thisLine.lineText1:SetShadowOffset(2, -2)
