@@ -3377,7 +3377,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.linebreak.disabled = true
 
 	--weakauras anchor
-	ElvUI_EltreumUI.Options.args.weakauras = ACH:Group(E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's movers to move them"], 87)
+	ElvUI_EltreumUI.Options.args.weakauras = ACH:Group(E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's movers to move them"], 85)
 	ElvUI_EltreumUI.Options.args.weakauras.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras'
 	ElvUI_EltreumUI.Options.args.weakauras.args.description1 = ACH:Description(L["WeakAuras"], 2, nil)
 	ElvUI_EltreumUI.Options.args.weakauras.args.description2 = ACH:Description(L["You can set your Weakauras to anchor to custom locations making it easier to move them"], 3, nil)
@@ -3388,16 +3388,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.weakauras.args.image.args.description1 = ACH:Description(L["Open WeakAuras, go to your group Weakauras and in Group change Position Settings > Anchored To > Select Frame > EltruismWA or EltruismConsumablesWA"], 2, nil)
 	ElvUI_EltreumUI.Options.args.weakauras.args.image.args.description2 = ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\WADemo', nil, 512, 512)
 
-	--discord
-	ElvUI_EltreumUI.Options.args.discord = ACH:Group(E:TextGradient(L["Discord"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Join the Discord for faster support and to report any issues you might encounter"], 87)
-	ElvUI_EltreumUI.Options.args.discord.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\discord'
-	ElvUI_EltreumUI.Options.args.discord.args.description1 = ACH:Description(" ", 2, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\disc', nil, 256, 128)
-	ElvUI_EltreumUI.Options.args.discord.args.description2 = ACH:Description(L["Join the Discord if you have any questions or issues"], 3, nil)
-	ElvUI_EltreumUI.Options.args.discord.args.description2 = ACH:Description(L["Keep in mind the discord is in English"], 4, nil)
-	ElvUI_EltreumUI.Options.args.discord.args.discordlink = ACH:Input("", "", 3, false, "full", function() return 'https://discord.gg/rBXNxUY6pk' end)
-
 	--credits
-	ElvUI_EltreumUI.Options.args.credits = ACH:Group(E:TextGradient(L["Credits"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Credits and Licenses"], 88)
+	ElvUI_EltreumUI.Options.args.credits = ACH:Group(E:TextGradient(L["Credits"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Credits and Licenses"], 98)
 	ElvUI_EltreumUI.Options.args.credits.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\credits'
 	ElvUI_EltreumUI.Options.args.credits.args.author = ACH:Group(L["Author"], nil, 1)
 	ElvUI_EltreumUI.Options.args.credits.args.author.inline = true
@@ -3438,6 +3430,12 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.support.args.site = ACH:Input(ElvUI_EltreumUI.Name, "", 9, false, "full", function() return 'https://eltruism.com/' end)
 	ElvUI_EltreumUI.Options.args.support.args.curse = ACH:Input(L["Addon on CurseForge:"], "", 10, false, "full", function() return 'https://www.curseforge.com/wow/addons/elvui-eltruism' end)
 	ElvUI_EltreumUI.Options.args.support.args.wago = ACH:Input(L["Addon on Wago:"], "", 10, false, "full", function() return 'https://addons.wago.io/addons/elvui-eltruism' end)
+
+	ElvUI_EltreumUI.Options.args.support.args.discord = ACH:Description(" ", 42, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\disc', nil, 256, 128)
+	ElvUI_EltreumUI.Options.args.support.args.discord2 = ACH:Description(L["Join the Discord for faster support and to report any issues you might encounter"], 43, nil)
+	ElvUI_EltreumUI.Options.args.support.args.discord3 = ACH:Description(L["Join the Discord if you have any questions or issues"], 44, nil)
+	ElvUI_EltreumUI.Options.args.support.args.discord4 = ACH:Description(L["Keep in mind the discord is in English"], 45, nil)
+	ElvUI_EltreumUI.Options.args.support.args.discordlink = ACH:Input("", "", 46, false, "full", function() return 'https://discord.gg/rBXNxUY6pk' end)
 
 	--faq
 	ElvUI_EltreumUI.Options.args.faq = ACH:Group(E:TextGradient("F.A.Q", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 88, 'tab')
