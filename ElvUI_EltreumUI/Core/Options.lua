@@ -1115,69 +1115,6 @@ function ElvUI_EltreumUI:Configtable()
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon = tostring(value) end)
 	ElvUI_EltreumUI.Options.args.media.args.tags.args.ghost.args.ghosticonpick.style = "radio"
 
-	--weakauras anchor
-	ElvUI_EltreumUI.Options.args.weakauras = ACH:Group(E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's movers to move them"], 85)
-	ElvUI_EltreumUI.Options.args.weakauras.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras'
-	ElvUI_EltreumUI.Options.args.weakauras.args.description1 = ACH:Description(L["WeakAuras"], 2, nil)
-	ElvUI_EltreumUI.Options.args.weakauras.args.description2 = ACH:Description(L["You can set your Weakauras to anchor to custom locations making it easier to move them"], 3, nil)
-	ElvUI_EltreumUI.Options.args.weakauras.args.description3 = ACH:Description(L["In order to use this feature, simply go to your Weakaura, and go to its Group options, scroll down to Position Settings and set the Anchored To Select Frame, then type either |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumablesWA|r to anchor the weakaura to the preset location"], 4, nil)
-	ElvUI_EltreumUI.Options.args.weakauras.args.description4 = ACH:Description(L["Setting "].."|cff82B4ffEltruismWA|r"..L[" or "].."|cff82B4ffEltruismConsumablesWA|r"..L[" as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero"], 5, nil)
-	ElvUI_EltreumUI.Options.args.weakauras.args.image = ACH:Group(L["How to use the Anchors"], nil, 6)
-	ElvUI_EltreumUI.Options.args.weakauras.args.image.inline = true
-	ElvUI_EltreumUI.Options.args.weakauras.args.image.args.description1 = ACH:Description(L["Open WeakAuras, go to your group Weakauras and in Group change Position Settings > Anchored To > Select Frame > EltruismWA or EltruismConsumablesWA"], 2, nil)
-	ElvUI_EltreumUI.Options.args.weakauras.args.image.args.description2 = ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\WADemo', nil, 512, 512)
-
-	--discord
-	ElvUI_EltreumUI.Options.args.discord = ACH:Group(E:TextGradient(L["Discord"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Join the Discord for faster support and to report any issues you might encounter"], 86)
-	ElvUI_EltreumUI.Options.args.discord.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\discord'
-	ElvUI_EltreumUI.Options.args.discord.args.description1 = ACH:Description(" ", 2, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\disc', nil, 256, 128)
-	ElvUI_EltreumUI.Options.args.discord.args.description2 = ACH:Description(L["Join the Discord if you have any questions or issues"], 3, nil)
-	ElvUI_EltreumUI.Options.args.discord.args.description2 = ACH:Description(L["Keep in mind the discord is in English"], 4, nil)
-	ElvUI_EltreumUI.Options.args.discord.args.discordlink = ACH:Input("", "", 3, false, "full", function() return 'https://discord.gg/rBXNxUY6pk' end)
-
-	--credits
-	ElvUI_EltreumUI.Options.args.credits = ACH:Group(E:TextGradient(L["Credits"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Credits and Licenses"], 88)
-	ElvUI_EltreumUI.Options.args.credits.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\credits'
-	ElvUI_EltreumUI.Options.args.credits.args.author = ACH:Group(L["Author"], nil, 1)
-	ElvUI_EltreumUI.Options.args.credits.args.author.inline = true
-	ElvUI_EltreumUI.Options.args.credits.args.author.args.description1 = ACH:Description(AUTHORS_STRING, 2, "medium")
-	ElvUI_EltreumUI.Options.args.credits.args.thankyous = ACH:Group(L["Credits and Thank yous"], nil, 3)
-	ElvUI_EltreumUI.Options.args.credits.args.thankyous.inline = true
-	ElvUI_EltreumUI.Options.args.credits.args.thankyous.args.description1 = ACH:Description(THANKYOU_STRING, 4, "medium")
-	ElvUI_EltreumUI.Options.args.credits.args.donators = ACH:Group(L["Donators"], nil, 5)
-	ElvUI_EltreumUI.Options.args.credits.args.donators.inline = true
-	ElvUI_EltreumUI.Options.args.credits.args.donators.args.description1 = ACH:Description(DONATORS_STRING, 6, "medium")
-	ElvUI_EltreumUI.Options.args.credits.args.translators = ACH:Group(L["Translators"], nil, 7)
-	ElvUI_EltreumUI.Options.args.credits.args.translators.inline = true
-	ElvUI_EltreumUI.Options.args.credits.args.translators.args.description1 = ACH:Description(TRANSLATORS_STRING, 8, "medium")
-	ElvUI_EltreumUI.Options.args.credits.args.licenses = ACH:Group(L["License"], nil, 9)
-	ElvUI_EltreumUI.Options.args.credits.args.licenses.inline = true
-	ElvUI_EltreumUI.Options.args.credits.args.licenses.args.description1 = ACH:Description(function()
-		if E.Retail then
-			return 'Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3\nCursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain\nExpand Hunter Stables is merged from Improved Stable Frame by Cybeloras which is licensed under GNU GPLv3\nIcons8 (www.icons8.com) for some of the icons. List in license.txt\nFreeVector (www.freevector.com) for some of the icons. List in license.txt\nLootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3\nRogue Door Opener is a fork of Rogue Door Opener by Burzolog which licensed under GNU GPLv3\nLoot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain\nQuest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3\nCooldown is a fork of discoteq\'s Doom Cooldown Pulse which is licensed under MIT License'
-		else
-			return 'Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3\nCursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain\nIcons8 (www.icons8.com) for some of the icons. List in license.txt\nFreeVector (www.freevector.com) for some of the icons. List in license.txt\nLootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3\nLoot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain\nThe Item Level shown on the Character Panel Skin uses code from Simple Item level by Kemayo, licensed under BSD\nQuest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3\nSockets and Enchants is a fork of Kibs Item Levels by Kibsgaard which is licensed under Public Domain'
-		end
-	end, 10, "medium")
-
-	--support
-	ElvUI_EltreumUI.Options.args.support = ACH:Group(E:TextGradient(GAMEMENU_SUPPORT, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Direct links to GitHub, CurseForge, Wago and Tukui"], 89, 'tab')
-	ElvUI_EltreumUI.Options.args.support.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support'
-	ElvUI_EltreumUI.Options.args.support.args.changelog = ACH:Input(L["Changelog"], "", 7, false, "full", function() return 'https://github.com/eltreum0/eltruism/blob/main/Changelog.md' end)
-	ElvUI_EltreumUI.Options.args.support.args.issues = ACH:Input(L["Report issues and problems here:"], "", 8, false, "full", function() return 'https://github.com/eltreum0/eltruism/issues' end)
-	--[[ElvUI_EltreumUI.Options.args.support.args.tukui = ACH:Input(L["Addon on Tukui:"], "", 9, false, "full", function()
-		if E.Retail then
-			return 'https://www.tukui.org/addons.php?id=209'
-		elseif E.Wrath then
-			return 'https://www.tukui.org/classic-wotlk-addons.php?id=10'
-		elseif E.Classic then
-			return 'https://www.tukui.org/classic-addons.php?id=49'
-		end
-	end)]]
-	ElvUI_EltreumUI.Options.args.support.args.site = ACH:Input(ElvUI_EltreumUI.Name, "", 9, false, "full", function() return 'https://eltruism.com/' end)
-	ElvUI_EltreumUI.Options.args.support.args.curse = ACH:Input(L["Addon on CurseForge:"], "", 10, false, "full", function() return 'https://www.curseforge.com/wow/addons/elvui-eltruism' end)
-	ElvUI_EltreumUI.Options.args.support.args.wago = ACH:Input(L["Addon on Wago:"], "", 10, false, "full", function() return 'https://addons.wago.io/addons/elvui-eltruism' end)
-
 	--quests
 	ElvUI_EltreumUI.Options.args.quests = ACH:Group(E:TextGradient(QUESTS_LABEL, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Automate Quests and Gossip, add a Quest Item Bar, hide Quests during Boss fights and more"], 85, 'tab')
 	ElvUI_EltreumUI.Options.args.quests.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\quest'
@@ -1388,6 +1325,11 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.cursor.args.texture.args.ring8 = ACH:Execute(L["Type 8"], L["The Cursor will use this type as its texture"], 10, function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring8.tga' ElvUI_EltreumUI:CastCursor() end, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring8')
 	ElvUI_EltreumUI.Options.args.cursor.args.texture.args.ring9 = ACH:Execute(L["Type 9"], L["The Cursor will use this type as its texture"], 11, function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring9.tga' ElvUI_EltreumUI:CastCursor() end, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring9')
 	ElvUI_EltreumUI.Options.args.cursor.args.texture.args.ring10 = ACH:Execute(L["Type 10"], L["The Cursor will use this type as its texture"], 12, function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring10.tga' ElvUI_EltreumUI:CastCursor() end, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring10')
+	ElvUI_EltreumUI.Options.args.cursor.args.texture.args.ring11 = ACH:Execute(L["Type 11"], L["The Cursor will use this type as its texture"], 13, function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring11.tga' ElvUI_EltreumUI:CastCursor() end, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring11')
+	ElvUI_EltreumUI.Options.args.cursor.args.texture.args.ring12 = ACH:Execute(L["Type 12"], L["The Cursor will use this type as its texture"], 14, function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring12.tga' ElvUI_EltreumUI:CastCursor() end, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring12')
+	ElvUI_EltreumUI.Options.args.cursor.args.texture.args.ring13 = ACH:Execute(L["Type 13"], L["The Cursor will use this type as its texture"], 14, function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring13.tga' ElvUI_EltreumUI:CastCursor() end, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring13')
+	ElvUI_EltreumUI.Options.args.cursor.args.texture.args.ring14 = ACH:Execute(L["Type 14"], L["The Cursor will use this type as its texture"], 14, function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring14.tga' ElvUI_EltreumUI:CastCursor() end, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring14')
+	ElvUI_EltreumUI.Options.args.cursor.args.texture.args.ring15 = ACH:Execute(L["Type 15"], L["The Cursor will use this type as its texture"], 14, function() E.db.ElvUI_EltreumUI.cursors.cursor.ring = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring15.tga' ElvUI_EltreumUI:CastCursor() end, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring15')
 
 	--loot
 	ElvUI_EltreumUI.Options.args.loot = ACH:Group(E:TextGradient(LOOT, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add a scrolling loot text that will show items that you loot, filter which items you can loot, enable fast looting and create your own item wishlist"], 85, 'tab')
@@ -3428,8 +3370,117 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.skins.args.databars.args.archeology.args.fontx = ACH:Range(L["Text X offset"], nil, 7, { min = -100, max = 100, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.databars.args.archeology.args.fonty = ACH:Range(L["Text Y offset"], nil, 7, { min = -100, max = 100, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety = value E:StaticPopup_Show('CONFIG_RL') end)
 
+	--line break so these non options are not with the others
+	ElvUI_EltreumUI.Options.args.linebreak = ACH:Group(" ", nil, 86)
+	ElvUI_EltreumUI.Options.args.linebreak.disabled = true
+
+	--weakauras anchor
+	ElvUI_EltreumUI.Options.args.weakauras = ACH:Group(E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's movers to move them"], 87)
+	ElvUI_EltreumUI.Options.args.weakauras.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras'
+	ElvUI_EltreumUI.Options.args.weakauras.args.description1 = ACH:Description(L["WeakAuras"], 2, nil)
+	ElvUI_EltreumUI.Options.args.weakauras.args.description2 = ACH:Description(L["You can set your Weakauras to anchor to custom locations making it easier to move them"], 3, nil)
+	ElvUI_EltreumUI.Options.args.weakauras.args.description3 = ACH:Description(L["In order to use this feature, simply go to your Weakaura, and go to its Group options, scroll down to Position Settings and set the Anchored To Select Frame, then type either |cff82B4ffEltruismWA|r or |cff82B4ffEltruismConsumablesWA|r to anchor the weakaura to the preset location"], 4, nil)
+	ElvUI_EltreumUI.Options.args.weakauras.args.description4 = ACH:Description(L["Setting "].."|cff82B4ffEltruismWA|r"..L[" or "].."|cff82B4ffEltruismConsumablesWA|r"..L[" as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero"], 5, nil)
+	ElvUI_EltreumUI.Options.args.weakauras.args.image = ACH:Group(L["How to use the Anchors"], nil, 6)
+	ElvUI_EltreumUI.Options.args.weakauras.args.image.inline = true
+	ElvUI_EltreumUI.Options.args.weakauras.args.image.args.description1 = ACH:Description(L["Open WeakAuras, go to your group Weakauras and in Group change Position Settings > Anchored To > Select Frame > EltruismWA or EltruismConsumablesWA"], 2, nil)
+	ElvUI_EltreumUI.Options.args.weakauras.args.image.args.description2 = ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\WADemo', nil, 512, 512)
+
+	--discord
+	ElvUI_EltreumUI.Options.args.discord = ACH:Group(E:TextGradient(L["Discord"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Join the Discord for faster support and to report any issues you might encounter"], 87)
+	ElvUI_EltreumUI.Options.args.discord.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\discord'
+	ElvUI_EltreumUI.Options.args.discord.args.description1 = ACH:Description(" ", 2, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\disc', nil, 256, 128)
+	ElvUI_EltreumUI.Options.args.discord.args.description2 = ACH:Description(L["Join the Discord if you have any questions or issues"], 3, nil)
+	ElvUI_EltreumUI.Options.args.discord.args.description2 = ACH:Description(L["Keep in mind the discord is in English"], 4, nil)
+	ElvUI_EltreumUI.Options.args.discord.args.discordlink = ACH:Input("", "", 3, false, "full", function() return 'https://discord.gg/rBXNxUY6pk' end)
+
+	--credits
+	ElvUI_EltreumUI.Options.args.credits = ACH:Group(E:TextGradient(L["Credits"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Credits and Licenses"], 88)
+	ElvUI_EltreumUI.Options.args.credits.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\credits'
+	ElvUI_EltreumUI.Options.args.credits.args.author = ACH:Group(L["Author"], nil, 1)
+	ElvUI_EltreumUI.Options.args.credits.args.author.inline = true
+	ElvUI_EltreumUI.Options.args.credits.args.author.args.description1 = ACH:Description(AUTHORS_STRING, 2, "medium")
+	ElvUI_EltreumUI.Options.args.credits.args.thankyous = ACH:Group(L["Credits and Thank yous"], nil, 3)
+	ElvUI_EltreumUI.Options.args.credits.args.thankyous.inline = true
+	ElvUI_EltreumUI.Options.args.credits.args.thankyous.args.description1 = ACH:Description(THANKYOU_STRING, 4, "medium")
+	ElvUI_EltreumUI.Options.args.credits.args.donators = ACH:Group(L["Donators"], nil, 5)
+	ElvUI_EltreumUI.Options.args.credits.args.donators.inline = true
+	ElvUI_EltreumUI.Options.args.credits.args.donators.args.description1 = ACH:Description(DONATORS_STRING, 6, "medium")
+	ElvUI_EltreumUI.Options.args.credits.args.translators = ACH:Group(L["Translators"], nil, 7)
+	ElvUI_EltreumUI.Options.args.credits.args.translators.inline = true
+	ElvUI_EltreumUI.Options.args.credits.args.translators.args.description1 = ACH:Description(TRANSLATORS_STRING, 8, "medium")
+	ElvUI_EltreumUI.Options.args.credits.args.licenses = ACH:Group(L["License"], nil, 9)
+	ElvUI_EltreumUI.Options.args.credits.args.licenses.inline = true
+	ElvUI_EltreumUI.Options.args.credits.args.licenses.args.description1 = ACH:Description(function()
+		if E.Retail then
+			return 'Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3\nCursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain\nExpand Hunter Stables is merged from Improved Stable Frame by Cybeloras which is licensed under GNU GPLv3\nIcons8 (www.icons8.com) for some of the icons. List in license.txt\nFreeVector (www.freevector.com) for some of the icons. List in license.txt\nLootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3\nRogue Door Opener is a fork of Rogue Door Opener by Burzolog which licensed under GNU GPLv3\nLoot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain\nQuest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3\nCooldown is a fork of discoteq\'s Doom Cooldown Pulse which is licensed under MIT License'
+		else
+			return 'Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3\nCursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain\nIcons8 (www.icons8.com) for some of the icons. List in license.txt\nFreeVector (www.freevector.com) for some of the icons. List in license.txt\nLootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3\nLoot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain\nThe Item Level shown on the Character Panel Skin uses code from Simple Item level by Kemayo, licensed under BSD\nQuest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3\nSockets and Enchants is a fork of Kibs Item Levels by Kibsgaard which is licensed under Public Domain'
+		end
+	end, 10, "medium")
+
+	--support
+	ElvUI_EltreumUI.Options.args.support = ACH:Group(E:TextGradient(GAMEMENU_SUPPORT, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Direct links to GitHub, CurseForge, Wago and Tukui"], 88, 'tab')
+	ElvUI_EltreumUI.Options.args.support.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support'
+	ElvUI_EltreumUI.Options.args.support.args.changelog = ACH:Input(L["Changelog"], "", 7, false, "full", function() return 'https://github.com/eltreum0/eltruism/blob/main/Changelog.md' end)
+	ElvUI_EltreumUI.Options.args.support.args.issues = ACH:Input(L["Report issues and problems here:"], "", 8, false, "full", function() return 'https://github.com/eltreum0/eltruism/issues' end)
+	--[[ElvUI_EltreumUI.Options.args.support.args.tukui = ACH:Input(L["Addon on Tukui:"], "", 9, false, "full", function()
+		if E.Retail then
+			return 'https://www.tukui.org/addons.php?id=209'
+		elseif E.Wrath then
+			return 'https://www.tukui.org/classic-wotlk-addons.php?id=10'
+		elseif E.Classic then
+			return 'https://www.tukui.org/classic-addons.php?id=49'
+		end
+	end)]]
+	ElvUI_EltreumUI.Options.args.support.args.site = ACH:Input(ElvUI_EltreumUI.Name, "", 9, false, "full", function() return 'https://eltruism.com/' end)
+	ElvUI_EltreumUI.Options.args.support.args.curse = ACH:Input(L["Addon on CurseForge:"], "", 10, false, "full", function() return 'https://www.curseforge.com/wow/addons/elvui-eltruism' end)
+	ElvUI_EltreumUI.Options.args.support.args.wago = ACH:Input(L["Addon on Wago:"], "", 10, false, "full", function() return 'https://addons.wago.io/addons/elvui-eltruism' end)
+
+	--faq
+	ElvUI_EltreumUI.Options.args.faq = ACH:Group(E:TextGradient("F.A.Q", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 88, 'tab')
+	ElvUI_EltreumUI.Options.args.faq.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\faq'
+	ElvUI_EltreumUI.Options.args.faq.args.faq = ACH:Group(E:TextGradient(L["Frequently Asked Questions"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 20)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.inline = true
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q1 = ACH:Group(E:TextGradient(L["How do I disable the chat hide?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q1.inline = true
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q1.args.answer = ACH:Description(L["If you are coming from a version before 2.3.0 then check ElvUI > Shadow and Light > Chat > Set Hide to None\nOtherwise, check Eltruism > Chat"])
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q2 = ACH:Group(E:TextGradient(L["After the Chat fades I still see some icons"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q2.inline = true
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q2.args.answer = ACH:Description(L["This is a Blizzard bug that was found a long time ago"])
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q3 = ACH:Group(E:TextGradient(L["My chat hides when my mouse leaves it"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q3.inline = true
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q3.args.answer = ACH:Description(L["Disable Mouse over in Eltruism > Chat"])
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q4 = ACH:Group(E:TextGradient(L["My chat hides after a few seconds"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q4.inline = true
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q4.args.answer = ACH:Description(L["Disable Inactivity/Fader in Eltruism > Chat"])
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q5 = ACH:Group(E:TextGradient(L["My action bars and unitframes keep disappearing!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q5.inline = true
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q5.args.answer = ACH:Description(L["ElvUI > ActionBars > Player Bars > on each Bar disable Inherit Global Fade\nElvUI > Unitframes > Type of Unit > Unit > Fader, disable the fader"])
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q6 = ACH:Group(E:TextGradient(L["My Details! window disappears after combat!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q6.inline = true
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q6.args.answer = ACH:Description(L["If you have AddOnSkins then go to  ElvUI > AddOnSkins > Embed Settings > Turn off Out of Combat (Hide)\nIf details is showing up on top of the trade chat, try going to AddOnSkins > Embed Settings and making sure that its hiding the Trade/Loot chat, you can also right click the > arrow in order to toggle the details embed.\nIf you do not have AddOnSkins then go to Eltruism > Skins > Addons > Details > Embed > Hide out of Combat, you can also change the amount of time it takes for it to hide.\nIn either AddOnSkins or Eltruism embeds you can also Right Click the Chat Toggle (the Arrow [ > ] on the bottom right) to Toggle the Visibility\nA shortcut to disabling the combat hide is /eltruism detailshide"])
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7 = ACH:Group(E:TextGradient(L["Music keeps playing when AFK"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7.inline = true
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7.args.answer = ACH:Description(L["Disable the AFK music in Eltruism > AFK in order to stop the music from playing"])
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7 = ACH:Group(E:TextGradient(L["How do I make bar 1 my action paging bar instead of bar 4?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7.inline = true
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7.args.answer = ACH:Description(L["You can swap them out in Eltruism > Media, or by using the command /eltruism paging, make sure to reload"])
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q8 = ACH:Group(E:TextGradient(L["How can I get blizzard's floating Mana/Energy/Rage/Other combat text back?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q8.inline = true
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q8.args.answer = ACH:Description(L["Go to ElvUI > Eltruism > Misc > Blizzard Combat Text and uncheck Disable Combat Text and Check Enable Resource Gains, then reload"])
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q9 = ACH:Group(E:TextGradient(L["My Loot Rolls are missing!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q9.inline = true
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q9.args.answer = ACH:Description(L["You have enabled Hide Alert Frame, disable that setting to restore the Alert Frame/Loot Rolls"])
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q10 = ACH:Group(E:TextGradient(L["Where is my floating combat text?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q10.inline = true
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q10.args.answer = ACH:Description(L["It's possible you installed NameplateSCT/FCT and removed it so the floating combat text was not enabled back\nYou can go into Eltruism > CVars > Other CVars > Restore All Combat Text to restore them"])
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q11 = ACH:Group(E:TextGradient(L["My nameplates flash once an enemy is below 20% Health!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q11.inline = true
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q11.args.answer = ACH:Description(L["That is due to the EltreumExecute filter, you can disable it in:\nElvUI > Nameplates > Style Filter > (from the dropdown) EltreumExecute > Triggers > Uncheck Enable"])
+
 	--changelog
-	ElvUI_EltreumUI.Options.args.changelog = ACH:Group(E:TextGradient(L["Changelog"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Check what has changed in the current version of Eltruism"], 87, 'tab')
+	ElvUI_EltreumUI.Options.args.changelog = ACH:Group(E:TextGradient(L["Changelog"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Check what has changed in the current version of Eltruism"], 88, 'tab')
 	ElvUI_EltreumUI.Options.args.changelog.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\changelog'
 	ElvUI_EltreumUI.Options.args.changelog.args.description1 = ACH:Description(E.NewSign..E:TextGradient("v"..ElvUI_EltreumUI.Version, 0.50, 0.70, 1, 0.67, 0.95, 1), 1, "large", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 2)

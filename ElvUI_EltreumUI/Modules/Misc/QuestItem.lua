@@ -653,7 +653,7 @@ function ElvUI_EltreumUI:QuestItem()
 							if not blocklist[itemId] then
 								local _, _, _, _, _, itemType, itemSubType, _, _, _, _, classID = GetItemInfo(link)
 								if CheckButtonExistence(itemId) then
-									if E.Retail then
+									if E.Retail or E.Cata then
 										local questInfo = C_Container.GetContainerItemQuestInfo(bag,slot)
 										if ((questInfo.isQuestItem or (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12)) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
 											local _, count = GetContainerItemInfo(bag,slot)

@@ -227,10 +227,10 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 
 	-- Custom Texts
 	local currentprofile
-	for character, charprofile in pairs (ElvDB.profileKeys) do
-		if character:match(E.myname) then
-			currentprofile = charprofile
-		end
+	if ElvDB.profileKeys[E.mynameRealm] then
+		currentprofile = ElvDB.profileKeys[E.mynameRealm]
+	else
+		currentprofile = false
 	end
 	for profile, data in pairs(ElvDB.profiles) do
 		if profile == currentprofile then
@@ -387,8 +387,17 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		end
 	end
 
-	if E.db["datatexts"]["panels"]["EltruismTime"] and E.db["datatexts"]["panels"]["EltruismTime"]["enable"] then
-		E.global["datatexts"]["customPanels"]["EltruismTime"]["fonts"]["font"] = fontvalue
+	--Custom Datatext Panels
+	for profile,data in pairs(ElvDB.global) do
+		if profile == "datatexts" and data then
+			if data.customPanels then
+				for _, customPanel in next, data.customPanels do
+					if customPanel then
+						customPanel["fonts"]["font"] = fontvalue
+					end
+				end
+			end
+		end
 	end
 
 	--FCT font

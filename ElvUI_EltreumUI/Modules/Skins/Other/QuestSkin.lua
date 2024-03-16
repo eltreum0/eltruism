@@ -81,7 +81,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			elseif E.locale == "zhCN" or E.locale == "zhTW" then
 				wowheadregion = "cn.wowhead.com"
 			end
-		elseif E.Wrath then
+		elseif E.Wrath and not E.Cata then
 			if E.locale == "deDE" then
 				wowheadregion = "wowhead.com/wotlk/de"
 			elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW" then
@@ -100,6 +100,26 @@ function ElvUI_EltreumUI:SkinQuests()
 				wowheadregion = "wowhead.com/wotlk/ru"
 			elseif E.locale == "zhCN" or E.locale == "zhTW" then
 				wowheadregion = "wowhead.com/wotlk/cn"
+			end
+		elseif E.Cata then
+			if E.locale == "deDE" then
+				wowheadregion = "wowhead.com/cata/de"
+			elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW" then
+				wowheadregion = "wowhead.com/cata"
+			elseif E.locale == "esMX" or E.locale == "esES" then
+				wowheadregion = "wowhead.com/cata/es"
+			elseif E.locale == "frFR" then
+				wowheadregion = "wowhead.com/cata/fr"
+			elseif E.locale == "itIT" then
+				wowheadregion = "wowhead.com/cata/it"
+			elseif E.locale == "koKR" then
+				wowheadregion = "wowhead.com/cata/ko"
+			elseif E.locale == "ptBR" or E.locale == "ptPT" then
+				wowheadregion = "wowhead.com/cata/pt"
+			elseif E.locale == "ruRU" then
+				wowheadregion = "wowhead.com/cata/ru"
+			elseif E.locale == "zhCN" or E.locale == "zhTW" then
+				wowheadregion = "wowhead.com/cata/cn"
 			end
 		elseif E.Classic then
 			if E.locale == "deDE" then

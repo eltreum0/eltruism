@@ -64,6 +64,7 @@ local maxpower = 0
 function ElvUI_EltreumUI:PowerPrediction()
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
 		EltreumPowerPrediction:Hide() --hide at the start before events
+		EltreumPowerPredictionIncoming:SetValue(0)
 		EltreumPowerPredictionIncoming:Hide() --hide at the start before events
 		predictioncolorr, predictioncolorg, predictioncolorb = EltreumPowerBar:GetStatusBarColor()
 

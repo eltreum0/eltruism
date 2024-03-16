@@ -14,6 +14,7 @@ local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
 local timermonitor = CreateFrame("FRAME")
 local select = _G.select
 local valuecolors = E:ClassColor(E.myclass, true)
+local DT = E:GetModule('DataTexts')
 
 --simple function to set shadow color
 function ElvUI_EltreumUI:ShadowColor(shadow)
@@ -224,7 +225,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 				if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
-					if E.Retail or E.Wrath then
+					if E.Retail or E.Wrath or E.Cata then
 						if not _G.MacroFrame.shadow then
 							_G.MacroFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.MacroFrame.shadow)
@@ -453,6 +454,14 @@ function ElvUI_EltreumUI:Shadows()
 							_G.CalendarViewHolidayFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.CalendarViewHolidayFrame.shadow)
 						end
+						if _G.CalendarContextMenu then
+							_G.CalendarContextMenu:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.CalendarContextMenu.shadow)
+						end
+						if _G.CalendarCreateEventFrame then
+							_G.CalendarCreateEventFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.CalendarCreateEventFrame.shadow)
+						end
 					end
 					if (arg == "Blizzard_Communities") or IsAddOnLoaded("Blizzard_Communities") then
 						if _G.CommunitiesFrame then
@@ -537,10 +546,19 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if (arg == "Blizzard_AchievementUI") or IsAddOnLoaded("Blizzard_AchievementUI") then
-						if E.Retail then
-							if _G.AchievementFrame and not _G.AchievementFrame.shadow then
-								_G.AchievementFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(_G.AchievementFrame.shadow)
+						if E.Retail or E.Cata then
+							if _G.AchievementFrame then
+								if _G.AchievementFrame.backdrop then
+									if not _G.AchievementFrame.backdrop.shadow then
+										_G.AchievementFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(_G.AchievementFrame.backdrop.shadow)
+									end
+								else
+									if not _G.AchievementFrame.shadow then
+										_G.AchievementFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(_G.AchievementFrame.shadow)
+									end
+								end
 							end
 							if _G.AchievementFrameTab3 and _G.AchievementFrameTab3.backdrop and not _G.AchievementFrameTab3.backdrop.shadow then
 								_G.AchievementFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -771,7 +789,7 @@ function ElvUI_EltreumUI:Shadows()
 							end
 						end
 					end
-				elseif E.Wrath or E.Classic then
+				else
 					if (arg == "Blizzard_AuctionUI") or IsAddOnLoaded("Blizzard_AuctionUI") then
 						if _G.AuctionFrame and _G.AuctionFrame.backdrop and not _G.AuctionFrame.backdrop.shadow then
 							_G.AuctionFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -860,7 +878,6 @@ function ElvUI_EltreumUI:Shadows()
 				_G.PVPMatchResults,
 				_G.MajorFactionRenownFrame,
 				_G.SubscriptionInterstitialFrame,
-				--_G.ImmersionFrame.TalkBox,
 				_G.ReadyStatus,
 				_G.QuickKeybindTooltip,
 				_G.WorldMapTooltip,
@@ -880,6 +897,12 @@ function ElvUI_EltreumUI:Shadows()
 				_G.OpacityFrame,
 				_G.TicketStatusFrameButton,
 				_G.ColorPickerFrame,
+				_G.ChannelFrame,
+				_G.QuestModelScene,
+				_G.QuestNPCModelTextFrame,
+				_G.SpellBookFrame,
+				_G.DressUpFrame,
+				_G.CopyChatFrame,
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame and not frame.shadow then
@@ -1019,7 +1042,6 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--datatexts
-			local DT = E:GetModule('DataTexts')
 			if DT.tooltip then
 				if not DT.tooltip.shadow then
 					DT.tooltip:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -1063,7 +1085,6 @@ function ElvUI_EltreumUI:Shadows()
 					_G.ZoneAbilityFrame,
 					_G.ReputationFrame,
 					_G.TokenFrame,
-					_G.SpellBookFrame,
 					_G.FriendsFrame,
 					_G.RecruitAFriendRewardsFrame,
 					_G.MerchantFrame,
@@ -1082,7 +1103,6 @@ function ElvUI_EltreumUI:Shadows()
 					_G.PVEFrameTab2.backdrop,
 					_G.PVEFrameTab3.backdrop,
 					_G.CollectionsJournal,
-					_G.DressUpFrame,
 					_G.DressUpFrame.OutfitDetailsPanel,
 					_G.WeeklyRewardsFrame,
 					_G.CovenantPreviewFrame,
@@ -1093,8 +1113,6 @@ function ElvUI_EltreumUI:Shadows()
 					_G.QuestFrame,
 					_G.EquipmentFlyoutFrameButtons,
 					_G.EditModeManagerFrame,
-					_G.QuestModelScene,
-					_G.QuestNPCModelTextFrame,
 				}
 				for _, frame in pairs(retailframes) do
 					if frame and not frame.shadow then
@@ -1144,7 +1162,7 @@ function ElvUI_EltreumUI:Shadows()
 					ElvUI_EltreumUI:ShadowColor(_G.BossButton.shadow)
 				end
 			end
-		elseif E.Wrath or E.Classic then
+		else
 
 			if E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
 				--totems
@@ -1173,7 +1191,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--Shaman Totem things
-				if E.Wrath then
+				if E.Wrath or E.Cata then
 					if E.myclass == "SHAMAN" and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.totembar) and E.db.actionbar.totemBar.enable then
 						local totemframes = {
 							_G.MultiCastSummonSpellButton,
@@ -1248,7 +1266,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--wrath only frames
-				if E.Wrath then
+				if E.Wrath or E.Cata then
 					local tbcframes = {
 					--_G.LFGParentFrame,
 					_G.LFGParentFrameTab1,
@@ -3465,23 +3483,6 @@ function ElvUI_EltreumUI:Shadows()
 				RightChatShadow:Hide()
 			end
 		end
-		------------------------------------------------------------------------------------------------------datatext
-		if E.db.ElvUI_EltreumUI.skins.shadow.datatexts then
-			E:Delay(1, function()
-				for i = 0, 10 do
-					if _G["ElvUI_DTPanel"..tostring(i)] then
-						if _G["ElvUI_DTPanel"..tostring(i)].template and _G["ElvUI_DTPanel"..tostring(i)].template ~= 'NoBackdrop' then
-							if not _G["ElvUI_DTPanel"..tostring(i)].shadow then
-								_G["ElvUI_DTPanel"..tostring(i)]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(_G["ElvUI_DTPanel"..tostring(i)].shadow)
-							end
-						end
-					else
-						break
-					end
-				end
-			end)
-		end
 		------------------------------------------------------------------------------------------------------other addons
 		if IsAddOnLoaded('ProjectAzilroka') then
 			if _G.stAMFrame and not _G.stAMFrame.shadow then
@@ -3846,3 +3847,20 @@ function ElvUI_EltreumUI:ChatBubblesShadows()
 	end
 end
 hooksecurefunc(M, "LoadChatBubbles", ElvUI_EltreumUI.ChatBubblesShadows)
+
+--Datatexts
+function ElvUI_EltreumUI:DataTextShadows(name)
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.datatexts then
+		local panel = DT:FetchFrame(name)
+		if not panel then return end
+		E:Delay(0.5, function() --needs a delay to wait for the panel setup
+			if not panel.template then return end
+			if panel.template ~= 'NoBackdrop' then
+				panel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(panel.shadow)
+			end
+		end)
+
+	end
+end
+hooksecurefunc(DT,"BuildPanelFrame", ElvUI_EltreumUI.DataTextShadows)
