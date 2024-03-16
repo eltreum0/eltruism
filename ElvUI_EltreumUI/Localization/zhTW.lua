@@ -1550,6 +1550,8 @@ L["Your World of Warcraft version is not expected to be compatible with Eltruism
 L["Your World of Warcraft version is older than Eltruism, you might run into issues!"] = true
 L["Zone Text"] = true
 L["|cffff0000Private Servers are unsupported!"] = true
+--lines after reordering
+L["Displays % - HP and a status symbol. Can be customized in Eltruism > Media"] = true
 L["Frequently Asked Questions"] = true
 L["How do I disable the chat hide?"] = true
 L["If you are coming from a version before 2.3.0 then check ElvUI > Shadow and Light > Chat > Set Hide to None\nOtherwise, check Eltruism > Chat"] = true
@@ -1575,3 +1577,6 @@ L["Where is my floating combat text?"] = true
 L["It's possible you installed NameplateSCT/FCT and removed it so the floating combat text was not enabled back\nYou can go into Eltruism > CVars > Other CVars > Restore All Combat Text to restore them"] = true
 L["My nameplates flash once an enemy is below 20% Health!"] = true
 L["That is due to the EltreumExecute filter, you can disable it in:\nElvUI > Nameplates > Style Filter > (from the dropdown) EltreumExecute > Triggers > Uncheck Enable"] = true
+L["Header Font Size"] = true
+L["Hide Dash"] = true
+L["Hide Completion Checkmark"] = true
