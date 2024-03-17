@@ -14,44 +14,46 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 		local EltreumCharacters = {
 
 			--Retail Alliance
-			["Missiles-Stormrage"] = EltreumIcon,
-			["Eltreum-Stormrage"] = EltreumIcon,
-			["Effecta-Stormrage"] = EltreumIcon,
-			["Deci-Stormrage"] = EltreumIcon,
-			["Kuriatas-Stormrage"] = EltreumIcon,
-			["Tyriendal-Stormrage"] = EltreumIcon,
-			["Lastwill-Stormrage"] = EltreumIcon,
-			["Auramaster-Stormrage"] = EltreumIcon,
-			["Exelion-Stormrage"] = EltreumIcon,
-			["Repairs-Stormrage"] = EltreumIcon,
-			["Brihtnes-Stormrage"] = EltreumIcon,
-			["Insidium-Stormrage"] = EltreumIcon,
-			["Chromatus-Stormrage"] = EltreumIcon,
+			["Player-60-0B62BF9C"] = EltreumIcon,
+			["Player-60-0BBBFF11"] = EltreumIcon,
+			["Player-60-0CDCC518"] = EltreumIcon,
+			["Player-60-0D00D78E"] = EltreumIcon,
+			["Player-60-0DBEDC14"] = EltreumIcon,
+			["Player-60-0DEBE0B7"] = EltreumIcon,
+			["Player-60-0DEC3E9C"] = EltreumIcon,
+			["Player-60-0DECCECB"] = EltreumIcon,
+			["Player-60-0DEDEAAD"] = EltreumIcon,
+			["Player-60-0DEDFB0A"] = EltreumIcon,
+			["Player-60-0DFAC76D"] = EltreumIcon,
+			["Player-60-0DFAC842"] = EltreumIcon,
+			["Player-60-0DFAC92E"] = EltreumIcon,
+			["Player-60-0DFD7A01"] = EltreumIcon,
+			["Player-60-0E06D642"] = EltreumIcon,
+			["Player-60-0EDC440B"] = EltreumIcon,
 
 			--Retail Horde
-			["Antarcticus-Area52"] = EltreumIcon,
-			["Eltreum-Area52"] = EltreumIcon,
+			["Player-3676-09816781"] = EltreumIcon,
+			["Player-3676-0984E6B5"] = EltreumIcon,
+			["Player-3676-0987AC00"] = EltreumIcon,
+			["Player-3676-099EF991"] = EltreumIcon,
+			["Player-3676-0DF62D9C"] = EltreumIcon,
+
+			--other
+			["Player-100-0DED4208"] = EltreumIcon,
 
 			--Wrath
-			["Antarcticus-Faerlina"] = EltreumIcon,
-			["Atrophos-Faerlina"] = EltreumIcon,
-			["Kuriatas-Faerlina"] = EltreumIcon,
-			["Tartharus-Faerlina"] = EltreumIcon,
-			["Futuria-Faerlina"] = EltreumIcon,
-			["Repairs-Faerlina"] = EltreumIcon,
-			["Durtram-Faerlina"] = EltreumIcon,
-			["Auramaster-Faerlina"] = EltreumIcon,
-			["Eltreum-Faerlina"] = EltreumIcon,
-			["Effecta-Faerlina"] = EltreumIcon,
-			["Brihtnes-Faerlina"] = EltreumIcon,
+			["Player-4408-03A87F8F"] = EltreumIcon,
+			["Player-4408-03E923CC"] = EltreumIcon,
+			["Player-4408-03F14DE7"] = EltreumIcon,
+			["Player-4408-04531453"] = EltreumIcon,
 
 			--Era Hardcore
 			["Eltreum-DefiasPillager"] = EltreumIcon,
 
 			--Era Season of Discovery
 			["Player-5815-029B0939"] = EltreumIcon,
-			["Player-5815-02ABCED4"] = EltreumIcon,
 			["Player-5815-02ABCE57"] = EltreumIcon,
+			["Player-5815-02ABCED4"] = EltreumIcon,
 			["Player-5815-02ABD315"] = EltreumIcon,
 			["Player-5815-02ABD3B9"] = EltreumIcon,
 			["Player-5815-02ABDC2E"] = EltreumIcon,
