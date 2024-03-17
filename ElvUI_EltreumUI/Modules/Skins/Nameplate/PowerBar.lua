@@ -11,7 +11,6 @@ local next = _G.next
 local UnitPowerMax = _G.UnitPowerMax
 local UnitPower = _G.UnitPower
 local UnitPowerType = _G.UnitPowerType
-local rad = _G.UnitPowerType
 local UnitExists = _G.UnitExists
 local UnitCanAttack = _G.UnitCanAttack
 local C_NamePlate = _G.C_NamePlate
@@ -238,6 +237,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				end
 				isSetup = true
 			end
+
 			if E.Retail then
 				if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
 					EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, 16)
@@ -280,6 +280,13 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 						EltreumPowerBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, ElvUI_EltreumUI:GradientColors(powertype, false, false))
 					end
 				end
+			end
+
+			--fix if incoming would be higher than the max
+			if EltreumPowerBar:GetValue() >= UnitPowerMax("player") then
+				EltreumPowerPredictionIncoming:SetValue(UnitPowerMax("player") - EltreumPowerBar:GetValue())
+			elseif (EltreumPowerBar:GetValue() + EltreumPowerPredictionIncoming:GetValue()) >= UnitPowerMax("player") then
+				EltreumPowerPredictionIncoming:SetValue(UnitPowerMax("player") - EltreumPowerBar:GetValue())
 			end
 
 			--adjust position, show/hide, show colors depending on powertype if not gradient
