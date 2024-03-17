@@ -2016,7 +2016,7 @@ E:AddTag("eltruism:lowmana", 'UNIT_POWER_FREQUENT', function(unit,_,args)
 				role = GetSpecializationRole(currentSpec)
 			end
 		elseif E.Wrath then
-			role = GetTalentGroupRole(GetActiveTalentGroup())
+			role = UnitGroupRolesAssigned("player")
 		end
 		if role == 'HEALER' or E.Classic then
 			if (UnitPower("player")/UnitPowerMax("player")) < (tonumber(percentage) * 0.01) then
