@@ -41,15 +41,7 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 											_G["CompactRaidGroup"..k.."Member"..l].healthBar:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTexture(unitclass))
 										end
 									else
-										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-											if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
-												if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-													if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
-														_G["CompactRaidGroup"..k.."Member"..l].healthBar:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
-													end
-												end
-											end
-										else
+										if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 											if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 												_G["CompactRaidGroup"..k.."Member"..l].healthBar:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 											end
@@ -68,6 +60,11 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 
 									--gradient
 									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
+										if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+											if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
+												_G["CompactRaidGroup"..k.."Member"..l].healthBar:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+											end
+										end
 										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 											_G["CompactRaidGroup"..k.."Member"..l].healthBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(unitclass, false, false))
 										else
@@ -103,15 +100,7 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 										_G["CompactRaidFrame"..i].healthBar:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTexture(unitclass))
 									end
 								else
-									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
-											if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-												if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
-													_G["CompactRaidFrame"..i].healthBar:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
-												end
-											end
-										end
-									else
+									if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 										if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 											_G["CompactRaidFrame"..i].healthBar:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 										end
@@ -130,6 +119,11 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 
 								--gradient
 								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
+									if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+										if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
+											_G["CompactRaidFrame"..i].healthBar:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+										end
+									end
 									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 										_G["CompactRaidFrame"..i].healthBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(unitclass, false, false))
 									else
@@ -186,15 +180,7 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 										_G["CompactPartyFrameMember"..l].healthBar:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTexture(unitclass))
 									end
 								else
-									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
-										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
-											if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
-												if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
-													_G["CompactPartyFrameMember"..l].healthBar:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
-												end
-											end
-										end
-									else
+									if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 										if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
 											_G["CompactPartyFrameMember"..l].healthBar:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 										end
@@ -213,6 +199,11 @@ function ElvUI_EltreumUI:BlizzardTexturesGradient()
 
 								--gradient
 								if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits then
+									if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
+										if not E.db.ElvUI_EltreumUI.unitframes.gradientmode.useUFtexture then
+											_G["CompactPartyFrameMember"..l].healthBar:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.gradientmode.texture))
+										end
+									end
 									if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
 										_G["CompactPartyFrameMember"..l].healthBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(unitclass, false, false))
 									else
