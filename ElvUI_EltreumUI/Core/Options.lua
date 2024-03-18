@@ -3416,6 +3416,13 @@ function ElvUI_EltreumUI:Configtable()
 	--support
 	ElvUI_EltreumUI.Options.args.support = ACH:Group(E:TextGradient(GAMEMENU_SUPPORT, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Direct links to GitHub, CurseForge, Wago and Tukui"], 88, 'tab')
 	ElvUI_EltreumUI.Options.args.support.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support'
+	ElvUI_EltreumUI.Options.args.support.args.debug = ACH:Execute(L["Debug"], nil, 1, function()
+		if next(ElvDB.EltruismDisabledAddOns) then
+			ElvUI_EltreumUI:DebugMode("off")
+		else
+			ElvUI_EltreumUI:DebugMode("on")
+		end
+	end)
 	ElvUI_EltreumUI.Options.args.support.args.changelog = ACH:Input(L["Changelog"], "", 7, false, "full", function() return 'https://github.com/eltreum0/eltruism/blob/main/Changelog.md' end)
 	ElvUI_EltreumUI.Options.args.support.args.issues = ACH:Input(L["Report issues and problems here:"], "", 8, false, "full", function() return 'https://github.com/eltreum0/eltruism/issues' end)
 	--[[ElvUI_EltreumUI.Options.args.support.args.tukui = ACH:Input(L["Addon on Tukui:"], "", 9, false, "full", function()
@@ -3430,7 +3437,6 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.support.args.site = ACH:Input(ElvUI_EltreumUI.Name, "", 9, false, "full", function() return 'https://eltruism.com/' end)
 	ElvUI_EltreumUI.Options.args.support.args.curse = ACH:Input(L["Addon on CurseForge:"], "", 10, false, "full", function() return 'https://www.curseforge.com/wow/addons/elvui-eltruism' end)
 	ElvUI_EltreumUI.Options.args.support.args.wago = ACH:Input(L["Addon on Wago:"], "", 10, false, "full", function() return 'https://addons.wago.io/addons/elvui-eltruism' end)
-
 	ElvUI_EltreumUI.Options.args.support.args.discord = ACH:Description(" ", 42, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\disc', nil, 256, 128)
 	ElvUI_EltreumUI.Options.args.support.args.discord2 = ACH:Description(L["Join the Discord for faster support and to report any issues you might encounter"], 43, nil)
 	ElvUI_EltreumUI.Options.args.support.args.discord3 = ACH:Description(L["Join the Discord if you have any questions or issues"], 44, nil)
