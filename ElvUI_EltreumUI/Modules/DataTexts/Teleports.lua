@@ -467,7 +467,7 @@ local function EltruismTeleportsOnEnter()
 			end
 		end
 		--print(nameitems,PlayerHasToy(v),C_ToyBox.IsToyUsable(v))
-		if texture and nameitems and ((hasItem > 0 and IsUsableItem(v)) or (E.Retail and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v))) then
+		if texture and nameitems and ((hasItem > 0 and IsUsableItem(v)) or (E.Retail or E.Wrath and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v))) then
 
 			local start, duration = GetItemCooldown(v)
 			local cooldown = start + duration - GetTime()
@@ -553,7 +553,7 @@ local function EltruismTeleportsOnEnter()
 						hasItem = 0
 					end
 				end
-				if texture and nameitems and (hasItem > 0 or (E.Retail and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v)) ) then
+				if texture and nameitems and (hasItem > 0 or (E.Retail or E.Wrath and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v)) ) then
 					local startcd, durationcd = GetItemCooldown(v)
 					local cooldown2 = startcd + durationcd - GetTime()
 					if cooldown2 >= 2 then

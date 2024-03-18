@@ -1548,7 +1548,7 @@ function ElvUI_EltreumUI:Configtable()
 			else
 				local name, itemLink = GetItemInfo(v)
 				local hasItem = GetItemCount(v)
-				if name and ((hasItem > 0 and IsUsableItem(v)) or (E.Retail and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v))) then
+				if name and ((hasItem > 0 and IsUsableItem(v)) or (E.Retail or E.Wrath and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v))) then
 					local itemid = itemLink:match("item:(%d+)")
 					tpspellsitems[itemid] = name
 				end
