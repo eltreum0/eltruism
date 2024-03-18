@@ -1696,6 +1696,7 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('allowCompareWithToggle', 1) --compare using shift
 	SetCVar('instantQuestText', 1) -- makes quest text show fast instead of per line
 	SetCVar('maxFPSLoading', 30) --smoother loading bar
+	SetCVar('PushToTalkSound', 0) --disable tts queue sound (may be protected and not apply though)
 
 	-- fast loot
 	SetCVar("autoLootRate", 1)
