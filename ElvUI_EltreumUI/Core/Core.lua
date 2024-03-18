@@ -284,7 +284,7 @@ function ElvUI_EltreumUI:Anchors()
 
 	if E.db.ElvUI_EltreumUI.skins.blizzframes.hideeventoaster then
 		_G.EventToastManagerFrame:UnregisterAllEvents()
-		if E.Retail then
+		if E.Retail and _G.ChallengeModeCompleteBanner then
 			_G.ChallengeModeCompleteBanner:UnregisterAllEvents()
 		end
 	end
