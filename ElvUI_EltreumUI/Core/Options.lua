@@ -3501,39 +3501,39 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added an Allowed list to Cooldown Module where only spells on the list will be announced/shown
-Added /eltruism paging command to quickly swap action paging between Bar1 and Bar4
-Added an option to disable the Blue Shaman class color in Classic Era
-Added an option to set the maximum length for the Cooldown module
-Added greyscaletags such as [eltruism:greyscaleclass:player]
-Added an option for vertical gradient Experience Databar
-Added an option for Custom Class Icons in Chat
-Added [eltruism:hpstatus:reverse] tag
-Added Greyscale Class Icons
-Added Metal Lord font
+Added an option to change the font size of the header text in the Quests skin
+Added an option to hide the checkmark in the Quests skin
+Added a few more units to the classification icon list
+Added an option to hide the dash in the Quests skin
+Added a Details icon pack for the Class Symbols
+Added basic support for Cataclysm Beta
+Added a few more cursor textures
+Added FAQ in the options
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated gradient and tags to also apply to Followers while in Follower dungeons
-Updated Shadows to not apply to ElvUI frame if Ace skin is disabled
-Updated animation scale for Cooldown to allow for bigger icons
-Updated Color Picker Wheel mask for 10.2.5
-Updated Immersion skin to fix a font
-Updated German locale by Dlarge
-Updated Player Castbar mover
+Updated Details name skin to be one character shorter and avoid the escape sequences
+Updated the Blizzard Raid frames skin to also work with Raid style Party frames
+Updated Quests skin to also skin a few things on the Traveler's Log
+Updated Font application in Media to now better apply to Datatexts
+Updated options layout to split non options from the others
+Updated Datatext shadows to better apply to Datatext panels
+Updated the teleports Datatext to also use toys in Wrath
+Updated Role Function to once again work in Wrath
+Updated ElvUI and Ace3 Skin
+Updated for 10.2.6
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue where the texture color of backgrounds would be replaced in dark mode
-Fixed an issue with borders when using offset or spaced power on some frames
-Fixed an issue with the Details embed where it would not properly position
-Fixed an error during install due to a database change in Shadow and Light
-Fixed an error in the Auctionator skin after an Auctionator update
-Fixed a possible error with the AvQuest font
-Fixed a possible issue with the Quest Skin
-Fixed incorrect tags on player unitframe
+Fixed an issue where fonts could be applied to other ElvUI profiles if the names of the characters matched
+Fixed a possible issue with the Power Bar where it could have wrong starting values
+Fixed an issue where BigWigs profile could overwrite current profiles
+Fixed an issue where a German locale text was being used in English
+Fixed the [eltruism:healermana] tag in Wrath
+Fixed a possible issue when hiding toasts
+Fixed some Unitframe shadows
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
