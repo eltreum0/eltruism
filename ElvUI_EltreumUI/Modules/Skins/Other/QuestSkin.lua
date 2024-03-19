@@ -387,8 +387,8 @@ function ElvUI_EltreumUI:SkinQuests()
 								line.Dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							end
 						end
-						if line.Text and line.Text:GetText() then
-							if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
+						if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
+							if line.Text and line.Text:GetText() then
 								local nodash = gsub(line.Text:GetText(),"- ","")
 								line.Text:SetText(nodash)
 							end
