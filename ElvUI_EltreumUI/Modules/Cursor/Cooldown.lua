@@ -15,12 +15,13 @@ local GetSpellCooldown = _G.GetSpellCooldown
 local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetContainerItemLink = _G.C_Container.GetContainerItemLink
 local tonumber = _G.tonumber
-local GetItemInfo = _G.GetItemInfo
-local GetItemCooldown = _G.C_Container.GetItemCooldown
+local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
+local GetItemCooldown = _G.C_Container.GetItemCooldown or _G.C_Item and _G.C_Item.GetItemCooldown --TODO, confirm it works
 local GetPetActionCooldown = _G.GetPetActionCooldown
 local PlaySoundFile = _G.PlaySoundFile
 local enabled
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
+--local UseItemByName = _G.C_Item and _G.C_Item.UseItemByName or _G.UseItemByName --TODO 11.0, check this hook
 
 --onupdate things
 local NormalUpdateDelay = 1 --1.0/10 -- update while hidden

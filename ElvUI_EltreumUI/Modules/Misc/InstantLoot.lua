@@ -6,9 +6,9 @@ local UIParent = _G.UIParent
 local ERR_INV_FULL = _G.ERR_INV_FULL
 local GetNumLootItems = _G.GetNumLootItems
 local GetLootSlotLink = _G.GetLootSlotLink
-local GetItemInfo = _G.GetItemInfo
-local GetItemIcon = _G.GetItemIcon
-local GetItemQualityColor = _G.GetItemQualityColor
+local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
+local GetItemIcon = _G.C_Item and _G.C_Item.GetItemIconByID or _G.GetItemIcon
+local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local tonumber = _G.tonumber
 local UIFrameFadeIn = _G.UIFrameFadeIn
 local GetCVarBool = _G.C_CVar and _G.C_CVar.GetCVarBool or _G.GetCVarBool
@@ -206,7 +206,7 @@ EltruismInstantLoot:SetScript("OnEvent", InstantLoot)
 				for i = GetNumLootItems(), 1, -1 do
 					local itemLink = GetLootSlotLink(i)
 					local _, _, _, _, _, _, _, itemStackCount = GetItemInfo(itemLink)
-					local itemCount = GetItemCount(itemLink)
+					local itemCount = GetItemCount(itemLink) --local GetItemCount = _G.C_Item and _G.C_Item.GetItemCount or _G.GetItemCount
 					--print(itemStackCount,itemCount,openslots)
 					if openslots > 0 and itemCount > 0 and itemStackCount > 0 then
 						if (itemStackCount - itemCount) > 0 then

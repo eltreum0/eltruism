@@ -2,14 +2,14 @@ local E, L = unpack(ElvUI)
 local _G = _G
 local DT = E:GetModule("DataTexts")
 local math = _G.math
-local GetItemInfo = _G.GetItemInfo
-local GetItemCount = _G.GetItemCount
+local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
+local GetItemCount = _G.C_Item and _G.C_Item.GetItemCount or _G.GetItemCount
 local string = _G.string
 local pairs = _G.pairs
-local GetItemIcon = _G.GetItemIcon
+local GetItemIcon = _G.C_Item and _G.C_Item.GetItemIconByID or _G.GetItemIcon
 local PlayerHasToy = _G.PlayerHasToy
 local C_ToyBox = _G.C_ToyBox
-local GetItemCooldown = C_Container.GetItemCooldown
+local GetItemCooldown = _G.C_Container.GetItemCooldown or _G.C_Item and _G.C_Item.GetItemCooldown --TODO, confirm it works
 local CreateFrame = _G.CreateFrame
 local GetBindLocation = _G.GetBindLocation
 local GetTime = _G.GetTime
@@ -19,7 +19,7 @@ local IsSpellKnown = _G.IsSpellKnown
 local GetSpellCooldown = _G.GetSpellCooldown
 local tostring = _G.tostring
 local mod = _G.mod
-local IsUsableItem = _G.IsUsableItem
+local IsUsableItem = _G.C_Item and _G.C_Item.IsUsableItem or _G.IsUsableItem
 local hsIsReady = true
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------hearthstone/tp item datatext
 --based yet again on elvui config

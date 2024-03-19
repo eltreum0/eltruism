@@ -22,6 +22,9 @@ local OKAY = _G.OKAY
 local Item = _G.Item
 local tremove = _G.tremove
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsUsableItem = _G.C_Item and _G.C_Item.IsUsableItem or _G.IsUsableItem
+local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
+local GetItemCount = _G.C_Item and _G.C_Item.GetItemCount or _G.GetItemCount
 
 --Author list
 local AUTHORS = {

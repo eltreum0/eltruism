@@ -3,12 +3,12 @@ local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local ChatFrame_AddMessageEventFilter = _G.ChatFrame_AddMessageEventFilter
 local ChatFrame_RemoveMessageEventFilter = _G.ChatFrame_RemoveMessageEventFilter
-local GetItemIcon = _G.GetItemIcon
+local GetItemIcon = _G.C_Item and _G.C_Item.GetItemIconByID or _G.GetItemIcon
 local tonumber = _G.tonumber
-local GetItemInfo = _G.GetItemInfo
+local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local select = _G.select
 local Item = _G.Item
-local GetItemQualityColor = _G.GetItemQualityColor
+local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local UIParent = _G.UIParent
 local ilvlpattern
 local texture

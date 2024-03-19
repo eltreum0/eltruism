@@ -8,10 +8,10 @@ local quality
 local slotID
 local itemQuality, itemLevel
 local math = _G.math
-local GetItemQualityColor = _G.GetItemQualityColor
+local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetInventoryItemQuality = _G.GetInventoryItemQuality
-local GetDetailedItemLevelInfo = _G.GetDetailedItemLevelInfo
+local GetDetailedItemLevelInfo = _G.C_Item and _G.C_Item.GetDetailedItemLevelInfo or _G.GetDetailedItemLevelInfo
 local level
 local hooksecurefunc = _G.hooksecurefunc
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded

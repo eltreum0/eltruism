@@ -3,9 +3,9 @@ local _G = _G
 local DT = E:GetModule("DataTexts")
 local select, wipe = _G.select, _G.wipe
 local strjoin = _G.strjoin
-local GetItemInfo = _G.GetItemInfo
-local GetItemInfoInstant = _G.GetItemInfoInstant
-local GetItemCount = _G.GetItemCount
+local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
+local GetItemInfoInstant = _G.C_Item and _G.C_Item.GetItemInfoInstant or _G.GetItemInfoInstant
+local GetItemCount = _G.C_Item and _G.C_Item.GetItemCount or _G.GetItemCount
 local format = _G.format
 local GetContainerItemID = C_Container.GetContainerItemID
 local GetInventoryItemCount = _G.GetInventoryItemCount
@@ -13,7 +13,7 @@ local GetInventoryItemID = _G.GetInventoryItemID
 local ContainerIDToInventoryID = C_Container.ContainerIDToInventoryID
 local GetContainerNumSlots = C_Container.GetContainerNumSlots
 local GetContainerNumFreeSlots = C_Container.GetContainerNumFreeSlots
-local GetItemQualityColor = _G.GetItemQualityColor
+local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
 if not E.Retail then

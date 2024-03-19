@@ -5,8 +5,8 @@ local CreateFrame = _G.CreateFrame
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local GetAddOnEnableState = _G.C_AddOns and _G.C_AddOns.GetAddOnEnableState or _G.GetAddOnEnableState
 local GetSpellInfo = _G.GetSpellInfo
-local GetItemInfo = _G.GetItemInfo
-local GetItemCount = _G.GetItemCount
+local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
+local GetItemCount = _G.C_Item and _G.C_Item.GetItemCount or _G.GetItemCount
 local WideTradeSkill = CreateFrame("Frame")
 WideTradeSkill:RegisterEvent("PLAYER_ENTERING_WORLD")
 local WideTradeSkillEnchant = CreateFrame("Frame")
@@ -14,6 +14,7 @@ WideTradeSkillEnchant:RegisterEvent("PLAYER_ENTERING_WORLD")
 local skillbutton,skillTitle
 local vellumbutton,disenchantbutton
 local string = _G.string
+local UseItemByName = _G.C_Item and _G.C_Item.UseItemByName or _G.UseItemByName
 
 --gradient loot roll/mirror/breath/feigndeath
 function ElvUI_EltreumUI:GradientMirrorLoot()
