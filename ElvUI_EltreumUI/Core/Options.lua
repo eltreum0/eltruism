@@ -3443,7 +3443,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.support.args.discordlink = ACH:Input("", "", 46, false, "full", function() return 'https://discord.gg/rBXNxUY6pk' end)
 
 	--faq
-	ElvUI_EltreumUI.Options.args.faq = ACH:Group(E:TextGradient("F.A.Q", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 88, 'tab')
+	ElvUI_EltreumUI.Options.args.faq = ACH:Group(E:TextGradient("F.A.Q", 0.50, 0.70, 1, 0.67, 0.95, 1), L["Frequently Asked Questions"], 88, 'tab')
 	ElvUI_EltreumUI.Options.args.faq.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\faq'
 	ElvUI_EltreumUI.Options.args.faq.args.faq = ACH:Group(E:TextGradient(L["Frequently Asked Questions"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 20)
 	ElvUI_EltreumUI.Options.args.faq.args.faq.inline = true
