@@ -186,6 +186,9 @@ local TeleportsSpells = {
 	410071, --path-of-the-freebooter
 	410080, --path-of-winds-domain
 	424197, --path-of-twisted-time
+	432254, --path-of-the-primal-prison
+	432257, --path-of-the-bitter-legacy
+	432258, --path-of-the-scorching-dream
 }
 local texturePaths = {
 	["6948"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga", --hearthstone
