@@ -3471,7 +3471,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7 = ACH:Group(E:TextGradient(L["How do I make bar 1 my action paging bar instead of bar 4?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7.inline = true
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7.args.answer = ACH:Description(L["You can swap them out in Eltruism > Media, or by using the command /eltruism paging, make sure to reload"])
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q8 = ACH:Group(E:TextGradient(L["How can I get blizzard's floating Mana/Energy/Rage/Other combat text back?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q8 = ACH:Group(E:TextGradient(L["How can I get Blizzard's floating Mana/Energy/Rage/Other combat text back?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q8.inline = true
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q8.args.answer = ACH:Description(L["Go to ElvUI > Eltruism > Misc > Blizzard Combat Text and uncheck Disable Combat Text and Check Enable Resource Gains, then reload"])
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q9 = ACH:Group(E:TextGradient(L["My Loot Rolls are missing!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
