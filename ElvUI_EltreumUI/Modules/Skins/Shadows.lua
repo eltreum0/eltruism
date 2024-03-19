@@ -250,10 +250,17 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 				if (arg == "Blizzard_GuildBankUI") or IsAddOnLoaded("Blizzard_GuildBankUI") then
-					if E.Retail then
-						if not _G.GuildBankFrame.shadow then
-							_G.GuildBankFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrame.shadow)
+					if E.Retail or E.Cata then
+						if E.Retail then
+							if not _G.GuildBankFrame.shadow then
+								_G.GuildBankFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrame.shadow)
+							end
+						else
+							if _G.GuildBankFrame.backdrop and not _G.GuildBankFrame.backdrop.shadow then
+								_G.GuildBankFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrame.backdrop.shadow)
+							end
 						end
 						if not _G.GuildBankTab1.Button.shadow then
 							_G.GuildBankTab1.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
