@@ -22,6 +22,22 @@ if E.Retail then
 end
 local format = _G.format
 
+local classcolorsescape = {
+	["DEATHKNIGHT"]	= "C41E3A",
+	["DEMONHUNTER"]	= "A330C9",
+	["DRUID"] = "FF7C0A",
+	["HUNTER"] = "AAD372",
+	["MAGE"] = "3FC7EB",
+	["MONK"] = "00FF98",
+	["PALADIN"]	= "F48CBA",
+	["PRIEST"] = "FFFFFF",
+	["ROGUE"] = "FFF468",
+	["SHAMAN"] = "0070DD",
+	["WARLOCK"] = "8788EE",
+	["WARRIOR"] = "C69B6D",
+	["EVOKER"] = "33937F",
+}
+
 --skin objective frame depending on verison
 function ElvUI_EltreumUI:SkinQuests()
 
@@ -387,10 +403,14 @@ function ElvUI_EltreumUI:SkinQuests()
 								line.Dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							end
 						end
-						if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
-							if line.Text and line.Text:GetText() then
+						--traveler's log dash is part of the text and not another element, so color it differently
+						if line.Text and line.Text:GetText() then
+							if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
 								local nodash = gsub(line.Text:GetText(),"- ","")
 								line.Text:SetText(nodash)
+							else
+								local coloreddash = gsub(line.Text:GetText(),"- ","|cff"..classcolorsescape[E.myclass].."-  |r")
+								line.Text:SetText(coloreddash)
 							end
 						end
 					end)
