@@ -1580,3 +1580,7 @@ L["That is due to the EltreumExecute filter, you can disable it in:\nElvUI > Nam
 L["Header Font Size"] = "Tamanho da fonte do cabeçalho"
 L["Hide Dash"] = "Ocultar traço"
 L["Hide Completion Checkmark"] = "Ocultar marca de verificação de conclusão"
+L["My Unitframes and/or ActionBars keep reverting positions!"] = true
+L["If your actionbars or other frames are moving or resetting after a reload,\ncheck ElvUI > Eltruism > Borders for the Auto Adjust option.\n\nThis option is enabled when you enable Borders, it will not enable otherwise.\n\nAuto Adjust moves frames to a set position due to how borders need\ndifferent settings per layout and need to be changed so that borders don't overlap.\nDisable this option to stop the automatic changes.\n\nYou can also use the /eltruism autoadjust command to toggle it off"] = true
+L["How do I remove the lines/skin on all the frames?"] = true
+L["If you want to disable the ElvUI skin that adds textures to ElvUI you can go into\n\nEltruism > Skins > Addons > ElvUI\n\nWhere you can disable it or change its color, transparency and texture.\nYou can also type /eltruism elvuiskin to disable it "] = true
