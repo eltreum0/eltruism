@@ -411,6 +411,8 @@ function ElvUI_EltreumUI:GradientMode()
 			E.db.ElvUI_EltreumUI.chat.chatgradient = false
 			ElvUI_EltreumUI:Print("Gradient Mode Disabled")
 			E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = true
+			E.db.ElvUI_EltreumUI.skins.details = false
+			E.db.ElvUI_EltreumUI.skins.bigwigs = false
 		else
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable = true
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable = true
@@ -421,6 +423,9 @@ function ElvUI_EltreumUI:GradientMode()
 			E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = false
 			E.db.ElvUI_EltreumUI.chat.chatgradient = true
 			ElvUI_EltreumUI:Print("Gradient Mode Enabled")
+
+			E.db.ElvUI_EltreumUI.skins.details = true
+			E.db.ElvUI_EltreumUI.skins.bigwigs = true
 		end
 
 		E.db.ElvUI_EltreumUI.unitframes.UFmodifications = true
