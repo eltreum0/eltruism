@@ -907,12 +907,18 @@ function ElvUI_EltreumUI:Shadows()
 				_G.ChannelFrame,
 				_G.QuestModelScene,
 				_G.QuestNPCModelTextFrame,
-				_G.SpellBookFrame,
 				_G.DressUpFrame,
 				_G.CopyChatFrame,
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame and not frame.shadow then
+					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(frame.shadow)
+				end
+			end
+
+			if not E.Classic then
+				if _G.SpellBookFrame and not _G.SpellBookFrame.shadow then
 					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(frame.shadow)
 				end
