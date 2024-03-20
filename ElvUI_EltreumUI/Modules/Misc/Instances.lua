@@ -257,6 +257,7 @@ instancedifficulty:SetScript("OnEvent", function()
 
 		if _G["MinimapCluster"] and _G["MinimapCluster"].InstanceDifficulty then
 			_G["MinimapCluster"].InstanceDifficulty:Hide()
+			_G["MinimapCluster"].InstanceDifficulty:SetAlpha(0)
 		end
 
 		if E.Retail then
