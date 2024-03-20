@@ -424,6 +424,7 @@ local modelsRotate = {
 	[124366] = true, --high elf (old model)
 	[124368] = true, --Dark Strand Adept
 	[3446018] = true, --Winter Queen
+	[3016204] = true, --Blingtron 7000
 }
 
 local targetlike = {
