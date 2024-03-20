@@ -919,8 +919,8 @@ function ElvUI_EltreumUI:Shadows()
 
 			if not E.Classic then
 				if _G.SpellBookFrame and not _G.SpellBookFrame.shadow then
-					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(frame.shadow)
+					SpellBookFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(SpellBookFrame.shadow)
 				end
 			end
 
