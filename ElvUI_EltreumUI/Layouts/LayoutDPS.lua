@@ -754,7 +754,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["party"]["roleIcon"]["yOffset"] = -1
 	E.db["unitframe"]["units"]["party"]["summonIcon"]["size"] = 40
 	E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 20
-	E.db["unitframe"]["units"]["party"]["visibility"] = "[@raid6,exists][nogroup] hide;show"
+	E.db["unitframe"]["units"]["party"]["visibility"] = "[@raid6,exists][@party1,noexists] hide;show"
 	E.db["unitframe"]["units"]["party"]["width"] = 200
 	E.db["unitframe"]["units"]["party"]["petsGroup"]["buffIndicator"]["enable"] = true
 	E.db["unitframe"]["units"]["party"]["petsGroup"]["enable"] = false
