@@ -224,3 +224,19 @@ local width = GetPhysicalScreenSize()
 if width < 2000 then
 	E.Media.Arrows.Eltruism01 = [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\ArrowEltruism1080.tga]]
 end
+
+--add details icons to the details icon list
+if IsAddOnLoaded("Details") then
+	--Details:AddCustomIconSet(path, dropdownLabel, isSpecIcons, dropdownIcon, dropdownIconTexCoords, dropdownIconSize, dropdownIconColor)
+	_G.Details:AddCustomIconSet("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\details-eltruism.tga", "Eltruism", false, "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\details-eltruism.tga", {0,0.125,0,0.125}, {16, 16}, {1, 1, 1, 1})
+	_G.Details:AddCustomIconSet("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\eltruism_bars.tga", "Eltruism Bars", false, "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\eltruism_bars.tga", {0,0.125,0,0.125}, {16, 16}, {1, 1, 1, 1})
+	_G.Details:AddCustomIconSet("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\eltruism_bars_solid.tga", "Eltruism Bars Solid", false, "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\eltruism_bars_solid.tga", {0,0.125,0,0.125}, {16, 16}, {1, 1, 1, 1})
+	_G.Details:AddCustomIconSet("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\eltruism_bars_solid_outline.tga", "Eltruism Bars Solid Outline", false, "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\eltruism_bars_solid_outline.tga", {0,0.125,0,0.125}, {16, 16}, {1, 1, 1, 1})
+	_G.Details:AddCustomIconSet("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\details-flat-wow.tga", "Eltruism Flat", false, "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\details-flat-wow.tga", {0,0.125,0,0.125}, {16, 16}, {1, 1, 1, 1})
+	_G.Details:AddCustomIconSet("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\details-eltruism-bw.tga", "Eltruism B&W", false, "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\details-eltruism-bw.tga", {0,0.125,0,0.125}, {16, 16}, {1, 1, 1, 1})
+	_G.Details:AddCustomIconSet("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\details-ugg.tga", "Eltruism UGG", false, "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\details-ugg.tga", {0,0.125,0,0.125}, {16, 16}, {1, 1, 1, 1})
+	_G.Details:AddCustomIconSet("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\details-ugg-bw.tga", "Eltruism UGG B&W", false, "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\details-ugg-bw.tga", {0,0.125,0,0.125}, {16, 16}, {1, 1, 1, 1})
+	_G.Details:AddCustomIconSet("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\eltruism-symbols.tga", "Eltruism Symbols", false, "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\eltruism-symbols.tga", {0,0.125,0,0.125}, {16, 16}, {1, 1, 1, 1})
+	_G.Details:AddCustomIconSet("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\spec_icons_eltruism.tga", "Eltruism Spec Icons", true, "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Details\\spec_icons_eltruism.tga", {0,0.125,0,0.125}, {16, 16}, {1, 1, 1, 1})
+end
+
