@@ -232,6 +232,10 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower then
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar = true
 		end
+	elseif E.private.ElvUI_EltreumUI.install_version >= "4.0.7" and E.private.ElvUI_EltreumUI.install_version < "4.1.2" then --fix blizzard macro conditional
+		if E.db["unitframe"]["units"]["party"]["visibility"] == "[@raid6,exists][nogroup] hide;show" then
+			E.db["unitframe"]["units"]["party"]["visibility"] = "[@raid6,exists][@party1,noexists] hide;show"
+		end
 	end
 end
 
