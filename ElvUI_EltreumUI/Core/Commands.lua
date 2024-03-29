@@ -6,7 +6,7 @@ local DisableAddOn = _G.C_AddOns and _G.C_AddOns.DisableAddOn or _G.DisableAddOn
 local GetAddOnInfo = _G.C_AddOns and _G.C_AddOns.GetAddOnInfo or _G.GetAddOnInfo
 local GetNumAddOns = _G.C_AddOns and _G.C_AddOns.GetNumAddOns or _G.GetNumAddOns
 local CreateFrame = _G.CreateFrame
-local GetCoinIcon = _G.GetCoinIcon
+local GetCoinIcon = _G.C_CurrencyInfo and _G.C_CurrencyInfo.GetCoinIcon or _G.GetCoinIcon
 local CombatText_AddMessage = _G.CombatText_AddMessage
 local CombatText_StandardScroll = _G.CombatText_StandardScroll
 local print = _G.print
@@ -214,7 +214,19 @@ function ElvUI_EltreumUI:RunCommands(message)
 			end
 		end
 	elseif message == 'thinmode' then
-		ElvUI_EltreumUI:ThinBars()
+		E.PopupDialogs["ELTRUISMTHINMODEWARNING"] = {
+			text = L["Experimental Thin Mode UI, there is no going back to previous settings unless manually adjusting.\n|cffFF0000WARNING:|r This will overwrite some of your profile settings with no way to restore"],
+			OnAccept = function()
+				ElvUI_EltreumUI:ThinBars()
+			end,
+			--OnCancel = function() end,
+			button1 = ACCEPT,
+			button2 = CANCEL,
+			timeout = 0,
+			whileDead = 1,
+			hideOnEscape = false,
+		}
+		E:StaticPopup_Show('ELTRUISMTHINMODEWARNING')
 	elseif message == 'elvuiskin' then
 		if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
 			E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate = false
@@ -270,6 +282,13 @@ local AddOns = {
 }
 function ElvUI_EltreumUI:DebugMode(message)
 	local switch = strlower(message)
+	if switch ~= ('on' or 'off') then
+		if next(ElvDB.EltruismDisabledAddOns) then
+			switch = 'off'
+		else
+			switch = 'on'
+		end
+	end
 	if switch == 'on' then
 		for i = 1, GetNumAddOns() do
 			local name = GetAddOnInfo(i)
@@ -288,8 +307,8 @@ function ElvUI_EltreumUI:DebugMode(message)
 			wipe(ElvDB.EltruismDisabledAddOns)
 			ReloadUI()
 		end
-	else
-		ElvUI_EltreumUI:Print("Usage: /eltruismdebug on or /eltruismdebug off, to enable or disable debug mode")
+	--else
+		--ElvUI_EltreumUI:Print("Usage: /eltruismdebug on or /eltruismdebug off, to enable or disable debug mode")
 	end
 end
 

@@ -22,6 +22,9 @@ local OKAY = _G.OKAY
 local Item = _G.Item
 local tremove = _G.tremove
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsUsableItem = _G.C_Item and _G.C_Item.IsUsableItem or _G.IsUsableItem
+local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
+local GetItemCount = _G.C_Item and _G.C_Item.GetItemCount or _G.GetItemCount
 
 --Author list
 local AUTHORS = {
@@ -1548,7 +1551,7 @@ function ElvUI_EltreumUI:Configtable()
 			else
 				local name, itemLink = GetItemInfo(v)
 				local hasItem = GetItemCount(v)
-				if name and ((hasItem > 0 and IsUsableItem(v)) or (E.Retail and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v))) then
+				if name and ((hasItem > 0 and IsUsableItem(v)) or (not E.Classic and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v))) then
 					local itemid = itemLink:match("item:(%d+)")
 					tpspellsitems[itemid] = name
 				end
@@ -3266,11 +3269,13 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.skins.args.quests.args.description6 = ACH:Description(L["Text"], 17, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.skins.args.quests.args.customcolorenable = ACH:Toggle(L["Enable Custom Colors"], nil, 18, nil, false, nil, function() return E.db.ElvUI_EltreumUI.skins.questsettings.customcolor end, function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.customcolor = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.quests end)
 	ElvUI_EltreumUI.Options.args.skins.args.quests.args.customcolor = ACH:Color(L["Custom Color"], nil, 19, false, nil, function() return E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb, 1, P.ElvUI_EltreumUI.skins.questsettings.customr, P.ElvUI_EltreumUI.skins.questsettings.customg, P.ElvUI_EltreumUI.skins.questsettings.customb, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb = r, g, b E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.questsettings.customcolor or not E.db.ElvUI_EltreumUI.skins.quests end)
-	--ElvUI_EltreumUI.Options.args.skins.args.quests.args.description5 = ACH:Description(" ", 20, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.skins.args.quests.args.hideDash = ACH:Toggle(E.NewSign..L["Hide Dash"], nil, 20, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.questsettings.hideDash end, function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.hideDash = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.quests end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.quests.args.hideCheck = ACH:Toggle(E.NewSign..L["Hide Completion Checkmark"], nil, 20, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.questsettings.hideCheck end, function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.hideCheck = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.quests end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.quests.args.headerfontsize = ACH:Range(E.NewSign..L["Header Font Size"], nil, 21, { min = 6, max = 80, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.skins.questsettings.fontSizeHeader end, function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings. fontSizeHeader = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.quests end)
 	ElvUI_EltreumUI.Options.args.skins.args.quests.args.fontsize = ACH:Range(L["Font Size"], nil, 21, { min = 6, max = 80, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.skins.questsettings.fontSize end, function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.fontSize = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.quests end)
-	ElvUI_EltreumUI.Options.args.skins.args.quests.args.description7 = ACH:Description(_G.LFG_LIST_TITLE, 22, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.skins.args.quests.args.customcolorenabletitle = ACH:Toggle(L["Enable Custom Colors"], nil, 23, nil, false, nil, function() return E.db.ElvUI_EltreumUI.skins.questsettings.customcolortitle end, function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.customcolortitle = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.quests end)
-	ElvUI_EltreumUI.Options.args.skins.args.quests.args.customcolortitle = ACH:Color(L["Custom Color"], nil, 24, false, nil, function() return E.db.ElvUI_EltreumUI.skins.questsettings.customrtitle, E.db.ElvUI_EltreumUI.skins.questsettings.customgtitle, E.db.ElvUI_EltreumUI.skins.questsettings.custombtitle, 1, P.ElvUI_EltreumUI.skins.questsettings.customrtitle, P.ElvUI_EltreumUI.skins.questsettings.customgtitle, P.ElvUI_EltreumUI.skins.questsettings.custombtitle, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.skins.questsettings.customrtitle, E.db.ElvUI_EltreumUI.skins.questsettings.customgtitle, E.db.ElvUI_EltreumUI.skins.questsettings.custombtitle = r, g, b E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.questsettings.customcolortitle or not E.db.ElvUI_EltreumUI.skins.quests end)
+	ElvUI_EltreumUI.Options.args.skins.args.quests.args.description7 = ACH:Description(_G.LFG_LIST_TITLE, 30, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.skins.args.quests.args.customcolorenabletitle = ACH:Toggle(L["Enable Custom Colors"], nil, 31, nil, false, nil, function() return E.db.ElvUI_EltreumUI.skins.questsettings.customcolortitle end, function(_, value) E.db.ElvUI_EltreumUI.skins.questsettings.customcolortitle = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.quests end)
+	ElvUI_EltreumUI.Options.args.skins.args.quests.args.customcolortitle = ACH:Color(L["Custom Color"], nil, 32, false, nil, function() return E.db.ElvUI_EltreumUI.skins.questsettings.customrtitle, E.db.ElvUI_EltreumUI.skins.questsettings.customgtitle, E.db.ElvUI_EltreumUI.skins.questsettings.custombtitle, 1, P.ElvUI_EltreumUI.skins.questsettings.customrtitle, P.ElvUI_EltreumUI.skins.questsettings.customgtitle, P.ElvUI_EltreumUI.skins.questsettings.custombtitle, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.skins.questsettings.customrtitle, E.db.ElvUI_EltreumUI.skins.questsettings.customgtitle, E.db.ElvUI_EltreumUI.skins.questsettings.custombtitle = r, g, b E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.questsettings.customcolortitle or not E.db.ElvUI_EltreumUI.skins.quests end)
 	ElvUI_EltreumUI.Options.args.skins.args.addons = ACH:Group(L["Addons"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.BigWigs = ACH:Group("BigWigs", nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.BigWigs.args.description1 = ACH:Description("BigWigs", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
@@ -3375,7 +3380,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.linebreak.disabled = true
 
 	--weakauras anchor
-	ElvUI_EltreumUI.Options.args.weakauras = ACH:Group(E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's movers to move them"], 87)
+	ElvUI_EltreumUI.Options.args.weakauras = ACH:Group(E:TextGradient(L["WeakAuras"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Learn how to use the WeakAuras anchors to attach WeakAuras and use ElvUI's movers to move them"], 85)
 	ElvUI_EltreumUI.Options.args.weakauras.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\weakauras'
 	ElvUI_EltreumUI.Options.args.weakauras.args.description1 = ACH:Description(L["WeakAuras"], 2, nil)
 	ElvUI_EltreumUI.Options.args.weakauras.args.description2 = ACH:Description(L["You can set your Weakauras to anchor to custom locations making it easier to move them"], 3, nil)
@@ -3386,16 +3391,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.weakauras.args.image.args.description1 = ACH:Description(L["Open WeakAuras, go to your group Weakauras and in Group change Position Settings > Anchored To > Select Frame > EltruismWA or EltruismConsumablesWA"], 2, nil)
 	ElvUI_EltreumUI.Options.args.weakauras.args.image.args.description2 = ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\WADemo', nil, 512, 512)
 
-	--discord
-	ElvUI_EltreumUI.Options.args.discord = ACH:Group(E:TextGradient(L["Discord"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Join the Discord for faster support and to report any issues you might encounter"], 87)
-	ElvUI_EltreumUI.Options.args.discord.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\discord'
-	ElvUI_EltreumUI.Options.args.discord.args.description1 = ACH:Description(" ", 2, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\disc', nil, 256, 128)
-	ElvUI_EltreumUI.Options.args.discord.args.description2 = ACH:Description(L["Join the Discord if you have any questions or issues"], 3, nil)
-	ElvUI_EltreumUI.Options.args.discord.args.description2 = ACH:Description(L["Keep in mind the discord is in English"], 4, nil)
-	ElvUI_EltreumUI.Options.args.discord.args.discordlink = ACH:Input("", "", 3, false, "full", function() return 'https://discord.gg/rBXNxUY6pk' end)
-
 	--credits
-	ElvUI_EltreumUI.Options.args.credits = ACH:Group(E:TextGradient(L["Credits"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Credits and Licenses"], 88)
+	ElvUI_EltreumUI.Options.args.credits = ACH:Group(E:TextGradient(L["Credits"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Credits and Licenses"], 98)
 	ElvUI_EltreumUI.Options.args.credits.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\credits'
 	ElvUI_EltreumUI.Options.args.credits.args.author = ACH:Group(L["Author"], nil, 1)
 	ElvUI_EltreumUI.Options.args.credits.args.author.inline = true
@@ -3422,7 +3419,13 @@ function ElvUI_EltreumUI:Configtable()
 	--support
 	ElvUI_EltreumUI.Options.args.support = ACH:Group(E:TextGradient(GAMEMENU_SUPPORT, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Direct links to GitHub, CurseForge, Wago and Tukui"], 88, 'tab')
 	ElvUI_EltreumUI.Options.args.support.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\support'
-	ElvUI_EltreumUI.Options.args.support.args.changelog = ACH:Input(L["Changelog"], "", 7, false, "full", function() return 'https://github.com/eltreum0/eltruism/blob/main/Changelog.md' end)
+	ElvUI_EltreumUI.Options.args.support.args.debug = ACH:Execute(L["Debug"], nil, 1, function()
+		if next(ElvDB.EltruismDisabledAddOns) then
+			ElvUI_EltreumUI:DebugMode("off")
+		else
+			ElvUI_EltreumUI:DebugMode("on")
+		end
+	end)
 	ElvUI_EltreumUI.Options.args.support.args.issues = ACH:Input(L["Report issues and problems here:"], "", 8, false, "full", function() return 'https://github.com/eltreum0/eltruism/issues' end)
 	--[[ElvUI_EltreumUI.Options.args.support.args.tukui = ACH:Input(L["Addon on Tukui:"], "", 9, false, "full", function()
 		if E.Retail then
@@ -3436,9 +3439,14 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.support.args.site = ACH:Input(ElvUI_EltreumUI.Name, "", 9, false, "full", function() return 'https://eltruism.com/' end)
 	ElvUI_EltreumUI.Options.args.support.args.curse = ACH:Input(L["Addon on CurseForge:"], "", 10, false, "full", function() return 'https://www.curseforge.com/wow/addons/elvui-eltruism' end)
 	ElvUI_EltreumUI.Options.args.support.args.wago = ACH:Input(L["Addon on Wago:"], "", 10, false, "full", function() return 'https://addons.wago.io/addons/elvui-eltruism' end)
+	ElvUI_EltreumUI.Options.args.support.args.discord = ACH:Description(" ", 42, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\disc', nil, 256, 128)
+	ElvUI_EltreumUI.Options.args.support.args.discord2 = ACH:Description(L["Join the Discord for faster support and to report any issues you might encounter"], 43, nil)
+	ElvUI_EltreumUI.Options.args.support.args.discord3 = ACH:Description(L["Join the Discord if you have any questions or issues"], 44, nil)
+	ElvUI_EltreumUI.Options.args.support.args.discord4 = ACH:Description(L["Keep in mind the discord is in English"], 45, nil)
+	ElvUI_EltreumUI.Options.args.support.args.discordlink = ACH:Input("", "", 46, false, "full", function() return 'https://discord.gg/rBXNxUY6pk' end)
 
 	--faq
-	ElvUI_EltreumUI.Options.args.faq = ACH:Group(E:TextGradient("F.A.Q", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 88, 'tab')
+	ElvUI_EltreumUI.Options.args.faq = ACH:Group(E:TextGradient("F.A.Q", 0.50, 0.70, 1, 0.67, 0.95, 1), L["Frequently Asked Questions"], 88, 'tab')
 	ElvUI_EltreumUI.Options.args.faq.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\faq'
 	ElvUI_EltreumUI.Options.args.faq.args.faq = ACH:Group(E:TextGradient(L["Frequently Asked Questions"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 20)
 	ElvUI_EltreumUI.Options.args.faq.args.faq.inline = true
@@ -3466,7 +3474,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7 = ACH:Group(E:TextGradient(L["How do I make bar 1 my action paging bar instead of bar 4?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7.inline = true
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q7.args.answer = ACH:Description(L["You can swap them out in Eltruism > Media, or by using the command /eltruism paging, make sure to reload"])
-	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q8 = ACH:Group(E:TextGradient(L["How can I get blizzard's floating Mana/Energy/Rage/Other combat text back?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q8 = ACH:Group(E:TextGradient(L["How can I get Blizzard's floating Mana/Energy/Rage/Other combat text back?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q8.inline = true
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q8.args.answer = ACH:Description(L["Go to ElvUI > Eltruism > Misc > Blizzard Combat Text and uncheck Disable Combat Text and Check Enable Resource Gains, then reload"])
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q9 = ACH:Group(E:TextGradient(L["My Loot Rolls are missing!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
@@ -3478,47 +3486,54 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q11 = ACH:Group(E:TextGradient(L["My nameplates flash once an enemy is below 20% Health!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q11.inline = true
 	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q11.args.answer = ACH:Description(L["That is due to the EltreumExecute filter, you can disable it in:\nElvUI > Nameplates > Style Filter > (from the dropdown) EltreumExecute > Triggers > Uncheck Enable"])
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q12 = ACH:Group(E:TextGradient(L["My Unitframes and/or ActionBars keep reverting positions!"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q12.inline = true
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q12.args.answer = ACH:Description(L["If your actionbars or other frames are moving or resetting after a reload,\ncheck ElvUI > Eltruism > Borders for the Auto Adjust option.\n\nThis option is enabled when you enable Borders, it will not enable otherwise.\n\nAuto Adjust moves frames to a set position due to how borders need\ndifferent settings per layout and need to be changed so that borders don't overlap.\nDisable this option to stop the automatic changes.\n\nYou can also use the /eltruism autoadjust command to toggle it off"])
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q13 = ACH:Group(E:TextGradient(L["How do I remove the lines/skin on all the frames?"], 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 22)
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q13.inline = true
+	ElvUI_EltreumUI.Options.args.faq.args.faq.args.q13.args.answer = ACH:Description(L["If you want to disable the ElvUI skin that adds textures to ElvUI you can go into\n\nEltruism > Skins > Addons > ElvUI\n\nWhere you can disable it or change its color, transparency and texture.\nYou can also type /eltruism elvuiskin to disable it "])
 
 	--changelog
 	ElvUI_EltreumUI.Options.args.changelog = ACH:Group(E:TextGradient(L["Changelog"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Check what has changed in the current version of Eltruism"], 88, 'tab')
 	ElvUI_EltreumUI.Options.args.changelog.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\changelog'
-	ElvUI_EltreumUI.Options.args.changelog.args.description1 = ACH:Description(E.NewSign..E:TextGradient("v"..ElvUI_EltreumUI.Version, 0.50, 0.70, 1, 0.67, 0.95, 1), 1, "large", nil, nil, nil, nil, "full")
-	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 2)
+	ElvUI_EltreumUI.Options.args.changelog.args.changelog = ACH:Input(L["Changelog"], "", 1, false, "full", function() return 'https://github.com/eltreum0/eltruism/blob/main/Changelog.md' end)
+	ElvUI_EltreumUI.Options.args.changelog.args.description1 = ACH:Description(E.NewSign..E:TextGradient("v"..ElvUI_EltreumUI.Version, 0.50, 0.70, 1, 0.67, 0.95, 1), 2, "large", nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added an Allowed list to Cooldown Module where only spells on the list will be announced/shown
-Added /eltruism paging command to quickly swap action paging between Bar1 and Bar4
-Added an option to disable the Blue Shaman class color in Classic Era
-Added an option to set the maximum length for the Cooldown module
-Added greyscaletags such as [eltruism:greyscaleclass:player]
-Added an option for vertical gradient Experience Databar
-Added an option for Custom Class Icons in Chat
-Added [eltruism:hpstatus:reverse] tag
-Added Greyscale Class Icons
-Added Metal Lord font
+Added an option to change the font size of the header text in the Quests skin
+Added an option to hide the checkmark in the Quests skin
+Added a few more units to the classification icon list
+Added an option to hide the dash in the Quests skin
+Added a Details icon pack for the Class Symbols
+Added basic support for Cataclysm Beta
+Added a few more cursor textures
+Added FAQ in the options
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated gradient and tags to also apply to Followers while in Follower dungeons
-Updated Shadows to not apply to ElvUI frame if Ace skin is disabled
-Updated animation scale for Cooldown to allow for bigger icons
-Updated Color Picker Wheel mask for 10.2.5
-Updated Immersion skin to fix a font
-Updated German locale by Dlarge
-Updated Player Castbar mover
+Updated Details name skin to be one character shorter and avoid the escape sequences
+Updated the Blizzard Raid frames skin to also work with Raid style Party frames
+Updated Quests skin to also skin a few things on the Traveler's Log
+Updated Font application in Media to now better apply to Datatexts
+Updated options layout to split non options from the others
+Updated Datatext shadows to better apply to Datatext panels
+Updated the teleports Datatext to also use toys in Wrath
+Updated Role Function to once again work in Wrath
+Updated ElvUI and Ace3 Skin
+Updated for 10.2.6
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue where the texture color of backgrounds would be replaced in dark mode
-Fixed an issue with borders when using offset or spaced power on some frames
-Fixed an issue with the Details embed where it would not properly position
-Fixed an error during install due to a database change in Shadow and Light
-Fixed an error in the Auctionator skin after an Auctionator update
-Fixed a possible error with the AvQuest font
-Fixed a possible issue with the Quest Skin
-Fixed incorrect tags on player unitframe
+Fixed an issue where fonts could be applied to other ElvUI profiles if the names of the characters matched
+Fixed a possible issue with the Power Bar where it could have wrong starting values
+Fixed an issue where BigWigs profile could overwrite current profiles
+Fixed an issue where a German locale text was being used in English
+Fixed the [eltruism:healermana] tag in Wrath
+Fixed a possible issue when hiding toasts
+Fixed some Unitframe shadows
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[

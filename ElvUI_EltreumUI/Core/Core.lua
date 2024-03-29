@@ -12,7 +12,7 @@ local LoadAddOn = _G.C_AddOns and _G.C_AddOns.LoadAddOn or _G.LoadAddOn
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
 local UIParentLoadAddOn = _G.UIParentLoadAddOn
 local GetCursorInfo = _G.GetCursorInfo
-local GetItemInfo = _G.GetItemInfo
+local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local string = _G.string
 local DELETE_ITEM_CONFIRM_STRING = _G.DELETE_ITEM_CONFIRM_STRING
 local InCombatLockdown = _G.InCombatLockdown
@@ -284,7 +284,7 @@ function ElvUI_EltreumUI:Anchors()
 
 	if E.db.ElvUI_EltreumUI.skins.blizzframes.hideeventoaster then
 		_G.EventToastManagerFrame:UnregisterAllEvents()
-		if E.Retail then
+		if E.Retail and _G.ChallengeModeCompleteBanner then
 			_G.ChallengeModeCompleteBanner:UnregisterAllEvents()
 		end
 	end

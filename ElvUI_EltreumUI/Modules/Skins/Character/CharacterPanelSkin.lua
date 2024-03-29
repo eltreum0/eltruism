@@ -9,7 +9,7 @@ local math = _G.math
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 local CharacterStatsPane = _G.CharacterStatsPane
-local GetItemQualityColor = _G.GetItemQualityColor
+local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local PaperDollFrame = _G.PaperDollFrame
 local SkillFrame = _G.SkillFrame
 local CharacterModelFrame = _G.CharacterModelFrame
@@ -35,6 +35,7 @@ local pairs = _G.pairs
 local string = _G.string
 local InCombatLockdown = _G.InCombatLockdown
 local format = _G.format
+local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 
 --improving character panel
 local CharacterFrame = _G.CharacterFrame

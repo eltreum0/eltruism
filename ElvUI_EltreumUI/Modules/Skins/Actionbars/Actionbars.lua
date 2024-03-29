@@ -552,7 +552,7 @@ function ElvUI_EltreumUI:SkillGlow()
 									--[[elseif E.myclass == 'WARLOCK' then
 										procFrame:RegisterUnitEvent('UNIT_AURA', "player")
 										for i = 1, 30 do
-											--auraid = select(10, UnitAura("player", i))
+											--auraid = select(10, UnitAura("player", i)) --unitaura is deprecated
 											--print(auraid)
 											if auraid == 34936 or auraid == 17941 then --backlash and shadow trance
 												if E.db.ElvUI_EltreumUI.glow.pixel and not IsAddOnLoaded("ElvUI_ActionBarMasks") then

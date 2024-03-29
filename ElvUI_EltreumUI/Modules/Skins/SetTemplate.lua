@@ -307,18 +307,48 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 								if not frame.shadow then
 									frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 									ElvUI_EltreumUI:ShadowColor(frame.shadow)
+
+									--font/texture
 									if frame:GetParent():GetParent().Label then
 										local _,size = frame:GetParent():GetParent().Label:GetFont()
 										frame:GetParent():GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-										--frame:GetParent():GetParent().Label:SetShadowOffset(2,-2)
 									end
+									if frame:GetParent():GetParent().Bar then
+										frame:GetParent():GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+									end
+
 									-- hook for when label gets added
 									if not frame:GetParent():GetParent().EltruismLabelHook then
 										frame:GetParent():GetParent():HookScript("OnShow", function(widget)
 											if widget.Label then
 												local _,size = widget.Label:GetFont()
 												widget.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-												--widget.Label:SetShadowOffset(2,-2)
+											end
+											if widget.Bar then
+												widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+											end
+										end)
+										frame:GetParent():GetParent().EltruismLabelHook = true
+									end
+
+									--same as above, but for when its the first parent
+									if frame:GetParent().Label then
+										local _,size = frame:GetParent().Label:GetFont()
+										frame:GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+									end
+									if frame:GetParent().Bar then
+										frame:GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+									end
+
+									-- hook for when label gets added
+									if not frame:GetParent().EltruismLabelHook then
+										frame:GetParent():HookScript("OnShow", function(widget)
+											if widget.Label then
+												local _,size = widget.Label:GetFont()
+												widget.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+											end
+											if widget.Bar then
+												widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
 											end
 										end)
 										frame:GetParent():GetParent().EltruismLabelHook = true

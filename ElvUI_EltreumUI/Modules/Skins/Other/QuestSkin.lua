@@ -22,6 +22,22 @@ if E.Retail then
 end
 local format = _G.format
 
+local classcolorsescape = {
+	["DEATHKNIGHT"]	= "C41E3A",
+	["DEMONHUNTER"]	= "A330C9",
+	["DRUID"] = "FF7C0A",
+	["HUNTER"] = "AAD372",
+	["MAGE"] = "3FC7EB",
+	["MONK"] = "00FF98",
+	["PALADIN"]	= "F48CBA",
+	["PRIEST"] = "FFFFFF",
+	["ROGUE"] = "FFF468",
+	["SHAMAN"] = "0070DD",
+	["WARLOCK"] = "8788EE",
+	["WARRIOR"] = "C69B6D",
+	["EVOKER"] = "33937F",
+}
+
 --skin objective frame depending on verison
 function ElvUI_EltreumUI:SkinQuests()
 
@@ -177,7 +193,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			wowheadbutton:SetScript('OnClick', function()
 				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
 			end)
-		elseif E.Wrath then
+		elseif E.Wrath or E.Cata then
 			local questID
 			--hook the function that sets the quest detail to get the questID from the quest title
 			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --_G.QuestLogFrame.lua 311
@@ -218,27 +234,6 @@ function ElvUI_EltreumUI:SkinQuests()
 		end
 
 		if E.Retail then
-			--[[if _G["QuestNPCModelTextFrame"] then
-				_G["QuestNPCModelTextFrame"]:SetBackdrop()
-				if _G["QuestNPCModelTextFrame"].eltruismbgtexture then
-					_G["QuestNPCModelTextFrame"].eltruismbgtexture:Hide()
-				end
-				_G["QuestModelScene"]:SetBackdrop()
-				if not _G["QuestNPCModelTextFrame"].Eltruismbg then
-					local QuestNPCModelTemplate = CreateFrame("Frame", "EltruismQuestNPCModelTemplate")
-					QuestNPCModelTemplate:SetPoint("TOPLEFT", _G["QuestModelScene"], "TOPLEFT", 0,0)
-					QuestNPCModelTemplate:SetPoint("BOTTOMRIGHT", _G["QuestNPCModelTextFrame"], "BOTTOMRIGHT", 0,0)
-					S:HandleFrame(QuestNPCModelTemplate)
-					QuestNPCModelTemplate:SetParent(_G["QuestNPCModelTextFrame"])
-					_G["QuestNPCModelTextFrame"].Eltruismbg = _G["QuestNPCModelTextFrame"]:CreateTexture() --used as a check
-					 QuestNPCModelTemplate:SetFrameStrata("LOW")
-				end
-
-				_G["QuestNPCModelNameText"]:ClearAllPoints()
-				_G["QuestNPCModelNameText"]:SetPoint("TOP", _G["QuestModelScene"],"TOP")
-			end]]
-
-			-- and (not IsAddOnLoaded("ElvUI_WindTools"))
 			if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 				--WQs banner
 				local ObjectiveTrackerBonusBannerFrame = _G.ObjectiveTrackerBonusBannerFrame
@@ -319,10 +314,14 @@ function ElvUI_EltreumUI:SkinQuests()
 								--inspired by blinkii's skin, color
 								local text = block.currentLine.Text:GetText()
 								if block.currentLine.Check then
-									block.currentLine.Check:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\checkmark.tga")
-									local _,frame = block.currentLine.Check:GetPoint()
-									block.currentLine.Check:ClearAllPoints()
-									block.currentLine.Check:SetPoint("RIGHT", frame,"LEFT", 2,0)
+									if E.db.ElvUI_EltreumUI.skins.questsettings.hideCheck then
+										block.currentLine.Check:Hide()
+									else
+										block.currentLine.Check:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\checkmark.tga")
+										local _,frame = block.currentLine.Check:GetPoint()
+										block.currentLine.Check:ClearAllPoints()
+										block.currentLine.Check:SetPoint("RIGHT", frame,"LEFT", 2,0)
+									end
 								end
 
 								if text ~= nil then
@@ -393,21 +392,32 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 						local line = DEFAULT_OBJECTIVE_TRACKER_MODULE:GetLine(block, objectiveKey, lineType)
 						if ( line.Dash ) then
-							if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-								line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+							if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
+								line.Dash:SetText("")
 							else
-								line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								else
+									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
+								line.Dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							end
-							line.Dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-							--local _,frame = line.Dash:GetPoint()
-							--line.Dash:ClearAllPoints()
-							--line.Dash:SetPoint("RIGHT", frame, "LEFT", 5,0)
+						end
+						--traveler's log dash is part of the text and not another element, so color it differently
+						if line.Text and line.Text:GetText() then
+							if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
+								local nodash = gsub(line.Text:GetText(),"- ","")
+								line.Text:SetText(nodash)
+							else
+								local coloreddash = gsub(line.Text:GetText(),"- ","|cff"..classcolorsescape[E.myclass].."-  |r")
+								line.Text:SetText(coloreddash)
+							end
 						end
 					end)
 				end
 
 				if _G.ObjectiveTrackerFrame.HeaderMenu.Title then --fix when collapsed
-					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize*1.5, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSizeHeader, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 				end
 
@@ -420,7 +430,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						local module = modules[i]
 						if module and module.Header and module.Header.Text then --the big type of quest
 							if not ElvUI_EltreumUI:SLCheck('quest') then
-								module.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize*1.5, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+								module.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSizeHeader, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							end
 							if E.db.ElvUI_EltreumUI.skins.questsettings.customcolortitle then
 								module.Header.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customrtitle, E.db.ElvUI_EltreumUI.skins.questsettings.customgtitle, E.db.ElvUI_EltreumUI.skins.questsettings.custombtitle)
@@ -524,10 +534,14 @@ function ElvUI_EltreumUI:SkinQuests()
 								frame.Text:SetWordWrap(true)
 							end
 							if frame.Icon and frame.Icon:GetAtlas() then
-								if frame.Icon:GetAtlas() == "Objective-Nub" then
-									frame.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\questnub.tga")
-								elseif frame.Icon:GetAtlas() == "Tracker-Check" then
-									frame.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\checkmark.tga")
+								if E.db.ElvUI_EltreumUI.skins.questsettings.hideCheck then
+									frame.Icon:Hide()
+								else
+									if frame.Icon:GetAtlas() == "Objective-Nub" then
+										frame.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\questnub.tga")
+									elseif frame.Icon:GetAtlas() == "Tracker-Check" then
+										frame.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\checkmark.tga")
+									end
 								end
 							end
 						end
@@ -663,12 +677,16 @@ function ElvUI_EltreumUI:SkinQuests()
 								end
 							end
 							if ( line.Dash ) then
-								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
+									line.Dash:SetText("")
 								else
-									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+									if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+										line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+									else
+										line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+									end
+									line.Dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 								end
-								line.Dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							end
 							if line.Check and line.Check:IsShown() then
 								line.Text:SetTextColor(0.12, 1, 0.12)
@@ -710,12 +728,16 @@ function ElvUI_EltreumUI:SkinQuests()
 								end
 							end
 							if ( line.Dash ) then
-								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
+									line.Dash:SetText("")
 								else
-									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+									if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+										line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+									else
+										line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+									end
+									line.Dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 								end
-								line.Dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							end
 							if line.Check and line.Check:IsShown() then
 								line.Text:SetTextColor(0.12, 1, 0.12)
@@ -1042,7 +1064,7 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				UIParent_ManageFramePositions()
 			end)
-		elseif E.Wrath then
+		elseif E.Wrath or E.Cata then
 
 			--from blizzard's FrameXML/WatchFrame.lua
 			local questside

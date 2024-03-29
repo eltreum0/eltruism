@@ -2,14 +2,14 @@ local E, L = unpack(ElvUI)
 local _G = _G
 local DT = E:GetModule("DataTexts")
 local math = _G.math
-local GetItemInfo = _G.GetItemInfo
-local GetItemCount = _G.GetItemCount
+local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
+local GetItemCount = _G.C_Item and _G.C_Item.GetItemCount or _G.GetItemCount
 local string = _G.string
 local pairs = _G.pairs
-local GetItemIcon = _G.GetItemIcon
+local GetItemIcon = _G.C_Item and _G.C_Item.GetItemIconByID or _G.GetItemIcon
 local PlayerHasToy = _G.PlayerHasToy
 local C_ToyBox = _G.C_ToyBox
-local GetItemCooldown = C_Container.GetItemCooldown
+local GetItemCooldown = _G.C_Container.GetItemCooldown or _G.C_Item and _G.C_Item.GetItemCooldown --TODO, confirm it works
 local CreateFrame = _G.CreateFrame
 local GetBindLocation = _G.GetBindLocation
 local GetTime = _G.GetTime
@@ -19,7 +19,7 @@ local IsSpellKnown = _G.IsSpellKnown
 local GetSpellCooldown = _G.GetSpellCooldown
 local tostring = _G.tostring
 local mod = _G.mod
-local IsUsableItem = _G.IsUsableItem
+local IsUsableItem = _G.C_Item and _G.C_Item.IsUsableItem or _G.IsUsableItem
 local hsIsReady = true
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------hearthstone/tp item datatext
 --based yet again on elvui config
@@ -186,6 +186,9 @@ local TeleportsSpells = {
 	410071, --path-of-the-freebooter
 	410080, --path-of-winds-domain
 	424197, --path-of-twisted-time
+	432254, --path-of-the-primal-prison
+	432257, --path-of-the-bitter-legacy
+	432258, --path-of-the-scorching-dream
 }
 local texturePaths = {
 	["6948"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Warcraft3Hearthstone.tga", --hearthstone
@@ -467,7 +470,7 @@ local function EltruismTeleportsOnEnter()
 			end
 		end
 		--print(nameitems,PlayerHasToy(v),C_ToyBox.IsToyUsable(v))
-		if texture and nameitems and ((hasItem > 0 and IsUsableItem(v)) or (E.Retail and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v))) then
+		if texture and nameitems and ((hasItem > 0 and IsUsableItem(v)) or (not E.Classic and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v))) then
 
 			local start, duration = GetItemCooldown(v)
 			local cooldown = start + duration - GetTime()
@@ -553,7 +556,7 @@ local function EltruismTeleportsOnEnter()
 						hasItem = 0
 					end
 				end
-				if texture and nameitems and (hasItem > 0 or (E.Retail and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v)) ) then
+				if texture and nameitems and (hasItem > 0 or (not E.Classic and PlayerHasToy(v) and C_ToyBox.IsToyUsable(v)) ) then
 					local startcd, durationcd = GetItemCooldown(v)
 					local cooldown2 = startcd + durationcd - GetTime()
 					if cooldown2 >= 2 then

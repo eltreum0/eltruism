@@ -8,7 +8,7 @@ local tonumber = _G.tonumber
 local InCombatLockdown = _G.InCombatLockdown
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local GetQuestItemInfo = _G.GetQuestItemInfo
-local GetItemQualityColor = _G.GetItemQualityColor
+local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 
 --skin immersion
 function ElvUI_EltreumUI:EltruismImmersion()

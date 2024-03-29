@@ -97,7 +97,7 @@ function ElvUI_EltreumUI:ArenaBattlegroundGroupUnitframes()
 					E.db["unitframe"]["units"]["arena"]["enable"] = false
 				end
 			else
-				E.db["unitframe"]["units"]["party"]["visibility"] = "[@raid6,exists][nogroup] hide;show"
+				E.db["unitframe"]["units"]["party"]["visibility"] = "[@raid6,exists][@party1,noexists] hide;show"
 				E.db["unitframe"]["units"]["raid1"]["visibility"] = "[@raid6,noexists][@raid21,exists] hide;show"
 				E.db["unitframe"]["units"]["raid2"]["visibility"] = "[@raid21,noexists][@raid31,exists] hide;show"
 				E.db["unitframe"]["units"]["raid3"]["visibility"] = "[@raid31,noexists] hide;show"
