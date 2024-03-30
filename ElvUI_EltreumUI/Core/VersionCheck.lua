@@ -73,11 +73,11 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 	if requiredversion < tonumber(currentversion) then
 		E:StaticPopup_Show('GAMEVERSIONCHECKHIGHER')
 		ElvUI_EltreumUI:Print(L["Your World of Warcraft version is higher than expected for Eltruism, please update Eltruism or you might run into issues.\n|cffFF0000(You are likely having errors right now!)|r"])
+	elseif tonumber(currentversion) == privateserver then
+		E:StaticPopup_Show('PRIVATESERVER')
 	elseif requiredversion > tonumber(currentversion) then
 		E:StaticPopup_Show('GAMEVERSIONCHECKLOWER')
 		ElvUI_EltreumUI:Print(L["Your World of Warcraft version is older than Eltruism, you might run into issues!"])
-	elseif tonumber(currentversion) == privateserver then
-		E:StaticPopup_Show('PRIVATESERVER')
 	end
 end
 
