@@ -44,6 +44,19 @@ local druidshamanfix = {
 	[5008711] = true,
 	--[926251] = true, --"wolfdraenor.m2",
 	--[1043712] = true, --"raptor2.m2",
+	[392615] = true, --cata feral druid troll
+	[126171] = true, --cata travel form
+	[125835] = true, --cata druid aquatic form
+	[123688] = true, --cata feral druid tauren
+	[123682] = true, --cata feral druid night elf
+	[393783] = true, --cata feral druid worgen
+}
+
+local catabearform = {
+	[123678] = true, --cata bear form night elf
+	[123680] = true, --cata bear form tauren
+	[403282] = true, --cata bear form troll
+	[393782] = true, --cata bear form worgen
 }
 
 --character models that should be rotated
@@ -487,6 +500,8 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 					newrotation = 99
 				elseif model == 5091437 then
 					newrotation = 28 --druid qonzu bird
+				elseif catabearform[model] then
+					newrotation = 0
 				else
 					newrotation = 67--3
 				end
@@ -510,12 +525,16 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 						if self:GetParent().unitframeType == "party" then
 							xOffset = -2.3
 						end
+					elseif catabearform[model] then
+						xOffset = 0.62 --cata bears
 					end
 				end
 			elseif unit == 'target' or targetlike[unit] then
 				if not model then return end
 				if modelsRotate[model] then
 					newrotation = 291
+				elseif catabearform[model] then
+					newrotation = 270 --cata bears
 				end
 				if E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset then
 					if model == 5091437 then
@@ -526,6 +545,8 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 						xOffset = 0.25 --bear
 					elseif model == 4207724 then
 						xOffset = 0.6 --dracthyr
+					elseif catabearform[model] then
+						xOffset = 0.17 --cata bears
 					end
 				end
 			end
