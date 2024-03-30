@@ -1547,6 +1547,7 @@ function ElvUI_EltreumUI:Shadows()
 					_G["ElvUF_Player_CastBar"],
 					_G["ElvUF_Target_CastBar"],
 					_G["ElvUF_Focus_CastBar"],
+					_G["ElvUF_Player_EclipsePowerBar"],
 				}
 				for _, frame in pairs(elvuiframes) do
 					if frame then
