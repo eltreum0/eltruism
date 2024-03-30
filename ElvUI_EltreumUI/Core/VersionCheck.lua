@@ -56,12 +56,14 @@ function ElvUI_EltreumUI:ElvUIVersionCheck()
 	}
 
 	--elvui check
-	if E.version < tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-ElvUI')) then
-		E:StaticPopup_Show('ELVUIVERSIONCHECK')
-		ElvUI_EltreumUI:Print(L["Your ElvUI version is out of date, please update to avoid issues!"])
-	elseif E.version > (tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-ElvUI')) + 0.03) then
-		E:StaticPopup_Show('ELVUIVERSIONCHECK2')
-		ElvUI_EltreumUI:Print(L["Your ElvUI version is higher than expected for Eltruism, please update Eltruism or you might run into issues.\n|cffFF0000(You are likely having errors right now!)|r"])
+	if E.version < 99999 then
+		if E.version < tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-ElvUI')) then
+			E:StaticPopup_Show('ELVUIVERSIONCHECK')
+			ElvUI_EltreumUI:Print(L["Your ElvUI version is out of date, please update to avoid issues!"])
+		elseif E.version > (tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-ElvUI')) + 0.03) then
+			E:StaticPopup_Show('ELVUIVERSIONCHECK2')
+			ElvUI_EltreumUI:Print(L["Your ElvUI version is higher than expected for Eltruism, please update Eltruism or you might run into issues.\n|cffFF0000(You are likely having errors right now!)|r"])
+		end
 	end
 
 	--game version check
