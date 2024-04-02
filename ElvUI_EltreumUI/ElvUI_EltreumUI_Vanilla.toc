@@ -8,7 +8,7 @@
 ## RequiredDeps: Blizzard_CombatText
 ## OptionalDeps: ProjectAzilroka, AddOnSkins
 ## DefaultState: enabled
-## X-Interface: 11501
+## X-Interface: 11502
 ## X-ElvUI: 13.60
 ## X-Tukui-ProjectID: 49
 ## X-Curse-Project-ID: 459494
