@@ -3501,39 +3501,22 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added an option to change the font size of the header text in the Quests skin
-Added an option to hide the checkmark in the Quests skin
-Added a few more units to the classification icon list
-Added an option to hide the dash in the Quests skin
-Added a Details icon pack for the Class Symbols
-Added basic support for Cataclysm Beta
-Added a few more cursor textures
-Added FAQ in the options
+Added Details icons to its dropdown
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Details name skin to be one character shorter and avoid the escape sequences
-Updated the Blizzard Raid frames skin to also work with Raid style Party frames
-Updated Quests skin to also skin a few things on the Traveler's Log
-Updated Font application in Media to now better apply to Datatexts
-Updated options layout to split non options from the others
-Updated Datatext shadows to better apply to Datatext panels
-Updated the teleports Datatext to also use toys in Wrath
-Updated Role Function to once again work in Wrath
-Updated ElvUI and Ace3 Skin
-Updated for 10.2.6
+Updated Party and Raid visibility settings to follow ElvUI's new format
+Updated Nameplate Powerbar to remove the possible flashing in Classic
+Updated Waypoint time calculation to better detect movement
+Updated German locale by Dlarge
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue where fonts could be applied to other ElvUI profiles if the names of the characters matched
-Fixed a possible issue with the Power Bar where it could have wrong starting values
-Fixed an issue where BigWigs profile could overwrite current profiles
-Fixed an issue where a German locale text was being used in English
-Fixed the [eltruism:healermana] tag in Wrath
-Fixed a possible issue when hiding toasts
-Fixed some Unitframe shadows
+Fixed the default value of the Hide Dash in the Quest Skin
+Fixed a Minimap difficulty icon change in Retail
+Fixed the Spellbook shadow in Classic
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
