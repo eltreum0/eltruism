@@ -1982,6 +1982,7 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["unitframe"]["units"]["target"]["castbar"]["iconYOffset"] = 5
 		E.db["unitframe"]["units"]["target"]["castbar"]["yOffsetText"] = 4
 		E.db["unitframe"]["units"]["target"]["castbar"]["yOffsetTime"] = 4
+		E.db["unitframe"]["units"]["target"]["castbar"]["iconPosition"] = "RIGHT"
 		if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] then
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["attachTextTo"] = "Frame"
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["xOffset"] = 0
