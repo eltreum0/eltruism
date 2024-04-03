@@ -3514,6 +3514,7 @@ Updated German locale by Dlarge
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
+Fixed a possible error with the LFG skin due to a Blizzard bug where scores dont return colors
 Fixed the default value of the Hide Dash in the Quest Skin
 Fixed a Minimap difficulty icon change in Retail
 Fixed the Spellbook shadow in Classic
