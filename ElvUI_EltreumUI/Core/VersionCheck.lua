@@ -13,8 +13,10 @@ function ElvUI_EltreumUI:VersionCheckInit()
 		ElvUI_EltreumUI:DatabaseConversions()
 	end
 	ElvUI_EltreumUI:PluginCheck()
-	ElvUI_EltreumUI:OldVersionCheck()
-	ElvUI_EltreumUI:NewVersionCheck()
+	if E.private.ElvUI_EltreumUI.install_version and E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version then
+		ElvUI_EltreumUI:OldVersionCheck()
+		ElvUI_EltreumUI:NewVersionCheck()
+	end
 	ElvUI_EltreumUI:ElvUIVersionCheck()
 end
 
@@ -139,10 +141,6 @@ function ElvUI_EltreumUI:PluginCheck()
 end
 
 function ElvUI_EltreumUI:OldVersionCheck()
-	if not E.private.ElvUI_EltreumUI.install_version then
-		return
-	end
-
 	if E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA then
 		ElvUI_EltreumUI:Print("You are using WeakAuras mode for ActionBars. If you wish to stop using it, make sure to disable by typing /eltruism weakauras or disabling it in the options, failing to do can cause errors")
 	end
@@ -216,7 +214,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 	end
 
 	--changes only for my profiles
-	if E.private.ElvUI_EltreumUI.install_version and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
+	if not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
 		return
 	elseif E.private.ElvUI_EltreumUI.install_version >= "3.7.3" and E.private.ElvUI_EltreumUI.install_version < "4.0.5" then
 		if E.Classic then --fix priest mind control paging
@@ -247,15 +245,11 @@ function ElvUI_EltreumUI:OldVersionCheck()
 end
 
 function ElvUI_EltreumUI:NewVersionCheck()
-	if not E.private.ElvUI_EltreumUI.install_version then
-		return
-	elseif E.private.ElvUI_EltreumUI.install_version >= "2.4.0" and E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version then
-		E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
-		local version = (string.format("|cff82B4ff"..ElvUI_EltreumUI.Version.."|r"))
-		ElvUI_EltreumUI:Print("Welcome to version "..version..". If you have any issues please join the |TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinydisc.tga:0:0:0:0|t Discord for help")
-		if E.db.ElvUI_EltreumUI.autoupdate then
-			ElvUI_EltreumUI:UpdateEltruismSettings(true)
-			ElvUI_EltreumUI:UpdateElvUISettings(true)
-		end
+	E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
+	local version = (string.format("|cff82B4ff"..ElvUI_EltreumUI.Version.."|r"))
+	ElvUI_EltreumUI:Print("Welcome to version "..version..". If you have any issues please join the |TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinydisc.tga:0:0:0:0|t Discord for help")
+	if E.db.ElvUI_EltreumUI.autoupdate then
+		ElvUI_EltreumUI:UpdateEltruismSettings(true)
+		ElvUI_EltreumUI:UpdateElvUISettings(true)
 	end
 end
