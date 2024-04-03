@@ -238,6 +238,14 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		if E.db["unitframe"]["units"]["party"]["visibility"] == "[@raid6,exists][nogroup] hide;show" then
 			E.db["unitframe"]["units"]["party"]["visibility"] = "[@raid6,exists][@party1,noexists] hide;show"
 		end
+	elseif E.private.ElvUI_EltreumUI.install_version >= "4.1.2" and E.private.ElvUI_EltreumUI.install_version < "4.1.3" then --fix era priest paging shadowform
+		if E.Classic then
+			if E.db.actionbar.bar1.visibility == "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;" then
+				E.db["actionbar"]["bar1"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 16;[bonusbar:5] 11; [stance:1] 7;"
+			elseif E.db.actionbar.bar4.visibility == "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;" then
+				E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 16;[bonusbar:5] 11; [stance:1] 7;"
+			end
+		end
 	end
 end
 
