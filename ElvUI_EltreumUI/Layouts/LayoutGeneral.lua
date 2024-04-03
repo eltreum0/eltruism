@@ -1881,11 +1881,21 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["actionbar"]["bar4"]["buttonHeight"] = 17
 		E.db["actionbar"]["stanceBar"]["buttonHeight"] = 17
 
+		E.db["actionbar"]["barPet"]["backdrop"] = false
+		E.db["actionbar"]["barPet"]["backdropSpacing"] = 0
+		E.db["actionbar"]["barPet"]["buttonHeight"] = 15
+		E.db["actionbar"]["barPet"]["buttonSize"] = 30
+		E.db["actionbar"]["barPet"]["buttonSpacing"] = 3
+		E.db["actionbar"]["barPet"]["buttonsPerRow"] = 5
+		E.db["actionbar"]["barPet"]["inheritGlobalFade"] = true
+		E.db["actionbar"]["barPet"]["keepSizeRatio"] = false
+
 		E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,233"
 		E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,214"
 		E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,194"
 		E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,175"
 
+		E.db["movers"]["PetAB"] = "BOTTOM,ElvUIParent,BOTTOM,-319,146"
 		E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-318,223"
 		E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,265"
 		E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,265"
@@ -1936,7 +1946,7 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 10
 		E.db["unitframe"]["units"]["player"]["castbar"]["iconSize"] = 20
 		E.db["unitframe"]["units"]["player"]["castbar"]["iconXOffset"] = -2
-		E.db["unitframe"]["units"]["player"]["castbar"]["iconYOffset"] = 4
+		E.db["unitframe"]["units"]["player"]["castbar"]["iconYOffset"] = 5
 		E.db["unitframe"]["units"]["player"]["castbar"]["yOffsetText"] = 4
 		E.db["unitframe"]["units"]["player"]["castbar"]["yOffsetTime"] = 4
 		E.db["unitframe"]["units"]["player"]["classbar"]["enable"] = false
@@ -1968,10 +1978,11 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["enable"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["height"] = 10
 		E.db["unitframe"]["units"]["target"]["castbar"]["iconSize"] = 20
-		E.db["unitframe"]["units"]["target"]["castbar"]["iconXOffset"] = 2
-		E.db["unitframe"]["units"]["target"]["castbar"]["iconYOffset"] = 4
+		E.db["unitframe"]["units"]["target"]["castbar"]["iconXOffset"] = -2
+		E.db["unitframe"]["units"]["target"]["castbar"]["iconYOffset"] = 5
 		E.db["unitframe"]["units"]["target"]["castbar"]["yOffsetText"] = 4
 		E.db["unitframe"]["units"]["target"]["castbar"]["yOffsetTime"] = 4
+		E.db["unitframe"]["units"]["target"]["castbar"]["iconPosition"] = "RIGHT"
 		if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] then
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["attachTextTo"] = "Frame"
 			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["xOffset"] = 0
@@ -2014,6 +2025,71 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["enable"] = false
 		E.db["unitframe"]["units"]["targettarget"]["power"]["strataAndLevel"]["useCustomLevel"] = false
 		E.db["unitframe"]["units"]["targettarget"]["power"]["strataAndLevel"]["useCustomStrata"] = false
+
+		E.db["unitframe"]["units"]["pet"]["buffIndicator"]["size"] = 15
+		E.db["unitframe"]["units"]["pet"]["buffs"]["anchorPoint"] = "TOP"
+		E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Kimberley"
+		E.db["unitframe"]["units"]["pet"]["buffs"]["enable"] = true
+		E.db["unitframe"]["units"]["pet"]["buffs"]["growthX"] = "LEFT"
+		E.db["unitframe"]["units"]["pet"]["buffs"]["height"] = 25
+		E.db["unitframe"]["units"]["pet"]["buffs"]["keepSizeRatio"] = false
+		E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,MyPet"
+		E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 30
+		E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = 2
+		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["color"]["b"] = 0
+		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["color"]["g"] = 0.50588235294118
+		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["color"]["r"] = 0.86274509803922
+		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["a"] = 0
+		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["b"] = 0.50196078431373
+		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["g"] = 0.50196078431373
+		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["colorBackdrop"]["r"] = 0.50196078431373
+		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["useClassColor"] = true
+		E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["useCustomBackdrop"] = true
+		E.db["unitframe"]["units"]["pet"]["castbar"]["format"] = "REMAININGMAX"
+		E.db["unitframe"]["units"]["pet"]["castbar"]["height"] = 15
+		E.db["unitframe"]["units"]["pet"]["castbar"]["overlayOnFrame"] = "Health"
+		E.db["unitframe"]["units"]["pet"]["castbar"]["strataAndLevel"]["frameStrata"] = "HIGH"
+		E.db["unitframe"]["units"]["pet"]["castbar"]["timeToHold"] = 0.6
+		E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 162
+		E.db["unitframe"]["units"]["pet"]["colorOverride"] = "FORCE_OFF"
+		if E.db["unitframe"]["units"]["pet"]["customTexts"] and E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["attachTextTo"] = "Health"
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["enable"] = true
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["font"] = "Kimberley"
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["fontOutline"] = "OUTLINE"
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["justifyH"] = "CENTER"
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["size"] = 12
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["xOffset"] = 0
+			E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["yOffset"] = 13
+		end
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["anchorPoint"] = "TOP"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["attachTo"] = "BUFFS"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Kimberley"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["height"] = 25
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["keepSizeRatio"] = false
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["sizeOverride"] = 30
+		E.db["unitframe"]["units"]["pet"]["debuffs"]["yOffset"] = 1
+		E.db["unitframe"]["units"]["pet"]["disableTargetGlow"] = false
+		E.db["unitframe"]["units"]["pet"]["fader"]["casting"] = true
+		E.db["unitframe"]["units"]["pet"]["fader"]["combat"] = true
+		E.db["unitframe"]["units"]["pet"]["fader"]["health"] = true
+		E.db["unitframe"]["units"]["pet"]["fader"]["hover"] = true
+		E.db["unitframe"]["units"]["pet"]["fader"]["minAlpha"] = 0
+		E.db["unitframe"]["units"]["pet"]["fader"]["playertarget"] = true
+		E.db["unitframe"]["units"]["pet"]["fader"]["power"] = true
+		E.db["unitframe"]["units"]["pet"]["fader"]["range"] = false
+		E.db["unitframe"]["units"]["pet"]["fader"]["smooth"] = 0
+		E.db["unitframe"]["units"]["pet"]["fader"]["unittarget"] = true
+		E.db["unitframe"]["units"]["pet"]["fader"]["vehicle"] = true
+		E.db["unitframe"]["units"]["pet"]["health"]["colorHappiness"] = false
+		E.db["unitframe"]["units"]["pet"]["height"] = 10
+		E.db["unitframe"]["units"]["pet"]["name"]["text_format"] = ""
+		E.db["unitframe"]["units"]["pet"]["power"]["height"] = 7
+		E.db["unitframe"]["units"]["pet"]["power"]["width"] = "spaced"
+		E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_DEBUFFS_ON_BUFFS"
+		E.db["unitframe"]["units"]["pet"]["width"] = 162
 
 		ElvUI_EltreumUI:Print("Experimental Thin Mode Layout applied")
 	else

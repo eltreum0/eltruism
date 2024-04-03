@@ -1,6 +1,16 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.1.2
+Added Details icons to its dropdown  
+Updated Party and Raid visibility settings to follow ElvUI's new format  
+Updated Nameplate Powerbar to remove the possible flashing in Classic  
+Updated Waypoint time calculation to better detect movement  
+Updated German locale by Dlarge  
+Fixed a possible error with the LFG skin due to a Blizzard bug where scores dont return colors  
+Fixed the default value of the Hide Dash in the Quest Skin  
+Fixed a Minimap difficulty icon change in Retail  
+Fixed the Spellbook shadow in Classic
 ### 4.1.1
 Added an option to change the font size of the header text in the Quests skin  
 Added an option to hide the checkmark in the Quests skin  

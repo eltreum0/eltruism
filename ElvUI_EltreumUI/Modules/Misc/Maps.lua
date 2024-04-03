@@ -131,7 +131,8 @@ if E.Retail then
 							local distance = C_Navigation.GetDistance()
 							local seconds = 0
 							local minutes = 0
-							if not speed or speed == 0 then --might be dragonflying, calculate based on delta distance
+							if (not speed or speed == 0) and IsPlayerMoving() then --might be dragonflying, calculate based on delta distance
+								--print("no speed, maybe dragonriding")
 								E:Delay(1, function()
 									local previousdistance = C_Navigation.GetDistance()
 									speed = math.abs(distance - previousdistance)
@@ -162,6 +163,7 @@ if E.Retail then
 									end
 								end)
 							else --might not be dragonriding, calculate normally
+								--print("speed, regular mounted or running")
 								if speed and speed > 0 then
 									local eta= math.abs(distance / speed)
 									if eta > 600 then

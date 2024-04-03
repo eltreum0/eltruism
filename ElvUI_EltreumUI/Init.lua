@@ -176,6 +176,9 @@ function ElvUI_EltreumUI:Initialize()
 		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
 	end
+	if E.ClassicSOD then
+		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+	end
 	if E.Classic then
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
 	end
@@ -306,16 +309,16 @@ local currenttalentretail = E.Retail and GetSpecialization()
 local currenttalentwrath = E.Wrath and GetActiveTalentGroup()
 function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 	local newtalentretail = E.Retail and GetSpecialization()
-	local newtalentwrath = E.Wrath and GetActiveTalentGroup()
+	local newtalentwrath = (E.Wrath or E.ClassicSOD) and GetActiveTalentGroup()
 	if E.Retail then
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
 	end
-	if (E.Retail and currenttalentretail ~= newtalentretail) or (E.Wrath and currenttalentwrath ~= newtalentwrath) then
+	if (E.Retail and currenttalentretail ~= newtalentretail) or ((E.Wrath or E.ClassicSOD) and currenttalentwrath ~= newtalentwrath) then
 		currenttalentretail = newtalentretail
 		currenttalentwrath = newtalentwrath
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		ElvUI_EltreumUI:FixChatToggles()
-		if E.Retail or E.Wrath then
+		if E.Retail or (E.Wrath or E.ClassicSOD) then
 			ElvUI_EltreumUI:NamePlateOptions()
 			ElvUI_EltreumUI:Shadows()
 			if E.private.nameplates.enable then
