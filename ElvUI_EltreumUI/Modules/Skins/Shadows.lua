@@ -566,6 +566,10 @@ function ElvUI_EltreumUI:Shadows()
 										ElvUI_EltreumUI:ShadowColor(_G.AchievementFrame.shadow)
 									end
 								end
+								if _G.AchievementFrame.SearchPreviewContainer and _G.AchievementFrame.SearchPreviewContainer.backdrop then
+									 _G.AchievementFrame.SearchPreviewContainer.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor( _G.AchievementFrame.SearchPreviewContainer.backdrop.shadow)
+								end
 							end
 							if _G.AchievementFrameTab3 and _G.AchievementFrameTab3.backdrop and not _G.AchievementFrameTab3.backdrop.shadow then
 								_G.AchievementFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
