@@ -3,7 +3,6 @@ local _G = _G
 local string = _G.string
 local OKAY = _G.OKAY
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
-local fixingold = false
 local GetAddOnMetadata = _G.C_AddOns and _G.C_AddOns.GetAddOnMetadata or _G.GetAddOnMetadata
 local tonumber = _G.tonumber
 local select = _G.select
@@ -228,8 +227,6 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			end
 		end
 		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
-		--fixingold = true
-		--E.private.ElvUI_EltreumUI.install_version = "4.0.5"
 	elseif E.private.ElvUI_EltreumUI.install_version >= "4.0.5" and E.private.ElvUI_EltreumUI.install_version < "4.0.7" then
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower then
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar = true
@@ -252,7 +249,7 @@ end
 function ElvUI_EltreumUI:NewVersionCheck()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		return
-	elseif E.private.ElvUI_EltreumUI.install_version >= "2.4.0" and E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version and not fixingold then
+	elseif E.private.ElvUI_EltreumUI.install_version >= "2.4.0" and E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version then
 		E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
 		local version = (string.format("|cff82B4ff"..ElvUI_EltreumUI.Version.."|r"))
 		ElvUI_EltreumUI:Print("Welcome to version "..version..". If you have any issues please join the |TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinydisc.tga:0:0:0:0|t Discord for help")
