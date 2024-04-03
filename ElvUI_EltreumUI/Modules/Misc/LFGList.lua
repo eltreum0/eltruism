@@ -288,7 +288,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 						if entry.Name:GetText() ~= nil then
 							local score = resultInfo.leaderOverallDungeonScore or 0
 							local name = entry.Name:GetText() or ""
-							local color = C_ChallengeMode.GetDungeonScoreRarityColor(score) or HIGHLIGHT_FONT_COLOR
+							local color = C_ChallengeMode.GetDungeonScoreRarityColor(score) or { r = 1, g = 1, b = 1 }
 							local hex = E:RGBToHex(color.r, color.g, color.b, 'ff')
 							if not entry.Name:GetText():match(hex) then
 								entry.Name:SetText("[|c"..hex..score.."|r] "..name)
