@@ -1979,7 +1979,7 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["enable"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["height"] = 10
 		E.db["unitframe"]["units"]["target"]["castbar"]["iconSize"] = 20
-		E.db["unitframe"]["units"]["target"]["castbar"]["iconXOffset"] = -2
+		E.db["unitframe"]["units"]["target"]["castbar"]["iconXOffset"] = 2
 		E.db["unitframe"]["units"]["target"]["castbar"]["iconYOffset"] = 5
 		E.db["unitframe"]["units"]["target"]["castbar"]["yOffsetText"] = 4
 		E.db["unitframe"]["units"]["target"]["castbar"]["yOffsetTime"] = 4
@@ -2105,7 +2105,7 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["unitframe"]["units"]["boss"]["buffs"]["perrow"] = 7
 		E.db["unitframe"]["units"]["boss"]["buffs"]["sizeOverride"] = 25
 		E.db["unitframe"]["units"]["boss"]["buffs"]["spacing"] = 2
-		E.db["unitframe"]["units"]["boss"]["buffs"]["xOffset"] = -1
+		E.db["unitframe"]["units"]["boss"]["buffs"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["boss"]["buffs"]["yOffset"] = 5
 		E.db["unitframe"]["units"]["boss"]["castbar"]["overlayOnFrame"] = "Health"
 		E.db["unitframe"]["units"]["boss"]["debuffs"]["countXOffset"] = 2
