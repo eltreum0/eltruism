@@ -1901,6 +1901,7 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,265"
 		E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,157"
 		E.db["movers"]["TotemTrackerMover"] = "BOTTOM,UIParent,BOTTOM,0,301"
+		E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-4,-372"
 
 		E.db["unitframe"]["units"]["focus"]["castbar"]["customTextFont"]["enable"] = true
 		E.db["unitframe"]["units"]["focus"]["castbar"]["customTextFont"]["fontSize"] = 14
@@ -2090,6 +2091,57 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["unitframe"]["units"]["pet"]["power"]["width"] = "spaced"
 		E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_DEBUFFS_ON_BUFFS"
 		E.db["unitframe"]["units"]["pet"]["width"] = 162
+
+		E.db["unitframe"]["units"]["boss"]["buffIndicator"]["size"] = 15
+		E.db["unitframe"]["units"]["boss"]["buffs"]["anchorPoint"] = "TOPRIGHT"
+		E.db["unitframe"]["units"]["boss"]["buffs"]["attachTo"] = "DEBUFFS"
+		E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "Kimberley"
+		E.db["unitframe"]["units"]["boss"]["buffs"]["countXOffset"] = 2
+		E.db["unitframe"]["units"]["boss"]["buffs"]["countYOffset"] = -3
+		E.db["unitframe"]["units"]["boss"]["buffs"]["durationPosition"] = "TOP"
+		E.db["unitframe"]["units"]["boss"]["buffs"]["growthX"] = "LEFT"
+		E.db["unitframe"]["units"]["boss"]["buffs"]["height"] = 15
+		E.db["unitframe"]["units"]["boss"]["buffs"]["keepSizeRatio"] = false
+		E.db["unitframe"]["units"]["boss"]["buffs"]["perrow"] = 7
+		E.db["unitframe"]["units"]["boss"]["buffs"]["sizeOverride"] = 25
+		E.db["unitframe"]["units"]["boss"]["buffs"]["spacing"] = 2
+		E.db["unitframe"]["units"]["boss"]["buffs"]["xOffset"] = -1
+		E.db["unitframe"]["units"]["boss"]["buffs"]["yOffset"] = 5
+		E.db["unitframe"]["units"]["boss"]["castbar"]["overlayOnFrame"] = "Health"
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["countXOffset"] = 2
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["countYOffset"] = -3
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["durationPosition"] = "TOP"
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["growthX"] = "LEFT"
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["height"] = 15
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["keepSizeRatio"] = false
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["perrow"] = 7
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["sizeOverride"] = 25
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["spacing"] = 2
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["xOffset"] = -3
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["yOffset"] = -16
+		E.db["unitframe"]["units"]["boss"]["health"]["attachTextTo"] = "InfoPanel"
+		E.db["unitframe"]["units"]["boss"]["health"]["position"] = "RIGHT"
+		E.db["unitframe"]["units"]["boss"]["health"]["text_format"] = "[healthcolor][eltruism:hpstatusnopc:gradient]"
+		E.db["unitframe"]["units"]["boss"]["health"]["xOffset"] = 0
+		E.db["unitframe"]["units"]["boss"]["health"]["yOffset"] = 12
+		E.db["unitframe"]["units"]["boss"]["height"] = 15
+		E.db["unitframe"]["units"]["boss"]["infoPanel"]["enable"] = false
+		E.db["unitframe"]["units"]["boss"]["infoPanel"]["height"] = 12
+		E.db["unitframe"]["units"]["boss"]["name"]["attachTextTo"] = "Frame"
+		E.db["unitframe"]["units"]["boss"]["name"]["position"] = "LEFT"
+		E.db["unitframe"]["units"]["boss"]["name"]["text_format"] = "[name:eltruism:gradient]"
+		E.db["unitframe"]["units"]["boss"]["name"]["yOffset"] = 12
+		E.db["unitframe"]["units"]["boss"]["portrait"]["fullOverlay"] = true
+		E.db["unitframe"]["units"]["boss"]["portrait"]["overlay"] = true
+		E.db["unitframe"]["units"]["boss"]["portrait"]["overlayAlpha"] = 0.2
+		E.db["unitframe"]["units"]["boss"]["portrait"]["enable"] = false
+		E.db["unitframe"]["units"]["boss"]["power"]["attachTextTo"] = "Power"
+		E.db["unitframe"]["units"]["boss"]["power"]["height"] = 7
+		E.db["unitframe"]["units"]["boss"]["power"]["width"] = "spaced"
+		E.db["unitframe"]["units"]["boss"]["power"]["xOffset"] = 0
+		E.db["unitframe"]["units"]["boss"]["power"]["yOffset"] = 1
+		E.db["unitframe"]["units"]["boss"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
+		E.db["unitframe"]["units"]["boss"]["spacing"] = 30
 
 		ElvUI_EltreumUI:Print("Experimental Thin Mode Layout applied")
 	else
