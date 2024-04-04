@@ -548,8 +548,6 @@ function ElvUI_EltreumUI:Borders()
 				})
 				focustargetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				focustargetborder:SetFrameStrata("LOW")
-				focuscastbarborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.focuscaststrata)
-				focuscastbarborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.focuscastlevel)
 
 				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.focustarget.infoPanel.enable then
 					focustargetborder:SetPoint("CENTER", _G.ElvUF_FocusTarget, "CENTER", 0, E.db.unitframe.units.focustarget.infoPanel.height)
