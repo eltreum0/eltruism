@@ -2030,7 +2030,7 @@ function ElvUI_EltreumUI:ThinBars()
 		end
 		E.db["unitframe"]["units"]["targettarget"]["height"] = 10
 		E.db["unitframe"]["units"]["targettarget"]["power"]["attachTextTo"] = "Frame"
-		E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 5
+		E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 7
 		E.db["unitframe"]["units"]["targettarget"]["power"]["yOffset"] = -1
 		E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["enable"] = false
 		E.db["unitframe"]["units"]["targettarget"]["power"]["strataAndLevel"]["useCustomLevel"] = false
