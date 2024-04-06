@@ -395,3 +395,18 @@ function ElvUI_EltreumUI:GradientStagger()
 	end
 end
 hooksecurefunc(UF, "Construct_Stagger", ElvUI_EltreumUI.GradientStagger)
+
+--make power pred use the same texture too
+function ElvUI_EltreumUI:Configure_PowerPrediction(frame)
+	local pred = frame and frame.PowerPrediction
+	if not pred then return end
+	if pred.mainBar then
+		pred.mainBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+	end
+	local altBar = pred.altBar
+	if altBar then
+		altBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+	end
+end
+hooksecurefunc(UF, "Configure_PowerPrediction", ElvUI_EltreumUI.Configure_PowerPrediction)
+
