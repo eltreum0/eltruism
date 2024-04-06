@@ -2152,6 +2152,8 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["unitframe"]["units"]["boss"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 		E.db["unitframe"]["units"]["boss"]["spacing"] = 30
 
+		ElvUI_EltreumUI:SetupFont(E.db.general.font)
+
 		ElvUI_EltreumUI:Print("Experimental Thin Mode Layout applied")
 	else
 		E.db.ElvUI_EltreumUI.unitframes.thinmode = false
