@@ -770,6 +770,8 @@ function ElvUI_EltreumUI:Configtable()
 			return false
 		elseif GetCVar('worldPreloadNonCritical') == '0' then
 			return true
+		else
+			return false
 		end
 	end, function(_, value)
 		if value == true then
