@@ -1874,7 +1874,7 @@ function ElvUI_EltreumUI:ThinBars()
 		ElvUI_EltreumUI:Print("Experimental Thin Mode Layout applied")
 
 		E.db["ElvUI_EltreumUI"]["borders"]["borderautoadjust"] = false
-		E.db.ElvUI_EltreumUI.skins.elvui.texture = "Eltreum-Tile01"
+		E.db.ElvUI_EltreumUI.skins.elvui.texture = "Eltreum-Tile03"
 
 		E.db["actionbar"]["bar1"]["buttonHeight"] = 20
 		E.db["actionbar"]["bar2"]["buttonHeight"] = 17
