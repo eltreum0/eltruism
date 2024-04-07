@@ -764,7 +764,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.dynamicrenderscaleenable.descStyle = "inline"
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.dynamicrenderscalepercentage = ACH:Range(L["Dynamic Render Scale Minimum"], L["Lowest Render Scale used"], 8, { min = 0.1, max = 1, step = 0.01 }, 'full', function() return tonumber(GetCVar('DynamicRenderScaleMin')) end, function(_, value) SetCVar('DynamicRenderScaleMin', tonumber(value)) E.db.ElvUI_EltreumUI.cvars.dynamicrenderscalemin = tonumber(value) end, function() if GetCVar('DynamicRenderScale') == '1' then return false elseif GetCVar('DynamicRenderScale') == '0' then return true end end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.description4 = ACH:Description("", 19, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.preloadNonCritical = ACH:Toggle(E.NewSign.._G.DISABLE.." ".."worldPreloadNonCritical", L["Require objects to be loaded in streaming non critical radius when preloading. Can improve loading times"], 20, nil, false,'full',
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.preloadNonCritical = ACH:Toggle(E.NewSign.._G.DISABLE.." ".."worldPreloadNonCritical", L["Disable the worldPreloadNonCritical CVar, doing so can improve loading times."], 20, nil, false,'full',
 	function()
 		if GetCVar('worldPreloadNonCritical') == '2' then
 			return false
