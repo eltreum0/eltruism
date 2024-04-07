@@ -1585,3 +1585,5 @@ L["If your actionbars or other frames are moving or resetting after a reload,\nc
 L["How do I remove the lines/skin on all the frames?"] = "¿Cómo puedo eliminar las líneas/piel en todos los marcos?"
 L["If you want to disable the ElvUI skin that adds textures to ElvUI you can go into\n\nEltruism > Skins > Addons > ElvUI\n\nWhere you can disable it or change its color, transparency and texture.\nYou can also type /eltruism elvuiskin to disable it "] = "Si quieres desactivar el skin ElvUI que añade texturas a ElvUI puedes ir a Eltruism > Skins > Addons > ElvUI\n\nDonde puedes desactivarlo o cambiar su color, transparencia y textura.\nTambién puedes escribir /eltruism elvuiskin para desactivarlo"
 L["Disable the worldPreloadNonCritical CVar, doing so can improve loading times."] = true
+L["If you find the %s option has issues, alert me via Discord or GitHub issue."] = true
+L["Choose the option you would like to enable"] = true
