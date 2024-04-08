@@ -180,8 +180,8 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		E.db["actionbar"]["bar4"]["paging"]["ROGUE"] = "[bonusbar:1] 7;[bonusbar:1,nostealth] 4; [bonusbar:1,stealth] 7; [vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:2] 8;[bonusbar:5] 11;" --other other besides this was causing problems with shadow dance
 		E.db["actionbar"]["bar4"]["paging"]["SHAMAN"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 12;[bonusbar:5] 11;"
 		E.db["actionbar"]["bar4"]["paging"]["WARLOCK"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[form:1] 7;[bonusbar:5] 11;"
-		E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11;[stance:1] 7; [stance:2] 8; [stance:3] 9;"
-		E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 16;[bonusbar:5] 11; [bonusbar:1] 7;"
+		E.db["actionbar"]["bar4"]["paging"]["WARRIOR"] = "[vehicleui] 12; [overridebar] 14;[possessbar] 12;[bonusbar:5] 11; [stance:1] 7; [stance:2] 8; [stance:3] 9;"
+		E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 16;[bonusbar:5] 11; [stance:1] 7;"
 	end
 
 	--aura filtering
@@ -1874,6 +1874,7 @@ function ElvUI_EltreumUI:ThinBars()
 		ElvUI_EltreumUI:Print("Experimental Thin Mode Layout applied")
 
 		E.db["ElvUI_EltreumUI"]["borders"]["borderautoadjust"] = false
+		E.db.ElvUI_EltreumUI.skins.elvui.texture = "Eltreum-Tile03"
 
 		E.db["actionbar"]["bar1"]["buttonHeight"] = 20
 		E.db["actionbar"]["bar2"]["buttonHeight"] = 17
@@ -1890,17 +1891,24 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["actionbar"]["barPet"]["inheritGlobalFade"] = true
 		E.db["actionbar"]["barPet"]["keepSizeRatio"] = false
 
+		E.db["databars"]["experience"]["height"] = 5
+		E.db["databars"]["reputation"]["height"] = 5
+		E.db["databars"]["threat"]["height"] = 5
+
 		E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,233"
 		E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,214"
 		E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,194"
 		E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,175"
-
 		E.db["movers"]["PetAB"] = "BOTTOM,ElvUIParent,BOTTOM,-319,146"
 		E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-318,223"
 		E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,265"
 		E.db["movers"]["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,280,265"
 		E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,157"
 		E.db["movers"]["TotemTrackerMover"] = "BOTTOM,UIParent,BOTTOM,0,301"
+		E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-4,-372"
+		E.db["movers"]["ReputationBarMover"] = "TOP,ElvUIParent,TOP,0,-5"
+		E.db["movers"]["ExperienceBarMover"] = "TOP,ElvUIParent,TOP,0,-13"
+		E.db["movers"]["ThreatBarMover"] = "TOP,ElvUIParent,TOP,0,-43"
 
 		E.db["unitframe"]["units"]["focus"]["castbar"]["customTextFont"]["enable"] = true
 		E.db["unitframe"]["units"]["focus"]["castbar"]["customTextFont"]["fontSize"] = 14
@@ -1950,19 +1958,21 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["unitframe"]["units"]["player"]["castbar"]["yOffsetText"] = 4
 		E.db["unitframe"]["units"]["player"]["castbar"]["yOffsetTime"] = 4
 		E.db["unitframe"]["units"]["player"]["classbar"]["enable"] = false
-		if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["attachTextTo"] = "Frame"
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["yOffset"] = 12
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["attachTextTo"] = "Frame"
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["enable"] = false
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["xOffset"] = 0
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["yOffset"] = 12
-		end
-		if E.db["unitframe"]["units"]["player"]["customTexts"] and E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["attachTextTo"] = "Frame"
-			E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["yOffset"] = -13
+		if E.db["unitframe"]["units"]["player"]["customTexts"] then
+			if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"] then
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["attachTextTo"] = "Frame"
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumHealth"]["yOffset"] = 12
+			end
+			if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"] then
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["attachTextTo"] = "Frame"
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["enable"] = false
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["xOffset"] = 0
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumName"]["yOffset"] = 12
+			end
+			if E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"] then
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["attachTextTo"] = "Frame"
+				E.db["unitframe"]["units"]["player"]["customTexts"]["EltreumPower"]["yOffset"] = -13
+			end
 		end
 		E.db["unitframe"]["units"]["player"]["height"] = 10
 		E.db["unitframe"]["units"]["player"]["portrait"]["enable"] = false
@@ -1978,26 +1988,28 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["enable"] = true
 		E.db["unitframe"]["units"]["target"]["castbar"]["height"] = 10
 		E.db["unitframe"]["units"]["target"]["castbar"]["iconSize"] = 20
-		E.db["unitframe"]["units"]["target"]["castbar"]["iconXOffset"] = -2
+		E.db["unitframe"]["units"]["target"]["castbar"]["iconXOffset"] = 2
 		E.db["unitframe"]["units"]["target"]["castbar"]["iconYOffset"] = 5
 		E.db["unitframe"]["units"]["target"]["castbar"]["yOffsetText"] = 4
 		E.db["unitframe"]["units"]["target"]["castbar"]["yOffsetTime"] = 4
 		E.db["unitframe"]["units"]["target"]["castbar"]["iconPosition"] = "RIGHT"
-		if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["attachTextTo"] = "Frame"
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["xOffset"] = 0
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["yOffset"] = 12
-		end
-		if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["attachTextTo"] = "Frame"
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["size"] = 14
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["xOffset"] = 0
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["yOffset"] = 12
-		end
-		if E.db["unitframe"]["units"]["target"]["customTexts"] and E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] then
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["attachTextTo"] = "Frame"
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["xOffset"] = 0
-			E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["yOffset"] = -13
+		if E.db["unitframe"]["units"]["target"]["customTexts"] then
+			if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"] then
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["attachTextTo"] = "Frame"
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["xOffset"] = 0
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetHealth"]["yOffset"] = 12
+			end
+			if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"] then
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["attachTextTo"] = "Frame"
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["size"] = 14
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["xOffset"] = 0
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["yOffset"] = 12
+			end
+			if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] then
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["attachTextTo"] = "Frame"
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["xOffset"] = 0
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["yOffset"] = -13
+			end
 		end
 		E.db["unitframe"]["units"]["target"]["height"] = 10
 		E.db["unitframe"]["units"]["target"]["portrait"]["enable"] = false
@@ -2006,21 +2018,25 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["unitframe"]["units"]["target"]["power"]["strataAndLevel"]["useCustomLevel"] = false
 		E.db["unitframe"]["units"]["target"]["power"]["strataAndLevel"]["useCustomStrata"] = false
 
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["attachTextTo"] = "Frame"
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["size"] = 10
-		E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["yOffset"] = -12
-		if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"] then
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["justifyH"] = "CENTER"
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["xOffset"] = 0
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["yOffset"] = 10
-		end
-		if E.db["unitframe"]["units"]["targettarget"]["customTexts"] and E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] then
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["attachTextTo"] = "Frame"
-			E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["yOffset"] = 12
+		if E.db["unitframe"]["units"]["targettarget"]["customTexts"] then
+			 if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"] then
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["justifyH"] = "CENTER"
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["xOffset"] = 0
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetHealth"]["yOffset"] = 10
+			end
+			if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"] then
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["attachTextTo"] = "Frame"
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumTargetTargetName"]["yOffset"] = 12
+			end
+			if E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"] then
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["attachTextTo"] = "Frame"
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["size"] = 10
+				E.db["unitframe"]["units"]["targettarget"]["customTexts"]["EltreumPower"]["yOffset"] = -12
+			end
 		end
 		E.db["unitframe"]["units"]["targettarget"]["height"] = 10
 		E.db["unitframe"]["units"]["targettarget"]["power"]["attachTextTo"] = "Frame"
-		E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 5
+		E.db["unitframe"]["units"]["targettarget"]["power"]["height"] = 7
 		E.db["unitframe"]["units"]["targettarget"]["power"]["yOffset"] = -1
 		E.db["unitframe"]["units"]["targettarget"]["infoPanel"]["enable"] = false
 		E.db["unitframe"]["units"]["targettarget"]["power"]["strataAndLevel"]["useCustomLevel"] = false
@@ -2090,6 +2106,59 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["unitframe"]["units"]["pet"]["power"]["width"] = "spaced"
 		E.db["unitframe"]["units"]["pet"]["smartAuraPosition"] = "FLUID_DEBUFFS_ON_BUFFS"
 		E.db["unitframe"]["units"]["pet"]["width"] = 162
+
+		E.db["unitframe"]["units"]["boss"]["buffIndicator"]["size"] = 15
+		E.db["unitframe"]["units"]["boss"]["buffs"]["anchorPoint"] = "TOPRIGHT"
+		E.db["unitframe"]["units"]["boss"]["buffs"]["attachTo"] = "DEBUFFS"
+		E.db["unitframe"]["units"]["boss"]["buffs"]["countFont"] = "Kimberley"
+		E.db["unitframe"]["units"]["boss"]["buffs"]["countXOffset"] = 2
+		E.db["unitframe"]["units"]["boss"]["buffs"]["countYOffset"] = -3
+		E.db["unitframe"]["units"]["boss"]["buffs"]["durationPosition"] = "TOP"
+		E.db["unitframe"]["units"]["boss"]["buffs"]["growthX"] = "LEFT"
+		E.db["unitframe"]["units"]["boss"]["buffs"]["height"] = 15
+		E.db["unitframe"]["units"]["boss"]["buffs"]["keepSizeRatio"] = false
+		E.db["unitframe"]["units"]["boss"]["buffs"]["perrow"] = 7
+		E.db["unitframe"]["units"]["boss"]["buffs"]["sizeOverride"] = 25
+		E.db["unitframe"]["units"]["boss"]["buffs"]["spacing"] = 2
+		E.db["unitframe"]["units"]["boss"]["buffs"]["xOffset"] = 0
+		E.db["unitframe"]["units"]["boss"]["buffs"]["yOffset"] = 5
+		E.db["unitframe"]["units"]["boss"]["castbar"]["overlayOnFrame"] = "Health"
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["countXOffset"] = 2
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["countYOffset"] = -3
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["durationPosition"] = "TOP"
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["growthX"] = "LEFT"
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["height"] = 15
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["keepSizeRatio"] = false
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["perrow"] = 7
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["sizeOverride"] = 25
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["spacing"] = 2
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["xOffset"] = -3
+		E.db["unitframe"]["units"]["boss"]["debuffs"]["yOffset"] = -16
+		E.db["unitframe"]["units"]["boss"]["health"]["attachTextTo"] = "InfoPanel"
+		E.db["unitframe"]["units"]["boss"]["health"]["position"] = "RIGHT"
+		E.db["unitframe"]["units"]["boss"]["health"]["text_format"] = "[healthcolor][eltruism:hpstatusnopc:gradient]"
+		E.db["unitframe"]["units"]["boss"]["health"]["xOffset"] = 0
+		E.db["unitframe"]["units"]["boss"]["health"]["yOffset"] = 12
+		E.db["unitframe"]["units"]["boss"]["height"] = 15
+		E.db["unitframe"]["units"]["boss"]["infoPanel"]["enable"] = false
+		E.db["unitframe"]["units"]["boss"]["infoPanel"]["height"] = 12
+		E.db["unitframe"]["units"]["boss"]["name"]["attachTextTo"] = "Frame"
+		E.db["unitframe"]["units"]["boss"]["name"]["position"] = "LEFT"
+		E.db["unitframe"]["units"]["boss"]["name"]["text_format"] = "[name:eltruism:gradient]"
+		E.db["unitframe"]["units"]["boss"]["name"]["yOffset"] = 12
+		E.db["unitframe"]["units"]["boss"]["portrait"]["fullOverlay"] = true
+		E.db["unitframe"]["units"]["boss"]["portrait"]["overlay"] = true
+		E.db["unitframe"]["units"]["boss"]["portrait"]["overlayAlpha"] = 0.2
+		E.db["unitframe"]["units"]["boss"]["portrait"]["enable"] = false
+		E.db["unitframe"]["units"]["boss"]["power"]["attachTextTo"] = "Power"
+		E.db["unitframe"]["units"]["boss"]["power"]["height"] = 7
+		E.db["unitframe"]["units"]["boss"]["power"]["width"] = "spaced"
+		E.db["unitframe"]["units"]["boss"]["power"]["xOffset"] = 0
+		E.db["unitframe"]["units"]["boss"]["power"]["yOffset"] = 1
+		E.db["unitframe"]["units"]["boss"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
+		E.db["unitframe"]["units"]["boss"]["spacing"] = 30
+
+		ElvUI_EltreumUI:SetupFont(E.db.general.font)
 
 		ElvUI_EltreumUI:Print("Experimental Thin Mode Layout applied")
 	else

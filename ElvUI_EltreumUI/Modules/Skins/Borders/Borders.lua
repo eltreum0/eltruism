@@ -548,8 +548,6 @@ function ElvUI_EltreumUI:Borders()
 				})
 				focustargetborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				focustargetborder:SetFrameStrata("LOW")
-				focuscastbarborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.focuscaststrata)
-				focuscastbarborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.focuscastlevel)
 
 				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.focustarget.infoPanel.enable then
 					focustargetborder:SetPoint("CENTER", _G.ElvUF_FocusTarget, "CENTER", 0, E.db.unitframe.units.focustarget.infoPanel.height)
@@ -993,6 +991,21 @@ function ElvUI_EltreumUI:Borders()
 	end
 end
 
+--from elvui
+local debuffColors = { -- handle colors of LibDispel
+	["none"] = { r = 0.8, g = 0, b = 0 },
+	["Magic"] = { r = 0.2, g = 0.6, b = 1 },
+	["Curse"] = { r = 0.6, g = 0, b = 1 },
+	["Disease"] = { r = 0.6, g = 0.4, b = 0 },
+	["Poison"] = { r = 0, g = 0.6, b = 0 },
+
+	-- These dont exist in Blizzards color table
+	["EnemyNPC"] = { r = 0.9, g = 0.1, b = 0.1 },
+	["BadDispel"] = { r = 0.05, g = 0.85, b = 0.94 },
+	["Bleed"] = { r = 1, g = 0.2, b = 0.6 },
+	["Stealable"] = { r = 0.93, g = 0.91, b = 0.55 },
+}
+
 function ElvUI_EltreumUI:AuraBorders(button)
 	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable then
 		if E.db.ElvUI_EltreumUI.borders.classcolor then
@@ -1011,7 +1024,8 @@ function ElvUI_EltreumUI:AuraBorders(button)
 		else
 			auraborder = _G["EltruismAuraBorder"..button:GetName()]
 		end
-		if button:GetName():match("Debuffs") then
+
+		if button.auraType == "debuffs" then
 			auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.debuffaurasizex, E.db.ElvUI_EltreumUI.borders.debuffaurasizey)
 		else
 			auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.aurasizex, E.db.ElvUI_EltreumUI.borders.aurasizey)
@@ -1021,12 +1035,50 @@ function ElvUI_EltreumUI:AuraBorders(button)
 			edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
 			edgeSize = E.db.ElvUI_EltreumUI.borders.aurasize,
 		})
-		auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+		--E:Delay(1, function()
+			--[[if button.auraType == "debuffs" then
+				print(debuffColors[button.debuffType],button.debuffType)
+				if debuffColors[button.debuffType] then
+					auraborder:SetBackdropBorderColor(debuffColors[button.debuffType].r, debuffColors[button.debuffType].g, debuffColors[button.debuffType].b, 1)
+				else
+					auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
+				end
+			else
+				auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			end]]
+		--end)
+
 		auraborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.aurastrata)
 		auraborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.auralevel)
 	end
 end
 hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraBorders) --aura (minimap) borders
+
+function ElvUI_EltreumUI:AuraBordersColorDebuff(button)
+	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable then
+		local auraborder = _G["EltruismAuraBorder"..button:GetName()]
+		if not auraborder then return end
+		if E.db.ElvUI_EltreumUI.borders.classcolor then
+			classcolor = E:ClassColor(E.myclass, true)
+		elseif not E.db.ElvUI_EltreumUI.borders.classcolor then
+			classcolor = {
+				r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
+				g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
+				b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
+			}
+		end
+		if button.auraType == "debuffs" then
+			if debuffColors[button.debuffType] then
+				auraborder:SetBackdropBorderColor(debuffColors[button.debuffType].r, debuffColors[button.debuffType].g, debuffColors[button.debuffType].b, 1)
+			else
+				auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
+			end
+		else
+			auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+		end
+	end
+end
+hooksecurefunc(A, 'UpdateAura', ElvUI_EltreumUI.AuraBordersColorDebuff) --debuff colors update
 
 function ElvUI_EltreumUI:UFAuraBorders(button)
 	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf and E.private.auras.enable then
@@ -1070,10 +1122,11 @@ function ElvUI_EltreumUI:UFAuraBorders(button)
 			auraborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.aurauflevel)
 			if button:GetName():match("Debuffs") then
 				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufdebuffsizex, E.db.ElvUI_EltreumUI.borders.ufdebuffsizey)
+				auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
 			else
 				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufbuffsizex, E.db.ElvUI_EltreumUI.borders.ufbuffsizey)
+				auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			end
-			auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 		else
 			auraborder = _G["EltruismAuraBorder"..button:GetName()]
 			auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)

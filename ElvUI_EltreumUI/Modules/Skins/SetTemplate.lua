@@ -27,6 +27,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 					if isNamePlateElement and not E.db.ElvUI_EltreumUI.skins.elvui.nameplates then return end
 					if frame:GetObjectType() == "Button" and not E.db.ElvUI_EltreumUI.skins.elvui.button then return end
 					if frame:GetParent() and frame:GetParent():GetObjectType() == "Button" and not E.db.ElvUI_EltreumUI.skins.elvui.button then return end
+					if frame:GetObjectType() == "CheckButton" and frame.mask then return end --actionbar masks fix
 
 					--if frame.showDispellableDebuff then return end --fix RaidDebufs
 					if template ~= "NoBackdrop" then

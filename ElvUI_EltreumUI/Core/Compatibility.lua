@@ -68,7 +68,7 @@ local function ConstructCompatibilityFrame()
 	largeTip:SetJustifyH("CENTER")
 	largeTip:SetWidth(500)
 	largeTip:SetFont(E.LSM:Fetch("font", E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-	largeTip:SetText(E:TextGradient("Choose the option you would like to enable", 0.50, 0.70, 1, 0.67, 0.95, 1))
+	largeTip:SetText(E:TextGradient(L["Choose the option you would like to enable"], 0.50, 0.70, 1, 0.67, 0.95, 1))
 	largeTip:SetPoint("TOP", desc, "BOTTOM", 0, -10)
 
 	local bottomDesc = frame:CreateFontString(nil, "ARTWORK")

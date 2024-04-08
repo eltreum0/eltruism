@@ -3,7 +3,6 @@ local _G = _G
 local string = _G.string
 local OKAY = _G.OKAY
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
-local fixingold = false
 local GetAddOnMetadata = _G.C_AddOns and _G.C_AddOns.GetAddOnMetadata or _G.GetAddOnMetadata
 local tonumber = _G.tonumber
 local select = _G.select
@@ -14,8 +13,10 @@ function ElvUI_EltreumUI:VersionCheckInit()
 		ElvUI_EltreumUI:DatabaseConversions()
 	end
 	ElvUI_EltreumUI:PluginCheck()
-	ElvUI_EltreumUI:OldVersionCheck()
-	ElvUI_EltreumUI:NewVersionCheck()
+	if E.private.ElvUI_EltreumUI.install_version and E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version then
+		ElvUI_EltreumUI:OldVersionCheck()
+		ElvUI_EltreumUI:NewVersionCheck()
+	end
 	ElvUI_EltreumUI:ElvUIVersionCheck()
 end
 
@@ -140,10 +141,6 @@ function ElvUI_EltreumUI:PluginCheck()
 end
 
 function ElvUI_EltreumUI:OldVersionCheck()
-	if not E.private.ElvUI_EltreumUI.install_version then
-		return
-	end
-
 	if E.db.ElvUI_EltreumUI.otherstuff.ABlikeWA then
 		ElvUI_EltreumUI:Print("You are using WeakAuras mode for ActionBars. If you wish to stop using it, make sure to disable by typing /eltruism weakauras or disabling it in the options, failing to do can cause errors")
 	end
@@ -217,7 +214,7 @@ function ElvUI_EltreumUI:OldVersionCheck()
 	end
 
 	--changes only for my profiles
-	if E.private.ElvUI_EltreumUI.install_version and not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
+	if not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
 		return
 	elseif E.private.ElvUI_EltreumUI.install_version >= "3.7.3" and E.private.ElvUI_EltreumUI.install_version < "4.0.5" then
 		if E.Classic then --fix priest mind control paging
@@ -228,8 +225,6 @@ function ElvUI_EltreumUI:OldVersionCheck()
 			end
 		end
 		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
-		--fixingold = true
-		--E.private.ElvUI_EltreumUI.install_version = "4.0.5"
 	elseif E.private.ElvUI_EltreumUI.install_version >= "4.0.5" and E.private.ElvUI_EltreumUI.install_version < "4.0.7" then
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower then
 			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar = true
@@ -238,19 +233,23 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		if E.db["unitframe"]["units"]["party"]["visibility"] == "[@raid6,exists][nogroup] hide;show" then
 			E.db["unitframe"]["units"]["party"]["visibility"] = "[@raid6,exists][@party1,noexists] hide;show"
 		end
+	elseif E.private.ElvUI_EltreumUI.install_version >= "4.1.2" and E.private.ElvUI_EltreumUI.install_version < "4.1.3" then --fix era priest paging shadowform
+		if E.Classic then
+			if E.db.actionbar.bar1.visibility == "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;" then
+				E.db["actionbar"]["bar1"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 16;[bonusbar:5] 11; [stance:1] 7;"
+			elseif E.db.actionbar.bar4.visibility == "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;" then
+				E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 16;[bonusbar:5] 11; [stance:1] 7;"
+			end
+		end
 	end
 end
 
 function ElvUI_EltreumUI:NewVersionCheck()
-	if not E.private.ElvUI_EltreumUI.install_version then
-		return
-	elseif E.private.ElvUI_EltreumUI.install_version >= "2.4.0" and E.private.ElvUI_EltreumUI.install_version < ElvUI_EltreumUI.Version and not fixingold then
-		E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
-		local version = (string.format("|cff82B4ff"..ElvUI_EltreumUI.Version.."|r"))
-		ElvUI_EltreumUI:Print("Welcome to version "..version..". If you have any issues please join the |TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinydisc.tga:0:0:0:0|t Discord for help")
-		if E.db.ElvUI_EltreumUI.autoupdate then
-			ElvUI_EltreumUI:UpdateEltruismSettings(true)
-			ElvUI_EltreumUI:UpdateElvUISettings(true)
-		end
+	E.private.ElvUI_EltreumUI.install_version = ElvUI_EltreumUI.Version
+	local version = (string.format("|cff82B4ff"..ElvUI_EltreumUI.Version.."|r"))
+	ElvUI_EltreumUI:Print("Welcome to version "..version..". If you have any issues please join the |TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinydisc.tga:0:0:0:0|t Discord for help")
+	if E.db.ElvUI_EltreumUI.autoupdate then
+		ElvUI_EltreumUI:UpdateEltruismSettings(true)
+		ElvUI_EltreumUI:UpdateElvUISettings(true)
 	end
 end

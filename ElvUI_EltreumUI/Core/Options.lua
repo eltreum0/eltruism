@@ -763,6 +763,23 @@ function ElvUI_EltreumUI:Configtable()
 	 end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.dynamicrenderscaleenable.descStyle = "inline"
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.dynamicrenderscalepercentage = ACH:Range(L["Dynamic Render Scale Minimum"], L["Lowest Render Scale used"], 8, { min = 0.1, max = 1, step = 0.01 }, 'full', function() return tonumber(GetCVar('DynamicRenderScaleMin')) end, function(_, value) SetCVar('DynamicRenderScaleMin', tonumber(value)) E.db.ElvUI_EltreumUI.cvars.dynamicrenderscalemin = tonumber(value) end, function() if GetCVar('DynamicRenderScale') == '1' then return false elseif GetCVar('DynamicRenderScale') == '0' then return true end end)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.description4 = ACH:Description("", 19, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.preloadNonCritical = ACH:Toggle(E.NewSign.._G.DISABLE.." ".."worldPreloadNonCritical", L["Disable the worldPreloadNonCritical CVar, doing so can improve loading times."], 20, nil, false,'full',
+	function()
+		if GetCVar('worldPreloadNonCritical') == '2' then
+			return false
+		elseif GetCVar('worldPreloadNonCritical') == '0' then
+			return true
+		else
+			return false
+		end
+	end, function(_, value)
+		if value == true then
+			SetCVar('worldPreloadNonCritical', 0)
+		else
+			SetCVar('worldPreloadNonCritical', 2)
+		end
+	 end)
 
 	--custom glow
 	ElvUI_EltreumUI.Options.args.customglow = ACH:Group(E:TextGradient(L["Custom Glow"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Fully customize how action bars glow and add glows to debuffs on unitframes"], 85, 'tab')
@@ -1481,9 +1498,9 @@ function ElvUI_EltreumUI:Configtable()
 	end, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice = tonumber(value) C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice, TEXT_TO_SPEECH, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume) end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end)
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundTTSvolume = ACH:Range(VOLUME, nil, 23, { min = 1, max = 100, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoicevolume = value end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype ~= "tts" end)
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.description9 = ACH:Description(L["Mail Animation"], 24, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailAnimation = ACH:Toggle(E.NewSign..L["Enable Mail Animation"], L["Play a Blizzard animation when receiving mail or when new mail exists"], 23, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailAnimation end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailAnimation = value E:StaticPopup_Show('CONFIG_RL') end)
-	ElvUI_EltreumUI.Options.args.misc.args.general.args.description10 = ACH:Description(_G.TRADE_SKILLS, 25, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.misc.args.general.args.bagProfessionIcons = ACH:Toggle(E.NewSign..L["Add Profession Buttons to Bags"], nil, 26, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.bagProfessionIcons end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bagProfessionIcons = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailAnimation = ACH:Toggle(E.NewSign..L["Enable Mail Animation"], L["Play a Blizzard animation when receiving mail or when new mail exists"], 25, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailAnimation end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailAnimation = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.description10 = ACH:Description(_G.TRADE_SKILLS, 26, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.bagProfessionIcons = ACH:Toggle(E.NewSign..L["Add Profession Buttons to Bags"], nil, 27, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.bagProfessionIcons end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bagProfessionIcons = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.misc.args.combat = ACH:Group(L["Combat"], nil, 2)
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.description1 = ACH:Description(L["Show Buffs in Arena and hide them outside (will overwrite Eltruism default settings)"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.arenabuffs = ACH:Toggle(L["Enable"], nil, 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.arenabuffs end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.arenabuffs = value E:StaticPopup_Show('CONFIG_RL') end)
