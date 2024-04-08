@@ -1891,11 +1891,14 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["actionbar"]["barPet"]["inheritGlobalFade"] = true
 		E.db["actionbar"]["barPet"]["keepSizeRatio"] = false
 
+		E.db["databars"]["experience"]["height"] = 5
+		E.db["databars"]["reputation"]["height"] = 5
+		E.db["databars"]["threat"]["height"] = 5
+
 		E.db["movers"]["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,233"
 		E.db["movers"]["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,214"
 		E.db["movers"]["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,0,194"
 		E.db["movers"]["ElvAB_4"] = "BOTTOM,ElvUIParent,BOTTOM,0,175"
-
 		E.db["movers"]["PetAB"] = "BOTTOM,ElvUIParent,BOTTOM,-319,146"
 		E.db["movers"]["ElvUF_PetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-318,223"
 		E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-280,265"
@@ -1903,6 +1906,9 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["movers"]["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,157"
 		E.db["movers"]["TotemTrackerMover"] = "BOTTOM,UIParent,BOTTOM,0,301"
 		E.db["movers"]["BossHeaderMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-4,-372"
+		E.db["movers"]["ReputationBarMover"] = "TOP,ElvUIParent,TOP,0,-5"
+		E.db["movers"]["ExperienceBarMover"] = "TOP,ElvUIParent,TOP,0,-13"
+		E.db["movers"]["ThreatBarMover"] = "TOP,ElvUIParent,TOP,0,-43"
 
 		E.db["unitframe"]["units"]["focus"]["castbar"]["customTextFont"]["enable"] = true
 		E.db["unitframe"]["units"]["focus"]["castbar"]["customTextFont"]["fontSize"] = 14
