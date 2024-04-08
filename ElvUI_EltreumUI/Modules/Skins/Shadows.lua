@@ -670,6 +670,12 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G.WardrobeFrame.shadow)
 						end
 					end
+					if (arg == "Blizzard_ReforgingUI") or IsAddOnLoaded("Blizzard_ReforgingUI") then
+						if not _G.ReforgingFrame.shadow then
+							_G.ReforgingFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ReforgingFrame.shadow)
+						end
+					end
 					if (arg == "Blizzard_PVPUI") or IsAddOnLoaded("Blizzard_PVPUI") then
 						if not _G.PVPUIFrame.shadow then
 							_G.PVPUIFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -1263,9 +1269,6 @@ function ElvUI_EltreumUI:Shadows()
 					_G.MerchantFrame.backdrop,
 					_G.MerchantFrameTab1.backdrop,
 					_G.MerchantFrameTab2.backdrop,
-					_G.CharacterFrameTab4.backdrop, --only in classic though
-					_G.CharacterFrameTab5.backdrop, --only in classic though
-					_G.FriendsFrameTab5.backdrop, --only in classic though
 					_G.PetStableFrame.backdrop,
 					_G.TaxiFrame.backdrop,
 					_G.TabardFrame.backdrop,
@@ -1279,6 +1282,20 @@ function ElvUI_EltreumUI:Shadows()
 					if frame and not frame.shadow then
 						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(frame.shadow)
+					end
+				end
+
+				if E.Classic then
+					local eraframes = {
+						_G.CharacterFrameTab4.backdrop, --only in classic though
+						_G.CharacterFrameTab5.backdrop, --only in classic though
+						_G.FriendsFrameTab5.backdrop, --only in classic though
+					}
+					for _, frame in pairs(eraframes) do
+						if frame and not frame.shadow then
+							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(frame.shadow)
+						end
 					end
 				end
 

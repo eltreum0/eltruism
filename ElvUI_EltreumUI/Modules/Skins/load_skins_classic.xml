@@ -29,6 +29,7 @@
 	<Script file='Other/Scale.lua'/>
 	<Script file='Other/Stealth.lua'/>
 	<Script file='Other/Tooltip.lua'/>
+	<Script file='Other/WiderTransmog.lua'/>
 	<Script file='Unitframes/GradientFunctions.lua'/>
 	<Script file='Unitframes/Aurabars.lua'/>
 	<Script file='Unitframes/Blizzard.lua'/>
