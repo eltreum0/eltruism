@@ -181,6 +181,7 @@ function ElvUI_EltreumUI:SkinAuctionator()
 										subframe.HighlightTexture.SetAlpha = E.noop
 									end
 								elseif subframe:GetObjectType() == "Button" then
+									subframe:StripTextures()
 									S:HandleButton(subframe)
 								elseif subframe:GetObjectType() == "EditBox" then
 									S:HandleEditBox(subframe)
@@ -194,7 +195,8 @@ function ElvUI_EltreumUI:SkinAuctionator()
 					end
 				end
 
-				local function handlesubregions(frame)
+				--auctionator removed this frame
+				--[[local function handlesubregions(frame)
 					if frame.eltruismbgtexture then frame.eltruismbgtexture:Hide() end
 					if frame.Icon then --doesnt seem to find any
 						frame.Icon:SetTexCoord(unpack(E.TexCoords))
@@ -238,8 +240,7 @@ function ElvUI_EltreumUI:SkinAuctionator()
 					end
 				end
 
-				--auctionator removed this frame
-				--[[hooksecurefunc(_G.Auctionator.Groups,"OpenCustomiseView",function()
+				hooksecurefunc(_G.Auctionator.Groups,"OpenCustomiseView",function()
 					if not _G["AuctionatorGroupsCustomiseFrame"].EltruismSkin then
 						S:HandleFrame(_G["AuctionatorGroupsCustomiseFrame"])
 						S:HandleButton(_G["AuctionatorGroupsCustomiseFrame"].NewGroupButton)
@@ -269,11 +270,15 @@ function ElvUI_EltreumUI:SkinAuctionator()
 					end)
 				end)
 
-				if not _G["AuctionatorSellingFrame"].BagListing.EltruismViewHook then --items update late, and they might also change, so hook view
+				if not _G["AuctionatorSellingFrame"].BagListing.EltruismViewHook then --items (can) update late, and they might also change, so hook view
+					handlesubframe(_G["AuctionatorSellingFrame"].BagListing.View.ScrollBox.ItemListingFrame) --seems like if selling is the default view they update earlier
 					_G["AuctionatorSellingFrame"].BagListing:HookScript("OnShow", function()
-						E:Delay(0, function()
-							handlesubframe(_G["AuctionatorSellingFrame"].BagListing.View.ScrollBox.ItemListingFrame)
-						end)
+						if not _G["AuctionatorSellingFrame"].BagListing.EltruismSkin then
+							E:Delay(1, function()
+								handlesubframe(_G["AuctionatorSellingFrame"].BagListing.View.ScrollBox.ItemListingFrame)
+							end)
+							_G["AuctionatorSellingFrame"].BagListing.EltruismSkin = true
+						end
 					end)
 					_G["AuctionatorSellingFrame"].BagListing.EltruismViewHook = true
 				end
