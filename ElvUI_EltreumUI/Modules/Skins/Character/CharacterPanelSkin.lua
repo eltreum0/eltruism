@@ -86,7 +86,7 @@ if E.Wrath or E.Classic then
 	CharacterFrame.StatusLine4:SetValue(100)
 end
 
-if E.Wrath then
+if E.Wrath and not E.Cata then
 	_G.PlayerStatFrameLeft2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine12", PaperDollItemsFrame)
 	_G.PlayerStatFrameLeft2.StatusLine:SetMinMaxValues(0,100)
 	_G.PlayerStatFrameLeft2.StatusLine:SetValue(100)
@@ -433,6 +433,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G["PawnUI_InventoryPawnButton"]:SetFrameStrata("DIALOG")
 		end
 	end
+
+	if E.Cata then return end --TODO: CATACLYSM THINGS
 
 	if E.Retail then
 
@@ -2241,7 +2243,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 					qualityAnchor.Frame.Quality = qualityAnchor.Frame:CreateTexture("EltruismItemQualityTexture"..InvSlotName, "OVERLAY")
 				end
 
-				if E.Retail then
+				if E.Retail or E.Cata then --TODO: CATACLYSM THINGS
 					qualityAnchor.Frame:SetFrameLevel(2) --retail works fine
 					if E.db.ElvUI_EltreumUI.skins.classicarmory then
 						qualityAnchor.Frame:SetSize(200, _G["Character"..InvSlotName]:GetHeight() + 2)
