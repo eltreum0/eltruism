@@ -55,19 +55,14 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					ElvUI_EltreumUI:ShadowColor(frame.shadow)
 				end
 			end
-			if not E.Retail then
+			if E.Classic then
 				if _G["ImmersionFrame"].TalkBox.BackgroundFrame.shadow then
 					_G["ImmersionFrame"].TalkBox.BackgroundFrame.shadow:Hide()
 				end
-			end
-		end
-
-		if E.Classic then
-			local classicframes = {
-				_G["ImmersionFrame"].TalkBox.MainFrame,
-				_G["ImmersionFrame"].TalkBox.Elements,
-			}
-			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+				local classicframes = {
+					_G["ImmersionFrame"].TalkBox.MainFrame,
+					_G["ImmersionFrame"].TalkBox.Elements,
+				}
 				for _, frame in pairs(classicframes) do
 					if frame and not frame.shadow then
 						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -76,6 +71,8 @@ function ElvUI_EltreumUI:EltruismImmersion()
 				end
 			end
 		end
+
+
 
 		S:HandleCloseButton(_G["ImmersionFrame"].TalkBox.MainFrame.CloseButton)
 
