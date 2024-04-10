@@ -1287,14 +1287,14 @@ function ElvUI_EltreumUI:Shadows()
 
 				if not E.Retail then
 					local eraframes = {
-						_G.CharacterFrameTab4.backdrop, --only in classic though
-						_G.CharacterFrameTab5.backdrop, --only in classic though
-						_G.FriendsFrameTab5.backdrop, --only in classic though
+						_G.CharacterFrameTab4, --only in classic though
+						_G.CharacterFrameTab5, --only in classic though
+						_G.FriendsFrameTab5, --only in classic though
 					}
 					for _, frame in pairs(eraframes) do
-						if frame and not frame.shadow then
-							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(frame.shadow)
+						if frame and frame.backdrop and not frame.backdrop.shadow then
+							frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(frame.backdrop.shadow)
 						end
 					end
 				end
