@@ -927,10 +927,10 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
-			if not E.Classic then
+			if E.Retail then
 				if _G.SpellBookFrame and not _G.SpellBookFrame.shadow then
-					SpellBookFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(SpellBookFrame.shadow)
+					_G.SpellBookFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G.SpellBookFrame.shadow)
 				end
 			end
 
@@ -1285,7 +1285,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 
-				if E.Classic then
+				if not E.Retail then
 					local eraframes = {
 						_G.CharacterFrameTab4.backdrop, --only in classic though
 						_G.CharacterFrameTab5.backdrop, --only in classic though
