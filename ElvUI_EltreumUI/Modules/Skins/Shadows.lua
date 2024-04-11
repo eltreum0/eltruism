@@ -1073,7 +1073,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 		------------------------------------------------------------------------------------------------------version specific
-		if E.Retail then
+		if E.Retail or E.Cata then
 			if IsAddOnLoaded("Rarity") then
 				local rarityalreadyloads = {
 					_G.CollectionsJournalTab1.backdrop,
@@ -1122,9 +1122,6 @@ function ElvUI_EltreumUI:Shadows()
 					_G.WorldMapFrame.backdrop,
 					_G.WardrobeFrame, --weird
 					_G.PVEFrame,
-					_G.PVEFrameTab1.backdrop,
-					_G.PVEFrameTab2.backdrop,
-					_G.PVEFrameTab3.backdrop,
 					_G.CollectionsJournal,
 					_G.DressUpFrame.OutfitDetailsPanel,
 					_G.WeeklyRewardsFrame,
@@ -1135,12 +1132,36 @@ function ElvUI_EltreumUI:Shadows()
 					_G.LossOfControlFrame,
 					_G.QuestFrame,
 					_G.EquipmentFlyoutFrameButtons,
-					_G.EditModeManagerFrame,
 				}
 				for _, frame in pairs(retailframes) do
 					if frame and not frame.shadow then
 						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(frame.shadow)
+					end
+				end
+
+				local backdropframes = {
+					_G.PVEFrameTab1,
+					_G.PVEFrameTab2,
+					_G.PVEFrameTab3,
+				}
+				for _, frame in pairs(backdropframes) do
+					if frame and frame.backdrop and not frame.backdrop.shadow then
+						frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(frame.backdrop.shadow)
+					end
+				end
+
+				--retail edit mode
+				if E.Retail then
+					if _G.EditModeManagerFrame and not _G.EditModeManagerFrame.shadow then
+						_G.EditModeManagerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G.EditModeManagerFrame.shadow)
+					end
+				else
+					if _G.CharacterFrameTab4 and _G.CharacterFrameTab4.backdrop and not _G.CharacterFrameTab4.backdrop.shadow then
+						_G.CharacterFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G.CharacterFrameTab4.backdrop.shadow)
 					end
 				end
 
@@ -1160,12 +1181,14 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--main minimize button easier here
-				if _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton and not _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow then
-					_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton:CreateShadow()
-					_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:ClearAllPoints()
-					_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("TOPLEFT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "TOPLEFT", -2,2)
-					_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("BOTTOMRIGHT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "BOTTOMRIGHT", 2,-2)
-					ElvUI_EltreumUI:ShadowColor(_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow)
+				if _G.ObjectiveTrackerFrame then
+					if _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton and not _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow then
+						_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton:CreateShadow()
+						_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:ClearAllPoints()
+						_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("TOPLEFT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "TOPLEFT", -2,2)
+						_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("BOTTOMRIGHT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "BOTTOMRIGHT", 2,-2)
+						ElvUI_EltreumUI:ShadowColor(_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow)
+					end
 				end
 
 				if E.db.ElvUI_EltreumUI.skins.quests and E.private.skins.blizzard.objectiveTracker and E.private.skins.blizzard.enable then
@@ -1180,7 +1203,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			if E.private.actionbar.enable and E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
-				if not _G.BossButton.shadow then
+				if _G.BossButton and not _G.BossButton.shadow then
 					_G.BossButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(_G.BossButton.shadow)
 				end
