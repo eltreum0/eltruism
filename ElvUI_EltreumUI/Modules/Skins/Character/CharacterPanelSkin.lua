@@ -257,7 +257,7 @@ function ElvUI_EltreumUI:GetUnitItemLevel(unit)
 		if (i ~= 4) then
 			linkloop = _G.GetInventoryItemLink(unit, i)
 			if linkloop then
-				level = select(4, _G.GetItemInfo(linkloop))
+				level = select(4, GetItemInfo(linkloop))
 			else
 				level = -1
 			end
@@ -275,7 +275,7 @@ function ElvUI_EltreumUI:GetUnitItemLevel(unit)
 	mainlevel = 0
 	mainlink = _G.GetInventoryItemLink(unit, 16)
 	if mainlink then
-		mainlevel = select(4, _G.GetItemInfo(mainlink))
+		mainlevel = select(4, GetItemInfo(mainlink))
 	end
 	mainhand = (tonumber(mainlevel))
 	if mainhand == nil then
@@ -285,7 +285,7 @@ function ElvUI_EltreumUI:GetUnitItemLevel(unit)
 	offhandlink = _G.GetInventoryItemLink(unit, 17)
 	offhandlevel = 0
 	if offhandlink then
-		offhandlevel = select(4, _G.GetItemInfo(offhandlink))
+		offhandlevel = select(4, GetItemInfo(offhandlink))
 	end
 	offhand = (tonumber(offhandlevel))
 	if offhand == nil then
@@ -295,7 +295,7 @@ function ElvUI_EltreumUI:GetUnitItemLevel(unit)
 	rangedlevel = 0
 	rangedlink = _G.GetInventoryItemLink(unit, 18)
 	if rangedlink then
-		rangedlevel = select(4, _G.GetItemInfo(rangedlink))
+		rangedlevel = select(4, GetItemInfo(rangedlink))
 	end
 	ranged = (tonumber(rangedlevel))
 	if ranged == nil then
@@ -433,8 +433,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G["PawnUI_InventoryPawnButton"]:SetFrameStrata("DIALOG")
 		end
 	end
-
-	if E.Cata then return end --TODO: CATACLYSM THINGS
 
 	if E.Retail then
 
@@ -1377,6 +1375,367 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			end
 		end)
+	elseif E.Cata then
+		--expand and skin the panel
+		if E.db.ElvUI_EltreumUI.skins.classicarmory then
+
+			CharacterFrame:SetHeight(455)
+			CharacterFrame:SetWidth(700)
+			-- Move Right Side since left side is already ok
+			_G.CharacterFrameInsetRight:SetPoint('TOPLEFT', _G.CharacterFrameInset, 'TOPRIGHT', 130, 0)
+			_G.CharacterHandsSlot:SetPoint('TOPRIGHT', _G.CharacterFrameInsetRight, 'TOPLEFT', 0, -3)
+			-- Move bottom equipment slots
+			_G.CharacterMainHandSlot:SetPoint('BOTTOMLEFT', PaperDollItemsFrame, 'BOTTOMLEFT', 195, 20)
+			--strech it a bit
+			if CharacterModelScene then
+				CharacterModelScene:ClearAllPoints()
+				CharacterModelScene:SetPoint('TOPLEFT', _G.CharacterHeadSlot, -5, 5)
+				CharacterModelScene:SetPoint('RIGHT', _G.CharacterHandsSlot, 5, 5)
+				CharacterModelScene:SetPoint('BOTTOM', _G.CharacterMainHandSlot, 0, -5)
+				local actor = CharacterModelScene:GetPlayerActor()
+				if actor then
+					actor:SetPosition(0, 0, 0)
+					actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+				end
+			end
+
+			--move the equipment manager to a nice position
+			if _G.PaperDollFrame.EquipmentManagerPane then
+				_G.PaperDollFrame.EquipmentManagerPane:ClearAllPoints()
+				_G.PaperDollFrame.EquipmentManagerPane:SetPoint("RIGHT", CharacterFrame, "RIGHT", -30, -20)
+				_G.PaperDollFrame.EquipmentManagerPane.ScrollBox:ClearAllPoints()
+				_G.PaperDollFrame.EquipmentManagerPane.ScrollBox:SetPoint("TOP", _G.PaperDollFrame.EquipmentManagerPane, "TOP", 0, -30)
+			end
+
+			--move the titles panel to a nice position
+			if _G.PaperDollFrame.TitleManagerPane then
+				_G.PaperDollFrame.TitleManagerPane:ClearAllPoints()
+				_G.PaperDollFrame.TitleManagerPane:SetPoint("RIGHT", CharacterFrame, "RIGHT", -40, -20)
+				_G.PaperDollFrame.TitleManagerPane.ScrollBox:ClearAllPoints()
+				_G.PaperDollFrame.TitleManagerPane.ScrollBox:SetPoint("RIGHT", CharacterFrame, "RIGHT", -40, -20)
+			end
+
+			CharacterFrame:HookScript("OnShow", function()
+				if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
+					if not ElvUI_EltreumUI:SLCheck("stats") then
+						local bagilvl, equippedilvl = GetAverageItemLevel()
+						if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
+							local r, g, b
+							if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
+								r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+							else
+								r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+							end
+							CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
+						end
+					end
+				end
+
+				E:Delay(0, function()
+					local actor = CharacterModelScene:GetPlayerActor()
+					if actor then
+						actor:SetPosition(0, 0, 0)
+						actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+					end
+				end)
+			end)
+		end
+
+		--add gradient text to some texts
+		CharacterFrame:HookScript("OnShow", function()
+			if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+				_G.CharacterStatsPaneCategory1NameText:SetText(ElvUI_EltreumUI:GradientName(_G["STAT_CATEGORY_".._G.CharacterStatsPaneCategory1.Category], E.myclass))
+				_G.CharacterStatsPaneCategory2NameText:SetText(ElvUI_EltreumUI:GradientName(_G["STAT_CATEGORY_".._G.CharacterStatsPaneCategory2.Category], E.myclass))
+				_G.CharacterStatsPaneCategory3NameText:SetText(ElvUI_EltreumUI:GradientName(_G["STAT_CATEGORY_".._G.CharacterStatsPaneCategory3.Category], E.myclass))
+				_G.CharacterStatsPaneCategory4NameText:SetText(ElvUI_EltreumUI:GradientName(_G["STAT_CATEGORY_".._G.CharacterStatsPaneCategory4.Category], E.myclass))
+				_G.CharacterStatsPaneCategory5NameText:SetText(ElvUI_EltreumUI:GradientName(_G["STAT_CATEGORY_".._G.CharacterStatsPaneCategory5.Category], E.myclass))
+				_G.CharacterStatsPaneCategory6NameText:SetText(ElvUI_EltreumUI:GradientName(_G["STAT_CATEGORY_".._G.CharacterStatsPaneCategory6.Category], E.myclass))
+				_G.CharacterStatsPaneCategory7NameText:SetText(ElvUI_EltreumUI:GradientName(_G["STAT_CATEGORY_".._G.CharacterStatsPaneCategory7.Category], E.myclass))
+			end
+		end)
+
+		--add gradient text to stats
+		if E.db.ElvUI_EltreumUI.skins.statcolors then
+			hooksecurefunc('PaperDollFrame_SetLabelAndText', function(statFrame)
+				if ( statFrame.Label ) then
+					local text = statFrame.Label:GetText()
+					if not ElvUI_EltreumUI:SLCheck("stats") then
+						statFrame.Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+					end
+					if not statFrame.Label:GetText():match("|r") then
+						statFrame.Label:SetText(ElvUI_EltreumUI:GradientName(text, E.myclass))
+					end
+					if not ElvUI_EltreumUI:SLCheck("stats") and statFrame.Value then
+						statFrame.Value:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+					end
+				end
+			end)
+
+			hooksecurefunc('PaperDollFrame_UpdateStatCategory', function(categoryFrame)
+				if not categoryFrame then return end
+				local numVisible = 0;
+				local newtext
+				local categoryInfo = PAPERDOLL_STATCATEGORIES[categoryFrame.Category]
+				if (categoryInfo) then
+					local prevStatFrame = nil;
+					for _, stat in next, categoryInfo.stats do
+						local statInfo = PAPERDOLL_STATINFO[stat];
+						if (statInfo) then
+							local statFrame = _G[categoryFrame:GetName().."Stat"..numVisible+1];
+							if statFrame and statFrame.Label then
+								local text = statFrame.Label:GetText()
+								statFrame.Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+								if not statFrame.Label:GetText():match("|r") then
+									if statFrame.Label:GetText():match("|T") then
+										if text:match(_G.STRING_SCHOOL_ARCANE) then
+											newtext = gsub(text, _G.STRING_SCHOOL_ARCANE..":", ElvUI_EltreumUI:GradientName(_G.STRING_SCHOOL_ARCANE..":", E.myclass))
+											statFrame.Label:SetText(newtext)
+										elseif text:match(_G.STRING_SCHOOL_FIRE) then
+											newtext = gsub(text, _G.STRING_SCHOOL_FIRE..":", ElvUI_EltreumUI:GradientName(_G.STRING_SCHOOL_FIRE..":", E.myclass))
+											statFrame.Label:SetText(newtext)
+										elseif text:match(_G.STRING_SCHOOL_FROST) then
+											newtext = gsub(text, _G.STRING_SCHOOL_FROST..":", ElvUI_EltreumUI:GradientName(_G.STRING_SCHOOL_FROST..":", E.myclass))
+											statFrame.Label:SetText(newtext)
+										elseif text:match(_G.STRING_SCHOOL_NATURE) then
+											newtext = gsub(text, _G.STRING_SCHOOL_NATURE..":", ElvUI_EltreumUI:GradientName(_G.STRING_SCHOOL_NATURE..":", E.myclass))
+											statFrame.Label:SetText(newtext)
+										elseif text:match(_G.STRING_SCHOOL_SHADOW) then
+											newtext = gsub(text, _G.STRING_SCHOOL_SHADOW..":", ElvUI_EltreumUI:GradientName(_G.STRING_SCHOOL_SHADOW..":", E.myclass))
+											statFrame.Label:SetText(newtext)
+										end
+									else
+										statFrame.Label:SetText(ElvUI_EltreumUI:GradientName(text, E.myclass))
+									end
+								end
+								statFrame.Value:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+							end
+
+							if statFrame and (statFrame:IsShown()) then --loop
+								numVisible = numVisible+1;
+								prevStatFrame = statFrame;
+							end
+						end
+					end
+				end
+			end)
+		end
+
+		-- add and expand art
+		if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+
+			--hide other bgs so one can be streched like the talents for tbc/classic
+			CharacterModelScene.BackgroundTopRight:Hide()
+			CharacterModelScene.BackgroundBotLeft:Hide()
+			CharacterModelScene.BackgroundBotRight:Hide()
+			CharacterModelScene.BackgroundTopLeft:SetAllPoints(CharacterModelScene)
+			_G.CharacterModelFrameBackgroundOverlay:SetAllPoints(CharacterModelScene)
+
+			--add bg texture
+			CharacterFrameBackgroundTextureFader:SetAllPoints(CharacterFrame)
+			CharacterFrameBackgroundTextureFader:SetParent(CharacterFrame)
+			CharacterFrameBackgroundTextureFader:SetDrawLayer("ARTWORK",7)
+			CharacterFrameBackgroundTextureFader:SetAlpha(E.db.ElvUI_EltreumUI.skins.armoryvignettealpha)
+			if not E.db.ElvUI_EltreumUI.skins.armoryvignette then
+				CharacterFrameBackgroundTextureFader:Hide()
+			else
+				CharacterFrameBackgroundTextureFader:Show()
+			end
+			if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+				CharacterFrameBackgroundTexture:SetTexture(classBgs[E.myclass])
+				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" then
+				CharacterFrameBackgroundTexture:SetTexture(raceBgs[E.myrace])
+				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" then
+				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ragnaros")
+				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" then
+				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\SpaceCloud")
+				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Ravnyr")
+				CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "BLACK" then
+				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\black")
+			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
+				texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
+				CharacterFrameBackgroundTexture:SetTexture(texturefile)
+			end
+			CharacterFrameBackgroundTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
+			CharacterFrameBackgroundTexture:SetAllPoints(CharacterFrame)
+			CharacterFrameBackgroundTexture:SetParent(CharacterFrame)
+			CharacterFrameBackgroundTexture:SetDrawLayer("ARTWORK",6)
+
+			if _G.CharacterModelScene then
+				_G.CharacterModelScene.backdrop:Hide()
+				_G.CharacterModelFrameBackgroundTopLeft:Hide()
+				_G.CharacterModelFrameBackgroundOverlay:Hide()
+			end
+		end
+
+		--fixing the background with expanded panel but no expanded art
+		if E.db.ElvUI_EltreumUI.skins.classicarmory and not E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+			_G.CharacterModelFrameBackgroundTopLeft:ClearAllPoints()
+			_G.CharacterModelFrameBackgroundTopRight:ClearAllPoints()
+			_G.CharacterModelFrameBackgroundBotLeft:ClearAllPoints()
+			_G.CharacterModelFrameBackgroundBotRight:ClearAllPoints()
+			_G.CharacterModelFrameBackgroundTopLeft:SetPoint("TOPLEFT", _G.CharacterModelScene, "TOPLEFT",0,0)
+			_G.CharacterModelFrameBackgroundTopLeft:SetWidth(404)
+			_G.CharacterModelFrameBackgroundTopLeft:SetHeight(309)
+			_G.CharacterModelFrameBackgroundBotLeft:SetPoint("BOTTOMLEFT", _G.CharacterModelScene, "BOTTOMLEFT", 0, -54)
+			_G.CharacterModelFrameBackgroundBotLeft:SetWidth(404)
+			_G.CharacterModelFrameBackgroundTopRight:SetPoint("TOPRIGHT", _G.CharacterModelScene, "TOPRIGHT",0,0)
+			_G.CharacterModelFrameBackgroundTopRight:SetWidth(60)
+			_G.CharacterModelFrameBackgroundTopRight:SetHeight(309)
+			_G.CharacterModelFrameBackgroundBotRight:SetPoint("BOTTOMRIGHT", _G.CharacterModelScene, "BOTTOMRIGHT",0,-54)
+			_G.CharacterModelFrameBackgroundBotRight:SetWidth(60)
+		end
+
+		--update stats and stats position
+		hooksecurefunc("PaperDollFrame_UpdateStats", function()
+			if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
+				local bagilvl, equippedilvl = GetAverageItemLevel()
+				if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
+					local r, g, b
+					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
+						r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+					else
+						r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+					end
+					CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
+				end
+			end
+		end)
+
+		if not E.db.ElvUI_EltreumUI.skins.characterskingradients then
+			CharacterStatsPane.ItemLevelCategory.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+			if E.db.ElvUI_EltreumUI.skins.classicarmoryeltruismstats then
+				CharacterFrame.EltruismExtraStatsFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+			end
+			CharacterStatsPane.AttributesCategory.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+			CharacterStatsPane.EnhancementsCategory.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+		end
+
+		--add class crest
+		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
+			ClassCrestFrame:SetSize(256, 256)
+			ClassCrestFrame:SetPoint("CENTER", CharacterModelScene, 0, 50)
+			ClassCrestFrame:SetParent(CharacterFrame)
+
+			if E.db.ElvUI_EltreumUI.skins.armorycrestversion == 1 then
+				ClassCrestFrameTexture:SetAtlas(ElvUI_EltreumUI:GetClassCrest(), true)
+			else
+				ClassCrestFrameTexture:SetTexture(ElvUI_EltreumUI:GetClassCrest())
+			end
+			ClassCrestFrameTexture:SetAllPoints(ClassCrestFrame)
+			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
+		end
+
+		hooksecurefunc(_G.CharacterFrame, "Collapse", function()
+			if PaperDollFrame:IsVisible() then
+				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize - 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+				if E.db.ElvUI_EltreumUI.skins.classicarmory then
+					CharacterFrame:SetWidth(505)
+					E:Delay(0, function()
+						local actor = CharacterModelScene:GetPlayerActor()
+						if actor then
+							actor:SetPosition(0, 0, 0)
+							actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+						end
+					end)
+					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
+						if not ElvUI_EltreumUI:SLCheck("stats") then
+							local bagilvl, equippedilvl = GetAverageItemLevel()
+							if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
+								local r, g, b
+								if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
+									r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+								else
+									r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+								end
+								CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
+							end
+						end
+					end
+				end
+				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+					end
+					if ElvUI_EltreumUI:SLCheck('char') then
+						if _G.PaperDollFrame.SLE_Armory_BG then
+							if _G.PaperDollFrame.SLE_Armory_BG:IsVisible() then
+								_G.PaperDollFrame.SLE_Armory_BG:Hide()
+							end
+						end
+					end
+					_G.CharacterModelFrameBackgroundOverlay:Hide()
+				end
+			else
+				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.346, 0, 1)
+					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+					end
+				end
+			end
+		end)
+
+		hooksecurefunc(_G.CharacterFrame, "Expand", function()
+			if PaperDollFrame:IsVisible() then
+				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+				if E.db.ElvUI_EltreumUI.skins.classicarmory then
+					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
+						if not ElvUI_EltreumUI:SLCheck("stats") then
+							local bagilvl, equippedilvl = GetAverageItemLevel()
+							if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
+								local r, g, b
+								if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferencecustom then
+									r, g, b = E:ColorGradient((equippedilvl / bagilvl), E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, E.db.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+								else
+									r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
+								end
+								CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
+							end
+						end
+					end
+					CharacterFrame:SetWidth(700)
+					E:Delay(0, function()
+						local actor = CharacterModelScene:GetPlayerActor()
+						if actor then
+							actor:SetPosition(0, 0, 0)
+							actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+						end
+					end)
+				end
+				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.716, 0, 1)
+					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+					end
+					_G.CharacterModelFrameBackgroundOverlay:Hide()
+					if ElvUI_EltreumUI:SLCheck('char') then
+						if _G.PaperDollFrame.SLE_Armory_BG then
+							if _G.PaperDollFrame.SLE_Armory_BG:IsVisible() then
+								_G.PaperDollFrame.SLE_Armory_BG:Hide()
+							end
+						end
+					end
+				end
+			else
+				if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
+					if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RACE" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAGNAROS" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "SPACECLOUD" or E.db.ElvUI_EltreumUI.skins.armorybgtype == "RAVNYR" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.346, 0, 1)
+					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
+						CharacterFrameBackgroundTexture:SetTexCoord(0, 0.87, 0, 0.60)
+					end
+				end
+			end
+		end)
 	else
 
 		--gradient colors to categories other
@@ -2264,8 +2623,8 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 				--get item (actual) quality
 				local itemLink = _G.GetInventoryItemLink(unit, InvSlotId)
 				if itemLink ~= nil then
-					local quality = select(3, _G.GetItemInfo(itemLink))
-					local isSetItem = select(16, _G.GetItemInfo(itemLink))
+					local quality = select(3, GetItemInfo(itemLink))
+					local isSetItem = select(16, GetItemInfo(itemLink))
 					if quality ~= nil then
 						local r,g,b
 						if E.db.ElvUI_EltreumUI.skins.itemsetenable then
@@ -2786,8 +3145,8 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						itemLink = _G.GetInventoryItemLink("target", InvSlotId)
 					end
 					if itemLink ~= nil then
-						local quality = select(3,_G.GetItemInfo(itemLink))
-						local isSetItem = select(16, _G.GetItemInfo(itemLink))
+						local quality = select(3, GetItemInfo(itemLink))
+						local isSetItem = select(16, GetItemInfo(itemLink))
 						if quality then
 							local r,g,b
 							if E.db.ElvUI_EltreumUI.skins.itemsetenable then
