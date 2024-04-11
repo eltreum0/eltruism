@@ -13,7 +13,7 @@ local EltruismWiderTransmog = CreateFrame("Frame", "EltruismWiderTransmog")
 EltruismWiderTransmog:RegisterEvent("ADDON_LOADED")
 EltruismWiderTransmog:SetScript("OnEvent", function(_, _, arg)
 	--print("widetransmog spam")
-	if (arg == "Blizzard_Collections") or IsAddOnLoaded("Blizzard_Collections") then
+	if (arg == "Blizzard_Collections") or IsAddOnLoaded("Blizzard_Collections") and (E.Retail or E.Cata) then
 		EltruismWiderTransmog:UnregisterAllEvents()
 		WardrobeFrame = _G.WardrobeFrame
 		WardrobeTransmogFrame = _G.WardrobeTransmogFrame
