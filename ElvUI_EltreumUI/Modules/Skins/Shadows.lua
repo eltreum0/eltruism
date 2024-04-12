@@ -1127,6 +1127,7 @@ function ElvUI_EltreumUI:Shadows()
 					_G.WeeklyRewardsFrame,
 					_G.CovenantPreviewFrame,
 					_G.PetStableFrame,
+					_G.StableFrame,
 					_G.TaxiFrame,
 					_G.TabardFrame,
 					_G.LossOfControlFrame,
