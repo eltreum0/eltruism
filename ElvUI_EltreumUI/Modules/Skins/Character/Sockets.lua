@@ -38,6 +38,8 @@ function ElvUI_EltreumUI:ClassicSockets()
 	if not E.private.skins.blizzard.enable then return end
 	if not E.private.skins.blizzard.character then return end
 
+	if E.Cata then return end --TODO: CATACLYSM THINGS
+
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ENCHANT TABLES
 	local KIBC_EnchantToSpellID = {
 		--missing ones added by eltreum
