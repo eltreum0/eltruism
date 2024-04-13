@@ -918,19 +918,19 @@ P.ElvUI_EltreumUI = {
 		petabstrata = "LOW",
 		petablevel = 3,
 
-		alternativeclassbar = true,
+		alternativeclassbar = false,
 		alternativeclassbarxborder = 201,
 		alternativeclassbaryborder = 32,
 		alternativeclassbarstrata = "HIGH",
 		alternativeclassbarlevel = 3,
 
-		staggerclassbar = true,
+		staggerclassbar = false,
 		staggerclassbarxborder = 211,
 		staggerclassbaryborder = 41,
 		staggerclassbarstrata = "HIGH",
 		staggerclassbarlevel = 3,
 
-		comboclassbar = true,
+		comboclassbar = false,
 		combosizex = 71, --65
 		combosizey = 44, --44
 		combostrata = "HIGH",
