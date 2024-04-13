@@ -61,11 +61,7 @@ function ElvUI_EltreumUI:WiderTransmog()
 				_G.WardrobeTransmogFrame.MainHandEnchantButton:SetPoint("BOTTOM", _G.WardrobeTransmogFrame.MainHandButton, "BOTTOM", 0, -28)
 				_G.WardrobeTransmogFrame.SecondaryHandEnchantButton:ClearAllPoints()
 				_G.WardrobeTransmogFrame.SecondaryHandEnchantButton:SetPoint("BOTTOM", _G.WardrobeTransmogFrame.SecondaryHandButton, "BOTTOM", 0, -28)
-				if UIPanelWindows["WardrobeFrame"] then
-					UIPanelWindows["WardrobeFrame"].width = 1200
-				elseif UIPanelWindows["_G.WardrobeFrame"] then
-					UIPanelWindows["_G.WardrobeFrame"].width = 1200
-				end
+				UIPanelWindows["WardrobeFrame"].width = 1200
 			end
 
 			if E.private.skins.blizzard.enable then
