@@ -2506,7 +2506,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--classpower
-				if E.myclass ~= 'DEATHKNIGHT' then
+				if E.myclass ~= 'DEATHKNIGHT' and not (E.db.ElvUI_EltreumUI.borders.comboclassbar and E.db.ElvUI_EltreumUI.borders.borders) then
 					for i = 1, 10 do
 						if not _G["ElvUF_PlayerClassIconButton"..i] then
 							break
