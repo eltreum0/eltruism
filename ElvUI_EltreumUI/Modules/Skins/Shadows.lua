@@ -2490,18 +2490,21 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--player classbar
-				if E.db.unitframe.units.player.classbar.enable and E.db.unitframe.units.player.classbar.fill == "spaced" then
-					if _G["ElvUF_Player_ClassBar"] and not _G["ElvUF_Player_ClassBar"].shadow then
-						_G["ElvUF_Player_ClassBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_ClassBar"].shadow)
-					end
-					if _G["ElvUF_Player_AdditionalPowerBar"] and not _G["ElvUF_Player_AdditionalPowerBar"].shadow then
-						_G["ElvUF_Player_AdditionalPowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_AdditionalPowerBar"].shadow)
-					end
-					if _G["ElvUF_Player_Stagger"] and not _G["ElvUF_Player_Stagger"].shadow then
-						_G["ElvUF_Player_Stagger"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_Stagger"].shadow)
+				if E.db.unitframe.units.player.classbar.enable then
+					 if E.db.unitframe.units.player.classbar.fill ~= "spaced" then
+						if _G["ElvUF_Player_ClassBar"] and not _G["ElvUF_Player_ClassBar"].shadow then
+							_G["ElvUF_Player_ClassBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_ClassBar"].shadow)
+						end
+					else
+						if _G["ElvUF_Player_AdditionalPowerBar"] and not _G["ElvUF_Player_AdditionalPowerBar"].shadow then
+							_G["ElvUF_Player_AdditionalPowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_AdditionalPowerBar"].shadow)
+						end
+						if _G["ElvUF_Player_Stagger"] and not _G["ElvUF_Player_Stagger"].shadow then
+							_G["ElvUF_Player_Stagger"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_Stagger"].shadow)
+						end
 					end
 				end
 
