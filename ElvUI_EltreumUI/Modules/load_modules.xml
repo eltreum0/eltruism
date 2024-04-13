@@ -25,6 +25,7 @@
 	<Script file='Misc/QuestAutoAccept.lua'/>
 	<Script file='Misc/QuestCombat.lua'/>
 	<Script file='Misc/QuestItem.lua'/>
+	<Script file='Misc/Scrap.lua'/>
 	<Script file='Misc/Screenshot.lua'/>
 	<Script file='Fonts/SetupFont.lua'/>
 	<Script file='Fonts/OutlineDefault.lua'/>
