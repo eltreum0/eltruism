@@ -918,6 +918,42 @@ P.ElvUI_EltreumUI = {
 		petabstrata = "LOW",
 		petablevel = 3,
 
+		alternativeclassbar = false,
+		alternativeclassbarxborder = 201,
+		alternativeclassbaryborder = 32,
+		alternativeclassbarstrata = "HIGH",
+		alternativeclassbarlevel = 3,
+
+		staggerclassbar = false,
+		staggerclassbarxborder = 211,
+		staggerclassbaryborder = 41,
+		staggerclassbarstrata = "HIGH",
+		staggerclassbarlevel = 3,
+
+		comboclassbar = false,
+		combosizex = 71, --65
+		combosizey = 44, --44
+		combostrata = "HIGH",
+		combolevel = 3,
+
+		playerpower = false,
+		playerpowersizex = 165, --65
+		playerpowersizey = 47, --44
+		playerpowerstrata = "HIGH",
+		playerpowerlevel = 3,
+
+		targetpower = false,
+		targetpowersizex = 165,
+		targetpowersizey = 47,
+		targetpowerstrata = "HIGH",
+		targetpowerlevel = 3,
+
+		targettargetpower = false,
+		targettargetpowersizex = 123,
+		targettargetpowersizey = 47,
+		targettargetpowerstrata = "HIGH",
+		targettargetpowerlevel = 3,
+
 		bordercolors = {
 			r = 0.27,
 			g = 0.50,

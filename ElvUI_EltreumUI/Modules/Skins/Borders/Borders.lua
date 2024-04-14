@@ -15,10 +15,11 @@ local UnitIsPlayer = _G.UnitIsPlayer
 local UnitClass = _G.UnitClass
 local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder,focuscastbarborder
 local bordertexture,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder
+local playerclassbarborder1, playerclassbarborder2, comboborder, playerpowerborder, targetpowerborder
 local classcolor = E:ClassColor(E.myclass, true)
 local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction
-local MinimapBorder,LeftChatBorder,RightChatBorder,totemborderfly,focustargetborder
-local raid1borderholder,raid2borderholder,raid3borderholder,partyborderholder = {},{},{}, {}
+local MinimapBorder,LeftChatBorder,RightChatBorder,totemborderfly,focustargetborder,targettargetpowerborder
+local raid1borderholder,raid2borderholder,raid3borderholder,partyborderholder, comboborderholder = {},{},{},{},{}
 local rectangleminimapdetect = CreateFrame("FRAME")
 local updatelocationpos = CreateFrame("Frame")
 local classcolorreaction = {
@@ -124,6 +125,138 @@ function ElvUI_EltreumUI:Borders()
 				end
 			end
 
+			--player classbar
+			if E.db.unitframe.units.player.classbar.enable and E.db.unitframe.units.player.classbar.fill == "spaced" then
+
+				if _G["ElvUF_Player_AdditionalPowerBar"] and E.db.ElvUI_EltreumUI.borders.alternativeclassbar then
+					if not _G["EltruismClassBarBorder1"] then
+						playerclassbarborder1 = CreateFrame("Frame", "EltruismClassBarBorder1", _G.ElvUF_Player_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
+					else
+						playerclassbarborder1 = _G["EltruismClassBarBorder1"]
+					end
+					playerclassbarborder1:SetSize(E.db.ElvUI_EltreumUI.borders.alternativeclassbarxborder, E.db.ElvUI_EltreumUI.borders.alternativeclassbaryborder)
+					playerclassbarborder1:SetPoint("CENTER", _G.ElvUF_Player_AdditionalPowerBar, "CENTER", 0, 0)
+					playerclassbarborder1:SetParent(_G.ElvUF_Player_AdditionalPowerBar)
+					playerclassbarborder1:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+					})
+					playerclassbarborder1:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					playerclassbarborder1:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.alternativeclassbarstrata)
+					playerclassbarborder1:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.alternativeclassbarlevel)
+				end
+
+				if _G["ElvUF_Player_Stagger"] and E.db.ElvUI_EltreumUI.borders.staggerclassbar then
+					if not _G["EltruismClassBarBorder2"] then
+						playerclassbarborder2 = CreateFrame("Frame", "EltruismClassBarBorder2", _G.ElvUF_Player_HealthBar, BackdropTemplateMixin and "BackdropTemplate")
+					else
+						playerclassbarborder2 = _G["EltruismClassBarBorder2"]
+					end
+					playerclassbarborder2:SetSize(E.db.ElvUI_EltreumUI.borders.staggerclassbarxborder, E.db.ElvUI_EltreumUI.borders.staggerclassbaryborder)
+					playerclassbarborder2:SetPoint("CENTER", _G.ElvUF_Player_Stagger, "CENTER", 0, 0)
+					playerclassbarborder2:SetParent(_G.ElvUF_Player_Stagger)
+					playerclassbarborder2:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+					})
+					playerclassbarborder2:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					playerclassbarborder2:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.staggerclassbarstrata)
+					playerclassbarborder2:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.staggerclassbarlevel)
+				end
+
+				if E.db.ElvUI_EltreumUI.borders.comboclassbar then
+					if _G["ElvUF_Player_ClassBar"] then
+						for i = 1, _G["ElvUF_Player_ClassBar"].__max do
+							if _G["ElvUF_PlayerClassIconButton"..i] and _G["ElvUF_PlayerClassIconButton"..i].backdrop then
+								if not _G["EltruismComboClassBarBorder"..i] then
+									comboborder = CreateFrame("Frame", "EltruismComboClassBarBorder"..i, _G["ElvUF_PlayerClassIconButton"..i].backdrop, BackdropTemplateMixin and "BackdropTemplate")
+								else
+									comboborder = _G["EltruismComboClassBarBorder"..i]
+								end
+								comboborder:SetSize(E.db.ElvUI_EltreumUI.borders.combosizex, E.db.ElvUI_EltreumUI.borders.combosizey)
+								comboborder:SetPoint("CENTER", _G["ElvUF_PlayerClassIconButton"..i].backdrop, "CENTER")
+								comboborder:SetParent(_G["ElvUF_PlayerClassIconButton"..i].backdrop)
+								table.insert(comboborderholder, comboborder)
+								comboborder:SetBackdrop({
+									edgeFile = bordertexture,
+									edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+								})
+								comboborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+								comboborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.combostrata)
+								comboborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.combolevel)
+							end
+						end
+					end
+
+					if _G["ElvUF_Player_Runes"] then
+						for i = 1, 6 do
+							if _G["ElvUF_PlayerRuneButton"..i] and _G["ElvUF_PlayerRuneButton"..i].backdrop then
+								if not _G["EltruismRuneClassBarBorder"..i] then
+									comboborder = CreateFrame("Frame", "EltruismRuneClassBarBorder"..i, _G["ElvUF_PlayerRuneButton"..i].backdrop, BackdropTemplateMixin and "BackdropTemplate")
+								else
+									comboborder = _G["EltruismRuneClassBarBorder"..i]
+								end
+								comboborder:SetSize(E.db.ElvUI_EltreumUI.borders.combosizex, E.db.ElvUI_EltreumUI.borders.combosizey)
+								comboborder:SetPoint("CENTER", _G["ElvUF_PlayerRuneButton"..i].backdrop, "CENTER")
+								comboborder:SetParent(_G["ElvUF_PlayerRuneButton"..i].backdrop)
+								table.insert(comboborderholder, comboborder)
+								comboborder:SetBackdrop({
+									edgeFile = bordertexture,
+									edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+								})
+								comboborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+								comboborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.combostrata)
+								comboborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.combolevel)
+							end
+						end
+					end
+
+					if _G["ElvUF_Player"] and _G["ElvUF_Player"].Totems then
+						for i = 1, 4 do
+							if _G["ElvUF_PlayerTotem"..i] and _G["ElvUF_PlayerTotem"..i].backdrop then
+								if not _G["EltruismTotemBorder"..i] then
+									comboborder = CreateFrame("Frame", "EltruismTotemBorder"..i, _G["ElvUF_PlayerTotem"..i].backdrop, BackdropTemplateMixin and "BackdropTemplate")
+								else
+									comboborder = _G["EltruismTotemBorder"..i]
+								end
+								comboborder:SetSize(E.db.ElvUI_EltreumUI.borders.combosizex, E.db.ElvUI_EltreumUI.borders.combosizey)
+								comboborder:SetPoint("CENTER", _G["ElvUF_PlayerTotem"..i].backdrop, "CENTER")
+								comboborder:SetParent(_G["ElvUF_PlayerTotem"..i].backdrop)
+								table.insert(comboborderholder, comboborder)
+								comboborder:SetBackdrop({
+									edgeFile = bordertexture,
+									edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+								})
+								comboborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+								comboborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.combostrata)
+								comboborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.combolevel)
+							end
+						end
+					end
+				end
+			end
+
+			--player power
+			if E.db.unitframe.units.player.power.enable and E.db.unitframe.units.player.power.width == "spaced" then
+				if _G["ElvUF_Player_PowerBar"] and E.db.ElvUI_EltreumUI.borders.playerpower then
+					if not _G["EltruismPlayerPowerBorder"] then
+						playerpowerborder = CreateFrame("Frame", "EltruismPlayerPowerBorder", _G.ElvUF_Player_PowerBar, BackdropTemplateMixin and "BackdropTemplate")
+					else
+						playerpowerborder = _G["EltruismPlayerPowerBorder"]
+					end
+					playerpowerborder:SetSize(E.db.ElvUI_EltreumUI.borders.playerpowersizex, E.db.ElvUI_EltreumUI.borders.playerpowersizey)
+					playerpowerborder:SetPoint("CENTER", _G.ElvUF_Player_PowerBar, "CENTER", 0, 0)
+					playerpowerborder:SetParent(_G.ElvUF_Player_PowerBar)
+					playerpowerborder:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+					})
+					playerpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					playerpowerborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.playerpowerstrata)
+					playerpowerborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.playerpowerlevel)
+				end
+			end
+
 			--player castbar
 			if E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.unitframe.units.player.castbar.enable and E.db.unitframe.units.player.castbar.overlayOnFrame == "None" then
 				if not _G["EltruismPlayerCastBarBorder"] then
@@ -220,6 +353,27 @@ function ElvUI_EltreumUI:Borders()
 				targetcastbarborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.targetcastlevel)
 			end
 
+			--target power
+			if E.db.unitframe.units.target.power.enable and E.db.unitframe.units.target.power.width == "spaced" then
+				if _G["ElvUF_Target_PowerBar"] and E.db.ElvUI_EltreumUI.borders.targetpower then
+					if not _G["EltruismTargetPowerBorder"] then
+						targetpowerborder = CreateFrame("Frame", "EltruismTargetPowerBorder", _G.ElvUF_Target_PowerBar, BackdropTemplateMixin and "BackdropTemplate")
+					else
+						targetpowerborder = _G["EltruismTargetPowerBorder"]
+					end
+					targetpowerborder:SetSize(E.db.ElvUI_EltreumUI.borders.targetpowersizex, E.db.ElvUI_EltreumUI.borders.targetpowersizey)
+					targetpowerborder:SetPoint("CENTER", _G.ElvUF_Target_PowerBar, "CENTER", 0, 0)
+					targetpowerborder:SetParent(_G.ElvUF_Target_PowerBar)
+					targetpowerborder:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+					})
+					targetpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					targetpowerborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.targetpowerstrata)
+					targetpowerborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.targetpowerlevel)
+				end
+			end
+
 			--target of target
 			if E.db.ElvUI_EltreumUI.borders.targettargetborder and E.db.unitframe.units.targettarget.enable then
 				if not _G["EltruismTargetTargetBorder"] then
@@ -242,6 +396,27 @@ function ElvUI_EltreumUI:Borders()
 				targettargetborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.targettargetlevel)
 				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.targettarget.infoPanel.enable then
 					targettargetborder:SetPoint("CENTER", _G.ElvUF_TargetTarget, "CENTER", 0, E.db.unitframe.units.targettarget.infoPanel.height)
+				end
+			end
+
+			--target of target power
+			if E.db.unitframe.units.targettarget.power.enable and E.db.unitframe.units.targettarget.power.width == "spaced" then
+				if _G["ElvUF_TargetTarget_PowerBar"] and E.db.ElvUI_EltreumUI.borders.targettargetpower then
+					if not _G["EltruismTargetTargetPowerBorder"] then
+						targettargetpowerborder = CreateFrame("Frame", "EltruismTargetTargetPowerBorder", _G.ElvUF_TargetTarget_PowerBar, BackdropTemplateMixin and "BackdropTemplate")
+					else
+						targettargetpowerborder = _G["EltruismTargetTargetPowerBorder"]
+					end
+					targettargetpowerborder:SetSize(E.db.ElvUI_EltreumUI.borders.targettargetpowersizex, E.db.ElvUI_EltreumUI.borders.targettargetpowersizey)
+					targettargetpowerborder:SetPoint("CENTER", _G.ElvUF_TargetTarget_PowerBar, "CENTER", 0, 0)
+					targettargetpowerborder:SetParent(_G.ElvUF_TargetTarget_PowerBar)
+					targettargetpowerborder:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+					})
+					targettargetpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					targettargetpowerborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.targettargetpowerstrata)
+					targettargetpowerborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.targettargetpowerlevel)
 				end
 			end
 
@@ -1358,6 +1533,11 @@ function ElvUI_EltreumUI:ShowHideBorders(install)
 				frame:Show()
 			end
 		end
+		for _, frame in pairs(comboborderholder) do
+			if frame then
+				frame:Show()
+			end
+		end
 		for _, frame in pairs(raid1borderholder) do
 			if frame then
 				frame:Show()
@@ -1411,6 +1591,11 @@ function ElvUI_EltreumUI:ShowHideBorders(install)
 			end
 		end
 		for _, frame in pairs(partyborderholder) do
+			if frame then
+				frame:Hide()
+			end
+		end
+		for _, frame in pairs(comboborderholder) do
 			if frame then
 				frame:Hide()
 			end
