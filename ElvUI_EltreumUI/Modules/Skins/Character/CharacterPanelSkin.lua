@@ -1387,7 +1387,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					else
 						r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
 					end
-					CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
+					if CharacterFrame.ItemLevelText then
+						CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
+					end
 				end
 			end
 
@@ -1466,7 +1468,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 								else
 									r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
 								end
-								CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
+								if CharacterFrame.ItemLevelText then
+									CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
+								end
 							end
 						end
 						local actor = CharacterModelScene:GetPlayerActor()
@@ -1723,7 +1727,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					else
 						r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
 					end
-					CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
+					if CharacterFrame.ItemLevelText then
+						CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
+					end
 				end
 			end
 		end)
