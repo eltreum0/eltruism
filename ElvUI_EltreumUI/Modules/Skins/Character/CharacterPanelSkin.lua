@@ -1469,6 +1469,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 								CharacterFrame.ItemLevelText:SetText(E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
 							end
 						end
+						local actor = CharacterModelScene:GetPlayerActor()
+						if actor then
+							actor:SetPosition(0, 0, 0)
+							actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
+						end
 					end
 				elseif (_G.PetModelFrame and _G.PetModelFrame:IsVisible()) then
 					if CharacterFrame.Expanded then
