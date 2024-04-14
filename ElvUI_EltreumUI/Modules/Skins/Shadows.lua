@@ -1171,6 +1171,14 @@ function ElvUI_EltreumUI:Shadows()
 						_G.FriendsFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.FriendsFrame.backdrop.shadow)
 					end
+					if _G.WorldMapFrame and _G.WorldMapFrame.MiniBorderFrame and _G.WorldMapFrame.MiniBorderFrame.backdrop and not _G.WorldMapFrame.MiniBorderFrame.backdrop.shadow then
+						_G.WorldMapFrame.MiniBorderFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G.WorldMapFrame.MiniBorderFrame.backdrop.shadow)
+					end
+					if _G.WorldMapFrame and _G.WorldMapFrame.BorderFrame and _G.WorldMapFrame.BorderFrame.backdrop and not _G.WorldMapFrame.BorderFrame.backdrop.shadow then
+						_G.WorldMapFrame.BorderFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G.WorldMapFrame.BorderFrame.backdrop.shadow)
+					end
 				end
 
 				--quest model thing
