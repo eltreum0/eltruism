@@ -1573,7 +1573,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				_G.PaperDollFrame.TitleManagerPane.ScrollBox:SetPoint("RIGHT", CharacterFrame, "RIGHT", -40, -20)
 			end
 
-			CharacterFrame:HookScript("OnShow", HandleCharacterPanelSize)
+			CharacterFrame:HookScript("OnShow", function()
+				HandleCharacterPanelSize()
+				_G.CharacterFrame:Expand() --start expanded
+			end)
 			_G.PaperDollFrame:HookScript("OnShow", HandleCharacterPanelSize)
 			_G.PaperDollFrame:HookScript("OnHide", HandleCharacterPanelSize)
 			_G.ReputationFrame:HookScript("OnShow", HandleCharacterPanelSize)
