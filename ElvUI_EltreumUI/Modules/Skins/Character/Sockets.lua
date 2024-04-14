@@ -38,8 +38,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 	if not E.private.skins.blizzard.enable then return end
 	if not E.private.skins.blizzard.character then return end
 
-	if E.Cata then return end --TODO: CATACLYSM THINGS
-
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ENCHANT TABLES
 	local KIBC_EnchantToSpellID = {
 		--missing ones added by eltreum
@@ -1170,11 +1168,13 @@ function ElvUI_EltreumUI:ClassicSockets()
 		if not self.callbacks[event] then
 			self.callbacks[event] = {}
 
-			self.frame:SetScript(event, function()
-				for _, callback in ipairs(self.callbacks[event]) do
-					callback()
-				end
-			end)
+			if self.frame then
+				self.frame:SetScript(event, function()
+					for _, callback in ipairs(self.callbacks[event]) do
+						callback()
+					end
+				end)
+			end
 		end
 		table.insert(self.callbacks[event], callback)
 	end
@@ -1197,7 +1197,12 @@ function ElvUI_EltreumUI:ClassicSockets()
 	local CharacterFrameAdapterMetaTable = { __index = CharacterFrameAdapter }
 	setmetatable(CharacterFrameAdapter, { __index = ElvUI_EltreumUI.FrameAdapter })
 	function CharacterFrameAdapter:new()
-		local instance = ElvUI_EltreumUI.FrameAdapter:new(_G.CharacterModelFrame, _G.CharacterModelFrame, 'Character')
+		local instance
+		if E.Cata then
+			instance = ElvUI_EltreumUI.FrameAdapter:new(_G.CharacterModelScene, _G.CharacterModelScene, 'Character')
+		else
+			instance = ElvUI_EltreumUI.FrameAdapter:new(_G.CharacterModelFrame, _G.CharacterModelFrame, 'Character')
+		end
 		instance.messages = {
 			contentChanged = 'CharacterFrameAdapter.contentChanged',
 		}
@@ -1664,6 +1669,8 @@ function ElvUI_EltreumUI:ClassicSockets()
 		--return UnitLevel(self.adapter:GetUnit()) >= 60
 		if E.Classic then
 			return UnitLevel(self.adapter:GetUnit()) == 60
+		elseif E.Cata then
+			return UnitLevel(self.adapter:GetUnit()) == 85
 		elseif E.Wrath then
 			return UnitLevel(self.adapter:GetUnit()) == 80
 		end
@@ -1820,8 +1827,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 	local CONSUMABLE_ID = 1
 	local RECEIPE_ID = 2
 	local FORMULA_ID = 3
-
-
 
 	function ItemEnchantInfo:new(enchantId)
 		return setmetatable({
@@ -2076,30 +2081,4 @@ function ElvUI_EltreumUI:ClassicSockets()
 		end
 		return result
 	end
-
-	--is this even needed?
-	--[[function ElvUI_EltreumUI:EnhanceControls(rootFrame)
-		for name, frame in pairs(self:FindFrames(rootFrame:GetName())) do
-			local type = frame:GetObjectType()
-			if type == "FontString" then
-				local text = frame:GetText()
-				if text then
-					frame:SetText(text)
-				end
-			elseif type == "CheckButton" then
-				if frame.tooltipText then
-					frame.tooltipText = frame.tooltipText
-				end
-				local text = _G[name .. "Text"]
-				frame.Disable = function(self)
-					getmetatable(self).__index.Disable(self)
-					text:SetTextColor(GRAY_FONT_COLOR.r, GRAY_FONT_COLOR.g, GRAY_FONT_COLOR.b)
-				end
-				frame.Enable = function(self)
-					getmetatable(self).__index.Enable(self)
-					text:SetTextColor(text:GetFontObject():GetTextColor())
-				end
-			end
-		end
-	end]]
 end
