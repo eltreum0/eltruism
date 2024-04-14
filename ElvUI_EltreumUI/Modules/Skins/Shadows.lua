@@ -1108,7 +1108,6 @@ function ElvUI_EltreumUI:Shadows()
 					_G.ZoneAbilityFrame,
 					_G.ReputationFrame,
 					_G.TokenFrame,
-					_G.FriendsFrame,
 					_G.RecruitAFriendRewardsFrame,
 					_G.MerchantFrame,
 					_G.MerchantFrameTab1.backdrop,
@@ -1153,16 +1152,24 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 
-				--retail edit mode
+				--retail/cata differences
 				if E.Retail then
 					if _G.EditModeManagerFrame and not _G.EditModeManagerFrame.shadow then
 						_G.EditModeManagerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.EditModeManagerFrame.shadow)
 					end
+					if _G.FriendsFrame and not _G.FriendsFrame.shadow then
+						_G.FriendsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G.FriendsFrame.shadow)
+					end
 				else
 					if _G.CharacterFrameTab4 and _G.CharacterFrameTab4.backdrop and not _G.CharacterFrameTab4.backdrop.shadow then
 						_G.CharacterFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.CharacterFrameTab4.backdrop.shadow)
+					end
+					if _G.FriendsFrame and _G.FriendsFrame.backdrop and not _G.FriendsFrame.backdrop.shadow then
+						_G.FriendsFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G.FriendsFrame.backdrop.shadow)
 					end
 				end
 
