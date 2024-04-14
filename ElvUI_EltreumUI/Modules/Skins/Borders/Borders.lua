@@ -15,10 +15,10 @@ local UnitIsPlayer = _G.UnitIsPlayer
 local UnitClass = _G.UnitClass
 local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder,focuscastbarborder
 local bordertexture,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder
-local playerclassbarborder1, playerclassbarborder2, comboborder
+local playerclassbarborder1, playerclassbarborder2, comboborder, playerpowerborder, targetpowerborder
 local classcolor = E:ClassColor(E.myclass, true)
 local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction
-local MinimapBorder,LeftChatBorder,RightChatBorder,totemborderfly,focustargetborder
+local MinimapBorder,LeftChatBorder,RightChatBorder,totemborderfly,focustargetborder,targettargetpowerborder
 local raid1borderholder,raid2borderholder,raid3borderholder,partyborderholder, comboborderholder = {},{},{},{},{}
 local rectangleminimapdetect = CreateFrame("FRAME")
 local updatelocationpos = CreateFrame("Frame")
@@ -236,6 +236,27 @@ function ElvUI_EltreumUI:Borders()
 				end
 			end
 
+			--player power
+			if E.db.unitframe.units.player.power.enable and E.db.unitframe.units.player.power.width == "spaced" then
+				if _G["ElvUF_Player_PowerBar"] and E.db.ElvUI_EltreumUI.borders.playerpower then
+					if not _G["EltruismPlayerPowerBorder"] then
+						playerpowerborder = CreateFrame("Frame", "EltruismPlayerPowerBorder", _G.ElvUF_Player_PowerBar, BackdropTemplateMixin and "BackdropTemplate")
+					else
+						playerpowerborder = _G["EltruismPlayerPowerBorder"]
+					end
+					playerpowerborder:SetSize(E.db.ElvUI_EltreumUI.borders.playerpowersizex, E.db.ElvUI_EltreumUI.borders.playerpowersizey)
+					playerpowerborder:SetPoint("CENTER", _G.ElvUF_Player_PowerBar, "CENTER", 0, 0)
+					playerpowerborder:SetParent(_G.ElvUF_Player_PowerBar)
+					playerpowerborder:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+					})
+					playerpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					playerpowerborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.playerpowerstrata)
+					playerpowerborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.playerpowerlevel)
+				end
+			end
+
 			--player castbar
 			if E.db.ElvUI_EltreumUI.borders.playercastborder and E.db.unitframe.units.player.castbar.enable and E.db.unitframe.units.player.castbar.overlayOnFrame == "None" then
 				if not _G["EltruismPlayerCastBarBorder"] then
@@ -332,6 +353,27 @@ function ElvUI_EltreumUI:Borders()
 				targetcastbarborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.targetcastlevel)
 			end
 
+			--target power
+			if E.db.unitframe.units.target.power.enable and E.db.unitframe.units.target.power.width == "spaced" then
+				if _G["ElvUF_Target_PowerBar"] and E.db.ElvUI_EltreumUI.borders.targetpower then
+					if not _G["EltruismTargetPowerBorder"] then
+						targetpowerborder = CreateFrame("Frame", "EltruismTargetPowerBorder", _G.ElvUF_Target_PowerBar, BackdropTemplateMixin and "BackdropTemplate")
+					else
+						targetpowerborder = _G["EltruismTargetPowerBorder"]
+					end
+					targetpowerborder:SetSize(E.db.ElvUI_EltreumUI.borders.targetpowersizex, E.db.ElvUI_EltreumUI.borders.targetpowersizey)
+					targetpowerborder:SetPoint("CENTER", _G.ElvUF_Target_PowerBar, "CENTER", 0, 0)
+					targetpowerborder:SetParent(_G.ElvUF_Target_PowerBar)
+					targetpowerborder:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+					})
+					targetpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					targetpowerborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.targetpowerstrata)
+					targetpowerborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.targetpowerlevel)
+				end
+			end
+
 			--target of target
 			if E.db.ElvUI_EltreumUI.borders.targettargetborder and E.db.unitframe.units.targettarget.enable then
 				if not _G["EltruismTargetTargetBorder"] then
@@ -354,6 +396,27 @@ function ElvUI_EltreumUI:Borders()
 				targettargetborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.targettargetlevel)
 				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.targettarget.infoPanel.enable then
 					targettargetborder:SetPoint("CENTER", _G.ElvUF_TargetTarget, "CENTER", 0, E.db.unitframe.units.targettarget.infoPanel.height)
+				end
+			end
+
+			--target of target power
+			if E.db.unitframe.units.targettarget.power.enable and E.db.unitframe.units.targettarget.power.width == "spaced" then
+				if _G["ElvUF_TargetTarget_PowerBar"] and E.db.ElvUI_EltreumUI.borders.targettargetpower then
+					if not _G["EltruismTargetTargetPowerBorder"] then
+						targettargetpowerborder = CreateFrame("Frame", "EltruismTargetTargetPowerBorder", _G.ElvUF_TargetTarget_PowerBar, BackdropTemplateMixin and "BackdropTemplate")
+					else
+						targettargetpowerborder = _G["EltruismTargetTargetPowerBorder"]
+					end
+					targettargetpowerborder:SetSize(E.db.ElvUI_EltreumUI.borders.targettargetpowersizex, E.db.ElvUI_EltreumUI.borders.targettargetpowersizey)
+					targettargetpowerborder:SetPoint("CENTER", _G.ElvUF_TargetTarget_PowerBar, "CENTER", 0, 0)
+					targettargetpowerborder:SetParent(_G.ElvUF_TargetTarget_PowerBar)
+					targettargetpowerborder:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
+					})
+					targettargetpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					targettargetpowerborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.targettargetpowerstrata)
+					targettargetpowerborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.targettargetpowerlevel)
 				end
 			end
 
