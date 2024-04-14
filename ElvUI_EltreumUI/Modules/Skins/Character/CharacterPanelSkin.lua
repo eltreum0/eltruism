@@ -1603,7 +1603,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							if statFrame and statFrame.Label then
 								local text = statFrame.Label:GetText()
 								statFrame.Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-								if not statFrame.Label:GetText():match("|r") then
+								if statFrame.Label:GetText() ~= nil and not statFrame.Label:GetText():match("|r") then
 									if statFrame.Label:GetText():match("|T") then
 										if text:match(_G.STRING_SCHOOL_ARCANE) then
 											newtext = gsub(text, _G.STRING_SCHOOL_ARCANE..":", ElvUI_EltreumUI:GradientName(_G.STRING_SCHOOL_ARCANE..":", E.myclass))
