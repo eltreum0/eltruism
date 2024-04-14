@@ -396,6 +396,29 @@ function ElvUI_EltreumUI:GradientStagger()
 end
 hooksecurefunc(UF, "Construct_Stagger", ElvUI_EltreumUI.GradientStagger)
 
+--gradient eclipse, also special
+function ElvUI_EltreumUI:GradientEclipse()
+	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+		if _G["ElvUF_Player_EclipsePowerBar"] then
+			if E.db.unitframe.colors.transparentPower then --make eclipse follow power transparency
+				_G["ElvUF_Player_EclipsePowerBar"].LunarBar:SetAlpha(E.db.general.backdropfadecolor.a)
+				_G["ElvUF_Player_EclipsePowerBar"].SolarBar:SetAlpha(E.db.general.backdropfadecolor.a)
+			end
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and not isHooked then
+				hooksecurefunc(_G["ElvUF_Player_EclipsePowerBar"].LunarBar, "SetStatusBarColor", function(_,r,g,b) --i knew the vertex thing from details could be useful
+					_G["ElvUF_Player_EclipsePowerBar"].LunarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= 1}, {r=r,g= g,b= b,a= 1})
+				end)
+				hooksecurefunc(_G["ElvUF_Player_EclipsePowerBar"].SolarBar, "SetStatusBarColor", function(_,r,g,b) --i knew the vertex thing from details could be useful
+					_G["ElvUF_Player_EclipsePowerBar"].SolarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r,g= g,b= b,a= 1}, {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= 1})
+				end)
+				isHooked = true
+			end
+			_G["ElvUF_Player_EclipsePowerBar"].Arrow:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ArrowEltruismEclipse.tga")
+		end
+	end
+end
+hooksecurefunc(UF, "Construct_DruidEclipseBar", ElvUI_EltreumUI.GradientEclipse)
+
 --make power pred use the same texture too
 function ElvUI_EltreumUI:Configure_PowerPrediction(frame)
 	local pred = frame and frame.PowerPrediction
