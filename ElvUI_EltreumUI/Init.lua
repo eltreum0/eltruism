@@ -146,7 +146,7 @@ function ElvUI_EltreumUI:Initialize()
 	if not E.private.ElvUI_EltreumUI.install_version then
 		if not E.private.install_complete then --check if they didnt install elvui bc eltruism will do the install things that elvui does
 			E.private.install_complete = E.version
-			E.private.ElvUI_EltreumUI.skippedcheck = true --this is case they skip during install, when they'll need elvui install to popup again
+			E.private.ElvUI_EltreumUI.skippedcheck = true --this is in case they skip during install, when they'll need elvui install to popup again
 		end
 		ElvUI_EltreumUI:HidePopups(5)
 		E:GetModule('PluginInstaller'):Queue(ElvUI_EltreumUI.InstallerData)

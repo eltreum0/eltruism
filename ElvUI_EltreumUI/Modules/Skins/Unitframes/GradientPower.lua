@@ -432,4 +432,3 @@ function ElvUI_EltreumUI:Configure_PowerPrediction(frame)
 	end
 end
 hooksecurefunc(UF, "Configure_PowerPrediction", ElvUI_EltreumUI.Configure_PowerPrediction)
-
