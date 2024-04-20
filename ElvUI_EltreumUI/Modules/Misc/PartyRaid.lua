@@ -85,12 +85,33 @@ S:HandleFrame(bresframe)
 
 local TimeSinceLastUpdate = 0
 local ONUPDATE_INTERVAL = 1
+local workingIDs = {
+	[3] = true, --10man
+	[4] = true, --25 man
+	[5] = true, --10man heroic
+	[6] = true, --25man heroic
+	[7] = true, --lfr (before soo)
+	[8] = true, --m+
+	[9] = true, --40man
+	[14] = true, --normal
+	[15] = true, --heroic
+	[16] = true, --mythic
+	[17] = true, --lfr
+	[148] = true, --heroic (warfront)
+	[151] = true, --lfr (timewalking)
+	[173] = true, --normal (classic)
+	[174] = true, --heroic (classic)
+	[175] = true, --10man (classic)
+	[176] = true, --25man (classic)
+}
+
 function ElvUI_EltreumUI:BattleRes()
 	if E.Retail and E.db.ElvUI_EltreumUI.otherstuff.bres then
 		_, instanceType = IsInInstance()
 		DifficultyID = select(3, GetInstanceInfo())
 		ingroup = IsInGroup()
-		if (DifficultyID == 8 or DifficultyID == 3 or DifficultyID == 4 or DifficultyID == 9 or DifficultyID == 14 or DifficultyID == 173 or DifficultyID == 5 or DifficultyID == 6 or DifficultyID == 174 or DifficultyID == 15 or DifficultyID == 148 or DifficultyID == 175 or DifficultyID == 176 or DifficultyID == 16) then
+
+		if workingIDs[DifficultyID] then
 			difficultyok = true
 		end
 		if instanceType == 'raid' or instanceType == 'party' then
@@ -109,7 +130,6 @@ function ElvUI_EltreumUI:BattleRes()
 			end
 		end
 
-		--if ingroup and (instanceType == 'raid' or instanceType == 'party') and (DifficultyID == 8 or DifficultyID == 3 or DifficultyID == 4 or DifficultyID == 9 or DifficultyID == 14 or DifficultyID == 173 or DifficultyID == 5 or DifficultyID == 6 or DifficultyID == 174 or DifficultyID == 15 or DifficultyID == 148 or DifficultyID == 175 or DifficultyID == 176 or DifficultyID == 16) then
 		if ingroup and instanceok and difficultyok then
 			bresframe:SetAlpha(1)
 			spellicon:SetSize(30, 30)
