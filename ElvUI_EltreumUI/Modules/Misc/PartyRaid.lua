@@ -113,9 +113,13 @@ function ElvUI_EltreumUI:BattleRes()
 
 		if workingIDs[DifficultyID] then
 			difficultyok = true
+		else
+			difficultyok = false
 		end
 		if instanceType == 'raid' or instanceType == 'party' then
 			instanceok = true
+		else
+			instanceok = false
 		end
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
