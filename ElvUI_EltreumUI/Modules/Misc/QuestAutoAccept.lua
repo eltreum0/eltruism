@@ -193,6 +193,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						[194584] = true, --Khuri, fishing npc
 						[113617] = true, --cos teleport back npc
 						[193110] = true, --Khadin, profession npc
+						[222413] = true, --Zalgo
 					}
 					if ignoredNPCS[NPC_ID] then
 						if E.db.ElvUI_EltreumUI.dev then

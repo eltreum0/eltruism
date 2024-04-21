@@ -45,17 +45,16 @@ do
 
 				if E.db.ElvUI_EltreumUI.skins.detailsgradientname then
 					--gradient name (damage)
-					hooksecurefunc(Details.atributo_damage,"RefreshLine", function(_,_, lineContainer, whichRowLine)
+					hooksecurefunc(Details.atributo_damage,"RefreshLine", function(_,detailsDB, lineContainer, whichRowLine)
 						local thisLine = lineContainer[whichRowLine]
 						if not thisLine then return end
 						if thisLine.lineText1 then
-							--local name = E:StripString(thisLine.minha_tabela:GetDisplayName())
-							--print(thisLine.minha_tabela:GetDisplayName(),name,ElvUI_EltreumUI:ShortenString(name, 10, true))
 							local name = E:StripString(thisLine.lineText1:GetText())
-							--local name = thisLine.lineText1:GetText()
-							--if not name:match("|cff") then
-								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 11, true), thisLine.minha_tabela:class()))
-							--end
+							if detailsDB.use_multi_fontstrings and detailsDB.use_auto_align_multi_fontstrings then
+								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 10, true), thisLine.minha_tabela:class()))
+							else
+								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(name, thisLine.minha_tabela:class()))
+							end
 							if E.db.ElvUI_EltreumUI.skins.detailsgradientnameshadow then
 								thisLine.lineText1:SetShadowOffset(2, -2)
 							end
@@ -66,13 +65,12 @@ do
 						local thisLine = instancia.barras[whichRowLine]
 						if not thisLine then return end
 						if thisLine.lineText1 then
-							--local name = E:StripString(thisLine.minha_tabela:GetDisplayName())
 							local name = E:StripString(thisLine.lineText1:GetText())
-							--thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(thisLine.colocacao .. ". " .. ElvUI_EltreumUI:ShortenString(name, 10, true), thisLine.minha_tabela:class()))
-							--local name = thisLine.lineText1:GetText()
-							--if not name:match("|cff") then
-								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 11, true), thisLine.minha_tabela:class()))
-							--end
+							if instancia.use_multi_fontstrings and instancia.use_auto_align_multi_fontstrings then
+								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 10, true), thisLine.minha_tabela:class()))
+							else
+								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(name, thisLine.minha_tabela:class()))
+							end
 							if E.db.ElvUI_EltreumUI.skins.detailsgradientnameshadow then
 								thisLine.lineText1:SetShadowOffset(2, -2)
 							end

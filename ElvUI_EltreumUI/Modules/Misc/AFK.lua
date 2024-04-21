@@ -61,13 +61,15 @@ local classMusic = {
 local wrathMusic ={
 	["Human"] = 53210,
 	["Gnome"] = 369055,
-	["NightElf"] = 53187,
+	["NightElf"] = E.Cata and 441709 or 53187,
 	["Dwarf"] = 298910,
 	["Draenei"] = 53284,
-	["Orc"] = 53201,
+	["Worgen"] = 441525,
+	["Orc"] = E.Cata and 441713 or 53201,
 	["Scourge"] = 53217,
-	["Tauren"] = 53215,
+	["Tauren"] = E.Cata and 441788 or 53215,
 	["Troll"] = 371378,
+	["Goblin"] = 441627,
 	["BloodElf"] = 53473,
 }
 
