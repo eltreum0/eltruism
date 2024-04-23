@@ -28,6 +28,7 @@
 	<Script file='Misc/QuestItem.lua'/>
 	<Script file='Misc/Scrap.lua'/>
 	<Script file='Misc/Screenshot.lua'/>
+	<Script file='Misc/SetupTextures.lua'/>
 	<Script file='Fonts/SetupFont.lua'/>
 	<Script file='Fonts/OutlineDefault.lua'/>
 	<Script file='Fonts/OutlineCustom.lua'/>
