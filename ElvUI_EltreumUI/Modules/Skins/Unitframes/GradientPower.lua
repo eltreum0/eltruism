@@ -417,7 +417,9 @@ function ElvUI_EltreumUI:GradientEclipse()
 		end
 	end
 end
-hooksecurefunc(UF, "Construct_DruidEclipseBar", ElvUI_EltreumUI.GradientEclipse)
+if E.Cata then
+	hooksecurefunc(UF, "Construct_DruidEclipseBar", ElvUI_EltreumUI.GradientEclipse)
+end
 
 --make power pred use the same texture too
 function ElvUI_EltreumUI:Configure_PowerPrediction(frame)
