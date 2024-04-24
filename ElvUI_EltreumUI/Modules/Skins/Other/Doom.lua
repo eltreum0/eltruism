@@ -78,8 +78,14 @@ function ElvUI_EltreumUI:PreviewDoom()
 	end
 
 	if DCP:GetAlpha() == 1 and E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil then
-		local tts = E.Classic and GetSpellInfo(17401) or GetSpellInfo(33786)
-		C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
+		if E.Retail then
+			local spellData = GetSpellInfo(33786)
+			local tts = spellData.name
+			C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
+		else
+			local tts = E.Classic and GetSpellInfo(17401) or GetSpellInfo(33786)
+			C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
+		end
 	end
 
 	wasPreviewing = true
@@ -177,14 +183,27 @@ function ElvUI_EltreumUI:Doom()
 						local getCooldownDetails
 						if (v[2] == "spell") then
 							getCooldownDetails = memorize(function()
-								local start, duration, enabled = GetSpellCooldown(v[3])
-								return {
-									name = GetSpellInfo(v[3]),
-									texture = GetSpellTexture(v[3]),
-									start = start,
-									duration = duration,
-									enabled = enabled
-								}
+								if E.Retail then
+									local spellCooldownData = GetSpellCooldown(v[3])
+									local start, duration, enabled = spellCooldownData.startTime, spellCooldownData.duration, spellCooldownData.isEnabled
+									local spellData = GetSpellInfo(v[3])
+									return {
+										name = spellData.name,
+										texture = spellData.iconID,
+										start = start,
+										duration = duration,
+										enabled = enabled
+									}
+								else
+									local start, duration, enabled = GetSpellCooldown(v[3])
+									return {
+										name = GetSpellInfo(v[3]),
+										texture = GetSpellTexture(v[3]),
+										start = start,
+										duration = duration,
+										enabled = enabled
+									}
+								end
 							end)
 						elseif (v[2] == "item") then
 							getCooldownDetails = memorize(function()
@@ -288,7 +307,14 @@ function ElvUI_EltreumUI:Doom()
 							DCP.TextFrame:SetText(animating[1][3])
 						end
 						if E.db.ElvUI_EltreumUI.skins.doom.tts and animating[1][3] then --and animating[1][3] ~= nil then
-							local tts = GetSpellInfo(animating[1][3])
+							local tts
+							if E.Retail then
+								local ttsdata = GetSpellInfo(animating[1][3])
+								tts = ttsdata.name
+								if not tts then
+									tts = tostring(animating[1][3])
+								end
+							end
 							if not tts then
 								tts = tostring(animating[1][3])
 							end
