@@ -336,7 +336,7 @@ function ElvUI_EltreumUI:checkSpellCooldown(spell)
 	end
 	baseCooldown = GetSpellBaseCooldown(spell)
 	if baseCooldown and baseCooldown > 2200 then
-		ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (baseCooldown and baseCooldown > 0))
+		ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, baseCooldown)
 	end
 end
 
