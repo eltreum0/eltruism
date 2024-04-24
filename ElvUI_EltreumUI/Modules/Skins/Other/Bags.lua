@@ -2,7 +2,7 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local GetSpellInfo = _G.GetSpellInfo
+local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
 
 --add profession shortcuts to the ElvUI bags, suggested by Xheno
 function ElvUI_EltreumUI:BagProfessions()
