@@ -554,38 +554,56 @@ EltruismGameMenu:SetScript("OnEvent", function()
 		end)
 	end
 
-	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu and not isMenuExpanded then
-		EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64|t".. ElvUI_EltreumUI.Name) --new 64x64 icon
-		S:HandleButton(EltruismMenuButton)
-		local x, y = _G["GameMenuButtonLogout"]:GetSize()
-		EltruismMenuButton:SetSize(x,y)
-		EltruismMenuButton:SetScript("OnClick", function()
-			if not InCombatLockdown() then
-				E:ToggleOptions("ElvUI_EltreumUI")
-				--E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
-				HideUIPanel(_G["GameMenuFrame"])
-			end
-		end)
+	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
+		if E.Retail then
+			local menubutton = function()
+				if InCombatLockdown() then return end
+				E:ToggleOptions()
+				E.Libs['AceConfigDialog']:SelectGroup('ElvUI', 'ElvUI_EltreumUI') --if the old way it would always open on load
+				HideUIPanel(_G.GameMenuFrame)
+			end --E:ToggleOptions("ElvUI_EltreumUI")
 
-		hooksecurefunc('GameMenuFrame_UpdateVisibleButtons', function ()
-			EltruismMenuButton:Point("TOP", GameMenuFrame.ElvUI, "BOTTOM", 0, -1)
-			if _G["GameMenu_SLEConfig"] and not _G["GameMenuReloadUI"] and not _G.TXUI_GAME_BUTTON then
-				EltruismMenuButton:Point("TOP", _G["GameMenu_SLEConfig"], "BOTTOM", 0, -1)
-			elseif _G["GameMenuReloadUI"] and not _G.TXUI_GAME_BUTTON then
-				EltruismMenuButton:Point("TOP", _G["GameMenuReloadUI"], "BOTTOM", 0, -1)
-			elseif _G.TXUI_GAME_BUTTON then
-				EltruismMenuButton:Point("TOP", _G.TXUI_GAME_BUTTON, "BOTTOM", 0, -1)
-			elseif _G["GameMenuFrame"].GameMenu_TXUI then
-				EltruismMenuButton:Point("TOP", _G["GameMenuFrame"].GameMenu_TXUI, "BOTTOM", 0, -1)
-			end
-		end)
+			tinsert(E.GameMenuButtonsData, { --Add ElvUI's button so it will be first
+				text = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64|t".. ElvUI_EltreumUI.Name,
+				callback = menubutton,
+				isDisabled = false, --If set to true will make button disabled. Can be set as a fucn to return true/false dynamically if needed
+				disabledText = 'This button is somehow disabled. Probably someone was messing around with the code.' --this text will show up in tooltip when the button is disabled
+			})
+		else
+			if not isMenuExpanded then
+				EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64|t".. ElvUI_EltreumUI.Name) --new 64x64 icon
+				S:HandleButton(EltruismMenuButton)
+				local x, y = _G["GameMenuButtonLogout"]:GetSize()
+				EltruismMenuButton:SetSize(x,y)
+				EltruismMenuButton:SetScript("OnClick", function()
+					if not InCombatLockdown() then
+						E:ToggleOptions("ElvUI_EltreumUI")
+						--E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
+						HideUIPanel(_G["GameMenuFrame"])
+					end
+				end)
 
-		_G["GameMenuFrame"]:HookScript("OnShow", function()
-			_G["GameMenuButtonLogout"]:ClearAllPoints()
-			_G["GameMenuButtonLogout"]:SetPoint("TOP", EltruismMenuButton, "BOTTOM", 0, -y)
-			_G["GameMenuFrame"]:SetHeight(_G["GameMenuFrame"]:GetHeight() + _G["GameMenuButtonLogout"]:GetHeight() + 4)
-		end)
-		isMenuExpanded = true
+				hooksecurefunc('GameMenuFrame_UpdateVisibleButtons', function ()
+					EltruismMenuButton:Point("TOP", GameMenuFrame.ElvUI, "BOTTOM", 0, -1)
+					if _G["GameMenu_SLEConfig"] and not _G["GameMenuReloadUI"] and not _G.TXUI_GAME_BUTTON then
+						EltruismMenuButton:Point("TOP", _G["GameMenu_SLEConfig"], "BOTTOM", 0, -1)
+					elseif _G["GameMenuReloadUI"] and not _G.TXUI_GAME_BUTTON then
+						EltruismMenuButton:Point("TOP", _G["GameMenuReloadUI"], "BOTTOM", 0, -1)
+					elseif _G.TXUI_GAME_BUTTON then
+						EltruismMenuButton:Point("TOP", _G.TXUI_GAME_BUTTON, "BOTTOM", 0, -1)
+					elseif _G["GameMenuFrame"].GameMenu_TXUI then
+						EltruismMenuButton:Point("TOP", _G["GameMenuFrame"].GameMenu_TXUI, "BOTTOM", 0, -1)
+					end
+				end)
+
+				_G["GameMenuFrame"]:HookScript("OnShow", function()
+					_G["GameMenuButtonLogout"]:ClearAllPoints()
+					_G["GameMenuButtonLogout"]:SetPoint("TOP", EltruismMenuButton, "BOTTOM", 0, -y)
+					_G["GameMenuFrame"]:SetHeight(_G["GameMenuFrame"]:GetHeight() + _G["GameMenuButtonLogout"]:GetHeight() + 4)
+				end)
+				isMenuExpanded = true
+			end
+		end
 	end
 end)
 

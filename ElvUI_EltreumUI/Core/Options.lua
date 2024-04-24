@@ -1161,9 +1161,9 @@ function ElvUI_EltreumUI:Configtable()
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.dctagicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.dctagicon = tostring(value) end)
 	ElvUI_EltreumUI.Options.args.media.args.tags.args.dc.args.dciconpick.style = "radio"
 
-	ElvUI_EltreumUI.Options.args.media.args.tags.args.ghost = ACH:Group(GetSpellInfo(8326), nil, 2)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.ghost = ACH:Group(L["Ghost"], nil, 2)
 	ElvUI_EltreumUI.Options.args.media.args.tags.args.ghost.args.description1 = ACH:Description(L["Customize the Ghost Icons"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.media.args.tags.args.ghost.args.ghosticonpick = ACH:Select(GetSpellInfo(8326), nil, 2, {
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.ghost.args.ghosticonpick = ACH:Select(L["Ghost"], nil, 2, {
 		["1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost1',':20:20'),
 		["2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost2',':20:20'),
 		["3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost3',':20:20'),

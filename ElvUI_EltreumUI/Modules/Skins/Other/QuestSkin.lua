@@ -233,6 +233,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			end)
 		end
 
+		if E.Retail then return end --11.0 elvui skin not done yet
 		if E.Retail then
 			if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 				--WQs banner
@@ -416,7 +417,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					end)
 				end
 
-				if _G.ObjectiveTrackerFrame.HeaderMenu.Title then --fix when collapsed
+				if _G.ObjectiveTrackerFrame and _G.ObjectiveTrackerFrame.HeaderMenu and _G.ObjectiveTrackerFrame.HeaderMenu.Title then --fix when collapsed
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSizeHeader, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 				end

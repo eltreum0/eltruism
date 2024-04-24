@@ -853,9 +853,6 @@ function ElvUI_EltreumUI:Shadows()
 				_G.FriendsFrameTab4.backdrop,
 				_G.RaidInfoFrame,
 				_G.RecruitAFriendRecruitmentFrame,
-				_G.SpellBookFrameTabButton1.backdrop,
-				_G.SpellBookFrameTabButton2.backdrop,
-				_G.SpellBookFrameTabButton3.backdrop,
 				_G.GossipFrame.backdrop,
 				_G.BNToastFrame,
 				_G.TimeAlertFrame,
@@ -931,6 +928,18 @@ function ElvUI_EltreumUI:Shadows()
 				if _G.SpellBookFrame and not _G.SpellBookFrame.shadow then
 					_G.SpellBookFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(_G.SpellBookFrame.shadow)
+				end
+			else
+				local spellbook = {
+					_G.SpellBookFrameTabButton1.backdrop,
+					_G.SpellBookFrameTabButton2.backdrop,
+					_G.SpellBookFrameTabButton3.backdrop,
+				}
+				for _, frame in pairs(spellbook) do
+					if frame and not frame.shadow then
+						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(frame.shadow)
+					end
 				end
 			end
 
@@ -1197,7 +1206,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--main minimize button easier here
-				if _G.ObjectiveTrackerFrame then
+				if _G.ObjectiveTrackerFrame and _G.ObjectiveTrackerFrame.HeaderMenu and _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton then
 					if _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton and not _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow then
 						_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton:CreateShadow()
 						_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:ClearAllPoints()

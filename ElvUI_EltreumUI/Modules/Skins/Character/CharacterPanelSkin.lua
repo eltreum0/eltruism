@@ -1220,13 +1220,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 
 			--hide the backdrop on reputation/currency tab
-			hooksecurefunc("CharacterFrameTab_OnClick", function()
-				if _G.CharacterFrameInset.backdrop:IsVisible() then
-					_G.CharacterFrameInset.backdrop:Hide()
-				end
-			end)
-
-			hooksecurefunc("ReputationFrame_Update", function()
+			_G.CharacterFrame:HookScript("OnHide",function()
 				if _G.CharacterFrameInset.backdrop:IsVisible() then
 					_G.CharacterFrameInset.backdrop:Hide()
 				end
@@ -1270,12 +1264,13 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
 		end
 
-		hooksecurefunc("CharacterFrame_Collapse", function()
+		hooksecurefunc(_G.CharacterFrame,"Collapse", function()
+			print("1")
 			if PaperDollFrame:IsVisible() then
 				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize - 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
-					CharacterFrame:SetWidth(505)
 					E:Delay(0, function()
+						CharacterFrame:SetWidth(540)
 						local actor = CharacterModelScene:GetPlayerActor()
 						if actor then
 							actor:SetPosition(0, 0, 0)
@@ -1323,7 +1318,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 		end)
 
-		hooksecurefunc("CharacterFrame_Expand", function()
+		hooksecurefunc(_G.CharacterFrame,"Expand", function()
+			print("2")
 			if PaperDollFrame:IsVisible() then
 				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
@@ -1341,8 +1337,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							end
 						end
 					end
-					CharacterFrame:SetWidth(700)
+
 					E:Delay(0, function()
+						CharacterFrame:SetWidth(700)
 						local actor = CharacterModelScene:GetPlayerActor()
 						if actor then
 							actor:SetPosition(0, 0, 0)
@@ -2662,10 +2659,10 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 									r,g,b = P.ElvUI_EltreumUI.skins.itemsetcolor.r, P.ElvUI_EltreumUI.skins.itemsetcolor.g, P.ElvUI_EltreumUI.skins.itemsetcolor.b
 								end
 							else
-								r,g,b = _G.GetItemQualityColor(quality)
+								r,g,b = GetItemQualityColor(quality)
 							end
 						else
-							r,g,b = _G.GetItemQualityColor(quality)
+							r,g,b = GetItemQualityColor(quality)
 						end
 						qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
 						qualityAnchor.Frame.Quality:SetAlpha(1)
@@ -2725,7 +2722,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 								end
 							end
 							if _G.CharacterFrame.Text2 and _G.CharacterFrame.Text2:GetText() ~= nil then
-								local rc,gc,bc = _G.GetItemQualityColor(maxquality)
+								local rc,gc,bc = GetItemQualityColor(maxquality)
 								_G.CharacterFrame.Text2:SetTextColor(rc,gc,bc)
 							end
 						end
@@ -3184,10 +3181,10 @@ function ElvUI_EltreumUI:InspectBg(unit)
 										r,g,b = P.ElvUI_EltreumUI.skins.itemsetcolor.r, P.ElvUI_EltreumUI.skins.itemsetcolor.g, P.ElvUI_EltreumUI.skins.itemsetcolor.b
 									end
 								else
-									r,g,b = _G.GetItemQualityColor(quality)
+									r,g,b = GetItemQualityColor(quality)
 								end
 							else
-								r,g,b = _G.GetItemQualityColor(quality)
+								r,g,b = GetItemQualityColor(quality)
 							end
 							qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
 							qualityAnchorInspect.Frame.Quality:SetAlpha(1)

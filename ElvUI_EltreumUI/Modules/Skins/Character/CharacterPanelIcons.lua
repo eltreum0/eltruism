@@ -129,7 +129,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 			end)
 
 			if E.Retail then --TODO: CATACLYSM THINGS
-				hooksecurefunc("CharacterFrame_Collapse", function()
+				hooksecurefunc(_G.CharacterFrame,"Collapse", function()
 					if PaperDollFrame:IsShown() then
 						if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
 							CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize - 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -148,7 +148,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 					end
 				end)
 
-				hooksecurefunc("CharacterFrame_Expand", function()
+				hooksecurefunc(_G.CharacterFrame,"Expand", function()
 					if PaperDollFrame:IsShown() then
 						if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
 							CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -166,46 +166,83 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 						end
 					end
 				end)
+
+				hooksecurefunc(_G.ReputationFrame,"Update", function()
+					if ReputationFrame:IsShown() then
+						if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
+							CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize - 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+							if string.len(CharacterFrameTitleText:GetText()) >= numCharacters then
+								if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+									CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
+								else
+									CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+									CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
+							else
+								CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+								CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							end
+						end
+					end
+				end)
+
+				hooksecurefunc(_G.TokenFrame,"Update", function()
+					if TokenFrame:IsShown() then
+						if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
+							CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize - 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+							if string.len(CharacterFrameTitleText:GetText()) >= numCharacters then
+								if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+									CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
+								else
+									CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+									CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
+							else
+								CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+								CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							end
+						end
+					end
+				end)
+			else
+				hooksecurefunc("ReputationFrame_Update", function()
+					if ReputationFrame:IsShown() then
+						if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
+							CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize - 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+							if string.len(CharacterFrameTitleText:GetText()) >= numCharacters then
+								if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+									CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
+								else
+									CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+									CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
+							else
+								CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+								CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							end
+						end
+					end
+				end)
+
+				hooksecurefunc("TokenFrame_Update", function()
+					if TokenFrame:IsShown() then
+						if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
+							CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize - 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+							if string.len(CharacterFrameTitleText:GetText()) >= numCharacters then
+								if E.db.ElvUI_EltreumUI.skins.characterskingradients then
+									CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
+								else
+									CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+									CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
+							else
+								CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
+								CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+							end
+						end
+					end
+				end)
 			end
-
-			hooksecurefunc("ReputationFrame_Update", function()
-				if ReputationFrame:IsShown() then
-					if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
-						CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize - 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-						if string.len(CharacterFrameTitleText:GetText()) >= numCharacters then
-							if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-								CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
-							else
-								CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
-								CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-							end
-						else
-							CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
-							CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-						end
-					end
-				end
-			end)
-
-			hooksecurefunc("TokenFrame_Update", function()
-				if TokenFrame:IsShown() then
-					if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
-						CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize - 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-						if string.len(CharacterFrameTitleText:GetText()) >= numCharacters then
-							if E.db.ElvUI_EltreumUI.skins.characterskingradients then
-								CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(CharacterFrameTitleText:GetText(), E.myclass))
-							else
-								CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
-								CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-							end
-						else
-							CharacterFrameTitleText:SetText(classsymbolonframe.." "..CharacterFrameTitleText:GetText())
-							CharacterFrameTitleText:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-						end
-					end
-				end
-			end)
-
 			self.ischarpanelHooked = true
 		end
 	end

@@ -11,7 +11,7 @@ local GetActionInfo = _G.GetActionInfo
 local GetPetActionInfo = _G.GetPetActionInfo
 local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
 local GetSpellBaseCooldown = _G.GetSpellBaseCooldown
-local GetSpellCooldown = _G.GetSpellCooldown
+local GetSpellCooldown = _G.C_Spell and _G.C_Spell.GetSpellCooldown or _G.GetSpellCooldown
 local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetContainerItemLink = _G.C_Container.GetContainerItemLink
 local tonumber = _G.tonumber
@@ -125,10 +125,18 @@ function ElvUI_EltreumUI:CooldownEnable()
 		ElvUI_EltreumUI:SecureHook("UseInventoryItem", "checkInventoryItemCooldown")
 	end
 
-	if ElvUI_EltreumUI:IsHooked("UseItemByName", "checkItemCooldown") then
-		return
+	if E.Retail then
+		if ElvUI_EltreumUI:IsHooked(_G.C_Item,"UseItemByName", "checkItemCooldown") then
+			return
+		else
+			ElvUI_EltreumUI:SecureHook(_G.C_Item,"UseItemByName", "checkItemCooldown")
+		end
 	else
-		ElvUI_EltreumUI:SecureHook("UseItemByName", "checkItemCooldown")
+		if ElvUI_EltreumUI:IsHooked("UseItemByName", "checkItemCooldown") then
+			return
+		else
+			ElvUI_EltreumUI:SecureHook("UseItemByName", "checkItemCooldown")
+		end
 	end
 
 	if ElvUI_EltreumUI:IsHooked("CastSpellByName", "checkSpellCooldown") then
