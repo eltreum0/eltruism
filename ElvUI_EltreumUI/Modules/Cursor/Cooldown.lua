@@ -196,7 +196,17 @@ function ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, show, startHidd
 					else
 						if needUpdate then
 							needUpdate = false
-							startstamp, durationstamp = currGetCooldown(currArg)
+							if E.Retail then
+								local cooldownData = currGetCooldown(currArg)
+								if type(cooldownData) =="table" then
+									startstamp, durationstamp = cooldownData.startTime, cooldownData.duration
+								else --likely item due to 11.0
+									startstamp, durationstamp = currGetCooldown(currArg)
+								end
+							else
+								startstamp, durationstamp = currGetCooldown(currArg)
+
+							end
 							if currStart ~= startstamp or currDuration ~= durationstamp then
 								ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, false)
 							end
