@@ -205,7 +205,6 @@ function ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, show, startHidd
 								end
 							else
 								startstamp, durationstamp = currGetCooldown(currArg)
-
 							end
 							if currStart ~= startstamp or currDuration ~= durationstamp then
 								ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, false)
