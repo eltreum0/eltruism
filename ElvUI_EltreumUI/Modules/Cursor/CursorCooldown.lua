@@ -335,7 +335,7 @@ function ElvUI_EltreumUI:checkSpellCooldown(spell)
 	end
 	baseCooldown = GetSpellBaseCooldown(spell)
 	if baseCooldown and baseCooldown > 2200 then
-		ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, baseCooldown)
+		ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (baseCooldown and baseCooldown > 0))
 	end
 end
 
@@ -370,11 +370,6 @@ end
 function ElvUI_EltreumUI:checkPetActionCooldown(index)
 	if not index then return end
 	_, texturepetcd, _, _, _, _, spellIdpetcd, _, _ = GetPetActionInfo(index) --shadowlands
-	--[[if E.Classic then
-		local _, _, texture, _, _, _, _, spellId = GetPetActionInfo(index) --old
-	elseif E.Retail then
-		local _, texture, _, _, _, _, spellId, _, _ = GetPetActionInfo(index) --shadowlands
-	end]]
 	if spellIdpetcd then
 		ElvUI_EltreumUI:checkSpellCooldown(spellIdpetcd)
 	else
