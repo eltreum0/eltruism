@@ -1265,7 +1265,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		end
 
 		hooksecurefunc(_G.CharacterFrame,"Collapse", function()
-			print("1")
 			if PaperDollFrame:IsVisible() then
 				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize - 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
@@ -1319,7 +1318,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		end)
 
 		hooksecurefunc(_G.CharacterFrame,"Expand", function()
-			print("2")
 			if PaperDollFrame:IsVisible() then
 				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
