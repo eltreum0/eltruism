@@ -185,14 +185,13 @@ function ElvUI_EltreumUI:Doom()
 							getCooldownDetails = memorize(function()
 								if E.Retail then
 									local spellCooldownData = GetSpellCooldown(v[3])
-									local start, duration, enabled = spellCooldownData.startTime, spellCooldownData.duration, spellCooldownData.isEnabled
 									local spellData = GetSpellInfo(v[3])
 									return {
 										name = spellData.name,
 										texture = spellData.iconID,
-										start = start,
-										duration = duration,
-										enabled = enabled
+										start = spellCooldownData.startTime,
+										duration = spellCooldownData.duration,
+										enabled = spellCooldownData.isEnabled
 									}
 								else
 									local start, duration, enabled = GetSpellCooldown(v[3])
@@ -308,12 +307,9 @@ function ElvUI_EltreumUI:Doom()
 						end
 						if E.db.ElvUI_EltreumUI.skins.doom.tts and animating[1][3] then --and animating[1][3] ~= nil then
 							local tts
-							if E.Retail then
+							if E.Retail and animating[1][3] ~= 'string' then
 								local ttsdata = GetSpellInfo(animating[1][3])
 								tts = ttsdata.name
-								if not tts then
-									tts = tostring(animating[1][3])
-								end
 							end
 							if not tts then
 								tts = tostring(animating[1][3])
@@ -378,7 +374,13 @@ function ElvUI_EltreumUI:Doom()
 			local _,event,_,_,_,sourceFlags,_,_,_,_,_,spellID = CombatLogGetCurrentEventInfo()
 			if (event == "SPELL_CAST_SUCCESS") then
 				if (bit.band(sourceFlags,COMBATLOG_OBJECT_TYPE_PET) == COMBATLOG_OBJECT_TYPE_PET and bit.band(sourceFlags,COMBATLOG_OBJECT_AFFILIATION_MINE) == COMBATLOG_OBJECT_AFFILIATION_MINE) then
-					local name = GetSpellInfo(spellID)
+					local name
+					if E.Retail then
+						local spellData = GetSpellInfo(spellID)
+						name = spellData.name
+					else
+						name = GetSpellInfo(spellID)
+					end
 					local index = GetPetActionIndexByName(name)
 					if index then
 						watching[spellID] = {GetTime(),"pet",index}
