@@ -65,7 +65,7 @@ if E.Retail then
 	CharacterFrame.EltruismSpeedDescTooltip = CreateFrame("Frame", "EltruismSpeedDesc")
 end
 
-if E.Wrath or E.Classic then
+if E.Cata or E.Wrath or E.Classic then
 	CharacterFrame.Text = CharacterFrame:CreateFontString("EltruismIlvlBanner", "OVERLAY", "GameFontNormal")
 	CharacterFrame.Text2 = CharacterFrame:CreateFontString("EltruismIlvlText", "OVERLAY", "GameFontNormal")
 	CharacterFrame.Text3 = CharacterFrame:CreateFontString("EltruismAttributes", "OVERLAY", "GameFontNormal")

@@ -37,7 +37,7 @@ EltreumPowerBar.Text = EltreumPowerBarText:CreateFontString(nil, "ARTWORK", "Gam
 EltreumPowerBar.Text:SetTextColor(1, 1, 1)
 EltreumPowerBar.Text:SetPoint("CENTER")
 EltreumPowerBar.Text:SetJustifyH("CENTER")
-EltreumPowerBar.Text:SetJustifyV("CENTER")
+EltreumPowerBar.Text:SetJustifyV("MIDDLE")
 
 --setup the prediction and incoming prediction
 local EltreumPowerPrediction = CreateFrame('StatusBar', "EltruismPowerBarPrediction", EltreumPowerBar)

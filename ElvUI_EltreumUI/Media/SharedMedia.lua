@@ -1,6 +1,7 @@
 local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 local LSM = E.Libs.LSM
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 
 -- Statusbar
 
