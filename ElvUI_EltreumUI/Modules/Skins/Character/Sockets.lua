@@ -109,6 +109,10 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[4079] = 74216, --enchant-ring-agility
 		[4080] = 74217, --enchant-ring-intellect
 		[4081] = 74218, --enchant-ring-greater-stamina
+		[446451] = 7328, --atal'ai-signet-of-might
+		[446459] = 7325, --atal'ai-signet-of-mojo
+		[446472] = 7326, --atal'ai-signet-of-serenity
+		[432190] = 7124, --wolfshead-trophy
 
 		---- old list
 		[15] = 2831, -- Reinforced (+$k1 Armor)
