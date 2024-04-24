@@ -155,7 +155,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[846] = 24302, -- +$71691s1 Fishing
 		[847] = 13626, -- +$13624s1 All Stats
 		[848] = 13635, -- +$k1 Armor
-		[849] = 13637, -- +$k1 Agility
+		[849] = 13882, -- +$k1 Agility
 		[850] = 13640, -- +$k1 Health
 		[851] = 20024, -- +$k1 Spirit
 		[852] = 13836, -- +$k1 Stamina
