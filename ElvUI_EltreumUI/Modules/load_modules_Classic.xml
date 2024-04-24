@@ -1,6 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file='Cursor/Cooldown.lua'/>
-	<Script file='Cursor/Cursor.lua'/>
+	<Script file='Cursor/CursorCooldown.lua'/>
+	<Script file='Cursor/CursorCircle.lua'/>
 	<Script file='Chat/Fade.lua'/>
 	<Script file='Chat/LootIcon.lua'/>
 	<Script file='Chat/Misc.lua'/>
