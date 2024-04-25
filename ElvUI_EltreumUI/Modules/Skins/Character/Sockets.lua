@@ -192,7 +192,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[924] = 7428, -- +$k1 Dodge
 		[925] = 13646, -- +$k1 Dodge
 		[927] = 13939, -- +$k1 Strength
-		[928] = 13941, -- +$13824s1 All Stats
+		[928] = E.ClassicSOD and 13824 or 13941, -- +$13824s1 All Stats
 		[929] = 20020, -- +$k1 Stamina
 		[930] = 13947, -- +$13927s1% Mount Speed
 		[931] = 13948, -- +$k1 Haste
