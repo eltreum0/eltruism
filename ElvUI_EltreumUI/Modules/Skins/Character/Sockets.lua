@@ -109,6 +109,10 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[4079] = 74216, --enchant-ring-agility
 		[4080] = 74217, --enchant-ring-intellect
 		[4081] = 74218, --enchant-ring-greater-stamina
+		[446451] = 7328, --atal'ai-signet-of-might
+		[446459] = 7325, --atal'ai-signet-of-mojo
+		[446472] = 7326, --atal'ai-signet-of-serenity
+		[432190] = 7124, --wolfshead-trophy
 
 		---- old list
 		[15] = 2831, -- Reinforced (+$k1 Armor)
@@ -155,7 +159,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[846] = 24302, -- +$71691s1 Fishing
 		[847] = 13626, -- +$13624s1 All Stats
 		[848] = 13635, -- +$k1 Armor
-		[849] = 13637, -- +$k1 Agility
+		[849] = 13882, -- +$k1 Agility
 		[850] = 13640, -- +$k1 Health
 		[851] = 20024, -- +$k1 Spirit
 		[852] = 13836, -- +$k1 Stamina
