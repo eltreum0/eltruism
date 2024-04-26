@@ -504,7 +504,7 @@ do
 	local isDeleteHooked = false
 	local petdetect = CreateFrame("FRAME")
 	function ElvUI_EltreumUI:DeleteItem()
-		if not isDeleteHooked and E.db.ElvUI_EltreumUI.otherstuff.delete and not IsAddOnLoaded("ConsolePort") then
+		if not isDeleteHooked and E.db.ElvUI_EltreumUI.otherstuff.delete and not (IsAddOnLoaded("ConsolePort") or IsAddOnLoaded("AnnoyingPopupRemover")) then
 			hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM,"OnShow",TypeDelete) --Interface/FrameXML/StaticPopup.lua line 1965/2074
 			hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM,"OnShow",TypeDelete) --Interface/FrameXML/StaticPopup.lua line 2125
 
