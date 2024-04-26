@@ -8,6 +8,7 @@ function ElvUI_EltreumUI:SetupTexture(texturevalue)
 	E.db["ElvUI_EltreumUI"]["skins"]["queststatusbartexture"] = texturevalue
 	E.db["ElvUI_EltreumUI"]["unitframes"]["gradientmode"]["texture"] = texturevalue
 	E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"]["backdroptexture"] = texturevalue
+	--[[
 	E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"]["deathknighttexture"] = texturevalue
 	E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"]["demonhuntertexture"] = texturevalue
 	E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"]["druidtexture"] = texturevalue
@@ -32,6 +33,7 @@ function ElvUI_EltreumUI:SetupTexture(texturevalue)
 	E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"]["targettexture"] = texturevalue
 	E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"]["warlocktexture"] = texturevalue
 	E.db["ElvUI_EltreumUI"]["unitframes"]["ufcustomtexture"]["warriortexture"] = texturevalue
+	]]
 
 	E.db["auras"]["buffs"]["barTexture"] = texturevalue
 	E.db["auras"]["debuffs"]["barTexture"] = texturevalue
