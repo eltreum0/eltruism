@@ -41,6 +41,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ENCHANT TABLES
 	local KIBC_EnchantToSpellID = {
 		--missing ones added by eltreum
+		--[spellid] = enchantid
 		[1594] = 33996, -- +26 Attack Power
 		[368] = 34004, -- cloak 12 agility
 		[684] = 33995, --gloves 15 strength
@@ -109,9 +110,15 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[4079] = 74216, --enchant-ring-agility
 		[4080] = 74217, --enchant-ring-intellect
 		[4081] = 74218, --enchant-ring-greater-stamina
+
+		--sod (might have issues)
+		[446450] = 7328, --atal'ai-signet-of-might
 		[446451] = 7328, --atal'ai-signet-of-might
-		[446459] = 7325, --atal'ai-signet-of-mojo
+		[446470] = 7326, --atal'ai-signet-of-serenity
 		[446472] = 7326, --atal'ai-signet-of-serenity
+		[446459] = 7325, --atal'ai-signet-of-mojo
+		[446458] = 7325, --atal'ai-signet-of-mojo
+		[17768] = 7124, --wolfshead-trophy
 		[432190] = 7124, --wolfshead-trophy
 
 		---- old list
@@ -185,7 +192,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[924] = 7428, -- +$k1 Dodge
 		[925] = 13646, -- +$k1 Dodge
 		[927] = 13939, -- +$k1 Strength
-		[928] = 13941, -- +$13824s1 All Stats
+		[928] = 13824, -- +$13824s1 All Stats
 		[929] = 20020, -- +$k1 Stamina
 		[930] = 13947, -- +$13927s1% Mount Speed
 		[931] = 13948, -- +$k1 Haste
