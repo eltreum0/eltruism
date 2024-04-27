@@ -111,15 +111,11 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[4080] = 74217, --enchant-ring-intellect
 		[4081] = 74218, --enchant-ring-greater-stamina
 
-		--sod (might have issues)
-		[446450] = 7328, --atal'ai-signet-of-might
-		[446451] = 7328, --atal'ai-signet-of-might
-		[446470] = 7326, --atal'ai-signet-of-serenity
-		[446472] = 7326, --atal'ai-signet-of-serenity
-		[446459] = 7325, --atal'ai-signet-of-mojo
-		[446458] = 7325, --atal'ai-signet-of-mojo
-		[17768] = 7124, --wolfshead-trophy
-		[432190] = 7124, --wolfshead-trophy
+		--sod (seems like its inverted)
+		[7328] = 446451 or 446450, --atal'ai-signet-of-might
+		[7326] = 446472 or 446470, --atal'ai-signet-of-serenity
+		[7325] = 446458 or 446459, --atal'ai-signet-of-mojo
+		[7124] = 17768 or 432190, --wolfshead-trophy
 
 		---- old list
 		[15] = 2831, -- Reinforced (+$k1 Armor)
