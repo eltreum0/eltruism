@@ -47,7 +47,7 @@ function ElvUI_EltreumUI:HardcoreDeath()
 		end
 		if E.db.ElvUI_EltreumUI.skins.guildmemberdeathhardcore then
 			HardcoreMonitor:RegisterEvent("HARDCORE_DEATHS") --GUILD_MEMBER_DIED was removed
-			HardcoreMonitor:RegisterEvent("CHAT_MSG_GUILD_DEATHS")
+			--HardcoreMonitor:RegisterEvent("CHAT_MSG_GUILD_DEATHS") --also removed
 		end
 		--HardcoreMonitor:RegisterEvent("PLAYER_STARTED_MOVING")
 		HardcoreMonitor:SetScript("OnEvent", function(_,event,guildmembername)
