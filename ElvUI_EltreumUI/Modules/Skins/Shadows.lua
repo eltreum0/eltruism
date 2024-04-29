@@ -1313,34 +1313,6 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 		else
-
-			if E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
-				--totems
-				local ElvUITotemFrames = {
-					_G["ElvUF_PlayerTotem1"],
-					_G["ElvUF_PlayerTotem2"],
-					_G["ElvUF_PlayerTotem3"],
-					_G["ElvUF_PlayerTotem4"],
-				}
-				for _, frame in pairs(ElvUITotemFrames) do
-					if frame and frame.backdrop and not frame.backdrop.shadow then
-						frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(frame.shadow)
-					end
-				end
-
-				--raid pet
-				for k = 1, 42 do
-					local petunits = {_G["ElvUF_RaidpetGroup1UnitButton"..k]}
-					for _, button in pairs(petunits) do
-						if button and not button.shadow then
-							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(button.shadow)
-						end
-					end
-				end
-			end
-
 			if E.db.ElvUI_EltreumUI.skins.shadow.blizzard then
 				--wrath/classic frames
 				local classicframes = {
@@ -1624,6 +1596,10 @@ function ElvUI_EltreumUI:Shadows()
 					_G["ElvUF_Target_CastBar"],
 					_G["ElvUF_Focus_CastBar"],
 					_G["ElvUF_Player_EclipsePowerBar"],
+					_G["ElvUF_PlayerTotem1"] and _G["ElvUF_PlayerTotem1"].backdrop,
+					_G["ElvUF_PlayerTotem2"] and _G["ElvUF_PlayerTotem2"].backdrop,
+					_G["ElvUF_PlayerTotem3"] and _G["ElvUF_PlayerTotem3"].backdrop,
+					_G["ElvUF_PlayerTotem4"] and _G["ElvUF_PlayerTotem4"].backdrop,
 				}
 				for _, frame in pairs(elvuiframes) do
 					if frame then
