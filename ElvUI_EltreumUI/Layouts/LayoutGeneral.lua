@@ -825,7 +825,11 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			E.db["datatexts"]["panels"]["MinimapPanel"][2] = "Friends"
 		end
 	elseif E.Classic or E.Cata then
-		E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "Eltruism"
+		if E.Cata then
+			E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "DualSpecialization"
+		else
+			E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "Eltruism"
+		end
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["left"] = "Eltruism"
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"][2] = "Durability"
 		E.db["datatexts"]["panels"]["LeftChatDataPanel"]["middle"] = "Durability"
@@ -1615,10 +1619,8 @@ function ElvUI_EltreumUI:SetupDataText()
 		if E.Classic and (E.myclass == 'HUNTER' or E.myclass == 'WARLOCK') then
 			E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Ammo"
 		else
-			E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Eltruism"
-			--[[if E.Cata then
-				E.db["datatexts"]["panels"]["EltruismDataText"][1] = "DualSpecialization"
-			end]]
+			--E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Eltruism"
+			E.db["datatexts"]["panels"]["EltruismDataText"][1] = "DualSpecialization"
 		end
 	end
 	E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] = true
