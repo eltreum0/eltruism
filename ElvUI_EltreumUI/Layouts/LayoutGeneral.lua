@@ -1612,13 +1612,13 @@ function ElvUI_EltreumUI:SetupDataText()
 	if E.Retail then
 		E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Talent/Loot Specialization"
 	else
-		if E.myclass == 'HUNTER' or E.myclass == 'WARLOCK' then
+		if E.Classic and (E.myclass == 'HUNTER' or E.myclass == 'WARLOCK') then
 			E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Ammo"
 		else
 			E.db["datatexts"]["panels"]["EltruismDataText"][1] = "Eltruism"
-			if E.Cata then
+			--[[if E.Cata then
 				E.db["datatexts"]["panels"]["EltruismDataText"][1] = "DualSpecialization"
-			end
+			end]]
 		end
 	end
 	E.db["datatexts"]["panels"]["EltruismDataText"]["enable"] = true

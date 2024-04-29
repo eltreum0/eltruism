@@ -145,7 +145,7 @@ end
 
 --Dynamically datatext swap based on player class
 function ElvUI_EltreumUI:DynamicClassicDatatext()
-	if E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext then
+	if E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext and E.Classic then
 		if not E.db.movers then E.db.movers = {} end
 		if E.myclass == 'HUNTER' or E.myclass == 'WARLOCK' then
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "Eltruism Ammo"
