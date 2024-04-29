@@ -65,7 +65,7 @@ if E.Retail then
 	CharacterFrame.EltruismSpeedDescTooltip = CreateFrame("Frame", "EltruismSpeedDesc")
 end
 
-if E.Cata or E.Wrath or E.Classic then
+if E.Cata or E.Classic then
 	CharacterFrame.Text = CharacterFrame:CreateFontString("EltruismIlvlBanner", "OVERLAY", "GameFontNormal")
 	CharacterFrame.Text2 = CharacterFrame:CreateFontString("EltruismIlvlText", "OVERLAY", "GameFontNormal")
 	CharacterFrame.Text3 = CharacterFrame:CreateFontString("EltruismAttributes", "OVERLAY", "GameFontNormal")
@@ -84,27 +84,6 @@ if E.Cata or E.Wrath or E.Classic then
 	CharacterFrame.StatusLine4 = CreateFrame("StatusBar", "EltruismCharacterBar4", PaperDollItemsFrame)
 	CharacterFrame.StatusLine4:SetMinMaxValues(0,100)
 	CharacterFrame.StatusLine4:SetValue(100)
-end
-
-if E.Wrath and not E.Cata then
-	_G.PlayerStatFrameLeft2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine12", PaperDollItemsFrame)
-	_G.PlayerStatFrameLeft2.StatusLine:SetMinMaxValues(0,100)
-	_G.PlayerStatFrameLeft2.StatusLine:SetValue(100)
-	_G.PlayerStatFrameLeft4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine22", PaperDollItemsFrame)
-	_G.PlayerStatFrameLeft4.StatusLine:SetMinMaxValues(0,100)
-	_G.PlayerStatFrameLeft4.StatusLine:SetValue(100)
-	_G.PlayerStatFrameLeft6.StatusLine = CreateFrame("StatusBar", "EltruismStatLine32", PaperDollItemsFrame)
-	_G.PlayerStatFrameLeft6.StatusLine:SetMinMaxValues(0,100)
-	_G.PlayerStatFrameLeft6.StatusLine:SetValue(100)
-	_G.PlayerStatFrameRight2.StatusLine = CreateFrame("StatusBar", "EltruismStatLine52", PaperDollItemsFrame)
-	_G.PlayerStatFrameRight2.StatusLine:SetMinMaxValues(0,100)
-	_G.PlayerStatFrameRight2.StatusLine:SetValue(100)
-	_G.PlayerStatFrameRight4.StatusLine = CreateFrame("StatusBar", "EltruismStatLine62", PaperDollItemsFrame)
-	_G.PlayerStatFrameRight4.StatusLine:SetMinMaxValues(0,100)
-	_G.PlayerStatFrameRight4.StatusLine:SetValue(100)
-	_G.PlayerStatFrameRight6.StatusLine = CreateFrame("StatusBar", "EltruismStatLine7", PaperDollItemsFrame)
-	_G.PlayerStatFrameRight6.StatusLine:SetMinMaxValues(0,100)
-	_G.PlayerStatFrameRight6.StatusLine:SetValue(100)
 end
 
 if E.Classic then
@@ -397,7 +376,7 @@ if not E.Retail then
 		CharacterFrame.Text2:SetText((math.floor(ElvUI_EltreumUI:GetUnitItemLevel("player")*100))/100)
 	end)
 
-	if E.Wrath then
+	if E.Cata then
 		local wrathdualspec = CreateFrame("FRAME")
 		wrathdualspec:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 		wrathdualspec:RegisterEvent("PLAYER_TALENT_UPDATE")
@@ -2864,14 +2843,14 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									self.EltruismInspectHook = true
 								end
 
-								if E.Wrath then
+								if E.Cata then
 									if not self.EltruismInspectHookWrath then
 										_G.InspectTalentFrame:HookScript("OnShow", function()
 											if InCombatLockdown() then
 												UIErrorsFrame:AddMessage(ERR_NOT_IN_COMBAT, 1.0, 0.2, 0.2, 1.0)
 											else
 												_G.InspectFrame:SetWidth(376)
-												if E.Wrath then
+												if E.Cata then
 													_G.InspectFrame:SetHeight(780)
 												else
 													_G.InspectFrame:SetHeight(650)
@@ -2884,14 +2863,14 @@ function ElvUI_EltreumUI:InspectBg(unit)
 												_G.InspectTalentFrameScrollFrameScrollBar:SetAlpha(0)
 												_G.InspectTalentFrameScrollFrame:ClearAllPoints()
 												_G.InspectTalentFrameScrollFrame:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 12)
-												if E.Wrath then
+												if E.Cata then
 													_G.InspectTalentFrameScrollFrame:SetSize(300,720)
 												else
 													_G.InspectTalentFrameScrollFrame:SetSize(300,620)
 												end
 												E:Delay(0, function() _G.InspectTalentFrameScrollFrame:SetScale(0.75) end) --needs delay, maybe bc server response?
 
-												if E.Wrath then
+												if E.Cata then
 													_G.InspectTalentFramePointsBar:ClearAllPoints()
 													_G.InspectTalentFramePointsBar:SetPoint("BOTTOM", _G.InspectTalentFrame.backdrop, "BOTTOM", 0, 0)
 													_G.InspectTalentFrameSpentPointsText:SetJustifyH("LEFT")
@@ -2911,7 +2890,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 												end
 												--increase the size of the background
 												if _G.InspectTalentFrameBackgroundTopLeft then
-													if E.Wrath then
+													if E.Cata then
 														if _G.InspectTalentFrameScrollFrame.backdrop then
 															_G.InspectTalentFrameScrollFrame.backdrop:Kill()
 														end
@@ -3107,7 +3086,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					end
 
 					EltruismInspectBgTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
-					if E.Wrath or E.Classic then
+					if E.Cata or E.Classic then
 						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop)
 						EltruismInspectBgTexture:SetParent(_G.InspectFrame)
 						if _G.InspectModelFrameRotateLeftButton:IsShown() then

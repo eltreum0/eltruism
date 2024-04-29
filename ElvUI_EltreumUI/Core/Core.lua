@@ -341,7 +341,7 @@ function ElvUI_EltreumUI:EnteringWorldCVars()
 	SetCVar('DynamicRenderScaleMin', E.db.ElvUI_EltreumUI.cvars.dynamicrenderscalemin)
 	if E.Retail and E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable then
 		SetCVar('showInGameNavigation', E.db.ElvUI_EltreumUI.cvars.showInGameNavigation)
-	elseif E.Classic or E.Wrath then
+	elseif E.Classic or E.Cata then
 		SetCVar('clampTargetNameplateToScreen', E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen)
 	end
 end

@@ -225,7 +225,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 				if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
-					if E.Retail or E.Wrath or E.Cata then
+					if E.Retail or E.Cata then
 						if not _G.MacroFrame.shadow then
 							_G.MacroFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.MacroFrame.shadow)
@@ -1253,7 +1253,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--Shaman Totem things
-				if E.Wrath or E.Cata then
+				if E.Cata then
 					if E.myclass == "SHAMAN" and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.totembar) and E.db.actionbar.totemBar.enable then
 						local totemframes = {
 							_G.MultiCastSummonSpellButton,
@@ -1339,7 +1339,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--wrath only frames
-				if E.Wrath or E.Cata then
+				if E.Cata then
 					local tbcframes = {
 					--_G.LFGParentFrame,
 					_G.LFGParentFrameTab1,

@@ -143,7 +143,7 @@ local function EltruismStatsDatatextOnEnter()
 			DT.tooltip:AddDoubleLine(ITEM_MOD_ARMOR_PENETRATION_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetArmorPenetration()).."|r",1,1,1)
 		elseif E.myclass == "WARLOCK" or E.myclass == "MAGE" or E.myclass == "PRIEST" then
 			DT.tooltip:AddDoubleLine(ITEM_MOD_SPELL_POWER_SHORT..":", ElvUI[1].media.hexvaluecolor..spellpower.."|r", 1, 1, 1)
-			if E.Wrath then
+			if E.Cata then
 				DT.tooltip:AddDoubleLine(ITEM_MOD_HIT_SPELL_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetCombatRatingBonus(8)).."|r",1,1,1) --GetCombatRatingBonus(CR_HIT_SPELL)
 				DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetCombatRatingBonus(20)).."|r",1,1,1) --GetCombatRatingBonus(CR_HASTE_SPELL)
 				DT.tooltip:AddDoubleLine(STAT_CRITICAL_STRIKE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetSpellCritChance(2)).."|r",1,1,1)
@@ -170,7 +170,7 @@ local function EltruismStatsDatatextOnEnter()
 					DT.tooltip:AddDoubleLine(STAT_EXPERTISE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetExpertise()*0.25).."|r", 1, 1, 1)
 				else
 					DT.tooltip:AddDoubleLine(ITEM_MOD_SPELL_POWER_SHORT..":", ElvUI[1].media.hexvaluecolor..spellpower.."|r", 1, 1, 1)
-					if E.Wrath then
+					if E.Cata then
 						DT.tooltip:AddDoubleLine(ITEM_MOD_HIT_SPELL_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetCombatRatingBonus(8)).."|r",1,1,1) --GetCombatRatingBonus(CR_HIT_SPELL)
 						DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetCombatRatingBonus(20)).."|r",1,1,1) --GetCombatRatingBonus(CR_HASTE_SPELL)
 						DT.tooltip:AddDoubleLine(STAT_CRITICAL_STRIKE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetSpellCritChance(2)).."|r",1,1,1)
@@ -186,7 +186,7 @@ local function EltruismStatsDatatextOnEnter()
 			elseif E.myclass == "PALADIN" then
 				if spent1 > spent3 and spent1 > spent2 then
 					DT.tooltip:AddDoubleLine(ITEM_MOD_SPELL_POWER_SHORT..":", ElvUI[1].media.hexvaluecolor..spellpower.."|r", 1, 1, 1)
-					if E.Wrath then
+					if E.Cata then
 						DT.tooltip:AddDoubleLine(ITEM_MOD_HIT_SPELL_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetCombatRatingBonus(8)).."|r",1,1,1) --GetCombatRatingBonus(CR_HIT_SPELL)
 						DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetCombatRatingBonus(20)).."|r",1,1,1) --GetCombatRatingBonus(CR_HASTE_SPELL)
 						DT.tooltip:AddDoubleLine(STAT_CRITICAL_STRIKE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetSpellCritChance(2)).."|r",1,1,1)
@@ -246,7 +246,7 @@ local function EltruismStatsDatatext1(dt)
 			haste = STAT_HASTE..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetHaste()).."|r"
 			crit = CRIT_ABBR..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetRangedCritChance()).."|r"
 		elseif E.myclass == "WARLOCK" or E.myclass == "MAGE" or E.myclass == "PRIEST" then
-			if E.Wrath then
+			if E.Cata then
 				haste = STAT_HASTE..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetCombatRatingBonus(20)).."|r" --GetCombatRatingBonus(CR_HASTE_SPELL)
 				crit = CRIT_ABBR..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetSpellCritChance(2)).."|r"
 			else
@@ -262,7 +262,7 @@ local function EltruismStatsDatatext1(dt)
 					haste = STAT_HASTE..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetHaste()).."|r"
 					crit = CRIT_ABBR..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetCritChance()).."|r"
 				else
-					if E.Wrath then
+					if E.Cata then
 						haste = STAT_HASTE..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetCombatRatingBonus(20)).."|r" --GetCombatRatingBonus(CR_HASTE_SPELL)
 						crit = CRIT_ABBR..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetSpellCritChance(2)).."|r"
 					else
@@ -272,7 +272,7 @@ local function EltruismStatsDatatext1(dt)
 				end
 			elseif E.myclass == "PALADIN" then
 				if spent1 > spent3 and spent1 > spent2 then
-					if E.Wrath then
+					if E.Cata then
 						haste = STAT_HASTE..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetCombatRatingBonus(20)).."|r" --GetCombatRatingBonus(CR_HASTE_SPELL)
 						crit = CRIT_ABBR..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetSpellCritChance(2)).."|r"
 					else

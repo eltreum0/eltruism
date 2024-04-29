@@ -54,12 +54,12 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[1144] = 33990, -- 15 spirit
 		[1257] = 46506, -- 15 arcane res
 		[1441] = 46507, -- 15 shadow res
-		[2620] = E.Wrath and 359949 or 25082, -- 15 nature res
+		[2620] = E.Cata and 359949 or 25082, -- 15 nature res
 		[2519] = 359950, -- 15 fire res
 		[2664] = 46508, -- 7 res all
 		[2343] = 46531, -- major healing weapon
-		[1888] = E.Wrath and 359685 or 20014, -- shield resilience? resistance? 46525
-		[926] = E.Wrath and 359895 or 13933, -- shield frost res
+		[1888] = E.Cata and 359685 or 20014, -- shield resilience? resistance? 46525
+		[926] = E.Cata and 359895 or 13933, -- shield frost res
 		[983] = 44500, -- cloak superior agility
 		[2566] = 2317, -- +13 spellpower
 		[1354] = 44556, -- cloak superior fire res
@@ -230,14 +230,14 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[1884] = 20009, -- +$k1 Spirit
 		[1885] = 20010, -- +$k1 Strength
 		[1886] = 20011, -- +$k1 Stamina
-		[1887] = E.Wrath and 20012 or 20023, -- +$k1 Agility
+		[1887] = E.Cata and 20012 or 20023, -- +$k1 Agility
 		[1889] = 20015, -- +$k1 Armor
 		[1890] = 20016, -- +$k1 Spirit and +$k2 Stamina
 		[1891] = 20025, -- +$19988s1 All Stats
 		[1892] = 20026, -- +$19990s1 Health
 		[1893] = 20028, -- +$k1 Mana
 		[1894] = 20029, -- Icy Chill
-		[1896] = E.Wrath and 20030 or 20031, -- +$k1 Weapon Damage
+		[1896] = E.Cata and 20030 or 20031, -- +$k1 Weapon Damage
 		[1897] = 13695, -- +$k1 Weapon Damage
 		[1898] = 20032, -- Lifestealing
 		[1899] = 20033, -- Unholy Weapon
@@ -1335,7 +1335,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 				ChestSlot = true,
 				WristSlot = true,
 				HandsSlot = true,
-				--WaistSlot = E.Wrath and true or false,
+				--WaistSlot = E.Cata and true or false,
 				LegsSlot = true,
 				FeetSlot = true,
 				--Finger0Slot = true,
@@ -1343,7 +1343,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 				-- Trinket0Slot = true,
 				-- Trinket1Slot = true,
 				MainHandSlot = true,
-				--SecondaryHandSlot = E.Wrath and true or false,
+				--SecondaryHandSlot = E.Cata and true or false,
 			},
 			itemInfos = nil,
 			parentVisible = false,
@@ -1922,7 +1922,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 					Tooltips[i]:SetOwner(Tooltips[i - 1], "ANCHOR_NONE")
 					Tooltips[i]:SetPoint("TOPLEFT", Tooltips[i - 1], "TOPRIGHT")
 				end
-				if E.Wrath then
+				if E.Cata then
 					if item[FIELD_TYPE] == TYPE_HYPERLINK then
 						Tooltips[i]:SetHyperlink(item[FIELD_CONTENT])
 						self.link = item[FIELD_CONTENT]

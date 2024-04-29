@@ -887,7 +887,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 17
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 17
 				end
-			elseif E.Wrath then
+			elseif E.Cata then
 				if E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'DEATHKNIGHT' then
 					E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 25
 					E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 25
@@ -909,7 +909,7 @@ function ElvUI_EltreumUI:UpdateNPwithoutBar()
 				end
 			end
 			if not E.private.ElvUI_EltreumUI.nameplatepower.mana then
-				if E.Classic or E.Wrath then
+				if E.Classic or E.Cata then
 					if E.myclass == 'MAGE' or E.myclass == 'HUNTER' or E.myclass == 'PRIEST' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' then
 						E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["yOffset"] = 10
 						E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["yOffset"] = 10
