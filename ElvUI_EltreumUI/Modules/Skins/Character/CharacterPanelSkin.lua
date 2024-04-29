@@ -305,9 +305,14 @@ function ElvUI_EltreumUI:GetPlayerSpec()
 	points = 0
 	spec = ""
 
-	local spent1 = select(3,_G.GetTalentTabInfo(1))
-	local spent2 = select(3,_G.GetTalentTabInfo(2))
-	local spent3 = select(3,_G.GetTalentTabInfo(3))
+	local _, _, spent1, _, cataspent1 = _G.GetTalentTabInfo(1)
+	local _, _, spent2, _, cataspent2 = _G.GetTalentTabInfo(2)
+	local _, _, spent3, _, cataspent3 = _G.GetTalentTabInfo(3)
+	if E.Cata then
+		spent1 = cataspent1
+		spent2 = cataspent2
+		spent3 = cataspent3
+	end
 	for i=1, _G.GetNumTalentTabs() do
 		if not E.Cata then
 			name, _, spent = _G.GetTalentTabInfo(i)
@@ -1960,7 +1965,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		--expand classic armory
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then
 
-			if E.Wrath then --skin the gear manager button
+			if E.Cata then --skin the gear manager button
 				if _G["GearManagerToggleButton"] then
 					_G["GearManagerToggleButton"]:GetNormalTexture():SetTexCoord(0.20, 0.80, 0.16, 0.85)
 					_G["GearManagerToggleButton"]:GetPushedTexture():SetTexCoord(0.20, 0.80, 0.16, 0.85)
@@ -1983,7 +1988,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end)
 
 			--set the tabs
-			if E.db.ElvUI_EltreumUI.skins.classicarmoryautostats then
+			if E.db.ElvUI_EltreumUI.skins.classicarmoryautostats and E.Classic then
 				local _, _, spent1 = _G.GetTalentTabInfo(1)
 				local _, _, spent2 = _G.GetTalentTabInfo(2)
 				local _, _, spent3 = _G.GetTalentTabInfo(3)
@@ -2017,7 +2022,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			end
 
-			if E.Wrath then
+			if E.Cata then
 				_G.PlayerTitleDropDown:ClearAllPoints()
 				_G.PlayerTitleDropDown:SetParent(CharacterModelFrame)
 				_G.PlayerTitleDropDown:SetPoint('TOP', CharacterModelFrame, -6, 40)
