@@ -1224,37 +1224,13 @@ function ElvUI_EltreumUI:Shadows()
 					ElvUI_EltreumUI:ShadowColor(_G.BossButton.shadow)
 				end
 			end
-		else
+
 
 			if E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
-				--totems
-				local ElvUITotemFrames = {
-					_G["ElvUF_PlayerTotem1"],
-					_G["ElvUF_PlayerTotem2"],
-					_G["ElvUF_PlayerTotem3"],
-					_G["ElvUF_PlayerTotem4"],
-				}
-				for _, frame in pairs(ElvUITotemFrames) do
-					if frame and frame.backdrop and not frame.backdrop.shadow then
-						frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(frame.shadow)
-					end
-				end
-
-				--raid pet
-				for k = 1, 42 do
-					local petunits = {_G["ElvUF_RaidpetGroup1UnitButton"..k]}
-					for _, button in pairs(petunits) do
-						if not button.shadow then
-							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(button.shadow)
-						end
-					end
-				end
-
 				--Shaman Totem things
 				if E.Cata then
 					if E.myclass == "SHAMAN" and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.totembar) and E.db.actionbar.totemBar.enable then
+						print("1")
 						local totemframes = {
 							_G.MultiCastSummonSpellButton,
 							_G.MultiCastRecallSpellButton,
@@ -1289,6 +1265,45 @@ function ElvUI_EltreumUI:Shadows()
 								end
 							end
 						end)
+					end
+				end
+			end
+
+			if E.Cata then
+				--leatrix causing issues yet again
+				if IsAddOnLoaded("Leatrix_Maps") then
+					if LeaMapsDB["NoMapBorder"] == "On" then
+						if _G.WorldMapFrame.shadow then
+							_G.WorldMapFrame.shadow:Hide()
+						end
+					end
+				end
+			end
+		else
+
+			if E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
+				--totems
+				local ElvUITotemFrames = {
+					_G["ElvUF_PlayerTotem1"],
+					_G["ElvUF_PlayerTotem2"],
+					_G["ElvUF_PlayerTotem3"],
+					_G["ElvUF_PlayerTotem4"],
+				}
+				for _, frame in pairs(ElvUITotemFrames) do
+					if frame and frame.backdrop and not frame.backdrop.shadow then
+						frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(frame.shadow)
+					end
+				end
+
+				--raid pet
+				for k = 1, 42 do
+					local petunits = {_G["ElvUF_RaidpetGroup1UnitButton"..k]}
+					for _, button in pairs(petunits) do
+						if not button.shadow then
+							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(button.shadow)
+						end
 					end
 				end
 			end
