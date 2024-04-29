@@ -919,6 +919,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.QuestNPCModelTextFrame,
 				_G.DressUpFrame,
 				_G.CopyChatFrame,
+				_G.StopwatchFrame and _G.StopwatchFrame.backdrop,
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame and not frame.shadow then
@@ -1179,6 +1180,40 @@ function ElvUI_EltreumUI:Shadows()
 						_G.WorldMapFrame.BorderFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.WorldMapFrame.BorderFrame.backdrop.shadow)
 					end
+
+
+					local tbcframes = {
+						--_G.LFGParentFrame,
+						_G.LFGParentFrameTab1,
+						_G.LFGParentFrameTab2,
+						_G.QuestLogDetailFrame,
+						_G.LFGListingFrame,
+						_G.LFGListCreateRoleDialog,
+						_G.LFGBrowseFrame,
+						_G.GroupFinderFrame,
+						_G.PVPFrame,
+						_G.PVPParentFrameTab2,
+						_G.PVPParentFrameTab1,
+						_G.PVPFrameTab1,
+						_G.PVPFrameTab2,
+						_G.PVPFrameTab3,
+						_G.QuestLogFrame and _G.QuestLogFrame.backdrop,
+					}
+					for _, frame in pairs(tbcframes) do
+						if frame then
+							if frame.backdrop then
+								if not frame.backdrop.shadow then
+									frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(frame.backdrop.shadow)
+								end
+							else
+								if not frame.shadow then
+									frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(frame.shadow)
+								end
+							end
+						end
+					end
 				end
 
 				--quest model thing
@@ -1224,7 +1259,6 @@ function ElvUI_EltreumUI:Shadows()
 					ElvUI_EltreumUI:ShadowColor(_G.BossButton.shadow)
 				end
 			end
-
 
 			if E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
 				--Shaman Totem things
@@ -1299,7 +1333,7 @@ function ElvUI_EltreumUI:Shadows()
 				for k = 1, 42 do
 					local petunits = {_G["ElvUF_RaidpetGroup1UnitButton"..k]}
 					for _, button in pairs(petunits) do
-						if not button.shadow then
+						if button and not button.shadow then
 							button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(button.shadow)
 						end
@@ -1348,38 +1382,6 @@ function ElvUI_EltreumUI:Shadows()
 						if frame and frame.backdrop and not frame.backdrop.shadow then
 							frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(frame.backdrop.shadow)
-						end
-					end
-				end
-
-				--wrath only frames
-				if E.Cata then
-					local tbcframes = {
-					--_G.LFGParentFrame,
-					_G.LFGParentFrameTab1,
-					_G.LFGParentFrameTab2,
-					_G.QuestLogDetailFrame,
-					_G.LFGListingFrame,
-					_G.LFGListCreateRoleDialog,
-					_G.LFGBrowseFrame,
-					_G.GroupFinderFrame,
-					_G.PVPFrame,
-					_G.PVPParentFrameTab2,
-					_G.PVPParentFrameTab1,
-					}
-					for _, frame in pairs(tbcframes) do
-						if frame then
-							if frame.backdrop then
-								if not frame.backdrop.shadow then
-									frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									ElvUI_EltreumUI:ShadowColor(frame.backdrop.shadow)
-								end
-							else
-								if not frame.shadow then
-									frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									ElvUI_EltreumUI:ShadowColor(frame.shadow)
-								end
-							end
 						end
 					end
 				end
