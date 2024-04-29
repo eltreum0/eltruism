@@ -64,7 +64,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			else
 				wowheadbutton:SetPoint("TOPLEFT", _G.QuestLogFrame, "TOPLEFT", 15, -15)
 			end
-		elseif E.Wrath then
+		elseif E.Cata then
 			local x, y = _G.QuestLogFrameTrackButton:GetSize()
 			wowheadbutton:SetWidth(x)
 			wowheadbutton:SetHeight(y)
@@ -193,7 +193,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			wowheadbutton:SetScript('OnClick', function()
 				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
 			end)
-		elseif E.Wrath or E.Cata then
+		elseif E.Cata then
 			local questID
 			--hook the function that sets the quest detail to get the questID from the quest title
 			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --_G.QuestLogFrame.lua 311
@@ -1064,7 +1064,7 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				UIParent_ManageFramePositions()
 			end)
-		elseif E.Wrath or E.Cata then
+		elseif E.Cata then
 
 			--from blizzard's FrameXML/WatchFrame.lua
 			local questside

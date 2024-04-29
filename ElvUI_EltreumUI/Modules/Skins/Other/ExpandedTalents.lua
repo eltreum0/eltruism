@@ -82,7 +82,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 					--increase the size of the whole frame
 					if PlayerTalentFrame then
 						--PlayerTalentFrame:SetScale(0.8,0.8) --should be around this scale for wrath
-						if E.Wrath and not E.Cata then
+						if E.Cata and not E.Cata then
 							PlayerTalentFrame:SetSize(376, 780)
 						elseif E.Classic then
 							PlayerTalentFrame:SetSize(376, 670)
@@ -98,50 +98,19 @@ function ElvUI_EltreumUI:ExpandedTalents()
 
 					if PlayerTalentFrameScrollFrame then
 						--increase the size of the actual frame that has the talent buttons
-						if E.Wrath and not E.Cata then
-							PlayerTalentFrameScrollFrame:SetSize( 280 , 720)
-						elseif E.Classic then
+						if E.Classic then
 							PlayerTalentFrameScrollFrame:SetSize( 280 , 470)
 						end
 						--set the position
 						PlayerTalentFrameScrollFrame:ClearAllPoints()
-						if E.Wrath and not E.Cata then
-							PlayerTalentFrameScrollFrame:SetPoint("CENTER", PlayerTalentFrame, 0, 20)
-						else
+						if E.Classic then
 							PlayerTalentFrameScrollFrame:SetPoint("TOP", PlayerTalentFrame, "TOP", -22, -37)
 						end
 					end
 
 					--increase the size of the background
 					if PlayerTalentFrameBackgroundTopLeft then
-						if E.Wrath and not E.Cata then
-							if PlayerTalentFrameScrollFrame.backdrop then
-								PlayerTalentFrameScrollFrame.backdrop:Kill()
-							end
-
-							PlayerTalentFrameScrollFrame:SetScale(0.85)
-
-							PlayerTalentFrameBackgroundTopLeft:ClearAllPoints()
-							PlayerTalentFrameBackgroundTopLeft:SetParent(PlayerTalentFrame)
-							PlayerTalentFrameBackgroundTopLeft:SetPoint("TOPLEFT", PlayerTalentFrameScrollFrame, "TOPLEFT", -15, -2)
-							PlayerTalentFrameBackgroundTopLeft:SetSize(203, 467)
-
-							PlayerTalentFrameBackgroundBottomLeft:ClearAllPoints()
-							PlayerTalentFrameBackgroundBottomLeft:SetParent(PlayerTalentFrame)
-							PlayerTalentFrameBackgroundBottomLeft:SetPoint("BOTTOMLEFT", PlayerTalentFrameScrollFrame, "BOTTOMLEFT", -15, 23)
-							PlayerTalentFrameBackgroundBottomLeft:SetSize(203, 120)
-
-							PlayerTalentFrameBackgroundTopRight:ClearAllPoints()
-							PlayerTalentFrameBackgroundTopRight:SetParent(PlayerTalentFrame)
-							PlayerTalentFrameBackgroundTopRight:SetPoint("TOPRIGHT", PlayerTalentFrameScrollFrame, "TOPRIGHT", 0, -2)
-							PlayerTalentFrameBackgroundTopRight:SetSize(50 , 467)
-
-							PlayerTalentFrameBackgroundBottomRight:ClearAllPoints()
-							PlayerTalentFrameBackgroundBottomRight:SetParent(PlayerTalentFrame)
-							PlayerTalentFrameBackgroundBottomRight:SetPoint("BOTTOMRIGHT", PlayerTalentFrameScrollFrame, "BOTTOMRIGHT", 0, 23)
-							PlayerTalentFrameBackgroundBottomRight:SetSize(50 , 120)
-
-						elseif E.Classic then
+						if E.Classic then
 							--PlayerTalentFrameBackgroundTopLeft:SetSize(310 , 490)
 							if PlayerTalentFrameScrollFrame.backdrop then
 								PlayerTalentFrameScrollFrame.backdrop:Kill()
@@ -173,7 +142,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 					end
 
 					-- fix glyph size
-					if E.Wrath and not E.Cata then
+					--[[if E.Wrath and not E.Cata then
 						LoadAddOn("Blizzard_GlyphUI")
 						_G.GlyphFrame:SetParent(_G.PlayerTalentFrame)
 
@@ -204,7 +173,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 							PlayerTalentFrameBackgroundTopRight:Show()
 							PlayerTalentFrameBackgroundBottomRight:Show()
 						end)
-					end
+					end]]
 
 					-- fix talent frame position due to expanded character bg
 					_G.PlayerTalentFrame:HookScript("OnShow", function()

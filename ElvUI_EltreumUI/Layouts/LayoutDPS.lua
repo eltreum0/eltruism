@@ -302,7 +302,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["actionbar"]["stanceBar"]["inheritGlobalFade"] = true
 	if E.Retail then
 		E.db["actionbar"]["stanceBar"]["mouseover"] = true
-	elseif E.Wrath or E.Classic then
+	elseif E.Cata or E.Classic then
 		E.db["actionbar"]["stanceBar"]["mouseover"] = false
 	end
 	E.db["actionbar"]["stanceBar"]["style"] = "classic"
@@ -443,7 +443,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	if E.Classic then
 		E.db["movers"]["QuestTimerFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-258,-231"
 		E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-223,-304"
-	elseif E.Wrath then
+	elseif E.Cata then
 		E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-115,-306"
 		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-110,-319"
 	end
@@ -468,7 +468,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["general"]["totems"]["growthDirection"] = "HORIZONTAL"
 	E.db["general"]["totems"]["size"] = 30
 	E.db["general"]["totems"]["spacing"] = 5
-	if E.Wrath then
+	if E.Cata then
 		--Shaman things
 		E.db["actionbar"]["totemBar"]["buttonSize"] = 24
 		E.db["actionbar"]["totemBar"]["flyoutSize"] = 24

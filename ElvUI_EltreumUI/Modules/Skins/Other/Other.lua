@@ -285,7 +285,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 
 						CraftDetailScrollFrame:Hide()
 						CraftDetailScrollFrameScrollBar:Hide()
-						if E.Wrath then
+						if E.Cata then
 							CraftFrameFilterDropDown:ClearAllPoints()
 							CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
 							CraftFrameAvailableFilterCheckButton:ClearAllPoints()
@@ -357,13 +357,16 @@ function ElvUI_EltreumUI:EnchantScroll()
 		--create vellum button
 		if E.Retail then
 			if not _G["EltruismVellumButton"] then
-				if E.Retail then
-					vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["ProfessionsFrame"], "MagicButtonTemplate")
-					vellumbutton:SetPoint("RIGHT", _G.ProfessionsFrame.CraftingPage.CreateAllButton, "LEFT", -1, 0)
-				else
-					vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["TradeSkillFrame"], "MagicButtonTemplate")
-					vellumbutton:SetPoint("RIGHT", _G.TradeSkillFrame.DetailsFrame.CreateButton, "LEFT", -1, 0)
-				end
+				vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["ProfessionsFrame"], "MagicButtonTemplate")
+				vellumbutton:SetPoint("RIGHT", _G.ProfessionsFrame.CraftingPage.CreateAllButton, "LEFT", -1, 0)
+				S:HandleButton(vellumbutton)
+			else
+				vellumbutton = _G["EltruismVellumButton"]
+			end
+		elseif E.Cata then
+			if not _G["EltruismVellumButton"] then
+				vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["TradeSkillFrame"], "MagicButtonTemplate")
+				vellumbutton:SetPoint("RIGHT", _G.TradeSkillCreateButton, "LEFT", -1, 0)
 				S:HandleButton(vellumbutton)
 			else
 				vellumbutton = _G["EltruismVellumButton"]
@@ -396,7 +399,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 			disenchantbutton:SetText(disenchant)
 			disenchantbutton:SetAttribute("type1", "spell")
 			disenchantbutton:SetAttribute("spell", "13262")
-			if E.Retail then
+			if E.Retail or E.Cata then
 				local vellum = GetItemInfo(38682)
 				if vellum then
 					vellum = string.match(vellum, "%s+(%S+)")
@@ -412,7 +415,11 @@ function ElvUI_EltreumUI:EnchantScroll()
 						if GetItemCount(38682) > 0 then
 							vellumbutton:SetEnabled(true)
 							--C_TradeSkillUI.CraftRecipe(_G["TradeSkillFrame"].DetailsFrame.selectedRecipeID)
-							C_TradeSkillUI.CraftRecipe(_G["ProfessionsFrame"].CraftingPage.RecipeList.previousRecipeID)
+							if E.Retail then
+								C_TradeSkillUI.CraftRecipe(_G["ProfessionsFrame"].CraftingPage.RecipeList.previousRecipeID)
+							else
+								_G.TradeSkillCreateButton:Click()
+							end
 							UseItemByName(38682)
 						else
 							vellumbutton:SetEnabled(false)

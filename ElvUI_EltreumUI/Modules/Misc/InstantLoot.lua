@@ -74,7 +74,7 @@ EltruismInstantLoot:RegisterEvent("LOOT_SLOT_CHANGED")
 EltruismInstantLoot:RegisterEvent("UI_ERROR_MESSAGE")
 
 local function InstantLoot(_, event,_, arg2)
-	if event == "LOOT_BIND_CONFIRM" and (E.Wrath or E.Classic) then
+	if event == "LOOT_BIND_CONFIRM" and (E.Cata or E.Classic) then
 		if E.db.ElvUI_EltreumUI.loot.confirmbop then
 			for i = GetNumLootItems(), 1, -1 do
 				ConfirmLootSlot(i)

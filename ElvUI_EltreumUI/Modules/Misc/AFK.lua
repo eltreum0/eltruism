@@ -102,7 +102,7 @@ function ElvUI_EltreumUI:AFKmusic()
 				end
 			elseif E.Classic then
 				willplay, classicmusicstopper = PlaySound(classicMusic[E.myrace])
-			elseif E.Wrath then
+			elseif E.Cata then
 				PlayMusic(wrathMusic[E.myrace])
 			end
 		else

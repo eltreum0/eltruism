@@ -86,7 +86,7 @@ end
 --from elvui, modified for gradient
 do
 	local function EltruismGetTitleNPC(unit, custom)
-		if UnitIsPlayer(unit) or (E.Wrath and UnitAffectingCombat('player') and IsInInstance()) then return end
+		if UnitIsPlayer(unit) or (E.Cata and UnitAffectingCombat('player') and IsInInstance()) then return end
 
 		-- similar to TT.GetLevelLine
 		local info = E.ScanTooltip:GetUnitInfo(unit)
@@ -1782,13 +1782,13 @@ E:AddTag('eltruism:difficulty', 'UNIT_NAME_UPDATE', function(unit)
 	if not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
 		if UnitIsEnemy("player", unit) then
 			if classification ~= "worldboss" then
-				if E.Wrath or E.Classic then
+				if E.Cata or E.Classic then
 					return (eltruismdif[printdifference])
 				else
 					return
 				end
 			elseif classification == "worldboss" then
-				if E.Wrath or E.Classic then
+				if E.Cata or E.Classic then
 					return ("|cFFFF0000")
 				else
 					return
@@ -1950,7 +1950,7 @@ E:AddTag("eltruism:stance", 1, function()
 end)
 E:AddTagInfo("eltruism:stance", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows the current stance of the player"])
 
-if E.Wrath then
+if E.Cata then
 	E:AddTag("eltruism:presencecolor", 1, function()
 		local stance = GetShapeshiftForm()
 		if stance == 1 then
@@ -2015,7 +2015,7 @@ E:AddTag("eltruism:lowmana", 'UNIT_POWER_FREQUENT', function(unit,_,args)
 			if currentSpec ~= nil then
 				role = GetSpecializationRole(currentSpec)
 			end
-		elseif E.Wrath then
+		elseif E.Cata then
 			role = UnitGroupRolesAssigned("player")
 		end
 		if role == 'HEALER' or E.Classic then

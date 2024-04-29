@@ -51,7 +51,7 @@ local classModels = {
 	--4234796 smoky stormwind
 	--937003 fire
 }
-if E.Wrath then
+if E.Cata then
 	classModels = {
 		["MAGE"] = "environments/stars/nexusraid_runeeffects_starry.m2",
 		["PALADIN"] = "environments/stars/netherstormskybox.m2", --spells/dragonbreath_arcane.m2
@@ -123,18 +123,22 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 				playereffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
 				playereffect:SetParent(playerbar.Health)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					--playereffect:SetAllPoints(playerbar.Health:GetStatusBarTexture())
-					playereffect:SetInside(playerbar.Health:GetStatusBarTexture(), 0, 0)
+					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+						playereffect:SetInside(playerbar.Health:GetStatusBarTexture(), 0, 0)
+					else
+						playereffect:SetInside(playerbar.Health, 0, 0)
+					end
 					playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel())
 					playereffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-				--elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-				else
-					--playereffect:SetAllPoints(playerbar.Health)
-					playereffect:SetInside(playerbar.Health, 0, 0)
+				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
+					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+						playereffect:SetInside(playerbar.Health.bg, 0, 0)
+					else
+						playereffect:SetInside(playerbar.Health, 0, 0)
+					end
 					playereffect:SetFrameLevel(playerbar.Health:GetFrameLevel()-1)
 					playereffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
 				end
-				--playereffect:SetFrameLevel(playerbar.Portrait3D:GetFrameLevel())
 			end
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
@@ -224,16 +228,19 @@ function ElvUI_EltreumUI:TargetUFEffects()
 				targeteffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
 				targeteffect:SetParent(targetbar.Health)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					--targeteffect:ClearAllPoints()
-					--targeteffect:SetAllPoints(targetbar.Health:GetStatusBarTexture())
-					targeteffect:SetInside(targetbar.Health:GetStatusBarTexture(), 0, 0)
+					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+						targeteffect:SetInside(targetbar.Health:GetStatusBarTexture(), 0, 0)
+					else
+						targeteffect:SetInside(targetbar.Health, 0, 0)
+					end
 					targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel())
 					targeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-				--elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-				else
-					--targeteffect:ClearAllPoints()
-					--targeteffect:SetAllPoints(targetbar.Health)
-					targeteffect:SetInside(targetbar.Health, 0, 0)
+				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
+					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+						targeteffect:SetInside(targetbar.Health.bg, 0, 0)
+					else
+						targeteffect:SetInside(targetbar.Health, 0, 0)
+					end
 					targeteffect:SetFrameLevel(targetbar.Health:GetFrameLevel()-1)
 					targeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
 				end
@@ -325,20 +332,22 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 				targeteffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
 				targettargeteffect:SetParent(targettargetbar.Health)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					--targettargeteffect:ClearAllPoints()
-					--targettargeteffect:SetAllPoints(targettargetbar.Health:GetStatusBarTexture())
-					targettargeteffect:SetInside(targettargetbar.Health:GetStatusBarTexture(), 0, 0)
+					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+						targettargeteffect:SetInside(targettargetbar.Health:GetStatusBarTexture(), 0, 0)
+					else
+						targettargeteffect:SetInside(targettargetbar.Health, 0, 0)
+					end
 					targettargeteffect:SetFrameLevel(targettargetbar.Health:GetFrameLevel())
 					targettargeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-				--elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-				else
-					--targettargeteffect:ClearAllPoints()
-					--targettargeteffect:SetAllPoints(targettargetbar.Health)
-					targettargeteffect:SetInside(targettargetbar.Health, 0, 0)
+				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
+					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+						targettargeteffect:SetInside(targettargetbar.Health.bg, 0, 0)
+					else
+						targettargeteffect:SetInside(targettargetbar.Health, 0, 0)
+					end
 					targettargeteffect:SetFrameLevel(targettargetbar.Health:GetFrameLevel()-1)
 					targettargeteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
 				end
-				--targeteffect:AddMaskTexture(targetbar.Health:GetStatusBarTexture())
 			end
 		end
 
@@ -431,20 +440,22 @@ function ElvUI_EltreumUI:FocusUFEffects()
 				focuseffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
 				focuseffect:SetParent(focusbar.Health)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					--focuseffect:ClearAllPoints()
-					--focuseffect:SetAllPoints(focusbar.Health:GetStatusBarTexture())
-					focuseffect:SetInside(focusbar.Health:GetStatusBarTexture(), 0, 0)
+					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+						focuseffect:SetInside(focusbar.Health:GetStatusBarTexture(), 0, 0)
+					else
+						focuseffect:SetInside(focusbar.Health, 0, 0)
+					end
 					focuseffect:SetFrameLevel(focusbar.Health:GetFrameLevel())
 					focuseffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-				--elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
-				else
-					--focuseffect:ClearAllPoints()
-					--focuseffect:SetAllPoints(focusbar.Health)
-					focuseffect:SetInside(focusbar.Health, 0, 0)
+				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
+					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+						focuseffect:SetInside(focusbar.Health.bg, 0, 0)
+					else
+						focuseffect:SetInside(focusbar.Health, 0, 0)
+					end
 					focuseffect:SetFrameLevel(focusbar.Health:GetFrameLevel()-1)
 					focuseffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
 				end
-				--focuseffect:AddMaskTexture(focusbar.Health:GetStatusBarTexture())
 			end
 		end
 
@@ -480,7 +491,7 @@ function ElvUI_EltreumUI:FocusUFEffects()
 		end
 	end
 end
-if E.Retail or E.Wrath then
+if E.Retail or E.Cata then
 	hooksecurefunc(UF, "Construct_FocusFrame", ElvUI_EltreumUI.FocusUFEffects)
 	hooksecurefunc(UF, "Update_FocusFrame", ElvUI_EltreumUI.FocusUFEffects)
 end
@@ -529,16 +540,21 @@ function ElvUI_EltreumUI:PetUFEffects()
 
 			if petbar then
 				peteffect:SetDesaturation(E.db.ElvUI_EltreumUI.unitframes.models.ufdesaturation)
-				--peteffect:ClearAllPoints()
 				peteffect:SetParent(petbar.Health)
 				if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-					--peteffect:SetAllPoints(petbar.Health:GetStatusBarTexture())
-					peteffect:SetInside(petbar.Health:GetStatusBarTexture(), 0, 0)
+					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+						peteffect:SetInside(petbar.Health:GetStatusBarTexture(), 0, 0)
+					else
+						peteffect:SetInside(petbar.Health, 0, 0)
+					end
 					peteffect:SetFrameLevel(petbar.Health:GetFrameLevel())
 					peteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalpha)
-				else
-					--peteffect:SetAllPoints(petbar.Health)
-					peteffect:SetInside(petbar.Health, 0, 0)
+				elseif E.db.ElvUI_EltreumUI.unitframes.darkmode then
+					if E.db.ElvUI_EltreumUI.unitframes.models.insideHP then
+						peteffect:SetInside(petbar.Health.bg, 0, 0)
+					else
+						peteffect:SetInside(petbar.Health, 0, 0)
+					end
 					peteffect:SetFrameLevel(petbar.Health:GetFrameLevel()-1)
 					peteffect:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.models.ufalphadark)
 				end

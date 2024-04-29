@@ -31,7 +31,7 @@ function ElvUI_EltreumUI:QuestEncounter()
 				else
 					_G.QuestWatchFrame:Hide()
 				end
-			elseif E.Wrath then
+			elseif E.Cata then
 				if IsAddOnLoaded("Questie") then
 					if _G["Questie_BaseFrame"] then
 						_G["Questie_BaseFrame"]:Hide()
@@ -65,7 +65,7 @@ function ElvUI_EltreumUI:QuestEncounterEnd()
 				else
 					_G.QuestWatchFrame:Show()
 				end
-			elseif E.Wrath then
+			elseif E.Cata then
 				if IsAddOnLoaded("Questie") then
 					if _G["Questie_BaseFrame"] then
 						_G["Questie_BaseFrame"]:Show()
@@ -98,7 +98,7 @@ function ElvUI_EltreumUI:ArenaQuest()
 				else
 					_G.QuestWatchFrame:Hide()
 				end
-			elseif E.Wrath then
+			elseif E.Cata then
 				if IsAddOnLoaded("Questie") then
 					if _G["Questie_BaseFrame"] then
 						_G["Questie_BaseFrame"]:Hide()
@@ -123,7 +123,7 @@ function ElvUI_EltreumUI:ArenaQuest()
 				else
 					_G.QuestWatchFrame:Show()
 				end
-			elseif E.Wrath then
+			elseif E.Cata then
 				if IsAddOnLoaded("Questie") then
 					if _G["Questie_BaseFrame"] then
 						_G["Questie_BaseFrame"]:Show()
@@ -153,7 +153,7 @@ function ElvUI_EltreumUI:QuestCombat()
 			else
 				_G.QuestWatchFrame:Hide()
 			end
-		elseif E.Wrath then
+		elseif E.Cata then
 			if IsAddOnLoaded("Questie") then
 				if _G["Questie_BaseFrame"] then
 					_G["Questie_BaseFrame"]:Hide()
@@ -182,7 +182,7 @@ function ElvUI_EltreumUI:QuestCombatEnd()
 			else
 				_G.QuestWatchFrame:Show()
 			end
-		elseif E.Wrath then
+		elseif E.Cata then
 			if IsAddOnLoaded("Questie") then
 				if _G["Questie_BaseFrame"] then
 					_G["Questie_BaseFrame"]:Show()

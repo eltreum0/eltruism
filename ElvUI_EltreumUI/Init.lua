@@ -103,7 +103,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 		end
 		ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
-	elseif E.Wrath or E.Classic then
+	elseif E.Cata or E.Classic then
 		ElvUI_EltreumUI:ClassicSockets() --adds sockets and enchants into the character panel, based on Kibs Item Level by Kibsgaard
 		if not E.Cata then
 			ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
@@ -175,7 +175,7 @@ function ElvUI_EltreumUI:Initialize()
 		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
 		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 	end
-	if E.Wrath then
+	if E.Cata then
 		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
 		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 		ElvUI_EltreumUI:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
@@ -310,19 +310,19 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 end
 
 local currenttalentretail = E.Retail and GetSpecialization()
-local currenttalentwrath = E.Wrath and GetActiveTalentGroup()
+local currenttalentwrath = E.Cata and GetActiveTalentGroup()
 function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 	local newtalentretail = E.Retail and GetSpecialization()
-	local newtalentwrath = (E.Wrath or E.ClassicSOD) and GetActiveTalentGroup()
+	local newtalentwrath = (E.Cata or E.ClassicSOD) and GetActiveTalentGroup()
 	if E.Retail then
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
 	end
-	if (E.Retail and currenttalentretail ~= newtalentretail) or ((E.Wrath or E.ClassicSOD) and currenttalentwrath ~= newtalentwrath) then
+	if (E.Retail and currenttalentretail ~= newtalentretail) or ((E.Cata or E.ClassicSOD) and currenttalentwrath ~= newtalentwrath) then
 		currenttalentretail = newtalentretail
 		currenttalentwrath = newtalentwrath
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		ElvUI_EltreumUI:FixChatToggles()
-		if E.Retail or (E.Wrath or E.ClassicSOD) then
+		if E.Retail or (E.Cata or E.ClassicSOD) then
 			ElvUI_EltreumUI:NamePlateOptions()
 			ElvUI_EltreumUI:Shadows()
 			if E.private.nameplates.enable then
