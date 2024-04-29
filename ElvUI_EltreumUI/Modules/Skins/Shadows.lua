@@ -927,7 +927,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
-			if E.Retail then
+			if E.Retail or E.Cata then
 				if _G.SpellBookFrame and not _G.SpellBookFrame.shadow then
 					_G.SpellBookFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(_G.SpellBookFrame.shadow)
