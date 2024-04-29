@@ -141,24 +141,32 @@ local stanceBackup = 0 --store previous stance to force refresh it
 --ty a lot azilroka
 local stanceID = {
 	DEATHKNIGHT = {
-		[1] = not E.Retail and GetSpellInfo(48266),
-		[2] = not E.Retail and GetSpellInfo(48263),
-		[3] = not E.Retail and GetSpellInfo(48265),
+		[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
+		[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
+		[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
 	},
 	PALADIN = {
-		[1] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))) or GetSpellInfo(465),
-		[2] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))) or GetSpellInfo(7294),
-		[3] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))) or GetSpellInfo(19746),
-		[4] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))) or GetSpellInfo(19746),
-		[5] = not E.Retail and GetSpellInfo(19888),
-		[6] = not E.Retail and GetSpellInfo(19891),
-		[7] = not E.Retail and GetSpellInfo(32223),
+		[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
+		[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
+		[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
+		[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))),
+		[5] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(5)))),
+		[6] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(6)))),
+		[7] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(7)))),
 	},
 	WARRIOR = {
-		[1] = not E.Retail and GetSpellInfo(2457),
-		[2] = not E.Retail and GetSpellInfo(71),
-		[3] = not E.Retail and GetSpellInfo(2458),
-	}
+		[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
+		[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
+		[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
+		[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))), --gladiator?
+	},
+	HUNTER = {
+		[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
+		[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
+		[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
+		[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))),
+		[5] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(5)))),
+	},
 }
 
 --because in retail talent changes can occur more freely and change known stances, refresh table
@@ -166,24 +174,32 @@ local function refreshstance()
 	stanceBackup = 0
 	stanceID = {
 		DEATHKNIGHT = {
-			[1] = not E.Retail and GetSpellInfo(48266),
-			[2] = not E.Retail and GetSpellInfo(48263),
-			[3] = not E.Retail and GetSpellInfo(48265),
+			[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
+			[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
+			[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
 		},
 		PALADIN = {
-			[1] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))) or GetSpellInfo(465),
-			[2] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))) or GetSpellInfo(7294),
-			[3] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))) or GetSpellInfo(19746),
-			[4] = (E.Retail and GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))) or GetSpellInfo(19746),
-			[5] = not E.Retail and GetSpellInfo(19888),
-			[6] = not E.Retail and GetSpellInfo(19891),
-			[7] = not E.Retail and GetSpellInfo(32223),
+			[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
+			[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
+			[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
+			[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))),
+			[5] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(5)))),
+			[6] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(6)))),
+			[7] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(7)))),
 		},
 		WARRIOR = {
-			[1] = not E.Retail and GetSpellInfo(2457),
-			[2] = not E.Retail and GetSpellInfo(71),
-			[3] = not E.Retail and GetSpellInfo(2458),
-		}
+			[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
+			[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
+			[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
+			[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))), --gladiator?
+		},
+		HUNTER = {
+			[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
+			[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
+			[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
+			[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))),
+			[5] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(5)))),
+		},
 	}
 end
 
