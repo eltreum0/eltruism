@@ -1230,7 +1230,6 @@ function ElvUI_EltreumUI:Shadows()
 				--Shaman Totem things
 				if E.Cata then
 					if E.myclass == "SHAMAN" and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.totembar) and E.db.actionbar.totemBar.enable then
-						print("1")
 						local totemframes = {
 							_G.MultiCastSummonSpellButton,
 							_G.MultiCastRecallSpellButton,
