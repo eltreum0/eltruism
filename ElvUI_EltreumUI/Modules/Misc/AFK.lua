@@ -47,7 +47,7 @@ local classMusic = {
 	["HUNTER"] = 1417326,
 	["ROGUE"] = 1417273,
 	["PRIEST"] = 1417367,
-	["DEATHKNIGHT"] = 229831, --works in wrath
+	["DEATHKNIGHT"] = 229831, --works in cata
 	--/script PlaySound(14960)
 	["SHAMAN"] = 528163,
 	["MAGE"] = 1417264,
@@ -58,7 +58,7 @@ local classMusic = {
 	["EVOKER"] = 4887975, --test
 }
 
-local wrathMusic ={
+local cataMusic ={
 	["Human"] = 53210,
 	["Gnome"] = 369055,
 	["NightElf"] = E.Cata and 441709 or 53187,
@@ -103,7 +103,7 @@ function ElvUI_EltreumUI:AFKmusic()
 			elseif E.Classic then
 				willplay, classicmusicstopper = PlaySound(classicMusic[E.myrace])
 			elseif E.Cata then
-				PlayMusic(wrathMusic[E.myrace])
+				PlayMusic(cataMusic[E.myrace])
 			end
 		else
 			if not E.Classic then

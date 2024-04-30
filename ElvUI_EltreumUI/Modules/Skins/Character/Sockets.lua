@@ -1682,8 +1682,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 			return UnitLevel(self.adapter:GetUnit()) == 60
 		elseif E.Cata then
 			return UnitLevel(self.adapter:GetUnit()) == 85
-		elseif E.Wrath then
-			return UnitLevel(self.adapter:GetUnit()) == 80
 		end
 	end
 

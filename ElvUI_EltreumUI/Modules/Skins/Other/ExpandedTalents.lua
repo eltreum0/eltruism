@@ -3,7 +3,6 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local EltruismExpandedTalents = CreateFrame("Frame")
-local LoadAddOn = _G.C_AddOns and _G.C_AddOns.LoadAddOn or _G.LoadAddOn
 
 --Reskin Blizzard Talent frame
 function ElvUI_EltreumUI:ExpandedTalents()
@@ -73,20 +72,14 @@ function ElvUI_EltreumUI:ExpandedTalents()
 
 					EltruismExpandedTalents:UnregisterAllEvents()
 					--hide the scroll
-					if not E.Cata then
-						if PlayerTalentFrameScrollFrameScrollBar then
-							PlayerTalentFrameScrollFrameScrollBar:ClearAllPoints()
-							PlayerTalentFrameScrollFrameScrollBar:Hide()
-						end
+					if PlayerTalentFrameScrollFrameScrollBar then
+						PlayerTalentFrameScrollFrameScrollBar:ClearAllPoints()
+						PlayerTalentFrameScrollFrameScrollBar:Hide()
 					end
+
 					--increase the size of the whole frame
 					if PlayerTalentFrame then
-						--PlayerTalentFrame:SetScale(0.8,0.8) --should be around this scale for wrath
-						if E.Cata and not E.Cata then
-							PlayerTalentFrame:SetSize(376, 780)
-						elseif E.Classic then
-							PlayerTalentFrame:SetSize(376, 670)
-						end
+						PlayerTalentFrame:SetSize(376, 670)
 					end
 
 					--fix rank size
@@ -141,40 +134,6 @@ function ElvUI_EltreumUI:ExpandedTalents()
 						PlayerTalentFrameCancelButton:Hide()
 					end
 
-					-- fix glyph size
-					--[[if E.Wrath and not E.Cata then
-						LoadAddOn("Blizzard_GlyphUI")
-						_G.GlyphFrame:SetParent(_G.PlayerTalentFrame)
-
-						_G.GlyphFrame:HookScript("OnShow", function()
-
-							--fix the button being behind the frame
-							if _G.PlayerTalentFrameCloseButton then
-								_G.PlayerTalentFrameCloseButton:SetFrameStrata("HIGH")
-							end
-
-							PlayerTalentFrame:SetSize(384, 512)
-							_G.GlyphFrame:Show()
-							PlayerTalentFrameBackgroundTopLeft:Hide()
-							PlayerTalentFrameBackgroundBottomLeft:Hide()
-							PlayerTalentFrameBackgroundTopRight:Hide()
-							PlayerTalentFrameBackgroundBottomRight:Hide()
-							_G.PlayerTalentFrameStatusFrame:Hide()
-							_G.GlyphFrame:ClearAllPoints()
-							_G.GlyphFrame:SetPoint("CENTER", _G.PlayerTalentFrame, "CENTER", 0, 4)
-							_G.GlyphFrame:SetFrameStrata("HIGH")
-						end)
-						_G.GlyphFrame:HookScript("OnHide", function()
-							PlayerTalentFrame:SetSize(376, 780)
-							_G.GlyphFrame:Hide()
-							_G.PlayerTalentFrameStatusFrame:Show()
-							PlayerTalentFrameBackgroundTopLeft:Show()
-							PlayerTalentFrameBackgroundBottomLeft:Show()
-							PlayerTalentFrameBackgroundTopRight:Show()
-							PlayerTalentFrameBackgroundBottomRight:Show()
-						end)
-					end]]
-
 					-- fix talent frame position due to expanded character bg
 					_G.PlayerTalentFrame:HookScript("OnShow", function()
 						if E.db.ElvUI_EltreumUI.skins.classicarmory then
@@ -185,7 +144,6 @@ function ElvUI_EltreumUI:ExpandedTalents()
 							end
 						end
 					end)
-
 				end
 			end)
 		end
