@@ -62,7 +62,7 @@ local EltruismNameplateEnemyPlayerDebuffs = "Blacklist,Personal,Boss,CCDebuffs,R
 local EltruismNameplateEnemyNPCBuffs = "Blacklist,RaidBuffsElvUI,Dispellable,blockNoDuration,CastByUnit"
 local EltruismNameplateEnemyNPCDebuffs = "Blacklist,Personal,CCDebuffs,CastByNPC"
 
---All filter mainly for wrath/tbc/classic
+--All filter mainly for cata/classic
 local EltruismEverything = "Blacklist,Personal,nonPersonal"
 
 --based on luckyone

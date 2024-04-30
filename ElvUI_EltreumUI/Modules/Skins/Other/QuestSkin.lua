@@ -97,26 +97,6 @@ function ElvUI_EltreumUI:SkinQuests()
 			elseif E.locale == "zhCN" or E.locale == "zhTW" then
 				wowheadregion = "cn.wowhead.com"
 			end
-		elseif E.Wrath and not E.Cata then
-			if E.locale == "deDE" then
-				wowheadregion = "wowhead.com/wotlk/de"
-			elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW" then
-				wowheadregion = "wowhead.com/wotlk"
-			elseif E.locale == "esMX" or E.locale == "esES" then
-				wowheadregion = "wowhead.com/wotlk/es"
-			elseif E.locale == "frFR" then
-				wowheadregion = "wowhead.com/wotlk/fr"
-			elseif E.locale == "itIT" then
-				wowheadregion = "wowhead.com/wotlk/it"
-			elseif E.locale == "koKR" then
-				wowheadregion = "wowhead.com/wotlk/ko"
-			elseif E.locale == "ptBR" or E.locale == "ptPT" then
-				wowheadregion = "wowhead.com/wotlk/pt"
-			elseif E.locale == "ruRU" then
-				wowheadregion = "wowhead.com/wotlk/ru"
-			elseif E.locale == "zhCN" or E.locale == "zhTW" then
-				wowheadregion = "wowhead.com/wotlk/cn"
-			end
 		elseif E.Cata then
 			if E.locale == "deDE" then
 				wowheadregion = "wowhead.com/cata/de"
@@ -838,7 +818,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				dontexpandanymorequests = 1
 			end
 
-			--add quest header like retail/wrath
+			--add quest header like retail/cata
 			if not _G["EltruismQuestLine"] then
 				_G.QuestWatchFrame.HeaderBar = CreateFrame("StatusBar", "EltruismQuestLine", _G.QuestWatchFrame)
 				_G.QuestWatchFrame.HeaderBar:SetMinMaxValues(0, 100)
@@ -1095,11 +1075,11 @@ function ElvUI_EltreumUI:SkinQuests()
 						line.text:SetWidth(250)
 
 						--inspired by blinkii's skin, color
-						local textwrath = line.text:GetText()
-						if textwrath ~= nil then
-							local left, right, questtext = strmatch(textwrath, "^(%d-)/(%d-) (.+)")
-							local questtext2,left2, right2 = strmatch(textwrath, "(.+): (%d-)/(%d-)$")
-							local left3, right3, questtext3 = strmatch(textwrath, "^- (%d-)/(%d-) (.+)")
+						local textcata = line.text:GetText()
+						if textcata ~= nil then
+							local left, right, questtext = strmatch(textcata, "^(%d-)/(%d-) (.+)")
+							local questtext2,left2, right2 = strmatch(textcata, "(.+): (%d-)/(%d-)$")
+							local left3, right3, questtext3 = strmatch(textcata, "^- (%d-)/(%d-) (.+)")
 							if left then
 								local percentagedone = (tonumber(left) / tonumber(right)) * 100 or 0
 								local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)

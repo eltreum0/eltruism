@@ -67,7 +67,7 @@ instancedifficulty:SetScript("OnEvent", function()
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.r, E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.g, E.db.ElvUI_EltreumUI.skins.instances.DungeonHeroicColor.b)
 				end
 			end
-		elseif DifficultyID == 3 then --10man wrath
+		elseif DifficultyID == 3 then --10man cata
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.Raid10)
 			backuptext = (E.db.ElvUI_EltreumUI.skins.instances.Raid10)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
@@ -79,7 +79,7 @@ instancedifficulty:SetScript("OnEvent", function()
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.r, E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.g, E.db.ElvUI_EltreumUI.skins.instances.Raid10Color.b)
 				end
 			end
-		elseif DifficultyID == 4 then --25man wrath
+		elseif DifficultyID == 4 then --25man cata
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.Raid25)
 			backuptext = (E.db.ElvUI_EltreumUI.skins.instances.Raid25)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
@@ -91,7 +91,7 @@ instancedifficulty:SetScript("OnEvent", function()
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.r, E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.g, E.db.ElvUI_EltreumUI.skins.instances.Raid25Color.b)
 				end
 			end
-		elseif DifficultyID == 5 then --10man heroic wrath
+		elseif DifficultyID == 5 then --10man heroic cata
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.Raid10Heroic)
 			backuptext = (E.db.ElvUI_EltreumUI.skins.instances.Raid10Heroic)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
@@ -103,7 +103,7 @@ instancedifficulty:SetScript("OnEvent", function()
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.r, E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.g, E.db.ElvUI_EltreumUI.skins.instances.Raid10HeroicColor.b)
 				end
 			end
-		elseif DifficultyID == 6 then --25man heroic wrath
+		elseif DifficultyID == 6 then --25man heroic cata
 			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.Raid25Heroic)
 			backuptext = (E.db.ElvUI_EltreumUI.skins.instances.Raid25Heroic)
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then

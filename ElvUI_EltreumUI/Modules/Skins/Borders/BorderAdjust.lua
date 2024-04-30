@@ -304,7 +304,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 				E:UpdateActionBars()
 			end
 
-			--wrath shaman compatibility
+			--cata shaman compatibility
 			if not (E.Cata) then
 				E:UpdateMoverPositions()
 			elseif (E.Cata) then

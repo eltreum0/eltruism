@@ -590,7 +590,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 end)
 
 --make the video options movable because its annoying when adjusting settings
-local VideoOptionsFrame = _G.VideoOptionsFrame --Classic/Wrath
+local VideoOptionsFrame = _G.VideoOptionsFrame --Classic/Cata
 if VideoOptionsFrame then
 	VideoOptionsFrame:SetMovable(true)
 	VideoOptionsFrame:EnableMouse(true)

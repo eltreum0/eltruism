@@ -41,7 +41,7 @@ function ElvUI_EltreumUI:AuthorMVPDonatorIcons()
 			--other
 			["Player-100-0DED4208"] = EltreumIcon,
 
-			--Wrath
+			--Cata
 			["Player-4408-03A87F8F"] = EltreumIcon,
 			["Player-4408-03E923CC"] = EltreumIcon,
 			["Player-4408-03F14DE7"] = EltreumIcon,
