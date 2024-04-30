@@ -7,7 +7,7 @@ local InCombatLockdown = _G.InCombatLockdown
 
 --based on old addonskins skin
 function ElvUI_EltreumUI:EltruismPallyPower()
-	if E.db.ElvUI_EltreumUI.skins.pallypower then
+	if E.db.ElvUI_EltreumUI.skins.pallypower and E.Classic then
 		if InCombatLockdown() then return end
 
 		--from old addonskins
