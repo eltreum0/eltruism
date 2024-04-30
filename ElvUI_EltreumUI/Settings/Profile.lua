@@ -1714,6 +1714,7 @@ P.ElvUI_EltreumUI = {
 			offset = 23,
 			fontsize = 12,
 			rotate = false,
+			circle = false,
 		},
 		archeology = {
 			archeologyfontsize = 12,
