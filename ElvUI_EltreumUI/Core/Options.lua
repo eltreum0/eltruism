@@ -3559,23 +3559,38 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added Details icons to its dropdown
+Added an option to set the Unitframe Models to be inside the Texture or inside the Frame itself
+Added an option to change several textures in ElvUI in Eltruism > Media
+Added Zalgo to NPC block list to avoid auto turn-in quests
+Added an option to have a circular minimap and not rotate
+Added an option to disable worldPreloadNonCritical
+Added a fix for Scrap addon when using ElvUI bags
+Added borders to more frames
+Added Support for Cataclysm
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Party and Raid visibility settings to follow ElvUI's new format
-Updated Nameplate Powerbar to remove the possible flashing in Classic
-Updated Waypoint time calculation to better detect movement
-Updated German locale by Dlarge
+Updated Details skin to only shorten names when using Details shorten names option
+Updated Eltruism Res Panel to also work in LFR in Season 4
+Updated install for Season of Discovery due to Dual Spec
+Updated Power Prediction to use ElvUI Unitframe Texture
+Updated locale by Dlarge
+Updated Auctionator Skin
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed a possible error with the LFG skin due to a Blizzard bug where scores dont return colors
-Fixed the default value of the Hide Dash in the Quest Skin
-Fixed a Minimap difficulty icon change in Retail
-Fixed the Spellbook shadow in Classic
+Fixed an issue in Hardcore due to the events for Guild Deaths being removed
+Fixed Classic Shadow Priest not correctly paging with Shadowform
+Fixed an issue with Sockets in Season of Discovery
+Fixed shadows when Power/Classbar were detached
+Fixed an issue when using AnnoyingPopupRemover
+Fixed coloring of Debuffs when using Borders
+Fixed an error with Focus Target border
+Fixed an issue with Action Bar Masks
+Fixed a few Custom Texts
+Fixed Classic Datatexts
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
