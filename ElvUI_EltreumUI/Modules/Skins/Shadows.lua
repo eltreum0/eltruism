@@ -920,6 +920,10 @@ function ElvUI_EltreumUI:Shadows()
 				_G.DressUpFrame,
 				_G.CopyChatFrame,
 				_G.StopwatchFrame and _G.StopwatchFrame.backdrop,
+				_G.WorldStateScoreFrame and _G.WorldStateScoreFrame.backdrop,
+				_G.WorldStateScoreFrameTab1 and _G.WorldStateScoreFrameTab1.backdrop,
+				_G.WorldStateScoreFrameTab2 and _G.WorldStateScoreFrameTab2.backdrop,
+				_G.WorldStateScoreFrameTab3 and _G.WorldStateScoreFrameTab3.backdrop,
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame and not frame.shadow then
