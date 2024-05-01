@@ -1131,7 +1131,6 @@ function ElvUI_EltreumUI:Shadows()
 					_G.TaxiFrame,
 					_G.TabardFrame,
 					_G.LossOfControlFrame,
-					_G.QuestFrame,
 					_G.EquipmentFlyoutFrameButtons,
 				}
 				for _, frame in pairs(retailframes) do
@@ -1163,6 +1162,10 @@ function ElvUI_EltreumUI:Shadows()
 						_G.FriendsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.FriendsFrame.shadow)
 					end
+					if _G.QuestFrame and not _G.QuestFrame.shadow then
+						_G.QuestFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G.QuestFrame.shadow)
+					end
 				else
 					if _G.CharacterFrameTab4 and _G.CharacterFrameTab4.backdrop and not _G.CharacterFrameTab4.backdrop.shadow then
 						_G.CharacterFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -1181,7 +1184,6 @@ function ElvUI_EltreumUI:Shadows()
 						ElvUI_EltreumUI:ShadowColor(_G.WorldMapFrame.BorderFrame.backdrop.shadow)
 					end
 
-
 					local tbcframes = {
 						--_G.LFGParentFrame,
 						_G.LFGParentFrameTab1,
@@ -1198,6 +1200,7 @@ function ElvUI_EltreumUI:Shadows()
 						_G.PVPFrameTab2,
 						_G.PVPFrameTab3,
 						_G.QuestLogFrame and _G.QuestLogFrame.backdrop,
+						_G.QuestFrame and _G.QuestFrame.backdrop,
 					}
 					for _, frame in pairs(tbcframes) do
 						if frame then

@@ -1589,3 +1589,4 @@ L["If you find the %s option has issues, alert me via Discord or GitHub issue."]
 L["Choose the option you would like to enable"] = "Wähle die Option aus, die Du aktivieren möchtest"
 L["Model Inside Health"] = "Modell Innerhalb Gesundheitszustands"
 L["Model will be set inside health instead of over whole frame"] = "Das Modell wird innerhalb des Gesundheitszustands und nicht im gesamten Rahmen festgelegt"
+L["Circle Minimap"] = true

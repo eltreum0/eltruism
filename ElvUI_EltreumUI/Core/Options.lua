@@ -1030,8 +1030,9 @@ function ElvUI_EltreumUI:Configtable()
 			_G["WorldMapFrame"]:SetScale(value)
 		end
 	end,function() return not E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end)
-	ElvUI_EltreumUI.Options.args.map.args.general.args.description3 = ACH:Description(L["Flight Frame"], 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.map.args.general.args.RotateMinimap = ACH:Toggle(_G.ROTATE_MINIMAP, nil, 7, nil, false,nil,function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.map.args.general.args.description3 = ACH:Description(_G.MINIMAP_LABEL or L["Minimap"], 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.map.args.general.args.circleMinimap = ACH:Toggle(E.NewSign..L["Circle Minimap"], nil, 7, nil, false,nil,function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.circle end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.circle = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.map.args.general.args.RotateMinimap = ACH:Toggle(_G.ROTATE_MINIMAP, nil, 8, nil, false,nil,function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.circle end)
 	ElvUI_EltreumUI.Options.args.map.args.eta = ACH:Group(L["Time to Arrive"], nil, 2, "tab", nil, nil, nil, not E.Retail)
 	ElvUI_EltreumUI.Options.args.map.args.eta.args.description1 = ACH:Description(L["Add a time to arrive below the waypoint"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.map.args.eta.args.description2 = ACH:Description(L["The time will be calculated based on player speed and distance"], 2, nil, nil, nil, nil, nil, "full")
@@ -1059,7 +1060,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.enable = ACH:Toggle(L["Enable Cardinal Directions"], L["Add North, East, South, West to Minimap"], 2, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable = value ElvUI_EltreumUI:MinimapCardinalDirections() end)
 	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.cardinaloffset = ACH:Range(L["Cardinal Text Offset"], nil, 3, { min = -100, max = 100, step = 1 }, 'full', function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.offset = value ElvUI_EltreumUI:MinimapCardinalDirections() end, function() return not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable end)
 	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.description2 = ACH:Description(" ", 4, nil, nil, nil, nil, nil, "full")
-	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.fontsize = ACH:Range(L["Font Size"], nil, 5, { min = 4, max = 64, step = 1 }, 'full', function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize = value ElvUI_EltreumUI:MinimapCardinalDirections() end, function() return GetCVar("rotateMinimap") == "1" or not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable end, function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate end)
+	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.fontsize = ACH:Range(L["Font Size"], nil, 5, { min = 4, max = 64, step = 1 }, 'full', function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.fontsize = value ElvUI_EltreumUI:MinimapCardinalDirections() end, function() return GetCVar("rotateMinimap") == "1" or not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable end)
 	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.description3 = ACH:Description(" ", 6, nil, nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.classcolor = ACH:Toggle(L["Use Class Colors"], nil, 7, nil, false,nil,function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor = value ElvUI_EltreumUI:MinimapCardinalDirections() end, function() return not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable end)
 	ElvUI_EltreumUI.Options.args.map.args.cardinal.args.customcolor = ACH:Color(L["Custom Color"], nil, 8, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.r, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.g, E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.b = r, g, b ElvUI_EltreumUI:MinimapCardinalDirections() end, function() return not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable or E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.colors.classcolor end)
@@ -3374,8 +3375,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.otheraddons.args.meetinghorn = ACH:Toggle(L["Skin MeetingHorn"], nil, 12, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.meetinghorn end, function(_, value) E.db.ElvUI_EltreumUI.skins.meetinghorn = value E:StaticPopup_Show('CONFIG_RL') end, function() return not IsAddOnLoaded("MeetingHorn") end, E.Retail)
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.otheraddons.args.description7 = ACH:Description("OmniCD", 13, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Classic)
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.otheraddons.args.omnicd = ACH:Toggle(L["Skin OmniCD"], nil, 14, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.omnicd end, function(_, value) E.db.ElvUI_EltreumUI.skins.omnicd = value E:StaticPopup_Show('CONFIG_RL') end, function() return not IsAddOnLoaded("OmniCD") end, E.Classic)
-	ElvUI_EltreumUI.Options.args.skins.args.addons.args.otheraddons.args.description8 = ACH:Description("PallyPower", 15, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail)
-	ElvUI_EltreumUI.Options.args.skins.args.addons.args.otheraddons.args.pallypower = ACH:Toggle(L["Skin PallyPower"], nil, 16, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.pallypower end, function(_, value) E.db.ElvUI_EltreumUI.skins.pallypower = value E:StaticPopup_Show('CONFIG_RL') end, function() return not IsAddOnLoaded("PallyPower") end, E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.addons.args.otheraddons.args.description8 = ACH:Description("PallyPower", 15, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Classic)
+	ElvUI_EltreumUI.Options.args.skins.args.addons.args.otheraddons.args.pallypower = ACH:Toggle(L["Skin PallyPower"], nil, 16, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.pallypower end, function(_, value) E.db.ElvUI_EltreumUI.skins.pallypower = value E:StaticPopup_Show('CONFIG_RL') end, function() return not IsAddOnLoaded("PallyPower") end, not E.Classic)
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.otheraddons.args.description9 = ACH:Description("RareScanner", 17, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.otheraddons.args.rarescanner = ACH:Toggle(L["Skin RareScanner"], nil, 18, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.rarescanner end, function(_, value) E.db.ElvUI_EltreumUI.skins.rarescanner = value E:StaticPopup_Show('CONFIG_RL') end, function() return not IsAddOnLoaded("RareScanner") end)
 	ElvUI_EltreumUI.Options.args.skins.args.addons.args.otheraddons.args.description10 = ACH:Description("SimulationCraft", 19, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
@@ -3558,23 +3559,38 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added Details icons to its dropdown
+Added an option to set the Unitframe Models to be inside the Texture or inside the Frame itself
+Added an option to change several textures in ElvUI in Eltruism > Media
+Added Zalgo to NPC block list to avoid auto turn-in quests
+Added an option to have a circular minimap and not rotate
+Added an option to disable worldPreloadNonCritical
+Added a fix for Scrap addon when using ElvUI bags
+Added borders to more frames
+Added Support for Cataclysm
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Party and Raid visibility settings to follow ElvUI's new format
-Updated Nameplate Powerbar to remove the possible flashing in Classic
-Updated Waypoint time calculation to better detect movement
-Updated German locale by Dlarge
+Updated Details skin to only shorten names when using Details shorten names option
+Updated Eltruism Res Panel to also work in LFR in Season 4
+Updated install for Season of Discovery due to Dual Spec
+Updated Power Prediction to use ElvUI Unitframe Texture
+Updated locale by Dlarge
+Updated Auctionator Skin
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed a possible error with the LFG skin due to a Blizzard bug where scores dont return colors
-Fixed the default value of the Hide Dash in the Quest Skin
-Fixed a Minimap difficulty icon change in Retail
-Fixed the Spellbook shadow in Classic
+Fixed an issue in Hardcore due to the events for Guild Deaths being removed
+Fixed Classic Shadow Priest not correctly paging with Shadowform
+Fixed an issue with Sockets in Season of Discovery
+Fixed shadows when Power/Classbar were detached
+Fixed an issue when using AnnoyingPopupRemover
+Fixed coloring of Debuffs when using Borders
+Fixed an error with Focus Target border
+Fixed an issue with Action Bar Masks
+Fixed a few Custom Texts
+Fixed Classic Datatexts
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
