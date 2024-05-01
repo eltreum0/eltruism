@@ -1730,7 +1730,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		end)
 
 		if not E.db.ElvUI_EltreumUI.skins.characterskingradients then
-			CharacterStatsPane.ItemLevelCategory.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 			if E.db.ElvUI_EltreumUI.skins.classicarmoryeltruismstats then
 				CharacterFrame.EltruismExtraStatsFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 			end
