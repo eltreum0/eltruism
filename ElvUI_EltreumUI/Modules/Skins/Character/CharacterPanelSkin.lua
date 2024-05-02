@@ -1729,14 +1729,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 		end)
 
-		if not E.db.ElvUI_EltreumUI.skins.characterskingradients then
-			if E.db.ElvUI_EltreumUI.skins.classicarmoryeltruismstats then
-				CharacterFrame.EltruismExtraStatsFont:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-			end
-			CharacterStatsPane.AttributesCategory.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-			CharacterStatsPane.EnhancementsCategory.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-		end
-
 		--add class crest
 		if E.db.ElvUI_EltreumUI.skins.expandarmorycrest then
 			ClassCrestFrame:SetSize(256, 256)
