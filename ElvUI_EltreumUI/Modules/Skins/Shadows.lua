@@ -1142,8 +1142,6 @@ function ElvUI_EltreumUI:Shadows()
 					_G.WeeklyRewardsFrame,
 					_G.CovenantPreviewFrame,
 					_G.StableFrame,
-					_G.TaxiFrame,
-					_G.TabardFrame,
 					_G.LossOfControlFrame,
 					_G.EquipmentFlyoutFrameButtons,
 				}
@@ -1168,21 +1166,19 @@ function ElvUI_EltreumUI:Shadows()
 
 				--retail/cata differences
 				if E.Retail then
-					if _G.EditModeManagerFrame and not _G.EditModeManagerFrame.shadow then
-						_G.EditModeManagerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.EditModeManagerFrame.shadow)
-					end
-					if _G.FriendsFrame and not _G.FriendsFrame.shadow then
-						_G.FriendsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.FriendsFrame.shadow)
-					end
-					if _G.QuestFrame and not _G.QuestFrame.shadow then
-						_G.QuestFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.QuestFrame.shadow)
-					end
-					if _G.PetStableFrame and not _G.PetStableFrame.shadow then
-						_G.PetStableFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.PetStableFrame.shadow)
+					local retailonlyframes = {
+						_G.EditModeManagerFrame,
+						_G.FriendsFrame,
+						_G.QuestFrame,
+						_G.PetStableFrame,
+						_G.TaxiFrame,
+						_G.TabardFrame,
+					}
+					for _, frame in pairs(retailonlyframes) do
+						if frame and not frame.shadow then
+							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(frame.shadow)
+						end
 					end
 				else
 					if _G.CharacterFrameTab4 and _G.CharacterFrameTab4.backdrop and not _G.CharacterFrameTab4.backdrop.shadow then
@@ -1202,7 +1198,7 @@ function ElvUI_EltreumUI:Shadows()
 						ElvUI_EltreumUI:ShadowColor(_G.WorldMapFrame.BorderFrame.backdrop.shadow)
 					end
 
-					local tbcframes = {
+					local cataframes = {
 						--_G.LFGParentFrame,
 						_G.LFGParentFrameTab1,
 						_G.LFGParentFrameTab2,
@@ -1220,8 +1216,10 @@ function ElvUI_EltreumUI:Shadows()
 						_G.PetStableFrame and _G.PetStableFrame.backdrop,
 						_G.QuestLogFrame and _G.QuestLogFrame.backdrop,
 						_G.QuestFrame and _G.QuestFrame.backdrop,
+						_G.TaxiFrame and _G.TaxiFrame.backdrop,
+						_G.TabardFrame and _G.TabardFrame.backdrop,
 					}
-					for _, frame in pairs(tbcframes) do
+					for _, frame in pairs(cataframes) do
 						if frame then
 							if frame.backdrop then
 								if not frame.backdrop.shadow then
