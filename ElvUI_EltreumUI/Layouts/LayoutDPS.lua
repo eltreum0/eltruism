@@ -760,7 +760,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["party"]["petsGroup"]["enable"] = false
 	E.db["unitframe"]["units"]["party"]["petsGroup"]["healPrediction"]["enable"] = true
 	E.db["unitframe"]["units"]["party"]["petsGroup"]["height"] = 75
-	if E.Retail then
+	if E.Retail or E.Cata then
 		E.db["unitframe"]["units"]["party"]["petsGroup"]["name"]["text_format"] = "[name]"
 	else
 		E.db["unitframe"]["units"]["party"]["petsGroup"]["name"]["text_format"] = "[name][happiness:discord]"
