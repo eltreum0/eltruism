@@ -984,6 +984,17 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 				end
+
+				if E.Cata then
+					hooksecurefunc('TimerTracker_StartTimerOfType', function() --from elvui
+						for _, frame in pairs(_G.TimerTracker.timerList) do
+							if frame and frame.bar and not frame.bar.shadow then
+								frame.bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(frame.bar.shadow)
+							end
+						end
+					end)
+				end
 			end
 		end
 		------------------------------------------------------------------------------------------------------ minimap
@@ -1130,7 +1141,6 @@ function ElvUI_EltreumUI:Shadows()
 					_G.DressUpFrame.OutfitDetailsPanel,
 					_G.WeeklyRewardsFrame,
 					_G.CovenantPreviewFrame,
-					_G.PetStableFrame,
 					_G.StableFrame,
 					_G.TaxiFrame,
 					_G.TabardFrame,
@@ -1170,6 +1180,10 @@ function ElvUI_EltreumUI:Shadows()
 						_G.QuestFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.QuestFrame.shadow)
 					end
+					if _G.PetStableFrame and not _G.PetStableFrame.shadow then
+						_G.PetStableFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G.PetStableFrame.shadow)
+					end
 				else
 					if _G.CharacterFrameTab4 and _G.CharacterFrameTab4.backdrop and not _G.CharacterFrameTab4.backdrop.shadow then
 						_G.CharacterFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -1203,6 +1217,7 @@ function ElvUI_EltreumUI:Shadows()
 						_G.PVPFrameTab1,
 						_G.PVPFrameTab2,
 						_G.PVPFrameTab3,
+						_G.PetStableFrame and _G.PetStableFrame.backdrop,
 						_G.QuestLogFrame and _G.QuestLogFrame.backdrop,
 						_G.QuestFrame and _G.QuestFrame.backdrop,
 					}
