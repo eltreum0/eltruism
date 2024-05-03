@@ -94,13 +94,6 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	if E.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
-		if E.myclass == 'HUNTER' then
-			local requiredversion = tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-Interface'))
-			local currentversion = select(4,GetBuildInfo())
-			if currentversion <= requiredversion then
-				ElvUI_EltreumUI:ExpandedStable() --expands pet stable for hunters
-			end
-		end
 		ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
 	elseif E.Cata or E.Classic then

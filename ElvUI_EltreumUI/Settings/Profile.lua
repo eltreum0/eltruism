@@ -99,7 +99,7 @@ P.ElvUI_EltreumUI = {
 		},
 		levelbossinstance = false,
 		widertransmog = false,
-		expandedstable = false,
+		--expandedstable = false,
 		characterpanelscale = 1,
 		classiconsoncharacterpanel = false,
 		classiconsblizz = false,
