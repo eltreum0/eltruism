@@ -322,8 +322,15 @@ function ElvUI_EltreumUI:checkSpellCooldown(spell)
 		return ElvUI_EltreumUI:checkPetActionCooldown(findPetActionIndexForSpell(spell))
 	end
 	baseCooldown = GetSpellBaseCooldown(spell)
-	if baseCooldown and baseCooldown > 2200 then
-		ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (baseCooldown and baseCooldown > 0))
+	if baseCooldown then
+		if baseCooldown < 2200 then
+			local _, _, _, cooldownDuration = GetSpellCharges(spell)
+			if cooldownDuration and cooldownDuration > 0 then
+				ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (cooldownDuration))
+			end
+		else
+			ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (baseCooldown and baseCooldown > 0))
+		end
 	end
 end
 
