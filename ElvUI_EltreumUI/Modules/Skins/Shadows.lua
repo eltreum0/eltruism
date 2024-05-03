@@ -674,12 +674,6 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G.ReforgingFrame.shadow)
 						end
 					end
-					if (arg == "Blizzard_PVPUI") or IsAddOnLoaded("Blizzard_PVPUI") then
-						if not _G.PVPUIFrame.shadow then
-							_G.PVPUIFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.PVPUIFrame.shadow)
-						end
-					end
 					if (arg == "Blizzard_PlayerChoice") or IsAddOnLoaded("Blizzard_PlayerChoice") then
 						if not _G.PlayerChoiceFrame.shadow then
 							_G.PlayerChoiceFrame:CreateBackdrop('Transparent')
@@ -868,7 +862,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.FriendsTooltip,
 				_G.GhostFrameContentsFrame,
 				_G.GossipFrame,
-				_G.GroupFinderFrame,
+				--_G.GroupFinderFrame,
 				_G.GroupLootHistoryFrame and _G.GroupLootHistoryFrame.ResizeButton,
 				_G.GuildInfoFrame,
 				_G.HelpFrame,
@@ -972,7 +966,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.TimerTrackerTimer1StatusBar,
 				_G.TimerTrackerTimer2StatusBar,
 				_G.TimerTrackerTimer3StatusBar,
-				_G.TokenFrame,
+				--_G.TokenFrame,
 				_G.TradeFrame,
 				_G.VideoOptionsFrame,
 				_G.VoidStorageFrame,
