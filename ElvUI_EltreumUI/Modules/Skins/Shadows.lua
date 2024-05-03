@@ -874,7 +874,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.LFDReadyCheckPopup,
 				_G.LFDRoleCheckPopup,
 				_G.LFGBrowseFrame,
-				_G.LFGDungeonReadyDialog,
+				_G.LFGDungeonReadyDialog and _G.LFGDungeonReadyDialog.Border,
 				_G.LFGDungeonReadyStatus,
 				_G.LFGInvitePopup,
 				_G.LFGListApplicationDialog,
