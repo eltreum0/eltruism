@@ -3464,13 +3464,29 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.credits.args.translators.args.description1 = ACH:Description(TRANSLATORS_STRING, 8, "medium")
 	ElvUI_EltreumUI.Options.args.credits.args.licenses = ACH:Group(L["License"], nil, 9)
 	ElvUI_EltreumUI.Options.args.credits.args.licenses.inline = true
-	ElvUI_EltreumUI.Options.args.credits.args.licenses.args.description1 = ACH:Description(function()
-		if E.Retail then
-			return 'Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3\nCursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain\nExpand Hunter Stables is merged from Improved Stable Frame by Cybeloras which is licensed under GNU GPLv3\nIcons8 (www.icons8.com) for some of the icons. List in license.txt\nFreeVector (www.freevector.com) for some of the icons. List in license.txt\nLootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3\nRogue Door Opener is a fork of Rogue Door Opener by Burzolog which licensed under GNU GPLv3\nLoot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain\nQuest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3\nCooldown is a fork of discoteq\'s Doom Cooldown Pulse which is licensed under MIT License'
-		else
-			return 'Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3\nCursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain\nIcons8 (www.icons8.com) for some of the icons. List in license.txt\nFreeVector (www.freevector.com) for some of the icons. List in license.txt\nLootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3\nLoot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain\nThe Item Level shown on the Character Panel Skin uses code from Simple Item level by Kemayo, licensed under BSD\nQuest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3\nSockets and Enchants is a fork of Kibs Item Levels by Kibsgaard which is licensed under Public Domain'
-		end
-	end, 10, "medium")
+	ElvUI_EltreumUI.Options.args.credits.args.licenses.args.description1 = ACH:Description(
+	E.Retail and [[
+Cooldown is a fork of discoteq's Doom Cooldown Pulse which is licensed under MIT License
+Cursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain
+Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3
+FreeVector (www.freevector.com) for some of the icons. List in license.txt
+Icons8 (www.icons8.com) for some of the icons. List in license.txt
+Loot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain
+LootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3
+Quest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3
+Rogue Door Opener is a fork of Rogue Door Opener by Burzolog which licensed under GNU GPLv3
+]] or [[
+Cooldown is a fork of discoteq's Doom Cooldown Pulse which is licensed under MIT License
+Cursor Cooldowns is a fork of CooldownToGo by mitchnull which is licensed under Public Domain
+Cursor is a fork of CastCursor by michaelsp which licensed under GNU GPLv3
+FreeVector (www.freevector.com) for some of the icons. List in license.txt
+Icons8 (www.icons8.com) for some of the icons. List in license.txt
+Loot Icons are merged from Chat Loot Icons by Stanzilla which is licensed under Public Domain
+LootText is a fork of SLoTe from xavjer which is licensed under GNU GPLv3
+Quest Items is a merge of QBar by Aezay, which is licensed under GNU GPLv3
+Sockets and Enchants is a fork of Kibs Item Levels by Kibsgaard which is licensed under Public Domain
+The Item Level shown on the Character Panel Skin uses code from Simple Item level by Kemayo, licensed under BSD
+]], 10, "small", nil, nil, nil, nil, "full")
 
 	--support
 	ElvUI_EltreumUI.Options.args.support = ACH:Group(E:TextGradient(GAMEMENU_SUPPORT, 0.50, 0.70, 1, 0.67, 0.95, 1), L["Direct links to GitHub, CurseForge, Wago and Tukui"], 88, 'tab')
