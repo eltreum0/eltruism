@@ -57,6 +57,11 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 		frame.EltruismPortrait.rare = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitRare", "OVERLAY", nil, 7)
 		frame.EltruismPortrait.rare:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\Rare.tga")
 		frame.EltruismPortrait.rare:SetAllPoints(frame.EltruismPortrait)
+
+		frame.EltruismPortrait.background = frame.EltruismPortrait:CreateTexture(name.."EltruismPortraitBackground", "OVERLAY", nil, -7)
+		frame.EltruismPortrait.background:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\maskcircle.tga")
+		frame.EltruismPortrait.background:SetAllPoints(frame.EltruismPortrait)
+		frame.EltruismPortrait.background:SetVertexColor(1,0,0,0)
 	end
 
 	if not frame.EltruismPortrait then return end
@@ -105,6 +110,12 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 		frame.Portrait:Hide()
 		frame.Portrait:Kill()
 		--frame.Portrait:ClearAllPoints()
+	end
+
+	if E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom and E.db.ElvUI_EltreumUI.unitframes.portrait[db].style ~= "ORIGINAL" and E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcircle and E.db.ElvUI_EltreumUI.unitframes.portrait[db].background then
+		frame.EltruismPortrait.background:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.portrait[db].backgroundcolor.r,E.db.ElvUI_EltreumUI.unitframes.portrait[db].backgroundcolor.g,E.db.ElvUI_EltreumUI.unitframes.portrait[db].backgroundcolor.b,1)
+	else
+		frame.EltruismPortrait.background:SetVertexColor(1,0,0,0)
 	end
 
 	if (update or SettingUpdate) then

@@ -1001,7 +1001,13 @@ P.ElvUI_EltreumUI = {
 					r = 0.27,
 					g = 0.50,
 					b = 0.70,
-				}
+				},
+				background = true,
+				backgroundcolor = {
+					r = 0.07,
+					g = 0.07,
+					b = 0.07,
+				},
 			},
 			target = {
 				enable = true,
@@ -1025,7 +1031,13 @@ P.ElvUI_EltreumUI = {
 					r = 0.27,
 					g = 0.50,
 					b = 0.70,
-				}
+				},
+				background = true,
+				backgroundcolor = {
+					r = 0.07,
+					g = 0.07,
+					b = 0.07,
+				},
 			},
 			party = {
 				enable = true,
@@ -1049,7 +1061,13 @@ P.ElvUI_EltreumUI = {
 					r = 0.27,
 					g = 0.50,
 					b = 0.70,
-				}
+				},
+				background = true,
+				backgroundcolor = {
+					r = 0.07,
+					g = 0.07,
+					b = 0.07,
+				},
 			},
 			targettarget = {
 				enable = true,
@@ -1073,7 +1091,13 @@ P.ElvUI_EltreumUI = {
 					r = 0.27,
 					g = 0.50,
 					b = 0.70,
-				}
+				},
+				background = true,
+				backgroundcolor = {
+					r = 0.07,
+					g = 0.07,
+					b = 0.07,
+				},
 			},
 			focus = {
 				enable = true,
@@ -1097,7 +1121,13 @@ P.ElvUI_EltreumUI = {
 					r = 0.27,
 					g = 0.50,
 					b = 0.70,
-				}
+				},
+				background = true,
+				backgroundcolor = {
+					r = 0.07,
+					g = 0.07,
+					b = 0.07,
+				},
 			},
 			focustarget = {
 				enable = true,
@@ -1121,7 +1151,13 @@ P.ElvUI_EltreumUI = {
 					r = 0.27,
 					g = 0.50,
 					b = 0.70,
-				}
+				},
+				background = true,
+				backgroundcolor = {
+					r = 0.07,
+					g = 0.07,
+					b = 0.07,
+				},
 			},
 		},
 		infopanelontop = false,
