@@ -16,7 +16,7 @@ local GetContainerNumFreeSlots = C_Container.GetContainerNumFreeSlots
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------just a modified ammo datatext from ElvUI to reduce the name of the ammo and add icon
-if not E.Retail then
+if E.Classic then
 	if E.myclass ~= 'HUNTER' and E.myclass ~= 'ROGUE' and E.myclass ~= 'WARLOCK' and E.myclass ~= 'WARRIOR' then return end
 	local iconString = '|T%s:16:16:0:0:64:64:4:55:4:55|t'
 	local itemName = {}

@@ -411,6 +411,9 @@ function ElvUI_EltreumUI:CastCursor()
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_FAILED", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_STOP", "player")
+		if E.Retail then
+			Cast:RegisterUnitEvent("UNIT_SPELLCAST_EMPOWER_STOP", "player")
+		end
 		function Cast:UNIT_SPELLCAST_STOP(_, unit, castID)
 			if unit and unit ~= 'player' then
 				return
@@ -424,15 +427,23 @@ function ElvUI_EltreumUI:CastCursor()
 		Cast.UNIT_SPELLCAST_FAILED = Cast.UNIT_SPELLCAST_STOP
 		Cast.UNIT_SPELLCAST_INTERRUPTED = Cast.UNIT_SPELLCAST_STOP
 		Cast.UNIT_SPELLCAST_CHANNEL_STOP = Cast.UNIT_SPELLCAST_STOP
+		Cast.UNIT_SPELLCAST_EMPOWER_STOP = Cast.UNIT_SPELLCAST_STOP
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_START", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_UPDATE", "player")
+		if E.Retail then
+			Cast:RegisterUnitEvent("UNIT_SPELLCAST_EMPOWER_START", "player")
+			Cast:RegisterUnitEvent("UNIT_SPELLCAST_EMPOWER_UPDATE", "player")
+		end
 		function Cast:UNIT_SPELLCAST_CHANNEL_START(_, unit)
 			if unit and unit ~= 'player' then
 				return
 			elseif unit and unit == 'player' then
-				local name, _, _, start, finish = UnitChannelInfo("player")
+				local name, _, _, start, finish, _, _, _ ,_ , numEmpowerStages = UnitChannelInfo("player")
 				if name then
 					self.castID = nil
+					if E.Retail and numEmpowerStages and numEmpowerStages > 0 then
+						finish = finish + _G.GetUnitEmpowerHoldAtMaxTime("player")
+					end
 					Start(self, GetTime() - start * 0.001, (finish - start) * 0.001 )
 				else
 					RingSetShown( self, false )
@@ -440,6 +451,8 @@ function ElvUI_EltreumUI:CastCursor()
 			end
 		end
 		Cast.UNIT_SPELLCAST_CHANNEL_UPDATE = Cast.UNIT_SPELLCAST_CHANNEL_START
+		Cast.UNIT_SPELLCAST_EMPOWER_START = Cast.UNIT_SPELLCAST_CHANNEL_START
+		Cast.UNIT_SPELLCAST_EMPOWER_UPDATE = Cast.UNIT_SPELLCAST_CHANNEL_START
 
 		-- GCD Ring
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")

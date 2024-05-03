@@ -39,48 +39,6 @@ function ElvUI_EltreumUI:Shadows()
 			EltruismBlizzShadows:RegisterEvent("ADDON_LOADED")
 			EltruismBlizzShadows:RegisterEvent("PLAYER_ENTERING_WORLD")
 			EltruismBlizzShadows:SetScript("OnEvent", function(_, _, arg)
-				--[[if (arg == "Blizzard_PetBattleUI") or IsAddOnLoaded("Blizzard_PetBattleUI") or _G.PetBattleFrame then --todo look into pet battle shadows but they are unnamed
-				end]]
-				if (arg == "Blizzard_EngravingUI") or IsAddOnLoaded("Blizzard_EngravingUI") then
-					if _G.EngravingFrame and _G.EngravingFrame.backdrop and not _G.EngravingFrame.backdrop.shadow then
-						_G.EngravingFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.EngravingFrame.backdrop.shadow)
-					end
-				end
-				if (arg == "Blizzard_AdventureMap") or IsAddOnLoaded("Blizzard_AdventureMap") then
-					if _G.AdventureMapQuestChoiceDialog and not _G.AdventureMapQuestChoiceDialog.shadow then
-						_G.AdventureMapQuestChoiceDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.AdventureMapQuestChoiceDialog.shadow)
-					end
-				end
-				if (arg == "Blizzard_BattlefieldMap") or IsAddOnLoaded("Blizzard_BattlefieldMap") then
-					if _G.BattleFieldFrame and _G.BattleFieldFrame.backdrop then
-						if not _G.BattleFieldFrame.backdrop.shadow then
-							_G.BattleFieldFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.BattleFieldFrame.backdrop.shadow)
-						end
-					end
-					if _G.BattlefieldMapFrame and _G.BattlefieldMapFrame.backdrop then
-						if not _G.BattlefieldMapFrame.backdrop.shadow then
-							_G.BattlefieldMapFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.BattlefieldMapFrame.backdrop.shadow)
-						end
-					end
-				end
-				if (arg == "Blizzard_ArtifactUI") or IsAddOnLoaded("Blizzard_ArtifactUI") then
-					if _G.ArtifactFrame and not _G.ArtifactFrame.shadow then
-						_G.ArtifactFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.ArtifactFrame.shadow)
-					end
-					if _G.ArtifactFrameTab1 and _G.ArtifactFrameTab1.backdrop and not _G.ArtifactFrameTab1.backdrop.shadow then
-						_G.ArtifactFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.ArtifactFrameTab1.backdrop.shadow)
-					end
-					if _G.ArtifactFrameTab2 and _G.ArtifactFrameTab2.backdrop and not _G.ArtifactFrameTab2.backdrop.shadow then
-						_G.ArtifactFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.ArtifactFrameTab2.backdrop.shadow)
-					end
-				end
 				if (arg == "WeakAurasOptions") or IsAddOnLoaded("WeakAurasOptions") then
 					if IsAddOnLoaded("ElvUI_WindTools") then
 						if E.private.WT.skins.addons.weakAuras then
@@ -93,168 +51,255 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 				end
-				if (arg == "Blizzard_PerksProgram") or IsAddOnLoaded("Blizzard_PerksProgram") then
-					if _G.PerksProgramFrame then
-						if _G.PerksProgramFrame.ProductsFrame then
-							if _G.PerksProgramFrame.ProductsFrame.PerksProgramProductDetailsContainerFrame and not _G.PerksProgramFrame.ProductsFrame.PerksProgramProductDetailsContainerFrame.shadow then
-								_G.PerksProgramFrame.ProductsFrame.PerksProgramProductDetailsContainerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.ProductsFrame.PerksProgramProductDetailsContainerFrame.shadow)
-							end
-							if _G.PerksProgramFrame.ProductsFrame.PerksProgramFilter then
-								if _G.PerksProgramFrame.ProductsFrame.PerksProgramFilter.FilterDropDownButton and not _G.PerksProgramFrame.ProductsFrame.PerksProgramFilter.FilterDropDownButton.shadow then
-									_G.PerksProgramFrame.ProductsFrame.PerksProgramFilter.FilterDropDownButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.ProductsFrame.PerksProgramFilter.FilterDropDownButton.shadow)
-								end
-							end
-							if _G.PerksProgramFrame.ProductsFrame.ProductsScrollBoxContainer and not _G.PerksProgramFrame.ProductsFrame.ProductsScrollBoxContainer.shadow then
-								_G.PerksProgramFrame.ProductsFrame.ProductsScrollBoxContainer:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.ProductsFrame.ProductsScrollBoxContainer.shadow)
-							end
-							if _G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame and not _G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame.shadow then
-								_G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								_G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame.shadow:ClearAllPoints()
-								_G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame.shadow:SetPoint("TOPLEFT", _G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame.Icon, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
-								_G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame.Icon, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame.shadow)
+				if E.private.skins.blizzard.enable then
+					if (arg == "Blizzard_EngravingUI") or IsAddOnLoaded("Blizzard_EngravingUI") then
+						if _G.EngravingFrame and _G.EngravingFrame.backdrop and not _G.EngravingFrame.backdrop.shadow then
+							_G.EngravingFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.EngravingFrame.backdrop.shadow)
+						end
+					end
+					if (arg == "Blizzard_AdventureMap") or IsAddOnLoaded("Blizzard_AdventureMap") then
+						if _G.AdventureMapQuestChoiceDialog and not _G.AdventureMapQuestChoiceDialog.shadow then
+							_G.AdventureMapQuestChoiceDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.AdventureMapQuestChoiceDialog.shadow)
+						end
+					end
+					if (arg == "Blizzard_BattlefieldMap") or IsAddOnLoaded("Blizzard_BattlefieldMap") then
+						if _G.BattleFieldFrame and _G.BattleFieldFrame.backdrop then
+							if not _G.BattleFieldFrame.backdrop.shadow then
+								_G.BattleFieldFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.BattleFieldFrame.backdrop.shadow)
 							end
 						end
-						if _G.PerksProgramFrame.FooterFrame then
-							if _G.PerksProgramFrame.FooterFrame.PurchaseButton and not _G.PerksProgramFrame.FooterFrame.PurchaseButton.shadow then
-								_G.PerksProgramFrame.FooterFrame.PurchaseButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.PurchaseButton.shadow)
-							end
-							if _G.PerksProgramFrame.FooterFrame.ToggleHideArmor.backdrop and not _G.PerksProgramFrame.FooterFrame.ToggleHideArmor.backdrop.shadow then
-								_G.PerksProgramFrame.FooterFrame.ToggleHideArmor.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.ToggleHideArmor.backdrop.shadow)
-							end
-							if _G.PerksProgramFrame.FooterFrame.LeaveButton and not _G.PerksProgramFrame.FooterFrame.LeaveButton.shadow then
-								_G.PerksProgramFrame.FooterFrame.LeaveButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.LeaveButton.shadow)
-							end
-							if _G.PerksProgramFrame.FooterFrame and _G.PerksProgramFrame.FooterFrame.RotateButtonContainer then
-								if _G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateRightButton and not _G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateRightButton.shadow then
-									_G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateRightButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateRightButton.shadow)
-								end
-								if _G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateLeftButton and not _G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateLeftButton.shadow then
-									_G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateLeftButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateLeftButton.shadow)
-								end
-								if (_G.PerksProgramFrame.FooterFrame.TogglePlayerPreview and _G.PerksProgramFrame.FooterFrame.TogglePlayerPreview.backdrop) and not _G.PerksProgramFrame.FooterFrame.TogglePlayerPreview.backdrop.shadow then
-									_G.PerksProgramFrame.FooterFrame.TogglePlayerPreview.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.TogglePlayerPreview.backdrop.shadow)
-								end
+						if _G.BattlefieldMapFrame and _G.BattlefieldMapFrame.backdrop then
+							if not _G.BattlefieldMapFrame.backdrop.shadow then
+								_G.BattlefieldMapFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.BattlefieldMapFrame.backdrop.shadow)
 							end
 						end
 					end
-				end
-				if (arg == "Blizzard_ProfessionsCustomerOrders") or IsAddOnLoaded("Blizzard_ProfessionsCustomerOrders") then
-					if _G.ProfessionsCustomerOrdersFrame and not _G.ProfessionsCustomerOrdersFrame.shadow then
-						_G.ProfessionsCustomerOrdersFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.ProfessionsCustomerOrdersFrame.shadow)
+					if (arg == "Blizzard_ArtifactUI") or IsAddOnLoaded("Blizzard_ArtifactUI") then
+						if _G.ArtifactFrame and not _G.ArtifactFrame.shadow then
+							_G.ArtifactFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ArtifactFrame.shadow)
+						end
+						if _G.ArtifactFrameTab1 and _G.ArtifactFrameTab1.backdrop and not _G.ArtifactFrameTab1.backdrop.shadow then
+							_G.ArtifactFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ArtifactFrameTab1.backdrop.shadow)
+						end
+						if _G.ArtifactFrameTab2 and _G.ArtifactFrameTab2.backdrop and not _G.ArtifactFrameTab2.backdrop.shadow then
+							_G.ArtifactFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ArtifactFrameTab2.backdrop.shadow)
+						end
 					end
-					if _G.ProfessionsCustomerOrdersFrameBrowseTab and _G.ProfessionsCustomerOrdersFrameBrowseTab.backdrop and not _G.ProfessionsCustomerOrdersFrameBrowseTab.backdrop.shadow then
-						_G.ProfessionsCustomerOrdersFrameBrowseTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.ProfessionsCustomerOrdersFrameBrowseTab.backdrop.shadow)
+					if (arg == "Blizzard_PerksProgram") or IsAddOnLoaded("Blizzard_PerksProgram") then
+						if _G.PerksProgramFrame then
+							if _G.PerksProgramFrame.ProductsFrame then
+								if _G.PerksProgramFrame.ProductsFrame.PerksProgramProductDetailsContainerFrame and not _G.PerksProgramFrame.ProductsFrame.PerksProgramProductDetailsContainerFrame.shadow then
+									_G.PerksProgramFrame.ProductsFrame.PerksProgramProductDetailsContainerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.ProductsFrame.PerksProgramProductDetailsContainerFrame.shadow)
+								end
+								if _G.PerksProgramFrame.ProductsFrame.PerksProgramFilter then
+									if _G.PerksProgramFrame.ProductsFrame.PerksProgramFilter.FilterDropDownButton and not _G.PerksProgramFrame.ProductsFrame.PerksProgramFilter.FilterDropDownButton.shadow then
+										_G.PerksProgramFrame.ProductsFrame.PerksProgramFilter.FilterDropDownButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.ProductsFrame.PerksProgramFilter.FilterDropDownButton.shadow)
+									end
+								end
+								if _G.PerksProgramFrame.ProductsFrame.ProductsScrollBoxContainer and not _G.PerksProgramFrame.ProductsFrame.ProductsScrollBoxContainer.shadow then
+									_G.PerksProgramFrame.ProductsFrame.ProductsScrollBoxContainer:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.ProductsFrame.ProductsScrollBoxContainer.shadow)
+								end
+								if _G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame and not _G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame.shadow then
+									_G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									_G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame.shadow:ClearAllPoints()
+									_G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame.shadow:SetPoint("TOPLEFT", _G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame.Icon, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+									_G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame.shadow:SetPoint("BOTTOMRIGHT", _G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame.Icon, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.ProductsFrame.PerksProgramCurrencyFrame.shadow)
+								end
+							end
+							if _G.PerksProgramFrame.FooterFrame then
+								if _G.PerksProgramFrame.FooterFrame.PurchaseButton and not _G.PerksProgramFrame.FooterFrame.PurchaseButton.shadow then
+									_G.PerksProgramFrame.FooterFrame.PurchaseButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.PurchaseButton.shadow)
+								end
+								if _G.PerksProgramFrame.FooterFrame.ToggleHideArmor.backdrop and not _G.PerksProgramFrame.FooterFrame.ToggleHideArmor.backdrop.shadow then
+									_G.PerksProgramFrame.FooterFrame.ToggleHideArmor.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.ToggleHideArmor.backdrop.shadow)
+								end
+								if _G.PerksProgramFrame.FooterFrame.LeaveButton and not _G.PerksProgramFrame.FooterFrame.LeaveButton.shadow then
+									_G.PerksProgramFrame.FooterFrame.LeaveButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.LeaveButton.shadow)
+								end
+								if _G.PerksProgramFrame.FooterFrame and _G.PerksProgramFrame.FooterFrame.RotateButtonContainer then
+									if _G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateRightButton and not _G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateRightButton.shadow then
+										_G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateRightButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateRightButton.shadow)
+									end
+									if _G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateLeftButton and not _G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateLeftButton.shadow then
+										_G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateLeftButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateLeftButton.shadow)
+									end
+									if (_G.PerksProgramFrame.FooterFrame.TogglePlayerPreview and _G.PerksProgramFrame.FooterFrame.TogglePlayerPreview.backdrop) and not _G.PerksProgramFrame.FooterFrame.TogglePlayerPreview.backdrop.shadow then
+										_G.PerksProgramFrame.FooterFrame.TogglePlayerPreview.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.TogglePlayerPreview.backdrop.shadow)
+									end
+								end
+							end
+						end
 					end
-					if _G.ProfessionsCustomerOrdersFrameOrdersTab and _G.ProfessionsCustomerOrdersFrameOrdersTab.backdrop and not _G.ProfessionsCustomerOrdersFrameOrdersTab.backdrop.shadow then
-						_G.ProfessionsCustomerOrdersFrameOrdersTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.ProfessionsCustomerOrdersFrameOrdersTab.backdrop.shadow)
-					end
+					if (arg == "Blizzard_ProfessionsCustomerOrders") or IsAddOnLoaded("Blizzard_ProfessionsCustomerOrders") then
+						if _G.ProfessionsCustomerOrdersFrame and not _G.ProfessionsCustomerOrdersFrame.shadow then
+							_G.ProfessionsCustomerOrdersFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ProfessionsCustomerOrdersFrame.shadow)
+						end
+						if _G.ProfessionsCustomerOrdersFrameBrowseTab and _G.ProfessionsCustomerOrdersFrameBrowseTab.backdrop and not _G.ProfessionsCustomerOrdersFrameBrowseTab.backdrop.shadow then
+							_G.ProfessionsCustomerOrdersFrameBrowseTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ProfessionsCustomerOrdersFrameBrowseTab.backdrop.shadow)
+						end
+						if _G.ProfessionsCustomerOrdersFrameOrdersTab and _G.ProfessionsCustomerOrdersFrameOrdersTab.backdrop and not _G.ProfessionsCustomerOrdersFrameOrdersTab.backdrop.shadow then
+							_G.ProfessionsCustomerOrdersFrameOrdersTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ProfessionsCustomerOrdersFrameOrdersTab.backdrop.shadow)
+						end
 
-					if _G.ProfessionsCustomerOrdersFrame and _G.ProfessionsCustomerOrdersFrame.Form and _G.ProfessionsCustomerOrdersFrame.Form.QualityDialog and not _G.ProfessionsCustomerOrdersFrame.Form.QualityDialog.shadow then
-						_G.ProfessionsCustomerOrdersFrame.Form.QualityDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.ProfessionsCustomerOrdersFrame.Form.QualityDialog.shadow)
+						if _G.ProfessionsCustomerOrdersFrame and _G.ProfessionsCustomerOrdersFrame.Form and _G.ProfessionsCustomerOrdersFrame.Form.QualityDialog and not _G.ProfessionsCustomerOrdersFrame.Form.QualityDialog.shadow then
+							_G.ProfessionsCustomerOrdersFrame.Form.QualityDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ProfessionsCustomerOrdersFrame.Form.QualityDialog.shadow)
+						end
 					end
-				end
-				if (arg == "Blizzard_GenericTraitUI") or IsAddOnLoaded("Blizzard_GenericTraitUI") then
-					if _G.GenericTraitFrame and not _G.GenericTraitFrame.shadow then
-						_G.GenericTraitFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.GenericTraitFrame.shadow)
+					if (arg == "Blizzard_GenericTraitUI") or IsAddOnLoaded("Blizzard_GenericTraitUI") then
+						if _G.GenericTraitFrame and not _G.GenericTraitFrame.shadow then
+							_G.GenericTraitFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.GenericTraitFrame.shadow)
+						end
 					end
-				end
-				if (arg == "Blizzard_TalkingHeadUI") or IsAddOnLoaded("Blizzard_TalkingHeadUI") then
-					if _G.TalkingHeadFrame and not _G.TalkingHeadFrame.shadow then
-						_G.TalkingHeadFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.TalkingHeadFrame.shadow)
+					if (arg == "Blizzard_TalkingHeadUI") or IsAddOnLoaded("Blizzard_TalkingHeadUI") then
+						if _G.TalkingHeadFrame and not _G.TalkingHeadFrame.shadow then
+							_G.TalkingHeadFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.TalkingHeadFrame.shadow)
+						end
 					end
-				end
-				if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then
-					if _G.ClassTalentFrame and not _G.ClassTalentFrame.shadow then
-						_G.ClassTalentFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.ClassTalentFrame.shadow)
-						if _G.ClassTalentFrame.TabSystem then
-							for i = 1, _G.ClassTalentFrame.TabSystem:GetNumChildren() do
-								local tab = select(i, _G.ClassTalentFrame.TabSystem:GetChildren())
-								if tab and tab.backdrop and not tab.backdrop.shadow then
-									tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									ElvUI_EltreumUI:ShadowColor(tab.backdrop.shadow)
+					if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then
+						if _G.ClassTalentFrame and not _G.ClassTalentFrame.shadow then
+							_G.ClassTalentFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ClassTalentFrame.shadow)
+							if _G.ClassTalentFrame.TabSystem then
+								for i = 1, _G.ClassTalentFrame.TabSystem:GetNumChildren() do
+									local tab = select(i, _G.ClassTalentFrame.TabSystem:GetChildren())
+									if tab and tab.backdrop and not tab.backdrop.shadow then
+										tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(tab.backdrop.shadow)
+									end
 								end
 							end
 						end
-					end
-					if _G.ClassTalentLoadoutImportDialog then
-						_G.ClassTalentLoadoutImportDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.ClassTalentLoadoutImportDialog.shadow)
-					end
-				end
-				if (arg == "Blizzard_ItemInteractionUI") or IsAddOnLoaded("Blizzard_ItemInteractionUI") then
-					if _G.ItemInteractionFrame and not _G.ItemInteractionFrame.shadow then
-						_G.ItemInteractionFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.ItemInteractionFrame.shadow)
-					end
-				end
-				if (arg == "Blizzard_OrderHallUI") or IsAddOnLoaded("Blizzard_OrderHallUI") then
-					if _G.OrderHallCommandBar and not _G.OrderHallCommandBar.shadow then
-						_G.OrderHallCommandBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.OrderHallCommandBar.shadow)
-					end
-					if _G.OrderHallTalentFrame and not _G.OrderHallTalentFrame.shadow then
-						_G.OrderHallTalentFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.OrderHallTalentFrame.shadow)
-					end
-				end
-				if (arg == "Blizzard_ArchaeologyUI") or IsAddOnLoaded("Blizzard_ArchaeologyUI") then
-					if _G.ArcheologyDigsiteProgressBar and _G.ArcheologyDigsiteProgressBar.FillBar and not _G.ArcheologyDigsiteProgressBar.FillBar.shadow then
-						_G.ArcheologyDigsiteProgressBar.FillBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.ArcheologyDigsiteProgressBar.FillBar.shadow)
-					end
-					if _G.ArchaeologyFrame and not _G.ArchaeologyFrame.shadow then
-						_G.ArchaeologyFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.ArchaeologyFrame.shadow)
-					end
-				end
-				if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
-					if E.Retail or E.Cata then
-						if not _G.MacroFrame.shadow then
-							_G.MacroFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.MacroFrame.shadow)
-						end
-					elseif E.Classic then
-						if _G.MacroFrame and _G.MacroFrame.backdrop and not _G.MacroFrame.backdrop.shadow then
-							_G.MacroFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.MacroFrame.backdrop.shadow)
+						if _G.ClassTalentLoadoutImportDialog then
+							_G.ClassTalentLoadoutImportDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ClassTalentLoadoutImportDialog.shadow)
 						end
 					end
-				end
-				if (arg == "Blizzard_DeathRecap") or IsAddOnLoaded("Blizzard_DeathRecap") then
-					if not _G.DeathRecapFrame.shadow then
-						_G.DeathRecapFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.DeathRecapFrame.shadow)
+					if (arg == "Blizzard_ItemInteractionUI") or IsAddOnLoaded("Blizzard_ItemInteractionUI") then
+						if _G.ItemInteractionFrame and not _G.ItemInteractionFrame.shadow then
+							_G.ItemInteractionFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ItemInteractionFrame.shadow)
+						end
 					end
-				end
-				if (arg == "Blizzard_FlightMap") or IsAddOnLoaded("Blizzard_FlightMap") then
-					if not _G.FlightMapFrame.shadow then
-						_G.FlightMapFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.FlightMapFrame.shadow)
+					if (arg == "Blizzard_OrderHallUI") or IsAddOnLoaded("Blizzard_OrderHallUI") then
+						if _G.OrderHallCommandBar and not _G.OrderHallCommandBar.shadow then
+							_G.OrderHallCommandBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.OrderHallCommandBar.shadow)
+						end
+						if _G.OrderHallTalentFrame and not _G.OrderHallTalentFrame.shadow then
+							_G.OrderHallTalentFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.OrderHallTalentFrame.shadow)
+						end
 					end
-				end
-				if (arg == "Blizzard_GuildBankUI") or IsAddOnLoaded("Blizzard_GuildBankUI") then
-					if E.Retail or E.Cata then
-						if E.Retail then
-							if not _G.GuildBankFrame.shadow then
-								_G.GuildBankFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrame.shadow)
+					if (arg == "Blizzard_ArchaeologyUI") or IsAddOnLoaded("Blizzard_ArchaeologyUI") then
+						if _G.ArcheologyDigsiteProgressBar and _G.ArcheologyDigsiteProgressBar.FillBar and not _G.ArcheologyDigsiteProgressBar.FillBar.shadow then
+							_G.ArcheologyDigsiteProgressBar.FillBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ArcheologyDigsiteProgressBar.FillBar.shadow)
+						end
+						if _G.ArchaeologyFrame and not _G.ArchaeologyFrame.shadow then
+							_G.ArchaeologyFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ArchaeologyFrame.shadow)
+						end
+					end
+					if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
+						if E.Retail or E.Cata then
+							if not _G.MacroFrame.shadow then
+								_G.MacroFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.MacroFrame.shadow)
+							end
+						elseif E.Classic then
+							if _G.MacroFrame and _G.MacroFrame.backdrop and not _G.MacroFrame.backdrop.shadow then
+								_G.MacroFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.MacroFrame.backdrop.shadow)
+							end
+						end
+					end
+					if (arg == "Blizzard_DeathRecap") or IsAddOnLoaded("Blizzard_DeathRecap") then
+						if not _G.DeathRecapFrame.shadow then
+							_G.DeathRecapFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.DeathRecapFrame.shadow)
+						end
+					end
+					if (arg == "Blizzard_FlightMap") or IsAddOnLoaded("Blizzard_FlightMap") then
+						if not _G.FlightMapFrame.shadow then
+							_G.FlightMapFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.FlightMapFrame.shadow)
+						end
+					end
+					if (arg == "Blizzard_GuildBankUI") or IsAddOnLoaded("Blizzard_GuildBankUI") then
+						if E.Retail or E.Cata then
+							if E.Retail then
+								if not _G.GuildBankFrame.shadow then
+									_G.GuildBankFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrame.shadow)
+								end
+							else
+								if _G.GuildBankFrame.backdrop and not _G.GuildBankFrame.backdrop.shadow then
+									_G.GuildBankFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrame.backdrop.shadow)
+								end
+							end
+							if not _G.GuildBankTab1.Button.shadow then
+								_G.GuildBankTab1.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.GuildBankTab1.Button.shadow)
+							end
+							if not _G.GuildBankTab2.Button.shadow then
+								_G.GuildBankTab2.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.GuildBankTab2.Button.shadow)
+							end
+							if not _G.GuildBankTab3.Button.shadow then
+								_G.GuildBankTab3.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.GuildBankTab3.Button.shadow)
+							end
+							if not _G.GuildBankTab4.Button.shadow then
+								_G.GuildBankTab4.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.GuildBankTab4.Button.shadow)
+							end
+							if not _G.GuildBankTab5.Button.shadow then
+								_G.GuildBankTab5.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.GuildBankTab5.Button.shadow)
+							end
+							if not _G.GuildBankTab6.Button.shadow then
+								_G.GuildBankTab6.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.GuildBankTab6.Button.shadow)
+							end
+							if _G.GuildBankFrameTab1.backdrop and not _G.GuildBankFrameTab1.backdrop.shadow then
+								_G.GuildBankFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrameTab1.backdrop.shadow)
+							end
+							if _G.GuildBankFrameTab2.backdrop and not _G.GuildBankFrameTab2.backdrop.shadow then
+								_G.GuildBankFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrameTab2.backdrop.shadow)
+							end
+							if _G.GuildBankFrameTab3.backdrop and not _G.GuildBankFrameTab3.backdrop.shadow then
+								_G.GuildBankFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrameTab3.backdrop.shadow)
+							end
+							if _G.GuildBankFrameTab4.backdrop and not _G.GuildBankFrameTab4.backdrop.shadow then
+								_G.GuildBankFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrameTab4.backdrop.shadow)
 							end
 						else
 							if _G.GuildBankFrame.backdrop and not _G.GuildBankFrame.backdrop.shadow then
@@ -262,159 +307,112 @@ function ElvUI_EltreumUI:Shadows()
 								ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrame.backdrop.shadow)
 							end
 						end
-						if not _G.GuildBankTab1.Button.shadow then
-							_G.GuildBankTab1.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.GuildBankTab1.Button.shadow)
-						end
-						if not _G.GuildBankTab2.Button.shadow then
-							_G.GuildBankTab2.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.GuildBankTab2.Button.shadow)
-						end
-						if not _G.GuildBankTab3.Button.shadow then
-							_G.GuildBankTab3.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.GuildBankTab3.Button.shadow)
-						end
-						if not _G.GuildBankTab4.Button.shadow then
-							_G.GuildBankTab4.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.GuildBankTab4.Button.shadow)
-						end
-						if not _G.GuildBankTab5.Button.shadow then
-							_G.GuildBankTab5.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.GuildBankTab5.Button.shadow)
-						end
-						if not _G.GuildBankTab6.Button.shadow then
-							_G.GuildBankTab6.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.GuildBankTab6.Button.shadow)
-						end
-						if _G.GuildBankFrameTab1.backdrop and not _G.GuildBankFrameTab1.backdrop.shadow then
-							_G.GuildBankFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrameTab1.backdrop.shadow)
-						end
-						if _G.GuildBankFrameTab2.backdrop and not _G.GuildBankFrameTab2.backdrop.shadow then
-							_G.GuildBankFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrameTab2.backdrop.shadow)
-						end
-						if _G.GuildBankFrameTab3.backdrop and not _G.GuildBankFrameTab3.backdrop.shadow then
-							_G.GuildBankFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrameTab3.backdrop.shadow)
-						end
-						if _G.GuildBankFrameTab4.backdrop and not _G.GuildBankFrameTab4.backdrop.shadow then
-							_G.GuildBankFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrameTab4.backdrop.shadow)
-						end
-					else
-						if _G.GuildBankFrame.backdrop and not _G.GuildBankFrame.backdrop.shadow then
-							_G.GuildBankFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.GuildBankFrame.backdrop.shadow)
-						end
 					end
-				end
-				if (arg == "Blizzard_TrainerUI") or IsAddOnLoaded("Blizzard_TrainerUI") then
-					if E.Retail then
-						if not _G.ClassTrainerFrame.shadow then
-							_G.ClassTrainerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.ClassTrainerFrame.shadow)
-						end
-					else
-						if _G.ClassTrainerFrame.backdrop and not _G.ClassTrainerFrame.backdrop.shadow then
-							_G.ClassTrainerFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.ClassTrainerFrame.backdrop.shadow)
-						end
-					end
-				end
-				if (arg == "Blizzard_ItemSocketingUI") or IsAddOnLoaded("Blizzard_ItemSocketingUI") then
-					if not _G.ItemSocketingFrame.shadow then
-						_G.ItemSocketingFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.ItemSocketingFrame.shadow)
-					end
-				end
-				if (arg == "Blizzard_ItemUpgradeUI") or IsAddOnLoaded("Blizzard_ItemUpgradeUI") then
-					if not _G.ItemUpgradeFrame.shadow then
-						_G.ItemUpgradeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.ItemUpgradeFrame.shadow)
-					end
-				end
-				if (arg == "Blizzard_TradeSkillUI") or IsAddOnLoaded("Blizzard_TradeSkillUI") then
-					if E.Retail then
-						if not _G.TradeSkillFrame.shadow then
-							_G.TradeSkillFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.TradeSkillFrame.shadow)
-						end
-					else
-						if _G.TradeSkillFrame.backdrop and not _G.TradeSkillFrame.backdrop.shadow then
-							_G.TradeSkillFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.TradeSkillFrame.backdrop.shadow)
-						end
-					end
-				end
-				if (arg == "Blizzard_ChromieTimeUI") or IsAddOnLoaded("Blizzard_ChromieTimetUI") then
-					if not _G.ChromieTimeFrame.shadow then
-						_G.ChromieTimeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.ChromieTimeFrame.shadow)
-					end
-				end
-				if (arg == "Blizzard_BlackMarketUI") or IsAddOnLoaded("Blizzard_BlackMarketUI") then
-					if not _G.BlackMarketFrame.shadow then
-						_G.BlackMarketFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.BlackMarketFrame.shadow)
-					end
-				end
-				if (arg == "Blizzard_BindingUI") or IsAddOnLoaded("Blizzard_BindingUI") then
-					if not _G.KeyBindingFrame.shadow then
-						_G.KeyBindingFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.KeyBindingFrame.shadow)
-					end
-				end
-				if (arg == "Blizzard_InspectUI") or IsAddOnLoaded("Blizzard_InspectUI") then
-					if E.Retail then
-						if _G.InspectFrame and not _G.InspectFrame.shadow then
-							_G.InspectFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.InspectFrame.shadow)
-						end
-					else
-						if _G.InspectFrame and _G.InspectFrame.backdrop and not _G.InspectFrame.backdrop.shadow then
-							_G.InspectFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.InspectFrame.backdrop.shadow)
-						end
-					end
-					if _G.InspectFrameTab1 and _G.InspectFrameTab1.backdrop and not _G.InspectFrameTab1.backdrop.shadow then
-						_G.InspectFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.InspectFrameTab1.backdrop.shadow)
-					end
-					if _G.InspectFrameTab2 and _G.InspectFrameTab2.backdrop and not _G.InspectFrameTab2.backdrop.shadow then
-						_G.InspectFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.InspectFrameTab2.backdrop.shadow)
-					end
-					if _G.InspectFrameTab3 and _G.InspectFrameTab3.backdrop and not _G.InspectFrameTab3.backdrop.shadow then
-						_G.InspectFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.InspectFrameTab3.backdrop.shadow)
-					end
-					if IsAddOnLoaded("ElvUI_WindTools") then
-						if E.db.WT.item.inspect.inspect then
-							if _G["InspectFrame"] then
-								_G["InspectFrame"]:HookScript("OnShow", function()
-									E:Delay(1, function()
-										if _G["InspectFrame"].inspectFrame then
-											if not _G["InspectFrame"].inspectFrame.shadow then
-												_G["InspectFrame"].inspectFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-												ElvUI_EltreumUI:ShadowColor(_G["InspectFrame"].inspectFrame.shadow)
-											end
-											if _G["InspectFrame"].inspectFrame.statsFrame and not _G["InspectFrame"].inspectFrame.statsFrame.shadow then
-												_G["InspectFrame"].inspectFrame.statsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-												ElvUI_EltreumUI:ShadowColor(_G["InspectFrame"].inspectFrame.statsFrame.shadow)
-											end
-										end
-										if _G["InspectFrame"].inspectFrame and _G["InspectFrame"].inspectFrame.inspectFrame and not _G["InspectFrame"].inspectFrame.inspectFrame.shadow then
-											_G["InspectFrame"].inspectFrame.inspectFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-											ElvUI_EltreumUI:ShadowColor(_G["InspectFrame"].inspectFrame.inspectFrame.shadow)
-										end
-									end)
-								end)
+					if (arg == "Blizzard_TrainerUI") or IsAddOnLoaded("Blizzard_TrainerUI") then
+						if E.Retail then
+							if not _G.ClassTrainerFrame.shadow then
+								_G.ClassTrainerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.ClassTrainerFrame.shadow)
+							end
+						else
+							if _G.ClassTrainerFrame.backdrop and not _G.ClassTrainerFrame.backdrop.shadow then
+								_G.ClassTrainerFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.ClassTrainerFrame.backdrop.shadow)
 							end
 						end
 					end
-				end
-				if E.private.skins.blizzard.enable then
+					if (arg == "Blizzard_ItemSocketingUI") or IsAddOnLoaded("Blizzard_ItemSocketingUI") then
+						if not _G.ItemSocketingFrame.shadow then
+							_G.ItemSocketingFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ItemSocketingFrame.shadow)
+						end
+					end
+					if (arg == "Blizzard_ItemUpgradeUI") or IsAddOnLoaded("Blizzard_ItemUpgradeUI") then
+						if not _G.ItemUpgradeFrame.shadow then
+							_G.ItemUpgradeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ItemUpgradeFrame.shadow)
+						end
+					end
+					if (arg == "Blizzard_TradeSkillUI") or IsAddOnLoaded("Blizzard_TradeSkillUI") then
+						if E.Retail then
+							if not _G.TradeSkillFrame.shadow then
+								_G.TradeSkillFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.TradeSkillFrame.shadow)
+							end
+						else
+							if _G.TradeSkillFrame.backdrop and not _G.TradeSkillFrame.backdrop.shadow then
+								_G.TradeSkillFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.TradeSkillFrame.backdrop.shadow)
+							end
+						end
+					end
+					if (arg == "Blizzard_ChromieTimeUI") or IsAddOnLoaded("Blizzard_ChromieTimetUI") then
+						if not _G.ChromieTimeFrame.shadow then
+							_G.ChromieTimeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ChromieTimeFrame.shadow)
+						end
+					end
+					if (arg == "Blizzard_BlackMarketUI") or IsAddOnLoaded("Blizzard_BlackMarketUI") then
+						if not _G.BlackMarketFrame.shadow then
+							_G.BlackMarketFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.BlackMarketFrame.shadow)
+						end
+					end
+					if (arg == "Blizzard_BindingUI") or IsAddOnLoaded("Blizzard_BindingUI") then
+						if not _G.KeyBindingFrame.shadow then
+							_G.KeyBindingFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.KeyBindingFrame.shadow)
+						end
+					end
+					if (arg == "Blizzard_InspectUI") or IsAddOnLoaded("Blizzard_InspectUI") then
+						if E.Retail then
+							if _G.InspectFrame and not _G.InspectFrame.shadow then
+								_G.InspectFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.InspectFrame.shadow)
+							end
+						else
+							if _G.InspectFrame and _G.InspectFrame.backdrop and not _G.InspectFrame.backdrop.shadow then
+								_G.InspectFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.InspectFrame.backdrop.shadow)
+							end
+						end
+						if _G.InspectFrameTab1 and _G.InspectFrameTab1.backdrop and not _G.InspectFrameTab1.backdrop.shadow then
+							_G.InspectFrameTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.InspectFrameTab1.backdrop.shadow)
+						end
+						if _G.InspectFrameTab2 and _G.InspectFrameTab2.backdrop and not _G.InspectFrameTab2.backdrop.shadow then
+							_G.InspectFrameTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.InspectFrameTab2.backdrop.shadow)
+						end
+						if _G.InspectFrameTab3 and _G.InspectFrameTab3.backdrop and not _G.InspectFrameTab3.backdrop.shadow then
+							_G.InspectFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.InspectFrameTab3.backdrop.shadow)
+						end
+						if IsAddOnLoaded("ElvUI_WindTools") then
+							if E.db.WT.item.inspect.inspect then
+								if _G["InspectFrame"] then
+									_G["InspectFrame"]:HookScript("OnShow", function()
+										E:Delay(1, function()
+											if _G["InspectFrame"].inspectFrame then
+												if not _G["InspectFrame"].inspectFrame.shadow then
+													_G["InspectFrame"].inspectFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+													ElvUI_EltreumUI:ShadowColor(_G["InspectFrame"].inspectFrame.shadow)
+												end
+												if _G["InspectFrame"].inspectFrame.statsFrame and not _G["InspectFrame"].inspectFrame.statsFrame.shadow then
+													_G["InspectFrame"].inspectFrame.statsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+													ElvUI_EltreumUI:ShadowColor(_G["InspectFrame"].inspectFrame.statsFrame.shadow)
+												end
+											end
+											if _G["InspectFrame"].inspectFrame and _G["InspectFrame"].inspectFrame.inspectFrame and not _G["InspectFrame"].inspectFrame.inspectFrame.shadow then
+												_G["InspectFrame"].inspectFrame.inspectFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+												ElvUI_EltreumUI:ShadowColor(_G["InspectFrame"].inspectFrame.inspectFrame.shadow)
+											end
+										end)
+									end)
+								end
+							end
+						end
+					end
 					if (arg == "Blizzard_TalentUI") or IsAddOnLoaded("Blizzard_TalentUI") then
 						if E.Retail then
 							if not _G.PlayerTalentFrame.shadow then
@@ -784,8 +782,6 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G.WeeklyRewardsFrame.shadow)
 						end
 					end
-				end
-				if E.Retail then
 					if (arg == "Blizzard_AuctionHouseUI") or IsAddOnLoaded("Blizzard_AuctionHouseUI") then
 						if _G.AuctionHouseFrame then
 							if _G.AuctionHouseFrame and not _G.AuctionHouseFrame.shadow then
@@ -806,7 +802,6 @@ function ElvUI_EltreumUI:Shadows()
 							end
 						end
 					end
-				else
 					if (arg == "Blizzard_AuctionUI") or IsAddOnLoaded("Blizzard_AuctionUI") then
 						if _G.AuctionFrame and _G.AuctionFrame.backdrop and not _G.AuctionFrame.backdrop.shadow then
 							_G.AuctionFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -829,115 +824,184 @@ function ElvUI_EltreumUI:Shadows()
 			end)
 
 			local blizzardframes = {
-				_G.GameMenuFrame,
+				--_G.LFGParentFrame,
+				--_G.SplashFrame,
+				_G.AddFriendFrame,
+				_G.AddonCompartmentFrame,
+				_G.AddonList,
+				_G.AutoCompleteBox,
+				_G.BNToastFrame,
+				_G.BonusRollFrame,
+				_G.ChannelFrame,
+				_G.CharacterFrame,
+				_G.CharacterFrameTab1,
+				_G.CharacterFrameTab2,
+				_G.CharacterFrameTab3,
+				_G.CharacterFrameTab4,
+				_G.CharacterFrameTab4, --only in classic though
+				_G.CharacterFrameTab5, --only in classic though
+				_G.ChatConfigFrame,
+				_G.ChatFrame1EditBox,
+				_G.CinematicFrameCloseDialog,
+				_G.CliqueSpellTab,
+				_G.CollectionsJournal,
+				_G.ColorPickerFrame,
+				_G.CopyChatFrame,
+				_G.CovenantPreviewFrame,
+				_G.DressUpFrame and _G.DressUpFrame.OutfitDetailsPanel,
 				_G.DropDownList1,
 				_G.DropDownList2,
+				E.Retail and _G.EditModeManagerFrame,
+				_G.EltruismClickCastingToggle,
+				_G.EmbeddedItemTooltip,
+				_G.EquipmentFlyoutFrameButtons,
+				_G.ExpansionLandingPage,
+				_G.ExtraActionButton1,
+				_G.ExtraActionButton2,
+				_G.ExtraActionButton3,
+				_G.FriendsFrame,
+				_G.FriendsFrameTab1,
+				_G.FriendsFrameTab2,
+				_G.FriendsFrameTab3,
+				_G.FriendsFrameTab4,
+				_G.FriendsFrameTab5, --only in classic though
+				_G.FriendsTooltip,
+				_G.GhostFrameContentsFrame,
+				_G.GossipFrame,
+				_G.GroupFinderFrame,
+				_G.GroupLootHistoryFrame and _G.GroupLootHistoryFrame.ResizeButton,
+				_G.GuildInfoFrame,
+				_G.HelpFrame,
+				_G.InterfaceOptionsFrame,
+				_G.ItemRefShoppingTooltip1,
+				_G.ItemRefShoppingTooltip2,
+				_G.ItemRefTooltip,
+				_G.ItemTextFrame,
+				_G.LFDReadyCheckPopup,
+				_G.LFDRoleCheckPopup,
+				_G.LFGBrowseFrame,
+				_G.LFGDungeonReadyDialog,
+				_G.LFGDungeonReadyStatus,
+				_G.LFGInvitePopup,
+				_G.LFGListApplicationDialog,
+				_G.LFGListCreateRoleDialog,
+				_G.LFGListingFrame,
+				_G.LFGListInviteDialog,
+				_G.LFGParentFrameTab1,
+				_G.LFGParentFrameTab2,
+				_G.LootFrame,
+				_G.LootHistoryFrame and _G.LootHistoryFrame.ResizeButton,
+				_G.LossOfControlFrame,
+				_G.MailFrame,
+				_G.MailFrameTab1,
+				_G.MailFrameTab2,
+				_G.MajorFactionRenownFrame,
+				_G.MerchantFrame,
+				_G.MerchantFrameTab1,
+				_G.MerchantFrameTab2,
+				_G.MinimapRightClickMenu,
+				_G.MirrorTimer1StatusBar,
+				_G.MirrorTimer2StatusBar,
+				_G.MirrorTimer3StatusBar,
+				_G.MovieFrame and _G.MovieFrame.CloseDialog,
+				_G.OpacityFrame,
+				_G.OpenMailFrame,
+				_G.OrderHallCommandBar,
+				_G.OrderHallMissionFrame,
+				_G.PaperDollFrame,
+				_G.PetStableFrame,
+				_G.ProfessionsFrame,
+				_G.PVEFrame,
+				_G.PVEFrameTab1,
+				_G.PVEFrameTab2,
+				_G.PVEFrameTab3,
+				_G.PVPFrame,
+				_G.PVPFrameTab1,
+				_G.PVPFrameTab2,
+				_G.PVPFrameTab3,
+				_G.PVPMatchResults,
+				_G.PVPMatchScoreboard,
+				_G.PVPParentFrameTab1,
+				_G.PVPParentFrameTab2,
+				_G.PVPReadyDialog,
+				_G.QuestFrame,
+				_G.QuestLogDetailFrame,
+				_G.QuestLogFrame,
+				_G.QuestModelScene,
+				_G.QuestNPCModelTextFrame,
+				_G.QueueStatusFrame,
+				_G.QuickKeybindTooltip,
+				_G.RaidInfoFrame,
+				_G.RaidUtilityPanel,
+				_G.RaidUtility_CloseButton,
+				_G.RaidUtility_ShowButton,
 				_G.ReadyCheckFrame,
-				_G.StackSplitFrame,
-				_G.ChatConfigFrame,
+				_G.ReadyStatus,
+				_G.RecruitAFriendRecruitmentFrame,
+				_G.RecruitAFriendRewardsFrame,
+				_G.ReportFrame,
+				_G.ReputationFrame,
+				_G.ReputationParagonTooltip,
+				_G.RolePollPopup,
+				_G.SettingsPanel,
 				_G.ShoppingTooltip1,
 				_G.ShoppingTooltip2,
-				_G.VideoOptionsFrame,
-				_G.InterfaceOptionsFrame,
-				_G.StaticPopup1, --seems like blizzard
-				_G.StaticPopup2, --seems like blizzard
-				_G.StaticPopup3, --seems like blizzard
-				_G.StaticPopup4, --seems like blizzard
-				_G.StaticPopup5, --seems like blizzard
-				_G.CharacterFrameTab1.backdrop,
-				_G.CharacterFrameTab2.backdrop,
-				_G.CharacterFrameTab3.backdrop,
-				_G.FriendsFrameTab1.backdrop,
-				_G.FriendsFrameTab2.backdrop,
-				_G.FriendsFrameTab3.backdrop,
-				_G.FriendsFrameTab4.backdrop,
-				_G.RaidInfoFrame,
-				_G.RecruitAFriendRecruitmentFrame,
-				_G.SpellBookFrameTabButton1.backdrop,
-				_G.SpellBookFrameTabButton2.backdrop,
-				_G.SpellBookFrameTabButton3.backdrop,
-				_G.GossipFrame.backdrop,
-				_G.BNToastFrame,
-				_G.TimeAlertFrame,
-				_G.ReportFrame,
+				_G.SpellBookFrame,
+				_G.SpellBookFrameTabButton1,
+				_G.SpellBookFrameTabButton2,
+				_G.SpellBookFrameTabButton3,
 				_G.SpellBookSkillLineTab1,
 				_G.SpellBookSkillLineTab2,
 				_G.SpellBookSkillLineTab3,
 				_G.SpellBookSkillLineTab4,
 				_G.SpellBookSkillLineTab5,
-				_G.CliqueSpellTab,
-				_G.EltruismClickCastingToggle,
-				_G.TradeFrame,
-				_G.AddonList,
-				_G.VoidStorageFrame,
-				_G.BonusRollFrame,
-				_G.ItemRefTooltip,
-				_G.CinematicFrameCloseDialog,
-				_G.OrderHallCommandBar,
-				_G.ProfessionsFrame,
-				_G.GhostFrameContentsFrame,
-				_G.SettingsPanel,
-				_G.ExpansionLandingPage,
-				_G.OrderHallMissionFrame,
-				_G.LootHistoryFrame,
-				_G.ExtraActionButton1,
-				_G.ExtraActionButton2,
-				_G.ExtraActionButton3,
-				_G.ChatFrame1EditBox,
-				_G.PVPReadyDialog,
+				_G.StableFrame,
+				_G.StackSplitFrame,
+				_G.StaticPopup1, --seems like blizzard
+				_G.StaticPopup2, --seems like blizzard
+				_G.StaticPopup3, --seems like blizzard
+				_G.StaticPopup4, --seems like blizzard
+				_G.StaticPopup5, --seems like blizzard
+				_G.StopwatchFrame,
+				_G.SubscriptionInterstitialFrame,
+				_G.TabardFrame,
+				_G.TaxiFrame,
+				_G.TicketStatusFrameButton,
+				_G.TimeAlertFrame,
+				_G.TimeManagerFrame,
 				_G.TimerTrackerTimer1StatusBar,
 				_G.TimerTrackerTimer2StatusBar,
 				_G.TimerTrackerTimer3StatusBar,
-				_G.RaidUtility_ShowButton,
-				_G.RaidUtilityPanel,
-				_G.RaidUtility_CloseButton,
-				_G.PVPMatchScoreboard,
-				_G.PVPMatchResults,
-				_G.MajorFactionRenownFrame,
-				_G.SubscriptionInterstitialFrame,
-				_G.ReadyStatus,
-				_G.QuickKeybindTooltip,
+				_G.TokenFrame,
+				_G.TradeFrame,
+				_G.VideoOptionsFrame,
+				_G.VoidStorageFrame,
+				_G.WardrobeFrame, --weird
+				_G.WeeklyRewardsFrame,
+				_G.WorldMapFrame and _G.WorldMapFrame.BorderFrame,
+				_G.WorldMapFrame and _G.WorldMapFrame.MiniBorderFrame,
 				_G.WorldMapTooltip,
-				_G.ReputationParagonTooltip,
-				_G.EmbeddedItemTooltip,
-				_G.AutoCompleteBox,
-				_G.ItemRefTooltip,
-				_G.ItemRefShoppingTooltip1,
-				_G.ItemRefShoppingTooltip2,
-				_G.FriendsTooltip,
-				_G.AddFriendFrame,
-				_G.MinimapRightClickMenu,
-				_G.TimeManagerFrame,
-				_G.LootFrame,
-				_G.AddonCompartmentFrame,
-				_G.GroupLootHistoryFrame,
-				_G.OpacityFrame,
-				_G.TicketStatusFrameButton,
-				_G.ColorPickerFrame,
-				_G.ChannelFrame,
-				_G.QuestModelScene,
-				_G.QuestNPCModelTextFrame,
-				_G.DressUpFrame,
-				_G.CopyChatFrame,
-				_G.StopwatchFrame and _G.StopwatchFrame.backdrop,
+				_G.WorldStateScoreFrame,
+				_G.WorldStateScoreFrameTab1,
+				_G.WorldStateScoreFrameTab2,
+				_G.WorldStateScoreFrameTab3,
+				_G.ZoneAbilityFrame,
+				_G.GameMenuFrame,
 			}
 			for _, frame in pairs(blizzardframes) do
-				if frame and not frame.shadow then
-					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(frame.shadow)
+				if frame then
+					if frame.backdrop then
+						if not frame.backdrop.shadow then
+							frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(frame.backdrop.shadow)
+						end
+					else
+						if not frame.shadow then
+							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(frame.shadow)
+						end
+					end
 				end
-			end
-
-			if E.Retail or E.Cata then
-				if _G.SpellBookFrame and not _G.SpellBookFrame.shadow then
-					_G.SpellBookFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(_G.SpellBookFrame.shadow)
-				end
-			end
-
-			if _G.MovieFrame and _G.MovieFrame.CloseDialog then
-				_G.MovieFrame.CloseDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(_G.MovieFrame.CloseDialog.shadow)
 			end
 
 			timermonitor:RegisterEvent("START_TIMER")
@@ -952,16 +1016,6 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end)
 
-			if _G.LootHistoryFrame and _G.LootHistoryFrame.ResizeButton then
-				_G.LootHistoryFrame.ResizeButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(_G.LootHistoryFrame.ResizeButton.shadow)
-			end
-
-			if _G.GroupLootHistoryFrame and _G.GroupLootHistoryFrame.ResizeButton and not _G.GroupLootHistoryFrame.ResizeButton.shadow then
-				_G.GroupLootHistoryFrame.ResizeButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(_G.GroupLootHistoryFrame.ResizeButton.shadow)
-			end
-
 			hooksecurefunc(_G.AlertFrame, "AddAlertFrame", function(_,frame)
 				if frame and frame.backdrop and not frame.backdrop.shadow then
 					frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -970,14 +1024,29 @@ function ElvUI_EltreumUI:Shadows()
 			end)
 
 			--mirror timer shadow
-			if not E.Retail then
-				for i = 1, 3 do
-					local statusBar = _G['MirrorTimer'..i..'StatusBar']
-					if statusBar then
-						if not statusBar.shadow then
-							statusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(statusBar.shadow)
+			if E.Cata then
+				hooksecurefunc('TimerTracker_StartTimerOfType', function() --from elvui
+					for _, frame in pairs(_G.TimerTracker.timerList) do
+						if frame and frame.bar and not frame.bar.shadow then
+							frame.bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(frame.bar.shadow)
 						end
+					end
+				end)
+			end
+
+			if IsAddOnLoaded("Rarity") then --rarity loads these before
+				local rarityalreadyloads = {
+					_G.CollectionsJournalTab1.backdrop,
+					_G.CollectionsJournalTab2.backdrop,
+					_G.CollectionsJournalTab3.backdrop,
+					_G.CollectionsJournalTab4.backdrop,
+					_G.CollectionsJournalTab5.backdrop,
+				}
+				for _, frame in pairs(rarityalreadyloads) do
+					if frame and not frame.shadow then
+						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(frame.shadow)
 					end
 				end
 			end
@@ -1075,156 +1144,7 @@ function ElvUI_EltreumUI:Shadows()
 		end
 		------------------------------------------------------------------------------------------------------version specific
 		if E.Retail or E.Cata then
-			if IsAddOnLoaded("Rarity") then
-				local rarityalreadyloads = {
-					_G.CollectionsJournalTab1.backdrop,
-					_G.CollectionsJournalTab2.backdrop,
-					_G.CollectionsJournalTab3.backdrop,
-					_G.CollectionsJournalTab4.backdrop,
-					_G.CollectionsJournalTab5.backdrop,
-				}
-				for _, frame in pairs(rarityalreadyloads) do
-					if frame and not frame.shadow then
-						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(frame.shadow)
-					end
-				end
-			end
-
 			if E.db.ElvUI_EltreumUI.skins.shadow.blizzard then
-				--retail frames
-				local retailframes = {
-					_G.QueueStatusFrame,
-					--_G.SplashFrame,
-					_G.LFDRoleCheckPopup,
-					_G.LFDReadyCheckPopup,
-					_G.LFGListApplicationDialog,
-					_G.LFGDungeonReadyDialog,
-					_G.LFGDungeonReadyStatus,
-					_G.LFGListInviteDialog,
-					_G.LFGInvitePopup,
-					_G.RolePollPopup,
-					_G.PaperDollFrame,
-					_G.GroupFinderFrame,
-					_G.ZoneAbilityFrame,
-					_G.ReputationFrame,
-					_G.TokenFrame,
-					_G.RecruitAFriendRewardsFrame,
-					_G.MerchantFrame,
-					_G.MerchantFrameTab1.backdrop,
-					_G.MerchantFrameTab2.backdrop,
-					_G.MailFrame,
-					_G.ItemTextFrame,
-					_G.OpenMailFrame,
-					_G.MailFrameTab1.backdrop,
-					_G.MailFrameTab2.backdrop,
-					_G.HelpFrame.backdrop,
-					_G.WorldMapFrame.backdrop,
-					_G.WardrobeFrame, --weird
-					_G.PVEFrame,
-					_G.CollectionsJournal,
-					_G.DressUpFrame.OutfitDetailsPanel,
-					_G.WeeklyRewardsFrame,
-					_G.CovenantPreviewFrame,
-					_G.PetStableFrame,
-					_G.StableFrame,
-					_G.TaxiFrame,
-					_G.TabardFrame,
-					_G.LossOfControlFrame,
-					_G.EquipmentFlyoutFrameButtons,
-				}
-				for _, frame in pairs(retailframes) do
-					if frame and not frame.shadow then
-						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(frame.shadow)
-					end
-				end
-
-				local backdropframes = {
-					_G.PVEFrameTab1,
-					_G.PVEFrameTab2,
-					_G.PVEFrameTab3,
-				}
-				for _, frame in pairs(backdropframes) do
-					if frame and frame.backdrop and not frame.backdrop.shadow then
-						frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(frame.backdrop.shadow)
-					end
-				end
-
-				--retail/cata differences
-				if E.Retail then
-					if _G.EditModeManagerFrame and not _G.EditModeManagerFrame.shadow then
-						_G.EditModeManagerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.EditModeManagerFrame.shadow)
-					end
-					if _G.FriendsFrame and not _G.FriendsFrame.shadow then
-						_G.FriendsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.FriendsFrame.shadow)
-					end
-					if _G.QuestFrame and not _G.QuestFrame.shadow then
-						_G.QuestFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.QuestFrame.shadow)
-					end
-				else
-					if _G.CharacterFrameTab4 and _G.CharacterFrameTab4.backdrop and not _G.CharacterFrameTab4.backdrop.shadow then
-						_G.CharacterFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.CharacterFrameTab4.backdrop.shadow)
-					end
-					if _G.FriendsFrame and _G.FriendsFrame.backdrop and not _G.FriendsFrame.backdrop.shadow then
-						_G.FriendsFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.FriendsFrame.backdrop.shadow)
-					end
-					if _G.WorldMapFrame and _G.WorldMapFrame.MiniBorderFrame and _G.WorldMapFrame.MiniBorderFrame.backdrop and not _G.WorldMapFrame.MiniBorderFrame.backdrop.shadow then
-						_G.WorldMapFrame.MiniBorderFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.WorldMapFrame.MiniBorderFrame.backdrop.shadow)
-					end
-					if _G.WorldMapFrame and _G.WorldMapFrame.BorderFrame and _G.WorldMapFrame.BorderFrame.backdrop and not _G.WorldMapFrame.BorderFrame.backdrop.shadow then
-						_G.WorldMapFrame.BorderFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G.WorldMapFrame.BorderFrame.backdrop.shadow)
-					end
-
-					local tbcframes = {
-						--_G.LFGParentFrame,
-						_G.LFGParentFrameTab1,
-						_G.LFGParentFrameTab2,
-						_G.QuestLogDetailFrame,
-						_G.LFGListingFrame,
-						_G.LFGListCreateRoleDialog,
-						_G.LFGBrowseFrame,
-						_G.GroupFinderFrame,
-						_G.PVPFrame,
-						_G.PVPParentFrameTab2,
-						_G.PVPParentFrameTab1,
-						_G.PVPFrameTab1,
-						_G.PVPFrameTab2,
-						_G.PVPFrameTab3,
-						_G.QuestLogFrame and _G.QuestLogFrame.backdrop,
-						_G.QuestFrame and _G.QuestFrame.backdrop,
-					}
-					for _, frame in pairs(tbcframes) do
-						if frame then
-							if frame.backdrop then
-								if not frame.backdrop.shadow then
-									frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									ElvUI_EltreumUI:ShadowColor(frame.backdrop.shadow)
-								end
-							else
-								if not frame.shadow then
-									frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									ElvUI_EltreumUI:ShadowColor(frame.shadow)
-								end
-							end
-						end
-					end
-				end
-
-				--quest model thing
-				if _G["EltruismQuestNPCModelTemplate"] and not _G["EltruismQuestNPCModelTemplate"].shadow then
-					_G["EltruismQuestNPCModelTemplate"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(_G["EltruismQuestNPCModelTemplate"].shadow)
-					_G["EltruismQuestNPCModelTemplate"].shadow:SetParent(_G["EltruismQuestNPCModelTemplate"])
-				end
 
 				--loss of control frame icon
 				if _G.LossOfControlFrame and _G.LossOfControlFrame.Icon and _G.LossOfControlFrame.shadow then
@@ -1255,124 +1175,9 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 			end
-
-			if E.private.actionbar.enable and E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
-				if _G.BossButton and not _G.BossButton.shadow then
-					_G.BossButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(_G.BossButton.shadow)
-				end
-			end
-
-			if E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
-				--Shaman Totem things
-				if E.Cata then
-					if E.myclass == "SHAMAN" and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.totembar) and E.db.actionbar.totemBar.enable then
-						local totemframes = {
-							_G.MultiCastSummonSpellButton,
-							_G.MultiCastRecallSpellButton,
-							_G.MultiCastActionButton1,
-							_G.MultiCastActionButton2,
-							_G.MultiCastActionButton3,
-							_G.MultiCastActionButton4,
-							_G.MultiCastFlyoutFrameCloseButton.backdrop,
-							_G.MultiCastFlyoutFrameOpenButton.backdrop,
-						}
-						for _, frame in pairs(totemframes) do
-							if frame and not frame.shadow then
-								frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(frame.shadow)
-							end
-						end
-
-						hooksecurefunc("MultiCastFlyoutFrame_ToggleFlyout", function()
-							local Flyframes = {
-								_G.MultiCastFlyoutButton1,
-								_G.MultiCastFlyoutButton2,
-								_G.MultiCastFlyoutButton3,
-								_G.MultiCastFlyoutButton4,
-								_G.MultiCastFlyoutButton5,
-								_G.MultiCastFlyoutButton6,
-								_G.MultiCastFlyoutButton7,
-							}
-							for _, frame in pairs(Flyframes) do
-								if frame and not frame.shadow then
-									frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									ElvUI_EltreumUI:ShadowColor(frame.shadow)
-								end
-							end
-						end)
-					end
-				end
-			end
-
-			if E.Cata then
-				--leatrix causing issues yet again
-				if IsAddOnLoaded("Leatrix_Maps") then
-					if LeaMapsDB["NoMapBorder"] == "On" then
-						if _G.WorldMapFrame.shadow then
-							_G.WorldMapFrame.shadow:Hide()
-						end
-					end
-				end
-			end
-		else
-			if E.db.ElvUI_EltreumUI.skins.shadow.blizzard then
-				--cata/classic frames
-				local classicframes = {
-					_G.HelpFrame.backdrop,
-					_G.QuestLogFrame.backdrop,
-					_G.CharacterFrame.backdrop,
-					_G.SpellBookFrame.backdrop,
-					_G.FriendsFrame.backdrop,
-					_G.MailFrame.backdrop,
-					_G.OpenMailFrame.backdrop,
-					_G.MailFrameTab1.backdrop,
-					_G.MailFrameTab2.backdrop,
-					_G.MerchantFrame.backdrop,
-					_G.MerchantFrameTab1.backdrop,
-					_G.MerchantFrameTab2.backdrop,
-					_G.PetStableFrame.backdrop,
-					_G.TaxiFrame.backdrop,
-					_G.TabardFrame.backdrop,
-					_G.ItemTextFrame.backdrop,
-					_G.QuestFrame.backdrop,
-					_G.GuildInfoFrame.backdrop,
-					_G.WorldMapFrame.MiniBorderFrame.backdrop,
-					_G.WorldMapFrame.BorderFrame.backdrop,
-				}
-				for _, frame in pairs(classicframes) do
-					if frame and not frame.shadow then
-						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(frame.shadow)
-					end
-				end
-
-				if not E.Retail then
-					local eraframes = {
-						_G.CharacterFrameTab4, --only in classic though
-						_G.CharacterFrameTab5, --only in classic though
-						_G.FriendsFrameTab5, --only in classic though
-					}
-					for _, frame in pairs(eraframes) do
-						if frame and frame.backdrop and not frame.backdrop.shadow then
-							frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(frame.backdrop.shadow)
-						end
-					end
-				end
-			end
-
-			--leatrix causing issues yet again
-			if IsAddOnLoaded("Leatrix_Maps") then
-				if LeaMapsDB["NoMapBorder"] == "On" then
-					if _G.WorldMapFrame.shadow then
-						_G.WorldMapFrame.shadow:Hide()
-					end
-				end
-			end
 		end
 		------------------------------------------------------------------------------------------------------elvui frames
-		if E.db.ElvUI_EltreumUI.skins.shadow.blizzard then --enable with blizzard due to thee elvui skin
+		if E.db.ElvUI_EltreumUI.skins.shadow.blizzard then --enable with blizzard due to the elvui skin
 			local GeneralElvUIFrames = {
 				_G["ElvLootFrame"],
 				_G["ElvUI_ReputationBar"],
@@ -1526,6 +1331,14 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 				end
+
+				--boss
+				if E.private.actionbar.enable and E.db.ElvUI_EltreumUI.skins.shadow.actionbars then
+					if _G.BossButton and not _G.BossButton.shadow then
+						_G.BossButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G.BossButton.shadow)
+					end
+				end
 			end
 
 			--class totems
@@ -1568,6 +1381,46 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(frame.shadow)
 						end
 					end
+				end
+			end
+
+			--Shaman Totem things
+			if E.Cata then
+				if E.myclass == "SHAMAN" and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.totembar) and E.db.actionbar.totemBar.enable then
+					local totemframes = {
+						_G.MultiCastSummonSpellButton,
+						_G.MultiCastRecallSpellButton,
+						_G.MultiCastActionButton1,
+						_G.MultiCastActionButton2,
+						_G.MultiCastActionButton3,
+						_G.MultiCastActionButton4,
+						_G.MultiCastFlyoutFrameCloseButton.backdrop,
+						_G.MultiCastFlyoutFrameOpenButton.backdrop,
+					}
+					for _, frame in pairs(totemframes) do
+						if frame and not frame.shadow then
+							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(frame.shadow)
+						end
+					end
+
+					hooksecurefunc("MultiCastFlyoutFrame_ToggleFlyout", function()
+						local Flyframes = {
+							_G.MultiCastFlyoutButton1,
+							_G.MultiCastFlyoutButton2,
+							_G.MultiCastFlyoutButton3,
+							_G.MultiCastFlyoutButton4,
+							_G.MultiCastFlyoutButton5,
+							_G.MultiCastFlyoutButton6,
+							_G.MultiCastFlyoutButton7,
+						}
+						for _, frame in pairs(Flyframes) do
+							if frame and not frame.shadow then
+								frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(frame.shadow)
+							end
+						end
+					end)
 				end
 			end
 		end
@@ -3711,6 +3564,14 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(button.backdrop.shadow)
 						end
 					end
+				end
+			end
+		end
+
+		if IsAddOnLoaded("Leatrix_Maps") then --leatrix map issues
+			if LeaMapsDB["NoMapBorder"] == "On" then
+				if _G.WorldMapFrame and _G.WorldMapFrame.shadow then
+					_G.WorldMapFrame.shadow:Hide()
 				end
 			end
 		end
