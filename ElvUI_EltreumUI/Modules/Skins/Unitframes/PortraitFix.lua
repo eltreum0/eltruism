@@ -467,6 +467,14 @@ local playerlike = {
 	["party5"] = true,
 }
 
+function ElvUI_EltreumUI:ShouldRotatePortrait(modelID)
+	if modelsRotate[modelID] then
+		return true
+	else
+		return false
+	end
+end
+
 --fix portrait rotation since they dont align correctly due to how blizzard makes models
 local modelcheck = CreateFrame("PlayerModel", "EltruismPortraitFixModel")
 function ElvUI_EltreumUI:PortraitFix(unit)

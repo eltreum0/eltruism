@@ -674,12 +674,6 @@ function ElvUI_EltreumUI:Shadows()
 							ElvUI_EltreumUI:ShadowColor(_G.ReforgingFrame.shadow)
 						end
 					end
-					if (arg == "Blizzard_PVPUI") or IsAddOnLoaded("Blizzard_PVPUI") then
-						if not _G.PVPUIFrame.shadow then
-							_G.PVPUIFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.PVPUIFrame.shadow)
-						end
-					end
 					if (arg == "Blizzard_PlayerChoice") or IsAddOnLoaded("Blizzard_PlayerChoice") then
 						if not _G.PlayerChoiceFrame.shadow then
 							_G.PlayerChoiceFrame:CreateBackdrop('Transparent')
@@ -868,7 +862,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.FriendsTooltip,
 				_G.GhostFrameContentsFrame,
 				_G.GossipFrame,
-				_G.GroupFinderFrame,
+				--_G.GroupFinderFrame,
 				_G.GroupLootHistoryFrame and _G.GroupLootHistoryFrame.ResizeButton,
 				_G.GuildInfoFrame,
 				_G.HelpFrame,
@@ -880,7 +874,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.LFDReadyCheckPopup,
 				_G.LFDRoleCheckPopup,
 				_G.LFGBrowseFrame,
-				_G.LFGDungeonReadyDialog,
+				_G.LFGDungeonReadyDialog and _G.LFGDungeonReadyDialog.Border,
 				_G.LFGDungeonReadyStatus,
 				_G.LFGInvitePopup,
 				_G.LFGListApplicationDialog,
@@ -908,7 +902,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.OpenMailFrame,
 				_G.OrderHallCommandBar,
 				_G.OrderHallMissionFrame,
-				_G.PaperDollFrame,
+				--_G.PaperDollFrame,
 				_G.PetStableFrame,
 				_G.ProfessionsFrame,
 				_G.PVEFrame,
@@ -940,7 +934,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.RecruitAFriendRecruitmentFrame,
 				_G.RecruitAFriendRewardsFrame,
 				_G.ReportFrame,
-				_G.ReputationFrame,
+				--_G.ReputationFrame,
 				_G.ReputationParagonTooltip,
 				_G.RolePollPopup,
 				_G.SettingsPanel,
@@ -972,7 +966,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.TimerTrackerTimer1StatusBar,
 				_G.TimerTrackerTimer2StatusBar,
 				_G.TimerTrackerTimer3StatusBar,
-				_G.TokenFrame,
+				--_G.TokenFrame,
 				_G.TradeFrame,
 				_G.VideoOptionsFrame,
 				_G.VoidStorageFrame,

@@ -19,7 +19,6 @@
 	<Script file='Other/Bags.lua'/>
 	<Script file='Other/Databars.lua'/>
 	<Script file='Other/Doom.lua'/>
-	<Script file='Other/ExpandedStable.lua'/>
 	<Script file='Other/ExpandedTalents.lua'/>
 	<Script file='Other/LevelUp.lua'/>
 	<Script file='Other/Other.lua'/>
