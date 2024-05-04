@@ -99,7 +99,7 @@ P.ElvUI_EltreumUI = {
 		},
 		levelbossinstance = false,
 		widertransmog = false,
-		expandedstable = false,
+		--expandedstable = false,
 		characterpanelscale = 1,
 		classiconsoncharacterpanel = false,
 		classiconsblizz = false,
@@ -390,7 +390,7 @@ P.ElvUI_EltreumUI = {
 		playerdeath = false,
 		playerdeathgta = false,
 		playerdeathhardcore = true,
-		guildmemberdeathhardcore = true,
+		--guildmemberdeathhardcore = true,
 		playerdeathcustom = false,
 		playerdeathcustomtext = "YOU DIED",
 		doom = {
@@ -1001,7 +1001,13 @@ P.ElvUI_EltreumUI = {
 					r = 0.27,
 					g = 0.50,
 					b = 0.70,
-				}
+				},
+				background = true,
+				backgroundcolor = {
+					r = 0.07,
+					g = 0.07,
+					b = 0.07,
+				},
 			},
 			target = {
 				enable = true,
@@ -1025,7 +1031,13 @@ P.ElvUI_EltreumUI = {
 					r = 0.27,
 					g = 0.50,
 					b = 0.70,
-				}
+				},
+				background = true,
+				backgroundcolor = {
+					r = 0.07,
+					g = 0.07,
+					b = 0.07,
+				},
 			},
 			party = {
 				enable = true,
@@ -1049,7 +1061,13 @@ P.ElvUI_EltreumUI = {
 					r = 0.27,
 					g = 0.50,
 					b = 0.70,
-				}
+				},
+				background = true,
+				backgroundcolor = {
+					r = 0.07,
+					g = 0.07,
+					b = 0.07,
+				},
 			},
 			targettarget = {
 				enable = true,
@@ -1073,7 +1091,13 @@ P.ElvUI_EltreumUI = {
 					r = 0.27,
 					g = 0.50,
 					b = 0.70,
-				}
+				},
+				background = true,
+				backgroundcolor = {
+					r = 0.07,
+					g = 0.07,
+					b = 0.07,
+				},
 			},
 			focus = {
 				enable = true,
@@ -1097,7 +1121,13 @@ P.ElvUI_EltreumUI = {
 					r = 0.27,
 					g = 0.50,
 					b = 0.70,
-				}
+				},
+				background = true,
+				backgroundcolor = {
+					r = 0.07,
+					g = 0.07,
+					b = 0.07,
+				},
 			},
 			focustarget = {
 				enable = true,
@@ -1121,7 +1151,13 @@ P.ElvUI_EltreumUI = {
 					r = 0.27,
 					g = 0.50,
 					b = 0.70,
-				}
+				},
+				background = true,
+				backgroundcolor = {
+					r = 0.07,
+					g = 0.07,
+					b = 0.07,
+				},
 			},
 		},
 		infopanelontop = false,
@@ -1611,6 +1647,7 @@ P.ElvUI_EltreumUI = {
 		models = {
 			castbar = false,
 			unitframe = false,
+			insideHP = false,
 			ufalpha = 0.3,
 			ufalphadark = 0.5,
 			ufdesaturation = 0,
@@ -1713,6 +1750,7 @@ P.ElvUI_EltreumUI = {
 			offset = 23,
 			fontsize = 12,
 			rotate = false,
+			circle = false,
 		},
 		archeology = {
 			archeologyfontsize = 12,

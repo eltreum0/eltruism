@@ -200,7 +200,7 @@ end
 --set correct role for classic
 local isTank, isHealer, isDPS = false,false,false
 function ElvUI_EltreumUI:SetGroupRoleClassic()
-	if E.Wrath and not InCombatLockdown() then
+	if E.Cata and not InCombatLockdown() then
 		if UnitGroupRolesAssigned("player") == "DAMAGER" then
 			isDPS = true
 			isTank = false
@@ -219,9 +219,14 @@ function ElvUI_EltreumUI:SetGroupRoleClassic()
 				UnitSetRole("player","DAMAGER")
 			end
 		else
-			local _, _, spent1 = _G.GetTalentTabInfo(1)
-			local _, _, spent2 = _G.GetTalentTabInfo(2)
-			local _, _, spent3 = _G.GetTalentTabInfo(3)
+			local _, _, spent1, _, cataspent1 = _G.GetTalentTabInfo(1)
+			local _, _, spent2, _, cataspent2 = _G.GetTalentTabInfo(2)
+			local _, _, spent3, _, cataspent3 = _G.GetTalentTabInfo(3)
+			if E.Cata then
+				spent1 = cataspent1
+				spent2 = cataspent2
+				spent3 = cataspent3
+			end
 			--print(isDPS,isTank,isHealer,E.myclass,spent1,spent2,spent3)
 			if E.myclass == 'SHAMAN' then
 				if spent3 < spent1 and spent3 < spent2 then
@@ -299,7 +304,7 @@ roleframe:RegisterEvent("PLAYER_ENTERING_WORLD")
 --roleframe:RegisterEvent("PLAYER_ROLES_ASSIGNED")
 --roleframe:RegisterEvent("GROUP_LEFT")
 roleframe:SetScript("OnEvent", function()
-	if E.Wrath then
+	if E.Cata then
 		ElvUI_EltreumUI:SetGroupRoleClassic()
 	else
 		roleframe:UnregisterAllEvents()

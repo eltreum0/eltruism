@@ -64,7 +64,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			else
 				wowheadbutton:SetPoint("TOPLEFT", _G.QuestLogFrame, "TOPLEFT", 15, -15)
 			end
-		elseif E.Wrath then
+		elseif E.Cata then
 			local x, y = _G.QuestLogFrameTrackButton:GetSize()
 			wowheadbutton:SetWidth(x)
 			wowheadbutton:SetHeight(y)
@@ -96,26 +96,6 @@ function ElvUI_EltreumUI:SkinQuests()
 				wowheadregion = "ru.wowhead.com"
 			elseif E.locale == "zhCN" or E.locale == "zhTW" then
 				wowheadregion = "cn.wowhead.com"
-			end
-		elseif E.Wrath and not E.Cata then
-			if E.locale == "deDE" then
-				wowheadregion = "wowhead.com/wotlk/de"
-			elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW" then
-				wowheadregion = "wowhead.com/wotlk"
-			elseif E.locale == "esMX" or E.locale == "esES" then
-				wowheadregion = "wowhead.com/wotlk/es"
-			elseif E.locale == "frFR" then
-				wowheadregion = "wowhead.com/wotlk/fr"
-			elseif E.locale == "itIT" then
-				wowheadregion = "wowhead.com/wotlk/it"
-			elseif E.locale == "koKR" then
-				wowheadregion = "wowhead.com/wotlk/ko"
-			elseif E.locale == "ptBR" or E.locale == "ptPT" then
-				wowheadregion = "wowhead.com/wotlk/pt"
-			elseif E.locale == "ruRU" then
-				wowheadregion = "wowhead.com/wotlk/ru"
-			elseif E.locale == "zhCN" or E.locale == "zhTW" then
-				wowheadregion = "wowhead.com/wotlk/cn"
 			end
 		elseif E.Cata then
 			if E.locale == "deDE" then
@@ -193,7 +173,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			wowheadbutton:SetScript('OnClick', function()
 				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
 			end)
-		elseif E.Wrath or E.Cata then
+		elseif E.Cata then
 			local questID
 			--hook the function that sets the quest detail to get the questID from the quest title
 			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --_G.QuestLogFrame.lua 311
@@ -839,7 +819,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				dontexpandanymorequests = 1
 			end
 
-			--add quest header like retail/wrath
+			--add quest header like retail/cata
 			if not _G["EltruismQuestLine"] then
 				_G.QuestWatchFrame.HeaderBar = CreateFrame("StatusBar", "EltruismQuestLine", _G.QuestWatchFrame)
 				_G.QuestWatchFrame.HeaderBar:SetMinMaxValues(0, 100)
@@ -1065,7 +1045,7 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				UIParent_ManageFramePositions()
 			end)
-		elseif E.Wrath or E.Cata then
+		elseif E.Cata then
 
 			--from blizzard's FrameXML/WatchFrame.lua
 			local questside
@@ -1096,11 +1076,11 @@ function ElvUI_EltreumUI:SkinQuests()
 						line.text:SetWidth(250)
 
 						--inspired by blinkii's skin, color
-						local textwrath = line.text:GetText()
-						if textwrath ~= nil then
-							local left, right, questtext = strmatch(textwrath, "^(%d-)/(%d-) (.+)")
-							local questtext2,left2, right2 = strmatch(textwrath, "(.+): (%d-)/(%d-)$")
-							local left3, right3, questtext3 = strmatch(textwrath, "^- (%d-)/(%d-) (.+)")
+						local textcata = line.text:GetText()
+						if textcata ~= nil then
+							local left, right, questtext = strmatch(textcata, "^(%d-)/(%d-) (.+)")
+							local questtext2,left2, right2 = strmatch(textcata, "(.+): (%d-)/(%d-)$")
+							local left3, right3, questtext3 = strmatch(textcata, "^- (%d-)/(%d-) (.+)")
 							if left then
 								local percentagedone = (tonumber(left) / tonumber(right)) * 100 or 0
 								local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
@@ -1324,6 +1304,15 @@ function ElvUI_EltreumUI:SkinQuests()
 				_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
 				_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexture("Interface\\Addons\\ElvUI\\Core\\Media\\Textures\\MinusButton")
 				_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
+			end)
+
+			_G["WatchFrameCollapseExpandButton"]:HookScript("OnShow", function()
+				E:Delay(0, function()
+					_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI\\Core\\Media\\Textures\\MinusButton")
+					_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
+					_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexture("Interface\\Addons\\ElvUI\\Core\\Media\\Textures\\MinusButton")
+					_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
+				end)
 			end)
 
 			--highlight

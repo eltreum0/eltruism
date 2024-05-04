@@ -27,9 +27,9 @@
 	<Script file='Misc/QuestItem.lua'/>
 	<Script file='Misc/Scrap.lua'/>
 	<Script file='Misc/Screenshot.lua'/>
-	<Script file='Misc/SetupTextures.lua'/>
-	<Script file='Fonts/SetupFont.lua'/>
-	<Script file='Fonts/OutlineDefault.lua'/>
-	<Script file='Fonts/OutlineCustom.lua'/>
+	<Script file='SetupMedia/SetupFont.lua'/>
+	<Script file='SetupMedia/OutlineDefault.lua'/>
+	<Script file='SetupMedia/OutlineCustom.lua'/>
+	<Script file='SetupMedia/SetupTextures.lua'/>
 	<Include file='Skins\load_skins.xml'/>
 </Ui>

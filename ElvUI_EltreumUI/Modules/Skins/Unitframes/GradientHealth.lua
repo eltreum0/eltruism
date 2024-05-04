@@ -879,7 +879,7 @@ function ElvUI_EltreumUI:GradientUF(unit)
 		end
 
 		if forced then
-			if E.Retail or E.Wrath then
+			if E.Retail or E.Cata then
 				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss1", "boss", true)
 				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss2", "boss", true)
 				ElvUI_EltreumUI:ApplyUnitGradient("player", "Boss3", "boss", true)

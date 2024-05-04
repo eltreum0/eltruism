@@ -1587,3 +1587,6 @@ L["If you want to disable the ElvUI skin that adds textures to ElvUI you can go 
 L["Disable the worldPreloadNonCritical CVar, doing so can improve loading times."] = true
 L["If you find the %s option has issues, alert me via Discord or GitHub issue."] = true
 L["Choose the option you would like to enable"] = true
+L["Model Inside Health"] = true
+L["Model will be set inside health instead of over whole frame"] = true
+L["Circle Minimap"] = true

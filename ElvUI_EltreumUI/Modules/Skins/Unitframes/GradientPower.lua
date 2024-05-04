@@ -264,7 +264,7 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 		ElvUI_EltreumUI:ApplyUnitGradientPower("targettarget", "TargetTarget")
 		ElvUI_EltreumUI:ApplyUnitGradientPower("pet", "Pet")
 		ElvUI_EltreumUI:ApplyUnitGradientPower("targettargettarget", "TargetTargetTarget")
-		if E.Retail or E.Wrath then
+		if E.Retail or E.Cata then
 			ElvUI_EltreumUI:ApplyUnitGradientPower("boss1", "Boss1")
 			ElvUI_EltreumUI:ApplyUnitGradientPower("boss2", "Boss2")
 			ElvUI_EltreumUI:ApplyUnitGradientPower("boss3", "Boss3")
@@ -289,7 +289,7 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 		end
 
 		if forced then
-			if E.Retail or E.Wrath then
+			if E.Retail or E.Cata then
 				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "Boss1")
 				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "Boss2")
 				ElvUI_EltreumUI:ApplyUnitGradientPower("testunit", "Boss3")

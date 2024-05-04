@@ -16,7 +16,7 @@ local cos = _G.cos
 local GetCursorPosition = _G.GetCursorPosition
 local InCombatLockdown = _G.InCombatLockdown
 local GetTime = _G.GetTime
-local GetSpellCooldown = _G.C_Spell and _G.C_Spell.GetSpellCooldown or _G.GetSpellCooldown
+local GetSpellCooldown = _G.GetSpellCooldown
 local colorcast
 local colorgcd
 local colorcursor
@@ -393,16 +393,9 @@ function ElvUI_EltreumUI:CastCursor()
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_DELAYED", "player")
 		function Cast:UNIT_SPELLCAST_START(_, unit)
-			if not unit or unit ~= 'player' then return end
-			if E.Retail then
-				local name, _, _, start, finish, _, _, _, castID = UnitCastingInfo("player")
-				if name then
-					self.castID = castID
-					Start(self, GetTime() - start * 0.001, (finish - start) * 0.001 )
-				else
-					RingSetShown( self, false )
-				end
-			else
+			if unit and unit ~= 'player' then
+				return
+			elseif unit and unit == 'player' then
 				local name, _, _, start, finish, _, castID = UnitCastingInfo("player")
 				if name then
 					self.castID = castID
@@ -418,14 +411,14 @@ function ElvUI_EltreumUI:CastCursor()
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_FAILED", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_STOP", "player")
-		function Cast:UNIT_SPELLCAST_STOP(_, unit, castID1, castID2)
-			if not unit or unit ~= 'player' then return end
-			if E.Retail then
-				if castID2 == self.castID then
-					RingSetShown( self, false )
-				end
-			else
-				if castID1 == self.castID then
+		if E.Retail then
+			Cast:RegisterUnitEvent("UNIT_SPELLCAST_EMPOWER_STOP", "player")
+		end
+		function Cast:UNIT_SPELLCAST_STOP(_, unit, castID)
+			if unit and unit ~= 'player' then
+				return
+			elseif unit and unit == 'player' then
+				if castID == self.castID then
 					RingSetShown( self, false )
 				end
 			end
@@ -434,34 +427,42 @@ function ElvUI_EltreumUI:CastCursor()
 		Cast.UNIT_SPELLCAST_FAILED = Cast.UNIT_SPELLCAST_STOP
 		Cast.UNIT_SPELLCAST_INTERRUPTED = Cast.UNIT_SPELLCAST_STOP
 		Cast.UNIT_SPELLCAST_CHANNEL_STOP = Cast.UNIT_SPELLCAST_STOP
+		Cast.UNIT_SPELLCAST_EMPOWER_STOP = Cast.UNIT_SPELLCAST_STOP
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_START", "player")
 		Cast:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_UPDATE", "player")
+		if E.Retail then
+			Cast:RegisterUnitEvent("UNIT_SPELLCAST_EMPOWER_START", "player")
+			Cast:RegisterUnitEvent("UNIT_SPELLCAST_EMPOWER_UPDATE", "player")
+		end
 		function Cast:UNIT_SPELLCAST_CHANNEL_START(_, unit)
-			print("CHANNEL")
-			if not unit or unit ~= 'player' then return end
-			local name, _, _, start, finish = UnitChannelInfo("player")
-			if name then
-				self.castID = nil
-				Start(self, GetTime() - start * 0.001, (finish - start) * 0.001 )
-			else
-				RingSetShown( self, false )
+			if unit and unit ~= 'player' then
+				return
+			elseif unit and unit == 'player' then
+				local name, _, _, start, finish, _, _, _ ,_ , numEmpowerStages = UnitChannelInfo("player")
+				if name then
+					self.castID = nil
+					if E.Retail and numEmpowerStages and numEmpowerStages > 0 then
+						finish = finish + _G.GetUnitEmpowerHoldAtMaxTime("player")
+					end
+					Start(self, GetTime() - start * 0.001, (finish - start) * 0.001 )
+				else
+					RingSetShown( self, false )
+				end
 			end
 		end
 		Cast.UNIT_SPELLCAST_CHANNEL_UPDATE = Cast.UNIT_SPELLCAST_CHANNEL_START
+		Cast.UNIT_SPELLCAST_EMPOWER_START = Cast.UNIT_SPELLCAST_CHANNEL_START
+		Cast.UNIT_SPELLCAST_EMPOWER_UPDATE = Cast.UNIT_SPELLCAST_CHANNEL_START
 
 		-- GCD Ring
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_START", "player")
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", "player")
 		function GCD:UNIT_SPELLCAST_START(_, unit, _, spellID)
-			if not unit or unit ~= 'player' then return end
-			if E.Retail then
-				local cdData = GetSpellCooldown(61304)
-				if cdData.duration > 0 then
-					Start(self, GetTime() - cdData.startTime, cdData.duration )
-				end
-			else
-				local start, duration = GetSpellCooldown(spellID)
-				if duration > 0 and (duration <= 1.51) then
+			if unit and unit ~= 'player' then
+				return
+			elseif unit and unit == 'player' then
+				local start, duration = GetSpellCooldown( isRetail and 61304 or spellID ) --retest for tbc/classic season
+				if duration > 0 and (isRetail or duration <= 1.51) then
 					Start(self, GetTime() - start, duration )
 				end
 			end
@@ -470,8 +471,11 @@ function ElvUI_EltreumUI:CastCursor()
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_STOP", "player")
 		GCD:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", "player")
 		function GCD:UNIT_SPELLCAST_STOP(_, unit)
-			if not unit or unit ~= 'player' then return end
-			RingSetShown( self, false )
+			if unit and unit ~= 'player' then
+				return
+			elseif unit and unit == 'player' then
+				RingSetShown( self, false )
+			end
 		end
 		GCD.UNIT_SPELLCAST_INTERRUPTED = GCD.UNIT_SPELLCAST_STOP
 

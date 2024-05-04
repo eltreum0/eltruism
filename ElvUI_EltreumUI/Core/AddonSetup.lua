@@ -115,7 +115,7 @@ end
 function ElvUI_EltreumUI:AddonSetupCombatText(addon)
 	if IsAddOnLoaded("NameplateSCT") or IsAddOnLoaded("ElvUI_FCT") then
 		SetCVar("enableFloatingCombatText", 0)
-		if E.Wrath or E.Classic then
+		if E.Cata or E.Classic then
 			SetCVar("floatingCombatTextCombatDamage", 0)
 		end
 	end

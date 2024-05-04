@@ -341,7 +341,7 @@ function ElvUI_EltreumUI:EnteringWorldCVars()
 	SetCVar('DynamicRenderScaleMin', E.db.ElvUI_EltreumUI.cvars.dynamicrenderscalemin)
 	if E.Retail and E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable then
 		SetCVar('showInGameNavigation', E.db.ElvUI_EltreumUI.cvars.showInGameNavigation)
-	elseif E.Classic or E.Wrath then
+	elseif E.Classic or E.Cata then
 		SetCVar('clampTargetNameplateToScreen', E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen)
 	end
 end
@@ -504,7 +504,7 @@ do
 	local isDeleteHooked = false
 	local petdetect = CreateFrame("FRAME")
 	function ElvUI_EltreumUI:DeleteItem()
-		if not isDeleteHooked and E.db.ElvUI_EltreumUI.otherstuff.delete and not IsAddOnLoaded("ConsolePort") then
+		if not isDeleteHooked and E.db.ElvUI_EltreumUI.otherstuff.delete and not (IsAddOnLoaded("ConsolePort") or IsAddOnLoaded("AnnoyingPopupRemover")) then
 			hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_ITEM,"OnShow",TypeDelete) --Interface/FrameXML/StaticPopup.lua line 1965/2074
 			hooksecurefunc(StaticPopupDialogs.DELETE_GOOD_QUEST_ITEM,"OnShow",TypeDelete) --Interface/FrameXML/StaticPopup.lua line 2125
 
@@ -608,7 +608,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 end)
 
 --make the video options movable because its annoying when adjusting settings
-local VideoOptionsFrame = _G.VideoOptionsFrame --Classic/Wrath
+local VideoOptionsFrame = _G.VideoOptionsFrame --Classic/Cata
 if VideoOptionsFrame then
 	VideoOptionsFrame:SetMovable(true)
 	VideoOptionsFrame:EnableMouse(true)

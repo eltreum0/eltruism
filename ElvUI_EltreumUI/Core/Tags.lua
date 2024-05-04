@@ -86,7 +86,7 @@ end
 --from elvui, modified for gradient
 do
 	local function EltruismGetTitleNPC(unit, custom)
-		if UnitIsPlayer(unit) or (E.Wrath and UnitAffectingCombat('player') and IsInInstance()) then return end
+		if UnitIsPlayer(unit) or (E.Cata and UnitAffectingCombat('player') and IsInInstance()) then return end
 
 		-- similar to TT.GetLevelLine
 		local info = E.ScanTooltip:GetUnitInfo(unit)
@@ -159,24 +159,32 @@ end
 --ty a lot azilroka
 local stanceID = {
 	DEATHKNIGHT = {
-		[1] = not E.Retail and GetSpellInfo(48266),
-		[2] = not E.Retail and GetSpellInfo(48263),
-		[3] = not E.Retail and GetSpellInfo(48265),
+		[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
+		[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
+		[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
 	},
 	PALADIN = {
-		[1] = (E.Retail and SpellInfo(nil,1)) or GetSpellInfo(465),
-		[2] = (E.Retail and SpellInfo(nil,2)) or GetSpellInfo(7294),
-		[3] = (E.Retail and SpellInfo(nil,3)) or GetSpellInfo(19746),
-		[4] = (E.Retail and SpellInfo(nil,4)) or GetSpellInfo(19746),
-		[5] = not E.Retail and GetSpellInfo(19888),
-		[6] = not E.Retail and GetSpellInfo(19891),
-		[7] = not E.Retail and GetSpellInfo(32223),
+		[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
+		[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
+		[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
+		[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))),
+		[5] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(5)))),
+		[6] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(6)))),
+		[7] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(7)))),
 	},
 	WARRIOR = {
-		[1] = not E.Retail and GetSpellInfo(2457),
-		[2] = not E.Retail and GetSpellInfo(71),
-		[3] = not E.Retail and GetSpellInfo(2458),
-	}
+		[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
+		[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
+		[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
+		[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))), --gladiator?
+	},
+	HUNTER = {
+		[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
+		[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
+		[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
+		[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))),
+		[5] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(5)))),
+	},
 }
 
 --because in retail talent changes can occur more freely and change known stances, refresh table
@@ -184,24 +192,32 @@ local function refreshstance()
 	stanceBackup = 0
 	stanceID = {
 		DEATHKNIGHT = {
-			[1] = not E.Retail and GetSpellInfo(48266),
-			[2] = not E.Retail and GetSpellInfo(48263),
-			[3] = not E.Retail and GetSpellInfo(48265),
+			[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
+			[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
+			[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
 		},
 		PALADIN = {
-			[1] = (E.Retail and SpellInfo(nil,1)) or GetSpellInfo(465),
-			[2] = (E.Retail and SpellInfo(nil,2)) or GetSpellInfo(7294),
-			[3] = (E.Retail and SpellInfo(nil,3)) or GetSpellInfo(19746),
-			[4] = (E.Retail and SpellInfo(nil,4)) or GetSpellInfo(19746),
-			[5] = not E.Retail and GetSpellInfo(19888),
-			[6] = not E.Retail and GetSpellInfo(19891),
-			[7] = not E.Retail and GetSpellInfo(32223),
+			[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
+			[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
+			[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
+			[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))),
+			[5] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(5)))),
+			[6] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(6)))),
+			[7] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(7)))),
 		},
 		WARRIOR = {
-			[1] = not E.Retail and GetSpellInfo(2457),
-			[2] = not E.Retail and GetSpellInfo(71),
-			[3] = not E.Retail and GetSpellInfo(2458),
-		}
+			[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
+			[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
+			[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
+			[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))), --gladiator?
+		},
+		HUNTER = {
+			[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
+			[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
+			[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
+			[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))),
+			[5] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(5)))),
+		},
 	}
 end
 
@@ -1800,13 +1816,13 @@ E:AddTag('eltruism:difficulty', 'UNIT_NAME_UPDATE', function(unit)
 	if not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then
 		if UnitIsEnemy("player", unit) then
 			if classification ~= "worldboss" then
-				if E.Wrath or E.Classic then
+				if E.Cata or E.Classic then
 					return (eltruismdif[printdifference])
 				else
 					return
 				end
 			elseif classification == "worldboss" then
-				if E.Wrath or E.Classic then
+				if E.Cata or E.Classic then
 					return ("|cFFFF0000")
 				else
 					return
@@ -1968,7 +1984,7 @@ E:AddTag("eltruism:stance", 1, function()
 end)
 E:AddTagInfo("eltruism:stance", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows the current stance of the player"])
 
-if E.Wrath then
+if E.Cata then
 	E:AddTag("eltruism:presencecolor", 1, function()
 		local stance = GetShapeshiftForm()
 		if stance == 1 then
@@ -2033,7 +2049,7 @@ E:AddTag("eltruism:lowmana", 'UNIT_POWER_FREQUENT', function(unit,_,args)
 			if currentSpec ~= nil then
 				role = GetSpecializationRole(currentSpec)
 			end
-		elseif E.Wrath then
+		elseif E.Cata then
 			role = UnitGroupRolesAssigned("player")
 		end
 		if role == 'HEALER' or E.Classic then

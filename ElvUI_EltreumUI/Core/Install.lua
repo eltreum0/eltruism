@@ -352,7 +352,7 @@ ElvUI_EltreumUI.InstallerData = {
 				end
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 				ElvUI_EltreumUI:AddonSetupPA()
-				if (E.Wrath or E.Retail or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
+				if (E.Cata or E.Retail or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
 					E.data:SetDualSpecProfile('Eltreum DPS/Tank ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
 				else
 					E.data:SetProfile('Eltreum DPS/Tank ('..E.mynameRealm..')')
@@ -387,7 +387,7 @@ ElvUI_EltreumUI.InstallerData = {
 				end
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
 				ElvUI_EltreumUI:AddonSetupPA()
-				if (E.Wrath or E.Retail) and E.data:IsDualSpecEnabled() then
+				if (E.Cata or E.Retail) and E.data:IsDualSpecEnabled() then
 					E.data:SetDualSpecProfile('Eltreum Healer ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
 				else
 					E.data:SetProfile('Eltreum Healer ('..E.mynameRealm..')')
@@ -552,9 +552,9 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option1:SetScript('OnClick', function() ElvUI_EltreumUI:AddonSetupDT("spec") ElvUI_EltreumUI:GetASProfile() end)
 			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("detailsspec","ENTERING") end)
 			_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-			if E.Retail then
+			if E.Retail or E.Cata then
 				_G.PluginInstallFrame.Option1:SetText('Spec')
-			elseif E.Classic or E.Wrath then
+			else
 				_G.PluginInstallFrame.Option1:SetText('Blizzard')
 			end
 
@@ -596,7 +596,7 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("gladiusEX","ENTERING") end)
 				_G.PluginInstallFrame.Option1:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 				_G.PluginInstallFrame.Option1:SetText(L["GladiusEx"])
-			elseif E.Classic or E.Wrath then
+			elseif E.Classic or E.Cata then
 				_G.PluginInstallFrame.Desc1:SetText(L["Import Questie profile, which uses the DBM radar"])
 				_G.PluginInstallFrame.Option1:Enable()
 				_G.PluginInstallFrame.Option1:Show()
@@ -606,7 +606,7 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option1:SetText(L["Questie"])
 			end
 			_G.PluginInstallFrame.Desc2:SetText(L["Import DBM or BigWigs profiles for dungeons and raids. (Uses DBM English Calanon and Bigwigs Voice)"])
-			if E.Wrath then
+			if E.Cata then
 				if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
 					_G.PluginInstallFrame.Desc3:SetText(L["Import profiles for Gladdy"])
 				elseif IsAddOnLoaded("Gladius") and IsAddOnLoaded("Gladdy") then
@@ -632,7 +632,7 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("BigWigs","ENTERING") end)
 			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option3:SetText('BigWigs')
-			if E.Wrath then
+			if E.Cata then
 				_G.PluginInstallFrame.Option4:Enable()
 				_G.PluginInstallFrame.Option4:Show()
 				if IsAddOnLoaded("Gladdy") and not IsAddOnLoaded("Gladius") then
@@ -660,7 +660,7 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
 				_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
 			end
-			if (not IsAddOnLoaded("Questie")) and (E.Classic or E.Wrath) then
+			if (not IsAddOnLoaded("Questie")) and (E.Classic or E.Cata) then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				_G.PluginInstallFrame.Desc1:SetText(L["Questie is not installed or enabled"])
 				_G.PluginInstallFrame.Option1:Disable()
@@ -686,7 +686,7 @@ ElvUI_EltreumUI.InstallerData = {
 				_G.PluginInstallFrame.Option2:Disable()
 				_G.PluginInstallFrame.Option3:Disable()
 			end
-			if not IsAddOnLoaded("Gladdy") and (E.Wrath) and not IsAddOnLoaded("Gladius") then
+			if not IsAddOnLoaded("Gladdy") and (E.Cata) and not IsAddOnLoaded("Gladius") then
 				_G.PluginInstallFrame.SubTitle:SetFormattedText("|cffff0000"..L["WARNING"])
 				_G.PluginInstallFrame.Desc3:SetText(L["Both Gladdy and Gladius are not installed or enabled"])
 				_G.PluginInstallFrame.Option4:Disable()
@@ -697,7 +697,7 @@ ElvUI_EltreumUI.InstallerData = {
 			if E.Classic and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs"))) then
 				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
-			if (E.Wrath) and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("Gladdy")) and (not IsAddOnLoaded("Gladius"))) then
+			if (E.Cata) and ((not IsAddOnLoaded("Questie")) and (not IsAddOnLoaded("DBM-Core")) and (not IsAddOnLoaded("BigWigs")) and (not IsAddOnLoaded("Gladdy")) and (not IsAddOnLoaded("Gladius"))) then
 				_G.PluginInstallFrame.Desc4:SetText('|cffff0000'..L["You have none of these addons installed or enabled"]..'|r')
 			end
 		end,

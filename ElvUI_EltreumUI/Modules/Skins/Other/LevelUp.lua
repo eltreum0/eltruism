@@ -9,7 +9,7 @@ local UIFrameFadeOut = _G.UIFrameFadeOut
 
 function ElvUI_EltreumUI:SkinLevelUp()
 	-- Color level up display and boss banner originally by Aftermathh, 9.1 partially by Eltreum
-	if E.Retail then
+	if E.Retail or E.Cata then
 		if E.db.ElvUI_EltreumUI.skins.levelbossinstance then
 
 			--skin the toast popup for level
@@ -95,6 +95,29 @@ function ElvUI_EltreumUI:SkinLevelUp()
 				BossBanner.SubTitle:SetFont(E.LSM:Fetch("font", E.db.general.font), 17, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				--/script BossBanner:Show()
 			end
+
+			--cata levelup
+			if _G.LevelUpDisplay then
+				_G.LevelUpDisplay.gLine:SetAlpha(0)
+				_G.LevelUpDisplay.gLine2:SetAlpha(0)
+
+				_G.LevelUpDisplay.StatusLine = CreateFrame("StatusBar", "EltruismEventToastLine", _G.LevelUpDisplay)
+				_G.LevelUpDisplay.StatusLine:SetMinMaxValues(0,100)
+				_G.LevelUpDisplay.StatusLine:SetValue(100)
+				_G.LevelUpDisplay.StatusLine:SetSize(418, 3)
+				_G.LevelUpDisplay.StatusLine:SetPoint("TOP", _G.LevelUpDisplay, 0, -5)
+				_G.LevelUpDisplay.StatusLine:SetStatusBarTexture(E.Media.Textures.Highlight)
+				_G.LevelUpDisplay.StatusLine:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
+				_G.LevelUpDisplay.StatusLine:SetParent(_G.LevelUpDisplay)
+				_G.LevelUpDisplay.StatusLine2 = CreateFrame("StatusBar", "EltruismEventToastLine2", _G.LevelUpDisplay)
+				_G.LevelUpDisplay.StatusLine2:SetMinMaxValues(0,100)
+				_G.LevelUpDisplay.StatusLine2:SetValue(100)
+				_G.LevelUpDisplay.StatusLine2:SetSize(418, 3)
+				_G.LevelUpDisplay.StatusLine2:SetPoint("BOTTOM", _G.LevelUpDisplay, 0, 0)
+				_G.LevelUpDisplay.StatusLine2:SetStatusBarTexture(E.Media.Textures.Highlight)
+				_G.LevelUpDisplay.StatusLine2:SetStatusBarColor(classcolor.r, classcolor.g, classcolor.b, 1)
+				_G.LevelUpDisplay.StatusLine2:SetParent(_G.LevelUpDisplay)
+			end
 		end
 	end
 
@@ -113,7 +136,7 @@ function ElvUI_EltreumUI:SkinLevelUp()
 end
 
 --add one for classic/tbc as well, but for some reason doesnt really work inside a function, maybe because of the timer?
-if E.Wrath or E.Classic then
+if E.Classic then
 	local LevelUpFrame = CreateFrame("Frame", "EltruismLevelUp", UIParent)
 	LevelUpFrame:SetPoint("TOP", UIParent, 0, -100)
 	LevelUpFrame:SetSize(418, 72)
@@ -161,7 +184,7 @@ if E.Wrath or E.Classic then
 	LevelUpFrame:Hide()
 
 	local playerlevel = E.mylevel
-	if E.Wrath or E.Classic then
+	if E.Cata or E.Classic then
 		LevelUpFrame:RegisterEvent("PLAYER_LEVEL_UP")
 		--LevelUpFrame:RegisterEvent("PLAYER_STARTED_MOVING")
 		--LevelUpFrame:SetScript("OnEvent", function(self, event, ...)

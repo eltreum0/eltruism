@@ -94,21 +94,14 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	if E.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
-		if E.myclass == 'HUNTER' then
-			local requiredversion = tonumber(GetAddOnMetadata("ElvUI_EltreumUI", 'X-Interface'))
-			local currentversion = select(4,GetBuildInfo())
-			if currentversion <= requiredversion then
-				ElvUI_EltreumUI:ExpandedStable() --expands pet stable for hunters
-			end
-		end
 		ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
-	elseif E.Wrath or E.Classic then
-		ElvUI_EltreumUI:ClassicSockets() --adds sockets and enchants into the character panel, based on Kibs Item Level by Kibsgaard
+	elseif E.Cata or E.Classic then
 		if not E.Cata then
 			ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
+			ElvUI_EltreumUI:UpdateAvgIlvl() --updates the ilvl of the character at login so its not 0
+			ElvUI_EltreumUI:ClassicSockets() --adds sockets and enchants into the character panel, based on Kibs Item Level by Kibsgaard
 		end
-		ElvUI_EltreumUI:UpdateAvgIlvl() --updates the ilvl of the character at login so its not 0
 		ElvUI_EltreumUI:SkinProfessions() --makes professions wider
 	end
 	if not E.Classic then
@@ -175,10 +168,9 @@ function ElvUI_EltreumUI:Initialize()
 		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
 		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 	end
-	if E.Wrath then
+	if E.Cata then
 		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
 		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
-		ElvUI_EltreumUI:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
 	end
 	if E.ClassicSOD then
 		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
@@ -310,19 +302,19 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 end
 
 local currenttalentretail = E.Retail and GetSpecialization()
-local currenttalentwrath = E.Wrath and GetActiveTalentGroup()
+local currenttalentcata = E.Cata and GetActiveTalentGroup()
 function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 	local newtalentretail = E.Retail and GetSpecialization()
-	local newtalentwrath = (E.Wrath or E.ClassicSOD) and GetActiveTalentGroup()
+	local newtalentcata = (E.Cata or E.ClassicSOD) and GetActiveTalentGroup()
 	if E.Retail then
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
 	end
-	if (E.Retail and currenttalentretail ~= newtalentretail) or ((E.Wrath or E.ClassicSOD) and currenttalentwrath ~= newtalentwrath) then
+	if (E.Retail and currenttalentretail ~= newtalentretail) or ((E.Cata or E.ClassicSOD) and currenttalentcata ~= newtalentcata) then
 		currenttalentretail = newtalentretail
-		currenttalentwrath = newtalentwrath
+		currenttalentcata = newtalentcata
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		ElvUI_EltreumUI:FixChatToggles()
-		if E.Retail or (E.Wrath or E.ClassicSOD) then
+		if E.Retail or (E.Cata or E.ClassicSOD) then
 			ElvUI_EltreumUI:NamePlateOptions()
 			ElvUI_EltreumUI:Shadows()
 			if E.private.nameplates.enable then

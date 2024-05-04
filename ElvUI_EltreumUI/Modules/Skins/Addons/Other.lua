@@ -1,7 +1,6 @@
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
-local UIFrameFadeOut = _G.UIFrameFadeOut
 local PlaySoundFile = _G.PlaySoundFile
 
 function ElvUI_EltreumUI:EltruismScrap()
@@ -44,10 +43,17 @@ function ElvUI_EltreumUI:HardcoreDeath()
 
 		if E.db.ElvUI_EltreumUI.skins.playerdeathhardcore then
 			HardcoreMonitor:RegisterEvent("PLAYER_DEAD")
+			HardcoreMonitor:SetScript("OnEvent", function()
+				if C_GameRules.IsHardcoreActive() then
+					E:Delay(4,function() PlaySoundFile("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\sound\\overconfidence.ogg" , "Master") end)
+				end
+			end)
 		end
-		if E.db.ElvUI_EltreumUI.skins.guildmemberdeathhardcore then
-			HardcoreMonitor:RegisterEvent("GUILD_MEMBER_DIED")
-			HardcoreMonitor:RegisterEvent("CHAT_MSG_GUILD_DEATHS")
+
+		--the new event HARDCORE_DEATHS, does not return name of the unit, so this is gone
+		--[[if E.db.ElvUI_EltreumUI.skins.guildmemberdeathhardcore then
+			HardcoreMonitor:RegisterEvent("HARDCORE_DEATHS") --GUILD_MEMBER_DIED was removed
+			--HardcoreMonitor:RegisterEvent("CHAT_MSG_GUILD_DEATHS") --also removed
 		end
 		--HardcoreMonitor:RegisterEvent("PLAYER_STARTED_MOVING")
 		HardcoreMonitor:SetScript("OnEvent", function(_,event,guildmembername)
@@ -81,7 +87,7 @@ function ElvUI_EltreumUI:HardcoreDeath()
 					end
 				end
 			end
-		end)
+		end)]]
 	end
 end
 

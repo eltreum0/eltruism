@@ -145,7 +145,7 @@ end
 
 --Dynamically datatext swap based on player class
 function ElvUI_EltreumUI:DynamicClassicDatatext()
-	if E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext then
+	if E.db.ElvUI_EltreumUI.otherstuff.dynamicdatatext and E.Classic then
 		if not E.db.movers then E.db.movers = {} end
 		if E.myclass == 'HUNTER' or E.myclass == 'WARLOCK' then
 			E.db["datatexts"]["panels"]["LeftChatDataPanel"][1] = "Eltruism Ammo"
@@ -209,7 +209,7 @@ function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 		return
 	else
 		if E.private.ElvUI_EltreumUI.install_version >= "2.2.5" and E.db.nameplates.filters.EltreumSpellsteal and not InCombatLockdown() then
-			if E.Wrath or E.Retail then
+			if E.Cata or E.Retail then
 				if E.myclass == 'MAGE' then
 					level = UnitLevel("player")
 					if E.Retail then
@@ -218,7 +218,7 @@ function ElvUI_EltreumUI:DynamicSpellStealStyleFilter()
 						elseif level < 39 then
 							E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = false
 						end
-					elseif E.Wrath then
+					elseif E.Cata then
 						if level >= 70 then
 							E.db["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["enable"] = true
 						elseif level < 70 then
@@ -253,7 +253,7 @@ function ElvUI_EltreumUI:ActionPagingSwap()
 			E.db["actionbar"]["stanceBar"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 			E.db["actionbar"]["totemBar"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 
-			if E.Retail or E.Wrath then
+			if E.Retail or E.Cata then
 				E.db["actionbar"]["bar1"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
 				E.db["actionbar"]["bar1"]["paging"]["DEMONHUNTER"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
 				E.db["actionbar"]["bar1"]["paging"]["DRUID"] = "[vehicleui] 16; [overridebar] 18; [possessbar] 16; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
@@ -309,7 +309,7 @@ function ElvUI_EltreumUI:ActionPagingSwap()
 			E.db["actionbar"]["stanceBar"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 			E.db["actionbar"]["totemBar"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 
-			if E.Retail or E.Wrath then
+			if E.Retail or E.Cata then
 				E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
 				E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
 				E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[vehicleui] 16; [overridebar] 18; [possessbar] 16; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
@@ -365,7 +365,7 @@ function ElvUI_EltreumUI:ActionPagingSwap()
 			E.db["actionbar"]["stanceBar"]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 			E.db["actionbar"]["totemBar"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
 
-			if E.Retail or E.Wrath then
+			if E.Retail or E.Cata then
 				E.db["actionbar"]["bar4"]["paging"]["DEATHKNIGHT"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
 				E.db["actionbar"]["bar4"]["paging"]["DEMONHUNTER"] = "[vehicleui] 16; [overridebar] 18;[possessbar] 16;[bonusbar:5] 11;"
 				E.db["actionbar"]["bar4"]["paging"]["DRUID"] = "[vehicleui] 16; [overridebar] 18; [possessbar] 16; [bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;[bonusbar:5] 11;"
@@ -416,7 +416,7 @@ function ElvUI_EltreumUI:ActionPagingSwap()
 end
 
 --fix master loot?
-if E.Wrath then
+if E.Cata then
 	hooksecurefunc(_G.MasterLooterFrame, 'Hide', function(self)
 		self:ClearAllPoints()
 	end)

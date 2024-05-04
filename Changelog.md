@@ -1,6 +1,31 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.1.3
+Added an option to set the Unitframe Models to be inside the Texture or inside the Frame itself  
+Added an option to change several textures in ElvUI in Eltruism > Media  
+Added Zalgo to NPC block list to avoid auto turn-in quests  
+Added an option to have a circular minimap and not rotate  
+Added an option to disable worldPreloadNonCritical  
+Added a fix for Scrap addon when using ElvUI bags  
+Added borders to more frames  
+Added Support for Cataclysm  
+Updated Details skin to only shorten names when using Details shorten names option  
+Updated Eltruism Res Panel to also work in LFR in Season 4  
+Updated install for Season of Discovery due to Dual Spec  
+Updated Power Prediction to use ElvUI Unitframe Texture  
+Updated locale by Dlarge  
+Updated Auctionator Skin  
+Fixed an issue in Hardcore due to the events for Guild Deaths being removed  
+Fixed Classic Shadow Priest not correctly paging with Shadowform  
+Fixed an issue with Sockets in Season of Discovery  
+Fixed shadows when Power/Classbar were detached  
+Fixed an issue when using AnnoyingPopupRemover  
+Fixed coloring of Debuffs when using Borders  
+Fixed an error with Focus Target border  
+Fixed an issue with Action Bar Masks  
+Fixed a few Custom Texts  
+Fixed Classic Datatexts  
 ### 4.1.2
 Added Details icons to its dropdown  
 Updated Party and Raid visibility settings to follow ElvUI's new format  
@@ -10,7 +35,7 @@ Updated German locale by Dlarge
 Fixed a possible error with the LFG skin due to a Blizzard bug where scores dont return colors  
 Fixed the default value of the Hide Dash in the Quest Skin  
 Fixed a Minimap difficulty icon change in Retail  
-Fixed the Spellbook shadow in Classic
+Fixed the Spellbook shadow in Classic  
 ### 4.1.1
 Added an option to change the font size of the header text in the Quests skin  
 Added an option to hide the checkmark in the Quests skin  
@@ -36,7 +61,7 @@ Fixed an issue where BigWigs profile could overwrite current profiles
 Fixed an issue where a German locale text was being used in English  
 Fixed the [eltruism:healermana] tag in Wrath  
 Fixed a possible issue when hiding toasts  
-Fixed some Unitframe shadows
+Fixed some Unitframe shadows  
 ### 4.1.0
 Added the Mythic Plus completion toast to the Hide Toasts option  
 Added U.GG class icons to Details, Tags and Portraits  
