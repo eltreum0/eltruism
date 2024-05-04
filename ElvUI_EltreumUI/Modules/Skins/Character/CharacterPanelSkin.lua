@@ -2030,18 +2030,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			end
 
-			if E.Cata then
-				_G.PlayerTitleDropDown:ClearAllPoints()
-				_G.PlayerTitleDropDown:SetParent(CharacterModelFrame)
-				_G.PlayerTitleDropDown:SetPoint('TOP', CharacterModelFrame, -6, 40)
-				_G.PVPFrameToggleButton:ClearAllPoints()
-				_G.PVPFrameToggleButton:SetPoint('CENTER', _G.PVPHonor, 'CENTER', 90, 47)
-				_G.PVPFrameToggleButton:SetParent(_G.PVPFrameHonor)
-			elseif E.Classic then
-				CharacterTitleText:ClearAllPoints()
-				CharacterTitleText:SetPoint('TOP', CharacterModelFrame, 0, 40)
-				CharacterTitleText:SetParent(CharacterModelFrame)
-			end
+			CharacterTitleText:ClearAllPoints()
+			CharacterTitleText:SetPoint('TOP', CharacterModelFrame, 0, 40)
+			CharacterTitleText:SetParent(CharacterModelFrame)
 
 			if _G.ReputationListScrollFrameScrollBar then
 				local point, relativeTo, relativePoint, xOfs = _G.ReputationListScrollFrameScrollBar:GetPoint()
