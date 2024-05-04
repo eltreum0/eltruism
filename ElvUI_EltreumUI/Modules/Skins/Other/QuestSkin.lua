@@ -1305,6 +1305,15 @@ function ElvUI_EltreumUI:SkinQuests()
 				_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
 			end)
 
+			_G["WatchFrameCollapseExpandButton"]:HookScript("OnShow", function()
+				E:Delay(0, function()
+					_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexture("Interface\\Addons\\ElvUI\\Core\\Media\\Textures\\MinusButton")
+					_G["WatchFrameCollapseExpandButton"]:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
+					_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexture("Interface\\Addons\\ElvUI\\Core\\Media\\Textures\\MinusButton")
+					_G["WatchFrameCollapseExpandButton"]:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
+				end)
+			end)
+
 			--highlight
 			hooksecurefunc("WatchFrameLinkButtonTemplate_Highlight", function(quest, onEnter)
 				local line
