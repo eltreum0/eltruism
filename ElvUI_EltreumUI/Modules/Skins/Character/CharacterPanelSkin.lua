@@ -1428,6 +1428,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						if E.db.ElvUI_EltreumUI.skins.classicarmory then
 							CharacterFrame:SetHeight(455)
 							CharacterFrame:SetWidth(665)
+
+							_G.CharacterMainHandSlot:ClearAllPoints()
+							_G.CharacterMainHandSlot:SetPoint('CENTER', _G.CharacterFrame, 'CENTER', -145, -202)
 						end
 						if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
@@ -1441,6 +1444,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						if E.db.ElvUI_EltreumUI.skins.classicarmory then
 							CharacterFrame:SetHeight(455)
 							CharacterFrame:SetWidth(470)
+
+							_G.CharacterMainHandSlot:ClearAllPoints()
+							_G.CharacterMainHandSlot:SetPoint('CENTER', _G.CharacterFrame, 'CENTER', -47.5, -202) --if not .5 then the item slightly moves
 						end
 						if E.db.ElvUI_EltreumUI.skins.expandarmorybg then
 							if E.db.ElvUI_EltreumUI.skins.armorybgtype == "CLASS" then
@@ -1532,12 +1538,10 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		--expand and skin the panel
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then
 
-			if E.Cata then --skin the gear manager button
-				if _G["GearManagerToggleButton"] then
-					_G["GearManagerToggleButton"]:GetNormalTexture():SetTexCoord(0.20, 0.80, 0.16, 0.85)
-					_G["GearManagerToggleButton"]:GetPushedTexture():SetTexCoord(0.20, 0.80, 0.16, 0.85)
-					_G["GearManagerToggleButton"]:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
-				end
+			if _G["GearManagerToggleButton"] then
+				_G["GearManagerToggleButton"]:GetNormalTexture():SetTexCoord(0.20, 0.80, 0.16, 0.85)
+				_G["GearManagerToggleButton"]:GetPushedTexture():SetTexCoord(0.20, 0.80, 0.16, 0.85)
+				_G["GearManagerToggleButton"]:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
 			end
 
 			CharacterFrame:SetHeight(455)
@@ -1591,6 +1595,11 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			_G.ReputationFrame:HookScript("OnShow", HandleCharacterPanelSize)
 			_G.TokenFrame:HookScript("OnShow", HandleCharacterPanelSize)
 			_G.PetModelFrame:HookScript("OnShow", HandleCharacterPanelSize)
+
+			--adjust the items
+			_G.CharacterMainHandSlot:ClearAllPoints()
+			_G.CharacterMainHandSlot:SetPoint('CENTER', _G.CharacterFrame, 'CENTER', -145, -202)
+			--_G.CharacterMainHandSlot:SetPoint('CENTER', _G.CharacterFrame, 'CENTER', -50, -202)
 		end
 
 		--add gradient text to stats
