@@ -73,9 +73,9 @@ function ElvUI_EltreumUI:DarkMode()
 		--setup namecolors
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 			if E.db["unitframe"]["units"]["pet"]["customTexts"] and E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
-				if E.Classic or E.Cata then
+				if E.Classic then
 					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name:eltruism:gradient][happiness:discord]"
-				elseif E.Retail then
+				else
 					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name:eltruism:gradient]"
 				end
 			end
@@ -128,9 +128,9 @@ function ElvUI_EltreumUI:DarkMode()
 			end
 		else
 			if E.db["unitframe"]["units"]["pet"]["customTexts"] and E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
-				if E.Classic or E.Cata then
+				if E.Classic then
 					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate][happiness:discord]"
-				elseif E.Retail then
+				else
 					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
 				end
 			end
@@ -292,9 +292,9 @@ function ElvUI_EltreumUI:LightMode()
 
 		--setup namecolors
 		if E.db["unitframe"]["units"]["pet"]["customTexts"] and E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
-			if E.Classic or E.Cata then
+			if E.Classic then
 				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name:eltruism:abbreviate][happiness:discord]"
-			elseif E.Retail then
+			else
 				E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name:eltruism:abbreviate]"
 			end
 		end
@@ -476,9 +476,9 @@ function ElvUI_EltreumUI:GradientMode()
 			--setup namecolors
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 				if E.db["unitframe"]["units"]["pet"]["customTexts"] and E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
-					if E.Classic or E.Cata then
+					if E.Classic then
 						E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name:eltruism:gradient][happiness:discord]"
-					elseif E.Retail then
+					else
 						E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name:eltruism:gradient]"
 					end
 				end
@@ -531,9 +531,9 @@ function ElvUI_EltreumUI:GradientMode()
 				end
 			else
 				if E.db["unitframe"]["units"]["pet"]["customTexts"] and E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
-					if E.Classic or E.Cata then
+					if E.Classic then
 						E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate][happiness:discord]"
-					elseif E.Retail then
+					else
 						E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
 					end
 				end
@@ -629,9 +629,9 @@ function ElvUI_EltreumUI:GradientMode()
 
 			--setup namecolors
 			if E.db["unitframe"]["units"]["pet"]["customTexts"] and E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
-				if E.Classic or E.Cata then
+				if E.Classic then
 					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name:eltruism:abbreviate][happiness:discord]"
-				elseif E.Retail then
+				else
 					E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name:eltruism:abbreviate]"
 				end
 			end

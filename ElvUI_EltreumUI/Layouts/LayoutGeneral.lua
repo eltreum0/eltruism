@@ -1071,19 +1071,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 
 	-- Custom Text: Pet
 	E.db["unitframe"]["units"]["pet"]["customTexts"] = E.db["unitframe"]["units"]["pet"]["customTexts"] or {}
-	if E.Retail then
-		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
-			["attachTextTo"] = "Health",
-			["enable"] = true,
-			["font"] = "Kimberley",
-			["fontOutline"] = "THICKOUTLINE",
-			["justifyH"] = "CENTER",
-			["size"] = 12,
-			["text_format"] = "[name:eltruism:gradient]",
-			["xOffset"] = 0,
-			["yOffset"] = 0
-		}
-	elseif E.Cata or E.Classic then
+	if E.Classic then
 		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
 			["attachTextTo"] = "Health",
 			["enable"] = true,
@@ -1092,6 +1080,18 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 			["justifyH"] = "CENTER",
 			["size"] = 12,
 			["text_format"] = "[name:eltruism:gradient][happiness:discord]",
+			["xOffset"] = 0,
+			["yOffset"] = 0
+		}
+	else
+		E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] = {
+			["attachTextTo"] = "Health",
+			["enable"] = true,
+			["font"] = "Kimberley",
+			["fontOutline"] = "THICKOUTLINE",
+			["justifyH"] = "CENTER",
+			["size"] = 12,
+			["text_format"] = "[name:eltruism:gradient]",
 			["xOffset"] = 0,
 			["yOffset"] = 0
 		}
