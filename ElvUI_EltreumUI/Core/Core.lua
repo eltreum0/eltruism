@@ -845,9 +845,20 @@ end
 
 --make mage and warlock use their original class colors
 function ElvUI_EltreumUI:OriginalClassColors()
-
+	--_G.RAID_CLASS_COLORS can cause issues inside instances if friendly nameplates are enabled, so check for that
 	local inInstance = IsInInstance()
-	local canTouchRaidClassColors = GetCVar('nameplateShowFriends') and 1 and GetCVar('nameplateShowOnlyNames') and 0 and false or true
+	local canTouchRaidClassColors
+	local mapID = _G.WorldMapFrame:GetMapID()
+	if not inInstance and not (mapID == 1662 or mapID == 582 or mapID == 590) then
+		canTouchRaidClassColors = true
+	else
+		if GetCVar('nameplateShowFriends') == 0 then
+			canTouchRaidClassColors = true
+		else
+			canTouchRaidClassColors = false
+		end
+	end
+
 	if E.db.ElvUI_EltreumUI.skins.oldclasscolors then
 		if canTouchRaidClassColors and not inInstance then
 			_G.RAID_CLASS_COLORS['MAGE']["r"] = 0.41
