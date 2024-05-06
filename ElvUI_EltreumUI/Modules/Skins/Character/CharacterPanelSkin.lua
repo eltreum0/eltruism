@@ -1374,14 +1374,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if CharacterFrame.ItemLevelText then
 						CharacterFrame.ItemLevelText:ClearAllPoints()
 						CharacterFrame.ItemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -10)
-						CharacterFrame.ItemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+						--CharacterFrame.ItemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 						CharacterFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
 					end
 				else
 					if CharacterFrame.ItemLevelText then
 						CharacterFrame.ItemLevelText:ClearAllPoints()
 						CharacterFrame.ItemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -10)
-						CharacterFrame.ItemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+						--CharacterFrame.ItemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 						CharacterFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(1, 1, 1)..((math.floor(equippedilvl*100))/100).."|r")
 					end
 				end
@@ -1475,7 +1475,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 								if CharacterFrame.ItemLevelText then
 									CharacterFrame.ItemLevelText:ClearAllPoints()
 									CharacterFrame.ItemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -10)
-									CharacterFrame.ItemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+									--CharacterFrame.ItemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 									CharacterFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(1, 1, 1)..((math.floor(equippedilvl*100))/100).."|r")
 								end
 							end
@@ -1755,7 +1755,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if CharacterFrame.ItemLevelText then
 						CharacterFrame.ItemLevelText:ClearAllPoints()
 						CharacterFrame.ItemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -10)
-						CharacterFrame.ItemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+						--CharacterFrame.ItemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 						CharacterFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(1, 1, 1)..((math.floor(equippedilvl*100))/100).."|r")
 					end
 				end
@@ -1793,14 +1793,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					if CharacterFrame.ItemLevelText then
 						CharacterFrame.ItemLevelText:ClearAllPoints()
 						CharacterFrame.ItemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -10)
-						CharacterFrame.ItemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+						--CharacterFrame.ItemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 						CharacterFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
 					end
 				else
 					if CharacterFrame.ItemLevelText then
 						CharacterFrame.ItemLevelText:ClearAllPoints()
 						CharacterFrame.ItemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -10)
-						CharacterFrame.ItemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+						--CharacterFrame.ItemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.font), 12, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 						CharacterFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(1, 1, 1)..((math.floor(equippedilvl*100))/100).."|r")
 					end
 				end
