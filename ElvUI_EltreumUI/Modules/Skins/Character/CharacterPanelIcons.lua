@@ -128,7 +128,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				UpdateNameGradient()
 			end)
 
-			if E.Retail then --TODO: CATACLYSM THINGS
+			if E.Retail then
 				hooksecurefunc("CharacterFrame_Collapse", function()
 					if PaperDollFrame:IsShown() then
 						if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
