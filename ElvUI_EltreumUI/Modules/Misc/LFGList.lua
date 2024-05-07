@@ -245,6 +245,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 		local function SearchEntry_Update(entry)
 			if _G.LFGListFrame.EntryCreation:IsShown() then return end
 			if not _G.LFGListFrame.SearchPanel:IsShown() then return end
+			if not entry.resultID then return end
 			local resultInfo = C_LFGList.GetSearchResultInfo(entry.resultID)
 			local activityTable = C_LFGList.GetActivityInfoTable(resultInfo.activityID)
 			local categoryID = activityTable.categoryID
