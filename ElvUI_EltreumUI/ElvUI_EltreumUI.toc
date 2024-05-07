@@ -10,7 +10,7 @@
 ## RequiredDeps: Blizzard_CombatText
 ## OptionalDeps: ElvUI_SLE, ElvUI_WindTools, ProjectAzilroka, AddOnSkins
 ## DefaultState: enabled
-## X-Interface: 100206
+## X-Interface: 100207
 ## X-ElvUI: 13.62
 ## X-Tukui-ProjectID: 209
 ## X-Curse-Project-ID: 459494
