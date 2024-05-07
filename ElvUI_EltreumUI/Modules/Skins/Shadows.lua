@@ -2879,7 +2879,7 @@ function ElvUI_EltreumUI:Shadows()
 
 				--info panel on top
 				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
-					if (E.db.unitframe.units.player.infoPanel.enable and _G["ElvUF_Player"].USE_INFO_PANEL) and not (E.db.ElvUI_EltreumUI.borders.playerborder and E.db.ElvUI_EltreumUI.borders.borders) then ------TODO might need to look into right orientation
+					if (E.db.unitframe.units.player.infoPanel.enable and _G["ElvUF_Player"].USE_INFO_PANEL) and not (E.db.ElvUI_EltreumUI.borders.playerborder and E.db.ElvUI_EltreumUI.borders.borders) then
 						if _G["ElvUF_Player_HealthBar"].shadow then
 							_G["ElvUF_Player_HealthBar"].shadow:Hide()
 						end

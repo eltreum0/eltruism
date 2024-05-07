@@ -845,11 +845,27 @@ end
 
 --make mage and warlock use their original class colors
 function ElvUI_EltreumUI:OriginalClassColors()
+	--_G.RAID_CLASS_COLORS can cause issues inside instances if friendly nameplates are enabled, so check for that
+	local inInstance = IsInInstance()
+	local canTouchRaidClassColors
+	local mapID = _G.WorldMapFrame:GetMapID()
+	if not inInstance and not (mapID == 1662 or mapID == 582 or mapID == 590) then
+		canTouchRaidClassColors = true
+	else
+		if GetCVar('nameplateShowFriends') == 0 then
+			canTouchRaidClassColors = true
+		else
+			canTouchRaidClassColors = false
+		end
+	end
+
 	if E.db.ElvUI_EltreumUI.skins.oldclasscolors then
-		_G.RAID_CLASS_COLORS['MAGE']["r"] = 0.41
-		_G.RAID_CLASS_COLORS['MAGE']["g"] = 0.8
-		_G.RAID_CLASS_COLORS['MAGE']["b"] = 0.94
-		_G.RAID_CLASS_COLORS['MAGE']["colorStr"] = "ff69CCF0"
+		if canTouchRaidClassColors and not inInstance then
+			_G.RAID_CLASS_COLORS['MAGE']["r"] = 0.41
+			_G.RAID_CLASS_COLORS['MAGE']["g"] = 0.8
+			_G.RAID_CLASS_COLORS['MAGE']["b"] = 0.94
+			_G.RAID_CLASS_COLORS['MAGE']["colorStr"] = "ff69CCF0"
+		end
 		E.oUF.colors.class['MAGE'][1] = 0.41
 		E.oUF.colors.class['MAGE'][2] = 0.8
 		E.oUF.colors.class['MAGE'][3] = 0.94
@@ -857,10 +873,12 @@ function ElvUI_EltreumUI:OriginalClassColors()
 		E.oUF.colors.class['MAGE']["g"] = 0.8
 		E.oUF.colors.class['MAGE']["b"] = 0.94
 
-		_G.RAID_CLASS_COLORS['WARLOCK']["r"] = 0.58
-		_G.RAID_CLASS_COLORS['WARLOCK']["g"] = 0.51
-		_G.RAID_CLASS_COLORS['WARLOCK']["b"] = 0.79
-		_G.RAID_CLASS_COLORS['WARLOCK']["colorStr"] = "9482C9"
+		if canTouchRaidClassColors and not inInstance then
+			_G.RAID_CLASS_COLORS['WARLOCK']["r"] = 0.58
+			_G.RAID_CLASS_COLORS['WARLOCK']["g"] = 0.51
+			_G.RAID_CLASS_COLORS['WARLOCK']["b"] = 0.79
+			_G.RAID_CLASS_COLORS['WARLOCK']["colorStr"] = "9482C9"
+		end
 		E.oUF.colors.class['WARLOCK'][1] = 0.58
 		E.oUF.colors.class['WARLOCK'][2] = 0.51
 		E.oUF.colors.class['WARLOCK'][3] = 0.79
@@ -872,10 +890,12 @@ function ElvUI_EltreumUI:OriginalClassColors()
 	--make shamans blue again in classic
 	if E.Classic then
 		if E.db.ElvUI_EltreumUI.skins.classicblueshaman then
-			_G.RAID_CLASS_COLORS['SHAMAN']["r"] = 0.00
-			_G.RAID_CLASS_COLORS['SHAMAN']["g"] = 0.44
-			_G.RAID_CLASS_COLORS['SHAMAN']["b"] = 0.87
-			_G.RAID_CLASS_COLORS['SHAMAN']["colorStr"] = "ff0070DD"
+			if canTouchRaidClassColors and not inInstance then
+				_G.RAID_CLASS_COLORS['SHAMAN']["r"] = 0.00
+				_G.RAID_CLASS_COLORS['SHAMAN']["g"] = 0.44
+				_G.RAID_CLASS_COLORS['SHAMAN']["b"] = 0.87
+				_G.RAID_CLASS_COLORS['SHAMAN']["colorStr"] = "ff0070DD"
+			end
 			E.oUF.colors.class['SHAMAN'][1] = 0.00
 			E.oUF.colors.class['SHAMAN'][2] = 0.44
 			E.oUF.colors.class['SHAMAN'][3] = 0.87

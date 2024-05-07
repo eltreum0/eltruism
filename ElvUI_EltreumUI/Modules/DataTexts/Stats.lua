@@ -259,7 +259,7 @@ local function EltruismStatsDatatextOnEnter()
 			DT.tooltip:AddDoubleLine(STAT_EXPERTISE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetExpertise()*0.25).."|r", 1, 1, 1)
 		end
 		if not E.Classic then
-			if not E.Cata then --TODO: CATACLYSM THINGS
+			if not E.Cata then
 				DT.tooltip:AddDoubleLine(STAT_RESILIENCE..":", ElvUI[1].media.hexvaluecolor..GetCombatRating(CR_RESILIENCE_CRIT_TAKEN).."|r", 1, 1, 1)
 			else
 				DT.tooltip:AddDoubleLine(STAT_RESILIENCE..":", ElvUI[1].media.hexvaluecolor..GetCombatRating(_G.COMBAT_RATING_RESILIENCE_CRIT_TAKEN).."|r", 1, 1, 1)
