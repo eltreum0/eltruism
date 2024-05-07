@@ -3,6 +3,8 @@ local _G = _G
 local S = E:GetModule('Skins')
 local CreateFrame = _G.CreateFrame
 
+if not E.Cata then return end
+
 --based on Improved Stable Frame by Cybeloras
 function ElvUI_EltreumUI:ExpandedStable()
 	if E.db.ElvUI_EltreumUI.skins.expandedstable and not self.StableSkinned then
@@ -95,6 +97,8 @@ function ElvUI_EltreumUI:ExpandedStable()
 		if EltruismExpandedStableFrame.NineSlice then
 			EltruismExpandedStableFrame.NineSlice:Hide()
 		end
+
+		S:HandleFrame(EltruismExpandedStableFrame)
 
 		--fix diet icon
 		local texture = _G.PetStableDiet:GetRegions()
