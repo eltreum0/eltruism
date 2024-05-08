@@ -372,16 +372,16 @@ function ElvUI_EltreumUI:GetOmniCDProfile(profile)
 						},
 						["fonts"] = {
 							["statusBar"] = {
-								["font"] = "Kimberley",
-								["flag"] = "OUTLINE",
+								["font"] = E.db.general.font,
+								["flag"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 							},
 							["icon"] = {
-								["font"] = "Kimberley",
+								["font"] = E.db.general.font,
 								["ofsX"] = 1,
 							},
 							["anchor"] = {
-								["font"] = "Kimberley",
-								["flag"] = "OUTLINE",
+								["font"] = E.db.general.font,
+								["flag"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 							},
 						},
 					},
@@ -742,16 +742,16 @@ function ElvUI_EltreumUI:GetOmniCDProfile(profile)
 					["General"] = {
 						["fonts"] = {
 							["statusBar"] = {
-								["font"] = "Kimberley",
-								["flag"] = "OUTLINE",
+								["font"] = E.db.general.font,
+								["flag"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 							},
 							["icon"] = {
-								["font"] = "Kimberley",
+								["font"] = E.db.general.font,
 								["ofsX"] = 1,
 							},
 							["anchor"] = {
-								["font"] = "Kimberley",
-								["flag"] = "OUTLINE",
+								["font"] = E.db.general.font,
+								["flag"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 							},
 						},
 						["textures"] = {
