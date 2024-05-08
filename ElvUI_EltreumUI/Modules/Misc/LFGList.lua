@@ -166,6 +166,16 @@ local REALMS = {
 	},
 }
 
+local LFG_LIST_INACTIVE_STATUSES = {
+	["cancelled"] = true,
+	["failed"] = true,
+	["declined"] = true,
+	["timedout"] = true,
+	["invitedeclined"] = true,
+	["declined_delisted"] = true,
+	["declined_full"] = true,
+}
+
 --LFG Spec Icons, based on https://wago.io/cFpgwuLe0
 function ElvUI_EltreumUI:DungeonRoleIcons()
 	if E.db.ElvUI_EltreumUI.skins.groupfinderSpecIcons then
@@ -356,6 +366,19 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 					else
 						entry.DataDisplay.Enumerate[i]:SetTexture("Interface\\GLUES\\CHARACTERCREATE\\UI-CHARACTERCREATE-CLASSES")
 						entry.DataDisplay.Enumerate[i]:SetTexCoord(unpack(partymembers[i][4]))
+					end
+
+					local _, appStatus = C_LFGList.GetApplicationInfo(entry.resultID);
+					local isInactive = false
+					if LFG_LIST_INACTIVE_STATUSES[appStatus] then
+						isInactive = true
+					end
+					if entry.isNowFilteredOut or isInactive or resultInfo.isDelisted then
+						entry.DataDisplay.Enumerate[i]:SetDesaturated(true)
+						entry.DataDisplay.Enumerate[i.."b"]:SetDesaturated(true)
+					else
+						entry.DataDisplay.Enumerate[i]:SetDesaturated(false)
+						entry.DataDisplay.Enumerate[i.."b"]:SetDesaturated(false)
 					end
 
 					local r, g, b, _ = partymembers[i][3]:GetRGBA()
