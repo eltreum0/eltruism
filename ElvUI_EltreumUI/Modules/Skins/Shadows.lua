@@ -972,8 +972,9 @@ function ElvUI_EltreumUI:Shadows()
 				_G.VoidStorageFrame,
 				_G.WardrobeFrame, --weird
 				_G.WeeklyRewardsFrame,
-				_G.WorldMapFrame and _G.WorldMapFrame.BorderFrame,
-				_G.WorldMapFrame and _G.WorldMapFrame.MiniBorderFrame,
+				E.Retail and _G.WorldMapFrame,
+				not E.Retail and _G.WorldMapFrame and _G.WorldMapFrame.BorderFrame,
+				not E.Retail and _G.WorldMapFrame and _G.WorldMapFrame.MiniBorderFrame,
 				_G.WorldMapTooltip,
 				_G.WorldStateScoreFrame,
 				_G.WorldStateScoreFrameTab1,
