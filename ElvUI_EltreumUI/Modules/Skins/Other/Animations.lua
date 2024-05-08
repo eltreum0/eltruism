@@ -101,7 +101,7 @@ function ElvUI_EltreumUI.PlayerDeathAnimation()
 						local textwidth = darksouls.Text:GetStringWidth()
 						moveOut:SetOffset(-textwidth/2, -fontsize/4)
 					else
-						moveOut:SetOffset(-fontsize, fontsize/8)
+						moveOut:SetOffset(-fontsize*1.25, fontsize/8)
 					end
 
 					UIParent:SetAlpha(0)
