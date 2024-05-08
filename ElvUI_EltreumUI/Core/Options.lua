@@ -3587,38 +3587,34 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added an option to set the Unitframe Models to be inside the Texture or inside the Frame itself
-Added an option to change several textures in ElvUI in Eltruism > Media
-Added Zalgo to NPC block list to avoid auto turn-in quests
-Added an option to have a circular minimap and not rotate
-Added an option to disable worldPreloadNonCritical
-Added a fix for Scrap addon when using ElvUI bags
-Added borders to more frames
-Added Support for Cataclysm
+Added Hunter Pet Stable in Cataclysm since it now uses the old Retail Stables
+Added backgrounds to Portrait Skin
+Added support for 10.2.7
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Details skin to only shorten names when using Details shorten names option
-Updated Eltruism Res Panel to also work in LFR in Season 4
-Updated install for Season of Discovery due to Dual Spec
-Updated Power Prediction to use ElvUI Unitframe Texture
-Updated locale by Dlarge
-Updated Auctionator Skin
+Updated PallyPower skin to only run in Classic Era since Cataclysm doesn't have the same Paladin Blessing system
+Updated the expanded Hunter Pet Stable in Retail by removing it due to the update to Pet Stables
+Updated the Portraits Skin to also fix the rotation of models like the 3D Portraits
+Updated Ammo Datatext to be only in Classic Era since ammo is gone in Cataclysm
+Updated Character Frame Skin to better position the Weapons in Cataclysm
+Updated general Shadow system to be more consistent across versions
+Updated Character Frame Skin to better handle the Item Level text
+Updated DPS profile pet name to not use happiness in Cataclysm
+Updated Cursor to better support Evoker's Empowered Casts
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue in Hardcore due to the events for Guild Deaths being removed
-Fixed Classic Shadow Priest not correctly paging with Shadowform
-Fixed an issue with Sockets in Season of Discovery
-Fixed shadows when Power/Classbar were detached
-Fixed an issue when using AnnoyingPopupRemover
-Fixed coloring of Debuffs when using Borders
-Fixed an error with Focus Target border
-Fixed an issue with Action Bar Masks
-Fixed a few Custom Texts
-Fixed Classic Datatexts
+Fixed a possible issue with the Cooldowns on spells that returned a wrong cooldown from the game's API
+Fixed a possible issue with the original Class Colors for Shaman, Mage and Warlock
+Fixed the glow for Profession Disenchant button in 10.2.7
+Fixed several other shadows in Cataclysm and Classic Era
+Fixed shadows in the PvP battleground score frame
+Fixed an Error in the Character Panel Skin
+Fixed the double Level Up in Cataclysm
+Fixed Quest Reward shadows
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[

@@ -1,26 +1,22 @@
-### 4.1.3 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 4.1.4 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added an option to set the Unitframe Models to be inside the Texture or inside the Frame itself  
-Added an option to change several textures in ElvUI in Eltruism > Media  
-Added Zalgo to NPC block list to avoid auto turn-in quests  
-Added an option to have a circular minimap and not rotate  
-Added an option to disable worldPreloadNonCritical  
-Added a fix for Scrap addon when using ElvUI bags  
-Added borders to more frames  
-Added Support for Cataclysm  
-Updated Details skin to only shorten names when using Details shorten names option  
-Updated Eltruism Res Panel to also work in LFR in Season 4  
-Updated install for Season of Discovery due to Dual Spec  
-Updated Power Prediction to use ElvUI Unitframe Texture  
-Updated locale by Dlarge  
-Updated Auctionator Skin  
-Fixed an issue in Hardcore due to the events for Guild Deaths being removed  
-Fixed Classic Shadow Priest not correctly paging with Shadowform  
-Fixed an issue with Sockets in Season of Discovery  
-Fixed shadows when Power/Classbar were detached  
-Fixed an issue when using AnnoyingPopupRemover  
-Fixed coloring of Debuffs when using Borders  
-Fixed an error with Focus Target border  
-Fixed an issue with Action Bar Masks  
-Fixed a few Custom Texts  
-Fixed Classic Datatexts
+Added Hunter Pet Stable in Cataclysm since it now uses the old Retail Stables  
+Added backgrounds to Portrait Skin  
+Added support for 10.2.7  
+Updated PallyPower skin to only run in Classic Era since Cataclysm doesn't have the same Paladin Blessing system  
+Updated the expanded Hunter Pet Stable in Retail by removing it due to the update to Pet Stables  
+Updated the Portraits Skin to also fix the rotation of models like the 3D Portraits  
+Updated Ammo Datatext to be only in Classic Era since ammo is gone in Cataclysm  
+Updated Character Frame Skin to better position the Weapons in Cataclysm  
+Updated general Shadow system to be more consistent across versions  
+Updated Character Frame Skin to better handle the Item Level text  
+Updated DPS profile pet name to not use happiness in Cataclysm  
+Updated Cursor to better support Evoker's Empowered Casts  
+Fixed a possible issue with the Cooldowns on spells that returned a wrong cooldown from the game's API  
+Fixed a possible issue with the original Class Colors for Shaman, Mage and Warlock  
+Fixed the glow for Profession Disenchant button in 10.2.7  
+Fixed several other shadows in Cataclysm and Classic Era
+Fixed shadows in the PvP battleground score frame  
+Fixed an Error in the Character Panel Skin  
+Fixed the double Level Up in Cataclysm  
+Fixed Quest Reward shadows
