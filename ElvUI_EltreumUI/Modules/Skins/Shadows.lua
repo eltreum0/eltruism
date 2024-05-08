@@ -972,6 +972,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.TimerTrackerTimer2StatusBar,
 				_G.TimerTrackerTimer3StatusBar,
 				--_G.TokenFrame,
+				_G.TokenFramePopup,
 				_G.TradeFrame,
 				_G.VideoOptionsFrame,
 				_G.VoidStorageFrame,
