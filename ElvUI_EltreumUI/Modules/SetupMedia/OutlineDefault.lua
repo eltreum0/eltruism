@@ -151,6 +151,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	E.db["general"]["fonts"]["talkingtitle"]["outline"] = "OUTLINE"
 	E.db["general"]["fonts"]["worldsubzone"]["outline"] = "OUTLINE"
 	E.db["general"]["fonts"]["worldzone"]["outline"] = "OUTLINE"
+	E.db["general"]["itemLevel"]["totalLevelFontOutline"] = "OUTLINE"
 
 	-- Custom Texts
 	local currentprofile

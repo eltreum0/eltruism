@@ -286,6 +286,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["general"]["fonts"]["talkingtitle"]["font"] = "Kimberley"
 	E.db["general"]["fonts"]["talkingtitle"]["outline"] = "OUTLINE"
 	E.db["general"]["fonts"]["talkingtitle"]["size"] = 20
+	E.db["general"]["itemLevel"]["totalLevelFont"] = "Kimberley"
+	E.db["general"]["itemLevel"]["totalLevelFontOutline"] = "OUTLINE"
+	E.db["general"]["itemLevel"]["totalLevelFontSize"] = 22
 
 	-- unitframe colors
 	E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = valuecolors.b
