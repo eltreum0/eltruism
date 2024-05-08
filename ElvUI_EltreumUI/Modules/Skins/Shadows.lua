@@ -939,6 +939,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.RecruitAFriendRewardsFrame,
 				_G.ReportFrame,
 				--_G.ReputationFrame,
+				_G.ReputationDetailFrame,
 				_G.ReputationParagonTooltip,
 				_G.RolePollPopup,
 				_G.SettingsPanel,
