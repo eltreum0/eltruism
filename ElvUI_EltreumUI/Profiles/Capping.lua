@@ -26,7 +26,7 @@ function ElvUI_EltreumUI:GetCappingProfile()
 				["barTexture"] = "ElvUI Norm1",
 				["width"] = 400,
 				["font"] = E.db.general.font,
-				["outline"] = "OUTLINE",
+				["outline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 				["barOnControl"] = "SAY",
 				["height"] = 16,
 				["position"] = {

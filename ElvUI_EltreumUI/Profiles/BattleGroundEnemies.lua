@@ -43,8 +43,8 @@ function ElvUI_EltreumUI:GetBattleGroundEnemiesProfile()
 							[3] = 0,
 						},
 						["HealthBar_HealthPrediction_Enabled"] = true,
-						["Name_Outline"] = "OUTLINE",
-						["NumericTargetindicator_Outline"] = "OUTLINE",
+						["Name_Outline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
+						["NumericTargetindicator_Outline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 						["ButtonModules"] = {
 							["healthBar"] = {
 								["Texture"] = "ElvUI Norm1",
@@ -87,10 +87,10 @@ function ElvUI_EltreumUI:GetBattleGroundEnemiesProfile()
 						["Auras_Debuffs_Container_RelativeTo"] = "DRContainer",
 						["Auras_Debuffs_Container_Point"] = "RIGHT",
 						["ObjectiveAndRespawn_EnableTextshadow"] = true,
-						["Name_Outline"] = "OUTLINE",
+						["Name_Outline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 						["PowerBar_Texture"] = "ElvUI Blank",
 						["DrTracking_GrowDirection"] = "leftwards",
-						["NumericTargetindicator_Outline"] = "OUTLINE",
+						["NumericTargetindicator_Outline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 						["BarVerticalSpacing"] = 5,
 						["ButtonModules"] = {
 							["healthBar"] = {
@@ -118,9 +118,9 @@ function ElvUI_EltreumUI:GetBattleGroundEnemiesProfile()
 						["Position_X"] = 183.1111287196472,
 					},
 					["RangeIndicator_Alpha"] = 0.5,
-					["LevelText_Outline"] = "OUTLINE",
+					["LevelText_Outline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 				},
-				["Font"] = "Kimberley",
+				["Font"] = E.db.general.font,
 				["RBG"] = {
 					["TargetCalling_NotificationSound"] = "Warcraft 3 - Blademaster Twinblade ",
 					["TargetCalling_SetMark"] = true,
@@ -148,11 +148,11 @@ function ElvUI_EltreumUI:GetBattleGroundEnemiesProfile()
 							1, -- [4]
 						},
 						["HealthBar_HealthPrediction_Enabled"] = true,
-						["Name_Outline"] = "OUTLINE",
+						["Name_Outline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 						["DrTracking_Container_Color"] = {
 							[3] = 0,
 						},
-						["NumericTargetindicator_Outline"] = "OUTLINE",
+						["NumericTargetindicator_Outline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 						["RoleIcon_Size"] = 15,
 						["ButtonModules"] = {
 							["healthBar"] = {
@@ -195,9 +195,9 @@ function ElvUI_EltreumUI:GetBattleGroundEnemiesProfile()
 							1, -- [4]
 						},
 						["HealthBar_HealthPrediction_Enabled"] = true,
-						["Name_Outline"] = "OUTLINE",
+						["Name_Outline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 						["BarVerticalSpacing"] = 5,
-						["NumericTargetindicator_Outline"] = "OUTLINE",
+						["NumericTargetindicator_Outline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 						["DrTracking_Container_OffsetX"] = -1,
 						["ButtonModules"] = {
 							["healthBar"] = {
@@ -221,15 +221,15 @@ function ElvUI_EltreumUI:GetBattleGroundEnemiesProfile()
 						["HealthBar_Texture"] = "ElvUI Norm",
 						["Enabled"] = false,
 						["HealthBar_HealthPrediction_Enabled"] = true,
-						["Name_Outline"] = "OUTLINE",
-						["NumericTargetindicator_Outline"] = "OUTLINE",
+						["Name_Outline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
+						["NumericTargetindicator_Outline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 						["PowerBar_Enabled"] = true,
 						["Position_Y"] = 519.1110821469629,
 						["BarWidth"] = 250,
 						["Position_X"] = 1116.08794380349,
 					},
 					["ShowRealmnames"] = false,
-					["LevelText_Outline"] = "OUTLINE",
+					["LevelText_Outline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 				},
 			}
 		end
