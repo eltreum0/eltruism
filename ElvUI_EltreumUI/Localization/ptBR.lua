@@ -1590,3 +1590,4 @@ L["Choose the option you would like to enable"] = "Escolha a opção que você g
 L["Model Inside Health"] = "Modelo dentro da barra de vida"
 L["Model will be set inside health instead of over whole frame"] = "O modelo será definido dentro da barra de vida ao vez de sobre todo o quadro"
 L["Circle Minimap"] = "Minimapa em círculo"
+L["Databars Thickness"] = true
