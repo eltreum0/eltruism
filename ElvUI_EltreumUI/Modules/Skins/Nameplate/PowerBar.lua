@@ -314,6 +314,8 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 							else
 								EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
 							end
+						else
+							EltreumPowerBar:SetPoint("TOP", EltreumPowerAnchor, "TOP", 0, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.posy)
 						end
 					else
 						if E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition then
