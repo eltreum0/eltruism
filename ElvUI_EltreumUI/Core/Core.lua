@@ -563,12 +563,15 @@ EltruismGameMenu:SetScript("OnEvent", function()
 				HideUIPanel(_G.GameMenuFrame)
 			end --E:ToggleOptions("ElvUI_EltreumUI")
 
-			tinsert(E.GameMenuButtonsData, { --Add ElvUI's button so it will be first
-				text = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64|t".. ElvUI_EltreumUI.Name,
-				callback = menubutton,
-				isDisabled = false, --If set to true will make button disabled. Can be set as a fucn to return true/false dynamically if needed
-				disabledText = 'This button is somehow disabled. Probably someone was messing around with the code.' --this text will show up in tooltip when the button is disabled
-			})
+			if not isMenuExpanded then
+				tinsert(E.GameMenuButtonsData, { --Add ElvUI's button so it will be first
+					text = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64|t".. ElvUI_EltreumUI.Name,
+					callback = menubutton,
+					isDisabled = false, --If set to true will make button disabled. Can be set as a fucn to return true/false dynamically if needed
+					disabledText = 'This button is somehow disabled. Probably someone was messing around with the code.' --this text will show up in tooltip when the button is disabled
+				})
+				isMenuExpanded = true
+			end
 		else
 			if not isMenuExpanded then
 				EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64|t".. ElvUI_EltreumUI.Name) --new 64x64 icon
