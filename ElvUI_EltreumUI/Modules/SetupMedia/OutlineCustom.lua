@@ -29,6 +29,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	E.db["general"]["guildBank"]["itemLevelFontOutline"] = fontStyle
 	E.db["general"]["queueStatus"]["fontOutline"] = fontStyle
 	E.db["general"]["totems"]["fontOutline"] = fontStyle
+	E.db["general"]["itemLevel"]["totalLevelFontOutline"] = fontStyle
 
 	-- Cooldown
 	E.db["cooldown"]["fonts"]["fontOutline"] = fontStyle

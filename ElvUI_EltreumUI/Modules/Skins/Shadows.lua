@@ -564,9 +564,13 @@ function ElvUI_EltreumUI:Shadows()
 										ElvUI_EltreumUI:ShadowColor(_G.AchievementFrame.shadow)
 									end
 								end
-								if _G.AchievementFrame.SearchPreviewContainer and _G.AchievementFrame.SearchPreviewContainer.backdrop then
+								if _G.AchievementFrame.SearchPreviewContainer and _G.AchievementFrame.SearchPreviewContainer.backdrop and not _G.AchievementFrame.SearchPreviewContainer.backdrop.shadow then
 									 _G.AchievementFrame.SearchPreviewContainer.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									ElvUI_EltreumUI:ShadowColor( _G.AchievementFrame.SearchPreviewContainer.backdrop.shadow)
+									ElvUI_EltreumUI:ShadowColor(_G.AchievementFrame.SearchPreviewContainer.backdrop.shadow)
+								end
+								if _G.AchievementFrame.SearchResults and _G.AchievementFrame.SearchResults.backdrop and not _G.AchievementFrame.SearchResults.backdrop.shadow then
+									_G.AchievementFrame.SearchResults.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G.AchievementFrame.SearchResults.backdrop.shadow)
 								end
 							end
 							if _G.AchievementFrameTab3 and _G.AchievementFrameTab3.backdrop and not _G.AchievementFrameTab3.backdrop.shadow then
@@ -935,6 +939,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.RecruitAFriendRewardsFrame,
 				_G.ReportFrame,
 				--_G.ReputationFrame,
+				_G.ReputationDetailFrame,
 				_G.ReputationParagonTooltip,
 				_G.RolePollPopup,
 				_G.SettingsPanel,
@@ -967,13 +972,15 @@ function ElvUI_EltreumUI:Shadows()
 				_G.TimerTrackerTimer2StatusBar,
 				_G.TimerTrackerTimer3StatusBar,
 				--_G.TokenFrame,
+				_G.TokenFramePopup,
 				_G.TradeFrame,
 				_G.VideoOptionsFrame,
 				_G.VoidStorageFrame,
 				_G.WardrobeFrame, --weird
 				_G.WeeklyRewardsFrame,
-				_G.WorldMapFrame and _G.WorldMapFrame.BorderFrame,
-				_G.WorldMapFrame and _G.WorldMapFrame.MiniBorderFrame,
+				E.Retail and _G.WorldMapFrame,
+				not E.Retail and _G.WorldMapFrame and _G.WorldMapFrame.BorderFrame,
+				not E.Retail and _G.WorldMapFrame and _G.WorldMapFrame.MiniBorderFrame,
 				_G.WorldMapTooltip,
 				_G.WorldStateScoreFrame,
 				_G.WorldStateScoreFrameTab1,
@@ -2879,7 +2886,7 @@ function ElvUI_EltreumUI:Shadows()
 
 				--info panel on top
 				if E.db.ElvUI_EltreumUI.unitframes.infopanelontop then
-					if (E.db.unitframe.units.player.infoPanel.enable and _G["ElvUF_Player"].USE_INFO_PANEL) and not (E.db.ElvUI_EltreumUI.borders.playerborder and E.db.ElvUI_EltreumUI.borders.borders) then ------TODO might need to look into right orientation
+					if (E.db.unitframe.units.player.infoPanel.enable and _G["ElvUF_Player"].USE_INFO_PANEL) and not (E.db.ElvUI_EltreumUI.borders.playerborder and E.db.ElvUI_EltreumUI.borders.borders) then
 						if _G["ElvUF_Player_HealthBar"].shadow then
 							_G["ElvUF_Player_HealthBar"].shadow:Hide()
 						end

@@ -13,10 +13,10 @@ local GetTime = _G.GetTime
 local tinsert = _G.tinsert
 local tremove = _G.tremove
 local unpack = _G.unpack
-local GetSpellCooldown = _G.C_Spell and _G.C_Spell.GetSpellCooldown or _G.GetSpellCooldown
+local GetSpellCooldown = _G.GetSpellCooldown
 local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
-local GetSpellTexture = _G.C_Spell and _G.C_Spell.GetSpellTexture or _G.GetSpellTexture
-local GetItemCooldown = _G.C_Container.GetItemCooldown or _G.C_Item and _G.C_Item.GetItemCooldown --TODO, confirm it works
+local GetSpellTexture = _G.GetSpellTexture
+local GetItemCooldown = _G.C_Container.GetItemCooldown or _G.C_Item and _G.C_Item.GetItemCooldown
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local GetPetActionCooldown = _G.GetPetActionCooldown
 local CombatLogGetCurrentEventInfo = _G.CombatLogGetCurrentEventInfo
@@ -78,14 +78,8 @@ function ElvUI_EltreumUI:PreviewDoom()
 	end
 
 	if DCP:GetAlpha() == 1 and E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil then
-		if E.Retail then
-			local spellData = GetSpellInfo(33786)
-			local tts = spellData.name
-			C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
-		else
-			local tts = E.Classic and GetSpellInfo(17401) or GetSpellInfo(33786)
-			C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
-		end
+		local tts = E.Classic and GetSpellInfo(17401) or GetSpellInfo(33786)
+		C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
 	end
 
 	wasPreviewing = true
@@ -183,26 +177,14 @@ function ElvUI_EltreumUI:Doom()
 						local getCooldownDetails
 						if (v[2] == "spell") then
 							getCooldownDetails = memorize(function()
-								if E.Retail then
-									local spellCooldownData = GetSpellCooldown(v[3])
-									local spellData = GetSpellInfo(v[3])
-									return {
-										name = spellData.name,
-										texture = spellData.iconID,
-										start = spellCooldownData.startTime,
-										duration = spellCooldownData.duration,
-										enabled = spellCooldownData.isEnabled
-									}
-								else
-									local start, duration, enabled = GetSpellCooldown(v[3])
-									return {
-										name = GetSpellInfo(v[3]),
-										texture = GetSpellTexture(v[3]),
-										start = start,
-										duration = duration,
-										enabled = enabled
-									}
-								end
+								local start, duration, enabled = GetSpellCooldown(v[3])
+								return {
+									name = GetSpellInfo(v[3]),
+									texture = GetSpellTexture(v[3]),
+									start = start,
+									duration = duration,
+									enabled = enabled
+								}
 							end)
 						elseif (v[2] == "item") then
 							getCooldownDetails = memorize(function()
@@ -306,11 +288,7 @@ function ElvUI_EltreumUI:Doom()
 							DCP.TextFrame:SetText(animating[1][3])
 						end
 						if E.db.ElvUI_EltreumUI.skins.doom.tts and animating[1][3] then --and animating[1][3] ~= nil then
-							local tts
-							if E.Retail and animating[1][3] ~= 'string' then
-								local ttsdata = GetSpellInfo(animating[1][3])
-								tts = ttsdata.name
-							end
+							local tts = GetSpellInfo(animating[1][3])
 							if not tts then
 								tts = tostring(animating[1][3])
 							end
@@ -374,13 +352,7 @@ function ElvUI_EltreumUI:Doom()
 			local _,event,_,_,_,sourceFlags,_,_,_,_,_,spellID = CombatLogGetCurrentEventInfo()
 			if (event == "SPELL_CAST_SUCCESS") then
 				if (bit.band(sourceFlags,COMBATLOG_OBJECT_TYPE_PET) == COMBATLOG_OBJECT_TYPE_PET and bit.band(sourceFlags,COMBATLOG_OBJECT_AFFILIATION_MINE) == COMBATLOG_OBJECT_AFFILIATION_MINE) then
-					local name
-					if E.Retail then
-						local spellData = GetSpellInfo(spellID)
-						name = spellData.name
-					else
-						name = GetSpellInfo(spellID)
-					end
+					local name = GetSpellInfo(spellID)
 					local index = GetPetActionIndexByName(name)
 					if index then
 						watching[spellID] = {GetTime(),"pet",index}

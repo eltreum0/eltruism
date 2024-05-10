@@ -16,7 +16,7 @@ local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetContainerItemLink = _G.C_Container.GetContainerItemLink
 local tonumber = _G.tonumber
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
-local GetItemCooldown = _G.C_Container.GetItemCooldown or _G.C_Item and _G.C_Item.GetItemCooldown --TODO, confirm it works
+local GetItemCooldown = _G.C_Container.GetItemCooldown or _G.C_Item and _G.C_Item.GetItemCooldown
 local GetPetActionCooldown = _G.GetPetActionCooldown
 local PlaySoundFile = _G.PlaySoundFile
 local enabled

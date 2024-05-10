@@ -28,6 +28,7 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 	E.db["general"]["fonts"]["mailbody"]["font"] = fontvalue
 	E.db["general"]["fonts"]["talkingtext"]["font"] = fontvalue
 	E.db["general"]["fonts"]["talkingtitle"]["font"] = fontvalue
+	E.db["general"]["itemLevel"]["totalLevelFont"] = fontvalue
 
 	-- Private
 	E.private["general"]["chatBubbleFont"] = fontvalue

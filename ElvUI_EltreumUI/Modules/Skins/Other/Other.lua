@@ -507,7 +507,7 @@ end
 tradeskilloadmonitor:SetScript("OnEvent", function(_,_,arg)
 	--in 10.1.5 the addon load order seems to not be reliable and tsm can error, so check for tsm being enabled (because it wont be loaded)
 	if E.Retail then
-		if GetAddOnEnableState("TradeSkillMaster",E.myname) == 0 then --TODO 10.2 reverses: name,character, might need C_AddOns.GetAddOnEnableState
+		if GetAddOnEnableState("TradeSkillMaster",E.myname) == 0 then
 			TSMCheck(arg)
 		else
 			tradeskilloadmonitor:UnregisterAllEvents()

@@ -774,6 +774,7 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 			end
 		end
 	end
+	ElvUI_EltreumUI:OriginalClassColors() --check for friendly
 end
 
 --change vertical and horizontal offsets when resting/not resting

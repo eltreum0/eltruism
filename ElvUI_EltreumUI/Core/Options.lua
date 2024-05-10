@@ -2797,7 +2797,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.gradient.args.databars.args.honor.args.red = ACH:Range(L["Red"], L["This is how much the color will gain or lose this value"], 3, { min = -1, max = 1, step = 0.01 }, "full", function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.r end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.r = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor end)
 	ElvUI_EltreumUI.Options.args.gradient.args.databars.args.honor.args.green = ACH:Range(L["Green"], L["This is how much the color will gain or lose this value"], 3, { min = -1, max = 1, step = 0.01 }, "full", function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.g end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.g = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor end)
 	ElvUI_EltreumUI.Options.args.gradient.args.databars.args.honor.args.blue = ACH:Range(L["Blue"], L["This is how much the color will gain or lose this value"], 3, { min = -1, max = 1, step = 0.01 }, "full", function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonorcolors.b = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor end)
-	ElvUI_EltreumUI.Options.args.gradient.args.databars.args.altpower = ACH:Group(L["Alternative Power"], nil, 2, "tab", nil, nil, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.gradient.args.databars.args.altpower = ACH:Group(L["Alternative Power"], nil, 2, "tab", nil, nil, nil, E.Classic)
 	ElvUI_EltreumUI.Options.args.gradient.args.databars.args.altpower.args.description1 = ACH:Description(L["Add a gradient color to the Alt Power Bar"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.gradient.args.databars.args.altpower.args.enable = ACH:Toggle(L["Enable"], nil, 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.gradient.args.databars.args.altpower.args.red = ACH:Range(L["Red"], L["This is how much the color will gain or lose this value"], 3, { min = -1, max = 1, step = 0.01 }, "full", function() return E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPowercolors.r = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower end)
@@ -3110,6 +3110,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc = ACH:Group(L["Misc"], nil, 3, "tab")
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc.args.description1 = ACH:Description(L["Add a Level Up toast"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc.args.levelup = ACH:Toggle(L["Enable"], L["Enable a toast showing up when you level up"], 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.levelbossinstance end, function(_, value) E.db.ElvUI_EltreumUI.skins.levelbossinstance = value E:StaticPopup_Show('CONFIG_RL') end, nil, E.Retail)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc.args.description2 = ACH:Description(L["Expand Hunter Stables to show all pets and improve search"], 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Cata)
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc.args.expandedstable = ACH:Toggle(L["Enable"], L["Enable the Expanded Stable"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.expandedstable end, function(_, value) E.db.ElvUI_EltreumUI.skins.expandedstable = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Cata)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc.args.description3 = ACH:Description(L["Hide Actionbar Button Press"], 5, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc.args.hidekeypress = ACH:Toggle(L["Enable"], nil, 6, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.hideABkeypress end, function(_, value) E.db.ElvUI_EltreumUI.skins.hideABkeypress = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.misc.args.description4 = ACH:Description(L["Color Modifier Keys"], 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
@@ -3605,38 +3607,34 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added an option to set the Unitframe Models to be inside the Texture or inside the Frame itself
-Added an option to change several textures in ElvUI in Eltruism > Media
-Added Zalgo to NPC block list to avoid auto turn-in quests
-Added an option to have a circular minimap and not rotate
-Added an option to disable worldPreloadNonCritical
-Added a fix for Scrap addon when using ElvUI bags
-Added borders to more frames
-Added Support for Cataclysm
+Added Hunter Pet Stable in Cataclysm since it now uses the old Retail Stables
+Added backgrounds to Portrait Skin
+Added support for 10.2.7
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Details skin to only shorten names when using Details shorten names option
-Updated Eltruism Res Panel to also work in LFR in Season 4
-Updated install for Season of Discovery due to Dual Spec
-Updated Power Prediction to use ElvUI Unitframe Texture
-Updated locale by Dlarge
-Updated Auctionator Skin
+Updated PallyPower skin to only run in Classic Era since Cataclysm doesn't have the same Paladin Blessing system
+Updated the expanded Hunter Pet Stable in Retail by removing it due to the update to Pet Stables
+Updated the Portraits Skin to also fix the rotation of models like the 3D Portraits
+Updated Ammo Datatext to be only in Classic Era since ammo is gone in Cataclysm
+Updated Character Frame Skin to better position the Weapons in Cataclysm
+Updated general Shadow system to be more consistent across versions
+Updated Character Frame Skin to better handle the Item Level text
+Updated DPS profile pet name to not use happiness in Cataclysm
+Updated Cursor to better support Evoker's Empowered Casts
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue in Hardcore due to the events for Guild Deaths being removed
-Fixed Classic Shadow Priest not correctly paging with Shadowform
-Fixed an issue with Sockets in Season of Discovery
-Fixed shadows when Power/Classbar were detached
-Fixed an issue when using AnnoyingPopupRemover
-Fixed coloring of Debuffs when using Borders
-Fixed an error with Focus Target border
-Fixed an issue with Action Bar Masks
-Fixed a few Custom Texts
-Fixed Classic Datatexts
+Fixed a possible issue with the Cooldowns on spells that returned a wrong cooldown from the game's API
+Fixed a possible issue with the original Class Colors for Shaman, Mage and Warlock
+Fixed the glow for Profession Disenchant button in 10.2.7
+Fixed several other shadows in Cataclysm and Classic Era
+Fixed shadows in the PvP battleground score frame
+Fixed an Error in the Character Panel Skin
+Fixed the double Level Up in Cataclysm
+Fixed Quest Reward shadows
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
