@@ -1157,7 +1157,7 @@ function ElvUI_EltreumUI:Shadows()
 
 				--main minimize button easier here
 				if _G.ObjectiveTrackerFrame then
-					if _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton and not _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow then
+					if _G.ObjectiveTrackerFrame.HeaderMenu and _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton and not _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow then
 						_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton:CreateShadow()
 						_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:ClearAllPoints()
 						_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("TOPLEFT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "TOPLEFT", -2,2)

@@ -128,7 +128,8 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				UpdateNameGradient()
 			end)
 
-			if E.Retail then
+			--TODO 11.0: gone in war within?
+			--[[if E.Retail then
 				hooksecurefunc("CharacterFrame_Collapse", function()
 					if PaperDollFrame:IsShown() then
 						if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
@@ -204,7 +205,7 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 						end
 					end
 				end
-			end)
+			end)]]
 
 			self.ischarpanelHooked = true
 		end
