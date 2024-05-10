@@ -2,7 +2,6 @@ local E = unpack(ElvUI)
 local _G = _G
 local UnitCastingInfo = _G.UnitCastingInfo or _G.CastingInfo
 local UnitChannelInfo = _G.UnitChannelInfo or _G.ChannelInfo
-local isRetail = _G.select(4, _G.GetBuildInfo())>=90000
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
@@ -16,7 +15,7 @@ local cos = _G.cos
 local GetCursorPosition = _G.GetCursorPosition
 local InCombatLockdown = _G.InCombatLockdown
 local GetTime = _G.GetTime
-local GetSpellCooldown = _G.GetSpellCooldown
+local GetSpellCooldown = _G.C_Spell and _G.C_Spell.GetSpellCooldown or _G.GetSpellCooldown
 local colorcast
 local colorgcd
 local colorcursor
@@ -461,9 +460,16 @@ function ElvUI_EltreumUI:CastCursor()
 			if unit and unit ~= 'player' then
 				return
 			elseif unit and unit == 'player' then
-				local start, duration = GetSpellCooldown( isRetail and 61304 or spellID ) --retest for tbc/classic season
-				if duration > 0 and (isRetail or duration <= 1.51) then
-					Start(self, GetTime() - start, duration )
+				if E.Retail then
+					local cooldowntable = GetSpellCooldown(61304)
+					if cooldowntable.duration > 0 and (E.Retail or cooldowntable.duration <= 1.51) then
+						Start(self, GetTime() - cooldowntable.startTime, cooldowntable.duration )
+					end
+				else
+					local start, duration = GetSpellCooldown(E.Retail and 61304 or spellID)
+					if duration > 0 and (E.Retail or duration <= 1.51) then
+						Start(self, GetTime() - start, duration )
+					end
 				end
 			end
 		end
