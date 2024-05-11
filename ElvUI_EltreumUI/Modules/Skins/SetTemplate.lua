@@ -335,6 +335,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 									if frame:GetParent():GetParent().Bar then
 										atlas = frame:GetParent():GetParent().Bar:GetStatusBarTexture():GetAtlas()
 										frame:GetParent():GetParent().Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+										frame:GetParent():GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
 									end
 
 									-- hook for when label gets added
@@ -348,6 +349,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 												atlas = widget.Bar:GetStatusBarTexture():GetAtlas()
 												if atlas then
 													widget.Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+													widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
 												end
 											end
 										end)
@@ -363,6 +365,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 										atlas = frame:GetParent().Bar:GetStatusBarTexture():GetAtlas()
 										if atlas then
 											frame:GetParent().Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+											frame:GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
 										end
 									end
 
@@ -377,6 +380,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 												atlas = widget.Bar:GetStatusBarTexture():GetAtlas()
 												if atlas then
 													widget.Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+													widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
 												end
 											end
 										end)
