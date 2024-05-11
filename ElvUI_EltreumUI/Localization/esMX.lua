@@ -1591,3 +1591,4 @@ L["Model Inside Health"] = "Modelo dentro de salud"
 L["Model will be set inside health instead of over whole frame"] = "El modelo se establecerá dentro de la salud en lugar de sobre todo el marco"
 L["Circle Minimap"] = "Minimapa circular"
 L["Databars Thickness"] = true
+L["Alternative Power Thickness"] = true

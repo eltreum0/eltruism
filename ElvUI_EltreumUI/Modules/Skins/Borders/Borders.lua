@@ -17,7 +17,7 @@ local classcolor = E:ClassColor(E.myclass, true)
 local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder,focuscastbarborder
 local bordertexture,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder, experienceborder, threatborder
 local playerclassbarborder1, playerclassbarborder2, comboborder, playerpowerborder, targetpowerborder, reputationborder
-local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction
+local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction, altpowerborder
 local MinimapBorder,LeftChatBorder,RightChatBorder,totemborderfly,focustargetborder,targettargetpowerborder
 local raid1borderholder,raid2borderholder,raid3borderholder,partyborderholder, comboborderholder = {},{},{},{},{}
 local rectangleminimapdetect = CreateFrame("FRAME")
@@ -1213,6 +1213,24 @@ function ElvUI_EltreumUI:Borders()
 			threatborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.threatbarstrata)
 			threatborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.threatbarlevel)
 		end
+
+		--altpowerbar
+		if E.db.general.altPowerBar.enable and E.db.ElvUI_EltreumUI.borders.altpowerbar and _G.ElvUI_AltPowerBar then
+			if not _G["EltruismAltPowerBorder"] then
+				altpowerborder = CreateFrame("Frame", "EltruismAltPowerBorder", _G.ElvUI_AltPowerBar, BackdropTemplateMixin and "BackdropTemplate")
+			else
+				altpowerborder = _G["EltruismAltPowerBorder"]
+			end
+			altpowerborder:SetSize(E.db.ElvUI_EltreumUI.borders.altpowerbarsizex, E.db.ElvUI_EltreumUI.borders.altpowerbarsizey)
+			altpowerborder:SetPoint("CENTER", _G.ElvUI_AltPowerBar, "CENTER", 0, 0)
+			altpowerborder:SetBackdrop({
+				edgeFile = bordertexture,
+				edgeSize = E.db.ElvUI_EltreumUI.borders.altpowerbarsize,
+			})
+			altpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			altpowerborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.altpowerbarstrata)
+			altpowerborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.altpowerbarlevel)
+		end
 	end
 end
 
@@ -1575,7 +1593,8 @@ function ElvUI_EltreumUI:ShowHideBorders(install)
 		targetpowerborder,
 		reputationborder,
 		focustargetborder,
-		targettargetpowerborder
+		targettargetpowerborder,
+		altpowerborder,
 	}
 	local barborderbutton
 	local barborderbuttonnumber
