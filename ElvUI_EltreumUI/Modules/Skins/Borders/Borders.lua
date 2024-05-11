@@ -13,10 +13,10 @@ local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoa
 local tostring = _G.tostring
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitClass = _G.UnitClass
-local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder,focuscastbarborder
-local bordertexture,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder
-local playerclassbarborder1, playerclassbarborder2, comboborder, playerpowerborder, targetpowerborder
 local classcolor = E:ClassColor(E.myclass, true)
+local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder,focuscastbarborder
+local bordertexture,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder, experienceborder, threatborder
+local playerclassbarborder1, playerclassbarborder2, comboborder, playerpowerborder, targetpowerborder, reputationborder
 local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction
 local MinimapBorder,LeftChatBorder,RightChatBorder,totemborderfly,focustargetborder,targettargetpowerborder
 local raid1borderholder,raid2borderholder,raid3borderholder,partyborderholder, comboborderholder = {},{},{},{},{}
@@ -1163,6 +1163,56 @@ function ElvUI_EltreumUI:Borders()
 				RightChatBorder:Hide()
 			end
 		end
+
+		--databars
+		if E.db.databars.experience.enable and E.db.ElvUI_EltreumUI.borders.experiencebar and _G.ElvUI_ExperienceBar then
+			if not _G["EltruismExperienceBorder"] then
+				experienceborder = CreateFrame("Frame", "EltruismExperienceBorder", _G.ElvUI_ExperienceBar, BackdropTemplateMixin and "BackdropTemplate")
+			else
+				experienceborder = _G["EltruismExperienceBorder"]
+			end
+			experienceborder:SetSize(E.db.ElvUI_EltreumUI.borders.experiencebarsizex, E.db.ElvUI_EltreumUI.borders.experiencebarsizey)
+			experienceborder:SetPoint("CENTER", _G.ElvUI_ExperienceBar, "CENTER", 0, 0)
+			experienceborder:SetBackdrop({
+				edgeFile = bordertexture,
+				edgeSize = E.db.ElvUI_EltreumUI.borders.databarsize,
+			})
+			experienceborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			experienceborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.experiencebarstrata)
+			experienceborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.experiencebarlevel)
+		end
+		if E.db.databars.reputation.enable and E.db.ElvUI_EltreumUI.borders.reputationbar and _G.ElvUI_ReputationBar then
+			if not _G["EltruismReputationBorder"] then
+				reputationborder = CreateFrame("Frame", "EltruismReputationBorder", _G.ElvUI_ReputationBar, BackdropTemplateMixin and "BackdropTemplate")
+			else
+				reputationborder = _G["EltruismReputationBorder"]
+			end
+			reputationborder:SetSize(E.db.ElvUI_EltreumUI.borders.reputationbarsizex, E.db.ElvUI_EltreumUI.borders.reputationbarsizey)
+			reputationborder:SetPoint("CENTER", _G.ElvUI_ReputationBar, "CENTER", 0, 0)
+			reputationborder:SetBackdrop({
+				edgeFile = bordertexture,
+				edgeSize = E.db.ElvUI_EltreumUI.borders.databarsize,
+			})
+			reputationborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			reputationborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.reputationbarstrata)
+			reputationborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.reputationbarlevel)
+		end
+		if E.db.databars.threat.enable and E.db.ElvUI_EltreumUI.borders.threatbar and _G.ElvUI_ThreatBar then
+			if not _G["EltruismThreatBorder"] then
+				threatborder = CreateFrame("Frame", "EltruismThreatBorder", _G.ElvUI_ThreatBar, BackdropTemplateMixin and "BackdropTemplate")
+			else
+				threatborder = _G["EltruismThreatBorder"]
+			end
+			threatborder:SetSize(E.db.ElvUI_EltreumUI.borders.threatbarsizex, E.db.ElvUI_EltreumUI.borders.threatbarsizey)
+			threatborder:SetPoint("CENTER", _G.ElvUI_ThreatBar, "CENTER", 0, 0)
+			threatborder:SetBackdrop({
+				edgeFile = bordertexture,
+				edgeSize = E.db.ElvUI_EltreumUI.borders.databarsize,
+			})
+			threatborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			threatborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.threatbarstrata)
+			threatborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.threatbarlevel)
+		end
 	end
 end
 
@@ -1518,6 +1568,14 @@ function ElvUI_EltreumUI:ShowHideBorders(install)
 		RightChatBorder,
 		playercastbarborder,
 		focuscastbarborder,
+		stanceborder,
+		experienceborder,
+		threatborder,
+		playerpowerborder,
+		targetpowerborder,
+		reputationborder,
+		focustargetborder,
+		targettargetpowerborder
 	}
 	local barborderbutton
 	local barborderbuttonnumber

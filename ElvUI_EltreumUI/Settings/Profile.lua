@@ -954,6 +954,26 @@ P.ElvUI_EltreumUI = {
 		targettargetpowerstrata = "HIGH",
 		targettargetpowerlevel = 3,
 
+		databarsize = 15,
+
+		experiencebar = false,
+		experiencebarsizex = 522,
+		experiencebarsizey = 37,
+		experiencebarstrata = "HIGH",
+		experiencebarlevel = 3,
+
+		reputationbar = false,
+		reputationbarsizex = 522,
+		reputationbarsizey = 37,
+		reputationbarstrata = "HIGH",
+		reputationbarlevel = 3,
+
+		threatbar = false,
+		threatbarsizex = 473,
+		threatbarsizey = 44,
+		threatbarstrata = "HIGH",
+		threatbarlevel = 3,
+
 		bordercolors = {
 			r = 0.27,
 			g = 0.50,

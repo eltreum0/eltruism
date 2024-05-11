@@ -4,6 +4,15 @@ local CreateFrame = _G.CreateFrame
 local hooksecurefunc = _G.hooksecurefunc
 local EnumerateFrames = _G.EnumerateFrames
 local valuecolors = E:ClassColor(E.myclass, true)
+local atlas
+
+local widgetAtlas = {
+	["widgetstatusbar-fill-blue"] = { r = 0, g = 0, b = 255, a = 1},
+	["widgetstatusbar-fill-green"] = { r = 0, g = 255, b = 0, a = 1},
+	["widgetstatusbar-fill-red"] = { r = 255, g = 0, b = 0, a = 1},
+	["widgetstatusbar-fill-white"] = { r = 255, g = 255, b = 255, a = 1},
+	["widgetstatusbar-fill-yellow"] = { r = 255, g = 255, b = 0, a = 1},
+}
 
 --based on elvui toolkit
 function ElvUI_EltreumUI:SetTemplateSkin()
@@ -324,6 +333,8 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 										frame:GetParent():GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 									end
 									if frame:GetParent():GetParent().Bar then
+										atlas = frame:GetParent():GetParent().Bar:GetStatusBarTexture():GetAtlas()
+										frame:GetParent():GetParent().Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
 										frame:GetParent():GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
 									end
 
@@ -335,7 +346,11 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 												widget.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 											end
 											if widget.Bar then
-												widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+												atlas = widget.Bar:GetStatusBarTexture():GetAtlas()
+												if atlas then
+													widget.Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+													widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+												end
 											end
 										end)
 										frame:GetParent():GetParent().EltruismLabelHook = true
@@ -347,7 +362,11 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 										frame:GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 									end
 									if frame:GetParent().Bar then
-										frame:GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+										atlas = frame:GetParent().Bar:GetStatusBarTexture():GetAtlas()
+										if atlas then
+											frame:GetParent().Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+											frame:GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+										end
 									end
 
 									-- hook for when label gets added
@@ -358,7 +377,11 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 												widget.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 											end
 											if widget.Bar then
-												widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+												atlas = widget.Bar:GetStatusBarTexture():GetAtlas()
+												if atlas then
+													widget.Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+													widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+												end
 											end
 										end)
 										frame:GetParent():GetParent().EltruismLabelHook = true
