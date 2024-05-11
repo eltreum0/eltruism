@@ -974,6 +974,13 @@ P.ElvUI_EltreumUI = {
 		threatbarstrata = "HIGH",
 		threatbarlevel = 3,
 
+		altpowerbar = false,
+		altpowerbarsizex = 283,
+		altpowerbarsizey = 52,
+		altpowerbarsize = 20,
+		altpowerbarstrata = "HIGH",
+		altpowerbarlevel = 3,
+
 		bordercolors = {
 			r = 0.27,
 			g = 0.50,
