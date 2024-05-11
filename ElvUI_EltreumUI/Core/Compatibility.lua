@@ -280,7 +280,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 	--local CheckQuestie = GetCheckCompatibilityFunction("Questie", select(2,GetAddOnInfo("Questie")),false,true)
 
 	--Character Panel
-	CheckMerathilisUI(L["Character Panel"].."\n"..L["Class Icons"], L["Armory"], "db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel", "db.mui.armory.enable")
+	CheckMerathilisUI(L["Character Panel"].."\n"..L["Class Icons"], L["Character Panel"].."\n"..L["Armory"], "db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel", "db.mui.armory.enable")
 	CheckMerathilisUI(L["Character Panel"].."\n"..L["Armory"], L["Character Panel"].."\n"..L["Armory"], "db.ElvUI_EltreumUI.skins.classicarmory", "db.mui.armory.enable")
 	CheckMerathilisUI(L["Character Panel"].."\n"..L["Class Gradient Colors"], L["Character Panel"].."\n"..L["Armory"], "db.ElvUI_EltreumUI.skins.characterskingradients", "db.mui.armory.enable")
 	CheckMerathilisUI(L["Character Panel"].."\n"..L["Class Colors"], L["Character Panel"].."\n"..L["Armory"], "db.ElvUI_EltreumUI.skins.statcolors", "db.mui.armory.enable")
