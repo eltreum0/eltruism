@@ -1591,3 +1591,4 @@ L["Model Inside Health"] = true
 L["Model will be set inside health instead of over whole frame"] = true
 L["Circle Minimap"] = true
 L["Databars Thickness"] = true
+L["Alternative Power Thickness"] = true

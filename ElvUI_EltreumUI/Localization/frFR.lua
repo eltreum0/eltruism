@@ -1591,3 +1591,4 @@ L["Model Inside Health"] = "Modèle à l'intérieur de la barre d'état de sant�
 L["Model will be set inside health instead of over whole frame"] = "Le modèle sera placé à l'intérieur de la santé au lieu d'être placé sur l'ensemble du cadre"
 L["Circle Minimap"] = "Mini-carte circulaire"
 L["Databars Thickness"] = true
+L["Alternative Power Thickness"] = true
