@@ -919,8 +919,8 @@ P.ElvUI_EltreumUI = {
 		petablevel = 3,
 
 		alternativeclassbar = false,
-		alternativeclassbarxborder = 201,
-		alternativeclassbaryborder = 32,
+		alternativeclassbarxborder = 208,
+		alternativeclassbaryborder = 42,
 		alternativeclassbarstrata = "HIGH",
 		alternativeclassbarlevel = 3,
 
