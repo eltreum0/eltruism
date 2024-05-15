@@ -21,7 +21,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 		if not nameplate.Health then return end
 		--NP:Health_SetColors(nameplate, true)
 
-		print("tank? "..self.isTank,"offtank? "..self.offTank)
+		print("tank? "..self.isTank,"offtank? "..self.offTank,"status: "..status)
 
 		-- if gradient use gradient mode
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
