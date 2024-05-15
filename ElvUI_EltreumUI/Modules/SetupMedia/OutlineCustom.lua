@@ -400,6 +400,46 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 		end
 	end
 
+
+	if IsAddOnLoaded("ElvUI_SLE") then
+		E.db["sle"]["armory"]["stats"]["statLabels"]["outline"] = fontStyle
+		E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = fontStyle
+		E.db["sle"]["armory"]["stats"]["statHeaders"]["outline"] = fontStyle
+		E.db["sle"]["media"]["fonts"]["mail"]["fontOutline"] = fontStyle
+		E.db["sle"]["media"]["fonts"]["objective"]["fontOutline"] = fontStyle
+		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["fontOutline"] = fontStyle
+		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["fontOutline"] = fontStyle
+		E.db["sle"]["media"]["fonts"]["scenarioStage"]["HeaderText"]["fontOutline"] = fontStyle
+		E.db["sle"]["media"]["fonts"]["scenarioStage"]["TimerText"]["fontOutline"] = fontStyle
+		E.db["sle"]["minimap"]["coords"]["fontOutline"] = fontStyle
+		E.db["sle"]["minimap"]["instance"]["fontOutline"] = fontStyle
+		E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = fontStyle
+		E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = fontStyle
+		E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = fontStyle
+		E.db["sle"]["actionbar"]["vehicle"]["hotkeyFontOutline"] = fontStyle
+		E.db["sle"]["actionbar"]["vehicle"]["macroFontOutline"] = fontStyle
+		E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = fontStyle
+		E.db["sle"]["nameplates"]["threat"]["fontOutline"] = fontStyle
+	end
+
+	if IsAddOnLoaded("ElvUI_WindTools") then
+		E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = fontStyle
+		E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = fontStyle
+		E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = fontStyle
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = fontStyle
+		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = fontStyle
+		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = fontStyle
+		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = fontStyle
+		E.db["WT"]["item"]["itemLevel"]["flyout"]["font"]["style"] = fontStyle
+		E.db["WT"]["item"]["itemLevel"]["scrappingMachine"]["font"]["style"] = fontStyle
+		E.private["WT"]["skins"]["bigWigsSkin"]["queueTimer"]["countDown"]["style"] = fontStyle
+		E.private["WT"]["skins"]["rollResult"]["style"] = fontStyle
+	end
+	if IsAddOnLoaded("ElvUI_mMediaTag") then
+		E.db["mMT"]["dockdatatext"]["fontflag"] = fontStyle
+		E.db["mMT"]["objectivetracker"]["font"]["fontflag"] = fontStyle
+	end
+
 	fontStyle = ElvUI_EltreumUI:FontFlag(fontStyle)
 	if IsAddOnLoaded('NameplateSCT') then
 		_G.NameplateSCTDB["global"]["fontFlag"] = ElvUI_EltreumUI:FontFlag(fontStyle)
@@ -439,43 +479,5 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	if IsAddOnLoaded("Questie") then
 		local profile = _G.QuestieConfig["profileKeys"][E.mynameRealm]
 		_G.QuestieConfig["profiles"][profile]["trackerFontOutline"] = ElvUI_EltreumUI:FontFlag(fontStyle)
-	end
-
-	if IsAddOnLoaded("ElvUI_SLE") then
-		E.db["sle"]["armory"]["stats"]["statLabels"]["outline"] = fontStyle
-		E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = fontStyle
-		E.db["sle"]["armory"]["stats"]["statHeaders"]["outline"] = fontStyle
-		E.db["sle"]["media"]["fonts"]["mail"]["fontOutline"] = fontStyle
-		E.db["sle"]["media"]["fonts"]["objective"]["fontOutline"] = fontStyle
-		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["fontOutline"] = fontStyle
-		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["fontOutline"] = fontStyle
-		E.db["sle"]["media"]["fonts"]["scenarioStage"]["HeaderText"]["fontOutline"] = fontStyle
-		E.db["sle"]["media"]["fonts"]["scenarioStage"]["TimerText"]["fontOutline"] = fontStyle
-		E.db["sle"]["minimap"]["coords"]["fontOutline"] = fontStyle
-		E.db["sle"]["minimap"]["instance"]["fontOutline"] = fontStyle
-		E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = fontStyle
-		E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = fontStyle
-		E.db["sle"]["skins"]["merchant"]["list"]["subOutline"] = fontStyle
-		E.db["sle"]["actionbar"]["vehicle"]["hotkeyFontOutline"] = fontStyle
-		E.db["sle"]["actionbar"]["vehicle"]["macroFontOutline"] = fontStyle
-		E.db["sle"]["nameplates"]["targetcount"]["fontOutline"] = fontStyle
-		E.db["sle"]["nameplates"]["threat"]["fontOutline"] = fontStyle
-	end
-	if IsAddOnLoaded("ElvUI_WindTools") then
-		E.private["WT"]["quest"]["objectiveTracker"]["header"]["style"] = fontStyle
-		E.private["WT"]["quest"]["objectiveTracker"]["info"]["style"] = fontStyle
-		E.private["WT"]["quest"]["objectiveTracker"]["title"]["style"] = fontStyle
-		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["bindFont"]["style"] = fontStyle
-		E.db["WT"]["item"]["extraItemsBar"]["bar1"]["countFont"]["style"] = fontStyle
-		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = fontStyle
-		E.db["WT"]["misc"]["gameBar"]["time"]["font"]["style"] = fontStyle
-		E.db["WT"]["item"]["itemLevel"]["flyout"]["font"]["style"] = fontStyle
-		E.db["WT"]["item"]["itemLevel"]["scrappingMachine"]["font"]["style"] = fontStyle
-		E.private["WT"]["skins"]["bigWigsSkin"]["queueTimer"]["countDown"]["style"] = fontStyle
-		E.private["WT"]["skins"]["rollResult"]["style"] = fontStyle
-	end
-	if IsAddOnLoaded("ElvUI_mMediaTag") then
-		E.db["mMT"]["dockdatatext"]["fontflag"] = fontStyle
-		E.db["mMT"]["objectivetracker"]["font"]["fontflag"] = fontStyle
 	end
 end
