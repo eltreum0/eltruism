@@ -3618,34 +3618,31 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added Hunter Pet Stable in Cataclysm since it now uses the old Retail Stables
-Added backgrounds to Portrait Skin
-Added support for 10.2.7
+Added Power bars to the Border Auto Adjust function
+Added borders to Experience and Reputation databars
+Added Totem Item Level font to the Font functions
+Added borders to Alternative Power bar
+Added zhTW translation by 魔能機曱
+Added a few missing shadows
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated PallyPower skin to only run in Classic Era since Cataclysm doesn't have the same Paladin Blessing system
-Updated the expanded Hunter Pet Stable in Retail by removing it due to the update to Pet Stables
-Updated the Portraits Skin to also fix the rotation of models like the 3D Portraits
-Updated Ammo Datatext to be only in Classic Era since ammo is gone in Cataclysm
-Updated Character Frame Skin to better position the Weapons in Cataclysm
-Updated general Shadow system to be more consistent across versions
-Updated Character Frame Skin to better handle the Item Level text
-Updated DPS profile pet name to not use happiness in Cataclysm
-Updated Cursor to better support Evoker's Empowered Casts
+Updated Borders by Class Color to use the Power Colors for Player and Target, Target of Target doesn't have events that fire to update it
+Updated Dark Souls death animation to better position the text
+Updated Inspect Item Level text in Retail to fix the font size
+Updated some profiles to use general ElvUI font outline
+Updated LFG skin to desaturate when unavailable
+Updated German locale by Dlarge
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed a possible issue with the Cooldowns on spells that returned a wrong cooldown from the game's API
-Fixed a possible issue with the original Class Colors for Shaman, Mage and Warlock
-Fixed the glow for Profession Disenchant button in 10.2.7
-Fixed several other shadows in Cataclysm and Classic Era
-Fixed shadows in the PvP battleground score frame
-Fixed an Error in the Character Panel Skin
-Fixed the double Level Up in Cataclysm
-Fixed Quest Reward shadows
+Fixed an issue with nameplate Threat colors where Off Tanks didnt get the correct color (thanks Trenchy)
+Fixed an issue where non Fire Mages could get the Nameplate Powerbar stuck in wrong units
+Fixed an issue due to MerathilisUI removing some of its options
+Fixed Inspect Talent Size in Cataclysm
+Fixed Retail World Map shadows
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
