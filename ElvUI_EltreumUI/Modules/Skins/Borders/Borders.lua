@@ -251,7 +251,16 @@ function ElvUI_EltreumUI:Borders()
 						edgeFile = bordertexture,
 						edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetsize,
 					})
-					playerpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					if E.db.ElvUI_EltreumUI.borders.classcolor then
+						local _, powertype = UnitPowerType("player")
+						if E.db.unitframe.colors.power[powertype] then
+							playerpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertype].r, E.db.unitframe.colors.power[powertype].g, E.db.unitframe.colors.power[powertype].b, 1)
+						else
+							playerpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						end
+					else
+						playerpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					end
 					playerpowerborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.playerpowerstrata)
 					playerpowerborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.playerpowerlevel)
 				end
