@@ -1390,6 +1390,33 @@ hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraBorders) --uf aur
 function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of target changes if the target is not in party/raid, no event to register :(
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
 
+		--targettarget doesnt fire events, and if both units are registered then only the last one is triggering the function, with player never triggering it
+		local powertypemonitortarget = CreateFrame("frame")
+		powertypemonitortarget:RegisterUnitEvent("UNIT_DISPLAYPOWER", "target")
+		powertypemonitortarget:SetScript("OnEvent", function()
+			local _, powertypetarget = UnitPowerType("target")
+			if E.db.unitframe.units.target.enable and E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and E.db.unitframe.units.target.power.width == "spaced" then
+				if E.db.unitframe.colors.power[powertypetarget] then
+					targetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertypetarget].r, E.db.unitframe.colors.power[powertypetarget].g, E.db.unitframe.colors.power[powertypetarget].b, 1)
+				else
+					targetpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+				end
+			end
+		end)
+
+		local powertypemonitorplayer = CreateFrame("frame")
+		powertypemonitorplayer:RegisterUnitEvent("UNIT_DISPLAYPOWER", "player")
+		powertypemonitorplayer:SetScript("OnEvent", function()
+			local _, powertypeplayer = UnitPowerType("player")
+			if E.db.unitframe.units.player.enable and E.db.ElvUI_EltreumUI.borders.playerpower and E.db.unitframe.units.player.power.enable and E.db.unitframe.units.player.power.width == "spaced" then
+				if E.db.unitframe.colors.power[powertypeplayer] then
+					playerpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertypeplayer].r, E.db.unitframe.colors.power[powertypeplayer].g, E.db.unitframe.colors.power[powertypeplayer].b, 1)
+				else
+					playerpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+				end
+			end
+		end)
+
 		if E.db.unitframe.units.target.enable then
 			if UnitExists("target") then
 				if E.db.unitframe.units.target.buffs.enable then
@@ -1508,36 +1535,6 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 							targettargetborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
 						elseif reactiontargettarget == 2 or reactiontargettarget == 1 then
 							targettargetborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
-						end
-					end
-				end
-			end
-
-			if E.db.unitframe.units.targettarget.power.enable and E.db.unitframe.units.targettarget.power.width == "spaced" then
-				if UnitExists("targettarget") and targettargetpowerborder ~= nil then
-					if UnitIsPlayer("targettarget") or (E.Retail and UnitInPartyIsAI("targettarget")) then
-						local _, powertype = UnitPowerType("target")
-						if E.db.unitframe.colors.power[powertype] then
-							targettargetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertype].r, E.db.unitframe.colors.power[powertype].g, E.db.unitframe.colors.power[powertype].b, 1)
-						else
-							local _, targettargetclass = UnitClass("targettarget")
-							targettargetpowerborder:SetBackdropBorderColor(classcolorreaction[targettargetclass]["r1"], classcolorreaction[targettargetclass]["g1"], classcolorreaction[targettargetclass]["b1"], 1)
-						end
-					elseif not UnitIsPlayer("targettarget") then
-						local _, powertype = UnitPowerType("target")
-						if E.db.unitframe.colors.power[powertype] then
-							targettargetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertype].r, E.db.unitframe.colors.power[powertype].g, E.db.unitframe.colors.power[powertype].b, 1)
-						else
-							local reactiontargettarget = UnitReaction("targettarget", "player")
-							if reactiontargettarget >= 5 then
-								targettargetpowerborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
-							elseif reactiontargettarget == 4 then
-								targettargetpowerborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
-							elseif reactiontargettarget == 3 then
-								targettargetpowerborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
-							elseif reactiontargettarget == 2 or reactiontargettarget == 1 then
-								targettargetpowerborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
-							end
 						end
 					end
 				end
