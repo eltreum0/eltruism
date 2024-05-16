@@ -107,6 +107,7 @@ local TRANSLATORS = {
 	'|cffCC3333Dlarge|r - German Translation',
 	'|cffCC3333Neo|r - Chinese Translation',
 	'DeepL artificial intelligence for French and Spanish translations',
+	'|cffCC3333魔能機曱 (Johnson)|r - Taiwanese Mandarin Translation',
 }
 
 -- SortList
