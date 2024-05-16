@@ -1401,6 +1401,8 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 				else
 					targetpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				end
+			else
+				powertypemonitortarget:UnregisterEvent("UNIT_DISPLAYPOWER")
 			end
 		end)
 
@@ -1414,6 +1416,8 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 				else
 					playerpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				end
+			else
+				powertypemonitorplayer:UnregisterEvent("UNIT_DISPLAYPOWER")
 			end
 		end)
 
