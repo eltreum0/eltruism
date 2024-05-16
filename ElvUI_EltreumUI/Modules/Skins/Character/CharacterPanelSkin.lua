@@ -2788,6 +2788,19 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						_G.InspectFrame.ItemLevelText:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 165)
 						_G.InspectFrame.ItemLevelText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
 						_G.InspectFrame.ItemLevelText:SetParent(_G["InspectModelFrame"])
+						--_G.InspectFrame.ItemLevelText:SetText(ElvUI_EltreumUI:GradientName(_G.InspectFrame.ItemLevelText:GetText(), englishClass))
+						--_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100)
+						_G.InspectFrame.ItemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.itemLevel.totalLevelFont), 12, E.db.general.itemLevel.totalLevelFontOutline)
+
+						if not _G.InspectFrame.AvgIlvlHook then
+							local M = E:GetModule('Misc')
+							hooksecurefunc(M,"UpdateAverageString", function(_, _, which, iLevelDB)
+								if which == "Inspect" then
+									_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:CalculateAverageItemLevel(iLevelDB, _G.InspectFrame.unit))
+								end
+							end)
+							_G.InspectFrame.AvgIlvlHook = true
+						end
 
 						if _G.InspectPaperDollFrame.ViewButton then
 							_G.InspectPaperDollFrame.ViewButton:ClearAllPoints()
@@ -2799,9 +2812,6 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							_G.InspectModelFrame:SetScript('OnEnter', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(1) end)
 							_G.InspectModelFrame:SetScript('OnLeave', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(0) end)
 						end
-
-						--_G.InspectFrame.ItemLevelText:SetText(ElvUI_EltreumUI:GradientName(_G.InspectFrame.ItemLevelText:GetText(), englishClass))
-						--_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100)
 
 						if not self.EltruismInspectHookModel then
 							_G.InspectModelFrame:HookScript("OnShow", function()
