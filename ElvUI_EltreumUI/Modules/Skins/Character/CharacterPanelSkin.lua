@@ -2714,11 +2714,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 												UIErrorsFrame:AddMessage(ERR_NOT_IN_COMBAT, 1.0, 0.2, 0.2, 1.0)
 											else
 												_G.InspectFrame:SetWidth(376)
-												if E.Cata then
-													_G.InspectFrame:SetHeight(780)
-												else
-													_G.InspectFrame:SetHeight(650)
-												end
+												_G.InspectFrame:SetHeight(550)
 												_G.InspectTalentFrameTab2:ClearAllPoints()
 												_G.InspectTalentFrameTab2:SetPoint("TOP", _G.InspectTalentFrame, "TOP", 0, -50)
 												_G.InspectTalentFrameTab1:ClearAllPoints()
@@ -2727,19 +2723,13 @@ function ElvUI_EltreumUI:InspectBg(unit)
 												_G.InspectTalentFrameScrollFrameScrollBar:SetAlpha(0)
 												_G.InspectTalentFrameScrollFrame:ClearAllPoints()
 												_G.InspectTalentFrameScrollFrame:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 12)
-												if E.Cata then
-													_G.InspectTalentFrameScrollFrame:SetSize(300,720)
-												else
-													_G.InspectTalentFrameScrollFrame:SetSize(300,620)
-												end
+												_G.InspectTalentFrameScrollFrame:SetSize(300,450)
 												E:Delay(0, function() _G.InspectTalentFrameScrollFrame:SetScale(0.75) end) --needs delay, maybe bc server response?
 
-												if E.Cata then
-													_G.InspectTalentFramePointsBar:ClearAllPoints()
-													_G.InspectTalentFramePointsBar:SetPoint("BOTTOM", _G.InspectTalentFrame.backdrop, "BOTTOM", 0, 0)
-													_G.InspectTalentFrameSpentPointsText:SetJustifyH("LEFT")
-													_G.InspectTalentFrameTalentPointsText:SetJustifyH("RIGHT")
-												end
+												_G.InspectTalentFramePointsBar:ClearAllPoints()
+												_G.InspectTalentFramePointsBar:SetPoint("BOTTOM", _G.InspectTalentFrame.backdrop, "BOTTOM", 0, 0)
+												_G.InspectTalentFrameSpentPointsText:SetJustifyH("LEFT")
+												_G.InspectTalentFrameTalentPointsText:SetJustifyH("RIGHT")
 
 												--kill stuff
 												_G.InspectTalentFrameCloseButton:Hide()
