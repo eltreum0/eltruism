@@ -4,7 +4,7 @@ ___
 ### 4.1.5
 Added Power bars to the Border Auto Adjust function  
 Added borders to Experience and Reputation databars  
-Added Totem Item Level font to the Font functions  
+Added Total Item Level font to the Font functions  
 Added borders to Alternative Power bar  
 Added zhTW translation by 魔能機曱  
 Added a few missing shadows  

@@ -3620,7 +3620,7 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
 Added Power bars to the Border Auto Adjust function
 Added borders to Experience and Reputation databars
-Added Totem Item Level font to the Font functions
+Added Total Item Level font to the Font functions
 Added borders to Alternative Power bar
 Added zhTW translation by 魔能機曱
 Added a few missing shadows
