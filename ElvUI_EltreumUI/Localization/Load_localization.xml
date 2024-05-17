@@ -5,5 +5,6 @@
 	<Script file="esMX.lua"/>
 	<Script file="frFR.lua"/>
 	<Script file="zhCN.lua"/>
+	<Script file="zhTW.lua"/>
 	<Script file="ColoredLocales.lua"/>
 </Ui>
