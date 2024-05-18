@@ -237,7 +237,7 @@ function ElvUI_EltreumUI:Borders()
 			end
 
 			--player power
-			if E.db.unitframe.units.player.power.enable and E.db.unitframe.units.player.power.width == "spaced" then
+			if E.db.unitframe.units.player.power.enable and (E.db.unitframe.units.player.power.width == "spaced" or E.db.unitframe.units.player.power.detachFromFrame) then
 				if _G["ElvUF_Player_PowerBar"] and E.db.ElvUI_EltreumUI.borders.playerpower then
 					if not _G["EltruismPlayerPowerBorder"] then
 						playerpowerborder = CreateFrame("Frame", "EltruismPlayerPowerBorder", _G.ElvUF_Player_PowerBar, BackdropTemplateMixin and "BackdropTemplate")
@@ -363,7 +363,7 @@ function ElvUI_EltreumUI:Borders()
 			end
 
 			--target power
-			if E.db.unitframe.units.target.power.enable and E.db.unitframe.units.target.power.width == "spaced" then
+			if E.db.unitframe.units.target.power.enable and (E.db.unitframe.units.target.power.width == "spaced" or E.db.unitframe.units.target.power.detachFromFrame) then
 				if _G["ElvUF_Target_PowerBar"] and E.db.ElvUI_EltreumUI.borders.targetpower then
 					if not _G["EltruismTargetPowerBorder"] then
 						targetpowerborder = CreateFrame("Frame", "EltruismTargetPowerBorder", _G.ElvUF_Target_PowerBar, BackdropTemplateMixin and "BackdropTemplate")
@@ -409,7 +409,7 @@ function ElvUI_EltreumUI:Borders()
 			end
 
 			--target of target power
-			if E.db.unitframe.units.targettarget.power.enable and E.db.unitframe.units.targettarget.power.width == "spaced" then
+			if E.db.unitframe.units.targettarget.power.enable and (E.db.unitframe.units.targettarget.power.width == "spaced" or E.db.unitframe.units.targettarget.power.detachFromFrame) then
 				if _G["ElvUF_TargetTarget_PowerBar"] and E.db.ElvUI_EltreumUI.borders.targettargetpower then
 					if not _G["EltruismTargetTargetPowerBorder"] then
 						targettargetpowerborder = CreateFrame("Frame", "EltruismTargetTargetPowerBorder", _G.ElvUF_TargetTarget_PowerBar, BackdropTemplateMixin and "BackdropTemplate")
@@ -1395,7 +1395,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 		powertypemonitortarget:RegisterUnitEvent("UNIT_DISPLAYPOWER", "target")
 		powertypemonitortarget:SetScript("OnEvent", function()
 			local _, powertypetarget = UnitPowerType("target")
-			if E.db.unitframe.units.target.enable and E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and E.db.unitframe.units.target.power.width == "spaced" then
+			if E.db.unitframe.units.target.enable and E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and (E.db.unitframe.units.target.power.width == "spaced" or E.db.unitframe.units.target.power.detachFromFrame) then
 				if E.db.unitframe.colors.power[powertypetarget] then
 					targetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertypetarget].r, E.db.unitframe.colors.power[powertypetarget].g, E.db.unitframe.colors.power[powertypetarget].b, 1)
 				else
@@ -1410,7 +1410,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 		powertypemonitorplayer:RegisterUnitEvent("UNIT_DISPLAYPOWER", "player")
 		powertypemonitorplayer:SetScript("OnEvent", function()
 			local _, powertypeplayer = UnitPowerType("player")
-			if E.db.unitframe.units.player.enable and E.db.ElvUI_EltreumUI.borders.playerpower and E.db.unitframe.units.player.power.enable and E.db.unitframe.units.player.power.width == "spaced" then
+			if E.db.unitframe.units.player.enable and E.db.ElvUI_EltreumUI.borders.playerpower and E.db.unitframe.units.player.power.enable and (E.db.unitframe.units.player.power.width == "spaced" or E.db.unitframe.units.player.power.detachFromFrame) then
 				if E.db.unitframe.colors.power[powertypeplayer] then
 					playerpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertypeplayer].r, E.db.unitframe.colors.power[powertypeplayer].g, E.db.unitframe.colors.power[powertypeplayer].b, 1)
 				else
@@ -1448,7 +1448,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 					if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and targetcastbarborder ~= nil then
 						targetcastbarborder:SetBackdropBorderColor(classcolorreaction[targetclass]["r1"], classcolorreaction[targetclass]["g1"], classcolorreaction[targetclass]["b1"], 1)
 					end
-					if E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and E.db.unitframe.units.target.power.width == "spaced" then
+					if E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and (E.db.unitframe.units.target.power.width == "spaced" or E.db.unitframe.units.target.power.detachFromFrame) then
 						local _, powertype = UnitPowerType("target")
 						if E.db.unitframe.colors.power[powertype] then
 							targetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertype].r, E.db.unitframe.colors.power[powertype].g, E.db.unitframe.colors.power[powertype].b, 1)
@@ -1465,7 +1465,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 						if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and targetcastbarborder ~= nil then
 							targetcastbarborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
 						end
-						if E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and E.db.unitframe.units.target.power.width == "spaced" then
+						if E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and (E.db.unitframe.units.target.power.width == "spaced" or E.db.unitframe.units.target.power.detachFromFrame) then
 							local _, powertype = UnitPowerType("target")
 							if E.db.unitframe.colors.power[powertype] then
 								targetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertype].r, E.db.unitframe.colors.power[powertype].g, E.db.unitframe.colors.power[powertype].b, 1)
@@ -1480,7 +1480,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 						if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and targetcastbarborder ~= nil then
 							targetcastbarborder:SetBackdropBorderColor(classcolorreaction["NPCNEUTRAL"]["r1"], classcolorreaction["NPCNEUTRAL"]["g1"], classcolorreaction["NPCNEUTRAL"]["b1"], 1)
 						end
-						if E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and E.db.unitframe.units.target.power.width == "spaced" then
+						if E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and (E.db.unitframe.units.target.power.width == "spaced" or E.db.unitframe.units.target.power.detachFromFrame) then
 							local _, powertype = UnitPowerType("target")
 							if E.db.unitframe.colors.power[powertype] then
 								targetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertype].r, E.db.unitframe.colors.power[powertype].g, E.db.unitframe.colors.power[powertype].b, 1)
@@ -1495,7 +1495,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 						if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and targetcastbarborder ~= nil then
 							targetcastbarborder:SetBackdropBorderColor(classcolorreaction["NPCUNFRIENDLY"]["r1"], classcolorreaction["NPCUNFRIENDLY"]["g1"], classcolorreaction["NPCUNFRIENDLY"]["b1"], 1)
 						end
-						if E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and E.db.unitframe.units.target.power.width == "spaced" then
+						if E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and (E.db.unitframe.units.target.power.width == "spaced" or E.db.unitframe.units.target.power.detachFromFrame) then
 							local _, powertype = UnitPowerType("target")
 							if E.db.unitframe.colors.power[powertype] then
 								targetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertype].r, E.db.unitframe.colors.power[powertype].g, E.db.unitframe.colors.power[powertype].b, 1)
@@ -1510,7 +1510,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 						if E.db.ElvUI_EltreumUI.borders.targetcastborder and E.db.unitframe.units.target.castbar.enable and E.db.unitframe.units.target.castbar.overlayOnFrame == "None" and targetcastbarborder ~= nil then
 							targetcastbarborder:SetBackdropBorderColor(classcolorreaction["NPCHOSTILE"]["r1"], classcolorreaction["NPCHOSTILE"]["g1"], classcolorreaction["NPCHOSTILE"]["b1"], 1)
 						end
-						if E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and E.db.unitframe.units.target.power.width == "spaced" then
+						if E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and (E.db.unitframe.units.target.power.width == "spaced" or E.db.unitframe.units.target.power.detachFromFrame) then
 							local _, powertype = UnitPowerType("target")
 							if E.db.unitframe.colors.power[powertype] then
 								targetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertype].r, E.db.unitframe.colors.power[powertype].g, E.db.unitframe.colors.power[powertype].b, 1)
