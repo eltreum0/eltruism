@@ -933,6 +933,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G.RaidUtilityPanel,
 				_G.RaidUtility_CloseButton,
 				_G.RaidUtility_ShowButton,
+				_G.RaidUtilityTargetIcons,
+				_G.RaidUtilityRoleIcons,
 				_G.ReadyCheckFrame,
 				_G.ReadyStatus,
 				_G.RecruitAFriendRecruitmentFrame,
