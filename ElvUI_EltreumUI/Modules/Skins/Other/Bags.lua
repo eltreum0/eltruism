@@ -28,6 +28,7 @@ function ElvUI_EltreumUI:BagProfessions()
 				[17] = 28029, --Enchanting
 				[18] = 51313, --Enchanting
 				--[19] = 13262, --Disenchant
+				--[19] = 87067, --cata Disenchant
 				[19] = 4036, --Engineering
 				[20] = 4037, --Engineering
 				[21] = 4038, --Engineering
@@ -72,6 +73,17 @@ function ElvUI_EltreumUI:BagProfessions()
 				[60] = 18260, --Cooking
 				[61] = 185, --Cooking
 				[62] = 2656, --Smelting
+				[63] = 73318, --cata Jewelcrafting
+				[64] = 88053, --cata Cooking
+				[65] = 74559, --cata First Aid
+				[66] = 88424, --cata Smelting
+				[67] = 75156, --cata Tailoring
+				[68] = 81199, --cata Leatherworking
+				[69] = 86008, --cata Inscription
+				[70] = 82774, --cata Engineering
+				[71] = 74258, --cata Enchanting
+				[72] = 76666, --cata Blacksmithing
+				[73] = 80731, --cata Alchemy
 			}
 			local blockprof = {
 				[4620674] = true,
