@@ -899,9 +899,8 @@ function ElvUI_EltreumUI:GradientUF(unit)
 		--group/raid unitframes
 		if (UnitExists(unit) or forced) then
 			--party/raid
-			if _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsShown() then
-				print("party gradient firing",math.random(1,99))
-				--print("party spam")
+			if _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsVisible() then
+				--print("party gradient firing",math.random(1,99))
 				local partymembers = {_G["ElvUF_PartyGroup1"]:GetChildren()}
 				for _, frame in pairs(partymembers) do
 					if frame and frame.Health then
@@ -909,7 +908,7 @@ function ElvUI_EltreumUI:GradientUF(unit)
 					end
 				end
 				if E.db.unitframe.units.party.petsGroup.enable then
-					if _G["ElvUF_PartyGroup1UnitButton1Pet"] and _G["ElvUF_PartyGroup1UnitButton1Pet"]:IsShown() then
+					if _G["ElvUF_PartyGroup1UnitButton1Pet"] and _G["ElvUF_PartyGroup1UnitButton1Pet"]:IsVisible() then
 						for i = 1, 5 do
 							local partypetbutton = _G["ElvUF_PartyGroup1UnitButton"..i.."Pet"]
 							if partypetbutton and partypetbutton.Health then
@@ -920,9 +919,8 @@ function ElvUI_EltreumUI:GradientUF(unit)
 				end
 			end
 
-			if _G["ElvUF_Raid1"] and _G["ElvUF_Raid1"]:IsShown() then
-				print("raid1 gradient firing",math.random(1,99))
-				--print("raid1 spam")
+			if _G["ElvUF_Raid1"] and _G["ElvUF_Raid1"]:IsVisible() then
+				--print("raid1 gradient firing",math.random(1,99))
 				for i = 1, 8 do
 					if _G["ElvUF_Raid1Group"..i] then
 						local raidmembers = {_G["ElvUF_Raid1Group"..i]:GetChildren()}
@@ -935,8 +933,8 @@ function ElvUI_EltreumUI:GradientUF(unit)
 				end
 			end
 
-			if _G["ElvUF_Raid2"] and _G["ElvUF_Raid2"]:IsShown() then
-				print("raid2 gradient firing",math.random(1,99))
+			if _G["ElvUF_Raid2"] and _G["ElvUF_Raid2"]:IsVisible() then
+				--print("raid2 gradient firing",math.random(1,99))
 				for i = 1, 8 do
 					if _G["ElvUF_Raid2Group"..i] then
 						local raidmembers = {_G["ElvUF_Raid2Group"..i]:GetChildren()}
@@ -949,8 +947,8 @@ function ElvUI_EltreumUI:GradientUF(unit)
 				end
 			end
 
-			if _G["ElvUF_Raid3"] and _G["ElvUF_Raid3"]:IsShown() then
-				print("raid3 gradient firing",math.random(1,99))
+			if _G["ElvUF_Raid3"] and _G["ElvUF_Raid3"]:IsVisible() then
+				--print("raid3 gradient firing",math.random(1,99))
 				for i = 1, 8 do
 					if _G["ElvUF_Raid3Group"..i] then
 						local raidmembers = {_G["ElvUF_Raid3Group"..i]:GetChildren()}
@@ -964,8 +962,8 @@ function ElvUI_EltreumUI:GradientUF(unit)
 			end
 
 			--tanks
-			if _G["ElvUF_TankUnitButton1"] and _G["ElvUF_TankUnitButton1"]:IsShown() then
-				print("tank gradient firing",math.random(1,99))
+			if _G["ElvUF_TankUnitButton1"] and _G["ElvUF_TankUnitButton1"]:IsVisible() then
+				--print("tank gradient firing",math.random(1,99))
 				for i = 1, 8 do
 					local tankmembers = {_G["ElvUF_TankUnitButton"..i]}
 					for _, frame in pairs(tankmembers) do
@@ -977,8 +975,8 @@ function ElvUI_EltreumUI:GradientUF(unit)
 			end
 
 			--tank targets
-			if _G["ElvUF_TankUnitButton1Target"] and _G["ElvUF_TankUnitButton1Target"]:IsShown() then
-				print("tank target gradient firing",math.random(1,99))
+			if _G["ElvUF_TankUnitButton1Target"] and _G["ElvUF_TankUnitButton1Target"]:IsVisible() then
+				--print("tank target gradient firing",math.random(1,99))
 				for i = 1, 8 do
 					local tanktargetmembers = {_G["ElvUF_TankUnitButton"..i.."Target"]}
 					for _, frame in pairs(tanktargetmembers) do
@@ -990,8 +988,8 @@ function ElvUI_EltreumUI:GradientUF(unit)
 			end
 
 			--raid assist
-			if _G["ElvUF_AssistUnitButton1"] and _G["ElvUF_AssistUnitButton1"]:IsShown() then
-				print("assist gradient firing",math.random(1,99))
+			if _G["ElvUF_AssistUnitButton1"] and _G["ElvUF_AssistUnitButton1"]:IsVisible() then
+				--print("assist gradient firing",math.random(1,99))
 				for i = 1, 8 do
 					local assistmembers = {_G["ElvUF_AssistUnitButton"..i]}
 					for _, frame in pairs(assistmembers) do
@@ -1003,8 +1001,8 @@ function ElvUI_EltreumUI:GradientUF(unit)
 			end
 
 			--raid assist targets
-			if _G["ElvUF_AssistUnitButton1Target"] and _G["ElvUF_AssistUnitButton1Target"]:IsShown() then
-				print("assist target gradient firing",math.random(1,99))
+			if _G["ElvUF_AssistUnitButton1Target"] and _G["ElvUF_AssistUnitButton1Target"]:IsVisible() then
+				--print("assist target gradient firing",math.random(1,99))
 				for i = 1, 8 do
 					local assisttargetmembers = {_G["ElvUF_AssistUnitButton"..i.."Target"]}
 					for _, frame in pairs(assisttargetmembers) do
@@ -1016,8 +1014,8 @@ function ElvUI_EltreumUI:GradientUF(unit)
 			end
 
 			--raid pets
-			if _G["ElvUF_RaidpetGroup1UnitButton1"] and _G["ElvUF_RaidpetGroup1UnitButton1"]:IsShown() and E.db.unitframe.units.raidpet.enable then
-				print("raid pet gradient firing",math.random(1,99))
+			if _G["ElvUF_RaidpetGroup1UnitButton1"] and _G["ElvUF_RaidpetGroup1UnitButton1"]:IsVisible() and E.db.unitframe.units.raidpet.enable then
+				--print("raid pet gradient firing",math.random(1,99))
 				for i = 1, 40 do
 					local raidpetbutton = {_G["ElvUF_RaidpetGroup1UnitButton"..i]}
 					for _, frame in pairs(raidpetbutton) do
