@@ -1387,6 +1387,34 @@ function ElvUI_EltreumUI:UFAuraBorders(button)
 end
 hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraBorders) --uf aura borders
 
+function ElvUI_EltreumUI:UFAuraBordersColorDebuff(a,button)
+	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf and E.private.auras.enable then
+		local auraborder = _G["EltruismAuraBorder"..button:GetName()]
+		if not auraborder then return end
+		if E.db.ElvUI_EltreumUI.borders.classcolor then
+			classcolor = E:ClassColor(E.myclass, true)
+		elseif not E.db.ElvUI_EltreumUI.borders.classcolor then
+			classcolor = {
+				r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
+				g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
+				b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
+			}
+		end
+
+		if button.isDebuff then
+			local r,g,b = button:GetBackdropBorderColor()
+			if r then
+				auraborder:SetBackdropBorderColor(r,g,b, 1)
+			else
+				auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			end
+		else
+			auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+		end
+	end
+end
+hooksecurefunc(UF, 'PostUpdateAura', ElvUI_EltreumUI.UFAuraBordersColorDebuff) --uf aura debuff colors update
+
 function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of target changes if the target is not in party/raid, no event to register :(
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
 
