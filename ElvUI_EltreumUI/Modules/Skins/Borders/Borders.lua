@@ -1245,17 +1245,17 @@ end
 
 --from elvui
 local debuffColors = { -- handle colors of LibDispel
-	["none"] = { r = 0.8, g = 0, b = 0 },
-	["Magic"] = { r = 0.2, g = 0.6, b = 1 },
-	["Curse"] = { r = 0.6, g = 0, b = 1 },
-	["Disease"] = { r = 0.6, g = 0.4, b = 0 },
-	["Poison"] = { r = 0, g = 0.6, b = 0 },
+	["none"] = { r = E.db.general.debuffColors.none.r, g = E.db.general.debuffColors.none.g, b = E.db.general.debuffColors.none.b },
+	["Magic"] = { r = E.db.general.debuffColors.Magic.r, g = E.db.general.debuffColors.Magic.g, b = E.db.general.debuffColors.Magic.b },
+	["Curse"] = { r = E.db.general.debuffColors.Curse.r, g = E.db.general.debuffColors.Curse.g, b = E.db.general.debuffColors.Curse.b },
+	["Disease"] = { r = E.db.general.debuffColors.Disease.r, g = E.db.general.debuffColors.Disease.g, b = E.db.general.debuffColors.Disease.b },
+	["Poison"] = { r = E.db.general.debuffColors.Poison.r, g = E.db.general.debuffColors.Poison.g, b = E.db.general.debuffColors.Poison.b },
 
 	-- These dont exist in Blizzards color table
-	["EnemyNPC"] = { r = 0.9, g = 0.1, b = 0.1 },
-	["BadDispel"] = { r = 0.05, g = 0.85, b = 0.94 },
-	["Bleed"] = { r = 1, g = 0.2, b = 0.6 },
-	["Stealable"] = { r = 0.93, g = 0.91, b = 0.55 },
+	["EnemyNPC"] = { r = E.db.general.debuffColors.EnemyNPC.r, g = E.db.general.debuffColors.EnemyNPC.g, b = E.db.general.debuffColors.EnemyNPC.b },
+	["BadDispel"] = { r = E.db.general.debuffColors.BadDispel.r, g = E.db.general.debuffColors.BadDispel.g, b = E.db.general.debuffColors.BadDispel.b },
+	["Bleed"] = { r = E.db.general.debuffColors.Bleed.r, g = E.db.general.debuffColors.Bleed.g, b = E.db.general.debuffColors.Bleed.b },
+	["Stealable"] = { r = E.db.general.debuffColors.Stealable.r, g = E.db.general.debuffColors.Stealable.g, b = E.db.general.debuffColors.Stealable.b },
 }
 
 function ElvUI_EltreumUI:AuraBorders(button)
