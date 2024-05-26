@@ -50,12 +50,25 @@ local PowerReadjust = {
 	["spaced"] = true,
 }
 
+function ElvUI_EltreumUI:GetBorderClassColors()
+	if E.db.ElvUI_EltreumUI.borders.classcolor then
+		classcolor = E:ClassColor(E.myclass, true)
+	elseif not E.db.ElvUI_EltreumUI.borders.classcolor then
+		classcolor = {
+			r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
+			g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
+			b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
+		}
+	end
+end
+
 --Borders on frames
 function ElvUI_EltreumUI:Borders()
 	if E.db.ElvUI_EltreumUI.borders.borders then
 		if E.Classic and not E.db.ElvUI_EltreumUI.skins.classicblueshaman then
 			classcolorreaction["SHAMAN"] = {r1 = 0.95686066150665, g1 = 0.54901838302612, b1 = 0.72941017150879}
 		end
+		ElvUI_EltreumUI:GetBorderClassColors()
 
 		--borders not nice with transparent power
 		if PowerReadjust[E.db.unitframe.units.player.power.width] then
@@ -68,16 +81,6 @@ function ElvUI_EltreumUI:Borders()
 				bordertexture = E.LSM:Fetch("border", "Eltreum-Border-1")
 				E.db.ElvUI_EltreumUI.borders.texture = "Eltreum-Border-1"
 			end
-		end
-
-		if E.db.ElvUI_EltreumUI.borders.classcolor then
-			classcolor = E:ClassColor(E.myclass, true)
-		else
-			classcolor = {
-				r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
-				g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
-				b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
-			}
 		end
 
 		--used for testing
@@ -1245,31 +1248,21 @@ end
 
 --from elvui
 local debuffColors = { -- handle colors of LibDispel
-	["none"] = { r = 0.8, g = 0, b = 0 },
-	["Magic"] = { r = 0.2, g = 0.6, b = 1 },
-	["Curse"] = { r = 0.6, g = 0, b = 1 },
-	["Disease"] = { r = 0.6, g = 0.4, b = 0 },
-	["Poison"] = { r = 0, g = 0.6, b = 0 },
+	["none"] = { r = E.db.general.debuffColors.none.r, g = E.db.general.debuffColors.none.g, b = E.db.general.debuffColors.none.b },
+	["Magic"] = { r = E.db.general.debuffColors.Magic.r, g = E.db.general.debuffColors.Magic.g, b = E.db.general.debuffColors.Magic.b },
+	["Curse"] = { r = E.db.general.debuffColors.Curse.r, g = E.db.general.debuffColors.Curse.g, b = E.db.general.debuffColors.Curse.b },
+	["Disease"] = { r = E.db.general.debuffColors.Disease.r, g = E.db.general.debuffColors.Disease.g, b = E.db.general.debuffColors.Disease.b },
+	["Poison"] = { r = E.db.general.debuffColors.Poison.r, g = E.db.general.debuffColors.Poison.g, b = E.db.general.debuffColors.Poison.b },
 
 	-- These dont exist in Blizzards color table
-	["EnemyNPC"] = { r = 0.9, g = 0.1, b = 0.1 },
-	["BadDispel"] = { r = 0.05, g = 0.85, b = 0.94 },
-	["Bleed"] = { r = 1, g = 0.2, b = 0.6 },
-	["Stealable"] = { r = 0.93, g = 0.91, b = 0.55 },
+	["EnemyNPC"] = { r = E.db.general.debuffColors.EnemyNPC.r, g = E.db.general.debuffColors.EnemyNPC.g, b = E.db.general.debuffColors.EnemyNPC.b },
+	["BadDispel"] = { r = E.db.general.debuffColors.BadDispel.r, g = E.db.general.debuffColors.BadDispel.g, b = E.db.general.debuffColors.BadDispel.b },
+	["Bleed"] = { r = E.db.general.debuffColors.Bleed.r, g = E.db.general.debuffColors.Bleed.g, b = E.db.general.debuffColors.Bleed.b },
+	["Stealable"] = { r = E.db.general.debuffColors.Stealable.r, g = E.db.general.debuffColors.Stealable.g, b = E.db.general.debuffColors.Stealable.b },
 }
 
 function ElvUI_EltreumUI:AuraBorders(button)
 	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable then
-		if E.db.ElvUI_EltreumUI.borders.classcolor then
-			classcolor = E:ClassColor(E.myclass, true)
-		elseif not E.db.ElvUI_EltreumUI.borders.classcolor then
-			classcolor = {
-				r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
-				g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
-				b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
-			}
-		end
-
 		local auraborder
 		if not _G["EltruismAuraBorder"..button:GetName()] then
 			auraborder = CreateFrame("Frame", "EltruismAuraBorder"..button:GetName(), button, BackdropTemplateMixin and "BackdropTemplate")
@@ -1310,15 +1303,6 @@ function ElvUI_EltreumUI:AuraBordersColorDebuff(button)
 	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable then
 		local auraborder = _G["EltruismAuraBorder"..button:GetName()]
 		if not auraborder then return end
-		if E.db.ElvUI_EltreumUI.borders.classcolor then
-			classcolor = E:ClassColor(E.myclass, true)
-		elseif not E.db.ElvUI_EltreumUI.borders.classcolor then
-			classcolor = {
-				r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
-				g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
-				b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
-			}
-		end
 		if button.auraType == "debuffs" then
 			if debuffColors[button.debuffType] then
 				auraborder:SetBackdropBorderColor(debuffColors[button.debuffType].r, debuffColors[button.debuffType].g, debuffColors[button.debuffType].b, 1)
@@ -1386,6 +1370,24 @@ function ElvUI_EltreumUI:UFAuraBorders(button)
 	end
 end
 hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraBorders) --uf aura borders
+
+function ElvUI_EltreumUI:UFAuraBordersColorDebuff(_,button)
+	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf and E.private.auras.enable then
+		local auraborder = _G["EltruismAuraBorder"..button:GetName()]
+		if not auraborder then return end
+		if button.isDebuff then
+			local r,g,b = button:GetBackdropBorderColor()
+			if r then
+				auraborder:SetBackdropBorderColor(r,g,b, 1)
+			else
+				auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			end
+		else
+			auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+		end
+	end
+end
+hooksecurefunc(UF, 'PostUpdateAura', ElvUI_EltreumUI.UFAuraBordersColorDebuff) --uf aura debuff colors update
 
 function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of target changes if the target is not in party/raid, no event to register :(
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
@@ -1806,6 +1808,7 @@ function ElvUI_EltreumUI:ShowHideBorders(install)
 		end
 	end
 
+	ElvUI_EltreumUI:GetBorderClassColors()
 	if install or not E.private.ElvUI_EltreumUI.install_version then
 		if not E.db.ElvUI_EltreumUI.borders.borders then
 			E.db.ElvUI_EltreumUI.borders.borders = true
