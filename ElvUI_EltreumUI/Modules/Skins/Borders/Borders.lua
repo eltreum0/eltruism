@@ -1352,7 +1352,7 @@ function ElvUI_EltreumUI:UFAuraBorders(button)
 			auraborder:SetPoint("CENTER", button, "CENTER", 0, 0)
 			auraborder:SetBackdrop({
 				edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
-				edgeSize = E.db.ElvUI_EltreumUI.borders.aurasize,
+				edgeSize = E.db.ElvUI_EltreumUI.borders.ufaurasize,
 			})
 			auraborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.auraufstrata)
 			auraborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.aurauflevel)

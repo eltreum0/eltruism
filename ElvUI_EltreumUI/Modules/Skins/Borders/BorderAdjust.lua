@@ -47,6 +47,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.minimapsize = 15
 				E.db.ElvUI_EltreumUI.borders.chatsize = 13
 				E.db.ElvUI_EltreumUI.borders.aurasize = 13
+				E.db.ElvUI_EltreumUI.borders.ufaurasize = 13
 				E.db.ElvUI_EltreumUI.borders.powerbarborder = false
 				E.db.ElvUI_EltreumUI.borders.powerbarsize = 4
 				E.db.ElvUI_EltreumUI.borders.xpowerbar = 138.8
