@@ -1907,7 +1907,7 @@ function ElvUI_EltreumUI:Shadows()
 						if not E.db.unitframe.units.player.castbar.iconAttached then
 							if E.db.unitframe.units.player.castbar.iconPosition == "RIGHT" then
 								if E.db.unitframe.units.player.castbar.iconAttachedTo == "Castbar" then
-									if E.db.unitframe.units.player.castbar.height < E.db.unitframe.units.player.castbar.iconSize and E.db.unitframe.units.player.castbar.iconXOffset ~= 0 then
+									if E.db.unitframe.units.player.castbar.height ~= E.db.unitframe.units.player.castbar.iconSize and E.db.unitframe.units.player.castbar.iconXOffset ~= 0 then
 										if not _G["ElvUF_Player_CastBar"].Holder.shadow then
 											_G["ElvUF_Player_CastBar"].Holder:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 											ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_CastBar"].Holder.shadow)
@@ -1939,7 +1939,7 @@ function ElvUI_EltreumUI:Shadows()
 								end
 							else
 								if E.db.unitframe.units.player.castbar.iconAttachedTo == "Castbar" then
-									if E.db.unitframe.units.player.castbar.height < E.db.unitframe.units.player.castbar.iconSize then
+									if E.db.unitframe.units.player.castbar.height ~= E.db.unitframe.units.player.castbar.iconSize and E.db.unitframe.units.player.castbar.iconXOffset ~= 0 then
 										if not _G["ElvUF_Player_CastBar"].Holder.shadow then
 											_G["ElvUF_Player_CastBar"].Holder:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 											ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_CastBar"].Holder.shadow)
@@ -1995,7 +1995,7 @@ function ElvUI_EltreumUI:Shadows()
 						if not E.db.unitframe.units.target.castbar.iconAttached then
 							if E.db.unitframe.units.target.castbar.iconPosition == "RIGHT" then
 								if E.db.unitframe.units.target.castbar.iconAttachedTo == "Castbar" then
-									if E.db.unitframe.units.target.castbar.height < E.db.unitframe.units.target.castbar.iconSize and E.db.unitframe.units.target.castbar.iconXOffset ~= 0 then
+									if E.db.unitframe.units.target.castbar.height ~= E.db.unitframe.units.target.castbar.iconSize and E.db.unitframe.units.target.castbar.iconXOffset ~= 0 then
 										if not _G["ElvUF_Target_CastBar"].Holder.shadow then
 											_G["ElvUF_Target_CastBar"].Holder:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 											ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Target_CastBar"].Holder.shadow)
@@ -2027,7 +2027,7 @@ function ElvUI_EltreumUI:Shadows()
 								end
 							else
 								if E.db.unitframe.units.target.castbar.iconAttachedTo == "Castbar" then
-									if E.db.unitframe.units.target.castbar.height < E.db.unitframe.units.target.castbar.iconSize then
+									if E.db.unitframe.units.target.castbar.height ~= E.db.unitframe.units.target.castbar.iconSize and E.db.unitframe.units.target.castbar.iconXOffset ~= 0 then
 										if not _G["ElvUF_Target_CastBar"].Holder.shadow then
 											_G["ElvUF_Target_CastBar"].Holder:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 											ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Target_CastBar"].Holder.shadow)
@@ -2083,7 +2083,7 @@ function ElvUI_EltreumUI:Shadows()
 						if not E.db.unitframe.units.focus.castbar.iconAttached then
 							if E.db.unitframe.units.focus.castbar.iconPosition == "RIGHT" then
 								if E.db.unitframe.units.focus.castbar.iconAttachedTo == "Castbar" then
-									if E.db.unitframe.units.focus.castbar.height < E.db.unitframe.units.focus.castbar.iconSize and E.db.unitframe.units.focus.castbar.iconXOffset ~= 0 then
+									if E.db.unitframe.units.focus.castbar.height ~= E.db.unitframe.units.focus.castbar.iconSize and E.db.unitframe.units.focus.castbar.iconXOffset ~= 0 then
 										if not _G["ElvUF_Focus_CastBar"].Holder.shadow then
 											_G["ElvUF_Focus_CastBar"].Holder:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 											ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Focus_CastBar"].Holder.shadow)
@@ -2115,7 +2115,7 @@ function ElvUI_EltreumUI:Shadows()
 								end
 							else
 								if E.db.unitframe.units.focus.castbar.iconAttachedTo == "Castbar" then
-									if E.db.unitframe.units.focus.castbar.height < E.db.unitframe.units.focus.castbar.iconSize then
+									if E.db.unitframe.units.focus.castbar.height ~= E.db.unitframe.units.focus.castbar.iconSize and E.db.unitframe.units.focus.castbar.iconXOffset ~= 0 then
 										if not _G["ElvUF_Focus_CastBar"].Holder.shadow then
 											_G["ElvUF_Focus_CastBar"].Holder:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 											ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Focus_CastBar"].Holder.shadow)
