@@ -2796,7 +2796,8 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							local M = E:GetModule('Misc')
 							hooksecurefunc(M,"UpdateAverageString", function(_, _, which, iLevelDB)
 								if which == "Inspect" then
-									if _G.InspectFrame and _G.InspectFrame.ItemLevelText then
+									if _G.InspectFrame and _G.InspectFrame.ItemLevelText and iLevelDB and _G.InspectFrame.unit then
+										--print(E:CalculateAverageItemLevel(iLevelDB, _G.InspectFrame.unit)," result?")
 										_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:CalculateAverageItemLevel(iLevelDB, _G.InspectFrame.unit))
 									end
 								end
