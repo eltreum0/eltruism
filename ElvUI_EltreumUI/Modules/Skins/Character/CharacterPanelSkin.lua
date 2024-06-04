@@ -1589,6 +1589,23 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame:HookScript("OnShow", function()
 				HandleCharacterPanelSize()
 				_G.CharacterFrame:Expand() --start expanded
+				if IsAddOnLoaded("ElvUI_CataArmory") then --reset the points since cataarmory adjusts and makes the skin look incorrect
+					if _G.CharacterFrame.BottomRightCorner then
+						_G.CharacterFrame.BottomRightCorner:ClearAllPoints()
+						_G.CharacterFrame.BottomRightCorner:SetPoint('BOTTOMRIGHT', _G.CharacterFrame, 'BOTTOMRIGHT', 0, 0)
+					end
+					if _G.CharacterFrame.BottomLeftCorner then
+						_G.CharacterFrame.BottomLeftCorner:ClearAllPoints()
+						_G.CharacterFrame.BottomLeftCorner:SetPoint('BOTTOMLEFT', _G.CharacterFrame, 'BOTTOMLEFT', 0, 0)
+					end
+					_G.CharacterFrameTab1:ClearAllPoints()
+					_G.CharacterFrameTab1:SetPoint('TOPLEFT', _G.CharacterFrame, 'BOTTOMLEFT', 0, 0)
+
+					_G.CharacterFrame.BottomLeftCorner:ClearAllPoints()
+					_G.CharacterFrame.BottomLeftCorner:SetPoint('BOTTOMLEFT', _G.CharacterFrame, 'BOTTOMLEFT', 0, 0)
+					_G.CharacterFrame.BottomRightCorner:ClearAllPoints()
+					_G.CharacterFrame.BottomRightCorner:SetPoint('BOTTOMRIGHT', _G.CharacterFrame, 'BOTTOMRIGHT', 0, 0)
+				end
 			end)
 			_G.PaperDollFrame:HookScript("OnShow", HandleCharacterPanelSize)
 			_G.PaperDollFrame:HookScript("OnHide", HandleCharacterPanelSize)
@@ -1805,6 +1822,22 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 				end
 			end
+		end
+
+		if IsAddOnLoaded("ElvUI_CataArmory") then
+			--fix the double item level
+			E.db["cataarmory"]["character"]["avgItemLevel"]["enable"] = false
+
+			--fix the text position
+			E.db["cataarmory"]["character"]["enchant"]["MainHandSlot"]["anchorPoint"] = "TOPLEFT"
+			E.db["cataarmory"]["character"]["enchant"]["MainHandSlot"]["growthDirection"] = "UP_LEFT"
+			E.db["cataarmory"]["character"]["enchant"]["MainHandSlot"]["xOffset"] = 0
+			E.db["cataarmory"]["character"]["enchant"]["MainHandSlot"]["yOffset"] = 2
+			E.db["cataarmory"]["character"]["enchant"]["RangedSlot"]["anchorPoint"] = "TOPRIGHT"
+			E.db["cataarmory"]["character"]["enchant"]["RangedSlot"]["xOffset"] = 0
+			E.db["cataarmory"]["character"]["enchant"]["SecondaryHandSlot"]["anchorPoint"] = "TOPLEFT"
+			E.db["cataarmory"]["character"]["enchant"]["SecondaryHandSlot"]["growthDirection"] = "UP_RIGHT"
+			E.db["cataarmory"]["character"]["enchant"]["SecondaryHandSlot"]["yOffset"] = 2
 		end
 
 		local M = E:GetModule('Misc')
