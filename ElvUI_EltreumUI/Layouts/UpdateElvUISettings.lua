@@ -79,7 +79,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 			E.db["general"]["fonts"]["talkingtitle"]["size"] = 20
 			E.db["general"]["itemLevel"]["totalLevelFont"] = "Kimberley"
 			E.db["general"]["itemLevel"]["totalLevelFontOutline"] = "OUTLINE"
-			E.db["general"]["itemLevel"]["totalLevelFontSize"] = 22
+			E.db["general"]["itemLevel"]["totalLevelFontSize"] = E.Retail and 22 or 12
 
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "OUTLINE"
@@ -128,6 +128,17 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 			E.db["actionbar"]["targetReticleColor"]["b"] = valuecolors.b
 			E.db["actionbar"]["targetReticleColor"]["g"] = valuecolors.g
 			E.db["actionbar"]["targetReticleColor"]["r"] = valuecolors.r
+
+			if not E.Classic then
+				E.db["unitframe"]["units"]["party"]["petsGroup"]["name"]["text_format"] = "[name]"
+				if E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"] then
+					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
+						E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[name:eltruism:gradient]"
+					else
+						E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
+					end
+				end
+			end
 
 			ElvUI_EltreumUI:Print(L["Settings for ElvUI were updated."])
 		end

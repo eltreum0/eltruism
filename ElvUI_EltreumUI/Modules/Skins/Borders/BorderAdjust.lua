@@ -47,6 +47,7 @@ function ElvUI_EltreumUI:BorderAdjust()
 				E.db.ElvUI_EltreumUI.borders.minimapsize = 15
 				E.db.ElvUI_EltreumUI.borders.chatsize = 13
 				E.db.ElvUI_EltreumUI.borders.aurasize = 13
+				E.db.ElvUI_EltreumUI.borders.ufaurasize = 13
 				E.db.ElvUI_EltreumUI.borders.powerbarborder = false
 				E.db.ElvUI_EltreumUI.borders.powerbarsize = 4
 				E.db.ElvUI_EltreumUI.borders.xpowerbar = 138.8
@@ -93,6 +94,23 @@ function ElvUI_EltreumUI:BorderAdjust()
 					E.db["movers"]["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,-1"
 				end
 				E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-4"
+
+				--alt power adjustments
+				if _G.ElvUF_Player_ClassBar and _G.ElvUF_Player_ClassBar.__max then
+					if _G.ElvUF_Player_ClassBar.__max == 7 then
+						E.db.ElvUI_EltreumUI.borders.combosizex = 59
+						E.db.ElvUI_EltreumUI.borders.combosizey = 42
+					elseif _G.ElvUF_Player_ClassBar.__max == 6 then
+						E.db.ElvUI_EltreumUI.borders.combosizex = 62
+						E.db.ElvUI_EltreumUI.borders.combosizey = 42
+					elseif _G.ElvUF_Player_ClassBar.__max == 5 then
+						E.db.ElvUI_EltreumUI.borders.combosizex = 71
+						E.db.ElvUI_EltreumUI.borders.combosizey = 42
+					elseif _G.ElvUF_Player_ClassBar.__max == 4 then
+						E.db.ElvUI_EltreumUI.borders.combosizex = 76
+						E.db.ElvUI_EltreumUI.borders.combosizey = 42
+					end
+				end
 
 				if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") then
 

@@ -100,6 +100,7 @@ local DONATORS = {
 	'|cffB50909Garrgamell|r',
 	'|cffB50909dartworth|r',
 	'|cffB50909Rocket Surgery|r',
+	'|cffB50909Embee|r',
 }
 
 local TRANSLATORS = {
@@ -107,6 +108,7 @@ local TRANSLATORS = {
 	'|cffCC3333Dlarge|r - German Translation',
 	'|cffCC3333Neo|r - Chinese Translation',
 	'DeepL artificial intelligence for French and Spanish translations',
+	'|cffCC3333魔能機曱 (Johnson)|r - Taiwanese Mandarin Translation',
 }
 
 -- SortList
@@ -626,7 +628,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.aura.args.auraframeLevel = ACH:Range(L["Frame Level"], nil, 9, { min = 1, max = 128, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.auralevel end, function(_, value) E.db.ElvUI_EltreumUI.borders.auralevel = value ElvUI_EltreumUI:Borders() end, function() return not E.db.ElvUI_EltreumUI.borders.auraborder end)
 	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.ufaura = ACH:Group(L["Unitframe Auras"], nil, 2,"tab")
 	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.ufaura.args.enable = ACH:Toggle(L["Enable Unitframe Auras"], nil, 3, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.auraborderuf end,function(_, value) E.db.ElvUI_EltreumUI.borders.auraborderuf = value E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:Borders() end)
-	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.ufaura.args.borderthickness = ACH:Range(L["Aura Thickness"], nil, 5, { min = 1, max = 200, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.aurasize end, function(_, value) E.db.ElvUI_EltreumUI.borders.aurasize = value ElvUI_EltreumUI:Borders() end, function() return not E.db.ElvUI_EltreumUI.borders.auraborderuf end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.ufaura.args.borderthickness = ACH:Range(L["Aura Thickness"], nil, 5, { min = 1, max = 200, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.ufaurasize end, function(_, value) E.db.ElvUI_EltreumUI.borders.ufaurasize = value ElvUI_EltreumUI:Borders() end, function() return not E.db.ElvUI_EltreumUI.borders.auraborderuf end)
 	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.ufaura.args.borderxauras = ACH:Range(L["Unitframe Aura Border X offset"], nil, 6, { min = 1, max = 100, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.ufbuffsizex end, function(_, value) E.db.ElvUI_EltreumUI.borders.ufbuffsizex = value ElvUI_EltreumUI:Borders() end, function() return not E.db.ElvUI_EltreumUI.borders.auraborderuf end)
 	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.ufaura.args.borderyauras = ACH:Range(L["Unitframe Aura Border Y offset"], nil, 6, { min = 1, max = 100, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.ufbuffsizey end, function(_, value) E.db.ElvUI_EltreumUI.borders.ufbuffsizey = value ElvUI_EltreumUI:Borders() end, function() return not E.db.ElvUI_EltreumUI.borders.auraborderuf end)
 	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.ufaura.args.borderxaurasdebuff = ACH:Range(L["Unitframes Debuff Aura Border X offset"], nil, 7, { min = 1, max = 100, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.ufdebuffsizex end, function(_, value) E.db.ElvUI_EltreumUI.borders.ufdebuffsizex = value ElvUI_EltreumUI:Borders() end, function() return not E.db.ElvUI_EltreumUI.borders.auraborderuf end)
@@ -644,6 +646,36 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.chat.args.rightchaty = ACH:Range(L["Right Chat Border Y offset"], nil, 10, { min = 1, max = 800, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.rightchatbordery end, function(_, value) E.db.ElvUI_EltreumUI.borders.rightchatbordery = value ElvUI_EltreumUI:Borders() end, function() return not E.db.ElvUI_EltreumUI.borders.chatborder end)
 	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.chat.args.rightchatframeStrata = ACH:Select(L["Frame Strata"], nil, 11, FrameStrataLevels, false, "full",function() return E.db.ElvUI_EltreumUI.borders.rightchatstrata end, function(_, value) E.db.ElvUI_EltreumUI.borders.rightchatstrata = value ElvUI_EltreumUI:Borders() end, function() return not E.db.ElvUI_EltreumUI.borders.chatborder end)
 	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.chat.args.rightchatframeLevel = ACH:Range(L["Frame Level"], nil, 12, { min = 1, max = 128, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.rightchatlevel end, function(_, value) E.db.ElvUI_EltreumUI.borders.rightchatlevel = value ElvUI_EltreumUI:Borders() end, function() return not E.db.ElvUI_EltreumUI.borders.chatborder end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders = ACH:Group(L["DataBars"], nil, 2, nil,nil,nil,function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.description0 = ACH:Group(L["(All settings require a reload)"], nil, 1)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.description0.inline = true
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.description0.args.description1 = ACH:Description(L["Change the size of the borders:"], 2)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.description0.args.borderdatabarsize = ACH:Range(L["Databars Thickness"], nil, 3, { min = 1, max = 200, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.databarsize end, function(_, value) E.db.ElvUI_EltreumUI.borders.databarsize = value ElvUI_EltreumUI:Borders() end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.experience = ACH:Group(L["Experience"], nil, 2,"tab")
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.experience.args.enable = ACH:Toggle(L["Enable"], nil, 1, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.experiencebar end,function(_, value) E.db.ElvUI_EltreumUI.borders.experiencebar = value ElvUI_EltreumUI:Borders() end, function() return not E.db.databars.experience.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.experience.args.borderexperiencex = ACH:Range(L["Border X offset"], nil, 2, { min = 1, max = 800, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.experiencebarsizex end, function(_, value) E.db.ElvUI_EltreumUI.borders.experiencebarsizex = value ElvUI_EltreumUI:Borders() end, function() return not E.db.databars.experience.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.experience.args.borderexperiencey = ACH:Range(L["Border Y offset"], nil, 2, { min = 1, max = 800, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.experiencebarsizey end, function(_, value) E.db.ElvUI_EltreumUI.borders.experiencebarsizey = value ElvUI_EltreumUI:Borders() end, function() return not E.db.databars.experience.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.experience.args.experienceframeStrata = ACH:Select(L["Frame Strata"], nil, 3, FrameStrataLevels, false, "full",function() return E.db.ElvUI_EltreumUI.borders.experiencebarstrata end, function(_, value) E.db.ElvUI_EltreumUI.borders.experiencebarstrata = value ElvUI_EltreumUI:Borders() end, function() return not E.db.databars.experience.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.experience.args.experienceframeLevel = ACH:Range(L["Frame Level"], nil, 4, { min = 1, max = 128, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.experiencebarlevel end, function(_, value) E.db.ElvUI_EltreumUI.borders.experiencebarlevel = value ElvUI_EltreumUI:Borders() end, function() return not E.db.databars.experience.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.reputation = ACH:Group(L["Reputation"], nil, 2,"tab")
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.reputation.args.enable = ACH:Toggle(L["Enable"], nil, 1, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.reputationbar end,function(_, value) E.db.ElvUI_EltreumUI.borders.reputationbar = value ElvUI_EltreumUI:Borders() end, function() return not E.db.databars.reputation.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.reputation.args.borderreputationx = ACH:Range(L["Border X offset"], nil, 2, { min = 1, max = 800, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.reputationbarsizex end, function(_, value) E.db.ElvUI_EltreumUI.borders.reputationbarsizex = value ElvUI_EltreumUI:Borders() end, function() return not E.db.databars.reputation.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.reputation.args.borderreputationy = ACH:Range(L["Border Y offset"], nil, 2, { min = 1, max = 800, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.reputationbarsizey end, function(_, value) E.db.ElvUI_EltreumUI.borders.reputationbarsizey = value ElvUI_EltreumUI:Borders() end, function() return not E.db.databars.reputation.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.reputation.args.reputationframeStrata = ACH:Select(L["Frame Strata"], nil, 3, FrameStrataLevels, false, "full",function() return E.db.ElvUI_EltreumUI.borders.reputationbarstrata end, function(_, value) E.db.ElvUI_EltreumUI.borders.reputationbarstrata = value ElvUI_EltreumUI:Borders() end, function() return not E.db.databars.reputation.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.reputation.args.reputationframeLevel = ACH:Range(L["Frame Level"], nil, 4, { min = 1, max = 128, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.reputationbarlevel end, function(_, value) E.db.ElvUI_EltreumUI.borders.reputationbarlevel = value ElvUI_EltreumUI:Borders() end, function() return not E.db.databars.reputation.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.threat = ACH:Group(L["Threat"], nil, 2,"tab")
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.threat.args.enable = ACH:Toggle(L["Enable"], nil, 1, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.threatbar end,function(_, value) E.db.ElvUI_EltreumUI.borders.threatbar = value ElvUI_EltreumUI:Borders() end, function() return not E.db.databars.threat.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.threat.args.borderthreatx = ACH:Range(L["Border X offset"], nil, 2, { min = 1, max = 800, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.threatbarsizex end, function(_, value) E.db.ElvUI_EltreumUI.borders.threatbarsizex = value ElvUI_EltreumUI:Borders() end, function() return not E.db.databars.threat.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.threat.args.borderthreaty = ACH:Range(L["Border Y offset"], nil, 2, { min = 1, max = 800, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.threatbarsizey end, function(_, value) E.db.ElvUI_EltreumUI.borders.threatbarsizey = value ElvUI_EltreumUI:Borders() end, function() return not E.db.databars.threat.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.threat.args.threatframeStrata = ACH:Select(L["Frame Strata"], nil, 3, FrameStrataLevels, false, "full",function() return E.db.ElvUI_EltreumUI.borders.threatbarstrata end, function(_, value) E.db.ElvUI_EltreumUI.borders.threatbarstrata = value ElvUI_EltreumUI:Borders() end, function() return not E.db.databars.threat.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.databarsborders.args.threat.args.threatframeLevel = ACH:Range(L["Frame Level"], nil, 4, { min = 1, max = 128, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.threatbarlevel end, function(_, value) E.db.ElvUI_EltreumUI.borders.threatbarlevel = value ElvUI_EltreumUI:Borders() end, function() return not E.db.databars.threat.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.altpower = ACH:Group(L["Alternative Power"], nil, 2, nil,nil,nil,function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.altpower.args.enable = ACH:Toggle(L["Enable"], nil, 1, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.altpowerbar end,function(_, value) E.db.ElvUI_EltreumUI.borders.altpowerbar = value ElvUI_EltreumUI:Borders() end, function() return not E.db.general.altPowerBar.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.altpower.args.borderthickness = ACH:Range(L["Alternative Power Thickness"], nil, 2, { min = 1, max = 200, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.altpowerbarsize end, function(_, value) E.db.ElvUI_EltreumUI.borders.altpowerbarsize = value ElvUI_EltreumUI:Borders() end, function() return not E.db.general.altPowerBar.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.altpower.args.borderaltpowerx = ACH:Range(L["Border X offset"], nil, 3, { min = 1, max = 800, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.altpowerbarsizex end, function(_, value) E.db.ElvUI_EltreumUI.borders.altpowerbarsizex = value ElvUI_EltreumUI:Borders() end, function() return not E.db.general.altPowerBar.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.altpower.args.borderaltpowery = ACH:Range(L["Border Y offset"], nil, 3, { min = 1, max = 800, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.altpowerbarsizey end, function(_, value) E.db.ElvUI_EltreumUI.borders.altpowerbarsizey = value ElvUI_EltreumUI:Borders() end, function() return not E.db.general.altPowerBar.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.altpower.args.altpowerframeStrata = ACH:Select(L["Frame Strata"], nil, 4, FrameStrataLevels, false, "full",function() return E.db.ElvUI_EltreumUI.borders.altpowerbarstrata end, function(_, value) E.db.ElvUI_EltreumUI.borders.altpowerbarstrata = value ElvUI_EltreumUI:Borders() end, function() return not E.db.general.altPowerBar.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.otherborder.args.altpower.args.altpowerframeLevel = ACH:Range(L["Frame Level"], nil, 5, { min = 1, max = 128, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.altpowerbarlevel end, function(_, value) E.db.ElvUI_EltreumUI.borders.altpowerbarlevel = value ElvUI_EltreumUI:Borders() end, function() return not E.db.general.altPowerBar.enable end)
 
 	--combat music
 	ElvUI_EltreumUI.Options.args.combatmusic = ACH:Group(E:TextGradient(L["Combat Music"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Play custom music during fights and boss fights"], 85, 'tab')
@@ -3607,34 +3639,31 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added Hunter Pet Stable in Cataclysm since it now uses the old Retail Stables
-Added backgrounds to Portrait Skin
-Added support for 10.2.7
+Added Power bars to the Border Auto Adjust function
+Added borders to Experience and Reputation databars
+Added Total Item Level font to the Font functions
+Added borders to Alternative Power bar
+Added zhTW translation by 魔能機曱
+Added a few missing shadows
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated PallyPower skin to only run in Classic Era since Cataclysm doesn't have the same Paladin Blessing system
-Updated the expanded Hunter Pet Stable in Retail by removing it due to the update to Pet Stables
-Updated the Portraits Skin to also fix the rotation of models like the 3D Portraits
-Updated Ammo Datatext to be only in Classic Era since ammo is gone in Cataclysm
-Updated Character Frame Skin to better position the Weapons in Cataclysm
-Updated general Shadow system to be more consistent across versions
-Updated Character Frame Skin to better handle the Item Level text
-Updated DPS profile pet name to not use happiness in Cataclysm
-Updated Cursor to better support Evoker's Empowered Casts
+Updated Borders by Class Color to use the Power Colors for Player and Target, Target of Target doesn't have events that fire to update it
+Updated Dark Souls death animation to better position the text
+Updated Inspect Item Level text in Retail to fix the font size
+Updated some profiles to use general ElvUI font outline
+Updated LFG skin to desaturate when unavailable
+Updated German locale by Dlarge
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed a possible issue with the Cooldowns on spells that returned a wrong cooldown from the game's API
-Fixed a possible issue with the original Class Colors for Shaman, Mage and Warlock
-Fixed the glow for Profession Disenchant button in 10.2.7
-Fixed several other shadows in Cataclysm and Classic Era
-Fixed shadows in the PvP battleground score frame
-Fixed an Error in the Character Panel Skin
-Fixed the double Level Up in Cataclysm
-Fixed Quest Reward shadows
+Fixed an issue with nameplate Threat colors where Off Tanks didnt get the correct color (thanks Trenchy)
+Fixed an issue where non Fire Mages could get the Nameplate Powerbar stuck in wrong units
+Fixed an issue due to MerathilisUI removing some of its options
+Fixed Inspect Talent Size in Cataclysm
+Fixed Retail World Map shadows
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[

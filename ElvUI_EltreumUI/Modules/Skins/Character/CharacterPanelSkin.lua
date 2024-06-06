@@ -1584,6 +1584,23 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame:HookScript("OnShow", function()
 				HandleCharacterPanelSize()
 				_G.CharacterFrame:Expand() --start expanded
+				if IsAddOnLoaded("ElvUI_CataArmory") then --reset the points since cataarmory adjusts and makes the skin look incorrect
+					if _G.CharacterFrame.BottomRightCorner then
+						_G.CharacterFrame.BottomRightCorner:ClearAllPoints()
+						_G.CharacterFrame.BottomRightCorner:SetPoint('BOTTOMRIGHT', _G.CharacterFrame, 'BOTTOMRIGHT', 0, 0)
+					end
+					if _G.CharacterFrame.BottomLeftCorner then
+						_G.CharacterFrame.BottomLeftCorner:ClearAllPoints()
+						_G.CharacterFrame.BottomLeftCorner:SetPoint('BOTTOMLEFT', _G.CharacterFrame, 'BOTTOMLEFT', 0, 0)
+					end
+					_G.CharacterFrameTab1:ClearAllPoints()
+					_G.CharacterFrameTab1:SetPoint('TOPLEFT', _G.CharacterFrame, 'BOTTOMLEFT', 0, 0)
+
+					_G.CharacterFrame.BottomLeftCorner:ClearAllPoints()
+					_G.CharacterFrame.BottomLeftCorner:SetPoint('BOTTOMLEFT', _G.CharacterFrame, 'BOTTOMLEFT', 0, 0)
+					_G.CharacterFrame.BottomRightCorner:ClearAllPoints()
+					_G.CharacterFrame.BottomRightCorner:SetPoint('BOTTOMRIGHT', _G.CharacterFrame, 'BOTTOMRIGHT', 0, 0)
+				end
 			end)
 			_G.PaperDollFrame:HookScript("OnShow", HandleCharacterPanelSize)
 			_G.PaperDollFrame:HookScript("OnHide", HandleCharacterPanelSize)
@@ -1800,6 +1817,22 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 				end
 			end
+		end
+
+		if IsAddOnLoaded("ElvUI_CataArmory") then
+			--fix the double item level
+			E.db["cataarmory"]["character"]["avgItemLevel"]["enable"] = false
+
+			--fix the text position
+			E.db["cataarmory"]["character"]["enchant"]["MainHandSlot"]["anchorPoint"] = "TOPLEFT"
+			E.db["cataarmory"]["character"]["enchant"]["MainHandSlot"]["growthDirection"] = "UP_LEFT"
+			E.db["cataarmory"]["character"]["enchant"]["MainHandSlot"]["xOffset"] = 0
+			E.db["cataarmory"]["character"]["enchant"]["MainHandSlot"]["yOffset"] = 2
+			E.db["cataarmory"]["character"]["enchant"]["RangedSlot"]["anchorPoint"] = "TOPRIGHT"
+			E.db["cataarmory"]["character"]["enchant"]["RangedSlot"]["xOffset"] = 0
+			E.db["cataarmory"]["character"]["enchant"]["SecondaryHandSlot"]["anchorPoint"] = "TOPLEFT"
+			E.db["cataarmory"]["character"]["enchant"]["SecondaryHandSlot"]["growthDirection"] = "UP_RIGHT"
+			E.db["cataarmory"]["character"]["enchant"]["SecondaryHandSlot"]["yOffset"] = 2
 		end
 
 		local M = E:GetModule('Misc')
@@ -2709,11 +2742,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 												UIErrorsFrame:AddMessage(ERR_NOT_IN_COMBAT, 1.0, 0.2, 0.2, 1.0)
 											else
 												_G.InspectFrame:SetWidth(376)
-												if E.Cata then
-													_G.InspectFrame:SetHeight(780)
-												else
-													_G.InspectFrame:SetHeight(650)
-												end
+												_G.InspectFrame:SetHeight(550)
 												_G.InspectTalentFrameTab2:ClearAllPoints()
 												_G.InspectTalentFrameTab2:SetPoint("TOP", _G.InspectTalentFrame, "TOP", 0, -50)
 												_G.InspectTalentFrameTab1:ClearAllPoints()
@@ -2722,19 +2751,13 @@ function ElvUI_EltreumUI:InspectBg(unit)
 												_G.InspectTalentFrameScrollFrameScrollBar:SetAlpha(0)
 												_G.InspectTalentFrameScrollFrame:ClearAllPoints()
 												_G.InspectTalentFrameScrollFrame:SetPoint("CENTER", _G.InspectTalentFrame, "CENTER", -10, 12)
-												if E.Cata then
-													_G.InspectTalentFrameScrollFrame:SetSize(300,720)
-												else
-													_G.InspectTalentFrameScrollFrame:SetSize(300,620)
-												end
+												_G.InspectTalentFrameScrollFrame:SetSize(300,450)
 												E:Delay(0, function() _G.InspectTalentFrameScrollFrame:SetScale(0.75) end) --needs delay, maybe bc server response?
 
-												if E.Cata then
-													_G.InspectTalentFramePointsBar:ClearAllPoints()
-													_G.InspectTalentFramePointsBar:SetPoint("BOTTOM", _G.InspectTalentFrame.backdrop, "BOTTOM", 0, 0)
-													_G.InspectTalentFrameSpentPointsText:SetJustifyH("LEFT")
-													_G.InspectTalentFrameTalentPointsText:SetJustifyH("RIGHT")
-												end
+												_G.InspectTalentFramePointsBar:ClearAllPoints()
+												_G.InspectTalentFramePointsBar:SetPoint("BOTTOM", _G.InspectTalentFrame.backdrop, "BOTTOM", 0, 0)
+												_G.InspectTalentFrameSpentPointsText:SetJustifyH("LEFT")
+												_G.InspectTalentFrameTalentPointsText:SetJustifyH("RIGHT")
 
 												--kill stuff
 												_G.InspectTalentFrameCloseButton:Hide()
@@ -2793,6 +2816,22 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						_G.InspectFrame.ItemLevelText:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 165)
 						_G.InspectFrame.ItemLevelText:SetTextColor(classcolorinspect.r, classcolorinspect.g, classcolorinspect.b)
 						_G.InspectFrame.ItemLevelText:SetParent(_G["InspectModelFrame"])
+						--_G.InspectFrame.ItemLevelText:SetText(ElvUI_EltreumUI:GradientName(_G.InspectFrame.ItemLevelText:GetText(), englishClass))
+						--_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100)
+						_G.InspectFrame.ItemLevelText:SetFont(E.LSM:Fetch('font', E.db.general.itemLevel.totalLevelFont), 12, E.db.general.itemLevel.totalLevelFontOutline)
+
+						if not _G.InspectFrame.AvgIlvlHook then
+							local M = E:GetModule('Misc')
+							hooksecurefunc(M,"UpdateAverageString", function(_, _, which, iLevelDB)
+								if which == "Inspect" then
+									if _G.InspectFrame and _G.InspectFrame.ItemLevelText and iLevelDB and _G.InspectFrame.unit then
+										--print(E:CalculateAverageItemLevel(iLevelDB, _G.InspectFrame.unit)," result?")
+										_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:CalculateAverageItemLevel(iLevelDB, _G.InspectFrame.unit))
+									end
+								end
+							end)
+							_G.InspectFrame.AvgIlvlHook = true
+						end
 
 						if _G.InspectPaperDollFrame.ViewButton then
 							_G.InspectPaperDollFrame.ViewButton:ClearAllPoints()
@@ -2804,9 +2843,6 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							_G.InspectModelFrame:SetScript('OnEnter', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(1) end)
 							_G.InspectModelFrame:SetScript('OnLeave', function() _G.InspectPaperDollFrame.ViewButton:SetAlpha(0) end)
 						end
-
-						--_G.InspectFrame.ItemLevelText:SetText(ElvUI_EltreumUI:GradientName(_G.InspectFrame.ItemLevelText:GetText(), englishClass))
-						--_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..(math.floor(ElvUI_EltreumUI:GetUnitItemLevel("target")*100))/100)
 
 						if not self.EltruismInspectHookModel then
 							_G.InspectModelFrame:HookScript("OnShow", function()
