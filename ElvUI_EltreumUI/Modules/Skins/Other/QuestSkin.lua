@@ -1417,6 +1417,7 @@ end
 if E.Retail then
 	local editmodecheck = CreateFrame("FRAME")
 	editmodecheck:RegisterEvent("EDIT_MODE_LAYOUTS_UPDATED")
+	editmodecheck:RegisterEvent("FIRST_FRAME_RENDERED")
 	editmodecheck:SetScript("OnEvent",function()
 		if not E.private.ElvUI_EltreumUI then return end
 		if not E.private.ElvUI_EltreumUI.install_version then return end
