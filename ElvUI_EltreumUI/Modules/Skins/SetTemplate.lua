@@ -290,7 +290,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 								end
 							end
 
-							if frame.Name and frame.Name.SetText then
+							if frame.Name and frame.Name.SetText and not frame.HotKey then
 								if frame.objectType and frame.objectType == "item" then
 									return
 								end
