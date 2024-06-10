@@ -424,19 +424,15 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		if E.db.ElvUI_EltreumUI.skins.classicarmory then
 
 			--color the avg item level
-
-			CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradient('Horizontal', {r=classcolor.r,g= classcolor.g,b= classcolor.b,a= 0.4}, {r=classcolor.r,g= classcolor.g,b= classcolor.b,a= 0})
-			CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradient('Horizontal', {r=classcolor.r,g= classcolor.g,b= classcolor.b,a= 0}, {r=classcolor.r,g= classcolor.g,b= classcolor.b,a= 0.4})
-			--[[CharacterStatsPane.ItemLevelFrame.leftGrad:SetTexture(E.LSM:Fetch("statusbar", 'Eltreum-Fade'))
-			CharacterStatsPane.ItemLevelFrame.rightGrad:SetTexture(E.LSM:Fetch("statusbar", 'Eltreum-Fade'))
-			CharacterStatsPane.ItemLevelFrame.rightGrad:SetTexCoord(1, 0, 0, 1)
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-				CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
-				CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass,true,false))
+				local itemlevelcolorsleft,itemlevelcolorsright = ElvUI_EltreumUI:GetGradientCustomColor(E.myclass)
+				CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradient('Horizontal', {r=itemlevelcolorsleft.r,g= itemlevelcolorsleft.g,b= itemlevelcolorsleft.b,a= 1}, {r=itemlevelcolorsright.r,g= itemlevelcolorsright.g,b= itemlevelcolorsright.b,a= 0})
+				CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradient('Horizontal', {r=itemlevelcolorsright.r,g= itemlevelcolorsright.g,b= itemlevelcolorsright.b,a= 0}, {r=itemlevelcolorsleft.r,g= itemlevelcolorsleft.g,b= itemlevelcolorsleft.b,a= 1})
 			else
-				CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
-				CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
-			end]]
+				local itemlevelcolorsleft,itemlevelcolorsright = ElvUI_EltreumUI:GetGradientDefaultColor(E.myclass)
+				CharacterStatsPane.ItemLevelFrame.leftGrad:SetGradient('Horizontal', {r=itemlevelcolorsleft.r,g= itemlevelcolorsleft.g,b= itemlevelcolorsleft.b,a= 1}, {r=itemlevelcolorsright.r,g= itemlevelcolorsright.g,b= itemlevelcolorsright.b,a= 0})
+				CharacterStatsPane.ItemLevelFrame.rightGrad:SetGradient('Horizontal', {r=itemlevelcolorsright.r,g= itemlevelcolorsright.g,b= itemlevelcolorsright.b,a= 0}, {r=itemlevelcolorsleft.r,g= itemlevelcolorsleft.g,b= itemlevelcolorsleft.b,a= 1})
+			end
 
 			--CharacterFrame:SetHeight(505)
 			CharacterFrame:SetHeight(455)

@@ -409,6 +409,18 @@ function ElvUI_EltreumUI:ChatCustomColor(unitclass)
 	return color.r1, color.g1, color.b1
 end
 
+--get the custom colors
+function ElvUI_EltreumUI:GetGradientCustomColor(unitclass)
+	local color = unitframecustomgradients[unitclass] or unitframecustomgradients["ELTRUISM"]
+	return {r = color.r1, g = color.g1, b = color.b1}, {r = color.r2, g = color.g2, b = color.b2}
+end
+
+--get the default colors
+function ElvUI_EltreumUI:GetGradientDefaultColor(unitclass)
+	local color = unitframegradients[unitclass] or unitframegradients["ELTRUISM"]
+	return {r = color.r1, g = color.g1, b = color.b1}, {r = color.r2, g = color.g2, b = color.b2}
+end
+
 --different for details because bars smaller and different
 function ElvUI_EltreumUI:GradientColorsDetails(unitclass)
 	local color = unitframegradients[unitclass] or unitframegradients["NPCNEUTRAL"]
