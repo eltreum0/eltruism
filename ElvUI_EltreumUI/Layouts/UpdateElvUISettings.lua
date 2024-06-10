@@ -80,7 +80,6 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 			E.db["general"]["itemLevel"]["totalLevelFont"] = "Kimberley"
 			E.db["general"]["itemLevel"]["totalLevelFontOutline"] = "OUTLINE"
 			E.db["general"]["itemLevel"]["totalLevelFontSize"] = E.Retail and 22 or 12
-
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "OUTLINE"
 			E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Kimberley"
@@ -200,6 +199,9 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 		E.db["general"]["fonts"]["talkingtitle"]["font"] = "Kimberley"
 		E.db["general"]["fonts"]["talkingtitle"]["outline"] = "OUTLINE"
 		E.db["general"]["fonts"]["talkingtitle"]["size"] = 20
+		E.db["general"]["itemLevel"]["totalLevelFont"] = "Kimberley"
+		E.db["general"]["itemLevel"]["totalLevelFontOutline"] = "OUTLINE"
+		E.db["general"]["itemLevel"]["totalLevelFontSize"] = E.Retail and 22 or 12
 		E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Kimberley"
 		E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "OUTLINE"
 		E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Kimberley"

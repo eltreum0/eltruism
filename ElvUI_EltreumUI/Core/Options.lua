@@ -3233,6 +3233,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.expandart = ACH:Toggle(L["Expand Character Art"], L["Enable this option"], 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.expandarmorybg end, function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybg = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.classicarmory = ACH:Toggle(L["Expand Character Panel"], L["Enable this option"], 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.classicarmory end, function(_, value) E.db.ElvUI_EltreumUI.skins.classicarmory = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.classicarmoryeltruismstats = ACH:Toggle(L["Add Other Stats"], L["Display stats such as Speed and Mana Regen"], 3, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.classicarmoryeltruismstats end, function(_, value) E.db.ElvUI_EltreumUI.skins.classicarmoryeltruismstats = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.classicarmory end)
+	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.adjustitemlevelpoint = ACH:Toggle(E.NewSign..L["Adjust Position of Item Level Text"], nil, 3, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.ilvltextchangepoint end, function(_, value) E.db.ElvUI_EltreumUI.skins.ilvltextchangepoint = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.classicarmory end, not E.Cata)
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.addcrest = ACH:Toggle(L["Add Crest to Character Panel"], L["Enable this option"], 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.expandarmorycrest end, function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorycrest = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.addcrestversion = ACH:Select("", nil, 4, {
 		[1] = L["Version 1"],
@@ -3639,31 +3640,28 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added Power bars to the Border Auto Adjust function
-Added borders to Experience and Reputation databars
-Added Total Item Level font to the Font functions
-Added borders to Alternative Power bar
-Added zhTW translation by 魔能機曱
-Added a few missing shadows
+Added an option to disable moving the Item Level text in the Character Panel in Cataclysm Classic
+Added Eltruism Datatext 3 to Retail where it will show Armor and Dodge change
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Borders by Class Color to use the Power Colors for Player and Target, Target of Target doesn't have events that fire to update it
-Updated Dark Souls death animation to better position the text
-Updated Inspect Item Level text in Retail to fix the font size
-Updated some profiles to use general ElvUI font outline
-Updated LFG skin to desaturate when unavailable
-Updated German locale by Dlarge
+Updated Aura borders to split Unitframe Auras and Secure Auras
+Updated the color of the texture for Item Level text in Retail
+Updated party gradient to work when not in a group
+Updated Debuff borders to use Color by Dispel
+Updated Debuff borders to use Elvui Colors
+Updated shadows for some new frames
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue with nameplate Threat colors where Off Tanks didnt get the correct color (thanks Trenchy)
-Fixed an issue where non Fire Mages could get the Nameplate Powerbar stuck in wrong units
-Fixed an issue due to MerathilisUI removing some of its options
-Fixed Inspect Talent Size in Cataclysm
-Fixed Retail World Map shadows
+Fixed an issue with the Objective Tracker mover due to a change in Edit Mode
+Fixed an issue with Macro Text colors in Action Bars due to the ElvUI Skin
+Fixed Professions missing in bags in Cataclysm due to different Ids
+Fixed a possible error with the Character Panel in Remix
+Fixed shadows for detached power
+Fixed the zhTW locale missing
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[

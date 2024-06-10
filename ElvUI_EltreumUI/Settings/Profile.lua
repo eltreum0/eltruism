@@ -148,6 +148,7 @@ P.ElvUI_EltreumUI = {
 			goodG = 1,
 			goodB = 1,
 		},
+		ilvltextchangepoint = true,
 		itemquality = false,
 		characterskingradients = false,
 		armorybgtype = "CLASS",
