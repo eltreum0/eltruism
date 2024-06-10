@@ -2,8 +2,10 @@
 The future is uncertain
 ___
 ### 4.1.6
+Added an option to disable moving the Item Level text in the Character Panel in Cataclysm Classic  
 Added Eltruism Datatext 3 to Retail where it will show Armor and Dodge change  
 Updated Aura borders to split Unitframe Auras and Secure Auras  
+Updated the color of the texture for Item Level text in Retail  
 Updated party gradient to work when not in a group  
 Updated Debuff borders to use Color by Dispel  
 Updated Debuff borders to use Elvui Colors  

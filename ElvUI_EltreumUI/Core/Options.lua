@@ -3620,12 +3620,14 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
+Added an option to disable moving the Item Level text in the Character Panel in Cataclysm Classic
 Added Eltruism Datatext 3 to Retail where it will show Armor and Dodge change
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
 Updated Aura borders to split Unitframe Auras and Secure Auras
+Updated the color of the texture for Item Level text in Retail
 Updated party gradient to work when not in a group
 Updated Debuff borders to use Color by Dispel
 Updated Debuff borders to use Elvui Colors
@@ -3634,7 +3636,6 @@ Updated shadows for some new frames
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-
 Fixed an issue with the Objective Tracker mover due to a change in Edit Mode
 Fixed an issue with Macro Text colors in Action Bars due to the ElvUI Skin
 Fixed Professions missing in bags in Cataclysm due to different Ids
