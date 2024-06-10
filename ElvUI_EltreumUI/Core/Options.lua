@@ -3619,31 +3619,27 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added Power bars to the Border Auto Adjust function
-Added borders to Experience and Reputation databars
-Added Total Item Level font to the Font functions
-Added borders to Alternative Power bar
-Added zhTW translation by 魔能機曱
-Added a few missing shadows
+Added Eltruism Datatext 3 to Retail where it will show Armor and Dodge change
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Borders by Class Color to use the Power Colors for Player and Target, Target of Target doesn't have events that fire to update it
-Updated Dark Souls death animation to better position the text
-Updated Inspect Item Level text in Retail to fix the font size
-Updated some profiles to use general ElvUI font outline
-Updated LFG skin to desaturate when unavailable
-Updated German locale by Dlarge
+Updated Aura borders to split Unitframe Auras and Secure Auras
+Updated party gradient to work when not in a group
+Updated Debuff borders to use Color by Dispel
+Updated Debuff borders to use Elvui Colors
+Updated shadows for some new frames
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue with nameplate Threat colors where Off Tanks didnt get the correct color (thanks Trenchy)
-Fixed an issue where non Fire Mages could get the Nameplate Powerbar stuck in wrong units
-Fixed an issue due to MerathilisUI removing some of its options
-Fixed Inspect Talent Size in Cataclysm
-Fixed Retail World Map shadows
+
+Fixed an issue with the Objective Tracker mover due to a change in Edit Mode
+Fixed an issue with Macro Text colors in Action Bars due to the ElvUI Skin
+Fixed Professions missing in bags in Cataclysm due to different Ids
+Fixed a possible error with the Character Panel in Remix
+Fixed shadows for detached power
+Fixed the zhTW locale missing
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
