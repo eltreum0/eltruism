@@ -1592,3 +1592,4 @@ L["Model will be set inside health instead of over whole frame"] = "Das Modell w
 L["Circle Minimap"] = "Kreisförmige Minimap"
 L["Databars Thickness"] = "Datenleisten Dicke"
 L["Alternative Power Thickness"] = "Alternative Kraft Dicke"
+L["Adjust Position of Item Level Text"] = true

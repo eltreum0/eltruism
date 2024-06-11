@@ -442,10 +442,19 @@ end
 DT:RegisterDatatext('Eltruism Stats 2', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_STATS","UNIT_RANGEDDAMAGE","UNIT_ATTACK_POWER","UNIT_RANGED_ATTACK_POWER","UNIT_ATTACK","MASTERY_UPDATE","UNIT_DAMAGE","SPELL_POWER_CHANGED","PLAYER_DAMAGE_DONE_MODS"}, EltruismStatsDatatext2, nil, nil, EltruismStatsDatatextOnEnter, nil, L["Eltruism Stats 2"])
 
 --cata avoidance and defense,based on https://wago.io/qYKsfPe_W
-if not E.Retail then
-	local UnitDefense = _G.UnitDefense
-	local DEFENSE = _G.DEFENSE
-	local function EltruismStatsDatatext3(dt)
+local UnitDefense = _G.UnitDefense
+local DEFENSE = _G.DEFENSE
+local function EltruismStatsDatatext3(dt)
+	if E.Retail then
+		--dodge
+		local dodgeChance = GetDodgeChance()
+		local dodge = E:ShortenString(_G.DODGE, 5)..": "..ElvUI[1].media.hexvaluecolor..tostring(math.floor(dodgeChance*100)/100).."%".."|r"
+		--armor
+		local _, effectiveArmor = UnitArmor("player")
+		local armor = E:ShortenString(_G.ARMOR, 5)..": "..ElvUI[1].media.hexvaluecolor..tostring(effectiveArmor).."|r"
+
+		dt.text:SetFormattedText('%s %s|r',armor,dodge)
+	else
 		--defense
 		local defense = E:ShortenString(DEFENSE, 3)..": "..ElvUI[1].media.hexvaluecolor..(select(1, UnitDefense("player"))) + (select(2, UnitDefense("player"))).."|r"
 		--avoidance
@@ -455,5 +464,5 @@ if not E.Retail then
 
 		dt.text:SetFormattedText('%s %s|r',avoidance,defense)
 	end
-	DT:RegisterDatatext('Eltruism Stats 3', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_STATS","PLAYER_DAMAGE_DONE_MODS"}, EltruismStatsDatatext3, nil, nil, EltruismStatsDatatextOnEnter, nil, L["Eltruism Stats 3"])
 end
+DT:RegisterDatatext('Eltruism Stats 3', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_STATS","PLAYER_DAMAGE_DONE_MODS"}, EltruismStatsDatatext3, nil, nil, EltruismStatsDatatextOnEnter, nil, L["Eltruism Stats 3"])
