@@ -101,6 +101,7 @@ local DONATORS = {
 	'|cffB50909dartworth|r',
 	'|cffB50909Rocket Surgery|r',
 	'|cffB50909Embee|r',
+	'|cffB50909mercenariosgx|r',
 }
 
 local TRANSLATORS = {
