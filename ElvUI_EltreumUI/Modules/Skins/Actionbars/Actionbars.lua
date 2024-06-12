@@ -666,9 +666,10 @@ function ElvUI_EltreumUI:SkillGlowPet()
 		for i = 1, NUM_PET_ACTION_SLOTS, 1 do
 			local _, _, _, _, _, autoCastEnabled = GetPetActionInfo(i)
 			local button = _G['PetActionButton'..i]
-			if autoCastEnabled then
-				AutoCastShine_AutoCastStop(button.AutoCastShine)
-				button.AutoCastShine:Hide()
+			if autoCastEnabled then --11.0 replaces this
+				--AutoCastShine_AutoCastStop(button.AutoCastShine)
+				--button.AutoCastShine:Hide()
+				button.AutoCastOverlay:Hide()
 				if E.db.ElvUI_EltreumUI.glow.pixel then
 					--PixelGlow_Start(frame[, color[, N[, frequency[, length[, th[, xOffset[, yOffset[, border[ ,key]]]]]]]])
 					LCG.PixelGlow_Start(button, skillglowcolorpet, 10, 0.25, 5, 2, 0, 0, false, nil, 6)
@@ -708,7 +709,8 @@ function ElvUI_EltreumUI:SkillGlowPet()
 					LCG.ProcGlow_Start(button, procpet)
 				end
 			else
-				AutoCastShine_AutoCastStop(button.AutoCastShine)
+				--AutoCastShine_AutoCastStop(button.AutoCastShine)
+				button.AutoCastOverlay:Hide()
 				if E.db.ElvUI_EltreumUI.glow.pixel then
 					LCG.PixelGlow_Stop(button)
 				elseif E.db.ElvUI_EltreumUI.glow.autocast then
