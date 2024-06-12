@@ -12,6 +12,7 @@ local GetPetActionInfo = _G.GetPetActionInfo
 local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
 local GetSpellBaseCooldown = _G.GetSpellBaseCooldown
 local GetSpellCooldown = _G.C_Spell and _G.C_Spell.GetSpellCooldown or _G.GetSpellCooldown
+local GetSpellCharges = _G.C_Spell and _G.C_Spell.GetSpellCharges or _G.GetSpellCharges
 local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetContainerItemLink = _G.C_Container.GetContainerItemLink
 local tonumber = _G.tonumber

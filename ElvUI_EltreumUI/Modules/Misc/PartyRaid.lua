@@ -8,8 +8,8 @@ local IsInInstance = _G.IsInInstance
 local IsInGroup = _G.IsInGroup
 local PlaySoundFile = _G.PlaySoundFile
 local GetInstanceInfo = _G.GetInstanceInfo
-local GetSpellTexture = _G.GetSpellTexture
-local GetSpellCharges = _G.GetSpellCharges
+local GetSpellTexture = _G.C_Spell and _G.C_Spell.GetSpellTexture or _G.GetSpellTexture
+local GetSpellCharges = _G.C_Spell and _G.C_Spell.GetSpellCharges or _G.GetSpellCharges
 local InCombatLockdown = _G.InCombatLockdown
 local _, instanceType
 local DifficultyID
