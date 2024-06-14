@@ -33,7 +33,7 @@ local function EltruismHonorDatatext(dt)
 
 	local classicRank = E.Classic and _G.UnitPVPRank('player')-4
 	if classicRank and classicRank < 0 then classicRank = 0 end
-	local arenaCurrencyID = (E.Cata and Constants.CurrencyConsts.CLASSIC_ARENA_POINTS_CURRENCY_ID) or (E.Retail and 1602)
+	local arenaCurrencyID = (E.Cata and Constants.CurrencyConsts.CLASSIC_CONQUEST_CURRENCY_ID) or (E.Retail and 1602)
 	local arg7 = (E.Retail and C_CurrencyInfo_GetCurrencyInfo(arenaCurrencyID).quantity) or (E.Cata and select(2, _G.GetCurrencyInfo(arenaCurrencyID))) or classicRank
 
 	dt.text:SetFormattedText('%s: %s%s|r %s: %s%s|r', arg2, E.media.hexvaluecolor, arg4, arg5, E.media.hexvaluecolor, arg7)
