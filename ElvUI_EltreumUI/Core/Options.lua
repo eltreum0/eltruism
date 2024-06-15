@@ -3247,8 +3247,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.characterpanelnamefontsize = ACH:Range(L["Character Name Font Size"], nil, 18, { min = 8, max = 40, step = 1 }, "full", function() return E.db.ElvUI_EltreumUI.skins.armorynamefontsize end, function(_, value) E.db.ElvUI_EltreumUI.skins.armorynamefontsize = value ElvUI_EltreumUI:ExpandedCharacterStats() PaperDollFrame_SetLevel() end)
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.model = ACH:Group(L["Model"], nil, 1, "tab")
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.model.args.description1 = ACH:Description(L["Character Model"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.model.args.modelcamzoom = ACH:Range(L["Character Model Zoom"], nil, 2, { min = -2, max = 2, step = 0.01 }, "full", function() if E.Retail then return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail else return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic end end, function(_, value) if E.Retail then E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail = value else E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic = value end
-		if E.Retail then
+	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.model.args.modelcamzoom = ACH:Range(L["Character Model Zoom"], nil, 2, { min = -2, max = 2, step = 0.01 }, "full", function() if E.Retail or E.Cata then return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail else return E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic end end, function(_, value) if E.Retail or E.Cata then E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail = value else E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomclassic = value end
+		if E.Retail or E.Cata then
 			if _G.CharacterModelScene then
 				local actor = _G.CharacterModelScene:GetPlayerActor()
 				if actor then
@@ -3263,19 +3263,19 @@ function ElvUI_EltreumUI:Configtable()
 		end
 	end, function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end)
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.model.args.modelcamx = ACH:Range(L["Character Model X Offset"], nil, 3, { min = -2, max = 2, step = 0.01 }, "full", function()
-		if E.Retail then
+		if E.Retail or E.Cata then
 			return E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail
 		else
 			return E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic
 		end
 	end, function(_, value)
-		if E.Retail then
+		if E.Retail or E.Cata then
 			E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail = value
 		else
 			E.db.ElvUI_EltreumUI.skins.charactermodelcam.xclassic = value
 		end
 
-		if E.Retail then
+		if E.Retail or E.Cata then
 			if _G.CharacterModelScene then
 				local actor = _G.CharacterModelScene:GetPlayerActor()
 				if actor then
@@ -3290,19 +3290,19 @@ function ElvUI_EltreumUI:Configtable()
 		end
 	end, function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end)
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.model.args.modelcamy = ACH:Range(L["Character Model Y Offset"], nil, 3, { min = -2, max = 2, step = 0.01 }, "full", function()
-		if E.Retail then
+		if E.Retail or E.Cata then
 			return E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail
 		else
 			return E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic
 		end
 	end, function(_, value)
-		if E.Retail then
+		if E.Retail or E.Cata then
 			E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail = value
 		else
 			E.db.ElvUI_EltreumUI.skins.charactermodelcam.yclassic = value
 		end
 
-		if E.Retail then
+		if E.Retail or E.Cata then
 			if _G.CharacterModelScene then
 				local actor = _G.CharacterModelScene:GetPlayerActor()
 				if actor then
