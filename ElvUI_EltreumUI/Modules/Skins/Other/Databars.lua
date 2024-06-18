@@ -121,6 +121,10 @@ function ElvUI_EltreumUI:BottomDatabarTexture()
 		local width = ceil(E.screenWidth)
 		EltruismDataTextTexture:SetSize(width,16)
 		EltruismDataTextTexture.texture = EltruismDataTextTexture:CreateTexture(nil,"BACKGROUND")
+		if _G["DTPanelEltruismDataTextMover"].parent then
+			EltruismDataTextTexture:SetParent(_G["DTPanelEltruismDataTextMover"].parent)
+			EltruismDataTextTexture.texture:SetParent(EltruismDataTextTexture)
+		end
 		EltruismDataTextTexture:SetFrameStrata("BACKGROUND")
 		EltruismDataTextTexture:SetFrameLevel(1)
 		EltruismDataTextTexture.texture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade2.tga")
