@@ -119,7 +119,6 @@ local function InstantLoot(_, event,_, arg2)
 							E:Delay(0.5, function()
 								lootsoundthrottle = 0
 							end)
-
 						end
 						E:Delay(5, function() UIFrameFadeOut(WishlistItemFrame, 1, 1, 0) end)
 					end
