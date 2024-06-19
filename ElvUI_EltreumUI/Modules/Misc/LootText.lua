@@ -218,7 +218,6 @@ function ElvUI_EltreumUI:LootText()
 			end
 			if (event == "CHAT_MSG_LOOT") then
 				itemLink, amount = getLoot(arg1)
-				ElvUI_EltreumUI:Print(type(amount),amount)
 				if E.db.ElvUI_EltreumUI.loot.loottext.pet then
 					if itemLink and itemLink:match("|Hbattlepet:") then
 						CombatText_AddMessage("|T ".. 132599 ..":18:18:0:0:64:64:5:59:5:59|t|t  "..itemLink, CombatText_StandardScroll, 255, 255, 255)
