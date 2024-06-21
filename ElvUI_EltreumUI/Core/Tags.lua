@@ -593,7 +593,7 @@ E:AddTag("name:eltruism:caps", "UNIT_NAME_UPDATE", function(unit,_,args)
 end)
 E:AddTagInfo("name:eltruism:caps", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in caps while being class color or reaction color, shortens over 16 characters but can be changed with {arg}"])
 
---class color name abbreviate in caps
+--name in caps
 E:AddTag("name:eltruism:capital", "UNIT_NAME_UPDATE", function(unit)
 	if not unit then return end
 	local namecheck = UnitName(unit)
