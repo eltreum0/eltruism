@@ -121,7 +121,7 @@ function ElvUI_EltreumUI:BottomDatabarTexture()
 		local width = ceil(E.screenWidth)
 		EltruismDataTextTexture:SetSize(width,16)
 		EltruismDataTextTexture.texture = EltruismDataTextTexture:CreateTexture(nil,"BACKGROUND")
-		if _G["DTPanelEltruismDataTextMover"].parent then
+		if _G["DTPanelEltruismDataTextMover"] and _G["DTPanelEltruismDataTextMover"].parent then
 			EltruismDataTextTexture:SetParent(_G["DTPanelEltruismDataTextMover"].parent)
 			EltruismDataTextTexture.texture:SetParent(EltruismDataTextTexture)
 		end
