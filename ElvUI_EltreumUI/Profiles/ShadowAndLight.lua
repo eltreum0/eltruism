@@ -67,10 +67,10 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		E.db["sle"]["armory"]["inspect"]["ilvl"]["colorType"] = "GRADIENT"
 		E.db["sle"]["armory"]["inspect"]["ilvl"]["font"] = E.db.general.font
 		E.db["sle"]["armory"]["inspect"]["ilvl"]["fontSize"] = 11
-		E.db["sle"]["armory"]["stats"]["AverageColor"]["b"] = 1
-		E.db["sle"]["armory"]["stats"]["AverageColor"]["g"] = 0
-		E.db["sle"]["armory"]["stats"]["AverageColor"]["r"] = 0.66666666666667
-		E.db["sle"]["armory"]["stats"]["IlvlColor"] = true
+		E.db["sle"]["armory"]["stats"]["itemLevel"]["AverageColor"]["b"] = 1
+		E.db["sle"]["armory"]["stats"]["itemLevel"]["AverageColor"]["g"] = 0
+		E.db["sle"]["armory"]["stats"]["itemLevel"]["AverageColor"]["r"] = 0.66666666666667
+		E.db["sle"]["armory"]["stats"]["itemLevel"]["IlvlColor"] = true
 		E.db["sle"]["armory"]["stats"]["List"]["ALTERNATEMANA"] = true
 		E.db["sle"]["armory"]["stats"]["List"]["ATTACK_AP"] = true
 		E.db["sle"]["armory"]["stats"]["List"]["ATTACK_ATTACKSPEED"] = true
