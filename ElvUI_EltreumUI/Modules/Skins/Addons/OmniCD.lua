@@ -7,13 +7,6 @@ local hooksecurefunc = _G.hooksecurefunc
 function ElvUI_EltreumUI:EltruismOmniCD()
 	if E.db.ElvUI_EltreumUI.skins.omnicd then
 
-		--omnicd name bar mode disables draw layer instead, so we need a check for that since api to check for enabled layers doesnt exist it seems
-		local nameBar = false
-		local currentprofile = OmniCDDB["profileKeys"][E.mynameRealm]
-		if OmniCDDB["profiles"][currentprofile]["Party"]["party"]["extraBars"]["raidBar0"]["nameBar"] then
-			nameBar = true
-		end
-
 		--omnicd doesnt do normal ace new addon thing
 		local OmniCD = _G.OmniCD[1]
 
@@ -51,7 +44,8 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 
 				--shadows
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
-					if not icon.statusBar.shadow and not nameBar then
+					--omnicd name bar mode disables the BG now instead, so we need a check for that instead of the profile now
+					if icon.statusBar and (icon.statusBar.BG and icon.statusBar.BG:IsVisible()) and not icon.statusBar.shadow then
 						icon.statusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(icon.statusBar.shadow)
 					end
