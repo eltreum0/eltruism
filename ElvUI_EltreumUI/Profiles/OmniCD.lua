@@ -20,7 +20,7 @@ function ElvUI_EltreumUI:GetOmniCDProfile(profile)
 						},
 						["party"] = {
 							["extraBars"] = {
-								["raidBar0"] = {
+								["raidBar1"] = {
 									["growLeft"] = true,
 									["hideSpark"] = true,
 									["statusBarWidth"] = 263,
@@ -43,7 +43,7 @@ function ElvUI_EltreumUI:GetOmniCDProfile(profile)
 									["locked"] = true,
 									["paddingY"] = 3,
 									["manualPos"] = {
-										["raidBar0"] = {
+										["raidBar1"] = {
 											["y"] = 241.3336863993027,
 											["x"] = 139.99978637612,
 										},
@@ -402,7 +402,7 @@ function ElvUI_EltreumUI:GetOmniCDProfile(profile)
 						},
 						["party"] = {
 							["extraBars"] = {
-								["raidBar0"] = {
+								["raidBar1"] = {
 									["growLeft"] = true,
 									["hideSpark"] = true,
 									["statusBarWidth"] = 263,
@@ -425,7 +425,7 @@ function ElvUI_EltreumUI:GetOmniCDProfile(profile)
 									["locked"] = true,
 									["paddingY"] = 3,
 									["manualPos"] = {
-										["raidBar0"] = {
+										["raidBar1"] = {
 											["y"] = 405.6004004463648,
 											["x"] = 133.5997753704532,
 										},
