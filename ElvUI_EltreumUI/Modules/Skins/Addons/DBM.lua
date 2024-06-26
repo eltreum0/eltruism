@@ -106,16 +106,6 @@ function ElvUI_EltreumUI:DBMGUISkin()
 					end
 					_G["DBM_GUI_OptionsFrame"].EltruismSkin = true
 				end
-				if _G["DBM_GUI_OptionsFramePanelContainer"] then
-					_G["DBM_GUI_OptionsFramePanelContainer"].BottomEdge:Hide()
-					_G["DBM_GUI_OptionsFramePanelContainer"].LeftEdge:Hide()
-					_G["DBM_GUI_OptionsFramePanelContainer"].BottomRightCorner:Hide()
-					_G["DBM_GUI_OptionsFramePanelContainer"].BottomLeftCorner:Hide()
-					_G["DBM_GUI_OptionsFramePanelContainer"].RightEdge:Hide()
-					_G["DBM_GUI_OptionsFramePanelContainer"].TopEdge:Hide()
-					_G["DBM_GUI_OptionsFramePanelContainer"].TopLeftCorner:Hide()
-					_G["DBM_GUI_OptionsFramePanelContainer"].TopRightCorner:Hide()
-				end
 				if _G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"] and not _G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"].EltruismSkin then
 					S:HandleScrollBar(_G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"])
 					_G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"].EltruismSkin = true
