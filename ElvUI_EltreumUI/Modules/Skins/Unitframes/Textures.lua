@@ -183,7 +183,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 end
 
 --set the textures for group units
-function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation)
+function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 
 	--due to raid pet, check if is player
 	if UnitIsPlayer(button.unit) or (E.Retail and UnitInPartyIsAI(button.unit)) then
@@ -219,7 +219,16 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation)
 				if not E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
 					button.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom(buttonclass))
 				else
-					button.Health:GetStatusBarTexture():SetTexture(groupbar)
+					if frametype then
+						if frametype == "raid" then
+							button.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("RAID"))
+						elseif frametype == "party" then
+							print(frametype,ElvUI_EltreumUI:UnitframeClassTextureCustom("PARTY"))
+							button.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("PARTY"))
+						end
+					else
+						button.Health:GetStatusBarTexture():SetTexture(groupbar)
+					end
 				end
 			else
 				if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
@@ -357,7 +366,11 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 					for j = 1, group:GetNumChildren() do
 						groupbutton = select(j, group:GetChildren())
 						if groupbutton and groupbutton.Health then
-							ElvUI_EltreumUI:ApplyGroupCustomTexture(groupbutton,true)
+							if headergroup == _G["ElvUF_Party"] then
+								ElvUI_EltreumUI:ApplyGroupCustomTexture(groupbutton,true,"party")
+							else
+								ElvUI_EltreumUI:ApplyGroupCustomTexture(groupbutton,true,"raid")
+							end
 						end
 					end
 				end
@@ -417,17 +430,12 @@ hooksecurefunc(UF, "PostUpdateHealthColor", ElvUI_EltreumUI.CustomTexture) --WAS
 hooksecurefunc(UF, "Style", ElvUI_EltreumUI.CustomTexture) --old target of target hook
 
 -- replace absorb texture with unitframe texture
-function ElvUI_EltreumUI:SetTexture_HealComm(obj, texture)
-	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+function ElvUI_EltreumUI:SetTexture_HealComm(obj)
+	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enableHealComm then
 		obj.myBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 		obj.otherBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 		obj.absorbBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 		obj.healAbsorbBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-	else
-		obj.myBar:SetStatusBarTexture(texture)
-		obj.otherBar:SetStatusBarTexture(texture)
-		obj.absorbBar:SetStatusBarTexture(texture)
-		obj.healAbsorbBar:SetStatusBarTexture(texture)
 	end
 end
 hooksecurefunc(UF, "SetTexture_HealComm", ElvUI_EltreumUI.SetTexture_HealComm)
