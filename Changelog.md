@@ -1,6 +1,8 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.1.7.1
+Fixed a leftover debug print  
 ### 4.1.7
 Added an option to disable the Unitframe Heal Prediction Texture override  
 Added options to use different Custom Textures in Party and Raid Frames  

@@ -3690,6 +3690,7 @@ Fixed an error with the Honor Datatext in Cataclysm Classic
 Fixed an issue with the DBM skin due to its update
 Fixed OmniCD skin and profile  after its update
 Fixed BigWigs profile after its update
+Fixed a leftover debug print
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
