@@ -223,7 +223,6 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 						if frametype == "raid" then
 							button.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("RAID"))
 						elseif frametype == "party" then
-							print(frametype,ElvUI_EltreumUI:UnitframeClassTextureCustom("PARTY"))
 							button.Health:GetStatusBarTexture():SetTexture(ElvUI_EltreumUI:UnitframeClassTextureCustom("PARTY"))
 						end
 					else
