@@ -232,68 +232,72 @@ if E.Retail then
 						local x, y = 0,0
 
 						if coords[3] then --coord[3] then its likely a tomtom command
-							local info = C_Map.GetMapInfo(coords[1]) --check for map info
-							if info then --if there is one, then its all good
-								-- setup x coordinate
-								if coords[2] and string.match(coords[2], "%d+") then
-									if string.len(coords[2]) == 3 then
-										x = (tonumber(coords[2])*0.001)
-									elseif string.len(coords[2]) == 2 then
-										x = (tonumber(coords[2])*0.01)
-									elseif string.len(coords[2]) == 4 then
-										x = (tonumber(coords[2])*0.01)
-									elseif string.len(coords[2]) == 5 then
-										x = (tonumber(coords[2])*0.01)
-									elseif string.len(coords[2]) > 5 then
-										coords[2] = "a"
-									end
-								end
-								-- setup y coordinate
-								if coords[3] and string.match(coords[3], "%d+") then
-									if string.len(coords[3]) == 3 then
-										y = (tonumber(coords[3])*0.001)
-									elseif string.len(coords[3]) == 2 then
-										y = (tonumber(coords[3])*0.01)
-									elseif string.len(coords[3]) == 4 then
-										y = (tonumber(coords[3])*0.01)
-									elseif string.len(coords[3]) == 5 then
-										y = (tonumber(coords[3])*0.01)
-									elseif string.len(coords[3]) > 5 then
-										coords[1] = "a"
-									end
-								end
-								-- check if its numbers set the waypoint and print it otherwise error message
-								if (coords[2] and string.match(coords[2], "%a+")) or (coords[3] and string.match(coords[3], "%a+")) then
-									ElvUI_EltreumUI:Print(L["Unsupported format or Area does not support waypoints"])
-									wipe(coords)
-								elseif x == nil or y == nil then
-									ElvUI_EltreumUI:Print(L["Area does not support waypoints"])
-									wipe(coords)
-								else
-									--print ("X: "..x.." and Y: "..y)
-									local xlength, ylength
-									if x > 0 and x < 1 then
-										xlength = true
-									else
-										xlength = false
-									end
-									if y > 0 and y < 1 then
-										ylength = true
-									else
-										ylength = false
-									end
-									if not xlength or not ylength then
-										ElvUI_EltreumUI:Print(L["Unsupported format or Area does not support waypoints"])
-										wipe(coords)
-									else
-										C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(coords[1],x,y)) --use the map since it exists
-										if C_Map.GetBestMapForUnit('player') == nil then
-											ElvUI_EltreumUI:Print(L["Area does not support waypoints"])
-											wipe(coords)
-										else
-											ElvUI_EltreumUI:Print(C_Map.GetUserWaypointHyperlink())
+							if tonumber(coords[1]) then
+								local info = C_Map.GetMapInfo(coords[1]) --check for map info
+								if info then --if there is one, then its all good
+									-- setup x coordinate
+									if coords[2] and string.match(coords[2], "%d+") then
+										if string.len(coords[2]) == 3 then
+											x = (tonumber(coords[2])*0.001)
+										elseif string.len(coords[2]) == 2 then
+											x = (tonumber(coords[2])*0.01)
+										elseif string.len(coords[2]) == 4 then
+											x = (tonumber(coords[2])*0.01)
+										elseif string.len(coords[2]) == 5 then
+											x = (tonumber(coords[2])*0.01)
+										elseif string.len(coords[2]) > 5 then
+											coords[2] = "a"
 										end
 									end
+									-- setup y coordinate
+									if coords[3] and string.match(coords[3], "%d+") then
+										if string.len(coords[3]) == 3 then
+											y = (tonumber(coords[3])*0.001)
+										elseif string.len(coords[3]) == 2 then
+											y = (tonumber(coords[3])*0.01)
+										elseif string.len(coords[3]) == 4 then
+											y = (tonumber(coords[3])*0.01)
+										elseif string.len(coords[3]) == 5 then
+											y = (tonumber(coords[3])*0.01)
+										elseif string.len(coords[3]) > 5 then
+											coords[1] = "a"
+										end
+									end
+									-- check if its numbers set the waypoint and print it otherwise error message
+									if (coords[2] and string.match(coords[2], "%a+")) or (coords[3] and string.match(coords[3], "%a+")) then
+										ElvUI_EltreumUI:Print(L["Unsupported format or Area does not support waypoints"])
+										wipe(coords)
+									elseif x == nil or y == nil then
+										ElvUI_EltreumUI:Print(L["Area does not support waypoints"])
+										wipe(coords)
+									else
+										--print ("X: "..x.." and Y: "..y)
+										local xlength, ylength
+										if x > 0 and x < 1 then
+											xlength = true
+										else
+											xlength = false
+										end
+										if y > 0 and y < 1 then
+											ylength = true
+										else
+											ylength = false
+										end
+										if not xlength or not ylength then
+											ElvUI_EltreumUI:Print(L["Unsupported format or Area does not support waypoints"])
+											wipe(coords)
+										else
+											C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(coords[1],x,y)) --use the map since it exists
+											if C_Map.GetBestMapForUnit('player') == nil then
+												ElvUI_EltreumUI:Print(L["Area does not support waypoints"])
+												wipe(coords)
+											else
+												ElvUI_EltreumUI:Print(C_Map.GetUserWaypointHyperlink())
+											end
+										end
+									end
+								else
+									ElvUI_EltreumUI:Print(L["Map not found"])
 								end
 							else
 								ElvUI_EltreumUI:Print(L["Map not found"])
