@@ -3267,7 +3267,7 @@ function ElvUI_EltreumUI:Configtable()
 		[2] = L["Version 2"],
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.skins.armorycrestversion end, function(_, value) E.db.ElvUI_EltreumUI.skins.armorycrestversion = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.skins.expandarmorycrest end)
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.addcrestversion.style = "radio"
-	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.crestalpha = ACH:Range(L["Art Alpha"], L["Change the transparency of the Art"], 5, { min = 0.01, max = 1, step = 0.01 }, "full", function() return E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha end, function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha = value if _G["EltruismCharacterBG"] then _G["EltruismCharacterBG"]:SetAlpha(value) end end, function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg or not E.db.ElvUI_EltreumUI.skins.expandarmorycrest end)
+	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.bgalpha = ACH:Range(L["Art Alpha"], L["Change the transparency of the Art"], 5, { min = 0.01, max = 1, step = 0.01 }, "full", function() return E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha end, function(_, value) E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha = value if _G["EltruismCharacterBG"] then _G["EltruismCharacterBG"]:SetAlpha(value) end end, function() return not E.db.ElvUI_EltreumUI.skins.expandarmorybg end)
 	ElvUI_EltreumUI.Options.args.skins.args.character.args.panel.args.armory.args.armorybgtextureselect = ACH:Select(L["Background Texture Type"], L["Choose between a Class, Race or Custom Background"], 6, {
 		["CLASS"] = CLASS,
 		["RACE"] = RACE,
