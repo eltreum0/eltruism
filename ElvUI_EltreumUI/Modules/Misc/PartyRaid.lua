@@ -219,14 +219,9 @@ function ElvUI_EltreumUI:SetGroupRoleClassic()
 				UnitSetRole("player","DAMAGER")
 			end
 		else
-			local _, _, spent1, _, cataspent1 = _G.GetTalentTabInfo(1)
-			local _, _, spent2, _, cataspent2 = _G.GetTalentTabInfo(2)
-			local _, _, spent3, _, cataspent3 = _G.GetTalentTabInfo(3)
-			if E.Cata then
-				spent1 = cataspent1
-				spent2 = cataspent2
-				spent3 = cataspent3
-			end
+			local _, _, _, _, spent1 = _G.GetTalentTabInfo(1)
+			local _, _, _, _, spent2 = _G.GetTalentTabInfo(2)
+			local _, _, _, _, spent3 = _G.GetTalentTabInfo(3)
 			--print(isDPS,isTank,isHealer,E.myclass,spent1,spent2,spent3)
 			if E.myclass == 'SHAMAN' then
 				if spent3 < spent1 and spent3 < spent2 then
