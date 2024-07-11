@@ -741,6 +741,7 @@ P.ElvUI_EltreumUI = {
 		ufdebuffsizey = 48,
 		auraufstrata = "MEDIUM",
 		aurauflevel = 4,
+		ufaurasize = 13,
 
 		chatborder = true,
 		leftchatborderx = 432,
