@@ -741,6 +741,7 @@ P.ElvUI_EltreumUI = {
 		ufdebuffsizey = 48,
 		auraufstrata = "MEDIUM",
 		aurauflevel = 4,
+		ufaurasize = 13,
 
 		chatborder = true,
 		leftchatborderx = 432,
@@ -1656,6 +1657,10 @@ P.ElvUI_EltreumUI = {
 			npcunfriendly = "Eltreum-Class-DruidV2",
 			npchostile = "Eltreum-Class-DeathKnightV2",
 			tappedtexture = "Eltreum-TappedV2",
+			raidtexture = "Eltreum-Blank",
+			partytexture = "Eltreum-Blank",
+
+			enableHealComm = true,
 		},
 		sparkcustomcolor ={
 			enable = false,

@@ -219,14 +219,9 @@ function ElvUI_EltreumUI:SetGroupRoleClassic()
 				UnitSetRole("player","DAMAGER")
 			end
 		else
-			local _, _, spent1, _, cataspent1 = _G.GetTalentTabInfo(1)
-			local _, _, spent2, _, cataspent2 = _G.GetTalentTabInfo(2)
-			local _, _, spent3, _, cataspent3 = _G.GetTalentTabInfo(3)
-			if E.Cata then
-				spent1 = cataspent1
-				spent2 = cataspent2
-				spent3 = cataspent3
-			end
+			local _, _, _, _, spent1 = _G.GetTalentTabInfo(1)
+			local _, _, _, _, spent2 = _G.GetTalentTabInfo(2)
+			local _, _, _, _, spent3 = _G.GetTalentTabInfo(3)
 			--print(isDPS,isTank,isHealer,E.myclass,spent1,spent2,spent3)
 			if E.myclass == 'SHAMAN' then
 				if spent3 < spent1 and spent3 < spent2 then
@@ -419,11 +414,11 @@ function ElvUI_EltreumUI:RestIcon(frame)
 			end
 
 			_G["EltruismPlayerRestLoop"]:ClearAllPoints()
-			--_G["EltruismPlayerRestLoop"]:SetParent(frame) --this can crash the game, and also show/hide calls can (during cinematic)
+			_G["EltruismPlayerRestLoop"]:SetParent(frame) --this can crash the game, and also show/hide calls can (during cinematic) --seems fixed now
 			_G["EltruismPlayerRestLoop"]:SetPoint("CENTER", frame.RestingIndicator, "CENTER", 0, 0)
 			_G["EltruismPlayerRestLoop"]:SetFrameStrata('HIGH')
 			_G["EltruismPlayerRestLoop"]:SetFrameLevel(7)
-			_G["EltruismPlayerRestLoop"]:SetScale(E.db.unitframe.units.player.RestIcon.size/15)
+			_G["EltruismPlayerRestLoop"]:SetScale(E.db.unitframe.units.player.RestIcon.size/10)
 			hooksecurefunc(frame.RestingIndicator, 'PostUpdate', function()
 				if frame.RestingIndicator:IsShown() then
 					_G["EltruismPlayerRestLoop"]:Show()
@@ -432,7 +427,6 @@ function ElvUI_EltreumUI:RestIcon(frame)
 					_G["EltruismPlayerRestLoop"]:Hide()
 					_G["EltruismPlayerRestLoop"].PlayerRestLoopAnim:Stop()
 				end
-				--_G["EltruismPlayerRestLoopRestTexture"]:SetDesaturated(true)
 				if E.db.ElvUI_EltreumUI.unitframes.blizzardresticongradient then
 					if not _G["EltruismPlayerRestLoopRestTexture"].Gradient then
 						if (E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor) then
@@ -448,45 +442,10 @@ function ElvUI_EltreumUI:RestIcon(frame)
 				end
 			end)
 
-			--basically if i use SetParent the game crashes, have to hook the alpha and set it on the frame instead
-			hooksecurefunc(frame,'SetAlpha', function(_,alpha)
-				_G["EltruismPlayerRestLoop"]:SetAlpha(alpha)
-			end)
-
-			_G["EltruismPlayerRestLoop"]:RegisterEvent("CINEMATIC_STOP")
-			_G["EltruismPlayerRestLoop"]:RegisterEvent("CINEMATIC_START")
-			local cinematiccheck = false
-			_G["EltruismPlayerRestLoop"]:SetScript("OnEvent",function(_,event)
-				if event == "CINEMATIC_START" then
-					_G["EltruismPlayerRestLoop"]:SetAlpha(0) --cant use hide or show or it crashes too
-					cinematiccheck = _G["EltruismPlayerRestLoop"]:IsShown()
-				else
-					if cinematiccheck then
-						_G["EltruismPlayerRestLoop"]:SetAlpha(1)
-					end
-				end
-			end)
-
-			--hook afk to hide it while afk, needs a delay
-			if _G.ElvUIAFKFrame then
-				_G.ElvUIAFKFrame:HookScript("OnShow", function()
-					E:Delay(0.05, function()
-						_G["EltruismPlayerRestLoop"]:SetAlpha(0)
-					end)
-				end)
-				_G.ElvUIAFKFrame:HookScript("OnHide", function()
-					E:Delay(0.05, function()
-						if IsResting() and _G["ElvUF_Player"] and _G["ElvUF_Player"]:GetAlpha() == 1 then
-							_G["EltruismPlayerRestLoop"]:SetAlpha(1)
-						end
-					end)
-				end)
-			end
-
 			frame.RestingIndicator.EltruismHook = true
 		end
 		frame.RestingIndicator:SetTexture()
-		_G["EltruismPlayerRestLoop"]:SetScale(E.db.unitframe.units.player.RestIcon.size/15)
+		_G["EltruismPlayerRestLoop"]:SetScale(E.db.unitframe.units.player.RestIcon.size/10)
 	end
 end
 hooksecurefunc(UF,"Configure_RestingIndicator", ElvUI_EltreumUI.RestIcon)

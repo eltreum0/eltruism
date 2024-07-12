@@ -48,7 +48,7 @@ end
 
 --expand after encounter is over
 function ElvUI_EltreumUI:QuestEncounterEnd()
-	if E.db.ElvUI_EltreumUI.quests.enable then
+	if E.db.ElvUI_EltreumUI.quests.enable and not InCombatLockdown() then
 		local _, instanceType = IsInInstance()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
 			if E.Retail then
