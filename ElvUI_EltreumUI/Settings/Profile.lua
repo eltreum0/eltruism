@@ -36,7 +36,7 @@ P.ElvUI_EltreumUI = {
 		nameplateOtherTopInset = 0.1,
 		nameplateOccludedAlphaMult = 0,
 		cameraFOV = 90,
-		cameraDistanceMaxZoomFactor = E.Retail and 2.6 or 3.4,
+		cameraDistanceMaxZoomFactor = E.Retail and 2.6 or 4,
 		nameplateTargetRadialPosition = 1,
 		dynamicrenderscalemin = 0.33, --default value
 		--for retail
