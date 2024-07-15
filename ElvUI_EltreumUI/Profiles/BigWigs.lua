@@ -108,9 +108,12 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["normalPosition"] = {
 				"RIGHT",
 				"RIGHT",
+				"TOP",
 				nil,
 				-100,
 				"UIParent",
+				nil,
+				-200,
 			},
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] or {}
