@@ -709,7 +709,7 @@ function ElvUI_EltreumUI:Borders()
 				end
 				focuscastbarborder:SetBackdrop({
 					edgeFile = bordertexture,
-					edgeSize = E.db.ElvUI_EltreumUI.borders.playertargetcastsize,
+					edgeSize = E.db.ElvUI_EltreumUI.borders.focussize,
 				})
 				focuscastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				focuscastbarborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.focuscaststrata)

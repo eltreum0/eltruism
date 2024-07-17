@@ -1,6 +1,31 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.1.8
+Added support for Season of Discovery Season 4  
+Updated Item Level text on character panel to follow some of ElvUI's options  
+Updated Background Alpha in the Character Panel Skin to not follow Crest Alpha  
+Updated Character Panel Gradient and Class Colors to work separately  
+Fixed a possible error when using /way command with text instead of zone id  
+Fixed Combat Icons option missing  
+### 4.1.7.1
+Fixed a leftover debug print  
+### 4.1.7
+Added an option to disable the Unitframe Heal Prediction Texture override  
+Added options to use different Custom Textures in Party and Raid Frames  
+Added [name:eltruism:capital] tag  
+Added a few missing shadows  
+Updated Focus Castbar Border size to use the Focus Border size  
+Fixed an issue with instant loot where it could get stuck if a corpse was looted more than once in Cataclysm  
+Fixed an issue where the Character Panel Camera settings were not working in Cataclysm Classic  
+Fixed an issue where the EltruismDatatext texture would not hide with the datatext  
+Fixed an issue where some items were not being pushed to the LootText  
+Fixed an issue with the install due to a change in Shadow and Light  
+Fixed an issue with the EltruismDatatext when it was loading  
+Fixed an error with the Honor Datatext in Cataclysm Classic  
+Fixed an issue with the DBM skin due to its update  
+Fixed OmniCD skin and profile  after its update  
+Fixed BigWigs profile after its update  
 ### 4.1.6
 Added an option to disable moving the Item Level text in the Character Panel in Cataclysm Classic  
 Added Eltruism Datatext 3 to Retail where it will show Armor and Dodge change  

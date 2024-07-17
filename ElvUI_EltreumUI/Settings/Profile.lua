@@ -36,7 +36,7 @@ P.ElvUI_EltreumUI = {
 		nameplateOtherTopInset = 0.1,
 		nameplateOccludedAlphaMult = 0,
 		cameraFOV = 90,
-		cameraDistanceMaxZoomFactor = E.Retail and 2.6 or 3.4,
+		cameraDistanceMaxZoomFactor = E.Retail and 2.6 or 4,
 		nameplateTargetRadialPosition = 1,
 		dynamicrenderscalemin = 0.33, --default value
 		--for retail
@@ -741,6 +741,7 @@ P.ElvUI_EltreumUI = {
 		ufdebuffsizey = 48,
 		auraufstrata = "MEDIUM",
 		aurauflevel = 4,
+		ufaurasize = 13,
 
 		chatborder = true,
 		leftchatborderx = 432,
@@ -1656,6 +1657,10 @@ P.ElvUI_EltreumUI = {
 			npcunfriendly = "Eltreum-Class-DruidV2",
 			npchostile = "Eltreum-Class-DeathKnightV2",
 			tappedtexture = "Eltreum-TappedV2",
+			raidtexture = "Eltreum-Blank",
+			partytexture = "Eltreum-Blank",
+
+			enableHealComm = true,
 		},
 		sparkcustomcolor ={
 			enable = false,

@@ -39,25 +39,41 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Bars"]["profiles"]["Eltreum"] = {
-			["BigWigsEmphasizeAnchor_y"] = 541,
+			--["BigWigsEmphasizeAnchor_y"] = 541,
 			["visibleBarLimit"] = 15,
-			["BigWigsAnchor_width"] = 379,
-			["BigWigsAnchor_y"] = 160,
+			--["BigWigsAnchor_width"] = 379,
+			--["BigWigsAnchor_y"] = 160,
 			["emphasizeGrowup"] = true,
-			["BigWigsAnchor_x"] = 1093,
+			--["BigWigsAnchor_x"] = 1093,
 			["spacing"] = 15,
 			["emphasizeTime"] = 10,
 			--["barStyle"] = "AddOnSkins Half-Bar",
 			["barStyle"] = "Eltruism",
-			["BigWigsEmphasizeAnchor_height"] = 15,
+			--["BigWigsEmphasizeAnchor_height"] = 15,
 			["growup"] = true,
-			["BigWigsEmphasizeAnchor_width"] = 180,
+			--["BigWigsEmphasizeAnchor_width"] = 180,
 			["fontName"] = E.db.general.font,
-			["BigWigsAnchor_height"] = 15,
+			--["BigWigsAnchor_height"] = 15,
 			["visibleBarLimitEmph"] = 6,
 			["outline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
-			["BigWigsEmphasizeAnchor_x"] = 928,
+			--["BigWigsEmphasizeAnchor_x"] = 928,
 			["texture"] = "ElvUI Norm1",
+			["expHeight"] = 15,
+			["normalHeight"] = 15,
+			["normalWidth"] = 384,
+			["expWidth"] = 180,
+			["expPosition"] = {
+				nil,
+				"TOP",
+				350,
+				-350,
+			},
+			["normalPosition"] = {
+				"RIGHT",
+				"RIGHT",
+				-4,
+				-281,
+			},
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"] or {}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Statistics"]["profiles"]["Eltreum"] = {
@@ -80,19 +96,24 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["outline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 			["emphFontName"] = E.db.general.font,
 			["emphPosition"] = {
-				"TOP", -- [1]
-				"TOP", -- [2]
-				nil, -- [3]
-				-160, -- [4]
+				nil,
+				"TOP",
+				nil,
+				-160,
+				"UIParent",
 			},
 			["fontName"] = E.db.general.font,
 			["growUpwards"] = false,
 			["emphOutline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
 			["normalPosition"] = {
-				nil, -- [1]
-				nil, -- [2]
-				nil, -- [3]
-				-100, -- [4]
+				"RIGHT",
+				"RIGHT",
+				"TOP",
+				nil,
+				-100,
+				"UIParent",
+				nil,
+				-200,
 			},
 		}
 		BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Colors"]["profiles"] or {}
@@ -143,10 +164,10 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 					1, -- [3]
 				},
 				["position"] = {
-					"TOP", -- [1]
-					"TOP", -- [2]
-					-355, -- [3]
-					-23, -- [4]
+					"TOP",
+					"TOP",
+					-355,
+					-23,
 				},
 				["barColor"] = {
 					1, -- [1]

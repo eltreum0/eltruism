@@ -52,6 +52,12 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 				if E.private.skins.blizzard.enable then
+					if (arg == "Blizzard_ScrappingMachineUI") or IsAddOnLoaded("Blizzard_ScrappingMachineUI") then
+						if _G.ScrappingMachineFrame and not _G.ScrappingMachineFrame.shadow then
+							_G.ScrappingMachineFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.ScrappingMachineFrame.shadow)
+						end
+					end
 					if (arg == "Blizzard_EngravingUI") or IsAddOnLoaded("Blizzard_EngravingUI") then
 						if _G.EngravingFrame and _G.EngravingFrame.backdrop and not _G.EngravingFrame.backdrop.shadow then
 							_G.EngravingFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)

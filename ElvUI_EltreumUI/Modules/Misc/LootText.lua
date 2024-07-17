@@ -191,13 +191,13 @@ function ElvUI_EltreumUI:LootText()
 			end
 			--check for created item
 			if not itemLink2 then
+				itemLink2,amount2 = Deformat(chatmsg, LOOT_ITEM_CREATED_SELF_MULTIPLE)
+			end
+			if not itemLink2 then
 				itemLink2,amount2 = Deformat(chatmsg, LOOT_ITEM_CREATED_SELF)
 			end
 			if not itemLink2 then
 				itemLink2,amount2 = Deformat(chatmsg, TRADESKILL_LOG_FIRSTPERSON)
-			end
-			if not itemLink2 then
-				itemLink2,amount2 = Deformat(chatmsg, LOOT_ITEM_CREATED_SELF_MULTIPLE)
 			end
 			-- if something has been looted
 			if itemLink2 then

@@ -168,14 +168,9 @@ local function EltruismStatsDatatextOnEnter()
 			end
 			DT.tooltip:AddDoubleLine(ITEM_MOD_SPIRIT_SHORT..":", ElvUI[1].media.hexvaluecolor..UnitStat("player", 5).."|r",1,1,1)
 		elseif E.myclass == "SHAMAN" or E.myclass == "DRUID" or E.myclass == "PALADIN" then
-			local _, _, spent1, _, cataspent1 = _G.GetTalentTabInfo(1)
-			local _, _, spent2, _, cataspent2 = _G.GetTalentTabInfo(2)
-			local _, _, spent3, _, cataspent3 = _G.GetTalentTabInfo(3)
-			if E.Cata then
-				spent1 = cataspent1
-				spent2 = cataspent2
-				spent3 = cataspent3
-			end
+			local _, _, _, _, spent1 = _G.GetTalentTabInfo(1)
+			local _, _, _, _, spent2 = _G.GetTalentTabInfo(2)
+			local _, _, _, _, spent3 = _G.GetTalentTabInfo(3)
 			if E.myclass == "SHAMAN" or E.myclass == "DRUID" then
 				if spent2 > spent3 and spent2 > spent1 then
 					if E.Classic then
@@ -295,14 +290,9 @@ local function EltruismStatsDatatext1(dt)
 				crit = CRIT_ABBR..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", spellcrit).."|r"
 			end
 		elseif E.myclass == "SHAMAN" or E.myclass == "DRUID" or E.myclass == "PALADIN" then
-			local _, _, spent1, _, cataspent1 = _G.GetTalentTabInfo(1)
-			local _, _, spent2, _, cataspent2 = _G.GetTalentTabInfo(2)
-			local _, _, spent3, _, cataspent3 = _G.GetTalentTabInfo(3)
-			if E.Cata then
-				spent1 = cataspent1
-				spent2 = cataspent2
-				spent3 = cataspent3
-			end
+			local _, _, _, _, spent1 = _G.GetTalentTabInfo(1)
+			local _, _, _, _, spent2 = _G.GetTalentTabInfo(2)
+			local _, _, _, _, spent3 = _G.GetTalentTabInfo(3)
 			if E.myclass == "SHAMAN" or E.myclass == "DRUID" then
 				if spent2 > spent3 and spent2 > spent1 then
 					haste = STAT_HASTE..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetHaste()).."|r"
@@ -393,14 +383,9 @@ local function EltruismStatsDatatext2(dt)
 				dt.text:SetFormattedText('%s %s|r',mastery,tspellhit)
 			end
 		elseif E.myclass == "SHAMAN" or E.myclass == "DRUID" or E.myclass == "PALADIN" then
-			local _, _, spent1, _, cataspent1 = _G.GetTalentTabInfo(1)
-			local _, _, spent2, _, cataspent2 = _G.GetTalentTabInfo(2)
-			local _, _, spent3, _, cataspent3 = _G.GetTalentTabInfo(3)
-			if E.Cata then
-				spent1 = cataspent1
-				spent2 = cataspent2
-				spent3 = cataspent3
-			end
+			local _, _, _, _, spent1 = _G.GetTalentTabInfo(1)
+			local _, _, _, _, spent2 = _G.GetTalentTabInfo(2)
+			local _, _, _, _, spent3 = _G.GetTalentTabInfo(3)
 			if E.myclass == "SHAMAN" or E.myclass == "DRUID" then
 				if spent2 > spent3 and spent2 > spent1 then
 					if E.Classic then

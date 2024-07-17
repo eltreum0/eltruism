@@ -611,6 +611,16 @@ E:AddTag("name:eltruism:caps", "UNIT_NAME_UPDATE", function(unit,_,args)
 end)
 E:AddTagInfo("name:eltruism:caps", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in caps while being class color or reaction color, shortens over 16 characters but can be changed with {arg}"])
 
+--name in caps
+E:AddTag("name:eltruism:capital", "UNIT_NAME_UPDATE", function(unit)
+	if not unit then return end
+	local namecheck = UnitName(unit)
+	if not namecheck then return end
+	local name = string.upper(namecheck)
+	return name
+end)
+E:AddTagInfo("name:eltruism:capital", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in capital"])
+
 --Details nickname using the nicktag library suggested by VXT
 local nicktag
 if IsAddOnLoaded("Details") then
