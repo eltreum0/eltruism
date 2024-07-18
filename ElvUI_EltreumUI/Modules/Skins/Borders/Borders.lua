@@ -18,7 +18,7 @@ local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder
 local bordertexture,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder, experienceborder, threatborder
 local playerclassbarborder1, playerclassbarborder2, comboborder, playerpowerborder, targetpowerborder, reputationborder
 local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction, altpowerborder
-local MinimapBorder,LeftChatBorder,RightChatBorder,totemborderfly,focustargetborder,targettargetpowerborder
+local MinimapBorder,LeftChatBorder,RightChatBorder,totemborderfly,focustargetborder,targettargetpowerborder, focuspowerborder
 local raid1borderholder,raid2borderholder,raid3borderholder,partyborderholder, comboborderholder = {},{},{},{},{}
 local rectangleminimapdetect = CreateFrame("FRAME")
 local updatelocationpos = CreateFrame("Frame")
@@ -716,6 +716,27 @@ function ElvUI_EltreumUI:Borders()
 				focuscastbarborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.focuscastlevel)
 			end
 
+			--focus power
+			if E.db.unitframe.units.focus.power.enable and (E.db.unitframe.units.focus.power.width == "spaced" or E.db.unitframe.units.focus.power.detachFromFrame) then
+				if _G["ElvUF_Focus_PowerBar"] and E.db.ElvUI_EltreumUI.borders.focuspowerborder then
+					if not _G["EltruismFocusPowerBorder"] then
+						focuspowerborder = CreateFrame("Frame", "EltruismFocusPowerBorder", _G.ElvUF_Focus_PowerBar, BackdropTemplateMixin and "BackdropTemplate")
+					else
+						focuspowerborder = _G["EltruismFocusPowerBorder"]
+					end
+					focuspowerborder:SetSize(E.db.ElvUI_EltreumUI.borders.xfocuspower, E.db.ElvUI_EltreumUI.borders.yfocuspower)
+					focuspowerborder:SetPoint("CENTER", _G.ElvUF_Focus_PowerBar, "CENTER", 0, 0)
+					focuspowerborder:SetParent(_G.ElvUF_Focus_PowerBar)
+					focuspowerborder:SetBackdrop({
+						edgeFile = bordertexture,
+						edgeSize = E.db.ElvUI_EltreumUI.borders.focussize,
+					})
+					focuspowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+					focuspowerborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.focuspowerstrata)
+					focuspowerborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.focuspowerlevel)
+				end
+			end
+
 			--focustarget
 			if E.db.ElvUI_EltreumUI.borders.focustargetborder and E.db.unitframe.units.focustarget.enable and not E.Classic then
 				if not _G["EltruismFocusTargetBorder"] then
@@ -1396,12 +1417,30 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 		local powertypemonitortarget = CreateFrame("frame")
 		powertypemonitortarget:RegisterUnitEvent("UNIT_DISPLAYPOWER", "target")
 		powertypemonitortarget:SetScript("OnEvent", function()
+			if not UnitExists("target") then return end
 			local _, powertypetarget = UnitPowerType("target")
 			if E.db.unitframe.units.target.enable and E.db.ElvUI_EltreumUI.borders.targetpower and E.db.unitframe.units.target.power.enable and (E.db.unitframe.units.target.power.width == "spaced" or E.db.unitframe.units.target.power.detachFromFrame) then
 				if E.db.unitframe.colors.power[powertypetarget] then
 					targetpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertypetarget].r, E.db.unitframe.colors.power[powertypetarget].g, E.db.unitframe.colors.power[powertypetarget].b, 1)
 				else
 					targetpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+				end
+			else
+				powertypemonitortarget:UnregisterEvent("UNIT_DISPLAYPOWER")
+			end
+		end)
+
+		local powertypemonitorfocus = CreateFrame("frame")
+		powertypemonitorfocus:RegisterUnitEvent("UNIT_DISPLAYPOWER", "focus")
+		powertypemonitorfocus:RegisterUnitEvent("PLAYER_FOCUS_CHANGED")
+		powertypemonitorfocus:SetScript("OnEvent", function()
+			if not UnitExists("focus") then return end
+			local _, powertypefocus = UnitPowerType("focus")
+			if E.db.unitframe.units.focus.enable and E.db.ElvUI_EltreumUI.borders.focuspowerborder and E.db.unitframe.units.focus.power.enable and (E.db.unitframe.units.focus.power.width == "spaced" or E.db.unitframe.units.focus.power.detachFromFrame) then
+				if E.db.unitframe.colors.power[powertypefocus] then
+					focuspowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertypefocus].r, E.db.unitframe.colors.power[powertypefocus].g, E.db.unitframe.colors.power[powertypefocus].b, 1)
+				else
+					focuspowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				end
 			else
 				powertypemonitortarget:UnregisterEvent("UNIT_DISPLAYPOWER")
@@ -1679,6 +1718,7 @@ function ElvUI_EltreumUI:ShowHideBorders(install)
 		focustargetborder,
 		targettargetpowerborder,
 		altpowerborder,
+		focuspowerborder,
 	}
 	local barborderbutton
 	local barborderbuttonnumber

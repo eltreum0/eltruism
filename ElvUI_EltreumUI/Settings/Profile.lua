@@ -845,6 +845,12 @@ P.ElvUI_EltreumUI = {
 		focusstrata = "LOW",
 		focuslevel = 20,
 
+		focuspowerborder = true,
+		xfocuspower = 210,
+		yfocuspower = 46,
+		focuspowerstrata = "MEDIUM",
+		focuspowerlevel = 20,
+
 		focuscastborder = true,
 		xcastfocus = 365,
 		ycastfocus = 62,
