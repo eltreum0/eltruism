@@ -532,67 +532,6 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 				end
 
-
-				for _, k in pairs(questmodules) do
-					if k.Update then
-						hooksecurefunc(k, "Update", function(module)
-							if module and module.Header and module.Header.Text then --the big type of quest
-								if not ElvUI_EltreumUI:SLCheck('quest') then
-									module.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSizeHeader, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-								end
-								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolortitle then
-									module.Header.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customrtitle, E.db.ElvUI_EltreumUI.skins.questsettings.customgtitle, E.db.ElvUI_EltreumUI.skins.questsettings.custombtitle)
-								else
-									module.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-								end
-								module.Header.Text:SetShadowColor(0, 0, 0, 0.8)
-								module.Header.Text:SetShadowOffset(2, -1)
-
-								--create the lines
-								if not module.Header.EltruismStatusLine and not ElvUI_EltreumUI:SLCheck('quest') then
-									if module.Header.Text and module.Header.Text:GetText() ~= nil then
-										module.Header.EltruismStatusLine = CreateFrame("StatusBar", "Eltruism"..module.Header.Text:GetText().."Line", module.Header)
-									else
-										module.Header.EltruismStatusLine = CreateFrame("StatusBar", "EltruismLine", module.Header)
-									end
-									module.Header.EltruismStatusLine:SetMinMaxValues(0, 100)
-									module.Header.EltruismStatusLine:SetValue(100)
-									module.Header.EltruismStatusLine:SetSize(E.db.ElvUI_EltreumUI.skins.questsettings.sizex, E.db.ElvUI_EltreumUI.skins.questsettings.sizey)
-									module.Header.EltruismStatusLine:SetPoint("BOTTOM", module.Header, 0, 0)
-									module.Header.EltruismStatusLine:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.questsettings.texture))
-									if not E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor then
-										if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-											module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass))
-										else
-											module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
-										end
-									else
-										module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r,g= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b,a= 1}, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,g=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b,a= 1})
-									end
-									module.Header.EltruismStatusLine:SetFrameLevel(1)
-									if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not module.Header.EltruismStatusLine.shadow then
-										module.Header.EltruismStatusLine:CreateBackdrop('Transparent')
-										module.Header.EltruismStatusLine:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-										ElvUI_EltreumUI:ShadowColor(module.Header.EltruismStatusLine.shadow)
-									end
-								end
-							end
-
-							--add quest count
-							if _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.QuestHeader and _G.ObjectiveTrackerBlocksFrame.QuestHeader.Text then
-								local NumQuests = select(2, _G.C_QuestLog.GetNumQuestLogEntries())
-								--if (NumQuests >= (MAX_QUESTS - 5)) then --global still returning 25
-								if (NumQuests >= 30) then
-									--_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, QUESTS_LABEL))
-									_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, 35, QUESTS_LABEL))
-								--else
-								--	_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(QUESTS_LABEL)
-								end
-							end
-						end)
-					end
-				end
-
 				local function hooks(k)
 					if k.Bar then
 						EltreumSkinProgressBars(k.Bar)
@@ -734,6 +673,63 @@ function ElvUI_EltreumUI:SkinQuests()
 							for _, v in pairs({k.ContentsFrame:GetChildren()}) do
 								hooks(v)
 							end
+						end
+						if k.Update then
+							hooksecurefunc(k, "Update", function(module)
+								if module and module.Header and module.Header.Text then --the big type of quest
+									if not ElvUI_EltreumUI:SLCheck('quest') then
+										module.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSizeHeader, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+									end
+									if E.db.ElvUI_EltreumUI.skins.questsettings.customcolortitle then
+										module.Header.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customrtitle, E.db.ElvUI_EltreumUI.skins.questsettings.customgtitle, E.db.ElvUI_EltreumUI.skins.questsettings.custombtitle)
+									else
+										module.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+									end
+									module.Header.Text:SetShadowColor(0, 0, 0, 0.8)
+									module.Header.Text:SetShadowOffset(2, -1)
+
+									--create the lines
+									if not module.Header.EltruismStatusLine and not ElvUI_EltreumUI:SLCheck('quest') then
+										if module.Header.Text and module.Header.Text:GetText() ~= nil then
+											module.Header.EltruismStatusLine = CreateFrame("StatusBar", "Eltruism"..module.Header.Text:GetText().."Line", module.Header)
+										else
+											module.Header.EltruismStatusLine = CreateFrame("StatusBar", "EltruismLine", module.Header)
+										end
+										module.Header.EltruismStatusLine:SetMinMaxValues(0, 100)
+										module.Header.EltruismStatusLine:SetValue(100)
+										module.Header.EltruismStatusLine:SetSize(E.db.ElvUI_EltreumUI.skins.questsettings.sizex, E.db.ElvUI_EltreumUI.skins.questsettings.sizey)
+										module.Header.EltruismStatusLine:SetPoint("BOTTOM", module.Header, 0, 0)
+										module.Header.EltruismStatusLine:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.questsettings.texture))
+										if not E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor then
+											if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+												module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass))
+											else
+												module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
+											end
+										else
+											module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r,g= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b,a= 1}, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,g=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b,a= 1})
+										end
+										module.Header.EltruismStatusLine:SetFrameLevel(1)
+										if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not module.Header.EltruismStatusLine.shadow then
+											module.Header.EltruismStatusLine:CreateBackdrop('Transparent')
+											module.Header.EltruismStatusLine:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+											ElvUI_EltreumUI:ShadowColor(module.Header.EltruismStatusLine.shadow)
+										end
+									end
+								end
+
+								--add quest count
+								if _G.QuestObjectiveTracker and _G.QuestObjectiveTracker.Header and _G.QuestObjectiveTracker.Header.Text then
+									local NumQuests = select(2, _G.C_QuestLog.GetNumQuestLogEntries())
+									--if (NumQuests >= (MAX_QUESTS - 5)) then --global still returning 25
+									if (NumQuests >= 30) then
+										--_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, QUESTS_LABEL))
+										_G.QuestObjectiveTracker.Header.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, 35, QUESTS_LABEL))
+									--else
+									--	_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(QUESTS_LABEL)
+									end
+								end
+							end)
 						end
 					end
 				end
