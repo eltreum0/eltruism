@@ -747,7 +747,11 @@ function ElvUI_EltreumUI:SkinQuests()
 				eventtrigger:RegisterEvent("QUEST_WATCH_LIST_CHANGED")
 				eventtrigger:RegisterEvent("QUEST_LOG_UPDATE")
 				eventtrigger:RegisterEvent("FIRST_FRAME_RENDERED")
-				eventtrigger:SetScript("OnEvent", firehooks)
+				eventtrigger:RegisterEvent("PLAYER_ENTERING_WORLD")
+				eventtrigger:RegisterEvent("CONTENT_TRACKING_LIST_UPDATE")
+				eventtrigger:SetScript("OnEvent", function()
+					firehooks()
+				end)
 
 			end
 		elseif E.Classic then
