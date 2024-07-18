@@ -1593,3 +1593,4 @@ L["Circle Minimap"] = "Minimapa circular"
 L["Databars Thickness"] = "Databars Espesor"
 L["Alternative Power Thickness"] = "Grosor de la Barra Alternativa"
 L["Adjust Position of Item Level Text"] = "Ajustar la posición del texto de nivel de artículo"
+L["Focus Power Border"] = true

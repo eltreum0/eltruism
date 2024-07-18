@@ -1593,3 +1593,4 @@ L["Circle Minimap"] = "Mini-carte circulaire"
 L["Databars Thickness"] = "Databars Epaisseur"
 L["Alternative Power Thickness"] = "Épaisseur de la puissance alternative"
 L["Adjust Position of Item Level Text"] = "Ajuster la position du texte du niveau de l'élément"
+L["Focus Power Border"] = true

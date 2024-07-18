@@ -1591,3 +1591,4 @@ L["Model Inside Health"] = "生命條內部模組"
 L["Model will be set inside health instead of over whole frame"] = "模組將設置在生命條內而不是整個框架上"
 L["Circle Minimap"] = "圓形小地圖"
 L["Adjust Position of Item Level Text"] = true
+L["Focus Power Border"] = true
