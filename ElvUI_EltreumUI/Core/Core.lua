@@ -556,7 +556,8 @@ EltruismGameMenu:SetScript("OnEvent", function()
 
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
 		if E.Retail then
-			local menubutton = function()
+			print("look into gamemenu")
+			--[[local menubutton = function()
 				if InCombatLockdown() then return end
 				E:ToggleOptions()
 				E.Libs['AceConfigDialog']:SelectGroup('ElvUI', 'ElvUI_EltreumUI') --if the old way it would always open on load
@@ -571,8 +572,8 @@ EltruismGameMenu:SetScript("OnEvent", function()
 					disabledText = 'This button is somehow disabled. Probably someone was messing around with the code.' --this text will show up in tooltip when the button is disabled
 				})
 				isMenuExpanded = true
-			end
-		else
+			end]]
+		elseif not E.Retail then
 			if not isMenuExpanded then
 				EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64|t".. ElvUI_EltreumUI.Name) --new 64x64 icon
 				S:HandleButton(EltruismMenuButton)
