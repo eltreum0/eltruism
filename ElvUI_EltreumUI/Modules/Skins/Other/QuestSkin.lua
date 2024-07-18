@@ -157,7 +157,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			end)
 			--set the link to show when the button is clicked
 			wowheadbutton:SetScript('OnClick', function()
-				if questID ~= 0 then
+				if questID and questID ~= 0 then
 					E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
 				else
 					E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, L["No quest selected"])
