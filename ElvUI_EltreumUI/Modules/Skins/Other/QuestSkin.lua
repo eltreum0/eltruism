@@ -213,26 +213,30 @@ function ElvUI_EltreumUI:SkinQuests()
 			end)
 		end
 
-		if E.Retail then return end --11.0 elvui skin not done yet
 		if E.Retail then
 			if (not IsAddOnLoaded('!KalielsTracker')) and (not IsAddOnLoaded('SorhaQuestLog')) and (not IsAddOnLoaded('ClassicQuestLog')) and (not IsAddOnLoaded('Who Framed Watcher Wabbit?')) then
 				--WQs banner
-				local ObjectiveTrackerBonusBannerFrame = _G.ObjectiveTrackerBonusBannerFrame
+				local ObjectiveTrackerBonusBannerFrame = _G.ObjectiveTrackerTopBannerFrame --renamed?
 				if ObjectiveTrackerBonusBannerFrame then
 					--textcoords from https://www.townlong-yak.com/framexml/39229/Helix/AtlasInfo.lua
 					ObjectiveTrackerBonusBannerFrame.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 					ObjectiveTrackerBonusBannerFrame.Title:SetShadowOffset(2,-2)
 					ObjectiveTrackerBonusBannerFrame.Title:SetText("") --so that the text doesn't show up when it shouldnt
-					ObjectiveTrackerBonusBannerFrame.BG1:SetDesaturated(true)
-					ObjectiveTrackerBonusBannerFrame.BG2:SetDesaturated(true)
-					ObjectiveTrackerBonusBannerFrame.Icon:SetDesaturated(true)
-					ObjectiveTrackerBonusBannerFrame.Icon2:SetDesaturated(true)
-					ObjectiveTrackerBonusBannerFrame.Icon3:SetDesaturated(true)
-					ObjectiveTrackerBonusBannerFrame.BG1:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-bg
-					ObjectiveTrackerBonusBannerFrame.BG2:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-bg
-					ObjectiveTrackerBonusBannerFrame.Icon:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-icon
-					ObjectiveTrackerBonusBannerFrame.Icon2:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-icon
-					ObjectiveTrackerBonusBannerFrame.Icon3:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-icon
+					ObjectiveTrackerBonusBannerFrame.Subtitle:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+					ObjectiveTrackerBonusBannerFrame.Subtitle:SetShadowOffset(2,-2)
+					ObjectiveTrackerBonusBannerFrame.Subtitle:SetText("") --so that the text doesn't show up when it shouldnt
+					ObjectiveTrackerBonusBannerFrame.UpLineGlow:SetDesaturated(true)
+					ObjectiveTrackerBonusBannerFrame.UpLine:SetDesaturated(true)
+					ObjectiveTrackerBonusBannerFrame.DownLineGlow:SetDesaturated(true)
+					ObjectiveTrackerBonusBannerFrame.DownLine:SetDesaturated(true)
+					ObjectiveTrackerBonusBannerFrame.Filigree:SetDesaturated(true)
+					ObjectiveTrackerBonusBannerFrame.FiligreeGlow:SetDesaturated(true)
+					ObjectiveTrackerBonusBannerFrame.UpLineGlow:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-bg
+					ObjectiveTrackerBonusBannerFrame.UpLine:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-bg
+					ObjectiveTrackerBonusBannerFrame.DownLineGlow:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-bg
+					ObjectiveTrackerBonusBannerFrame.DownLine:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-bg
+					ObjectiveTrackerBonusBannerFrame.Filigree:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-icon
+					ObjectiveTrackerBonusBannerFrame.FiligreeGlow:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-icon
 				end
 
 				local questside
@@ -243,7 +247,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 
 				--Interface/AddOns/Blizzard_ObjectiveTracker/Blizzard_ObjectiveTracker.lua
-				local questmodules = {
+				--[[local questmodules = {
 					_G.QUEST_TRACKER_MODULE,
 					_G.ACHIEVEMENT_TRACKER_MODULE,
 					_G.BONUS_OBJECTIVE_TRACKER_MODULE,
@@ -254,9 +258,23 @@ function ElvUI_EltreumUI:SkinQuests()
 					_G.MONTHLY_ACTIVITIES_TRACKER_MODULE,
 					_G.ADVENTURE_TRACKER_MODULE,
 				}
+				local questmodules = {
+					_G.ScenarioObjectiveTracker,
+					_G.UIWidgetObjectiveTracker,
+					_G.CampaignQuestObjectiveTracker,
+					_G.QuestObjectiveTracker,
+					_G.AdventureObjectiveTracker,
+					_G.AchievementObjectiveTracker,
+					_G.MonthlyActivitiesObjectiveTracker,
+					_G.ProfessionsRecipeTracker,
+					_G.BonusObjectiveTracker,
+					_G.WorldQuestObjectiveTracker,
+				}]]
+
 				local mult = 0.85
-				for _, k in pairs(questmodules) do
-					hooksecurefunc(k, "AddObjective", function(_, block,objectiveKey,_,lineType)
+				--for _, k in pairs(questmodules) do
+					hooksecurefunc(_G.ObjectiveTrackerBlockMixin, "AddObjective", function(k, block,objectiveKey,_,lineType)
+						print(k,block)
 						if not block then
 							return
 						end
@@ -395,14 +413,15 @@ function ElvUI_EltreumUI:SkinQuests()
 							end
 						end
 					end)
-				end
+				--end
 
 				if _G.ObjectiveTrackerFrame and _G.ObjectiveTrackerFrame.HeaderMenu and _G.ObjectiveTrackerFrame.HeaderMenu.Title then --fix when collapsed
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSizeHeader, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 				end
 
-				hooksecurefunc('ObjectiveTracker_Update', function ()
+				--hmm
+				hooksecurefunc(_G.ObjectiveTrackerContainerMixin, "Update", function ()
 					local modules = ObjectiveTrackerFrame.MODULES
 					if not modules then
 						return
@@ -467,6 +486,8 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				--skin the progress bars
 				local function EltreumSkinProgressBars(_, _, line)
+					print("123")
+					print(line)
 					local progressBar = line and line.ProgressBar
 					local bar = progressBar and progressBar.Bar
 					if not bar then return end
@@ -496,16 +517,16 @@ function ElvUI_EltreumUI:SkinQuests()
 						progressBar.EltruismSkin = true
 					end
 				end
-				hooksecurefunc(_G.QUEST_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
-				hooksecurefunc(_G.BONUS_OBJECTIVE_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
+				hooksecurefunc(_G.ObjectiveTrackerBlockMixin, "AddProgressBar", EltreumSkinProgressBars)
+				--[[hooksecurefunc(_G.BONUS_OBJECTIVE_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
 				hooksecurefunc(_G.WORLD_QUEST_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
 				hooksecurefunc(_G.CAMPAIGN_QUEST_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
 				hooksecurefunc(_G.SCENARIO_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
 				hooksecurefunc(_G.DEFAULT_OBJECTIVE_TRACKER_MODULE, "AddProgressBar", EltreumSkinProgressBars)
 				hooksecurefunc(_G.UI_WIDGET_TRACKER_MODULE,"AddProgressBar", EltreumSkinProgressBars)
-				hooksecurefunc(_G.MONTHLY_ACTIVITIES_TRACKER_MODULE,"AddProgressBar", EltreumSkinProgressBars)
+				hooksecurefunc(_G.MONTHLY_ACTIVITIES_TRACKER_MODULE,"AddProgressBar", EltreumSkinProgressBars)]]
 
-				hooksecurefunc(_G.SCENARIO_CONTENT_TRACKER_MODULE, 'UpdateCriteria', function ()
+				hooksecurefunc(_G.ScenarioObjectiveTrackerMixin, 'UpdateCriteria', function ()
 					if _G.ScenarioObjectiveBlock then
 						local frames = {_G.ScenarioObjectiveBlock:GetChildren()}
 						for _, frame in pairs(frames) do
@@ -545,7 +566,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 
 				--skin the dungeon/raid/scenario bg
-				hooksecurefunc(_G["SCENARIO_CONTENT_TRACKER_MODULE"], "Update", function ()
+				hooksecurefunc(_G.ScenarioObjectiveTrackerMixin, "Update", function ()
 					ScenarioObjectiveBlockBackground:SetParent(_G.ScenarioStageBlock)
 					ScenarioObjectiveBlockBackground:ClearAllPoints()
 					if _G.EltruismDungeonLine then
@@ -727,54 +748,45 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 				end
 
+				--UpdateHighlight
+
 				--on mouse enter and leave
-				hooksecurefunc(_G.DEFAULT_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
+				hooksecurefunc(_G.ObjectiveTrackerModuleMixin, "OnBlockHeaderEnter", function(_, block)
 					blockenter(block)
 				end)
-
-				hooksecurefunc(_G.DEFAULT_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
+				hooksecurefunc(_G.ObjectiveTrackerModuleMixin, "OnBlockHeaderLeave", function(_, block)
+					blockexit(block)
+				end)
+				hooksecurefunc(_G.QuestObjectiveTrackerMixin, "OnBlockHeaderEnter", function(_, block)
+					blockenter(block)
+				end)
+				hooksecurefunc(_G.QuestObjectiveTrackerMixin, "OnBlockHeaderLeave", function(_, block)
+					blockexit(block)
+				end)
+				hooksecurefunc(_G.BonusObjectiveTrackerMixin, "OnBlockHeaderEnter", function(_, block)
+					blockenter(block)
+				end)
+				hooksecurefunc(_G.BonusObjectiveTrackerMixin, "OnBlockHeaderLeave", function(_, block)
+					blockexit(block)
+				end)
+				hooksecurefunc(_G.AdventureObjectiveTrackerMixin, "OnBlockHeaderEnter", function(_, block)
+					blockenter(block)
+				end)
+				hooksecurefunc(_G.AdventureObjectiveTrackerMixin, "OnBlockHeaderLeave", function(_, block)
 					blockexit(block)
 				end)
 
-				hooksecurefunc(_G.WORLD_QUEST_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
+
+				hooksecurefunc(_G.ObjectiveTrackerBlockMixin, "UpdateHighlight", function(_, block)
 					blockenter(block)
 				end)
-
-				hooksecurefunc(_G.WORLD_QUEST_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
+				hooksecurefunc(_G.ObjectiveTrackerBlockMixin, "OnHeaderEnter", function(_, block)
+					blockenter(block)
+				end)
+				hooksecurefunc(_G.ObjectiveTrackerBlockMixin, "OnHeaderLeave", function(_, block)
 					blockexit(block)
 				end)
 
-				hooksecurefunc(_G.ACHIEVEMENT_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
-					blockenter(block)
-				end)
-
-				hooksecurefunc(_G.ACHIEVEMENT_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
-					blockexit(block)
-				end)
-
-				hooksecurefunc(_G.BONUS_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
-					blockenter(block)
-				end)
-
-				hooksecurefunc(_G.BONUS_OBJECTIVE_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
-					blockexit(block)
-				end)
-
-				hooksecurefunc(_G.PROFESSION_RECIPE_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
-					blockenter(block)
-				end)
-
-				hooksecurefunc(_G.PROFESSION_RECIPE_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
-					blockexit(block)
-				end)
-
-				hooksecurefunc(_G.MONTHLY_ACTIVITIES_TRACKER_MODULE, "OnBlockHeaderEnter", function(_, block)
-					blockenter(block)
-				end)
-
-				hooksecurefunc(_G.MONTHLY_ACTIVITIES_TRACKER_MODULE, "OnBlockHeaderLeave", function(_, block)
-					blockexit(block)
-				end)
 			end
 		elseif E.Classic then
 			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
