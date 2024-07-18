@@ -555,8 +555,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 	end
 
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
-		if E.Retail then
-			print("look into gamemenu")
+		--if E.Retail then
 			--[[local menubutton = function()
 				if InCombatLockdown() then return end
 				E:ToggleOptions()
@@ -573,7 +572,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 				})
 				isMenuExpanded = true
 			end]]
-		elseif not E.Retail then
+		if not E.Retail then
 			if not isMenuExpanded then
 				EltruismMenuButton:SetText("|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\tinylogo.tga:12:12:0:0:64:64|t".. ElvUI_EltreumUI.Name) --new 64x64 icon
 				S:HandleButton(EltruismMenuButton)
