@@ -678,7 +678,11 @@ function ElvUI_EltreumUI:SkinQuests()
 							hooksecurefunc(k, "Update", function(module)
 								if module and module.Header and module.Header.Text then --the big type of quest
 									if not ElvUI_EltreumUI:SLCheck('quest') then
-										module.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSizeHeader, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+										if module.Header.Text:GetText() ~= _G.TRACKER_ALL_OBJECTIVES then
+											module.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSizeHeader, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+										else
+											module.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSizeHeader/1.5, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+										end
 									end
 									if E.db.ElvUI_EltreumUI.skins.questsettings.customcolortitle then
 										module.Header.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customrtitle, E.db.ElvUI_EltreumUI.skins.questsettings.customgtitle, E.db.ElvUI_EltreumUI.skins.questsettings.custombtitle)
@@ -691,29 +695,33 @@ function ElvUI_EltreumUI:SkinQuests()
 									--create the lines
 									if not module.Header.EltruismStatusLine and not ElvUI_EltreumUI:SLCheck('quest') then
 										if module.Header.Text and module.Header.Text:GetText() ~= nil then
-											module.Header.EltruismStatusLine = CreateFrame("StatusBar", "Eltruism"..module.Header.Text:GetText().."Line", module.Header)
+											if module.Header.Text:GetText() ~= _G.TRACKER_ALL_OBJECTIVES then
+												module.Header.EltruismStatusLine = CreateFrame("StatusBar", "Eltruism"..module.Header.Text:GetText().."Line", module.Header)
+											end
 										else
 											module.Header.EltruismStatusLine = CreateFrame("StatusBar", "EltruismLine", module.Header)
 										end
-										module.Header.EltruismStatusLine:SetMinMaxValues(0, 100)
-										module.Header.EltruismStatusLine:SetValue(100)
-										module.Header.EltruismStatusLine:SetSize(E.db.ElvUI_EltreumUI.skins.questsettings.sizex, E.db.ElvUI_EltreumUI.skins.questsettings.sizey)
-										module.Header.EltruismStatusLine:SetPoint("BOTTOM", module.Header, 0, 0)
-										module.Header.EltruismStatusLine:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.questsettings.texture))
-										if not E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor then
-											if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
-												module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass))
+										if module.Header.EltruismStatusLine then
+											module.Header.EltruismStatusLine:SetMinMaxValues(0, 100)
+											module.Header.EltruismStatusLine:SetValue(100)
+											module.Header.EltruismStatusLine:SetSize(E.db.ElvUI_EltreumUI.skins.questsettings.sizex, E.db.ElvUI_EltreumUI.skins.questsettings.sizey)
+											module.Header.EltruismStatusLine:SetPoint("BOTTOM", module.Header, 0, 0)
+											module.Header.EltruismStatusLine:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.questsettings.texture))
+											if not E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor then
+												if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor or E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
+													module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColorsCustom(E.myclass))
+												else
+													module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
+												end
 											else
-												module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass))
+												module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r,g= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b,a= 1}, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,g=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b,a= 1})
 											end
-										else
-											module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r,g= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b,a= 1}, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,g=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b,a= 1})
-										end
-										module.Header.EltruismStatusLine:SetFrameLevel(1)
-										if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not module.Header.EltruismStatusLine.shadow then
-											module.Header.EltruismStatusLine:CreateBackdrop('Transparent')
-											module.Header.EltruismStatusLine:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-											ElvUI_EltreumUI:ShadowColor(module.Header.EltruismStatusLine.shadow)
+											module.Header.EltruismStatusLine:SetFrameLevel(1)
+											if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not module.Header.EltruismStatusLine.shadow then
+												module.Header.EltruismStatusLine:CreateBackdrop('Transparent')
+												module.Header.EltruismStatusLine:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+												ElvUI_EltreumUI:ShadowColor(module.Header.EltruismStatusLine.shadow)
+											end
 										end
 									end
 								end
