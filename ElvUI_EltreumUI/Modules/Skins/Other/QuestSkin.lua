@@ -455,77 +455,83 @@ function ElvUI_EltreumUI:SkinQuests()
 						block.groupFinderButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(block.groupFinderButton.shadow)
 					end
-					local line = block.lastRegion
-					if line then
-						if ( line.Dash ) then
-							if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
-								line.Dash:SetText("")
-							else
-								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-								else
-									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-								end
-								line.Dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-							end
-						end
-						--traveler's log dash is part of the text and not another element, so color it differently
-						if line.Text and line.Text:GetText() then
-							if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
-								local nodash = gsub(line.Text:GetText(),"- ","")
-								line.Text:SetText(nodash)
-							else
-								local coloreddash = gsub(line.Text:GetText(),"- ","|cff"..classcolorsescape[E.myclass].."-  |r")
-								line.Text:SetText(coloreddash)
-							end
+					if block.usedLines then
+						for i = 1, #block.usedLines do
+							if block.usedLines[i] then
+								local line = block.usedLines[i]
+								if line then
+									if ( line.Dash ) then
+										if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
+											line.Dash:SetText("")
+										else
+											if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+												line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+											else
+												line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+											end
+											line.Dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+										end
+									end
+									--traveler's log dash is part of the text and not another element, so color it differently
+									if line.Text and line.Text:GetText() then
+										if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
+											local nodash = gsub(line.Text:GetText(),"- ","")
+											line.Text:SetText(nodash)
+										else
+											local coloreddash = gsub(line.Text:GetText(),"- ","|cff"..classcolorsescape[E.myclass].."-  |r")
+											line.Text:SetText(coloreddash)
+										end
 
-							line.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-							line.Text:SetTextColor(mult, mult, mult)
-							line.Text:SetWordWrap(true)
+										line.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+										line.Text:SetTextColor(mult, mult, mult)
+										line.Text:SetWordWrap(true)
 
-							--inspired by blinkii's skin, color
-							local text = line.Text:GetText()
-							--5320674
-							--5320671
-							if text ~= nil then
-								local left, right, questtext = string.match(text, "^(%d-)/(%d-) (.+)")
-								local questtext2,left2, right2 = string.match(text, "(.+): (%d-)/(%d-)$")
-								local left3, right3, questtext3 = strmatch(text, "^- (%d-)/(%d-) (.+)")
-								if left then
-									local percentagedone = (tonumber(left) / tonumber(right)) * 100 or 0
-									local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-									local hexstring = E:RGBToHex(r, g, b)
-									line.Text:SetText(format("%s%s/%s|r %s|r%s",hexstring,left,right,hexstring,questtext))
-									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
-										line.Text:SetTextColor(0.12, 1, 0.12)
-									else
-										line.Text:SetTextColor(0.85, 0.85, 0.85)
-									end
-								elseif left2 then
-									local percentagedone = (tonumber(left2) / tonumber(right2)) * 100 or 0
-									local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-									local hexstring = E:RGBToHex(r, g, b)
-									line.Text:SetText(format("%s|r %s%s/%s|r",questtext2,hexstring,left2,right2))
-									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
-										line.Text:SetTextColor(0.12, 1, 0.12)
-									else
-										line.Text:SetTextColor(0.85, 0.85, 0.85)
-									end
-								elseif left3 then
-									local percentagedone = (tonumber(left3) / tonumber(right3)) * 100 or 0
-									local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-									local hexstring = E:RGBToHex(r, g, b)
-									line.Text:SetText(format("- %s%s/%s|r %s|r%s",hexstring,left3,right3,hexstring,questtext3))
-									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
-										line.Text:SetTextColor(0.12, 1, 0.12)
-									else
-										line.Text:SetTextColor(0.85, 0.85, 0.85)
-									end
-								else
-									if text == _G.QUEST_WATCH_QUEST_READY or (line.Check and line.Check:IsShown()) then
-										line.Text:SetTextColor(0.12, 1, 0.12)
-									else
-										line.Text:SetTextColor(0.85, 0.85, 0.85)
+										--inspired by blinkii's skin, color
+										local text = line.Text:GetText()
+										--5320674
+										--5320671
+										if text ~= nil then
+											local left, right, questtext = string.match(text, "^(%d-)/(%d-) (.+)")
+											local questtext2,left2, right2 = string.match(text, "(.+): (%d-)/(%d-)$")
+											local left3, right3, questtext3 = strmatch(text, "^- (%d-)/(%d-) (.+)")
+											if left then
+												local percentagedone = (tonumber(left) / tonumber(right)) * 100 or 0
+												local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+												local hexstring = E:RGBToHex(r, g, b)
+												line.Text:SetText(format("%s%s/%s|r %s|r%s",hexstring,left,right,hexstring,questtext))
+												if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
+													line.Text:SetTextColor(0.12, 1, 0.12)
+												else
+													line.Text:SetTextColor(0.85, 0.85, 0.85)
+												end
+											elseif left2 then
+												local percentagedone = (tonumber(left2) / tonumber(right2)) * 100 or 0
+												local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+												local hexstring = E:RGBToHex(r, g, b)
+												line.Text:SetText(format("%s|r %s%s/%s|r",questtext2,hexstring,left2,right2))
+												if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
+													line.Text:SetTextColor(0.12, 1, 0.12)
+												else
+													line.Text:SetTextColor(0.85, 0.85, 0.85)
+												end
+											elseif left3 then
+												local percentagedone = (tonumber(left3) / tonumber(right3)) * 100 or 0
+												local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+												local hexstring = E:RGBToHex(r, g, b)
+												line.Text:SetText(format("- %s%s/%s|r %s|r%s",hexstring,left3,right3,hexstring,questtext3))
+												if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
+													line.Text:SetTextColor(0.12, 1, 0.12)
+												else
+													line.Text:SetTextColor(0.85, 0.85, 0.85)
+												end
+											else
+												if text == _G.QUEST_WATCH_QUEST_READY or (line.Check and line.Check:IsShown()) then
+													line.Text:SetTextColor(0.12, 1, 0.12)
+												else
+													line.Text:SetTextColor(0.85, 0.85, 0.85)
+												end
+											end
+										end
 									end
 								end
 							end
