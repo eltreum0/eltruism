@@ -1451,7 +1451,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 		powertypemonitorplayer:RegisterUnitEvent("UNIT_DISPLAYPOWER", "player")
 		powertypemonitorplayer:SetScript("OnEvent", function()
 			local _, powertypeplayer = UnitPowerType("player")
-			if E.db.unitframe.units.player.enable and E.db.ElvUI_EltreumUI.borders.playerpower and E.db.unitframe.units.player.power.enable and (E.db.unitframe.units.player.power.width == "spaced" or E.db.unitframe.units.player.power.detachFromFrame) then
+			if playerpowerborder and E.db.unitframe.units.player.enable and E.db.ElvUI_EltreumUI.borders.playerpower and E.db.unitframe.units.player.power.enable and (E.db.unitframe.units.player.power.width == "spaced" or E.db.unitframe.units.player.power.detachFromFrame) then
 				if E.db.unitframe.colors.power[powertypeplayer] then
 					playerpowerborder:SetBackdropBorderColor(E.db.unitframe.colors.power[powertypeplayer].r, E.db.unitframe.colors.power[powertypeplayer].g, E.db.unitframe.colors.power[powertypeplayer].b, 1)
 				else
