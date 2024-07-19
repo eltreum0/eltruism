@@ -425,7 +425,6 @@ function ElvUI_EltreumUI:SkinQuests()
 						return
 					end
 					if block.HeaderText then --quest title
-						--E:Delay(5,function() block.HeaderText:SetText("asdadasd") end)
 						block.HeaderText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+1, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 						if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
 							block.HeaderText:SetTextColor(mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb)
@@ -457,75 +456,77 @@ function ElvUI_EltreumUI:SkinQuests()
 						ElvUI_EltreumUI:ShadowColor(block.groupFinderButton.shadow)
 					end
 					local line = block.lastRegion
-					if ( line.Dash ) then
-						if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
-							line.Dash:SetText("")
-						else
-							if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-								line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+					if line then
+						if ( line.Dash ) then
+							if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
+								line.Dash:SetText("")
 							else
-								line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								else
+									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+								end
+								line.Dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							end
-							line.Dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 						end
-					end
-					--traveler's log dash is part of the text and not another element, so color it differently
-					if line.Text and line.Text:GetText() then
-						if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
-							local nodash = gsub(line.Text:GetText(),"- ","")
-							line.Text:SetText(nodash)
-						else
-							local coloreddash = gsub(line.Text:GetText(),"- ","|cff"..classcolorsescape[E.myclass].."-  |r")
-							line.Text:SetText(coloreddash)
-						end
-
-						line.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-						line.Text:SetTextColor(mult, mult, mult)
-						line.Text:SetWordWrap(true)
-
-						--inspired by blinkii's skin, color
-						local text = line.Text:GetText()
-						--5320674
-						--5320671
-						if text ~= nil then
-							local left, right, questtext = string.match(text, "^(%d-)/(%d-) (.+)")
-							local questtext2,left2, right2 = string.match(text, "(.+): (%d-)/(%d-)$")
-							local left3, right3, questtext3 = strmatch(text, "^- (%d-)/(%d-) (.+)")
-							if left then
-								local percentagedone = (tonumber(left) / tonumber(right)) * 100 or 0
-								local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-								local hexstring = E:RGBToHex(r, g, b)
-								line.Text:SetText(format("%s%s/%s|r %s|r%s",hexstring,left,right,hexstring,questtext))
-								if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
-									line.Text:SetTextColor(0.12, 1, 0.12)
-								else
-									line.Text:SetTextColor(0.85, 0.85, 0.85)
-								end
-							elseif left2 then
-								local percentagedone = (tonumber(left2) / tonumber(right2)) * 100 or 0
-								local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-								local hexstring = E:RGBToHex(r, g, b)
-								line.Text:SetText(format("%s|r %s%s/%s|r",questtext2,hexstring,left2,right2))
-								if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
-									line.Text:SetTextColor(0.12, 1, 0.12)
-								else
-									line.Text:SetTextColor(0.85, 0.85, 0.85)
-								end
-							elseif left3 then
-								local percentagedone = (tonumber(left3) / tonumber(right3)) * 100 or 0
-								local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-								local hexstring = E:RGBToHex(r, g, b)
-								line.Text:SetText(format("- %s%s/%s|r %s|r%s",hexstring,left3,right3,hexstring,questtext3))
-								if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
-									line.Text:SetTextColor(0.12, 1, 0.12)
-								else
-									line.Text:SetTextColor(0.85, 0.85, 0.85)
-								end
+						--traveler's log dash is part of the text and not another element, so color it differently
+						if line.Text and line.Text:GetText() then
+							if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
+								local nodash = gsub(line.Text:GetText(),"- ","")
+								line.Text:SetText(nodash)
 							else
-								if text == _G.QUEST_WATCH_QUEST_READY or (line.Check and line.Check:IsShown()) then
-									line.Text:SetTextColor(0.12, 1, 0.12)
+								local coloreddash = gsub(line.Text:GetText(),"- ","|cff"..classcolorsescape[E.myclass].."-  |r")
+								line.Text:SetText(coloreddash)
+							end
+
+							line.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+							line.Text:SetTextColor(mult, mult, mult)
+							line.Text:SetWordWrap(true)
+
+							--inspired by blinkii's skin, color
+							local text = line.Text:GetText()
+							--5320674
+							--5320671
+							if text ~= nil then
+								local left, right, questtext = string.match(text, "^(%d-)/(%d-) (.+)")
+								local questtext2,left2, right2 = string.match(text, "(.+): (%d-)/(%d-)$")
+								local left3, right3, questtext3 = strmatch(text, "^- (%d-)/(%d-) (.+)")
+								if left then
+									local percentagedone = (tonumber(left) / tonumber(right)) * 100 or 0
+									local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+									local hexstring = E:RGBToHex(r, g, b)
+									line.Text:SetText(format("%s%s/%s|r %s|r%s",hexstring,left,right,hexstring,questtext))
+									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
+										line.Text:SetTextColor(0.12, 1, 0.12)
+									else
+										line.Text:SetTextColor(0.85, 0.85, 0.85)
+									end
+								elseif left2 then
+									local percentagedone = (tonumber(left2) / tonumber(right2)) * 100 or 0
+									local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+									local hexstring = E:RGBToHex(r, g, b)
+									line.Text:SetText(format("%s|r %s%s/%s|r",questtext2,hexstring,left2,right2))
+									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
+										line.Text:SetTextColor(0.12, 1, 0.12)
+									else
+										line.Text:SetTextColor(0.85, 0.85, 0.85)
+									end
+								elseif left3 then
+									local percentagedone = (tonumber(left3) / tonumber(right3)) * 100 or 0
+									local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+									local hexstring = E:RGBToHex(r, g, b)
+									line.Text:SetText(format("- %s%s/%s|r %s|r%s",hexstring,left3,right3,hexstring,questtext3))
+									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
+										line.Text:SetTextColor(0.12, 1, 0.12)
+									else
+										line.Text:SetTextColor(0.85, 0.85, 0.85)
+									end
 								else
-									line.Text:SetTextColor(0.85, 0.85, 0.85)
+									if text == _G.QUEST_WATCH_QUEST_READY or (line.Check and line.Check:IsShown()) then
+										line.Text:SetTextColor(0.12, 1, 0.12)
+									else
+										line.Text:SetTextColor(0.85, 0.85, 0.85)
+									end
 								end
 							end
 						end
@@ -625,8 +626,6 @@ function ElvUI_EltreumUI:SkinQuests()
 									end
 								end
 
-
-
 								--[[--tuskarr feast special case
 								if _G.ScenarioStageBlock.WidgetContainer and _G.ScenarioStageBlock.WidgetContainer:IsVisible() then
 									for i = 1, _G.ScenarioStageBlock.WidgetContainer:GetNumChildren() do
@@ -670,11 +669,19 @@ function ElvUI_EltreumUI:SkinQuests()
 				local function firehooks()
 					for _, k in pairs(questmodules) do
 						if k.ContentsFrame then
-							for _, v in pairs({k.ContentsFrame:GetChildren()}) do
-								hooks(v)
+							if k.ContentsFrame:GetNumChildren() > 0 then
+								for _, v in pairs({k.ContentsFrame:GetChildren()}) do
+									if v then
+										--if not v.EltruismHooked then
+											hooks(v)
+											--v.EltruismHooked = true
+										--end
+										blockskin(v)
+									end
+								end
 							end
 						end
-						if k.Update then
+						if k.Update and not k.EltruismUpdateHooked then
 							hooksecurefunc(k, "Update", function(module)
 								if module and module.Header and module.Header.Text then --the big type of quest
 									if not ElvUI_EltreumUI:SLCheck('quest') then
@@ -738,6 +745,7 @@ function ElvUI_EltreumUI:SkinQuests()
 									end
 								end
 							end)
+							k.EltruismUpdateHooked = true
 						end
 					end
 				end
@@ -751,6 +759,20 @@ function ElvUI_EltreumUI:SkinQuests()
 				eventtrigger:RegisterEvent("CONTENT_TRACKING_LIST_UPDATE")
 				eventtrigger:SetScript("OnEvent", function()
 					firehooks()
+				end)
+
+				hooksecurefunc(C_QuestLog, "AddQuestWatch", function()
+					E:Delay(0, function()
+						for _, k in pairs(questmodules) do
+							if k.ContentsFrame then
+								for _, v in pairs({k.ContentsFrame:GetChildren()}) do
+									if v then
+										blockskin(v)
+									end
+								end
+							end
+						end
+					end)
 				end)
 
 			end
