@@ -374,8 +374,9 @@ function ElvUI_EltreumUI:DevTools()
 		else
 			local frame = CreateFrame("Frame")
 			frame:RegisterEvent("ADDON_LOADED")
-			frame:SetScript("OnEvent", function(_, event, ...)
-				if event == "ADDON_LOADED" and (...) == "Blizzard_EventTrace" then
+			frame:SetScript("OnEvent", function(_, _, arg)
+				print(arg)
+				if arg == "Blizzard_EventTrace" then
 					OnEventTraceLoaded()
 					if not IsAddOnLoaded("Blizzard_DebugTools") then
 						UIParentLoadAddOn("Blizzard_DebugTools")
