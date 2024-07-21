@@ -300,6 +300,12 @@ function ElvUI_EltreumUI:SkinQuests()
 							bar.backdrop:SetBackdropColor(0,0,0)
 						end)]]
 
+						--fix label font
+						bar.Label:ClearAllPoints()
+						bar.Label:SetPoint("CENTER",bar,"CENTER",0,1)
+						local _,fontsize = bar.Label:GetFont()
+						bar.Label:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+
 						hooksecurefunc(bar:GetParent(), "SetPercent", function(frame,percent)
 							local statusbar = frame.Bar
 							if not statusbar then return end
