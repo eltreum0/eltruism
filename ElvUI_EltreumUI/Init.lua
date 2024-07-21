@@ -54,8 +54,8 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	E:Delay(0, function()
 		ElvUI_EltreumUI:BorderAdjust() --auto adjust actionbar/border if option is enabled
 		ElvUI_EltreumUI:Borders() --creates borders if option is enabled
+		ElvUI_EltreumUI:GroupBorderColorUpdate()
 	end)
-	ElvUI_EltreumUI:GroupBorderColorUpdate()
 	ElvUI_EltreumUI:GradientColorTableUpdate() -- should load table on init
 	ElvUI_EltreumUI:ClassIconsOnCharacterPanel() --adds class icons to character panel
 	ElvUI_EltreumUI:CursorInit() --starts cursor modules
