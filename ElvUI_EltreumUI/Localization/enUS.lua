@@ -1595,3 +1595,4 @@ L["Alternative Power Thickness"] = true
 L["Adjust Position of Item Level Text"] = true
 L["Focus Power Border"] = true
 L["The text displayed when in a delve"] = true
+L["The text displayed when in a quest instance"] = true
