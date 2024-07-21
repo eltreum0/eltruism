@@ -69,6 +69,15 @@ function ElvUI_EltreumUI:Shadows()
 							end
 						end
 					end
+
+					if (arg == "Blizzard_ProfessionsBook") or IsAddOnLoaded("Blizzard_ProfessionsBook") then
+						if _G.ProfessionsBookFrame then
+							if not _G.ProfessionsBookFrame.shadow then
+								_G.ProfessionsBookFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.ProfessionsBookFrame.shadow)
+							end
+						end
+					end
 					if (arg == "Blizzard_ScrappingMachineUI") or IsAddOnLoaded("Blizzard_ScrappingMachineUI") then
 						if _G.ScrappingMachineFrame and not _G.ScrappingMachineFrame.shadow then
 							_G.ScrappingMachineFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -938,6 +947,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.PVEFrameTab1,
 				_G.PVEFrameTab2,
 				_G.PVEFrameTab3,
+				_G.PVEFrameTab4,
 				_G.PVPFrame,
 				_G.PVPFrameTab1,
 				_G.PVPFrameTab2,
@@ -1171,6 +1181,15 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 		------------------------------------------------------------------------------------------------------version specific
+		if E.Retail then
+			if E.db.ElvUI_EltreumUI.skins.shadow.blizzard then --reputation detail got moved
+				if _G.ReputationFrame and _G.ReputationFrame.ReputationDetailFrame then
+					_G.ReputationFrame.ReputationDetailFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G.ReputationFrame.ReputationDetailFrame.shadow)
+				end
+			end
+		end
+
 		if E.Retail or E.Cata then
 			if E.db.ElvUI_EltreumUI.skins.shadow.blizzard then
 
