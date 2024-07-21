@@ -52,8 +52,6 @@ function ElvUI_EltreumUI:QuestEncounterEnd()
 		local _, instanceType = IsInInstance()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
 			if E.Retail then
-				--ObjectiveTracker_Expand()
-				--ObjectiveTrackerFrame:Show()
 				ObjectiveTrackerFrame:SetAlpha(1)
 			elseif E.Classic then
 				if IsAddOnLoaded("Questie") then
@@ -111,7 +109,6 @@ function ElvUI_EltreumUI:ArenaQuest()
 			end
 		elseif instanceType == "none" then
 			if E.Retail then
-				--ObjectiveTrackerFrame:Show()
 				ObjectiveTrackerFrame:SetAlpha(1)
 			elseif E.Classic then
 				if IsAddOnLoaded("Questie") then
