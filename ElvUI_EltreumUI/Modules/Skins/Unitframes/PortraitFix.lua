@@ -447,6 +447,8 @@ local modelsRotate = {
 	[5767091] = true, --Dagran Thaurissan II
 	[5548261] = true, --Baelgrim
 	[5548259] = true, --Adelgonn
+	[5395590] = true, --Alleria Windrunner
+	[5484812] = true, --Speaker Brinthe
 }
 
 local targetlike = {
