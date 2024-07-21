@@ -382,6 +382,12 @@ P.ElvUI_EltreumUI = {
 				g = 0.72,
 				b = 0,
 			},
+			delve = "Delve",
+			delveColor = {
+				r = 0.90,
+				g = 0.72,
+				b = 0,
+			},
 		},
 		groupfinderSpecIcons = true,
 		groupfinderSpecIconsType = "SPEC",
