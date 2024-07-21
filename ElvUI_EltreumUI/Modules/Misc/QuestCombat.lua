@@ -142,7 +142,11 @@ end
 function ElvUI_EltreumUI:QuestCombat()
 	if E.db.ElvUI_EltreumUI.quests.combatenable then
 		if E.Retail then
-			ObjectiveTracker_Collapse()
+			if _G.ObjectiveTrackerFrame:IsCollapsed() == false then
+				_G.ObjectiveTrackerFrame:ToggleCollapsed()
+			end
+			--ObjectiveTracker_Collapse()
+			--_G.ObjectiveTrackerFrame:SetCollapsed() --doesnt work
 		elseif E.Classic then
 			if IsAddOnLoaded("Questie") then
 				if _G["Questie_BaseFrame"] then
@@ -171,7 +175,10 @@ end
 function ElvUI_EltreumUI:QuestCombatEnd()
 	if E.db.ElvUI_EltreumUI.quests.combatenable then
 		if E.Retail then
-			ObjectiveTracker_Expand()
+			if _G.ObjectiveTrackerFrame:IsCollapsed() then
+				_G.ObjectiveTrackerFrame:ToggleCollapsed()
+			end
+			--ObjectiveTracker_Expand()
 		elseif E.Classic then
 			if IsAddOnLoaded("Questie") then
 				if _G["Questie_BaseFrame"] then
