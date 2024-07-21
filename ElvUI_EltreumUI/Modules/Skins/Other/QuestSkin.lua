@@ -919,13 +919,12 @@ function ElvUI_EltreumUI:SkinQuests()
 
 							if _G.ScenarioObjectiveTracker.StageBlock then
 								if _G.ScenarioObjectiveTracker.StageBlock.WidgetContainer then
-									for _,v in pairs(_G.ScenarioObjectiveTracker.StageBlock.WidgetContainer.widgetFrames) do
-										if v.Frame then
-											v.Frame:SetAlpha(0)
+									if _G.ScenarioObjectiveTracker.StageBlock.WidgetContainer.widgetFrames then
+										for _,v in pairs(_G.ScenarioObjectiveTracker.StageBlock.WidgetContainer.widgetFrames) do
+											if v.Frame then
+												v.Frame:SetAlpha(0)
+											end
 										end
-									end
-									if _G.ScenarioObjectiveTracker.StageBlock.WidgetContainer.widgetFrames.Frame then
-										_G.ScenarioObjectiveTracker.StageBlock.WidgetContainer.widgetFrames.Frame:SetAlpha(0.1)
 									end
 								end
 							end
