@@ -734,7 +734,7 @@ function ElvUI_EltreumUI:SkinQuests()
 										elseif _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine then
 											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine, "CENTER", -3, -47)
 										else
-											ScenarioObjectiveBlockBackground:SetPoint("CENTER", frame, "CENTER", 0, 0)
+											ScenarioObjectiveBlockBackground:SetPoint("CENTER", frame, "CENTER", 0, -5)
 										end
 
 										ScenarioObjectiveBlockBackground:SetSize(243, 80)
