@@ -64,7 +64,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						if E.Retail then
 							if completed and not C_QuestLog.IsWorldQuest(GetActiveQuestID(i)) then
 								if E.db.ElvUI_EltreumUI.dev then
-									ElvUI_EltreumUI:Print("tried to complete "..completed.." and it's not a world quest")
+									ElvUI_EltreumUI:Print("tried to complete and it's not a world quest")
 								end
 								SelectActiveQuest(i)
 							end
