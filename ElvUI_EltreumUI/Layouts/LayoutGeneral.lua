@@ -147,7 +147,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["size"] = 15
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["texture"] = "Eltruism01"
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 13
-	E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = -1
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = 1
 
 	--bag search
 	E.db["bags"]["spinner"]["color"]["r"] = valuecolors.r
