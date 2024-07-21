@@ -52,6 +52,15 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 				if E.private.skins.blizzard.enable then
+					if (arg == "Blizzard_DelvesDifficultyPicker") or IsAddOnLoaded("Blizzard_DelvesDifficultyPicker") then
+						if _G.DelvesDifficultyPickerFrame then
+							if not _G.DelvesDifficultyPickerFrame.shadow then
+								_G.DelvesDifficultyPickerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.DelvesDifficultyPickerFrame.shadow)
+							end
+						end
+					end
+
 					if (arg == "Blizzard_PlayerSpells") or IsAddOnLoaded("Blizzard_PlayerSpells") then
 						if _G.PlayerSpellsFrame then
 							if not _G.PlayerSpellsFrame.shadow then
@@ -69,7 +78,6 @@ function ElvUI_EltreumUI:Shadows()
 							end
 						end
 					end
-
 					if (arg == "Blizzard_ProfessionsBook") or IsAddOnLoaded("Blizzard_ProfessionsBook") then
 						if _G.ProfessionsBookFrame then
 							if not _G.ProfessionsBookFrame.shadow then
@@ -1025,6 +1033,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G.WorldStateScoreFrameTab3,
 				_G.ZoneAbilityFrame,
 				_G.GameMenuFrame,
+				_G.DelvesCompanionConfigurationFrame,
+				_G.DelvesCompanionAbilityListFrame,
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame then
@@ -1186,6 +1196,9 @@ function ElvUI_EltreumUI:Shadows()
 				if _G.ReputationFrame and _G.ReputationFrame.ReputationDetailFrame then
 					_G.ReputationFrame.ReputationDetailFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(_G.ReputationFrame.ReputationDetailFrame.shadow)
+				end
+				if _G.DelvesCompanionConfigurationFrame and _G.DelvesCompanionConfigurationFrame.CompanionPortraitFrame then --fix shadow overlap
+					_G.DelvesCompanionConfigurationFrame.CompanionPortraitFrame:SetFrameLevel(20)
 				end
 			end
 		end
