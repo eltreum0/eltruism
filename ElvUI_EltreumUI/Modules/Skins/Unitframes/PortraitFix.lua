@@ -443,6 +443,9 @@ local modelsRotate = {
 	[124368] = true, --Dark Strand Adept
 	[3446018] = true, --Winter Queen
 	[3016204] = true, --Blingtron 7000
+	[5492980] = true, --Moira Thaurissan
+	[5767091] = true, --Dagran Thaurissan II
+	[5548261] = true, --Baelgrim
 }
 
 local targetlike = {
