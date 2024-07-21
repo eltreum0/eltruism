@@ -13,23 +13,23 @@ function ElvUI_EltreumUI:ExpandedTalents()
 		EltruismExpandedTalents:RegisterEvent("FIRST_FRAME_RENDERED")
 		EltruismExpandedTalents:RegisterEvent("PLAYER_LOGIN")
 		EltruismExpandedTalents:SetScript("OnEvent", function(_,_,arg)
-			if (arg == "Blizzard_ClassTalentUI") or IsAddOnLoaded("Blizzard_ClassTalentUI") then
+			if (arg == "Blizzard_PlayerSpells") or IsAddOnLoaded("Blizzard_PlayerSpells") then
 				EltruismExpandedTalents:UnregisterAllEvents()
 
-				_G.ClassTalentFrame:SetMovable(true)
-				_G.ClassTalentFrame:EnableMouse(true)
-				_G.ClassTalentFrame:RegisterForDrag("LeftButton")
-				_G.ClassTalentFrame:SetScript("OnDragStart", _G.ClassTalentFrame.StartMoving)
-				_G.ClassTalentFrame:SetScript("OnDragStop", _G.ClassTalentFrame.StopMovingOrSizing)
-				_G.ClassTalentFrame:SetClampedToScreen(true)
+				_G.PlayerSpellsFrame:SetMovable(true)
+				_G.PlayerSpellsFrame:EnableMouse(true)
+				_G.PlayerSpellsFrame:RegisterForDrag("LeftButton")
+				_G.PlayerSpellsFrame:SetScript("OnDragStart", _G.PlayerSpellsFrame.StartMoving)
+				_G.PlayerSpellsFrame:SetScript("OnDragStop", _G.PlayerSpellsFrame.StopMovingOrSizing)
+				_G.PlayerSpellsFrame:SetClampedToScreen(true)
 
 				local function adjustscale()
-					_G.ClassTalentFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
+					_G.PlayerSpellsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
 				end
-				_G.ClassTalentFrame:HookScript("OnShow", function()
+				_G.PlayerSpellsFrame:HookScript("OnShow", function()
 					adjustscale()
 				end)
-				_G.ClassTalentFrame:HookScript("OnEvent", function()
+				_G.PlayerSpellsFrame:HookScript("OnEvent", function()
 					adjustscale()
 				end)
 			end
