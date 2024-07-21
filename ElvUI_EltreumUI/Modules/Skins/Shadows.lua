@@ -895,7 +895,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.EltruismClickCastingToggle,
 				_G.EmbeddedItemTooltip,
 				_G.EquipmentFlyoutFrameButtons,
-				_G.ExpansionLandingPage,
+				_G.ExpansionLandingPage and _G.ExpansionLandingPage.Overlay and _G.ExpansionLandingPage.Overlay.WarWithinLandingOverlay,
 				_G.ExtraActionButton1,
 				_G.ExtraActionButton2,
 				_G.ExtraActionButton3,
