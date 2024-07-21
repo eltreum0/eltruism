@@ -294,10 +294,20 @@ function ElvUI_EltreumUI:SkinQuests()
 						bar.backdrop.SetBackdropColor = E.noop
 						--end)
 						bar:GetStatusBarTexture():SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.queststatusbartexture))
-						hooksecurefunc(bar, "SetStatusBarColor", function(_, r, g, b)
+						--[[hooksecurefunc(bar, "SetStatusBarColor", function(_, r, g, b)
 							bar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= E.db.general.backdropfadecolor.a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= E.db.general.backdropfadecolor.a})
 							bar.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
 							bar.backdrop:SetBackdropColor(0,0,0)
+						end)]]
+
+						hooksecurefunc(bar:GetParent(), "SetPercent", function(frame,percent)
+							local statusbar = frame.Bar
+							if not statusbar then return end
+							S:StatusBarColorGradient(statusbar, percent, 100)
+							local r,g,b = statusbar:GetStatusBarColor()
+							statusbar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= E.db.general.backdropfadecolor.a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= E.db.general.backdropfadecolor.a})
+							statusbar.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
+							statusbar.backdrop:SetBackdropColor(0,0,0)
 						end)
 						bar.EltruismSkin = true
 					end
@@ -373,7 +383,7 @@ function ElvUI_EltreumUI:SkinQuests()
 												line.Text:SetTextColor(0.85, 0.85, 0.85)
 											end
 										else
-											if text == _G.QUEST_WATCH_QUEST_READY or (line.Check and line.Check:IsShown()) then
+											if text == _G.QUEST_WATCH_QUEST_READY or (line.Check and line.Check:IsShown()) or (line.objectiveKey == "QuestComplete") then
 												line.Text:SetTextColor(0.12, 1, 0.12)
 											else
 												line.Text:SetTextColor(0.85, 0.85, 0.85)
@@ -454,7 +464,7 @@ function ElvUI_EltreumUI:SkinQuests()
 										line.Text:SetTextColor(0.85, 0.85, 0.85)
 									end
 								else
-									if text == _G.QUEST_WATCH_QUEST_READY or (line.Check and line.Check:IsShown()) then
+									if text == _G.QUEST_WATCH_QUEST_READY or (line.Check and line.Check:IsShown()) or (line.objectiveKey == "QuestComplete") then
 										line.Text:SetTextColor(0.12, 1, 0.12)
 									else
 										line.Text:SetTextColor(0.85, 0.85, 0.85)
