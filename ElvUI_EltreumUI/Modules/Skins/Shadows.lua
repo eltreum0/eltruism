@@ -52,6 +52,23 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 				if E.private.skins.blizzard.enable then
+					if (arg == "Blizzard_PlayerSpells") or IsAddOnLoaded("Blizzard_PlayerSpells") then
+						if _G.PlayerSpellsFrame then
+							if not _G.PlayerSpellsFrame.shadow then
+								_G.PlayerSpellsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.PlayerSpellsFrame.shadow)
+							end
+							if _G.PlayerSpellsFrame.TabSystem then
+								for i = 1, _G.PlayerSpellsFrame.TabSystem:GetNumChildren() do
+									local tab = select(i, _G.PlayerSpellsFrame.TabSystem:GetChildren())
+									if tab and tab.backdrop and not tab.backdrop.shadow then
+										tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(tab.backdrop.shadow)
+									end
+								end
+							end
+						end
+					end
 					if (arg == "Blizzard_ScrappingMachineUI") or IsAddOnLoaded("Blizzard_ScrappingMachineUI") then
 						if _G.ScrappingMachineFrame and not _G.ScrappingMachineFrame.shadow then
 							_G.ScrappingMachineFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
