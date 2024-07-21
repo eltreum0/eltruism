@@ -391,6 +391,30 @@ function ElvUI_EltreumUI:SkinQuests()
 										end
 									end
 								end
+								if line.Icon then
+									if E.db.ElvUI_EltreumUI.skins.questsettings.hideCheck then
+										line.Icon:Hide()
+									else
+										if line.Icon:GetAtlas() == "UI-QuestTracker-Objective-Nub" then
+											line.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\questnub.tga")
+										elseif line.Icon:GetAtlas() == "UI-QuestTracker-Tracker-Check" then
+											line.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\checkmark.tga")
+										end
+									end
+								end
+								if line.lastRegion then
+									if line.lastRegion.Icon and line.lastRegion.Icon:GetAtlas() then
+										if E.db.ElvUI_EltreumUI.skins.questsettings.hideCheck then
+											line.lastRegion.Icon:Hide()
+										else
+											if line.lastRegion.Icon:GetAtlas() == "UI-QuestTracker-Objective-Nub" then
+												line.lastRegion.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\questnub.tga")
+											elseif line.lastRegion.Icon:GetAtlas() == "UI-QuestTracker-Tracker-Check" then
+												line.lastRegion.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\checkmark.tga")
+											end
+										end
+									end
+								end
 							end
 						end
 					end
@@ -469,6 +493,17 @@ function ElvUI_EltreumUI:SkinQuests()
 									else
 										line.Text:SetTextColor(0.85, 0.85, 0.85)
 									end
+								end
+							end
+						end
+						if line.Icon then
+							if E.db.ElvUI_EltreumUI.skins.questsettings.hideCheck then
+								line.Icon:Hide()
+							else
+								if line.Icon:GetAtlas() == "UI-QuestTracker-Objective-Nub" then
+									line.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\questnub.tga")
+								elseif line.Icon:GetAtlas() == "UI-QuestTracker-Tracker-Check" then
+									line.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\checkmark.tga")
 								end
 							end
 						end
@@ -651,31 +686,6 @@ function ElvUI_EltreumUI:SkinQuests()
 					if k.Bar then
 						EltreumSkinProgressBars(k.Bar)
 					end
-					if k.UpdateCriteria then
-						hooksecurefunc(k, "UpdateCriteria", function ()
-							if _G.ScenarioObjectiveBlock then
-								local frames = {_G.ScenarioObjectiveBlock:GetChildren()}
-								for _, frame in pairs(frames) do
-									if frame.Text then
-										frame.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)) --this is the objective like boss 1/1
-										frame.Text:SetTextColor(1, 1, 1) --dungeon obj text
-										frame.Text:SetWordWrap(true)
-									end
-									if frame.Icon and frame.Icon:GetAtlas() then
-										if E.db.ElvUI_EltreumUI.skins.questsettings.hideCheck then
-											frame.Icon:Hide()
-										else
-											if frame.Icon:GetAtlas() == "Objective-Nub" then
-												frame.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\questnub.tga")
-											elseif frame.Icon:GetAtlas() == "Tracker-Check" then
-												frame.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\checkmark.tga")
-											end
-										end
-									end
-								end
-							end
-						end)
-					end
 					if k.UpdateHighlight then
 						hooksecurefunc(k, "UpdateHighlight", function(_, block)
 							blockenter(block)
@@ -709,7 +719,6 @@ function ElvUI_EltreumUI:SkinQuests()
 											frame.Stage:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
 										end
 										frame.Stage:SetWordWrap(true)
-
 										ScenarioObjectiveBlockBackground:SetParent(frame)
 										ScenarioObjectiveBlockBackground:ClearAllPoints()
 										if _G.EltruismDungeonLine then
@@ -865,6 +874,59 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 				end
 				firehooks()
+
+				if _G.ScenarioObjectiveTracker and _G.ScenarioObjectiveTracker.UpdateCriteria then
+					hooksecurefunc(_G.ScenarioObjectiveTracker, "UpdateCriteria", function()
+						if _G.ScenarioObjectiveTracker and _G.ScenarioObjectiveTracker.ContentsFrame then
+							local frames = {_G.ScenarioObjectiveTracker.ContentsFrame:GetChildren()}
+							for _, frame in pairs(frames) do
+								if frame.Text then
+									frame.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)) --this is the objective like boss 1/1
+									frame.Text:SetTextColor(1, 1, 1) --dungeon obj text
+									frame.Text:SetWordWrap(true)
+								end
+								if frame.lastRegion then
+									if frame.lastRegion.Icon and frame.lastRegion.Icon:GetAtlas() then
+										if E.db.ElvUI_EltreumUI.skins.questsettings.hideCheck then
+											frame.lastRegion.Icon:Hide()
+										else
+											if frame.lastRegion.Icon:GetAtlas() == "UI-QuestTracker-Objective-Nub" then
+												frame.lastRegion.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\questnub.tga")
+											elseif frame.lastRegion.Icon:GetAtlas() == "UI-QuestTracker-Tracker-Check" then
+												frame.lastRegion.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\checkmark.tga")
+											end
+										end
+									end
+								end
+								if frame.Icon and frame.Icon:GetAtlas() then
+									if E.db.ElvUI_EltreumUI.skins.questsettings.hideCheck then
+										frame.Icon:Hide()
+									else
+										if frame.Icon:GetAtlas() == "UI-QuestTracker-Objective-Nub" then
+											frame.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\questnub.tga")
+										elseif frame.Icon:GetAtlas() == "UI-QuestTracker-Tracker-Check" then
+											frame.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\checkmark.tga")
+										end
+									end
+								end
+							end
+
+							if _G.ScenarioObjectiveTracker.StageBlock then
+								if _G.ScenarioObjectiveTracker.StageBlock.WidgetContainer then
+									for _,v in pairs(_G.ScenarioObjectiveTracker.StageBlock.WidgetContainer.widgetFrames) do
+										if v.Frame then
+											v.Frame:SetAlpha(0)
+										end
+									end
+									if _G.ScenarioObjectiveTracker.StageBlock.WidgetContainer.widgetFrames.Frame then
+										_G.ScenarioObjectiveTracker.StageBlock.WidgetContainer.widgetFrames.Frame:SetAlpha(0.1)
+									end
+								end
+							end
+						end
+					end)
+
+				end
 
 				local eventtrigger = CreateFrame("frame")
 				eventtrigger:RegisterEvent("QUEST_WATCH_LIST_CHANGED")
