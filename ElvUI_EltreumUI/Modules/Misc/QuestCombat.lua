@@ -1,9 +1,9 @@
 local E = unpack(ElvUI)
 local _G = _G
-local ObjectiveTracker_Collapse = _G.ObjectiveTracker_Collapse
+--local ObjectiveTracker_Collapse = _G.ObjectiveTracker_Collapse
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local IsInInstance = _G.IsInInstance
-local ObjectiveTracker_Expand = _G.ObjectiveTracker_Expand
+--local ObjectiveTracker_Expand = _G.ObjectiveTracker_Expand
 local ObjectiveTrackerFrame = _G.ObjectiveTrackerFrame
 local tonumber = _G.tonumber
 local string = _G.string
@@ -142,9 +142,10 @@ end
 function ElvUI_EltreumUI:QuestCombat()
 	if E.db.ElvUI_EltreumUI.quests.combatenable then
 		if E.Retail then
-			if _G.ObjectiveTrackerFrame:IsCollapsed() == false then
-				_G.ObjectiveTrackerFrame:ToggleCollapsed()
-			end
+			--[[if _G.ObjectiveTrackerFrame:IsCollapsed() == false then
+				_G.ObjectiveTrackerFrame:ToggleCollapsed() --seems like this causes taints
+			end]]
+			ObjectiveTrackerFrame:SetAlpha(0)
 			--ObjectiveTracker_Collapse()
 			--_G.ObjectiveTrackerFrame:SetCollapsed() --doesnt work
 		elseif E.Classic then
@@ -175,9 +176,10 @@ end
 function ElvUI_EltreumUI:QuestCombatEnd()
 	if E.db.ElvUI_EltreumUI.quests.combatenable then
 		if E.Retail then
-			if _G.ObjectiveTrackerFrame:IsCollapsed() then
-				_G.ObjectiveTrackerFrame:ToggleCollapsed()
-			end
+			--[[if _G.ObjectiveTrackerFrame:IsCollapsed() then
+				_G.ObjectiveTrackerFrame:ToggleCollapsed() --seems like this causes taints
+			end]]
+			ObjectiveTrackerFrame:SetAlpha(1)
 			--ObjectiveTracker_Expand()
 		elseif E.Classic then
 			if IsAddOnLoaded("Questie") then
