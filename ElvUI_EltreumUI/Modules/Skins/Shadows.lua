@@ -77,6 +77,12 @@ function ElvUI_EltreumUI:Shadows()
 								end
 							end
 						end
+						if _G.HeroTalentsSelectionDialog then
+							if not _G.HeroTalentsSelectionDialog.shadow then
+								_G.HeroTalentsSelectionDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.HeroTalentsSelectionDialog.shadow)
+							end
+						end
 					end
 					if (arg == "Blizzard_ProfessionsBook") or IsAddOnLoaded("Blizzard_ProfessionsBook") then
 						if _G.ProfessionsBookFrame then
