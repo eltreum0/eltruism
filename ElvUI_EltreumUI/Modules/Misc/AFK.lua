@@ -40,6 +40,7 @@ local racialMusic = {
 	["Vulpera"] = 3260632,
 	["MagharOrc"] = 2146630,
 	["Dracthyr"] = 4872480, --test
+	["EarthenDwarf"] = 298910, --placeholder since no music has been added to beta besides login
 }
 local classMusic = {
 	["WARRIOR"] = 1417334,
