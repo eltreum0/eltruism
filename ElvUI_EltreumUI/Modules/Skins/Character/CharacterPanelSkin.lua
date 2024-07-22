@@ -1192,7 +1192,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			--hide the backdrop on reputation/currency tab
 			_G.CharacterFrame:HookScript("OnHide",function()
-				if _G.CharacterFrameInset.backdrop:IsVisible() then
+				if _G.CharacterFrameInset.backdrop and _G.CharacterFrameInset.backdrop:IsVisible() then
 					_G.CharacterFrameInset.backdrop:Hide()
 				end
 			end)
