@@ -1872,6 +1872,7 @@ end
 function ElvUI_EltreumUI:ThinBars()
 	if not E.db.ElvUI_EltreumUI.unitframes.thinmode then
 		E.db.ElvUI_EltreumUI.unitframes.thinmode = true
+		E.db.ElvUI_EltreumUI.unitframes.thinmodeaurabars = true
 		ElvUI_EltreumUI:Print("Experimental Thin Mode Layout applied")
 
 		E.db["ElvUI_EltreumUI"]["borders"]["borderautoadjust"] = false
@@ -2009,6 +2010,7 @@ function ElvUI_EltreumUI:ThinBars()
 				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["size"] = 14
 				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["xOffset"] = 0
 				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["yOffset"] = 12
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:ReleafIconOutline:player] [eltruism:difficulty][name:eltruism:gradientshort]"
 			end
 			if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] then
 				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["attachTextTo"] = "Frame"

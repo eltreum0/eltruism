@@ -50,7 +50,7 @@ function ElvUI_EltreumUI:AuraBarGradient(unit, bar) --could use isStealable to a
 			end
 		end
 
-		if E.db.ElvUI_EltreumUI.unitframes.thinmode then --thin mode aurabars?
+		if E.db.ElvUI_EltreumUI.unitframes.thinmodeaurabars then --thin mode aurabars?
 			bar:SetHeight(5)
 			bar.icon:SetSize(25,15)
 			bar.icon:ClearAllPoints()
@@ -76,7 +76,7 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 					if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not bar.shadow then
 						bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(bar.shadow)
-						if E.db.ElvUI_EltreumUI.unitframes.thinmode then
+						if E.db.ElvUI_EltreumUI.unitframes.thinmodeaurabars then
 							if bar.shadow then
 								bar.shadow:ClearAllPoints()
 								bar.shadow:SetPoint("TOPRIGHT", bar.backdrop, "TOPRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)

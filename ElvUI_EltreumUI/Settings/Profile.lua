@@ -1011,6 +1011,7 @@ P.ElvUI_EltreumUI = {
 
 	unitframes = {
 		thinmode = false,
+		thinmodeaurabars = false,
 		UFmodifications = true,
 		UForientation = "HORIZONTAL",
 		lightmode = false,
