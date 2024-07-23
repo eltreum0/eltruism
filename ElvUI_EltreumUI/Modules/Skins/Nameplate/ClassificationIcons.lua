@@ -378,9 +378,9 @@ local bossIDs = {
 	["207940"] = true, --prioress-murrpray
 
 	--ara-kara-city-of-echoes
-	["207939"] = true, --anubzekt
-	["207946"] = true, --avanoxx
-	["207940"] = true, --kikatal-the-harvester
+	["215405"] = true, --anubzekt
+	["213179"] = true, --avanoxx
+	["215407"] = true, --kikatal-the-harvester
 
 	--the-stonevault
 	["219440"] = true, --high-speaker-eirich
@@ -407,7 +407,6 @@ local bossIDs = {
 
 	--hallowfall
 	["211089"] = true, --anubikkaj
-	["224552"] = true, --rashanan
 	["211087"] = true, --speaker-shadowcrown
 
 	--nerub-ar-palace
@@ -419,6 +418,30 @@ local bossIDs = {
 	["219853"] = true, --sikran
 	["214502"] = true, --the-bloodbound-horror
 	["228713"] = true, --ulgrax-the-devourer
+
+	--mists-of-tirna-scithe
+	["164567"] = true, --ingra-maloch
+	["170217"] = true, --mistcaller
+	["164517"] = true, --tredova
+	--the-necrotic-wake
+	["162691"] = true, --blightbone
+	["166945"] = true, --nalthor-the-rimebinder
+	["166882"] = true, --surgeon-stitchflesh
+
+	--siege-of-boralus
+	["144160"] = true, --chopper-redhook
+	["129208"] = true, --dread-captain-lockwood
+	["130836"] = true, --hadal-darkfathom
+	["144158"] = true, --sergeant-bainbridge
+	["128652"] = true, --viqgoth
+
+	--grim-batol
+	["40319"] = true, --drahga-shadowburner
+	["40484"] = true, --erudax
+	["40177"] = true, --forgemaster-throngus
+	["39625"] = true, --general-umbriss
+	["45992"] = true, --valiona
+
 }
 
 local textureDB = {
