@@ -1878,9 +1878,13 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db.ElvUI_EltreumUI.skins.elvui.texture = "Eltreum-Tile03"
 
 		E.db["actionbar"]["bar1"]["buttonHeight"] = 20
+		E.db["actionbar"]["bar1"]["countTextPosition"] = "BOTTOMLEFT"
 		E.db["actionbar"]["bar2"]["buttonHeight"] = 17
+		E.db["actionbar"]["bar2"]["countTextPosition"] = "BOTTOMLEFT"
 		E.db["actionbar"]["bar3"]["buttonHeight"] = 17
+		E.db["actionbar"]["bar3"]["countTextPosition"] = "BOTTOMLEFT"
 		E.db["actionbar"]["bar4"]["buttonHeight"] = 17
+		E.db["actionbar"]["bar4"]["countTextPosition"] = "BOTTOMLEFT"
 		E.db["actionbar"]["stanceBar"]["buttonHeight"] = 17
 
 		E.db["actionbar"]["barPet"]["backdrop"] = false
