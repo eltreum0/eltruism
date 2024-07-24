@@ -343,7 +343,7 @@ function ElvUI_EltreumUI:SkinQuests()
 								if line.Text and line.Text:GetText() then
 									line.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 									line.Text:SetTextColor(mult, mult, mult)
-									line.Text:SetWordWrap(true)
+									--line.Text:SetWordWrap(true)
 
 									--inspired by blinkii's skin, color
 									local text = line.Text:GetText()
@@ -440,7 +440,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						if line.Text and line.Text:GetText() then
 							line.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							line.Text:SetTextColor(mult, mult, mult)
-							line.Text:SetWordWrap(true)
+							--line.Text:SetWordWrap(true)
 
 							--inspired by blinkii's skin, color
 							local text = line.Text:GetText()
