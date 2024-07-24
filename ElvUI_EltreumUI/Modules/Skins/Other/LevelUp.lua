@@ -39,6 +39,8 @@ function ElvUI_EltreumUI:SkinLevelUp()
 
 				hooksecurefunc(_G.EventToastManagerFrame,"DisplayToast", function(toast)
 					if toast.currentDisplayingToast then
+						EventToastManagerFrame.StatusLine:Show()
+						EventToastManagerFrame.StatusLine2:Show()
 						if toast.currentDisplayingToast.Title then
 							toast.currentDisplayingToast.Title:SetShadowColor(0, 0, 0, 0.8)
 							toast.currentDisplayingToast.Title:SetShadowOffset(2, -2)
@@ -50,6 +52,10 @@ function ElvUI_EltreumUI:SkinLevelUp()
 							--toast.currentDisplayingToast.SubTitle:SetFont(E.LSM:Fetch("font", E.db.general.font), 17, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)) --font size doesnt adjust so it kinda breaks level up
 						end
 					end
+				end)
+				hooksecurefunc(_G.EventToastManagerFrame,"StopToasting", function()
+					EventToastManagerFrame.StatusLine:Hide()
+					EventToastManagerFrame.StatusLine2:Hide()
 				end)
 				--/script EventToastManagerFrame:Show()
 			end
