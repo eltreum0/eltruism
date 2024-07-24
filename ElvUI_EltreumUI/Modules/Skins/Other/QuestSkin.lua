@@ -885,7 +885,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 					end
 				end
-				firehooks()
+				E:Delay(0,firehooks)
 
 				if _G.ScenarioObjectiveTracker and _G.ScenarioObjectiveTracker.UpdateCriteria then
 					hooksecurefunc(_G.ScenarioObjectiveTracker, "UpdateCriteria", function()
