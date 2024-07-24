@@ -3716,20 +3716,27 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added support for Season of Discovery Season 4
+Added support for The War Within
+Added several more statusbar textures from Blizzard's default textures
+Added the experimental Thin Mode to Eltruism > Installer > Layouts
+Added Quest and Delve Instances to the Instance Indicator
+Added more of Blizzard's skull icons
+Added Borders to Focus Power
+Added more Shadows
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Item Level text on character panel to follow some of ElvUI's options
-Updated Background Alpha in the Character Panel Skin to not follow Crest Alpha
-Updated Character Panel Gradient and Class Colors to work separately
+Updated BigWigs profile to fix message positioning
+Updated several functions to support War Within
+Updated the Max Camera distance in Classic
+Updated Rest animation's anchoring
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed a possible error when using /way command with text instead of zone id
-Fixed Combat Icons option missing
+Fixed an issue where the Unitframe Aura borders would reset size on export
+Fixed a possible issue with the Quest Hide
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
