@@ -1719,6 +1719,9 @@ function ElvUI_EltreumUI:SetupCVars()
 
 	if E.Retail then
 		SetCVar('cameraDistanceMaxZoomFactor', 2.6)
+		--11.0, enable camera occlusion?
+		--SetCVar('cameraIndirectVisibility', 1)
+		--SetCVar('cameraIndirectOffset', 10)
 	else
 		SetCVar('cameraDistanceMaxZoomFactor', 3.4)
 	end
