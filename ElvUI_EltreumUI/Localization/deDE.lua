@@ -1593,3 +1593,7 @@ L["Circle Minimap"] = "Kreisförmige Minimap"
 L["Databars Thickness"] = "Datenleisten Dicke"
 L["Alternative Power Thickness"] = "Alternative Kraft Dicke"
 L["Adjust Position of Item Level Text"] = true
+L["Focus Power Border"] = true
+L["The text displayed when in a delve"] = true
+L["The text displayed when in a quest instance"] = true
+L["Thin Aura Bars"] = true

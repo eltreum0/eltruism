@@ -147,7 +147,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["size"] = 15
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["texture"] = "Eltruism01"
 	E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 13
-	E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = -1
+	E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = 1
 
 	--bag search
 	E.db["bags"]["spinner"]["color"]["r"] = valuecolors.r
@@ -1719,6 +1719,9 @@ function ElvUI_EltreumUI:SetupCVars()
 
 	if E.Retail then
 		SetCVar('cameraDistanceMaxZoomFactor', 2.6)
+		--11.0, enable camera occlusion?
+		--SetCVar('cameraIndirectVisibility', 1)
+		--SetCVar('cameraIndirectOffset', 10)
 	else
 		SetCVar('cameraDistanceMaxZoomFactor', 3.4)
 	end
@@ -1872,15 +1875,20 @@ end
 function ElvUI_EltreumUI:ThinBars()
 	if not E.db.ElvUI_EltreumUI.unitframes.thinmode then
 		E.db.ElvUI_EltreumUI.unitframes.thinmode = true
+		E.db.ElvUI_EltreumUI.unitframes.thinmodeaurabars = true
 		ElvUI_EltreumUI:Print("Experimental Thin Mode Layout applied")
 
 		E.db["ElvUI_EltreumUI"]["borders"]["borderautoadjust"] = false
 		E.db.ElvUI_EltreumUI.skins.elvui.texture = "Eltreum-Tile03"
 
 		E.db["actionbar"]["bar1"]["buttonHeight"] = 20
+		E.db["actionbar"]["bar1"]["countTextPosition"] = "BOTTOMLEFT"
 		E.db["actionbar"]["bar2"]["buttonHeight"] = 17
+		E.db["actionbar"]["bar2"]["countTextPosition"] = "BOTTOMLEFT"
 		E.db["actionbar"]["bar3"]["buttonHeight"] = 17
+		E.db["actionbar"]["bar3"]["countTextPosition"] = "BOTTOMLEFT"
 		E.db["actionbar"]["bar4"]["buttonHeight"] = 17
+		E.db["actionbar"]["bar4"]["countTextPosition"] = "BOTTOMLEFT"
 		E.db["actionbar"]["stanceBar"]["buttonHeight"] = 17
 
 		E.db["actionbar"]["barPet"]["backdrop"] = false
@@ -2005,6 +2013,7 @@ function ElvUI_EltreumUI:ThinBars()
 				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["size"] = 14
 				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["xOffset"] = 0
 				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["yOffset"] = 12
+				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetName"]["text_format"] = "[eltruism:raidmarker] [eltruism:ReleafIconOutline:player] [eltruism:difficulty][name:eltruism:gradientshort]"
 			end
 			if E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"] then
 				E.db["unitframe"]["units"]["target"]["customTexts"]["EltreumTargetPower"]["attachTextTo"] = "Frame"

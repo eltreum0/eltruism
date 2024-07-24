@@ -193,6 +193,9 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.installer.args.tab3.args.resethealerlayout = ACH:Execute(L["Reset layout to Eltruism Healer"], nil, 5, function() E.data:SetProfile('Eltreum Healer ('..E.mynameRealm..')') ElvUI_EltreumUI:SetupGeneralLayout() ElvUI_EltreumUI:SetupLayoutHealer() end,nil,false,'full')
 	ElvUI_EltreumUI.Options.args.installer.args.tab3.args.description3 = ACH:Description(L["Reinstall Eltruism Datatext"], 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab3.args.resetdatatext = ACH:Execute(L["Reset/Add Eltruism Datatext Panel"], nil, 7, function() ElvUI_EltreumUI:SetupDataText() E:UpdateMoverPositions() end,nil,false,'full')
+	--this is placeholder naming, not to be translated yet
+	ElvUI_EltreumUI.Options.args.installer.args.tab3.args.description4 = ACH:Description(L["Thin Mode"], 8, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
+	ElvUI_EltreumUI.Options.args.installer.args.tab3.args.thinmode = ACH:Execute(E.NewSign..L["Experimental Thin Mode"], nil, 9, function() ElvUI_EltreumUI:ThinBars() end,nil,false,'full')
 	ElvUI_EltreumUI.Options.args.installer.args.tab4 = ACH:Group(L["General"], nil, 4)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.description1 = ACH:Description(L["Reinstall"].." "..CHAT_LABEL, 2, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.resetchat = ACH:Execute(L["Reset Chat to ElvUI Settings"], nil, 3, function()
@@ -581,6 +584,12 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.focus.args.borderycastfocus = ACH:Range(L["Border Y offset"], nil, 7, { min = 1, max = 800, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.ycastfocus end, function(_, value) E.db.ElvUI_EltreumUI.borders.ycastfocus = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.focus.castbar.enable or not E.db.ElvUI_EltreumUI.borders.focuscastborder end)
 	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.focus.args.focuscastframeStrata = ACH:Select(L["Frame Strata"], nil, 8, FrameStrataLevels, false, "full",function() return E.db.ElvUI_EltreumUI.borders.focuscaststrata end, function(_, value) E.db.ElvUI_EltreumUI.borders.focuscaststrata = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.focus.castbar.enable or not E.db.ElvUI_EltreumUI.borders.focuscastborder end)
 	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.focus.args.focuscastframeLevel = ACH:Range(L["Frame Level"], nil, 9, { min = 1, max = 128, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.focuscastlevel end, function(_, value) E.db.ElvUI_EltreumUI.borders.focuscastlevel = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.focus.castbar.enable or not E.db.ElvUI_EltreumUI.borders.focuscastborder end)
+	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.focus.args.powerbar = ACH:Description(L["Focus Power Border"], 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
+	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.focus.args.powerbarfocus = ACH:Toggle(L["Enable"], nil, 11, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.focuspowerborder end,function(_, value) E.db.ElvUI_EltreumUI.borders.focuspowerborder = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.focus.power.enable end)
+	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.focus.args.borderxpowerbar = ACH:Range(L["Border X offset"], nil, 12, { min = 1, max = 800, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.xfocuspower end, function(_, value) E.db.ElvUI_EltreumUI.borders.xfocuspower = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.focus.power.enable or not E.db.ElvUI_EltreumUI.borders.focuspowerborder end)
+	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.focus.args.borderypowerbar = ACH:Range(L["Border Y offset"], nil, 13, { min = 1, max = 800, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.yfocuspower end, function(_, value) E.db.ElvUI_EltreumUI.borders.yfocuspower = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.focus.power.enable or not E.db.ElvUI_EltreumUI.borders.focuspowerborder end)
+	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.focus.args.focuspowerbarframeStrata = ACH:Select(L["Frame Strata"], nil, 14, FrameStrataLevels, false, "full",function() return E.db.ElvUI_EltreumUI.borders.focuspowerstrata end, function(_, value) E.db.ElvUI_EltreumUI.borders.focuspowerstrata = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.focus.power.enable or not E.db.ElvUI_EltreumUI.borders.focuspowerborder end)
+	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.focus.args.focuspowerbarframeLevel = ACH:Range(L["Frame Level"], nil, 15, { min = 1, max = 128, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.focuspowerlevel end, function(_, value) E.db.ElvUI_EltreumUI.borders.focuspowerlevel = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.focus.power.enable or not E.db.ElvUI_EltreumUI.borders.focuspowerborder end)
 	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.focustarget = ACH:Group(L["Focus Target Border"], nil, 2,"tab", nil, nil, nil, E.Classic)
 	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.focustarget.args.enable = ACH:Toggle(L["Enable"], nil, 1, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.focustargetborder end,function(_, value) E.db.ElvUI_EltreumUI.borders.focustargetborder = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.focustarget.enable end)
 	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.focustarget.args.borderfocustarget = ACH:Range(L["Focus Thickness"], nil, 1, { min = 1, max = 200, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.focussize end, function(_, value) E.db.ElvUI_EltreumUI.borders.focussize = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.focustarget.enable end)
@@ -1196,9 +1205,9 @@ function ElvUI_EltreumUI:Configtable()
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.dctagicon end, function(_,value) E.db.ElvUI_EltreumUI.otherstuff.dctagicon = tostring(value) end)
 	ElvUI_EltreumUI.Options.args.media.args.tags.args.dc.args.dciconpick.style = "radio"
 
-	ElvUI_EltreumUI.Options.args.media.args.tags.args.ghost = ACH:Group(GetSpellInfo(8326), nil, 2)
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.ghost = ACH:Group(L["Ghost"], nil, 2)
 	ElvUI_EltreumUI.Options.args.media.args.tags.args.ghost.args.description1 = ACH:Description(L["Customize the Ghost Icons"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.media.args.tags.args.ghost.args.ghosticonpick = ACH:Select(GetSpellInfo(8326), nil, 2, {
+	ElvUI_EltreumUI.Options.args.media.args.tags.args.ghost.args.ghosticonpick = ACH:Select(L["Ghost"], nil, 2, {
 		["1"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost1',':20:20'),
 		["2"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost2',':20:20'),
 		["3"] = E:TextureString('Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost3',':20:20'),
@@ -1634,10 +1643,18 @@ function ElvUI_EltreumUI:Configtable()
 		local tpspellsitems = {}
 		for _, v in pairs(ElvUI_EltreumUI:GetTeleportSpells()) do
 			if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
-				local name = GetSpellInfo(v)
-				local hasSpell = IsSpellKnown(v)
-				if hasSpell then
-					tpspellsitems[v] = name
+				if E.Retail then
+					local spellData = GetSpellInfo(v)
+					local hasSpell = IsSpellKnown(v)
+					if hasSpell then
+						tpspellsitems[v] = spellData.name
+					end
+				else
+					local name = GetSpellInfo(v)
+					local hasSpell = IsSpellKnown(v)
+					if hasSpell then
+						tpspellsitems[v] = name
+					end
 				end
 			else
 				local name, itemLink = GetItemInfo(v)
@@ -1651,9 +1668,21 @@ function ElvUI_EltreumUI:Configtable()
 		return tpspellsitems
 	end, false, "full", function()
 		if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
-			local value = select(7,GetSpellInfo(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)))
-			if value then
-				return value
+			if E.Retail then
+				local spellData = GetSpellInfo(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport))
+				if spellData then
+					local value = spellData.spellID
+					if value then
+						return value
+					end
+				else
+					return 187874 --fallback value
+				end
+			else
+				local value = select(7,GetSpellInfo(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)))
+				if value then
+					return value
+				end
 			end
 		else
 			local _, itemLink = GetItemInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
@@ -1724,6 +1753,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.appearance.args.skincombaticons = ACH:Toggle(E.NewSign..L["Change Combat Indicators to be class based"], nil, 14, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.classcombaticons end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.classcombaticons = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.appearance.args.description7 = ACH:Description(L["Heal Prediction"], 15, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.appearance.args.healpredictionskin = ACH:Toggle(E.NewSign..L["Use ElvUI Unitframe Texture"], nil, 16, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enableHealComm end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enableHealComm = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.appearance.args.description8 = ACH:Description(L["Aura Bars"], 17, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.appearance.args.thinaurabars = ACH:Toggle(E.NewSign..L["Thin Aura Bars"], nil, 18, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.thinmodeaurabars end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.thinmodeaurabars = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.UFmodifications end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.backdrop = ACH:Group(L["Health"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.backdrop.args.description1 = ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.backdrop.args.hide = ACH:Toggle(L["Hide Backdrop"], L["Sets the Backdrop as Transparent/Hidden"], 2, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden = value E:StaticPopup_Show('CONFIG_RL') end)
@@ -2623,6 +2654,12 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.party.args.instances.args.description18 = ACH:Description(" ", 51, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
 	ElvUI_EltreumUI.Options.args.party.args.instances.args.GuildColor = ACH:Color(L["Color"], nil, 52, false, nil, function() return E.db.ElvUI_EltreumUI.skins.instances.guildColor.r, E.db.ElvUI_EltreumUI.skins.instances.guildColor.g, E.db.ElvUI_EltreumUI.skins.instances.guildColor.b, 1, P.ElvUI_EltreumUI.skins.instances.guildColor.r, P.ElvUI_EltreumUI.skins.instances.guildColor.g, P.ElvUI_EltreumUI.skins.instances.guildColor.b, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.skins.instances.guildColor.r, E.db.ElvUI_EltreumUI.skins.instances.guildColor.g, E.db.ElvUI_EltreumUI.skins.instances.guildColor.b = r, g, b end, function() return (not E.db.ElvUI_EltreumUI.skins.instances.enable or E.db.ElvUI_EltreumUI.skins.instances.classcolor or not E.db.ElvUI_EltreumUI.skins.instances.difficultycolors) end, not E.Retail)
 	ElvUI_EltreumUI.Options.args.party.args.instances.args.GuildText = ACH:Input(L["Guild"], L["The text displayed when in a guild group"], 53, false, nil, function() return E.db.ElvUI_EltreumUI.skins.instances.guild end, function(_, value) E.db.ElvUI_EltreumUI.skins.instances.guild = tostring(value) E:StaticPopup_Show('PRIVATE_RL') end, function() return (not E.db.ElvUI_EltreumUI.skins.instances.enable) end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.party.args.instances.args.description19 = ACH:Description(" ", 54, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.party.args.instances.args.delveColor = ACH:Color(L["Color"], nil, 55, false, nil, function() return E.db.ElvUI_EltreumUI.skins.instances.delveColor.r, E.db.ElvUI_EltreumUI.skins.instances.delveColor.g, E.db.ElvUI_EltreumUI.skins.instances.delveColor.b, 1, P.ElvUI_EltreumUI.skins.instances.delveColor.r, P.ElvUI_EltreumUI.skins.instances.delveColor.g, P.ElvUI_EltreumUI.skins.instances.delveColor.b, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.skins.instances.delveColor.r, E.db.ElvUI_EltreumUI.skins.instances.delveColor.g, E.db.ElvUI_EltreumUI.skins.instances.delveColor.b = r, g, b end, function() return (not E.db.ElvUI_EltreumUI.skins.instances.enable or E.db.ElvUI_EltreumUI.skins.instances.classcolor or not E.db.ElvUI_EltreumUI.skins.instances.difficultycolors) end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.party.args.instances.args.delveText = ACH:Input(_G.DELVE_LABEL or "", L["The text displayed when in a delve"], 56, false, nil, function() return E.db.ElvUI_EltreumUI.skins.instances.delve end, function(_, value) E.db.ElvUI_EltreumUI.skins.instances.delve = tostring(value) E:StaticPopup_Show('PRIVATE_RL') end, function() return (not E.db.ElvUI_EltreumUI.skins.instances.enable) end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.party.args.instances.args.description19 = ACH:Description(" ", 57, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.party.args.instances.args.questColor = ACH:Color(L["Color"], nil, 58, false, nil, function() return E.db.ElvUI_EltreumUI.skins.instances.questColor.r, E.db.ElvUI_EltreumUI.skins.instances.questColor.g, E.db.ElvUI_EltreumUI.skins.instances.questColor.b, 1, P.ElvUI_EltreumUI.skins.instances.questColor.r, P.ElvUI_EltreumUI.skins.instances.questColor.g, P.ElvUI_EltreumUI.skins.instances.questColor.b, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.skins.instances.questColor.r, E.db.ElvUI_EltreumUI.skins.instances.questColor.g, E.db.ElvUI_EltreumUI.skins.instances.questColor.b = r, g, b end, function() return (not E.db.ElvUI_EltreumUI.skins.instances.enable or E.db.ElvUI_EltreumUI.skins.instances.classcolor or not E.db.ElvUI_EltreumUI.skins.instances.difficultycolors) end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.party.args.instances.args.questText = ACH:Input(_G.quest_LABEL or "", L["The text displayed when in a quest instance"], 59, false, nil, function() return E.db.ElvUI_EltreumUI.skins.instances.quest end, function(_, value) E.db.ElvUI_EltreumUI.skins.instances.quest = tostring(value) E:StaticPopup_Show('PRIVATE_RL') end, function() return (not E.db.ElvUI_EltreumUI.skins.instances.enable) end, not E.Retail)
 
 	--gradient
 	ElvUI_EltreumUI.Options.args.gradient = ACH:Group(E:TextGradient(L["Gradient"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add gradients to Unitframes and Nameplates"], 85, 'tab')
@@ -3679,20 +3716,27 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added support for Season of Discovery Season 4
+Added support for The War Within
+Added several more statusbar textures from Blizzard's default textures
+Added the experimental Thin Mode to Eltruism > Installer > Layouts
+Added Quest and Delve Instances to the Instance Indicator
+Added more of Blizzard's skull icons
+Added Borders to Focus Power
+Added more Shadows
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Item Level text on character panel to follow some of ElvUI's options
-Updated Background Alpha in the Character Panel Skin to not follow Crest Alpha
-Updated Character Panel Gradient and Class Colors to work separately
+Updated BigWigs profile to fix message positioning
+Updated several functions to support War Within
+Updated the Max Camera distance in Classic
+Updated Rest animation's anchoring
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed a possible error when using /way command with text instead of zone id
-Fixed Combat Icons option missing
+Fixed an issue where the Unitframe Aura borders would reset size on export
+Fixed a possible issue with the Quest Hide
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[

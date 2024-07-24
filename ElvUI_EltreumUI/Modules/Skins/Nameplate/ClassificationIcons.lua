@@ -366,6 +366,82 @@ local bossIDs = {
 	["212730"] = true, --tojara
 	["212802"] = true, --moogul-the-sly
 	["218690"] = true, --khadamu
+
+	--the-rookery
+	["209230"] = true, --kyrioss
+	["207205"] = true, --stormguard-gorren
+	["207207"] = true, --voidstone-monstrosity
+
+	--priory-of-the-sacred-flame
+	["207939"] = true, --baron-braunpyke
+	["207946"] = true, --captain-dailcry
+	["207940"] = true, --prioress-murrpray
+
+	--ara-kara-city-of-echoes
+	["215405"] = true, --anubzekt
+	["213179"] = true, --avanoxx
+	["215407"] = true, --kikatal-the-harvester
+
+	--the-stonevault
+	["219440"] = true, --high-speaker-eirich
+	["210156"] = true, --skarmorak
+	["221586"] = true, --speaker-dorlita
+
+	--cinderbrew-meadery
+	["218000"] = true, --benk-buzzbee
+	["210271"] = true, --brew-master-aldryr
+	["218523"] = true, --goldie-baronbottom
+	["210267"] = true, --ipa
+
+	--city-of-threads
+	["216658"] = true, --izo-the-grand-splicer
+	["216648"] = true, --nx
+	["216619"] = true, --orator-krixvizk
+	["216320"] = true, --the-coaglamation
+
+	--darkflame-cleft
+	["208743"] = true, --blazikon
+	["210149"] = true, --ol-waxbeard
+	["222096"] = true, --the-candle-king
+	["210797"] = true, --the-darkness
+
+	--hallowfall
+	["211089"] = true, --anubikkaj
+	["211087"] = true, --speaker-shadowcrown
+
+	--nerub-ar-palace
+	["223779"] = true, --anubarash
+	["214506"] = true, --broodtwister-ovinax
+	["228470"] = true, --nexus-princess-kyveza
+	["227323"] = true, --queen-ansurek
+	["224552"] = true, --rashanan
+	["219853"] = true, --sikran
+	["214502"] = true, --the-bloodbound-horror
+	["228713"] = true, --ulgrax-the-devourer
+
+	--mists-of-tirna-scithe
+	["164567"] = true, --ingra-maloch
+	["170217"] = true, --mistcaller
+	["164517"] = true, --tredova
+	--the-necrotic-wake
+	["162691"] = true, --blightbone
+	["166945"] = true, --nalthor-the-rimebinder
+	["166882"] = true, --surgeon-stitchflesh
+
+	--siege-of-boralus
+	["144160"] = true, --chopper-redhook
+	["129208"] = true, --dread-captain-lockwood
+	["130836"] = true, --hadal-darkfathom
+	["144158"] = true, --sergeant-bainbridge
+	["128652"] = true, --viqgoth
+
+	--grim-batol
+	["40319"] = true, --drahga-shadowburner
+	["40484"] = true, --erudax
+	["40177"] = true, --forgemaster-throngus
+	["39625"] = true, --general-umbriss
+	["45992"] = true, --valiona
+
 }
 
 local textureDB = {
@@ -594,8 +670,8 @@ E:AddTag('eltruism:classification', 'UNIT_NAME_UPDATE', function(unit)
 	local red,green,blue
 	local icon
 	local classification = UnitClassification(unit) -- "worldboss", "rareelite", "elite", "rare", "normal", "trivial", or "minus"
-	if UnitGUID(unit) and string.match(UnitGUID(unit), "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)") then
-		local unitID = (string.match(UnitGUID(unit), "Creature%-%d+%-%d+%-%d+%-%d+%-(%d+)"))
+	if UnitGUID(unit) then
+		local unitID = select(6, strsplit('-', UnitGUID(unit)))
 		--print(classification,unitID,UnitGUID(unit))
 		--make sure its not a player as to not overwrite class colors
 		if not UnitIsPlayer(unit) and UnitCanAttack("player", unit) then

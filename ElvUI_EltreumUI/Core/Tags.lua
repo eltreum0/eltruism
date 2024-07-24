@@ -138,6 +138,24 @@ end
 
 local stanceBackup = 0 --store previous stance to force refresh it
 
+local function SpellInfo(spellID,ShapeshiftFormID)
+	if not spellID then
+		if GetShapeshiftFormInfo(1) then
+			local name = select(4,GetShapeshiftFormInfo(ShapeshiftFormID))
+			return name
+		else
+			return ""
+		end
+	else
+		if E.Retail then
+			local spellData = GetSpellInfo(spellID)
+			return spellData.name
+		else
+			return GetSpellInfo(spellID)
+		end
+	end
+end
+
 --ty a lot azilroka
 local stanceID = {
 	DEATHKNIGHT = {
@@ -1156,7 +1174,7 @@ E:AddTag("eltruism:dead", "UNIT_HEALTH", function(unit)
 		if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
 			return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga:0:0:0:0|t"
 		else
-			return GetSpellInfo(8326)
+			return SpellInfo(8326)
 		end
 	end
 end)
@@ -1290,7 +1308,7 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
 				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga:0:0:0:0|t"
 			else
-				return GetSpellInfo(8326)
+				return SpellInfo(8326)
 			end
 		end
 	end
@@ -1351,7 +1369,7 @@ E:AddTag("eltruism:hpstatus:reverse", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTIO
 			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
 				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga:0:0:0:0|t"
 			else
-				return GetSpellInfo(8326)
+				return SpellInfo(8326)
 			end
 		end
 	end
@@ -1397,7 +1415,7 @@ E:AddTag("eltruism:hpstatusnopc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PL
 			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
 				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga:0:0:0:0|t"
 			else
-				return GetSpellInfo(8326)
+				return SpellInfo(8326)
 			end
 		end
 	end
@@ -1458,7 +1476,7 @@ E:AddTag("eltruism:perhpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_UPDATE UN
 			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
 				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga:0:0:0:0|t"
 			else
-				return GetSpellInfo(8326)
+				return SpellInfo(8326)
 			end
 		end
 	end
@@ -1544,7 +1562,7 @@ E:AddTag("eltruism:hpstatus:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTI
 			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
 				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga:0:0:0:0|t"
 			else
-				return GetSpellInfo(8326)
+				return SpellInfo(8326)
 			end
 		end
 	end
@@ -1626,7 +1644,7 @@ E:AddTag("eltruism:hpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONN
 			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
 				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga:0:0:0:0|t"
 			else
-				return GetSpellInfo(8326)
+				return SpellInfo(8326)
 			end
 		end
 	end
@@ -1708,7 +1726,7 @@ E:AddTag("eltruism:longhpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_
 			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
 				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga:0:0:0:0|t"
 			else
-				return GetSpellInfo(8326)
+				return SpellInfo(8326)
 			end
 		end
 	end
@@ -1980,11 +1998,11 @@ if E.Cata then
 	E:AddTag("eltruism:presencecolor", 1, function()
 		local stance = GetShapeshiftForm()
 		if stance == 1 then
-			return "|cFFff4040"..GetSpellInfo(48266).."|r"
+			return "|cFFff4040"..SpellInfo(48266).."|r"
 		elseif stance == 2 then
-			return "|cFF40ffff"..GetSpellInfo(48263).."|r"
+			return "|cFF40ffff"..SpellInfo(48263).."|r"
 		elseif stance == 3 then
-			return "|cFF40ff40"..GetSpellInfo(48265).."|r"
+			return "|cFF40ff40"..SpellInfo(48265).."|r"
 		end
 	end)
 	E:AddTagInfo("eltruism:presencecolor", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows the current presence with color"])

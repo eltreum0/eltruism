@@ -149,6 +149,7 @@ local raceBgs = {
 	["Pandaren"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Pandaren",
 	["Worgen"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Worgen",
 	["Dracthyr"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Dracthyr",
+	["EarthenDwarf"] = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\Earthen",
 }
 
 local classCrests = {
@@ -1191,14 +1192,8 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 
 			--hide the backdrop on reputation/currency tab
-			hooksecurefunc("CharacterFrameTab_OnClick", function()
-				if _G.CharacterFrameInset.backdrop:IsVisible() then
-					_G.CharacterFrameInset.backdrop:Hide()
-				end
-			end)
-
-			hooksecurefunc("ReputationFrame_Update", function()
-				if _G.CharacterFrameInset.backdrop:IsVisible() then
+			_G.CharacterFrame:HookScript("OnHide",function()
+				if _G.CharacterFrameInset.backdrop and _G.CharacterFrameInset.backdrop:IsVisible() then
 					_G.CharacterFrameInset.backdrop:Hide()
 				end
 			end)
@@ -1241,12 +1236,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			ClassCrestFrameTexture:SetDrawLayer("BACKGROUND")
 		end
 
-		hooksecurefunc("CharacterFrame_Collapse", function()
+		hooksecurefunc(_G.CharacterFrame,"Collapse", function()
 			if PaperDollFrame:IsVisible() then
 				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize - 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
-					CharacterFrame:SetWidth(505)
 					E:Delay(0, function()
+						CharacterFrame:SetWidth(540)
 						local actor = CharacterModelScene:GetPlayerActor()
 						if actor then
 							actor:SetPosition(0, 0, 0)
@@ -1294,7 +1289,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 		end)
 
-		hooksecurefunc("CharacterFrame_Expand", function()
+		hooksecurefunc(_G.CharacterFrame,"Expand", function()
 			if PaperDollFrame:IsVisible() then
 				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
@@ -1312,8 +1307,9 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							end
 						end
 					end
-					CharacterFrame:SetWidth(700)
+
 					E:Delay(0, function()
+						CharacterFrame:SetWidth(700)
 						local actor = CharacterModelScene:GetPlayerActor()
 						if actor then
 							actor:SetPosition(0, 0, 0)
@@ -2540,10 +2536,10 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 									r,g,b = P.ElvUI_EltreumUI.skins.itemsetcolor.r, P.ElvUI_EltreumUI.skins.itemsetcolor.g, P.ElvUI_EltreumUI.skins.itemsetcolor.b
 								end
 							else
-								r,g,b = _G.GetItemQualityColor(quality)
+								r,g,b = GetItemQualityColor(quality)
 							end
 						else
-							r,g,b = _G.GetItemQualityColor(quality)
+							r,g,b = GetItemQualityColor(quality)
 						end
 						qualityAnchor.Frame.Quality:SetVertexColor(r, g, b)
 						qualityAnchor.Frame.Quality:SetAlpha(1)
@@ -2603,7 +2599,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 								end
 							end
 							if _G.CharacterFrame.Text2 and _G.CharacterFrame.Text2:GetText() ~= nil then
-								local rc,gc,bc = _G.GetItemQualityColor(maxquality)
+								local rc,gc,bc = GetItemQualityColor(maxquality)
 								_G.CharacterFrame.Text2:SetTextColor(rc,gc,bc)
 							end
 						end
@@ -2845,8 +2841,12 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							hooksecurefunc(M,"UpdateAverageString", function(_, _, which, iLevelDB)
 								if which == "Inspect" then
 									if _G.InspectFrame and _G.InspectFrame.ItemLevelText and iLevelDB and _G.InspectFrame.unit then
-										--print(E:CalculateAverageItemLevel(iLevelDB, _G.InspectFrame.unit)," result?")
-										_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:CalculateAverageItemLevel(iLevelDB, _G.InspectFrame.unit))
+										local ilvl = E:CalculateAverageItemLevel(iLevelDB, _G.InspectFrame.unit)
+										if ilvl then
+											_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..ilvl)
+										else
+											_G.InspectFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r ".."?")
+										end
 									end
 								end
 							end)
@@ -3087,10 +3087,10 @@ function ElvUI_EltreumUI:InspectBg(unit)
 										r,g,b = P.ElvUI_EltreumUI.skins.itemsetcolor.r, P.ElvUI_EltreumUI.skins.itemsetcolor.g, P.ElvUI_EltreumUI.skins.itemsetcolor.b
 									end
 								else
-									r,g,b = _G.GetItemQualityColor(quality)
+									r,g,b = GetItemQualityColor(quality)
 								end
 							else
-								r,g,b = _G.GetItemQualityColor(quality)
+								r,g,b = GetItemQualityColor(quality)
 							end
 							qualityAnchorInspect.Frame.Quality:SetVertexColor(r, g, b)
 							qualityAnchorInspect.Frame.Quality:SetAlpha(1)

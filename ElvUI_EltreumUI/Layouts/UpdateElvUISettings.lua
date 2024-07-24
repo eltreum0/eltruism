@@ -352,7 +352,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 		E.db["unitframe"]["units"]["player"]["RestIcon"]["size"] = 15
 		E.db["unitframe"]["units"]["player"]["RestIcon"]["texture"] = "Eltruism01"
 		E.db["unitframe"]["units"]["player"]["RestIcon"]["xOffset"] = 13
-		E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = -1
+		E.db["unitframe"]["units"]["player"]["RestIcon"]["yOffset"] = 1
 
 		--private auras
 		E.db["movers"]["PrivateAurasMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-287,-150"

@@ -382,6 +382,18 @@ P.ElvUI_EltreumUI = {
 				g = 0.72,
 				b = 0,
 			},
+			delve = "Delve",
+			delveColor = {
+				r = 0.90,
+				g = 0.72,
+				b = 0,
+			},
+			quest = "Quest",
+			questColor = {
+				r = 0.90,
+				g = 0.72,
+				b = 0,
+			},
 		},
 		groupfinderSpecIcons = true,
 		groupfinderSpecIconsType = "SPEC",
@@ -845,6 +857,12 @@ P.ElvUI_EltreumUI = {
 		focusstrata = "LOW",
 		focuslevel = 20,
 
+		focuspowerborder = true,
+		xfocuspower = 210,
+		yfocuspower = 46,
+		focuspowerstrata = "MEDIUM",
+		focuspowerlevel = 20,
+
 		focuscastborder = true,
 		xcastfocus = 365,
 		ycastfocus = 62,
@@ -923,37 +941,37 @@ P.ElvUI_EltreumUI = {
 		alternativeclassbar = true,
 		alternativeclassbarxborder = 208,
 		alternativeclassbaryborder = 42,
-		alternativeclassbarstrata = "HIGH",
+		alternativeclassbarstrata = "MEDIUM",
 		alternativeclassbarlevel = 3,
 
 		staggerclassbar = true,
 		staggerclassbarxborder = 211,
 		staggerclassbaryborder = 41,
-		staggerclassbarstrata = "HIGH",
+		staggerclassbarstrata = "MEDIUM",
 		staggerclassbarlevel = 3,
 
 		comboclassbar = true,
 		combosizex = 71, --65
 		combosizey = 44, --44
-		combostrata = "HIGH",
+		combostrata = "MEDIUM",
 		combolevel = 3,
 
 		playerpower = true,
 		playerpowersizex = 165, --65
 		playerpowersizey = 47, --44
-		playerpowerstrata = "HIGH",
+		playerpowerstrata = "MEDIUM",
 		playerpowerlevel = 3,
 
 		targetpower = true,
 		targetpowersizex = 165,
 		targetpowersizey = 47,
-		targetpowerstrata = "HIGH",
+		targetpowerstrata = "MEDIUM",
 		targetpowerlevel = 3,
 
 		targettargetpower = true,
 		targettargetpowersizex = 123,
 		targettargetpowersizey = 47,
-		targettargetpowerstrata = "HIGH",
+		targettargetpowerstrata = "MEDIUM",
 		targettargetpowerlevel = 3,
 
 		databarsize = 15,
@@ -993,6 +1011,7 @@ P.ElvUI_EltreumUI = {
 
 	unitframes = {
 		thinmode = false,
+		thinmodeaurabars = false,
 		UFmodifications = true,
 		UForientation = "HORIZONTAL",
 		lightmode = false,

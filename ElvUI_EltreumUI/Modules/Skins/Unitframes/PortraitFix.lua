@@ -52,6 +52,11 @@ local druidshamanfix = {
 	[393783] = true, --cata feral druid worgen
 }
 
+local dracthyrlikefix = {
+	[4207724] = true, --"dracthyr",
+	[1620605] = true, --"lightforged male,
+}
+
 local catabearform = {
 	[123678] = true, --cata bear form night elf
 	[123680] = true, --cata bear form tauren
@@ -438,6 +443,13 @@ local modelsRotate = {
 	[124368] = true, --Dark Strand Adept
 	[3446018] = true, --Winter Queen
 	[3016204] = true, --Blingtron 7000
+	[5492980] = true, --Moira Thaurissan
+	[5767091] = true, --Dagran Thaurissan II
+	[5548261] = true, --Baelgrim
+	[5548259] = true, --Adelgonn
+	[5395590] = true, --Alleria Windrunner
+	[5484812] = true, --Speaker Brinthe
+	[892526] = true, --other Garrosh Hellscream
 }
 
 local targetlike = {
@@ -551,8 +563,8 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 						xOffset = -0.59 --druid things
 					elseif model == 1505169 or model == 5143717 then
 						xOffset = 0.25 --bear
-					elseif model == 4207724 then
-						xOffset = 0.6 --dracthyr
+					elseif dracthyrlikefix[model] then
+						xOffset = 0.6 --dracthyr and lightforged
 					elseif catabearform[model] then
 						xOffset = 0.17 --cata bears
 					end

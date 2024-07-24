@@ -52,6 +52,46 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 				if E.private.skins.blizzard.enable then
+					if (arg == "Blizzard_DelvesDifficultyPicker") or IsAddOnLoaded("Blizzard_DelvesDifficultyPicker") then
+						if _G.DelvesDifficultyPickerFrame then
+							if not _G.DelvesDifficultyPickerFrame.shadow then
+								_G.DelvesDifficultyPickerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.DelvesDifficultyPickerFrame.shadow)
+							end
+						end
+					end
+
+					if (arg == "Blizzard_PlayerSpells") or IsAddOnLoaded("Blizzard_PlayerSpells") then
+						if _G.PlayerSpellsFrame then
+							if not _G.PlayerSpellsFrame.shadow then
+								_G.PlayerSpellsFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.PlayerSpellsFrame.shadow)
+							end
+							if _G.PlayerSpellsFrame.TabSystem then
+								for i = 1, _G.PlayerSpellsFrame.TabSystem:GetNumChildren() do
+									local tab = select(i, _G.PlayerSpellsFrame.TabSystem:GetChildren())
+									if tab and tab.backdrop and not tab.backdrop.shadow then
+										tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(tab.backdrop.shadow)
+									end
+								end
+							end
+						end
+						if _G.HeroTalentsSelectionDialog then
+							if not _G.HeroTalentsSelectionDialog.shadow then
+								_G.HeroTalentsSelectionDialog:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.HeroTalentsSelectionDialog.shadow)
+							end
+						end
+					end
+					if (arg == "Blizzard_ProfessionsBook") or IsAddOnLoaded("Blizzard_ProfessionsBook") then
+						if _G.ProfessionsBookFrame then
+							if not _G.ProfessionsBookFrame.shadow then
+								_G.ProfessionsBookFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.ProfessionsBookFrame.shadow)
+							end
+						end
+					end
 					if (arg == "Blizzard_ScrappingMachineUI") or IsAddOnLoaded("Blizzard_ScrappingMachineUI") then
 						if _G.ScrappingMachineFrame and not _G.ScrappingMachineFrame.shadow then
 							_G.ScrappingMachineFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -861,7 +901,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.EltruismClickCastingToggle,
 				_G.EmbeddedItemTooltip,
 				_G.EquipmentFlyoutFrameButtons,
-				_G.ExpansionLandingPage,
+				_G.ExpansionLandingPage and _G.ExpansionLandingPage.Overlay and _G.ExpansionLandingPage.Overlay.WarWithinLandingOverlay,
 				_G.ExtraActionButton1,
 				_G.ExtraActionButton2,
 				_G.ExtraActionButton3,
@@ -921,6 +961,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.PVEFrameTab1,
 				_G.PVEFrameTab2,
 				_G.PVEFrameTab3,
+				_G.PVEFrameTab4,
 				_G.PVPFrame,
 				_G.PVPFrameTab1,
 				_G.PVPFrameTab2,
@@ -998,6 +1039,9 @@ function ElvUI_EltreumUI:Shadows()
 				_G.WorldStateScoreFrameTab3,
 				_G.ZoneAbilityFrame,
 				_G.GameMenuFrame,
+				_G.DelvesCompanionConfigurationFrame,
+				_G.DelvesCompanionAbilityListFrame,
+				_G.GuildInviteFrame,
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame then
@@ -1154,6 +1198,18 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 		------------------------------------------------------------------------------------------------------version specific
+		if E.Retail then
+			if E.db.ElvUI_EltreumUI.skins.shadow.blizzard then --reputation detail got moved
+				if _G.ReputationFrame and _G.ReputationFrame.ReputationDetailFrame then
+					_G.ReputationFrame.ReputationDetailFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G.ReputationFrame.ReputationDetailFrame.shadow)
+				end
+				if _G.DelvesCompanionConfigurationFrame and _G.DelvesCompanionConfigurationFrame.CompanionPortraitFrame then --fix shadow overlap
+					_G.DelvesCompanionConfigurationFrame.CompanionPortraitFrame:SetFrameLevel(20)
+				end
+			end
+		end
+
 		if E.Retail or E.Cata then
 			if E.db.ElvUI_EltreumUI.skins.shadow.blizzard then
 
@@ -1167,12 +1223,19 @@ function ElvUI_EltreumUI:Shadows()
 
 				--main minimize button easier here
 				if _G.ObjectiveTrackerFrame then
-					if _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton and not _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow then
+					if _G.ObjectiveTrackerFrame.HeaderMenu and _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton and not _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow then
 						_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton:CreateShadow()
 						_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:ClearAllPoints()
 						_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("TOPLEFT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "TOPLEFT", -2,2)
 						_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("BOTTOMRIGHT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "BOTTOMRIGHT", 2,-2)
 						ElvUI_EltreumUI:ShadowColor(_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow)
+					end
+					if _G.ObjectiveTrackerFrame.Header and _G.ObjectiveTrackerFrame.Header.MinimizeButton and not _G.ObjectiveTrackerFrame.Header.MinimizeButton.shadow then
+						_G.ObjectiveTrackerFrame.Header.MinimizeButton:CreateShadow()
+						_G.ObjectiveTrackerFrame.Header.MinimizeButton.shadow:ClearAllPoints()
+						_G.ObjectiveTrackerFrame.Header.MinimizeButton.shadow:SetPoint("TOPLEFT", _G.ObjectiveTrackerFrame.Header.MinimizeButton.tex, "TOPLEFT", -2,2)
+						_G.ObjectiveTrackerFrame.Header.MinimizeButton.shadow:SetPoint("BOTTOMRIGHT", _G.ObjectiveTrackerFrame.Header.MinimizeButton.tex, "BOTTOMRIGHT", 2,-2)
+						ElvUI_EltreumUI:ShadowColor(_G.ObjectiveTrackerFrame.Header.MinimizeButton.shadow)
 					end
 				end
 

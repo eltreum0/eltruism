@@ -6,7 +6,7 @@ local CreateFrame = _G.CreateFrame
 local IsPlayerSpell = _G.IsPlayerSpell
 local C_UnitAuras = _G.C_UnitAuras
 local UnitCastingInfo = _G.UnitCastingInfo
-local GetSpellPowerCost = _G.GetSpellPowerCost
+local GetSpellPowerCost = _G.C_Spell and _G.C_Spell.GetSpellPowerCost or _G.GetSpellPowerCost
 local next = _G.next
 local UnitPowerMax = _G.UnitPowerMax
 local UnitPower = _G.UnitPower
@@ -151,10 +151,10 @@ function ElvUI_EltreumUI:PowerPrediction()
 
 		_, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
 		if startTime ~= endTime then
-
 			costTable = GetSpellPowerCost(spellID)
-			if costTable then
+			if costTable then --if nil then cost = 0
 				for _, v in next, costTable do
+					--costPercent, costPerSec, hasRequiredAura, type, name, cost, minCost, requiredAuraID, costPercent, costPerSec
 					if v.type == powernumber then
 						mainCost = v.cost
 					else
@@ -164,6 +164,8 @@ function ElvUI_EltreumUI:PowerPrediction()
 						end
 					end
 				end
+			else
+				mainCost = 0
 			end
 
 			--because priest/shaman/druid have a secondary power AND mana they need to be checked against

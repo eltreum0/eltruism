@@ -4,6 +4,20 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
 
+local function SpellInfo(spellID)
+	if E.Retail then
+		local spellData = GetSpellInfo(spellID)
+		if spellData then
+			return spellData.name, spellData.iconID
+		else
+			return "UNKNOWN", 187874  --fallback value
+		end
+	else
+		local name, id = GetSpellInfo(spellID)
+		return name, id
+	end
+end
+
 --add profession shortcuts to the ElvUI bags, suggested by Xheno
 function ElvUI_EltreumUI:BagProfessions()
 	if E.db.ElvUI_EltreumUI.otherstuff.bagProfessionIcons then
@@ -158,7 +172,7 @@ function ElvUI_EltreumUI:BagProfessions()
 						--disenchant
 						if IsSpellKnown(13262) then
 							if not _G["EltruismProfessionDisenchantBagButton"] then
-								local name, _, icon = GetSpellInfo(13262)
+								local name, icon = SpellInfo(13262)
 								--local name, _, icon, _, _, _, spellID = GetSpellInfo(13262)
 								_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
 								_G["EltruismProfessionDisenchantBagButton"] = CreateFrame("Button","EltruismProfessionDisenchantBagButton",_G["ElvUI_ContainerFrame"],"SecureActionButtonTemplate")
@@ -239,7 +253,7 @@ function ElvUI_EltreumUI:BagProfessions()
 						--lockpick
 						if IsSpellKnown(1804) then
 							if not _G["EltruismProfessionLockpickBagButton"] then
-								local name, _, icon = GetSpellInfo(1804)
+								local name, icon = SpellInfo(1804)
 								--local name, _, icon, _, _, _, spellID = GetSpellInfo(13262)
 								_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
 								_G["EltruismProfessionLockpickBagButton"] = CreateFrame("Button","EltruismProfessionLockpickBagButton",_G["ElvUI_ContainerFrame"],"SecureActionButtonTemplate")
@@ -323,7 +337,7 @@ function ElvUI_EltreumUI:BagProfessions()
 						for k, v in ipairs(proftable) do
 							if IsSpellKnown(v) then
 								if not _G["EltruismProfession"..k.."BagButton"] then
-									local name, _, icon = GetSpellInfo(v)
+									local name, icon = SpellInfo(v)
 									_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
 									_G["EltruismProfession"..k.."BagButton"] = CreateFrame("Button","EltruismProfession"..k.."BagButton",_G["ElvUI_ContainerFrame"],"SecureActionButtonTemplate")
 									_G["EltruismProfession"..k.."BagButton"]:SetSize(25,25)
@@ -346,7 +360,7 @@ function ElvUI_EltreumUI:BagProfessions()
 						--disenchant
 						if IsSpellKnown(13262) then
 							if not _G["EltruismProfessionDisenchantBagButton"] then
-								local _, _, icon = GetSpellInfo(13262)
+								local _, icon = SpellInfo(13262)
 								_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
 								_G["EltruismProfessionDisenchantBagButton"] = CreateFrame("Button","EltruismProfessionDisenchantBagButton",_G["ElvUI_ContainerFrame"],"SecureActionButtonTemplate")
 								_G["EltruismProfessionDisenchantBagButton"]:SetSize(25,25)
@@ -426,7 +440,7 @@ function ElvUI_EltreumUI:BagProfessions()
 						--lockpick
 						if IsSpellKnown(1804) then
 							if not _G["EltruismProfessionLockpickBagButton"] then
-								local _, _, icon = GetSpellInfo(1804)
+								local _, icon = SpellInfo(1804)
 								_G["ElvUI_ContainerFrame"].numButtons = _G["ElvUI_ContainerFrame"].numButtons + 1
 								_G["EltruismProfessionLockpickBagButton"] = CreateFrame("Button","EltruismProfessionLockpickBagButton",_G["ElvUI_ContainerFrame"],"SecureActionButtonTemplate")
 								_G["EltruismProfessionLockpickBagButton"]:SetSize(25,25)

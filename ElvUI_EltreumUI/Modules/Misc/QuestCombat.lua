@@ -1,9 +1,9 @@
 local E = unpack(ElvUI)
 local _G = _G
-local ObjectiveTracker_Collapse = _G.ObjectiveTracker_Collapse
+--local ObjectiveTracker_Collapse = _G.ObjectiveTracker_Collapse
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local IsInInstance = _G.IsInInstance
-local ObjectiveTracker_Expand = _G.ObjectiveTracker_Expand
+--local ObjectiveTracker_Expand = _G.ObjectiveTracker_Expand
 local ObjectiveTrackerFrame = _G.ObjectiveTrackerFrame
 local tonumber = _G.tonumber
 local string = _G.string
@@ -52,8 +52,6 @@ function ElvUI_EltreumUI:QuestEncounterEnd()
 		local _, instanceType = IsInInstance()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
 			if E.Retail then
-				--ObjectiveTracker_Expand()
-				--ObjectiveTrackerFrame:Show()
 				ObjectiveTrackerFrame:SetAlpha(1)
 			elseif E.Classic then
 				if IsAddOnLoaded("Questie") then
@@ -111,7 +109,6 @@ function ElvUI_EltreumUI:ArenaQuest()
 			end
 		elseif instanceType == "none" then
 			if E.Retail then
-				--ObjectiveTrackerFrame:Show()
 				ObjectiveTrackerFrame:SetAlpha(1)
 			elseif E.Classic then
 				if IsAddOnLoaded("Questie") then
@@ -142,7 +139,12 @@ end
 function ElvUI_EltreumUI:QuestCombat()
 	if E.db.ElvUI_EltreumUI.quests.combatenable then
 		if E.Retail then
-			ObjectiveTracker_Collapse()
+			--[[if _G.ObjectiveTrackerFrame:IsCollapsed() == false then
+				_G.ObjectiveTrackerFrame:ToggleCollapsed() --seems like this causes taints
+			end]]
+			--ObjectiveTrackerFrame:SetCollapsed(true)
+			ObjectiveTrackerFrame:SetAlpha(0)
+			--ObjectiveTracker_Collapse()
 		elseif E.Classic then
 			if IsAddOnLoaded("Questie") then
 				if _G["Questie_BaseFrame"] then
@@ -171,7 +173,12 @@ end
 function ElvUI_EltreumUI:QuestCombatEnd()
 	if E.db.ElvUI_EltreumUI.quests.combatenable then
 		if E.Retail then
-			ObjectiveTracker_Expand()
+			--[[if _G.ObjectiveTrackerFrame:IsCollapsed() then
+				_G.ObjectiveTrackerFrame:ToggleCollapsed() --seems like this causes taints
+			end]]
+			--ObjectiveTrackerFrame:SetCollapsed(false)
+			ObjectiveTrackerFrame:SetAlpha(1)
+			--ObjectiveTracker_Expand()
 		elseif E.Classic then
 			if IsAddOnLoaded("Questie") then
 				if _G["Questie_BaseFrame"] then

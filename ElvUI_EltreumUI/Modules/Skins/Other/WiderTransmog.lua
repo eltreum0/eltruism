@@ -23,8 +23,10 @@ function ElvUI_EltreumUI:WiderTransmog()
 				_G.WardrobeTransmogFrame.ModelScene:SetAllPoints(_G.WardrobeTransmogFrame)
 				--_G.WardrobeTransmogFrame.ModelScene:SetWidth(500)
 				--_G.WardrobeTransmogFrame.ModelScene:SetHeight(450)
-				_G.WardrobeOutfitDropDown:ClearAllPoints()
-				_G.WardrobeOutfitDropDown:SetPoint("TOPLEFT", _G.WardrobeTransmogFrame, "TOPLEFT", 0, 50)
+				if _G.WardrobeTransmogFrame.OutfitDropdown then
+					_G.WardrobeTransmogFrame.OutfitDropdown:ClearAllPoints()
+					_G.WardrobeTransmogFrame.OutfitDropdown:SetPoint("TOPLEFT", _G.WardrobeTransmogFrame, "TOPLEFT", 0, 50)
+				end
 			else
 				_G.WardrobeTransmogFrame.Model:ClearAllPoints()
 				_G.WardrobeTransmogFrame.Model:SetPoint("TOP", _G.WardrobeTransmogFrame, "TOP", 20, 10)

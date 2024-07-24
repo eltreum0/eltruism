@@ -8,8 +8,8 @@ local IsInInstance = _G.IsInInstance
 local IsInGroup = _G.IsInGroup
 local PlaySoundFile = _G.PlaySoundFile
 local GetInstanceInfo = _G.GetInstanceInfo
-local GetSpellTexture = _G.GetSpellTexture
-local GetSpellCharges = _G.GetSpellCharges
+local GetSpellTexture = _G.C_Spell and _G.C_Spell.GetSpellTexture or _G.GetSpellTexture
+local GetSpellCharges = _G.C_Spell and _G.C_Spell.GetSpellCharges or _G.GetSpellCharges
 local InCombatLockdown = _G.InCombatLockdown
 local _, instanceType
 local DifficultyID
@@ -416,8 +416,8 @@ function ElvUI_EltreumUI:RestIcon(frame)
 			_G["EltruismPlayerRestLoop"]:ClearAllPoints()
 			_G["EltruismPlayerRestLoop"]:SetParent(frame) --this can crash the game, and also show/hide calls can (during cinematic) --seems fixed now
 			_G["EltruismPlayerRestLoop"]:SetPoint("CENTER", frame.RestingIndicator, "CENTER", 0, 0)
-			_G["EltruismPlayerRestLoop"]:SetFrameStrata('HIGH')
-			_G["EltruismPlayerRestLoop"]:SetFrameLevel(7)
+			--_G["EltruismPlayerRestLoop"]:SetFrameStrata('HIGH')
+			_G["EltruismPlayerRestLoop"]:SetFrameLevel(frame:GetFrameLevel()+20)
 			_G["EltruismPlayerRestLoop"]:SetScale(E.db.unitframe.units.player.RestIcon.size/10)
 			hooksecurefunc(frame.RestingIndicator, 'PostUpdate', function()
 				if frame.RestingIndicator:IsShown() then

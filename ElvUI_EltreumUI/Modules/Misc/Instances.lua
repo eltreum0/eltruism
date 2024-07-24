@@ -212,6 +212,30 @@ instancedifficulty:SetScript("OnEvent", function()
 					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.r, E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.g, E.db.ElvUI_EltreumUI.skins.instances.RaidTimewalkerColor.b)
 				end
 			end
+		elseif DifficultyID == 208 then --delve
+			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.delve)
+			backuptext = E.db.ElvUI_EltreumUI.skins.instances.delve
+			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
+				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
+					textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.delve, E.db.ElvUI_EltreumUI.skins.instances.delveColor.r, E.db.ElvUI_EltreumUI.skins.instances.delveColor.g, E.db.ElvUI_EltreumUI.skins.instances.delveColor.b, E.db.ElvUI_EltreumUI.skins.instances.delveColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.delveColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.delveColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
+					instancedifficulty.Text:SetText(textgradient)
+					backuptext = textgradient
+				else
+					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.delveColor.r, E.db.ElvUI_EltreumUI.skins.instances.delveColor.g, E.db.ElvUI_EltreumUI.skins.instances.delveColor.b)
+				end
+			end
+		elseif DifficultyID == 216 then --quest
+			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.quest)
+			backuptext = E.db.ElvUI_EltreumUI.skins.instances.quest
+			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
+				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
+					textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.quest, E.db.ElvUI_EltreumUI.skins.instances.questColor.r, E.db.ElvUI_EltreumUI.skins.instances.questColor.g, E.db.ElvUI_EltreumUI.skins.instances.questColor.b, E.db.ElvUI_EltreumUI.skins.instances.questColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.questColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.questColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
+					instancedifficulty.Text:SetText(textgradient)
+					backuptext = textgradient
+				else
+					instancedifficulty.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.instances.questColor.r, E.db.ElvUI_EltreumUI.skins.instances.questColor.g, E.db.ElvUI_EltreumUI.skins.instances.questColor.b)
+				end
+			end
 		else
 			if E.db.ElvUI_EltreumUI.dev then
 				ElvUI_EltreumUI:Print("Unknown instance type, please report in discord: "..DifficultyID)

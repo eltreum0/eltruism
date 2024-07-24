@@ -23,7 +23,7 @@ local GetItemGem = _G.C_Item and _G.C_Item.GetItemGem or _G.GetItemGem
 local GameTooltip = _G.GameTooltip
 local GetSpellLink = _G.GetSpellLink
 local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
-local GetSpellTexture = _G.GetSpellTexture
+local GetSpellTexture = _G.C_Spell and _G.C_Spell.GetSpellTexture or _G.GetSpellTexture
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local type = _G.type
 local max = _G.max
@@ -110,6 +110,10 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[4079] = 74216, --enchant-ring-agility
 		[4080] = 74217, --enchant-ring-intellect
 		[4081] = 74218, --enchant-ring-greater-stamina
+		[446451] = 7328, --atal'ai-signet-of-might
+		[446459] = 7325, --atal'ai-signet-of-mojo
+		[446472] = 7326, --atal'ai-signet-of-serenity
+		[432190] = 7124, --wolfshead-trophy
 
 		--sod (seems like its inverted)
 		[7328] = 446451 or 446450, --atal'ai-signet-of-might
