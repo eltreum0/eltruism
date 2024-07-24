@@ -341,14 +341,6 @@ function ElvUI_EltreumUI:SkinQuests()
 								end
 								--traveler's log dash is part of the text and not another element, so color it differently
 								if line.Text and line.Text:GetText() then
-									if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
-										local nodash = gsub(line.Text:GetText(),"-","")
-										line.Text:SetText(nodash)
-									else
-										local coloreddash = gsub(line.Text:GetText(),"-","|cff"..classcolorsescape[E.myclass].."-|r")
-										line.Text:SetText(coloreddash)
-									end
-
 									line.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 									line.Text:SetTextColor(mult, mult, mult)
 									line.Text:SetWordWrap(true)
@@ -446,14 +438,6 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 						--traveler's log dash is part of the text and not another element, so color it differently
 						if line.Text and line.Text:GetText() then
-							if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
-								local nodash = gsub(line.Text:GetText(),"-","")
-								line.Text:SetText(nodash)
-							else
-								local coloreddash = gsub(line.Text:GetText(),"-","|cff"..classcolorsescape[E.myclass].."-|r")
-								line.Text:SetText(coloreddash)
-							end
-
 							line.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							line.Text:SetTextColor(mult, mult, mult)
 							line.Text:SetWordWrap(true)
