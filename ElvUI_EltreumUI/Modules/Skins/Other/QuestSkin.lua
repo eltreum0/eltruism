@@ -22,7 +22,7 @@ if E.Retail then
 end
 local format = _G.format
 
-local classcolorsescape = {
+--[[local classcolorsescape = {
 	["DEATHKNIGHT"]	= "C41E3A",
 	["DEMONHUNTER"]	= "A330C9",
 	["DRUID"] = "FF7C0A",
@@ -36,7 +36,7 @@ local classcolorsescape = {
 	["WARLOCK"] = "8788EE",
 	["WARRIOR"] = "C69B6D",
 	["EVOKER"] = "33937F",
-}
+}]]
 
 --skin objective frame depending on verison
 function ElvUI_EltreumUI:SkinQuests()
