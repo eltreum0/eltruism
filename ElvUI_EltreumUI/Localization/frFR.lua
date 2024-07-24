@@ -1594,3 +1594,6 @@ L["Databars Thickness"] = "Databars Epaisseur"
 L["Alternative Power Thickness"] = "Épaisseur de la puissance alternative"
 L["Adjust Position of Item Level Text"] = "Ajuster la position du texte du niveau de l'élément"
 L["Focus Power Border"] = true
+L["The text displayed when in a delve"] = true
+L["The text displayed when in a quest instance"] = true
+L["Thin Aura Bars"] = true

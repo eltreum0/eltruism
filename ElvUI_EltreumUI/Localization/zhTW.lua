@@ -1592,3 +1592,6 @@ L["Model will be set inside health instead of over whole frame"] = "模組將設
 L["Circle Minimap"] = "圓形小地圖"
 L["Adjust Position of Item Level Text"] = true
 L["Focus Power Border"] = true
+L["The text displayed when in a delve"] = true
+L["The text displayed when in a quest instance"] = true
+L["Thin Aura Bars"] = true
