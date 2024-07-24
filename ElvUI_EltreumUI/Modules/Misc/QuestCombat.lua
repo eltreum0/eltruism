@@ -142,7 +142,7 @@ function ElvUI_EltreumUI:QuestCombat()
 			--[[if _G.ObjectiveTrackerFrame:IsCollapsed() == false then
 				_G.ObjectiveTrackerFrame:ToggleCollapsed() --seems like this causes taints
 			end]]
-			ObjectiveTrackerFrame:SetCollpased(false)
+			ObjectiveTrackerFrame:SetCollpased(true)
 			--ObjectiveTrackerFrame:SetAlpha(0)
 			--ObjectiveTracker_Collapse()
 			--_G.ObjectiveTrackerFrame:SetCollapsed() --doesnt work
