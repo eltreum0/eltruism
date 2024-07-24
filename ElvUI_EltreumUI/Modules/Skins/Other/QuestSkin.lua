@@ -681,27 +681,31 @@ function ElvUI_EltreumUI:SkinQuests()
 					if k.Bar then
 						EltreumSkinProgressBars(k.Bar)
 					end
-					if k.UpdateHighlight then
+					if k.UpdateHighlight and not k.UpdateHighlightHook then
 						hooksecurefunc(k, "UpdateHighlight", function(_, block)
 							blockenter(block)
 						end)
+						k.UpdateHighlightHook = true
 					end
-					if k.OnHeaderEnter then
+					if k.OnHeaderEnter and not k.OnHeaderEnterHook then
 						hooksecurefunc(k, "OnHeaderEnter", function(block)
 							blockenter(block)
 						end)
+						k.OnHeaderEnterHook = true
 					end
-					if k.OnHeaderLeave then
+					if k.OnHeaderLeave and not k.OnHeaderLeaveHook then
 						hooksecurefunc(k, "OnHeaderLeave", function(block)
 							blockexit(block)
 						end)
+						k.OnHeaderLeaveHook = true
 					end
-					if k.AddObjective then
+					if k.AddObjective and not k.AddObjectiveHook then
 						hooksecurefunc(k, "AddObjective", function()
 							blockskin(k)
 						end)
+						k.AddObjectiveHook = true
 					end
-					if k.UpdateStageBlock then
+					if k.UpdateStageBlock and not k.UpdateStageBlockHook then
 						hooksecurefunc(k, "UpdateStageBlock", function()
 							if _G.ScenarioObjectiveTracker then
 								local frames = {_G.ScenarioObjectiveTracker.ContentsFrame:GetChildren()}
@@ -782,6 +786,7 @@ function ElvUI_EltreumUI:SkinQuests()
 								end]]
 							end
 						end)
+						k.UpdateStageBlockHook = true
 					end
 				end
 				local function firehooks()
