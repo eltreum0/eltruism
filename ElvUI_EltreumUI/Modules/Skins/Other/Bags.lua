@@ -8,7 +8,7 @@ local function SpellInfo(spellID)
 	if E.Retail then
 		local spellData = GetSpellInfo(spellID)
 		if spellData then
-			return spellData.name, spellData.spellID
+			return spellData.name, spellData.iconID
 		else
 			return "UNKNOWN", 187874  --fallback value
 		end
