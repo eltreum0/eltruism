@@ -662,10 +662,12 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 						block.HeaderText:SetWordWrap(true)
 					end
-					if block.itemButton then
-						if E.db.ElvUI_EltreumUI.skins.shadow.enable and not block.itemButton.shadow then
-							block.itemButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(block.itemButton.shadow)
+					local itemButton = block.itemButton or block.ItemButton
+					if itemButton then
+						S:HandleButton(itemButton)
+						if E.db.ElvUI_EltreumUI.skins.shadow.enable and not itemButton.shadow then
+							itemButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(itemButton.shadow)
 						end
 						if _G.ObjectiveFrameMover then
 							questside = _G.ObjectiveFrameMover:GetPoint()
@@ -673,11 +675,11 @@ function ElvUI_EltreumUI:SkinQuests()
 							questside = "RIGHT"
 						end
 						if questside:match("RIGHT") then
-							block.itemButton:ClearAllPoints()
-							block.itemButton:SetPoint("TOPLEFT", block.HeaderText, "TOPLEFT", -60, -3)
+							itemButton:ClearAllPoints()
+							itemButton:SetPoint("TOPLEFT", block, "TOPLEFT", -60, -3)
 						else
-							block.itemButton:ClearAllPoints()
-							block.itemButton:SetPoint("TOPRIGHT", block.HeaderText, "TOPRIGHT", 80, -3)
+							itemButton:ClearAllPoints()
+							itemButton:SetPoint("TOPRIGHT", block, "TOPRIGHT", 80, -3)
 						end
 					end
 					if block.groupFinderButton and E.db.ElvUI_EltreumUI.skins.shadow.enable and not block.groupFinderButton.shadow then
