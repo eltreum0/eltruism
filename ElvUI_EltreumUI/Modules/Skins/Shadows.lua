@@ -1230,6 +1230,13 @@ function ElvUI_EltreumUI:Shadows()
 						_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow:SetPoint("BOTTOMRIGHT", _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.tex, "BOTTOMRIGHT", 2,-2)
 						ElvUI_EltreumUI:ShadowColor(_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow)
 					end
+					if _G.ObjectiveTrackerFrame.Header and _G.ObjectiveTrackerFrame.Header.MinimizeButton and not _G.ObjectiveTrackerFrame.Header.MinimizeButton.shadow then
+						_G.ObjectiveTrackerFrame.Header.MinimizeButton:CreateShadow()
+						_G.ObjectiveTrackerFrame.Header.MinimizeButton.shadow:ClearAllPoints()
+						_G.ObjectiveTrackerFrame.Header.MinimizeButton.shadow:SetPoint("TOPLEFT", _G.ObjectiveTrackerFrame.Header.MinimizeButton.tex, "TOPLEFT", -2,2)
+						_G.ObjectiveTrackerFrame.Header.MinimizeButton.shadow:SetPoint("BOTTOMRIGHT", _G.ObjectiveTrackerFrame.Header.MinimizeButton.tex, "BOTTOMRIGHT", 2,-2)
+						ElvUI_EltreumUI:ShadowColor(_G.ObjectiveTrackerFrame.Header.MinimizeButton.shadow)
+					end
 				end
 
 				if E.db.ElvUI_EltreumUI.skins.quests and E.private.skins.blizzard.objectiveTracker and E.private.skins.blizzard.enable then
