@@ -390,6 +390,14 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 							end
 						end
 
+						--new dropdowns?
+						if frame:GetParent() and frame:GetParent().InitScrollLayout then
+							if not frame.shadow then
+								frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(frame.shadow)
+							end
+						end
+
 						--petbattle
 						if frame:GetParent() and frame:GetParent().PetType then
 							if not frame.shadow then
