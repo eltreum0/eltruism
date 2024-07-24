@@ -246,7 +246,6 @@ function ElvUI_EltreumUI:SkinQuests()
 					questside = "RIGHT"
 				end
 
-
 				if _G.ObjectiveTrackerFrame and _G.ObjectiveTrackerFrame.HeaderMenu and _G.ObjectiveTrackerFrame.HeaderMenu.Title then --fix when collapsed
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSizeHeader, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
@@ -343,10 +342,10 @@ function ElvUI_EltreumUI:SkinQuests()
 								--traveler's log dash is part of the text and not another element, so color it differently
 								if line.Text and line.Text:GetText() then
 									if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
-										local nodash = gsub(line.Text:GetText(),"- ","")
+										local nodash = gsub(line.Text:GetText(),"-","")
 										line.Text:SetText(nodash)
 									else
-										local coloreddash = gsub(line.Text:GetText(),"- ","|cff"..classcolorsescape[E.myclass].."-  |r")
+										local coloreddash = gsub(line.Text:GetText(),"-","|cff"..classcolorsescape[E.myclass].."-|r")
 										line.Text:SetText(coloreddash)
 									end
 
@@ -448,10 +447,10 @@ function ElvUI_EltreumUI:SkinQuests()
 						--traveler's log dash is part of the text and not another element, so color it differently
 						if line.Text and line.Text:GetText() then
 							if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
-								local nodash = gsub(line.Text:GetText(),"- ","")
+								local nodash = gsub(line.Text:GetText(),"-","")
 								line.Text:SetText(nodash)
 							else
-								local coloreddash = gsub(line.Text:GetText(),"- ","|cff"..classcolorsescape[E.myclass].."-  |r")
+								local coloreddash = gsub(line.Text:GetText(),"-","|cff"..classcolorsescape[E.myclass].."-|r")
 								line.Text:SetText(coloreddash)
 							end
 
@@ -1253,15 +1252,15 @@ function ElvUI_EltreumUI:SkinQuests()
 						else
 							line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 						end
-						line.text:SetWidth(250)
+						--line.text:SetWidth(250)
 					elseif isComplete then
 						line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 						line.text:SetTextColor(0, 1, 0)
-						line.text:SetWidth(250)
+						--line.text:SetWidth(250)
 					else
 						line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 						line.text:SetTextColor(0.8, 0.8, 0.8)
-						line.text:SetWidth(250)
+						--line.text:SetWidth(250)
 
 						--inspired by blinkii's skin, color
 						local textcata = line.text:GetText()
@@ -1512,7 +1511,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					if ( line ) then
 						if line.text:GetTextColor() == 0 and 0.99999779462814 and 0 and 0.99999779462814 then
 							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-							line.text:SetWidth(250)
+							--line.text:SetWidth(250)
 						else
 							if ( index == quest.startLine ) then
 								-- header
@@ -1524,7 +1523,7 @@ function ElvUI_EltreumUI:SkinQuests()
 									else
 										line.text:SetTextColor(classcolor.r+0.2, classcolor.g+0.2, classcolor.b+0.2)
 									end
-									line.text:SetWidth(250)
+									--line.text:SetWidth(250)
 								else
 									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 									if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
@@ -1532,7 +1531,7 @@ function ElvUI_EltreumUI:SkinQuests()
 									else
 										line.text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 									end
-									line.text:SetWidth(250)
+									--line.text:SetWidth(250)
 								end
 							else
 								if ( onEnter ) then
@@ -1540,13 +1539,13 @@ function ElvUI_EltreumUI:SkinQuests()
 									line.text:SetTextColor(1, 1, 1)
 									--line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 									--line.dash:SetTextColor(1, 1, 1)
-									line.text:SetWidth(250)
+									--line.text:SetWidth(250)
 								else
 									line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 									line.text:SetTextColor(0.8, 0.8, 0.8)
 									--line.dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 									--line.dash:SetTextColor(0.8, 0.8, 0.8)
-									line.text:SetWidth(250)
+									--line.text:SetWidth(250)
 									--line.text:ClearAllPoints()
 									--line.text:SetPoint("LEFT", line.dash, "RIGHT")
 								end
