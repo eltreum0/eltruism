@@ -33,11 +33,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		ElvUI_EltreumUI:GetSLEProfile()
 	end
 
-	-- AddOnSkins Profile
-	if IsAddOnLoaded('AddOnSkins') then
-		ElvUI_EltreumUI:AddonSetupAS()
-	end
-
 	if IsAddOnLoaded("ProjectAzilroka") then
 		--E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-5,-226"
 		E.db["movers"]["SquareMinimapButtonBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-6,-205"

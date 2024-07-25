@@ -17,10 +17,8 @@ ___
  \
 > And the following addons are highly recommended:\
  \
-**[AddOnSkins](https://www.curseforge.com/wow/addons/addonskins)**\
 **[Shadow & Light](https://www.tukui.org/addons.php?id=38)**\
 **[Windtools](https://www.curseforge.com/wow/addons/elvui-windtools)**\
-**[ProjectAzilroka](https://www.curseforge.com/wow/addons/projectazilroka)**
 ___
 ### Features
 Eltruism includes many features and all can be turned off if the user wants. Some of them are listed below:
