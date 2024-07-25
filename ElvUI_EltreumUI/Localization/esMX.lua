@@ -1597,3 +1597,5 @@ L["Focus Power Border"] = "Borde de potencia de enfoque"
 L["The text displayed when in a delve"] = "El texto que se muestra cuando se está en una inmersión"
 L["The text displayed when in a quest instance"] = "El texto que se muestra en una instancia de búsqueda"
 L["Thin Aura Bars"] = "Barras de aura finas"
+L["Exported Gradient Data:"] = true
+L["Import Gradient Data"] = true

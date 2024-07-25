@@ -250,6 +250,16 @@ function ElvUI_EltreumUI:SkinQuests()
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSizeHeader, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 				end
+				if _G.ObjectiveTrackerFrame and _G.ObjectiveTrackerFrame.Header and _G.ObjectiveTrackerFrame.Header.Text then --its the all objectives thing
+					if E.db.ElvUI_EltreumUI.skins.questsettings.customcolortitle then
+						_G.ObjectiveTrackerFrame.Header.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customrtitle, E.db.ElvUI_EltreumUI.skins.questsettings.customgtitle, E.db.ElvUI_EltreumUI.skins.questsettings.custombtitle)
+					else
+						_G.ObjectiveTrackerFrame.Header.Text:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
+
+					end
+					_G.ObjectiveTrackerFrame.Header.Text:SetShadowColor(0, 0, 0, 0.8)
+					_G.ObjectiveTrackerFrame.Header.Text:SetShadowOffset(2, -1)
+				end
 
 				local mult = 0.85
 
