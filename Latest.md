@@ -1,6 +1,7 @@
 ### 4.1.9.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
 Added support for The War Within  
+Added a menu in Eltruism > Installer to import and export Gradient settings  
 Added several more statusbar textures from Blizzard's default textures  
 Added the experimental Thin Mode to Eltruism > Installer > Layouts  
 Added Quest and Delve Instances to the Instance Indicator  
@@ -19,5 +20,6 @@ Fixed Pet Autocast error in Classic/Cataclysm due to 11.0 changes
 Fixed icon for professions in Classic and Cataclysm  
 Fixed a possible error with the Quest Tracker skin  
 Fixed a possible issue with the Quest Hide  
+Fixed Hekili's skin hiding the Textures  
 Fixed Event Toast lines  
 Fixed Game Menu Button
