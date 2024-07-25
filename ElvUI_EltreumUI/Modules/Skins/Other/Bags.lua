@@ -13,8 +13,8 @@ local function SpellInfo(spellID)
 			return "UNKNOWN", 187874  --fallback value
 		end
 	else
-		local name, id = GetSpellInfo(spellID)
-		return name, id
+		local name, _, icon = GetSpellInfo(spellID)
+		return name, icon
 	end
 end
 
