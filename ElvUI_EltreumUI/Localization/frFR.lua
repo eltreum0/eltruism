@@ -1597,3 +1597,5 @@ L["Focus Power Border"] = "Frontière du pouvoir de la focalisation"
 L["The text displayed when in a delve"] = "Le texte affiché lors d'une immersion"
 L["The text displayed when in a quest instance"] = "Le texte affiché lors d'une instance de quête"
 L["Thin Aura Bars"] = "Barres d'Aura fines"
+L["Exported Gradient Data:"] = true
+L["Import Gradient Data"] = true

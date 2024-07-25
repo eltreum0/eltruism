@@ -1595,3 +1595,5 @@ L["Focus Power Border"] = true
 L["The text displayed when in a delve"] = true
 L["The text displayed when in a quest instance"] = true
 L["Thin Aura Bars"] = true
+L["Exported Gradient Data:"] = true
+L["Import Gradient Data"] = true
