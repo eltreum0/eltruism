@@ -535,7 +535,12 @@ EltruismGameMenu:SetScript("OnEvent", function()
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
 		if E.Retail then
 			local EM = E:GetModule('EditorMode')
-			local Menubutton = CreateFrame('Button', 'EltruismGameMenu', GameMenuFrame, 'MainMenuFrameButtonTemplate')
+			local Menubutton
+			if not _G["EltruismGameMenu"] then
+				Menubutton = CreateFrame('Button', 'EltruismGameMenu', GameMenuFrame, 'MainMenuFrameButtonTemplate')
+			else
+				Menubutton = _G["EltruismGameMenu"]
+			end
 			Menubutton:SetScript('OnClick', function()
 				if InCombatLockdown() then return end
 				E:ToggleOptions()
