@@ -351,7 +351,6 @@ ElvUI_EltreumUI.InstallerData = {
 					end
 				end
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
-				ElvUI_EltreumUI:AddonSetupPA()
 				if (E.Cata or E.Retail or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
 					E.data:SetDualSpecProfile('Eltreum DPS/Tank ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
 				else
@@ -386,7 +385,6 @@ ElvUI_EltreumUI.InstallerData = {
 					end
 				end
 				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
-				ElvUI_EltreumUI:AddonSetupPA()
 				if (E.Cata or E.Retail) and E.data:IsDualSpecEnabled() then
 					E.data:SetDualSpecProfile('Eltreum Healer ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
 				else
