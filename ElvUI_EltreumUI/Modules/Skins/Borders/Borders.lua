@@ -279,10 +279,12 @@ function ElvUI_EltreumUI:Borders()
 				if E.db.unitframe.units.player.castbar.icon then
 					if not E.db.unitframe.units.player.castbar.iconAttached then
 						playercastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayercast + E.db.unitframe.units.player.castbar.iconSize, E.db.ElvUI_EltreumUI.borders.yplayercast)
-						if E.db.unitframe.units.player.castbar.iconPosition == "RIGHT" then
-							playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", E.db.unitframe.units.player.castbar.iconSize/2, 0)
-						elseif E.db.unitframe.units.player.castbar.iconPosition == "LEFT" then
-							playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", -E.db.unitframe.units.player.castbar.iconSize/2, 0)
+						if E.db.unitframe.units.player.castbar.iconXOffset == 0 then
+							if E.db.unitframe.units.player.castbar.iconPosition == "RIGHT" then
+								playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", E.db.unitframe.units.player.castbar.iconSize/2, 0)
+							elseif E.db.unitframe.units.player.castbar.iconPosition == "LEFT" then
+								playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", -E.db.unitframe.units.player.castbar.iconSize/2, 0)
+							end
 						else
 							playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", 0, 0)
 						end
@@ -340,10 +342,12 @@ function ElvUI_EltreumUI:Borders()
 				if E.db.unitframe.units.target.castbar.icon then
 					if not E.db.unitframe.units.target.castbar.iconAttached then
 						targetcastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcasttarget + E.db.unitframe.units.target.castbar.iconSize, E.db.ElvUI_EltreumUI.borders.ycasttarget)
-						if E.db.unitframe.units.target.castbar.iconPosition == "RIGHT" then
-							targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", E.db.unitframe.units.target.castbar.iconSize/2, 0)
-						elseif E.db.unitframe.units.target.castbar.iconPosition == "LEFT" then
-							targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", -E.db.unitframe.units.target.castbar.iconSize/2, 0)
+						if E.db.unitframe.units.target.castbar.iconXOffset == 0 then
+							if E.db.unitframe.units.target.castbar.iconPosition == "RIGHT" then
+								targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", E.db.unitframe.units.target.castbar.iconSize/2, 0)
+							elseif E.db.unitframe.units.target.castbar.iconPosition == "LEFT" then
+								targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", -E.db.unitframe.units.target.castbar.iconSize/2, 0)
+							end
 						else
 							targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", 0, 0)
 						end
@@ -691,10 +695,12 @@ function ElvUI_EltreumUI:Borders()
 				if E.db.unitframe.units.focus.castbar.icon then
 					if not E.db.unitframe.units.focus.castbar.iconAttached then
 						focuscastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcastfocus + E.db.unitframe.units.focus.castbar.iconSize, E.db.ElvUI_EltreumUI.borders.ycastfocus)
-						if E.db.unitframe.units.focus.castbar.iconPosition == "RIGHT" then
-							focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", E.db.unitframe.units.focus.castbar.iconSize/2, 0)
-						elseif E.db.unitframe.units.focus.castbar.iconPosition == "LEFT" then
-							focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", -E.db.unitframe.units.focus.castbar.iconSize/2, 0)
+						if E.db.unitframe.units.focus.castbar.iconXOffset == 0 then
+							if E.db.unitframe.units.focus.castbar.iconPosition == "RIGHT" then
+								focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", E.db.unitframe.units.focus.castbar.iconSize/2, 0)
+							elseif E.db.unitframe.units.focus.castbar.iconPosition == "LEFT" then
+								focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", -E.db.unitframe.units.focus.castbar.iconSize/2, 0)
+							end
 						else
 							focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", 0, 0)
 						end
