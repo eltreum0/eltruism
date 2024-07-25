@@ -3,7 +3,7 @@ local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
 
-function ElvUI_EltreumUI:SetupLayoutDPS()
+function ElvUI_EltreumUI:SetupLayoutDPS(silent)
 	if not E.db.movers then E.db.movers = {} end
 	if E.Retail then
 		E.db["unitframe"]["units"]["player"]["customTexts"] = E.db["unitframe"]["units"]["player"]["customTexts"] or {}
@@ -1289,5 +1289,7 @@ function ElvUI_EltreumUI:SetupLayoutDPS()
 	E.db["unitframe"]["units"]["targettargettarget"]["power"]["text_format"] = "[power:current:shortvalue]"
 
 	E:StaggeredUpdateAll()
-	ElvUI_EltreumUI:Print(L["DPS/Tank Layout has been set."])
+	if not silent then
+		ElvUI_EltreumUI:Print(L["DPS/Tank Layout has been set."])
+	end
 end

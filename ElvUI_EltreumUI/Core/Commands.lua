@@ -213,20 +213,6 @@ function ElvUI_EltreumUI:RunCommands(message)
 				ElvUI_EltreumUI:Print("Borders Autoadjust disabled")
 			end
 		end
-	elseif message == 'thinmode' then
-		E.PopupDialogs["ELTRUISMTHINMODEWARNING"] = {
-			text = L["Experimental Thin Mode UI, there is no going back to previous settings unless manually adjusting.\n|cffFF0000WARNING:|r This will overwrite some of your profile settings with no way to restore"],
-			OnAccept = function()
-				ElvUI_EltreumUI:ThinBars()
-			end,
-			--OnCancel = function() end,
-			button1 = ACCEPT,
-			button2 = CANCEL,
-			timeout = 0,
-			whileDead = 1,
-			hideOnEscape = false,
-		}
-		E:StaticPopup_Show('ELTRUISMTHINMODEWARNING')
 	elseif message == 'elvuiskin' then
 		if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
 			E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate = false
