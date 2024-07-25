@@ -1944,6 +1944,7 @@ function ElvUI_EltreumUI:ThinBars()
 		E.db["unitframe"]["units"]["focus"]["power"]["position"] = "CENTER"
 		E.db["unitframe"]["units"]["focus"]["power"]["xOffset"] = 0
 		E.db["unitframe"]["units"]["focus"]["power"]["yOffset"] = -10
+		E.db["unitframe"]["units"]["focus"]["name"]["text_format"] = "[name:eltruism:gradientshort] [eltruism:ReleafIconOutline:player] [eltruism:raidmarker]"
 
 		E.db["unitframe"]["units"]["party"]["height"] = 35
 		E.db["unitframe"]["units"]["party"]["rdebuffs"]["yOffset"] = 20
