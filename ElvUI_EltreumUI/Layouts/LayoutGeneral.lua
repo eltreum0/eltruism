@@ -1719,9 +1719,9 @@ function ElvUI_EltreumUI:SetupCVars()
 
 	if E.Retail then
 		SetCVar('cameraDistanceMaxZoomFactor', 2.6)
-		--seems currently disabled
+		--occluded character visibility
 		SetCVar('cameraIndirectVisibility', 1)
-		SetCVar('cameraIndirectOffset', 10)
+		SetCVar('cameraIndirectOffset', 15)
 	else
 		SetCVar('cameraDistanceMaxZoomFactor', 3.4)
 	end
