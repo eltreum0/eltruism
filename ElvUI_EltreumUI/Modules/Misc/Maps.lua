@@ -131,6 +131,10 @@ if E.Retail then
 							local distance = C_Navigation.GetDistance()
 							local seconds = 0
 							local minutes = 0
+							if not speed or speed == 0 then
+								local _,_,flyspeed = GetUnitSpeed('player')
+								speed = flyspeed
+							end
 							if (not speed or speed == 0) and IsPlayerMoving() then --might be dragonflying, calculate based on delta distance
 								--print("no speed, maybe dragonriding")
 								E:Delay(1, function()
