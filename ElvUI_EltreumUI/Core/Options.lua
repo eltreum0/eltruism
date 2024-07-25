@@ -3728,16 +3728,24 @@ Added more Shadows
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
+Updated Experimental Thin Mode layout to add a new layout instead of Overwriting current one
+Updated Border Frame Levels to allow higher levels
 Updated BigWigs profile to fix message positioning
 Updated several functions to support War Within
 Updated the Max Camera distance in Classic
+Updated how the Quest Tracker hides
 Updated Rest animation's anchoring
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
 Fixed an issue where the Unitframe Aura borders would reset size on export
+Fixed Pet Autocast error in Classic/Cataclysm due to 11.0 changes
+Fixed icon for professions in Classic and Cataclysm
+Fixed a possible error with the Quest Tracker skin
 Fixed a possible issue with the Quest Hide
+Fixed Event Toast lines
+Fixed Game Menu Button
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
