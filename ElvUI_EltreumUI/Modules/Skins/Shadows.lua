@@ -1042,6 +1042,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.DelvesCompanionConfigurationFrame,
 				_G.DelvesCompanionAbilityListFrame,
 				_G.GuildInviteFrame,
+				_G.CurrencyTransferMenu,
 			}
 			for _, frame in pairs(blizzardframes) do
 				if frame then
