@@ -943,6 +943,31 @@ function ElvUI_EltreumUI:OriginalClassColors()
 	end
 end
 
+--Export/Import Gradient Colors, basically copied from elvui distributor/core
+function ElvUI_EltreumUI:ExportImportGradient(data,mode)
+	local D = E:GetModule('Distributor')
+	local LibDeflate = E.Libs.Deflate
+	if mode == "export" then
+		local gradienttable = {}
+		gradienttable = E:CopyTable(gradienttable, E.db.ElvUI_EltreumUI.unitframes.gradientmode)
+		local profile = D:Serialize(gradienttable)
+		local compressed = LibDeflate:CompressDeflate(profile, LibDeflate.compressLevel)
+		local exportProfile = LibDeflate:EncodeForPrint(compressed)
+		return exportProfile
+	elseif mode == "import" then
+		local decodedData = LibDeflate:DecodeForPrint(data)
+	    local decompressed = LibDeflate:DecompressDeflate(decodedData)
+	    local serializedData = format('%s%s', decompressed, '^^')
+	    local success, profileData = D:Deserialize(serializedData)
+	    if not success then
+			E:Print('Error deserializing:', profileData)
+			return
+		end
+		E:CopyTable(E.db.ElvUI_EltreumUI.unitframes.gradientmode, profileData)
+		E:StaticPopup_Show('CONFIG_RL')
+	end
+end
+
 --color picker wheel better masking
 if E.Retail then
 	local bettermask = _G.ColorPickerFrame:CreateMaskTexture()

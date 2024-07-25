@@ -243,6 +243,13 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.detailscache= ACH:Execute(L["Clear Details Tables"], L["Set Details tables to be empty"], 9, function() ElvUI_EltreumUI:EmptyDetailsTable() end,nil,false,'full')
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.description5 = ACH:Description(E.Retail and _G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT or "", 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, nil, not E.Retail)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.blizzeditmodelayout = ACH:Execute(E.Retail and E.NewSign.._G.HUD_EDIT_MODE_IMPORT_LAYOUT.." ".._G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT or "", nil, 11, function() ElvUI_EltreumUI:NewRetailEditModeLayout() end,nil,false,'full',nil,nil,nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.installer.args.tab5 = ACH:Group(L["Gradient"], nil, 5, 'tab')
+	ElvUI_EltreumUI.Options.args.installer.args.tab5.args.export = ACH:Group(L["Export"], nil, 1, 'tab')
+	ElvUI_EltreumUI.Options.args.installer.args.tab5.args.export.args.input = ACH:Input(L["Exported Gradient Data:"], nil, 1, 27, "full", function() return ElvUI_EltreumUI:ExportImportGradient(nil,"export") end, function() return end)
+	ElvUI_EltreumUI.Options.args.installer.args.tab5.args.export.args.input.disableButton = true
+	ElvUI_EltreumUI.Options.args.installer.args.tab5.args.import = ACH:Group(L["Import"], nil, 2, 'tab')
+	ElvUI_EltreumUI.Options.args.installer.args.tab5.args.import.args.input = ACH:Input(L["Import Gradient Data"], nil, 1, 27, "full", function() return "" end, function(_, data) ElvUI_EltreumUI:ExportImportGradient(data,"import") end)
+	ElvUI_EltreumUI.Options.args.installer.args.tab5.args.import.args.input.focusSelect = true
 
 	--addons
 	ElvUI_EltreumUI.Options.args.addons = ACH:Group(E:TextGradient(L["Addons"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Install or update other Addon profiles"], 85, 'tab')
