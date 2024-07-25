@@ -534,8 +534,6 @@ EltruismGameMenu:SetScript("OnEvent", function()
 
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
 		if E.Retail then
-
-			--use elvui moveui instead of blizzard edit mode
 			local EM = E:GetModule('EditorMode')
 			local Menubutton = CreateFrame('Button', 'EltruismGameMenu', GameMenuFrame, 'MainMenuFrameButtonTemplate')
 			Menubutton:SetScript('OnClick', function()
@@ -563,6 +561,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 				end
 				GameMenuFrame:Height(GameMenuFrame:GetHeight() + 35)
 
+				--use elvui moveui instead of blizzard edit mode
 				local EditModeButton = EM:GetGameMenuEditModeButton()
 				if EditModeButton then
 					EditModeButton:RegisterForClicks("AnyUp")
