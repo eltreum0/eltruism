@@ -657,12 +657,6 @@ if E.Retail then
 	local clickbindopenbutton = CreateFrame("Button", "EltruismClickCastingToggle")
 	clickbindopenbutton:SetWidth(32)
 	clickbindopenbutton:SetHeight(32)
-	clickbindopenbutton:SetParent(_G["SpellBookSpellIconsFrame"])
-	clickbindopenbutton:SetPoint("LEFT", _G["SpellBookFrame"], "RIGHT", 0, -105)
-	if _G["CliqueSpellTab"] then
-		clickbindopenbutton:SetPoint("BOTTOM", _G["CliqueSpellTab"], 0, -50)
-	end
-
 	S:HandleButton(clickbindopenbutton)
 	local bindexture = clickbindopenbutton:CreateTexture()
 	--bindexture:SetTexture(4238928)
@@ -680,23 +674,32 @@ if E.Retail then
 		_G["GameTooltip"]:Hide()
 	end)
 
-	clickbindopenbutton:SetScript('OnClick', function()
-		if not IsAddOnLoaded("Blizzard_ClickBindingUI") then
-			LoadAddOn("Blizzard_ClickBindingUI")
-			if not _G["ClickBindingFrame"].shadow then
-				_G["ClickBindingFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(_G["ClickBindingFrame"].shadow)
-			end
+	local clickcastingmonitor = CreateFrame("frame")
+	clickcastingmonitor:RegisterEvent("ADDON_LOADED")
+	clickcastingmonitor:SetScript("OnEvent", function(_,_,addon)
+		if (addon == "Blizzard_PlayerSpells") or IsAddOnLoaded("Blizzard_PlayerSpells") then
+			clickcastingmonitor:UnregisterEvent("ADDON_LOADED")
+			clickbindopenbutton:SetParent(_G["PlayerSpellsFrame"])
+			clickbindopenbutton:SetPoint("LEFT", _G["PlayerSpellsFrame"], "TOPRIGHT", 0, -80)
+			clickbindopenbutton:SetScript('OnClick', function()
+				if not IsAddOnLoaded("Blizzard_ClickBindingUI") then
+					LoadAddOn("Blizzard_ClickBindingUI")
+					if not _G["ClickBindingFrame"].shadow then
+						_G["ClickBindingFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G["ClickBindingFrame"].shadow)
+					end
+				end
+				if not _G["ClickBindingFrame"]:IsShown() then
+					_G["ClickBindingFrame"]:Show()
+				elseif _G["ClickBindingFrame"]:IsShown() then
+					_G["ClickBindingFrame"]:Hide()
+					_G["PlayerSpellsFrame"]:Show()
+				end
+				_G["ClickBindingFrame"]:ClearAllPoints()
+				_G["ClickBindingFrame"]:SetParent(_G["PlayerSpellsFrame"])
+				_G["ClickBindingFrame"]:SetPoint("LEFT", _G["PlayerSpellsFrame"], "RIGHT", 50, -37)
+			end)
 		end
-		if not _G["ClickBindingFrame"]:IsShown() then
-			_G["ClickBindingFrame"]:Show()
-		elseif _G["ClickBindingFrame"]:IsShown() then
-			_G["ClickBindingFrame"]:Hide()
-			_G["SpellBookFrame"]:Show()
-		end
-		_G["ClickBindingFrame"]:ClearAllPoints()
-		_G["ClickBindingFrame"]:SetParent(_G["SpellBookFrame"])
-		_G["ClickBindingFrame"]:SetPoint("LEFT", _G["SpellBookFrame"], "RIGHT", 50, -37)
 	end)
 end
 
