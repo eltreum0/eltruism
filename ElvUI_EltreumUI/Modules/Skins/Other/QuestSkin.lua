@@ -371,7 +371,7 @@ function ElvUI_EltreumUI:SkinQuests()
 											if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
 												line.Text:SetTextColor(0.12, 1, 0.12)
 											else
-												line.Text:SetTextColor(0.85, 0.85, 0.85)
+												line.Text:SetTextColor(1, 1, 1)
 											end
 										elseif left2 then
 											local percentagedone = (tonumber(left2) / tonumber(right2)) * 100 or 0
@@ -381,7 +381,7 @@ function ElvUI_EltreumUI:SkinQuests()
 											if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
 												line.Text:SetTextColor(0.12, 1, 0.12)
 											else
-												line.Text:SetTextColor(0.85, 0.85, 0.85)
+												line.Text:SetTextColor(1, 1, 1)
 											end
 										elseif left3 then
 											local percentagedone = (tonumber(left3) / tonumber(right3)) * 100 or 0
@@ -391,13 +391,13 @@ function ElvUI_EltreumUI:SkinQuests()
 											if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
 												line.Text:SetTextColor(0.12, 1, 0.12)
 											else
-												line.Text:SetTextColor(0.85, 0.85, 0.85)
+												line.Text:SetTextColor(1, 1, 1)
 											end
 										else
 											if text == _G.QUEST_WATCH_QUEST_READY or (line.Check and line.Check:IsShown()) or (line.objectiveKey == "QuestComplete") then
 												line.Text:SetTextColor(0.12, 1, 0.12)
 											else
-												line.Text:SetTextColor(0.85, 0.85, 0.85)
+												line.Text:SetTextColor(1, 1, 1)
 											end
 										end
 									end
@@ -468,7 +468,7 @@ function ElvUI_EltreumUI:SkinQuests()
 									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
 										line.Text:SetTextColor(0.12, 1, 0.12)
 									else
-										line.Text:SetTextColor(0.85, 0.85, 0.85)
+										line.Text:SetTextColor(1, 1, 1)
 									end
 								elseif left2 then
 									local percentagedone = (tonumber(left2) / tonumber(right2)) * 100 or 0
@@ -478,7 +478,7 @@ function ElvUI_EltreumUI:SkinQuests()
 									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
 										line.Text:SetTextColor(0.12, 1, 0.12)
 									else
-										line.Text:SetTextColor(0.85, 0.85, 0.85)
+										line.Text:SetTextColor(1, 1, 1)
 									end
 								elseif left3 then
 									local percentagedone = (tonumber(left3) / tonumber(right3)) * 100 or 0
@@ -488,13 +488,13 @@ function ElvUI_EltreumUI:SkinQuests()
 									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
 										line.Text:SetTextColor(0.12, 1, 0.12)
 									else
-										line.Text:SetTextColor(0.85, 0.85, 0.85)
+										line.Text:SetTextColor(1, 1, 1)
 									end
 								else
 									if text == _G.QUEST_WATCH_QUEST_READY or (line.Check and line.Check:IsShown()) or (line.objectiveKey == "QuestComplete") then
 										line.Text:SetTextColor(0.12, 1, 0.12)
 									else
-										line.Text:SetTextColor(0.85, 0.85, 0.85)
+										line.Text:SetTextColor(1, 1, 1)
 									end
 								end
 							end
