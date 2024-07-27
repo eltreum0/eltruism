@@ -961,7 +961,10 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 					end)
 				end)
-
+				--resort to fix overlap, ty blinkii
+				E:Delay(0, function()
+					C_QuestLog.SortQuestWatches()
+				end)
 			end
 		elseif E.Classic then
 			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
