@@ -69,10 +69,22 @@ function ElvUI_EltreumUI:RaidDeath(destFlags)
 end
 
 --bres
-local bresframe = CreateFrame("Frame")
-local spellicon = bresframe:CreateTexture()
-local spellcount = bresframe:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-local spellcd = bresframe:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+local bresframe = CreateFrame("Frame", "EltruismBattleResFrame")
+local spellicon = bresframe:CreateTexture("EltruismBattleResFrameTexture")
+spellicon:SetParent(bresframe)
+spellicon:SetSize(30, 30)
+spellicon:SetPoint("LEFT", bresframe)
+local spellcount = bresframe:CreateFontString("EltruismBattleResFrameCount", "OVERLAY", "GameFontNormal")
+spellcount:SetParent(bresframe)
+spellcount:SetPoint("CENTER", spellicon)
+spellcount:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 4, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+spellcount:SetTextColor(1, 1, 1)
+local spellcd = bresframe:CreateFontString("EltruismBattleResText", "OVERLAY", "GameFontNormal")
+spellcd:SetParent(bresframe)
+spellcd:SetPoint("LEFT", spellicon, "RIGHT", 10, 0)
+spellcd:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 4, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+spellcd:SetTextColor(1, 1, 1)
+spellcd:SetText(READY)
 bresframe:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 342, -28)
 if E.Retail then
 	E:CreateMover(bresframe, "MoverEltruismBRES", "EltruismBattleRes", nil, nil, nil, "ALL,PARTY,RAID,ELTREUMUI", nil, 'ElvUI_EltreumUI,party')
@@ -122,6 +134,16 @@ function ElvUI_EltreumUI:BattleRes()
 			instanceok = false
 		end
 
+		spellicon:SetTexture(GetSpellTexture(20484))
+		if E.myclass == "DEATHKNIGHT" then
+			spellicon:SetTexture(GetSpellTexture(61999))
+		elseif E.myclass == "WARLOCK" then
+			spellicon:SetTexture(GetSpellTexture(20707))
+		elseif E.myclass == "PALADIN" then
+			spellicon:SetTexture(GetSpellTexture(391054))
+		end
+		spellicon:SetTexCoord(0.08,0.92,0.08,0.92)
+
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 			if not bresframe.shadow then
 				bresframe:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -136,27 +158,6 @@ function ElvUI_EltreumUI:BattleRes()
 
 		if ingroup and instanceok and difficultyok then
 			bresframe:SetAlpha(1)
-			spellicon:SetSize(30, 30)
-			spellicon:SetPoint("LEFT", bresframe)
-			spellicon:SetTexture(GetSpellTexture(20484))
-			if E.myclass == "DEATHKNIGHT" then
-				spellicon:SetTexture(GetSpellTexture(61999))
-			elseif E.myclass == "WARLOCK" then
-				spellicon:SetTexture(GetSpellTexture(20707))
-			elseif E.myclass == "PALADIN" then
-				spellicon:SetTexture(GetSpellTexture(391054))
-			end
-			spellicon:SetTexCoord(0.08,0.92,0.08,0.92)
-
-			spellcount:SetParent(bresframe)
-			spellcount:SetPoint("CENTER", spellicon)
-			spellcount:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 4, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-			spellcount:SetTextColor(1, 1, 1)
-
-			spellcd:SetParent(bresframe)
-			spellcd:SetPoint("LEFT", spellicon, "RIGHT", 10, 0)
-			spellcd:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize + 4, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-			spellcd:SetTextColor(1, 1, 1)
 			bresframe:SetScript('OnUpdate', function(_, elapsed)
 				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then

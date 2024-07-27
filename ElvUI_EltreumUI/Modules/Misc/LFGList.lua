@@ -273,10 +273,10 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 								else
 									leaderRealm = GetRealmName():lower():gsub(" ", "")
 								end
-								for region, regionRealms in pairs(REALMS[GetCurrentRegion()]) do
+								for regionvalue, regionRealms in pairs(REALMS[GetCurrentRegion()]) do
 									for _, realm in pairs(regionRealms) do
 										if realm:lower():gsub(" ", "") == leaderRealm then
-											return region
+											return regionvalue
 										end
 									end
 								end
@@ -293,7 +293,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 							end
 							if (entry.ActivityName:GetText()) ~= nil and (entry.ActivityName:GetText()) ~= "" and not (entry.ActivityName:GetText():match(region)) then
 								--print(entry.ActivityName:GetText())
-								entry.ActivityName:SetFormattedText("%s %s", region,entry.ActivityName:GetText())
+								entry.ActivityName:SetFormattedText("%s %s", region, entry.ActivityName:GetText())
 							end
 						end
 						if entry.Name:GetText() ~= nil then
