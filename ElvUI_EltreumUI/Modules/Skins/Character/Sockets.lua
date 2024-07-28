@@ -61,7 +61,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[1888] = E.Cata and 359685 or 20014, -- shield resilience? resistance? 46525
 		[926] = E.Cata and 359895 or 13933, -- shield frost res
 		[983] = 44500, -- cloak superior agility
-		[2566] = 2317, -- +13 spellpower
+		[2566] = E.Cata and 2317 or 23802, -- +13 spellpower
 		[1354] = 44556, -- cloak superior fire res
 		[1400] = 44494, -- cloak superior nature res
 		[1446] = 44590, -- cloak superior shadow res
@@ -103,7 +103,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[2463] = 13657, --enchant-cloak-fire-resistance
 		[804] = 13522, --enchant-cloak-lesser-shadow-resistance
 		[256] = 7861, --enchant-cloak-lesser-fire-resistance
-		--[1897] = 20031, --enchant-weapon-superior-striking
 		[7223] = 435903, --enchant-chest-retricutioner
 		[7210] = 435481, --enchant-weapon-dismantle
 		[4078] = 74215, --enchant-ring-strength
@@ -120,6 +119,17 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[7326] = 446472 or 446470, --atal'ai-signet-of-serenity
 		[7325] = 446458 or 446459, --atal'ai-signet-of-mojo
 		[7124] = 17768 or 432190, --wolfshead-trophy
+
+		[2629] = 25123, --brilliant-mana-oil
+		[2628] = 25122, --brilliant-wizard-oil
+		[2564] = E.Cata and 25080 or 23800, --enchant-gloves-superior-agility
+		[1897] = E.Cata and 13695 or 20031, --enchant-weapon-superior-striking
+		[7098] = 430392, --sharpen-weapon-hit
+		[7099] = 430585, --increased-mana-regen-and-spell-hit
+
+		--[6932] = 415995, --engrave-chest-serendipity
+		--list of engraves
+		--https://www.wowhead.com/classic/search?q=engrave#abilities
 
 		---- old list
 		[15] = 2831, -- Reinforced (+$k1 Armor)
@@ -242,7 +252,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[1893] = 20028, -- +$k1 Mana
 		[1894] = 20029, -- Icy Chill
 		[1896] = E.Cata and 20030 or 20031, -- +$k1 Weapon Damage
-		[1897] = 13695, -- +$k1 Weapon Damage
 		[1898] = 20032, -- Lifestealing
 		[1899] = 20033, -- Unholy Weapon
 		[1900] = 20034, -- Crusader
@@ -270,7 +279,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[2544] = 22844, -- +$k1 Spell Power
 		[2545] = 22846, -- +$k1 Dodge
 		[2563] = 23799, -- +$k1 Strength
-		[2564] = 23800, -- +$k1 Agility
 		[2565] = 23801, -- +$k1 Spirit
 		[2567] = 23803, -- +$k1 Spirit
 		[2568] = 23804, -- +$k1 Intellect
@@ -1581,8 +1589,11 @@ function ElvUI_EltreumUI:ClassicSockets()
 						end
 						tooltip:AddHyperlink(spellInfo:getLink())
 					else
+						tooltip:AddText("Unknown enchant. Please report on Discord")
+						--stop errors when the enchant is unknown
+						--[[
 						local spellInfo = ElvUI_EltreumUI.SpellInfo:new("enchant:" .. KIBC_EnchantToSpellID[enchantInfo:getId()])
-						tooltip:AddText(string.format("Unknown enchant #%d", enchantInfo:getId()).." ID:"..spellInfo.spellId)
+						tooltip:AddText(string.format("Unknown enchant #%d", enchantInfo:getId()).." ID:"..spellInfo.spellId)]]
 					end
 					self:_AddIcon(slotName, texture, tooltip)
 				elseif self:IsSlotEnchantRequired(slotName) then
