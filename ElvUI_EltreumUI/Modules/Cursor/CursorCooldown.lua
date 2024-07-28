@@ -336,15 +336,38 @@ function ElvUI_EltreumUI:checkSpellCooldown(spell)
 	if E.db.ElvUI_EltreumUI.cursors.cursor.petcooldown and not namespell then
 		return ElvUI_EltreumUI:checkPetActionCooldown(findPetActionIndexForSpell(spell))
 	end
-	baseCooldown = GetSpellBaseCooldown(spell)
-	if baseCooldown then
-		if baseCooldown < 2200 then
-			local _, _, _, cooldownDuration = GetSpellCharges(spell)
-			if cooldownDuration and cooldownDuration > 0 then
-				ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (cooldownDuration))
+
+	if E.Retail then
+		baseCooldown = GetSpellBaseCooldown(spell)
+		if baseCooldown == 0 then
+			local spellChargeData = GetSpellCharges(spell)
+			if spellChargeData then
+				baseCooldown = spellChargeData.cooldownDuration
+			else
+				local spellCDData = GetSpellCooldown(spell)
+				baseCooldown = spellCDData.duration
 			end
-		else
-			ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (baseCooldown and baseCooldown > 0))
+		end
+		if baseCooldown then
+			if baseCooldown < 2200 then
+				if baseCooldown > 0 then
+					ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (baseCooldown))
+				end
+			else
+				ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (baseCooldown and baseCooldown > 0))
+			end
+		end
+	else
+		baseCooldown = GetSpellBaseCooldown(spell)
+		if baseCooldown then
+			if baseCooldown < 2200 then
+				local _, _, _, cooldownDuration = GetSpellCharges(spell)
+				if cooldownDuration and cooldownDuration > 0 then
+					ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (cooldownDuration))
+				end
+			else
+				ElvUI_EltreumUI:showCooldown(texturespell, GetSpellCooldown, spell, (baseCooldown and baseCooldown > 0))
+			end
 		end
 	end
 end
