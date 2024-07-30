@@ -1,25 +1,16 @@
-### 4.1.9.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 4.2.0 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added support for The War Within  
-Added a menu in Eltruism > Installer to import and export Gradient settings  
-Added several more statusbar textures from Blizzard's default textures  
-Added the experimental Thin Mode to Eltruism > Installer > Layouts  
-Added Quest and Delve Instances to the Instance Indicator  
-Added more of Blizzard's skull icons  
-Added Borders to Focus Power  
-Added more Shadows  
-Updated Experimental Thin Mode layout to add a new layout instead of Overwriting current one
-Updated Border Frame Levels to allow higher levels  
-Updated BigWigs profile to fix message positioning  
-Updated several functions to support War Within  
-Updated the Max Camera distance in Classic  
-Updated how the Quest Tracker hides  
-Updated Rest animation's anchoring  
-Fixed an issue where the Unitframe Aura borders would reset size on export  
-Fixed Pet Autocast error in Classic/Cataclysm due to 11.0 changes  
-Fixed icon for professions in Classic and Cataclysm  
-Fixed a possible error with the Quest Tracker skin  
-Fixed a possible issue with the Quest Hide  
-Fixed Hekili's skin hiding the Textures  
-Fixed Event Toast lines  
-Fixed Game Menu Button
+Updated install to remove ProjectAzilroka and AddOnSkins installation until those two are updated  
+Updated several Power Generator spells for the Nameplate Power Bar in Retail  
+Updated Quest skin in Retail to avoid some grey text  
+Updated Quest skins to also skin the M+ Timer  
+Updated how BattleRes is detected in LFR  
+Updated German locale by Dlarge  
+Fixed an issue where the Game Menu could keep increasing in height due to the Eltruism Button  
+Fixed an issue where the Quest Item Button could be locked in Retail due to the Objective Height  
+Fixed an issue in Classic Era where the Sockets could cause errors due to missing enchants  
+Fixed an issue with the Cursor Cooldown where some spells were not being tracked  
+Fixed a typo in the Priest Insanity 2 texture that caused it to be missing  
+Fixed the Talent frame not scaling when the scale was changed in Retail  
+Fixed the Click Casting button missing on the Spellbook  
+Fixed the Clique skin after Clique got updated
