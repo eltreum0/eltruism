@@ -1575,6 +1575,7 @@ function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 			holder:SetClampedToScreen(true)
 
 			ObjectiveTrackerFrame:BreakFromFrameManager()
+			ObjectiveTrackerFrame.Selection:Kill()
 			Enum.EditModeObjectiveTrackerSetting.Opacity = 0 --fix nineslice
 			ObjectiveTrackerFrame.editModeOpacity = 0 --fix nineslice
 			if ObjectiveTrackerFrame.NineSlice then
@@ -1591,6 +1592,7 @@ function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 			ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
 		else
 			ObjectiveTrackerFrame:BreakFromFrameManager()
+			ObjectiveTrackerFrame.Selection:Kill()
 			_G.ObjectiveTrackerFrame:ClearAllPoints()
 			_G.ObjectiveTrackerFrame:SetPoint("TOP", _G["ObjectiveFrameHolder"], "TOP")
 			ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
