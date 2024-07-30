@@ -758,46 +758,37 @@ function ElvUI_EltreumUI:SkinQuests()
 										frame.FinalBG:SetTexture()
 									end
 								end
-
-								--[[--tuskarr feast special case
-								if _G.ScenarioStageBlock.WidgetContainer and _G.ScenarioStageBlock.WidgetContainer:IsVisible() then
-									for i = 1, _G.ScenarioStageBlock.WidgetContainer:GetNumChildren() do
-										local v = select(i, _G.ScenarioStageBlock.WidgetContainer:GetChildren())
-										if v:GetName() ~= "BackModelScene" and v:GetName() ~= "FrontModelScene" then
-											for number =1, v:GetNumChildren() do
-												local kk = select(number, v:GetChildren())
-												if kk and kk.Frame then
-													kk.Frame:SetAlpha(0)
-												end
-											end
-										end
-									end
-								end
-
-								--m+ key block
-								if _G.ScenarioChallengeModeBlock:IsVisible() and not self.EltruismKeySkin then
-									S:HandleStatusBar(_G.ScenarioChallengeModeBlock.StatusBar)
-									S:HandleFrame(_G.ScenarioChallengeModeBlock)
-									--the block frame has a limit and because of that the shadow gets cropped out
-									-- so move the frame and increase the limit
-									_G.ScenarioBlocksFrame:SetWidth(270)
-									local point, relativeTo, relativePoint, _, yOfs = _G.ScenarioChallengeModeBlock:GetPoint()
-									E:Delay(0, function()
-										_G.ScenarioChallengeModeBlock:ClearAllPoints()
-										_G.ScenarioChallengeModeBlock:SetPoint(point, relativeTo, relativePoint, 5, yOfs-5)
-									end)
-
-									if E.db.ElvUI_EltreumUI.skins.shadow.enable then
-										if not _G.ScenarioChallengeModeBlock.shadow then
-											_G.ScenarioChallengeModeBlock:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-											ElvUI_EltreumUI:ShadowColor(_G.ScenarioChallengeModeBlock.shadow)
-										end
-									end
-									self.EltruismKeySkin = true
-								end]]
 							end
 						end)
 						k.UpdateStageBlockHook = true
+					end
+					if k.UpdateTime and not k.UpdateTimeHook then
+						hooksecurefunc(k, "UpdateTime", function(frame)
+							if frame and not frame.EltruismSkin then
+								ScenarioObjectiveBlockBackground:SetParent(frame)
+								ScenarioObjectiveBlockBackground:ClearAllPoints()
+								if _G.EltruismDungeonLine then
+									ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDungeonLine, "CENTER", -3, -47)
+								elseif _G.EltruismScenarioLine then
+									ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismScenarioLine, "CENTER", -3, -47)
+								elseif _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine then
+									ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine, "CENTER", -3, -47)
+								else
+									ScenarioObjectiveBlockBackground:SetPoint("CENTER", frame, "CENTER", 0, -5)
+								end
+								ScenarioObjectiveBlockBackground:SetSize(243, 80)
+								ScenarioObjectiveBlockBackground:SetFrameLevel(3)
+								ScenarioObjectiveBlockBackground:Show()
+								if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow then
+									ScenarioObjectiveBlockBackground:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(ScenarioObjectiveBlockBackground.shadow.shadow)
+								end
+								frame:StripTextures()
+								frame.EltruismSkin = true
+							end
+						end)
+						--UpdateTime
+						k.UpdateTimeHook = true
 					end
 				end
 				local function firehooks()
