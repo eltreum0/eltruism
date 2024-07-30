@@ -122,11 +122,12 @@ function ElvUI_EltreumUI:PowerPrediction()
 			[263346] = 15, --dark void
 			[73510] = 4, --mind spike
 			[391109] = 30, --dark ascension
-			[407466] = 6, --mind spike: insanity
+			[407466] = 8, --mind spike: insanity
 			--[391403] = 12, --mind flay: insanity, but its a channel so idc
 			[375901] = 10, --mindgames
 			[120644] = 10, -- halo
 			--[263165] = 24, --void torrent, but its a channel so idc
+			[450983] = 6, --void blast
 
 			-- Elemental Shaman
 			[188196] = shamanbolt, --lightning bolt
