@@ -49,10 +49,11 @@ local mainCost = 0
 local incResource = 0
 local startTime, endTime, spellID = 0, 0, 0
 local spellGenerators
-local druidwrath = 8
+local druidwrath = 6
+local druidstarfire = 8
 local shamanhex = 0
-local shamanbolt = 8
-local shamanlavaburst = 10
+local shamanbolt = 6
+local shamanlavaburst = 8
 local huntersteadyshot = 0
 local druideclipse,costTable
 local predictioncolorr, predictioncolorg, predictioncolorb
@@ -84,14 +85,15 @@ function ElvUI_EltreumUI:PowerPrediction()
 		if E.Retail then
 			druideclipse = C_UnitAuras.GetPlayerAuraBySpellID(48517) --might be removed in dragonflight
 			if IsPlayerSpell(114107) and druideclipse ~= nil then
-				druidwrath = 13
+				druidwrath = 10
+				druidstarfire = 10
 			end
 			if IsPlayerSpell(321018) then --improved steady shot
 				huntersteadyshot = 10
 			end
 			if IsPlayerSpell(385923) then --shaman flow of pwoer
-				shamanbolt = 10
-				shamanlavaburst = 12
+				shamanbolt = 8
+				shamanlavaburst = 10
 			end
 			if IsPlayerSpell(378776) and InCombatLockdown() then --shaman inundate
 				shamanhex = 8
@@ -103,12 +105,12 @@ function ElvUI_EltreumUI:PowerPrediction()
 
 			-- Balance Druid
 			[190984] = druidwrath, --wrath
-			[194153] = 10, -- StarFire
-			[214281] = 12, -- New Moon
-			[274281] = 12, -- New Moon
-			[214282] = 24, -- Half Moon
-			[274282] = 24, -- Half Moon
-			[274283] = 50, -- Full Moon
+			[194153] = druidstarfire, -- StarFire
+			[214281] = 10, -- New Moon
+			[274281] = 10, -- New Moon
+			[214282] = 20, -- Half Moon
+			[274282] = 20, -- Half Moon
+			[274283] = 40, -- Full Moon
 			[202347] = 12, -- Stellar Flare
 
 			-- Shadow Priest
@@ -120,16 +122,17 @@ function ElvUI_EltreumUI:PowerPrediction()
 			[263346] = 15, --dark void
 			[73510] = 4, --mind spike
 			[391109] = 30, --dark ascension
-			[407466] = 6, --mind spike: insanity
+			[407466] = 8, --mind spike: insanity
 			--[391403] = 12, --mind flay: insanity, but its a channel so idc
 			[375901] = 10, --mindgames
 			[120644] = 10, -- halo
 			--[263165] = 24, --void torrent, but its a channel so idc
+			[450983] = 6, --void blast
 
 			-- Elemental Shaman
 			[188196] = shamanbolt, --lightning bolt
 			[51505] = shamanlavaburst, --lava burst
-			[114074] = 3, --lava beam
+			[114074] = 2, --lava beam
 			[210714] = 25, --icefury
 			[188443] = 4, --chain lightning (per target hit)
 			[51514] = shamanhex, --hex can have maelstrom if they have inundate
