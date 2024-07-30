@@ -49,7 +49,8 @@ local mainCost = 0
 local incResource = 0
 local startTime, endTime, spellID = 0, 0, 0
 local spellGenerators
-local druidwrath = 8
+local druidwrath = 6
+local druidstarfire = 8
 local shamanhex = 0
 local shamanbolt = 8
 local shamanlavaburst = 10
@@ -84,7 +85,8 @@ function ElvUI_EltreumUI:PowerPrediction()
 		if E.Retail then
 			druideclipse = C_UnitAuras.GetPlayerAuraBySpellID(48517) --might be removed in dragonflight
 			if IsPlayerSpell(114107) and druideclipse ~= nil then
-				druidwrath = 13
+				druidwrath = 10
+				druidstarfire = 10
 			end
 			if IsPlayerSpell(321018) then --improved steady shot
 				huntersteadyshot = 10
@@ -103,12 +105,12 @@ function ElvUI_EltreumUI:PowerPrediction()
 
 			-- Balance Druid
 			[190984] = druidwrath, --wrath
-			[194153] = 10, -- StarFire
-			[214281] = 12, -- New Moon
-			[274281] = 12, -- New Moon
-			[214282] = 24, -- Half Moon
-			[274282] = 24, -- Half Moon
-			[274283] = 50, -- Full Moon
+			[194153] = druidstarfire, -- StarFire
+			[214281] = 10, -- New Moon
+			[274281] = 10, -- New Moon
+			[214282] = 20, -- Half Moon
+			[274282] = 20, -- Half Moon
+			[274283] = 40, -- Full Moon
 			[202347] = 12, -- Stellar Flare
 
 			-- Shadow Priest
