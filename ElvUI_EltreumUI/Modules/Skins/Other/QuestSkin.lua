@@ -1561,6 +1561,7 @@ function ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
 	local scenarioBlockHeight = isScenarioBlockShowing and (_G.ScenarioBlocksFrame:GetHeight() + _G.ObjectiveTrackerBlocksFrame.ScenarioHeader:GetHeight() + 10) or 0
 
 	local newHeight = math.max(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight, scenarioBlockHeight)
+	Enum.EditModeObjectiveTrackerSetting.Height = newHeight
 	ObjectiveTrackerFrame:SetHeight(newHeight)
 end
 
