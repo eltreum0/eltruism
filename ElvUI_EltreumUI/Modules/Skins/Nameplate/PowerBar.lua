@@ -52,8 +52,8 @@ local spellGenerators
 local druidwrath = 6
 local druidstarfire = 8
 local shamanhex = 0
-local shamanbolt = 8
-local shamanlavaburst = 10
+local shamanbolt = 6
+local shamanlavaburst = 8
 local huntersteadyshot = 0
 local druideclipse,costTable
 local predictioncolorr, predictioncolorg, predictioncolorb
@@ -92,8 +92,8 @@ function ElvUI_EltreumUI:PowerPrediction()
 				huntersteadyshot = 10
 			end
 			if IsPlayerSpell(385923) then --shaman flow of pwoer
-				shamanbolt = 10
-				shamanlavaburst = 12
+				shamanbolt = 8
+				shamanlavaburst = 10
 			end
 			if IsPlayerSpell(378776) and InCombatLockdown() then --shaman inundate
 				shamanhex = 8
@@ -132,7 +132,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 			-- Elemental Shaman
 			[188196] = shamanbolt, --lightning bolt
 			[51505] = shamanlavaburst, --lava burst
-			[114074] = 3, --lava beam
+			[114074] = 2, --lava beam
 			[210714] = 25, --icefury
 			[188443] = 4, --chain lightning (per target hit)
 			[51514] = shamanhex, --hex can have maelstrom if they have inundate
