@@ -51,7 +51,7 @@ do
 						if thisLine.lineText1 then
 							local name = E:StripString(thisLine.lineText1:GetText())
 							if detailsDB.use_multi_fontstrings and detailsDB.use_auto_align_multi_fontstrings then
-								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 10, true), thisLine.minha_tabela:class()))
+								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 12, true), thisLine.minha_tabela:class()))
 							else
 								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(name, thisLine.minha_tabela:class()))
 							end
@@ -67,7 +67,7 @@ do
 						if thisLine.lineText1 then
 							local name = E:StripString(thisLine.lineText1:GetText())
 							if instancia.use_multi_fontstrings and instancia.use_auto_align_multi_fontstrings then
-								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 10, true), thisLine.minha_tabela:class()))
+								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(ElvUI_EltreumUI:ShortenString(name, 12, true), thisLine.minha_tabela:class()))
 							else
 								thisLine.lineText1:SetText(ElvUI_EltreumUI:GradientName(name, thisLine.minha_tabela:class()))
 							end
