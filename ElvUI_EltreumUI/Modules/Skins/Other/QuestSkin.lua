@@ -318,9 +318,10 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 
 						if bar.SetPercent then
-							hooksecurefunc(bar:GetParent(), "SetPercent", function(frame)
+							hooksecurefunc(bar:GetParent(), "SetPercent", function(frame,percent)
 								local statusbar = frame.Bar
 								if not statusbar then return end
+								S:StatusBarColorGradient(statusbar, percent, 100)
 								local r,g,b = statusbar:GetStatusBarColor()
 								statusbar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= E.db.general.backdropfadecolor.a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= E.db.general.backdropfadecolor.a})
 								statusbar.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
@@ -399,7 +400,7 @@ function ElvUI_EltreumUI:SkinQuests()
 												line.Text:SetTextColor(1, 1, 1)
 											end
 										end
-										line:SetHeight(line.Text:GetHeight()) --fix line height
+										line:SetHeight(line.Text:GetHeight()+2) --fix line height
 									end
 								end
 								if line.Icon then
@@ -497,7 +498,7 @@ function ElvUI_EltreumUI:SkinQuests()
 										line.Text:SetTextColor(1, 1, 1)
 									end
 								end
-								line:SetHeight(line.Text:GetHeight()) --fix line height
+								line:SetHeight(line.Text:GetHeight()+2) --fix line height
 							end
 						end
 						if line.Icon then
@@ -926,7 +927,6 @@ function ElvUI_EltreumUI:SkinQuests()
 							end
 						end
 					end)
-
 				end
 
 				local eventtrigger = CreateFrame("frame")

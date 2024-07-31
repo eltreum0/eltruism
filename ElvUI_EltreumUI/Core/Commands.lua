@@ -67,8 +67,10 @@ function ElvUI_EltreumUI:RunCommands(message)
 			CombatText_AddMessage("|T ".. 136176 ..":22:22:-11:-11:64:64:5:59:5:59|t ".."Eltruism Loot is currently disabled!", CombatText_StandardScroll, 255, 255, 255)
 		end
 	elseif message == 'config' or message == 'options' or message == '' then
-		E:ToggleOptions("ElvUI_EltreumUI")
-		--E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
+		if not InCombatLockdown() then
+			E:ToggleOptions("ElvUI_EltreumUI")
+			--E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'ElvUI_EltreumUI')
+		end
 	elseif message == 'dev' then
 		if not E.db.ElvUI_EltreumUI.dev then
 			E.db.ElvUI_EltreumUI.dev = true
@@ -88,24 +90,30 @@ function ElvUI_EltreumUI:RunCommands(message)
 			ElvUI_EltreumUI:Print("DeepL translation warning Enabled")
 		end
 	elseif message == 'chat' then
-		if E.db.chat.panelBackdrop == "HIDEBOTH" then
-			ElvUI_EltreumUI:DarkChat()
-		elseif E.db.chat.panelBackdrop == "SHOWBOTH" then
-			ElvUI_EltreumUI:TransparentChat()
-		else
-			ElvUI_EltreumUI:TransparentChat()
+		if not InCombatLockdown() then
+			if E.db.chat.panelBackdrop == "HIDEBOTH" then
+				ElvUI_EltreumUI:DarkChat()
+			elseif E.db.chat.panelBackdrop == "SHOWBOTH" then
+				ElvUI_EltreumUI:TransparentChat()
+			else
+				ElvUI_EltreumUI:TransparentChat()
+			end
 		end
 	elseif message == 'color' then
-		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
-			ElvUI_EltreumUI:DarkMode() E:StaticPopup_Show('CONFIG_RL')
-		elseif not E.db.ElvUI_EltreumUI.unitframes.lightmode then
-			ElvUI_EltreumUI:LightMode() E:StaticPopup_Show('CONFIG_RL')
-		else
-			ElvUI_EltreumUI:DarkMode() E:StaticPopup_Show('CONFIG_RL')
+		if not InCombatLockdown() then
+			if E.db.ElvUI_EltreumUI.unitframes.lightmode then
+				ElvUI_EltreumUI:DarkMode() E:StaticPopup_Show('CONFIG_RL')
+			elseif not E.db.ElvUI_EltreumUI.unitframes.lightmode then
+				ElvUI_EltreumUI:LightMode() E:StaticPopup_Show('CONFIG_RL')
+			else
+				ElvUI_EltreumUI:DarkMode() E:StaticPopup_Show('CONFIG_RL')
+			end
 		end
 	elseif message == 'gradient' then
-		ElvUI_EltreumUI:GradientMode()
-		E:StaticPopup_Show('CONFIG_RL')
+		if not InCombatLockdown() then
+			ElvUI_EltreumUI:GradientMode()
+			E:StaticPopup_Show('CONFIG_RL')
+		end
 	elseif message == 'weakauras' then
 		E.PopupDialogs["ELTRUISMWABARWARNING"] = {
 			text = L["Overwrites some profile settings to move ActionBars, Unitframes and Powers to look more similar to a WeakAura. |cffFF0000WARNING:|r This will overwrite some of your profile settings with no way to restore"],
@@ -126,7 +134,6 @@ function ElvUI_EltreumUI:RunCommands(message)
 			hideOnEscape = false,
 		}
 		E:StaticPopup_Show('ELTRUISMWABARWARNING')
-
 	elseif message == 'performance' then
 		E.PopupDialogs["ELTRUISMPERFORMANCE"] = {
 			text = L["Disabling a number of functions in ElvUI and Eltruism to optimize performance"],
@@ -223,7 +230,9 @@ function ElvUI_EltreumUI:RunCommands(message)
 		end
 		E:StaticPopup_Show('CONFIG_RL')
 	elseif message == 'paging' then
-		ElvUI_EltreumUI:ActionPagingSwap()
+		if not InCombatLockdown() then
+			ElvUI_EltreumUI:ActionPagingSwap()
+		end
 	elseif message == 'screenshotcomparison' then
 		ElvUI_EltreumUI:Print("Taking multiple screenshots with a delay due to the API, please wait")
 		E:Delay(0, function()
