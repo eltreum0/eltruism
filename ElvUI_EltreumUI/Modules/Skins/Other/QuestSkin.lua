@@ -400,7 +400,7 @@ function ElvUI_EltreumUI:SkinQuests()
 												line.Text:SetTextColor(1, 1, 1)
 											end
 										end
-										line:SetHeight(line.Text:GetHeight()) --fix line height
+										line:SetHeight(line.Text:GetHeight()+2) --fix line height
 									end
 								end
 								if line.Icon then
@@ -498,7 +498,7 @@ function ElvUI_EltreumUI:SkinQuests()
 										line.Text:SetTextColor(1, 1, 1)
 									end
 								end
-								line:SetHeight(line.Text:GetHeight()) --fix line height
+								line:SetHeight(line.Text:GetHeight()+2) --fix line height
 							end
 						end
 						if line.Icon then
