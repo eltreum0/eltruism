@@ -927,7 +927,6 @@ function ElvUI_EltreumUI:SkinQuests()
 							end
 						end
 					end)
-
 				end
 
 				local eventtrigger = CreateFrame("frame")
