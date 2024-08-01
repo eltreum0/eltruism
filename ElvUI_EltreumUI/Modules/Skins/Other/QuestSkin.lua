@@ -703,6 +703,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						else
 							E:Delay(0, function()
 								local itemTable = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
+								print(itemButton.questLogIndex,itemTable)
 								local itemName, _, _, _, _, _, _, _, _, itemTexture, _, _ = _G.C_Item.GetItemInfo(itemTable.id)
 								block.EltruismButton.texture:SetTexture(itemTexture)
 								block.EltruismButton:SetAttribute('type', 'item')
