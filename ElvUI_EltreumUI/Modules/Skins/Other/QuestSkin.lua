@@ -659,7 +659,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 					local itemButton = block.itemButton or block.ItemButton
 					if itemButton then
-						S:HandleButton(itemButton)
+						--S:HandleButton(itemButton)
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable and not itemButton.shadow then
 							itemButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(itemButton.shadow)
@@ -676,6 +676,8 @@ function ElvUI_EltreumUI:SkinQuests()
 							itemButton:ClearAllPoints()
 							itemButton:SetPoint("TOPRIGHT", block, "TOPRIGHT", 80, -3)
 						end
+						itemButton:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
+						itemButton:UnregisterEvent("ADDON_ACTION_BLOCKED")
 					end
 					if block.groupFinderButton and E.db.ElvUI_EltreumUI.skins.shadow.enable and not block.groupFinderButton.shadow then
 						block.groupFinderButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
