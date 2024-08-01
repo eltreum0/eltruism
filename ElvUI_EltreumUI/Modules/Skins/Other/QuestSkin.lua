@@ -658,11 +658,36 @@ function ElvUI_EltreumUI:SkinQuests()
 						block.HeaderText:SetWordWrap(true)
 					end
 					local itemButton = block.itemButton or block.ItemButton
-					if itemButton then
-						--S:HandleButton(itemButton)
-						if E.db.ElvUI_EltreumUI.skins.shadow.enable and not itemButton.shadow then
-							itemButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(itemButton.shadow)
+					if itemButton and not block.EltruismButton then
+						block.EltruismButton = CreateFrame("Button",block:GetDebugName().."EltruismButton",block,"SecureActionButtonTemplate") --SecureActionButtonTemplate
+						S:HandleButton(block.EltruismButton)
+						local itemTable = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
+						block.EltruismButton:SetSize(itemButton:GetSize())
+						block.EltruismButton.texture = block.EltruismButton:CreateTexture(block:GetDebugName().."EltruismButtonTexture","ARTWORK")
+						block.EltruismButton.texture:SetAllPoints(block.EltruismButton)
+						block.EltruismButton.texture:SetTexture(itemButton.icon:GetTexture())
+						local itemName = GetItemInfo(itemTable.id)
+						block.EltruismButton:SetAttribute('type', 'item')
+						block.EltruismButton:SetAttribute('item', itemName)
+						block.EltruismButton:SetScript("OnEnter", function()
+							_G.GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
+							_G.GameTooltip:SetItemByID(itemTable.id)
+							--_G.GameTooltip:SetQuestLogSpecialItem(itemTable.id)
+						end)
+						block.EltruismButton:SetScript("OnLeave", function()
+							_G.GameTooltip:Hide()
+						end)
+						block.EltruismButton.cooldown = CreateFrame("Cooldown",nil,block.EltruismButton,"CooldownFrameTemplate")
+						block.EltruismButton.cooldown:SetAllPoints()
+						E:RegisterCooldown(block.EltruismButton.cooldown)
+						CooldownFrame_Set(block.EltruismButton.cooldown,C_Item.GetItemCooldown(itemTable.id))
+						block.EltruismButton:RegisterForClicks("AnyUp", "AnyDown")
+						itemButton:Hide() --now that the cloned button is done, hide the original
+
+						--S:HandleButton(block.EltruismButton)
+						if E.db.ElvUI_EltreumUI.skins.shadow.enable and not block.EltruismButton.shadow then
+							block.EltruismButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(block.EltruismButton.shadow)
 						end
 						if _G.ObjectiveFrameMover then
 							questside = _G.ObjectiveFrameMover:GetPoint()
@@ -670,11 +695,11 @@ function ElvUI_EltreumUI:SkinQuests()
 							questside = "RIGHT"
 						end
 						if questside:match("RIGHT") then
-							itemButton:ClearAllPoints()
-							itemButton:SetPoint("TOPLEFT", block, "TOPLEFT", -60, -3)
+							block.EltruismButton:ClearAllPoints()
+							block.EltruismButton:SetPoint("TOPLEFT", block, "TOPLEFT", -60, -3)
 						else
-							itemButton:ClearAllPoints()
-							itemButton:SetPoint("TOPRIGHT", block, "TOPRIGHT", 80, -3)
+							block.EltruismButton:ClearAllPoints()
+							block.EltruismButton:SetPoint("TOPRIGHT", block, "TOPRIGHT", 80, -3)
 						end
 						itemButton:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 						itemButton:UnregisterEvent("ADDON_ACTION_BLOCKED")
