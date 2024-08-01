@@ -658,7 +658,8 @@ function ElvUI_EltreumUI:SkinQuests()
 						block.HeaderText:SetWordWrap(true)
 					end
 					local itemButton = block.itemButton or block.ItemButton
-					if itemButton then
+
+					if itemButton and itemButton.questLogIndex then
 						if not block.EltruismButton then
 							block.EltruismButton = CreateFrame("Button",block:GetDebugName().."EltruismButton",block,"SecureActionButtonTemplate") --SecureActionButtonTemplate
 							S:HandleButton(block.EltruismButton)
@@ -726,11 +727,16 @@ function ElvUI_EltreumUI:SkinQuests()
 									block.EltruismButton:ClearAllPoints()
 									block.EltruismButton:SetPoint("TOPRIGHT", block, "TOPRIGHT", 80, -3)
 								end
+								block.EltruismButton:Show()
 							end
 						end
 						itemButton:Hide() --now that the cloned button is done, hide the original
 						itemButton:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 						itemButton:UnregisterEvent("ADDON_ACTION_BLOCKED")
+					else
+						if block.EltruismButton then
+							block.EltruismButton:Hide()
+						end
 					end
 					if block.groupFinderButton and E.db.ElvUI_EltreumUI.skins.shadow.enable and not block.groupFinderButton.shadow then
 						block.groupFinderButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
