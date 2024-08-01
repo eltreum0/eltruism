@@ -705,6 +705,24 @@ function ElvUI_EltreumUI:SkinQuests()
 							block.EltruismButton.texture:SetTexture(itemTexture)
 							block.EltruismButton:SetAttribute('type', 'item')
 							block.EltruismButton:SetAttribute('item', itemName)
+							block.EltruismButton:SetScript("OnEnter", function()
+								_G.GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
+								_G.GameTooltip:SetItemByID(itemTable.id)
+								--_G.GameTooltip:SetQuestLogSpecialItem(itemTable.id)
+							end)
+							CooldownFrame_Set(block.EltruismButton.cooldown,C_Item.GetItemCooldown(itemTable.id))
+							if _G.ObjectiveFrameMover then
+								questside = _G.ObjectiveFrameMover:GetPoint()
+							else
+								questside = "RIGHT"
+							end
+							if questside:match("RIGHT") then
+								block.EltruismButton:ClearAllPoints()
+								block.EltruismButton:SetPoint("TOPLEFT", block, "TOPLEFT", -60, -3)
+							else
+								block.EltruismButton:ClearAllPoints()
+								block.EltruismButton:SetPoint("TOPRIGHT", block, "TOPRIGHT", 80, -3)
+							end
 						end
 						itemButton:Hide() --now that the cloned button is done, hide the original
 						itemButton:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
