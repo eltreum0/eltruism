@@ -126,6 +126,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[1897] = E.Cata and 13695 or 20031, --enchant-weapon-superior-striking
 		[7098] = 430392, --sharpen-weapon-hit
 		[7099] = 430585, --increased-mana-regen-and-spell-hit
+		[7603] = 463871, --enchant-shield-law-of-nature
 
 		--[6932] = 415995, --engrave-chest-serendipity
 		--list of engraves
