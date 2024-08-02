@@ -309,19 +309,11 @@ function ElvUI_EltreumUI:SkinQuests()
 							bar.backdrop:SetBackdropColor(0,0,0)
 						end)]]
 
-						--fix label font
-						if bar.Label then
-							bar.Label:ClearAllPoints()
-							bar.Label:SetPoint("CENTER",bar,"CENTER",0,1)
-							local _,fontsize = bar.Label:GetFont()
-							bar.Label:SetFont(E.LSM:Fetch('font', E.db.general.font), fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-						end
-
 						if bar.SetPercent then
-							hooksecurefunc(bar:GetParent(), "SetPercent", function(frame,percent)
+							hooksecurefunc(bar:GetParent(), "SetPercent", function(frame)--,percent)
 								local statusbar = frame.Bar
 								if not statusbar then return end
-								S:StatusBarColorGradient(statusbar, percent, 100)
+								--S:StatusBarColorGradient(statusbar, percent, 100)
 								local r,g,b = statusbar:GetStatusBarColor()
 								statusbar:GetStatusBarTexture():SetGradient("HORIZONTAL", {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= E.db.general.backdropfadecolor.a}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= E.db.general.backdropfadecolor.a})
 								statusbar.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
@@ -881,7 +873,7 @@ function ElvUI_EltreumUI:SkinQuests()
 							end
 						end
 						if k.Update and not k.EltruismUpdateHooked then
-							hooksecurefunc(k, "Update", function(module)
+							hooksecurefunc(k, "Update", function(module)--availableHeight, dirtyUpdate)
 								if module and module.Header and module.Header.Text then --the big type of quest
 									if not ElvUI_EltreumUI:SLCheck('quest') then
 										if module.Header.Text:GetText() ~= _G.TRACKER_ALL_OBJECTIVES then
