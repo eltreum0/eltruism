@@ -644,6 +644,87 @@ function ElvUI_EltreumUI:SkinQuests()
 					_G.ObjectiveTrackerFrame,
 				}
 
+				local function QuestItemButton(block,itemButton)
+					if not block.EltruismButton then
+						block.EltruismButton = CreateFrame("Button",block:GetDebugName().."EltruismButton",block,"SecureActionButtonTemplate")
+						S:HandleButton(block.EltruismButton)
+						local itemTable = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
+						block.EltruismButton:SetSize(itemButton:GetSize())
+						block.EltruismButton.texture = block.EltruismButton:CreateTexture(block:GetDebugName().."EltruismButtonTexture","ARTWORK")
+						block.EltruismButton.texture:SetAllPoints(block.EltruismButton)
+						local itemName, _, _, _, _, _, _, _, _, itemTexture, _, _ = _G.C_Item.GetItemInfo(itemTable.id)
+						block.EltruismButton.texture:SetTexture(itemTexture)
+						if not InCombatLockdown() then
+							block.EltruismButton:SetAttribute('type', 'item')
+							block.EltruismButton:SetAttribute('item', itemName)
+						end
+						block.EltruismButton:SetScript("OnEnter", function()
+							_G.GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
+							local itemTable2 = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
+							_G.GameTooltip:SetItemByID(itemTable2.id)
+							--_G.GameTooltip:SetQuestLogSpecialItem(itemTable.id)
+						end)
+						block.EltruismButton:SetScript("OnLeave", function()
+							_G.GameTooltip:Hide()
+						end)
+						block.EltruismButton.cooldown = CreateFrame("Cooldown",nil,block.EltruismButton,"CooldownFrameTemplate")
+						block.EltruismButton.cooldown:SetAllPoints()
+						E:RegisterCooldown(block.EltruismButton.cooldown)
+						CooldownFrame_Set(block.EltruismButton.cooldown,C_Item.GetItemCooldown(itemTable.id))
+						block.EltruismButton:RegisterForClicks("AnyUp", "AnyDown")
+						if E.db.ElvUI_EltreumUI.skins.shadow.enable and not block.EltruismButton.shadow then
+							block.EltruismButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(block.EltruismButton.shadow)
+						end
+						if not InCombatLockdown() then
+							if _G.ObjectiveFrameMover then
+								questside = _G.ObjectiveFrameMover:GetPoint()
+							else
+								questside = "RIGHT"
+							end
+							if questside:match("RIGHT") then
+								block.EltruismButton:ClearAllPoints()
+								block.EltruismButton:SetPoint("TOPLEFT", block, "TOPLEFT", -60, -3)
+							else
+								block.EltruismButton:ClearAllPoints()
+								block.EltruismButton:SetPoint("TOPRIGHT", block, "TOPRIGHT", 80, -3)
+							end
+						end
+					else
+						local itemTable = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
+						if itemTable then
+							local itemName, _, _, _, _, _, _, _, _, itemTexture, _, _ = _G.C_Item.GetItemInfo(itemTable.id)
+							block.EltruismButton.texture:SetTexture(itemTexture)
+							if not InCombatLockdown() then
+								block.EltruismButton:SetAttribute('type', 'item')
+								block.EltruismButton:SetAttribute('item', itemName)
+							end
+							block.EltruismButton:SetScript("OnEnter", function()
+								_G.GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
+								local itemTable2 = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
+								_G.GameTooltip:SetItemByID(itemTable2.id)
+								--_G.GameTooltip:SetQuestLogSpecialItem(itemTable.id)
+							end)
+							CooldownFrame_Set(block.EltruismButton.cooldown,C_Item.GetItemCooldown(itemTable.id))
+							if not InCombatLockdown() then
+								if _G.ObjectiveFrameMover then
+									questside = _G.ObjectiveFrameMover:GetPoint()
+								else
+									questside = "RIGHT"
+								end
+								if questside:match("RIGHT") then
+									block.EltruismButton:ClearAllPoints()
+									block.EltruismButton:SetPoint("TOPLEFT", block, "TOPLEFT", -60, -3)
+								else
+									block.EltruismButton:ClearAllPoints()
+									block.EltruismButton:SetPoint("TOPRIGHT", block, "TOPRIGHT", 80, -3)
+								end
+								block.EltruismButton:Show()
+							end
+						end
+					end
+				end
+
 				local function blockskin(block)
 					if not block then
 						return
@@ -660,76 +741,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					local itemButton = block.itemButton or block.ItemButton
 
 					if itemButton and itemButton.questLogIndex then
-						if not block.EltruismButton then
-							block.EltruismButton = CreateFrame("Button",block:GetDebugName().."EltruismButton",block,"SecureActionButtonTemplate") --SecureActionButtonTemplate
-							S:HandleButton(block.EltruismButton)
-							local itemTable = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
-							block.EltruismButton:SetSize(itemButton:GetSize())
-							block.EltruismButton.texture = block.EltruismButton:CreateTexture(block:GetDebugName().."EltruismButtonTexture","ARTWORK")
-							block.EltruismButton.texture:SetAllPoints(block.EltruismButton)
-							local itemName, _, _, _, _, _, _, _, _, itemTexture, _, _ = _G.C_Item.GetItemInfo(itemTable.id)
-							block.EltruismButton.texture:SetTexture(itemTexture)
-							block.EltruismButton:SetAttribute('type', 'item')
-							block.EltruismButton:SetAttribute('item', itemName)
-							block.EltruismButton:SetScript("OnEnter", function()
-								_G.GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
-								local itemTable2 = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
-								_G.GameTooltip:SetItemByID(itemTable2.id)
-								--_G.GameTooltip:SetQuestLogSpecialItem(itemTable.id)
-							end)
-							block.EltruismButton:SetScript("OnLeave", function()
-								_G.GameTooltip:Hide()
-							end)
-							block.EltruismButton.cooldown = CreateFrame("Cooldown",nil,block.EltruismButton,"CooldownFrameTemplate")
-							block.EltruismButton.cooldown:SetAllPoints()
-							E:RegisterCooldown(block.EltruismButton.cooldown)
-							CooldownFrame_Set(block.EltruismButton.cooldown,C_Item.GetItemCooldown(itemTable.id))
-							block.EltruismButton:RegisterForClicks("AnyUp", "AnyDown")
-							if E.db.ElvUI_EltreumUI.skins.shadow.enable and not block.EltruismButton.shadow then
-								block.EltruismButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(block.EltruismButton.shadow)
-							end
-							if _G.ObjectiveFrameMover then
-								questside = _G.ObjectiveFrameMover:GetPoint()
-							else
-								questside = "RIGHT"
-							end
-							if questside:match("RIGHT") then
-								block.EltruismButton:ClearAllPoints()
-								block.EltruismButton:SetPoint("TOPLEFT", block, "TOPLEFT", -60, -3)
-							else
-								block.EltruismButton:ClearAllPoints()
-								block.EltruismButton:SetPoint("TOPRIGHT", block, "TOPRIGHT", 80, -3)
-							end
-						else
-							local itemTable = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
-							if itemTable then
-								local itemName, _, _, _, _, _, _, _, _, itemTexture, _, _ = _G.C_Item.GetItemInfo(itemTable.id)
-								block.EltruismButton.texture:SetTexture(itemTexture)
-								block.EltruismButton:SetAttribute('type', 'item')
-								block.EltruismButton:SetAttribute('item', itemName)
-								block.EltruismButton:SetScript("OnEnter", function()
-									_G.GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
-									local itemTable2 = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
-									_G.GameTooltip:SetItemByID(itemTable2.id)
-									--_G.GameTooltip:SetQuestLogSpecialItem(itemTable.id)
-								end)
-								CooldownFrame_Set(block.EltruismButton.cooldown,C_Item.GetItemCooldown(itemTable.id))
-								if _G.ObjectiveFrameMover then
-									questside = _G.ObjectiveFrameMover:GetPoint()
-								else
-									questside = "RIGHT"
-								end
-								if questside:match("RIGHT") then
-									block.EltruismButton:ClearAllPoints()
-									block.EltruismButton:SetPoint("TOPLEFT", block, "TOPLEFT", -60, -3)
-								else
-									block.EltruismButton:ClearAllPoints()
-									block.EltruismButton:SetPoint("TOPRIGHT", block, "TOPRIGHT", 80, -3)
-								end
-								block.EltruismButton:Show()
-							end
-						end
+						QuestItemButton(block,itemButton)
 						itemButton:Hide() --now that the cloned button is done, hide the original
 						itemButton:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 						itemButton:UnregisterEvent("ADDON_ACTION_BLOCKED")
