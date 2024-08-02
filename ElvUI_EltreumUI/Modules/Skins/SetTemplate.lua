@@ -334,9 +334,22 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 									end
 									if frame:GetParent():GetParent().Bar then
 										atlas = frame:GetParent():GetParent().Bar:GetStatusBarTexture():GetAtlas()
-										--frame:GetParent():GetParent().Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+										frame:GetParent():GetParent().Bar.EltruismAtlas = atlas
 										frame:GetParent():GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
 										frame:GetParent():GetParent().Bar:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+										if not frame:GetParent():GetParent().Bar.EltruismColorHook then
+											hooksecurefunc(frame:GetParent():GetParent().Bar, "DisplayBarValue", function(widget)
+												if not atlas then
+													atlas = widget:GetStatusBarTexture():GetAtlas()
+												end
+												if not atlas then
+													atlas = widget.EltruismAtlas
+												end
+												widget:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+												widget:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+											end)
+											frame:GetParent():GetParent().Bar.EltruismColorHook = true
+										end
 									end
 
 									-- hook for when label gets added
