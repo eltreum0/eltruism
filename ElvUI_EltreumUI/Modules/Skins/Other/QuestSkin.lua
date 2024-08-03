@@ -874,7 +874,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 						if k.Update and not k.EltruismUpdateHooked then
 							hooksecurefunc(k, "Update", function(module)--availableHeight, dirtyUpdate)
-								if module and module.Header and module.Header.Text then --the big type of quest
+								if module and module.Header and module.Header.Text and not module.Header.EltruismFont then --the big type of quest
 									if not ElvUI_EltreumUI:SLCheck('quest') then
 										if module.Header.Text:GetText() ~= _G.TRACKER_ALL_OBJECTIVES then
 											module.Header.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSizeHeader, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -923,6 +923,7 @@ function ElvUI_EltreumUI:SkinQuests()
 											end
 										end
 									end
+									module.Header.EltruismFont = true
 								end
 
 								--add quest count
