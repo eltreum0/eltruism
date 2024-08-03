@@ -5,6 +5,7 @@ local hooksecurefunc = _G.hooksecurefunc
 local EnumerateFrames = _G.EnumerateFrames
 local valuecolors = E:ClassColor(E.myclass, true)
 local atlas
+local S = E:GetModule('Skins')
 
 local widgetAtlas = {
 	["widgetstatusbar-fill-blue"] = { r = 0, g = 0, b = 255, a = 1},
@@ -334,8 +335,28 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 									end
 									if frame:GetParent():GetParent().Bar then
 										atlas = frame:GetParent():GetParent().Bar:GetStatusBarTexture():GetAtlas()
-										frame:GetParent():GetParent().Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+										frame:GetParent():GetParent().Bar.EltruismAtlas = atlas
 										frame:GetParent():GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+										frame:GetParent():GetParent().Bar:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+										if not frame:GetParent():GetParent().Bar.EltruismColorHook and frame:GetParent():GetParent().Bar.DisplayBarValue then
+											hooksecurefunc(frame:GetParent():GetParent().Bar, "DisplayBarValue", function(widget)
+												local _, maxValue = widget:GetMinMaxValues()
+												S:StatusBarColorGradient(widget, widget:GetValue(), maxValue)
+												widget.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
+												widget.backdrop:SetBackdropColor(0,0,0)
+												widget:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+
+												--[[if not atlas then
+													atlas = widget:GetStatusBarTexture():GetAtlas()
+												end
+												if not atlas then
+													atlas = widget.EltruismAtlas
+												end]]
+												--widget:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+											end)
+											frame:GetParent():GetParent().Bar.EltruismColorHook = true
+
+										end
 									end
 
 									-- hook for when label gets added
