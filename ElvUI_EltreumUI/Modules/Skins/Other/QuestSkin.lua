@@ -688,8 +688,15 @@ function ElvUI_EltreumUI:SkinQuests()
 								end
 							else
 								block.EltruismButton.questLogIndex = itemButton.questLogIndex
-								block.EltruismButton.texture:SetTexture(itemTexture)
-								block.EltruismButton.texture:SetTexCoord(unpack(E.TexCoords))
+								if not block.EltruismButton.texture then
+									block.EltruismButton.texture = block.EltruismButton:CreateTexture(nil,"ARTWORK")
+									block.EltruismButton.texture:SetAllPoints(block.EltruismButton)
+									block.EltruismButton.texture:SetTexture(itemTexture)
+									block.EltruismButton.texture:SetTexCoord(unpack(E.TexCoords))
+								else
+									block.EltruismButton.texture:SetTexture(itemTexture)
+									block.EltruismButton.texture:SetTexCoord(unpack(E.TexCoords))
+								end
 								if not InCombatLockdown() then
 									block.EltruismButton:SetAttribute('type', 'item')
 									block.EltruismButton:SetAttribute('item', itemName)
@@ -700,7 +707,14 @@ function ElvUI_EltreumUI:SkinQuests()
 									_G.GameTooltip:SetItemByID(itemTable2.id)
 									--_G.GameTooltip:SetQuestLogSpecialItem(itemTable.id)
 								end)
-								CooldownFrame_Set(block.EltruismButton.cooldown,C_Item.GetItemCooldown(itemTable.id))
+								if not block.EltruismButton.cooldown then
+									block.EltruismButton.cooldown = CreateFrame("Cooldown",nil,block.EltruismButton,"CooldownFrameTemplate")
+									block.EltruismButton.cooldown:SetAllPoints()
+									E:RegisterCooldown(block.EltruismButton.cooldown)
+									CooldownFrame_Set(block.EltruismButton.cooldown,C_Item.GetItemCooldown(itemTable.id))
+								else
+									CooldownFrame_Set(block.EltruismButton.cooldown,C_Item.GetItemCooldown(itemTable.id))
+								end
 								if not InCombatLockdown() then
 									if _G.ObjectiveFrameMover then
 										questside = _G.ObjectiveFrameMover:GetPoint()
