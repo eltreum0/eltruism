@@ -331,7 +331,7 @@ function ElvUI_EltreumUI:SkinQuests()
 							if line then
 								if ( line.Dash ) then
 									if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
-										line.Dash:SetText("")
+										line.Dash:SetText(" ")
 									else
 										if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
 											line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
@@ -429,7 +429,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					if line then
 						if ( line.Dash ) then
 							if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
-								line.Dash:SetText("")
+								line.Dash:SetText(" ")
 							else
 								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
 									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
@@ -542,7 +542,7 @@ function ElvUI_EltreumUI:SkinQuests()
 							end
 							if ( line.Dash ) then
 								if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
-									line.Dash:SetText("")
+									line.Dash:SetText(" ")
 								else
 									if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
 										line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
@@ -600,7 +600,7 @@ function ElvUI_EltreumUI:SkinQuests()
 							end
 							if ( line.Dash ) then
 								if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
-									line.Dash:SetText("")
+									line.Dash:SetText(" ")
 								else
 									if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
 										line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
