@@ -684,7 +684,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 					else
 						local itemTable = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
-						if itemTable then
+						if itemTable and itemTable.id then
 							local itemName, _, _, _, _, _, _, _, _, itemTexture, _, _ = _G.C_Item.GetItemInfo(itemTable.id)
 							block.EltruismButton.texture:SetTexture(itemTexture)
 							if not InCombatLockdown() then
