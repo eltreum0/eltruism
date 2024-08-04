@@ -642,11 +642,11 @@ function ElvUI_EltreumUI:SkinQuests()
 						local itemName, _, _, _, _, _, _, _, _, itemTexture, _, _ = _G.C_Item.GetItemInfo(itemTable.id)
 						if itemName and itemTexture then
 							if not block.EltruismButton then
-								block.EltruismButton = CreateFrame("Button",block:GetDebugName().."EltruismButton",block,"SecureActionButtonTemplate")
+								block.EltruismButton = CreateFrame("Button",nil,block,"SecureActionButtonTemplate")
 								S:HandleButton(block.EltruismButton)
 								block.EltruismButton.questLogIndex = itemButton.questLogIndex
 								block.EltruismButton:SetSize(itemButton:GetSize())
-								block.EltruismButton.texture = block.EltruismButton:CreateTexture(block:GetDebugName().."EltruismButtonTexture","ARTWORK")
+								block.EltruismButton.texture = block.EltruismButton:CreateTexture(nil,"ARTWORK")
 								block.EltruismButton.texture:SetAllPoints(block.EltruismButton)
 								block.EltruismButton.texture:SetTexture(itemTexture)
 								block.EltruismButton.texture:SetTexCoord(unpack(E.TexCoords))
