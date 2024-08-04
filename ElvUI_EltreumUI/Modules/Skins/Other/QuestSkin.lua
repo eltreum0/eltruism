@@ -640,6 +640,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					if not block.EltruismButton then
 						block.EltruismButton = CreateFrame("Button",block:GetDebugName().."EltruismButton",block,"SecureActionButtonTemplate")
 						S:HandleButton(block.EltruismButton)
+						block.EltruismButton.questLogIndex = itemButton.questLogIndex
 						local itemTable = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
 						block.EltruismButton:SetSize(itemButton:GetSize())
 						block.EltruismButton.texture = block.EltruismButton:CreateTexture(block:GetDebugName().."EltruismButtonTexture","ARTWORK")
@@ -687,6 +688,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						local itemTable = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
 						if itemTable and itemTable.id then
 							local itemName, _, _, _, _, _, _, _, _, itemTexture, _, _ = _G.C_Item.GetItemInfo(itemTable.id)
+							block.EltruismButton.questLogIndex = itemButton.questLogIndex
 							block.EltruismButton.texture:SetTexture(itemTexture)
 							block.EltruismButton.texture:SetTexCoord(unpack(E.TexCoords))
 							if not InCombatLockdown() then
