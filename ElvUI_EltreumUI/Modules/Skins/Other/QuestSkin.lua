@@ -637,11 +637,11 @@ function ElvUI_EltreumUI:SkinQuests()
 				}
 
 				local function QuestItemButton(block,itemButton)
-					if not block.EltruismButton then
-						local itemTable = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
-						if itemTable and itemTable.id then
-							local itemName, _, _, _, _, _, _, _, _, itemTexture, _, _ = _G.C_Item.GetItemInfo(itemTable.id)
-							if itemName and itemTexture then
+					local itemTable = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
+					if itemTable and itemTable.id then
+						local itemName, _, _, _, _, _, _, _, _, itemTexture, _, _ = _G.C_Item.GetItemInfo(itemTable.id)
+						if itemName and itemTexture then
+							if not block.EltruismButton then
 								block.EltruismButton = CreateFrame("Button",block:GetDebugName().."EltruismButton",block,"SecureActionButtonTemplate")
 								S:HandleButton(block.EltruismButton)
 								block.EltruismButton.questLogIndex = itemButton.questLogIndex
@@ -686,13 +686,7 @@ function ElvUI_EltreumUI:SkinQuests()
 										block.EltruismButton:SetPoint("TOPRIGHT", block, "TOPRIGHT", 80, -3)
 									end
 								end
-							end
-						end
-					else
-						local itemTable = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
-						if itemTable and itemTable.id then
-							local itemName, _, _, _, _, _, _, _, _, itemTexture, _, _ = _G.C_Item.GetItemInfo(itemTable.id)
-							if itemName and itemTexture then
+							else
 								block.EltruismButton.questLogIndex = itemButton.questLogIndex
 								block.EltruismButton.texture:SetTexture(itemTexture)
 								block.EltruismButton.texture:SetTexCoord(unpack(E.TexCoords))
