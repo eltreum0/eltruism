@@ -646,6 +646,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						block.EltruismButton.texture:SetAllPoints(block.EltruismButton)
 						local itemName, _, _, _, _, _, _, _, _, itemTexture, _, _ = _G.C_Item.GetItemInfo(itemTable.id)
 						block.EltruismButton.texture:SetTexture(itemTexture)
+						block.EltruismButton.texture:SetTexCoord(unpack(E.TexCoords))
 						if not InCombatLockdown() then
 							block.EltruismButton:SetAttribute('type', 'item')
 							block.EltruismButton:SetAttribute('item', itemName)
@@ -687,6 +688,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						if itemTable and itemTable.id then
 							local itemName, _, _, _, _, _, _, _, _, itemTexture, _, _ = _G.C_Item.GetItemInfo(itemTable.id)
 							block.EltruismButton.texture:SetTexture(itemTexture)
+							block.EltruismButton.texture:SetTexCoord(unpack(E.TexCoords))
 							if not InCombatLockdown() then
 								block.EltruismButton:SetAttribute('type', 'item')
 								block.EltruismButton:SetAttribute('item', itemName)
