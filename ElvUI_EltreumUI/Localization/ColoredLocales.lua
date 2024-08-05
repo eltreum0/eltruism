@@ -39,4 +39,5 @@ if E.db.ElvUI_EltreumUI.skins.colormodkey then
 	L["KEY_NMINUS"] = "|cff"..classcolorsescape[E.myclass]..L["KEY_NMINUS"].."|r"
 	L["KEY_NPLUS"] = "|cff"..classcolorsescape[E.myclass]..L["KEY_NPLUS"].."|r"
 	L["KEY_NEQUALS"] = "|cff"..classcolorsescape[E.myclass]..L["KEY_NEQUALS"].."|r"
+	L["KEY_META"] = "|cff"..classcolorsescape[E.myclass]..L["KEY_META"].."|r"
 end
