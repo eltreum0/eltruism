@@ -634,6 +634,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					_G.BonusObjectiveTracker,
 					_G.WorldQuestObjectiveTracker,
 					_G.ObjectiveTrackerFrame,
+					_G.UIWidgetObjectiveTracker,
 				}
 
 				local function QuestItemButton(block,itemButton)
