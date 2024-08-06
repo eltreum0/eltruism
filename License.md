@@ -5,7 +5,7 @@
 ```
 Copyright © 2009-2024 The contents of this addon, excluding third-party resources, are
 copyrighted to their authors with all rights reserved.
-Reference: https://github.com/tukui-org/ElvUI/blob/development/ElvUI/LICENSE.txt
+Reference: https://github.com/tukui-org/ElvUI/blob/main/LICENSE.md
 ```
 
 ## Third Party Embeds

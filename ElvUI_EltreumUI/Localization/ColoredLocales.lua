@@ -30,7 +30,7 @@ if E.db.ElvUI_EltreumUI.skins.colormodkey then
 	L["KEY_MOUSEBUTTON"] = "|cff"..classcolorsescape[E.myclass]..L["KEY_MOUSEBUTTON"] .."|r"
 	L["KEY_MOUSEWHEELDOWN"] = "|cff"..classcolorsescape[E.myclass]..L["KEY_MOUSEWHEELDOWN"].."|r"
 	L["KEY_MOUSEWHEELUP"] = "|cff"..classcolorsescape[E.myclass]..L["KEY_MOUSEWHEELUP"].."|r"
-	L["KEY_NUMPAD"] = "|cff"..classcolorsescape[E.myclass]..L["KEY_NUMPAD"].."|r"
+	--L["KEY_NUMPAD"] = "|cff"..classcolorsescape[E.myclass]..L["KEY_NUMPAD"].."|r"
 	L["KEY_PAGEDOWN"] = "|cff"..classcolorsescape[E.myclass]..L["KEY_PAGEDOWN"].."|r"
 	L["KEY_PAGEUP"] = "|cff"..classcolorsescape[E.myclass]..L["KEY_PAGEUP"].."|r"
 	L["KEY_SHIFT"] = "|cff"..classcolorsescape[E.myclass]..L["KEY_SHIFT"].."|r"
