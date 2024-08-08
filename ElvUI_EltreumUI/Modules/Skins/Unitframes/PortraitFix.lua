@@ -450,6 +450,7 @@ local modelsRotate = {
 	[5395590] = true, --Alleria Windrunner
 	[5484812] = true, --Speaker Brinthe
 	[892526] = true, --other Garrosh Hellscream
+	[5349642] = true, --Undertide Preystalker
 }
 
 local targetlike = {
