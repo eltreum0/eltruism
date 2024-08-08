@@ -1647,7 +1647,9 @@ function ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
 
 	local newHeight = math.max(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight, scenarioBlockHeight)
 	Enum.EditModeObjectiveTrackerSetting.Height = newHeight
-	ObjectiveTrackerFrame:SetHeight(newHeight)
+	if not InCombatLockdown() then
+		ObjectiveTrackerFrame:SetHeight(newHeight)
+	end
 end
 
 --add objective frame anchor back in
