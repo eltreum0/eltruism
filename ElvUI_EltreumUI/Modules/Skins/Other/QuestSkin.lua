@@ -324,103 +324,118 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 				end
 
-				local function usedLines(block)
-					for i = 1, #block.usedLines do
-						if block.usedLines[i] then
-							local line = block.usedLines[i]
-							if line then
-								if ( line.Dash ) then
-									if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
-										line.Dash:SetText(" ")
-									else
-										if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
-											line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
-										else
-											line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
-										end
-										line.Dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-									end
+				local function subLines(line)
+					if line then
+						if ( line.Dash ) then
+							if E.db.ElvUI_EltreumUI.skins.questsettings.hideDash then
+								line.Dash:SetText(" ")
+							else
+								if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+									line.Dash:SetTextColor(E.db.ElvUI_EltreumUI.skins.questsettings.customr, E.db.ElvUI_EltreumUI.skins.questsettings.customg, E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+								else
+									line.Dash:SetTextColor(classcolor.r, classcolor.g, classcolor.b)
 								end
-								--traveler's log dash is part of the text and not another element, so color it differently
-								if line.Text and line.Text:GetText() then
-									line.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-									line.Text:SetTextColor(mult, mult, mult)
-									--line.Text:SetWordWrap(true)
+								line.Dash:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+							end
+						end
+						--traveler's log dash is part of the text and not another element, so color it differently
+						if line.Text and line.Text:GetText() then
+							line.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+							line.Text:SetTextColor(mult, mult, mult)
+							--line.Text:SetWordWrap(true)
 
-									--inspired by blinkii's skin, color
-									local text = line.Text:GetText()
-									--5320674
-									--5320671
-									if text ~= nil then
-										local left, right, questtext = string.match(text, "^(%d-)/(%d-) (.+)")
-										local questtext2,left2, right2 = string.match(text, "(.+): (%d-)/(%d-)$")
-										local left3, right3, questtext3 = strmatch(text, "^- (%d-)/(%d-) (.+)")
-										if left then
-											local percentagedone = (tonumber(left) / tonumber(right)) * 100 or 0
-											local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-											local hexstring = E:RGBToHex(r, g, b)
-											line.Text:SetText(format("%s%s/%s|r %s|r%s",hexstring,left,right,hexstring,questtext))
-											if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
-												line.Text:SetTextColor(0.12, 1, 0.12)
-											else
-												line.Text:SetTextColor(1, 1, 1)
-											end
-										elseif left2 then
-											local percentagedone = (tonumber(left2) / tonumber(right2)) * 100 or 0
-											local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-											local hexstring = E:RGBToHex(r, g, b)
-											line.Text:SetText(format("%s|r %s%s/%s|r",questtext2,hexstring,left2,right2))
-											if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
-												line.Text:SetTextColor(0.12, 1, 0.12)
-											else
-												line.Text:SetTextColor(1, 1, 1)
-											end
-										elseif left3 then
-											local percentagedone = (tonumber(left3) / tonumber(right3)) * 100 or 0
-											local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-											local hexstring = E:RGBToHex(r, g, b)
-											line.Text:SetText(format("- %s%s/%s|r %s|r%s",hexstring,left3,right3,hexstring,questtext3))
-											if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
-												line.Text:SetTextColor(0.12, 1, 0.12)
-											else
-												line.Text:SetTextColor(1, 1, 1)
-											end
-										else
-											if text == _G.QUEST_WATCH_QUEST_READY or (line.Check and line.Check:IsShown()) or (line.objectiveKey == "QuestComplete") then
-												line.Text:SetTextColor(0.12, 1, 0.12)
-											else
-												line.Text:SetTextColor(1, 1, 1)
-											end
-										end
-										--line:SetHeight(line.Text:GetHeight()+2) --fix line height --nvm it can taint
-									end
-								end
-								if line.Icon then
-									if E.db.ElvUI_EltreumUI.skins.questsettings.hideCheck then
-										line.Icon:Hide()
+							--inspired by blinkii's skin, color
+							local text = line.Text:GetText()
+							--5320674
+							--5320671
+							if text ~= nil then
+								local left, right, questtext = string.match(text, "^(%d-)/(%d-) (.+)")
+								local questtext2,left2, right2 = string.match(text, "(.+): (%d-)/(%d-)$")
+								local left3, right3, questtext3 = strmatch(text, "^- (%d-)/(%d-) (.+)")
+								if left then
+									local percentagedone = (tonumber(left) / tonumber(right)) * 100 or 0
+									local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+									local hexstring = E:RGBToHex(r, g, b)
+									line.Text:SetText(format("%s%s/%s|r %s|r%s",hexstring,left,right,hexstring,questtext))
+									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
+										line.Text:SetTextColor(0.12, 1, 0.12)
 									else
-										if line.Icon:GetAtlas() == "UI-QuestTracker-Objective-Nub" then
-											line.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\questnub.tga")
-										elseif line.Icon:GetAtlas() == "UI-QuestTracker-Tracker-Check" then
-											line.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\checkmark.tga")
-										end
+										line.Text:SetTextColor(1, 1, 1)
 									end
-								end
-								if line.lastRegion then
-									if line.lastRegion.Icon and line.lastRegion.Icon:GetAtlas() then
-										if E.db.ElvUI_EltreumUI.skins.questsettings.hideCheck then
-											line.lastRegion.Icon:Hide()
-										else
-											if line.lastRegion.Icon:GetAtlas() == "UI-QuestTracker-Objective-Nub" then
-												line.lastRegion.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\questnub.tga")
-											elseif line.lastRegion.Icon:GetAtlas() == "UI-QuestTracker-Tracker-Check" then
-												line.lastRegion.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\checkmark.tga")
-											end
-										end
+								elseif left2 then
+									local percentagedone = (tonumber(left2) / tonumber(right2)) * 100 or 0
+									local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+									local hexstring = E:RGBToHex(r, g, b)
+									line.Text:SetText(format("%s|r %s%s/%s|r",questtext2,hexstring,left2,right2))
+									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
+										line.Text:SetTextColor(0.12, 1, 0.12)
+									else
+										line.Text:SetTextColor(1, 1, 1)
+									end
+								elseif left3 then
+									local percentagedone = (tonumber(left3) / tonumber(right3)) * 100 or 0
+									local r, g, b = E:ColorGradient(percentagedone * 0.01, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+									local hexstring = E:RGBToHex(r, g, b)
+									line.Text:SetText(format("- %s%s/%s|r %s|r%s",hexstring,left3,right3,hexstring,questtext3))
+									if percentagedone >= 100 or (line.Check and line.Check:IsShown()) then
+										line.Text:SetTextColor(0.12, 1, 0.12)
+									else
+										line.Text:SetTextColor(1, 1, 1)
+									end
+								else
+									if text == _G.QUEST_WATCH_QUEST_READY or (line.Check and line.Check:IsShown()) or (line.objectiveKey == "QuestComplete") then
+										line.Text:SetTextColor(0.12, 1, 0.12)
+									else
+										line.Text:SetTextColor(1, 1, 1)
 									end
 								end
 							end
 						end
+						if line.Icon then
+							if E.db.ElvUI_EltreumUI.skins.questsettings.hideCheck then
+								line.Icon:Hide()
+							else
+								if line.Icon:GetAtlas() == "UI-QuestTracker-Objective-Nub" then
+									line.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\questnub.tga")
+								elseif line.Icon:GetAtlas() == "UI-QuestTracker-Tracker-Check" then
+									line.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\checkmark.tga")
+								end
+							end
+						end
+						if line.lastRegion then
+							if line.lastRegion.Icon and line.lastRegion.Icon:GetAtlas() then
+								if E.db.ElvUI_EltreumUI.skins.questsettings.hideCheck then
+									line.lastRegion.Icon:Hide()
+								else
+									if line.lastRegion.Icon:GetAtlas() == "UI-QuestTracker-Objective-Nub" then
+										line.lastRegion.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\questnub.tga")
+									elseif line.lastRegion.Icon:GetAtlas() == "UI-QuestTracker-Tracker-Check" then
+										line.lastRegion.Icon:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\checkmark.tga")
+									end
+								end
+							end
+						end
+					end
+				end
+
+				local function usedLines(block)
+					if block.usedLines then
+						if #block.usedLines == 0 then
+							for _,v in pairs(block.usedLines) do
+								subLines(v)
+							end
+						else
+							for i = 1, #block.usedLines do
+								if block.usedLines[i] then
+									local line = block.usedLines[i]
+									if line then
+										subLines(line)
+									end
+								end
+							end
+						end
+					else
+						subLines(block)
 					end
 				end
 
@@ -490,7 +505,6 @@ function ElvUI_EltreumUI:SkinQuests()
 										line.Text:SetTextColor(1, 1, 1)
 									end
 								end
-								--line:SetHeight(line.Text:GetHeight()+2) --fix line height --nvm it can taint
 							end
 						end
 						if line.Icon then
@@ -766,6 +780,11 @@ function ElvUI_EltreumUI:SkinQuests()
 						ElvUI_EltreumUI:ShadowColor(block.groupFinderButton.shadow)
 					end
 					if block.usedLines then
+						if #block.usedLines == 0 then
+							for _,v in pairs(block.usedLines) do
+								usedLines(v)
+							end
+						end
 						usedLines(block)
 					end
 					if block.lastRegion then
@@ -800,6 +819,13 @@ function ElvUI_EltreumUI:SkinQuests()
 							blockskin(k)
 						end)
 						k.AddObjectiveHook = true
+					end
+					if k.AddAchievement and not k.AddAchievementHook then
+						hooksecurefunc(k, "AddAchievement", function(block)
+							blockskin(k)
+							blockskin(block)
+						end)
+						k.AddAchievementHook = true
 					end
 					if k.UpdateStageBlock and not k.UpdateStageBlockHook then
 						hooksecurefunc(k, "UpdateStageBlock", function()
@@ -882,10 +908,7 @@ function ElvUI_EltreumUI:SkinQuests()
 							if k.ContentsFrame:GetNumChildren() > 0 then
 								for _, v in pairs({k.ContentsFrame:GetChildren()}) do
 									if v then
-										--if not v.EltruismHooked then
-											hooks(v)
-											--v.EltruismHooked = true
-										--end
+										hooks(v)
 										blockskin(v)
 									end
 								end
@@ -958,6 +981,13 @@ function ElvUI_EltreumUI:SkinQuests()
 								end
 							end)
 							k.EltruismUpdateHooked = true
+						end
+						if k.AddAchievement and not k.AddAchievementHook then
+							hooksecurefunc(k, "AddAchievement", function(block)
+								blockskin(block)
+								blockskin(k)
+							end)
+							k.AddAchievementHook = true
 						end
 					end
 				end
