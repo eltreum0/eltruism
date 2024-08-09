@@ -20,8 +20,8 @@ function ElvUI_EltreumUI:QuestEncounter()
 			if E.Retail then
 				--ObjectiveTracker_Collapse()
 				--ObjectiveTrackerFrame:Hide()
-				ObjectiveTrackerFrame:SetParent(E.HiddenFrame)
-				--ObjectiveTrackerFrame:SetAlpha(0)
+				--ObjectiveTrackerFrame:SetParent(E.HiddenFrame)
+				ObjectiveTrackerFrame:SetAlpha(0)
 			elseif E.Classic then
 				if IsAddOnLoaded("Questie") then
 					if _G["Questie_BaseFrame"] then
@@ -53,12 +53,12 @@ function ElvUI_EltreumUI:QuestEncounterEnd()
 		local _, instanceType = IsInInstance()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
 			if E.Retail then
-				if _G["ObjectiveFrameHolder"] then
+				--[[if _G["ObjectiveFrameHolder"] then
 					ObjectiveTrackerFrame:SetParent(_G["ObjectiveFrameHolder"])
 				else
 					ObjectiveTrackerFrame:SetParent(UIParent)
-				end
-				--ObjectiveTrackerFrame:SetAlpha(1)
+				end]]
+				ObjectiveTrackerFrame:SetAlpha(1)
 			elseif E.Classic then
 				if IsAddOnLoaded("Questie") then
 					if _G["Questie_BaseFrame"] then
@@ -91,8 +91,8 @@ function ElvUI_EltreumUI:ArenaQuest()
 		if instanceType == "arena" or instanceType == "pvp" then
 			if E.Retail then
 				--ObjectiveTrackerFrame:Hide()
-				ObjectiveTrackerFrame:SetParent(E.HiddenFrame)
-				--ObjectiveTrackerFrame:SetAlpha(0)
+				--ObjectiveTrackerFrame:SetParent(E.HiddenFrame)
+				ObjectiveTrackerFrame:SetAlpha(0)
 			elseif E.Classic then
 				if IsAddOnLoaded("Questie") then
 					if _G["Questie_BaseFrame"] then
@@ -116,12 +116,12 @@ function ElvUI_EltreumUI:ArenaQuest()
 			end
 		elseif instanceType == "none" then
 			if E.Retail then
-				if _G["ObjectiveFrameHolder"] then
+				--[[if _G["ObjectiveFrameHolder"] then
 					ObjectiveTrackerFrame:SetParent(_G["ObjectiveFrameHolder"])
 				else
 					ObjectiveTrackerFrame:SetParent(UIParent)
-				end
-				--ObjectiveTrackerFrame:SetAlpha(1)
+				end]]
+				ObjectiveTrackerFrame:SetAlpha(1)
 			elseif E.Classic then
 				if IsAddOnLoaded("Questie") then
 					if _G["Questie_BaseFrame"] then
@@ -155,8 +155,8 @@ function ElvUI_EltreumUI:QuestCombat()
 				_G.ObjectiveTrackerFrame:ToggleCollapsed() --seems like this causes taints
 			end]]
 			--ObjectiveTrackerFrame:SetCollapsed(true)
-			--ObjectiveTrackerFrame:SetAlpha(0)
-			ObjectiveTrackerFrame:SetParent(E.HiddenFrame)
+			ObjectiveTrackerFrame:SetAlpha(0)
+			--ObjectiveTrackerFrame:SetParent(E.HiddenFrame)
 			--ObjectiveTracker_Collapse()
 		elseif E.Classic then
 			if IsAddOnLoaded("Questie") then
@@ -190,12 +190,12 @@ function ElvUI_EltreumUI:QuestCombatEnd()
 				_G.ObjectiveTrackerFrame:ToggleCollapsed() --seems like this causes taints
 			end]]
 			--ObjectiveTrackerFrame:SetCollapsed(false)
-			--ObjectiveTrackerFrame:SetAlpha(1)
-			if _G["ObjectiveFrameHolder"] then
+			ObjectiveTrackerFrame:SetAlpha(1)
+			--[[if _G["ObjectiveFrameHolder"] then
 				ObjectiveTrackerFrame:SetParent(_G["ObjectiveFrameHolder"])
 			else
 				ObjectiveTrackerFrame:SetParent(UIParent)
-			end
+			end]]
 			--ObjectiveTracker_Expand()
 		elseif E.Classic then
 			if IsAddOnLoaded("Questie") then
