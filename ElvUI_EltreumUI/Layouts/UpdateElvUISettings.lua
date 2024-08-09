@@ -25,6 +25,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 			E.private["general"]["nameplateLargeFont"] = "Kimberley"
 			E.private["general"]["nameplateLargeFontOutline"] = "OUTLINE"
 			E.private["general"]["nameplateLargeFontSize"] = 11
+			E.db["general"]["objectiveFrameAutoHide"] = false
 			E.db["general"]["fonts"]["worldsubzone"]["enable"] = true
 			E.db["general"]["fonts"]["worldsubzone"]["font"] = "Kimberley"
 			E.db["general"]["fonts"]["worldsubzone"]["outline"] = "OUTLINE"
@@ -147,6 +148,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 		E.private["general"]["nameplateLargeFont"] = "Kimberley"
 		E.private["general"]["nameplateLargeFontOutline"] = "OUTLINE"
 		E.private["general"]["nameplateLargeFontSize"] = 11
+		E.db["general"]["objectiveFrameAutoHide"] = false
 		E.db["general"]["fonts"]["worldsubzone"]["enable"] = true
 		E.db["general"]["fonts"]["worldsubzone"]["font"] = "Kimberley"
 		E.db["general"]["fonts"]["worldsubzone"]["outline"] = "OUTLINE"

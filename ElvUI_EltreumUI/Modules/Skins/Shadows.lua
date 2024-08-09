@@ -976,6 +976,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.QuestLogDetailFrame,
 				_G.QuestLogFrame,
 				_G.QuestModelScene,
+				_G.QuestModelScene and _G.QuestModelScene.ModelTextFrame,
 				_G.QuestNPCModelTextFrame,
 				_G.QueueStatusFrame,
 				_G.QuickKeybindTooltip,

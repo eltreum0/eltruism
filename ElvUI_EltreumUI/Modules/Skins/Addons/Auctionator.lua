@@ -181,8 +181,12 @@ function ElvUI_EltreumUI:SkinAuctionator()
 										subframe.HighlightTexture.SetAlpha = E.noop
 									end
 								elseif subframe:GetObjectType() == "Button" then
-									subframe:StripTextures()
+									--subframe:StripTextures()
 									S:HandleButton(subframe)
+									if subframe.EltruismAnimation then --is the bag item button,fix the animation
+										subframe.EltruismAnimation:SetDrawLayer("OVERLAY")
+										subframe.EltruismAnimation:SetBlendMode("ADD")
+									end
 								elseif subframe:GetObjectType() == "EditBox" then
 									S:HandleEditBox(subframe)
 									subframe:SetTemplate()
@@ -274,7 +278,7 @@ function ElvUI_EltreumUI:SkinAuctionator()
 					handlesubframe(_G["AuctionatorSellingFrame"].BagListing.View.ScrollBox.ItemListingFrame) --seems like if selling is the default view they update earlier
 					_G["AuctionatorSellingFrame"].BagListing:HookScript("OnShow", function()
 						if not _G["AuctionatorSellingFrame"].BagListing.EltruismSkin then
-							E:Delay(1, function()
+							E:Delay(0.1, function()
 								handlesubframe(_G["AuctionatorSellingFrame"].BagListing.View.ScrollBox.ItemListingFrame)
 							end)
 							_G["AuctionatorSellingFrame"].BagListing.EltruismSkin = true
