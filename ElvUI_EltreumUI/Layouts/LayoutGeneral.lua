@@ -521,6 +521,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["general"]["guildBank"]["itemLevelFontOutline"] = "OUTLINE"
 	E.db["general"]["guildBank"]["itemLevelFontSize"] = 12
 	E.db["general"]["objectiveFrameAutoHideInKeystone"] = false
+	E.db["general"]["objectiveFrameAutoHide"] = false
 	E.db["general"]["objectiveFrameHeight"] = 550
 	E.db["general"]["resurrectSound"] = true
 	E.db["general"]["talkingHeadFrameScale"] = 0.5

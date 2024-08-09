@@ -1069,7 +1069,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 					end)
 				end)
-				--resort to fix overlap, ty blinkii
+				--re sort to fix overlap, ty blinkii
 				E:Delay(0, function()
 					C_QuestLog.SortQuestWatches()
 				end)
@@ -1672,12 +1672,14 @@ end
 
 --adapted from ObjectiveTracker_UpdateHeight()
 function ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
-	local isScenarioBlockShowing = _G.ScenarioBlocksFrame and _G.ScenarioBlocksFrame:IsShown()
-	local scenarioBlockHeight = isScenarioBlockShowing and (_G.ScenarioBlocksFrame:GetHeight() + _G.ObjectiveTrackerBlocksFrame.ScenarioHeader:GetHeight() + 10) or 0
+	local isScenarioBlockShowing = _G.ScenarioObjectiveTracker and _G.ScenarioObjectiveTracker:IsShown()
+	local scenarioBlockHeight = isScenarioBlockShowing and (_G.ScenarioObjectiveTracker:GetHeight() + _G.ScenarioObjectiveTracker.Header:GetHeight() + 10) or 0
 
 	local newHeight = math.max(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight, scenarioBlockHeight)
-	Enum.EditModeObjectiveTrackerSetting.Height = newHeight
+	E.db.general.objectiveFrameAutoHide = false --causes taints otherwise
+
 	if not InCombatLockdown() then
+		Enum.EditModeObjectiveTrackerSetting.Height = newHeight
 		ObjectiveTrackerFrame:SetHeight(newHeight)
 	end
 end

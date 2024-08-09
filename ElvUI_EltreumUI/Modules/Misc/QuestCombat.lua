@@ -53,7 +53,11 @@ function ElvUI_EltreumUI:QuestEncounterEnd()
 		local _, instanceType = IsInInstance()
 		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
 			if E.Retail then
-				ObjectiveTrackerFrame:SetParent(UIParent)
+				if _G["ObjectiveFrameHolder"] then
+					ObjectiveTrackerFrame:SetParent(_G["ObjectiveFrameHolder"])
+				else
+					ObjectiveTrackerFrame:SetParent(UIParent)
+				end
 				--ObjectiveTrackerFrame:SetAlpha(1)
 			elseif E.Classic then
 				if IsAddOnLoaded("Questie") then
@@ -112,7 +116,11 @@ function ElvUI_EltreumUI:ArenaQuest()
 			end
 		elseif instanceType == "none" then
 			if E.Retail then
-				ObjectiveTrackerFrame:SetParent(UIParent)
+				if _G["ObjectiveFrameHolder"] then
+					ObjectiveTrackerFrame:SetParent(_G["ObjectiveFrameHolder"])
+				else
+					ObjectiveTrackerFrame:SetParent(UIParent)
+				end
 				--ObjectiveTrackerFrame:SetAlpha(1)
 			elseif E.Classic then
 				if IsAddOnLoaded("Questie") then
@@ -183,7 +191,11 @@ function ElvUI_EltreumUI:QuestCombatEnd()
 			end]]
 			--ObjectiveTrackerFrame:SetCollapsed(false)
 			--ObjectiveTrackerFrame:SetAlpha(1)
-			ObjectiveTrackerFrame:SetParent(UIParent)
+			if _G["ObjectiveFrameHolder"] then
+				ObjectiveTrackerFrame:SetParent(_G["ObjectiveFrameHolder"])
+			else
+				ObjectiveTrackerFrame:SetParent(UIParent)
+			end
 			--ObjectiveTracker_Expand()
 		elseif E.Classic then
 			if IsAddOnLoaded("Questie") then
