@@ -1683,6 +1683,7 @@ function ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
 	if not InCombatLockdown() then
 		Enum.EditModeObjectiveTrackerSetting.Height = newHeight
 		ObjectiveTrackerFrame:SetHeight(newHeight)
+		ObjectiveTrackerFrame:BreakFromFrameManager()
 	end
 end
 
