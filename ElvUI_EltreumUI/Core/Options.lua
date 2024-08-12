@@ -104,6 +104,7 @@ local DONATORS = {
 	'|cffB50909mercenariosgx|r',
 	'|cffB50909Deathclaw|r',
 	'|cffB50909AegisX|r',
+	'|cffB50909windseeker|r',
 }
 
 local TRANSLATORS = {
