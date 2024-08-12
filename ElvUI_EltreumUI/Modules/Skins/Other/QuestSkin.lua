@@ -767,11 +767,13 @@ function ElvUI_EltreumUI:SkinQuests()
 
 					if itemButton and itemButton.questLogIndex then
 						QuestItemButton(block,itemButton)
-						itemButton:Hide() --now that the cloned button is done, hide the original
+						if not InCombatLockdown() then
+							itemButton:Hide() --now that the cloned button is done, hide the original
+						end
 						itemButton:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 						itemButton:UnregisterEvent("ADDON_ACTION_BLOCKED")
 					else
-						if block.EltruismButton then
+						if block.EltruismButton and not InCombatLockdown() then
 							block.EltruismButton:Hide()
 						end
 					end
