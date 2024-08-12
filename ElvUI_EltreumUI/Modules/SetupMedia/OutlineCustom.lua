@@ -446,24 +446,26 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	end
 
 	if IsAddOnLoaded('ProjectAzilroka') then
-		_G.ProjectAzilroka.db["iFilger"]["Enhancements"]["StatusBarFontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["iFilger"]["Enhancements"]["StackCountFontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["iFilger"]["FocusDebuffs"]["StatusBarFontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["iFilger"]["FocusDebuffs"]["StackCountFontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["iFilger"]["RaidDebuffs"]["StatusBarFontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["iFilger"]["RaidDebuffs"]["StackCountFontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["iFilger"]["TargetDebuffs"]["StatusBarFontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["iFilger"]["TargetDebuffs"]["StackCountFontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["iFilger"]["FocusBuffs"]["StatusBarFontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["iFilger"]["FocusBuffs"]["StackCountFontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["iFilger"]["Procs"]["StatusBarFontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["iFilger"]["Procs"]["StackCountFontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["iFilger"]["Cooldowns"]["StatusBarFontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["iFilger"]["Cooldowns"]["StackCountFontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["iFilger"]["Buffs"]["StatusBarFontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["iFilger"]["Buffs"]["StackCountFontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["iFilger"]["ItemCooldowns"]["StatusBarFontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["iFilger"]["ItemCooldowns"]["StackCountFontFlag"] = fontStyle
+		if _G.ProjectAzilroka.db["iFilger"] then
+			_G.ProjectAzilroka.db["iFilger"]["Enhancements"]["StatusBarFontFlag"] = fontStyle
+			_G.ProjectAzilroka.db["iFilger"]["Enhancements"]["StackCountFontFlag"] = fontStyle
+			_G.ProjectAzilroka.db["iFilger"]["FocusDebuffs"]["StatusBarFontFlag"] = fontStyle
+			_G.ProjectAzilroka.db["iFilger"]["FocusDebuffs"]["StackCountFontFlag"] = fontStyle
+			_G.ProjectAzilroka.db["iFilger"]["RaidDebuffs"]["StatusBarFontFlag"] = fontStyle
+			_G.ProjectAzilroka.db["iFilger"]["RaidDebuffs"]["StackCountFontFlag"] = fontStyle
+			_G.ProjectAzilroka.db["iFilger"]["TargetDebuffs"]["StatusBarFontFlag"] = fontStyle
+			_G.ProjectAzilroka.db["iFilger"]["TargetDebuffs"]["StackCountFontFlag"] = fontStyle
+			_G.ProjectAzilroka.db["iFilger"]["FocusBuffs"]["StatusBarFontFlag"] = fontStyle
+			_G.ProjectAzilroka.db["iFilger"]["FocusBuffs"]["StackCountFontFlag"] = fontStyle
+			_G.ProjectAzilroka.db["iFilger"]["Procs"]["StatusBarFontFlag"] = fontStyle
+			_G.ProjectAzilroka.db["iFilger"]["Procs"]["StackCountFontFlag"] = fontStyle
+			_G.ProjectAzilroka.db["iFilger"]["Cooldowns"]["StatusBarFontFlag"] = fontStyle
+			_G.ProjectAzilroka.db["iFilger"]["Cooldowns"]["StackCountFontFlag"] = fontStyle
+			_G.ProjectAzilroka.db["iFilger"]["Buffs"]["StatusBarFontFlag"] = fontStyle
+			_G.ProjectAzilroka.db["iFilger"]["Buffs"]["StackCountFontFlag"] = fontStyle
+			_G.ProjectAzilroka.db["iFilger"]["ItemCooldowns"]["StatusBarFontFlag"] = fontStyle
+			_G.ProjectAzilroka.db["iFilger"]["ItemCooldowns"]["StackCountFontFlag"] = fontStyle
+		end
 		_G.ProjectAzilroka.db["BrokerLDB"]["FontFlag"] = fontStyle
 		_G.ProjectAzilroka.db["MasterExperience"]["FontFlag"] = fontStyle
 
