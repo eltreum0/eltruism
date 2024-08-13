@@ -37,12 +37,13 @@ function ElvUI_EltreumUI:GetASProfile()
 			1, -- [3]
 			1, -- [4]
 		}
-		AS.db["DBMSkinHalf"] = true
+		AS.db["DBMSkinHalf"] = false
+		AS.db["DBM-Core"] = false
 		AS.db["DBMFontFlag"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
 		AS.db["DBMFont"] = E.db.general.font
 		AS.db["Font"] = E.db.general.font
 		AS.db["FontFlag"] =  ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
-		AS.db["DBMRadarTrans"] = true
+		AS.db["DBMRadarTrans"] = false
 		AS.db["HideChatFrame"] = "ChatFrame4"
 		AS.db["TransparentEmbed"] = true
 		AS.db["BagSync"] = false
@@ -59,5 +60,3 @@ function ElvUI_EltreumUI:GetASProfile()
 		end
 	end
 end
-
-

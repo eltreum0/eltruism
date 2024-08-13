@@ -28,6 +28,12 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	--make Aura Filters use Textured Icons
 	ElvUI_EltreumUI:AuraFiltersUpdate()
 
+	-- ProjectAzilroka Profile
+	ElvUI_EltreumUI:AddonSetupPA()
+
+	-- AddOnSkins Profile
+	ElvUI_EltreumUI:AddonSetupAS()
+
 	--SetupShadowAndLight
 	if IsAddOnLoaded("ElvUI_SLE") then
 		ElvUI_EltreumUI:GetSLEProfile()
