@@ -678,11 +678,15 @@ function ElvUI_EltreumUI:SkinQuests()
 								block.EltruismButton:SetScript("OnLeave", function()
 									_G.GameTooltip:Hide()
 								end)
-								block.EltruismButton:Show()
+								if not InCombatLockdown() then
+									block.EltruismButton:Show()
+								end
 								block.EltruismButton:HookScript("OnClick", function()
 									E:Delay(1,function()
 										if GetItemCount(itemTable.id) < 1 then
-											block.EltruismButton:Hide()
+											if not InCombatLockdown() then
+												block.EltruismButton:Hide()
+											end
 										end
 									end)
 								end)
@@ -730,11 +734,15 @@ function ElvUI_EltreumUI:SkinQuests()
 									_G.GameTooltip:SetItemByID(itemTable.id)
 									--_G.GameTooltip:SetQuestLogSpecialItem(itemTable.id)
 								end)
-								block.EltruismButton:Show()
+								if not InCombatLockdown() then
+									block.EltruismButton:Show()
+								end
 								block.EltruismButton:HookScript("OnClick", function()
 									E:Delay(1,function()
 										if GetItemCount(itemTable.id) < 1 then
-											block.EltruismButton:Hide()
+											if not InCombatLockdown() then
+												block.EltruismButton:Hide()
+											end
 										end
 									end)
 								end)
@@ -785,6 +793,14 @@ function ElvUI_EltreumUI:SkinQuests()
 						QuestItemButton(block,itemButton)
 						if not InCombatLockdown() then
 							itemButton:Hide() --now that the cloned button is done, hide the original
+						end
+						if block.EltruismButton and not InCombatLockdown() then
+							local itemTable = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
+							if itemTable and itemTable.id then
+								if GetItemCount(itemTable.id) > 0 then
+									block.EltruismButton:Show()
+								end
+							end
 						end
 						itemButton:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 						itemButton:UnregisterEvent("ADDON_ACTION_BLOCKED")
