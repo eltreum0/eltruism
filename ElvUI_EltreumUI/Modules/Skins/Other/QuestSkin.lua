@@ -1107,6 +1107,9 @@ function ElvUI_EltreumUI:SkinQuests()
 				E:Delay(0, function()
 					C_QuestLog.SortQuestWatches()
 				end)
+
+				_G.ObjectiveTrackerFrame:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
+				_G.ObjectiveTrackerFrame:UnregisterEvent("ADDON_ACTION_BLOCKED")
 			end
 		elseif E.Classic then
 			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
