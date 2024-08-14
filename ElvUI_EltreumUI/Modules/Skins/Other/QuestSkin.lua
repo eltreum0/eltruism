@@ -681,15 +681,18 @@ function ElvUI_EltreumUI:SkinQuests()
 								if not InCombatLockdown() then
 									block.EltruismButton:Show()
 								end
-								block.EltruismButton:HookScript("OnClick", function()
-									E:Delay(1,function()
-										if GetItemCount(itemTable.id) < 1 then
-											if not InCombatLockdown() then
-												block.EltruismButton:Hide()
+								if not block.EltruismButton.OnClickCount then
+									block.EltruismButton:HookScript("OnClick", function()
+										E:Delay(1,function()
+											if GetItemCount(itemTable.id) < 1 then
+												if not InCombatLockdown() then
+													block.EltruismButton:Hide()
+												end
 											end
-										end
+										end)
 									end)
-								end)
+									block.EltruismButton.OnClickCount = true
+								end
 								block.EltruismButton.cooldown = CreateFrame("Cooldown",nil,block.EltruismButton,"CooldownFrameTemplate")
 								block.EltruismButton.cooldown:SetAllPoints()
 								E:RegisterCooldown(block.EltruismButton.cooldown)
@@ -737,15 +740,18 @@ function ElvUI_EltreumUI:SkinQuests()
 								if not InCombatLockdown() then
 									block.EltruismButton:Show()
 								end
-								block.EltruismButton:HookScript("OnClick", function()
-									E:Delay(1,function()
-										if GetItemCount(itemTable.id) < 1 then
-											if not InCombatLockdown() then
-												block.EltruismButton:Hide()
+								if not block.EltruismButton.OnClickCount then
+									block.EltruismButton:HookScript("OnClick", function()
+										E:Delay(1,function()
+											if GetItemCount(itemTable.id) < 1 then
+												if not InCombatLockdown() then
+													block.EltruismButton:Hide()
+												end
 											end
-										end
+										end)
 									end)
-								end)
+									block.EltruismButton.OnClickCount = true
+								end
 								if not block.EltruismButton.cooldown then
 									block.EltruismButton.cooldown = CreateFrame("Cooldown",nil,block.EltruismButton,"CooldownFrameTemplate")
 									block.EltruismButton.cooldown:SetAllPoints()
