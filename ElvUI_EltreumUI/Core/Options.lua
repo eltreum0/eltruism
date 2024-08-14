@@ -812,7 +812,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateOccludedAlphaMult = ACH:Range(L["Nameplate Occluded Alpha"], L["Alpha of Nameplates out of Sight"], 7, { min = 0, max = 1, step = 0.01 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult end, function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult = value SetCVar('nameplateOccludedAlphaMult', value) end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateGlobalScale = ACH:Range(L["Nameplate Global Scale"], L["Global Scaling of nameplates after selected, min, and max scale"], 7, { min = 0.1, max = 10, step = 0.01 }, 'full', function() return tonumber(GetCVar('nameplateGlobalScale')) end, function(_, value) SetCVar('nameplateGlobalScale', value) end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.description4 = ACH:Description(" ", 8, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.clampTargetNameplateToScreen = ACH:Toggle(L["Clamp Target Nameplate to Screen"], nil, 9, nil, false,'full',
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.clampTargetNameplateToScreen = ACH:Toggle(L["Clamp Nameplates"], nil, 9, nil, false,'full',
 	function()
 		if GetCVar('clampTargetNameplateToScreen') == '0' then
 			return false
