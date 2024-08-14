@@ -671,13 +671,28 @@ function ElvUI_EltreumUI:SkinQuests()
 								end
 								block.EltruismButton:SetScript("OnEnter", function()
 									_G.GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
-									local itemTable2 = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
-									_G.GameTooltip:SetItemByID(itemTable2.id)
+									--local itemTable2 = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
+									_G.GameTooltip:SetItemByID(itemTable.id)
 									--_G.GameTooltip:SetQuestLogSpecialItem(itemTable.id)
 								end)
 								block.EltruismButton:SetScript("OnLeave", function()
 									_G.GameTooltip:Hide()
 								end)
+								if not InCombatLockdown() then
+									block.EltruismButton:Show()
+								end
+								if not block.EltruismButton.OnClickCount then
+									block.EltruismButton:HookScript("OnClick", function()
+										E:Delay(1,function()
+											if GetItemCount(itemTable.id) < 1 then
+												if not InCombatLockdown() then
+													block.EltruismButton:Hide()
+												end
+											end
+										end)
+									end)
+									block.EltruismButton.OnClickCount = true
+								end
 								block.EltruismButton.cooldown = CreateFrame("Cooldown",nil,block.EltruismButton,"CooldownFrameTemplate")
 								block.EltruismButton.cooldown:SetAllPoints()
 								E:RegisterCooldown(block.EltruismButton.cooldown)
@@ -718,10 +733,25 @@ function ElvUI_EltreumUI:SkinQuests()
 								end
 								block.EltruismButton:SetScript("OnEnter", function()
 									_G.GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
-									local itemTable2 = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
-									_G.GameTooltip:SetItemByID(itemTable2.id)
+									--local itemTable2 = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
+									_G.GameTooltip:SetItemByID(itemTable.id)
 									--_G.GameTooltip:SetQuestLogSpecialItem(itemTable.id)
 								end)
+								if not InCombatLockdown() then
+									block.EltruismButton:Show()
+								end
+								if not block.EltruismButton.OnClickCount then
+									block.EltruismButton:HookScript("OnClick", function()
+										E:Delay(1,function()
+											if GetItemCount(itemTable.id) < 1 then
+												if not InCombatLockdown() then
+													block.EltruismButton:Hide()
+												end
+											end
+										end)
+									end)
+									block.EltruismButton.OnClickCount = true
+								end
 								if not block.EltruismButton.cooldown then
 									block.EltruismButton.cooldown = CreateFrame("Cooldown",nil,block.EltruismButton,"CooldownFrameTemplate")
 									block.EltruismButton.cooldown:SetAllPoints()
@@ -769,6 +799,14 @@ function ElvUI_EltreumUI:SkinQuests()
 						QuestItemButton(block,itemButton)
 						if not InCombatLockdown() then
 							itemButton:Hide() --now that the cloned button is done, hide the original
+						end
+						if block.EltruismButton and not InCombatLockdown() then
+							local itemTable = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
+							if itemTable and itemTable.id then
+								if GetItemCount(itemTable.id) > 0 then
+									block.EltruismButton:Show()
+								end
+							end
 						end
 						itemButton:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 						itemButton:UnregisterEvent("ADDON_ACTION_BLOCKED")
@@ -1075,6 +1113,9 @@ function ElvUI_EltreumUI:SkinQuests()
 				E:Delay(0, function()
 					C_QuestLog.SortQuestWatches()
 				end)
+
+				_G.ObjectiveTrackerFrame:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
+				_G.ObjectiveTrackerFrame:UnregisterEvent("ADDON_ACTION_BLOCKED")
 			end
 		elseif E.Classic then
 			if IsAddOnLoaded('!KalielsTracker') or IsAddOnLoaded('SorhaQuestLog') or IsAddOnLoaded('ClassicQuestLog') or IsAddOnLoaded('Who Framed Watcher Wabbit?') then
