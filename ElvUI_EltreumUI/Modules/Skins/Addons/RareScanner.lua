@@ -5,43 +5,43 @@ local _G = _G
 --skin RareScanner
 function ElvUI_EltreumUI:EltruismRareScanner()
 	if E.db.ElvUI_EltreumUI.skins.rarescanner then
-		if _G["scanner_button"] and not _G["scanner_button"].IsSkinned then
-			S:HandleFrame(_G["scanner_button"], "Transparent")
+		if _G["RARESCANNER_BUTTON"] and not _G["RARESCANNER_BUTTON"].IsSkinned then
+			S:HandleFrame(_G["RARESCANNER_BUTTON"], "Transparent")
 
 			--button is too small sometimes, resize
-			_G["scanner_button"].CloseButton:SetSize(25,25)
+			_G["RARESCANNER_BUTTON"].CloseButton:SetSize(25,25)
 
 			-- the minus button
-			if _G["scanner_button"].FilterEntityButton then
-				S:HandleButton(_G["scanner_button"].FilterEntityButton)
-				_G["scanner_button"].FilterEntityButton:SetNormalTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\minus")
-				_G["scanner_button"].FilterEntityButton:SetPushedTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\minus")
+			if _G["RARESCANNER_BUTTON"].FilterEntityButton then
+				S:HandleButton(_G["RARESCANNER_BUTTON"].FilterEntityButton)
+				_G["RARESCANNER_BUTTON"].FilterEntityButton:SetNormalTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\minus")
+				_G["RARESCANNER_BUTTON"].FilterEntityButton:SetPushedTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\minus")
 			end
 
 			--the skull
-			if _G["scanner_button"].UnfilterEnabledButton then
-				S:HandleButton(_G["scanner_button"].UnfilterEnabledButton)
-				_G["scanner_button"].UnfilterEnabledButton:SetNormalTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull5")
-				_G["scanner_button"].UnfilterEnabledButton:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
-				_G["scanner_button"].UnfilterEnabledButton:SetPushedTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull5")
-				_G["scanner_button"].UnfilterEnabledButton:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
+			if _G["RARESCANNER_BUTTON"].UnfilterEnabledButton then
+				S:HandleButton(_G["RARESCANNER_BUTTON"].UnfilterEnabledButton)
+				_G["RARESCANNER_BUTTON"].UnfilterEnabledButton:SetNormalTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull5")
+				_G["RARESCANNER_BUTTON"].UnfilterEnabledButton:GetNormalTexture():SetTexCoord(0, 1, 0, 1)
+				_G["RARESCANNER_BUTTON"].UnfilterEnabledButton:SetPushedTexture("Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Nameplates\\skull5")
+				_G["RARESCANNER_BUTTON"].UnfilterEnabledButton:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
 			end
 
 			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 				if not E.Classic then
-					if _G["scanner_button"] and not _G["scanner_button"].shadow then
-						_G["scanner_button"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G["scanner_button"].shadow)
+					if _G["RARESCANNER_BUTTON"] and not _G["RARESCANNER_BUTTON"].shadow then
+						_G["RARESCANNER_BUTTON"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G["RARESCANNER_BUTTON"].shadow)
 					end
 				else
-					if _G["scanner_button"] and _G["scanner_button"].backdrop and not _G["scanner_button"].backdrop.shadow then
-						_G["scanner_button"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G["scanner_button"].backdrop.shadow)
+					if _G["RARESCANNER_BUTTON"] and _G["RARESCANNER_BUTTON"].backdrop and not _G["RARESCANNER_BUTTON"].backdrop.shadow then
+						_G["RARESCANNER_BUTTON"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+						ElvUI_EltreumUI:ShadowColor(_G["RARESCANNER_BUTTON"].backdrop.shadow)
 					end
 				end
 			end
 
-			_G["scanner_button"].IsSkinned = true
+			_G["RARESCANNER_BUTTON"].IsSkinned = true
 		end
 
 		-- the search box is not named, use get children
@@ -81,7 +81,7 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 		end
 
 		--hooksecurefunc(scanner_button,"ShowButton",function()
-		hooksecurefunc(scanner_button.LootBar.itemFramesPool,"ShowIfReady",function() --item delay so hook later function
+		hooksecurefunc(_G["RARESCANNER_BUTTON"].LootBar.itemFramesPool,"ShowIfReady",function() --item delay so hook later function
 			E:Delay(0, function()
 				if _G["LootBar"] and _G["LootBar"]:IsVisible() then
 					for _, v in pairs{_G["LootBar"]:GetChildren()} do
