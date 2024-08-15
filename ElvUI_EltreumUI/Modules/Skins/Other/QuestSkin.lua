@@ -253,6 +253,9 @@ function ElvUI_EltreumUI:SkinQuests()
 				if _G.ObjectiveTrackerFrame and _G.ObjectiveTrackerFrame.Header and _G.ObjectiveTrackerFrame.Header.Text then --its the all objectives thing
 					_G.ObjectiveTrackerFrame.Header.Text:SetText("")
 					_G.ObjectiveTrackerFrame.Header.Text.SetText = E.noop
+					if _G.ObjectiveTrackerFrame.Header.EltruismStatusLine then
+						_G.ObjectiveTrackerFrame.Header.EltruismStatusLine:Kill()
+					end
 				end
 
 				local mult = 0.85
