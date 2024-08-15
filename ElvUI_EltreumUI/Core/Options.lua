@@ -811,6 +811,24 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateOtherTopInset = ACH:Range(L["Nameplate Other Top Inset"], L["In screen % the inset from the Top"], 6, { min = 0.01, max = 1, step = 0.01 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset end, function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset = value SetCVar('nameplateOtherTopInset', value) SetCVar('nameplateLargeTopInset', value) end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateOccludedAlphaMult = ACH:Range(L["Nameplate Occluded Alpha"], L["Alpha of Nameplates out of Sight"], 7, { min = 0, max = 1, step = 0.01 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult end, function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult = value SetCVar('nameplateOccludedAlphaMult', value) end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateGlobalScale = ACH:Range(L["Nameplate Global Scale"], L["Global Scaling of nameplates after selected, min, and max scale"], 7, { min = 0.1, max = 10, step = 0.01 }, 'full', function() return tonumber(GetCVar('nameplateGlobalScale')) end, function(_, value) SetCVar('nameplateGlobalScale', value) end)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.description4 = ACH:Description(" ", 8, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.clampTargetNameplateToScreen = ACH:Toggle(L["Clamp Nameplates"], nil, 9, nil, false,'full',
+	function()
+		if GetCVar('clampTargetNameplateToScreen') == '0' then
+			return false
+		elseif GetCVar('clampTargetNameplateToScreen') == '1' then
+			return true
+		end
+	end, function(_, value)
+		if value == true then
+			SetCVar('clampTargetNameplateToScreen', 1)
+			E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen = 1
+		else
+			SetCVar('clampTargetNameplateToScreen', 0)
+			E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen = 0
+		end
+	 end, nil, E.Retail)
+
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics = ACH:Group(L["Graphics"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.description1 = ACH:Description(L["AMD FSR"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.forceFSRon = ACH:Toggle(L["Enable AMD FSR even if not scaling"], L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"], 2, nil, false,'full',
@@ -870,6 +888,24 @@ function ElvUI_EltreumUI:Configtable()
 			SetCVar('worldPreloadNonCritical', 2)
 		end
 	 end)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.misc = ACH:Group(L["Misc"], nil, 2, "tab", nil,nil,nil,not E.Retail)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.misc.args.description1 = ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.misc.args.showInGameNavigation = ACH:Toggle(_G.SHOW_IN_GAME_NAVIGATION or " ", nil, 2, nil, false,"full",
+		function()
+		if GetCVar('showInGameNavigation') == '0' then
+			return false
+		elseif GetCVar('showInGameNavigation') == '1' then
+			return true
+		end
+	end, function(_, value)
+		if value == true then
+			SetCVar('showInGameNavigation', 1)
+			E.db.ElvUI_EltreumUI.cvars.showInGameNavigation = 1
+		else
+			SetCVar('showInGameNavigation', 0)
+			E.db.ElvUI_EltreumUI.cvars.showInGameNavigation = 0
+		end
+	 end, nil, not E.Retail)
 
 	--custom glow
 	ElvUI_EltreumUI.Options.args.customglow = ACH:Group(E:TextGradient(L["Custom Glow"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Fully customize how action bars glow and add glows to debuffs on unitframes"], 85, 'tab')

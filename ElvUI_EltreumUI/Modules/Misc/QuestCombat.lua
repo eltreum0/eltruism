@@ -49,35 +49,39 @@ end
 
 --expand after encounter is over
 function ElvUI_EltreumUI:QuestEncounterEnd()
-	if E.db.ElvUI_EltreumUI.quests.enable and not InCombatLockdown() then
-		local _, instanceType = IsInInstance()
-		if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
-			if E.Retail then
-				--[[if _G["ObjectiveFrameHolder"] then
-					ObjectiveTrackerFrame:SetParent(_G["ObjectiveFrameHolder"])
-				else
-					ObjectiveTrackerFrame:SetParent(UIParent)
-				end]]
-				ObjectiveTrackerFrame:SetAlpha(1)
-			elseif E.Classic then
-				if IsAddOnLoaded("Questie") then
-					if _G["Questie_BaseFrame"] then
-						_G["Questie_BaseFrame"]:Show()
+	if E.db.ElvUI_EltreumUI.quests.enable then
+		if InCombatLockdown() then
+			E:Delay(3,ElvUI_EltreumUI.QuestEncounterEnd) --retry soon
+		else
+			local _, instanceType = IsInInstance()
+			if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" then --and event == "PLAYER_REGEN_DISABLED"
+				if E.Retail then
+					--[[if _G["ObjectiveFrameHolder"] then
+						ObjectiveTrackerFrame:SetParent(_G["ObjectiveFrameHolder"])
+					else
+						ObjectiveTrackerFrame:SetParent(UIParent)
+					end]]
+					ObjectiveTrackerFrame:SetAlpha(1)
+				elseif E.Classic then
+					if IsAddOnLoaded("Questie") then
+						if _G["Questie_BaseFrame"] then
+							_G["Questie_BaseFrame"]:Show()
+						else
+							_G.QuestWatchFrame:Show()
+						end
 					else
 						_G.QuestWatchFrame:Show()
 					end
-				else
-					_G.QuestWatchFrame:Show()
-				end
-			elseif E.Cata then
-				if IsAddOnLoaded("Questie") then
-					if _G["Questie_BaseFrame"] then
-						_G["Questie_BaseFrame"]:Show()
+				elseif E.Cata then
+					if IsAddOnLoaded("Questie") then
+						if _G["Questie_BaseFrame"] then
+							_G["Questie_BaseFrame"]:Show()
+						else
+							_G.WatchFrame:Show()
+						end
 					else
 						_G.WatchFrame:Show()
 					end
-				else
-					_G.WatchFrame:Show()
 				end
 			end
 		end
