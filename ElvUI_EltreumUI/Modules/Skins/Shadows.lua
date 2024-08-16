@@ -732,9 +732,19 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if (arg == "Blizzard_VoidStorageUI") or IsAddOnLoaded("Blizzard_VoidStorageUI") then
-						if not _G.VoidStorageFrame.shadow then
-							_G.VoidStorageFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.VoidStorageFrame.shadow)
+						if _G.VoidStorageFrame then
+							if not _G.VoidStorageFrame.shadow then
+								_G.VoidStorageFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.VoidStorageFrame.shadow)
+							end
+							if _G.VoidStorageFrame.Page1 and not _G.VoidStorageFrame.Page1.shadow then
+								_G.VoidStorageFrame.Page1:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.VoidStorageFrame.Page1.shadow)
+							end
+							if _G.VoidStorageFrame.Page2 and not _G.VoidStorageFrame.Page2.shadow then
+								_G.VoidStorageFrame.Page2:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.VoidStorageFrame.Page2.shadow)
+							end
 						end
 					end
 					if (arg == "Blizzard_ChallengesUI") or IsAddOnLoaded("Blizzard_ChallengesUI") then
