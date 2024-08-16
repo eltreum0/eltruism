@@ -156,7 +156,10 @@ do
 			local bd = bar.candyBarBackdrop
 
 			bd:SetTemplate("Transparent")
-			bd:SetOutside(bar)
+			--bd:SetOutside(bar)
+			bd:SetPoint('TOPLEFT', bar, 'TOPLEFT', 0, 0.2)
+			bd:SetPoint('BOTTOMRIGHT', bar, 'BOTTOMRIGHT', 0, -1.5)
+
 			if not E.PixelMode and bd.iborder then
 				bd.iborder:Show()
 				bd.oborder:Show()
@@ -264,7 +267,10 @@ do
 			local bd = bar.candyBarBackdrop
 
 			bd:SetTemplate("Transparent")
-			bd:SetOutside(bar)
+			--bd:SetOutside(bar)
+			bd:SetPoint('TOPLEFT', bar, 'TOPLEFT', 0, 0.2)
+			bd:SetPoint('BOTTOMRIGHT', bar, 'BOTTOMRIGHT', 0, -1.5)
+
 			if not E.PixelMode and bd.iborder then
 				bd.iborder:Show()
 				bd.oborder:Show()
