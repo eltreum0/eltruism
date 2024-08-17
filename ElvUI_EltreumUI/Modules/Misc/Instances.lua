@@ -26,13 +26,30 @@ if E.Retail then
 end
 E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismInstanceDifficulty", nil, nil, nil, "ALL,SOLO,ELTREUMUI,PARTY,RAID", nil, 'ElvUI_EltreumUI,party,instances')
 
+local garrisons = {
+	[1662] = true,
+	[582] = true,
+	[590] = true,
+	[947] = true, --azeroth itself
+	[572] = true, --draenor
+}
+
+local AllowedInstances = {
+	["raid"] = true,
+	["party"] = true,
+	["scenario"] = true,
+}
+
 instancedifficulty:SetScript("OnEvent", function()
 	if not E.private.ElvUI_EltreumUI then return end
 	if not E.private.ElvUI_EltreumUI.install_version then return end
+	if not E.db.ElvUI_EltreumUI.skins then return end
+	if not E.db.ElvUI_EltreumUI.skins.instances then return end
 
 	local _, instanceType = IsInInstance()
 	local mapID = WorldMapFrame:GetMapID()
-	if (instanceType == "raid" or instanceType == "party" or instanceType == "scenario") and E.db.ElvUI_EltreumUI.skins.instances.enable and not (mapID == 1662 or mapID == 582 or mapID == 590) then
+
+	if AllowedInstances[instanceType] and E.db.ElvUI_EltreumUI.skins.instances.enable and not garrisons[mapID] then
 		instancedifficulty:Show()
 		instancedifficulty.Text:Show()
 		instancedifficulty.Text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.instances.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -314,6 +331,44 @@ instancedifficulty:SetScript("OnEvent", function()
 		instancedifficulty:Hide()
 		instancedifficulty.Text:Hide()
 	end
+
+	if garrisons[mapID] then
+		if _G["MiniMapInstanceDifficulty"] and (_G["MiniMapInstanceDifficulty"]:IsShown() or _G["MiniMapInstanceDifficulty"]:GetAlpha() == 1) then
+			_G["MiniMapInstanceDifficulty"]:SetAlpha(0)
+		end
+
+		if _G["MinimapCluster"] and _G["MinimapCluster"].InstanceDifficulty then
+			_G["MinimapCluster"].InstanceDifficulty:Hide()
+			_G["MinimapCluster"].InstanceDifficulty:SetAlpha(0)
+		end
+
+		if E.Retail then
+			if _G["MiniMapChallengeMode"] and (_G["MiniMapChallengeMode"]:IsShown() or _G["MiniMapChallengeMode"]:GetAlpha() == 1) then
+				_G["MiniMapChallengeMode"]:SetAlpha(0)
+			end
+			if _G["GuildInstanceDifficulty"] then
+				_G["GuildInstanceDifficulty"]:SetAlpha(0)
+				if _G["GuildInstanceDifficulty"]:IsShown() then
+					instancedifficulty.Text:SetText(backuptext.." "..E.db.ElvUI_EltreumUI.skins.instances.guild)
+				end
+			end
+			for i = 1, _G["Minimap"]:GetNumChildren() do
+				local v = select(i, _G["Minimap"]:GetChildren())
+				 if v then
+					if v.Instance then
+						v:SetAlpha(0)
+					end
+					if v.HeroicTexture then
+						v:SetAlpha(0)
+					end
+					if v.ChallengeModeTexture then
+						v:SetAlpha(0)
+					end
+				end
+			end
+		end
+	end
+
 	--confirm its instance because once again the zone_changed event is not reliable when changing into and out of places like the garrison
 	E:Delay(5, function()
 		_, instanceType = IsInInstance()
