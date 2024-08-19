@@ -207,7 +207,7 @@ function ElvUI_EltreumUI:ResizeInstall()
 end
 
 --create new edit mode layout and switch to it to prevent possible issues with movers/taints
-function ElvUI_EltreumUI:NewRetailEditModeLayout()
+function ElvUI_EltreumUI:NewRetailEditModeLayout(silent)
 	local layoutstable = C_EditMode.GetLayouts()
 	if not layoutstable.layouts then return end
 	local alreadyimported = false
@@ -220,6 +220,8 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout()
 			if layoutstable.layouts[i].layoutName == "EltruismTaintPreventer" then
 				alreadyimported = true
 				layoutstable.layouts[i] = taintpreventlayout
+				layoutstable.activeLayout = i + 2
+				C_EditMode.SetActiveLayout(layoutstable.activeLayout)
 			end
 		end
 		if not alreadyimported then
@@ -238,7 +240,9 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout()
 		C_EditMode.SaveLayouts(layoutstable) --if not called then layout wont apply because its not saved
 		C_EditMode.SetActiveLayout(layoutstable.activeLayout)
 	end
-	ElvUI_EltreumUI:Print(L["Importing"].." ".._G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT)
+	if not silent then
+		ElvUI_EltreumUI:Print(L["Importing"].." ".._G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT)
+	end
 end
 
 -- Installer Steps
