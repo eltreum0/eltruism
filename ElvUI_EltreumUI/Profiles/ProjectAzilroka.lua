@@ -180,7 +180,9 @@ function ElvUI_EltreumUI:GetPAProfile()
 				Tooltips = true,
 				Vertical = false,
 				UpdateSpeed = .1,
-				Cooldown = CopyTable(PA.Defaults.profile.Cooldown),
+				Cooldown = {
+					["Enable"] = false
+				},
 			},
 			["TargetSounds"] = {
 				["Enable"] = false,
@@ -222,7 +224,9 @@ function ElvUI_EltreumUI:GetPAProfile()
 			},
 			["iFilger"] = {
 				Enable = false,
-				Cooldown = CopyTable(PA.Defaults.profile.Cooldown),
+				Cooldown = {
+					["Enable"] = false
+				},
 			},
 		}
 		ProjectAzilrokaDB["profileKeys"][E.mynameRealm] = "Eltreum"

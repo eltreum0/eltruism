@@ -466,8 +466,14 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Buffs"]["StackCountFontFlag"] = fontStyle
 			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["ItemCooldowns"]["StatusBarFontFlag"] = fontStyle
 			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["ItemCooldowns"]["StackCountFontFlag"] = fontStyle
+		end
+		if ProjectAzilrokaDB["profiles"][PAprofile]["BrokerLDB"] then
 			ProjectAzilrokaDB["profiles"][PAprofile]["BrokerLDB"]["FontFlag"] = fontStyle
+		end
+		if ProjectAzilrokaDB["profiles"][PAprofile]["MasterExperience"] then
 			ProjectAzilrokaDB["profiles"][PAprofile]["MasterExperience"]["FontFlag"] = fontStyle
+		end
+		if ProjectAzilrokaDB["profiles"][PAprofile]["stAddonManager"] then
 			ProjectAzilrokaDB["profiles"][PAprofile]["stAddonManager"]["FontFlag"] = fontStyle
 		end
 	end

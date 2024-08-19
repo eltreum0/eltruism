@@ -476,8 +476,12 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["ItemCooldowns"]["StackCountFont"] = fontvalue
 			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["ItemCooldowns"]["StatusBarFont"] = fontvalue
 		end
-		ProjectAzilrokaDB["profiles"][PAprofile]["BrokerLDB"]["Font"] = fontvalue
-		ProjectAzilrokaDB["profiles"][PAprofile]["MasterExperience"]["Font"] = fontvalue
+		if ProjectAzilrokaDB["profiles"][PAprofile]["BrokerLDB"] then
+			ProjectAzilrokaDB["profiles"][PAprofile]["BrokerLDB"]["Font"] = fontvalue
+		end
+		if ProjectAzilrokaDB["profiles"][PAprofile]["MasterExperience"] then
+			ProjectAzilrokaDB["profiles"][PAprofile]["MasterExperience"]["Font"] = fontvalue
+		end
 	end
 
 	if IsAddOnLoaded('AddOnSkins') then
