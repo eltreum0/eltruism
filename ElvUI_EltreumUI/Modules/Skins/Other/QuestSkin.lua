@@ -11,6 +11,7 @@ local GetQuestLogLeaderBoard = _G.GetQuestLogLeaderBoard
 local GetQuestIndexForWatch = _G.GetQuestIndexForWatch
 local QuestLogTrackTracking = _G.QuestLogTrackTracking
 local GetQuestLogTitle = _G.GetQuestLogTitle
+local GetItemCount = _G.C_Item and _G.C_Item.GetItemCount or _G.GetItemCount
 local UIParent_ManageFramePositions = _G.UIParent_ManageFramePositions
 local select = _G.select
 local ScenarioObjectiveBlockBackground
@@ -1727,6 +1728,8 @@ end
 function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 	if E.db.ElvUI_EltreumUI.quests.anchor then
 		if not _G["ObjectiveFrameHolder"] then
+			ElvUI_EltreumUI:NewRetailEditModeLayout(true) --set the edit mode layout to prevent issues
+
 			local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
 			holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
 			holder:SetSize(130, 22)
