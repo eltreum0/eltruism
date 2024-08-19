@@ -446,30 +446,30 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	end
 
 	if IsAddOnLoaded('ProjectAzilroka') then
-		if _G.ProjectAzilroka.db["iFilger"] then
-			_G.ProjectAzilroka.db["iFilger"]["Enhancements"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilroka.db["iFilger"]["Enhancements"]["StackCountFontFlag"] = fontStyle
-			_G.ProjectAzilroka.db["iFilger"]["FocusDebuffs"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilroka.db["iFilger"]["FocusDebuffs"]["StackCountFontFlag"] = fontStyle
-			_G.ProjectAzilroka.db["iFilger"]["RaidDebuffs"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilroka.db["iFilger"]["RaidDebuffs"]["StackCountFontFlag"] = fontStyle
-			_G.ProjectAzilroka.db["iFilger"]["TargetDebuffs"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilroka.db["iFilger"]["TargetDebuffs"]["StackCountFontFlag"] = fontStyle
-			_G.ProjectAzilroka.db["iFilger"]["FocusBuffs"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilroka.db["iFilger"]["FocusBuffs"]["StackCountFontFlag"] = fontStyle
-			_G.ProjectAzilroka.db["iFilger"]["Procs"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilroka.db["iFilger"]["Procs"]["StackCountFontFlag"] = fontStyle
-			_G.ProjectAzilroka.db["iFilger"]["Cooldowns"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilroka.db["iFilger"]["Cooldowns"]["StackCountFontFlag"] = fontStyle
-			_G.ProjectAzilroka.db["iFilger"]["Buffs"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilroka.db["iFilger"]["Buffs"]["StackCountFontFlag"] = fontStyle
-			_G.ProjectAzilroka.db["iFilger"]["ItemCooldowns"]["StatusBarFontFlag"] = fontStyle
-			_G.ProjectAzilroka.db["iFilger"]["ItemCooldowns"]["StackCountFontFlag"] = fontStyle
+		local PAprofile = ProjectAzilrokaDB["profileKeys"][E.mynameRealm]
+		if ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Enable"] then
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Enhancements"]["StatusBarFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Enhancements"]["StackCountFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["FocusDebuffs"]["StatusBarFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["FocusDebuffs"]["StackCountFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["RaidDebuffs"]["StatusBarFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["RaidDebuffs"]["StackCountFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["TargetDebuffs"]["StatusBarFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["TargetDebuffs"]["StackCountFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["FocusBuffs"]["StatusBarFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["FocusBuffs"]["StackCountFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Procs"]["StatusBarFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Procs"]["StackCountFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Cooldowns"]["StatusBarFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Cooldowns"]["StackCountFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Buffs"]["StatusBarFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["Buffs"]["StackCountFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["ItemCooldowns"]["StatusBarFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["iFilger"]["ItemCooldowns"]["StackCountFontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["BrokerLDB"]["FontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["MasterExperience"]["FontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["stAddonManager"]["FontFlag"] = fontStyle
 		end
-		_G.ProjectAzilroka.db["BrokerLDB"]["FontFlag"] = fontStyle
-		_G.ProjectAzilroka.db["MasterExperience"]["FontFlag"] = fontStyle
-
-		_G.ProjectAzilroka.db["stAddonManager"]["FontFlag"] = fontStyle
 	end
 
 	if IsAddOnLoaded('AddOnSkins') then
