@@ -14,7 +14,6 @@ function ElvUI_EltreumUI:GetPAProfile()
 		ProjectAzilrokaDB["profiles"]["Eltreum"] = {
 			["AuraReminder"] = {
 				["Enable"] = false,
-				["Enable"] = true,
 				["Sound"] = 'Warning',
 				["Filters"] = { Global = {} },
 			},
@@ -106,7 +105,7 @@ function ElvUI_EltreumUI:GetPAProfile()
 				},
 			},
 			["MouseoverAuras"] = {
-				["Enable"] = false,
+				Enable = false,
 				Size = 16,
 				Spacing = 1,
 				cooldown = {
@@ -187,7 +186,6 @@ function ElvUI_EltreumUI:GetPAProfile()
 				["Enable"] = false,
 			},
 			["stAddonManager"] = {
-				["Enable"] = true,
 				Enable = true,
 				NumAddOns = 20,
 				FrameWidth = 470,
