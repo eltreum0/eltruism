@@ -220,6 +220,9 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout()
 			if layoutstable.layouts[i].layoutName == "EltruismTaintPreventer" then
 				alreadyimported = true
 				layoutstable.layouts[i] = taintpreventlayout
+				layoutstable.activeLayout = i + 2
+				C_EditMode.SetActiveLayout(layoutstable.activeLayout)
+				ElvUI_EltreumUI:Print(string.format(HUD_EDIT_MODE_LAYOUT_APPLIED, taintpreventlayout.layoutName))
 			end
 		end
 		if not alreadyimported then
@@ -231,14 +234,15 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout()
 			layoutstable.activeLayout = numlayouts + 2
 			C_EditMode.SaveLayouts(layoutstable) --if not called then layout wont apply because its not saved
 			C_EditMode.SetActiveLayout(layoutstable.activeLayout)
+			ElvUI_EltreumUI:Print(L["Importing"].." ".._G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT)
 		end
 	else
 		layoutstable.layouts[1] = taintpreventlayout
 		layoutstable.activeLayout = 3 --for some reason the 2 default ones count for it
 		C_EditMode.SaveLayouts(layoutstable) --if not called then layout wont apply because its not saved
 		C_EditMode.SetActiveLayout(layoutstable.activeLayout)
+		ElvUI_EltreumUI:Print(L["Importing"].." ".._G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT)
 	end
-	ElvUI_EltreumUI:Print(L["Importing"].." ".._G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT)
 end
 
 -- Installer Steps
