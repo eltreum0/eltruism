@@ -975,8 +975,6 @@ function ElvUI_EltreumUI:SkinQuests()
 											if module.Header.Text:GetText() ~= _G.TRACKER_ALL_OBJECTIVES then
 												module.Header.EltruismStatusLine = CreateFrame("StatusBar", "Eltruism"..module.Header.Text:GetText().."Line", module.Header)
 											end
-										else
-											module.Header.EltruismStatusLine = CreateFrame("StatusBar", "EltruismLine", module.Header)
 										end
 										if module.Header.EltruismStatusLine then
 											module.Header.EltruismStatusLine:SetMinMaxValues(0, 100)
