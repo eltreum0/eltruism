@@ -1728,7 +1728,7 @@ end
 function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 	if E.db.ElvUI_EltreumUI.quests.anchor then
 		if not _G["ObjectiveFrameHolder"] then
-			ElvUI_EltreumUI:NewRetailEditModeLayout(true) --set the edit mode layout to prevent issues
+			--ElvUI_EltreumUI:NewRetailEditModeLayout(true) --causes C Stack error
 
 			local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
 			holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
