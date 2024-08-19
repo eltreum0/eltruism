@@ -1,13 +1,12 @@
 local E = unpack(ElvUI)
 
--- Experimental Thin Mode Bars
-function ElvUI_EltreumUI:ThinBars()
+-- Experimental Thin Layout
+function ElvUI_EltreumUI:SetupLayoutThin()
 	if (E.Cata or E.Retail or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
-		E.data:SetDualSpecProfile('Eltreum Thin Test ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
+		E.data:SetDualSpecProfile('Eltreum Thin ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
 	else
-		E.data:SetProfile('Eltreum Thin Test ('..E.mynameRealm..')')
+		E.data:SetProfile('Eltreum Thin ('..E.mynameRealm..')')
 	end
-	ElvUI_EltreumUI:SetupGeneralLayout()
 	ElvUI_EltreumUI:SetupLayoutDPS(true)
 	ElvUI_EltreumUI:SetupNamePlates()
 	ElvUI_EltreumUI:ResolutionOutline()
@@ -363,45 +362,5 @@ function ElvUI_EltreumUI:ThinBars()
 	E:UpdateMoverPositions()
 	E:StaticPopup_Show('CONFIG_RL')
 
-	ElvUI_EltreumUI:Print("Experimental Thin Mode Layout applied")
-end
-
---a more grey and less dark background
-function ElvUI_EltreumUI:GreyBg()
-	E.db["general"]["backdropcolor"]["b"] = 0.098039215686275
-	E.db["general"]["backdropcolor"]["g"] = 0.098039215686275
-	E.db["general"]["backdropcolor"]["r"] = 0.098039215686275
-	E.db["general"]["backdropfadecolor"]["a"] = 0.80000001192093
-	E.db["general"]["backdropfadecolor"]["b"] = 0.13725490196078
-	E.db["general"]["backdropfadecolor"]["g"] = 0.13725490196078
-	E.db["general"]["backdropfadecolor"]["r"] = 0.13725490196078
-
-	E.db.ElvUI_EltreumUI.unitframes.greybackground = true
-	E:UpdateMediaItems()
-	ElvUI_EltreumUI:Print("ElvUI set to Grey Background")
-end
-
---the traditional black/dark background
-function ElvUI_EltreumUI:BlackBg()
-	E.db["general"]["backdropcolor"]["b"] = 0.098039215686275
-	E.db["general"]["backdropcolor"]["g"] = 0.098039215686275
-	E.db["general"]["backdropcolor"]["r"] = 0.098039215686275
-	E.db["general"]["backdropfadecolor"]["a"] = 0.70000001788139
-	E.db["general"]["backdropfadecolor"]["b"] = 0
-	E.db["general"]["backdropfadecolor"]["g"] = 0
-	E.db["general"]["backdropfadecolor"]["r"] = 0
-
-	E.db.ElvUI_EltreumUI.unitframes.greybackground = false
-	E:UpdateMediaItems()
-	ElvUI_EltreumUI:Print("ElvUI set to Black Background")
-end
-
-function ElvUI_EltreumUI:CheckBackground()
-	if not E.db.ElvUI_EltreumUI.unitframes.greybackground then
-		ElvUI_EltreumUI:GreyBg()
-	elseif E.db.ElvUI_EltreumUI.unitframes.greybackground then
-		ElvUI_EltreumUI:BlackBg()
-	else
-		ElvUI_EltreumUI:GreyBg()
-	end
+	ElvUI_EltreumUI:Print("Thin Layout applied")
 end
