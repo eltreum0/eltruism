@@ -91,6 +91,8 @@ function ElvUI_EltreumUI:ImproveInstall(installtype,mode,null,custom,path)
 				_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\DPS.jpg")
 			elseif installtype == "healer" then
 				_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\HEALER.jpg")
+			elseif installtype == "thin" then
+				_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\THIN.jpg")
 			elseif installtype == "alternative" then
 				_G.PluginInstallFrame.installpreview:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Install\\alternativeframes.jpg")
 			elseif installtype == "lightdark" then
@@ -405,20 +407,51 @@ ElvUI_EltreumUI.InstallerData = {
 			_G.PluginInstallFrame.Option2:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
 			_G.PluginInstallFrame.Option2:SetText(L["Healer"])
 
-			if E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
-				_G.PluginInstallFrame.Option3:SetText(L["Alternative\nFrames"])
-				_G.PluginInstallFrame.Option3:Enable()
-				_G.PluginInstallFrame.Option3:Show()
-				_G.PluginInstallFrame.Option3:SetScript('OnClick', function() ElvUI_EltreumUI:AlternativeGroupsDPS() end)
-				_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("alternative","ENTERING") end)
-				_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
-			else
-				_G.PluginInstallFrame.Option3:SetScript('OnEnter', nil)
-				_G.PluginInstallFrame.Option3:SetScript('OnLeave', nil)
-			end
+			_G.PluginInstallFrame.Option3:Enable()
+			_G.PluginInstallFrame.Option3:Show()
+			_G.PluginInstallFrame.Option3:SetScript('OnClick', function()
+				E:SetupChat()
+				if E.Retail then
+					ChatFrame_RemoveChannel(_G.ChatFrame1, "services") --get rid of the gold seller chat
+				else --remove lfg spam from general and creat tab for it
+					if lfg then
+						ChatFrame_RemoveChannel(_G.ChatFrame1, lfg)
+						FCF_OpenNewWindow()
+						ChatFrame_RemoveAllMessageGroups(_G.ChatFrame5)
+						FCF_SetWindowName(_G.ChatFrame5, 'LFG')
+						ChatFrame_AddChannel(_G.ChatFrame5, lfg)
+						FCFTab_UpdateColors(_G.ChatFrame5Tab)
+						FCFDock_SelectWindow(_G.GENERAL_CHAT_DOCK, _G.ChatFrame1)
+					end
+				end
+				ElvUI_EltreumUI:Print(L["ElvUI Chat has been set."])
+				if (E.Cata or E.Retail or E.ClassicSOD) and E.data:IsDualSpecEnabled() then
+					E.data:SetDualSpecProfile('Eltreum Thin ('..E.mynameRealm..')', E.Libs.DualSpec.currentSpec)
+				else
+					E.data:SetProfile('Eltreum Thin ('..E.mynameRealm..')')
+				end
+				ElvUI_EltreumUI:SetupGeneralLayout()
+				ElvUI_EltreumUI:SetupLayoutThin()
+				ElvUI_EltreumUI:SetupNamePlates()
+				ElvUI_EltreumUI:ResolutionOutline()
+				ElvUI_EltreumUI:UpdateEltruismSettings()
+				PlaySound(888)
+			end)
+			_G.PluginInstallFrame.Option3:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("thin","ENTERING") end)
+			_G.PluginInstallFrame.Option3:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+			_G.PluginInstallFrame.Option3:SetText(L["Thin Mode"])
 
-			_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
-			_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
+			if E.myclass == 'PRIEST' or E.myclass == 'DRUID' or E.myclass == 'MONK' or E.myclass == 'SHAMAN' or E.myclass == 'PALADIN' or E.myclass == 'WARLOCK' or E.myclass == 'EVOKER' then
+				_G.PluginInstallFrame.Option4:SetText(L["Alternative\nFrames"])
+				_G.PluginInstallFrame.Option4:Enable()
+				_G.PluginInstallFrame.Option4:Show()
+				_G.PluginInstallFrame.Option4:SetScript('OnClick', function() ElvUI_EltreumUI:AlternativeGroupsDPS() end)
+				_G.PluginInstallFrame.Option4:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("alternative","ENTERING") end)
+				_G.PluginInstallFrame.Option4:SetScript('OnLeave', function() ElvUI_EltreumUI:ImproveInstall(nil,"LEAVING") end)
+			else
+				_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
+				_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
+			end
 		end,
 		[3] = function()
 			ElvUI_EltreumUI:ResizeInstall()

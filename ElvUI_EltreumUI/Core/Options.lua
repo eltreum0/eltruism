@@ -196,9 +196,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.installer.args.tab3.args.resethealerlayout = ACH:Execute(L["Reset layout to Eltruism Healer"], nil, 5, function() E.data:SetProfile('Eltreum Healer ('..E.mynameRealm..')') ElvUI_EltreumUI:SetupGeneralLayout() ElvUI_EltreumUI:SetupLayoutHealer() end,nil,false,'full')
 	ElvUI_EltreumUI.Options.args.installer.args.tab3.args.description3 = ACH:Description(L["Reinstall Eltruism Datatext"], 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab3.args.resetdatatext = ACH:Execute(L["Reset/Add Eltruism Datatext Panel"], nil, 7, function() ElvUI_EltreumUI:SetupDataText() E:UpdateMoverPositions() end,nil,false,'full')
-	--this is placeholder naming, not to be translated yet
-	ElvUI_EltreumUI.Options.args.installer.args.tab3.args.description4 = ACH:Description(L["Thin Mode"], 8, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
-	ElvUI_EltreumUI.Options.args.installer.args.tab3.args.thinmode = ACH:Execute(E.NewSign..L["Experimental Thin Mode"], nil, 9, function() ElvUI_EltreumUI:ThinBars() end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.installer.args.tab3.args.description4 = ACH:Description(L["Reinstall Thin Layout"], 8, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
+	ElvUI_EltreumUI.Options.args.installer.args.tab3.args.thinmode = ACH:Execute(E.NewSign..L["Reset layout to Eltruism Thin"], nil, 9, function() E.data:SetProfile('Eltreum Thin ('..E.mynameRealm..')') ElvUI_EltreumUI:SetupGeneralLayout() ElvUI_EltreumUI:SetupLayoutThin() end,nil,false,'full')
 	ElvUI_EltreumUI.Options.args.installer.args.tab4 = ACH:Group(L["General"], nil, 4)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.description1 = ACH:Description(L["Reinstall"].." "..CHAT_LABEL, 2, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.resetchat = ACH:Execute(L["Reset Chat to ElvUI Settings"], nil, 3, function()
@@ -3762,24 +3761,25 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added support for 11.0.2
-Added a missing enchant in Season of Discovery
+Added Thin Layout to install alongside a preview
+Added some missing CVar options
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Objective Tracker Skin in Retail to better handle the Quest Item Buttons and some errors
-Updated Profession Bag Icons to decrease icon size slightly to match bag size
-Updated Pet Custom Glow to better hide the default Glow
-Updated Details Gradient Name to allow longer names
-Updated Cell skin to also skin Pets
+Updated BigWigs Bars to avoid some texture gaps
+Updated Objective Tracker Skin in Retail
+Updated Edit Mode Profile import
+Updated ProjectAzilroka Profile
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue with the Class colored keybinds where Numpad could overwrite other Numpad keybinds
-Fixed Delve Listing overlapping Party in the Custom Instance Text
-Fixed missing item icons in the Auctionator Skin
+Fixed an error when logging into Garrisons due to some changes to mapIDs
+Fixed an error with Windtools profile import after it was updated
+Fixed an issue with the Boss Music due to how events changed
+Fixed a possible error with the Character Panel Icons
+Fixed RareScanner skin after it was updated
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[

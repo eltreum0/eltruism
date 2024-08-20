@@ -1599,3 +1599,5 @@ L["The text displayed when in a quest instance"] = true
 L["Thin Aura Bars"] = true
 L["Exported Gradient Data:"] = true
 L["Import Gradient Data"] = true
+L["Reinstall Thin Layout"] = true
+L["Reset layout to Eltruism Thin"] = true

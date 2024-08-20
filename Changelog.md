@@ -1,6 +1,18 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.2.2
+Added Thin Layout to install alongside a preview  
+Added some missing CVar options  
+Updated BigWigs Bars to avoid some texture gaps  
+Updated Objective Tracker Skin in Retail  
+Updated Edit Mode Profile import  
+Updated ProjectAzilroka Profile  
+Fixed an error when logging into Garrisons due to some changes to mapIDs  
+Fixed an error with Windtools profile import after it was updated  
+Fixed an issue with the Boss Music due to how events changed  
+Fixed a possible error with the Character Panel Icons  
+Fixed RareScanner skin after it was updated  
 ### 4.2.1
 Added support for 11.0.2
 Added a missing enchant in Season of Discovery  

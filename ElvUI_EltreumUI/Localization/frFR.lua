@@ -1599,3 +1599,5 @@ L["The text displayed when in a quest instance"] = "Le texte affiché lors d'une
 L["Thin Aura Bars"] = "Barres d'Aura fines"
 L["Exported Gradient Data:"] = true
 L["Import Gradient Data"] = true
+L["Reinstall Thin Layout"] = true
+L["Reset layout to Eltruism Thin"] = true
