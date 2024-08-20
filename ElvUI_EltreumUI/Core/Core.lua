@@ -561,10 +561,9 @@ EltruismGameMenu:SetScript("OnEvent", function()
 							button:SetPoint(point, anchor, point2, x, y - 35)
 						end
 					end
-					if not GameMenuFrame.NewHeightEltruism then
-						GameMenuFrame:Height(GameMenuFrame:GetHeight() + 35)
-						GameMenuFrame.NewHeightEltruism = true
-					end
+
+					--local originalMenuHeight = GameMenuFrame:GetHeight() --this gives 538 so,
+					GameMenuFrame:Height(538 + 36) --yes i can set the actual math but this lets me recall its + menubutton height
 
 					--use elvui moveui instead of blizzard edit mode
 					local EditModeButton = EM:GetGameMenuEditModeButton()
