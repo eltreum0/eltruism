@@ -418,7 +418,7 @@ function ElvUI_EltreumUI:RestIcon(frame)
 			_G["EltruismPlayerRestLoop"]:SetParent(frame) --this can crash the game, and also show/hide calls can (during cinematic) --seems fixed now
 			_G["EltruismPlayerRestLoop"]:SetPoint("CENTER", frame.RestingIndicator, "CENTER", 0, 0)
 			--_G["EltruismPlayerRestLoop"]:SetFrameStrata('HIGH')
-			_G["EltruismPlayerRestLoop"]:SetFrameLevel(frame:GetFrameLevel()+20)
+			_G["EltruismPlayerRestLoop"]:SetFrameLevel(frame:GetFrameLevel()+50)
 			_G["EltruismPlayerRestLoop"]:SetScale(E.db.unitframe.units.player.RestIcon.size/10)
 			hooksecurefunc(frame.RestingIndicator, 'PostUpdate', function()
 				if frame.RestingIndicator:IsShown() then
