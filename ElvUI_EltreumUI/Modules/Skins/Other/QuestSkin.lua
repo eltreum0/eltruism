@@ -886,6 +886,8 @@ function ElvUI_EltreumUI:SkinQuests()
 											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismScenarioLine, "CENTER", -3, -47)
 										elseif _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine then
 											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine, "CENTER", -3, -47)
+										elseif _G.EltruismDelvesLine then
+											cenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDelvesLine, "CENTER", -3, -47)
 										else
 											ScenarioObjectiveBlockBackground:SetPoint("CENTER", frame, "CENTER", 0, -5)
 										end
