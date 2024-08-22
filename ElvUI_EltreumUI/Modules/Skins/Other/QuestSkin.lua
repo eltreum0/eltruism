@@ -913,6 +913,54 @@ function ElvUI_EltreumUI:SkinQuests()
 						end)
 						k.UpdateStageBlockHook = true
 					end
+					if k.UpdateWidgetLayout and not UpdateWidgetLayoutHook then
+						hooksecurefunc(k, "UpdateWidgetLayout", function()
+							if _G.ScenarioObjectiveTracker then
+								local frames = {_G.ScenarioObjectiveTracker.ContentsFrame:GetChildren()}
+								for _, frame in pairs(frames) do
+									if frame.Stage then
+										frame.Stage:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize+2, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+										if E.db.ElvUI_EltreumUI.skins.questsettings.customcolor then
+											frame.Stage:SetTextColor(mult * E.db.ElvUI_EltreumUI.skins.questsettings.customr, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customg, mult * E.db.ElvUI_EltreumUI.skins.questsettings.customb)
+										else
+											frame.Stage:SetTextColor(mult * classcolor.r, mult * classcolor.g, mult * classcolor.b)
+										end
+										frame.Stage:SetWordWrap(true)
+										ScenarioObjectiveBlockBackground:SetParent(frame)
+										ScenarioObjectiveBlockBackground:ClearAllPoints()
+										if _G.EltruismDungeonLine then
+											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDungeonLine, "CENTER", -3, -47)
+										elseif _G.EltruismScenarioLine then
+											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismScenarioLine, "CENTER", -3, -47)
+										elseif _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismSLine then
+											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine, "CENTER", -3, -47)
+										elseif _G.EltruismDelvesLine then
+											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDelvesLine, "CENTER", -3, -47)
+										else
+											ScenarioObjectiveBlockBackground:SetPoint("CENTER", frame, "CENTER", -3, -5)
+										end
+
+										ScenarioObjectiveBlockBackground:SetSize(243, 80)
+										ScenarioObjectiveBlockBackground:SetFrameLevel(3)
+										ScenarioObjectiveBlockBackground:Show()
+										if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow then
+											ScenarioObjectiveBlockBackground:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+											ElvUI_EltreumUI:ShadowColor(ScenarioObjectiveBlockBackground.shadow.shadow)
+										end
+									end
+									if frame.NormalBG then
+										frame.NormalBG:Hide()
+										frame.NormalBG:SetTexture()
+									end
+									if frame.FinalBG then
+										frame.FinalBG:Hide()
+										frame.FinalBG:SetTexture()
+									end
+								end
+							end
+						end)
+						k.UpdateWidgetLayoutHook = true
+					end
 					if k.UpdateTime and not k.UpdateTimeHook then
 						hooksecurefunc(k, "UpdateTime", function(frame)
 							if frame and not frame.EltruismSkin then
