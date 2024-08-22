@@ -176,6 +176,14 @@ function ElvUI_EltreumUI:Shadows()
 									_G.PerksProgramFrame.FooterFrame.LeaveButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.LeaveButton.shadow)
 								end
+								if _G.PerksProgramFrame.FooterFrame.ToggleAttackAnimation and _G.PerksProgramFrame.FooterFrame.ToggleAttackAnimation.backdrop and not _G.PerksProgramFrame.FooterFrame.ToggleAttackAnimation.backdrop.shadow then
+									_G.PerksProgramFrame.FooterFrame.ToggleAttackAnimation.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.ToggleAttackAnimation.backdrop.shadow)
+								end
+								if _G.PerksProgramFrame.FooterFrame.ToggleMountSpecial and _G.PerksProgramFrame.FooterFrame.ToggleMountSpecial.backdrop and not _G.PerksProgramFrame.FooterFrame.ToggleMountSpecial.backdrop.shadow then
+									_G.PerksProgramFrame.FooterFrame.ToggleMountSpecial.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.ToggleMountSpecial.backdrop.shadow)
+								end
 								if _G.PerksProgramFrame.FooterFrame and _G.PerksProgramFrame.FooterFrame.RotateButtonContainer then
 									if _G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateRightButton and not _G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateRightButton.shadow then
 										_G.PerksProgramFrame.FooterFrame.RotateButtonContainer.RotateRightButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
