@@ -3771,6 +3771,7 @@ Updated BigWigs Bars to avoid some texture gaps
 Updated Objective Tracker Skin in Retail
 Updated Edit Mode Profile import
 Updated ProjectAzilroka Profile
+Updated German locale by Dlarge
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
