@@ -880,13 +880,13 @@ function ElvUI_EltreumUI:SkinQuests()
 										frame.Stage:SetWordWrap(true)
 										ScenarioObjectiveBlockBackground:SetParent(frame)
 										ScenarioObjectiveBlockBackground:ClearAllPoints()
-										if _G.EltruismDungeonLine then
+										if _G.EltruismDungeonLine and _G.EltruismDungeonLine:IsVisible() then
 											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDungeonLine, "CENTER", -3, -47)
-										elseif _G.EltruismScenarioLine then
+										elseif _G.EltruismScenarioLine and _G.EltruismScenarioLine:IsVisible() then
 											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismScenarioLine, "CENTER", -3, -47)
-										elseif _G.EltruismDelvesLine then
+										elseif _G.EltruismDelvesLine and _G.EltruismDelvesLine:IsVisible() then
 											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDelvesLine, "CENTER", -3, -47)
-										elseif _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismSLine then
+										elseif _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismStatusLine and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismStatusLine:IsVisible() then
 											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine, "CENTER", -3, -47)
 										else
 											ScenarioObjectiveBlockBackground:SetPoint("CENTER", frame, "CENTER", -3, -5)
@@ -928,13 +928,13 @@ function ElvUI_EltreumUI:SkinQuests()
 										frame.Stage:SetWordWrap(true)
 										ScenarioObjectiveBlockBackground:SetParent(frame)
 										ScenarioObjectiveBlockBackground:ClearAllPoints()
-										if _G.EltruismDungeonLine then
+										if _G.EltruismDungeonLine and _G.EltruismDungeonLine:IsVisible() then
 											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDungeonLine, "CENTER", -3, -47)
-										elseif _G.EltruismScenarioLine then
+										elseif _G.EltruismScenarioLine and _G.EltruismScenarioLine:IsVisible() then
 											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismScenarioLine, "CENTER", -3, -47)
-										elseif _G.EltruismDelvesLine then
+										elseif _G.EltruismDelvesLine and _G.EltruismDelvesLine:IsVisible() then
 											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDelvesLine, "CENTER", -3, -47)
-										elseif _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismSLine then
+										elseif _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismStatusLine and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismStatusLine:IsVisible() then
 											ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine, "CENTER", -3, -47)
 										else
 											ScenarioObjectiveBlockBackground:SetPoint("CENTER", frame, "CENTER", -3, -5)
@@ -966,13 +966,13 @@ function ElvUI_EltreumUI:SkinQuests()
 							if frame and not frame.EltruismSkin then
 								ScenarioObjectiveBlockBackground:SetParent(frame)
 								ScenarioObjectiveBlockBackground:ClearAllPoints()
-								if _G.EltruismDungeonLine then
+								if _G.EltruismDungeonLine and _G.EltruismDungeonLine:IsVisible() then
 									ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDungeonLine, "CENTER", -3, -47)
-								elseif _G.EltruismScenarioLine then
+								elseif _G.EltruismScenarioLine and _G.EltruismScenarioLine:IsVisible() then
 									ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismScenarioLine, "CENTER", -3, -47)
-								elseif _G.EltruismDelvesLine then
+								elseif _G.EltruismDelvesLine and _G.EltruismDelvesLine:IsVisible() then
 									ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.EltruismDelvesLine, "CENTER", -3, -47)
-								elseif _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismSLine then
+								elseif _G.ObjectiveTrackerBlocksFrame and _G.ObjectiveTrackerBlocksFrame.ScenarioHeader and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismStatusLine and _G.ObjectiveTratatusckerBlocksFrame.ScenarioHeader.EltruismStatusLine:IsVisible() then
 									ScenarioObjectiveBlockBackground:SetPoint("CENTER", _G.ObjectiveTrackerBlocksFrame.ScenarioHeader.EltruismStatusLine, "CENTER", -3, -47)
 								else
 									ScenarioObjectiveBlockBackground:SetPoint("CENTER", frame, "CENTER", -3, -5)
