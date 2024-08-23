@@ -64,6 +64,31 @@ function ElvUI_EltreumUI:ScrapFix()
 	hooksecurefunc(Scrap, 'ToggleJunk', UpdateAll)
 	hooksecurefunc(B, "UpdateSlot", UpdateSlot)
 
+	if _G.MerchantFrame then
+		_G.MerchantFrame:HookScript("OnShow", function()
+			if _G.ScrapVisualizer then
+				if not _G.ScrapVisualizer.IsSkinned then
+					S:HandleFrame(_G.ScrapVisualizer)
+					_G.ScrapVisualizer.PortraitContainer:Hide()
+					_G.ScrapVisualizer.Center:SetAlpha(1)
+					_G.ScrapVisualizer.Center:SetVertexColor(E.db.general.backdropfadecolor.r, E.db.general.backdropfadecolor.g, E.db.general.backdropfadecolor.b, 1)
+					S:HandleTab(_G.ScrapVisualizerTab1)
+					S:HandleTab(_G.ScrapVisualizerTab2)
+					S:HandleScrollBar(_G.ScrapVisualizerScrollBar)
+					_G.ScrapVisualizer.IsSkinned = true
+				end
+				if _G.ScrapVisualizer.ForgetButton and not _G.ScrapVisualizer.ForgetButtonIsSkinned then
+					S:HandleButton(_G.ScrapVisualizer.ForgetButton)
+					_G.ScrapVisualizer.ForgetButtonIsSkinned = true
+				end
+				if _G.ScrapVisualizer.ToggleButton and not _G.ScrapVisualizer.ToggleButtonIsSkinned then
+					S:HandleButton(_G.ScrapVisualizer.ToggleButton)
+					_G.ScrapVisualizer.ToggleButtonIsSkinned = true
+				end
+			end
+		end)
+	end
+
 	UpdateAll()
 end
 S:AddCallbackForAddon('Scrap', "EltruismScrapFix", ElvUI_EltreumUI.ScrapFix)
