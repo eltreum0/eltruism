@@ -276,23 +276,22 @@ function ElvUI_EltreumUI:SkinQuests()
 						if not bar.BarFrame.backdrop then
 							bar.BarFrame:CreateBackdrop()
 							bar.BarFrame.backdrop:SetOutside(bar.Icon)
-							bar.BarFrame.backdrop:SetShown(bar.Icon:IsShown())
-
 							if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 								if not bar.BarFrame.backdrop.shadow then
 									bar.BarFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 									ElvUI_EltreumUI:ShadowColor(bar.BarFrame.backdrop.shadow)
 								end
 							end
+							bar.BarFrame.backdrop:SetShown(bar.Icon:IsShown())
 						else
 							bar.BarFrame.backdrop:SetOutside(bar.Icon)
-							bar.BarFrame.backdrop:SetShown(bar.Icon:IsShown())
 							if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 								if not bar.BarFrame.backdrop.shadow then
 									bar.BarFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 									ElvUI_EltreumUI:ShadowColor(bar.BarFrame.backdrop.shadow)
 								end
 							end
+							bar.BarFrame.backdrop:SetShown(bar.Icon:IsShown())
 						end
 					end
 
