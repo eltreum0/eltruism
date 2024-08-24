@@ -265,7 +265,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				local function EltreumSkinProgressBars(line)
 					local bar = line
 					if not bar then return end
-					S:HandleStatusBar(bar)
+
 
 					if bar.Icon and bar.Icon:IsVisible() then
 						bar.Icon:ClearAllPoints()
@@ -276,9 +276,21 @@ function ElvUI_EltreumUI:SkinQuests()
 						if not bar.BarFrame.backdrop then
 							bar.BarFrame:CreateBackdrop()
 							bar.BarFrame.backdrop:SetOutside(bar.Icon)
+							if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+								if not bar.BarFrame.backdrop.shadow then
+									bar.BarFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(bar.BarFrame.backdrop.shadow)
+								end
+							end
 							bar.BarFrame.backdrop:SetShown(bar.Icon:IsShown())
 						else
 							bar.BarFrame.backdrop:SetOutside(bar.Icon)
+							if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+								if not bar.BarFrame.backdrop.shadow then
+									bar.BarFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(bar.BarFrame.backdrop.shadow)
+								end
+							end
 							bar.BarFrame.backdrop:SetShown(bar.Icon:IsShown())
 						end
 					end
@@ -287,12 +299,6 @@ function ElvUI_EltreumUI:SkinQuests()
 						if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow then
 							bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(bar.shadow)
-							if bar.Icon then
-								if bar.backdrop and not bar.backdrop.shadow then
-									bar.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-									ElvUI_EltreumUI:ShadowColor(bar.backdrop.shadow)
-								end
-							end
 						end
 
 						--E:Delay(0, function()
