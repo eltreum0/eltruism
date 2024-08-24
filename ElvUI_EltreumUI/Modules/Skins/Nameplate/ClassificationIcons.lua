@@ -442,6 +442,13 @@ local bossIDs = {
 	["39625"] = true, --general-umbriss
 	["45992"] = true, --valiona
 
+	--war within world bosses
+	["221084"] = true, --kordac
+	["229334"] = true, --kordac 2?
+	["220999"] = true, --aggregation-of-horrors
+	["221224"] = true, --shurrai
+	["221067"] = true, --orta
+
 }
 
 local textureDB = {

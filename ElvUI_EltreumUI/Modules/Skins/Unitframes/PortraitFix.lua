@@ -452,6 +452,7 @@ local modelsRotate = {
 	[892526] = true, --other Garrosh Hellscream
 	[5349642] = true, --Undertide Preystalker
 	[123772] = true, --Recalled Lord Jaraxxus
+	[5680838] = true, --Faerin
 }
 
 local targetlike = {
