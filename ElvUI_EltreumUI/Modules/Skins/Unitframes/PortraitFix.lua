@@ -453,6 +453,8 @@ local modelsRotate = {
 	[5349642] = true, --Undertide Preystalker
 	[123772] = true, --Recalled Lord Jaraxxus
 	[5680838] = true, --Faerin
+	[3490792] = true, --Deepsludger
+	[5278868] = true, --Risen Mage
 }
 
 local targetlike = {
