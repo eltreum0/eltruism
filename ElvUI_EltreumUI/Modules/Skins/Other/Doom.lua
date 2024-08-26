@@ -290,7 +290,7 @@ function ElvUI_EltreumUI:Doom()
 				end
 			end
 
-			if (#animating > 0) then
+			if (#animating > 0) and not IsInCinematicScene() then
 				runtimer = runtimer + update
 				if (runtimer > (E.db.ElvUI_EltreumUI.skins.doom.fadeInTime + E.db.ElvUI_EltreumUI.skins.doom.holdTime + E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime)) then
 					tremove(animating,1)
