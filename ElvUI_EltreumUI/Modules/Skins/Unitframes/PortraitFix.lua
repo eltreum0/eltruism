@@ -455,6 +455,7 @@ local modelsRotate = {
 	[5680838] = true, --Faerin
 	[3490792] = true, --Deepsludger
 	[5278868] = true, --Risen Mage
+	[5633401] = true, --Orweyna
 }
 
 local targetlike = {
