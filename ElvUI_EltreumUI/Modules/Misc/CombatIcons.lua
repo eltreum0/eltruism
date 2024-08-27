@@ -34,6 +34,24 @@ local targeticons = {
 	["WARRIOR"] = "Eltruism45",
 	["EVOKER"] = "Eltruism47",
 }
+local melee = {
+	["DEATHKNIGHT"] = true,
+	["DEMONHUNTER"] = true,
+	["MONK"] = true,
+	["PALADIN"]	= true,
+	["ROGUE"] = true,
+	["WARRIOR"] = true,
+}
+local ranged = {
+	["DRUID"] = true,
+	["HUNTER"] = true,
+	["MAGE"] = true,
+	["PRIEST"] = true,
+	["SHAMAN"] = true,
+	["WARLOCK"] = true,
+	["EVOKER"] = true,
+}
+
 
 --change target combat icon based on its class
 function ElvUI_EltreumUI:TargetCombatIconClass()
@@ -42,8 +60,8 @@ function ElvUI_EltreumUI:TargetCombatIconClass()
 		if E.db.unitframe.units.target.CombatIcon.enable then
 			if _G["ElvUF_Target"] and _G["ElvUF_Target"].CombatIndicator then
 				if UnitExists("target") then
+					local _,targetclass = UnitClass("target")
 					if UnitIsPlayer("target") or (E.Retail and UnitInPartyIsAI("target")) then
-						local _,targetclass = UnitClass("target")
 						local texturetarget = targeticons[targetclass]
 						_G["ElvUF_Target"].CombatIndicator:SetTexture(E.Media.CombatIcons[texturetarget])
 						_G["ElvUF_Target"].CombatIndicator:SetVertexColor(1, 1, 1, 1)
@@ -87,8 +105,16 @@ function ElvUI_EltreumUI:TargetCombatIconClass()
 							end
 							_G["ElvUF_Target"].CombatIndicator:SetVertexColor(E.db.ElvUI_EltreumUI.nameplates.classification.bossR, E.db.ElvUI_EltreumUI.nameplates.classification.bossG, E.db.ElvUI_EltreumUI.nameplates.classification.bossB, 1)
 						else
-							_G["ElvUF_Target"].CombatIndicator:SetTexture(E.Media.CombatIcons[E.db.unitframe.units.target.CombatIcon.texture])
-							_G["ElvUF_Target"].CombatIndicator:SetVertexColor(1, 1, 1, 1)
+							if melee[targetclass] then
+								_G["ElvUF_Target"].CombatIndicator:SetTexture(E.Media.CombatIcons["Eltruism14"])
+								_G["ElvUF_Target"].CombatIndicator:SetVertexColor(1, 1, 1, 1)
+							elseif ranged[targetclass] then
+								_G["ElvUF_Target"].CombatIndicator:SetTexture(E.Media.CombatIcons["Eltruism15"])
+								_G["ElvUF_Target"].CombatIndicator:SetVertexColor(1, 1, 1, 1)
+							else
+								_G["ElvUF_Target"].CombatIndicator:SetTexture(E.Media.CombatIcons[E.db.unitframe.units.target.CombatIcon.texture])
+								_G["ElvUF_Target"].CombatIndicator:SetVertexColor(1, 1, 1, 1)
+							end
 						end
 					end
 				end

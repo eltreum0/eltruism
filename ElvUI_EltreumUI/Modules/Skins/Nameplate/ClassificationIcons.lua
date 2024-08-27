@@ -386,6 +386,8 @@ local bossIDs = {
 	["219440"] = true, --high-speaker-eirich
 	["210156"] = true, --skarmorak
 	["221586"] = true, --speaker-dorlita
+	["213217"] = true, --speaker-brokk]
+	["210108"] = true, --e-d-n-a]
 
 	--cinderbrew-meadery
 	["218000"] = true, --benk-buzzbee
@@ -396,6 +398,7 @@ local bossIDs = {
 	--city-of-threads
 	["216658"] = true, --izo-the-grand-splicer
 	["216648"] = true, --nx
+	["216649"] = true, --vx
 	["216619"] = true, --orator-krixvizk
 	["216320"] = true, --the-coaglamation
 
@@ -405,9 +408,11 @@ local bossIDs = {
 	["222096"] = true, --the-candle-king
 	["210797"] = true, --the-darkness
 
-	--hallowfall
+	--the dawnbreaker
 	["211089"] = true, --anubikkaj
 	["211087"] = true, --speaker-shadowcrown
+	["213937"] = true, --rashanan
+	["224552"] = true, --rashanan
 
 	--nerub-ar-palace
 	["223779"] = true, --anubarash
@@ -423,6 +428,7 @@ local bossIDs = {
 	["164567"] = true, --ingra-maloch
 	["170217"] = true, --mistcaller
 	["164517"] = true, --tredova
+
 	--the-necrotic-wake
 	["162691"] = true, --blightbone
 	["166945"] = true, --nalthor-the-rimebinder

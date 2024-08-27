@@ -1052,7 +1052,7 @@ function ElvUI_EltreumUI:SkinQuests()
 											end
 											module.Header.EltruismStatusLine:SetFrameLevel(1)
 											if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not module.Header.EltruismStatusLine.shadow then
-												module.Header.EltruismStatusLine:CreateBackdrop('Transparent')
+												--module.Header.EltruismStatusLine:CreateBackdrop('Transparent')
 												module.Header.EltruismStatusLine:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 												module.Header.EltruismStatusLine.shadow:SetFrameStrata("LOW")
 												ElvUI_EltreumUI:ShadowColor(module.Header.EltruismStatusLine.shadow)

@@ -455,6 +455,10 @@ local modelsRotate = {
 	[5680838] = true, --Faerin
 	[3490792] = true, --Deepsludger
 	[5278868] = true, --Risen Mage
+	[5633401] = true, --Orweyna
+	[5422147] = true, --Ney'leia
+	[5422149] = true, --On'hiea
+	[5794850] = true, --demineralized Magni Bronzebeard
 }
 
 local targetlike = {
