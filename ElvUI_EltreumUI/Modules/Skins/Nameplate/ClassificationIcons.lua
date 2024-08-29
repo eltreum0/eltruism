@@ -384,9 +384,10 @@ local bossIDs = {
 
 	--the-stonevault
 	["219440"] = true, --high-speaker-eirich
+	["213119"] = true, --high-speaker-eirich
 	["210156"] = true, --skarmorak
 	["221586"] = true, --speaker-dorlita
-	["223216"] = true, --speaker-dorlita
+	["213216"] = true, --speaker-dorlita
 	["213217"] = true, --speaker-brokk]
 	["210108"] = true, --e-d-n-a]
 
