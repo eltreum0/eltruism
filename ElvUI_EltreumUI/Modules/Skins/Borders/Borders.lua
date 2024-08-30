@@ -64,7 +64,7 @@ end
 
 --Borders on frames
 function ElvUI_EltreumUI:Borders()
-	if E.db.ElvUI_EltreumUI.borders.borders then
+	if E.db.ElvUI_EltreumUI.borders.borders and not E.db.ElvUI_EltreumUI.borders.bordertest then
 		if E.Classic and not E.db.ElvUI_EltreumUI.skins.classicblueshaman then
 			classcolorreaction["SHAMAN"] = {r1 = 0.95686066150665, g1 = 0.54901838302612, b1 = 0.72941017150879}
 		end
@@ -1289,7 +1289,7 @@ local debuffColors = { -- handle colors of LibDispel
 }
 
 function ElvUI_EltreumUI:AuraBorders(button)
-	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable then
+	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable and not E.db.ElvUI_EltreumUI.borders.bordertest then
 		local auraborder
 		if not _G["EltruismAuraBorder"..button:GetName()] then
 			auraborder = CreateFrame("Frame", "EltruismAuraBorder"..button:GetName(), button, BackdropTemplateMixin and "BackdropTemplate")
@@ -1327,7 +1327,7 @@ end
 hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraBorders) --aura (minimap) borders
 
 function ElvUI_EltreumUI:AuraBordersColorDebuff(button)
-	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable then
+	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable and not E.db.ElvUI_EltreumUI.borders.bordertest then
 		local auraborder = _G["EltruismAuraBorder"..button:GetName()]
 		if not auraborder then return end
 		if button.auraType == "debuffs" then
@@ -1340,11 +1340,23 @@ function ElvUI_EltreumUI:AuraBordersColorDebuff(button)
 			auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 		end
 	end
+
+	if button.eltruismbordertest then --cursed borders
+		if button.auraType == "debuffs" then
+			if debuffColors[button.debuffType] then
+				button.eltruismbordertest:SetBackdropBorderColor(debuffColors[button.debuffType].r, debuffColors[button.debuffType].g, debuffColors[button.debuffType].b, 1)
+			else
+				button.eltruismbordertest:SetBackdropBorderColor(0.8, 0, 0, 1)
+			end
+		else
+			button.eltruismbordertest:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+		end
+	end
 end
 hooksecurefunc(A, 'UpdateAura', ElvUI_EltreumUI.AuraBordersColorDebuff) --debuff colors update
 
 function ElvUI_EltreumUI:UFAuraBorders(button)
-	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf and E.private.auras.enable then
+	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf and E.private.auras.enable and not E.db.ElvUI_EltreumUI.borders.bordertest then
 		if E.db.ElvUI_EltreumUI.borders.classcolor then
 			if button:GetParent() and button:GetParent().__owner and button:GetParent().__owner.unit then
 				if UnitIsPlayer(button:GetParent().__owner.unit) or (E.Retail and UnitInPartyIsAI(button:GetParent().__owner.unit)) then
@@ -1399,7 +1411,7 @@ end
 hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraBorders) --uf aura borders
 
 function ElvUI_EltreumUI:UFAuraBordersColorDebuff(_,button)
-	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf and E.private.auras.enable then
+	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf and E.private.auras.enable and not E.db.ElvUI_EltreumUI.borders.bordertest then
 		local auraborder = _G["EltruismAuraBorder"..button:GetName()]
 		if not auraborder then return end
 		if button.isDebuff then
@@ -1413,11 +1425,24 @@ function ElvUI_EltreumUI:UFAuraBordersColorDebuff(_,button)
 			auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 		end
 	end
+
+	if button.eltruismbordertest then --cursed borders
+		if button.isDebuff then
+			local r,g,b = button:GetBackdropBorderColor()
+			if r then
+				button.eltruismbordertest:SetBackdropBorderColor(r,g,b, 1)
+			else
+				button.eltruismbordertest:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			end
+		else
+			button.eltruismbordertest:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+		end
+	end
 end
 hooksecurefunc(UF, 'PostUpdateAura', ElvUI_EltreumUI.UFAuraBordersColorDebuff) --uf aura debuff colors update
 
 function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of target changes if the target is not in party/raid, no event to register :(
-	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
+	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor and not E.db.ElvUI_EltreumUI.borders.bordertest then
 
 		--targettarget doesnt fire events, and if both units are registered then only the last one is triggering the function, with player never triggering it
 		local powertypemonitortarget = CreateFrame("frame")
