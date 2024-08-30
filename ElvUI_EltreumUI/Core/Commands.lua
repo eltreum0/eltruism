@@ -148,6 +148,24 @@ function ElvUI_EltreumUI:RunCommands(message)
 			hideOnEscape = false,
 		}
 		E:StaticPopup_Show('ELTRUISMPERFORMANCE')
+	elseif message == 'cursedborders' then
+		E.PopupDialogs["ELTRUISMBORDERTEST"] = {
+			text = "Test mode to enable borders everywhere",
+			OnAccept = function()
+				if not E.db.ElvUI_EltreumUI.borders.bordertest then
+					E.db.ElvUI_EltreumUI.borders.bordertest = true
+				else
+					E.db.ElvUI_EltreumUI.borders.bordertest = false
+				end
+				ReloadUI()
+			end,
+			button1 = ACCEPT,
+			button2 = CANCEL,
+			timeout = 0,
+			whileDead = 1,
+			hideOnEscape = false,
+		}
+		E:StaticPopup_Show('ELTRUISMBORDERTEST')
 	elseif message == 'background' then
 		if E.db.ElvUI_EltreumUI.unitframes.greybackground then
 			ElvUI_EltreumUI:BlackBg()
