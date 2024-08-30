@@ -407,7 +407,9 @@ local bossIDs = {
 	--darkflame-cleft
 	["208743"] = true, --blazikon
 	["210149"] = true, --ol-waxbeard
+	["210153"] = true, --ol-waxbeard
 	["222096"] = true, --the-candle-king
+	["208745"] = true, --the-candle-king
 	["210797"] = true, --the-darkness
 
 	--the dawnbreaker
