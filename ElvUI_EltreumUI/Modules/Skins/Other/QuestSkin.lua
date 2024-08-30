@@ -894,6 +894,8 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 
 				local function hooks(k)
+					k:UnregisterEvent("ADDON_ACTION_BLOCKED")
+					k:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 					if k.Bar then
 						EltreumSkinProgressBars(k.Bar)
 					end
@@ -1077,6 +1079,8 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 				local function firehooks()
 					for _, k in pairs(questmodules) do
+						k:UnregisterEvent("ADDON_ACTION_BLOCKED")
+						k:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 						if k.ContentsFrame then
 							if k.ContentsFrame:GetNumChildren() > 0 then
 								for _, v in pairs({k.ContentsFrame:GetChildren()}) do
