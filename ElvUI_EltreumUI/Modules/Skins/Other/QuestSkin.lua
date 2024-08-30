@@ -713,6 +713,8 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 
 				local function QuestItemButton(block,itemButton)
+					block:UnregisterEvent("ADDON_ACTION_BLOCKED")
+					block:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 					local itemTable = _G.C_TooltipInfo.GetQuestLogSpecialItem(itemButton.questLogIndex)
 					if itemTable and itemTable.id then
 						local itemName, _, _, _, _, _, _, _, _, itemTexture, _, _ = _G.C_Item.GetItemInfo(itemTable.id)
@@ -842,6 +844,8 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 
 				local function blockskin(block)
+					block:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
+					block:UnregisterEvent("ADDON_ACTION_BLOCKED")
 					if not block then
 						return
 					end
@@ -1186,6 +1190,8 @@ function ElvUI_EltreumUI:SkinQuests()
 							if k.ContentsFrame then
 								for _, v in pairs({k.ContentsFrame:GetChildren()}) do
 									if v then
+										v:UnregisterEvent("ADDON_ACTION_BLOCKED")
+										v:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 										blockskin(v)
 									end
 								end
