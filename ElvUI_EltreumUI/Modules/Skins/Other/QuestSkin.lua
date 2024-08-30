@@ -1101,6 +1101,13 @@ function ElvUI_EltreumUI:SkinQuests()
 							end)
 							k.AddBlockHook = true
 						end
+						if k.AddQuest and not k.AddQuestHook then
+							hooksecurefunc(k, "AddQuest", function(block)
+								blockskin(block)
+								blockskin(k)
+							end)
+							k.AddQuestHook = true
+						end
 					end
 				end
 				E:Delay(0,firehooks)
