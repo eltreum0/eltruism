@@ -245,12 +245,18 @@ local function GetCheckCompatibilityFunction(targetAddonName, targetAddonLocales
 					func1 = function()
 						myTable[myKey] = true
 						DisableAddOn(targetAddon)
+						if C_AddOns.SaveAddOns then
+							C_AddOns.SaveAddOns()
+						end
 					end,
 					module2 = "AddOn:",
 					plugin2 = select(2,GetAddOnInfo(targetAddon)),
 					func2 = function()
 						myTable[myKey] = false
 						EnableAddOn(targetAddon)
+						if C_AddOns.SaveAddOns then
+							C_AddOns.SaveAddOns()
+						end
 					end
 				})
 			end

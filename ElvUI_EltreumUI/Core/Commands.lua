@@ -330,6 +330,9 @@ function ElvUI_EltreumUI:DebugMode(message)
 			local name = GetAddOnInfo(i)
 			if not AddOns[name] and E:IsAddOnEnabled(name) then
 				DisableAddOn(name, E.myname)
+				if C_AddOns.SaveAddOns then
+					C_AddOns.SaveAddOns()
+				end
 				ElvDB.EltruismDisabledAddOns[name] = i
 			end
 		end
@@ -339,6 +342,9 @@ function ElvUI_EltreumUI:DebugMode(message)
 		if next(ElvDB.EltruismDisabledAddOns) then
 			for name in pairs(ElvDB.EltruismDisabledAddOns) do
 				EnableAddOn(name, E.myname)
+				if C_AddOns.SaveAddOns then
+					C_AddOns.SaveAddOns()
+				end
 			end
 			wipe(ElvDB.EltruismDisabledAddOns)
 			ReloadUI()
