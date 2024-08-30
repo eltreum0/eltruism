@@ -5,6 +5,7 @@ local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoa
 local EnableAddOn = _G.C_AddOns and _G.C_AddOns.EnableAddOn or _G.EnableAddOn
 local DisableAddOn = _G.C_AddOns and _G.C_AddOns.DisableAddOn or _G.DisableAddOn
 local GetAddOnInfo = _G.C_AddOns and _G.C_AddOns.GetAddOnInfo or _G.GetAddOnInfo
+local SaveAddOns = _G.C_AddOns and _G.C_AddOns.SaveAddOns or _G.SaveAddOns
 local select = _G.select
 local gsub = _G.gsub
 local ipairs = _G.ipairs
@@ -245,18 +246,14 @@ local function GetCheckCompatibilityFunction(targetAddonName, targetAddonLocales
 					func1 = function()
 						myTable[myKey] = true
 						DisableAddOn(targetAddon)
-						if C_AddOns.SaveAddOns then
-							C_AddOns.SaveAddOns()
-						end
+						SaveAddOns()
 					end,
 					module2 = "AddOn:",
 					plugin2 = select(2,GetAddOnInfo(targetAddon)),
 					func2 = function()
 						myTable[myKey] = false
 						EnableAddOn(targetAddon)
-						if C_AddOns.SaveAddOns then
-							C_AddOns.SaveAddOns()
-						end
+						SaveAddOns()
 					end
 				})
 			end
