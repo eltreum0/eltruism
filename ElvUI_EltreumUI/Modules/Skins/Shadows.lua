@@ -123,6 +123,12 @@ function ElvUI_EltreumUI:Shadows()
 								ElvUI_EltreumUI:ShadowColor(_G.BattlefieldMapFrame.backdrop.shadow)
 							end
 						end
+						if _G.BattlefieldMapTab and _G.BattlefieldMapTab.backdrop then
+							if not _G.BattlefieldMapTab.backdrop.shadow then
+								_G.BattlefieldMapTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G.BattlefieldMapTab.backdrop.shadow)
+							end
+						end
 					end
 					if (arg == "Blizzard_ArtifactUI") or IsAddOnLoaded("Blizzard_ArtifactUI") then
 						if _G.ArtifactFrame and not _G.ArtifactFrame.shadow then
