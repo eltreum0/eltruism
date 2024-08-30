@@ -137,7 +137,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 							frame.eltruismbordertest = CreateFrame("Frame", nil, frame, BackdropTemplateMixin and "BackdropTemplate")
 							frame.eltruismbordertest:SetPoint("CENTER", frame, "CENTER", 0, 0)
 							frame.eltruismbordertest:SetBackdrop({
-								edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
+								edgeFile = E.LSM:Fetch("border", "Eltreum-Border-1"),
 								edgeSize = offset,
 							})
 							frame.eltruismbordertest:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
@@ -149,7 +149,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 								local itemoffset = 20
 								local itemoutside = 14
 								frame.eltruismbordertest:SetBackdrop({
-									edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
+									edgeFile = E.LSM:Fetch("border", "Eltreum-Border-1"),
 									edgeSize = itemoffset,
 								})
 								frame.eltruismbordertest:SetOutside(frame, itemoutside, itemoutside)
@@ -164,7 +164,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 								end
 								hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable)
 									frametable.eltruismbordertest:SetBackdrop({
-										edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
+										edgeFile = E.LSM:Fetch("border", "Eltreum-Border-1"),
 										edgeSize = itemoffset,
 									})
 									frametable.eltruismbordertest:SetOutside(frametable, itemoutside, itemoutside)
