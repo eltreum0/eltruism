@@ -6,6 +6,7 @@ local EnumerateFrames = _G.EnumerateFrames
 local valuecolors = E:ClassColor(E.myclass, true)
 local atlas
 local S = E:GetModule('Skins')
+local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 
 local widgetAtlas = {
 	["widgetstatusbar-fill-blue"] = { r = 0, g = 0, b = 255, a = 1},
@@ -14,6 +15,30 @@ local widgetAtlas = {
 	["widgetstatusbar-fill-white"] = { r = 255, g = 255, b = 255, a = 1},
 	["widgetstatusbar-fill-yellow"] = { r = 255, g = 255, b = 0, a = 1},
 }
+
+local function togglebackdrop(frame,show)
+	if show then
+		frame.TopLeftCorner:Show()
+		frame.TopRightCorner:Show()
+		frame.BottomLeftCorner:Show()
+		frame.BottomRightCorner:Show()
+
+		frame.LeftEdge:Show()
+		frame.RightEdge:Show()
+		frame.BottomEdge:Show()
+		frame.TopEdge:Show()
+	else
+		frame.TopLeftCorner:Hide()
+		frame.TopRightCorner:Hide()
+		frame.BottomLeftCorner:Hide()
+		frame.BottomRightCorner:Hide()
+
+		frame.LeftEdge:Hide()
+		frame.RightEdge:Hide()
+		frame.BottomEdge:Hide()
+		frame.TopEdge:Hide()
+	end
+end
 
 --based on elvui toolkit
 function ElvUI_EltreumUI:SetTemplateSkin()
@@ -85,32 +110,6 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 							end
 						end
 
-						--[[
-							frame:SetBackdrop({
-								edgeFile = "Interface\\Addons\\ElvUI_EltreumUI\\Media\\border\\Eltreum-Border-1.tga",
-								bgFile = glossTex and (type(glossTex) == 'string' and glossTex or E.media.glossTex) or E.media.blankTex,
-								edgeSize = 3,
-							})
-							--frame.backdrop:SetOutside()
-							if frame.callbackBackdropColor then
-								frame:callbackBackdropColor()
-							else
-								frame:SetBackdropColor(0, 0, 0, frame.customBackdropAlpha or (template == 'Transparent' and 1) or 1)
-							end
-							local borderr, borderg, borderb, bordera = 0,0,0,1
-							if frame.forcedBorderColors then
-								borderr, borderg, borderb, bordera = unpack(frame.forcedBorderColors)
-							end
-
-							frame:SetBackdropBorderColor(borderr, borderg, borderb, bordera)
-						]]
-
-						--[[
-							frame.testmask = frame:CreateMaskTexture()
-							frame.testmask:SetAllPoints(frame)
-							frame.testmask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\circle_mask.TGA", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
-							frame:AddMaskTexture(frame.testmask) --errors because frame doesnt have method, needs texture...
-						]]
 
 						--[[
 							if not frame.shadow then
@@ -118,31 +117,74 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 								ElvUI_EltreumUI:ShadowColor(frame.shadow)
 							end
 						]]
-						--[[
-							if not frame.eltruismbordertest then
-								local classcolor = E:ClassColor(E.myclass, true)
-								local offset = (E.PixelMode and 13) or 14
-								frame.eltruismbordertest = CreateFrame("Frame", nil, frame, BackdropTemplateMixin and "BackdropTemplate")
-								frame.eltruismbordertest:SetPoint("CENTER", frame, "CENTER", 0, 0)
+
+						if E.db.ElvUI_EltreumUI.borders.bordertest and not frame.eltruismbordertest then
+							local classcolor
+							if E.db.ElvUI_EltreumUI.borders.classcolor then
+								classcolor = E:ClassColor(E.myclass, true)
+							elseif not E.db.ElvUI_EltreumUI.borders.classcolor then
+								classcolor = {
+									r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
+									g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
+									b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
+								}
+							end
+
+
+							--local offset = (E.PixelMode and 13) or 14
+							local size = 11
+							local offset = (E.PixelMode and size) or (size + 1)
+							frame.eltruismbordertest = CreateFrame("Frame", nil, frame, BackdropTemplateMixin and "BackdropTemplate")
+							frame.eltruismbordertest:SetPoint("CENTER", frame, "CENTER", 0, 0)
+							frame.eltruismbordertest:SetBackdrop({
+								edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
+								edgeSize = offset,
+							})
+							frame.eltruismbordertest:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+							frame.eltruismbordertest:SetFrameLevel(frame:GetFrameLevel()+1)
+							frame.eltruismbordertest:SetFrameStrata(frame:GetFrameStrata())
+							--SetOutside(obj, anchor, xOffset, yOffset, anchor2, noScale)
+							frame.eltruismbordertest:SetOutside(frame, offset-2, offset-2)
+							if frame.IconBorder then --items are different
+								local itemoffset = 20
+								local itemoutside = 14
 								frame.eltruismbordertest:SetBackdrop({
 									edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
-									edgeSize = offset,
+									edgeSize = itemoffset,
 								})
-								frame.eltruismbordertest:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-								--frame.eltruismbordertest:SetFrameLevel(1)
-								frame.eltruismbordertest:SetFrameStrata(frame:GetFrameStrata())
-								frame.eltruismbordertest:SetOutside(frame, offset-1.5, offset-1.5, nil, true)
-							else
-								frame.eltruismbordertest:Show()
+								frame.eltruismbordertest:SetOutside(frame, itemoutside, itemoutside)
+								if frame.rarity then
+									local r,g,b = GetItemQualityColor(frame.rarity)
+									frame.eltruismbordertest:SetBackdropBorderColor(r, g, b, 1)
+									frame.eltruismbordertest:Show()
+									togglebackdrop(frame,false)
+								else
+									frame.eltruismbordertest:Hide()
+									togglebackdrop(frame,true)
+								end
+								hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable)
+									frametable.eltruismbordertest:SetBackdrop({
+										edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
+										edgeSize = itemoffset,
+									})
+									frametable.eltruismbordertest:SetOutside(frametable, itemoutside, itemoutside)
+									if frametable.rarity then
+										local r,g,b = GetItemQualityColor(frametable.rarity)
+										frametable.eltruismbordertest:SetBackdropBorderColor(r, g, b, 1)
+										frametable.eltruismbordertest:Show()
+										togglebackdrop(frame,false)
+									else
+										frame.eltruismbordertest:Hide()
+										togglebackdrop(frame,true)
+									end
+								end)
+								if frame.shadow then frame.shadow:Hide() end
 							end
-						]]
+						end
 					else
 						if frame.eltruismbgtexture then
 							frame.eltruismbgtexture:Hide()
 						end
-						--[[if frame.eltruismbordertest then
-							frame.eltruismbordertest:Hide()
-						end]]
 					end
 
 					--skin here because it needs to enumerate frames

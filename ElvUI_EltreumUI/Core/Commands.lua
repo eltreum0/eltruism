@@ -5,6 +5,7 @@ local EnableAddOn = _G.C_AddOns and _G.C_AddOns.EnableAddOn or _G.EnableAddOn
 local DisableAddOn = _G.C_AddOns and _G.C_AddOns.DisableAddOn or _G.DisableAddOn
 local GetAddOnInfo = _G.C_AddOns and _G.C_AddOns.GetAddOnInfo or _G.GetAddOnInfo
 local GetNumAddOns = _G.C_AddOns and _G.C_AddOns.GetNumAddOns or _G.GetNumAddOns
+local SaveAddOns = _G.C_AddOns and _G.C_AddOns.SaveAddOns or _G.SaveAddOns
 local CreateFrame = _G.CreateFrame
 local GetCoinIcon = _G.C_CurrencyInfo and _G.C_CurrencyInfo.GetCoinIcon or _G.GetCoinIcon
 local CombatText_AddMessage = _G.CombatText_AddMessage
@@ -17,7 +18,6 @@ local UseContainerItem = E.Retail and C_Container.UseContainerItem or _G.UseCont
 local next = _G.next
 local SendChatMessage = _G.SendChatMessage
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
-
 
 -- Register on init
 function ElvUI_EltreumUI:LoadCommands()
@@ -148,6 +148,24 @@ function ElvUI_EltreumUI:RunCommands(message)
 			hideOnEscape = false,
 		}
 		E:StaticPopup_Show('ELTRUISMPERFORMANCE')
+	elseif message == 'cursedborders' then
+		E.PopupDialogs["ELTRUISMBORDERTEST"] = {
+			text = "Test mode to enable borders everywhere",
+			OnAccept = function()
+				if not E.db.ElvUI_EltreumUI.borders.bordertest then
+					E.db.ElvUI_EltreumUI.borders.bordertest = true
+				else
+					E.db.ElvUI_EltreumUI.borders.bordertest = false
+				end
+				ReloadUI()
+			end,
+			button1 = ACCEPT,
+			button2 = CANCEL,
+			timeout = 0,
+			whileDead = 1,
+			hideOnEscape = false,
+		}
+		E:StaticPopup_Show('ELTRUISMBORDERTEST')
 	elseif message == 'background' then
 		if E.db.ElvUI_EltreumUI.unitframes.greybackground then
 			ElvUI_EltreumUI:BlackBg()
@@ -312,6 +330,7 @@ function ElvUI_EltreumUI:DebugMode(message)
 			local name = GetAddOnInfo(i)
 			if not AddOns[name] and E:IsAddOnEnabled(name) then
 				DisableAddOn(name, E.myname)
+				SaveAddOns()
 				ElvDB.EltruismDisabledAddOns[name] = i
 			end
 		end
@@ -321,6 +340,7 @@ function ElvUI_EltreumUI:DebugMode(message)
 		if next(ElvDB.EltruismDisabledAddOns) then
 			for name in pairs(ElvDB.EltruismDisabledAddOns) do
 				EnableAddOn(name, E.myname)
+				SaveAddOns()
 			end
 			wipe(ElvDB.EltruismDisabledAddOns)
 			ReloadUI()
