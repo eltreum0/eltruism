@@ -426,7 +426,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 
 	--movers
 	E.db["movers"]["MoverEltruismInstanceDifficulty"] = "TOPRIGHT,UIParent,TOPRIGHT,-146,-21"
-	E.db["movers"]["MoverBattlefieldMapFrame"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-423,25"
 	E.db["movers"]["MoverRaidWarningFrame"] = "TOP,UIParent,TOP,0,-182"
 	E.db["movers"]["TorghastChoiceToggle"] = "BOTTOM,ElvUIParent,BOTTOM,0,398"
 	E.db["movers"]["AddonCompartmentMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-8,-5"

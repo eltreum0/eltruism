@@ -295,7 +295,6 @@ function ElvUI_EltreumUI:Anchors()
 		BattlefieldMapChecker:SetScript("OnEvent" , function(_,_,addon)
 			if addon == "Blizzard_BattlefieldMap" then
 				BattlefieldMapChecker:UnregisterAllEvents()
-				E:CreateMover(_G.BattlefieldMapFrame, "MoverBattlefieldMapFrame", "BattlefieldMapFrame", nil, nil, nil, "ALL,ELTREUMUI")
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard and E.private.skins.blizzard.enable then
 					if _G.BattlefieldMapFrame and _G.BattlefieldMapFrame.backdrop then
 						if not _G.BattlefieldMapFrame.backdrop.shadow then
@@ -307,10 +306,6 @@ function ElvUI_EltreumUI:Anchors()
 			end
 		end)
 	else
-		if not _G.BattlefieldMapFrame.EltruismMover then
-			E:CreateMover(_G.BattlefieldMapFrame, "MoverBattlefieldMapFrame", "BattlefieldMapFrame", nil, nil, nil, "ALL,ELTREUMUI")
-			_G.BattlefieldMapFrame.EltruismMover = true
-		end
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard and E.private.skins.blizzard.enable then
 			if _G.BattlefieldMapFrame and _G.BattlefieldMapFrame.backdrop then
 				if not _G.BattlefieldMapFrame.backdrop.shadow then
