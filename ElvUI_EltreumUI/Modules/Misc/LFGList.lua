@@ -291,9 +291,15 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 							else
 								region = "???"
 							end
-							if (entry.ActivityName:GetText()) ~= nil and (entry.ActivityName:GetText()) ~= "" and not (entry.ActivityName:GetText():match(region)) then
-								--print(entry.ActivityName:GetText())
-								entry.ActivityName:SetFormattedText("%s %s", region, entry.ActivityName:GetText())
+
+							--appears to still double the text sometimes
+							if (entry.ActivityName:GetText()) ~= nil and (entry.ActivityName:GetText()) ~= "" then
+								if not (entry.ActivityName:GetText():match(region)) then
+									entry.ActivityName:SetFormattedText("%s %s", region, entry.ActivityName:GetText())
+									entry.ActivityName.EltruismRegion = true
+								else
+									entry.ActivityName.EltruismRegion = false
+								end
 							end
 						end
 						if entry.Name:GetText() ~= nil then
