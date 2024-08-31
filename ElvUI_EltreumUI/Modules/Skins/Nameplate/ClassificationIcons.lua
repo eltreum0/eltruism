@@ -393,8 +393,10 @@ local bossIDs = {
 
 	--cinderbrew-meadery
 	["218000"] = true, --benk-buzzbee
+	["218002"] = true, --benk-buzzbee
 	["210271"] = true, --brew-master-aldryr
 	["218523"] = true, --goldie-baronbottom
+	["214661"] = true, --goldie-baronbottom
 	["210267"] = true, --ipa
 
 	--city-of-threads
