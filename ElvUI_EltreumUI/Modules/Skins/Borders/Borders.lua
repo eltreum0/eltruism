@@ -19,7 +19,7 @@ local bordertexture,focusborder,bossborder,powerbarborder, playercastbarborder,p
 local playerclassbarborder1, playerclassbarborder2, comboborder, playerpowerborder, targetpowerborder, reputationborder
 local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction, altpowerborder
 local MinimapBorder,LeftChatBorder,RightChatBorder,totemborderfly,focustargetborder,targettargetpowerborder, focuspowerborder
-local raid1borderholder,raid2borderholder,raid3borderholder,partyborderholder, comboborderholder = {},{},{},{},{}
+local raid1borderholder,raid2borderholder,raid3borderholder,partyborderholder, comboborderholder, tankborderholder, assistborderholder = {},{},{},{},{},{},{}
 local rectangleminimapdetect = CreateFrame("FRAME")
 local updatelocationpos = CreateFrame("Frame")
 local classcolorreaction = {
@@ -803,6 +803,59 @@ function ElvUI_EltreumUI:Borders()
 						end
 						bossborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.bossstrata)
 						bossborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.bosslevel)
+					end
+				end
+			end
+
+			--tanks
+			if E.db.ElvUI_EltreumUI.borders.tankassistborders and E.db.unitframe.units.tank.enable then
+				for k = 1,8 do
+					if _G['ElvUF_TankUnitButton'..k] then
+						local tankborder
+						if not _G["ElvUF_TankUnitButton"..k.."Border"] then
+							tankborder = CreateFrame("Frame", "ElvUF_TankUnitButton"..k.."Border", _G['ElvUF_TankUnitButton'..k], BackdropTemplateMixin and "BackdropTemplate")
+						else
+							tankborder = _G["ElvUF_TankUnitButton"..k.."Border"]
+						end
+						table.insert(tankborderholder, tankborder)
+						tankborder:SetSize(E.db.ElvUI_EltreumUI.borders.tankassistsizex, E.db.ElvUI_EltreumUI.borders.tankassistsizey)
+						tankborder:SetPoint("CENTER", _G['ElvUF_TankUnitButton'..k], "CENTER")
+						tankborder:SetParent(_G['ElvUF_TankUnitButton'..k])
+						tankborder:SetBackdrop({
+							edgeFile = bordertexture,
+							edgeSize = E.db.ElvUI_EltreumUI.borders.tankassistsize,
+						})
+						if E.db.ElvUI_EltreumUI.borders.classcolor then
+							tankborder:SetBackdropBorderColor(1, 1, 1, 1)
+						else
+							tankborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						end
+						tankborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.tankassiststrata)
+						tankborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.tankassistlevel)
+					end
+
+					if _G['ElvUF_AssistUnitButton'..k] then
+						local assistborder
+						if not _G["ElvUF_AssistUnitButton"..k.."Border"] then
+							assistborder = CreateFrame("Frame", "ElvUF_AssistUnitButton"..k.."Border", _G['ElvUF_AssistUnitButton'..k], BackdropTemplateMixin and "BackdropTemplate")
+						else
+							assistborder = _G["ElvUF_AssistUnitButton"..k.."Border"]
+						end
+						table.insert(assistborderholder, assistborder)
+						assistborder:SetSize(E.db.ElvUI_EltreumUI.borders.tankassistsizex, E.db.ElvUI_EltreumUI.borders.tankassistsizey)
+						assistborder:SetPoint("CENTER", _G['ElvUF_AssistUnitButton'..k], "CENTER")
+						assistborder:SetParent(_G['ElvUF_AssistUnitButton'..k])
+						assistborder:SetBackdrop({
+							edgeFile = bordertexture,
+							edgeSize = E.db.ElvUI_EltreumUI.borders.tankassistsize,
+						})
+						if E.db.ElvUI_EltreumUI.borders.classcolor then
+							assistborder:SetBackdropBorderColor(1, 1, 1, 1)
+						else
+							assistborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+						end
+						assistborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.tankassiststrata)
+						assistborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.tankassistlevel)
 					end
 				end
 			end
@@ -1785,6 +1838,16 @@ function ElvUI_EltreumUI:ShowHideBorders(install)
 				frame:Show()
 			end
 		end
+		for _, frame in pairs(tankborderholder) do
+			if frame then
+				frame:Show()
+			end
+		end
+		for _, frame in pairs(assistborderholder) do
+			if frame then
+				frame:Show()
+			end
+		end
 		for k = 1,6 do
 			barborderbutton = "EltruismAB"..k.."Border"
 			for b = 1,12 do
@@ -1843,6 +1906,16 @@ function ElvUI_EltreumUI:ShowHideBorders(install)
 			end
 		end
 		for _, frame in pairs(raid3borderholder) do
+			if frame then
+				frame:Hide()
+			end
+		end
+		for _, frame in pairs(tankborderholder) do
+			if frame then
+				frame:Hide()
+			end
+		end
+		for _, frame in pairs(assistborderholder) do
 			if frame then
 				frame:Hide()
 			end
@@ -2066,6 +2139,29 @@ function ElvUI_EltreumUI:GroupBorderColorUpdate()
 							if unitclass then
 								_G["EltruismRaid3Group"..k.."Border"..l]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
 							end
+						end
+					end
+				end
+			end
+		end
+
+		if E.db.ElvUI_EltreumUI.borders.tankassistborders and E.db.unitframe.units.tank.enable then
+			for k = 1, 8 do
+				if _G["ElvUF_TankUnitButton"..k.."Border"] then
+					if _G["ElvUF_TankUnitButton"..k.."Border"] then
+						local _ , unitclass = UnitClass(_G["ElvUF_TankUnitButton"..k].unit)
+						if unitclass then
+							_G["ElvUF_TankUnitButton"..k.."Border"]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
+						end
+					end
+				end
+			end
+			for k = 1, 8 do
+				if _G["ElvUF_AssistUnitButton"..k.."Border"] then
+					if _G["ElvUF_AssistUnitButton"..k.."Border"] then
+						local _ , unitclass = UnitClass(_G["ElvUF_AssistUnitButton"..k].unit)
+						if unitclass then
+							_G["ElvUF_AssistUnitButton"..k.."Border"]:SetBackdropBorderColor(classcolorreaction[unitclass]["r1"], classcolorreaction[unitclass]["g1"], classcolorreaction[unitclass]["b1"], 1)
 						end
 					end
 				end

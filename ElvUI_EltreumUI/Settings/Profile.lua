@@ -1003,6 +1003,13 @@ P.ElvUI_EltreumUI = {
 		altpowerbarstrata = "HIGH",
 		altpowerbarlevel = 3,
 
+		tankassistborders = true,
+		tankassistsizex = 150,
+		tankassistsizey = 58,
+		tankassistsize = 20,
+		tankassiststrata = "HIGH",
+		tankassistlevel = 3,
+
 		bordercolors = {
 			r = 0.27,
 			g = 0.50,
