@@ -247,9 +247,16 @@ function ElvUI_EltreumUI:RunCommands(message)
 			ElvUI_EltreumUI:Print("ElvUI Skin enabled")
 		end
 		E:StaticPopup_Show('CONFIG_RL')
-	elseif message == 'paging' then
+	elseif message == 'paging' and not string.match(message, 'paging%s*(%d[,.%d]*)') then
 		if not InCombatLockdown() then
 			ElvUI_EltreumUI:ActionPagingSwap()
+		end
+	elseif string.match(message, 'paging%s*(%d[,.%d]*)') then
+		local pagingnumber = tonumber(string.match(message, 'paging%s*(%d[,.%d]*)'))
+		if pagingnumber < 10 then
+			if not InCombatLockdown() then
+				ElvUI_EltreumUI:ActionPagingSwap(pagingnumber)
+			end
 		end
 	elseif message == 'screenshotcomparison' then
 		ElvUI_EltreumUI:Print("Taking multiple screenshots with a delay due to the API, please wait")

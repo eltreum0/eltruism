@@ -422,21 +422,38 @@ function ElvUI_EltreumUI:WorldMapScale()
 			--make the bounty select mouseover
 			if E.Retail then
 				for _, v in pairs({_G["WorldMapFrame"]:GetChildren()}) do
-					if v and v.BountyDropDown and v.BountyDropdownButton then
-						v:SetAlpha(0)
-						v:SetScript('OnEnter', function() v:SetAlpha(1) v.BountyDropdownButton:SetAlpha(1) end)
-						v:SetScript('OnLeave', function() v:SetAlpha(0) v.BountyDropdownButton:SetAlpha(0) end)
-						v.BountyDropdownButton:SetScript('OnEnter', function() v:SetAlpha(1) v.BountyDropdownButton:SetAlpha(1) end)
-						v.BountyDropdownButton:SetScript('OnLeave', function() v:SetAlpha(0) v.BountyDropdownButton:SetAlpha(0) end)
+					if v then
+						if v.BountyDropDown and v.BountyDropdownButton then
+							v:SetAlpha(0)
+							v:SetScript('OnEnter', function() v:SetAlpha(1) v.BountyDropdownButton:SetAlpha(1) end)
+							v:SetScript('OnLeave', function() v:SetAlpha(0) v.BountyDropdownButton:SetAlpha(0) end)
+							v.BountyDropdownButton:SetScript('OnEnter', function() v:SetAlpha(1) v.BountyDropdownButton:SetAlpha(1) end)
+							v.BountyDropdownButton:SetScript('OnLeave', function() v:SetAlpha(0) v.BountyDropdownButton:SetAlpha(0) end)
 
-						--skin the bounty button
-						S:HandleButton(v.BountyDropdownButton)
-						v.BountyDropdownButton:SetNormalTexture(E.Media.Textures.ArrowUp)
-						v.BountyDropdownButton:SetPushedTexture(E.Media.Textures.ArrowUp)
-						v.BountyDropdownButton:SetDisabledTexture(E.Media.Textures.ArrowUp)
-						v.BountyDropdownButton:GetNormalTexture():SetRotation(-1.57)
-						v.BountyDropdownButton:GetPushedTexture():SetRotation(-1.57)
-						v.BountyDropdownButton:GetDisabledTexture():SetRotation(-1.57)
+							--skin the bounty button
+							S:HandleButton(v.BountyDropdownButton)
+							v.BountyDropdownButton:SetNormalTexture(E.Media.Textures.ArrowUp)
+							v.BountyDropdownButton:SetPushedTexture(E.Media.Textures.ArrowUp)
+							v.BountyDropdownButton:SetDisabledTexture(E.Media.Textures.ArrowUp)
+							v.BountyDropdownButton:GetNormalTexture():SetRotation(-1.57)
+							v.BountyDropdownButton:GetPushedTexture():SetRotation(-1.57)
+							v.BountyDropdownButton:GetDisabledTexture():SetRotation(-1.57)
+						elseif v.BountyDropdown then
+							v:SetAlpha(0)
+							v:SetScript('OnEnter', function() v:SetAlpha(1) v.BountyDropdown:SetAlpha(1) end)
+							v:SetScript('OnLeave', function() v:SetAlpha(0) v.BountyDropdown:SetAlpha(0) end)
+							v.BountyDropdown:SetScript('OnEnter', function() v:SetAlpha(1) v.BountyDropdown:SetAlpha(1) end)
+							v.BountyDropdown:SetScript('OnLeave', function() v:SetAlpha(0) v.BountyDropdown:SetAlpha(0) end)
+
+							--skin the bounty button
+							S:HandleButton(v.BountyDropdown)
+							v.BountyDropdown:SetNormalTexture(E.Media.Textures.ArrowUp)
+							v.BountyDropdown:SetPushedTexture(E.Media.Textures.ArrowUp)
+							v.BountyDropdown:SetDisabledTexture(E.Media.Textures.ArrowUp)
+							v.BountyDropdown:GetNormalTexture():SetRotation(-1.57)
+							v.BountyDropdown:GetPushedTexture():SetRotation(-1.57)
+							v.BountyDropdown:GetDisabledTexture():SetRotation(-1.57)
+						end
 					end
 				end
 			end
