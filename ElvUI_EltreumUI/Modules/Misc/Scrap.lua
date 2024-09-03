@@ -69,7 +69,9 @@ function ElvUI_EltreumUI:ScrapFix()
 			if _G.ScrapVisualizer then
 				if not _G.ScrapVisualizer.IsSkinned then
 					S:HandleFrame(_G.ScrapVisualizer)
-					_G.ScrapVisualizer.PortraitContainer:Hide()
+					if _G.ScrapVisualizer.PortraitContainer then
+						_G.ScrapVisualizer.PortraitContainer:Hide()
+					end
 					_G.ScrapVisualizer.Center:SetAlpha(1)
 					_G.ScrapVisualizer.Center:SetVertexColor(E.db.general.backdropfadecolor.r, E.db.general.backdropfadecolor.g, E.db.general.backdropfadecolor.b, 1)
 					S:HandleTab(_G.ScrapVisualizerTab1)
