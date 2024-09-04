@@ -371,7 +371,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	if not E.Retail then
 		E.db["movers"]["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96"
 	end
-	E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-65,-319"
+	E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-75,-319"
 	if E.Classic then
 		E.db["movers"]["QuestTimerFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-258,-231"
 		E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-223,-304"
