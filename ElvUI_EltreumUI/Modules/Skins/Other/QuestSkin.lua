@@ -707,7 +707,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					end
 					local itemButton = block.itemButton or block.ItemButton
 					if itemButton and itemButton.questLogIndex then
-						itemButton:Hide() --button is tainted no matter what it seems, hide it
+						--itemButton:Hide() --button is tainted no matter what it seems, hide it
 						itemButton:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 						itemButton:UnregisterEvent("ADDON_ACTION_BLOCKED")
 					end
@@ -1728,7 +1728,7 @@ function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 				ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
 			end
 
-			_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
+			_G.ObjectiveTrackerFrame:SetClampedToScreen(true)
 			_G.ObjectiveTrackerFrame:SetMovable(true)
 			_G.ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
 			_G.ObjectiveTrackerFrame:ClearAllPoints()
