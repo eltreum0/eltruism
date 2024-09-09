@@ -31,130 +31,6 @@ function ElvUI_EltreumUI:LootText()
 	--moving the combat text
 	local itemLink = nil
 	local amount = 0
-	--have to hook the function to move it, pretty much a whole copy just adding the offsets
-	CombatText_AddMessage = function (message, scrollFunction, r, g, b, displayType, isStaggered)
-		local string, noStringsAvailable = CombatText_GetAvailableString()
-		if ( noStringsAvailable ) then
-			return
-		end
-
-		--use elvui general font
-		if E.db.ElvUI_EltreumUI.loot.loottext.fontsetting then
-			string:SetFont(E.media.normFont, E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-		elseif E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg then
-			string:SetFont(E.private.general.dmgfont, E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-		elseif E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable then
-			string:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.loot.loottext.fontLSM), E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-		end
-
-		string:SetText(message)
-		string:SetTextColor(r, g, b)
-		string.scrollTime = 0
-		if ( displayType == "crit" ) then
-			string.scrollFunction = CombatText_StandardScroll
-		else
-			string.scrollFunction = scrollFunction
-		end
-
-		-- See which direction the message should flow
-		local lowestMessage
-		local useXadjustment = 0
-
-		if not COMBAT_TEXT_LOCATIONS.startY then
-			COMBAT_TEXT_LOCATIONS.startY = 384
-		end
-		if not COMBAT_TEXT_LOCATIONS.endY then
-			COMBAT_TEXT_LOCATIONS.endY = 609
-		end
-		if not COMBAT_TEXT_LOCATIONS.startX then
-			COMBAT_TEXT_LOCATIONS.startX = 0
-		end
-		if not COMBAT_TEXT_LOCATIONS.endX then
-			COMBAT_TEXT_LOCATIONS.endX = 0
-		end
-
-		if ( COMBAT_TEXT_LOCATIONS.startY < COMBAT_TEXT_LOCATIONS.endY ) then
-			-- Flowing up
-			lowestMessage = string:GetBottom()
-			-- Find lowest message to anchor to
-			--for index, value in pairs(COMBAT_TEXT_TO_ANIMATE) do
-			for _, value in pairs(COMBAT_TEXT_TO_ANIMATE) do
-				if ( lowestMessage >= value.yPos - 16 - COMBAT_TEXT_SPACING) then
-					lowestMessage = value.yPos - 16 - COMBAT_TEXT_SPACING
-				end
-			end
-			if ( lowestMessage < (COMBAT_TEXT_LOCATIONS.startY - COMBAT_TEXT_MAX_OFFSET) ) then
-				if ( displayType == "crit" ) then
-					lowestMessage = string:GetBottom()
-				else
-					COMBAT_TEXT_X_ADJUSTMENT = COMBAT_TEXT_X_ADJUSTMENT * -1
-					useXadjustment = 1
-					lowestMessage = COMBAT_TEXT_LOCATIONS.startY - COMBAT_TEXT_MAX_OFFSET
-				end
-			end
-		else
-			-- Flowing down
-			lowestMessage = string:GetTop()
-			-- Find lowest message to anchor to
-			--for index, value in pairs(COMBAT_TEXT_TO_ANIMATE) do
-			for _, value in pairs(COMBAT_TEXT_TO_ANIMATE) do
-				if ( lowestMessage <= value.yPos + 16 + COMBAT_TEXT_SPACING) then
-					lowestMessage = value.yPos + 16 + COMBAT_TEXT_SPACING
-				end
-			end
-			if ( lowestMessage > (COMBAT_TEXT_LOCATIONS.startY + COMBAT_TEXT_MAX_OFFSET) ) then
-				if ( displayType == "crit" ) then
-					lowestMessage = string:GetTop()
-				else
-					COMBAT_TEXT_X_ADJUSTMENT = COMBAT_TEXT_X_ADJUSTMENT * -1
-					useXadjustment = 1
-					lowestMessage = COMBAT_TEXT_LOCATIONS.startY + COMBAT_TEXT_MAX_OFFSET
-				end
-			end
-		end
-
-		-- Handle crits
-		if ( displayType == "crit" ) then
-			string.endY = COMBAT_TEXT_LOCATIONS.startY
-			string.isCrit = 1
-			--string:SetTextHeight(COMBAT_TEXT_CRIT_MINHEIGHT)
-			string:SetTextHeight(E.db.ElvUI_EltreumUI.loot.loottext.fontsize * 1.3)
-		elseif ( displayType == "sticky" ) then
-			string.endY = COMBAT_TEXT_LOCATIONS.startY
-			--string:SetTextHeight(COMBAT_TEXT_HEIGHT)
-			string:SetTextHeight(E.db.ElvUI_EltreumUI.loot.loottext.fontsize)
-		else
-			string.endY = COMBAT_TEXT_LOCATIONS.endY
-			--string:SetTextHeight(COMBAT_TEXT_HEIGHT)
-			string:SetTextHeight(E.db.ElvUI_EltreumUI.loot.loottext.fontsize)
-		end
-
-		-- Stagger the text if flagged
-		local staggerAmount = 0
-		if ( isStaggered ) then
-			staggerAmount = fastrandom(0, COMBAT_TEXT_STAGGER_RANGE) - COMBAT_TEXT_STAGGER_RANGE/2
-		end
-
-		-- Alternate x direction
-		CombatText.xDir = CombatText.xDir * -1
-		if ( useXadjustment == 1 ) then
-			if ( COMBAT_TEXT_X_ADJUSTMENT > 0 ) then
-				CombatText.xDir = -1
-			else
-				CombatText.xDir = 1
-			end
-		end
-		string.xDir = CombatText.xDir
-		string.startX = COMBAT_TEXT_LOCATIONS.startX + staggerAmount + (useXadjustment * COMBAT_TEXT_X_ADJUSTMENT) + E.db.ElvUI_EltreumUI.loot.loottext.xOffset
-		string.startY = lowestMessage + E.db.ElvUI_EltreumUI.loot.loottext.yOffset
-		string.yPos = lowestMessage
-		string:ClearAllPoints()
-		string:SetPoint("TOP", WorldFrame, "BOTTOM", string.startX, lowestMessage)
-		string:SetAlpha(1)
-		string:Show()
-		tinsert(COMBAT_TEXT_TO_ANIMATE, string)
-	end
-	--end of CombatText_AddMessage hook
 
 	combatindicatorframe:SetScript("OnEvent", function(_,event)
 		if E.db.ElvUI_EltreumUI.loot.loottext.combatindicator then
@@ -176,6 +52,132 @@ function ElvUI_EltreumUI:LootText()
 	end)
 
 	if E.db.ElvUI_EltreumUI.loot.loottext.enable then
+
+		--have to hook the function to move it, pretty much a whole copy just adding the offsets
+		CombatText_AddMessage = function (message, scrollFunction, r, g, b, displayType, isStaggered)
+			local string, noStringsAvailable = CombatText_GetAvailableString()
+			if ( noStringsAvailable ) then
+				return
+			end
+
+			--use elvui general font
+			if E.db.ElvUI_EltreumUI.loot.loottext.fontsetting then
+				string:SetFont(E.media.normFont, E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+			elseif E.db.ElvUI_EltreumUI.loot.loottext.fontsettingdmg then
+				string:SetFont(E.private.general.dmgfont, E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+			elseif E.db.ElvUI_EltreumUI.loot.loottext.fontLSMenable then
+				string:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.loot.loottext.fontLSM), E.db.ElvUI_EltreumUI.loot.loottext.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+			end
+
+			string:SetText(message)
+			string:SetTextColor(r, g, b)
+			string.scrollTime = 0
+			if ( displayType == "crit" ) then
+				string.scrollFunction = CombatText_StandardScroll
+			else
+				string.scrollFunction = scrollFunction
+			end
+
+			-- See which direction the message should flow
+			local lowestMessage
+			local useXadjustment = 0
+
+			if not COMBAT_TEXT_LOCATIONS.startY then
+				COMBAT_TEXT_LOCATIONS.startY = 384
+			end
+			if not COMBAT_TEXT_LOCATIONS.endY then
+				COMBAT_TEXT_LOCATIONS.endY = 609
+			end
+			if not COMBAT_TEXT_LOCATIONS.startX then
+				COMBAT_TEXT_LOCATIONS.startX = 0
+			end
+			if not COMBAT_TEXT_LOCATIONS.endX then
+				COMBAT_TEXT_LOCATIONS.endX = 0
+			end
+
+			if ( COMBAT_TEXT_LOCATIONS.startY < COMBAT_TEXT_LOCATIONS.endY ) then
+				-- Flowing up
+				lowestMessage = string:GetBottom()
+				-- Find lowest message to anchor to
+				--for index, value in pairs(COMBAT_TEXT_TO_ANIMATE) do
+				for _, value in pairs(COMBAT_TEXT_TO_ANIMATE) do
+					if ( lowestMessage >= value.yPos - 16 - COMBAT_TEXT_SPACING) then
+						lowestMessage = value.yPos - 16 - COMBAT_TEXT_SPACING
+					end
+				end
+				if ( lowestMessage < (COMBAT_TEXT_LOCATIONS.startY - COMBAT_TEXT_MAX_OFFSET) ) then
+					if ( displayType == "crit" ) then
+						lowestMessage = string:GetBottom()
+					else
+						COMBAT_TEXT_X_ADJUSTMENT = COMBAT_TEXT_X_ADJUSTMENT * -1
+						useXadjustment = 1
+						lowestMessage = COMBAT_TEXT_LOCATIONS.startY - COMBAT_TEXT_MAX_OFFSET
+					end
+				end
+			else
+				-- Flowing down
+				lowestMessage = string:GetTop()
+				-- Find lowest message to anchor to
+				--for index, value in pairs(COMBAT_TEXT_TO_ANIMATE) do
+				for _, value in pairs(COMBAT_TEXT_TO_ANIMATE) do
+					if ( lowestMessage <= value.yPos + 16 + COMBAT_TEXT_SPACING) then
+						lowestMessage = value.yPos + 16 + COMBAT_TEXT_SPACING
+					end
+				end
+				if ( lowestMessage > (COMBAT_TEXT_LOCATIONS.startY + COMBAT_TEXT_MAX_OFFSET) ) then
+					if ( displayType == "crit" ) then
+						lowestMessage = string:GetTop()
+					else
+						COMBAT_TEXT_X_ADJUSTMENT = COMBAT_TEXT_X_ADJUSTMENT * -1
+						useXadjustment = 1
+						lowestMessage = COMBAT_TEXT_LOCATIONS.startY + COMBAT_TEXT_MAX_OFFSET
+					end
+				end
+			end
+
+			-- Handle crits
+			if ( displayType == "crit" ) then
+				string.endY = COMBAT_TEXT_LOCATIONS.startY
+				string.isCrit = 1
+				--string:SetTextHeight(COMBAT_TEXT_CRIT_MINHEIGHT)
+				string:SetTextHeight(E.db.ElvUI_EltreumUI.loot.loottext.fontsize * 1.3)
+			elseif ( displayType == "sticky" ) then
+				string.endY = COMBAT_TEXT_LOCATIONS.startY
+				--string:SetTextHeight(COMBAT_TEXT_HEIGHT)
+				string:SetTextHeight(E.db.ElvUI_EltreumUI.loot.loottext.fontsize)
+			else
+				string.endY = COMBAT_TEXT_LOCATIONS.endY
+				--string:SetTextHeight(COMBAT_TEXT_HEIGHT)
+				string:SetTextHeight(E.db.ElvUI_EltreumUI.loot.loottext.fontsize)
+			end
+
+			-- Stagger the text if flagged
+			local staggerAmount = 0
+			if ( isStaggered ) then
+				staggerAmount = fastrandom(0, COMBAT_TEXT_STAGGER_RANGE) - COMBAT_TEXT_STAGGER_RANGE/2
+			end
+
+			-- Alternate x direction
+			CombatText.xDir = CombatText.xDir * -1
+			if ( useXadjustment == 1 ) then
+				if ( COMBAT_TEXT_X_ADJUSTMENT > 0 ) then
+					CombatText.xDir = -1
+				else
+					CombatText.xDir = 1
+				end
+			end
+			string.xDir = CombatText.xDir
+			string.startX = COMBAT_TEXT_LOCATIONS.startX + staggerAmount + (useXadjustment * COMBAT_TEXT_X_ADJUSTMENT) + E.db.ElvUI_EltreumUI.loot.loottext.xOffset
+			string.startY = lowestMessage + E.db.ElvUI_EltreumUI.loot.loottext.yOffset
+			string.yPos = lowestMessage
+			string:ClearAllPoints()
+			string:SetPoint("TOP", WorldFrame, "BOTTOM", string.startX, lowestMessage)
+			string:SetAlpha(1)
+			string:Show()
+			tinsert(COMBAT_TEXT_TO_ANIMATE, string)
+		end
+		--end of CombatText_AddMessage hook
+
 		local function getLoot(chatmsg)
 			-- check for multiple-item-loot
 			local itemLink2, amount2 = Deformat(chatmsg, LOOT_ITEM_SELF_MULTIPLE)
