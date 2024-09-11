@@ -405,12 +405,6 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 		E.db["sle"]["armory"]["stats"]["statLabels"]["outline"] = fontStyle
 		E.db["sle"]["armory"]["stats"]["itemLevel"]["outline"] = fontStyle
 		E.db["sle"]["armory"]["stats"]["statHeaders"]["outline"] = fontStyle
-		E.db["sle"]["media"]["fonts"]["mail"]["fontOutline"] = fontStyle
-		E.db["sle"]["media"]["fonts"]["objective"]["fontOutline"] = fontStyle
-		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["fontOutline"] = fontStyle
-		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["fontOutline"] = fontStyle
-		E.db["sle"]["media"]["fonts"]["scenarioStage"]["HeaderText"]["fontOutline"] = fontStyle
-		E.db["sle"]["media"]["fonts"]["scenarioStage"]["TimerText"]["fontOutline"] = fontStyle
 		E.db["sle"]["minimap"]["coords"]["fontOutline"] = fontStyle
 		E.db["sle"]["minimap"]["instance"]["fontOutline"] = fontStyle
 		E.db["sle"]["minimap"]["locPanel"]["fontOutline"] = fontStyle
