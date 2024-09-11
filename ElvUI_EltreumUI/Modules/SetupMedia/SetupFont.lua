@@ -507,12 +507,6 @@ function ElvUI_EltreumUI:SetupFont(fontvalue, custom)
 		E.db["sle"]["armory"]["stats"]["statLabels"]["font"] = fontvalue
 		E.db["sle"]["armory"]["stats"]["itemLevel"]["font"] = fontvalue
 		E.db["sle"]["armory"]["stats"]["statHeaders"]["font"] = fontvalue
-		E.db["sle"]["media"]["fonts"]["mail"]["font"] = fontvalue
-		E.db["sle"]["media"]["fonts"]["objective"]["font"] = fontvalue
-		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["font"] = fontvalue
-		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["font"] = fontvalue
-		E.db["sle"]["media"]["fonts"]["scenarioStage"]["HeaderText"]["font"] = fontvalue
-		E.db["sle"]["media"]["fonts"]["scenarioStage"]["TimerText"]["font"] = fontvalue
 		E.db["sle"]["minimap"]["coords"]["font"] = fontvalue
 		E.db["sle"]["minimap"]["instance"]["font"] = fontvalue
 		E.db["sle"]["minimap"]["locPanel"]["font"] = fontvalue

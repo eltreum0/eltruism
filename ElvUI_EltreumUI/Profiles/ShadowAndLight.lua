@@ -96,25 +96,6 @@ function ElvUI_EltreumUI:GetSLEProfile()
 		--bags
 		E.db["sle"]["bags"]["equipmentmanager"]["enable"] = true
 
-		--- Media
-		E.db["sle"]["media"]["fonts"]["mail"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["mail"]["fontOutline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
-		E.db["sle"]["media"]["fonts"]["mail"]["fontSize"] = 11
-		E.db["sle"]["media"]["fonts"]["objective"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["objective"]["fontOutline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
-		E.db["sle"]["media"]["fonts"]["objective"]["fontSize"] = 13
-		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["fontOutline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
-		E.db["sle"]["media"]["fonts"]["objectiveHeader"]["fontSize"] = 15
-		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["fontOutline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
-		E.db["sle"]["media"]["fonts"]["questFontSuperHuge"]["fontSize"] = 22
-		E.db["sle"]["media"]["fonts"]["scenarioStage"]["HeaderText"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["scenarioStage"]["HeaderText"]["fontSize"] = 16
-		E.db["sle"]["media"]["fonts"]["scenarioStage"]["HeaderText"]["fontOutline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
-		E.db["sle"]["media"]["fonts"]["scenarioStage"]["TimerText"]["font"] = E.db.general.font
-		E.db["sle"]["media"]["fonts"]["scenarioStage"]["TimerText"]["fontSize"] = 22
-		E.db["sle"]["media"]["fonts"]["scenarioStage"]["TimerText"]["fontOutline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
 		-- Minimap
 		E.db["sle"]["minimap"]["coords"]["enable"] = true
 		E.db["sle"]["minimap"]["coords"]["font"] = E.db.general.font
