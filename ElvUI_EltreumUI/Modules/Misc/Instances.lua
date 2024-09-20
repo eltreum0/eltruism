@@ -43,6 +43,7 @@ local AllowedInstances = {
 instancedifficulty:SetScript("OnEvent", function()
 	if not E.private.ElvUI_EltreumUI then return end
 	if not E.private.ElvUI_EltreumUI.install_version then return end
+	if not E.db.ElvUI_EltreumUI then return end
 	if not E.db.ElvUI_EltreumUI.skins then return end
 	if not E.db.ElvUI_EltreumUI.skins.instances then return end
 
