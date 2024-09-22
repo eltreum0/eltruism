@@ -54,4 +54,4 @@ ___
 [![](https://github.com/eltreum0/eltreum0.github.io/raw/main/Preview4.webp)](https://raw.githubusercontent.com/eltreum0/eltreum0.github.io/main/Preview4Full.webp)
 ___
 ### Credits
-> This plugin was based in **[LuckyoneUI](httpswww.tukui.orgaddons.php?id=154)** and credits go to him for allowing its use
+> This plugin was based in **[LuckyoneUI](https://github.com/Luckyone961/LuckyoneUI)** and credits go to him for allowing its use

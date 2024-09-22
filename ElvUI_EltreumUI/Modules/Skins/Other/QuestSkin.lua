@@ -1758,6 +1758,13 @@ if E.Retail then
 		if not E.db.ElvUI_EltreumUI.quests then return end
 		if E.db.ElvUI_EltreumUI.quests.anchor then
 			ElvUI_EltreumUI:ObjectiveTrackerAnchor()
+
+			if not _G.EditModeManagerFrame.EltruismExitRL then --call for a reload on blizzard's edit mode changes
+				_G.EditModeManagerFrame:HookScript("OnHide", function()
+					E:StaticPopup_Show('CONFIG_RL')
+				end)
+				_G.EditModeManagerFrame.EltruismExitRL = true
+			end
 		end
 	end)
 end
