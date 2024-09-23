@@ -1600,3 +1600,5 @@ L["updated to "] = "aktualisiert auf "
 L["|cffff0000Private Servers are unsupported!"] = "|cffff0000Private Server werden nicht unterstützt!"
 L["Reinstall Thin Layout"] = "Dünnes Layout neu installieren"
 L["Reset layout to Eltruism Thin"] = "Setze das Layout auf „Eltruism Dünn“ zurück."
+L["Reverse Focus"] = true
+L["Reverse Focus Gradient Health"] = true

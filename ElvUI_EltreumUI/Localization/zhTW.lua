@@ -1599,3 +1599,5 @@ L["Exported Gradient Data:"] = true
 L["Import Gradient Data"] = true
 L["Reinstall Thin Layout"] = true
 L["Reset layout to Eltruism Thin"] = true
+L["Reverse Focus"] = true
+L["Reverse Focus Gradient Health"] = true

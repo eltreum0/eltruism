@@ -1265,6 +1265,7 @@ P.ElvUI_EltreumUI = {
 			enableplayer = true,
 			enabletarget = true,
 			reversetarget = true,
+			reversefocus = false,
 			enabletargettarget = true,
 			enabletargettargettarget = true,
 			enablefocus = true,
@@ -1687,6 +1688,7 @@ P.ElvUI_EltreumUI = {
 			tappedtexture = "Eltreum-TappedV2",
 			raidtexture = "Eltreum-Blank",
 			partytexture = "Eltreum-Blank",
+			arenatexture = "Eltreum-Blank",
 
 			enableHealComm = true,
 		},

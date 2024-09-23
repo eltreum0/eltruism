@@ -1601,3 +1601,5 @@ L["Exported Gradient Data:"] = "Dados de gradiente exportados:"
 L["Import Gradient Data"] = "Importar dados de gradiente"
 L["Reinstall Thin Layout"] = "Reinstalar o layout fino"
 L["Reset layout to Eltruism Thin"] = "Redefinir o layout para o Eltruism Fino"
+L["Reverse Focus"] = true
+L["Reverse Focus Gradient Health"] = true
