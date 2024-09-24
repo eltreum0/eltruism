@@ -139,15 +139,30 @@ end
 local stanceBackup = 0 --store previous stance to force refresh it
 
 local function SpellInfo(spellID,ShapeshiftFormID)
-	if not spellID then
-		if GetShapeshiftFormInfo(1) then
-			local name = select(4,GetShapeshiftFormInfo(ShapeshiftFormID))
+	if ShapeshiftFormID then
+		if E.Cata then
+			local spellID = select(4,GetShapeshiftFormInfo(ShapeshiftFormID))
+			local name = GetSpellInfo(spellID)
 			return name
 		else
-			return ""
+			if GetShapeshiftFormInfo(1) then
+				spellID = select(4,GetShapeshiftFormInfo(ShapeshiftFormID))
+				if spellID then
+					local spellData = GetSpellInfo(spellID)
+					if spellData.name then
+						return spellData.name
+					else
+						return ""
+					end
+				else
+					return ""
+				end
+			else
+				return ""
+			end
 		end
-	else
-		if E.Retail then
+	elseif spellID then
+		if E.Retail or E.Classic then
 			local spellData = GetSpellInfo(spellID)
 			return spellData.name
 		else
@@ -159,31 +174,31 @@ end
 --ty a lot azilroka
 local stanceID = {
 	DEATHKNIGHT = {
-		[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
-		[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
-		[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
+		[1] = not E.Retail and SpellInfo(nil,1),
+		[2] = not E.Retail and SpellInfo(nil,2),
+		[3] = not E.Retail and SpellInfo(nil,3),
 	},
 	PALADIN = {
-		[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
-		[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
-		[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
-		[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))),
-		[5] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(5)))),
-		[6] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(6)))),
-		[7] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(7)))),
+		[1] = not E.Retail and SpellInfo(nil,1),
+		[2] = not E.Retail and SpellInfo(nil,2),
+		[3] = not E.Retail and SpellInfo(nil,3),
+		[4] = not E.Retail and SpellInfo(nil,4),
+		[5] = not E.Retail and SpellInfo(nil,5),
+		[6] = not E.Retail and SpellInfo(nil,6),
+		[7] = not E.Retail and SpellInfo(nil,7),
 	},
 	WARRIOR = {
-		[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
-		[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
-		[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
-		[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))), --gladiator?
+		[1] = not E.Retail and SpellInfo(nil,1),
+		[2] = not E.Retail and SpellInfo(nil,2),
+		[3] = not E.Retail and SpellInfo(nil,3),
+		[4] = not E.Retail and SpellInfo(nil,4), --gladiator?
 	},
 	HUNTER = {
-		[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
-		[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
-		[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
-		[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))),
-		[5] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(5)))),
+		[1] = not E.Retail and SpellInfo(nil,1),
+		[2] = not E.Retail and SpellInfo(nil,2),
+		[3] = not E.Retail and SpellInfo(nil,3),
+		[4] = not E.Retail and SpellInfo(nil,4),
+		[5] = not E.Retail and SpellInfo(nil,5),
 	},
 }
 
@@ -192,31 +207,31 @@ local function refreshstance()
 	stanceBackup = 0
 	stanceID = {
 		DEATHKNIGHT = {
-			[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
-			[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
-			[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
+			[1] = not E.Retail and SpellInfo(nil,1),
+			[2] = not E.Retail and SpellInfo(nil,2),
+			[3] = not E.Retail and SpellInfo(nil,3),
 		},
 		PALADIN = {
-			[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
-			[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
-			[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
-			[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))),
-			[5] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(5)))),
-			[6] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(6)))),
-			[7] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(7)))),
+			[1] = not E.Retail and SpellInfo(nil,1),
+			[2] = not E.Retail and SpellInfo(nil,2),
+			[3] = not E.Retail and SpellInfo(nil,3),
+			[4] = not E.Retail and SpellInfo(nil,4),
+			[5] = not E.Retail and SpellInfo(nil,5),
+			[6] = not E.Retail and SpellInfo(nil,6),
+			[7] = not E.Retail and SpellInfo(nil,7),
 		},
 		WARRIOR = {
-			[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
-			[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
-			[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
-			[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))), --gladiator?
+			[1] = not E.Retail and SpellInfo(nil,1),
+			[2] = not E.Retail and SpellInfo(nil,2),
+			[3] = not E.Retail and SpellInfo(nil,3),
+			[4] = not E.Retail and SpellInfo(nil,4), --gladiator?
 		},
 		HUNTER = {
-			[1] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(1)))),
-			[2] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(2)))),
-			[3] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(3)))),
-			[4] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(4)))),
-			[5] = not E.Retail and (GetSpellInfo(select(4,GetShapeshiftFormInfo(5)))),
+			[1] = not E.Retail and SpellInfo(nil,1),
+			[2] = not E.Retail and SpellInfo(nil,2),
+			[3] = not E.Retail and SpellInfo(nil,3),
+			[4] = not E.Retail and SpellInfo(nil,4),
+			[5] = not E.Retail and SpellInfo(nil,5),
 		},
 	}
 end
