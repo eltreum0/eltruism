@@ -396,7 +396,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 		end
 		if not hookedframe.isEltruismScripted then
 			local disenchant
-			if E.Retail then
+			if E.Retail or E.Classic then
 				local spellData = GetSpellInfo(13262)
 				disenchant = spellData.name
 			else
@@ -455,7 +455,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 		local function UpdateButtons()
 			E:Delay(0.08, function()
 				local enchantingtext
-				if E.Retail then
+				if E.Retail or E.Classic then
 					local spellData = GetSpellInfo(7411)
 					enchantingtext = spellData.name
 				else

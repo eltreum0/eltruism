@@ -363,7 +363,7 @@ local hearthstones = {
 }
 
 local function SpellInfo(spellID)
-	if E.Retail then
+	if E.Retail or E.Classic then
 		local spellData = GetSpellInfo(spellID)
 		if spellData then
 			return spellData.name, spellData.spellID
