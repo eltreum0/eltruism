@@ -182,7 +182,7 @@ function ElvUI_EltreumUI:Doom()
 						local getCooldownDetails
 						if (v[2] == "spell") then
 							getCooldownDetails = memorize(function()
-								if E.Retail or E.Classic then
+								if E.Retail then
 									local cooldowntable = GetSpellCooldown(v[3])
 									local spelltable = GetSpellInfo(v[3])
 									return {
@@ -191,6 +191,16 @@ function ElvUI_EltreumUI:Doom()
 										start = cooldowntable.startTime,
 										duration = cooldowntable.duration,
 										enabled = cooldowntable.isEnabled
+									}
+								elseif E.Classic then
+									local start, duration, enabled = GetSpellCooldown(v[3])
+									local spelltable = GetSpellInfo(v[3])
+									return {
+										name = spelltable.name,
+										texture = spelltable.iconID,
+										start = start,
+										duration = duration,
+										enabled = enabled
 									}
 								else
 									local start, duration, enabled = GetSpellCooldown(v[3])
