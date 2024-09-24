@@ -304,7 +304,7 @@ function ElvUI_EltreumUI:CheckCompatibility()
 
 	--Quests
 	CheckWindTools(L["Quest Autoaccept"], L["Quest Autoaccept"], "db.ElvUI_EltreumUI.quests.autoaccept", "db.WT.quest.turnIn.enable")
-	CheckMerathilisUI(L["Quests Skin"], L["Quests Skin"], "db.ElvUI_EltreumUI.skins.quests", "db.mui.blizzard.objectiveTracker.enable")
+	CheckMerathilisUI(L["Quests Skin"], L["Quests Skin"], "db.ElvUI_EltreumUI.skins.quests", "private.mui.quest.objectiveTracker.enable")
 	CheckWindTools(L["Quests Skin"], L["Quests Skin"], "db.ElvUI_EltreumUI.skins.quests", "private.WT.quest.objectiveTracker.enable")
 	CheckKaliel(L["Quests Skin"], L["!KalielsTracker"], "db.ElvUI_EltreumUI.skins.quests", "!KalielsTracker")
 	CheckWabbit(L["Quests Skin"], L["Who Framed Watcher Wabbit"], "db.ElvUI_EltreumUI.skins.quests", "Who Framed Watcher Wabbit")
