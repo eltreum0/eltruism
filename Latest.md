@@ -1,14 +1,27 @@
-### 4.2.2 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 4.2.3 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added Thin Layout to install alongside a preview  
-Added some missing CVar options  
-Updated BigWigs Bars to avoid some texture gaps  
-Updated Objective Tracker Skin in Retail  
-Updated Edit Mode Profile import  
-Updated ProjectAzilroka Profile  
+Added several NPC ids for the classification icons tag  
+Added more models to the rotation fix for 3D portraits  
+Added options to reverse Focus gradient direction  
+Added a reload prompt when exiting Edit Mode  
+Added Tank and Assist unitframe borders  
+Added BigWigs nameplate icons settings  
+Updated Objective Tracker Skin to not skin the Quest Item, this can still cause issues and is likely to end up hiding the Quest Item if none can be found  
+Updated /eltruism paging to accept arguments such as /eltruism paging 3 to page a specific action bar  
+Updated Class Combat Icons to attempt to detect if an enemy is melee or ranged  
+Updated LootText to only replace font when it is enabled  
 Updated German locale by Dlarge  
-Fixed an error when logging into Garrisons due to some changes to mapIDs  
-Fixed an error with Windtools profile import after it was updated  
-Fixed an issue with the Boss Music due to how events changed  
-Fixed a possible error with the Character Panel Icons  
-Fixed RareScanner skin after it was updated
+Updated for Classic Era 1.15.4   
+Fixed Addon list not being saved with the debug commands due to a change in the API  
+Fixed an issue by removing the Battleground Map mover since it can be moved in game  
+Fixed Arena unitframes missing textures when custom textures was enabled  
+Fixed some missing movers disappearing in ElvUI mover mode  
+Fixed some of ProjectAzilroka's profile not being imported  
+Fixed an error while importing Shadow and Light's profile  
+Fixed the Cooldown Pulse appearing in Cinematics  
+Fixed a possible error with the Instance Text  
+Fixed a compatibility issue with MerathilisUI  
+Fixed an issue in Cataclysm with RareScanner  
+Fixed Delves objective skin 
+Fixed Immersion Skinning  
+Fixed Scrap skinning
