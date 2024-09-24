@@ -142,6 +142,31 @@ function ElvUI_EltreumUI:GetBigWigsProfile()
 			["wipeSound"] = "AmanThul - Wipe",
 		}
 
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Nameplates"]["profiles"] = BigWigs3DB["namespaces"]["BigWigs_Plugins_Nameplates"]["profiles"] or {}
+		BigWigs3DB["namespaces"]["BigWigs_Plugins_Nameplates"]["profiles"]["Eltreum"] = {
+			["textFontName"] = "Kimberley",
+			["iconGrowDirectionStart"] = "TOPRIGHT",
+			["updated"] = true,
+			["iconGlowFrequency"] = 0.3000000000000003,
+			["iconOffsetY"] = 65,
+			["iconSpacing"] = 2,
+			["iconFontName"] = E.db.general.font,
+			["textSpacing"] = 1,
+			["textOutline"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle),
+			["iconFontSize"] = 12,
+			["iconGlowPixelThickness"] = 2,
+			["iconZoom"] = 0.02,
+			["textOffsetY"] = 85,
+			["iconOffsetX"] = -10,
+			["iconHeight"] = 18,
+			["iconGlowColor"] = {
+				0,
+				1,
+				0.5960784554481506,
+			},
+			["iconWidth"] = 25,
+		}
+
 		if E.Retail then
 			BigWigsIconDB["hide"] = true
 
