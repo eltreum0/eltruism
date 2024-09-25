@@ -2024,7 +2024,14 @@ function ElvUI_EltreumUI:ClassicSockets()
 	end
 
 	function SpellInfo:getLink()
-		return GetSpellLink(self.spellId) or ("|cffffd000|Henchant:"..self.spellId.."|h["..GetSpellInfo(self.spellId).."]|h|r")
+		if E.Classic then
+			local spellData = GetSpellInfo(self.spellId)
+			if spellData then
+				return GetSpellLink(self.spellId) or ("|cffffd000|Henchant:"..self.spellId.."|h["..spellData.name.."]|h|r")
+			end
+		else
+			return GetSpellLink(self.spellId) or ("|cffffd000|Henchant:"..self.spellId.."|h["..GetSpellInfo(self.spellId).."]|h|r")
+		end
 	end
 	function SpellInfo:getTextureName()
 		return GetSpellTexture(self.spellId)

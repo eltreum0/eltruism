@@ -5,7 +5,7 @@ local CreateFrame = _G.CreateFrame
 local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
 
 local function SpellInfo(spellID)
-	if E.Retail then
+	if E.Retail or E.Classic then
 		local spellData = GetSpellInfo(spellID)
 		if spellData then
 			return spellData.name, spellData.iconID

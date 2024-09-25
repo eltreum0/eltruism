@@ -325,7 +325,7 @@ end
 
 function ElvUI_EltreumUI:checkSpellCooldown(spell)
 	if not spell then return end
-	if E.Retail then
+	if E.Retail or E.Classic then
 		local spellData = GetSpellInfo(spell)
 		if spellData then
 			namespell, texturespell = spellData.name, spellData.iconID

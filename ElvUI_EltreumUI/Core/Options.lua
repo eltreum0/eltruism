@@ -1696,7 +1696,7 @@ function ElvUI_EltreumUI:Configtable()
 		local tpspellsitems = {}
 		for _, v in pairs(ElvUI_EltreumUI:GetTeleportSpells()) do
 			if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
-				if E.Retail then
+				if E.Retail or E.Classic then
 					local spellData = GetSpellInfo(v)
 					local hasSpell = IsSpellKnown(v)
 					if hasSpell then
@@ -1721,7 +1721,7 @@ function ElvUI_EltreumUI:Configtable()
 		return tpspellsitems
 	end, false, "full", function()
 		if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
-			if E.Retail then
+			if E.Retail or E.Classic then
 				local spellData = GetSpellInfo(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport))
 				if spellData then
 					local value = spellData.spellID
@@ -1747,8 +1747,18 @@ function ElvUI_EltreumUI:Configtable()
 	end,
 	function(_, value)
 		if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
-			local name = GetSpellInfo(value)
-			E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = tostring(name)
+			if E.Retail or E.Classic then
+				local spellData = GetSpellInfo(tostring(value))
+				if spellData then
+					local value = spellData.spellID
+					if value then
+						E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = value
+					end
+				end
+			else
+				local name = GetSpellInfo(value)
+				E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = tostring(name)
+			end
 		else
 			local name = GetItemInfo(value)
 			E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = tostring(name)
@@ -3795,26 +3805,39 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added Thin Layout to install alongside a preview
-Added some missing CVar options
+Added several NPC ids for the classification icons tag
+Added more models to the rotation fix for 3D portraits
+Added options to reverse Focus gradient direction
+Added a reload prompt when exiting Edit Mode
+Added Tank and Assist unitframe borders
+Added BigWigs nameplate icons settings
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated BigWigs Bars to avoid some texture gaps
-Updated Objective Tracker Skin in Retail
-Updated Edit Mode Profile import
-Updated ProjectAzilroka Profile
+Updated Objective Tracker Skin to not skin the Quest Item, this can still cause issues and is likely to end up hiding the Quest Item if none can be found
+Updated /eltruism paging to accept arguments such as /eltruism paging 3 to page a specific action bar
+Updated Class Combat Icons to attempt to detect if an enemy is melee or ranged
+Updated LootText to only replace font when it is enabled
 Updated German locale by Dlarge
+Updated for Classic Era 1.15.4
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an error when logging into Garrisons due to some changes to mapIDs
-Fixed an error with Windtools profile import after it was updated
-Fixed an issue with the Boss Music due to how events changed
-Fixed a possible error with the Character Panel Icons
-Fixed RareScanner skin after it was updated
+Fixed Addon list not being saved with the debug commands due to a change in the API
+Fixed an issue by removing the Battleground Map mover since it can be moved in game
+Fixed Arena unitframes missing textures when custom textures was enabled
+Fixed some missing movers disappearing in ElvUI mover mode
+Fixed some of ProjectAzilroka's profile not being imported
+Fixed an error while importing Shadow and Light's profile
+Fixed the Cooldown Pulse appearing in Cinematics
+Fixed a possible error with the Instance Text
+Fixed a compatibility issue with MerathilisUI
+Fixed an issue in Cataclysm with RareScanner
+Fixed Delves objective skin
+Fixed Immersion Skinning
+Fixed Scrap skinning
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[

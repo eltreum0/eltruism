@@ -78,7 +78,7 @@ function ElvUI_EltreumUI:PreviewDoom()
 	end
 
 	if DCP:GetAlpha() == 1 and E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil then
-		if E.Retail then
+		if E.Retail or E.Classic then
 			local tts = GetSpellInfo(33786)
 			C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts.name, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
 		else
@@ -191,6 +191,16 @@ function ElvUI_EltreumUI:Doom()
 										start = cooldowntable.startTime,
 										duration = cooldowntable.duration,
 										enabled = cooldowntable.isEnabled
+									}
+								elseif E.Classic then
+									local start, duration, enabled = GetSpellCooldown(v[3])
+									local spelltable = GetSpellInfo(v[3])
+									return {
+										name = spelltable.name,
+										texture = spelltable.iconID,
+										start = start,
+										duration = duration,
+										enabled = enabled
 									}
 								else
 									local start, duration, enabled = GetSpellCooldown(v[3])
@@ -305,7 +315,7 @@ function ElvUI_EltreumUI:Doom()
 							DCP.TextFrame:SetText(animating[1][3])
 						end
 						if E.db.ElvUI_EltreumUI.skins.doom.tts and animating[1][3] then --and animating[1][3] ~= nil then
-							if E.Retail then
+							if E.Retail or E.Classic then
 								local tts = GetSpellInfo(animating[1][3])
 								if E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil and tts ~= nil then
 									C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts.name, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
@@ -377,7 +387,7 @@ function ElvUI_EltreumUI:Doom()
 			if (event == "SPELL_CAST_SUCCESS") then
 				if (bit.band(sourceFlags,COMBATLOG_OBJECT_TYPE_PET) == COMBATLOG_OBJECT_TYPE_PET and bit.band(sourceFlags,COMBATLOG_OBJECT_AFFILIATION_MINE) == COMBATLOG_OBJECT_AFFILIATION_MINE) then
 					local name
-					if E.Retail then
+					if E.Retail or E.Classic then
 						local spelltable = GetSpellInfo(spellID)
 						name = spelltable.name
 					else
