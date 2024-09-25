@@ -24,7 +24,6 @@ _G["BINDING_NAME_CLICK EltruismQuestItem12:LeftButton"] = "Quest Item 12"
 
 --Constants
 ElvUI_EltreumUI.Version = GetAddOnMetadata(addon, 'Version')
-ElvUI_EltreumUI.CreditsList = {}
 ElvUI_EltreumUI.Config = {}
 --ElvUI_EltreumUI.Name = '|cff82B4ffEltruism|r'
 ElvUI_EltreumUI.Name = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1)

@@ -106,6 +106,7 @@ local DONATORS = {
 	'|cffB50909AegisX|r',
 	'|cffB50909windseeker|r',
 	'|cffB50909crusty|r',
+	'|cffB50909clozure|r',
 }
 
 local TRANSLATORS = {
@@ -127,27 +128,25 @@ sort(DONATORS, SortList)
 sort(TRANSLATORS, SortList)
 
 -- Author table
-for _, name in pairs(AUTHORS) do
-	tinsert(ElvUI_EltreumUI.CreditsList, name)
-end
 local AUTHORS_STRING = tconcat(AUTHORS, '|n')
 
 -- Thank you table
-for _, name in pairs(THANKYOU) do
-	tinsert(ElvUI_EltreumUI.CreditsList, name)
-end
 local THANKYOU_STRING = tconcat(THANKYOU, '|n')
 
 -- Donators table
-for _, name in pairs(DONATORS) do
-	tinsert(ElvUI_EltreumUI.CreditsList, name)
+local donator1,donator2 = {},{}
+local donatordivisor = math.floor(#DONATORS/2)
+for i, name in pairs(DONATORS) do
+	if i <= donatordivisor then
+		tinsert(donator1, name)
+	elseif i >= donatordivisor then
+		tinsert(donator2, name)
+	end
 end
-local DONATORS_STRING = tconcat(DONATORS, '|n')
+local DONATORS_STRING1 = tconcat(donator1, '|n')
+local DONATORS_STRING2 = tconcat(donator2, '|n')
 
 -- Translators table
-for _, name in pairs(TRANSLATORS) do
-	tinsert(ElvUI_EltreumUI.CreditsList, name)
-end
 local TRANSLATORS_STRING = tconcat(TRANSLATORS, '|n')
 
 local FrameStrataLevels = { BACKGROUND = 'BACKGROUND', LOW = 'LOW', MEDIUM = 'MEDIUM', HIGH = 'HIGH', DIALOG = 'DIALOG', TOOLTIP = 'TOOLTIP' }
@@ -3690,11 +3689,12 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.credits.args.thankyous.args.description1 = ACH:Description(THANKYOU_STRING, 4, "medium")
 	ElvUI_EltreumUI.Options.args.credits.args.donators = ACH:Group(L["Donators"], nil, 5)
 	ElvUI_EltreumUI.Options.args.credits.args.donators.inline = true
-	ElvUI_EltreumUI.Options.args.credits.args.donators.args.description1 = ACH:Description(DONATORS_STRING, 6, "medium")
-	ElvUI_EltreumUI.Options.args.credits.args.translators = ACH:Group(L["Translators"], nil, 7)
+	ElvUI_EltreumUI.Options.args.credits.args.donators.args.description1 = ACH:Description(DONATORS_STRING1, 6,"MEDIUM",nil,nil,nil,nil,"fill")
+	ElvUI_EltreumUI.Options.args.credits.args.donators.args.description2 = ACH:Description(DONATORS_STRING2, 7,"MEDIUM",nil,nil,nil,nil,"fill")
+	ElvUI_EltreumUI.Options.args.credits.args.translators = ACH:Group(L["Translators"], nil, 17)
 	ElvUI_EltreumUI.Options.args.credits.args.translators.inline = true
-	ElvUI_EltreumUI.Options.args.credits.args.translators.args.description1 = ACH:Description(TRANSLATORS_STRING, 8, "medium")
-	ElvUI_EltreumUI.Options.args.credits.args.licenses = ACH:Group(L["License"], nil, 9)
+	ElvUI_EltreumUI.Options.args.credits.args.translators.args.description1 = ACH:Description(TRANSLATORS_STRING, 18, "medium")
+	ElvUI_EltreumUI.Options.args.credits.args.licenses = ACH:Group(L["License"], nil, 19)
 	ElvUI_EltreumUI.Options.args.credits.args.licenses.inline = true
 	ElvUI_EltreumUI.Options.args.credits.args.licenses.args.description1 = ACH:Description(
 	E.Retail and [[
