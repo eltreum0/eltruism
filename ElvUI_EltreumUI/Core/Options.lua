@@ -64,49 +64,49 @@ local THANKYOU = {
 }
 
 local DONATORS = {
-	'|cffB50909Akiao|r',
-	'|cffB50909Artan|r',
-	'|cffB50909BralumConquest|r',
-	'|cffB50909Brovenn|r',
-	'|cffB50909Daxxarri|r',
-	'|cffB50909Dlarge|r',
-	'|cffB50909Dreamador|r',
-	'|cffB50909Dreandor|r',
-	'|cffB50909Gently Caress the Constabulary|r',
-	'|cffB50909Greevir|r',
-	'|cffB50909Jazz|r',
-	'|cffB50909Jiberish|r',
-	'|cffB50909Madlampy|r',
-	'|cffB50909Markpoops|r',
-	'|cffB50909Michael_|r',
-	'|cffB50909Morthart|r',
-	'|cffB50909Mr.Ditto|r',
-	'|cffB50909Nekator|r',
-	'|cffB50909Nyhilatiant|r',
-	'|cffB50909Oakshlam|r',
-	'|cffB50909Smuve|r',
-	'|cffB50909Trenchy|r',
-	'|cffB50909Vxt|r',
-	'|cffB50909BioVenom|r',
-	'|cffB50909bansheeirl|r',
-	'|cffB50909Ante|r',
-	'|cffB50909Spectated|r',
-	'|cffB50909Volo|r',
-	'|cffB50909seba4287|r',
-	'|cffB50909orangepaw3|r',
-	'|cffB50909Jaraxal|r',
-	'|cffB50909BlazeFury|r',
-	'|cffB50909Marynia|r',
-	'|cffB50909Garrgamell|r',
-	'|cffB50909dartworth|r',
-	'|cffB50909Rocket Surgery|r',
-	'|cffB50909Embee|r',
-	'|cffB50909mercenariosgx|r',
-	'|cffB50909Deathclaw|r',
-	'|cffB50909AegisX|r',
-	'|cffB50909windseeker|r',
-	'|cffB50909crusty|r',
-	'|cffB50909clozure|r',
+	'Akiao',
+	'Artan',
+	'BralumConquest',
+	'Brovenn',
+	'Daxxarri',
+	'Dlarge',
+	'Dreamador',
+	'Dreandor',
+	'Gently Caress the Constabulary',
+	'Greevir',
+	'Jazz',
+	'Jiberish',
+	'Madlampy',
+	'Markpoops',
+	'Michael_',
+	'Morthart',
+	'Mr.Ditto',
+	'Nekator',
+	'Nyhilatiant',
+	'Oakshlam',
+	'Smuve',
+	'Trenchy',
+	'Vxt',
+	'BioVenom',
+	'bansheeirl',
+	'Ante',
+	'Spectated',
+	'Volo',
+	'seba4287',
+	'orangepaw3',
+	'Jaraxal',
+	'BlazeFury',
+	'Marynia',
+	'Garrgamell',
+	'dartworth',
+	'Rocket Surgery',
+	'Embee',
+	'mercenariosgx',
+	'Deathclaw',
+	'AegisX',
+	'windseeker',
+	'crusty',
+	'clozure',
 }
 
 local TRANSLATORS = {
@@ -119,7 +119,13 @@ local TRANSLATORS = {
 
 -- SortList
 local function SortList(a, b)
-	return E:StripString(a) < E:StripString(b)
+	local aUpper = a:gsub("^%l", string.upper)
+	local bUpper = b:gsub("^%l", string.upper)
+	if E:StripString(aUpper) < E:StripString(bUpper) then
+		return true
+	else
+		return false
+	end
 end
 
 sort(AUTHORS, SortList)
@@ -137,10 +143,11 @@ local THANKYOU_STRING = tconcat(THANKYOU, '|n')
 local donator1,donator2 = {},{}
 local donatordivisor = math.floor(#DONATORS/2)
 for i, name in pairs(DONATORS) do
+	local namecolor = "|cffB50909"..name.."|r"
 	if i <= donatordivisor then
-		tinsert(donator1, name)
+		tinsert(donator1, namecolor)
 	elseif i >= donatordivisor then
-		tinsert(donator2, name)
+		tinsert(donator2, namecolor)
 	end
 end
 local DONATORS_STRING1 = tconcat(donator1, '|n')
