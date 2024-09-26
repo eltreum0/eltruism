@@ -940,6 +940,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G.GhostFrameContentsFrame,
 				_G.GossipFrame,
 				--_G.GroupFinderFrame,
+				_G.GroupLootHistoryFrame,
 				_G.GroupLootHistoryFrame and _G.GroupLootHistoryFrame.ResizeButton,
 				_G.GuildInfoFrame,
 				_G.HelpFrame,
