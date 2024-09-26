@@ -209,7 +209,7 @@ function ElvUI_EltreumUI:ResizeInstall()
 end
 
 --create new edit mode layout and switch to it to prevent possible issues with movers/taints
-function ElvUI_EltreumUI:NewRetailEditModeLayout()
+function ElvUI_EltreumUI:NewRetailEditModeLayout(objectivetrackerfix)
 	local layoutstable = C_EditMode.GetLayouts()
 	if not layoutstable.layouts then return end
 	local alreadyimported = false
@@ -217,33 +217,42 @@ function ElvUI_EltreumUI:NewRetailEditModeLayout()
 	taintpreventlayout.layoutType = Enum.EditModeLayoutType.Account
 	taintpreventlayout.layoutName = "EltruismTaintPreventer"
 
-	if layoutstable.layouts[1] then
-		for i = 1, #layoutstable.layouts do
-			if layoutstable.layouts[i].layoutName == "EltruismTaintPreventer" then
-				alreadyimported = true
-				layoutstable.layouts[i] = taintpreventlayout
-				layoutstable.activeLayout = i + 2
-				C_EditMode.SetActiveLayout(layoutstable.activeLayout)
-				ElvUI_EltreumUI:Print(string.format(HUD_EDIT_MODE_LAYOUT_APPLIED, taintpreventlayout.layoutName))
-			end
+	if objectivetrackerfix then
+		if not layoutstable.layouts[1] then --they dont have a custom profile, add my own to fix the objective frame anchor
+			layoutstable.layouts[1] = taintpreventlayout
+			layoutstable.activeLayout = 3 --for some reason the 2 default ones count for it
+			C_EditMode.SaveLayouts(layoutstable) --if not called then layout wont apply because its not saved
+			C_EditMode.SetActiveLayout(layoutstable.activeLayout)
 		end
-		if not alreadyimported then
-			--local numlayouts = Enum.EditModePresetLayoutsMeta.NumValues
-			local numlayouts = #layoutstable.layouts+1
-			--tinsert(layoutstable.layouts, numlayouts + 1, taintpreventlayout)
-			layoutstable.layouts[tonumber(numlayouts)] = taintpreventlayout
-			--layoutstable.activeLayout = numlayouts + 1
-			layoutstable.activeLayout = numlayouts + 2
+	else
+		if layoutstable.layouts[1] then
+			for i = 1, #layoutstable.layouts do
+				if layoutstable.layouts[i].layoutName == "EltruismTaintPreventer" then
+					alreadyimported = true
+					layoutstable.layouts[i] = taintpreventlayout
+					layoutstable.activeLayout = i + 2
+					C_EditMode.SetActiveLayout(layoutstable.activeLayout)
+					ElvUI_EltreumUI:Print(string.format(HUD_EDIT_MODE_LAYOUT_APPLIED, taintpreventlayout.layoutName))
+				end
+			end
+			if not alreadyimported then
+				--local numlayouts = Enum.EditModePresetLayoutsMeta.NumValues
+				local numlayouts = #layoutstable.layouts+1
+				--tinsert(layoutstable.layouts, numlayouts + 1, taintpreventlayout)
+				layoutstable.layouts[tonumber(numlayouts)] = taintpreventlayout
+				--layoutstable.activeLayout = numlayouts + 1
+				layoutstable.activeLayout = numlayouts + 2
+				C_EditMode.SaveLayouts(layoutstable) --if not called then layout wont apply because its not saved
+				C_EditMode.SetActiveLayout(layoutstable.activeLayout)
+				ElvUI_EltreumUI:Print(L["Importing"].." ".._G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT)
+			end
+		else
+			layoutstable.layouts[1] = taintpreventlayout
+			layoutstable.activeLayout = 3 --for some reason the 2 default ones count for it
 			C_EditMode.SaveLayouts(layoutstable) --if not called then layout wont apply because its not saved
 			C_EditMode.SetActiveLayout(layoutstable.activeLayout)
 			ElvUI_EltreumUI:Print(L["Importing"].." ".._G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT)
 		end
-	else
-		layoutstable.layouts[1] = taintpreventlayout
-		layoutstable.activeLayout = 3 --for some reason the 2 default ones count for it
-		C_EditMode.SaveLayouts(layoutstable) --if not called then layout wont apply because its not saved
-		C_EditMode.SetActiveLayout(layoutstable.activeLayout)
-		ElvUI_EltreumUI:Print(L["Importing"].." ".._G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT)
 	end
 end
 

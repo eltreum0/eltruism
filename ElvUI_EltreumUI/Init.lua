@@ -24,7 +24,6 @@ _G["BINDING_NAME_CLICK EltruismQuestItem12:LeftButton"] = "Quest Item 12"
 
 --Constants
 ElvUI_EltreumUI.Version = GetAddOnMetadata(addon, 'Version')
-ElvUI_EltreumUI.CreditsList = {}
 ElvUI_EltreumUI.Config = {}
 --ElvUI_EltreumUI.Name = '|cff82B4ffEltruism|r'
 ElvUI_EltreumUI.Name = E:TextGradient("Eltruism", 0.50, 0.70, 1, 0.67, 0.95, 1)
@@ -97,6 +96,9 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
 		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
 		ElvUI_EltreumUI:ObjectiveTrackerAnchor()
+		if E.db.ElvUI_EltreumUI.quests.anchor then
+			ElvUI_EltreumUI:NewRetailEditModeLayout(true) --check if they dont have a custom edit mode, if not then add a new one to fix the anchor
+		end
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
 	elseif E.Cata or E.Classic then
 		if not E.Cata then
