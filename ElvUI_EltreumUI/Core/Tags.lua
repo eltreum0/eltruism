@@ -174,31 +174,31 @@ end
 --ty a lot azilroka
 local stanceID = {
 	DEATHKNIGHT = {
-		[1] = not E.Retail and SpellInfo(nil,1),
-		[2] = not E.Retail and SpellInfo(nil,2),
-		[3] = not E.Retail and SpellInfo(nil,3),
+		[1] = SpellInfo(nil,1),
+		[2] = SpellInfo(nil,2),
+		[3] = SpellInfo(nil,3),
 	},
 	PALADIN = {
-		[1] = not E.Retail and SpellInfo(nil,1),
-		[2] = not E.Retail and SpellInfo(nil,2),
-		[3] = not E.Retail and SpellInfo(nil,3),
-		[4] = not E.Retail and SpellInfo(nil,4),
-		[5] = not E.Retail and SpellInfo(nil,5),
-		[6] = not E.Retail and SpellInfo(nil,6),
-		[7] = not E.Retail and SpellInfo(nil,7),
+		[1] = SpellInfo(nil,1),
+		[2] = SpellInfo(nil,2),
+		[3] = SpellInfo(nil,3),
+		[4] = SpellInfo(nil,4),
+		[5] = SpellInfo(nil,5),
+		[6] = SpellInfo(nil,6),
+		[7] = SpellInfo(nil,7),
 	},
 	WARRIOR = {
-		[1] = not E.Retail and SpellInfo(nil,1),
-		[2] = not E.Retail and SpellInfo(nil,2),
-		[3] = not E.Retail and SpellInfo(nil,3),
-		[4] = not E.Retail and SpellInfo(nil,4), --gladiator?
+		[1] = SpellInfo(nil,1),
+		[2] = SpellInfo(nil,2),
+		[3] = SpellInfo(nil,3),
+		[4] = SpellInfo(nil,4), --gladiator?
 	},
 	HUNTER = {
-		[1] = not E.Retail and SpellInfo(nil,1),
-		[2] = not E.Retail and SpellInfo(nil,2),
-		[3] = not E.Retail and SpellInfo(nil,3),
-		[4] = not E.Retail and SpellInfo(nil,4),
-		[5] = not E.Retail and SpellInfo(nil,5),
+		[1] = SpellInfo(nil,1),
+		[2] = SpellInfo(nil,2),
+		[3] = SpellInfo(nil,3),
+		[4] = SpellInfo(nil,4),
+		[5] = SpellInfo(nil,5),
 	},
 }
 
@@ -207,31 +207,31 @@ local function refreshstance()
 	stanceBackup = 0
 	stanceID = {
 		DEATHKNIGHT = {
-			[1] = not E.Retail and SpellInfo(nil,1),
-			[2] = not E.Retail and SpellInfo(nil,2),
-			[3] = not E.Retail and SpellInfo(nil,3),
+			[1] = SpellInfo(nil,1),
+			[2] = SpellInfo(nil,2),
+			[3] = SpellInfo(nil,3),
 		},
 		PALADIN = {
-			[1] = not E.Retail and SpellInfo(nil,1),
-			[2] = not E.Retail and SpellInfo(nil,2),
-			[3] = not E.Retail and SpellInfo(nil,3),
-			[4] = not E.Retail and SpellInfo(nil,4),
-			[5] = not E.Retail and SpellInfo(nil,5),
-			[6] = not E.Retail and SpellInfo(nil,6),
-			[7] = not E.Retail and SpellInfo(nil,7),
+			[1] = SpellInfo(nil,1),
+			[2] = SpellInfo(nil,2),
+			[3] = SpellInfo(nil,3),
+			[4] = SpellInfo(nil,4),
+			[5] = SpellInfo(nil,5),
+			[6] = SpellInfo(nil,6),
+			[7] = SpellInfo(nil,7),
 		},
 		WARRIOR = {
-			[1] = not E.Retail and SpellInfo(nil,1),
-			[2] = not E.Retail and SpellInfo(nil,2),
-			[3] = not E.Retail and SpellInfo(nil,3),
-			[4] = not E.Retail and SpellInfo(nil,4), --gladiator?
+			[1] = SpellInfo(nil,1),
+			[2] = SpellInfo(nil,2),
+			[3] = SpellInfo(nil,3),
+			[4] = SpellInfo(nil,4), --gladiator?
 		},
 		HUNTER = {
-			[1] = not E.Retail and SpellInfo(nil,1),
-			[2] = not E.Retail and SpellInfo(nil,2),
-			[3] = not E.Retail and SpellInfo(nil,3),
-			[4] = not E.Retail and SpellInfo(nil,4),
-			[5] = not E.Retail and SpellInfo(nil,5),
+			[1] = SpellInfo(nil,1),
+			[2] = SpellInfo(nil,2),
+			[3] = SpellInfo(nil,3),
+			[4] = SpellInfo(nil,4),
+			[5] = SpellInfo(nil,5),
 		},
 	}
 end
