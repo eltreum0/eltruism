@@ -429,6 +429,8 @@ local bossIDs = {
 	["219853"] = true, --sikran
 	["214502"] = true, --the-bloodbound-horror
 	["228713"] = true, --ulgrax-the-devourer
+	["214504"] = true, --rashanan
+	["217748"] = true, --nexus-princess-kyveza
 
 	--mists-of-tirna-scithe
 	["164567"] = true, --ingra-maloch
