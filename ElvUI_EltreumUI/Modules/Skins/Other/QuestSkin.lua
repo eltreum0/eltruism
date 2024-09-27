@@ -1726,7 +1726,7 @@ function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 				ObjectiveTrackerFrame.NineSlice:SetAlpha(0)
 			end
 
-			_G.ObjectiveTrackerFrame:SetClampedToScreen(true)
+			_G.ObjectiveTrackerFrame:SetClampedToScreen(false)
 			_G.ObjectiveTrackerFrame:SetMovable(true)
 			_G.ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
 			_G.ObjectiveTrackerFrame:ClearAllPoints()
