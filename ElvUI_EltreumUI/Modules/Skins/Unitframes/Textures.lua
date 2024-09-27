@@ -265,6 +265,7 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 end
 
 function ElvUI_EltreumUI:CustomTexture(unit)
+	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 
 		--main issue = the toggle for some units like boss and arena wont work bc it checks for boss1,boss2... instead of just boss
@@ -430,6 +431,7 @@ hooksecurefunc(UF, "Style", ElvUI_EltreumUI.CustomTexture) --old target of targe
 
 -- replace absorb texture with unitframe texture
 function ElvUI_EltreumUI:SetTexture_HealComm(obj)
+	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enableHealComm then
 		obj.myBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
 		obj.otherBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))

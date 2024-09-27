@@ -46,6 +46,7 @@ do
 				if E.db.ElvUI_EltreumUI.skins.detailsgradientname then
 					--gradient name (damage)
 					hooksecurefunc(Details.atributo_damage,"RefreshLine", function(_,detailsDB, lineContainer, whichRowLine)
+						if ElvUI_EltreumUI:EncounterCheck() then return end
 						local thisLine = lineContainer[whichRowLine]
 						if not thisLine then return end
 						if thisLine.lineText1 then
@@ -62,6 +63,7 @@ do
 					end)
 					--gradient name (heal)
 					hooksecurefunc(Details.atributo_heal,"RefreshLine", function(_,instancia, _, whichRowLine)
+						if ElvUI_EltreumUI:EncounterCheck() then return end
 						local thisLine = instancia.barras[whichRowLine]
 						if not thisLine then return end
 						if thisLine.lineText1 then
@@ -80,6 +82,7 @@ do
 
 				--gradient texture
 				hooksecurefunc(Details, "InstanceRefreshRows", function(instancia)
+					if ElvUI_EltreumUI:EncounterCheck() then return end
 					if instancia.barras and instancia.barras[1] then
 						for _, row in next, instancia.barras do
 							if not row then return end

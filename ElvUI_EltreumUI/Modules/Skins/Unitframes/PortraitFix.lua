@@ -499,6 +499,7 @@ end
 --fix portrait rotation since they dont align correctly due to how blizzard makes models
 local modelcheck = CreateFrame("PlayerModel", "EltruismPortraitFixModel")
 function ElvUI_EltreumUI:PortraitFix(unit)
+	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if self.playerModel then
 		if E.db.ElvUI_EltreumUI.unitframes.portraitfix then
 			local model = self:GetModelFileID()
@@ -706,6 +707,7 @@ end)
 local flagcheck = CreateFrame("FRAME")
 flagcheck:RegisterUnitEvent("PLAYER_FLAGS_CHANGED", "player") --model seems to update when flags are changed
 flagcheck:SetScript("OnEvent",function()
+	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if _G["ElvUF_Player"] and E.db.unitframe.units.player.fader.enable and E.db.unitframe.units.player.fader.minAlpha == 0 then
 		E:Delay(0, function()
 			if _G["ElvUF_Player"]:GetAlpha() == 0 then
@@ -735,6 +737,7 @@ end)
 --hook if frame has smoothing
 if E.db.unitframe.units.player.fader.smooth > 0 then
 	hooksecurefunc(E, "UIFrameFadeIn", function(_, frame,_, _, endAlpha)
+		if ElvUI_EltreumUI:EncounterCheck() then return end
 		if frame and endAlpha then
 			if endAlpha == 0 then
 				if frame:GetName() ~= nil then
@@ -792,6 +795,7 @@ if E.db.unitframe.units.player.fader.smooth > 0 then
 		end
 	end)
 	hooksecurefunc(E, "UIFrameFadeOut", function(_, frame,_, _, endAlpha)
+		if ElvUI_EltreumUI:EncounterCheck() then return end
 		if frame and endAlpha then
 			if endAlpha == 0 then
 				if frame:GetName() ~= nil then
