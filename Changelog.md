@@ -1,6 +1,14 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.2.3.1
+Added a test function, /eltruism encountercheck, which will block some functions from running during Encounters  
+Updated [eltruism:stance] to once again display stances in Retail, such as paladin auras  
+Updated action paging to properly display in some World Quests  
+Updated Blizzard's Edit mode import function  
+Fixed an issue where the Objective Tracker was not moving with the ElvUI Mover due to it being locked into the display zone  
+Fixed a possible issue with the Talent Scale when it was displayed in combat  
+Fixed Target and Focus gradient color reverse not working   
 ### 4.2.3
 Added several NPC ids for the classification icons tag  
 Added more models to the rotation fix for 3D portraits  
