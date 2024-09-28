@@ -15,6 +15,7 @@ local UnitIsDead = _G.UnitIsDead
 
 --gradient threat
 function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
+	if ElvUI_EltreumUI:EncounterCheck() then return end
 	nameplate, db = self.__owner, NP.db.threat
 	sf = NP:StyleFilterChanges(nameplate)
 	if status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) and not sf.HealthColor then
@@ -112,6 +113,7 @@ hooksecurefunc(NP, "ThreatIndicator_PostUpdate", ElvUI_EltreumUI.ThreatIndicator
 
 --gradient nameplates
 local function GradientNameplates(unit)
+	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 		if unit and unit.Health then
 			sf = NP:StyleFilterChanges(unit)
@@ -165,6 +167,7 @@ hooksecurefunc(NP, "Health_UpdateColor", GradientNameplates)
 
 --power gradient/combo/runes
 function ElvUI_EltreumUI:NPClassPower_SetBarColor(bar, r, g, b)
+	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable and E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		bar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, {r=r - 0.3,g= g - 0.3,b= b - 0.3,a= 1}, {r=r,g= g,b= b,a= 1})
 		bar.bg:SetAlpha(0)
@@ -174,6 +177,7 @@ hooksecurefunc(NP, "ClassPower_SetBarColor", ElvUI_EltreumUI.NPClassPower_SetBar
 
 --to fix stylefilter for gradient nameplates
 function ElvUI_EltreumUI:StyleFilterClearChanges(frame, HealthColor)
+	if ElvUI_EltreumUI:EncounterCheck() then return end
 	-- bar stuff
 	if HealthColor then
 		local h = frame.Health
@@ -188,6 +192,7 @@ hooksecurefunc(NP, "StyleFilterClearChanges", ElvUI_EltreumUI.StyleFilterClearCh
 
 --to set slight gradient to style filter
 function ElvUI_EltreumUI:StyleFilterSetChanges(frame, actions, HealthColor)
+	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if HealthColor then
 		local hc = (actions.color.healthClass and frame.classColor) or actions.color.healthColor
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
@@ -203,6 +208,7 @@ hooksecurefunc(NP, "StyleFilterSetChanges", ElvUI_EltreumUI.StyleFilterSetChange
 
 --elvui castbar texture/gradient
 function ElvUI_EltreumUI:Castbar_CheckInterrupt(unit)
+	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if unit == 'vehicle' then
 		unit = 'player'
 	end

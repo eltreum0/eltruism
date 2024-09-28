@@ -24,7 +24,9 @@ function ElvUI_EltreumUI:ExpandedTalents()
 				_G.PlayerSpellsFrame:SetClampedToScreen(true)
 
 				local function adjustscale()
-					_G.PlayerSpellsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
+					if not InCombatLockdown() then
+						_G.PlayerSpellsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
+					end
 				end
 				_G.PlayerSpellsFrame:HookScript("OnShow", function()
 					adjustscale()

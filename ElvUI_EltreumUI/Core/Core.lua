@@ -856,6 +856,14 @@ function ElvUI_EltreumUI:PerformanceOptimization()
 	E.db.ElvUI_EltreumUI.chat.chatgradient = false
 end
 
+function ElvUI_EltreumUI:EncounterCheck() --let other functions know if its a boss fight
+	if E.db.ElvUI_EltreumUI.encountercheck then
+		return IsEncounterInProgress()
+	else
+		return false
+	end
+end
+
 --make mage and warlock use their original class colors
 function ElvUI_EltreumUI:OriginalClassColors()
 	--_G.RAID_CLASS_COLORS can cause issues inside instances if friendly nameplates are enabled, so check for that

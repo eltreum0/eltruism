@@ -57,6 +57,7 @@ function ElvUI_EltreumUI:DeathSound()
 end
 
 function ElvUI_EltreumUI:RaidDeath(destFlags)
+	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable then
 		if deaththrottle == 1 then
 			if bit.band(destFlags, COMBATLOG_OBJECT_TYPE_PLAYER) > 0 then

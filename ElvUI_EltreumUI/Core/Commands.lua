@@ -148,6 +148,14 @@ function ElvUI_EltreumUI:RunCommands(message)
 			hideOnEscape = false,
 		}
 		E:StaticPopup_Show('ELTRUISMPERFORMANCE')
+	elseif message == "encountercheck" then
+		if E.db.ElvUI_EltreumUI.encountercheck then
+			ElvUI_EltreumUI:Print("Enabled Encounter Check to disable some functions that can improve performance if disabled during boss fights")
+			E.db.ElvUI_EltreumUI.encountercheck = false
+		else
+			ElvUI_EltreumUI:Print("Disabled Encounter Check to disable some functions that could improve performance if disabled during boss fights")
+			E.db.ElvUI_EltreumUI.encountercheck = true
+		end
 	elseif message == 'cursedborders' then
 		E.PopupDialogs["ELTRUISMBORDERTEST"] = {
 			text = "Test mode to enable borders everywhere",

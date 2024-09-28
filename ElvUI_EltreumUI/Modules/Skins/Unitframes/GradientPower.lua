@@ -258,6 +258,7 @@ hooksecurefunc(UF, "ClassPower_SetBarColor", ElvUI_EltreumUI.UFClassPower_SetBar
 
 --Gradient Power Colors
 function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
+	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Player")
 		ElvUI_EltreumUI:ApplyUnitGradientPower("target", "Target")
