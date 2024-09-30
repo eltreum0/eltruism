@@ -245,7 +245,7 @@ function ElvUI_EltreumUI:ActionPagingSwap(pagingnumber)
 			pagingnumber = tonumber(pagingnumber)
 			for i =1, 9 do
 				if i ~= pagingnumber then
-					E.db["actionbar"]["bar"..i]["visibility"] = "[vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
+					E.db["actionbar"]["bar"..i]["visibility"] = "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;"
 					E.db["actionbar"]["bar"..i]["paging"]["DEATHKNIGHT"] = ""
 					E.db["actionbar"]["bar"..i]["paging"]["DEMONHUNTER"] = ""
 					E.db["actionbar"]["bar"..i]["paging"]["DRUID"] = ""
