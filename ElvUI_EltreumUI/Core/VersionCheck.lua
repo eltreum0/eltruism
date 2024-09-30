@@ -149,99 +149,11 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.db.ElvUI_EltreumUI.skins.doom.maxAlpha = (E.db.ElvUI_EltreumUI.skins.doom.maxAlpha/100)
 	end
 
-	--more long term checks, in case somehow people enable 2 settings when its not possible to do so. Maybe its a shared profile from another person? No idea how they manage to do this
-	if E.db.ElvUI_EltreumUI.modetexture then
-		E.db.ElvUI_EltreumUI.unitframes.darkpowercolor = true
-	end
-	if E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.darkmode then --convert the option
-		E.db.ElvUI_EltreumUI.unitframes.lightmode = false
-		E.db.ElvUI_EltreumUI.unitframes.darkmode = true
-	end
-	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.playerclass then
-		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = false
-		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.playerclass = true
-	end
-	if E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial and E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial then
-		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial = false
-		E.db.ElvUI_EltreumUI.otherstuff.afkmusic.racial = true
-	end
-	if E.db.ElvUI_EltreumUI.glow.blizzard and E.db.ElvUI_EltreumUI.glow.pixel then
-		E.db.ElvUI_EltreumUI.glow.blizzard = false
-		E.db.ElvUI_EltreumUI.glow.pixel = true
-	elseif E.db.ElvUI_EltreumUI.glow.blizzard and E.db.ElvUI_EltreumUI.glow.autocast then
-		E.db.ElvUI_EltreumUI.glow.blizzard = false
-		E.db.ElvUI_EltreumUI.glow.autocast = true
-	elseif E.db.ElvUI_EltreumUI.glow.autocast and E.db.ElvUI_EltreumUI.glow.pixel then
-		E.db.ElvUI_EltreumUI.glow.autocast = false
-		E.db.ElvUI_EltreumUI.glow.pixel = true
-	elseif E.db.ElvUI_EltreumUI.glow.autocast and E.db.ElvUI_EltreumUI.glow.pixel and E.db.ElvUI_EltreumUI.glow.blizzard then
-		E.db.ElvUI_EltreumUI.glow.autocast = false
-		E.db.ElvUI_EltreumUI.glow.blizzard = false
-		E.db.ElvUI_EltreumUI.glow.pixel = true
-	end
-	if E.db.ElvUI_EltreumUI.skins.classiconsblizz and E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
-		E.db.ElvUI_EltreumUI.skins.classiconsblizz = false
-		E.db.ElvUI_EltreumUI.skins.classiconsreleaf = true
-	end
-	if E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly and E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly then
-		E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.hidefriendly = false
-		E.db.ElvUI_EltreumUI.nameplates.friendlynameplatetoggle.disablefriendly = true
-	end
-	if E.db.ElvUI_EltreumUI.skins.playerdeath and (E.db.ElvUI_EltreumUI.skins.playerdeathgta or E.db.ElvUI_EltreumUI.skins.playerdeathcustom) then
-		E.db.ElvUI_EltreumUI.skins.playerdeath = false
-		E.db.ElvUI_EltreumUI.skins.playerdeathcustom = false
-	end
-	if E.db.ElvUI_EltreumUI.quests.questitemsbar1 and E.db.ElvUI_EltreumUI.quests.questitemsfade then
-		E.db.ElvUI_EltreumUI.quests.questitemsfade = false
-		E.db.ElvUI_EltreumUI.quests.questitemsbar1 = true
-	end
-	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture and E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture then
-		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetclasstexture = false
-		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.nameplatetexture = true
-	end
-	if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture then
-		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.classdetect = true
-		E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.noclasstexture = false
-	end
-	if E.db.ElvUI_EltreumUI.skins.stealtheffect and E.db.ElvUI_EltreumUI.skins.screenvignette then
-		E.db.ElvUI_EltreumUI.skins.screenvignette = false
-		E.db.ElvUI_EltreumUI.skins.stealtheffect = true
-	end
-
-	--fix in case the typo in the config caused this to be a file name instead
-	if (E.private.ElvUI_EltreumUI.combatmusic.bossmusic ~= nil and E.private.ElvUI_EltreumUI.combatmusic.bossmusic ~= false and E.private.ElvUI_EltreumUI.combatmusic.bossmusic ~= true) then
-		E.private.ElvUI_EltreumUI.combatmusic.bossmusic = false
-	end
-
 	--changes only for my profiles
-	if not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
-		return
-	elseif E.private.ElvUI_EltreumUI.install_version >= "3.7.3" and E.private.ElvUI_EltreumUI.install_version < "4.0.5" then
-		if E.Classic then --fix priest mind control paging
-			if E.db.actionbar.bar1.visibility == "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;" then
-				E.db["actionbar"]["bar1"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 16;[bonusbar:5] 11; [bonusbar:1] 7;"
-			elseif E.db.actionbar.bar4.visibility == "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;" then
-				E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 16;[bonusbar:5] 11; [bonusbar:1] 7;"
-			end
-		end
-		E.db["unitframe"]["units"]["target"]["aurabar"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,RaidDebuffs,PlayerBuffs,RaidBuffsElvUI,TurtleBuffs"
-	elseif E.private.ElvUI_EltreumUI.install_version >= "4.0.5" and E.private.ElvUI_EltreumUI.install_version < "4.0.7" then
-		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower then
-			E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar = true
-		end
-	elseif E.private.ElvUI_EltreumUI.install_version >= "4.0.7" and E.private.ElvUI_EltreumUI.install_version < "4.1.2" then --fix blizzard macro conditional
-		if E.db["unitframe"]["units"]["party"]["visibility"] == "[@raid6,exists][nogroup] hide;show" then
-			E.db["unitframe"]["units"]["party"]["visibility"] = "[@raid6,exists][@party1,noexists] hide;show"
-		end
-	elseif E.private.ElvUI_EltreumUI.install_version >= "4.1.2" and E.private.ElvUI_EltreumUI.install_version < "4.1.3" then --fix era priest paging shadowform
-		if E.Classic then
-			if E.db.actionbar.bar1.visibility == "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;" then
-				E.db["actionbar"]["bar1"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 16;[bonusbar:5] 11; [stance:1] 7;"
-			elseif E.db.actionbar.bar4.visibility == "[vehicleui] show; [overridebar] show; [possessbar] show; [petbattle] hide; show;" then
-				E.db["actionbar"]["bar4"]["paging"]["PRIEST"] = "[vehicleui] 12; [overridebar] 14; [possessbar] 16;[bonusbar:5] 11; [stance:1] 7;"
-			end
-		end
-	end
+	--if not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
+	--	return
+	--elseif E.private.ElvUI_EltreumUI.install_version >= "4.1.2" and E.private.ElvUI_EltreumUI.install_version < "4.1.3" then --fix era priest paging shadowform
+	--end
 end
 
 function ElvUI_EltreumUI:NewVersionCheck()
