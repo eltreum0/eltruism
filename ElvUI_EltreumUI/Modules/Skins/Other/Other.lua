@@ -236,6 +236,13 @@ function ElvUI_EltreumUI:SkinProfessions()
 						TradeSkillCancelButton:SetPoint("RIGHT", TradeSkillFrame, "BOTTOMRIGHT", -50, 95)
 					end)
 				end)
+
+				_G.TradeSkillFrame:SetMovable(true)
+				_G.TradeSkillFrame:EnableMouse(true)
+				_G.TradeSkillFrame:RegisterForDrag("LeftButton")
+				_G.TradeSkillFrame:SetScript("OnDragStart", _G.TradeSkillFrame.StartMoving)
+				_G.TradeSkillFrame:SetScript("OnDragStop", _G.TradeSkillFrame.StopMovingOrSizing)
+				_G.TradeSkillFrame:SetClampedToScreen(true)
 			end
 		end)
 
@@ -329,6 +336,13 @@ function ElvUI_EltreumUI:SkinProfessions()
 						CraftCancelButton:SetPoint("RIGHT", CraftFrame, "BOTTOMRIGHT", -50, 95)
 					end)
 				end)
+
+				_G.CraftFrame:SetMovable(true)
+				_G.CraftFrame:EnableMouse(true)
+				_G.CraftFrame:RegisterForDrag("LeftButton")
+				_G.CraftFrame:SetScript("OnDragStart", _G.CraftFrame.StartMoving)
+				_G.CraftFrame:SetScript("OnDragStop", _G.CraftFrame.StopMovingOrSizing)
+				_G.CraftFrame:SetClampedToScreen(true)
 			end
 		end)
 	end
@@ -351,6 +365,13 @@ function ElvUI_EltreumUI:EnchantScroll()
 				_G.ProfessionsFrame:SetScript('OnSizeChanged', function()
 					_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale or 1)
 				end)
+
+				_G.ProfessionsFrame:SetMovable(true)
+				_G.ProfessionsFrame:EnableMouse(true)
+				_G.ProfessionsFrame:RegisterForDrag("LeftButton")
+				_G.ProfessionsFrame:SetScript("OnDragStart", _G.ProfessionsFrame.StartMoving)
+				_G.ProfessionsFrame:SetScript("OnDragStop", _G.ProfessionsFrame.StopMovingOrSizing)
+				_G.ProfessionsFrame:SetClampedToScreen(true)
 			end
 		end
 
