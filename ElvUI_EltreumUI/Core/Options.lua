@@ -316,6 +316,11 @@ function ElvUI_EltreumUI:Configtable()
 	-- aurafilters
 	ElvUI_EltreumUI.Options.args.aurafilters = ACH:Group(E:TextGradient(L["Aura Filters"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Choose to show all debuffs/buffs or use default Filters"], 85, 'tab')
 	ElvUI_EltreumUI.Options.args.aurafilters.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\aurafilter'
+	ElvUI_EltreumUI.Options.args.aurafilters.args.general = ACH:Group(L["General"], nil, 1)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.general.args.description1 = ACH:Description(L["Apply To All"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
+	ElvUI_EltreumUI.Options.args.aurafilters.args.general.args.minimal = ACH:Execute(L["All"], nil, 3, function() ElvUI_EltreumUI:SetupAllAuras('Everything') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.general.args.eltruism = ACH:Execute("Eltruism", nil, 3, function() ElvUI_EltreumUI:SetupAllAuras('Eltruism') end,nil,false,'full')
+	ElvUI_EltreumUI.Options.args.aurafilters.args.general.args.all = ACH:Execute(L["Minimal"], nil, 3, function() ElvUI_EltreumUI:SetupAllAuras('Minimal') end,nil,false,'full')
 	ElvUI_EltreumUI.Options.args.aurafilters.args.player = ACH:Group(L["Player"], nil, 2)
 	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player = ACH:Group(L["Select how auras will be displayed for Player"], nil, 1)
 	ElvUI_EltreumUI.Options.args.aurafilters.args.player.args.player.inline = true
