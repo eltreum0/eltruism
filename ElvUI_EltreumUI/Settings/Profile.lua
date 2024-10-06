@@ -7,6 +7,7 @@ P.ElvUI_EltreumUI = {
 	deepLwarning = true,
 	autoupdate = false,
 	encountercheck = false,
+	disabledmodels = false,
 
 	chat = {
 		enable = false,

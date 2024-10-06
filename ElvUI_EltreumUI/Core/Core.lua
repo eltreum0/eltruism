@@ -828,6 +828,8 @@ function ElvUI_EltreumUI:PerformanceOptimization()
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientHonor = false
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.gradientAltPower = false
 	E.db.ElvUI_EltreumUI.unitframes.models.powerbar = false
+	E.db.ElvUI_EltreumUI.unitframes.models.castbar = false
+	E.db.ElvUI_EltreumUI.unitframes.models.unitframe = false
 	E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable = false
 	E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enableaurabars = false
 	E.db.ElvUI_EltreumUI.unitframes.portraitfix = false
@@ -854,6 +856,53 @@ function ElvUI_EltreumUI:PerformanceOptimization()
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = false
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop = false
 	E.db.ElvUI_EltreumUI.chat.chatgradient = false
+end
+
+--toggle 3d models
+function ElvUI_EltreumUI:ModelsToggle()
+	if E.db.ElvUI_EltreumUI.disabledmodels then
+		E.db.ElvUI_EltreumUI.disabledmodels = false
+
+		E.db.unitframe.units.boss.portrait.enable = true
+		E.db.unitframe.units.player.portrait.enable = true
+		E.db.unitframe.units.pet.portrait.enable = true
+		E.db.unitframe.units.target.portrait.enable = true
+		E.db.unitframe.units.targettarget.portrait.enable = true
+		E.db.unitframe.units.focus.portrait.enable = true
+		E.db.unitframe.units.party.portrait.enable = true
+		E.db.unitframe.units.raid1.portrait.enable = true
+		E.db.unitframe.units.raid2.portrait.enable = true
+		E.db.unitframe.units.raid3.portrait.enable = true
+		E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect = true
+		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel = true
+		E.db.ElvUI_EltreumUI.unitframes.models.powerbar = true
+		E.db.ElvUI_EltreumUI.unitframes.models.castbar = true
+		E.db.ElvUI_EltreumUI.unitframes.models.unitframe = true
+
+		ElvUI_EltreumUI:Print("Enabled several models in ElvUI and Eltruism")
+	else
+		E.db.ElvUI_EltreumUI.disabledmodels = true
+
+		E.db.unitframe.units.boss.portrait.enable = false
+		E.db.unitframe.units.player.portrait.enable = false
+		E.db.unitframe.units.pet.portrait.enable = false
+		E.db.unitframe.units.target.portrait.enable = false
+		E.db.unitframe.units.targettarget.portrait.enable = false
+		E.db.unitframe.units.focus.portrait.enable = false
+		E.db.unitframe.units.party.portrait.enable = false
+		E.db.unitframe.units.raid1.portrait.enable = false
+		E.db.unitframe.units.raid2.portrait.enable = false
+		E.db.unitframe.units.raid3.portrait.enable = false
+		E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect = false
+		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel = false
+		E.db.ElvUI_EltreumUI.unitframes.models.powerbar = false
+		E.db.ElvUI_EltreumUI.unitframes.models.castbar = false
+		E.db.ElvUI_EltreumUI.unitframes.models.unitframe = false
+
+		ElvUI_EltreumUI:Print("Disabled several models to improve performance")
+	end
+
+	E:StaticPopup_Show('CONFIG_RL')
 end
 
 function ElvUI_EltreumUI:EncounterCheck() --let other functions know if its a boss fight
