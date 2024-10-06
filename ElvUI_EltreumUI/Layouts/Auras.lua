@@ -66,8 +66,8 @@ local EltruismNameplateEnemyNPCDebuffs = "Blacklist,Personal,CCDebuffs,CastByNPC
 local EltruismEverything = "Blacklist,Personal,nonPersonal"
 
 --based on luckyone
-local AlternativeBuffs = 'Blacklist,Dispellable,RaidBuffsElvUI'
-local AlternativeDebuffs = 'Blacklist,Personal,CCDebuffs'
+local minimalBuffs = 'Blacklist,Whitelist,Dispellable,RaidBuffsElvUI'
+local minimalDebuffs = 'Blacklist,Whitelist,Personal,CCDebuffs'
 
 --aura filter setup based on Luckyone's credits to him!
 function ElvUI_EltreumUI:SetupBuffs(frame, type)
@@ -77,7 +77,7 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = EltruismPlayerBuffs
 		elseif type == 'Minimal' then
-			E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = AlternativeBuffs
+			E.db["unitframe"]["units"]["player"]["buffs"]["priority"] = minimalBuffs
 		end
 	elseif frame == 'target' then
 		if type == 'Everything' then
@@ -85,7 +85,7 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = EltruismTargetBuffs
 		elseif type == 'Minimal' then
-			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = AlternativeBuffs
+			E.db["unitframe"]["units"]["target"]["buffs"]["priority"] = minimalBuffs
 		end
 	elseif frame == 'focus' then
 		if type == 'Everything' then
@@ -93,7 +93,7 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = EltruismFocusBuffs
 		elseif type == 'Minimal' then
-			E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = AlternativeBuffs
+			E.db["unitframe"]["units"]["focus"]["buffs"]["priority"] = minimalBuffs
 		end
 	elseif frame == 'boss' then
 		if type == 'Everything' then
@@ -101,7 +101,7 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = EltruismBossBuffs
 		elseif type == 'Minimal' then
-			E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = AlternativeBuffs
+			E.db["unitframe"]["units"]["boss"]["buffs"]["priority"] = minimalBuffs
 		end
 	elseif frame == 'nameplate' then
 		if type == 'Everything' then
@@ -111,7 +111,7 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = EltruismNameplateEnemyPlayerBuffs
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = EltruismNameplateEnemyNPCBuffs
 		elseif type == 'Minimal' then
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = AlternativeBuffs
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = minimalBuffs
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = 'Blacklist,Dispellable,TurtleBuffs'
 		end
 	elseif frame == 'party' then
@@ -120,7 +120,7 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["party"]["buffs"]["priority"] = EltruismGroupBuffs
 		elseif type == 'Minimal' then
-			E.db["unitframe"]["units"]["party"]["buffs"]["priority"] = AlternativeBuffs
+			E.db["unitframe"]["units"]["party"]["buffs"]["priority"] = minimalBuffs
 		end
 	elseif frame == 'raid' then
 		if type == 'Everything' then
@@ -132,9 +132,9 @@ function ElvUI_EltreumUI:SetupBuffs(frame, type)
 			E.db["unitframe"]["units"]["raid2"]["buffs"]["priority"] = EltruismGroupBuffs
 			E.db["unitframe"]["units"]["raid3"]["buffs"]["priority"] = EltruismGroupBuffs
 		elseif type == 'Minimal' then
-			E.db["unitframe"]["units"]["raid1"]["buffs"]["priority"] = AlternativeBuffs
-			E.db["unitframe"]["units"]["raid2"]["buffs"]["priority"] = AlternativeBuffs
-			E.db["unitframe"]["units"]["raid3"]["buffs"]["priority"] = AlternativeBuffs
+			E.db["unitframe"]["units"]["raid1"]["buffs"]["priority"] = minimalBuffs
+			E.db["unitframe"]["units"]["raid2"]["buffs"]["priority"] = minimalBuffs
+			E.db["unitframe"]["units"]["raid3"]["buffs"]["priority"] = minimalBuffs
 		end
 	elseif frame == 'aurabar' then
 		if type == 'Everything' then
@@ -159,7 +159,7 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = EltruismPlayerDebuffs
 		elseif type == 'Minimal' then
-			E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = AlternativeDebuffs
+			E.db["unitframe"]["units"]["player"]["debuffs"]["priority"] = minimalDebuffs
 		end
 	elseif frame == 'target' then
 		if type == 'Everything' then
@@ -167,7 +167,7 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = EltruismTargetDebuffs
 		elseif type == 'Minimal' then
-			E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = AlternativeDebuffs
+			E.db["unitframe"]["units"]["target"]["debuffs"]["priority"] = minimalDebuffs
 		end
 	elseif frame == 'focus' then
 		if type == 'Everything' then
@@ -175,7 +175,7 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = EltruismFocusDebuffs
 		elseif type == 'Minimal' then
-			E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = AlternativeDebuffs
+			E.db["unitframe"]["units"]["focus"]["debuffs"]["priority"] = minimalDebuffs
 		end
 	elseif frame == 'boss' then
 		if type == 'Everything' then
@@ -183,7 +183,7 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = EltruismBossDebuffs
 		elseif type == 'Minimal' then
-			E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = AlternativeDebuffs
+			E.db["unitframe"]["units"]["boss"]["debuffs"]["priority"] = minimalDebuffs
 		end
 	elseif frame == 'nameplate' then
 		if type == 'Everything' then
@@ -193,7 +193,7 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = EltruismNameplateEnemyPlayerDebuffs
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = EltruismNameplateEnemyNPCDebuffs
 		elseif type == 'Minimal' then
-			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = AlternativeDebuffs
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = minimalDebuffs
 			E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs"
 		end
 	elseif frame == 'party' then
@@ -202,7 +202,7 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 		elseif type == 'Eltruism' then
 			E.db["unitframe"]["units"]["party"]["debuffs"]["priority"] = EltruismGroupDebuffs
 		elseif type == 'Minimal' then
-			E.db["unitframe"]["units"]["party"]["debuffs"]["priority"] = AlternativeDebuffs
+			E.db["unitframe"]["units"]["party"]["debuffs"]["priority"] = minimalDebuffs
 		end
 	elseif frame == 'raid' then
 		if type == 'Everything' then
@@ -214,9 +214,9 @@ function ElvUI_EltreumUI:SetupDebuffs(frame, type)
 			E.db["unitframe"]["units"]["raid2"]["debuffs"]["priority"] = EltruismGroupDebuffs
 			E.db["unitframe"]["units"]["raid3"]["debuffs"]["priority"] = EltruismGroupDebuffs
 		elseif type == 'Minimal' then
-			E.db["unitframe"]["units"]["raid1"]["debuffs"]["priority"] = AlternativeDebuffs
-			E.db["unitframe"]["units"]["raid2"]["debuffs"]["priority"] = AlternativeDebuffs
-			E.db["unitframe"]["units"]["raid3"]["debuffs"]["priority"] = AlternativeDebuffs
+			E.db["unitframe"]["units"]["raid1"]["debuffs"]["priority"] = minimalDebuffs
+			E.db["unitframe"]["units"]["raid2"]["debuffs"]["priority"] = minimalDebuffs
+			E.db["unitframe"]["units"]["raid3"]["debuffs"]["priority"] = minimalDebuffs
 		end
 	elseif frame == 'aurabar' then
 		if type == 'Everything' then
