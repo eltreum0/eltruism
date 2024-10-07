@@ -156,6 +156,8 @@ function ElvUI_EltreumUI:RunCommands(message)
 			ElvUI_EltreumUI:Print("Enabled Encounter Check to disable some functions that could improve performance if disabled during boss fights")
 			E.db.ElvUI_EltreumUI.encountercheck = true
 		end
+	elseif message == "togglemodels" then
+		ElvUI_EltreumUI:ModelsToggle()
 	elseif message == 'cursedborders' then
 		E.PopupDialogs["ELTRUISMBORDERTEST"] = {
 			text = "Test mode to enable borders everywhere",
