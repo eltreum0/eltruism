@@ -18,7 +18,7 @@ jobs:
   release:
 
     # we can run our steps on pretty much anything, but the "ubuntu-latest" image is a safe bet
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04 #ubuntu-latest
 
     # "steps" holds a list of all the steps needed to package and release our AddOn
     steps:
