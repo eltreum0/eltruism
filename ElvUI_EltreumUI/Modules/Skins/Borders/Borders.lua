@@ -1457,7 +1457,11 @@ function ElvUI_EltreumUI:UFAuraBorders(button)
 			end
 		else
 			auraborder = _G["EltruismAuraBorder"..button:GetName()]
-			auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			if button:GetName():match("Debuffs") then
+				auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
+			else
+				auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			end
 		end
 	end
 end
@@ -1466,16 +1470,17 @@ hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraBorders) --uf aur
 function ElvUI_EltreumUI:UFAuraBordersColorDebuff(_,button)
 	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf and E.private.auras.enable and not E.db.ElvUI_EltreumUI.borders.bordertest then
 		local auraborder = _G["EltruismAuraBorder"..button:GetName()]
-		if not auraborder then return end
-		if button.isDebuff then
-			local r,g,b = button:GetBackdropBorderColor()
-			if r then
-				auraborder:SetBackdropBorderColor(r,g,b, 1)
+		if auraborder then
+			if button.isDebuff or button:GetName():match("Debuffs") then
+				local r,g,b = button:GetBackdropBorderColor()
+				if r then
+					auraborder:SetBackdropBorderColor(r,g,b, 1)
+				else
+					auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+				end
 			else
 				auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			end
-		else
-			auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 		end
 	end
 
