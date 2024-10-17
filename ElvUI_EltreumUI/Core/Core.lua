@@ -867,17 +867,17 @@ function ElvUI_EltreumUI:ModelsToggle()
 		E.db.unitframe.units.player.portrait.enable = true
 		E.db.unitframe.units.pet.portrait.enable = true
 		E.db.unitframe.units.target.portrait.enable = true
-		E.db.unitframe.units.targettarget.portrait.enable = true
-		E.db.unitframe.units.focus.portrait.enable = true
+		--E.db.unitframe.units.targettarget.portrait.enable = true
+		--E.db.unitframe.units.focus.portrait.enable = true
 		E.db.unitframe.units.party.portrait.enable = true
-		E.db.unitframe.units.raid1.portrait.enable = true
-		E.db.unitframe.units.raid2.portrait.enable = true
-		E.db.unitframe.units.raid3.portrait.enable = true
+		--E.db.unitframe.units.raid1.portrait.enable = true
+		--E.db.unitframe.units.raid2.portrait.enable = true
+		--E.db.unitframe.units.raid3.portrait.enable = true
 		E.db.ElvUI_EltreumUI.nameplates.nameplatepower.modeleffect = true
 		E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.targetmodel = true
 		E.db.ElvUI_EltreumUI.unitframes.models.powerbar = true
-		E.db.ElvUI_EltreumUI.unitframes.models.castbar = true
-		E.db.ElvUI_EltreumUI.unitframes.models.unitframe = true
+		--E.db.ElvUI_EltreumUI.unitframes.models.castbar = true
+		--E.db.ElvUI_EltreumUI.unitframes.models.unitframe = true
 
 		ElvUI_EltreumUI:Print("Enabled several models in ElvUI and Eltruism")
 	else
