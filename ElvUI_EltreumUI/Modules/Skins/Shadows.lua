@@ -3591,7 +3591,6 @@ function ElvUI_EltreumUI:Shadows()
 				end
 			end
 
-
 			for i = 1, 5 do
 				if _G["WTExtraItemsBar"..i] then
 					if _G["WTExtraItemsBar"..i].backdrop and _G["WTExtraItemsBar"..i].backdrop:IsShown() then
