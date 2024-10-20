@@ -3575,17 +3575,20 @@ function ElvUI_EltreumUI:Shadows()
 				_G["WTContacts"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(_G["WTContacts"].shadow)
 			end
-			if _G["WTGameBarMiddlePanel"] and not _G["WTGameBarMiddlePanel"].shadow then
-				_G["WTGameBarMiddlePanel"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(_G["WTGameBarMiddlePanel"].shadow)
-			end
-			if _G["WTGameBarLeftPanel"] and not _G["WTGameBarLeftPanel"].shadow then
-				_G["WTGameBarLeftPanel"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(_G["WTGameBarLeftPanel"].shadow)
-			end
-			if _G["WTGameBarRightPanel"] and not _G["WTGameBarRightPanel"].shadow then
-				_G["WTGameBarRightPanel"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(_G["WTGameBarRightPanel"].shadow)
+
+			if E.db.WT.misc.gameBar.enable and E.db.WT.misc.gameBar.backdrop then
+				if _G["WTGameBarMiddlePanel"] and not _G["WTGameBarMiddlePanel"].shadow then
+					_G["WTGameBarMiddlePanel"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G["WTGameBarMiddlePanel"].shadow)
+				end
+				if _G["WTGameBarLeftPanel"] and not _G["WTGameBarLeftPanel"].shadow then
+					_G["WTGameBarLeftPanel"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G["WTGameBarLeftPanel"].shadow)
+				end
+				if _G["WTGameBarRightPanel"] and not _G["WTGameBarRightPanel"].shadow then
+					_G["WTGameBarRightPanel"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G["WTGameBarRightPanel"].shadow)
+				end
 			end
 
 			for i = 1, 5 do
