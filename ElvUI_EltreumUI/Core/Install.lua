@@ -376,6 +376,7 @@ ElvUI_EltreumUI.InstallerData = {
 				ElvUI_EltreumUI:SetupNamePlates()
 				ElvUI_EltreumUI:ResolutionOutline()
 				ElvUI_EltreumUI:UpdateEltruismSettings()
+				ElvUI_EltreumUI:ModelsToggle(true) --disable models after layout for now due to the 3D model bug
 				PlaySound(888)
 			end)
 			_G.PluginInstallFrame.Option1:SetScript('OnEnter', function() ElvUI_EltreumUI:ImproveInstall("dps","ENTERING") end)

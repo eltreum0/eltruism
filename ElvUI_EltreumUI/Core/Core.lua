@@ -859,7 +859,7 @@ function ElvUI_EltreumUI:PerformanceOptimization()
 end
 
 --toggle 3d models
-function ElvUI_EltreumUI:ModelsToggle()
+function ElvUI_EltreumUI:ModelsToggle(silent)
 	if E.db.ElvUI_EltreumUI.disabledmodels then
 		E.db.ElvUI_EltreumUI.disabledmodels = false
 
@@ -879,7 +879,9 @@ function ElvUI_EltreumUI:ModelsToggle()
 		--E.db.ElvUI_EltreumUI.unitframes.models.castbar = true
 		--E.db.ElvUI_EltreumUI.unitframes.models.unitframe = true
 
-		ElvUI_EltreumUI:Print("Enabled several models in ElvUI and Eltruism")
+		if not silent then
+			ElvUI_EltreumUI:Print("Enabled several models in ElvUI and Eltruism")
+		end
 	else
 		E.db.ElvUI_EltreumUI.disabledmodels = true
 
@@ -899,10 +901,14 @@ function ElvUI_EltreumUI:ModelsToggle()
 		E.db.ElvUI_EltreumUI.unitframes.models.castbar = false
 		E.db.ElvUI_EltreumUI.unitframes.models.unitframe = false
 
-		ElvUI_EltreumUI:Print("Disabled several models to improve performance")
+		if not silent then
+			ElvUI_EltreumUI:Print("Disabled several models to improve performance")
+		end
 	end
 
-	E:StaticPopup_Show('CONFIG_RL')
+	if not silent then
+		E:StaticPopup_Show('CONFIG_RL')
+	end
 end
 
 function ElvUI_EltreumUI:EncounterCheck() --let other functions know if its a boss fight
