@@ -290,6 +290,10 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["general"]["itemLevel"]["totalLevelFont"] = "Kimberley"
 	E.db["general"]["itemLevel"]["totalLevelFontOutline"] = "OUTLINE"
 	E.db["general"]["itemLevel"]["totalLevelFontSize"] = E.Retail and 22 or 12
+	E.db["general"]["itemLevel"]["enchantAbbrev"] = true
+	E.db["general"]["itemLevel"]["showItemLevel"] = true
+	E.db["general"]["itemLevel"]["showEnchants"] = true
+	E.db["general"]["itemLevel"]["showGems"] = true
 
 	-- unitframe colors
 	E.db["unitframe"]["colors"]["auraBarBuff"]["b"] = valuecolors.b
