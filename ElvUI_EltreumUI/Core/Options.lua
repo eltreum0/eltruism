@@ -3830,7 +3830,7 @@ Updated shadows to better handle adding shadows when Borders are enabled
 Updated Aura Filters, its now recommended to use the Minimal Filter
 Updated profiles to now use the Minimal Aura Filters during install
 Updated profile to disable ElvUI Abbreviating Enchants
-Updated profiles to now disable Models during install
+Updated profiles to now disable Models in Retail during install
 Updated some of the version checking
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)

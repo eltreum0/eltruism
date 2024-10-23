@@ -9,7 +9,7 @@ Updated shadows to better handle adding shadows when Borders are enabled
 Updated Aura Filters, its now recommended to use the Minimal Filter  
 Updated profiles to now use the Minimal Aura Filters during install  
 Updated profile to disable ElvUI Abbreviating Enchants  
-Updated profiles to now disable Models during install  
+Updated profiles to now disable Models in Retail during install  
 Updated some of the version checking  
 Fixed an issue with Borders where some Buffs/Debuffs could have the wrong color on Unitframes  
 Fixed /eltruism paging NUMBER command incorrectly setting visibility settings  
