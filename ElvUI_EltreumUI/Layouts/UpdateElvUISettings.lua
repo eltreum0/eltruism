@@ -144,6 +144,10 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 				end
 			end
 
+			if E.Retail then
+				ElvUI_EltreumUI:ModelsToggle(true) --disable models after layout for now due to the 3D model bug
+			end
+
 			ElvUI_EltreumUI:Print(L["Settings for ElvUI were updated."])
 		end
 	else
