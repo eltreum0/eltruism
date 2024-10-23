@@ -196,7 +196,6 @@ function ElvUI_EltreumUI:SetupLayoutThin()
 	E.db["unitframe"]["units"]["pet"]["buffs"]["growthX"] = "LEFT"
 	E.db["unitframe"]["units"]["pet"]["buffs"]["height"] = 25
 	E.db["unitframe"]["units"]["pet"]["buffs"]["keepSizeRatio"] = false
-	E.db["unitframe"]["units"]["pet"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,MyPet"
 	E.db["unitframe"]["units"]["pet"]["buffs"]["sizeOverride"] = 30
 	E.db["unitframe"]["units"]["pet"]["buffs"]["yOffset"] = 2
 	E.db["unitframe"]["units"]["pet"]["castbar"]["customColor"]["color"]["b"] = 0
@@ -231,7 +230,6 @@ function ElvUI_EltreumUI:SetupLayoutThin()
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["enable"] = true
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["height"] = 25
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["keepSizeRatio"] = false
-	E.db["unitframe"]["units"]["pet"]["debuffs"]["priority"] = "Blacklist,Personal,nonPersonal"
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["sizeOverride"] = 30
 	E.db["unitframe"]["units"]["pet"]["debuffs"]["yOffset"] = 1
 	E.db["unitframe"]["units"]["pet"]["disableTargetGlow"] = false

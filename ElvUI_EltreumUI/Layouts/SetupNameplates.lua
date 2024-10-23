@@ -205,8 +205,8 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		--new due to elvui changes
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = "Blacklist,RaidBuffsElvUI,Dispellable,blockNoDuration,CastByUnit"
-		E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs,CastByNPC"
+		--E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = "Blacklist,RaidBuffsElvUI,Dispellable,blockNoDuration,CastByUnit"
+		--E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs,CastByNPC"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = "Blacklist,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["anchorPoint"] = "TOP"
@@ -403,7 +403,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["height"] = 18
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["keepSizeRatio"] = false
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["numAuras"] = 6
-		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,TurtleBuffs,CastByNPC"
+		--E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["priority"] = "Blacklist,blockNoDuration,Personal,TurtleBuffs,CastByNPC"
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["size"] = 25
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["yOffset"] = 8
 		E.db["nameplates"]["units"]["FRIENDLY_NPC"]["buffs"]["maxDuration"] = 1200
@@ -512,7 +512,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["PLAYER"]["buffs"]["growthX"] = "LEFT"
 		E.db["nameplates"]["units"]["PLAYER"]["buffs"]["numAuras"] = 6
 		E.db["nameplates"]["units"]["PLAYER"]["buffs"]["numRows"] = 2
-		E.db["nameplates"]["units"]["PLAYER"]["buffs"]["priority"] = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs"
+		--E.db["nameplates"]["units"]["PLAYER"]["buffs"]["priority"] = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs"
 		E.db["nameplates"]["units"]["PLAYER"]["buffs"]["size"] = 25
 		E.db["nameplates"]["units"]["PLAYER"]["buffs"]["spacing"] = 0
 		E.db["nameplates"]["units"]["PLAYER"]["buffs"]["yOffset"] = 2
@@ -552,7 +552,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["durationPosition"] = "TOP"
 		E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["numAuras"] = 6
 		E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["numRows"] = 2
-		E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
+		--E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["priority"] = "Blacklist,blockNoDuration,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
 		E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["size"] = 25
 		E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["spacing"] = 0
 		E.db["nameplates"]["units"]["PLAYER"]["debuffs"]["yOffset"] = 2

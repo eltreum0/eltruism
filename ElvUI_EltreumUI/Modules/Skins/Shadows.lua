@@ -1530,47 +1530,232 @@ function ElvUI_EltreumUI:Shadows()
 		if E.db.ElvUI_EltreumUI.skins.shadow.unitframes then
 			if E.private.unitframe.enable then
 
-				local elvuiframes = {
-					_G["ElvUF_TargetTarget_HealthBar"],
-					_G["ElvUF_TargetTarget_PowerBar"],
-					_G["ElvUF_TargetTargetTarget_HealthBar"],
-					_G["ElvUF_TargetTargetTarget_PowerBar"],
-					_G["ElvUF_Target_HealthBar"],
-					_G["ElvUF_Target_PowerBar"],
-					_G["ElvUF_Pet_HealthBar"],
-					_G["ElvUF_Pet_PowerBar"],
-					_G["ElvUF_Player_HealthBar"],
-					_G["ElvUF_Player_PowerBar"],
-					_G["ElvUF_Focus_HealthBar"],
-					_G["ElvUF_Focus_PowerBar"],
-					_G["ElvUF_FocusTarget_HealthBar"],
-					_G["ElvUF_FocusTarget_PowerBar"],
-					_G["ElvUF_Arena1"],
-					_G["ElvUF_Arena2"],
-					_G["ElvUF_Arena3"],
-					_G["ElvUF_Arena4"],
-					_G["ElvUF_Arena5"],
-					_G["ElvUF_Player_CastBar"],
-					_G["ElvUF_Target_CastBar"],
-					_G["ElvUF_Focus_CastBar"],
-					_G["ElvUF_Player_EclipsePowerBar"],
-					_G["ElvUF_PlayerTotem1"] and _G["ElvUF_PlayerTotem1"].backdrop,
-					_G["ElvUF_PlayerTotem2"] and _G["ElvUF_PlayerTotem2"].backdrop,
-					_G["ElvUF_PlayerTotem3"] and _G["ElvUF_PlayerTotem3"].backdrop,
-					_G["ElvUF_PlayerTotem4"] and _G["ElvUF_PlayerTotem4"].backdrop,
-				}
-				for _, frame in pairs(elvuiframes) do
-					if frame then
-						if not frame.shadow then
-							if not E.db.ElvUI_EltreumUI.borders.borders then
+				if E.db.ElvUI_EltreumUI.borders.borders then
+					if _G["ElvUF_Player_HealthBar"] then
+						if not E.db.ElvUI_EltreumUI.borders.playerborder then
+							if not _G["ElvUF_Player_HealthBar"].shadow then
+								_G["ElvUF_Player_HealthBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_HealthBar"].shadow)
+							end
+						else
+							if _G["ElvUF_Player_HealthBar"].shadow then
+								_G["ElvUF_Player_HealthBar"].shadow:Hide()
+							end
+						end
+					end
+					if _G["ElvUF_Player_PowerBar"] then
+						if not E.db.ElvUI_EltreumUI.borders.playerpower then
+							if not _G["ElvUF_Player_PowerBar"].shadow then
+								_G["ElvUF_Player_PowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_PowerBar"].shadow)
+							end
+						else
+							if _G["ElvUF_Player_PowerBar"].shadow then
+								_G["ElvUF_Player_PowerBar"].shadow:Hide()
+							end
+						end
+					end
+					if _G["ElvUF_Pet_HealthBar"] then
+						if not E.db.ElvUI_EltreumUI.borders.petborder then
+							if not _G["ElvUF_Pet_HealthBar"].shadow then
+								_G["ElvUF_Pet_HealthBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Pet_HealthBar"].shadow)
+							end
+						else
+							if _G["ElvUF_Pet_HealthBar"].shadow then
+								_G["ElvUF_Pet_HealthBar"].shadow:Hide()
+							end
+						end
+					end
+					if _G["ElvUF_Pet_PowerBar"] then
+						if not E.db.ElvUI_EltreumUI.borders.petpower then
+							if not _G["ElvUF_Pet_PowerBar"].shadow then
+								_G["ElvUF_Pet_PowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Pet_PowerBar"].shadow)
+							end
+						else
+							if _G["ElvUF_Pet_PowerBar"].shadow then
+								_G["ElvUF_Pet_PowerBar"].shadow:Hide()
+							end
+						end
+					end
+					if _G["ElvUF_Target_HealthBar"] then
+						if not E.db.ElvUI_EltreumUI.borders.targetborder then
+							if not _G["ElvUF_Target_HealthBar"].shadow then
+								_G["ElvUF_Target_HealthBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Target_HealthBar"].shadow)
+							end
+						else
+							if _G["ElvUF_Target_HealthBar"].shadow then
+								_G["ElvUF_Target_HealthBar"].shadow:Hide()
+							end
+						end
+					end
+					if _G["ElvUF_Target_PowerBar"] then
+						if not E.db.ElvUI_EltreumUI.borders.targetpower then
+							if not _G["ElvUF_Target_PowerBar"].shadow then
+								_G["ElvUF_Target_PowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Target_PowerBar"].shadow)
+							end
+						else
+							if _G["ElvUF_Target_PowerBar"].shadow then
+								_G["ElvUF_Target_PowerBar"].shadow:Hide()
+							end
+						end
+					end
+					if _G["ElvUF_TargetTarget_HealthBar"] then
+						if not E.db.ElvUI_EltreumUI.borders.targettargetborder then
+							if not _G["ElvUF_TargetTarget_HealthBar"].shadow then
+								_G["ElvUF_TargetTarget_HealthBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_TargetTarget_HealthBar"].shadow)
+							end
+						else
+							if _G["ElvUF_TargetTarget_HealthBar"].shadow then
+								_G["ElvUF_TargetTarget_HealthBar"].shadow:Hide()
+							end
+						end
+					end
+					if _G["ElvUF_TargetTarget_PowerBar"] then
+						if not E.db.ElvUI_EltreumUI.borders.targettargetpower then
+							if not _G["ElvUF_TargetTarget_PowerBar"].shadow then
+								_G["ElvUF_TargetTarget_PowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_TargetTarget_PowerBar"].shadow)
+							end
+						else
+							if _G["ElvUF_TargetTarget_PowerBar"].shadow then
+								_G["ElvUF_TargetTarget_PowerBar"].shadow:Hide()
+							end
+						end
+					end
+					if _G["ElvUF_Focus_HealthBar"] then
+						if not E.db.ElvUI_EltreumUI.borders.focusborder then
+							if not _G["ElvUF_Focus_HealthBar"].shadow then
+								_G["ElvUF_Focus_HealthBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Focus_HealthBar"].shadow)
+							end
+						else
+							if _G["ElvUF_Focus_HealthBar"].shadow then
+								_G["ElvUF_Focus_HealthBar"].shadow:Hide()
+							end
+						end
+					end
+					if _G["ElvUF_Focus_PowerBar"] then
+						if not E.db.ElvUI_EltreumUI.borders.focuspower then
+							if not _G["ElvUF_Focus_PowerBar"].shadow then
+								_G["ElvUF_Focus_PowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Focus_PowerBar"].shadow)
+							end
+						else
+							if _G["ElvUF_Focus_PowerBar"].shadow then
+								_G["ElvUF_Focus_PowerBar"].shadow:Hide()
+							end
+						end
+					end
+					if _G["ElvUF_Player_Stagger"] then
+						if not E.db.ElvUI_EltreumUI.borders.staggerclassbar then
+							if not _G["ElvUF_Player_Stagger"].shadow then
+								_G["ElvUF_Player_Stagger"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_Stagger"].shadow)
+							end
+						else
+							if _G["ElvUF_Player_Stagger"].shadow then
+								_G["ElvUF_Player_Stagger"].shadow:Hide()
+							end
+						end
+					end
+					if _G["ElvUF_Player_CastBar"] then
+						if not E.db.ElvUI_EltreumUI.borders.playercastborder then
+							if not _G["ElvUF_Player_CastBar"].shadow then
+								_G["ElvUF_Player_CastBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_CastBar"].shadow)
+							end
+						else
+							if _G["ElvUF_Player_CastBar"].shadow then
+								_G["ElvUF_Player_CastBar"].shadow:Hide()
+							end
+						end
+					end
+					if _G["ElvUF_Target_CastBar"] then
+						if not E.db.ElvUI_EltreumUI.borders.targetcastborder then
+							if not _G["ElvUF_Target_CastBar"].shadow then
+								_G["ElvUF_Target_CastBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Target_CastBar"].shadow)
+							end
+						else
+							if _G["ElvUF_Target_CastBar"].shadow then
+								_G["ElvUF_Target_CastBar"].shadow:Hide()
+							end
+						end
+					end
+					if _G["ElvUF_Focus_CastBar"] then
+						if not E.db.ElvUI_EltreumUI.borders.focuscastborder then
+							if not _G["ElvUF_Focus_CastBar"].shadow then
+								_G["ElvUF_Focus_CastBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Focus_CastBar"].shadow)
+							end
+						else
+							if _G["ElvUF_Focus_CastBar"].shadow then
+								_G["ElvUF_Focus_CastBar"].shadow:Hide()
+							end
+						end
+					end
+
+					local shamantotems = {
+						_G["ElvUF_PlayerTotem1"] and _G["ElvUF_PlayerTotem1"].backdrop,
+						_G["ElvUF_PlayerTotem2"] and _G["ElvUF_PlayerTotem2"].backdrop,
+						_G["ElvUF_PlayerTotem3"] and _G["ElvUF_PlayerTotem3"].backdrop,
+						_G["ElvUF_PlayerTotem4"] and _G["ElvUF_PlayerTotem4"].backdrop,
+					}
+					for _, frame in pairs(shamantotems) do
+						if frame then
+							if not E.db.ElvUI_EltreumUI.borders.totembar then
+								if not frame.shadow then
+									frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(frame.shadow)
+								end
+							else
+								if frame.shadow then
+									frame.shadow:Hide()
+								end
+							end
+						end
+					end
+				else
+					local elvuiframes = {
+						_G["ElvUF_TargetTarget_HealthBar"],
+						_G["ElvUF_TargetTarget_PowerBar"],
+						_G["ElvUF_TargetTargetTarget_HealthBar"],
+						_G["ElvUF_TargetTargetTarget_PowerBar"],
+						_G["ElvUF_Target_HealthBar"],
+						_G["ElvUF_Target_PowerBar"],
+						_G["ElvUF_Pet_HealthBar"],
+						_G["ElvUF_Pet_PowerBar"],
+						_G["ElvUF_Player_HealthBar"],
+						_G["ElvUF_Player_PowerBar"],
+						_G["ElvUF_Focus_HealthBar"],
+						_G["ElvUF_Focus_PowerBar"],
+						_G["ElvUF_FocusTarget_HealthBar"],
+						_G["ElvUF_FocusTarget_PowerBar"],
+						_G["ElvUF_Arena1"],
+						_G["ElvUF_Arena2"],
+						_G["ElvUF_Arena3"],
+						_G["ElvUF_Arena4"],
+						_G["ElvUF_Arena5"],
+						_G["ElvUF_Player_Stagger"],
+						_G["ElvUF_Player_CastBar"],
+						_G["ElvUF_Target_CastBar"],
+						_G["ElvUF_Focus_CastBar"],
+						_G["ElvUF_Player_EclipsePowerBar"],
+						_G["ElvUF_PlayerTotem1"] and _G["ElvUF_PlayerTotem1"].backdrop,
+						_G["ElvUF_PlayerTotem2"] and _G["ElvUF_PlayerTotem2"].backdrop,
+						_G["ElvUF_PlayerTotem3"] and _G["ElvUF_PlayerTotem3"].backdrop,
+						_G["ElvUF_PlayerTotem4"] and _G["ElvUF_PlayerTotem4"].backdrop,
+					}
+					for _, frame in pairs(elvuiframes) do
+						if frame then
+							if not frame.shadow then
 								frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(frame.shadow)
-							end
-						elseif frame.shadow then
-							if E.db.ElvUI_EltreumUI.borders.borders then
-								frame.shadow:Hide()
-							else
-								frame.shadow:Show()
 							end
 						end
 					end
@@ -1845,22 +2030,6 @@ function ElvUI_EltreumUI:Shadows()
 
 								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_FocusTarget"].shadow)
 							end
-						end
-					end
-				end
-
-				local elvuiframeswithborders = {
-					_G["ElvUF_TargetTarget_PowerBar"],
-					_G["ElvUF_TargetTargetTarget_PowerBar"],
-					_G["ElvUF_Target_PowerBar"],
-					_G["ElvUF_Player_PowerBar"],
-					_G["ElvUF_Player_Stagger"],
-				}
-				for _, frame in pairs(elvuiframeswithborders) do
-					if frame then
-						if not frame.shadow then
-							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(frame.shadow)
 						end
 					end
 				end

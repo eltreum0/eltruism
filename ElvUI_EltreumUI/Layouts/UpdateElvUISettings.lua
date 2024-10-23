@@ -81,6 +81,10 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 			E.db["general"]["itemLevel"]["totalLevelFont"] = "Kimberley"
 			E.db["general"]["itemLevel"]["totalLevelFontOutline"] = "OUTLINE"
 			E.db["general"]["itemLevel"]["totalLevelFontSize"] = E.Retail and 22 or 12
+			E.db["general"]["itemLevel"]["enchantAbbrev"] = true
+			E.db["general"]["itemLevel"]["showItemLevel"] = true
+			E.db["general"]["itemLevel"]["showEnchants"] = true
+			E.db["general"]["itemLevel"]["showGems"] = true
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFont"] = "Kimberley"
 			E.db["unitframe"]["units"]["pet"]["buffs"]["countFontOutline"] = "OUTLINE"
 			E.db["unitframe"]["units"]["pet"]["debuffs"]["countFont"] = "Kimberley"
@@ -138,6 +142,10 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 						E.db["unitframe"]["units"]["pet"]["customTexts"]["EltreumPetName"]["text_format"] = "[namecolor][name:eltruism:abbreviate]"
 					end
 				end
+			end
+
+			if E.Retail then
+				ElvUI_EltreumUI:ModelsToggle(true) --disable models after layout for now due to the 3D model bug
 			end
 
 			ElvUI_EltreumUI:Print(L["Settings for ElvUI were updated."])
@@ -365,6 +373,10 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 
 		--disable rairity color, so that items color by lowest ilvl > highest
 		E.db["general"]["itemLevel"]["itemLevelRarity"] = false
+		E.db["general"]["itemLevel"]["enchantAbbrev"] = true
+		E.db["general"]["itemLevel"]["showItemLevel"] = true
+		E.db["general"]["itemLevel"]["showEnchants"] = true
+		E.db["general"]["itemLevel"]["showGems"] = true
 
 		ElvUI_EltreumUI:Print(L["Settings for ElvUI were updated."])
 	end
