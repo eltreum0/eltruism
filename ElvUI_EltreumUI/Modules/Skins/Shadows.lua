@@ -823,21 +823,21 @@ function ElvUI_EltreumUI:Shadows()
 							_G.EncounterJournalLootJournalTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.EncounterJournalLootJournalTab.backdrop.shadow)
 						end
-						if not _G.EncounterJournalEncounterFrameInfoOverviewTab.shadow then
-							_G.EncounterJournalEncounterFrameInfoOverviewTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.EncounterJournalEncounterFrameInfoOverviewTab.shadow)
+						if _G.EncounterJournalEncounterFrameInfoOverviewTab and _G.EncounterJournalEncounterFrameInfoOverviewTab.backdrop and not _G.EncounterJournalEncounterFrameInfoOverviewTab.backdrop.shadow then
+							_G.EncounterJournalEncounterFrameInfoOverviewTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.EncounterJournalEncounterFrameInfoOverviewTab.backdrop.shadow)
 						end
-						if not _G.EncounterJournalEncounterFrameInfoLootTab.shadow then
-							_G.EncounterJournalEncounterFrameInfoLootTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.EncounterJournalEncounterFrameInfoLootTab.shadow)
+						if _G.EncounterJournalEncounterFrameInfoLootTab and _G.EncounterJournalEncounterFrameInfoLootTab.backdrop and not _G.EncounterJournalEncounterFrameInfoLootTab.backdrop.shadow then
+							_G.EncounterJournalEncounterFrameInfoLootTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.EncounterJournalEncounterFrameInfoLootTab.backdrop.shadow)
 						end
-						if not _G.EncounterJournalEncounterFrameInfoBossTab.shadow then
-							_G.EncounterJournalEncounterFrameInfoBossTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.EncounterJournalEncounterFrameInfoBossTab.shadow)
+						if _G.EncounterJournalEncounterFrameInfoBossTab and _G.EncounterJournalEncounterFrameInfoBossTab.backdrop and not _G.EncounterJournalEncounterFrameInfoBossTab.backdrop.shadow then
+							_G.EncounterJournalEncounterFrameInfoBossTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.EncounterJournalEncounterFrameInfoBossTab.backdrop.shadow)
 						end
-						if not _G.EncounterJournalEncounterFrameInfoModelTab.shadow then
-							_G.EncounterJournalEncounterFrameInfoModelTab:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.EncounterJournalEncounterFrameInfoModelTab.shadow)
+						if _G.EncounterJournalEncounterFrameInfoModelTab and _G.EncounterJournalEncounterFrameInfoModelTab.backdrop and not _G.EncounterJournalEncounterFrameInfoModelTab.backdrop.shadow then
+							_G.EncounterJournalEncounterFrameInfoModelTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.EncounterJournalEncounterFrameInfoModelTab.backdrop.shadow)
 						end
 						if _G.EncounterJournalMonthlyActivitiesTab and _G.EncounterJournalMonthlyActivitiesTab.backdrop and not _G.EncounterJournalMonthlyActivitiesTab.backdrop.shadow then
 							_G.EncounterJournalMonthlyActivitiesTab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
