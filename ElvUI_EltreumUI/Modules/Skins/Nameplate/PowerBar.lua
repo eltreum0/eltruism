@@ -54,7 +54,7 @@ local druidstarfire = 8
 local shamanhex = 0
 local shamanbolt = 6
 local shamanlavaburst = 8
-local huntersteadyshot = 0
+local huntersteadyshot = 10 --now baseline
 local druideclipse,costTable
 local predictioncolorr, predictioncolorg, predictioncolorb
 local isSetup, isSetupprediction = false, false
@@ -89,9 +89,9 @@ function ElvUI_EltreumUI:PowerPrediction()
 				druidstarfire = 10
 			end
 			if IsPlayerSpell(321018) then --improved steady shot
-				huntersteadyshot = 10
+				huntersteadyshot = 20
 			end
-			if IsPlayerSpell(385923) then --shaman flow of pwoer
+			if IsPlayerSpell(385923) then --shaman flow of power
 				shamanbolt = 8
 				shamanlavaburst = 10
 			end
@@ -106,9 +106,9 @@ function ElvUI_EltreumUI:PowerPrediction()
 			-- Balance Druid
 			[190984] = druidwrath, --wrath
 			[194153] = druidstarfire, -- StarFire
-			[214281] = 10, -- New Moon
+			--[214281] = 10, -- New Moon --might finally have become 1
 			[274281] = 10, -- New Moon
-			[214282] = 20, -- Half Moon
+			--[214282] = 20, -- Half Moon --might finally have become 1
 			[274282] = 20, -- Half Moon
 			[274283] = 40, -- Full Moon
 			[202347] = 12, -- Stellar Flare
@@ -122,7 +122,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 			[263346] = 15, --dark void
 			[73510] = 4, --mind spike
 			[391109] = 30, --dark ascension
-			[407466] = 8, --mind spike: insanity
+			[407466] = 12, --mind spike: insanity
 			--[391403] = 12, --mind flay: insanity, but its a channel so idc
 			[375901] = 10, --mindgames
 			[120644] = 10, -- halo
@@ -146,7 +146,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 			[309328] = shamanhex, --hex can have maelstrom if they have inundate
 
 			--Hunter
-			[56641] = huntersteadyshot, --steady shot only gives focus with a talent now
+			[56641] = huntersteadyshot, --steady shot gives bonus focus with a talent
 		}
 
 		mainCost = 0 --reset
