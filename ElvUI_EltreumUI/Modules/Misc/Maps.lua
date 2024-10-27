@@ -402,17 +402,19 @@ function ElvUI_EltreumUI:WorldMapScale()
 		if _G["WorldMapFrame"] then
 			_G["WorldMapFrame"]:HookScript("OnShow", function()
 				if not E.Retail then
-					if not IsAddOnLoaded("Leatrix_Maps") then
-						_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
-					end
-					if not _G["WorldMapFrame"].EltruismMoveable then
-						_G["WorldMapFrame"]:SetMovable(true)
-						_G["WorldMapFrame"]:EnableMouse(true)
-						_G["WorldMapFrame"]:RegisterForDrag("LeftButton")
-						_G["WorldMapFrame"]:SetScript("OnDragStart", _G["WorldMapFrame"].StartMoving)
-						_G["WorldMapFrame"]:SetScript("OnDragStop", _G["WorldMapFrame"].StopMovingOrSizing)
-						_G["WorldMapFrame"]:SetClampedToScreen(true)
-						_G["WorldMapFrame"].EltruismMoveable = true
+					if not InCombatLockdown then
+						if not IsAddOnLoaded("Leatrix_Maps") then
+							_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
+						end
+						if not _G["WorldMapFrame"].EltruismMoveable then
+							_G["WorldMapFrame"]:SetMovable(true)
+							_G["WorldMapFrame"]:EnableMouse(true)
+							_G["WorldMapFrame"]:RegisterForDrag("LeftButton")
+							_G["WorldMapFrame"]:SetScript("OnDragStart", _G["WorldMapFrame"].StartMoving)
+							_G["WorldMapFrame"]:SetScript("OnDragStop", _G["WorldMapFrame"].StopMovingOrSizing)
+							_G["WorldMapFrame"]:SetClampedToScreen(true)
+							_G["WorldMapFrame"].EltruismMoveable = true
+						end
 					end
 				else
 					_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
