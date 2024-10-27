@@ -556,12 +556,14 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 						end)
 					end
 				end)
-				_G.AuctionHouseFrame:SetMovable(true)
-				_G.AuctionHouseFrame:EnableMouse(true)
-				_G.AuctionHouseFrame:RegisterForDrag("LeftButton")
-				_G.AuctionHouseFrame:SetScript("OnDragStart", _G.AuctionHouseFrame.StartMoving)
-				_G.AuctionHouseFrame:SetScript("OnDragStop", _G.AuctionHouseFrame.StopMovingOrSizing)
-				_G.AuctionHouseFrame:SetClampedToScreen(true)
+				if not InCombatLockdown then
+					_G.AuctionHouseFrame:SetMovable(true)
+					_G.AuctionHouseFrame:EnableMouse(true)
+					_G.AuctionHouseFrame:RegisterForDrag("LeftButton")
+					_G.AuctionHouseFrame:SetScript("OnDragStart", _G.AuctionHouseFrame.StartMoving)
+					_G.AuctionHouseFrame:SetScript("OnDragStop", _G.AuctionHouseFrame.StopMovingOrSizing)
+					_G.AuctionHouseFrame:SetClampedToScreen(true)
+				end
 			else
 				_G["AuctionFrame"]:HookScript("OnShow",function()
 					if not tabSkinned then
@@ -580,12 +582,14 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 						end)
 					end
 				end)
-				_G.AuctionFrame:SetMovable(true)
-				_G.AuctionFrame:EnableMouse(true)
-				_G.AuctionFrame:RegisterForDrag("LeftButton")
-				_G.AuctionFrame:SetScript("OnDragStart", _G.AuctionFrame.StartMoving)
-				_G.AuctionFrame:SetScript("OnDragStop", _G.AuctionFrame.StopMovingOrSizing)
-				_G.AuctionFrame:SetClampedToScreen(true)
+				if not InCombatLockdown then
+					_G.AuctionFrame:SetMovable(true)
+					_G.AuctionFrame:EnableMouse(true)
+					_G.AuctionFrame:RegisterForDrag("LeftButton")
+					_G.AuctionFrame:SetScript("OnDragStart", _G.AuctionFrame.StartMoving)
+					_G.AuctionFrame:SetScript("OnDragStop", _G.AuctionFrame.StopMovingOrSizing)
+					_G.AuctionFrame:SetClampedToScreen(true)
+				end
 			end
 		end
 	end
