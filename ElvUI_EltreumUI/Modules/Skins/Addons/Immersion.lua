@@ -114,8 +114,9 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					v:StyleButton()
 					v.Center:Show()
 					v.Center:SetAlpha(E.db.general.backdropfadecolor.a)
-					v.Center.SetAlpha = E.noop
+					--v.Center.SetAlpha = E.noop
 					--v.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
+
 					v.hover:SetVertexColor(classcolor.r, classcolor.g,classcolor.b, 0.7) --hover color
 					v.pushed:SetColorTexture(classcolor.r, classcolor.g,classcolor.b, 0.8) --pushed color
 					v.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+3, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
