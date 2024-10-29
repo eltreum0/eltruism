@@ -417,12 +417,8 @@ function ElvUI_EltreumUI:EnchantScroll()
 		end
 		if not hookedframe.isEltruismScripted then
 			local disenchant
-			if E.Retail or E.Classic then
-				local spellData = GetSpellInfo(13262)
-				disenchant = spellData.name
-			else
-				disenchant = GetSpellInfo(13262)
-			end
+			local spellData = GetSpellInfo(13262)
+			disenchant = spellData.name
 			disenchantbutton:SetText(disenchant)
 			disenchantbutton:SetAttribute("type1", "spell")
 			disenchantbutton:SetAttribute("spell", "13262")
@@ -476,12 +472,8 @@ function ElvUI_EltreumUI:EnchantScroll()
 		local function UpdateButtons()
 			E:Delay(0.08, function()
 				local enchantingtext
-				if E.Retail or E.Classic then
-					local spellData = GetSpellInfo(7411)
-					enchantingtext = spellData.name
-				else
-					enchantingtext = GetSpellInfo(7411)
-				end
+				local spellData = GetSpellInfo(7411)
+				enchantingtext = spellData.name
 				local tradeskilltext
 				if E.Retail then
 					tradeskilltext = _G.ProfessionsFrameTitleText:GetText()

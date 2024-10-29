@@ -2,24 +2,24 @@ local E, L = unpack(ElvUI)
 
 --apply textured icon on profile import, ty Repooc
 local function doApplyToAll(db, dbEntry, dbValue)
-    if not db then return end
-    for _, spell in pairs(db) do
-        if dbValue ~= nil then
-            spell[dbEntry] = dbValue
-        else
-            return spell[dbEntry]
-        end
-    end
+	if not db then return end
+	for _, spell in pairs(db) do
+		if dbValue ~= nil then
+			spell[dbEntry] = dbValue
+		else
+			return spell[dbEntry]
+		end
+	end
 end
 
 local function BuffIndicator_ApplyToAll(dbEntry, dbValue, profile, pet)
-    if profile then
-        return doApplyToAll(E.db.unitframe.filters.aurawatch, dbEntry, dbValue)
-    elseif pet then
-        return doApplyToAll(E.global.unitframe.aurawatch.PET, dbEntry, dbValue)
-    else
-        return doApplyToAll(E.global.unitframe.aurawatch[E.myclass], dbEntry, dbValue)
-    end
+	if profile then
+		return doApplyToAll(E.db.unitframe.filters.aurawatch, dbEntry, dbValue)
+	elseif pet then
+		return doApplyToAll(E.global.unitframe.aurawatch.PET, dbEntry, dbValue)
+	else
+		return doApplyToAll(E.global.unitframe.aurawatch[E.myclass], dbEntry, dbValue)
+	end
 end
 
 function ElvUI_EltreumUI:AuraFiltersUpdate()

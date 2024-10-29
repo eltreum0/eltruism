@@ -1708,18 +1708,10 @@ function ElvUI_EltreumUI:Configtable()
 		local tpspellsitems = {}
 		for _, v in pairs(ElvUI_EltreumUI:GetTeleportSpells()) do
 			if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
-				if E.Retail or E.Classic then
-					local spellData = GetSpellInfo(v)
-					local hasSpell = IsSpellKnown(v)
-					if hasSpell then
-						tpspellsitems[v] = spellData.name
-					end
-				else
-					local name = GetSpellInfo(v)
-					local hasSpell = IsSpellKnown(v)
-					if hasSpell then
-						tpspellsitems[v] = name
-					end
+				local spellData = GetSpellInfo(v)
+				local hasSpell = IsSpellKnown(v)
+				if hasSpell then
+					tpspellsitems[v] = spellData.name
 				end
 			else
 				local name, itemLink = GetItemInfo(v)
@@ -1733,21 +1725,14 @@ function ElvUI_EltreumUI:Configtable()
 		return tpspellsitems
 	end, false, "full", function()
 		if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
-			if E.Retail or E.Classic then
-				local spellData = GetSpellInfo(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport))
-				if spellData then
-					local value = spellData.spellID
-					if value then
-						return value
-					end
-				else
-					return 187874 --fallback value
-				end
-			else
-				local value = select(7,GetSpellInfo(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)))
+			local spellData = GetSpellInfo(tostring(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport))
+			if spellData then
+				local value = spellData.spellID
 				if value then
 					return value
 				end
+			else
+				return 187874 --fallback value
 			end
 		else
 			local _, itemLink = GetItemInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
@@ -1759,17 +1744,12 @@ function ElvUI_EltreumUI:Configtable()
 	end,
 	function(_, value)
 		if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
-			if E.Retail or E.Classic then
-				local spellData = GetSpellInfo(tostring(value))
-				if spellData then
-					local value = spellData.spellID
-					if value then
-						E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = value
-					end
+			local spellData = GetSpellInfo(tostring(value))
+			if spellData then
+				local value = spellData.spellID
+				if value then
+					E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = value
 				end
-			else
-				local name = GetSpellInfo(value)
-				E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = tostring(name)
 			end
 		else
 			local name = GetItemInfo(value)

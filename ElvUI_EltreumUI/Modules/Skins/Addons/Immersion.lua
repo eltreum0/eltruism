@@ -111,14 +111,14 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					--v:CreateBackdrop('Transparent')
 					v.Hilite:Hide()
 					v.Overlay:Hide()
-					v:StyleButton()
+					--v:StyleButton()
 					v.Center:Show()
 					v.Center:SetAlpha(E.db.general.backdropfadecolor.a)
 					--v.Center.SetAlpha = E.noop
 					--v.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
 
-					v.hover:SetVertexColor(classcolor.r, classcolor.g,classcolor.b, 0.7) --hover color
-					v.pushed:SetColorTexture(classcolor.r, classcolor.g,classcolor.b, 0.8) --pushed color
+					--v.hover:SetVertexColor(classcolor.r, classcolor.g,classcolor.b, 0.7) --hover color
+					--v.pushed:SetColorTexture(classcolor.r, classcolor.g,classcolor.b, 0.8) --pushed color
 					v.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+3, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 					v.Label:SetShadowOffset(1,-1)
 					if E.db.ElvUI_EltreumUI.skins.shadow.enable then

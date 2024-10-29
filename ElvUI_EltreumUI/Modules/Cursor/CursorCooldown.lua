@@ -325,13 +325,9 @@ end
 
 function ElvUI_EltreumUI:checkSpellCooldown(spell)
 	if not spell then return end
-	if E.Retail or E.Classic then
-		local spellData = GetSpellInfo(spell)
-		if spellData then
-			namespell, texturespell = spellData.name, spellData.iconID
-		end
-	else
-		namespell, _, texturespell = GetSpellInfo(spell)
+	local spellData = GetSpellInfo(spell)
+	if spellData then
+		namespell, texturespell = spellData.name, spellData.iconID
 	end
 	if E.db.ElvUI_EltreumUI.cursors.cursor.petcooldown and not namespell then
 		return ElvUI_EltreumUI:checkPetActionCooldown(findPetActionIndexForSpell(spell))
