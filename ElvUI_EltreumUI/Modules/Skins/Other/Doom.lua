@@ -187,21 +187,12 @@ function ElvUI_EltreumUI:Doom()
 										duration = cooldowntable.duration,
 										enabled = cooldowntable.isEnabled
 									}
-								elseif E.Classic then
+								else
 									local start, duration, enabled = GetSpellCooldown(v[3])
 									local spelltable = GetSpellInfo(v[3])
 									return {
 										name = spelltable.name,
 										texture = spelltable.iconID,
-										start = start,
-										duration = duration,
-										enabled = enabled
-									}
-								else
-									local start, duration, enabled = GetSpellCooldown(v[3])
-									return {
-										name = GetSpellInfo(v[3]),
-										texture = GetSpellTexture(v[3]),
 										start = start,
 										duration = duration,
 										enabled = enabled
