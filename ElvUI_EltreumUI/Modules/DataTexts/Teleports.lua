@@ -363,16 +363,11 @@ local hearthstones = {
 }
 
 local function SpellInfo(spellID)
-	if E.Retail or E.Classic then
-		local spellData = GetSpellInfo(spellID)
-		if spellData then
-			return spellData.name, spellData.spellID
-		else
-			return "UNKNOWN", 187874  --fallback value
-		end
+	local spellData = GetSpellInfo(spellID)
+	if spellData then
+		return spellData.name, spellData.spellID
 	else
-		local name, id = GetSpellInfo(spellID)
-		return name, id
+		return "UNKNOWN", 187874  --fallback value
 	end
 end
 

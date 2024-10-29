@@ -694,15 +694,32 @@ end
 
 --check for blinkii's kick on cd function
 function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
-    if IsAddOnLoaded("ElvUI_mMediaTag") and E.Retail then
-        if (E.db.mMT and E.db.mMT.interruptoncd and E.db.mMT.interruptoncd.enable) then
-            return _G.mMT:mMediaTag_interruptOnCD() or false
-        else
-            return false
-        end
-    else
-        return false
-    end
+
+if IsAddOnLoaded("ElvUI_mMediaTag") and E.Retail then
+
+
+if (E.db.mMT and E.db.mMT.interruptoncd and E.db.mMT.interruptoncd.enable) then
+
+
+
+return _G.mMT:mMediaTag_interruptOnCD() or false
+
+
+else
+
+
+
+return false
+
+
+end
+
+else
+
+
+return false
+
+end
 end
 
 do
@@ -1009,10 +1026,14 @@ function ElvUI_EltreumUI:ExportImportGradient(data,mode)
 		return exportProfile
 	elseif mode == "import" then
 		local decodedData = LibDeflate:DecodeForPrint(data)
-	    local decompressed = LibDeflate:DecompressDeflate(decodedData)
-	    local serializedData = format('%s%s', decompressed, '^^')
-	    local success, profileData = D:Deserialize(serializedData)
-	    if not success then
+
+local decompressed = LibDeflate:DecompressDeflate(decodedData)
+
+local serializedData = format('%s%s', decompressed, '^^')
+
+local success, profileData = D:Deserialize(serializedData)
+
+if not success then
 			E:Print('Error deserializing:', profileData)
 			return
 		end

@@ -140,34 +140,24 @@ local stanceBackup = 0 --store previous stance to force refresh it
 
 local function SpellInfo(spellID,ShapeshiftFormID)
 	if ShapeshiftFormID then
-		if E.Cata then
-			local spellID = select(4,GetShapeshiftFormInfo(ShapeshiftFormID))
-			local name = GetSpellInfo(spellID)
-			return name
-		else
-			if GetShapeshiftFormInfo(1) then
-				spellID = select(4,GetShapeshiftFormInfo(ShapeshiftFormID))
-				if spellID then
-					local spellData = GetSpellInfo(spellID)
-					if spellData.name then
-						return spellData.name
-					else
-						return ""
-					end
+		if GetShapeshiftFormInfo(1) then
+			spellID = select(4,GetShapeshiftFormInfo(ShapeshiftFormID))
+			if spellID then
+				local spellData = GetSpellInfo(spellID)
+				if spellData.name then
+					return spellData.name
 				else
 					return ""
 				end
 			else
 				return ""
 			end
+		else
+			return ""
 		end
 	elseif spellID then
-		if E.Retail or E.Classic then
-			local spellData = GetSpellInfo(spellID)
-			return spellData.name
-		else
-			return GetSpellInfo(spellID)
-		end
+		local spellData = GetSpellInfo(spellID)
+		return spellData.name
 	end
 end
 
