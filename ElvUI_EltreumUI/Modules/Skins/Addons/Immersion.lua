@@ -114,7 +114,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					--v:StyleButton()
 					v.Center:Show()
 					v.Center:SetAlpha(E.db.general.backdropfadecolor.a)
-					--v.Center.SetAlpha = E.noop
+					v.Center.SetAlpha = E.noop
 					--v.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
 
 					--v.hover:SetVertexColor(classcolor.r, classcolor.g,classcolor.b, 0.7) --hover color
