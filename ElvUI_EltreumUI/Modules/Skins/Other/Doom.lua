@@ -187,21 +187,12 @@ function ElvUI_EltreumUI:Doom()
 										duration = cooldowntable.duration,
 										enabled = cooldowntable.isEnabled
 									}
-								elseif E.Classic then
+								else
 									local start, duration, enabled = GetSpellCooldown(v[3])
 									local spelltable = GetSpellInfo(v[3])
 									return {
 										name = spelltable.name,
 										texture = spelltable.iconID,
-										start = start,
-										duration = duration,
-										enabled = enabled
-									}
-								else
-									local start, duration, enabled = GetSpellCooldown(v[3])
-									return {
-										name = GetSpellInfo(v[3]),
-										texture = GetSpellTexture(v[3]),
 										start = start,
 										duration = duration,
 										enabled = enabled
@@ -310,9 +301,15 @@ function ElvUI_EltreumUI:Doom()
 							DCP.TextFrame:SetText(animating[1][3])
 						end
 						if E.db.ElvUI_EltreumUI.skins.doom.tts and animating[1][3] then --and animating[1][3] ~= nil then
-							local tts = GetSpellInfo(animating[1][3])
-							if E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil and tts ~= nil then
-								C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts.name, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
+							if E.Cata then --cata on 29/10/2024 seems to not have fully migrated like classic era
+								if E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil then
+									C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, animating[1][3], Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
+								end
+							else
+								local tts = GetSpellInfo(animating[1][3])
+								if E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil and tts ~= nil then
+									C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts.name, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
+								end
 							end
 						end
 						DCPT:SetTexture(animating[1][1])

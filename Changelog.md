@@ -1,6 +1,12 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.2.5
+Added support for Cataclysm version 4.4.1  
+Updated Immersion skin to better handle the dialog buttons  
+Updated some of the Power Bar Prediction values  
+Fixed Class Combo Borders not working when detached  
+Fixed some shadows  
 ### 4.2.4
 Added /eltruism togglemodels command to disable 3D models on unitframes, this is recommended due to a bug on Blizzard's end with 3D models causing a big performance impact  
 Added a new button in Eltruism > Aura Filters to more easily change filters on all frames  

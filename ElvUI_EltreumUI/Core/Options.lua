@@ -3799,26 +3799,19 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added /eltruism togglemodels command to disable 3D models on unitframes, this is recommended due to a bug on Blizzard's end with 3D models causing a big performance impact
-Added a new button in Eltruism > Aura Filters to more easily change filters on all frames
-Added movers to AuctionHouseFrame, TradeSkillFrame, CraftFrame and ProfessionsFrame
+Added support for Cataclysm version 4.4.1
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated shadows to better handle adding shadows when Borders are enabled
-Updated Aura Filters, its now recommended to use the Minimal Filter
-Updated profiles to now use the Minimal Aura Filters during install
-Updated profile to disable ElvUI Abbreviating Enchants
-Updated profiles to now disable Models in Retail during install
-Updated some of the version checking
+Updated Immersion skin to better handle the dialog buttons
+Updated some of the Power Bar Prediction values
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue with Borders where some Buffs/Debuffs could have the wrong color on Unitframes
-Fixed /eltruism paging NUMBER command incorrectly setting visibility settings
-Fixed Windtools's GameBar shadows
+Fixed Class Combo Borders not working when detached
+Fixed some shadows
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
