@@ -151,22 +151,15 @@ function ElvUI_EltreumUI:BlizzCombatText()
 		return
 	end
 	if not InCombatLockdown() then
-		if tostring(GetCVar("enableFloatingCombatText")) == "1" then
-			if E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext and not E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana then
-				if IsAddOnLoaded('ElvUI_FCT') or IsAddOnLoaded('NameplateSCT') then
-					SetCVar("enableFloatingCombatText", 0)
-					SetCVar("floatingCombatTextCombatHealing", 0)
-					SetCVar("floatingCombatTextCombatHealingAbsorbSelf", 0)
-					SetCVar("floatingCombatTextCombatHealingAbsorbTarget", 0)
-					SetCVar("floatingCombatTextCombatDamage", 0)
-				end
-			end
-		end
-		if tostring(GetCVar("floatingCombatTextEnergyGains")) == "0" or tostring(GetCVar("enableFloatingCombatText")) == "0" then
-			if E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana then
-				SetCVar("floatingCombatTextEnergyGains", 1)
-				SetCVar("enableFloatingCombatText", 1) ----this is damage taken without this the floating resource will not work
-			end
+		if E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext and not E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana then
+			SetCVar("enableFloatingCombatText", 0)
+			SetCVar("floatingCombatTextCombatHealing", 0)
+			SetCVar("floatingCombatTextCombatHealingAbsorbSelf", 0)
+			SetCVar("floatingCombatTextCombatHealingAbsorbTarget", 0)
+			SetCVar("floatingCombatTextCombatDamage", 0)
+		elseif E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana then
+			SetCVar("floatingCombatTextEnergyGains", 1)
+			SetCVar("enableFloatingCombatText", 1) ----this is damage taken without this the floating resource will not work
 		end
 	end
 end
