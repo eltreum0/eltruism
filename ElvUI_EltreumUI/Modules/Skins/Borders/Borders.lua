@@ -1502,7 +1502,7 @@ function ElvUI_EltreumUI:AuraBordersColorDebuff(button)
 end
 hooksecurefunc(A, 'UpdateAura', ElvUI_EltreumUI.AuraBordersColorDebuff) --debuff colors update
 
-function ElvUI_EltreumUI:UFAuraBorders(button)
+function ElvUI_EltreumUI:UFAuraBorders(_,button)
 	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf and E.private.auras.enable and not E.db.ElvUI_EltreumUI.borders.bordertest then
 		ElvUI_EltreumUI:GetButtonCasterForBorderColor(button) --fix the border color
 		local auraborder
@@ -1534,12 +1534,14 @@ function ElvUI_EltreumUI:UFAuraBorders(button)
 		else
 			auraborder = _G["EltruismAuraBorder"..button:GetName()]
 			if button.filter == "HELPFUL" then
+				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufbuffsizex, E.db.ElvUI_EltreumUI.borders.ufbuffsizey)
 				if classcolor2check then
 					auraborder:SetBackdropBorderColor(classcolor2.r, classcolor2.g, classcolor2.b, 1)
 				else
 					auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				end
 			else
+				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufdebuffsizex, E.db.ElvUI_EltreumUI.borders.ufdebuffsizey)
 				local r,g,b = button:GetBackdropBorderColor()
 				if r then
 					auraborder:SetBackdropBorderColor(r,g,b, 1)
@@ -1549,32 +1551,8 @@ function ElvUI_EltreumUI:UFAuraBorders(button)
 			end
 		end
 	end
-end
-hooksecurefunc(UF, 'Construct_AuraIcon', ElvUI_EltreumUI.UFAuraBorders) --uf aura borders
 
-function ElvUI_EltreumUI:UFAuraBordersColorDebuff(_,button)
-	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf and E.private.auras.enable and not E.db.ElvUI_EltreumUI.borders.bordertest then
-		ElvUI_EltreumUI:GetButtonCasterForBorderColor(button) --fix the border color
-		local auraborder = _G["EltruismAuraBorder"..button:GetName()]
-		if auraborder then
-			if button.filter == "HELPFUL" then
-				if classcolor2check then
-					auraborder:SetBackdropBorderColor(classcolor2.r, classcolor2.g, classcolor2.b, 1)
-				else
-					auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				end
-			else
-				local r,g,b = button:GetBackdropBorderColor()
-				if r then
-					auraborder:SetBackdropBorderColor(r,g,b, 1)
-				else
-					auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-				end
-			end
-		end
-	end
-
-	if button.eltruismbordertest then --cursed borders
+	if button and button.eltruismbordertest then --cursed borders
 		if button.isDebuff then
 			local r,g,b = button:GetBackdropBorderColor()
 			if r then
@@ -1587,7 +1565,7 @@ function ElvUI_EltreumUI:UFAuraBordersColorDebuff(_,button)
 		end
 	end
 end
-hooksecurefunc(UF, 'PostUpdateAura', ElvUI_EltreumUI.UFAuraBordersColorDebuff) --uf aura debuff colors update
+hooksecurefunc(UF, 'PostUpdateAura', ElvUI_EltreumUI.UFAuraBorders) --uf aura borders and debuff colors update
 
 function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of target changes if the target is not in party/raid, no event to register :(
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor and not E.db.ElvUI_EltreumUI.borders.bordertest then
@@ -1647,7 +1625,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 					local number = E.db.unitframe.units.target.buffs.numrows * E.db.unitframe.units.target.buffs.perrow or 2
 					for i = 1, number do
 						if _G["ElvUF_TargetBuffsButton"..i] then
-							ElvUI_EltreumUI:UFAuraBorders(_G["ElvUF_TargetBuffsButton"..i])
+							ElvUI_EltreumUI:UFAuraBorders(nil,_G["ElvUF_TargetBuffsButton"..i])
 						end
 					end
 				end
@@ -1655,7 +1633,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 					local number = E.db.unitframe.units.target.debuffs.numrows * E.db.unitframe.units.target.debuffs.perrow or 2
 					for i = 1, number do
 						if _G["ElvUF_TargetDebuffsButton"..i] then
-							ElvUI_EltreumUI:UFAuraBorders(_G["ElvUF_TargetDebuffsButton"..i])
+							ElvUI_EltreumUI:UFAuraBorders(nil,_G["ElvUF_TargetDebuffsButton"..i])
 						end
 					end
 				end

@@ -15,6 +15,7 @@ local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 
 --elvui castbar texture/gradient
 function ElvUI_EltreumUI:CastBarTextureGradient()
+	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if E.private.unitframe.enable then
 
 		--gradient/texture
@@ -1055,6 +1056,7 @@ hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastBarTextureGradient)
 
 --color when interrupted
 function ElvUI_EltreumUI:CastBarTextureGradientFail(unit)
+	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if not unit then return end
 	castbar = _G["ElvUF_Player_CastBar"]
 	targetcastbar = _G["ElvUF_Target_CastBar"]
