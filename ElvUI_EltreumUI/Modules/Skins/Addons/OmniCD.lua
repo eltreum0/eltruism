@@ -23,7 +23,7 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 
 		--icons on UF shadows, only hook if shadows are enabled
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
-			hooksecurefunc(OmniCD.Party,"SetBorder",function(_, icon)
+			hooksecurefunc(OmniCD.Party.BarFrameIconMixin,"SetBorder",function(icon)
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 					if not icon.shadow then
 						icon:CreateShadow(2) --prevent shadow overlap
@@ -31,15 +31,7 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 					end
 				end
 			end)
-			hooksecurefunc(OmniCD.Party,"SetExBorder",function(_, icon)
-				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
-					if not icon.shadow then
-						icon:CreateShadow(2) --prevent shadow overlap
-						ElvUI_EltreumUI:ShadowColor(icon.shadow)
-					end
-				end
-			end)
-			hooksecurefunc(OmniCD.Party,"SetExIconName",function(_, icon)
+			hooksecurefunc(OmniCD.Party.BarFrameIconMixin,"SetExIconName",function(icon)
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 					if not icon.shadow then
 						icon:CreateShadow(2) --prevent shadow overlap
@@ -48,9 +40,17 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 				end
 			end)
 		end
-		--SetExStatusBarColor
+
 		--interrupt bars shadows/gradient/position
-		hooksecurefunc(OmniCD.Party,"GetStatusBar",function(_, icon)
+		hooksecurefunc(OmniCD.Party.BarFrameIconMixin,"SetExBorder",function(icon)
+
+			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+				if not icon.shadow then
+					icon:CreateShadow(3) --prevent shadow overlap
+					ElvUI_EltreumUI:ShadowColor(icon.shadow)
+				end
+			end
+
 			 if icon and icon.statusBar then
 				--shadows
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
