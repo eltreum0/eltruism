@@ -134,7 +134,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 			frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
 
 			if not E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
-				if ElvUI_EltreumUI:ShouldRotatePortrait(model) and db ~= "player" then
+				if ElvUI_EltreumUI:ShouldRotatePortrait(model) and db ~= "player" and (db ~= "party" or (db == "party" and E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align == "RIGHT")) then
 					frame.EltruismPortrait.portrait:SetTexCoord(1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
 				else
 					frame.EltruismPortrait.portrait:SetTexCoord(E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
