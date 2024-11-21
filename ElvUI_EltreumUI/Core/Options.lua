@@ -113,9 +113,10 @@ local DONATORS = {
 local TRANSLATORS = {
 	'|cffCC3333Khornan|r - German Translation',
 	'|cffCC3333Dlarge|r - German Translation',
-	'|cffCC3333Neo|r - Chinese Translation',
+	'|cffCC3333Neo|r - Simplified Chinese Translation',
 	'DeepL artificial intelligence for French and Spanish translations',
-	'|cffCC3333魔能機曱 (Johnson)|r - Taiwanese Mandarin Translation',
+	'|cffCC3333魔能機曱 (Johnson)|r - Traditional Chinese translation',
+	'|cffCC3333Meowcactus|r - Simplified Chinese Translation',
 }
 
 -- SortList
