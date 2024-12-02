@@ -71,7 +71,6 @@ function ElvUI_EltreumUI:GetMRTProfile()
 					["enabled"] = true,
 					["upd4525"] = true,
 					["gnGUIDs"] = {
-						["Lastwill"] = 252,
 					},
 					["Profiles"] = {
 						["Now"] = "default",

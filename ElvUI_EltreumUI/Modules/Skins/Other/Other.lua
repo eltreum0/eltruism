@@ -135,7 +135,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 					-- Create the additional rows
 					--local numSkills = _G.TRADE_SKILLS_DISPLAYED
 					--local numSkills = 8
-					_G.TRADE_SKILLS_DISPLAYED = 22
+					_G.TRADE_SKILLS_DISPLAYED = 22 --check limit being bypassed
 
 					--_G.TRADE_SKILLS_DISPLAYED = _G.TRADE_SKILLS_DISPLAYED + 14
 					--for i = numSkills + 1, 22 do
@@ -262,7 +262,9 @@ function ElvUI_EltreumUI:SkinProfessions()
 				local CraftDetailScrollChildFrame = _G.CraftDetailScrollChildFrame
 				local CraftDetailScrollFrameScrollBar = _G.CraftDetailScrollFrameScrollBar
 
-				CraftFrame:HookScript("OnShow", function()
+				CraftFrame:HookScript("OnShow", function() --is also the pet training in classic
+					_G.CRAFTS_DISPLAYED = 22 --declare outside due to era pet training
+
 					E:Delay(0, function()
 						if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard and E.private.skins.blizzard.enable then
 							if CraftFrame.backdrop and not CraftFrame.backdrop.shadow then

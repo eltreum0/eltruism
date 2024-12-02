@@ -1,7 +1,11 @@
-### 4.2.5 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 4.2.6 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added support for Cataclysm version 4.4.1  
-Updated Immersion skin to better handle the dialog buttons  
-Updated some of the Power Bar Prediction values  
-Fixed Class Combo Borders not working when detached  
-Fixed some shadows
+Added Simplified Chinese translation by Meowcactus  
+Updated the setup of combat cvars to work with other addons besides ElvUI_FCT and NameplateSCT  
+Updated the hiding of Raid frames in PvP to also work when not using GladiusEX  
+Updated /eltruism encountercheck to also disable gradient castbar  
+Updated Immersion Skin  
+Fixed an issue where Borders were not working correctly with Unitframe Auras  
+Fixed an issue with custom portraits on NPCs  
+Fixed the rotation of party portraits  
+Fixed the OmniCD skin

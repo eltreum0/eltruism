@@ -113,7 +113,9 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 	end
 
 	if E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom and E.db.ElvUI_EltreumUI.unitframes.portrait[db].style ~= "ORIGINAL" and E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcircle and E.db.ElvUI_EltreumUI.unitframes.portrait[db].background then
-		frame.EltruismPortrait.background:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.portrait[db].backgroundcolor.r,E.db.ElvUI_EltreumUI.unitframes.portrait[db].backgroundcolor.g,E.db.ElvUI_EltreumUI.unitframes.portrait[db].backgroundcolor.b,1)
+		if UnitIsPlayer(frame.unit) or (E.Retail and UnitInPartyIsAI(frame.unit)) then
+			frame.EltruismPortrait.background:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.portrait[db].backgroundcolor.r,E.db.ElvUI_EltreumUI.unitframes.portrait[db].backgroundcolor.g,E.db.ElvUI_EltreumUI.unitframes.portrait[db].backgroundcolor.b,1)
+		end
 	else
 		frame.EltruismPortrait.background:SetVertexColor(1,0,0,0)
 	end
@@ -132,10 +134,18 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 			frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
 
 			if not E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
-				if ElvUI_EltreumUI:ShouldRotatePortrait(model) and db ~= "player" then
+				if ElvUI_EltreumUI:ShouldRotatePortrait(model) and db ~= "player" and (db ~= "party" or (db == "party" and E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align == "RIGHT")) then
 					frame.EltruismPortrait.portrait:SetTexCoord(1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
 				else
 					frame.EltruismPortrait.portrait:SetTexCoord(E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
+				end
+			end
+
+			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcircle and E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
+				if not (UnitIsPlayer(frame.unit) or (E.Retail and UnitInPartyIsAI(frame.unit))) then
+					frame.EltruismPortrait.portrait:Hide()
+					frame.EltruismPortrait.border:Hide()
+					frame.EltruismPortrait.background:SetVertexColor(1,0,0,0)
 				end
 			end
 
@@ -255,7 +265,9 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 			end
 
 			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcircle then
-				frame.EltruismPortrait.border:Show()
+				if UnitIsPlayer(frame.unit) or (E.Retail and UnitInPartyIsAI(frame.unit)) then
+					frame.EltruismPortrait.border:Show()
+				end
 				frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
 			else
 				frame.EltruismPortrait.portrait:SetMask("")
