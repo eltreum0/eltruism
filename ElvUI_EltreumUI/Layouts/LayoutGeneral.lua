@@ -1528,15 +1528,10 @@ function ElvUI_EltreumUI:SetupGlobal()
 	-- ElvUI Global DB
 	if E.Retail then
 		E.global["general"]["commandBarSetting"] = "ENABLED_RESIZEPARENT"
-		E.global["general"]["smallerWorldMap"] = false
-		E.global["general"]["smallerWorldMapScale"] = 1
-		E.global["general"]["mapAlphaWhenMoving"] = 0.35
 	end
-	if E.Classic or E.Cata then
-		E.global["general"]["smallerWorldMapScale"] = 0.5
-		E.global["general"]["mapAlphaWhenMoving"] = 0.5
-		E.global["general"]["smallerWorldMap"] = true
-	end
+	E.global["general"]["smallerWorldMap"] = false
+	E.global["general"]["smallerWorldMapScale"] = 1
+	E.global["general"]["mapAlphaWhenMoving"] = 0.35
 	E.global["general"]["WorldMapCoordinates"]["position"] = "TOPLEFT"
 	E.global["general"]["fadeMapDuration"] = 0.1
 	-- Custom DataText
