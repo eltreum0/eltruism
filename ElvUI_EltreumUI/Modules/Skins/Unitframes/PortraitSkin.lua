@@ -26,6 +26,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 		modelcheck:SetUnit(frame.unit)
 		model = modelcheck:GetModelFileID()
 		modelcheck:ClearModel()
+		frame.EltruismModelID = model
 	end
 
 	if not frame.EltruismPortrait then
@@ -134,7 +135,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 			frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
 
 			if not E.db.ElvUI_EltreumUI.unitframes.portrait[db].custom then
-				if ElvUI_EltreumUI:ShouldRotatePortrait(model) and db ~= "player" and (db ~= "party" or (db == "party" and E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align == "RIGHT")) then
+				if (ElvUI_EltreumUI:ShouldRotatePortrait(model) or db == "pet") and db ~= "player" and (db ~= "party" or (db == "party" and E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align == "RIGHT")) then
 					frame.EltruismPortrait.portrait:SetTexCoord(1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
 				else
 					frame.EltruismPortrait.portrait:SetTexCoord(E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
@@ -415,6 +416,9 @@ function ElvUI_EltreumUI:BlizzPortraits(unit,hasStateChanged)
 		if unit == "targettarget" then
 			CreatePorfraitFrameAndTexture(_G["ElvUF_TargetTarget"],"ElvUF_TargetTarget",true,hasStateChanged,"targettarget")
 		end
+		if unit == "pet" then
+			CreatePorfraitFrameAndTexture(_G["ElvUF_Pet"],"ElvUF_Pet",false,hasStateChanged,"pet")
+		end
 		if not (E.Classic or E.ClassicHC) then
 			if unit == "focus" then
 				CreatePorfraitFrameAndTexture(_G["ElvUF_Focus"],"ElvUF_Focus",false,hasStateChanged,"focus")
@@ -468,6 +472,9 @@ function ElvUI_EltreumUI:BlizzPortraitSettingUpdate(unit)
 		end
 		if unit == "target" then
 			CreatePorfraitFrameAndTexture(_G["ElvUF_Target"],"ElvUF_Target",true,true,"target",true)
+		end
+		if unit == "pet" then
+			CreatePorfraitFrameAndTexture(_G["ElvUF_Pet"],"ElvUF_Pet",false,true,"pet",true)
 		end
 		if unit == "party" then
 			CreatePorfraitFrameAndTexture(_G["ElvUF_PartyGroup1UnitButton1"],"ElvUF_PartyGroup1UnitButton1",false,true,"party",true)
