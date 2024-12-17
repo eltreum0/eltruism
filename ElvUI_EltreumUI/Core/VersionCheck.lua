@@ -149,6 +149,16 @@ function ElvUI_EltreumUI:OldVersionCheck()
 		E.db.ElvUI_EltreumUI.skins.doom.maxAlpha = (E.db.ElvUI_EltreumUI.skins.doom.maxAlpha/100)
 	end
 
+	--remove entries no longer used
+	if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
+		E.db.ElvUI_EltreumUI.skins.classiconsblizz = nil
+		E.db.ElvUI_EltreumUI.skins.classiconsstyle = "BLIZZARD"
+	end
+	if E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
+		E.db.ElvUI_EltreumUI.skins.classiconsreleaf = nil
+		E.db.ElvUI_EltreumUI.skins.classiconsstyle = "RELEAF"
+	end
+
 	--changes only for my profiles
 	--if not (ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer")) then
 	--	return

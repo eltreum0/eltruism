@@ -15,38 +15,6 @@ local string = _G.string
 local classsymbolonframe
 local CharacterModelScene = _G.CharacterModelScene
 local numCharacters =  3 --number of letters in the name
-local classIcons = {
-	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Warrior",
-	["PALADIN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Paladin",
-	["HUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Hunter",
-	["ROGUE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Rogue",
-	["PRIEST"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Priest",
-	["DEATHKNIGHT"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/DeathKnight",
-	["SHAMAN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Shaman",
-	["MAGE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Mage",
-	["WARLOCK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Warlock",
-	["MONK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Monk",
-	["DRUID"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Druid",
-	["DEMONHUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/DemonHunter",
-	["EVOKER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Evoker",
-}
-
--- Alternate Class Icons by Releaf with borders
-local classIconsReleafborder = {
-	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/WarriorIconReleaf",
-	["PALADIN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/PaladinIconReleaf",
-	["HUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/HunterIconReleaf",
-	["ROGUE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/RogueIconReleaf",
-	["PRIEST"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/PriestIconReleaf",
-	["DEATHKNIGHT"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/DeathKnightIconReleaf",
-	["SHAMAN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/ShamanIconReleaf",
-	["MAGE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/MageIconReleaf",
-	["WARLOCK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/WarlockIconReleaf",
-	["MONK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/MonkIconReleaf",
-	["DRUID"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/DruidIconReleaf",
-	["DEMONHUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/DemonHunterIconReleaf",
-	["EVOKER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/EvokerIconReleaf",
-}
 
 if E.Retail then
 	CharacterLevelText:SetWidth(300) --new
@@ -56,13 +24,7 @@ end
 
 function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and E.private.skins.blizzard.enable and E.private.skins.blizzard.character then
-		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
-			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
-		elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
-			classsymbolonframe = ("|T"..(classIconsReleafborder[E.myclass]..".tga:0:0:0:0|t"))
-		else
-			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
-		end
+		classsymbolonframe = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,E.myclass,false,"32")
 
 		if not E.Retail and not E.Cata then
 			if _G.CharacterFrameTitleText and _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
@@ -218,13 +180,7 @@ EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
 	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and E.private.skins.blizzard.enable and E.private.skins.blizzard.character then
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 
-		if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
-			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
-		elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
-			classsymbolonframe = ("|T"..(classIconsReleafborder[E.myclass]..".tga:0:0:0:0|t"))
-		else
-			classsymbolonframe = ("|T"..(classIcons[E.myclass]..".tga:0:0:0:0|t"))
-		end
+		classsymbolonframe = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,E.myclass,false,"32")
 
 		if E.Retail or E.Cata then
 			if _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
