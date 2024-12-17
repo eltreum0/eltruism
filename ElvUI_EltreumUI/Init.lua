@@ -191,6 +191,11 @@ function ElvUI_EltreumUI:Initialize()
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LEAVING_WORLD')
 	ElvUI_EltreumUI:RegisterEvent('PLAYER_LOGOUT')
 	ElvUI_EltreumUI:RegisterEvent("UPDATE_PENDING_MAIL") --for mail sound/icon
+	if E.Retail then
+		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_START") --for m+ hiding objective tracker
+		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_COMPLETED") --for m+ hiding objective tracker
+		ElvUI_EltreumUI:RegisterEvent("CHALLENGE_MODE_RESET") --for m+ hiding objective tracker
+	end
 end
 
 function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
@@ -387,6 +392,18 @@ function ElvUI_EltreumUI:PLAYER_LOGOUT()
 		_G.ElvUF_TargetMover:ClearAllPoints()
 	end
 	ElvUI_EltreumUI:BlizzCombatText()
+end
+
+function ElvUI_EltreumUI:CHALLENGE_MODE_START()
+	ElvUI_EltreumUI:QuestMythicPlusStart()
+end
+
+function ElvUI_EltreumUI:CHALLENGE_MODE_COMPLETED()
+	ElvUI_EltreumUI:QuestMythicPlusEnd()
+end
+
+function ElvUI_EltreumUI:CHALLENGE_MODE_RESET()
+	ElvUI_EltreumUI:QuestMythicPlusEnd()
 end
 
 local function CallbackInitialize()

@@ -685,6 +685,7 @@ P.ElvUI_EltreumUI = {
 		questorientation = "HORIZONTAL",
 		questitemsfade = false,
 		anchor = true,
+		mythicplus = false,
 	},
 
 	loot = {
