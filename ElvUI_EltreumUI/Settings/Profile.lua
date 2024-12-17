@@ -1012,6 +1012,13 @@ P.ElvUI_EltreumUI = {
 		tankassiststrata = "HIGH",
 		tankassistlevel = 3,
 
+		tooltipborders = true,
+		tooltipsizex = 32.1,
+		tooltipsizey = 32.1,
+		tooltipsize = 20,
+		tooltipstrata = "TOOLTIP",
+		tooltiplevel = 50,
+
 		bordercolors = {
 			r = 0.27,
 			g = 0.50,
