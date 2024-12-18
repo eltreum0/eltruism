@@ -257,7 +257,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 			if not _G.LFGListFrame.SearchPanel:IsShown() then return end
 			if not entry.resultID then return end
 			local resultInfo = C_LFGList.GetSearchResultInfo(entry.resultID)
-			local activityTable = C_LFGList.GetActivityInfoTable(resultInfo.activityID)
+			local activityTable = C_LFGList.GetActivityInfoTable(resultInfo.activityIDs[1])
 			local categoryID = activityTable.categoryID
 
 			--start of the io/region thing
@@ -398,7 +398,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 		hooksecurefunc("LFGListSearchEntry_Update", SearchEntry_Update)
 
 		--fix taint by replacing the function with the same function https://github.com/0xbs/premade-groups-filter/issues/64#issuecomment-1001230231
-		local function LFMPlus_GetPlaystyleString(playstyle,activityInfo)
+		--[[local function LFMPlus_GetPlaystyleString(playstyle,activityInfo)
 			if activityInfo and playstyle ~= (0 or nil) and C_LFGList.GetLfgCategoryInfo(activityInfo.categoryID).showPlaystyleDropdown then
 				local typeStr
 				if activityInfo.isMythicPlusActivity then
@@ -433,6 +433,6 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 			if((activityInfo and activityInfo.isMythicPlusActivity) or not C_LFGList.IsPlayerAuthenticatedForLFG(self.selectedActivity)) then
 				C_LFGList.SetEntryTitle(self.selectedActivity, self.selectedGroup, self.selectedPlaystyle);
 			end
-		end
+		end]]
 	end
 end
