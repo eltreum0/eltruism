@@ -3841,24 +3841,25 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added Simplified Chinese translation by Meowcactus
+Added an option to hide the Objective Tracker in Mythic Plus
+Added a possible fix to the LFG Set Title taint
+Added Pet to the unitframe Portrait Skin
+Added Blizzard's Action Bar Border
+Added Borders to the GameTooltip
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated the setup of combat cvars to work with other addons besides ElvUI_FCT and NameplateSCT
-Updated the hiding of Raid frames in PvP to also work when not using GladiusEX
-Updated /eltruism encountercheck to also disable gradient castbar
-Updated Immersion Skin
+Updated Character Panel Class Icons to allow the usage of other Class Icons
+Updated ElvUI Map settings to be the same across all game versions
+Updated the Portrait 3D Model Fix to also apply to Pets
+Updated the max width and height of borders
 ]], 5, "small", nil, nil, nil, nil, "full")
-	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
-	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
-	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue where Borders were not working correctly with Unitframe Auras
-Fixed an issue with custom portraits on NPCs
-Fixed the rotation of party portraits
-Fixed the OmniCD skin
-]], 7, "small", nil, nil, nil, nil, "full")
+--	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
+--	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
+--	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
+--Fixed...
+--]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
 	ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)
