@@ -104,8 +104,7 @@ P.ElvUI_EltreumUI = {
 		--expandedstable = false,
 		characterpanelscale = 1,
 		classiconsoncharacterpanel = false,
-		classiconsblizz = false,
-		classiconsreleaf = false,
+		classiconsstyle = "RELEAF",
 		classicarmory = false,
 		classicarmoryautostats = false,
 		classicarmoryeltruismstats = true,
@@ -685,6 +684,7 @@ P.ElvUI_EltreumUI = {
 		questorientation = "HORIZONTAL",
 		questitemsfade = false,
 		anchor = true,
+		mythicplus = false,
 	},
 
 	loot = {
@@ -1012,6 +1012,13 @@ P.ElvUI_EltreumUI = {
 		tankassiststrata = "HIGH",
 		tankassistlevel = 3,
 
+		tooltipborders = true,
+		tooltipsizex = 32.1,
+		tooltipsizey = 32.1,
+		tooltipsize = 20,
+		tooltipstrata = "TOOLTIP",
+		tooltiplevel = 50,
+
 		bordercolors = {
 			r = 0.27,
 			g = 0.50,
@@ -1039,6 +1046,36 @@ P.ElvUI_EltreumUI = {
 			shadow = true,
 			gradient = true,
 			player = {
+				enable = true,
+				style = "SYMBOLS",
+				type = "BLIZZARD",
+				size = 92,
+				position = {
+					align = "LEFT",
+					x = -42,
+					y = 18,
+				},
+				custom = false,
+				edge = true,
+				rare = false,
+				scale = -0.15,
+				customcircle = false,
+				reversegradient = false,
+				defaultgradient = false,
+				customcolor = false,
+				color = {
+					r = 0.27,
+					g = 0.50,
+					b = 0.70,
+				},
+				background = true,
+				backgroundcolor = {
+					r = 0.07,
+					g = 0.07,
+					b = 0.07,
+				},
+			},
+			pet = {
 				enable = true,
 				style = "SYMBOLS",
 				type = "BLIZZARD",

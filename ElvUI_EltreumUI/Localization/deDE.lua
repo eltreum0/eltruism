@@ -1602,3 +1602,4 @@ L["Zone Text"] = "Zonentext"
 L["settings configured for "] = "Einstellungen konfiguriert für "
 L["updated to "] = "aktualisiert auf "
 L["|cffff0000Private Servers are unsupported!"] = "|cffff0000Private Server werden nicht unterstützt!"
+L["Hide Quests during Mythic Plus"] = true

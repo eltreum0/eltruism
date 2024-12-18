@@ -497,73 +497,38 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		_G.PallyPowerAnchor:GetCheckedTexture():SetVertexColor(1,0,0)
 
 		--use new icons
-		if E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
-			PallyPower.ClassIcons = PallyPower.isWrath and {
-				[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Warrior1.tga",
-				[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Rogue1.tga",
-				[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Priest1.tga",
-				[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Druid1.tga",
-				[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Paladin1.tga",
-				[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Hunter1.tga",
-				[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Mage1.tga",
-				[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Warlock1.tga",
-				[9] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Shaman1.tga",
-				[10] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\DeathKnight1.tga",
-			} or PallyPower.isBCC and {
-				[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Warrior1.tga",
-				[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Rogue1.tga",
-				[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Priest1.tga",
-				[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Druid1.tga",
-				[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Paladin1.tga",
-				[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Hunter1.tga",
-				[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Mage1.tga",
-				[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Warlock1.tga",
-				[9] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Shaman1.tga",
-			} or {
-				[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Warrior1.tga",
-				[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Rogue1.tga",
-				[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Priest1.tga",
-				[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Druid1.tga",
-				[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Paladin1.tga",
-				[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Hunter1.tga",
-				[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Mage1.tga",
-				[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\Warlock1.tga",
-				[9] = "Interface\\Icons\\Ability_Mount_JungleTiger"
-			}
-		else
-			PallyPower.ClassIcons = PallyPower.isWrath and {
-				[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\WarriorShadow.tga",
-				[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\RogueShadow.tga",
-				[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\PriestShadow.tga",
-				[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\DruidShadow.tga",
-				[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\PaladinShadow.tga",
-				[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\HunterShadow.tga",
-				[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\MageShadow.tga",
-				[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\WarlockShadow.tga",
-				[9] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\ShamanShadow.tga",
-				[10] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\DeathKnightShadow.tga",
-			} or PallyPower.isBCC and {
-				[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\WarriorShadow.tga",
-				[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\RogueShadow.tga",
-				[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\PriestShadow.tga",
-				[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\DruidShadow.tga",
-				[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\PaladinShadow.tga",
-				[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\HunterShadow.tga",
-				[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\MageShadow.tga",
-				[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\WarlockShadow.tga",
-				[9] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\ShamanShadow.tga",
-			} or {
-				[1] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\WarriorShadow.tga",
-				[2] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\RogueShadow.tga",
-				[3] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\PriestShadow.tga",
-				[4] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\DruidShadow.tga",
-				[5] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\PaladinShadow.tga",
-				[6] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\HunterShadow.tga",
-				[7] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\MageShadow.tga",
-				[8] = "Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Classes\\128\\WarlockShadow.tga",
-				[9] = "Interface\\Icons\\Ability_Mount_JungleTiger"
-			}
-		end
+		PallyPower.ClassIcons = PallyPower.isWrath and {
+			[1] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"WARRIOR",false,"128",true),
+			[2] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"ROGUE",false,"128",true),
+			[3] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"PRIEST",false,"128",true),
+			[4] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"DRUID",false,"128",true),
+			[5] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"PALADIN",false,"128",true),
+			[6] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"HUNTER",false,"128",true),
+			[7] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"MAGE",false,"128",true),
+			[8] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"WARLOCK",false,"128",true),
+			[9] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"SHAMAN",false,"128",true),
+			[10] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"DEATHKNIGHT",false,"128",true),
+		} or PallyPower.isBCC and {
+			[1] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"WARRIOR",false,"128",true),
+			[2] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"ROGUE",false,"128",true),
+			[3] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"PRIEST",false,"128",true),
+			[4] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"DRUID",false,"128",true),
+			[5] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"PALADIN",false,"128",true),
+			[6] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"HUNTER",false,"128",true),
+			[7] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"MAGE",false,"128",true),
+			[8] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"WARLOCK",false,"128",true),
+			[9] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"SHAMAN",false,"128",true),
+		} or {
+			[1] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"WARRIOR",false,"128",true),
+			[2] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"ROGUE",false,"128",true),
+			[3] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"PRIEST",false,"128",true),
+			[4] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"DRUID",false,"128",true),
+			[5] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"PALADIN",false,"128",true),
+			[6] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"HUNTER",false,"128",true),
+			[7] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"MAGE",false,"128",true),
+			[8] = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,"WARLOCK",false,"128",true),
+			[9] = "Interface\\Icons\\Ability_Mount_JungleTiger"
+		}
 	end
 end
 S:AddCallbackForAddon('PallyPower', 'EltruismPallyPower', ElvUI_EltreumUI.EltruismPallyPower)

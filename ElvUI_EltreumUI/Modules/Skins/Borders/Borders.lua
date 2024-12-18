@@ -10,6 +10,8 @@ local pairs = _G.pairs
 local UnitExists = _G.UnitExists
 local UnitReaction = _G.UnitReaction
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
+local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local tostring = _G.tostring
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitClass = _G.UnitClass
@@ -19,7 +21,7 @@ local classcolor2check = false
 local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder,focuscastbarborder
 local bordertexture,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder, experienceborder, threatborder
 local playerclassbarborder1, playerclassbarborder2, comboborder, playerpowerborder, targetpowerborder, reputationborder
-local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction, altpowerborder
+local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction, altpowerborder, tooltipborder
 local MinimapBorder,LeftChatBorder,RightChatBorder,totemborderfly,focustargetborder,targettargetpowerborder, focuspowerborder
 local raid1borderholder,raid2borderholder,raid3borderholder,partyborderholder, comboborderholder, tankborderholder, assistborderholder = {},{},{},{},{},{},{}
 local rectangleminimapdetect = CreateFrame("FRAME")
@@ -116,23 +118,6 @@ function ElvUI_EltreumUI:Borders()
 				E.db.ElvUI_EltreumUI.borders.texture = "Eltreum-Border-1"
 			end
 		end
-
-		--used for testing
-		--[[local testBorder = CreateFrame("Frame", "TestBorder", _G["GameMenuFrame"], BackdropTemplateMixin and "BackdropTemplate")
-		local testsizex, testsizey = _G["GameMenuFrame"]:GetSize()
-		testBorder:SetSize(testsizex, testsizey)
-		testBorder:SetParent(_G["GameMenuFrame"])
-		testBorder:SetAllPoints(_G["GameMenuFrame"])
-		if not (self.testBorder) then
-			testBorder:SetBackdrop({
-				edgeFile = bordertexture,
-				--edgeSize = E.db.ElvUI_EltreumUI.borders.baredgesize, --13
-				edgeSize = 15,
-			})
-			testBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			testBorder:SetFrameStrata("TOOLTIP")
-			self.testBorder = true
-		end]]
 
 		--elvui unitframes
 		if E.private.unitframe.enable then
@@ -1417,6 +1402,11 @@ function ElvUI_EltreumUI:Borders()
 			altpowerborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.altpowerbarstrata)
 			altpowerborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.altpowerbarlevel)
 		end
+
+		--fire tooltip border
+		if E.db.ElvUI_EltreumUI.borders.tooltipborders and E.private.tooltip.enable then
+			ElvUI_EltreumUI:TooltipBorder()
+		end
 	end
 end
 
@@ -1566,6 +1556,82 @@ function ElvUI_EltreumUI:UFAuraBorders(_,button)
 	end
 end
 hooksecurefunc(UF, 'PostUpdateAura', ElvUI_EltreumUI.UFAuraBorders) --uf aura borders and debuff colors update
+
+function ElvUI_EltreumUI:TooltipBorder()
+	if not _G["EltruismTooltipBorder"] then
+		tooltipborder = CreateFrame("Frame", "EltruismTooltipBorder", _G.GameTooltip, BackdropTemplateMixin and "BackdropTemplate")
+	else
+		tooltipborder = _G["EltruismTooltipBorder"]
+	end
+	local ttx,tty,tthpx,tthpy
+
+	tooltipborder:SetBackdrop({
+		edgeFile = bordertexture,
+		edgeSize = E.db.ElvUI_EltreumUI.borders.tooltipsize,
+	})
+	tooltipborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+	tooltipborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.tooltipstrata)
+	tooltipborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.tooltiplevel)
+	--tooltipborder:SetPoint("CENTER", _G.GameTooltip, "CENTER", 0, 0)
+	--tooltipborder:SetSize(100, 100)
+
+	 if not tooltipborder.Hooks then
+	 	local function FixSize()
+	 		if _G.GameTooltipStatusBar and _G.GameTooltipStatusBar:IsShown() then
+				tthpx,tthpy = _G.GameTooltipStatusBar:GetSize()
+				ttx,tty = _G.GameTooltip:GetSize()
+				if E.db.tooltip.healthBar.statusPosition == "TOP" then
+					tooltipborder:SetPoint("CENTER", _G.GameTooltip, "CENTER", 0, tthpy/2)
+				else
+					tooltipborder:SetPoint("CENTER", _G.GameTooltip, "CENTER", 0, -tthpy/2)
+				end
+				tooltipborder:SetSize(ttx+E.db.ElvUI_EltreumUI.borders.tooltipsizex, tty+tthpy+E.db.ElvUI_EltreumUI.borders.tooltipsizey)
+			else
+				ttx,tty = _G.GameTooltip:GetSize()
+				tooltipborder:SetPoint("CENTER", _G.GameTooltip, "CENTER", 0, 0)
+				tooltipborder:SetSize(ttx+E.db.ElvUI_EltreumUI.borders.tooltipsizex, tty+E.db.ElvUI_EltreumUI.borders.tooltipsizey)
+			end
+	 	end
+
+	 	local function FixColor()
+	 		if _G.GameTooltip:GetUnit() then --has unit
+				local _,unittp = _G.GameTooltip:GetUnit()
+				local _, classunit = UnitClass(unittp)
+				local reaction = UnitReaction(unittp, "player")
+				if UnitIsPlayer(unittp) or (E.Retail and UnitInPartyIsAI(unittp)) then
+					local valuecolors = E:ClassColor(classunit, true)
+					tooltipborder:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
+				else
+					local reactionColor = ElvUF.colors.reaction[reaction]
+					tooltipborder:SetBackdropBorderColor(reactionColor.r, reactionColor.g, reactionColor.b, 1)
+				end
+			elseif _G.GameTooltip:GetItem() then --has item
+				local name,itemLink = GameTooltip:GetItem()
+				if not name then return end
+				if not itemLink then return end
+				local _, _, itemQuality = GetItemInfo(itemLink)
+				if not itemQuality then return end
+				local itemR,itemG,itemB = GetItemQualityColor(itemQuality)
+				tooltipborder:SetBackdropBorderColor(itemR, itemG, itemB, 1)
+			else --is regular tooltip
+				tooltipborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+			end
+	 	end
+
+		local function TooltipBorderFix()
+			if _G.GameTooltip.shadow then
+				_G.GameTooltip.shadow:Hide()
+			end
+			FixSize()
+
+			FixColor()
+		end
+		_G.GameTooltip:HookScript("OnShow", TooltipBorderFix) --when it appears
+		_G.GameTooltip:HookScript("OnEvent", TooltipBorderFix) --for other events
+		_G.GameTooltip:HookScript("OnSizeChanged", TooltipBorderFix) --when comparing
+		tooltipborder.Hooks = true
+	end
+end
 
 function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of target changes if the target is not in party/raid, no event to register :(
 	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor and not E.db.ElvUI_EltreumUI.borders.bordertest then
@@ -1876,6 +1942,7 @@ function ElvUI_EltreumUI:ShowHideBorders(install)
 		targettargetpowerborder,
 		altpowerborder,
 		focuspowerborder,
+		tooltipborder,
 	}
 	local barborderbutton
 	local barborderbuttonnumber

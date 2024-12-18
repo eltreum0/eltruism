@@ -486,6 +486,7 @@ local playerlike = {
 	["party3"] = true,
 	["party4"] = true,
 	["party5"] = true,
+	["pet"] = true,
 }
 
 function ElvUI_EltreumUI:ShouldRotatePortrait(modelID)
@@ -557,6 +558,8 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 						end
 					elseif catabearform[model] then
 						xOffset = 0.62 --cata bears
+					elseif self:GetParent().unitframeType == "pet" then
+						xOffset = -1 --offset the pets because they would be outside
 					end
 				end
 			elseif unit == 'target' or targetlike[unit] then

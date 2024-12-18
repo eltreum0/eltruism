@@ -2880,13 +2880,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						end
 					end
 
-					if E.db.ElvUI_EltreumUI.skins.classiconsblizz then
-						classsymbolonframe = ("|T"..(classIcons[englishClass]..".tga:0:0:0:0|t"))
-					elseif E.db.ElvUI_EltreumUI.skins.classiconsreleaf then
-						classsymbolonframe = ("|T"..(classIconsReleafborder[englishClass]..".tga:0:0:0:0|t"))
-					else
-						classsymbolonframe = ("|T"..(classIcons[englishClass]..".tga:0:0:0:0|t"))
-					end
+					classsymbolonframe = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,E.myclass,false,"32")
 
 					--add class icon + colored name
 					if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel then

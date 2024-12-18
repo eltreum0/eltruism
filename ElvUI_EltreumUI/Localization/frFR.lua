@@ -1603,3 +1603,4 @@ L["Reinstall Thin Layout"] = "Réinstaller la mise en page fine"
 L["Reset layout to Eltruism Thin"] = "Réinitialiser la mise en page à Eltruism Thin"
 L["Reverse Focus"] = "Focus inversé"
 L["Reverse Focus Gradient Health"] = "Focus inversé Gradient de santé"
+L["Hide Quests during Mythic Plus"] = true

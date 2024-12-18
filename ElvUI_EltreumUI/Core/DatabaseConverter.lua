@@ -53,6 +53,16 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 								data.ElvUI_EltreumUI.skins.shadows = nil
 								profileChanged = true
 							end
+							if data.ElvUI_EltreumUI.skins then
+								if db.ElvUI_EltreumUI.skins.classiconsblizz then
+									db.ElvUI_EltreumUI.skins.classiconsblizz = nil
+									db.ElvUI_EltreumUI.skins.classiconsstyle = "BLIZZARD"
+								end
+								if db.ElvUI_EltreumUI.skins.classiconsreleaf then
+									db.ElvUI_EltreumUI.skins.classiconsreleaf = nil
+									db.ElvUI_EltreumUI.skins.classiconsstyle = "RELEAF"
+								end
+							end
 							if data.ElvUI_EltreumUI.instances then
 								E:CopyTable(E.db.ElvUI_EltreumUI.skins.instances, data.ElvUI_EltreumUI.instances)
 								data.ElvUI_EltreumUI.instances = nil

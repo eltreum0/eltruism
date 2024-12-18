@@ -216,6 +216,7 @@ LSM:Register("border", "RenaitreFade11", [[Interface\Addons\ElvUI_EltreumUI\Medi
 LSM:Register("border", "RenaitreFade11blk", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade11blk.tga]])
 LSM:Register("border", "RenaitreFade11x", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade11x.tga]])
 LSM:Register("border", "RenaitreFade11xblk", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade11xblk.tga]])
+LSM:Register("border", "BlizzAB", [[Interface\Addons\ElvUI_EltreumUI\Media\border\BlizzAB.tga]])
 
 -- Background
 LSM:Register("background", "Eltreum-Tile01", [[Interface\Addons\ElvUI_EltreumUI\Media\Textures\FrameBG\framebg1.tga]])

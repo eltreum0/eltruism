@@ -254,3 +254,23 @@ function ElvUI_EltreumUI:RogueAutoOpen()
 		end
 	end
 end
+
+--hide quests in m+
+function ElvUI_EltreumUI:QuestMythicPlusStart()
+	if not E.Retail then return end
+	if E.db.ElvUI_EltreumUI.quests.mythicplus then
+		ObjectiveTrackerFrame:SetParent(E.HiddenFrame)
+	end
+end
+
+--show quests after m+
+function ElvUI_EltreumUI:QuestMythicPlusEnd()
+	if not E.Retail then return end
+	if E.db.ElvUI_EltreumUI.quests.mythicplus then
+		if _G["ObjectiveFrameHolder"] then
+			ObjectiveTrackerFrame:SetParent(_G["ObjectiveFrameHolder"])
+		else
+			ObjectiveTrackerFrame:SetParent(UIParent)
+		end
+	end
+end

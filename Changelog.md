@@ -1,6 +1,16 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.2.7
+Added an option to hide the Objective Tracker in Mythic Plus  
+Added a possible fix to the LFG Set Title taint  
+Added Pet to the unitframe Portrait Skin  
+Added Blizzard's Action Bar Border  
+Added Borders to the GameTooltip  
+Updated Character Panel Class Icons to allow the usage of other Class Icons  
+Updated ElvUI Map settings to be the same across all game versions  
+Updated the Portrait 3D Model Fix to also apply to Pets  
+Updated the max width and height of borders  
 ### 4.2.6
 Added Simplified Chinese translation by Meowcactus  
 Updated the setup of combat cvars to work with other addons besides ElvUI_FCT and NameplateSCT  
