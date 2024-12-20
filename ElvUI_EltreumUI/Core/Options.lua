@@ -3855,11 +3855,11 @@ Updated ElvUI Map settings to be the same across all game versions
 Updated the Portrait 3D Model Fix to also apply to Pets
 Updated the max width and height of borders
 ]], 5, "small", nil, nil, nil, nil, "full")
---	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
---	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
---	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
---Fixed...
---]], 7, "small", nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
+	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
+	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
+Fixed an error on the LFG Skin due to a change on Blizzard's API
+]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
 	ACH:Group(name, desc, order, childGroups, get, set, disabled, hidden, func)

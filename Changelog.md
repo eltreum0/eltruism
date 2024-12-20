@@ -1,6 +1,8 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.2.7.1
+Fixed an error on the LFG Skin due to a change on Blizzard's API  
 ### 4.2.7
 Added an option to hide the Objective Tracker in Mythic Plus  
 Added a possible fix to the LFG Set Title taint  
