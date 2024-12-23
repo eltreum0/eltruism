@@ -367,7 +367,7 @@ local function SpellInfo(spellID)
 	if spellData then
 		return spellData.name, spellData.spellID
 	else
-		return "UNKNOWN", 187874  --fallback value
+		return "UNKNOWN", 187874 --fallback value
 	end
 end
 

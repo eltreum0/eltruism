@@ -691,11 +691,11 @@ function ElvUI_EltreumUI:GetClassIcons(icon,unitclass,invert,resolution,nostring
 			elseif icon == "SYMBOLS" then
 				return "|T"..classSymbols[unitclass]..":0:0:0:0|t"
 			elseif icon == "BW" then
-				return  "|T"..blackandwhite[resolution][unitclass]..":0:0:0:0|t"
+				return "|T"..blackandwhite[resolution][unitclass]..":0:0:0:0|t"
 			elseif icon == "UGG" then
-				return  "|T"..UGG[resolution][unitclass]..":0:0:0:0|t"
+				return "|T"..UGG[resolution][unitclass]..":0:0:0:0|t"
 			elseif icon == "UGGGREY" then
-				return  "|T"..UGGGREY[resolution][unitclass]..":0:0:0:0|t"
+				return "|T"..UGGGREY[resolution][unitclass]..":0:0:0:0|t"
 			elseif icon == "CUSTOM" then
 				return "|T"..E.private.ElvUI_EltreumUI.chat.customicons[unitclass]..":0:0:0:0|t"
 			end

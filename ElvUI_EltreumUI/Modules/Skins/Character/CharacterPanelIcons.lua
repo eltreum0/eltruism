@@ -14,7 +14,7 @@ local TokenFrame = _G.TokenFrame
 local string = _G.string
 local classsymbolonframe
 local CharacterModelScene = _G.CharacterModelScene
-local numCharacters =  3 --number of letters in the name
+local numCharacters = 3 --number of letters in the name
 
 if E.Retail then
 	CharacterLevelText:SetWidth(300) --new

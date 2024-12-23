@@ -93,7 +93,7 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 							end
 						else
 							bar.shadow:ClearAllPoints()
-							bar.shadow:SetPoint("TOPLEFT", bar.icon, "TOPLEFT",  -E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
+							bar.shadow:SetPoint("TOPLEFT", bar.icon, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
 							bar.shadow:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
 						end
 					end

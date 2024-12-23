@@ -3,7 +3,7 @@ if not L then return end
 
 L[" and "] = true
 L[" and import its settings"] = true
-L[" as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero"] =  true
+L[" as the anchor will move them to the locations, keep in mind you might need to change the X and Y offset of the weakaura to zero"] = true
 L[" is not installed or enabled"] = true
 L[" or "] = true
 L[" This can be a very demanding feature, it's not recommended to use models for performance."] = true
@@ -1564,7 +1564,7 @@ L["Disable Inactivity/Fader in Eltruism > Chat"] = true
 L["My action bars and unitframes keep disappearing!"] = true
 L["ElvUI > ActionBars > Player Bars > on each Bar disable Inherit Global Fade\nElvUI > Unitframes > Type of Unit > Unit > Fader, disable the fader"] = true
 L["My Details! window disappears after combat!"] = true
-L["If you have AddOnSkins then go to  ElvUI > AddOnSkins > Embed Settings > Turn off Out of Combat (Hide)\nIf details is showing up on top of the trade chat, try going to AddOnSkins > Embed Settings and making sure that its hiding the Trade/Loot chat, you can also right click the > arrow in order to toggle the details embed.\nIf you do not have AddOnSkins then go to Eltruism > Skins > Addons > Details > Embed > Hide out of Combat, you can also change the amount of time it takes for it to hide.\nIn either AddOnSkins or Eltruism embeds you can also Right Click the Chat Toggle (the Arrow [ > ] on the bottom right) to Toggle the Visibility\nA shortcut to disabling the combat hide is /eltruism detailshide"] = true
+L["If you have AddOnSkins then go to ElvUI > AddOnSkins > Embed Settings > Turn off Out of Combat (Hide)\nIf details is showing up on top of the trade chat, try going to AddOnSkins > Embed Settings and making sure that its hiding the Trade/Loot chat, you can also right click the > arrow in order to toggle the details embed.\nIf you do not have AddOnSkins then go to Eltruism > Skins > Addons > Details > Embed > Hide out of Combat, you can also change the amount of time it takes for it to hide.\nIn either AddOnSkins or Eltruism embeds you can also Right Click the Chat Toggle (the Arrow [ > ] on the bottom right) to Toggle the Visibility\nA shortcut to disabling the combat hide is /eltruism detailshide"] = true
 L["Music keeps playing when AFK"] = true
 L["Disable the AFK music in Eltruism > AFK in order to stop the music from playing"] = true
 L["How do I make bar 1 my action paging bar instead of bar 4?"] = true
