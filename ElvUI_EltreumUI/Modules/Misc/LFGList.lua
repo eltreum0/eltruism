@@ -429,7 +429,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 				return;
 			end
 			local activityID = activeEntryInfo and activeEntryInfo.activityID or (self.selectedActivity or 0);
-			local activityInfo =  C_LFGList.GetActivityInfoTable(activityID);
+			local activityInfo = C_LFGList.GetActivityInfoTable(activityID);
 			if((activityInfo and activityInfo.isMythicPlusActivity) or not C_LFGList.IsPlayerAuthenticatedForLFG(self.selectedActivity)) then
 				C_LFGList.SetEntryTitle(self.selectedActivity, self.selectedGroup, self.selectedPlaystyle);
 			end

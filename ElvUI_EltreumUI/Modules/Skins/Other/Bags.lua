@@ -9,7 +9,7 @@ local function SpellInfo(spellID)
 	if spellData then
 		return spellData.name, spellData.iconID
 	else
-		return "UNKNOWN", 187874  --fallback value
+		return "UNKNOWN", 187874 --fallback value
 	end
 end
 
@@ -112,7 +112,7 @@ function ElvUI_EltreumUI:BagProfessions()
 								if not _G["EltruismProfession"..v.."BagButton"] then
 									if not blockprof[icon] then
 										--[[
-											local _,_,spellID =  GetSpellBookItemName(name)
+											local _,_,spellID = GetSpellBookItemName(name)
 											print("original: ",name,icon,spellID)
 											if spellID == 264532 then --jewelcrafting
 												spellID = 195116

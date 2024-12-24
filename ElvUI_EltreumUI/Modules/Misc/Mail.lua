@@ -128,7 +128,7 @@ function ElvUI_EltreumUI:ElvUIMailTexture()
 		EltruismMailArrive:SetScale(E.db.general.minimap.icons.mail.scale)
 		if not EltruismMailArrive.hassetpoint then
 			EltruismMailArrive:ClearAllPoints()
-			EltruismMailArrive:SetPoint("CENTER", _G.MiniMapMailIcon, "CENTER", 0, 3) --  -3
+			EltruismMailArrive:SetPoint("CENTER", _G.MiniMapMailIcon, "CENTER", 0, 3)
 			EltruismMailArrive:SetFrameStrata("HIGH")
 
 			EltruismMailExists:ClearAllPoints()

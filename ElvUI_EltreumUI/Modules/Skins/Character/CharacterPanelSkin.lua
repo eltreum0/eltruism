@@ -1850,7 +1850,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		end
 
 		local M = E:GetModule('Misc')
-		hooksecurefunc(M,"UpdateAverageString",  ItemLevelString)
+		hooksecurefunc(M,"UpdateAverageString", ItemLevelString)
 	else
 
 		--gradient colors to categories other

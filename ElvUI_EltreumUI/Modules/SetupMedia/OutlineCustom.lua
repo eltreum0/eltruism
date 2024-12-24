@@ -475,7 +475,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineCustom(fontStyle)
 	if IsAddOnLoaded('AddOnSkins') then
 		local AS = unpack(AddOnSkins)
 		AS["DBMFontFlag"] = fontStyle
-		AS["FontFlag"] =  fontStyle
+		AS["FontFlag"] = fontStyle
 	end
 
 	if IsAddOnLoaded("Questie") then

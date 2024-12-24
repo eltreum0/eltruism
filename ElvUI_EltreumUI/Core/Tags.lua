@@ -1248,7 +1248,7 @@ E:AddTag("eltruism:combatindicator", 'UNIT_HEALTH PLAYER_FLAGS_CHANGED', functio
 		elseif E.db.unitframe.units.player.CombatIcon.texture == "COMBAT" then
 			return "|TInterface\\Addons\\ElvUI\\Core\\Media\\Textures\\Combat.tga:0:0:0:0|t"
 		else
-			return E:TextureString(E.Media.CombatIcons[E.db.unitframe.units.player.CombatIcon.texture],':20:20')--  "|T"..E.Media.CombatIcons[texture]..":0:0:0|t"
+			return E:TextureString(E.Media.CombatIcons[E.db.unitframe.units.player.CombatIcon.texture],':20:20')-- "|T"..E.Media.CombatIcons[texture]..":0:0:0|t"
 		end
 	end
 end)
