@@ -165,10 +165,10 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 							frame.EltruismPortrait.rare:SetGradient("HORIZONTAL",ElvUI_EltreumUI:GradientColors(unitclass, E.db.ElvUI_EltreumUI.unitframes.portrait[db].reversegradient, false))
 						end
 					else
-						local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
-						frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
-						frame.EltruismPortrait.edge:SetVertexColor(r,g,b,1)
-						frame.EltruismPortrait.rare:SetVertexColor(r,g,b,1)
+						local classrgb = ElvUI_EltreumUI:GetClassColorsRGB(unitclass)
+						frame.EltruismPortrait.border:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
+						frame.EltruismPortrait.edge:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
+						frame.EltruismPortrait.rare:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
 					end
 				else
 					local reaction = UnitReaction(frame.unit, "player")
@@ -205,21 +205,21 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 						end
 					else
 						if reaction >= 5 then
-							local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCFRIENDLY")
-							frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
-							frame.EltruismPortrait.edge:SetVertexColor(r,g,b,1)
+							local classrgb = ElvUI_EltreumUI:GetClassColorsRGB("NPCFRIENDLY")
+							frame.EltruismPortrait.border:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
+							frame.EltruismPortrait.edge:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
 						elseif reaction == 4 then
-							local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCNEUTRAL")
-							frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
-							frame.EltruismPortrait.edge:SetVertexColor(r,g,b,1)
+							local classrgb = ElvUI_EltreumUI:GetClassColorsRGB("NPCNEUTRAL")
+							frame.EltruismPortrait.border:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
+							frame.EltruismPortrait.edge:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
 						elseif reaction == 3 then
-							local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCUNFRIENDLY")
-							frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
-							frame.EltruismPortrait.edge:SetVertexColor(r,g,b,1)
+							local classrgb = ElvUI_EltreumUI:GetClassColorsRGB("NPCUNFRIENDLY")
+							frame.EltruismPortrait.border:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
+							frame.EltruismPortrait.edge:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
 						elseif reaction == 2 or reaction == 1 then
-							local r,g,b = ElvUI_EltreumUI:GetClassColorsRGB("NPCHOSTILE")
-							frame.EltruismPortrait.border:SetVertexColor(r,g,b,1)
-							frame.EltruismPortrait.edge:SetVertexColor(r,g,b,1)
+							local classrgb = ElvUI_EltreumUI:GetClassColorsRGB("NPCHOSTILE")
+							frame.EltruismPortrait.border:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
+							frame.EltruismPortrait.edge:SetVertexColor(classrgb.r,classrgb.g,classrgb.b,1)
 						end
 					end
 				end
