@@ -53,6 +53,17 @@ local GetMeleeHaste= _G.GetMeleeHaste
 local GetRangedHaste = _G.GetRangedHaste
 local UnitLevel = _G.UnitLevel
 local tostring = _G.tostring
+local GetMastery = _G.GetMastery
+local GetHitModifier = _G.GetHitModifier
+local GetSpellHitModifier = _G.GetSpellHitModifier
+local GetSpellPenetration = _G.GetSpellPenetration
+local GetCombatRating = _G.GetCombatRating
+local select = _G.select
+local GetBlockChance = _G.GetBlockChance
+local GetParryChance = _G.GetParryChance
+local GetDodgeChance = _G.GetDodgeChance
+local UnitArmor = _G.UnitArmor
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------stats datatext
 local function EltruismStatsDatatextOnEnter()
 	local basestat1, currentstat1, statbuff1, statnerf1 = UnitStat('player', LE_UNIT_STAT_STRENGTH)

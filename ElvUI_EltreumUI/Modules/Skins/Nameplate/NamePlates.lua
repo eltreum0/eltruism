@@ -36,6 +36,8 @@ local IsResting = _G.IsResting
 local IsPlayerSpell = _G.IsPlayerSpell
 local UnitIsUnit = _G.UnitIsUnit
 local proc = {}
+local UnitAffectingCombat = _G.UnitAffectingCombat
+local pairs = _G.pairs
 
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1

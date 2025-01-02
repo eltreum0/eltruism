@@ -2,6 +2,15 @@ local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local hooksecurefunc = _G.hooksecurefunc
+local tostring = _G.tostring
+local UnitIsPlayer = _G.UnitIsPlayer
+local IsInGroup = _G.IsInGroup
+local IsInRaid = _G.IsInRaid
+local UnitInPartyIsAI = _G.UnitInPartyIsAI
+local UnitClassification = _G.UnitClassification
+local UnitClass = _G.UnitClass
+local UnitReaction = _G.UnitReaction
+local SetPortraitTexture = _G.SetPortraitTexture
 
 local notexcoord = {
 	["RELEAF"] = true,

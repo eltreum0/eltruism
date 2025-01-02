@@ -16,6 +16,18 @@ local GetActiveQuestID = _G.GetActiveQuestID
 local SelectActiveQuest = _G.SelectActiveQuest
 local StaticPopup_Hide = _G.StaticPopup_Hide
 local next = _G.next
+local QuestGetAutoAccept = _G.QuestGetAutoAccept
+local CloseQuest = _G.CloseQuest
+local QuestIsDaily = _G.QuestIsDaily
+local QuestIsWeekly = _G.QuestIsWeekly
+local GetQuestReward = _G.GetQuestReward
+local GetNumQuestChoices = _G.GetNumQuestChoices
+local GetQuestMoneyToGet = _G.GetQuestMoneyToGet
+local CompleteQuest = _G.CompleteQuest
+local AcceptQuest = _G.AcceptQuest
+local C_Map = _G.C_Map
+local ConfirmAcceptQuest = _G.ConfirmAcceptQuest
+local UnitGUID = _G.UnitGUID
 
 --yet another quest auto accept thing
 local EltruismAutoComplete = CreateFrame("FRAME", "EltruismAutoCompleteFrame")

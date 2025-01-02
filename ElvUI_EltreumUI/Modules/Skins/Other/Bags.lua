@@ -3,6 +3,13 @@ local S = E:GetModule('Skins')
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
+local InCombatLockdown = _G.InCombatLockdown
+local ipairs = _G.ipairs
+local GetProfessions = _G.GetProfessions
+local GetProfessionInfo = _G.GetProfessionInfo
+local IsSpellKnown = _G.IsSpellKnown
+local IsPlayerMoving = _G.IsPlayerMoving
+local CastSpell = _G.CastSpell
 
 local function SpellInfo(spellID)
 	local spellData = GetSpellInfo(spellID)

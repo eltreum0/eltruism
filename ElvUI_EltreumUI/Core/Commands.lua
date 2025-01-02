@@ -12,12 +12,25 @@ local CombatText_AddMessage = _G.CombatText_AddMessage
 local CombatText_StandardScroll = _G.CombatText_StandardScroll
 local print = _G.print
 local strlower = _G.strlower
+local C_Container= _G.C_Container
 local GetContainerNumSlots = E.Retail and C_Container.GetContainerNumSlots or _G.GetContainerNumSlots
 local GetContainerItemInfo = E.Retail and C_Container.GetContainerItemInfo or _G.GetContainerItemInfo
 local UseContainerItem = E.Retail and C_Container.UseContainerItem or _G.UseContainerItem
 local next = _G.next
 local SendChatMessage = _G.SendChatMessage
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
+local NUM_BAG_SLOTS = _G.NUM_BAG_SLOTS
+local ReloadUI = _G.ReloadUI
+local wipe = _G.wipe
+local pairs = _G.pairs
+local Screenshot = _G.Screenshot
+local string = _G.string
+local tonumber =_G.tonumber
+local InCombatLockdown = _G.InCombatLockdown
+local ACCEPT = _G.ACCEPT
+local CANCEL = _G.CANCEL
+local UnitName = _G.UnitName
+local UnitExists = _G.UnitExists
 
 -- Register on init
 function ElvUI_EltreumUI:LoadCommands()

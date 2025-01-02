@@ -12,7 +12,9 @@ local _, buttonclass, classunit, unitframe, reaction
 local IsInGroup = _G.IsInGroup
 local UnitIsCharmed = _G.UnitIsCharmed
 local pairs = _G.pairs
-local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
+local UnitInPartyIsAI = _G.UnitInPartyIsAI
+local UnitIsDeadOrGhost = _G.UnitIsDeadOrGhost
+local UnitIsConnected = _G.UnitIsConnected
 
 --function to check if colormixin tables are equal, if they are return false since its used to do something after that
 function ElvUI_EltreumUI:ColorMixinTableMatching(table1,table2)

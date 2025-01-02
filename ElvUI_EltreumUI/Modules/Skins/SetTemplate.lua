@@ -3,6 +3,9 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local hooksecurefunc = _G.hooksecurefunc
 local EnumerateFrames = _G.EnumerateFrames
+local getmetatable = _G.getmetatable
+local type = _G.type
+local BackdropTemplateMixin = _G.BackdropTemplateMixin
 local valuecolors = E:ClassColor(E.myclass, true)
 local atlas
 local S = E:GetModule('Skins')

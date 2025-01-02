@@ -11,7 +11,13 @@ local PVP_CONQUEST = _G.PVP_CONQUEST
 local CURRENCY = _G.CURRENCY
 local STAT_CATEGORY_ENHANCEMENTS = _G.STAT_CATEGORY_ENHANCEMENTS
 local CR_HASTE_SPELL = _G.CR_HASTE_SPELL
-local C_CurrencyInfo_GetCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo
+local C_CurrencyInfo = _G.C_CurrencyInfo
+local C_CurrencyInfo_GetCurrencyInfo = _G.C_CurrencyInfo and _G.C_CurrencyInfo.GetCurrencyInfo or ""
+local format = _G.format
+local select = _G.select
+local gsub = _G.gsub
+local GetLootMethod = _G.GetLootMethod
+local IsInGroup = _G.IsInGroup
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------spell haste datatext
 local function EltruismSpellHasteDatatext(dt)

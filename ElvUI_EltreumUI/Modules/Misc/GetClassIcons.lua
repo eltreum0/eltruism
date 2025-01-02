@@ -1,4 +1,5 @@
 local E = unpack(ElvUI)
+local GetScreenWidth =_G.GetScreenWidth
 
 local classIconsReleaf = {
 	["16"] ={

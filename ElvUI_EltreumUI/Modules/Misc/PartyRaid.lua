@@ -20,6 +20,13 @@ local currentCharges, cooldownStart, cooldownDuration
 local cooldown
 local GetPartyAssignment = _G.GetPartyAssignment
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
+local hooksecurefunc = _G.hooksecurefunc
+local LoggingCombat = _G.LoggingCombat
+local UnitSetRole = _G.UnitSetRole
+local bit = _G.bit
+local UnitGroupRolesAssigned = _G.UnitGroupRolesAssigned
+local math = _G.math
+local GetTime = _G.GetTime
 
 --PlaySound(61850)
 --PlaySound(61851)

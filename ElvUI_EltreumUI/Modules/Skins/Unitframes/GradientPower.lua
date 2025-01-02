@@ -9,7 +9,6 @@ local UnitExists = _G.UnitExists
 local headergroup, group, groupbutton
 local select = _G.select
 local forced = false
-local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 local IsInGroup = _G.IsInGroup
 
 --powers there are gradients for since retail has like 100+ power types

@@ -3,7 +3,7 @@ local _G = _G
 local CreateFrame = _G.CreateFrame
 local UnitIsDead = _G.UnitIsDead
 local hooksecurefunc = _G.hooksecurefunc
-local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
+local UnitIsGhost = _G.UnitIsGhost
 local UF = E:GetModule('UnitFrames')
 
 local druidshamanfix = {

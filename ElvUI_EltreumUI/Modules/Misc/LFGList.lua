@@ -1,6 +1,17 @@
 local E = unpack(ElvUI)
 local _G = _G
 local select = _G.select
+local GetClassInfo =_G.GetClassInfo
+local GetRealmName = _G.GetRealmName
+local hooksecurefunc = _G.hooksecurefunc
+local tremove = _G.tremove
+local ipairs = _G.ipairs
+local C_LFGList = _G.C_LFGList
+local GetCurrentRegion = _G.GetCurrentRegion
+local C_ChallengeMode = _G.C_ChallengeMode
+local table = _G.table
+local unpack = _G.unpack
+local pairs = _G.pairs
 
 --region table adapted from https://wago.io/JhmeKOgMw
 local REGION_COLORED = {
