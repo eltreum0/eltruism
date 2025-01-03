@@ -3,12 +3,23 @@ local _G = _G
 local ReloadUI = _G.ReloadUI
 local PlaySound = _G.PlaySound
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
-local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 local UIFrameFadeIn = _G.UIFrameFadeIn
 local UIFrameFadeOut = _G.UIFrameFadeOut
 local hooksecurefunc = _G.hooksecurefunc
 local Enum = _G.Enum
 local CHAT_LABEL = _G.CHAT_LABEL
+local tostring = _G.tostring
+local string = _G.string
+local type = _G.type
+local C_EditMode = _G.C_EditMode
+local tonumber = _G.tonumber
+local ChatFrame_RemoveChannel = _G.ChatFrame_RemoveChannel
+local FCF_OpenNewWindow = _G.FCF_OpenNewWindow
+local ChatFrame_RemoveAllMessageGroups = _G.ChatFrame_RemoveAllMessageGroups
+local FCF_SetWindowName = _G.FCF_SetWindowName
+local ChatFrame_AddChannel = _G.ChatFrame_AddChannel
+local FCFTab_UpdateColors = _G.FCFTab_UpdateColors
+local FCFDock_SelectWindow = _G.FCFDock_SelectWindow
 
 -- Set version & reload on "Finished"
 local function InstallComplete()

@@ -1,7 +1,6 @@
 local E, _, _, P = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local _G = _G
-local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 local tinsert = _G.table.insert
 local tconcat = _G.table.concat
 local unpack = _G.unpack
@@ -26,6 +25,76 @@ local IsUsableItem = _G.C_Item and _G.C_Item.IsUsableItem or _G.IsUsableItem
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local GetItemCount = _G.C_Item and _G.C_Item.GetItemCount or _G.GetItemCount
 local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
+--[[local math = _G.math
+local string = _G.string
+local CHAT_LABEL = _G.CHAT_LABEL
+local TARGET = _G.TARGET
+local POWER_TYPE_FOCUS = _G.POWER_TYPE_FOCUS
+local PARTY = _G.PARTY
+local RAID = _G.RAID
+local ALL = _G.ALL
+local PREVIEW = _G.PREVIEW
+local RESAMPLE_QUALITY_FSR = _G.RESAMPLE_QUALITY_FSR
+local QUESTS_LABEL = _G.QUESTS_LABEL
+local LOOT = _G.LOOT
+local SKILL = _G.SKILL
+local ITEM_QUALITY0_DESC = _G.ITEM_QUALITY0_DESC
+local ITEM_QUALITY1_DESC = _G.ITEM_QUALITY1_DESC
+local ITEM_QUALITY2_DESC = _G.ITEM_QUALITY2_DESC
+local ITEM_QUALITY3_DESC = _G.ITEM_QUALITY3_DESC
+local ITEM_QUALITY4_DESC = _G.ITEM_QUALITY4_DESC
+local REMOVE = _G.REMOVE
+local SOUND = _G.SOUND
+local CUSTOM = _G.CUSTOM
+local VOLUME = _G.VOLUME
+local ENTERING_COMBAT = _G.ENTERING_COMBAT
+local LEAVING_COMBAT = _G.LEAVING_COMBAT
+local CLASS = _G.CLASS
+local COMBAT_LOG = _G.COMBAT_LOG
+local MANA = _G.MANA
+local RAGE = _G.RAGE
+local ENERGY = _G.ENERGY
+local POWER_TYPE_LUNAR_POWER = _G.POWER_TYPE_LUNAR_POWER
+local ALTERNATE_RESOURCE_TEXT = _G.ALTERNATE_RESOURCE_TEXT
+local POWER_TYPE_MAELSTROM = _G.POWER_TYPE_MAELSTROM
+local INSANITY_POWER = _G.INSANITY_POWER
+local POWER_TYPE_FURY = _G.POWER_TYPE_FURY
+local EXHAUSTION_LABEL = _G.EXHAUSTION_LABEL
+local RACE = _G.RACE
+local BREATH_LABEL = _G.BREATH_LABEL
+local GAMEMENU_SUPPORT = _G.GAMEMENU_SUPPORT
+local ChatFrame_RemoveChannel = _G.ChatFrame_RemoveChannel
+local FCF_OpenNewWindow = _G.FCF_OpenNewWindow
+local ChatFrame_RemoveAllMessageGroups = _G.ChatFrame_RemoveAllMessageGroups
+local FCF_SetWindowName = _G.FCF_SetWindowName
+local ChatFrame_AddChannel = _G.ChatFrame_AddChannel
+local FCFTab_UpdateColors = _G.FCFTab_UpdateColors
+local FCFDock_SelectWindow = _G.FCFDock_SelectWindow
+local C_VoiceChat = _G.C_VoiceChat
+local TEXT_TO_SPEECH = _G.TEXT_TO_SPEECH
+local Enum = _G.Enum
+local ObjectiveTrackerFrame = _G.ObjectiveTrackerFrame
+local IsSpellKnown = _G.IsSpellKnown
+local PlayerHasToy = _G.PlayerHasToy
+local C_ToyBox = _G.C_ToyBox
+local RUNIC_POWER = _G.RUNIC_POWER
+local PaperDollFrame_SetLevel = _G.PaperDollFrame_SetLevel
+local PaperDollFrame_UpdateStats = _G.PaperDollFrame_UpdateStats
+local next = _G.next
+]]
+
+local RUNIC_POWER = _G.RUNIC_POWER or "Runic Power"
+local EDIT_MODE_LAYOUT_HYPERLINK_TEXT = _G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT or ""
+local STAGGER = _G.STAGGER or ""
+local TUTORIAL_TITLE61_ROGUE = _G.TUTORIAL_TITLE61_ROGUE or ""
+local LOW_LATENCY_MODE = _G.LOW_LATENCY_MODE or "Low Latency Mode"
+local OPTION_TOOLTIP_LOW_LATENCY_MODE = _G.OPTION_TOOLTIP_LOW_LATENCY_MODE or "Allows the game to use various techniques to reduce input latency"
+local VIDEO_OPTIONS_DISABLED = _G.VIDEO_OPTIONS_DISABLED or "Disabled"
+local VIDEO_OPTIONS_BUILTIN = _G.VIDEO_OPTIONS_BUILTIN or "Built-in"
+local VIDEO_OPTIONS_NVIDIA_REFLEX = _G.VIDEO_OPTIONS_NVIDIA_REFLEX or "NVIDIA Reflex"
+local SHOW_IN_GAME_NAVIGATION = _G.SHOW_IN_GAME_NAVIGATION or " "
+local DELVE_LABEL = _G.DELVE_LABEL or ""
+local QUESTS_LABEL = _G.QUESTS_LABEL or ""
 
 --Author list
 local AUTHORS = {
@@ -253,8 +322,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.databasecheck = ACH:Execute(L["Run Database Check"], L["Perform a Database Check if you are updating from a very old version as some settings have changed places and the Database Check will convert them"], 7, function() ElvUI_EltreumUI:DatabaseConversions(true) end,nil,false,'full')
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.description4 = ACH:Description(L["Clear Details! Damage Meter tables to free up memory"], 8, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.detailscache= ACH:Execute(L["Clear Details Tables"], L["Set Details tables to be empty"], 9, function() ElvUI_EltreumUI:EmptyDetailsTable() end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.description5 = ACH:Description(E.Retail and _G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT or "", 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, nil, not E.Retail)
-	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.blizzeditmodelayout = ACH:Execute(E.Retail and _G.HUD_EDIT_MODE_IMPORT_LAYOUT.." ".._G.EDIT_MODE_LAYOUT_HYPERLINK_TEXT or "", nil, 11, function() ElvUI_EltreumUI:NewRetailEditModeLayout() end,nil,false,'full',nil,nil,nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.description5 = ACH:Description(EDIT_MODE_LAYOUT_HYPERLINK_TEXT, 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.blizzeditmodelayout = ACH:Execute(E.Retail and _G.HUD_EDIT_MODE_IMPORT_LAYOUT.." "..EDIT_MODE_LAYOUT_HYPERLINK_TEXT or "", nil, 11, function() ElvUI_EltreumUI:NewRetailEditModeLayout() end,nil,false,'full',nil,nil,nil, not E.Retail)
 	ElvUI_EltreumUI.Options.args.installer.args.tab5 = ACH:Group(L["Gradient"], nil, 5, 'tab')
 	ElvUI_EltreumUI.Options.args.installer.args.tab5.args.export = ACH:Group(L["Export"], nil, 1, 'tab')
 	ElvUI_EltreumUI.Options.args.installer.args.tab5.args.export.args.input = ACH:Input(L["Exported Gradient Data:"], nil, 1, 27, "full", function() return ElvUI_EltreumUI:ExportImportGradient(nil,"export") end, function() return end)
@@ -524,13 +593,13 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.player.args.borderyalternativeclassbar = ACH:Range(L["Border Y offset"], nil, 12, BorderOffsetSize, "full", function() return E.db.ElvUI_EltreumUI.borders.alternativeclassbaryborder end, function(_, value) E.db.ElvUI_EltreumUI.borders.alternativeclassbaryborder = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.player.classbar.enable or not E.db.ElvUI_EltreumUI.borders.alternativeclassbar end)
 	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.player.args.alternativeclassbarframeStrata = ACH:Select(L["Frame Strata"], nil, 13, FrameStrataLevels, false, "full",function() return E.db.ElvUI_EltreumUI.borders.alternativeclassbarstrata end, function(_, value) E.db.ElvUI_EltreumUI.borders.alternativeclassbarstrata = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.player.classbar.enable or not E.db.ElvUI_EltreumUI.borders.alternativeclassbar end)
 	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.player.args.alternativeclassbarframeLevel = ACH:Range(L["Frame Level"], nil, 14, FrameLevels, "full", function() return E.db.ElvUI_EltreumUI.borders.alternativeclassbarlevel end, function(_, value) E.db.ElvUI_EltreumUI.borders.alternativeclassbarlevel = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.player.classbar.enable or not E.db.ElvUI_EltreumUI.borders.alternativeclassbar end)
-	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.player.args.staggerclassbar = ACH:Description(_G.STAGGER or "", 15, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.player.args.staggerclassbar = ACH:Description(STAGGER, 15, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, nil, not E.Retail)
 	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.player.args.barstaggerclassbar = ACH:Toggle(L["Enable"], nil, 16, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.staggerclassbar end,function(_, value) E.db.ElvUI_EltreumUI.borders.staggerclassbar = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.player.classbar.enable end, not E.Retail)
 	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.player.args.borderxstaggerclassbar = ACH:Range(L["Border X offset"], nil, 17, BorderOffsetSize, "full", function() return E.db.ElvUI_EltreumUI.borders.staggerclassbarxborder end, function(_, value) E.db.ElvUI_EltreumUI.borders.staggerclassbarxborder = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.player.classbar.enable or not E.db.ElvUI_EltreumUI.borders.staggerclassbar end, not E.Retail)
 	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.player.args.borderystaggerclassbar = ACH:Range(L["Border Y offset"], nil, 17, BorderOffsetSize, "full", function() return E.db.ElvUI_EltreumUI.borders.staggerclassbaryborder end, function(_, value) E.db.ElvUI_EltreumUI.borders.staggerclassbaryborder = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.player.classbar.enable or not E.db.ElvUI_EltreumUI.borders.staggerclassbar end, not E.Retail)
 	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.player.args.staggerclassbarframeStrata = ACH:Select(L["Frame Strata"], nil, 18, FrameStrataLevels, false, "full",function() return E.db.ElvUI_EltreumUI.borders.staggerclassbarstrata end, function(_, value) E.db.ElvUI_EltreumUI.borders.staggerclassbarstrata = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.player.classbar.enable or not E.db.ElvUI_EltreumUI.borders.staggerclassbar end, not E.Retail)
 	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.player.args.staggerclassbarframeLevel = ACH:Range(L["Frame Level"], nil, 19, FrameLevels, "full", function() return E.db.ElvUI_EltreumUI.borders.staggerclassbarlevel end, function(_, value) E.db.ElvUI_EltreumUI.borders.staggerclassbarlevel = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.player.classbar.enable or not E.db.ElvUI_EltreumUI.borders.staggerclassbar end, not E.Retail)
-	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.player.args.comboclassbar = ACH:Description(_G.TUTORIAL_TITLE61_ROGUE or "", 20, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
+	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.player.args.comboclassbar = ACH:Description(TUTORIAL_TITLE61_ROGUE, 20, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.player.args.barcomboclassbar = ACH:Toggle(L["Enable"], nil, 21, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.comboclassbar end,function(_, value) E.db.ElvUI_EltreumUI.borders.comboclassbar = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.player.classbar.enable end)
 	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.player.args.borderxcomboclassbar = ACH:Range(L["Border X offset"], nil, 22, BorderOffsetSize, "full", function() return E.db.ElvUI_EltreumUI.borders.combosizex end, function(_, value) E.db.ElvUI_EltreumUI.borders.combosizex = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.player.classbar.enable or not E.db.ElvUI_EltreumUI.borders.comboclassbar end)
 	ElvUI_EltreumUI.Options.args.borders.args.unitframeborders.args.player.args.borderycomboclassbar = ACH:Range(L["Border Y offset"], nil, 22, BorderOffsetSize, "full", function() return E.db.ElvUI_EltreumUI.borders.combosizey end, function(_, value) E.db.ElvUI_EltreumUI.borders.combosizey = value ElvUI_EltreumUI:Borders() end, function() return not E.db.unitframe.units.player.classbar.enable or not E.db.ElvUI_EltreumUI.borders.comboclassbar end)
@@ -875,11 +944,11 @@ function ElvUI_EltreumUI:Configtable()
 		end
 	 end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.forceFSRsharpness = ACH:Range(RESAMPLE_QUALITY_FSR, nil, 3, { min = 0, max = 2, step = 0.1 }, 'full', function() return tonumber(GetCVar('ResampleSharpness')) end, function(_, value) SetCVar('ResampleSharpness', value) end, function() if GetCVar('ResampleAlwaysSharpen') == '1' then return false elseif GetCVar('ResampleAlwaysSharpen') == '0' then return true end end)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.description2 = ACH:Description(LOW_LATENCY_MODE or "Low Latency Mode", 4, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.lowlatencycvar = ACH:Select(" ",OPTION_TOOLTIP_LOW_LATENCY_MODE or "Allows the game to use various techniques to reduce input latency", 5, {
-		["0"] = VIDEO_OPTIONS_DISABLED or "Disabled",
-		["1"] = VIDEO_OPTIONS_BUILTIN or "Built-in",
-		["2"] = VIDEO_OPTIONS_NVIDIA_REFLEX or "NVIDIA Reflex",
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.description2 = ACH:Description(LOW_LATENCY_MODE, 4, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.lowlatencycvar = ACH:Select(" ",OPTION_TOOLTIP_LOW_LATENCY_MODE, 5, {
+		["0"] = VIDEO_OPTIONS_DISABLED,
+		["1"] = VIDEO_OPTIONS_BUILTIN,
+		["2"] = VIDEO_OPTIONS_NVIDIA_REFLEX,
 		--["3"] = VIDEO_OPTIONS_NVIDIA_REFLEX_BOOST,
 	}, false, nil, function() return GetCVar('LowLatencyMode') end, function(_, value) local number = tonumber(value) SetCVar('LowLatencyMode', number) end, nil)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.lowlatencycvar.style = "radio"
@@ -919,7 +988,7 @@ function ElvUI_EltreumUI:Configtable()
 	 end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.misc = ACH:Group(L["Misc"], nil, 2, "tab", nil,nil,nil,not E.Retail)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.misc.args.description1 = ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.misc.args.showInGameNavigation = ACH:Toggle(_G.SHOW_IN_GAME_NAVIGATION or " ", nil, 2, nil, false,"full",
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.misc.args.showInGameNavigation = ACH:Toggle(SHOW_IN_GAME_NAVIGATION, nil, 2, nil, false,"full",
 		function()
 		if GetCVar('showInGameNavigation') == '0' then
 			return false
@@ -2768,10 +2837,10 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.party.args.instances.args.GuildText = ACH:Input(L["Guild"], L["The text displayed when in a guild group"], 53, false, nil, function() return E.db.ElvUI_EltreumUI.skins.instances.guild end, function(_, value) E.db.ElvUI_EltreumUI.skins.instances.guild = tostring(value) E:StaticPopup_Show('PRIVATE_RL') end, function() return (not E.db.ElvUI_EltreumUI.skins.instances.enable) end, not E.Retail)
 	ElvUI_EltreumUI.Options.args.party.args.instances.args.description19 = ACH:Description(" ", 54, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
 	ElvUI_EltreumUI.Options.args.party.args.instances.args.delveColor = ACH:Color(L["Color"], nil, 55, false, nil, function() return E.db.ElvUI_EltreumUI.skins.instances.delveColor.r, E.db.ElvUI_EltreumUI.skins.instances.delveColor.g, E.db.ElvUI_EltreumUI.skins.instances.delveColor.b, 1, P.ElvUI_EltreumUI.skins.instances.delveColor.r, P.ElvUI_EltreumUI.skins.instances.delveColor.g, P.ElvUI_EltreumUI.skins.instances.delveColor.b, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.skins.instances.delveColor.r, E.db.ElvUI_EltreumUI.skins.instances.delveColor.g, E.db.ElvUI_EltreumUI.skins.instances.delveColor.b = r, g, b end, function() return (not E.db.ElvUI_EltreumUI.skins.instances.enable or E.db.ElvUI_EltreumUI.skins.instances.classcolor or not E.db.ElvUI_EltreumUI.skins.instances.difficultycolors) end, not E.Retail)
-	ElvUI_EltreumUI.Options.args.party.args.instances.args.delveText = ACH:Input(_G.DELVE_LABEL or "", L["The text displayed when in a delve"], 56, false, nil, function() return E.db.ElvUI_EltreumUI.skins.instances.delve end, function(_, value) E.db.ElvUI_EltreumUI.skins.instances.delve = tostring(value) E:StaticPopup_Show('PRIVATE_RL') end, function() return (not E.db.ElvUI_EltreumUI.skins.instances.enable) end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.party.args.instances.args.delveText = ACH:Input(DELVE_LABEL, L["The text displayed when in a delve"], 56, false, nil, function() return E.db.ElvUI_EltreumUI.skins.instances.delve end, function(_, value) E.db.ElvUI_EltreumUI.skins.instances.delve = tostring(value) E:StaticPopup_Show('PRIVATE_RL') end, function() return (not E.db.ElvUI_EltreumUI.skins.instances.enable) end, not E.Retail)
 	ElvUI_EltreumUI.Options.args.party.args.instances.args.description20 = ACH:Description(" ", 57, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
 	ElvUI_EltreumUI.Options.args.party.args.instances.args.questColor = ACH:Color(L["Color"], nil, 58, false, nil, function() return E.db.ElvUI_EltreumUI.skins.instances.questColor.r, E.db.ElvUI_EltreumUI.skins.instances.questColor.g, E.db.ElvUI_EltreumUI.skins.instances.questColor.b, 1, P.ElvUI_EltreumUI.skins.instances.questColor.r, P.ElvUI_EltreumUI.skins.instances.questColor.g, P.ElvUI_EltreumUI.skins.instances.questColor.b, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.skins.instances.questColor.r, E.db.ElvUI_EltreumUI.skins.instances.questColor.g, E.db.ElvUI_EltreumUI.skins.instances.questColor.b = r, g, b end, function() return (not E.db.ElvUI_EltreumUI.skins.instances.enable or E.db.ElvUI_EltreumUI.skins.instances.classcolor or not E.db.ElvUI_EltreumUI.skins.instances.difficultycolors) end, not E.Retail)
-	ElvUI_EltreumUI.Options.args.party.args.instances.args.questText = ACH:Input(_G.QUESTS_LABEL or "", L["The text displayed when in a quest instance"], 59, false, nil, function() return E.db.ElvUI_EltreumUI.skins.instances.quest end, function(_, value) E.db.ElvUI_EltreumUI.skins.instances.quest = tostring(value) E:StaticPopup_Show('PRIVATE_RL') end, function() return (not E.db.ElvUI_EltreumUI.skins.instances.enable) end, not E.Retail)
+	ElvUI_EltreumUI.Options.args.party.args.instances.args.questText = ACH:Input(QUESTS_LABEL, L["The text displayed when in a quest instance"], 59, false, nil, function() return E.db.ElvUI_EltreumUI.skins.instances.quest end, function(_, value) E.db.ElvUI_EltreumUI.skins.instances.quest = tostring(value) E:StaticPopup_Show('PRIVATE_RL') end, function() return (not E.db.ElvUI_EltreumUI.skins.instances.enable) end, not E.Retail)
 
 	--gradient
 	ElvUI_EltreumUI.Options.args.gradient = ACH:Group(E:TextGradient(L["Gradient"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add gradients to Unitframes and Nameplates"], 85, 'tab')
@@ -2954,7 +3023,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.gradient.args.colors.args.power.args.description5 = ACH:Description(ENERGY, 12, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.gradient.args.colors.args.power.args.energy1 = ACH:Color(L["Color 1"], nil, 13, false, nil, function() local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.energyR1 local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.energyG1 local db = P.ElvUI_EltreumUI.unitframes.gradientmode.energyB1 return E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyB1, 1, dr, dg, db, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end)
 	ElvUI_EltreumUI.Options.args.gradient.args.colors.args.power.args.energy2 = ACH:Color(L["Color 2"], nil, 14, false, nil, function() local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.energyR2 local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.energyG2 local db = P.ElvUI_EltreumUI.unitframes.gradientmode.energyB2 return E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyB2, 1, dr, dg, db, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.energyB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end)
-	ElvUI_EltreumUI.Options.args.gradient.args.colors.args.power.args.description6 = ACH:Description(function() if not E.Classic then return RUNIC_POWER else return "Runic Power" end end, 15, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Classic)
+	ElvUI_EltreumUI.Options.args.gradient.args.colors.args.power.args.description6 = ACH:Description(RUNIC_POWER, 15, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Classic)
 	ElvUI_EltreumUI.Options.args.gradient.args.colors.args.power.args.runicpower1 = ACH:Color(L["Color 1"], nil, 16, false, nil, function() local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR1 local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerG1 local db = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerB1 return E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerB1, 1, dr, dg, db, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerG1, E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerB1 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end, E.Classic)
 	ElvUI_EltreumUI.Options.args.gradient.args.colors.args.power.args.runicpower2 = ACH:Color(L["Color 2"], nil, 17, false, nil, function() local dr = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR2 local dg = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerG2 local db = P.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerB2 return E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerB2, 1, dr, dg, db, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerR2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerG2, E.db.ElvUI_EltreumUI.unitframes.gradientmode.runicpowerB2 = r, g, b ElvUI_EltreumUI:GradientColorTableUpdate() end, function() return not E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepowercustom end, E.Classic)
 	ElvUI_EltreumUI.Options.args.gradient.args.colors.args.power.args.description7 = ACH:Description(POWER_TYPE_LUNAR_POWER, 18, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
@@ -3084,7 +3153,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.nameplates.args.powerbar.args.types.args.rage = ACH:Toggle(RAGE, nil, 2, nil, false, nil, function() return E.private.ElvUI_EltreumUI.nameplatepower.rage end, function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.rage = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end)
 	ElvUI_EltreumUI.Options.args.nameplates.args.powerbar.args.types.args.energy = ACH:Toggle(ENERGY, nil, 2, nil, false, nil, function() return E.private.ElvUI_EltreumUI.nameplatepower.energy end, function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.energy = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end)
 	ElvUI_EltreumUI.Options.args.nameplates.args.powerbar.args.types.args.astral = ACH:Toggle(POWER_TYPE_LUNAR_POWER, nil, 2, nil, false, nil, function() return E.private.ElvUI_EltreumUI.nameplatepower.astral end, function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.astral = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end, not E.Retail)
-	ElvUI_EltreumUI.Options.args.nameplates.args.powerbar.args.types.args.runic = ACH:Toggle(function() if not E.Classic then return RUNIC_POWER else return "Runic Power" end end, nil, 2, nil, false, nil, function() return E.private.ElvUI_EltreumUI.nameplatepower.runic end, function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.runic = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end, E.Classic)
+	ElvUI_EltreumUI.Options.args.nameplates.args.powerbar.args.types.args.runic = ACH:Toggle(RUNIC_POWER, nil, 2, nil, false, nil, function() return E.private.ElvUI_EltreumUI.nameplatepower.runic end, function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.runic = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end, E.Classic)
 	ElvUI_EltreumUI.Options.args.nameplates.args.powerbar.args.types.args.insanity = ACH:Toggle(INSANITY_POWER, nil, 2, nil, false, nil, function() return E.private.ElvUI_EltreumUI.nameplatepower.insanity end, function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.insanity = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end, not E.Retail)
 	ElvUI_EltreumUI.Options.args.nameplates.args.powerbar.args.types.args.maelstrom = ACH:Toggle(POWER_TYPE_MAELSTROM, nil, 2, nil, false, nil, function() return E.private.ElvUI_EltreumUI.nameplatepower.maelstrom end, function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.maelstrom = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end, not E.Retail)
 	ElvUI_EltreumUI.Options.args.nameplates.args.powerbar.args.types.args.fury = ACH:Toggle(POWER_TYPE_FURY, nil, 2, nil, false, nil, function() return E.private.ElvUI_EltreumUI.nameplatepower.fury end, function(_, value) E.private.ElvUI_EltreumUI.nameplatepower.fury = value E:StaticPopup_Show('PRIVATE_RL') end, function() return not E.private.ElvUI_EltreumUI.nameplatepower.enable end, not E.Retail)

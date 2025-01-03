@@ -27,6 +27,17 @@ local W
 local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local utf8sub = _G.string.utf8sub
+local format = _G.format
+local IsInInstance = _G.IsInInstance
+local IsEncounterInProgress = _G.IsEncounterInProgress
+local strsub = _G.strsub
+local ShowUIPanel = _G.ShowUIPanel
+local EditModeManagerFrame = _G.EditModeManagerFrame
+local SOUNDKIT = _G.SOUNDKIT
+local pairs = _G.pairs
+local StaticPopupDialogs = _G.StaticPopupDialogs
+local ceil = _G.ceil
+local BuffFrame = _G.BuffFrame
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)

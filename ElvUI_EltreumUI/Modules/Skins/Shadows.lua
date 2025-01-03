@@ -7,12 +7,14 @@ local pairs = _G.pairs
 local CreateFrame = _G.CreateFrame
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
+local select = _G.select
+local C_ChatBubbles = _G.C_ChatBubbles
+
 local EltruismBlizzShadows = CreateFrame("Frame")
 local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
 local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
 local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
 local timermonitor = CreateFrame("FRAME")
-local select = _G.select
 local valuecolors = E:ClassColor(E.myclass, true)
 local DT = E:GetModule('DataTexts')
 

@@ -1,7 +1,8 @@
 local E = unpack(ElvUI)
 local _G = _G
 local UnitClass = _G.UnitClass
-
+local UnitGroupRolesAssigned = _G.UnitGroupRolesAssigned
+local hooksecurefunc = _G.hooksecurefunc
 local Hooked = false
 
 --blizzard raid frames custom textures/gradient

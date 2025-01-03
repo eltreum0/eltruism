@@ -2,6 +2,8 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local PlaySoundFile = _G.PlaySoundFile
+local CreateFrame = _G.CreateFrame
+local C_GameRules = _G.C_GameRules
 
 function ElvUI_EltreumUI:EltruismScrap()
 	E:Delay(0, function()

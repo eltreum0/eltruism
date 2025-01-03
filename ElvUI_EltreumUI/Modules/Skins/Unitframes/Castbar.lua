@@ -11,7 +11,8 @@ local reactiontarget,reactionfocus,reactionpet
 local _, targetclass, focusclass, petclass
 local headergroup,group,groupbutton
 local select = _G.select
-local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
+local UnitInPartyIsAI = _G.UnitInPartyIsAI
+local IsInGroup = _G.IsInGroup
 
 --elvui castbar texture/gradient
 function ElvUI_EltreumUI:CastBarTextureGradient()

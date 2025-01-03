@@ -3,6 +3,9 @@ local _G = _G
 local UIFrameFadeOut = _G.UIFrameFadeOut
 local hooksecurefunc = _G.hooksecurefunc
 local UIFrameFadeIn = _G.UIFrameFadeIn
+local math = _G.math
+local type = _G.type
+local ipairs  = _G.ipairs
 local valuecolors = E:ClassColor(E.myclass, true)
 local S = E:GetModule('Skins')
 

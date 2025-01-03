@@ -15,6 +15,8 @@ local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local tostring = _G.tostring
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitClass = _G.UnitClass
+local UnitInPartyIsAI = _G.UnitInPartyIsAI
+local UnitPowerType = _G.UnitPowerType
 local classcolor = E:ClassColor(E.myclass, true)
 local classcolor2 = {}
 local classcolor2check = false
@@ -81,7 +83,7 @@ function ElvUI_EltreumUI:GetButtonCasterForBorderColor(button)
 					elseif reactiontarget == 4 then
 						classcolor2 = ElvUI_EltreumUI:GetClassColorsRGB("NPCNEUTRAL")
 					elseif reactiontarget == 3 then
-						cclasscolor2 = ElvUI_EltreumUI:GetClassColorsRGB("NPCUNFRIENDLY")
+						classcolor2 = ElvUI_EltreumUI:GetClassColorsRGB("NPCUNFRIENDLY")
 					elseif reactiontarget == 2 or reactiontarget == 1 then
 						classcolor2 = ElvUI_EltreumUI:GetClassColorsRGB("NPCHOSTILE")
 					end

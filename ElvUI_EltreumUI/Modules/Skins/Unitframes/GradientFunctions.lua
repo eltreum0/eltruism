@@ -2,7 +2,6 @@ local E = unpack(ElvUI)
 local _G = _G
 local tostring = _G.tostring
 local CreateFrame = _G.CreateFrame
-local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 
 --set the variables
 --maybe recreating colors can be avoided by setting the color as a variable and then creating if it doesnt exist like maybe so:

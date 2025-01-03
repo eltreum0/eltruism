@@ -5,6 +5,8 @@ local CreateFrame = _G.CreateFrame
 local InCombatLockdown = _G.InCombatLockdown
 local HasNewMail = _G.HasNewMail
 local PlaySoundFile = _G.PlaySoundFile
+local C_VoiceChat = _G.C_VoiceChat
+local Enum = _G.Enum
 
 local EltruismMailArrive = CreateFrame("FRAME","EltruismMailArrive")
 EltruismMailArrive:SetSize(40,40)

@@ -14,6 +14,7 @@ local GetSpellBaseCooldown = _G.GetSpellBaseCooldown
 local GetSpellCooldown = _G.C_Spell and _G.C_Spell.GetSpellCooldown or _G.GetSpellCooldown
 local GetSpellCharges = _G.C_Spell and _G.C_Spell.GetSpellCharges or _G.GetSpellCharges
 local GetInventoryItemLink = _G.GetInventoryItemLink
+local C_Container = _G.C_Container
 local GetContainerItemLink = _G.C_Container.GetContainerItemLink
 local tonumber = _G.tonumber
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
@@ -22,6 +23,8 @@ local GetPetActionCooldown = _G.GetPetActionCooldown
 local PlaySoundFile = _G.PlaySoundFile
 local enabled
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
+local type = _G.type
+
 --local UseItemByName = _G.C_Item and _G.C_Item.UseItemByName or _G.UseItemByName --TODO 11.0, check this hook
 
 --onupdate things

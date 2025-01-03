@@ -22,6 +22,19 @@ if E.Retail then
 	S:HandleFrame(ScenarioObjectiveBlockBackground)
 end
 local format = _G.format
+local C_QuestLog = _G.C_QuestLog
+local ObjectiveTrackerFrame = _G.ObjectiveTrackerFrame
+local math = _G.math
+local Enum = _G.Enum
+local InCombatLockdown = _G.InCombatLockdown
+local tonumber = _G.tonumber
+local strmatch = _G.strmatch
+local string = _G.string
+local unpack = _G.unpack
+local GetNumQuestLeaderBoards = _G.GetNumQuestLeaderBoards
+local GetNumQuestLogEntries = _G.GetNumQuestLogEntries
+local UpdateWidgetLayoutHook = _G.UpdateWidgetLayoutHook
+local QuestMapFrame_GetDetailQuestID = _G.QuestMapFrame_GetDetailQuestID
 
 --skin objective frame depending on verison
 function ElvUI_EltreumUI:SkinQuests()

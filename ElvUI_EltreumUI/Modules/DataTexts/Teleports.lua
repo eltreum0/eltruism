@@ -21,6 +21,8 @@ local tostring = _G.tostring
 local mod = _G.mod
 local IsUsableItem = _G.C_Item and _G.C_Item.IsUsableItem or _G.IsUsableItem
 local hsIsReady = true
+local C_Map = _G.C_Map
+local InCombatLockdown = _G.InCombatLockdown
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------hearthstone/tp item datatext
 --based yet again on elvui config
 --most from https://www.wowhead.com/item=6948/hearthstone#comments

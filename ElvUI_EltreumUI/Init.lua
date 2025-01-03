@@ -38,9 +38,9 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	end
 	if E.db.ElvUI_EltreumUI.deepLwarning then
 		if E.global.general.locale == "esMX" or E.global.general.locale == "esES" then
-			ElvUI_EltreumUI:Print("Spanish Translation is from DeepL and is in testing, feedback is welcome. - La traducción al español es de DeepL y está en pruebas, los comentarios son bienvenidos.\n Type /eltruism translate to turn this message off")
+			ElvUI_EltreumUI:Print("La traducción al español es de DeepL y está en pruebas, los comentarios son bienvenidos.\n Escribe /eltruism translate para desactivar este mensaje")
 		elseif E.global.general.locale == "frFR" then
-			ElvUI_EltreumUI:Print("French Translation is from DeepL and is in testing, feedback is welcome. - La traduction française provient de DeepL et est en cours de test, les commentaires sont les bienvenus.\n Type /eltruism translate to turn this message off")
+			ElvUI_EltreumUI:Print("La traduction française provient de DeepL et est en cours de test, les commentaires sont les bienvenus.\n Tapez /eltruism translate pour désactiver ce message.")
 		end
 	end
 	ElvUI_EltreumUI:OriginalClassColors() --original mage and warlock class colors, also shaman blue in classic

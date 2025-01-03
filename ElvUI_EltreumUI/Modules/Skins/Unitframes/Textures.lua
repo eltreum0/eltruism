@@ -19,7 +19,7 @@ local group, groupbutton, tankbutton, assistbutton, raidpetbutton,partypetbutton
 local IsInGroup = _G.IsInGroup
 local UnitIsCharmed = _G.UnitIsCharmed
 local pairs = _G.pairs
-local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
+local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
 --set the textures for single units
 function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientation)

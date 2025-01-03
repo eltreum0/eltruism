@@ -12,6 +12,7 @@ local HandleModifiedItemClick = _G.HandleModifiedItemClick
 local GameTooltip = _G.GameTooltip
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local ipairs = _G.ipairs
+local C_Container = _G.C_Container
 local GetContainerNumSlots = C_Container.GetContainerNumSlots
 local GetContainerItemLink = C_Container.GetContainerItemLink
 local GetContainerItemInfo = C_Container.GetContainerItemInfo
@@ -24,6 +25,7 @@ local GetBindingText = _G.GetBindingText
 local CooldownFrame_Set = _G.CooldownFrame_Set
 local _, instanceType
 local GetItemSpell = _G.C_Item and _G.C_Item.GetItemSpell or _G.GetItemSpell
+
 
 --A merge of QBAr by Aezay with a few edits by Eltreum
 --This module is GNU GPL v3

@@ -11,7 +11,6 @@ local UnitReaction = _G.UnitReaction
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local GameTooltip = _G.GameTooltip
-local ElvUI_EltreumUI = _G.ElvUI_EltreumUI
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 
 --gradient tooltip health

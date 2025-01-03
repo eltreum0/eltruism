@@ -3,6 +3,11 @@ local _G = _G
 local UnitExists = _G.UnitExists
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitClass = _G.UnitClass
+local UnitInPartyIsAI = _G.UnitInPartyIsAI
+local UnitClassification = _G.UnitClassification
+local UnitGUID = _G.UnitGUID
+local select = _G.select
+local strsplit = _G.strsplit
 
 local playericons = {
 	["MAGE"] = "Eltruism21",

@@ -22,6 +22,7 @@ local focuspowerbar, focusbar, focusclass,reactionfocus
 local CreateVector3D = _G.CreateVector3D
 local rad = _G.rad
 local UnitReaction = _G.UnitReaction
+local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
 --models table, because each version has different texture paths
 --its based on the color of the model, not the name/theme
