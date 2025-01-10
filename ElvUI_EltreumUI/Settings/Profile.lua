@@ -30,6 +30,7 @@ P.ElvUI_EltreumUI = {
 		chaticonenable = true,
 		chatgradient = false,
 		chaticontype = "GRADIENT",
+		chatraceicon = false,
 		AuthorMVPDonatorIcons = true,
 	},
 

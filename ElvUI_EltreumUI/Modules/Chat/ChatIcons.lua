@@ -239,7 +239,6 @@ function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, 
 		local data = CH:GetPlayerInfoByGUID(arg12)
 		local classColor = data and data.classColor
 		if classColor and data.englishClass then
-			--print(data.englishClass)
 			if E.db.ElvUI_EltreumUI.chat.chaticonenable and E.db.ElvUI_EltreumUI.chat.chatgradient then
 				return ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.chat.chaticontype,data.englishClass,false,"32")..ElvUI_EltreumUI:GradientName(name, data.englishClass)
 			elseif E.db.ElvUI_EltreumUI.chat.chaticonenable and not E.db.ElvUI_EltreumUI.chat.chatgradient then
@@ -254,8 +253,57 @@ function ElvUI_EltreumUI:ChatClassIcons(event, _, arg2, _, _, _, _, _, arg8, _, 
 
 	return name
 end
+
+--hook GetPFlag to add race/sex to the player names in chat
+local IsTimerunningPlayer = C_ChatInfo.IsTimerunningPlayer
+function ElvUI_EltreumUI:GetPFlag(specialFlag, zoneChannelID, unitGUID)
+	local flag = ''
+
+	if specialFlag ~= '' then
+		if specialFlag == 'GM' or specialFlag == 'DEV' then
+			-- Add Blizzard Icon if this was sent by a GM/DEV
+			flag = [[|TInterface\ChatFrame\UI-ChatIcon-Blizz:12:20:0:0:32:16:4:28:0:16|t ]]
+		elseif specialFlag == 'GUIDE' then
+			if CH.db.mentorshipIcon and _G.ChatFrame_GetMentorChannelStatus(CHATCHANNELRULESET_MENTOR, GetChannelRulesetForChannelID(zoneChannelID)) == CHATCHANNELRULESET_MENTOR then
+				flag = NPEV2_CHAT_USER_TAG_GUIDE
+			end
+		elseif specialFlag == 'NEWCOMER' then
+			if CH.db.mentorshipIcon and _G.ChatFrame_GetMentorChannelStatus(PLAYERMENTORSHIPSTATUS_NEWCOMER, GetChannelRulesetForChannelID(zoneChannelID)) == PLAYERMENTORSHIPSTATUS_NEWCOMER then
+				flag = _G.NPEV2_CHAT_USER_TAG_NEWCOMER
+			end
+		else
+			flag = _G['CHAT_FLAG_'..specialFlag]
+		end
+	end
+
+	if E.Retail and E.db.chat.timerunningIcon and unitGUID and IsTimerunningPlayer(unitGUID) then
+		flag = flag .. TIMERUNNING_SMALL
+	end
+
+	--get the data to add the race/sex icons and then add it
+	if unitGUID then
+		local data = CH:GetPlayerInfoByGUID(unitGUID)
+		--some nil checks
+		if not data.englishRace then data.englishRace = "Human" end
+		if not data.sex or data.sex == 1 then data.sex = 2 end
+		if E.Retail then
+			flag = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Retail\\"..data.englishRace..data.sex..".tga:0:0:0:0|t"..flag
+		else
+			flag = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Classic\\"..data.englishRace..data.sex..".tga:0:0:0:0|t"..flag
+		end
+	end
+
+	return flag
+end
+
 hooksecurefunc(CH, "ChatFrame_MessageEventHandler", function()
-	if (E.db.ElvUI_EltreumUI.chat.chaticonenable or E.db.ElvUI_EltreumUI.chat.chatgradient) and E.db.ElvUI_EltreumUI.chat.enable then
-		CH.GetColoredName = ElvUI_EltreumUI.ChatClassIcons
+	if E.db.ElvUI_EltreumUI.chat.enable then
+		if (E.db.ElvUI_EltreumUI.chat.chaticonenable or E.db.ElvUI_EltreumUI.chat.chatgradient) then
+			CH.GetColoredName = ElvUI_EltreumUI.ChatClassIcons
+		end
+		if E.db.ElvUI_EltreumUI.chat.chatraceicon then
+			CH.GetPFlag = ElvUI_EltreumUI.GetPFlag
+		end
 	end
 end)
+
