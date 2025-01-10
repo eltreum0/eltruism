@@ -1602,3 +1602,5 @@ L["Reset layout to Eltruism Thin"] = true
 L["Reverse Focus"] = true
 L["Reverse Focus Gradient Health"] = true
 L["Hide Quests during Mythic Plus"] = true
+L["Add Character Race Icons"] = true
+L["Enable Character Race Icons"] = true
