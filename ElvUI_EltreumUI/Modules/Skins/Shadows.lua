@@ -661,6 +661,10 @@ function ElvUI_EltreumUI:Shadows()
 								ElvUI_EltreumUI:ShadowColor(_G.GarrisonLandingPage.shadow)
 							end
 						end
+						if  _G.GarrisonLandingPageTab1 and not _G.GarrisonLandingPageTab1.shadow then
+							_G.GarrisonLandingPageTab1:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.GarrisonLandingPageTab1.shadow)
+						end
 						if _G.CovenantMissionFrame then
 							if not _G.CovenantMissionFrame.shadow then
 								_G.CovenantMissionFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
