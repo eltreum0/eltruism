@@ -1602,3 +1602,5 @@ L["Reset layout to Eltruism Thin"] = "重置为 Eltruism Thin 布局"
 L["Reverse Focus"] = "反向焦点"
 L["Reverse Focus Gradient Health"] = "反向焦点渐变生命"
 L["Hide Quests during Mythic Plus"] = true
+L["Add Character Race Icons"] = true
+L["Enable Character Race Icons"] = true
