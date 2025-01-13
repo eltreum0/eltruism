@@ -1579,7 +1579,7 @@ function ElvUI_EltreumUI:TooltipBorder()
 
 	 if not tooltipborder.Hooks then
 	 	local function FixSize()
-	 		if _G.GameTooltipStatusBar and _G.GameTooltipStatusBar:IsShown() then
+	 		if _G.GameTooltipStatusBar and _G.GameTooltipStatusBar:IsShown() and (_G.GameTooltipStatusBar:GetAlpha() ~= 0) then --isshown and isvisible always return true
 				tthpx,tthpy = _G.GameTooltipStatusBar:GetSize()
 				ttx,tty = _G.GameTooltip:GetSize()
 				if E.db.tooltip.healthBar.statusPosition == "TOP" then
