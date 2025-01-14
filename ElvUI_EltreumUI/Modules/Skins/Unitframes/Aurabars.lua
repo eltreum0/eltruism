@@ -101,14 +101,14 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 						if E.db.unitframe.colors.transparentAurabars then
 							--bar.bg:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 							if E.db.unitframe.colors.customaurabarbackdrop then
-								bar.bg:SetVertexColor(E.db.unitframe.colors.aurabar_backdrop.r,E.db.unitframe.colors.aurabar_backdrop.g,E.db.unitframe.colors.aurabar_backdrop.b,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+								bar.bg:SetVertexColor(E.db.unitframe.colors.aurabar_backdrop.r,E.db.unitframe.colors.aurabar_backdrop.g,E.db.unitframe.colors.aurabar_backdrop.b,E.db.general.backdropfadecolor.a)
 								if bar.backdropTex then
-									bar.backdropTex:SetVertexColor(E.db.unitframe.colors.aurabar_backdrop.r,E.db.unitframe.colors.aurabar_backdrop.g,E.db.unitframe.colors.aurabar_backdrop.b,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+									bar.backdropTex:SetVertexColor(E.db.unitframe.colors.aurabar_backdrop.r,E.db.unitframe.colors.aurabar_backdrop.g,E.db.unitframe.colors.aurabar_backdrop.b,E.db.general.backdropfadecolor.a)
 								end
 							else
-								bar.bg:SetVertexColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+								bar.bg:SetVertexColor(0,0,0,E.db.general.backdropfadecolor.a)
 								if bar.backdropTex then
-									bar.backdropTex:SetVertexColor(0,0,0,E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
+									bar.backdropTex:SetVertexColor(0,0,0,E.db.general.backdropfadecolor.a)
 								end
 							end
 						end
