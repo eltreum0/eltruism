@@ -698,32 +698,15 @@ end
 
 --check for blinkii's kick on cd function
 function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
-
-if IsAddOnLoaded("ElvUI_mMediaTag") and E.Retail then
-
-
-if (E.db.mMT and E.db.mMT.interruptoncd and E.db.mMT.interruptoncd.enable) then
-
-
-
-return _G.mMT:mMediaTag_interruptOnCD() or false
-
-
-else
-
-
-
-return false
-
-
-end
-
-else
-
-
-return false
-
-end
+	if IsAddOnLoaded("ElvUI_mMediaTag") and E.Retail then
+		if (E.db.mMT and E.db.mMT.interruptoncd and E.db.mMT.interruptoncd.enable) then
+			return _G.mMT:mMediaTag_interruptOnCD() or false
+		else
+			return false
+		end
+	else
+		return false
+	end
 end
 
 do
