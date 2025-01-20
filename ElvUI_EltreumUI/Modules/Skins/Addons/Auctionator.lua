@@ -123,6 +123,7 @@ function ElvUI_EltreumUI:SkinAuctionator()
 				S:HandleDropDownBox(_G["AuctionatorShoppingTabItemFrame"].QualityContainer.DropDown.DropDown,200)
 				S:HandleDropDownBox(_G["AuctionatorShoppingTabItemFrame"].ExpansionContainer.DropDown.DropDown,200)
 				S:HandleDropDownBox(_G["AuctionatorShoppingTabItemFrame"].TierContainer.DropDown.DropDown,200)
+				--S:HandleDropDownBox(_G["AuctionatorShoppingTabItemFrame"].DropDown,240)
 				if _G["AuctionatorShoppingTabItemFrame"].Inset then
 					_G["AuctionatorShoppingTabItemFrame"].Inset:Hide()
 				end
@@ -265,14 +266,14 @@ function ElvUI_EltreumUI:SkinAuctionator()
 					end
 				end)]]
 
-				hooksecurefunc(_G.Auctionator.Selling,"ShowPopup",function()
+				--[[hooksecurefunc(_G.Auctionator.Selling,"ShowPopup",function()
 					E:Delay(0, function()
 						if not _G["AuctionatorSellingPopupFrame"].EltruismSkin then
 							S:HandleFrame(_G["AuctionatorSellingPopupFrame"])
 							_G["AuctionatorSellingPopupFrame"].EltruismSkin = true
 						end
 					end)
-				end)
+				end)]]
 
 				if not _G["AuctionatorSellingFrame"].BagListing.EltruismViewHook then --items (can) update late, and they might also change, so hook view
 					handlesubframe(_G["AuctionatorSellingFrame"].BagListing.View.ScrollBox.ItemListingFrame) --seems like if selling is the default view they update earlier
