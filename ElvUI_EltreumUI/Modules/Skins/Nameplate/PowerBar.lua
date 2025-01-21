@@ -45,6 +45,7 @@ EltreumPowerPrediction:Hide()
 local EltreumPowerPredictionIncoming = CreateFrame('StatusBar', "EltruismPowerBarPredictionIncoming", EltreumPowerBar)
 EltreumPowerPrediction:SetValue(0)
 EltreumPowerPredictionIncoming:Hide()
+EltreumPowerPredictionIncoming:SetValue(0)
 local mainCost = 0
 local incResource = 0
 local startTime, endTime, spellID = 0, 0, 0
