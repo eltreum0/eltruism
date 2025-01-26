@@ -1867,6 +1867,49 @@ E:AddTag("eltruism:pchpdeficit:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_
 end)
 E:AddTagInfo("eltruism:pchpdeficit:gradient", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays current health percentage and health lost in shortvalue"])
 
+
+--health:current-max-percent:shortvalue but gradient
+E:AddTag("eltruism:healthcurrentmaxpercentshort:gradient", 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
+	local status = UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
+	local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
+	if status then
+		return status
+	else
+		local _, unitClass = UnitClass(unit)
+		local value,perctext,perc
+		local min = UnitHealth(unit)
+		local max = UnitHealthMax(unit)
+		if min == max  then
+			value = E:ShortValue(min, 0)
+			perctext = ""
+			perc = " "
+		else
+			value = E:ShortValue(min, 0).." - "..E:ShortValue(max, 0)
+			perctext = "|c"..classcolorcast[unitClass].." a |r"
+			perctext = gsub(perctext,"a","||")
+			perc = tostring(format("%.1f%%",min / max * 100))
+		end
+		if not UnitIsPlayer(unit) then
+			local reaction = UnitReaction(unit, "player")
+			if reaction then
+				if reaction >= 5 then
+					return ElvUI_EltreumUI:GradientName(value, "NPCFRIENDLY", isTarget)..perctext..ElvUI_EltreumUI:GradientName(perc, "NPCFRIENDLY", isTarget)
+				elseif reaction == 4 then
+					return ElvUI_EltreumUI:GradientName(value, "NPCNEUTRAL", isTarget)..perctext..ElvUI_EltreumUI:GradientName(perc, "NPCNEUTRAL", isTarget)
+				elseif reaction == 3 then
+					return ElvUI_EltreumUI:GradientName(value, "NPCUNFRIENDLY", isTarget)..perctext..ElvUI_EltreumUI:GradientName(perc, "NPCUNFRIENDLY", isTarget)
+				elseif reaction == 2 or reaction == 1 then
+					return ElvUI_EltreumUI:GradientName(value, "NPCHOSTILE", isTarget)..perctext..ElvUI_EltreumUI:GradientName(perc, "NPCHOSTILE", isTarget)
+				end
+			end
+		else
+			if not unitClass then return end
+			return ElvUI_EltreumUI:GradientName(value, unitClass, isTarget)..perctext..ElvUI_EltreumUI:GradientName(perc, unitClass, isTarget)
+		end
+	end
+end)
+E:AddTagInfo("eltruism:healthcurrentmaxpercentshort:gradient", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays current health, max health and percentage of health in shortvalue"])
+
 ------------------------------------------------------------------ OTHER -------------------------------------------------------------------------
 
 --Difficulty color for npcs in classic/tbc
