@@ -1341,6 +1341,56 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 end)
 E:AddTagInfo("eltruism:hpstatus", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays HP - % and a status symbol. Can be customized in Eltruism > Media"])
 
+--same as previous tag but with | instead of -
+E:AddTag("eltruism:hpstatus:line", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
+	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
+	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
+	if not UnitIsPlayer(unit) then --npc
+		if not UnitIsDead(unit) then
+			local min, max = UnitHealth(unit), UnitHealthMax(unit)
+			local perc = min / max * 100
+			return format('%s | %.1f%%', E:ShortValue(min, 0), perc)
+		else
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+				return deadtexture
+			else
+				return L["Dead"]
+			end
+		end
+	else
+		if not UnitIsDead(unit) and not UnitIsGhost(unit) then --players
+			local min, max = UnitHealth(unit), UnitHealthMax(unit)
+			local perc = min / max * 100
+			return format('%s | %.1f%%', E:ShortValue(min, 0), perc)
+		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+				return deadtexture
+			else
+				return L["Dead"]
+			end
+		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
+			else
+				return L["Offline"]
+			end
+		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
+			else
+				return L["Offline"]
+			end
+		elseif UnitIsGhost(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga:0:0:0:0|t"
+			else
+				return SpellInfo(8326)
+			end
+		end
+	end
+end)
+E:AddTagInfo("eltruism:hpstatus:line", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays HP | % and a status symbol. Can be customized in Eltruism > Media"])
+
 --reverse of the hpstatus, uses modified elvui tag code
 E:AddTag("eltruism:hpstatus:reverse", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
