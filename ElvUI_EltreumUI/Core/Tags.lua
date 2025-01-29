@@ -2211,7 +2211,7 @@ E:AddTag("eltruism:lowhealth", "UNIT_HEALTH UNIT_MAXHEALTH", function(unit,_,arg
 					DoEmote("HEALME")
 					hpspam = true
 				end
-			elseif (UnitHealth("player")/UnitHealthMax("player")) < (tonumber(percentage) * 0.01) then
+			elseif (UnitHealth("player")/UnitHealthMax("player")) > (tonumber(percentage) * 0.01) then
 				hpspam = false
 			end
 		end
