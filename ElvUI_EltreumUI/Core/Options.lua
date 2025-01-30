@@ -3921,13 +3921,16 @@ Added some missing shadows
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
+Updated enchant list for Classic Era, fixing issues due to missing enchants
 Updated Gradient to allow custom Focus color on Classic Era
 Updated BattlegroundEnemies profile
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
+Fixed an error when using Tooltip borders and having the mouse over the target of target that was not a player
 Fixed an issue where portraits could error due to custom colors
+Fixed [eltruism:lowhealth{number}] not firing correctly
 Fixed an issue with borders custom color
 Fixed an error with Auctionator Skin
 ]], 7, "small", nil, nil, nil, nil, "full")

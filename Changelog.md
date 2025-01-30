@@ -1,6 +1,10 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.2.8.1
+Updated enchant list for Classic Era, fixing issues due to missing enchants  
+Fixed an error when using Tooltip borders and having the mouse over the target of target that was not a player  
+Fixed [eltruism:lowhealth{number}] not firing correctly  
 ### 4.2.8
 Added [eltruism:healthcurrentmaxpercentshort:gradient] tag  
 Added Race/Sex icons to chat messages  
