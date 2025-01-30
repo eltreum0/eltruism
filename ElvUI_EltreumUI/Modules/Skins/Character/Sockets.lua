@@ -45,6 +45,8 @@ function ElvUI_EltreumUI:ClassicSockets()
 
 		--sod (seems like its inverted sometimes)
 		--https://www.wowhead.com/classic/spells?filter=21:109;2:53;11500:0
+		--https://www.wowhead.com/classic/items/consumables/item-enhancements-permanent
+
 		[432190] = 7124, --wolfshead-trophy
 		[446451] = 7328, --atal'ai-signet-of-might
 		[446459] = 7325, --atal'ai-signet-of-mojo
@@ -60,6 +62,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[7326] = 446472 or 446470, --atal'ai-signet-of-serenity
 		[7328] = 446451 or 446450, --atal'ai-signet-of-might
 		[7563] = 460963, --blessed-flame-mantle-of-the-dawn
+		[7564] = 461129, --hydraxian-coronation
 		[7603] = 463871, --enchant-shield-law-of-nature
 		[7613] = 468314, --animists-caress
 		[7614] = 468318, --animists-balance
@@ -98,7 +101,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[7662] = 1219580, --enchant-2h-weapon-spellblasting
 		[7663] = 1219581, --enchant-shield-excellent-stamina
 		[7664] = 1220623, --enchant-shield-critical-strike
-		[7664] = 461129, --hydraxian-coronation
 		[7665] = 1220624, --enchant-bracer-greater-spellpower
 		[7666] = 1219586, --enchant-gloves-superior-strength
 		[7667] = 1219587, --enchant-cloak-agility
