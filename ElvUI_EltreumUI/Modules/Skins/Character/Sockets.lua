@@ -2170,7 +2170,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		playerSlotIconManager = playerSlotIconManager + ElvUI_EltreumUI.SlotIconManager.STYLE.ENABLED
 		self.playerSlotIconManager:SetStyle(playerSlotIconManager)
 		if IsAddOnLoaded("Blizzard_InspectUI") and E.db.ElvUI_EltreumUI.skins.socketsinspect then
-			local inspectorSlotIconManager = style
+			local inspectorSlotIconManager = 0
 			inspectorSlotIconManager = inspectorSlotIconManager + ElvUI_EltreumUI.SlotIconManager.STYLE.ENABLED
 			self.inspectorSlotIconManager:SetStyle(inspectorSlotIconManager)
 		end
