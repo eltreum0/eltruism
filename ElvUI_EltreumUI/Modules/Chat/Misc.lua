@@ -83,7 +83,7 @@ local function ColorSysMsgs(_, _, message, ...)
 		elseif E.locale == "esMX" or E.locale == "esES" then
 			rollstring = "tira los dados y obtiene"
 			onlinestring = "conectado"
-			offlinestring = " desconectado"
+			offlinestring = "desconectado"
 			joinsstring = " se une "
 			joinsstring2 = "unisce "
 			joinsstring3 = "joined the"
