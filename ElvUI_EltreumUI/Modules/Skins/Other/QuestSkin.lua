@@ -1185,7 +1185,11 @@ function ElvUI_EltreumUI:SkinQuests()
 			end
 
 			_G.QuestWatchFrame.HeaderBar:SetSize(E.db.ElvUI_EltreumUI.skins.questsettings.sizex, E.db.ElvUI_EltreumUI.skins.questsettings.sizey)
-			_G.QuestWatchFrame.HeaderBar:SetPoint("TOP", _G.QuestWatchFrameMover, "TOP", 40, 0)
+			if E.db.general.objectiveTracker then
+				_G.QuestWatchFrame.HeaderBar:SetPoint("TOP", _G.QuestWatchFrameMover, "TOP", 0, 0)
+			else
+				_G.QuestWatchFrame.HeaderBar:SetPoint("TOP", _G.QuestWatchFrame, "TOP", 0, 0)
+			end
 			_G.QuestWatchFrame.HeaderBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.skins.questsettings.texture))
 
 			_G.QuestWatchFrame.Minimize:SetSize(15,15)
