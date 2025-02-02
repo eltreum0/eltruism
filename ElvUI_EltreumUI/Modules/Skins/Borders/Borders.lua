@@ -1597,10 +1597,11 @@ function ElvUI_EltreumUI:TooltipBorder()
 
 	 	local function FixColor()
 	 		if _G.GameTooltip:GetUnit() then --has unit
-				local _,unittp = _G.GameTooltip:GetUnit()
-				local _, classunit = UnitClass(unittp)
+				local _,unittp = _G.GameTooltip:GetUnit() --can error for target of target npc
+				if not unittp then unittp = "targettarget" or "target" end
 				local reaction = UnitReaction(unittp, "player")
 				if UnitIsPlayer(unittp) or (E.Retail and UnitInPartyIsAI(unittp)) then
+					local _, classunit = UnitClass(unittp)
 					local valuecolors = E:ClassColor(classunit, true)
 					tooltipborder:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
 				else

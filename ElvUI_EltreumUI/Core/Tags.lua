@@ -1341,6 +1341,56 @@ E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER
 end)
 E:AddTagInfo("eltruism:hpstatus", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays HP - % and a status symbol. Can be customized in Eltruism > Media"])
 
+--same as previous tag but with | instead of -
+E:AddTag("eltruism:hpstatus:line", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
+	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
+	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
+	if not UnitIsPlayer(unit) then --npc
+		if not UnitIsDead(unit) then
+			local min, max = UnitHealth(unit), UnitHealthMax(unit)
+			local perc = min / max * 100
+			return format('%s | %.1f%%', E:ShortValue(min, 0), perc)
+		else
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+				return deadtexture
+			else
+				return L["Dead"]
+			end
+		end
+	else
+		if not UnitIsDead(unit) and not UnitIsGhost(unit) then --players
+			local min, max = UnitHealth(unit), UnitHealthMax(unit)
+			local perc = min / max * 100
+			return format('%s | %.1f%%', E:ShortValue(min, 0), perc)
+		elseif UnitIsDead(unit) and UnitIsConnected(unit) and not UnitIsGhost(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon ~= "NONE" then
+				return deadtexture
+			else
+				return L["Dead"]
+			end
+		elseif not UnitIsDead(unit) and not UnitIsConnected(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
+			else
+				return L["Offline"]
+			end
+		elseif UnitIsDead(unit) and not UnitIsConnected(unit) and not UnitIsGhost(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon ~= "NONE" then
+				return dctexture
+			else
+				return L["Offline"]
+			end
+		elseif UnitIsGhost(unit) then
+			if E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon ~= "NONE" then
+				return "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Ghost\\ghost"..tostring(E.db.ElvUI_EltreumUI.otherstuff.ghosttagicon)..".tga:0:0:0:0|t"
+			else
+				return SpellInfo(8326)
+			end
+		end
+	end
+end)
+E:AddTagInfo("eltruism:hpstatus:line", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays HP | % and a status symbol. Can be customized in Eltruism > Media"])
+
 --reverse of the hpstatus, uses modified elvui tag code
 E:AddTag("eltruism:hpstatus:reverse", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
@@ -1817,6 +1867,49 @@ E:AddTag("eltruism:pchpdeficit:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_
 end)
 E:AddTagInfo("eltruism:pchpdeficit:gradient", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays current health percentage and health lost in shortvalue"])
 
+
+--health:current-max-percent:shortvalue but gradient
+E:AddTag("eltruism:healthcurrentmaxpercentshort:gradient", 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED', function(unit)
+	local status = UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
+	local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
+	if status then
+		return status
+	else
+		local _, unitClass = UnitClass(unit)
+		local value,perctext,perc
+		local min = UnitHealth(unit)
+		local max = UnitHealthMax(unit)
+		if min == max  then
+			value = E:ShortValue(min, 0)
+			perctext = ""
+			perc = " "
+		else
+			value = E:ShortValue(min, 0).." - "..E:ShortValue(max, 0)
+			perctext = "|c"..classcolorcast[unitClass].." a |r"
+			perctext = gsub(perctext,"a","||")
+			perc = tostring(format("%.1f%%",min / max * 100))
+		end
+		if not UnitIsPlayer(unit) then
+			local reaction = UnitReaction(unit, "player")
+			if reaction then
+				if reaction >= 5 then
+					return ElvUI_EltreumUI:GradientName(value, "NPCFRIENDLY", isTarget)..perctext..ElvUI_EltreumUI:GradientName(perc, "NPCFRIENDLY", isTarget)
+				elseif reaction == 4 then
+					return ElvUI_EltreumUI:GradientName(value, "NPCNEUTRAL", isTarget)..perctext..ElvUI_EltreumUI:GradientName(perc, "NPCNEUTRAL", isTarget)
+				elseif reaction == 3 then
+					return ElvUI_EltreumUI:GradientName(value, "NPCUNFRIENDLY", isTarget)..perctext..ElvUI_EltreumUI:GradientName(perc, "NPCUNFRIENDLY", isTarget)
+				elseif reaction == 2 or reaction == 1 then
+					return ElvUI_EltreumUI:GradientName(value, "NPCHOSTILE", isTarget)..perctext..ElvUI_EltreumUI:GradientName(perc, "NPCHOSTILE", isTarget)
+				end
+			end
+		else
+			if not unitClass then return end
+			return ElvUI_EltreumUI:GradientName(value, unitClass, isTarget)..perctext..ElvUI_EltreumUI:GradientName(perc, unitClass, isTarget)
+		end
+	end
+end)
+E:AddTagInfo("eltruism:healthcurrentmaxpercentshort:gradient", ElvUI_EltreumUI.Name.." "..L["Health"], L["Displays current health, max health and percentage of health in shortvalue"])
+
 ------------------------------------------------------------------ OTHER -------------------------------------------------------------------------
 
 --Difficulty color for npcs in classic/tbc
@@ -2118,7 +2211,7 @@ E:AddTag("eltruism:lowhealth", "UNIT_HEALTH UNIT_MAXHEALTH", function(unit,_,arg
 					DoEmote("HEALME")
 					hpspam = true
 				end
-			elseif (UnitHealth("player")/UnitHealthMax("player")) < (tonumber(percentage) * 0.01) then
+			elseif (UnitHealth("player")/UnitHealthMax("player")) > (tonumber(percentage) * 0.01) then
 				hpspam = false
 			end
 		end

@@ -25,7 +25,7 @@ local function EltruismSpellHasteDatatext(dt)
 	local spellhastepc = ((math.ceil(spellhaste*100))/100)..'%'
 	dt.text:SetFormattedText('%s: %s%s|r', L["Spell Haste"], E.media.hexvaluecolor, spellhastepc)
 end
-if E.Cata or E.Classic then
+if not E.Retail then
 	DT:RegisterDatatext('Eltruism Spellhaste', STAT_CATEGORY_ENHANCEMENTS, {'COMBAT_RATING_UPDATE',"UNIT_SPELL_HASTE"}, EltruismSpellHasteDatatext, nil, nil, nil, nil, L["Eltruism Spell Haste"])
 end
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------honor datatext

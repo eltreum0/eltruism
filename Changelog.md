@@ -1,6 +1,20 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.2.8.1
+Updated enchant list for Classic Era, fixing issues due to missing enchants  
+Fixed an error when using Tooltip borders and having the mouse over the target of target that was not a player  
+Fixed [eltruism:lowhealth{number}] not firing correctly  
+### 4.2.8
+Added [eltruism:healthcurrentmaxpercentshort:gradient] tag  
+Added Race/Sex icons to chat messages  
+Added [eltruism:hpstatus:line] tag  
+Added some missing shadows  
+Updated Gradient to allow custom Focus color on Classic Era  
+Updated BattlegroundEnemies profile  
+Fixed an issue where portraits could error due to custom colors  
+Fixed an issue with borders custom color  
+Fixed an error with Auctionator Skin  
 ### 4.2.7.1
 Fixed an error on the LFG Skin due to a change on Blizzard's API  
 ### 4.2.7

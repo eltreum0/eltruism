@@ -3913,24 +3913,26 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added an option to hide the Objective Tracker in Mythic Plus
-Added a possible fix to the LFG Set Title taint
-Added Pet to the unitframe Portrait Skin
-Added Blizzard's Action Bar Border
-Added Borders to the GameTooltip
+Added [eltruism:healthcurrentmaxpercentshort:gradient] tag
+Added Race/Sex icons to chat messages
+Added [eltruism:hpstatus:line] tag
+Added some missing shadows
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Character Panel Class Icons to allow the usage of other Class Icons
-Updated ElvUI Map settings to be the same across all game versions
-Updated the Portrait 3D Model Fix to also apply to Pets
-Updated the max width and height of borders
+Updated enchant list for Classic Era, fixing issues due to missing enchants
+Updated Gradient to allow custom Focus color on Classic Era
+Updated BattlegroundEnemies profile
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an error on the LFG Skin due to a change on Blizzard's API
+Fixed an error when using Tooltip borders and having the mouse over the target of target that was not a player
+Fixed an issue where portraits could error due to custom colors
+Fixed [eltruism:lowhealth{number}] not firing correctly
+Fixed an issue with borders custom color
+Fixed an error with Auctionator Skin
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
