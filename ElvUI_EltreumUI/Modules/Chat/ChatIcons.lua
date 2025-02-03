@@ -257,6 +257,10 @@ end
 --hook GetPFlag to add race/sex to the player names in chat
 local IsTimerunningPlayer = C_ChatInfo.IsTimerunningPlayer
 local GetChannelRulesetForChannelID = C_ChatInfo.GetChannelRulesetForChannelID
+local PLAYERMENTORSHIPSTATUS_NEWCOMER = Enum.PlayerMentorshipStatus and Enum.PlayerMentorshipStatus.Newcomer
+local CHATCHANNELRULESET_MENTOR = Enum.ChatChannelRuleset and Enum.ChatChannelRuleset.Mentor
+local NPEV2_CHAT_USER_TAG_GUIDE = gsub(NPEV2_CHAT_USER_TAG_GUIDE or '', '(|A.-|a).+', '%1') -- we only want the icon
+
 function ElvUI_EltreumUI:GetPFlag(specialFlag, zoneChannelID, unitGUID)
 	local flag = ''
 
