@@ -44,23 +44,24 @@ local function togglebackdrop(frame,show)
 end
 
 --based on elvui toolkit
+local loopframe = CreateFrame("Frame")
+local frametypes = {
+	["Region"] = true,
+	["Texture"] = true,
+	["Cooldown"] = true,
+	["Slider"] = true,
+	["ScrollFrame"] = true,
+	["ModelScene"] = true,
+}
 function ElvUI_EltreumUI:SetTemplateSkin()
 	if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
-		local loopframe = CreateFrame("Frame")
-		local frametypes = {
-			["Region"] = true,
-			["Texture"] = true,
-			["Cooldown"] = true,
-			["Slider"] = true,
-			["ScrollFrame"] = true,
-			["ModelScene"] = true,
-		}
 		local function SkinFrame(object)
 			if object:GetObjectType() == "Texture" then object = object:GetParent() end
 			local mt = getmetatable(object).__index
 			if type(mt) == 'function' then return end
-			if mt.SetTemplate then
+			if mt.SetTemplate and not mt.SetTemplateEltruismHook then
 				hooksecurefunc(mt, "SetTemplate", function(frame, template, _, _, _, isUnitFrameElement, isNamePlateElement)
+
 					if isUnitFrameElement and not E.db.ElvUI_EltreumUI.skins.elvui.unitframes then return end
 					if isNamePlateElement and not E.db.ElvUI_EltreumUI.skins.elvui.nameplates then return end
 					if frame:GetObjectType() == "Button" and not E.db.ElvUI_EltreumUI.skins.elvui.button then return end
@@ -495,6 +496,7 @@ function ElvUI_EltreumUI:SetTemplateSkin()
 						frame:SetBackdropColor(0, 0, 0, 0)
 					end
 				end)
+				mt.SetTemplateEltruismHook = true
 			end
 		end
 		SkinFrame(loopframe)
