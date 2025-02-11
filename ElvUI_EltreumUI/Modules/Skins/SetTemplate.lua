@@ -56,6 +56,7 @@ local frametypes = {
 function ElvUI_EltreumUI:SetTemplateSkin()
 	if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
 		local function SkinFrame(object)
+			if not object then return end --rare but not impossible nil error
 			if object:GetObjectType() == "Texture" then object = object:GetParent() end
 			local mt = getmetatable(object).__index
 			if type(mt) == 'function' then return end
