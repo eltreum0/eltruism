@@ -481,19 +481,24 @@ local ONUPDATE_INTERVAL2 = 0.01 --smooth for 60fps
 --add cardinal directions to minimap
 local Cardinals = CreateFrame("FRAME", "Eltruism Cardinal Directions")
 Cardinals:SetParent(Minimap)
+
+local function RotateMinimap()
+	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
+		if E.Retail then
+			Enum.EditModeMinimapSetting.RotateMinimap = 1
+		end
+		SetCVar("rotateMinimap",1)
+	else
+		if E.Retail then
+			Enum.EditModeMinimapSetting.RotateMinimap = 0
+		end
+		SetCVar("rotateMinimap",0)
+	end
+end
+
 function ElvUI_EltreumUI:MinimapCardinalDirections()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.circle then
-		if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
-			if E.Retail then
-				Enum.EditModeMinimapSetting.RotateMinimap = 1
-			end
-			SetCVar("rotateMinimap",1)
-		else
-			if E.Retail then
-				Enum.EditModeMinimapSetting.RotateMinimap = 0
-			end
-			SetCVar("rotateMinimap",0)
-		end
+		RotateMinimap()
 
 		if Minimap.backdrop then
 			Minimap.backdrop:Hide()
@@ -678,6 +683,7 @@ end
 
 --setup onupdate and also get rid of it
 function ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
+	RotateMinimap()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable and E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
 		local _, instanceType = IsInInstance()
 		if instanceType == "none" then
