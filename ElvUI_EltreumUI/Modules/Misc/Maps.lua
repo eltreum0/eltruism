@@ -144,12 +144,38 @@ if E.Retail then
 								local _,_,flyspeed = GetUnitSpeed('player')
 								speed = flyspeed
 							end
-							if (not speed or speed == 0) and IsPlayerMoving() then --might be dragonflying, calculate based on delta distance
-								--print("no speed, maybe dragonriding")
-								E:Delay(1, function()
-									local previousdistance = C_Navigation.GetDistance()
-									speed = math.abs(distance - previousdistance)
-									--print(distance,previousdistance, speed)
+							if IsPlayerMoving() then
+								if (not speed or speed == 0) then --might be dragonflying, calculate based on delta distance
+									E:Delay(1, function()
+										local previousdistance = C_Navigation.GetDistance()
+										speed = math.abs(distance - previousdistance)
+										--print(distance,previousdistance, speed)
+										if speed and speed > 0 then
+											local eta= math.abs(distance / speed)
+											if eta > 600 then
+												minutes = string.format("%02.f", math.floor(eta/60 ))
+												seconds = string.format("%02.f", math.floor(eta - minutes *60))
+											elseif eta < 600 and eta > 10 then
+												minutes = string.format("%01.f", math.floor(eta/60))
+												seconds = string.format("%02.f", math.floor(eta - minutes *60))
+											elseif eta < 10 then
+												minutes = string.format("%01.f", math.floor(eta/60))
+												seconds = string.format("%1.d", math.floor(eta - minutes *60))
+											else
+												minutes = string.format("%02.f", math.floor(eta/60))
+												seconds = string.format("%02.f", math.floor(eta - minutes *60))
+											end
+										end
+										--set the time to arrive to the frame's text
+										if minutes == 0 and seconds == 0 then
+											EltruismTimeToArrive.TimeText:SetText("***")
+										elseif minutes < "01" and seconds > "0" then
+											EltruismTimeToArrive.TimeText:SetText(seconds.."s")
+										else
+											EltruismTimeToArrive.TimeText:SetText(minutes.."m"..":"..seconds.."s")
+										end
+									end)
+								else
 									if speed and speed > 0 then
 										local eta= math.abs(distance / speed)
 										if eta > 600 then
@@ -174,33 +200,9 @@ if E.Retail then
 									else
 										EltruismTimeToArrive.TimeText:SetText(minutes.."m"..":"..seconds.."s")
 									end
-								end)
-							else --might not be dragonriding, calculate normally
-								--print("speed, regular mounted or running")
-								if speed and speed > 0 then
-									local eta= math.abs(distance / speed)
-									if eta > 600 then
-										minutes = string.format("%02.f", math.floor(eta/60 ))
-										seconds = string.format("%02.f", math.floor(eta - minutes *60))
-									elseif eta < 600 and eta > 10 then
-										minutes = string.format("%01.f", math.floor(eta/60))
-										seconds = string.format("%02.f", math.floor(eta - minutes *60))
-									elseif eta < 10 then
-										minutes = string.format("%01.f", math.floor(eta/60))
-										seconds = string.format("%1.d", math.floor(eta - minutes *60))
-									else
-										minutes = string.format("%02.f", math.floor(eta/60))
-										seconds = string.format("%02.f", math.floor(eta - minutes *60))
-									end
 								end
-								--set the time to arrive to the frame's text
-								if minutes == 0 and seconds == 0 then
-									EltruismTimeToArrive.TimeText:SetText("***")
-								elseif minutes < "01" and seconds > "0" then
-									EltruismTimeToArrive.TimeText:SetText(seconds.."s")
-								else
-									EltruismTimeToArrive.TimeText:SetText(minutes.."m"..":"..seconds.."s")
-								end
+							else --not moving at all
+								EltruismTimeToArrive.TimeText:SetText("***")
 							end
 						end
 					end)
@@ -479,19 +481,24 @@ local ONUPDATE_INTERVAL2 = 0.01 --smooth for 60fps
 --add cardinal directions to minimap
 local Cardinals = CreateFrame("FRAME", "Eltruism Cardinal Directions")
 Cardinals:SetParent(Minimap)
+
+local function RotateMinimap()
+	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
+		if E.Retail then
+			Enum.EditModeMinimapSetting.RotateMinimap = 1
+		end
+		SetCVar("rotateMinimap",1)
+	else
+		if E.Retail then
+			Enum.EditModeMinimapSetting.RotateMinimap = 0
+		end
+		SetCVar("rotateMinimap",0)
+	end
+end
+
 function ElvUI_EltreumUI:MinimapCardinalDirections()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.circle then
-		if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
-			if E.Retail then
-				Enum.EditModeMinimapSetting.RotateMinimap = 1
-			end
-			SetCVar("rotateMinimap",1)
-		else
-			if E.Retail then
-				Enum.EditModeMinimapSetting.RotateMinimap = 0
-			end
-			SetCVar("rotateMinimap",0)
-		end
+		RotateMinimap()
 
 		if Minimap.backdrop then
 			Minimap.backdrop:Hide()
@@ -676,6 +683,7 @@ end
 
 --setup onupdate and also get rid of it
 function ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
+	RotateMinimap()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.enable and E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
 		local _, instanceType = IsInInstance()
 		if instanceType == "none" then
