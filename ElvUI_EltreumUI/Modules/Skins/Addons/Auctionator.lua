@@ -21,14 +21,14 @@ function ElvUI_EltreumUI:SkinAuctionator()
 			if _G.AuctionatorShoppingFrame and not _G.AuctionatorShoppingFrame.EltruismSkin then
 
 				--scanning thing
-				if not E.Retail then
+				if E.Classic then
 					S:HandleFrame(_G["AuctionatorPageStatusDialogFrame"])
 				end
 
 				--shopping
 				S:HandleFrame(_G["AuctionatorShoppingFrame"])
 				S:HandleFrame(_G["AuctionatorShoppingFrame"].ShoppingResultsInset)
-				if not E.Retail then
+				if E.Classic then
 					_G["AuctionatorShoppingFrame"].ShoppingResultsInset:SetBackdrop()
 					_G["AuctionatorShoppingFrame"].ListsContainer:CreateBackdrop()
 					S:HandleButton(_G["AuctionatorShoppingFrame"].LoadAllPagesButton)
@@ -59,7 +59,7 @@ function ElvUI_EltreumUI:SkinAuctionator()
 				if _G["AuctionatorShoppingFrame"].ListsContainer.eltruismbgtexture then
 					_G["AuctionatorShoppingFrame"].ListsContainer.eltruismbgtexture:Hide()
 				end
-				if not E.Retail then
+				if E.Classic then
 					_G["AuctionatorShoppingFrame"].ListsContainer.Inset:Hide()
 					_G["AuctionatorShoppingFrame"].ListsContainer:CreateBackdrop()
 				else
@@ -448,7 +448,7 @@ function ElvUI_EltreumUI:SkinAuctionator()
 				end
 
 				--buying
-				if E.Retail then
+				if E.Retail or E.Cata then
 					S:HandleButton(_G["AuctionatorBuyCommodityFrame"].BackButton)
 					S:HandleButton(_G["AuctionatorBuyCommodityFrame"].DetailsContainer.BuyButton)
 					S:HandleEditBox(_G["AuctionatorBuyCommodityFrame"].DetailsContainer.Quantity)
@@ -533,7 +533,7 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 	if E.db.ElvUI_EltreumUI.skins.auctionator then
 		if E.private.skins.blizzard.enable then
 			ElvUI_EltreumUI:SkinAuctionator()
-			if E.Retail then
+			if E.Retail or E.Cata then
 				_G["AuctionHouseFrame"]:HookScript("OnShow",function()
 					if not tabSkinned then
 						E:Delay(0, function()
