@@ -1,6 +1,18 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.2.9
+Added more BossIDs to the classification icons, ty blinkii  
+Fixed an error when using Custom Role Icons in Chat but not setting the files to be used  
+Fixed an error with the Auctionator skin after the Auction House update in Cataclysm  
+Fixed detached Object Quest Line Texture if ElvUI skin was disabled  
+Fixed an issue with Baganator where item borders could disappear  
+Fixed Speed Detection for the Time to Arrive in Retail  
+Fixed a few shadows when using non thin mode frames  
+Fixed the Spell Haste datatext in Cataclysm/Era  
+Fixed some issues with the Race Icons in Chat  
+Fixed Rotate Minimap not working sometimes  
+Fixed a nil error for Sockets in Era  
 ### 4.2.8.1
 Updated enchant list for Classic Era, fixing issues due to missing enchants  
 Fixed an error when using Tooltip borders and having the mouse over the target of target that was not a player  
