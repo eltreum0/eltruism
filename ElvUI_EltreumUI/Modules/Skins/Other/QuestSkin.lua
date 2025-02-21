@@ -287,7 +287,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 
 						if not bar.EltruismSkin then
-							if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow then
+							if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and E.private.general.pixelPerfect then
 								bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(bar.shadow)
 							end
@@ -691,7 +691,7 @@ function ElvUI_EltreumUI:SkinQuests()
 									module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r,g= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b,a= 1}, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,g=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b,a= 1})
 								end
 								module.Header.EltruismStatusLine:SetFrameLevel(1)
-								if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not module.Header.EltruismStatusLine.shadow then
+								if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not module.Header.EltruismStatusLine.shadow and E.private.general.pixelPerfect then
 									--module.Header.EltruismStatusLine:CreateBackdrop('Transparent')
 									module.Header.EltruismStatusLine:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 									module.Header.EltruismStatusLine.shadow:SetFrameStrata("LOW")
@@ -825,7 +825,7 @@ function ElvUI_EltreumUI:SkinQuests()
 											module.Header.EltruismStatusLine:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r,g= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b,a= 1}, {r=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,g=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,b=E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b,a= 1})
 										end
 										module.Header.EltruismStatusLine:SetFrameLevel(1)
-										if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not module.Header.EltruismStatusLine.shadow then
+										if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not module.Header.EltruismStatusLine.shadow and E.private.general.pixelPerfect then
 											--module.Header.EltruismStatusLine:CreateBackdrop('Transparent')
 											module.Header.EltruismStatusLine:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 											module.Header.EltruismStatusLine.shadow:SetFrameStrata("LOW")
@@ -887,7 +887,7 @@ function ElvUI_EltreumUI:SkinQuests()
 										ScenarioObjectiveBlockBackground:SetSize(243, 80)
 										ScenarioObjectiveBlockBackground:SetFrameLevel(3)
 										ScenarioObjectiveBlockBackground:Show()
-										if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow then
+										if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow and E.private.general.pixelPerfect then
 											ScenarioObjectiveBlockBackground:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 											ElvUI_EltreumUI:ShadowColor(ScenarioObjectiveBlockBackground.shadow.shadow)
 										end
@@ -935,7 +935,7 @@ function ElvUI_EltreumUI:SkinQuests()
 										ScenarioObjectiveBlockBackground:SetSize(243, 80)
 										ScenarioObjectiveBlockBackground:SetFrameLevel(3)
 										ScenarioObjectiveBlockBackground:Show()
-										if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow then
+										if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow and E.private.general.pixelPerfect then
 											ScenarioObjectiveBlockBackground:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 											ElvUI_EltreumUI:ShadowColor(ScenarioObjectiveBlockBackground.shadow.shadow)
 										end
@@ -972,7 +972,7 @@ function ElvUI_EltreumUI:SkinQuests()
 								ScenarioObjectiveBlockBackground:SetSize(243, 80)
 								ScenarioObjectiveBlockBackground:SetFrameLevel(3)
 								ScenarioObjectiveBlockBackground:Show()
-								if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow then
+								if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow and E.private.general.pixelPerfect then
 									ScenarioObjectiveBlockBackground:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 									ElvUI_EltreumUI:ShadowColor(ScenarioObjectiveBlockBackground.shadow.shadow)
 								end
@@ -1168,7 +1168,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				_G.QuestWatchFrame.Minimize = CreateFrame("BUTTON", "EltruismMinimizeQuests", _G.ElvUIParent, "MaximizeMinimizeButtonFrameTemplate")
 				S:HandleMaxMinFrame(_G["EltruismMinimizeQuests"])
 				_G["EltruismMinimizeQuests"]:SetTemplate("Backdrop")
-				if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not _G.QuestWatchFrame.Minimize.shadow then
+				if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not _G.QuestWatchFrame.Minimize.shadow and E.private.general.pixelPerfect then
 					_G.QuestWatchFrame.Minimize:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(_G.QuestWatchFrame.Minimize.shadow)
 				end
@@ -1205,7 +1205,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			else
 				_G.QuestWatchFrame.HeaderBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r = E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r,g = E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g, b = E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b, a = 1},{r= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,g= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,b= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b, a = 1})
 			end
-			if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not _G["EltruismQuestLine"].shadow then
+			if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not _G["EltruismQuestLine"].shadow and E.private.general.pixelPerfect then
 				_G.QuestWatchFrame.HeaderBar:CreateBackdrop('Transparent')
 				_G.QuestWatchFrame.HeaderBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(_G.QuestWatchFrame.HeaderBar.shadow)
@@ -1496,7 +1496,7 @@ function ElvUI_EltreumUI:SkinQuests()
 					WatchFrame.HeaderBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r = E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1r,g = E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1g, b = E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor1b, a = 1},{r= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2r,g= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2g,b= E.db.ElvUI_EltreumUI.skins.questsettings.linecustomcolor2b, a = 1})
 				end
 
-				if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not _G["EltruismQuestLine"].shadow then
+				if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not _G["EltruismQuestLine"].shadow and E.private.general.pixelPerfect then
 					_G["EltruismQuestLine"]:CreateBackdrop('Transparent')
 					_G["EltruismQuestLine"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(_G["EltruismQuestLine"].shadow)
@@ -1570,7 +1570,7 @@ function ElvUI_EltreumUI:SkinQuests()
 							Button.QuestTexture:SetParent(Button)
 						end
 						Button:SetSize(E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize, E.db.ElvUI_EltreumUI.skins.questsettings.linebuttonsize)
-						if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not Button.shadow then
+						if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not Button.shadow and E.private.general.pixelPerfect then
 							Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(Button.shadow)
 						end

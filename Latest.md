@@ -1,14 +1,13 @@
-### 4.2.8.1 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
+### 4.2.9 [Complete Changelog](https://github.com/eltreum0/eltruism/blob/main/Changelog.md)
 ___
-Added [eltruism:healthcurrentmaxpercentshort:gradient] tag  
-Added Race/Sex icons to chat messages  
-Added [eltruism:hpstatus:line] tag  
-Added some missing shadows  
-Updated enchant list for Classic Era, fixing issues due to missing enchants  
-Updated Gradient to allow custom Focus color on Classic Era  
-Updated BattlegroundEnemies profile  
-Fixed an error when using Tooltip borders and having the mouse over the target of target that was not a player  
-Fixed an issue where portraits could error due to custom colors  
-Fixed [eltruism:lowhealth{number}] not firing correctly  
-Fixed an issue with borders custom color  
-Fixed an error with Auctionator Skin
+Added more BossIDs to the classification icons, ty blinkii  
+Fixed an error when using Custom Role Icons in Chat but not setting the files to be used  
+Fixed an error with the Auctionator skin after the Auction House update in Cataclysm  
+Fixed detached Object Quest Line Texture if ElvUI skin was disabled  
+Fixed an issue with Baganator where item borders could disappear  
+Fixed Speed Detection for the Time to Arrive in Retail  
+Fixed a few shadows when using non thin mode frames  
+Fixed the Spell Haste datatext in Cataclysm/Era  
+Fixed some issues with the Race Icons in Chat  
+Fixed Rotate Minimap not working sometimes  
+Fixed a nil error for Sockets in Era

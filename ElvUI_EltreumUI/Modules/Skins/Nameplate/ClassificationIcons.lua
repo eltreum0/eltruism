@@ -65,6 +65,9 @@ local bossIDs = {
 	["184124"] = true,
 	["184018"] = true,
 	["184422"] = true,
+	["184582"] = true,
+	["184581"] = true,
+	["184580"] = true,
 
 	-- Halls of Valor
 	["95674"] = true,
@@ -103,6 +106,11 @@ local bossIDs = {
 	["126847"] = true,
 	["129440"] = true,
 	["129732"] = true,
+	["126983"] = true,
+	["126969"] = true,
+	["126848"] = true,
+	["126845"] = true,
+	["126832"] = true,
 
 	-- Underrot
 	["131817"] = true,
@@ -131,6 +139,11 @@ local bossIDs = {
 	["203679"] = true,
 	["203678"] = true,
 
+	["203861"] = true,
+	["204206"] = true,
+	["204449"] = true,
+	["208193"] = true,
+
 	--Darkheart Thicket
 	["103344"] = true, --oakheart
 	["99192"] = true, --shade-of-xavius
@@ -142,6 +155,8 @@ local bossIDs = {
 	["98542"] = true, --amalgam-of-souls
 	["98696"] = true, --illysanna-ravencrest
 	["98949"] = true, --smashspite-the-hateful
+	["98965"] = true,
+	["98970"] = true,
 
 	-- Waycrest Manor
 	["131527"] = true, --lord-waycrest
@@ -149,12 +164,21 @@ local bossIDs = {
 	["131863"] = true, --raal-the-gluttonous
 	["144324"] = true, --gorak-tul
 	["135360"] = true, --sister-briar
+	["131864"] = true,
+	["131823"] = true,
+	["131824"] = true,
+	["131825"] = true,
+	["131545"] = true,
 
 	--Atal'Dazar
 	["143577"] = true, --rezan
 	["129399"] = true, --volkaal
 	["129412"] = true, --yazma
 	["129614"] = true, --priestess-alunza
+	["122963"] = true,
+	["122965"] = true,
+	["122967"] = true,
+	["122968"] = true,
 
 	--The Everbloom
 	["83846"] = true, --yalnu
@@ -171,6 +195,7 @@ local bossIDs = {
 	["40586"] = true, --lady-nazjar
 	["44566"] = true, --ozumat
 	["40825"] = true, --erunak-stonespeaker
+	["213770"] = true, --Ink of Ozumat
 
 	-- Vault of the Incarnates
 	["190245"] = true, --Broodkeeper-Diurna
@@ -381,6 +406,7 @@ local bossIDs = {
 	["215405"] = true, --anubzekt
 	["213179"] = true, --avanoxx
 	["215407"] = true, --kikatal-the-harvester
+	["220599"] = true,
 
 	--the-stonevault
 	["219440"] = true, --high-speaker-eirich
@@ -425,22 +451,27 @@ local bossIDs = {
 	["214506"] = true, --broodtwister-ovinax
 	["228470"] = true, --nexus-princess-kyveza
 	["227323"] = true, --queen-ansurek
-	["224552"] = true, --rashanan
 	["219853"] = true, --sikran
 	["214502"] = true, --the-bloodbound-horror
 	["228713"] = true, --ulgrax-the-devourer
 	["214504"] = true, --rashanan
 	["217748"] = true, --nexus-princess-kyveza
+	["219778"] = true, --queen-ansurek
 
 	--mists-of-tirna-scithe
 	["164567"] = true, --ingra-maloch
 	["170217"] = true, --mistcaller
 	["164517"] = true, --tredova
+	["164501"] = true, --mistcaller
+	["164804"] = true, --droman-oulfarran
 
 	--the-necrotic-wake
 	["162691"] = true, --blightbone
 	["166945"] = true, --nalthor-the-rimebinder
 	["166882"] = true, --surgeon-stitchflesh
+	["162689"] = true,
+	["162693"] = true,
+	["163157"] = true,
 
 	--siege-of-boralus
 	["144160"] = true, --chopper-redhook
@@ -448,6 +479,11 @@ local bossIDs = {
 	["130836"] = true, --hadal-darkfathom
 	["144158"] = true, --sergeant-bainbridge
 	["128652"] = true, --viqgoth
+	["137614"] = true,
+	["137405"] = true,
+	["136549"] = true,
+	["136483"] = true,
+	["128651"] = true,
 
 	--grim-batol
 	["40319"] = true, --drahga-shadowburner
@@ -455,6 +491,7 @@ local bossIDs = {
 	["40177"] = true, --forgemaster-throngus
 	["39625"] = true, --general-umbriss
 	["45992"] = true, --valiona
+	["40320"] = true,
 
 	--war within world bosses
 	["221084"] = true, --kordac
