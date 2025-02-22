@@ -84,7 +84,6 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				UpdateNameGradient()
 			end)
 
-			--TODO 11.0: gone in war within?
 			--[[if E.Retail then
 				hooksecurefunc("CharacterFrame_Collapse", function()
 					if PaperDollFrame:IsShown() then

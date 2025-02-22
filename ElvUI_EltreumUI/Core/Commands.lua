@@ -348,13 +348,6 @@ local AddOns = {
 }
 function ElvUI_EltreumUI:DebugMode(message)
 	local switch = strlower(message)
-	if switch ~= ('on' or 'off') then
-		if next(ElvDB.EltruismDisabledAddOns) then
-			switch = 'off'
-		else
-			switch = 'on'
-		end
-	end
 	if switch == 'on' then
 		for i = 1, GetNumAddOns() do
 			local name = GetAddOnInfo(i)
@@ -375,8 +368,8 @@ function ElvUI_EltreumUI:DebugMode(message)
 			wipe(ElvDB.EltruismDisabledAddOns)
 			ReloadUI()
 		end
-	--else
-		--ElvUI_EltreumUI:Print("Usage: /eltruismdebug on or /eltruismdebug off, to enable or disable debug mode")
+	else
+		ElvUI_EltreumUI:Print("Usage: /eltruismdebug on or /eltruismdebug off, to enable or disable debug mode")
 	end
 end
 

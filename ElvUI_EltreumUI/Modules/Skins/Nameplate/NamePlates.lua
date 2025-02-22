@@ -641,8 +641,6 @@ function ElvUI_EltreumUI:NamePlateOptions()
 							_G["ElvNP_TargetClassPowerRunes"]:Hide()
 						elseif E.myclass == 'DRUID' then
 							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
-						elseif E.myclass == 'DEATHKNIGHT' then
-							_G["ElvNP_TargetClassPowerRunes"]:Hide()
 						end
 					end
 				end

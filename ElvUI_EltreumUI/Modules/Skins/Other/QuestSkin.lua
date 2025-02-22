@@ -1661,7 +1661,8 @@ function ElvUI_EltreumUI:SkinQuests()
 				for index = quest.startLine, quest.lastLine do
 					line = quest.lines[index]
 					if ( line ) then
-						if line.text:GetTextColor() == 0 and 0.99999779462814 and 0 and 0.99999779462814 then
+						local testr,testg,testb = line.text:GetTextColor()
+						if (testr == 0) and (testg == 0.99999779462814) and (testb == 0) then
 							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							--line.text:SetWidth(250)
 						else
