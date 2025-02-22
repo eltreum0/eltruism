@@ -8,9 +8,6 @@ local CharacterLevelText = _G.CharacterLevelText
 local CharacterFrameTitleText = _G.CharacterFrameTitleText
 local CharacterNameText = _G.CharacterNameText
 local CharacterFrame = _G.CharacterFrame
-local PaperDollFrame = _G.PaperDollFrame
-local ReputationFrame = _G.ReputationFrame
-local TokenFrame = _G.TokenFrame
 local string = _G.string
 local classsymbolonframe
 local CharacterModelScene = _G.CharacterModelScene

@@ -9,7 +9,6 @@ local UnitIsPlayer = _G.UnitIsPlayer
 local UnitIsTapDenied = _G.UnitIsTapDenied
 local UnitPlayerControlled = _G.UnitPlayerControlled
 local _, buttonclass, classunit, unitframe, reaction
-local IsInGroup = _G.IsInGroup
 local UnitIsCharmed = _G.UnitIsCharmed
 local pairs = _G.pairs
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
