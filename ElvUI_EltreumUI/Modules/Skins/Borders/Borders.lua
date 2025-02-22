@@ -1559,13 +1559,14 @@ function ElvUI_EltreumUI:UFAuraBorders(_,button)
 end
 hooksecurefunc(UF, 'PostUpdateAura', ElvUI_EltreumUI.UFAuraBorders) --uf aura borders and debuff colors update
 
+local ttx,tty,tthpx,tthpy
 function ElvUI_EltreumUI:TooltipBorder()
 	if not _G["EltruismTooltipBorder"] then
 		tooltipborder = CreateFrame("Frame", "EltruismTooltipBorder", _G.GameTooltip, BackdropTemplateMixin and "BackdropTemplate")
 	else
 		tooltipborder = _G["EltruismTooltipBorder"]
 	end
-	local ttx,tty,tthpx,tthpy
+
 
 	tooltipborder:SetBackdrop({
 		edgeFile = bordertexture,
