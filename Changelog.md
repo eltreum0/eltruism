@@ -1,6 +1,12 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.3.0
+Added a few shadows  
+Updated Unitframe Portrait skin to show NPC portraits when using Custom Textures  
+Updated to support Retail 11.1  
+Updated ElvUI Skin function  
+Fixed a possible error with the Character Panel Icons  
 ### 4.2.9
 Added more BossIDs to the classification icons, ty blinkii  
 Fixed an error when using Custom Role Icons in Chat but not setting the files to be used  
