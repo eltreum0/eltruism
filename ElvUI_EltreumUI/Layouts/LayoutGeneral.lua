@@ -49,7 +49,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	end
 
 	--tag update rate
-	E.db["general"]["tagUpdateRate"] = 0.25 --test 0.5, default is 0.25
+	E.db["general"]["tagUpdateRate"] = 0.5 --test 0.5, default is 0.2
 
 	-- AB Conversion
 	E.db["convertPages"] = true
