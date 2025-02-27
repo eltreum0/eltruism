@@ -11,7 +11,6 @@ local GetQuestLogLeaderBoard = _G.GetQuestLogLeaderBoard
 local GetQuestIndexForWatch = _G.GetQuestIndexForWatch
 local QuestLogTrackTracking = _G.QuestLogTrackTracking
 local GetQuestLogTitle = _G.GetQuestLogTitle
-local GetItemCount = _G.C_Item and _G.C_Item.GetItemCount or _G.GetItemCount
 local UIParent_ManageFramePositions = _G.UIParent_ManageFramePositions
 local select = _G.select
 local ScenarioObjectiveBlockBackground
@@ -35,6 +34,7 @@ local GetNumQuestLeaderBoards = _G.GetNumQuestLeaderBoards
 local GetNumQuestLogEntries = _G.GetNumQuestLogEntries
 local UpdateWidgetLayoutHook = _G.UpdateWidgetLayoutHook
 local QuestMapFrame_GetDetailQuestID = _G.QuestMapFrame_GetDetailQuestID
+local questside
 
 --skin objective frame depending on verison
 function ElvUI_EltreumUI:SkinQuests()
@@ -231,12 +231,12 @@ function ElvUI_EltreumUI:SkinQuests()
 					ObjectiveTrackerBonusBannerFrame.FiligreeGlow:SetVertexColor(classcolor.r, classcolor.g, classcolor.b) --bonusobjectives-title-icon
 				end
 
-				local questside
-				if _G.ObjectiveFrameMover then
+
+				--[[if _G.ObjectiveFrameMover then
 					questside = _G.ObjectiveFrameMover:GetPoint()
 				else
 					questside = "RIGHT"
-				end
+				end]]
 
 				if _G.ObjectiveTrackerFrame and _G.ObjectiveTrackerFrame.HeaderMenu and _G.ObjectiveTrackerFrame.HeaderMenu.Title then --fix when collapsed
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSizeHeader, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -1387,12 +1387,12 @@ function ElvUI_EltreumUI:SkinQuests()
 		elseif E.Cata then
 
 			--from blizzard's FrameXML/WatchFrame.lua
-			local questside
 			if _G.ObjectiveFrameMover then
 				questside = _G.ObjectiveFrameMover:GetPoint()
 			else
 				questside = "RIGHT"
 			end
+
 			--skin the classic objective frame, based on aftermathh's
 			local function colorquests(line, _, _, isHeader, _, _, _, isComplete) --(line, anchor, verticalOffset, isHeader, text, dash, hasItem, isComplete)
 				if line and line.text then
@@ -1661,7 +1661,8 @@ function ElvUI_EltreumUI:SkinQuests()
 				for index = quest.startLine, quest.lastLine do
 					line = quest.lines[index]
 					if ( line ) then
-						if line.text:GetTextColor() == 0 and 0.99999779462814 and 0 and 0.99999779462814 then
+						local testr,testg,testb = line.text:GetTextColor()
+						if (testr == 0) and (testg == 0.99999779462814) and (testb == 0) then
 							line.text:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							--line.text:SetWidth(250)
 						else

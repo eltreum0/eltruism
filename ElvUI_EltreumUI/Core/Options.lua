@@ -3913,30 +3913,21 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added more BossIDs to the classification icons, ty blinkii
+Added a few shadows
 ]], 3, "small", nil, nil, nil, nil, "full")
 
-	--ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
-	--ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
-	--ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
---Updated enchant list for Classic Era, fixing issues due to missing enchants
---Updated Gradient to allow custom Focus color on Classic Era
---Updated BattlegroundEnemies profile
---]], 5, "small", nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
+	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
+	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
+Updated Unitframe Portrait skin to show NPC portraits when using Custom Textures
+Updated to support Retail 11.1
+Updated ElvUI Skin function
+]], 5, "small", nil, nil, nil, nil, "full")
 
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an error when using Custom Role Icons in Chat but not setting the files to be used
-Fixed an error with the Auctionator skin after the Auction House update in Cataclysm
-Fixed detached Object Quest Line Texture if ElvUI skin was disabled
-Fixed an issue with Baganator where item borders could disappear
-Fixed Speed Detection for the Time to Arrive in Retail
-Fixed a few shadows when using non thin mode frames
-Fixed the Spell Haste datatext in Cataclysm/Era
-Fixed some issues with the Race Icons in Chat
-Fixed Rotate Minimap not working sometimes
-Fixed a nil error for Sockets in Era
+Fixed a possible error with the Character Panel Icons
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[

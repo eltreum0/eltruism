@@ -1559,13 +1559,14 @@ function ElvUI_EltreumUI:UFAuraBorders(_,button)
 end
 hooksecurefunc(UF, 'PostUpdateAura', ElvUI_EltreumUI.UFAuraBorders) --uf aura borders and debuff colors update
 
+local ttx,tty,tthpx,tthpy
 function ElvUI_EltreumUI:TooltipBorder()
 	if not _G["EltruismTooltipBorder"] then
 		tooltipborder = CreateFrame("Frame", "EltruismTooltipBorder", _G.GameTooltip, BackdropTemplateMixin and "BackdropTemplate")
 	else
 		tooltipborder = _G["EltruismTooltipBorder"]
 	end
-	local ttx,tty,tthpx,tthpy
+
 
 	tooltipborder:SetBackdrop({
 		edgeFile = bordertexture,
@@ -1598,7 +1599,13 @@ function ElvUI_EltreumUI:TooltipBorder()
 	 	local function FixColor()
 	 		if _G.GameTooltip:GetUnit() then --has unit
 				local _,unittp = _G.GameTooltip:GetUnit() --can error for target of target npc
-				if not unittp then unittp = "targettarget" or "target" end
+				if not unittp then
+					if UnitExists("targettarget") then
+						unittp = "targettarget"
+					else
+						unittp = "target"
+					end
+				end
 				local reaction = UnitReaction(unittp, "player")
 				if UnitIsPlayer(unittp) or (E.Retail and UnitInPartyIsAI(unittp)) then
 					local _, classunit = UnitClass(unittp)

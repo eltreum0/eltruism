@@ -25,8 +25,6 @@ local enabled
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
 local type = _G.type
 
---local UseItemByName = _G.C_Item and _G.C_Item.UseItemByName or _G.UseItemByName --TODO 11.0, check this hook
-
 --onupdate things
 local NormalUpdateDelay = 1 --1.0/10 -- update while hidden
 local FadingUpdateDelay = 0.1 --1.0/25 -- update while shown

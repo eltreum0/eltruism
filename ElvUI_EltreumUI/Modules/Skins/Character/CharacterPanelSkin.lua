@@ -2660,38 +2660,6 @@ _G.CharacterFrame:HookScript("OnShow", function()
 end)
 
 local classsymbolonframe
-local classIcons = {
-	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Warrior",
-	["PALADIN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Paladin",
-	["HUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Hunter",
-	["ROGUE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Rogue",
-	["PRIEST"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Priest",
-	["DEATHKNIGHT"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/DeathKnight",
-	["SHAMAN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Shaman",
-	["MAGE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Mage",
-	["WARLOCK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Warlock",
-	["MONK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Monk",
-	["DRUID"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Druid",
-	["DEMONHUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/DemonHunter",
-	["EVOKER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/Evoker",
-}
-
--- Alternate Class Icons by Releaf with borders
-local classIconsReleafborder = {
-	["WARRIOR"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/WarriorIconReleaf",
-	["PALADIN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/PaladinIconReleaf",
-	["HUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/HunterIconReleaf",
-	["ROGUE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/RogueIconReleaf",
-	["PRIEST"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/PriestIconReleaf",
-	["DEATHKNIGHT"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/DeathKnightIconReleaf",
-	["SHAMAN"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/ShamanIconReleaf",
-	["MAGE"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/MageIconReleaf",
-	["WARLOCK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/WarlockIconReleaf",
-	["MONK"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/MonkIconReleaf",
-	["DRUID"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/DruidIconReleaf",
-	["DEMONHUNTER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/DemonHunterIconReleaf",
-	["EVOKER"] = "Interface/Addons/ElvUI_EltreumUI/Media/Textures/Classes/32/EvokerIconReleaf",
-}
 
 --inspect bg/item quality texture
 local EltruismInspectBg = CreateFrame("Frame")

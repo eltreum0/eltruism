@@ -1063,6 +1063,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G.WardrobeFrame, --weird
 				_G.WeeklyRewardsFrame,
 				E.Retail and _G.WorldMapFrame,
+				E.Retail and _G.WorldMapFrame and _G.QuestMapFrame and _G.QuestMapFrame.QuestsTab,
+				E.Retail and _G.WorldMapFrame and _G.QuestMapFrame and _G.QuestMapFrame.MapLegendTab,
 				not E.Retail and _G.WorldMapFrame and _G.WorldMapFrame.BorderFrame,
 				not E.Retail and _G.WorldMapFrame and _G.WorldMapFrame.MiniBorderFrame,
 				_G.WorldMapTooltip,

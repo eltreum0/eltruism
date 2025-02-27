@@ -8,9 +8,6 @@ local CharacterLevelText = _G.CharacterLevelText
 local CharacterFrameTitleText = _G.CharacterFrameTitleText
 local CharacterNameText = _G.CharacterNameText
 local CharacterFrame = _G.CharacterFrame
-local PaperDollFrame = _G.PaperDollFrame
-local ReputationFrame = _G.ReputationFrame
-local TokenFrame = _G.TokenFrame
 local string = _G.string
 local classsymbolonframe
 local CharacterModelScene = _G.CharacterModelScene
@@ -84,7 +81,6 @@ function ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 				UpdateNameGradient()
 			end)
 
-			--TODO 11.0: gone in war within?
 			--[[if E.Retail then
 				hooksecurefunc("CharacterFrame_Collapse", function()
 					if PaperDollFrame:IsShown() then
@@ -175,7 +171,9 @@ EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
 	if not IsAddOnLoaded("ElvUI_EltreumUI") then return end
 	if not E.private then return end
 	if not E.private.ElvUI_EltreumUI then return end
+	if not E.private.skins then return end
 	if not E.db.ElvUI_EltreumUI then return end
+	if not E.db.ElvUI_EltreumUI.skins then return end
 
 	if E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel and E.private.skins.blizzard.enable and E.private.skins.blizzard.character then
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
