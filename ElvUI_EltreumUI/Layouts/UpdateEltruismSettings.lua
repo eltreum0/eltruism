@@ -49,7 +49,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		--power bar scaling issues
 		E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex = 133.5
 
-		--nameplate shadows (test)
+		--nameplate shadows
 		E.db.ElvUI_EltreumUI.skins.shadow.nameplates = true
 		E.db.ElvUI_EltreumUI.skins.shadow.nppower = true
 		E.db.ElvUI_EltreumUI.skins.shadow.npcastbar = true
