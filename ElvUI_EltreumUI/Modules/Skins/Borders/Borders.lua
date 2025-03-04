@@ -1597,7 +1597,7 @@ function ElvUI_EltreumUI:TooltipBorder()
 	 	end
 
 	 	local function FixColor()
-	 		if _G.GameTooltip:GetUnit() then --has unit
+	 		if _G.GameTooltip:GetUnit() and E.db.ElvUI_EltreumUI.borders.classcolor then --has unit
 				local _,unittp = _G.GameTooltip:GetUnit() --can error for target of target npc
 				if not unittp then
 					if UnitExists("targettarget") then
