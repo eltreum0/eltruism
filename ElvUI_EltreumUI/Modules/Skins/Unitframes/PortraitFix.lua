@@ -459,6 +459,9 @@ local modelsRotate = {
 	[5422147] = true, --Ney'leia
 	[5422149] = true, --On'hiea
 	[5794850] = true, --demineralized Magni Bronzebeard
+	[5764885] = true, --Monte Gazlowe
+	[5899823] = true, --Stitchoaf
+	[5770389] = true, --Chef Hobbs
 }
 
 local targetlike = {
