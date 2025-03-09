@@ -1604,3 +1604,5 @@ L["Reverse Focus Gradient Health"] = "反向焦点渐变生命"
 L["Hide Quests during Mythic Plus"] = true
 L["Add Character Race Icons"] = true
 L["Enable Character Race Icons"] = true
+L["Disable Combat Conditions"] = true
+L["Disables the in combat and out of combat conditions, keeping only the target/non-target function"] = true
