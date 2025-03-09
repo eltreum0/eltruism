@@ -502,10 +502,10 @@ function ElvUI_EltreumUI:Configtable()
 		local d = P.ElvUI_EltreumUI.borders.bordercolors
 		return customcolorborders.r, customcolorborders.g, customcolorborders.b, customcolorborders.a, d.r, d.g, d.b, d.a
 	end,
-			function(_, r, g, b)
-				local customcolorborders = E.db.ElvUI_EltreumUI.borders.bordercolors
-				customcolorborders.r, customcolorborders.g, customcolorborders.b = r, g, b E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:Borders()
-			end, function() return E.db.ElvUI_EltreumUI.borders.classcolor end)
+		function(_, r, g, b)
+			local customcolorborders = E.db.ElvUI_EltreumUI.borders.bordercolors
+			customcolorborders.r, customcolorborders.g, customcolorborders.b = r, g, b E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:Borders()
+		end, function() return E.db.ElvUI_EltreumUI.borders.classcolor end)
 	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders = ACH:Group(L["ActionBars"], nil, 2, nil,nil,nil,function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end)
 	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders.args.description0 = ACH:Group(L["(All settings require a reload)"], nil, 1)
 	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders.args.description0.inline = true
@@ -873,31 +873,31 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates = ACH:Group(L["Nameplates"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.description1 = ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.SoftTargetInteract = ACH:Toggle(L["Soft Target Interact"], L["Enable Soft Target Interactions"], 2, nil, false,'full',
-			function()
-				if GetCVar('SoftTargetInteract') == '0' then
-					return false
-				elseif GetCVar('SoftTargetInteract') == '3' then
-					return true
-				end
-			end, function(_, value)
-				if value == true then
-					SetCVar('SoftTargetInteract', 3)
-					SetCVar('SoftTargetIconInteract', 1)
-					SetCVar('SoftTargetIconGameObject', 1)
-					SetCVar('SoftTargetNameplateInteract', 1)
-					SetCVar('SoftTargetLowPriorityIcons', 1)
-					SetCVar('SoftTargetIconEnemy', 0)
-					SetCVar('SoftTargetIconFriend', 0)
-				else
-					SetCVar('SoftTargetInteract', 0)
-					SetCVar('SoftTargetIconInteract', 0)
-					SetCVar('SoftTargetIconGameObject', 0)
-					SetCVar('SoftTargetNameplateInteract', 0)
-					SetCVar('SoftTargetLowPriorityIcons', 0)
-					SetCVar('SoftTargetIconEnemy', 0)
-					SetCVar('SoftTargetIconFriend', 0)
-				end
-			end, nil)
+		function()
+			if GetCVar('SoftTargetInteract') == '0' then
+				return false
+			elseif GetCVar('SoftTargetInteract') == '3' then
+				return true
+			end
+		end, function(_, value)
+			if value == true then
+				SetCVar('SoftTargetInteract', 3)
+				SetCVar('SoftTargetIconInteract', 1)
+				SetCVar('SoftTargetIconGameObject', 1)
+				SetCVar('SoftTargetNameplateInteract', 1)
+				SetCVar('SoftTargetLowPriorityIcons', 1)
+				SetCVar('SoftTargetIconEnemy', 0)
+				SetCVar('SoftTargetIconFriend', 0)
+			else
+				SetCVar('SoftTargetInteract', 0)
+				SetCVar('SoftTargetIconInteract', 0)
+				SetCVar('SoftTargetIconGameObject', 0)
+				SetCVar('SoftTargetNameplateInteract', 0)
+				SetCVar('SoftTargetLowPriorityIcons', 0)
+				SetCVar('SoftTargetIconEnemy', 0)
+				SetCVar('SoftTargetIconFriend', 0)
+			end
+		end, nil)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.description2 = ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateTargetRadialPosition = ACH:Select(L["Nameplate Target Radial Position"], L["When target is off screen, position its nameplate radially around sides and bottom."], 4, {
 		["1"] = L["Target Only"],
@@ -911,38 +911,37 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateGlobalScale = ACH:Range(L["Nameplate Global Scale"], L["Global Scaling of nameplates after selected, min, and max scale"], 7, { min = 0.1, max = 10, step = 0.01 }, 'full', function() return tonumber(GetCVar('nameplateGlobalScale')) end, function(_, value) SetCVar('nameplateGlobalScale', value) end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.description4 = ACH:Description(" ", 8, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.clampTargetNameplateToScreen = ACH:Toggle(L["Clamp Nameplates"], nil, 9, nil, false,'full',
-			function()
-				if GetCVar('clampTargetNameplateToScreen') == '0' then
-					return false
-				elseif GetCVar('clampTargetNameplateToScreen') == '1' then
-					return true
-				end
-			end, function(_, value)
-				if value == true then
-					SetCVar('clampTargetNameplateToScreen', 1)
-					E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen = 1
-				else
-					SetCVar('clampTargetNameplateToScreen', 0)
-					E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen = 0
-				end
-			end, nil, E.Retail)
-
+		function()
+			if GetCVar('clampTargetNameplateToScreen') == '0' then
+				return false
+			elseif GetCVar('clampTargetNameplateToScreen') == '1' then
+				return true
+			end
+		end, function(_, value)
+			if value == true then
+				SetCVar('clampTargetNameplateToScreen', 1)
+				E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen = 1
+			else
+				SetCVar('clampTargetNameplateToScreen', 0)
+				E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen = 0
+			end
+		end, nil, E.Retail)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics = ACH:Group(L["Graphics"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.description1 = ACH:Description(L["AMD FSR"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.forceFSRon = ACH:Toggle(L["Enable AMD FSR even if not scaling"], L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"], 2, nil, false,'full',
-			function()
-				if GetCVar('ResampleAlwaysSharpen') == '0' then
-					return false
-				elseif GetCVar('ResampleAlwaysSharpen') == '1' then
-					return true
-				end
-			end, function(_, value)
-				if value == true then
-					SetCVar('ResampleAlwaysSharpen', 1)
-				else
-					SetCVar('ResampleAlwaysSharpen', 0)
-				end
-			end)
+		function()
+			if GetCVar('ResampleAlwaysSharpen') == '0' then
+				return false
+			elseif GetCVar('ResampleAlwaysSharpen') == '1' then
+				return true
+			end
+		end, function(_, value)
+			if value == true then
+				SetCVar('ResampleAlwaysSharpen', 1)
+			else
+				SetCVar('ResampleAlwaysSharpen', 0)
+			end
+		end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.forceFSRsharpness = ACH:Range(RESAMPLE_QUALITY_FSR, nil, 3, { min = 0, max = 2, step = 0.1 }, 'full', function() return tonumber(GetCVar('ResampleSharpness')) end, function(_, value) SetCVar('ResampleSharpness', value) end, function() if GetCVar('ResampleAlwaysSharpen') == '1' then return false elseif GetCVar('ResampleAlwaysSharpen') == '0' then return true end end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.description2 = ACH:Description(LOW_LATENCY_MODE, 4, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.lowlatencycvar = ACH:Select(" ",OPTION_TOOLTIP_LOW_LATENCY_MODE, 5, {
@@ -954,56 +953,56 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.lowlatencycvar.style = "radio"
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.description3 = ACH:Description(L["Dynamic Render Scale"], 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.dynamicrenderscaleenable = ACH:Toggle(L["Lowers render scale if GPU bound to hit Target FPS."], L["Note this feature is in BETA.\nKnown issues:\n - May cause hitching.\n - May behave poorly with vsync on."], 7, nil, false,'full',
-			function()
-				if GetCVar('DynamicRenderScale') == '0' then
-					return false
-				elseif GetCVar('DynamicRenderScale') == '1' then
-					return true
-				end
-			end, function(_, value)
-				if value == true then
-					SetCVar('DynamicRenderScale', 1)
-				else
-					SetCVar('DynamicRenderScale', 0)
-				end
-			end)
+		function()
+			if GetCVar('DynamicRenderScale') == '0' then
+				return false
+			elseif GetCVar('DynamicRenderScale') == '1' then
+				return true
+			end
+		end, function(_, value)
+			if value == true then
+				SetCVar('DynamicRenderScale', 1)
+			else
+				SetCVar('DynamicRenderScale', 0)
+			end
+		end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.dynamicrenderscaleenable.descStyle = "inline"
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.dynamicrenderscalepercentage = ACH:Range(L["Dynamic Render Scale Minimum"], L["Lowest Render Scale used"], 8, { min = 0.1, max = 1, step = 0.01 }, 'full', function() return tonumber(GetCVar('DynamicRenderScaleMin')) end, function(_, value) SetCVar('DynamicRenderScaleMin', tonumber(value)) E.db.ElvUI_EltreumUI.cvars.dynamicrenderscalemin = tonumber(value) end, function() if GetCVar('DynamicRenderScale') == '1' then return false elseif GetCVar('DynamicRenderScale') == '0' then return true end end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.description4 = ACH:Description("", 19, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.preloadNonCritical = ACH:Toggle(_G.DISABLE.." ".."worldPreloadNonCritical", L["Disable the worldPreloadNonCritical CVar, doing so can improve loading times."], 20, nil, false,'full',
-			function()
-				if GetCVar('worldPreloadNonCritical') == '2' then
-					return false
-				elseif GetCVar('worldPreloadNonCritical') == '0' then
-					return true
-				else
-					return false
-				end
-			end, function(_, value)
-				if value == true then
-					SetCVar('worldPreloadNonCritical', 0)
-				else
-					SetCVar('worldPreloadNonCritical', 2)
-				end
-			end)
+		function()
+			if GetCVar('worldPreloadNonCritical') == '2' then
+				return false
+			elseif GetCVar('worldPreloadNonCritical') == '0' then
+				return true
+			else
+				return false
+			end
+		end, function(_, value)
+			if value == true then
+				SetCVar('worldPreloadNonCritical', 0)
+			else
+				SetCVar('worldPreloadNonCritical', 2)
+			end
+		end)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.misc = ACH:Group(L["Misc"], nil, 2, "tab", nil,nil,nil,not E.Retail)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.misc.args.description1 = ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.misc.args.showInGameNavigation = ACH:Toggle(SHOW_IN_GAME_NAVIGATION, nil, 2, nil, false,"full",
-			function()
-				if GetCVar('showInGameNavigation') == '0' then
-					return false
-				elseif GetCVar('showInGameNavigation') == '1' then
-					return true
-				end
-			end, function(_, value)
-				if value == true then
-					SetCVar('showInGameNavigation', 1)
-					E.db.ElvUI_EltreumUI.cvars.showInGameNavigation = 1
-				else
-					SetCVar('showInGameNavigation', 0)
-					E.db.ElvUI_EltreumUI.cvars.showInGameNavigation = 0
-				end
-			end, nil, not E.Retail)
+		function()
+			if GetCVar('showInGameNavigation') == '0' then
+				return false
+			elseif GetCVar('showInGameNavigation') == '1' then
+				return true
+			end
+		end, function(_, value)
+			if value == true then
+				SetCVar('showInGameNavigation', 1)
+				E.db.ElvUI_EltreumUI.cvars.showInGameNavigation = 1
+			else
+				SetCVar('showInGameNavigation', 0)
+				E.db.ElvUI_EltreumUI.cvars.showInGameNavigation = 0
+			end
+		end, nil, not E.Retail)
 
 	--custom glow
 	ElvUI_EltreumUI.Options.args.customglow = ACH:Group(E:TextGradient(L["Custom Glow"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Fully customize how action bars glow and add glows to debuffs on unitframes"], 85, 'tab')
@@ -1049,30 +1048,29 @@ function ElvUI_EltreumUI:Configtable()
 			return "proc"
 		end
 	end,
-			function(_,value)
-				if value == "autocast" then
-					E.db.ElvUI_EltreumUI.glow.autocast = true
-					E.db.ElvUI_EltreumUI.glow.pixel = false
-					E.db.ElvUI_EltreumUI.glow.blizzard = false
-					E.db.ElvUI_EltreumUI.glow.procglow = false
-				elseif value == "pixel" then
-					E.db.ElvUI_EltreumUI.glow.autocast = false
-					E.db.ElvUI_EltreumUI.glow.pixel = true
-					E.db.ElvUI_EltreumUI.glow.blizzard = false
-					E.db.ElvUI_EltreumUI.glow.procglow = false
-				elseif value == "blizzard" then
-					E.db.ElvUI_EltreumUI.glow.autocast = false
-					E.db.ElvUI_EltreumUI.glow.pixel = false
-					E.db.ElvUI_EltreumUI.glow.blizzard = true
-					E.db.ElvUI_EltreumUI.glow.procglow = false
-				elseif value == "proc" then
-					E.db.ElvUI_EltreumUI.glow.autocast = false
-					E.db.ElvUI_EltreumUI.glow.pixel = false
-					E.db.ElvUI_EltreumUI.glow.blizzard = false
-					E.db.ElvUI_EltreumUI.glow.procglow = true
-				end
-			end, function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) end
-	)
+	function(_,value)
+		if value == "autocast" then
+			E.db.ElvUI_EltreumUI.glow.autocast = true
+			E.db.ElvUI_EltreumUI.glow.pixel = false
+			E.db.ElvUI_EltreumUI.glow.blizzard = false
+			E.db.ElvUI_EltreumUI.glow.procglow = false
+		elseif value == "pixel" then
+			E.db.ElvUI_EltreumUI.glow.autocast = false
+			E.db.ElvUI_EltreumUI.glow.pixel = true
+			E.db.ElvUI_EltreumUI.glow.blizzard = false
+			E.db.ElvUI_EltreumUI.glow.procglow = false
+		elseif value == "blizzard" then
+			E.db.ElvUI_EltreumUI.glow.autocast = false
+			E.db.ElvUI_EltreumUI.glow.pixel = false
+			E.db.ElvUI_EltreumUI.glow.blizzard = true
+			E.db.ElvUI_EltreumUI.glow.procglow = false
+		elseif value == "proc" then
+			E.db.ElvUI_EltreumUI.glow.autocast = false
+			E.db.ElvUI_EltreumUI.glow.pixel = false
+			E.db.ElvUI_EltreumUI.glow.blizzard = false
+			E.db.ElvUI_EltreumUI.glow.procglow = true
+		end
+	end, function() return not (E.db.ElvUI_EltreumUI.glow.enable or E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow or E.db.ElvUI_EltreumUI.glow.enablepet or E.db.ElvUI_EltreumUI.glow.enableUFs) end)
 	ElvUI_EltreumUI.Options.args.customglow.args.general.args.customselection.style = "radio"
 	ElvUI_EltreumUI.Options.args.customglow.args.general.args.description4 = ACH:Description(L["Preview the Glow"], 12, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.customglow.args.general.args.preview = ACH:Execute(PREVIEW, L["Preview the Glow, you will need to toggle it off and on to update the glow"], 13, function() ElvUI_EltreumUI:PreviewGlow() end,nil,false,'full')
@@ -1084,10 +1082,10 @@ function ElvUI_EltreumUI:Configtable()
 		local d = P.ElvUI_EltreumUI.glow.glowcustomcolor
 		return glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b, glowcustomcolor.a, d.r, d.g, d.b, d.a
 	end,
-			function(_, r, g, b)
-				local glowcustomcolor = E.db.ElvUI_EltreumUI.glow.glowcustomcolor
-				glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
-			end, function() return E.db.ElvUI_EltreumUI.glow.colorclass or not E.db.ElvUI_EltreumUI.glow.enable end)
+	function(_, r, g, b)
+		local glowcustomcolor = E.db.ElvUI_EltreumUI.glow.glowcustomcolor
+		glowcustomcolor.r, glowcustomcolor.g, glowcustomcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL') end,
+	function() return E.db.ElvUI_EltreumUI.glow.colorclass or not E.db.ElvUI_EltreumUI.glow.enable end)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.description2 = ACH:Description(L["Pet Bar"], 4, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.classcolorpet = ACH:Toggle(L["Use Class Colors"], L["Toggle Class Colored glows"], 5, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.colorclasspet end,function(_, value) E.db.ElvUI_EltreumUI.glow.colorclasspet = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enablepet end)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.customcolorpet = ACH:Color(L["Custom Color"], nil, 6, false, nil, function()
@@ -1095,10 +1093,10 @@ function ElvUI_EltreumUI:Configtable()
 		local d = P.ElvUI_EltreumUI.glow.glowcustomcolorpet
 		return glowcustomcolorpet.r, glowcustomcolorpet.g, glowcustomcolorpet.b, glowcustomcolorpet.a, d.r, d.g, d.b, d.a
 	end,
-			function(_, r, g, b)
-				local glowcustomcolorpet = E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet
-				glowcustomcolorpet.r, glowcustomcolorpet.g, glowcustomcolorpet.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
-			end, function() return E.db.ElvUI_EltreumUI.glow.colorclasspet or not E.db.ElvUI_EltreumUI.glow.enablepet end)
+		function(_, r, g, b)
+			local glowcustomcolorpet = E.db.ElvUI_EltreumUI.glow.glowcustomcolorpet
+			glowcustomcolorpet.r, glowcustomcolorpet.g, glowcustomcolorpet.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+		end, function() return E.db.ElvUI_EltreumUI.glow.colorclasspet or not E.db.ElvUI_EltreumUI.glow.enablepet end)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.description3 = ACH:Description(L["Nameplate Buff/Debuff"], 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.classcolornp = ACH:Toggle(L["Use Class Colors"], L["Toggle Class Colored glows"], 8, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.colorclassnp end,function(_, value) E.db.ElvUI_EltreumUI.glow.colorclassnp = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow end)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.customcolornp = ACH:Color(L["Custom Color"], nil, 9, false, nil, function()
@@ -1106,10 +1104,10 @@ function ElvUI_EltreumUI:Configtable()
 		local d = P.ElvUI_EltreumUI.glow.glowcustomcolornp
 		return glowcustomcolornp.r, glowcustomcolornp.g, glowcustomcolornp.b, glowcustomcolornp.a, d.r, d.g, d.b, d.a
 	end,
-			function(_, r, g, b)
-				local glowcustomcolornp = E.db.ElvUI_EltreumUI.glow.glowcustomcolornp
-				glowcustomcolornp.r, glowcustomcolornp.g, glowcustomcolornp.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
-			end, function() return E.db.ElvUI_EltreumUI.glow.colorclassnp or not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow end)
+		function(_, r, g, b)
+			local glowcustomcolornp = E.db.ElvUI_EltreumUI.glow.glowcustomcolornp
+			glowcustomcolornp.r, glowcustomcolornp.g, glowcustomcolornp.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+		end, function() return E.db.ElvUI_EltreumUI.glow.colorclassnp or not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow end)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem1 = ACH:Description(L["Shaman Fire Totem"], 10, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem1typecolor = ACH:Toggle(L["Use Type Colors"], L["Toggle Totem to use it's own Type Colors"], 11, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,function(_, value) E.db.ElvUI_EltreumUI.glow.totemtypecolor = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem1customcolor = ACH:Color(L["Custom Color"], nil, 12, false, nil, function()
@@ -1117,10 +1115,10 @@ function ElvUI_EltreumUI:Configtable()
 		local d = P.ElvUI_EltreumUI.glow.glowtotem1customcolor
 		return glowtotem1customcolor.r, glowtotem1customcolor.g, glowtotem1customcolor.b, glowtotem1customcolor.a, d.r, d.g, d.b, d.a
 	end,
-			function(_, r, g, b)
-				local glowtotem1customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor
-				glowtotem1customcolor.r, glowtotem1customcolor.g, glowtotem1customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
-			end, function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor or not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
+		function(_, r, g, b)
+			local glowtotem1customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem1customcolor
+			glowtotem1customcolor.r, glowtotem1customcolor.g, glowtotem1customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+		end, function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor or not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem2 = ACH:Description(L["Shaman Earth Totem"], 13, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem2typecolor = ACH:Toggle(L["Use Type Colors"], L["Toggle Totem to use it's own Type Colors"], 14, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,function(_, value) E.db.ElvUI_EltreumUI.glow.totemtypecolor = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem2customcolor = ACH:Color(L["Custom Color"], nil, 15, false, nil, function()
@@ -1128,10 +1126,10 @@ function ElvUI_EltreumUI:Configtable()
 		local d = P.ElvUI_EltreumUI.glow.glowtotem2customcolor
 		return glowtotem2customcolor.r, glowtotem2customcolor.g, glowtotem2customcolor.b, glowtotem2customcolor.a, d.r, d.g, d.b, d.a
 	end,
-			function(_, r, g, b)
-				local glowtotem2customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem2customcolor
-				glowtotem2customcolor.r, glowtotem2customcolor.g, glowtotem2customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
-			end, function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor or not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
+		function(_, r, g, b)
+			local glowtotem2customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem2customcolor
+			glowtotem2customcolor.r, glowtotem2customcolor.g, glowtotem2customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+		end, function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor or not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem3 = ACH:Description(L["Shaman Water Totem"], 16, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem3typecolor = ACH:Toggle(L["Use Type Colors"], L["Toggle Totem to use it's own Type Colors"], 17, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,function(_, value) E.db.ElvUI_EltreumUI.glow.totemtypecolor = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem3customcolor = ACH:Color(L["Custom Color"], nil, 18, false, nil, function()
@@ -1139,10 +1137,10 @@ function ElvUI_EltreumUI:Configtable()
 		local d = P.ElvUI_EltreumUI.glow.glowtotem3customcolor
 		return glowtotem3customcolor.r, glowtotem3customcolor.g, glowtotem3customcolor.b, glowtotem3customcolor.a, d.r, d.g, d.b, d.a
 	end,
-			function(_, r, g, b)
-				local glowtotem3customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem3customcolor
-				glowtotem3customcolor.r, glowtotem3customcolor.g, glowtotem3customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
-			end, function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor or not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
+		function(_, r, g, b)
+			local glowtotem3customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem3customcolor
+			glowtotem3customcolor.r, glowtotem3customcolor.g, glowtotem3customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+		end, function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor or not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem4 = ACH:Description(L["Shaman Air Totem"], 19, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem4typecolor = ACH:Toggle(L["Use Type Colors"], L["Toggle Totem to use it's own Type Colors"], 20, nil, false,nil,function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor end,function(_, value) E.db.ElvUI_EltreumUI.glow.totemtypecolor = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.totem4customcolor = ACH:Color(L["Custom Color"], nil, 21, false, nil, function()
@@ -1150,10 +1148,10 @@ function ElvUI_EltreumUI:Configtable()
 		local d = P.ElvUI_EltreumUI.glow.glowtotem4customcolor
 		return glowtotem4customcolor.r, glowtotem4customcolor.g, glowtotem4customcolor.b, glowtotem4customcolor.a, d.r, d.g, d.b, d.a
 	end,
-			function(_, r, g, b)
-				local glowtotem4customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor
-				glowtotem4customcolor.r, glowtotem4customcolor.g, glowtotem4customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
-			end, function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor or not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
+		function(_, r, g, b)
+			local glowtotem4customcolor = E.db.ElvUI_EltreumUI.glow.glowtotem4customcolor
+			glowtotem4customcolor.r, glowtotem4customcolor.g, glowtotem4customcolor.b = r, g, b E:StaticPopup_Show('CONFIG_RL')
+		end, function() return E.db.ElvUI_EltreumUI.glow.totemtypecolor or not E.db.ElvUI_EltreumUI.glow.enable or not E.db.ElvUI_EltreumUI.glow.enabletotem end, E.Retail)
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.gradientdesc = ACH:Description(L["Gradient"], 22, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.customglow.args.colors.args.gradient = ACH:Toggle(L["Enable Gradient Glow"], nil, 23, nil, false,"full",function() return E.db.ElvUI_EltreumUI.glow.gradient end,function(_, value) E.db.ElvUI_EltreumUI.glow.gradient = value end)
 	ElvUI_EltreumUI.Options.args.customglow.args.pixel = ACH:Group(L["Pixel Glow"], nil, 3, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.glow.enable and not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow and not E.db.ElvUI_EltreumUI.glow.enablepet and not E.db.ElvUI_EltreumUI.glow.enableUFs end)
@@ -1200,23 +1198,23 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.map.args.general = ACH:Group(L["General"], nil, 1)
 	ElvUI_EltreumUI.Options.args.map.args.general.args.description1 = ACH:Description(L["Flight Frame"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.map.args.general.args.taxiscale = ACH:Range(L["Flight Frame Scale"], nil, 2, { min = 0.1, max = 3, step = 0.01 }, 'double', function() return E.db.ElvUI_EltreumUI.otherstuff.taxiscale end,
-			function(_, value)
-				E.db.ElvUI_EltreumUI.otherstuff.taxiscale = value
-				if _G["TaxiFrame"] then
-					_G["TaxiFrame"]:SetScale(value)
-				end
-				if _G["FlightMapFrame"] then
-					_G["FlightMapFrame"]:SetScale(value)
-				end
-			end)
+		function(_, value)
+			E.db.ElvUI_EltreumUI.otherstuff.taxiscale = value
+			if _G["TaxiFrame"] then
+				_G["TaxiFrame"]:SetScale(value)
+			end
+			if _G["FlightMapFrame"] then
+				_G["FlightMapFrame"]:SetScale(value)
+			end
+		end)
 	ElvUI_EltreumUI.Options.args.map.args.general.args.description2 = ACH:Description(L["WORLD_MAP"], 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.map.args.general.args.worldmapscaletoggle = ACH:Toggle(L["Enable World Map Scaling"], nil, 4, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscale = value end)
 	ElvUI_EltreumUI.Options.args.map.args.general.args.worldmapscale = ACH:Range(L["World Map Scale"], nil, 5, { min = 0.1, max = 3, step = 0.01 }, 'double', function() return E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue end,
-			function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue = value
-				if _G["WorldMapFrame"] then
-					_G["WorldMapFrame"]:SetScale(value)
-				end
-			end,function() return not E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end)
+		function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue = value
+			if _G["WorldMapFrame"] then
+				_G["WorldMapFrame"]:SetScale(value)
+			end
+		end,function() return not E.db.ElvUI_EltreumUI.otherstuff.worldmapscale end)
 	ElvUI_EltreumUI.Options.args.map.args.general.args.description3 = ACH:Description(_G.MINIMAP_LABEL or L["Minimap"], 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.map.args.general.args.circleMinimap = ACH:Toggle(L["Circle Minimap"], nil, 7, nil, false,nil,function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.circle end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.circle = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.map.args.general.args.RotateMinimap = ACH:Toggle(_G.ROTATE_MINIMAP, nil, 8, nil, false,nil,function() return E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.circle end)
@@ -1377,18 +1375,18 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.description4 = ACH:Description(" ", 40, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.objectiveanchor = ACH:Toggle(L["Objective Frame Anchor"], L["Reactivate the ElvUI Objective Frame Anchor and Mover"], 41, nil, false,'full',function() return E.db.ElvUI_EltreumUI.quests.anchor end,function(_, value) E.db.ElvUI_EltreumUI.quests.anchor = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.objectiveheight = ACH:Range(L["Objective Frame Height"], L["Height of the objective tracker. Increase size to be able to see more objectives."], 42, { min = 100, max = 900, step = 1 }, "full",
-			function()
-				if ObjectiveTrackerFrame then
-					return E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight
-				else
-					return 1
-				end
-			end, function(_, value)
-				if ObjectiveTrackerFrame then
-					E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight = value
-					ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
-				end
-			end, function() return not E.db.ElvUI_EltreumUI.quests.anchor end, not E.Retail)
+		function()
+			if ObjectiveTrackerFrame then
+				return E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight
+			else
+				return 1
+			end
+		end, function(_, value)
+			if ObjectiveTrackerFrame then
+				E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight = value
+				ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
+			end
+		end, function() return not E.db.ElvUI_EltreumUI.quests.anchor end, not E.Retail)
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.description5 = ACH:Description(" ", 43, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.wowhead = ACH:Toggle(L["Enable Wowhead Button on Quest Log"], L["Show a button for Wowhead quest links"], 44, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.questswowhead end, function(_, value) E.db.ElvUI_EltreumUI.skins.questswowhead = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.quests.args.general.args.description6 = ACH:Description(" ", 45, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
@@ -1536,10 +1534,10 @@ function ElvUI_EltreumUI:Configtable()
 		local d = P.ElvUI_EltreumUI.cursors.cursorcast
 		return cursorcast.r, cursorcast.g, cursorcast.b, cursorcast.a, d.r, d.g, d.b, d.a
 	end,
-			function(_, r, g, b, a)
-				local cursorcast = E.db.ElvUI_EltreumUI.cursors.cursorcast
-				cursorcast.r, cursorcast.g, cursorcast.b, cursorcast.a = r, g, b, a ElvUI_EltreumUI:CastCursor()
-			end, function() return (not E.db.ElvUI_EltreumUI.cursors.cursor.enable) or E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor end)
+		function(_, r, g, b, a)
+			local cursorcast = E.db.ElvUI_EltreumUI.cursors.cursorcast
+			cursorcast.r, cursorcast.g, cursorcast.b, cursorcast.a = r, g, b, a ElvUI_EltreumUI:CastCursor()
+		end, function() return (not E.db.ElvUI_EltreumUI.cursors.cursor.enable) or E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor end)
 	ElvUI_EltreumUI.Options.args.cursor.args.colors.args.gradient = ACH:Toggle(L["Gradient"], nil, 4, nil, false, nil, function() return E.db.ElvUI_EltreumUI.cursors.cursorcast.gradient end, function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcast.gradient = value ElvUI_EltreumUI:CastCursor() end, function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable or not E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor end)
 	ElvUI_EltreumUI.Options.args.cursor.args.colors.args.description2 = ACH:Description(" ", 5, nil, nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.cursor.args.colors.args.castclassgcd = ACH:Toggle(L["Class Colored GCD"], L["Use Class Colors for GCD"], 6, nil, false, nil, function() return E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor end,function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor = value ElvUI_EltreumUI:CastCursor() end)
@@ -1548,10 +1546,10 @@ function ElvUI_EltreumUI:Configtable()
 		local d = P.ElvUI_EltreumUI.cursors.cursorgcd
 		return cursorgcd.r, cursorgcd.g, cursorgcd.b, cursorgcd.a, d.r, d.g, d.b, d.a
 	end,
-			function(_, r, g, b, a)
-				local cursorgcd = E.db.ElvUI_EltreumUI.cursors.cursorgcd
-				cursorgcd.r, cursorgcd.g, cursorgcd.b, cursorgcd.a = r, g, b, a ElvUI_EltreumUI:CastCursor()
-			end, function() return E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor or (not E.db.ElvUI_EltreumUI.cursors.cursor.enable ) end)
+		function(_, r, g, b, a)
+			local cursorgcd = E.db.ElvUI_EltreumUI.cursors.cursorgcd
+			cursorgcd.r, cursorgcd.g, cursorgcd.b, cursorgcd.a = r, g, b, a ElvUI_EltreumUI:CastCursor()
+		end, function() return E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor or (not E.db.ElvUI_EltreumUI.cursors.cursor.enable ) end)
 	ElvUI_EltreumUI.Options.args.cursor.args.colors.args.description3 = ACH:Description(" ", 8, nil, nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.cursor.args.colors.args.cursorcursorclasscolor = ACH:Toggle(L["Class Colored Combat"], L["Use Class Colors for Cursor"], 9, nil, false, nil, function() return E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor end,function(_, value) E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor = value ElvUI_EltreumUI:CastCursor() end)
 	ElvUI_EltreumUI.Options.args.cursor.args.colors.args.cursorcursorcolor = ACH:Color(L["Custom Color Combat"], nil, 10, true, nil, function()
@@ -1559,10 +1557,10 @@ function ElvUI_EltreumUI:Configtable()
 		local d = P.ElvUI_EltreumUI.cursors.cursorcursor
 		return cursorcursor.r, cursorcursor.g, cursorcursor.b, cursorcursor.a, d.r, d.g, d.b, d.a
 	end,
-			function(_, r, g, b, a)
-				local cursorcursor = E.db.ElvUI_EltreumUI.cursors.cursorcursor
-				cursorcursor.r, cursorcursor.g, cursorcursor.b, cursorcursor.a = r, g, b, a ElvUI_EltreumUI:CastCursor()
-			end, function() return E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor or (not E.db.ElvUI_EltreumUI.cursors.cursor.enable) end)
+		function(_, r, g, b, a)
+			local cursorcursor = E.db.ElvUI_EltreumUI.cursors.cursorcursor
+			cursorcursor.r, cursorcursor.g, cursorcursor.b, cursorcursor.a = r, g, b, a ElvUI_EltreumUI:CastCursor()
+		end, function() return E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor or (not E.db.ElvUI_EltreumUI.cursors.cursor.enable) end)
 	ElvUI_EltreumUI.Options.args.cursor.args.texture = ACH:Group(L["Cursor Type"], nil, 2, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.cursors.cursor.enable end)
 	ElvUI_EltreumUI.Options.args.cursor.args.texture.args.description1 = ACH:Description(L["Choose a type of cursor by clicking it"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.cursor.args.texture.args.description2 = ACH:Description(function() return L["Currently selected cursor: "]..ElvUI_EltreumUI:CurrentTypeofCursor() end, 2, L["Choose a type of cursor by clicking it"], nil, nil, nil, nil, "full")
@@ -1648,40 +1646,40 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.loot.args.fastloot.args.sound = ACH:Toggle(L["Enable Playing a Sound if an item from the wishlist is looted"], nil, 4, nil, false, "full", function() return E.db.ElvUI_EltreumUI.loot.lootwishlistsoundenable end, function(_, value) E.db.ElvUI_EltreumUI.loot.lootwishlistsoundenable = value E:StaticPopup_Show('CONFIG_RL') end, function() return #E.private.ElvUI_EltreumUI.wishlistID == 0 end)
 	ElvUI_EltreumUI.Options.args.loot.args.fastloot.args.soundLSM = ACH:SharedMediaSound(L["Select a Sound"], L["Choose a Sound from SharedMedia files"], 5, "full", function() return E.db.ElvUI_EltreumUI.loot.lootwishlistsound end, function(_,key) E.db.ElvUI_EltreumUI.loot.lootwishlistsound = key E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.loot.lootwishlistsoundenable or (#E.private.ElvUI_EltreumUI.wishlistID == 0) end)
 	ElvUI_EltreumUI.Options.args.loot.args.fastloot.args.lootwishlistenter = ACH:Input(L["Item Wishlist (type the Item ID)"], L["Items in your wishlist will display a warning when looted"], 6, nil, "full", function() return E.private.ElvUI_EltreumUI.wishlistID end,
-			function(_, value)
+		function(_, value)
+			value = tonumber(value)
+			local item = Item:CreateFromItemID(value)
+			if not item:IsItemEmpty() then
+				item:ContinueOnItemLoad(function()
+					local itemName = item:GetItemName()
+					local itemID = tonumber(value)
+					tinsert(E.private.ElvUI_EltreumUI.wishlistName, itemName)
+					tinsert(E.private.ElvUI_EltreumUI.wishlistID, itemID)
+				end)
+			end
+		end, nil, nil,
+		function(_, value)
+			E.PopupDialogs["ELTRUISMINVALID"] = {
+				text = L["Invalid Item, you need to add an itemID which can be found in the tooltip or in Wowhead"],
+				button1 = OKAY,
+				timeout = 0,
+				whileDead = 1,
+				hideOnEscape = true,
+			}
+			if tonumber(value) ~= nil then
 				value = tonumber(value)
 				local item = Item:CreateFromItemID(value)
-				if not item:IsItemEmpty() then
-					item:ContinueOnItemLoad(function()
-						local itemName = item:GetItemName()
-						local itemID = tonumber(value)
-						tinsert(E.private.ElvUI_EltreumUI.wishlistName, itemName)
-						tinsert(E.private.ElvUI_EltreumUI.wishlistID, itemID)
-					end)
-				end
-			end, nil, nil,
-			function(_, value)
-				E.PopupDialogs["ELTRUISMINVALID"] = {
-					text = L["Invalid Item, you need to add an itemID which can be found in the tooltip or in Wowhead"],
-					button1 = OKAY,
-					timeout = 0,
-					whileDead = 1,
-					hideOnEscape = true,
-				}
-				if tonumber(value) ~= nil then
-					value = tonumber(value)
-					local item = Item:CreateFromItemID(value)
-					if item == nil then
-						return E:StaticPopup_Show('ELTRUISMINVALID') and false
-					elseif item:IsItemEmpty() then
-						return E:StaticPopup_Show('ELTRUISMINVALID') and false
-					else
-						return true
-					end
-				else
+				if item == nil then
 					return E:StaticPopup_Show('ELTRUISMINVALID') and false
+				elseif item:IsItemEmpty() then
+					return E:StaticPopup_Show('ELTRUISMINVALID') and false
+				else
+					return true
 				end
-			end)
+			else
+				return E:StaticPopup_Show('ELTRUISMINVALID') and false
+			end
+		end)
 	ElvUI_EltreumUI.Options.args.loot.args.fastloot.args.lootwishlistremove = ACH:Select(L["Remove item from Wishlist"], REMOVE, 7, E.private.ElvUI_EltreumUI.wishlistName, true, "full", function() return E.private.ElvUI_EltreumUI.wishlistName end, function(_,value)
 		local item = tonumber(value)
 		tremove(E.private.ElvUI_EltreumUI.wishlistID, item)
@@ -1825,20 +1823,20 @@ function ElvUI_EltreumUI:Configtable()
 			end
 		end
 	end,
-			function(_, value)
-				if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
-					local spellData = GetSpellInfo(tostring(value))
-					if spellData then
-						local value = spellData.spellID
-						if value then
-							E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = value
-						end
-					end
-				else
-					local name = GetItemInfo(value)
-					E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = tostring(name)
+	function(_, value)
+		if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
+			local spellData = GetSpellInfo(tostring(value))
+			if spellData then
+				local value = spellData.spellID
+				if value then
+					E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = value
 				end
-			end)
+			end
+		else
+			local name = GetItemInfo(value)
+			E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = tostring(name)
+		end
+	end)
 
 	--unitframes
 	ElvUI_EltreumUI.Options.args.unitframes = ACH:Group(E:TextGradient(L["Unitframes"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add Gradient, Custom Textures, Models, change fill orientation and more"], 85, 'tab')
