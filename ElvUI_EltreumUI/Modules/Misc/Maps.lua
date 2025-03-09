@@ -15,6 +15,7 @@ local InCombatLockdown = _G.InCombatLockdown
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local pairs = _G.pairs
 local hooksecurefunc = _G.hooksecurefunc
+local M = E:GetModule('Minimap')
 
 --Conversion of Time to Arrive weakaura (new version)
 if E.Retail then
@@ -496,9 +497,23 @@ local function RotateMinimap()
 	end
 end
 
+--hide the backdrop here due to elvui function showing it
+local function FixElvUIMinimapBorder()
+	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.circle then
+		if _G.MinimapBackdrop then
+			_G.MinimapBackdrop:Hide()
+		end
+		if _G.Minimap.backdrop then
+			_G.Minimap.backdrop:Hide()
+		end
+	end
+end
+
 function ElvUI_EltreumUI:MinimapCardinalDirections()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.circle then
+
 		RotateMinimap()
+		FixElvUIMinimapBorder()
 
 		if Minimap.backdrop then
 			Minimap.backdrop:Hide()
@@ -680,6 +695,7 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 		end
 	end
 end
+hooksecurefunc(M,"UpdateSettings", ElvUI_EltreumUI.MinimapCardinalDirections)
 
 --setup onupdate and also get rid of it
 function ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
