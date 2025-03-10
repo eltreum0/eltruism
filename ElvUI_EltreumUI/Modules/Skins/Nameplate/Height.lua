@@ -30,26 +30,13 @@ tableupdate:SetScript("OnEvent",function()
 	}
 end)
 function ElvUI_EltreumUI:NameplateCustomOptions(unit)
-	if not unit then return end
-	if not unit.unit then return end
-	if not unit.Health then return end
-	if not unit.Health:IsShown() then return end
-	if not E.private.nameplates.enable then return end
+	if not unit or not unit.unit or not unit.Health or not unit.Health:IsShown() or not E.private.nameplates.enable then
+		return
+	end
+
 	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight then --and unit.unit:match("nameplate") then --unit is always nameplate
-
-		--check if its not explosive
-		--[[if (unit.unitGUID and unit.unitGUID:match("-120651-")) or UnitIsUnit(unit.unit,"player") then
-			return
-		end]]
-
-		if UnitIsUnit(unit.unit, "target") then
-			if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight then
-				unit.Health:SetHeight(heighttable[unit.frameType])
-			else
-				unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight)
-			end
-		else
-			if UnitAffectingCombat(unit.unit) or UnitThreatSituation("player", unit.unit) ~= nil or UnitIsUnit(unit.unit.."target","player") or UnitCastingInfo(unit.unit) then
+		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.disableCombatConditions then
+			if UnitIsUnit(unit.unit, "target") then
 				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight then
 					unit.Health:SetHeight(heighttable[unit.frameType])
 				else
@@ -57,6 +44,30 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 				end
 			else
 				unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.outofcombatHeight)
+			end
+		else
+
+			--check if its not explosive
+			--[[if (unit.unitGUID and unit.unitGUID:match("-120651-")) or UnitIsUnit(unit.unit,"player") then
+                return
+            end]]
+
+			if UnitIsUnit(unit.unit, "target") then
+				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight then
+					unit.Health:SetHeight(heighttable[unit.frameType])
+				else
+					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight)
+				end
+			else
+				if UnitAffectingCombat(unit.unit) or UnitThreatSituation("player", unit.unit) ~= nil or UnitIsUnit(unit.unit.."target","player") or UnitCastingInfo(unit.unit) then
+					if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight then
+						unit.Health:SetHeight(heighttable[unit.frameType])
+					else
+						unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.incombatHeight)
+					end
+				else
+					unit.Health:SetHeight(E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.outofcombatHeight)
+				end
 			end
 		end
 	end
