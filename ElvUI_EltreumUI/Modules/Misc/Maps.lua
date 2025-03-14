@@ -643,12 +643,6 @@ function ElvUI_EltreumUI:MinimapCardinalDirections()
 			end
 		end
 	else
-		if _G.MinimapBackdrop then
-			_G.MinimapBackdrop:Show()
-		end
-		if _G.Minimap.backdrop then
-			_G.Minimap.backdrop:Show()
-		end
 
 		if E.Retail then
 			Enum.EditModeMinimapSetting.RotateMinimap = 0
