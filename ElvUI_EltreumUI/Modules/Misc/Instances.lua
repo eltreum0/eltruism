@@ -24,7 +24,9 @@ if E.Retail then
 	instancedifficulty:RegisterEvent("PLAYER_DIFFICULTY_CHANGED")
 	instancedifficulty:RegisterEvent("GUILD_PARTY_STATE_UPDATED")
 end
-E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismInstanceDifficulty", nil, nil, nil, "ALL,SOLO,ELTREUMUI,PARTY,RAID", nil, 'ElvUI_EltreumUI,party,instances')
+if E.db.ElvUI_EltreumUI.skins.instances then
+	E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismInstanceDifficulty", nil, nil, nil, "ALL,SOLO,ELTREUMUI,PARTY,RAID", nil, 'ElvUI_EltreumUI,party,instances')
+end
 
 local garrisons = {
 	[1662] = true,
