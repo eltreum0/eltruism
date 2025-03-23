@@ -42,7 +42,7 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 		end
 
 		--interrupt bars shadows/gradient/position
-		hooksecurefunc(OmniCD.Party.BarFrameIconMixin,"SetExBorder",function(icon)
+		hooksecurefunc(OmniCD.Party.BarFrameIconMixin,"SetBorder",function(icon)
 
 			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 				if not icon.shadow then
