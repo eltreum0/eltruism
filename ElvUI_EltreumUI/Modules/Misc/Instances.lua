@@ -24,9 +24,6 @@ if E.Retail then
 	instancedifficulty:RegisterEvent("PLAYER_DIFFICULTY_CHANGED")
 	instancedifficulty:RegisterEvent("GUILD_PARTY_STATE_UPDATED")
 end
-if E.db.ElvUI_EltreumUI.skins.instances then
-	E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismInstanceDifficulty", nil, nil, nil, "ALL,SOLO,ELTREUMUI,PARTY,RAID", nil, 'ElvUI_EltreumUI,party,instances')
-end
 
 local garrisons = {
 	[1662] = true,
@@ -48,6 +45,12 @@ instancedifficulty:SetScript("OnEvent", function()
 	if not E.db.ElvUI_EltreumUI then return end
 	if not E.db.ElvUI_EltreumUI.skins then return end
 	if not E.db.ElvUI_EltreumUI.skins.instances then return end
+
+	--create mover only if setting is enabled
+	if not instancedifficulty.movercreated then
+		E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismInstanceDifficulty", nil, nil, nil, "ELTREUMUI,PARTY,RAID", nil, 'ElvUI_EltreumUI,party,instances')
+		instancedifficulty.movercreated = true
+	end
 
 	local _, instanceType = IsInInstance()
 	local mapID = WorldMapFrame:GetMapID()
