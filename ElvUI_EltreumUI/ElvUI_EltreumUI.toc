@@ -1,6 +1,6 @@
 ## Interface: 110100
 ## Author: Eltreum
-## Version: 4.3.0
+## Version: 4.3.1
 ## Title: |cff1784d1ElvUI|r |cff587AADE|r|cff6289B7l|r|cff6C98C1t|r|cff76A7CBr|r|cff81B6D6u|r|cff8BC5E0i|r|cff95D4EAs|r|cff9FE3F4m|r
 ## IconTexture: Interface\AddOns\ElvUI_EltreumUI\Media\Textures\tinylogodev
 ## AddonCompartmentFunc: ElvUI_EltreumUI_OnAddonCompartmentClick
@@ -11,7 +11,7 @@
 ## OptionalDeps: ElvUI_SLE, ElvUI_WindTools, ProjectAzilroka, AddOnSkins
 ## DefaultState: enabled
 ## X-Interface: 110100
-## X-ElvUI: 13.85
+## X-ElvUI: 13.87
 ## X-Tukui-ProjectID: 209
 ## X-Curse-Project-ID: 459494
 ## X-Wago-ID: vEGPqEN1
