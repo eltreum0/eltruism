@@ -1607,3 +1607,5 @@ L["Add Character Race Icons"] = "Charakter Rassensymbole hinzufügen"
 L["Enable Character Race Icons"] = "Aktivieren die Rassensymbole der Charaktere"
 L["Disable Combat Conditions"] = "Kampfbedingungen deaktivieren"
 L["Disables the in combat and out of combat conditions, keeping only the target/non-target function"] = "Deaktiviert die Zustände im Kampf und außerhalb des Kampfes und behält nur die Funktion „Ziel/Nicht-Ziel“ bei."
+L["Arena Border"] = true
+L["Arena Thickness"] = true
