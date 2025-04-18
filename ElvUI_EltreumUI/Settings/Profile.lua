@@ -806,6 +806,7 @@ P.ElvUI_EltreumUI = {
 		chatsize = 13,
 		aurasize = 13,
 		baredgesize = 13,
+		arenasize = 20,
 
 		powerbarborder = true,
 		powerbarsize = 4,
@@ -885,6 +886,12 @@ P.ElvUI_EltreumUI = {
 		yboss = 87,
 		bossstrata = "MEDIUM",
 		bosslevel = 3,
+
+		arenaborder = true,
+		xarena = 281,
+		yarena = 94,
+		arenastrata = "MEDIUM",
+		arenalevel = 3,
 
 		bar1borders = true,
 		bar1xborder = 65,
