@@ -962,7 +962,6 @@ local function BordersPart1()
 	end
 end
 
-
 local function BordersPart2()
 
 	--elvui action bars (has to be split because it bar can be different sizes)
@@ -1433,8 +1432,6 @@ local function BordersPart2()
 		ElvUI_EltreumUI:TooltipBorder()
 	end
 end
-
-
 
 --Borders on frames
 function ElvUI_EltreumUI:Borders()
