@@ -29,7 +29,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 					--spark
 					if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable then
 						castbar.Spark_:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
-						if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' then --flip otherwise it will look wrong
+						if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' and not E.db.unitframe.units.player.castbar.reverse then --flip otherwise it will look wrong
 							castbar.Spark_:SetTexCoord(1, 0, 0, 1)
 						end
 						if castbar.empowering then
@@ -438,7 +438,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 						end
 
 						focuscastbar.Spark_:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
-						if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' then --flip otherwise it will look wrong
+						if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' and not E.db.unitframe.units.focus.castbar.reverse then --flip otherwise it will look wrong
 							focuscastbar.Spark_:SetTexCoord(1, 0, 0, 1)
 						end
 					end
@@ -693,7 +693,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 						end
 
 						petcastbar.Spark_:SetWidth(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.width)
-						if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' then --flip otherwise it will look wrong
+						if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' and not E.db.unitframe.units.pet.castbar.reverse then --flip otherwise it will look wrong
 							petcastbar.Spark_:SetTexCoord(1, 0, 0, 1)
 						end
 					end
@@ -955,7 +955,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 								--set spark texture
 								if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable then
 									groupbutton.Castbar.Spark_:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
-									if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' then --flip otherwise it will look wrong
+									if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture == 'Eltreum-Fade' and not E.db.unitframe.units.party.castbar.reverse then --flip otherwise it will look wrong
 										groupbutton.Castbar.Spark_:SetTexCoord(1, 0, 0, 1)
 									end
 									groupbutton.Castbar.Spark_:SetVertexColor(E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.r, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.g, E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.b, 1)
