@@ -1610,3 +1610,7 @@ L["Disable Combat Conditions"] = true
 L["Disables the in combat and out of combat conditions, keeping only the target/non-target function"] = true
 L["Arena Border"] = true
 L["Arena Thickness"] = true
+L["Disable Mouse Interaction"] = true
+L["Disable clicking on Friendly Nameplates inside Instances"] = true
+L["Customize Friendly Healthbar Width"] = true
+L["Change the Healthbar Width on Friendly Nameplates inside Instances"] = true
