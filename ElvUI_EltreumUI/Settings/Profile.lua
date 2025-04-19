@@ -559,7 +559,10 @@ P.ElvUI_EltreumUI = {
 			customboss = "",
 			customrare = "",
 			customrareelite = "",
-		}
+		},
+		disableFriendlyClick = false,
+		customizeFriendlySize = false,
+		customizeFriendlySizeX = 100,
 	},
 
 	glow = {

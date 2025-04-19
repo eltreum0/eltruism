@@ -773,6 +773,19 @@ function ElvUI_EltreumUI:FriendlyNameplates()
 				SetCVar("nameplateShowFriends", 0)
 			end
 		end
+		if E.db.ElvUI_EltreumUI.nameplates.disableFriendlyClick then
+			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" or instanceType == "none" or mapID == 1662 or mapID == 582 or mapID == 590 then
+				C_NamePlate.SetNamePlateFriendlyClickThrough(true)
+			else
+				C_NamePlate.SetNamePlateFriendlyClickThrough(false)
+			end
+		end
+		if E.db.ElvUI_EltreumUI.nameplates.customizeFriendlySize then
+			if instanceType == "party" or instanceType == "raid" or instanceType == "pvp" or instanceType == "arena" or instanceType == "scenario" or instanceType == "none" or mapID == 1662 or mapID == 582 or mapID == 590 then
+				SetCVar("nameplateShowOnlyNames", 0)
+				C_NamePlate.SetNamePlateFriendlySize(E.db.ElvUI_EltreumUI.nameplates.customizeFriendlySizeX, 25)
+			end
+		end
 	end
 	ElvUI_EltreumUI:OriginalClassColors() --check for friendly
 end
