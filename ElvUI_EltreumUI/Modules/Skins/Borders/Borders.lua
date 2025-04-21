@@ -550,6 +550,9 @@ local function BordersPart1()
 					end
 					partyborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.partystrata)
 					partyborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.partylevel)
+					if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.party.infoPanel.enable then
+						partyborder:SetPoint("CENTER", _G["ElvUF_PartyGroup1UnitButton"..i], "CENTER", 0, E.db.unitframe.units.party.infoPanel.height)
+					end
 				end
 			end
 		end
@@ -585,6 +588,9 @@ local function BordersPart1()
 							end
 							raid1border:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.raidstrata)
 							raid1border:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.raidlevel)
+							if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.raid1.infoPanel.enable then
+								raid1border:SetPoint("CENTER", _G["ElvUF_PartyGroup1UnitButton"..i], "CENTER", 0, E.db.unitframe.units.raid1.infoPanel.height)
+							end
 						end
 					end
 				end
@@ -679,6 +685,9 @@ local function BordersPart1()
 						end
 						raid2border:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.raid2strata)
 						raid2border:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.raid2level)
+						if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.raid2.infoPanel.enable then
+							raid2border:SetPoint("CENTER", _G['ElvUF_Raid2Group'..l..'UnitButton'..k], "CENTER", 0, E.db.unitframe.units.raid2.infoPanel.height)
+						end
 					end
 				end
 			end
@@ -715,6 +724,9 @@ local function BordersPart1()
 						raid3border:SetFrameStrata("MEDIUM")
 						raid3border:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.raid40strata)
 						raid3border:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.raid40level)
+						if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.raid3.infoPanel.enable then
+							raid3border:SetPoint("CENTER", _G['ElvUF_Raid3Group'..l..'UnitButton'..k], "CENTER", 0, E.db.unitframe.units.raid3.infoPanel.height)
+						end
 					end
 				end
 			end
@@ -864,6 +876,9 @@ local function BordersPart1()
 					end
 					bossborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.bossstrata)
 					bossborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.bosslevel)
+					if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.boss.infoPanel.enable then
+						bossborder:SetPoint("CENTER", _G["ElvUF_Boss"..i], "CENTER", 0, E.db.unitframe.units.boss.infoPanel.height)
+					end
 				end
 			end
 		end
@@ -903,6 +918,9 @@ local function BordersPart1()
 					end
 					arenaborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.arenastrata)
 					arenaborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.arenalevel)
+					if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.arena.infoPanel.enable then
+						arenaborder:SetPoint("CENTER", _G["ElvUF_Arena"..i], "CENTER", 0, E.db.unitframe.units.arena.infoPanel.height)
+					end
 				end
 			end
 		end
