@@ -1613,3 +1613,5 @@ L["Disable Mouse Interaction"] = "Deaktiviere Mausinteraktion"
 L["Disable clicking on Friendly Nameplates inside Instances"] = "Deaktiviere das Klicken auf freundliche Namensschilder in Instanzen."
 L["Customize Friendly Healthbar Width"] = "Breite der freundlichen Gesundheitsleiste anpassen"
 L["Change the Healthbar Width on Friendly Nameplates inside Instances"] = "Passe die Breite der Gesundheitsleiste auf freundlichen Namensschildern in Instanzen an."
+L["Nameplate Health Bar Border"] = true
+L["Nameplate Health Bar Thickness"] = true

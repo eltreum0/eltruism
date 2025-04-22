@@ -1614,3 +1614,5 @@ L["Disable Mouse Interaction"] = true
 L["Disable clicking on Friendly Nameplates inside Instances"] = true
 L["Customize Friendly Healthbar Width"] = true
 L["Change the Healthbar Width on Friendly Nameplates inside Instances"] = true
+L["Nameplate Health Bar Border"] = true
+L["Nameplate Health Bar Thickness"] = true
