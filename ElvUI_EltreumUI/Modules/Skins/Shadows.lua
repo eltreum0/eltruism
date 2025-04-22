@@ -3973,62 +3973,118 @@ function ElvUI_EltreumUI:RaidShadows()
 end
 
 --benik's version
+local classcolor = E:ClassColor(E.myclass, true)
 function ElvUI_EltreumUI:NameplateShadows(nameplate)
 	if not nameplate then return end
-	if E.private.nameplates.enable and E.db.ElvUI_EltreumUI.skins.shadow.enable then
-
-		if E.db.ElvUI_EltreumUI.skins.shadow.nameplates then
+	if E.private.nameplates.enable then
+		if (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.nameplateborders) and not E.db.ElvUI_EltreumUI.borders.bordertest then
 			if not nameplate.Health then return end
-			if nameplate.Health.backdrop and not nameplate.Health.backdrop.shadow then
-				nameplate.Health.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(nameplate.Health.backdrop.shadow)
+
+			if not nameplate.Health.EltruismNameplateBorder then
+				nameplate.Health.EltruismNameplateBorder = CreateFrame("Frame", nil, nameplate.Health, BackdropTemplateMixin and "BackdropTemplate")
+			end
+			if E.db.ElvUI_EltreumUI.borders.texture then
+				bordertexture = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture)
+				if bordertexture == nil then --the border was not found so apply the default
+					bordertexture = E.LSM:Fetch("border", "Eltreum-Border-1")
+					E.db.ElvUI_EltreumUI.borders.texture = "Eltreum-Border-1"
+				end
+			end
+			nameplate.Health.EltruismNameplateBorder:SetBackdrop({
+				edgeFile = bordertexture,
+				edgeSize = E.db.ElvUI_EltreumUI.borders.nameplatesize,
+			})
+
+			if not E.db.ElvUI_EltreumUI.borders.classcolor then
+				classcolor = {
+					r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
+					g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
+					b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
+				}
+			end
+			nameplate.Health.EltruismNameplateBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+
+			--will need more work since nameplates can change, same issue with gradient nameplates, likely needs to be moved over there
+			--[[local player = UnitIsPlayer(nameplate.unit) or (E.Retail and UnitInPartyIsAI(nameplate.unit))
+			if player then
+				local _, className = UnitClass(nameplate.unit)
+				local colortableplayer = ElvUI_EltreumUI:GetClassColorsRGB(className)
+				nameplate.Health.EltruismNameplateBorder:SetBackdropBorderColor(colortableplayer.r,colortableplayer.g,colortableplayer.b, 1)
+			else
+				local reaction = UnitReaction(nameplate.unit, "player")
+				local targettype
+				if reaction and reaction >= 5 then
+					targettype = "NPCFRIENDLY"
+				elseif reaction and reaction == 4 then
+					targettype = "NPCNEUTRAL"
+				elseif reaction and reaction == 3 then
+					targettype = "NPCUNFRIENDLY"
+				elseif reaction and reaction <= 2 then
+					targettype = "NPCHOSTILE"
+				end
+				local colortablenpc = ElvUI_EltreumUI:GetClassColorsRGB(targettype)
+				nameplate.Health.EltruismNameplateBorder:SetBackdropBorderColor(colortablenpc.r,colortablenpc.g,colortablenpc.b, 1)
+			end]]
+			nameplate.Health.EltruismNameplateBorder:SetFrameLevel(nameplate.Health:GetFrameLevel()+1)
+			nameplate.Health.EltruismNameplateBorder:SetFrameStrata(nameplate.Health:GetFrameStrata())
+			nameplate.Health.EltruismNameplateBorder:SetPoint("CENTER", nameplate.Health, "CENTER", 0, 0)
+			nameplate.Health.EltruismNameplateBorder:SetOutside(nameplate.Health, E.db.ElvUI_EltreumUI.borders.nameplatesizex, E.db.ElvUI_EltreumUI.borders.nameplatesizey)
+		elseif E.db.ElvUI_EltreumUI.skins.shadow.enable then
+			if E.db.ElvUI_EltreumUI.skins.shadow.nameplates then
+				if not nameplate.Health then return end
+				if nameplate.Health.backdrop and not nameplate.Health.backdrop.shadow then
+					nameplate.Health.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(nameplate.Health.backdrop.shadow)
+				end
+			end
+
+			if E.db.ElvUI_EltreumUI.skins.shadow.nppower then
+				if not nameplate.Power then return end
+				if nameplate.Power.backdrop and not nameplate.Power.backdrop.shadow then
+					nameplate.Power.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(nameplate.Power.backdrop.shadow)
+				end
+				if _G["ElvNP_TargetClassPowerClassPower"] and not _G["ElvNP_TargetClassPowerClassPower"].shadow then
+					_G["ElvNP_TargetClassPowerClassPower"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G["ElvNP_TargetClassPowerClassPower"].shadow)
+				end
+				if _G["ElvNP_TargetClassPowerRunes"] and not _G["ElvNP_TargetClassPowerRunes"].shadow then
+					_G["ElvNP_TargetClassPowerRunes"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G["ElvNP_TargetClassPowerRunes"].shadow)
+				end
+				if _G["ElvNP_TargetClassPowerStagger"] and not _G["ElvNP_TargetClassPowerStagger"].shadow then
+					_G["ElvNP_TargetClassPowerStagger"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G["ElvNP_TargetClassPowerStagger"].shadow)
+				end
+				if _G["EltruismPowerBar"] and not _G["EltruismPowerBar"].shadow then
+					_G["EltruismPowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G["EltruismPowerBar"].shadow)
+				end
+			end
+
+			if E.db.ElvUI_EltreumUI.skins.shadow.npcastbar then
+				if not nameplate.Castbar then return end
+				if nameplate.Castbar.backdrop and not nameplate.Castbar.backdrop.shadow then
+					nameplate.Castbar.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(nameplate.Castbar.backdrop.shadow)
+				end
+
+				if nameplate.Castbar.Button and not nameplate.Castbar.Button.shadow then
+					nameplate.Castbar.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(nameplate.Castbar.Button.shadow)
+				end
+			end
+
+			if E.db.ElvUI_EltreumUI.skins.shadow.npportraits then
+				if not nameplate.Portrait then return end
+				if nameplate.Portrait.backdrop and not nameplate.Portrait.backdrop.shadow then
+					nameplate.Portrait.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(nameplate.Portrait.backdrop.shadow)
+				end
 			end
 		end
 
-		if E.db.ElvUI_EltreumUI.skins.shadow.nppower then
-			if not nameplate.Power then return end
-			if nameplate.Power.backdrop and not nameplate.Power.backdrop.shadow then
-				nameplate.Power.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(nameplate.Power.backdrop.shadow)
-			end
-			if _G["ElvNP_TargetClassPowerClassPower"] and not _G["ElvNP_TargetClassPowerClassPower"].shadow then
-				_G["ElvNP_TargetClassPowerClassPower"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(_G["ElvNP_TargetClassPowerClassPower"].shadow)
-			end
-			if _G["ElvNP_TargetClassPowerRunes"] and not _G["ElvNP_TargetClassPowerRunes"].shadow then
-				_G["ElvNP_TargetClassPowerRunes"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(_G["ElvNP_TargetClassPowerRunes"].shadow)
-			end
-			if _G["ElvNP_TargetClassPowerStagger"] and not _G["ElvNP_TargetClassPowerStagger"].shadow then
-				_G["ElvNP_TargetClassPowerStagger"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(_G["ElvNP_TargetClassPowerStagger"].shadow)
-			end
-			if _G["EltruismPowerBar"] and not _G["EltruismPowerBar"].shadow then
-				_G["EltruismPowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(_G["EltruismPowerBar"].shadow)
-			end
-		end
 
-		if E.db.ElvUI_EltreumUI.skins.shadow.npcastbar then
-			if not nameplate.Castbar then return end
-			if nameplate.Castbar.backdrop and not nameplate.Castbar.backdrop.shadow then
-				nameplate.Castbar.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(nameplate.Castbar.backdrop.shadow)
-			end
-
-			if nameplate.Castbar.Button and not nameplate.Castbar.Button.shadow then
-				nameplate.Castbar.Button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(nameplate.Castbar.Button.shadow)
-			end
-		end
-
-		if E.db.ElvUI_EltreumUI.skins.shadow.npportraits then
-			if not nameplate.Portrait then return end
-			if nameplate.Portrait.backdrop and not nameplate.Portrait.backdrop.shadow then
-				nameplate.Portrait.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-				ElvUI_EltreumUI:ShadowColor(nameplate.Portrait.backdrop.shadow)
-			end
-		end
 	end
 end
 hooksecurefunc(NP, 'StylePlate', ElvUI_EltreumUI.NameplateShadows) --nameplate shadows

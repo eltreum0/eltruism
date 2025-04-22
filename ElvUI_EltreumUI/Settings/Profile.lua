@@ -1030,6 +1030,13 @@ P.ElvUI_EltreumUI = {
 		tooltipstrata = "TOOLTIP",
 		tooltiplevel = 50,
 
+		nameplateborders = true,
+		nameplatesizex = 11,
+		nameplatesizey = 10,
+		nameplatesize = 13,
+		nameplatestrata = "TOOLTIP",
+		nameplatelevel = 50,
+
 		bordercolors = {
 			r = 0.27,
 			g = 0.50,
