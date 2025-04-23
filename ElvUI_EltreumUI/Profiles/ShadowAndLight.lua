@@ -7,7 +7,6 @@ function ElvUI_EltreumUI:GetSLEProfile()
 	if IsAddOnLoaded("ElvUI_SLE") then
 		-- Load Shadow & Light profile
 		E.global["sle"]["advanced"]["confirmed"] = true
-		E.global["sle"]["advanced"]["gameMenu"]["enable"] = true
 		E.global["sle"]["advanced"]["general"] = true
 		E.global["sle"]["advanced"]["optionsLimits"] = true
 		E.private["sle"]["install_complete"] = "4.41"
