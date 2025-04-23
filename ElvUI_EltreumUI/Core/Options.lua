@@ -3935,7 +3935,6 @@ Added options to change the Friendly Nameplate size inside instances
 Added Arena Borders
 Added Nameplate Borders
 ]], 3, "small", nil, nil, nil, nil, "full")
-
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
