@@ -287,7 +287,9 @@ function ElvUI_EltreumUI:Anchors()
 	end
 
 	if E.db.ElvUI_EltreumUI.skins.blizzframes.hideeventoaster then
-		_G.EventToastManagerFrame:UnregisterAllEvents()
+		if _G.EventToastManagerFrame then
+			_G.EventToastManagerFrame:UnregisterAllEvents()
+		end
 		if E.Retail and _G.ChallengeModeCompleteBanner then
 			_G.ChallengeModeCompleteBanner:UnregisterAllEvents()
 		end
@@ -646,7 +648,7 @@ if E.Retail then
 	end)
 
 	local clickcastingmonitor = CreateFrame("frame")
-	clickcastingmonitor:RegisterEvent("ADDON_LOADED")
+	clickcastingmonitor:RegisterEvent("ADDON_LOADED") --add option to disable this
 	clickcastingmonitor:SetScript("OnEvent", function(_,_,addon)
 		if (addon == "Blizzard_PlayerSpells") or IsAddOnLoaded("Blizzard_PlayerSpells") then
 			clickcastingmonitor:UnregisterEvent("ADDON_LOADED")
