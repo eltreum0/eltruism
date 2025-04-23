@@ -1613,6 +1613,6 @@ L["Arena Thickness"] = "Épaisseur de l'arène"
 L["Disable Mouse Interaction"] = "Désactiver l'interaction avec la souris"
 L["Disable clicking on Friendly Nameplates inside Instances"] = "Désactiver le clic sur les plaques d'identité amicales à l'intérieur des instances"
 L["Customize Friendly Healthbar Width"] = "Personnaliser la largeur de la barre de santé amicale"
-L["Change the Healthbar Width on Friendly Nameplates inside Instances"] = 'Modifier la largeur de la barre de santé sur les plaques d'identité amicales à l'intérieur des instances'
+L["Change the Healthbar Width on Friendly Nameplates inside Instances"] = "Modifier la largeur de la barre de santé sur les plaques d'identité amicales à l'intérieur des instances"
 L["Nameplate Health Bar Border"] = "Barre de santé de la plaque d'identité Bordure de la barre de santé"
 L["Nameplate Health Bar Thickness"] = "Barre de santé de la plaque d'identité Épaisseur de la barre de santé"
