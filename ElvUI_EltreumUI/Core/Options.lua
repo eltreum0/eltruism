@@ -3930,21 +3930,26 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added a few shadows
+Added an option to disable interaction with Friendly Nameplates inside Instances
+Added options to change the Friendly Nameplate size inside instances
+Added Arena Borders
+Added Nameplate Borders
 ]], 3, "small", nil, nil, nil, nil, "full")
 
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Unitframe Portrait skin to show NPC portraits when using Custom Textures
-Updated to support Retail 11.1
-Updated ElvUI Skin function
+Updated Classic to use the same AFK music api as Cataclysm
+Updated the Warrior Combat Indicator
+Updated German locale by Dlarge
+Updated for Retail 11.1.5
 ]], 5, "small", nil, nil, nil, nil, "full")
-
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed a possible error with the Character Panel Icons
+Fixed an issue where Borders didn't work nicely with Information Panel on Top
+Fixed Archeology Bar Title Text not moving correctly
+Fixed the Spark texture on some Reversed Castbars
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
