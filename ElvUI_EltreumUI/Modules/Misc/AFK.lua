@@ -88,8 +88,6 @@ local classicMusic = {
 -- with the help of Repooc, Simpy and Acidweb (not in order :D)
 local musicSettingLoadingIn = GetCVar('Sound_EnableMusic')
 local musicSetting = musicSettingLoadingIn
-local classicmusicstopper = nil
-local willplay = nil
 function ElvUI_EltreumUI:AFKmusic()
 	if E.db.ElvUI_EltreumUI.otherstuff.afkmusic.enable then
 		if UnitIsAFK("player") then
@@ -101,31 +99,19 @@ function ElvUI_EltreumUI:AFKmusic()
 				elseif E.db.ElvUI_EltreumUI.otherstuff.afkmusic.playerclass then
 					PlayMusic(classMusic[E.myclass])
 				end
-			elseif E.Classic then
-				willplay, classicmusicstopper = PlaySound(classicMusic[E.myrace])
-			elseif E.Cata then
+			else
 				PlayMusic(cataMusic[E.myrace])
 			end
 		else
-			if not E.Classic then
-				StopMusic()
-				if musicSettingLoadingIn ~= musicSetting then
-					SetCVar("Sound_EnableMusic", musicSetting)
-				end
-			else
-				if willplay then
-					StopSound(classicmusicstopper,3000)
-				end
-				if musicSettingLoadingIn ~= musicSetting then
-					SetCVar("Sound_EnableMusic", musicSetting)
-				end
+			StopMusic()
+			if musicSettingLoadingIn ~= musicSetting then
+				SetCVar("Sound_EnableMusic", musicSetting)
 			end
 		end
 	end
 end
 
 --add Eltruism logo to elvui afk screen
-
 local EltruismAFKLogoTexture = _G.ElvUIAFKFrame:CreateTexture()
 local EltruismAFKVignette = CreateFrame("Frame", "EltruismAFKVignette", UIParent)
 local EltruismAFKVignetteTexture = EltruismAFKVignette:CreateTexture()
