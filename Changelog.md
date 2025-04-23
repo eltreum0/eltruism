@@ -1,9 +1,11 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.3.2.1
+Fixed an error when using French Locale  
 ### 4.3.2
 Added an option to disable interaction with Friendly Nameplates inside Instances  
-Added options to change the Friendly Nameplate size inside instances  
+Added options to change the Friendly Nameplate size inside instances   
 Added Arena Borders  
 Added Nameplate Borders  
 Updated Classic to use the same AFK music api as Cataclysm  

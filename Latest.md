@@ -10,4 +10,5 @@ Updated German locale by Dlarge
 Updated for Retail 11.1.5  
 Fixed an issue where Borders didn't work nicely with Information Panel on Top  
 Fixed Archeology Bar Title Text not moving correctly  
-Fixed the Spark texture on some Reversed Castbars
+Fixed the Spark texture on some Reversed Castbars  
+Fixed an error when using French Locale  
