@@ -382,6 +382,8 @@ local ids = {
 	[151086] = true, -- Tournament
 	[187786] = true, -- Legion Timewalking
 	[186159] = true, -- Dragonflight
+	[211142] = true, -- Delve Keystone
+	[210693] = true, -- Delve Keystone (alternate)
 }
 local keys = {
 }
