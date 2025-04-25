@@ -237,7 +237,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 					end)
 				end)
 
-				if not _G.TradeSkillFrame:GetScript("OnDragStart") then
+				if not _G.TradeSkillFrame:HasScript("OnDragStart") then
 					_G.TradeSkillFrame:SetMovable(true)
 					_G.TradeSkillFrame:EnableMouse(true)
 					_G.TradeSkillFrame:RegisterForDrag("LeftButton")
@@ -341,7 +341,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 					end)
 				end)
 
-				if not _G.CraftFrame:GetScript("OnDragStart") then
+				if not _G.CraftFrame:HasScript("OnDragStart") then
 					_G.CraftFrame:SetMovable(true)
 					_G.CraftFrame:EnableMouse(true)
 					_G.CraftFrame:RegisterForDrag("LeftButton")
@@ -372,7 +372,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 					_G.ProfessionsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.professionscale or 1)
 				end)
 
-				if not _G.ProfessionsFrame:GetScript("OnDragStart") then
+				if not _G.ProfessionsFrame:HasScript("OnDragStart") then
 					_G.ProfessionsFrame:SetMovable(true)
 					_G.ProfessionsFrame:EnableMouse(true)
 					_G.ProfessionsFrame:RegisterForDrag("LeftButton")

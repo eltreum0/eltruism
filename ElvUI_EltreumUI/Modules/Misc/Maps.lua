@@ -418,7 +418,7 @@ function ElvUI_EltreumUI:WorldMapScale()
 						if not IsAddOnLoaded("Leatrix_Maps") then
 							_G["WorldMapFrame"]:SetScale(E.db.ElvUI_EltreumUI.otherstuff.worldmapscalevalue)
 						end
-						if not _G["WorldMapFrame"]:GetScript("OnDragStart") then
+						if not _G["WorldMapFrame"]:HasScript("OnDragStart") then
 							_G["WorldMapFrame"]:SetMovable(true)
 							_G["WorldMapFrame"]:EnableMouse(true)
 							_G["WorldMapFrame"]:RegisterForDrag("LeftButton")

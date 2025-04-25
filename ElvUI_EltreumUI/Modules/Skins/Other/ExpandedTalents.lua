@@ -16,7 +16,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 			if (arg == "Blizzard_PlayerSpells") or IsAddOnLoaded("Blizzard_PlayerSpells") then
 				EltruismExpandedTalents:UnregisterAllEvents()
 
-				if not _G.PlayerSpellsFrame:GetScript("OnDragStart") then
+				if not _G.PlayerSpellsFrame:HasScript("OnDragStart") then
 					_G.PlayerSpellsFrame:SetMovable(true)
 					_G.PlayerSpellsFrame:EnableMouse(true)
 					_G.PlayerSpellsFrame:RegisterForDrag("LeftButton")
