@@ -651,6 +651,9 @@ if E.Retail then
 	clickcastingmonitor:RegisterEvent("ADDON_LOADED") --add option to disable this
 	clickcastingmonitor:SetScript("OnEvent", function(_,_,addon)
 		if (addon == "Blizzard_PlayerSpells") or IsAddOnLoaded("Blizzard_PlayerSpells") then
+			if not InCombatLockdown() then
+				SetCVar("enableMouseoverCast", 1) --this will prevent people not having mouse over cast if the blizzard addon is loaded
+			end
 			clickcastingmonitor:UnregisterEvent("ADDON_LOADED")
 			clickbindopenbutton:SetParent(_G["PlayerSpellsFrame"])
 			clickbindopenbutton:SetPoint("LEFT", _G["PlayerSpellsFrame"], "TOPRIGHT", 0, -80)

@@ -1706,6 +1706,8 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('maxFPSLoading', 30) --smoother loading bar
 	SetCVar('PushToTalkSound', 0) --disable tts queue sound (may be protected and not apply though)
 
+	SetCVar("enableMouseoverCast", 1) --this will prevent people not having mouse over cast if the blizzard addon is loaded
+
 	-- fast loot
 	SetCVar("autoLootRate", 1)
 
