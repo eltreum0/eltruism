@@ -557,7 +557,7 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 						end)
 					end
 				end)
-				if not InCombatLockdown then
+				if not InCombatLockdown and not _G.AuctionHouseFrame:GetScript("OnDragStart") then
 					_G.AuctionHouseFrame:SetMovable(true)
 					_G.AuctionHouseFrame:EnableMouse(true)
 					_G.AuctionHouseFrame:RegisterForDrag("LeftButton")
@@ -583,7 +583,7 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 						end)
 					end
 				end)
-				if not InCombatLockdown then
+				if not InCombatLockdown and not _G.AuctionFrame:GetScript("OnDragStart") then
 					_G.AuctionFrame:SetMovable(true)
 					_G.AuctionFrame:EnableMouse(true)
 					_G.AuctionFrame:RegisterForDrag("LeftButton")

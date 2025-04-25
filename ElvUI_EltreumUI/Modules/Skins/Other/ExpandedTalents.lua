@@ -16,12 +16,14 @@ function ElvUI_EltreumUI:ExpandedTalents()
 			if (arg == "Blizzard_PlayerSpells") or IsAddOnLoaded("Blizzard_PlayerSpells") then
 				EltruismExpandedTalents:UnregisterAllEvents()
 
-				_G.PlayerSpellsFrame:SetMovable(true)
-				_G.PlayerSpellsFrame:EnableMouse(true)
-				_G.PlayerSpellsFrame:RegisterForDrag("LeftButton")
-				_G.PlayerSpellsFrame:SetScript("OnDragStart", _G.PlayerSpellsFrame.StartMoving)
-				_G.PlayerSpellsFrame:SetScript("OnDragStop", _G.PlayerSpellsFrame.StopMovingOrSizing)
-				_G.PlayerSpellsFrame:SetClampedToScreen(true)
+				if not _G.PlayerSpellsFrame:GetScript("OnDragStart") then
+					_G.PlayerSpellsFrame:SetMovable(true)
+					_G.PlayerSpellsFrame:EnableMouse(true)
+					_G.PlayerSpellsFrame:RegisterForDrag("LeftButton")
+					_G.PlayerSpellsFrame:SetScript("OnDragStart", _G.PlayerSpellsFrame.StartMoving)
+					_G.PlayerSpellsFrame:SetScript("OnDragStop", _G.PlayerSpellsFrame.StopMovingOrSizing)
+					_G.PlayerSpellsFrame:SetClampedToScreen(true)
+				end
 
 				local function adjustscale()
 					if not InCombatLockdown() then

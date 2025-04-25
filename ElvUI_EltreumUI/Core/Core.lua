@@ -607,7 +607,7 @@ end)
 
 --make the video options movable because its annoying when adjusting settings
 local VideoOptionsFrame = _G.VideoOptionsFrame --Classic/Cata
-if VideoOptionsFrame then
+if VideoOptionsFrame and not VideoOptionsFrame:GetScript("OnDragStart") then
 	VideoOptionsFrame:SetMovable(true)
 	VideoOptionsFrame:EnableMouse(true)
 	VideoOptionsFrame:RegisterForDrag("LeftButton")
@@ -616,7 +616,7 @@ if VideoOptionsFrame then
 	VideoOptionsFrame:SetClampedToScreen(true)
 end
 local SettingsPanel = _G.SettingsPanel --Dragonflight
-if SettingsPanel then
+if SettingsPanel and not SettingsPanel:GetScript("OnDragStart") then
 	SettingsPanel:SetMovable(true)
 	SettingsPanel:EnableMouse(true)
 	SettingsPanel:RegisterForDrag("LeftButton")
