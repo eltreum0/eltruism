@@ -4083,8 +4083,6 @@ function ElvUI_EltreumUI:NameplateShadows(nameplate)
 				end
 			end
 		end
-
-
 	end
 end
 hooksecurefunc(NP, 'StylePlate', ElvUI_EltreumUI.NameplateShadows) --nameplate shadows
