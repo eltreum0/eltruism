@@ -381,7 +381,7 @@ local function SkinFrame(object)
 								local _,size = frame:GetParent():GetParent().Label:GetFont()
 								frame:GetParent():GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							end
-							if frame:GetParent():GetParent().Bar then
+							if frame:GetParent():GetParent().Bar and frame:GetParent():GetParent().Bar.SetStatusBarColor and frame:GetParent():GetParent().Bar.SetStatusBarTexture then
 								atlas = frame:GetParent():GetParent().Bar:GetStatusBarTexture():GetAtlas()
 								frame:GetParent():GetParent().Bar.EltruismAtlas = atlas
 								frame:GetParent():GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
