@@ -58,6 +58,7 @@ local function SkinFrame(object)
 	if not object then return end --rare but not impossible nil error
 	if object:GetObjectType() == "Texture" then object = object:GetParent() end
 	local mt = getmetatable(object).__index
+	if not mt then return end
 	if type(mt) == 'function' then return end
 	if mt.SetTemplate and not mt.SetTemplateEltruismHook then
 		hooksecurefunc(mt, "SetTemplate", function(frame, template, _, _, _, isUnitFrameElement, isNamePlateElement)
