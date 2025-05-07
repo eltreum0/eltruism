@@ -506,6 +506,7 @@ function ElvUI_EltreumUI:SkinAuctionator()
 				if _G["AuctionatorConfigFrame"].eltruismbgtexture then
 					_G["AuctionatorConfigFrame"].eltruismbgtexture:Hide()
 				end
+				S:HandleEditBox(_G["AuctionatorConfigFrame"].ContributeLink.InputBox)
 				S:HandleEditBox(_G["AuctionatorConfigFrame"].DiscordLink.InputBox)
 				S:HandleEditBox(_G["AuctionatorConfigFrame"].BugReportLink.InputBox)
 				S:HandleButton(_G["AuctionatorConfigFrame"].ScanButton)
