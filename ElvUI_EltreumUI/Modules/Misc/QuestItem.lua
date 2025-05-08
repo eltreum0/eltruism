@@ -666,44 +666,6 @@ function ElvUI_EltreumUI:QuestItem()
 						CooldownFrame_Set(self.items[i].cooldown,GetInventoryItemCooldown("player",slot))
 					end
 				end
-				if E.db.ElvUI_EltreumUI.quests.showkeybind then
-					if bindingText1 and EltruismQuestItemFrame.shownItems >= 1 then
-						self.items[1].HotKey:SetText(bindingText1)
-					end
-					if bindingText2 and EltruismQuestItemFrame.shownItems >= 2 then
-						self.items[2].HotKey:SetText(bindingText2)
-					end
-					if bindingText3 and EltruismQuestItemFrame.shownItems >= 3 then
-						self.items[3].HotKey:SetText(bindingText3)
-					end
-					if bindingText4 and EltruismQuestItemFrame.shownItems >= 4 then
-						self.items[4].HotKey:SetText(bindingText4)
-					end
-					if bindingText5 and EltruismQuestItemFrame.shownItems >= 5 then
-						self.items[5].HotKey:SetText(bindingText5)
-					end
-					if bindingText6 and EltruismQuestItemFrame.shownItems >= 6 then
-						self.items[6].HotKey:SetText(bindingText6)
-					end
-					if bindingText7 and EltruismQuestItemFrame.shownItems >= 7 then
-						self.items[7].HotKey:SetText(bindingText7)
-					end
-					if bindingText8 and EltruismQuestItemFrame.shownItems >= 8 then
-						self.items[8].HotKey:SetText(bindingText8)
-					end
-					if bindingText9 and EltruismQuestItemFrame.shownItems >= 9 then
-						self.items[9].HotKey:SetText(bindingText9)
-					end
-					if bindingText10 and EltruismQuestItemFrame.shownItems >= 10 then
-						self.items[10].HotKey:SetText(bindingText10)
-					end
-					if bindingText11 and EltruismQuestItemFrame.shownItems >= 11 then
-						self.items[11].HotKey:SetText(bindingText11)
-					end
-					if bindingText12 and EltruismQuestItemFrame.shownItems >= 12 then
-						self.items[12].HotKey:SetText(bindingText12)
-					end
-				end
 			end
 
 			--------------------------------------------------------------------------------------------------------
