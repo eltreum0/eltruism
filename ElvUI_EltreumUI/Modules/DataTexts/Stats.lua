@@ -376,7 +376,7 @@ local function EltruismStatsDatatext2(dt)
 		end
 
 		local mastery
-		if E.Cata then
+		if E.Cata or E.Mists then --TODO: look into mists only functions
 			--mastery
 			mastery = STAT_MASTERY..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMastery()).."|r"
 		end

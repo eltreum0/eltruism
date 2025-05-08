@@ -1853,7 +1853,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		local M = E:GetModule('Misc')
 		hooksecurefunc(M,"UpdateAverageString", ItemLevelString)
-	else
+	elseif E.Classic then
 
 		--gradient colors to categories other
 		if E.db.ElvUI_EltreumUI.skins.characterskingradients then
@@ -2513,7 +2513,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 					else
 						qualityAnchor.Frame:SetSize(135, _G["Character"..InvSlotName]:GetHeight() + 2)
 					end
-				else
+				elseif E.Classic then
 					qualityAnchor.Frame:SetFrameLevel(_G["CharacterModelFrame"]:GetFrameLevel()) --needs to be changed to not overlap the sockets/enchants
 					if E.db.ElvUI_EltreumUI.skins.classicarmory then
 						qualityAnchor.Frame:SetSize(200, _G["Character"..InvSlotName]:GetHeight() + 2)
