@@ -25,6 +25,7 @@ local GetBindingText = _G.GetBindingText
 local CooldownFrame_Set = _G.CooldownFrame_Set
 local _, instanceType
 local GetItemSpell = _G.C_Item and _G.C_Item.GetItemSpell or _G.GetItemSpell
+local AB = E:GetModule('ActionBars')
 
 
 --A merge of QBAr by Aezay with a few edits by Eltreum
@@ -327,73 +328,6 @@ function ElvUI_EltreumUI:QuestItem()
 				EltruismQuestItemFrame:SetFrameStrata("MEDIUM")
 			end
 
-
-			--get the keybind
-			local bindingText1 = GetBindingKey("CLICK EltruismQuestItem1:LeftButton")
-			local bindingText2 = GetBindingKey("CLICK EltruismQuestItem2:LeftButton")
-			local bindingText3 = GetBindingKey("CLICK EltruismQuestItem3:LeftButton")
-			local bindingText4 = GetBindingKey("CLICK EltruismQuestItem4:LeftButton")
-			local bindingText5 = GetBindingKey("CLICK EltruismQuestItem5:LeftButton")
-			local bindingText6 = GetBindingKey("CLICK EltruismQuestItem6:LeftButton")
-			local bindingText7 = GetBindingKey("CLICK EltruismQuestItem7:LeftButton")
-			local bindingText8 = GetBindingKey("CLICK EltruismQuestItem8:LeftButton")
-			local bindingText9 = GetBindingKey("CLICK EltruismQuestItem9:LeftButton")
-			local bindingText10 = GetBindingKey("CLICK EltruismQuestItem10:LeftButton")
-			local bindingText11 = GetBindingKey("CLICK EltruismQuestItem11:LeftButton")
-			local bindingText12 = GetBindingKey("CLICK EltruismQuestItem12:LeftButton")
-
-			--register keybind
-			if not InCombatLockdown() then
-				if bindingText1 then
-					--SetBindingClick(bindingText1, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1))
-					SetBindingClick(bindingText1, "EltruismQuestItem1")
-				end
-				if bindingText2 then
-					--SetBindingClick(bindingText2, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 2))
-					SetBindingClick(bindingText2, "EltruismQuestItem2")
-				end
-				if bindingText3 then
-					--SetBindingClick(bindingText3, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 3))
-					SetBindingClick(bindingText3, "EltruismQuestItem3")
-				end
-				if bindingText4 then
-					--SetBindingClick(bindingText4, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 4))
-					SetBindingClick(bindingText4, "EltruismQuestItem4")
-				end
-				if bindingText5 then
-					--SetBindingClick(bindingText5, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 5))
-					SetBindingClick(bindingText5, "EltruismQuestItem5")
-				end
-				if bindingText6 then
-					--SetBindingClick(bindingText6, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 6))
-					SetBindingClick(bindingText6, "EltruismQuestItem6")
-				end
-				if bindingText7 then
-					--SetBindingClick(bindingText7, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 7))
-					SetBindingClick(bindingText7, "EltruismQuestItem7")
-				end
-				if bindingText8 then
-					--SetBindingClick(bindingText8, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 8))
-					SetBindingClick(bindingText8, "EltruismQuestItem8")
-				end
-				if bindingText9 then
-					--SetBindingClick(bindingText9, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 9))
-					SetBindingClick(bindingText9, "EltruismQuestItem9")
-				end
-				if bindingText10 then
-					--SetBindingClick(bindingText10, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 10))
-					SetBindingClick(bindingText10, "EltruismQuestItem10")
-				end
-				if bindingText11 then
-					--SetBindingClick(bindingText11, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 11))
-					SetBindingClick(bindingText11, "EltruismQuestItem11")
-				end
-				if bindingText12 then
-					--SetBindingClick(bindingText12, "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 12))
-					SetBindingClick(bindingText12, "EltruismQuestItem12")
-				end
-			end
-
 			-- update mover position
 			function EltruismQuestItemFrame:FixPosition()
 				--print("fixing position")
@@ -458,7 +392,7 @@ function ElvUI_EltreumUI:QuestItem()
 				button:Click("LeftButton", true)
 			end
 
-			-- Make Loot Button
+			-- Make Button
 			local function CreateItemButton()
 				--print("creatingitembutton")
 				local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"SecureActionButtonTemplate")
@@ -496,6 +430,8 @@ function ElvUI_EltreumUI:QuestItem()
 				b.icon = b:CreateTexture(nil,"ARTWORK")
 				b.icon:SetAllPoints()
 
+				b.name = "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1)
+
 				b.count = b:CreateFontString(nil,"ARTWORK")
 				b.count:SetFont(E.LSM:Fetch("font", E.db.general.font), 14, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				b.count:SetTextColor(1,1,1)
@@ -506,10 +442,10 @@ function ElvUI_EltreumUI:QuestItem()
 				E:RegisterCooldown(b.cooldown)
 
 				if E.db.ElvUI_EltreumUI.quests.showkeybind then
-					b.bind = b:CreateFontString(nil,"ARTWORK","NumberFontNormalSmallGray")
-					b.bind:SetPoint("TOPLEFT",b.icon,0,0)
-					b.bind:SetPoint("TOPRIGHT",b.icon,0,0)
-					b.bind:SetJustifyH("LEFT")
+					b.HotKey = b:CreateFontString(nil,"ARTWORK","NumberFontNormalSmallGray")
+					b.HotKey:SetPoint("TOPLEFT",b.icon,0,0)
+					b.HotKey:SetPoint("TOPRIGHT",b.icon,0,0)
+					b.HotKey:SetJustifyH("LEFT")
 				end
 
 				b:Show()
@@ -526,7 +462,7 @@ function ElvUI_EltreumUI:QuestItem()
 			end
 
 			-- Add Button
-			local function AddButton(index,bag,slot,link,itemId,count)
+			local function AddButton(index,bag,slot,link,itemID,count)
 				--print("adding button")
 				local btn = EltruismQuestItemFrame.items[index] or CreateItemButton()
 				local _, _, _, _, _, _, _, _, _, itemTexture, _, _ = GetItemInfo(link)
@@ -552,7 +488,7 @@ function ElvUI_EltreumUI:QuestItem()
 				btn.count:SetText(count and count > 1 and count or "")
 
 				btn.link = link
-				btn.itemId = itemId
+				btn.itemID = itemID
 
 				btn:SetAttribute("bag",bag)
 				btn:SetAttribute("slot",slot)
@@ -573,13 +509,13 @@ function ElvUI_EltreumUI:QuestItem()
 			end
 
 			-- Check Item -- Az: Some items which starts a quest, are not marked as "Quest" in itemType or itemSubType. Ex: item:17008
-			local function CheckItemTooltip(link,itemId)
+			local function CheckItemTooltip(link,itemID)
 				--print("checking item tooltip")
 				local _, _, _, _, _, itemType, itemSubType, _, itemEquipLoc, _, _, classID = GetItemInfo(link)
 
 				-- Include predefinded items
 				for _, id in ipairs(qItems) do
-					if (itemId == id) and not blocklist[itemId] then
+					if (itemID == id) and not blocklist[itemID] then
 						return 1
 					end
 				end
@@ -602,8 +538,8 @@ function ElvUI_EltreumUI:QuestItem()
 				end]]
 
 				--new
-				if (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12) and itemEquipLoc == "" and GetItemSpell(itemId) ~= nil then
-					if not blocklist[itemId] then
+				if (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12) and itemEquipLoc == "" and GetItemSpell(itemID) ~= nil then
+					if not blocklist[itemID] then
 						return 1
 					end
 				end
@@ -621,9 +557,9 @@ function ElvUI_EltreumUI:QuestItem()
 			EltruismQuestItemFrame:RequestUpdate()
 
 			--check for other buttons that are the same
-			local function CheckButtonExistence(itemId)
+			local function CheckButtonExistence(itemID)
 				for i =1, #EltruismQuestItemFrame.items do
-					if EltruismQuestItemFrame.items[i].itemId and EltruismQuestItemFrame.items[i].itemId == itemId then
+					if EltruismQuestItemFrame.items[i].itemID and EltruismQuestItemFrame.items[i].itemID == itemID then
 						return false
 					end
 				end
@@ -642,7 +578,7 @@ function ElvUI_EltreumUI:QuestItem()
 				--reset ids
 				if #EltruismQuestItemFrame.items > 0 then
 					for i =1, #EltruismQuestItemFrame.items do
-						EltruismQuestItemFrame.items[i].itemId = 0
+						EltruismQuestItemFrame.items[i].itemID = 0
 					end
 				end
 
@@ -653,22 +589,22 @@ function ElvUI_EltreumUI:QuestItem()
 				for bag = 0, NUM_BAG_SLOTS do
 					for slot = 1, GetContainerNumSlots(bag) do
 						local link = GetContainerItemLink(bag,slot)
-						local itemId = link and tonumber(link:match(ITEMID_PATTERN))
-						if (link) and (itemId) then
-							if not blocklist[itemId] then
+						local itemID = link and tonumber(link:match(ITEMID_PATTERN))
+						if (link) and (itemID) then
+							if not blocklist[itemID] then
 								local _, _, _, _, _, itemType, itemSubType, _, _, _, _, classID = GetItemInfo(link)
-								if CheckButtonExistence(itemId) then
+								if CheckButtonExistence(itemID) then
 									if E.Retail or E.Cata then
 										local questInfo = C_Container.GetContainerItemQuestInfo(bag,slot)
-										if ((questInfo.isQuestItem or (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12)) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
+										if ((questInfo.isQuestItem or (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12)) and GetItemSpell(itemID) ~= nil) or (CheckItemTooltip(link,itemID)) then
 											local _, count = GetContainerItemInfo(bag,slot)
-											AddButton(index,bag,slot,link,itemId,count)
+											AddButton(index,bag,slot,link,itemID,count)
 											index = (index + 1)
 										end
 									elseif E.Cata or E.Classic then
-										if ((itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12) and GetItemSpell(itemId) ~= nil) or (CheckItemTooltip(link,itemId)) then
+										if ((itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12) and GetItemSpell(itemID) ~= nil) or (CheckItemTooltip(link,itemID)) then
 											local _, count = GetContainerItemInfo(bag,slot)
-											AddButton(index,bag,slot,link,itemId,count)
+											AddButton(index,bag,slot,link,itemID,count)
 											index = (index + 1)
 										end
 									end
@@ -682,11 +618,11 @@ function ElvUI_EltreumUI:QuestItem()
 				for _, slotName in ipairs(slots) do
 					local slotId = GetInventorySlotInfo(slotName)
 					local link = GetInventoryItemLink("player",slotId)
-					local itemId = link and tonumber(link:match(ITEMID_PATTERN))
-					if (link) and (itemId) and (CheckItemTooltip(link,itemId)) and GetItemSpell(itemId) ~= nil then
-						if CheckButtonExistence(itemId) then
-							if not blocklist[itemId] then
-								AddButton(index,nil,slotId,link,itemId)
+					local itemID = link and tonumber(link:match(ITEMID_PATTERN))
+					if (link) and (itemID) and (CheckItemTooltip(link,itemID)) and GetItemSpell(itemID) ~= nil then
+						if CheckButtonExistence(itemID) then
+							if not blocklist[itemID] then
+								AddButton(index,nil,slotId,link,itemID)
 								index = (index + 1)
 							end
 						end
@@ -702,7 +638,16 @@ function ElvUI_EltreumUI:QuestItem()
 				--update bind text
 				if E.db.ElvUI_EltreumUI.quests.showkeybind then
 					for i = 1, EltruismQuestItemFrame.shownItems do
-						self.items[i].bind:SetText(GetBindingText(GetBindingKey("CLICK ".."EltruismQuestItem"..i..":LeftButton")))
+						self.items[i].HotKey:SetText(GetBindingText(GetBindingKey("CLICK ".."EltruismQuestItem"..i..":LeftButton")))
+
+						--register keybind
+						self.items[i].bindstring = "CLICK ".."EltruismQuestItem"..i..":LeftButton"
+						if not InCombatLockdown() then
+							SetBindingClick(self.items[i].bindstring, "EltruismQuestItem1")
+						end
+						AB:StyleButton(self.items[i])
+						AB:BindUpdate(self.items[i])
+						AB:FixKeybindText(self.items[i])
 					end
 				end
 
@@ -723,40 +668,40 @@ function ElvUI_EltreumUI:QuestItem()
 				end
 				if E.db.ElvUI_EltreumUI.quests.showkeybind then
 					if bindingText1 and EltruismQuestItemFrame.shownItems >= 1 then
-						self.items[1].bind:SetText(bindingText1)
+						self.items[1].HotKey:SetText(bindingText1)
 					end
 					if bindingText2 and EltruismQuestItemFrame.shownItems >= 2 then
-						self.items[2].bind:SetText(bindingText2)
+						self.items[2].HotKey:SetText(bindingText2)
 					end
 					if bindingText3 and EltruismQuestItemFrame.shownItems >= 3 then
-						self.items[3].bind:SetText(bindingText3)
+						self.items[3].HotKey:SetText(bindingText3)
 					end
 					if bindingText4 and EltruismQuestItemFrame.shownItems >= 4 then
-						self.items[4].bind:SetText(bindingText4)
+						self.items[4].HotKey:SetText(bindingText4)
 					end
 					if bindingText5 and EltruismQuestItemFrame.shownItems >= 5 then
-						self.items[5].bind:SetText(bindingText5)
+						self.items[5].HotKey:SetText(bindingText5)
 					end
 					if bindingText6 and EltruismQuestItemFrame.shownItems >= 6 then
-						self.items[6].bind:SetText(bindingText6)
+						self.items[6].HotKey:SetText(bindingText6)
 					end
 					if bindingText7 and EltruismQuestItemFrame.shownItems >= 7 then
-						self.items[7].bind:SetText(bindingText7)
+						self.items[7].HotKey:SetText(bindingText7)
 					end
 					if bindingText8 and EltruismQuestItemFrame.shownItems >= 8 then
-						self.items[8].bind:SetText(bindingText8)
+						self.items[8].HotKey:SetText(bindingText8)
 					end
 					if bindingText9 and EltruismQuestItemFrame.shownItems >= 9 then
-						self.items[9].bind:SetText(bindingText9)
+						self.items[9].HotKey:SetText(bindingText9)
 					end
 					if bindingText10 and EltruismQuestItemFrame.shownItems >= 10 then
-						self.items[10].bind:SetText(bindingText10)
+						self.items[10].HotKey:SetText(bindingText10)
 					end
 					if bindingText11 and EltruismQuestItemFrame.shownItems >= 11 then
-						self.items[11].bind:SetText(bindingText11)
+						self.items[11].HotKey:SetText(bindingText11)
 					end
 					if bindingText12 and EltruismQuestItemFrame.shownItems >= 12 then
-						self.items[12].bind:SetText(bindingText12)
+						self.items[12].HotKey:SetText(bindingText12)
 					end
 				end
 			end
