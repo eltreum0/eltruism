@@ -636,15 +636,13 @@ function ElvUI_EltreumUI:QuestItem()
 				end
 
 				--update bind text
-				if E.db.ElvUI_EltreumUI.quests.showkeybind then
+				if E.db.ElvUI_EltreumUI.quests.showkeybind and not InCombatLockdown() then
 					for i = 1, EltruismQuestItemFrame.shownItems do
 						self.items[i].HotKey:SetText(GetBindingText(GetBindingKey("CLICK ".."EltruismQuestItem"..i..":LeftButton")))
 
 						--register keybind
 						self.items[i].bindstring = "CLICK ".."EltruismQuestItem"..i..":LeftButton"
-						if not InCombatLockdown() then
-							SetBindingClick(self.items[i].bindstring, "EltruismQuestItem1")
-						end
+						SetBindingClick(self.items[i].bindstring, "EltruismQuestItem1")
 						AB:StyleButton(self.items[i])
 						AB:BindUpdate(self.items[i])
 						AB:FixKeybindText(self.items[i])
