@@ -425,6 +425,12 @@ function ElvUI_EltreumUI:QuestItem()
 					GameTooltip:Hide()
 				end)
 				b:HookScript("OnClick",Button_OnClick)
+
+				b:HookScript("OnEnter", function()
+					AB:BindUpdate(b)
+					AB:FixKeybindText(b)
+				end)
+
 				b:SetAttribute("type*","item")
 
 				b.icon = b:CreateTexture(nil,"ARTWORK")
@@ -642,9 +648,12 @@ function ElvUI_EltreumUI:QuestItem()
 
 						--register keybind
 						self.items[i].bindstring = "CLICK ".."EltruismQuestItem"..i..":LeftButton"
+
+						self.items[i].commandName = "CLICK ".."EltruismQuestItem"..i..":LeftButton"
 						SetBindingClick(self.items[i].bindstring, "EltruismQuestItem1")
+
+						--try to get elvui binding mode to work
 						AB:StyleButton(self.items[i])
-						AB:BindUpdate(self.items[i])
 						AB:FixKeybindText(self.items[i])
 					end
 				end
