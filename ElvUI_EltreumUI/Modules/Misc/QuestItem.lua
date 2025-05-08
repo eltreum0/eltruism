@@ -307,7 +307,7 @@ function ElvUI_EltreumUI:QuestItem()
 			EltruismQuestItemFrame:RegisterEvent("BAG_NEW_ITEMS_UPDATED")
 			EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED") -- Needed for items that starts a quest, when we accept it, update to remove the icon
 			--EltruismQuestItemFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-			--EltruismQuestItemFrame:RegisterEvent("UPDATE_BINDINGS")
+			EltruismQuestItemFrame:RegisterEvent("UPDATE_BINDINGS")
 			EltruismQuestItemFrame:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN")
 			--these were causing memory issues, exploding whenever a waypoint was set
 			--EltruismQuestItemFrame:RegisterEvent("QUEST_LOG_UPDATE") -- For when items get added/removed during quest
