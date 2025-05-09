@@ -439,7 +439,7 @@ function ElvUI_EltreumUI:QuestItem()
 				b.name = "EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1)
 
 				b.count = b:CreateFontString(nil,"ARTWORK")
-				b.count:SetFont(E.LSM:Fetch("font", E.db.general.font), 14, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+				b.count:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.actionbar.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				b.count:SetTextColor(1,1,1)
 				b.count:SetPoint("BOTTOMRIGHT",b.icon, 0, 0)
 
