@@ -153,11 +153,9 @@ function ElvUI_EltreumUI:Shadows()
 									_G.PerksProgramFrame.ProductsFrame.PerksProgramProductDetailsContainerFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.ProductsFrame.PerksProgramProductDetailsContainerFrame.shadow)
 								end
-								if _G.PerksProgramFrame.ProductsFrame.PerksProgramFilter then
-									if _G.PerksProgramFrame.ProductsFrame.PerksProgramFilter.FilterDropDownButton and not _G.PerksProgramFrame.ProductsFrame.PerksProgramFilter.FilterDropDownButton.shadow then
-										_G.PerksProgramFrame.ProductsFrame.PerksProgramFilter.FilterDropDownButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-										ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.ProductsFrame.PerksProgramFilter.FilterDropDownButton.shadow)
-									end
+								if _G.PerksProgramFrame.ProductsFrame.PerksProgramFilter and not _G.PerksProgramFrame.ProductsFrame.PerksProgramFilter.shadow then
+									_G.PerksProgramFrame.ProductsFrame.PerksProgramFilter:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.ProductsFrame.PerksProgramFilter.shadow)
 								end
 								if _G.PerksProgramFrame.ProductsFrame.ProductsScrollBoxContainer and not _G.PerksProgramFrame.ProductsFrame.ProductsScrollBoxContainer.shadow then
 									_G.PerksProgramFrame.ProductsFrame.ProductsScrollBoxContainer:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -175,6 +173,14 @@ function ElvUI_EltreumUI:Shadows()
 								if _G.PerksProgramFrame.FooterFrame.PurchaseButton and not _G.PerksProgramFrame.FooterFrame.PurchaseButton.shadow then
 									_G.PerksProgramFrame.FooterFrame.PurchaseButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.PurchaseButton.shadow)
+								end
+								if _G.PerksProgramFrame.FooterFrame.AddToCartButton and not _G.PerksProgramFrame.FooterFrame.AddToCartButton.shadow then
+									_G.PerksProgramFrame.FooterFrame.AddToCartButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.AddToCartButton.shadow)
+								end
+								if _G.PerksProgramFrame.FooterFrame.ViewCartButton and not _G.PerksProgramFrame.FooterFrame.ViewCartButton.shadow then
+									_G.PerksProgramFrame.FooterFrame.ViewCartButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G.PerksProgramFrame.FooterFrame.ViewCartButton.shadow)
 								end
 								if _G.PerksProgramFrame.FooterFrame.ToggleHideArmor.backdrop and not _G.PerksProgramFrame.FooterFrame.ToggleHideArmor.backdrop.shadow then
 									_G.PerksProgramFrame.FooterFrame.ToggleHideArmor.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
