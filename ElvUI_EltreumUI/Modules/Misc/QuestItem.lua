@@ -50,6 +50,8 @@ local slots = {
 
 -- These items are not marked as being quest items, but we want to include them anyway
 local qItems = {
+	--6948, --hearthstone as a test item
+	--127770, --another one as test
 	972,
 	3985,
 	4854,
@@ -449,9 +451,10 @@ function ElvUI_EltreumUI:QuestItem()
 
 				if E.db.ElvUI_EltreumUI.quests.showkeybind then
 					b.HotKey = b:CreateFontString(nil,"ARTWORK","NumberFontNormalSmallGray")
-					b.HotKey:SetPoint("TOPLEFT",b.icon,0,0)
-					b.HotKey:SetPoint("TOPRIGHT",b.icon,0,0)
-					b.HotKey:SetJustifyH("LEFT")
+					b.HotKey:SetPoint(E.db.actionbar.bar1.hotkeyTextPosition or "CENTER",b.icon,E.db.actionbar.bar1.hotkeyTextXOffset or 0,b.icon,E.db.actionbar.bar1.hotkeyTextYOffset or 0)
+					b.HotKey:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.actionbar.bar1.hotkeyFontSize, ElvUI_EltreumUI:FontFlag(E.db.actionbar.bar1.hotkeyFontOutline))
+					--b.HotKey:SetPoint("TOPRIGHT",b.icon,0,0)
+					--b.HotKey:SetJustifyH("LEFT")
 				end
 
 				b:Show()
@@ -644,7 +647,7 @@ function ElvUI_EltreumUI:QuestItem()
 				--update bind text
 				if E.db.ElvUI_EltreumUI.quests.showkeybind and not InCombatLockdown() then
 					for i = 1, EltruismQuestItemFrame.shownItems do
-						self.items[i].HotKey:SetText(GetBindingText(GetBindingKey("CLICK ".."EltruismQuestItem"..i..":LeftButton")))
+						self.items[i].HotKey:SetText(GetBindingKey("CLICK ".."EltruismQuestItem"..i..":LeftButton"))
 
 						--register keybind
 						self.items[i].bindstring = "CLICK ".."EltruismQuestItem"..i..":LeftButton"
