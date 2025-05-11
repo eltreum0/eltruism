@@ -1018,6 +1018,35 @@ function ElvUI_EltreumUI:Configtable()
 			end
 		end, nil, not E.Retail)
 
+	--the set default for these settings work, so not sure this is needed
+	--[[ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.misc.args.description2 = ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.misc.args.resetitemquality = ACH:Execute(COLORS_ITEM_QUALITY.." "..COLORS.." "..RESET, nil, 7, function()
+		_G.ITEM_QUALITY_COLORS[0]["r"] = 157/255 --poor
+		_G.ITEM_QUALITY_COLORS[0]["g"] = 157/255 --poor
+		_G.ITEM_QUALITY_COLORS[0]["b"] = 157/255 --poor
+		_G.ITEM_QUALITY_COLORS[1]["r"] = 240/255 --common
+		_G.ITEM_QUALITY_COLORS[1]["g"] = 1 --common
+		_G.ITEM_QUALITY_COLORS[1]["b"] = 251/255 --common
+		_G.ITEM_QUALITY_COLORS[2]["r"] = 30/255 --uncommon
+		_G.ITEM_QUALITY_COLORS[2]["g"] = 1 --uncommon
+		_G.ITEM_QUALITY_COLORS[2]["b"] = 0 --uncommon
+		_G.ITEM_QUALITY_COLORS[3]["r"] = 0 --rare
+		_G.ITEM_QUALITY_COLORS[3]["g"] = 112/255 --rare
+		_G.ITEM_QUALITY_COLORS[3]["b"] = 221/255 --rare
+		_G.ITEM_QUALITY_COLORS[4]["r"] = 163/255 --epic
+		_G.ITEM_QUALITY_COLORS[4]["g"] = 53/255 --epic
+		_G.ITEM_QUALITY_COLORS[4]["b"] = 238/255 --epic
+		_G.ITEM_QUALITY_COLORS[5]["r"] = 1 --legendary
+		_G.ITEM_QUALITY_COLORS[5]["g"] = 128/255 --legendary
+		_G.ITEM_QUALITY_COLORS[5]["b"] = 0 --legendary
+		_G.ITEM_QUALITY_COLORS[6]["r"] = 230/255 --artifact
+		_G.ITEM_QUALITY_COLORS[6]["g"] = 204/255 --artifact
+		_G.ITEM_QUALITY_COLORS[6]["b"] = 128/255 --artifact
+		_G.ITEM_QUALITY_COLORS[7]["r"] = 0 --heirloom
+		_G.ITEM_QUALITY_COLORS[7]["g"] = 204/255 --heirloom
+		_G.ITEM_QUALITY_COLORS[7]["b"] = 1 --heirloom
+	end, nil, true,'full',nil,nil,nil,not E.Retail)]]
+
 	--custom glow
 	ElvUI_EltreumUI.Options.args.customglow = ACH:Group(E:TextGradient(L["Custom Glow"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Fully customize how action bars glow and add glows to debuffs on unitframes"], 85, 'tab')
 	ElvUI_EltreumUI.Options.args.customglow.icon = 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Icons\\customglow'
