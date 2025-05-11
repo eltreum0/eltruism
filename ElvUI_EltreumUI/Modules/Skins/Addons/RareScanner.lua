@@ -67,11 +67,11 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 
 				--move because map should be clean
 				v:ClearAllPoints()
-				v:SetPoint("BOTTOM", _G["WorldMapFrame"].ScrollContainer, "TOP", -30, 37)
+				v:SetPoint("BOTTOM", _G["WorldMapFrame"].ScrollContainer, "TOP", -30, 45)
 
 				--adjust size so its not too big
 				local width,height = v:GetSize()
-				v:SetSize(width*1.25,height/1.25)
+				v:SetSize(width*1.25,height/1.75)
 
 				--add a description so people dont wonder what it is
 				local Desc = v:CreateFontString(nil, "OVERLAY", "GameFontNormal")
