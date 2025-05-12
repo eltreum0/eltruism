@@ -251,6 +251,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 						local searchResultInfo = C_LFGList.GetSearchResultInfo(id)
 						if searchResultInfo then
 							local score = searchResultInfo.leaderOverallDungeonScore or 0
+							--doesnt seem to work in raid tab due to some of the fields being protected
 							if score < 1 and searchResultInfo.voiceChat ~= "" then --no score and voice chat? its spam
 								filterTable(results, id)
 								_G.LFGListSearchPanel_UpdateResults(frame)
