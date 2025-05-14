@@ -1614,3 +1614,6 @@ L["Customize Friendly Healthbar Width"] = true
 L["Change the Healthbar Width on Friendly Nameplates inside Instances"] = true
 L["Nameplate Health Bar Border"] = true
 L["Nameplate Health Bar Thickness"] = true
+L["Backdrop Texture Behavior"] = true
+L["Enable static backdrop texture size"] = true
+L["Backdrop Texture will not adjust to the missing health"] = true

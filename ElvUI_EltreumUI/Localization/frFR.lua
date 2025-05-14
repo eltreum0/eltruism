@@ -1616,3 +1616,6 @@ L["Customize Friendly Healthbar Width"] = "Personnaliser la largeur de la barre 
 L["Change the Healthbar Width on Friendly Nameplates inside Instances"] = "Modifier la largeur de la barre de santé sur les plaques d'identité amicales à l'intérieur des instances"
 L["Nameplate Health Bar Border"] = "Barre de santé de la plaque d'identité Bordure de la barre de santé"
 L["Nameplate Health Bar Thickness"] = "Barre de santé de la plaque d'identité Épaisseur de la barre de santé"
+L["Backdrop Texture Behavior"] = true
+L["Enable static backdrop texture size"] = true
+L["Backdrop Texture will not adjust to the missing health"] = true
