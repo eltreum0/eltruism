@@ -584,7 +584,7 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 				if unitframe.Health.backdropTex then
 					unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
 					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexturestaticsize then
-						unitframe.Health.backdropTex:SetAllPoints(unitframe.Health.backdrop)
+						unitframe.Health.backdropTex:SetAllPoints(unitframe.Health)
 					end
 				end
 			end
@@ -1073,7 +1073,7 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 				if button.Health.backdropTex then
 					button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
 					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexturestaticsize then
-						button.Health.backdropTex:SetAllPoints(button.Health.backdrop)
+						button.Health.backdropTex:SetAllPoints(button.Health)
 					end
 				end
 			end
