@@ -580,10 +580,12 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop then
 				ElvUI_EltreumUI:ApplyGradientBackdrop(unit,unitframe,classunit,reaction,false,unitDB)
 			end
-
 			if E.db.ElvUI_EltreumUI.unitframes.lightmode and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden then
 				if unitframe.Health.backdropTex then
 					unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
+					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexturestaticsize then
+						unitframe.Health.backdropTex:SetAllPoints(unitframe.Health)
+					end
 				end
 			end
 			if (isPlayer and not isCharmed) or isActualPlayer then
@@ -1070,6 +1072,9 @@ function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
 			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdrophidden then
 				if button.Health.backdropTex then
 					button.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
+					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexturestaticsize then
+						button.Health.backdropTex:SetAllPoints(button.health)
+					end
 				end
 			end
 		elseif E.db.ElvUI_EltreumUI.unitframes.darkmode and button.Health.backdropTex then
