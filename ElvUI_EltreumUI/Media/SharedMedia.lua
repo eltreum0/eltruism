@@ -46,7 +46,9 @@ LSM:Register("statusbar", "Eltreum-Class-WarlockV3", [[Interface\Addons\ElvUI_El
 LSM:Register("statusbar", "Eltreum-Class-Evoker", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-EV.tga]])
 LSM:Register("statusbar", "Eltreum-Class-EvokerV2", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-EVv2.tga]])
 LSM:Register("statusbar", "Eltreum-Class-EvokerV3", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-EVV3.tga]])
+
 LSM:Register("statusbar", "None", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\None.tga]])
+
 LSM:Register("statusbar", "OverwatchHQ", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\OverwatchHQ.tga]])
 LSM:Register("statusbar", "OverwatchLQ", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\OverwatchLQ.tga]])
 LSM:Register("statusbar", "OverwatchLQ2", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\OverwatchLQ2.tga]])
