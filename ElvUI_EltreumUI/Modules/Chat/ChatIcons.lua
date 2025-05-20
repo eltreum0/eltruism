@@ -289,6 +289,7 @@ function ElvUI_EltreumUI:GetPFlag(specialFlag, zoneChannelID, unitGUID)
 	if unitGUID then
 		local data = CH:GetPlayerInfoByGUID(unitGUID)
 		--some nil checks
+		if not data then return end
 		if not data.englishRace then data.englishRace = "Human" end
 		if not data.sex or data.sex == 1 then data.sex = 2 end
 		if E.Retail then
