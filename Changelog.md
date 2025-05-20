@@ -2813,7 +2813,6 @@ Added a new tag [eltruism:difficulty] which will color the enemy npc according t
 Added a new tag [eltruism:targetcast] which will show the target of an enemy spellcast  
 Added a new tag [eltruism:targetcast:indicator] which will show the target of an enemy spellcast alongside a Target > text  
 Added new commands: /eltruism color and /eltruism chat, color will toggle between dark and light mode, and chat will toggle between dark and transparent mode
-
 Updated Light and Dark Modes, now Light mode will have the Target Unitframe Texture as its own class based texture, with the player keeping its own and power and classbars not being affected by it  
 Updated Cursor, GCD, Combat Cursor and Cooldown Cursor functions  
 Updated references to FCT to make it clearer that it's Simpy's ElvUI FCT  
@@ -2821,7 +2820,6 @@ Updated references to nameplates due to a change in ElvUI code
 Updated Chat Fade to register events only when enabled  
 Updated Dynamic Cam Profile for Retail due to Dynamic Cam's internal changes
 Updated Chat, which is now transparent with a new option in Eltruism > Chat to revert to the dark mode or switch to the transparent mode if the user wants
-
 Fixed an error when setting fonts without Project Azilroka installed  
 Fixed shadows showing up when chat panels were disabled  
 Fixed player castbar shadows being mismatched in some scenarios  
