@@ -1619,3 +1619,5 @@ L["Nameplate Health Bar Thickness"] = true
 L["Backdrop Texture Behavior"] = true
 L["Enable static backdrop texture size"] = true
 L["Backdrop Texture will not adjust to the missing health"] = true
+L["Click Casting Button"] = true
+L["Add a shortcut to open the Click Casting menu on the Spellbook"] = true

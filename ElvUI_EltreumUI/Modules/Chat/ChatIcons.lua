@@ -289,13 +289,18 @@ function ElvUI_EltreumUI:GetPFlag(specialFlag, zoneChannelID, unitGUID)
 	if unitGUID then
 		local data = CH:GetPlayerInfoByGUID(unitGUID)
 		--some nil checks
-		if not data.englishRace then data.englishRace = "Human" end
-		if not data.sex or data.sex == 1 then data.sex = 2 end
-		if E.Retail then
-			flag = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Retail\\"..data.englishRace..data.sex..".tga:0:0:0:0|t"..flag
+		if not data then
+			return flag
 		else
-			flag = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Classic\\"..data.englishRace..data.sex..".tga:0:0:0:0|t"..flag
+			if not data.englishRace then data.englishRace = "Human" end
+			if not data.sex or data.sex == 1 then data.sex = 2 end
+			if E.Retail then
+				flag = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Retail\\"..data.englishRace..data.sex..".tga:0:0:0:0|t"..flag
+			else
+				flag = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Races\\Classic\\"..data.englishRace..data.sex..".tga:0:0:0:0|t"..flag
+			end
 		end
+
 	end
 
 	return flag
