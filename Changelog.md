@@ -1,6 +1,8 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.3.3.1
+Fixed an issue where chat could error  
 ### 4.3.3
 Added enableMouseoverCast CVar to the cvar list due to it being needed for mouse over casts with Clique  
 Added OverwatchHQ, OverwatchLQ, OverwatchLQ2 and OverwatchLQFlip statusbar textures  

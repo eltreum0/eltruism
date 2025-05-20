@@ -3995,6 +3995,7 @@ Fixed an issue with the Objective Tracker shadows
 Fixed a missing line on the option menu for skins
 Fixed a possible error with the click casting
 Fixed a possible error with the ElvUI Skin
+Fixed an issue where chat could error
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
