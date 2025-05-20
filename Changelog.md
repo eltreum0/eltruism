@@ -23,11 +23,13 @@ Fixed an issue with the Objective Tracker shadows
 Fixed a missing line on the option menu for skins  
 Fixed a possible error with the click casting
 Fixed a possible error with the ElvUI Skin  
+___
 ### 4.3.2.1
 Fixed an error when using French Locale  
+___
 ### 4.3.2
 Added an option to disable interaction with Friendly Nameplates inside Instances  
-Added options to change the Friendly Nameplate size inside instances   
+Added options to change the Friendly Nameplate size inside instances  
 Added Arena Borders  
 Added Nameplate Borders  
 Updated Classic to use the same AFK music api as Cataclysm  
@@ -37,6 +39,7 @@ Updated for Retail 11.1.5
 Fixed an issue where Borders didn't work nicely with Information Panel on Top  
 Fixed Archeology Bar Title Text not moving correctly  
 Fixed the Spark texture on some Reversed Castbars  
+___
 ### 4.3.1
 Added a toggle to disable the custom health height combat conditions by Leo  
 Added a few models to the 3D Portrait Fix  
@@ -44,13 +47,15 @@ Updated Eltruism Instance indicator to hide when the Instance skin is disabled b
 Updated German locale by Dlarge  
 Updated for Classic 1.15.7  
 Fixed an issue with the Circle minimap due to an ElvUI update  
-Fixed an error with the OmniCD skin
+Fixed an error with the OmniCD skin  
+___
 ### 4.3.0
 Added a few shadows  
 Updated Unitframe Portrait skin to show NPC portraits when using Custom Textures  
 Updated to support Retail 11.1  
 Updated ElvUI Skin function  
 Fixed a possible error with the Character Panel Icons  
+___
 ### 4.2.9
 Added more BossIDs to the classification icons, ty blinkii  
 Fixed an error when using Custom Role Icons in Chat but not setting the files to be used  
@@ -63,10 +68,12 @@ Fixed the Spell Haste datatext in Cataclysm/Era
 Fixed some issues with the Race Icons in Chat  
 Fixed Rotate Minimap not working sometimes  
 Fixed a nil error for Sockets in Era  
+___
 ### 4.2.8.1
 Updated enchant list for Classic Era, fixing issues due to missing enchants  
 Fixed an error when using Tooltip borders and having the mouse over the target of target that was not a player  
 Fixed [eltruism:lowhealth{number}] not firing correctly  
+___
 ### 4.2.8
 Added [eltruism:healthcurrentmaxpercentshort:gradient] tag  
 Added Race/Sex icons to chat messages  
@@ -77,8 +84,10 @@ Updated BattlegroundEnemies profile
 Fixed an issue where portraits could error due to custom colors  
 Fixed an issue with borders custom color  
 Fixed an error with Auctionator Skin  
+___
 ### 4.2.7.1
 Fixed an error on the LFG Skin due to a change on Blizzard's API  
+___
 ### 4.2.7
 Added an option to hide the Objective Tracker in Mythic Plus  
 Added a possible fix to the LFG Set Title taint  
@@ -89,6 +98,7 @@ Updated Character Panel Class Icons to allow the usage of other Class Icons
 Updated ElvUI Map settings to be the same across all game versions  
 Updated the Portrait 3D Model Fix to also apply to Pets  
 Updated the max width and height of borders  
+___
 ### 4.2.6
 Added Simplified Chinese translation by Meowcactus  
 Updated the setup of combat cvars to work with other addons besides ElvUI_FCT and NameplateSCT  
@@ -99,12 +109,14 @@ Fixed an issue where Borders were not working correctly with Unitframe Auras
 Fixed an issue with custom portraits on NPCs  
 Fixed the rotation of party portraits  
 Fixed the OmniCD skin  
+___
 ### 4.2.5
 Added support for Cataclysm version 4.4.1  
 Updated Immersion skin to better handle the dialog buttons  
 Updated some of the Power Bar Prediction values  
 Fixed Class Combo Borders not working when detached  
 Fixed some shadows  
+___
 ### 4.2.4
 Added /eltruism togglemodels command to disable 3D models on unitframes, this is recommended due to a bug on Blizzard's end with 3D models causing a big performance impact  
 Added a new button in Eltruism > Aura Filters to more easily change filters on all frames  
@@ -118,6 +130,7 @@ Updated some of the version checking
 Fixed an issue with Borders where some Buffs/Debuffs could have the wrong color on Unitframes  
 Fixed /eltruism paging NUMBER command incorrectly setting visibility settings  
 Fixed Windtools's GameBar shadows  
+___
 ### 4.2.3.1
 Added a test function, /eltruism encountercheck, which will block some functions from running during Encounters  
 Updated [eltruism:stance] to once again display stances in Retail, such as paladin auras  
@@ -125,7 +138,8 @@ Updated action paging to properly display in some World Quests
 Updated Blizzard's Edit mode import function  
 Fixed an issue where the Objective Tracker was not moving with the ElvUI Mover due to it being locked into the display zone  
 Fixed a possible issue with the Talent Scale when it was displayed in combat  
-Fixed Target and Focus gradient color reverse not working   
+Fixed Target and Focus gradient color reverse not working  
+___
 ### 4.2.3
 Added several NPC ids for the classification icons tag  
 Added more models to the rotation fix for 3D portraits  
@@ -138,7 +152,7 @@ Updated /eltruism paging to accept arguments such as /eltruism paging 3 to page 
 Updated Class Combat Icons to attempt to detect if an enemy is melee or ranged  
 Updated LootText to only replace font when it is enabled  
 Updated German locale by Dlarge  
-Updated for Classic Era 1.15.4   
+Updated for Classic Era 1.15.4  
 Fixed Addon list not being saved with the debug commands due to a change in the API  
 Fixed an issue by removing the Battleground Map mover since it can be moved in game  
 Fixed Arena unitframes missing textures when custom textures was enabled  
@@ -152,6 +166,7 @@ Fixed an issue in Cataclysm with RareScanner
 Fixed Delves objective skin 
 Fixed Immersion Skinning  
 Fixed Scrap skinning  
+___
 ### 4.2.2
 Added Thin Layout to install alongside a preview  
 Added some missing CVar options  
@@ -165,6 +180,7 @@ Fixed an error with Windtools profile import after it was updated
 Fixed an issue with the Boss Music due to how events changed  
 Fixed a possible error with the Character Panel Icons  
 Fixed RareScanner skin after it was updated  
+___
 ### 4.2.1
 Added support for 11.0.2
 Added a missing enchant in Season of Discovery  
@@ -176,6 +192,7 @@ Updated Cell skin to also skin Pets
 Fixed an issue with the Class colored keybinds where Numpad could overwrite other Numpad keybinds  
 Fixed Delve Listing overlapping Party in the Custom Instance Text  
 Fixed missing item icons in the Auctionator Skin  
+___
 ### 4.2.0
 Updated install to remove ProjectAzilroka and AddOnSkins installation until those two are updated  
 Updated several Power Generator spells for the Nameplate Power Bar in Retail  
@@ -191,6 +208,7 @@ Fixed a typo in the Priest Insanity 2 texture that caused it to be missing
 Fixed the Talent frame not scaling when the scale was changed in Retail  
 Fixed the Click Casting button missing on the Spellbook  
 Fixed the Clique skin after Clique got updated  
+___
 ### 4.1.9.1
 Added a menu in Eltruism > Installer to import and export Gradient settings  
 Updated Experimental Thin Mode layout to add a new layout instead of Overwriting current one
@@ -202,6 +220,7 @@ Fixed a possible error with the Quest Tracker skin
 Fixed Hekili's skin hiding the Textures  
 Fixed Event Toast lines  
 Fixed Game Menu Button  
+___
 ### 4.1.9
 Added support for The War Within  
 Added several more statusbar textures from Blizzard's default textures  
@@ -216,6 +235,7 @@ Updated the Max Camera distance in Classic
 Updated Rest animation's anchoring  
 Fixed an issue where the Unitframe Aura borders would reset size on export  
 Fixed a possible issue with the Quest Hide  
+___
 ### 4.1.8
 Added support for Season of Discovery Season 4  
 Updated Item Level text on character panel to follow some of ElvUI's options  
@@ -223,8 +243,10 @@ Updated Background Alpha in the Character Panel Skin to not follow Crest Alpha
 Updated Character Panel Gradient and Class Colors to work separately  
 Fixed a possible error when using /way command with text instead of zone id  
 Fixed Combat Icons option missing  
+___
 ### 4.1.7.1
 Fixed a leftover debug print  
+___
 ### 4.1.7
 Added an option to disable the Unitframe Heal Prediction Texture override  
 Added options to use different Custom Textures in Party and Raid Frames  
@@ -241,6 +263,7 @@ Fixed an error with the Honor Datatext in Cataclysm Classic
 Fixed an issue with the DBM skin due to its update  
 Fixed OmniCD skin and profile  after its update  
 Fixed BigWigs profile after its update  
+___
 ### 4.1.6
 Added an option to disable moving the Item Level text in the Character Panel in Cataclysm Classic  
 Added Eltruism Datatext 3 to Retail where it will show Armor and Dodge change  
@@ -256,6 +279,7 @@ Fixed Professions missing in bags in Cataclysm due to different Ids
 Fixed a possible error with the Character Panel in Remix  
 Fixed shadows for detached power  
 Fixed the zhTW locale missing  
+___
 ### 4.1.5
 Added Power bars to the Border Auto Adjust function  
 Added borders to Experience and Reputation databars  
@@ -274,6 +298,7 @@ Fixed an issue where non Fire Mages could get the Nameplate Powerbar stuck in wr
 Fixed an issue due to MerathilisUI removing some of its options  
 Fixed Inspect Talent Size in Cataclysm  
 Fixed Retail World Map shadows  
+___
 ### 4.1.4
 Added Hunter Pet Stable in Cataclysm since it now uses the old Retail Stables  
 Added backgrounds to Portrait Skin  
@@ -295,6 +320,7 @@ Fixed shadows in the PvP battleground score frame
 Fixed an Error in the Character Panel Skin  
 Fixed the double Level Up in Cataclysm  
 Fixed Quest Reward shadows  
+___
 ### 4.1.3
 Added an option to set the Unitframe Models to be inside the Texture or inside the Frame itself  
 Added an option to change several textures in ElvUI in Eltruism > Media  
@@ -320,6 +346,7 @@ Fixed an error with Focus Target border
 Fixed an issue with Action Bar Masks  
 Fixed a few Custom Texts  
 Fixed Classic Datatexts  
+___
 ### 4.1.2
 Added Details icons to its dropdown  
 Updated Party and Raid visibility settings to follow ElvUI's new format  
@@ -330,6 +357,7 @@ Fixed a possible error with the LFG skin due to a Blizzard bug where scores dont
 Fixed the default value of the Hide Dash in the Quest Skin  
 Fixed a Minimap difficulty icon change in Retail  
 Fixed the Spellbook shadow in Classic  
+___
 ### 4.1.1
 Added an option to change the font size of the header text in the Quests skin  
 Added an option to hide the checkmark in the Quests skin  
@@ -356,6 +384,7 @@ Fixed an issue where a German locale text was being used in English
 Fixed the [eltruism:healermana] tag in Wrath  
 Fixed a possible issue when hiding toasts  
 Fixed some Unitframe shadows  
+___
 ### 4.1.0
 Added the Mythic Plus completion toast to the Hide Toasts option  
 Added U.GG class icons to Details, Tags and Portraits  
@@ -368,6 +397,7 @@ Fixed an issue with Unitframe Power when using Dark Mode and Transparent Power
 Fixed a possible issue in Season of Discovery with the two new Enchants  
 Fixed classbar shadows when detached from unitframes  
 Fixed a possible issue with Party Custom Textures  
+___
 ### 4.0.9.2
 Added an option to disable the Blue Shaman class color in Classic Era  
 Added [eltruism:hpstatus:reverse] tag  
@@ -375,11 +405,13 @@ Updated German translation by Dlarge
 Fixed an issue where the texture color of backgrounds would be replaced in dark mode  
 Fixed an issue with borders when using offset or spaced power on some frames  
 Fixed an error in the Auctionator skin after an Auctionator update  
+___
 ### 4.0.9.1
 Added /eltruism paging command to quickly swap action paging between Bar1 and Bar4  
 Updated Shadows to not apply to ElvUI frame if Ace skin is disabled  
 Updated German locale by Dlarge  
-Fixed an error during install due to a database change in Shadow and Light
+Fixed an error during install due to a database change in Shadow and Light  
+___
 ### 4.0.9
 Added an Allowed list to Cooldown Module where only spells on the list will be announced/shown  
 Added an option to set the maximum length for the Cooldown module  
@@ -396,7 +428,8 @@ Updated Immersion skin to fix a font
 Updated Player Castbar mover  
 Fixed an issue with the Details embed where it would not properly position  
 Fixed a possible issue with the Quest Skin  
-Fixed incorrect tags on player unitframe
+Fixed incorrect tags on player unitframe  
+___
 ### 4.0.8
 Added an option to show the Stealth Vignette at all times  
 Added Path of Twisted Time to the teleport list  
@@ -417,7 +450,8 @@ Fixed an issue where Pet Borders could not be changed in Classic
 Fixed an issue with Shadows when castbar icons were attached  
 Fixed an issue with Shadows when using Actionbar backdrops  
 Fixed a possible issue with the Quest Auto Accept  
-Fixed the Hit Stat calculation in Classic
+Fixed the Hit Stat calculation in Classic  
+___
 ### 4.0.7
 Added an option to use the original colors of Mage and Warlock instead of the new ones added in Legion  
 Added [name:eltruism:abbrev] and [target:eltruism:abbrev] tags, which accept length args  
@@ -454,7 +488,8 @@ Fixed an issue with Portraits where target of target could be missing color
 Fixed an issue with the Ace3 skin where it would flash on the options tree  
 Fixed an issue with the Wide transmog when blizzard skins were disabled  
 Fixed an issue with [eltruism:healermana] where it would not update  
-Fixed an issue with shadows when blizzard skins were disabled
+Fixed an issue with shadows when blizzard skins were disabled  
+___
 ### 4.0.6
 Added several fonts and font outlines that were missing to the settings in Eltruism > Media  
 Added shadows and improved the mask on the Color Picker Wheel  
@@ -467,7 +502,8 @@ Fixed an issue where Gradient backdrop for Power would apply when Gradient Backd
 Fixed an error with the Windtools profile due to the removal of Error Text  
 Fixed some functions not firing during login due to Event changes  
 Fixed an error in Classic Era due to Roles while in a Group  
-Fixed Shadows/Gradient on ElvUI Loot frames
+Fixed Shadows/Gradient on ElvUI Loot frames  
+___
 ### 4.0.5.1
 Added a gradient to Dead, Ghost and Disconnected unitframes when using the dead backdrop setting  
 Added backdrop alpha to the power of unitframes  
@@ -477,7 +513,8 @@ Updated Custom Glow to work with SpellActivationOverlay
 Updated Nameplate Classification Boss IDs  
 Fixed issues with the backdrop alpha on unitframes where the health would also use the alpha  
 Fixed a possible error with the Cooldown TTS where it would spam "nil"  
-Fixed Auctionator skin not working sometimes
+Fixed Auctionator skin not working sometimes  
+___
 ### 4.0.5
 Added an option to show Classes instead of Specs in the LFG Skin in Retail  
 Added a toggle for showing Pet cooldowns on the Cooldown module  
@@ -495,7 +532,8 @@ Fixed an issue with the Ace3 skin where a selected button or tab could have disa
 Fixed an issue with the Enchant Button when Tradeskillmaster is enabled  
 Fixed an error during install for Shamans and Druids on Classic Era  
 Fixed a few textures being black due to ElvUI changes  
-Fixed an error with the OmniCD skin
+Fixed an error with the OmniCD skin  
+___
 ### 4.0.4
 Added the ability for Font Outline and Font functions in Eltruism > Media to apply to any Custom Text found in the unitframes  
 Updated Details profiles to no longer use auto align in order to avoid the truncated text  
@@ -509,7 +547,8 @@ Fixed a possible error with Shadows when backdrops were not found
 Fixed an issue when attempting to scale the Professions frame  
 Fixed shadows in the Focus and Focus Target unitframes  
 Fixed text color on Ace3 buttons when clicked  
-Fixed an error in the Auctionator Skin
+Fixed an error in the Auctionator Skin  
+___
 ### 4.0.3
 Added [name:eltruism:gradientshortfirst] tag, which will display the first name fully but abbreviate the rest  
 Added a check for resolutions lower than 2000 pixels wide to get a downscaled version of some icons  
@@ -534,7 +573,8 @@ Fixed an error when attempting to copy the Edit mode layout to clipboard
 Fixed Minimap shadows showing up when the Minimap was set to rotate  
 Fixed Nameplate Debuff Glow when other players debuffs were showing  
 Fixed Nameplate Height when ElvUI nameplates were disabled  
-Fixed the size of the class border in the LFG skin
+Fixed the size of the class border in the LFG skin  
+___
 ### 4.0.2
 Added a new button in Eltruism > Media, that will automatically apply texture mode to all aura indicators, such as Party/Raid Unitframes  
 Added /eltruism performance command, which will disable several Eltruism and ElvUI settings in order to maximize performance  
@@ -561,12 +601,14 @@ Fixed an issue where raid control could error when Blizzard Raid frames were ena
 Fixed a possible issue with the Ace3 skin where the database was not loaded for tabs  
 Fixed a possible issue with the Teleports Datatext where the item could be invalid  
 Fixed World Quest Icon in the Quest Skin  
-Fixed Shadows when power is detached
+Fixed Shadows when power is detached  
+___
 ### 4.0.1
 Added /eltruism autoupdate command, which will run the Eltruism Update function when a new version is installed  
 Added alpha settings to custom color shadows  
 Fixed an error with Priest unitframe model in Classic since the model was removed  
-Fixed Font Outline since Shadow outlines are not a real font setting
+Fixed Font Outline since Shadow outlines are not a real font setting  
+___
 ### 4.0.0
 Added Blizzard Dungeon Score to the LFG Listing in Retail, which also has a spam blocking element  
 Added a possible fix for the GetPlaystyleString taint in Retail  
@@ -623,9 +665,11 @@ Fixed Gradient Health when in a vehicle
 Fixed a possible double Death Animation  
 Fixed Hit Datatext for Classic Hunters  
 Fixed Honor datatext in Classic  
-Fixed Haste Datatext in Classic
+Fixed Haste Datatext in Classic  
+___
 ### 3.9.9.2
-Fixed an issue where colors were being forced when gradient was enabled but neither Light nor Dark modes were selected
+Fixed an issue where colors were being forced when gradient was enabled but neither Light nor Dark modes were selected  
+___
 ### 3.9.9.1
 Added an option to disable Other Stats in the Character Panel  
 Updated Backdrop Alpha to allow backdrop transparency when Health isn't transparent  
@@ -633,7 +677,8 @@ Updated the Gradient Mode toggle
 Fixed a double Shadow on Target Unitframe when power was Detached  
 Fixed some possible errors with Unitframes  
 Fixed Custom Textures in Dark Mode  
-Fixed Dark Mode Backdrop Texture
+Fixed Dark Mode Backdrop Texture  
+___
 ### 3.9.9
 Added Details nickname tags, [eltruism:detailsnickname] and [eltruism:detailsnickname:gradient] which will show the nickname set in Details instead of the unit name  
 Added minimize and maximize buttons to Classic Era Objective Frame  
@@ -672,7 +717,8 @@ Fixed Portrait showing up on Party Pets
 Fixed death animation for Classic Era  
 Fixed AFK music not stopping  
 Fixed some Ace3 skin issues  
-Fixed Details shadow
+Fixed Details shadow  
+___
 ### 3.9.8
 Added Mail Animation, which will show a Blizzard animation when mail arrives and exists  
 Added Resting Animation by Blizzard to Wrath and Classic  
@@ -690,7 +736,8 @@ Fixed a rare issue when a unit's class could return nil in tags
 Fixed a possible error with Portrait Skin and Party unitframes  
 Fixed a possible error with Loot Text when reloading  
 Fixed Ace3 Skin hiding backdrop borders  
-Fixed Portrait Skin overlapping the Map
+Fixed Portrait Skin overlapping the Map  
+___
 ### 3.9.7
 Added Ace3 Skin, which can be enabled in Eltruism > Skins > Addons > ElvUI  
 Added an option to use Default Gradient colors for Portraits  
@@ -701,7 +748,8 @@ Updated Portraits Strata
 Fixed an issue where shadows could appear when using Borders and Information Panel on Top  
 Fixed an issue where Rest Icon was being forced to be class color in Classic/Wrath  
 Fixed an issue with the ElvUI skin on invisible frames  
-Fixed Portrait having wrong color in some scenarios
+Fixed Portrait having wrong color in some scenarios  
+___
 ### 3.9.6
 Added options to disable the Hardcore player death sound and the guild member death  
 Added options for custom color Portraits  
@@ -709,7 +757,8 @@ Added an option to change the Waypoint Arrow Color in Retail
 Fixed a possible error with the PallyPower Skin in Classic  
 Fixed a possible taint in the Objective Frame in Retail  
 Fixed shadows when using Information Panel on Top  
-Fixed target portrait in Classic
+Fixed target portrait in Classic  
+___
 ### 3.9.5
 Added Portrait Skin, which can add Blizz-like portraits and more to ElvUI Unitframes, alongside customization options in Eltruism > Unitframes > Portrait  
 Added an option to Disable the Eltruism AFK logo, separate from the skin  
@@ -734,7 +783,8 @@ Fixed an issue with the Tooltip gradient when item names could return empty
 Fixed the third stat in the Classic Era armory using wrong font size  
 Fixed a possible error with some tags where the unit could be nil  
 Fixed missing Mirror Timer scaling in Retail  
-Fixed some Shaman colors in Classic Era
+Fixed some Shaman colors in Classic Era  
+___
 ### 3.9.4
 Added [name:eltruism:gradientcaps] and [name:eltruism:gradientshortcaps] tags which will display the names in all caps  
 Added an option to change the alpha of the EltruismDatatext texture  
@@ -744,11 +794,13 @@ Updated some CVars during install for Wrath and Classic Era
 Updated some settings to allow them in Classic Era  
 Updated Shadow and Light profile  
 Fixed shadows in Target and Target of Target Unitframes when using power in fill mode  
-Fixed wrong custom color when leaving combat
+Fixed wrong custom color when leaving combat  
+___
 ### 3.9.3.1
 Updated German locale by Dlarge  
 Fixed Inspect Class background skin in Classic Era  
-Fixed Classic Era talent texture position
+Fixed Classic Era talent texture position  
+___
 ### 3.9.3
 Added [eltruism:classSymbols:player] tag, which shows the new class symbols used during install  
 Added /eltruism elvuiskin command to disable the ElvUI skin  
@@ -768,7 +820,8 @@ Fixed shadows for non spaced classbar when its detached
 Fixed player castbar shadows when the icon is detached  
 Fixed an error with the Quest Skin in Classic  
 Fixed Unitframe Dispel Glow Color  
-Fixed chat bubble shadows
+Fixed chat bubble shadows  
+___
 ### 3.9.2
 Added a new type of glow in Retail: Proc, and options for it in Custom Glow  
 Updated the strata of borders for Boss frames  
@@ -782,11 +835,13 @@ Fixed a possible issue with gradients when a new type of power resource was dete
 Fixed a possible error in Classic/Wrath related to the Profession/Tradeskill frame  
 Fixed a possible issue with the Nameplate Power Bar not attaching to the target  
 Fixed the shadow in the Scenario Block frame in Retail  
-Fixed Profession frame shadows and scaling in Retail
+Fixed Profession frame shadows and scaling in Retail  
+___
 ### 3.9.1
 Added missing Augmentation Evoker spec icon to Details icons  
 Updated ElvUI version check  
-Fixed possible taints with the Objective Tracker Mover in Retail
+Fixed possible taints with the Objective Tracker Mover in Retail  
+___
 ### 3.9.0
 Added new Class Crests/Symbols, with options to change versions  
 Added Class Crest to AFK screen (if option is enabled)  
@@ -801,7 +856,8 @@ Updated German locale by Dlarge
 Updated Archeology Bar Mover  
 Fixed a possible issue with the chat icons when the database was not loaded  
 Fixed a possible issue with the number of stats on the Character Panel  
-Fixed Mirror Timers for 10.1.5
+Fixed Mirror Timers for 10.1.5  
+___
 ### 3.8.9
 Added [eltruism:presencecolor] tag which shows Death Knight Presence with color  
 Added Tank Stats Datatext in Wrath and Classic  
@@ -814,7 +870,8 @@ Fixed castbar borders when cast bar icon was disabled
 Fixed other glows not hiding if changed in ElvUI  
 Fixed an issue where some options were hidden  
 Fixed missing Custom Glow after a reload  
-Fixed a possible issue with shadows in Wrath
+Fixed a possible issue with shadows in Wrath  
+___
 ### 3.8.8
 Added scale to Mirror Timers (such as Breath and Fatigue)  
 Added an option to disable DPS role icons in unitframes  
@@ -827,7 +884,8 @@ Fixed retail pet unitframe having happiness tag
 Fixed Gradient Colors in OmniCD interrupt bars  
 Fixed an error while loading in Wrath/Classic  
 Fixed the tooltip in Unitframe Orientation  
-Fixed custom class backdrop color
+Fixed custom class backdrop color  
+___
 ### 3.8.7
 Added DBM skin, similar to BigWigs skin  
 Added Sarkareth to portrait fix  
@@ -836,11 +894,13 @@ Updated Details Name Gradient with a fix for long names
 Fixed a possible issue in Classic Era for Teleports Datatext  
 Fixed the Group Finder Eye in Retail showing after combat  
 Fixed an issue with some tag options  
-Fixed Keystone Frame skin
+Fixed Keystone Frame skin  
+___
 ### 3.8.6.1
 Added a few models to portrait fix  
 Updated some tag functions thanks to Simpy  
-Fixed an issue where other addons could cause the Tooltip gradient to error
+Fixed an issue where other addons could cause the Tooltip gradient to error  
+___
 ### 3.8.6
 Added Icons and Cooldowns for the Item or Spell selected in Eltruism Teleport Datatext  
 Added Khadin to NPC ignore list for Quest Auto Accept  
@@ -851,12 +911,14 @@ Updated Tooltip Gradient to avoid issues with Icons
 Updated Tooltip Gradient to be independent of Ilvl  
 Fixed a possible error with the Teleport Datatext if hovered over during loading screens  
 Fixed ElvUI Skin interfering with the transmog frame selection  
-Fixed Gradient Power colors in Classic Era
+Fixed Gradient Power colors in Classic Era  
+___
 ### 3.8.5.1
 Updated Classic Era Details Profiles  
 Updated German translation by Dlarge  
 Fixed an error with progress bars in Retail Quests Skin  
-Fixed an error in Classic Era due to Details changes
+Fixed an error in Classic Era due to Details changes  
+___
 ### 3.8.5
 Added options to customize the Teleport/Hearthstone Datatext to use other Spells/Items  
 Added Season 2 Mythic Plus Bosses to Nameplate Classification Icons  
@@ -881,12 +943,14 @@ Fixed a possible issue with Pet Glow Colors in Wrath
 Fixed a possible issue with the Cursor Cooldowns  
 Fixed a possible error with Mail Sound TTS  
 Fixed Wowhead quest button in Retail  
-Fixed Pet Power Effect Alpha
+Fixed Pet Power Effect Alpha  
+___
 ### 3.8.4.1
 Added a fix for the Friendly Nameplates not showing  
 Added Gradient Class Icons to Chat Class Icons  
 Fixed Details Embed always showing up  
 Fixed Map Pin Max Distance  
+___
 ### 3.8.4
 Added an option to disable the reversed gradient on target health frame  
 Added [eltruism:reverseReleafgradient:player] tag with gradient icons  
@@ -935,7 +999,8 @@ Fixed extra pixels on the Target Arrow Texture
 Fixed a possible error when Pet Battle ends  
 Fixed Aura Bars reversed gradient  
 Fixed Boss Frame Spaced Shadows  
-Fixed a few missing options
+Fixed a few missing options  
+___
 ### 3.8.3
 Added options to set Aura Filters for Party, Raid and Aura Bars  
 Added Shadows to Zone Text and Bonus Objective  
@@ -964,10 +1029,12 @@ Fixed Gradient Power when Power was Transparent
 Fixed OmniCD Name Bar mode having shadows  
 Fixed Raid Pets not being Gradient  
 Fixed Focus Target ElvUI Skin  
-Fixed Master Looter Icon
+Fixed Master Looter Icon  
+___
 ### 3.8.2.1
 Fixed Player Model in AFK screen sometimes overlapping the timer  
-Fixed Quest Dialog Frame Model Shadows/Skin not hiding
+Fixed Quest Dialog Frame Model Shadows/Skin not hiding  
+___
 ### 3.8.2
 Added an option to disable the Gradient Health and Name on tooltips  
 Added options to customize the Entering/Leaving Combat Indicator  
@@ -1011,7 +1078,8 @@ Fixed castbar shadows when the castbar icon was of a different size from the cas
 Fixed an issue with unitframe shadows when all power frames were detached  
 Fixed Nameplate Power Bar sometimes having the wrong texture  
 Fixed some texture transparencies in ElvUI skin  
-Fixed ElvUI skin on some buttons
+Fixed ElvUI skin on some buttons  
+___
 ### 3.8.1
 Added EltreumStance custom tag to player unitframe, which show show the current stance  
 Added ElvUI Skin in Eltruism > Skins > Addons, which adds textures to frames  
@@ -1042,7 +1110,8 @@ Fixed an issue where when changing fonts custom texts could get reapplied
 Fixed an issue where BigWigs Custom Gradient Colors could not work  
 Fixed an issue in Court of Stars after Blizzard changed Gossip API  
 Fixed wrong combat icon in Party unitframes  
-Fixed a double Combat Indicator Icon
+Fixed a double Combat Indicator Icon  
+___
 ### 3.8.0
 Added an option to disable forcing the ElvUI chat toggles on  
 Added a slider to set the Occluded Nameplate CVar  
@@ -1060,17 +1129,20 @@ Updated Plugin Installer skin
 Fixed an issue where the Objective Frame could error if loading in while in combat  
 Fixed an issue where the Nameplate Portrait Shadows option wouldn't work  
 Fixed a possible issue where Role Icons would not show up in chat  
-Fixed an issue with Item Levels in Wrath/Classic
+Fixed an issue with Item Levels in Wrath/Classic  
+___
 ### 3.7.9.1
 Added 3 new Statusbar textures  
-Fixed a possible error when applying Fonts
+Fixed a possible error when applying Fonts  
+___
 ### 3.7.9
 Added NameplateSCT to Font and Font Outline functions  
 Added Questie to Font and Font Outline functions  
 Updated German locale by Dlarge  
 Fixed Immersion skin not sometimes skinning the options  
 Fixed player/target unitframe shadows in some scenarios  
-Fixed Paladin Smart Class Bar hiding not working
+Fixed Paladin Smart Class Bar hiding not working  
+___
 ### 3.7.8
 Added gradient to Objective Frame progress bars in Retail  
 Added Custom Gradient Colors to BigWigs Skin  
@@ -1094,7 +1166,8 @@ Fixed Toggle Hide Armor shadows in the Trading Post
 Fixed PallyPower Skin not properly skinning Seals  
 Fixed actionbars above 10 not getting shadows  
 Fixed [eltruismrealm:dash] not being gradient  
-Fixed some player unitframe shadows
+Fixed some player unitframe shadows  
+___
 ### 3.7.7
 Added detection for where the Objective Frame is in Retail and used it to move the Quest Button  
 Added several gradient name tags, such as title, guild, realm and more  
@@ -1109,7 +1182,8 @@ Updated Shadow and Light profile's AFK settings
 Updated Waypoint ETA to decrease memory usage  
 Updated German locale by Dlarge  
 Fixed an issue where quests could become unclickable due to Waypoints in Retail
-Fixed [eltruism:stance] due to paladin changes
+Fixed [eltruism:stance] due to paladin changes  
+___
 ### 3.7.6
 Added multiple tabs to options, revamping many to make them easier to read  
 Fixed issues with Nameplates flashing due to a change in the functions  
@@ -1117,15 +1191,18 @@ Fixed an issue with Quest Accept frame shadows in Wrath/Classic
 Fixed Classification Icons sometimes showing on non Enemy NPCs  
 Fixed profile install missing BigWigs shadows setting  
 Fixed issues with Shadow and Light's Armory mode  
-Fixed Max Distance for Waypoints in Retail
+Fixed Max Distance for Waypoints in Retail  
+___
 ### 3.7.5.2
 Updated some functions to better hook into ElvUI (thanks Repooc)  
 Fixed Datatexts using incorrect dimensions due to GetScreenWidth() returning a dimension based on UI scale instead of actual Screen Width  
 Fixed Zone Texts not being skinned when Shadow & Light was loaded  
 Fixed Chat Shadows depending on ElvUI setting  
-Fixed an issue with the Objective Frame mover when reloading in combat
+Fixed an issue with the Objective Frame mover when reloading in combat  
+___
 ### 3.7.5.1
-Fixed Waypoints not working in Retail, do note that there seems to be a cap for max distance currently and workarounds are being researched
+Fixed Waypoints not working in Retail, do note that there seems to be a cap for max distance currently and workarounds are being researched  
+___
 ### 3.7.5
 Added Skin to SimulationCraft, WarpDeplete, RareScanner, Immersion, BugSack and Clique  
 Added an option to toggle Keybind text on the Quest Item Bar  
@@ -1159,7 +1236,8 @@ Fixed an error when MerathilisUI was enabled due to a database change
 Fixed a possible error when Focus Unitframe was disabled  
 Fixed Focus Target having incorrect custom textures  
 Fixed an Issue when changing Zones  
-Fixed Waypoints not working in Retail, do note that there seems to be a cap for max distance currently and workarounds are being researched
+Fixed Waypoints not working in Retail, do note that there seems to be a cap for max distance currently and workarounds are being researched  
+___
 ### 3.7.4
 Added Previews During Install, simply mouse over the buttons to preview the profile  
 Added [name:eltruism:gradienttranslit], [name:eltruism:gradientshorttranslit] tags  
@@ -1180,7 +1258,8 @@ Updated Atwood icons
 Fixed a possible error with Shadow and Light due to a database change in Shadow and Light  
 Fixed the Waypoint Time To Arrive showing wrong timers when dragonriding  
 Fixed a possible error with Mirror Timers in Wrath/Classic  
-Fixed a possible wrong text in  Heroic-10 Raids in Wrath
+Fixed a possible wrong text in  Heroic-10 Raids in Wrath  
+___
 ### 3.7.3
 Updated Tank and Assist shadows to update like Raid Shadows  
 Updated Rested Nameplates to only run with ElvUI Nameplates  
@@ -1191,7 +1270,8 @@ Fixed a possible issue with Custom Textures when the Database was not loaded
 Fixed an issue where Waypoints were being cleared automatically  
 Fixed errors during install due to a change in ProjectAzilroka  
 Fixed Instance Gradient Text having incorrect colors  
-Fixed an error on some event instances
+Fixed an error on some event instances  
+___
 ### 3.7.2
 Added Custom Classification Icons for Nameplates, showing different icons for Elites, Rares, Rare Elites, World Bosses and Dungeon Bosses  
 Added several more options to Instance Text, such as Difficulty Specific Colors and Gradient Colors  
@@ -1210,7 +1290,8 @@ Fixed an issue with the setting for Disabling Instance Text missing
 Fixed an issue with the Custom Glow when not using ElvUI Actionbars  
 Fixed an issue the Teleport Datatext in Classic Era  
 Fixed an issue with Cooldowns in Classic Era  
-Fixed some shadows in Classic Era
+Fixed some shadows in Classic Era  
+___
 ### 3.7.1
 Added an option to not use class textures when using custom textures  
 Added a few more shadows for 10.0.5  
@@ -1221,12 +1302,14 @@ Fixed Aura Blinking when Shadow and Light had Aura Texture enabled by disabling 
 Fixed Boss Unitframe Custom Texture and added options for it  
 Fixed a possible error in Wrath due to a font issue  
 Fixed power shadows in some scenarios  
-Fixed Wrath bar paging
+Fixed Wrath bar paging  
+___
 ### 3.7.0
 Fixed possible errors in Wrath Mirror Timers due to the Gradient API change  
 Fixed a possible issue related to profiles and gradient mode  
 Fixed errors in Wrath Quest Auto Accept due to API changes  
-Fixed an error in Wrath due to Animation API changes
+Fixed an error in Wrath due to Animation API changes  
+___
 ### 3.6.9
 Added tooltip for Warlock Soul Shards on the Ammo datatext in Wrath/Classic  
 Added options to customize the position of aura texts in nameplates  
@@ -1248,7 +1331,8 @@ Fixed a possible issue when ElvUI nameplates were disabled
 Fixed the alpha of models when player status was changed  
 Fixed a possible error with Reputation Databars in Wrath  
 Fixed a possible issue with detached power shadows  
-Fixed a shadow mismatch in the castbars
+Fixed a shadow mismatch in the castbars  
+___
 ### 3.6.8
 Added SoftTarget Cvars to the Cvars list  
 Added EltreumDeadNP Style Filter for Soft Target Nameplates  
@@ -1257,11 +1341,13 @@ Updated EltreumInterrupt Style Filter to not run inside Raids
 Updated Error Frame Font Max Size  
 Updated Shadows function  
 Fixed a possible issue with Cooldown due to Alpha values possibly being set above the max limit of 1  
-Fixed a double line issue with Item Level on Tooltips in Wrath
+Fixed a double line issue with Item Level on Tooltips in Wrath  
+___
 ### 3.6.7
 Added gradient to Pet Castbar  
 Added more shadows  
-Updated Quest Item Bar to improve performance and memory usage
+Updated Quest Item Bar to improve performance and memory usage  
+___
 ### 3.6.6
 Added Gradient and Class Textures to Tank Targets  
 Added some compatibility checks with WindTools  
@@ -1280,7 +1366,8 @@ Updated Capping and Gladius Profile Textures
 Updated German locale by Dlarge  
 Fixed Enemy Player not correctly using castbar colors when reaction/class colors were disabled in Nameplate Gradients  
 Fixed Mail sound requiring TTS voice being selected  
-Fixed a possible issue with Map Coordinates
+Fixed a possible issue with Map Coordinates  
+___
 ### 3.6.5
 Added alpha values to cursor colors  
 Added pet to custom textures  
@@ -1292,7 +1379,8 @@ Updated WindTools profile
 Fixed a possible error with databars when the ElvUI database was not loaded or reaction was invalid  
 Fixed missing pet battle visibility for action bars  
 Fixed a focus shadow error in Classic Era  
-Fixed target castbar shadow
+Fixed target castbar shadow  
+___
 ### 3.6.4
 Added multiple frames to the function to resolve possible taints  
 Added Therazal to ignored npcs for Quest Turn in  
@@ -1308,12 +1396,14 @@ Fixed some items being added to Quest Bar when they shouldn't be
 Fixed a possible issue when inspecting players in Classic/Wrath  
 Fixed major faction reputation gradient in Retail  
 Fixed demon hunter action bar paging paging  
-Fixed non overlaid 3D portrait shadows
+Fixed non overlaid 3D portrait shadows  
+___
 ### 3.6.3
 Updated EltreumExecute Nameplate Style Filter to check for Death Knight's Soul Reaper talent  
 Updated Custom Glow due to it being re-added to ElvUI  
 Updated German locale by Dlarge  
-Fixed Evoker missing mana Nameplate Power Bar
+Fixed Evoker missing mana Nameplate Power Bar  
+___
 ### 3.6.2
 Added Quest Count to Retail Objective Frame (only shows up when quest log is near full)  
 Added shadows to Objective Frame Quest Item  
@@ -1332,7 +1422,8 @@ Updated fonts functions
 Fixed Unitframe castbar not correctly using unitframe skin when gradient was enabled  
 Fixed an issue with the Windtools message not properly going away in one case  
 Fixed Pandaria Scenarios missing the Blocks Skin  
-Fixed power shadows when using detached power
+Fixed power shadows when using detached power  
+___
 ### 3.6.1
 Added some tutorial frames to a kill list to prevent them from blocking some frames due to them overlapping while hidden  
 Added more workarounds for taints and placement of the objective tracker in Retail  
@@ -1348,7 +1439,8 @@ Updated German locale by DLarge
 Updated WarpDeplete profile  
 Fixed Equipment Manager and Title Manager positions in Retail  
 Fixed !key and !keys commands due to container changes  
-Disabled MicroBar due to it causing some Taints
+Disabled MicroBar due to it causing some Taints  
+___
 ### 3.6.0
 Added Aman'Thul's Wipe Sound ("No! After all we have endured it must not end this way!")  
 Added Aman'Thul's Wipe sound to BigWigs wipe sound  
@@ -1356,7 +1448,8 @@ Added gradient and custom textures to focus castbar (uses target settings)
 Added shadows to focus castbar  
 Updated some nameplate style filters to require the nameplate to not be tap denied  
 Updated Evoker Crest  
-Updated Target Aurabars filters
+Updated Target Aurabars filters  
+___
 ### 3.5.9
 Added an option to customize the Evoker Empowered Castbar Spark  
 Added gradient power to group units (party/raid)  
@@ -1366,9 +1459,11 @@ Added a vignette to AFK
 Updated multiple references for 10.0.2  
 Updated German locale by Dlarge  
 Fixed a possible error in [eltruism:gradient] tag due to reactions  
-Fixed Class Crests not showing up
+Fixed Class Crests not showing up  
+___
 ### 3.5.8.1
-Fixed a Version Check Popup
+Fixed a Version Check Popup  
+___
 ### 3.5.8
 Added custom textures to group units castbars  
 Added /eltruismdebug command, which will disable all addons besides ElvUI/Eltruism/Addonskins/BugSack in order to make it easier to troubleshoot errors, thank you Luckyone for allowing its usage  
@@ -1378,7 +1473,8 @@ Added Chromie to Portrait Fix
 Fixed an error with gradient castbars custom colors  
 Updated EltruismExecute nameplate style filter with a check for the player having talents in Retail  
 Updated multiple references to new ElvUI format (Elvui/ElvUI Options/ElvUI Libraries)  
-Updated BattleGroundEnemies profile to not overlap as much in 40man Battlegrounds
+Updated BattleGroundEnemies profile to not overlap as much in 40man Battlegrounds  
+___
 ### 3.5.7
 Added a workaround fix for the Custom Textures issue in Retail, allowing the usage of Custom Textures again  
 Added fallback colors for Power Types that are not used in the Gradient Power function  
@@ -1395,10 +1491,12 @@ Updated German locale by DLarge
 Fixed Quests Skin not fitting correctly and sometimes not showing depending on difficulty  
 Fixed a possible wrong color in the Interrupted Gradient CastBar in Classic/Wrath  
 Fixed Aurabars colors when Gradient Aurabars were disabled  
-Fixed a possible error with mail sound
+Fixed a possible error with mail sound  
+___
 ### 3.5.6.1
 Added an option to disable the Objective Frame Anchor  
-Reverted the Objective Frame Taint Fix as it was causing problems for some but not all
+Reverted the Objective Frame Taint Fix as it was causing problems for some but not all  
+___
 ### 3.5.6
 Added multiple checks for frames being loaded due to a change in the Retail API  
 Added various Evoker features such as backgrounds, crest and others  
@@ -1419,13 +1517,15 @@ Updated Pet debuffs and buffs positions
 Fixed an issue where Information Panel On Top didn't have the correct Portrait settings after the 3D Portrait fix  
 Fixed a possible issue when using borders with ElvUI action bars disabled  
 Fixed Rogue not auto opening the Order Hall  
-Fixed Arena Frames not Hiding
+Fixed Arena Frames not Hiding  
+___
 ### 3.5.5.1
 Added Lighweave and Darkglow Embroidery Enchants in Wrath  
 Added missing settings to ProjectAzilroka's Enhanced Friends List  
 Updated Quest Height to better apply Objective Tracker Height in Retail  
 Fixed a possible error with the fix for 3D Portrait Models  
-Fixed an issue where Target of Target Shadow would not display if power was disabled
+Fixed an issue where Target of Target Shadow would not display if power was disabled  
+___
 ### 3.5.5
 Added Class Colors to Party and Raid Borders  
 Added a few missing shadows  
@@ -1439,7 +1539,8 @@ Updated Target to not Reverse Health and Power
 Updated DynamicCam Profile for Retail  
 Updated Loot options to split into separate tabs  
 Fixed [eltruism:leader] not displaying when the unit had assist and was a tank  
-Removed Key Down CVar due to ElvUI fixing the issue
+Removed Key Down CVar due to ElvUI fixing the issue  
+___
 ### 3.5.4
 Added a temporary option to change the Keypress CVar that is currently causing issues in Retail due to 10.0  
 Added transparency to Castbar Gradient which will now better follow ElvUI settings  
@@ -1454,7 +1555,8 @@ Updated Custom Backdrop for Castbars to use a 0.4 alpha
 Updated profile to reverse Target Unitframe  
 Updated German Locale by Dlarge  
 Fixed SoulShape paging Warlock's ActionBar in Retail  
-Fixed an Error on LootText when refunding an item
+Fixed an Error on LootText when refunding an item  
+___
 ### 3.5.3
 Added cvar to enable all minimap tracking options during install  
 Added an option to change the Objective Tracker Height  
@@ -1468,7 +1570,8 @@ Fixed the disabling of custom textures and other settings to only Light Mode in 
 Fixed an issue where some Crafting Descriptions were not showing up in Classic/Wrath  
 Fixed Power and Classbar shadows if they are detached from Player Unitframe  
 Fixed Loot Frame's Gradient erroring in Classic/Wrath  
-Fixed Retail Instance Text
+Fixed Retail Instance Text  
+___
 ### 3.5.2
 Added Borders to Unitframe Auras (buffs/debuffs)  
 Updated Nameplate Style Filters to reduce texture usage and use gradient colors instead  
@@ -1480,6 +1583,7 @@ Fixed Classic/Wrath using Retail gradient functions
 Fixed a possible error when choosing custom colors for Quest Line in Retail  
 Fixed Minimap border and shadow due to ElvUI changes  
 Fixed a possible error when checking Bank due to ElvUI changes  
+___
 ### 3.5.1
 Added various fixes for Dragonflight Prepatch  
 Added shadows to Archeology Digsite Frame  
@@ -1511,7 +1615,8 @@ If you are using Light Mode and Gradient, i recommend enabling ElvUI Unitframe T
 Custom Textures in Light Mode will cause issues due to Blizzard bugs  
 Aurabar Blinking is due to the SetStatusBarTexture issue mentioned, and can happen even without Eltruism enabled  
 Nameplates Blinking is also due to the SetStatusBarTexture issue and happens if there is Texture replacing the existing Texture, this can happen to other nameplate addons like Plater and not just ElvUI Nameplates  
-Objective Frame lost its mover in ElvUI but Eltruism has added it back, in order to get it to work you need to enter Edit Mode and move the Quest a bit, you can also change the Max Height there (used to be 550 in Eltruism), then reload. You will now be able to use the mover from ElvUI
+Objective Frame lost its mover in ElvUI but Eltruism has added it back, in order to get it to work you need to enter Edit Mode and move the Quest a bit, you can also change the Max Height there (used to be 550 in Eltruism), then reload. You will now be able to use the mover from ElvUI  
+___
 ### 3.5.0
 Added an option to enable automatically enabling the combat logging during raids/dungeons and disabling outside them  
 Added a few more missing enchants to Sockets and Enchants in Wrath  
@@ -1530,7 +1635,8 @@ Updated Character Panel Skin to update when swapping specs
 Updated German locale by Dlarge  
 Fixed an issue where some combat CVars were not being correctly set in Wrath due to Wrath using a different system  
 Updated Pet Action Bar Glow to run on non Hunters and Warlocks  
-Fixed Details Spec Icons due to an update from Details
+Fixed Details Spec Icons due to an update from Details  
+___
 ### 3.4.9
 Added option to set the Quest Item Bar Vertically  
 Added preset settings for Pet Party Frames in Wrath  
@@ -1547,7 +1653,8 @@ Fixed Number of Groups for Raid2 in Retail
 Fixed Spec Details Profile in Classic Era  
 Fixed Questie Hide in Classic Era  
 Fixed a shadow in Classic Era  
-Fixed Stats Datatext in Classic Era
+Fixed Stats Datatext in Classic Era  
+___
 ### 3.4.8
 Updated Character Panel Skin while in Combat in Classic/Wrath, it will not be the same but should be more usable and contain a warning about being in Combat  
 Updated Quest Skin to adjust the Quest Item Button if the Quests is set on the left side instead of the right side of the screen  
@@ -1559,7 +1666,8 @@ Updated Aurabars to Sort by Ascending
 Updated Aura Filtering Priorities for Profiles  
 Fixed Shaman Totem Glows activating when the Classbar was disabled in Classic/Wrath  
 Fixed Wowhead Quest Button only appearing when the Quests Skin was enabled  
-Fixed AFK Music rarely enabling Sounds
+Fixed AFK Music rarely enabling Sounds  
+___
 ### 3.4.7
 Added Engineering Enchants to Sockets in Wrath  
 Added Wrath Instance Difficulties (10/25/10 Heroic/25 Heroic)  
@@ -1576,7 +1684,8 @@ Updated Quest Item Bar to prevent a keybind issue
 Updated German locale by Dlarge  
 Updated MeetingHorn Skin  
 Fixed Threat Bar not being centered  
-Fixed Non Interruptible Gradient Color not having the correct gradient
+Fixed Non Interruptible Gradient Color not having the correct gradient  
+___
 ### 3.4.6
 Added compatibility between Custom Textures and Gradient, now allowing both at the same time  
 Added support for ProjectAzilroka's Enhanced Shadows, allowing shadows to change colors if ProjectAzilroka is loaded and using that module  
@@ -1597,7 +1706,8 @@ Updated some addon profiles to prevent overwriting existing profiles
 Updated Nameplate Power Bar Prediction  
 Fixed a possible error with Cursor when reloading in combat  
 Fixed gradient for Target of Target of Target  
-Fixed Custom Textures not automatically updating without a reload
+Fixed Custom Textures not automatically updating without a reload  
+___
 ### 3.4.5
 Added EltreumRefreshDebuff nameplate style filter, which will set nameplates that have expiring debuffs to full scale and alpha, but it requires the player to manually add the debuffs to its list  
 Added a shortcut to the EltreumRefreshDebuff nameplate style filter in Eltruism > Nameplates so that its easier to add Debuffs to it  
@@ -1622,7 +1732,8 @@ Fixed a possible issue with chat custom colors due to the color table loading af
 Fixed a possible issue with the Stats on Character Panel being outside the Panel in Retail when the number of stats was too many  
 Fixed the Inspect Sockets option button not disabling when the Character Sockets option was disabled  
 Fixed action paging for Priests and Death Knights in Classic/Wrath  
-Fixed a possible error with Cardinal Directions when using class colors
+Fixed a possible error with Cardinal Directions when using class colors  
+___
 ### 3.4.4
 Added some more missing shadows  
 Added customizable gradient colors to Details Skins, if the option is enabled in Gradient Colors then Details will use the custom colors  
@@ -1639,7 +1750,8 @@ Fixed an error when attempting to type a voice for Mail Sound when Text To Speec
 Fixed Details having a white bar texture during login  
 Fixed some shadow issues  
 Fixed an issue with action paging with Demon Hunters  
-Fixed spaced power shadows in Party
+Fixed spaced power shadows in Party  
+___
 ### 3.4.3
 Added Gradient to BigWigs Bars with a BigWigs Skin in Eltruism > Skins  
 Added Gradient to Details Bars with a Details Skin in Eltruism > Skins  
@@ -1649,7 +1761,8 @@ Updated Bigwigs, DBM, Capping and ElvUI FCT profiles
 Updated Warlock Model to be different from Paladin  
 Updated Pet Castbar color to have a different color between Interruptable and Non Interruptable  
 Fixed the Death Animations (such as "You Died") activating inside instances  
-*Note: Details alpha/beta versions might have issues with the skin since those versions are meant for Dragonflight and not release, make sure to use the release version from August 31st
+*Note: Details alpha/beta versions might have issues with the skin since those versions are meant for Dragonflight and not release, make sure to use the release version from August 31st  
+___
 ### 3.4.2
 Added settings for new Totems from ElvUI 12.89  
 Added Shadows to Totem Tracker  
@@ -1662,7 +1775,8 @@ Updated PallyPower skin to use icons like the character panel skin(Releaf or Bli
 Updated Offhand Weapon Quality Texture in Character Panel Skin in Wrath/Classic  
 Fixed Minimap and Chat shadows not changing size when changing the size option for shadows  
 Fixed incorrect Group Spacing in Raid2 Healer Layout for Wrath/Classic  
-Fixed Inspect Item Level Text sometimes not updating
+Fixed Inspect Item Level Text sometimes not updating  
+___
 ### 3.4.1
 Added Gradient Aurabars and added shadows to Aurabars  
 Added Glows for Dispels on Unitframes, enabled in the Healer profile  
@@ -1674,7 +1788,8 @@ Fixed some PallyPower shadows
 Fixed an issue where Health Color and Texture for Nameplates when Gradient was enabled were not being disabled  
 Fixed the Buff in Arenas function having wrong visibility after ElvUI changed Raid frames  
 Fixed an issue when ProjectAzilroka was loaded by some modules were not enabled when creating shadows  
-Fixed Shaman Totem Glow order in Wrath/Classic
+Fixed Shaman Totem Glow order in Wrath/Classic  
+___
 ### 3.4.0
 Added a skin to PallyPower  
 Added gradient to focus target  
@@ -1687,7 +1802,8 @@ Updated Chat Positions one pixel down due to the toggles
 Updated Gladdy profile to add Totem Pulse  
 Fixed a possible error during Layout install if the LFG channel was not found  
 Fixed Tooltip Shadow when Healthbar was set at the bottom  
-Fixed some PallyPower Shadows
+Fixed some PallyPower Shadows  
+___
 ### 3.3.9
 Added Item Level to tooltips in Wrath/Classic  
 Added a skin to the Gear Manager Toggle Button  
@@ -1709,7 +1825,8 @@ Fixed an issue with the Wrath Quest Skin where text sizes would change
 Fixed Achievement Skin in the Objective Frame in Retail when the cursor entered/left the text  
 Fixed an issue with unitframe shadows when BenikUI ha detached portrait enabled and Eltruism had Information Panel on top enabled  
 Fixed Bars in Quest Skin having a gap when not using ElvUI Thin Borders  
-Fixed an issue where shadows would still get created for tooltips when not using ElvUI tooltips
+Fixed an issue where shadows would still get created for tooltips when not using ElvUI tooltips  
+___
 ### 3.3.8
 Added option to color chat messages by player class  
 Added options to hide some blizzard frames  
@@ -1721,7 +1838,8 @@ Updated German locale by Dlarge
 Updated Stats Datatext with more relevant Stats per Spec in Wrath/Classic  
 Updated profile by enabling power model during install  
 Fixed Close Button on Glyphs not being Interactable  
-Fixed Shaman Totem Shadow in Wrath
+Fixed Shaman Totem Shadow in Wrath  
+___
 ### 3.3.7
 Added new Datatexts for Stats, showing Crit, Mastery, Haste and Versatility in Retail and Power, Hit, Crit and Haste in Classic, alongside main stats  
 Added the new Datatexts to the EltruismDataText Panel and updated the Time datatext with a new panel  
@@ -1778,7 +1896,8 @@ Fixed some missing shadows on Player and Target unitframes depending on settings
 Fixed an issue where player model would reset on certain events  
 Fixed an error due to ElvUI_Explosives Nameplate Style Filter on Wrath/Classic  
 Fixed missing outline function during Roboto font install  
-Fixed an action bar overlap in 1080p
+Fixed an action bar overlap in 1080p  
+___
 ### 3.3.6
 Added gradient nameplate castbars, which follow the castbar settings from unitframes  
 Added an option to set the Information Panel in Unitframes to be on top instead of bottom  
@@ -1795,7 +1914,8 @@ Fixed Meeting Horn Skin, thanks to slm20200822
 Fixed an issue with LootText that caused some World Texts and Combat Texts to be larger than expected  
 Fixed an issue that caused Item Level text on Inspect frames to not update in Classic/Wrath  
 Fixed a debug print when deleting items  
-Fixed an issue with the Role Check happening in combat
+Fixed an issue with the Role Check happening in combat  
+___
 ### 3.3.5
 Added an option to turn off gradient npc castbars being colored by reaction and added color options for it  
 Added LootText to some created items  
@@ -1807,7 +1927,8 @@ Fixed the compatibility check with MerathilisUI after its database was changed
 Fixed player model effects not always appearing  
 Fixed possible errors in gradient power due to enemy NPCs having more powers than expected (over 100 power types), this will cause them to fallback to a mana gradient  
 Fixed the Stat Dropdown overlapping the stats on the Character Panel Skin for Wrath  
-Disabled MeetingHorn skin as I lack access to it in order to test and fix it
+Disabled MeetingHorn skin as I lack access to it in order to test and fix it  
+___
 ### 3.3.4
 Added models to power bars and options for it, with nameplate power bar using the same settings as unitframe powers  
 Added options for gradient databars such as reputation, experience and honor  
@@ -1820,7 +1941,8 @@ Updated the custom nameplate height function to ignore player personal nameplate
 Fixed a wrong icon for battle res while playing as a warlock in Retail  
 Fixed a possible error with shamans and totem bars during install  
 Fixed a possible class color overwrite when using custom colors for quests  
-Fixed Death Knight missing for Gradient Colors
+Fixed Death Knight missing for Gradient Colors  
+___
 ### 3.3.3
 Added new options for the Objective Frame skin, including fonts colors and textures  
 Added missing paging for Rogues and Warlocks in Wrath  
@@ -1833,6 +1955,7 @@ Updated default Death Knight class Model background in unitframes
 Updated Death Knight's Runic Power color's for gradient
 Fixed text overlap for Runeforging skin  
 Fixed Pet/Companion overlapping the button in Wrath  
+___
 ### 3.3.2
 Added full support for Wrath of the Light King Classic  
 Added gradient power to player, target, target of target, focus and target of target of target frames, and also the nameplate power bar  
@@ -1855,20 +1978,23 @@ Fixed Classic/Wrath Objective Skin losing green completion color
 Fixed custom colors for unitframes not applying in some scenarios  
 Fixed a missing setting for toggling Level and Boss Skins  
 Fixed a missing mover for the Totem Bar  
-Fixed Threat function firing while dead
+Fixed Threat function firing while dead  
+___
 ### 3.3.1
 Updated Quest Skin to also use Custom Gradient colors if they are enabled  
 Updated player combat icon position  
 Fixed Nameplate Threat Colors always using Custom Gradient colors  
 Fixed DELETE item spamming in some scenarios  
 Fixed a possible error with a shadow when opening the Guild/Community window  
-Fixed Quest Item Bar not always updating
+Fixed Quest Item Bar not always updating  
+___
 ### 3.3.0
 Added FSR scale to the FSR always on option so that FSR factor can be set in Classic/TBC/Wrath  
 Updated a few shadows for Wrath  
 Updated Quest Item Bar to center when it has only one item  
 Fixed Class Cres overlapping some bars in Classic/TBC/Wrath  
-Fixed a possible error with custom role icons
+Fixed a possible error with custom role icons  
+___
 ### 3.2.9
 Added an option to use Custom Role Icons, simply enable and type the file name inside Interface > Addons  
 Added an option to change the Character Model position on the Character Skin  
@@ -1887,7 +2013,8 @@ Updated Character Panel Skin Ammo position to not overlap with Item Level Text
 Fixed Auto Adjust of Borders being enabled when borders were disabled during install  
 Fixed Glyphs in Wrath showing some backgrounds  
 Fixed Unitframes Health backdrop color  
-Fixed Class Crest position in other panels
+Fixed Class Crest position in other panels  
+___
 ### 3.2.8
 Added an option to change the font size on the Character Panel Skin  
 Added an option to hide datatexts outside of combat and show them in combat  
@@ -1901,7 +2028,8 @@ Updated German translations by Dlarge
 Updated Action bar out of range color  
 Fixed health backdrop alpha in light mode  
 Fixed Talking Head not correctly hiding in some situations  
-Fixed profile not applying when spec specific profiles were selected
+Fixed profile not applying when spec specific profiles were selected  
+___
 ### 3.2.7
 Added an option in Eltruism > Media to make the actionbars and power similar to a WeakAura, a command (/eltruism weakauras) was also added  
 Added an option to move the cursor anchor using offsets  
@@ -1917,13 +2045,15 @@ Updated Quest Items Bar in Retail to more reliably detect quest items
 Fixed Pet Name in Wrath not correctly replacing fonts  
 Fixed a possible error if trying to open the game menu while in combat  
 Fixed Other stats in Character Panel skin sometimes not being correctly positioned  
-Fixed an error with Style Filters
+Fixed an error with Style Filters  
+___
 ### 3.2.6
 Added an option to toggle off gradient texts on character panel skin and use class color instead  
 Added a black background option to expanded art in character panel skin  
 Updated the item quality texture size to not overlap when not using the character panel skin  
 Updated some character skin options to work without expanded art/panel  
-Fixed Cooldown's Text To Speech option checking for Mail Text to Speech in order to enable/disable
+Fixed Cooldown's Text To Speech option checking for Mail Text to Speech in order to enable/disable  
+___
 ### 3.2.5
 Added models options, which will add models to Player, Pet, Target, Target of Target, Player Castbar and Target Castbar, these can be customized and changed to custom ones instead of being class based  
 Added Cooldown, a fork of discoteq's Doom Cooldown Pulse, which will show an icon for skills that are coming of cooldown. This fork includes an option to play Text-To-Speech for the skill coming of cooldown  
@@ -1953,7 +2083,8 @@ Fixed an issue with the Error frame option toggling the Zone option for Skins
 Fixed a missing option for the Character Panel art in Classic/TBC/Wrath  
 Fixed some colors in Gradient Mode being incorrect due to an alpha being supplied
 Fixed Borders not toggling on and off during install  
-Fixed Classic Skill Glows not working
+Fixed Classic Skill Glows not working  
+___
 ### 3.2.4
 Added an option to have enemies that are not engaged in combat or not targeted to have thinner nameplate healthbars, and to use ElvUI's settings or custom settings when they are engaged in combat or targeted  
 Added an option to have the target's model show up on the target nameplate  
@@ -1988,12 +2119,12 @@ Fixed Healer layout missing auto adjusting borders for the pet bar
 Fixed Boss and Arena missing gradients after the gradient rework  
 Fixed Target of Target of Target gradient/custom textures  
 Fixed Chat fade options not working when Chat was transparent  
-Fixed Combat Indicator icon overlapping with name or absorbs in some situations by moving it in the profiles
+Fixed Combat Indicator icon overlapping with name or absorbs in some situations by moving it in the profiles  
 ___
 ### 3.2.3
 Added an option to change Fill Direction of Unitframes  
 Fixed an error in Version Check  
-Fixed an issue with Custom Textures not correctly applying Textures
+Fixed an issue with Custom Textures not correctly applying Textures  
 ___
 ### 3.2.2
 Added Gradient Nameplates and moved some options to a new Gradient Colors option, Gradient Nameplates uses the same colors as Unitframe Gradients so changing colors there will change for both  
@@ -2016,7 +2147,7 @@ Fixed issues in Classic/TBC/Wrath Beta due to some units not existing on those v
 Fixed an issue with gradient overwriting the tapped unit color by adding an option for gradient tapped units  
 Fixed the chat not correctly embedding details in Classic/TBC  
 Fixed points position in Craft Skin for Classic/TBC/Wrath  
-Fixed Pet Background overlapping Pet Name/Title/Loyalty in TBC/Wrath
+Fixed Pet Background overlapping Pet Name/Title/Loyalty in TBC/Wrath  
 ___
 ### 3.2.1
 Added Inspect Average Ilvl to Classic/TBC/Wrath  
@@ -2045,7 +2176,7 @@ Fixed Borders auto adjust not auto adjusting after a spec/profile change in Reta
 Fixed an Inventory is Full error message that could become spammy due to fast loot  
 Fixed an issue with Nameplate Power Bar and Death Knights in Wrath Beta  
   
-Note: all tags that use arguments such as [eltruism:lowmana{10}] will fail if they are used in conjunction with other tags that use arguments, so do not use more than one tag like that for the same text
+Note: all tags that use arguments such as [eltruism:lowmana{10}] will fail if they are used in conjunction with other tags that use arguments, so do not use more than one tag like that for the same text  
 ___
 ### 3.2.0
 Added [eltruism:combatindicator] tag, which will display the same icon used for Player Combat indicator as a tag for that unit, such as on other players showing their combat status  
@@ -2062,7 +2193,7 @@ Fixed Character Role Button overlapping some talent trees in Wrath Beta
 Fixed a wrong message during install when detecting addons enabled/disabled  
 Fixed Character Skin Specialization not updating when changing specs in Wrath Beta  
 Fixed Expanded Talents and Character Skin overlapping in some situations  
-Fixed Role Button on Talents in Wrath Beta showing up in the Glyph Panel
+Fixed Role Button on Talents in Wrath Beta showing up in the Glyph Panel  
 ___
 ### 3.1.9
 Added Item Quality Textures to character/inspect panel when the character panel skin is enabled  
@@ -2087,7 +2218,7 @@ Updated general Character Panel skin in Classic/TBC/Wrath, which will now only e
 Updated nameplate debuffs and buffs in Classic/TBC/Wrath to use Fluid mode from ElvUI  
 Updated ElvUI Nameplate StyleFilters for Classic/TBC/Wrath to enable ElvUI_Boss, which otherwise would not color some Boss type enemies like target dummies  
 Fixed some debuff and buff offsets when using wide nameplate debuffs in Classic/TBC/Wrath  
-Fixed some tags not being listed in Available Tags (they were working, just not listed)
+Fixed some tags not being listed in Available Tags (they were working, just not listed)  
 ___
 ### 3.1.8
 Added an option to play a sound when attempting to use a spell while it is in cooldown, this option can be enabled in Eltruism > Cursor (Default disabled)  
@@ -2110,7 +2241,7 @@ Fixed Death Knight's Runes not being affected by dark power setting in Wrath Bet
 Fixed Death Knight's gradient, light and dark modes since the class was not being detected in Wrath Beta  
 Fixed castbar interrupt gradient coloring both castbars when it should not (fix by Blinkii)  
 Fixed AddonSkins hiding wrong chat when Details profile is loaded (Wrath)  
-Fixed Wrath's Expanded Talents overlapping with the dual spec buttons
+Fixed Wrath's Expanded Talents overlapping with the dual spec buttons  
 ___
 ### 3.1.7
 Added EltreumTarget Nameplate Filter, which will be used instead of ElvUI_Target  
@@ -2119,7 +2250,7 @@ Added Questie, Details and DBM profiles to Wrath Beta, which are currently worki
 Updated auto adjust to prevent some scenarios where it would activate  
 Fixed LootText error when looting some currencies/items  
 Fixed [eltruism:smartlevel] in Classic  
-Fixed in game navigation being forced on in Retail
+Fixed in game navigation being forced on in Retail  
 ___
 ### 3.1.6
 Added support for Wrath of the Lich King Classic Beta  
@@ -2136,10 +2267,10 @@ Updated ProjectAzilroka profile, enabling Moveable Frames by default
 Fixed improperly named texture during install  
 Fixed ElvUI_Target nameplate filter having borders forced off if Eltruism nameplate settings were turned off  
 Fixed Automatically Closing Loot Window being enabled by default instead of disabled  
-Fixed Vehicle Leave Button overlapping tracking options in TBC/Classic
+Fixed Vehicle Leave Button overlapping tracking options in TBC/Classic  
 ___
 ### 3.1.5
-Fixed an error with boss borders
+Fixed an error with boss borders  
 ___
 ### 3.1.4
 Added more border size options  
@@ -2161,7 +2292,7 @@ Fixed target class statusbar textures options in nameplates, which was applying 
 Fixed an issue where auto adjusting borders would not load with Eltruism profiles  
 Fixed an issue where borders could sometimes not be centered correctly on Player/Target unitframes  
 Fixed player and target castbar borders on different types of cast attachment  
-Fixed aura borders overlapping the timer text
+Fixed aura borders overlapping the timer text  
 ___
 ### 3.1.3
 Added more frames that can have borders, including auras, chat, raid, party, focus, boss and other frames  
@@ -2175,7 +2306,7 @@ Fixed some borders overlapping some windows
 Fixed spam messages from Delete Item  
 Fixed chat shadows when using dark mode chat  
 Fixed Priest Gradient not working correctly  
-Fixed Classic and TBC showing options for classes that don't exist in these versions
+Fixed Classic and TBC showing options for classes that don't exist in these versions  
 ___
 ### 3.1.2
 Added more statusbar textures for classes  
@@ -2186,7 +2317,7 @@ Updated install process, changing fonts to be after Eltruism modes
 Updated default textures to use version 2 in light mode and nameplates  
 Fixed an error when skipping install due to custom texts not being set  
 Fixed the positioning of the more skins option in TBC  
-Further improved the performance of gradient/unitframe functions
+Further improved the performance of gradient/unitframe functions  
 ___
 ### 3.1.1
 Added an option for the experience databar to have gradient coloring  
@@ -2209,7 +2340,7 @@ Fixed debuff alignment for the pet unitframe
 Fixed border colors not updating when changing zones  
 Fixed a possible border error when changing profiles or specializations  
 Fixed gradient target castbar not using correct colors when custom colors were changed  
-Removed options to load extra media, media will now be loaded by default since ElvUI/WeakAuras fixed the Sharedmedia issue
+Removed options to load extra media, media will now be loaded by default since ElvUI/WeakAuras fixed the Sharedmedia issue  
 ___
 ### 3.1.0
 Enabled gradient castbar option for Player and Target castbars when using Eltruism profiles  
@@ -2219,12 +2350,12 @@ Fixed chat loot icons not being disabled when chat options were disabled
 Fixed Minimap shadow depending on datatext settings  
 Fixed Minimap shadow when using rectangle minimap options from Shadow and Light or Windtools  
 Fixed shadows when using 2D portraits  
-Removed some unused files
+Removed some unused files  
 ___
 ### 3.0.9
 Added a button during install to swap the background color to a greyer color instead of black  
 Added a reload prompt to the action paging swap between Bar1 and Bar4 due to the paging not switching without a reload  
-Fixed an error due to a database change in Windtools during install when Windtools was loaded
+Fixed an error due to a database change in Windtools during install when Windtools was loaded  
 ___
 ### 3.0.8
 Added [eltruism:shortclassification] tag, which displays the difficulty of an enemy in simple letters such as R and R+ for rare and rare elite  
@@ -2236,18 +2367,18 @@ Fixed the minimap shadow being created when ElvUI's minimap module was disabled
 Fixed the EltruismConsumablesWA anchor incorrectly resetting during login  
 Updated some profiles to check for the addon being enabled before attempting to apply a profile  
 Updated ElvUI nameplate debuff duration detection for the duration glow to activate in 9.2.5  
-Updated German translation by Dlarge
+Updated German translation by Dlarge  
 ___
 ### 3.0.7
 Fixed a possible error when importing Dynamic Status Icons and Capping profiles  
-Fixed an error during install due to a database change in Windtools
+Fixed an error during install due to a database change in Windtools  
 ___
 ### 3.0.6
 Added tooltip header font setting due to ElvUI update  
 Added Eltruism's logo to the options list  
 Added new media, including fonts and sounds  
 Updated Windtools profile and Shadow and Light profile due to new features introduced in Windtools  
-Updated German translations by Dlarge
+Updated German translations by Dlarge  
 ___
 ### 3.0.5
 Added an option to disable tracking of pet cooldowns on the cursor, default disabled  
@@ -2263,7 +2394,7 @@ Updated the skip install button to also skip plugin profiles message
 Updated the Shaman and Hunter stat gradients on the character panel skin and used these new colors as the default for custom gradients  
 Fixed an error with the character panel skin stats related to ranged stats in TBC/Classic  
 Disabled arena frames in BattlegroundEnemies profile  
-Removed Party Leader Icon Size option since ElvUI now has a scale option that fulfills the same role
+Removed Party Leader Icon Size option since ElvUI now has a scale option that fulfills the same role  
 ___
 ### 3.0.4
 Added gradient to Boss frames 6, 7 and 8 for Retail  
@@ -2755,7 +2886,7 @@ Fixed shadows error related to unitframes
 ___
 ### 2.5.0
 Added a check for resolution for pet unitframe  
-Enabled buffs and debuffs on pet unitframe for DPS/Tank profile   
+Enabled buffs and debuffs on pet unitframe for DPS/Tank profile  
 Changed castbar on Healer profile to fit the shadows, this change will be pushed if you login with the healer profile after updating  
 Added a button in Eltruism > Media to swap action paging and visibility for Action Bar 1 and Action Bar 4  
 Added more checks before creating shadows to prevent errors  
