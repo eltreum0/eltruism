@@ -1906,5 +1906,6 @@ P.ElvUI_EltreumUI = {
 			b = 0.70,
 		},
 		bagProfessionIcons = false,
+		ClickCastingShortcut = true,
 	},
 }

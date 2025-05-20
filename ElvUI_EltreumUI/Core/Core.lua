@@ -630,57 +630,61 @@ if SettingsPanel and not SettingsPanel:HasScript("OnDragStart") then
 end
 
 --click casting button toggle
-if E.Retail then
-	local clickbindopenbutton = CreateFrame("Button", "EltruismClickCastingToggle")
-	clickbindopenbutton:SetWidth(32)
-	clickbindopenbutton:SetHeight(32)
-	S:HandleButton(clickbindopenbutton)
-	local bindexture = clickbindopenbutton:CreateTexture()
-	--bindexture:SetTexture(4238928)
-	bindexture:SetTexture("interface\\cursor\\crosshair\\cast")
-	bindexture:SetTexCoord(0.08,0.92,0.08,0.92)
-	bindexture:SetAllPoints(clickbindopenbutton)
-	clickbindopenbutton:RegisterForClicks("AnyUp")
+local clickbindopenbutton, bindexture,clickcastingmonitor
+function ElvUI_EltreumUI:ClickCastingShortcut()
+	if not E.db.ElvUI_EltreumUI.otherstuff.ClickCastingShortcut then return end
+	if not _G["EltruismClickCastingToggle"] then
+		clickbindopenbutton = CreateFrame("Button", "EltruismClickCastingToggle")
+		bindexture = clickbindopenbutton:CreateTexture("EltruismClickCastingToggleTexture")
+		clickbindopenbutton:SetWidth(32)
+		clickbindopenbutton:SetHeight(32)
+		S:HandleButton(clickbindopenbutton)
+		--bindexture:SetTexture(4238928)
+		bindexture:SetTexture("interface\\cursor\\crosshair\\cast")
+		bindexture:SetTexCoord(0.08,0.92,0.08,0.92)
+		bindexture:SetAllPoints(clickbindopenbutton)
+		clickbindopenbutton:RegisterForClicks("AnyUp")
 
-	clickbindopenbutton:SetScript("OnEnter", function()
-		_G["GameTooltip"]:SetOwner(clickbindopenbutton, 'ANCHOR_RIGHT')
-		_G["GameTooltip"]:AddLine(L["Toggle the Click Casting Menu"])
-		_G["GameTooltip"]:Show()
-	end)
-	clickbindopenbutton:SetScript("OnLeave", function()
-		_G["GameTooltip"]:Hide()
-	end)
+		clickbindopenbutton:SetScript("OnEnter", function()
+			_G["GameTooltip"]:SetOwner(clickbindopenbutton, 'ANCHOR_RIGHT')
+			_G["GameTooltip"]:AddLine(L["Toggle the Click Casting Menu"])
+			_G["GameTooltip"]:Show()
+		end)
+		clickbindopenbutton:SetScript("OnLeave", function()
+			_G["GameTooltip"]:Hide()
+		end)
 
-	local clickcastingmonitor = CreateFrame("frame")
-	clickcastingmonitor:RegisterEvent("ADDON_LOADED") --add option to disable this
-	clickcastingmonitor:SetScript("OnEvent", function(_,_,addon)
-		if (addon == "Blizzard_PlayerSpells") or IsAddOnLoaded("Blizzard_PlayerSpells") then
-			if not InCombatLockdown() then
-				SetCVar("enableMouseoverCast", 1) --this will prevent people not having mouse over cast if the blizzard addon is loaded
-			end
-			clickcastingmonitor:UnregisterEvent("ADDON_LOADED")
-			clickbindopenbutton:SetParent(_G["PlayerSpellsFrame"])
-			clickbindopenbutton:SetPoint("LEFT", _G["PlayerSpellsFrame"], "TOPRIGHT", 0, -80)
-			clickbindopenbutton:SetScript('OnClick', function()
-				if not IsAddOnLoaded("Blizzard_ClickBindingUI") then
-					LoadAddOn("Blizzard_ClickBindingUI")
-					if not _G["ClickBindingFrame"].shadow then
-						_G["ClickBindingFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(_G["ClickBindingFrame"].shadow)
+		clickcastingmonitor = CreateFrame("FRAME","EltruismClickCastingAddOnMonitor")
+		clickcastingmonitor:RegisterEvent("ADDON_LOADED") --add option to disable this
+		clickcastingmonitor:SetScript("OnEvent", function(_,_,addon)
+			if (addon == "Blizzard_PlayerSpells") or IsAddOnLoaded("Blizzard_PlayerSpells") then
+				if not InCombatLockdown() then
+					SetCVar("enableMouseoverCast", 1) --this will prevent people not having mouse over cast if the blizzard addon is loaded
+				end
+				clickcastingmonitor:UnregisterEvent("ADDON_LOADED")
+				clickbindopenbutton:SetParent(_G["PlayerSpellsFrame"])
+				clickbindopenbutton:SetPoint("LEFT", _G["PlayerSpellsFrame"], "TOPRIGHT", 0, -80)
+				clickbindopenbutton:SetScript('OnClick', function()
+					if not IsAddOnLoaded("Blizzard_ClickBindingUI") then
+						LoadAddOn("Blizzard_ClickBindingUI")
+						if not _G["ClickBindingFrame"].shadow then
+							_G["ClickBindingFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G["ClickBindingFrame"].shadow)
+						end
 					end
-				end
-				if not _G["ClickBindingFrame"]:IsShown() then
-					_G["ClickBindingFrame"]:Show()
-				elseif _G["ClickBindingFrame"]:IsShown() then
-					_G["ClickBindingFrame"]:Hide()
-					_G["PlayerSpellsFrame"]:Show()
-				end
-				_G["ClickBindingFrame"]:ClearAllPoints()
-				_G["ClickBindingFrame"]:SetParent(_G["PlayerSpellsFrame"])
-				_G["ClickBindingFrame"]:SetPoint("LEFT", _G["PlayerSpellsFrame"], "RIGHT", 50, -37)
-			end)
-		end
-	end)
+					if not _G["ClickBindingFrame"]:IsShown() then
+						_G["ClickBindingFrame"]:Show()
+					elseif _G["ClickBindingFrame"]:IsShown() then
+						_G["ClickBindingFrame"]:Hide()
+						_G["PlayerSpellsFrame"]:Show()
+					end
+					_G["ClickBindingFrame"]:ClearAllPoints()
+					_G["ClickBindingFrame"]:SetParent(_G["PlayerSpellsFrame"])
+					_G["ClickBindingFrame"]:SetPoint("LEFT", _G["PlayerSpellsFrame"], "RIGHT", 50, -37)
+				end)
+			end
+		end)
+	end
 end
 
 --shadow and light compatibility check

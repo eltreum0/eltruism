@@ -1754,6 +1754,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundselect = ACH:Select(SOUND, nil, 19, { ["tts"] = L["Text to Speech"], ["sharedmedia"] = CUSTOM, }, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype = value end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable end)
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundselect.style = "radio"
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundLSM = ACH:SharedMediaSound(L["Select a Sound"], L["Choose a Sound from SharedMedia files"], 20, "double", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsound end, function(_,key) E.db.ElvUI_EltreumUI.otherstuff.mailsound = key E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.otherstuff.mailsoundenable or E.db.ElvUI_EltreumUI.otherstuff.mailsoundtype == "tts" end)
+
+
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailsoundTTS = ACH:Input(L["Text to Speech announcement"], nil, 21, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext end, function(_, value)
 		E.db.ElvUI_EltreumUI.otherstuff.mailsoundttstext = tostring(value)
 		if E.db.ElvUI_EltreumUI.otherstuff.mailsoundttsvoice ~= nil then
@@ -1773,6 +1775,8 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.mailAnimation = ACH:Toggle(L["Enable Mail Animation"], L["Play a Blizzard animation when receiving mail or when new mail exists"], 25, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.mailAnimation end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.mailAnimation = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.description10 = ACH:Description(_G.TRADE_SKILLS, 26, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.misc.args.general.args.bagProfessionIcons = ACH:Toggle(L["Add Profession Buttons to Bags"], nil, 27, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.bagProfessionIcons end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.bagProfessionIcons = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.description11 = ACH:Description(L["Click Casting Button"], 30, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.misc.args.general.args.ClickCastingShortcut = ACH:Toggle(L["Add a shortcut to open the Click Casting menu on the Spellbook"], nil, 31, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.ClickCastingShortcut end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.ClickCastingShortcut = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
 	ElvUI_EltreumUI.Options.args.misc.args.combat = ACH:Group(L["Combat"], nil, 2)
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.description1 = ACH:Description(L["Show Buffs in Arena and hide them outside (will overwrite Eltruism default settings)"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.misc.args.combat.args.arenabuffs = ACH:Toggle(L["Enable"], nil, 2, nil, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.arenabuffs end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.arenabuffs = value E:StaticPopup_Show('CONFIG_RL') end)
@@ -3424,7 +3428,7 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.hidezone = ACH:Toggle(L["Hide Zone Text"], L["Hide the text that appears when changing zones"], 11, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hidezone end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hidezone = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.hidealert = ACH:Toggle(L["Hide Alert Frame"], L["Hide the Alert Frame that appears when looting a rare item or earning an achievement"], 12, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hidealert end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hidealert = value E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.hideboss = ACH:Toggle(L["Hide Boss Banner Frame"], L["Hide the boss banner that appears when killing a raid boss or completing a Mythic+ dungeon"], 13, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hideboss = value E:StaticPopup_Show('CONFIG_RL') end, not E.Retail)
-	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.hideeventoaster = ACH:Toggle(L["Hide Event Toaster Frame"], L["Hide the toaster frame, such as when you level up"], 13, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hideeventoaster end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hideeventoaster = value E:StaticPopup_Show('CONFIG_RL') end, nil, E.Classic) ----?????
+	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.hideeventoaster = ACH:Toggle(L["Hide Event Toaster Frame"], L["Hide the toaster frame, such as when you level up"], 13, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.blizzframes.hideeventoaster end, function(_, value) E.db.ElvUI_EltreumUI.skins.blizzframes.hideeventoaster = value E:StaticPopup_Show('CONFIG_RL') end, nil, E.Classic)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.description4 = ACH:Description(L["Skin Level Up, Boss Loot and Instance Entrance frames to be class colored"], 14, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.skinlevelbossinstance = ACH:Toggle(L["Enable"], L["Enable the Skins"], 15, nil, false, "full", function() return E.db.ElvUI_EltreumUI.skins.levelbossinstance end, function(_, value) E.db.ElvUI_EltreumUI.skins.levelbossinstance = value E:StaticPopup_Show('CONFIG_RL') end, nil, not E.Retail)
 	ElvUI_EltreumUI.Options.args.skins.args.general.args.blizzard.args.description5 = ACH:Description(L["Remove Blizzard's Boss Emote Frame"], 16, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Classic)
@@ -3962,26 +3966,35 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added an option to disable interaction with Friendly Nameplates inside Instances
-Added options to change the Friendly Nameplate size inside instances
-Added Arena Borders
-Added Nameplate Borders
+Added enableMouseoverCast CVar to the cvar list due to it being needed for mouse over casts with Clique
+Added OverwatchHQ, OverwatchLQ, OverwatchLQ2 and OverwatchLQFlip statusbar textures
+Added an option to allow the Backdrop Texture in unitframes to not change size
+Added an option to disable the Click Casting Button on the spellbook in Retail
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Classic to use the same AFK music api as Cataclysm
-Updated the Warrior Combat Indicator
+Updated how keybinds are set for the Quest Item Bar, now making use of the ElvUI keybind mode /kb
+Updated how some movers are created to avoid issues with MoveAnything and similar Addons
+Updated Chat Race Icons to be enabled with the default profile if using other settings
+Updated Keybind text in Quest Item Bar to use ElvUI Action Bar 1 text settings
+Updated RareScanner skin to avoid overlapping texts in the Quest Frame
+Updated Unitframe Backdrop Texture to be able to be changed more often
+Updated how Unitframe Backdrop Texture is applied in Light Mode
+Updated OmniCD to be able to be used in Classic
+Updated BigWigs profile to use the new format
+Updated Shadow and Light profile
 Updated German locale by Dlarge
-Updated for Retail 11.1.5
+Updated Auctionator Skin
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue where Borders didn't work nicely with Information Panel on Top
-Fixed Archeology Bar Title Text not moving correctly
-Fixed the Spark texture on some Reversed Castbars
-Fixed an error when using French Locale
+Fixed a possible error with the Character Panel skin
+Fixed an issue with the Objective Tracker shadows
+Fixed a missing line on the option menu for skins
+Fixed a possible error with the click casting
+Fixed a possible error with the ElvUI Skin
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
