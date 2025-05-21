@@ -187,6 +187,7 @@ local TRANSLATORS = {
 	'DeepL artificial intelligence for French and Spanish translations',
 	'|cffCC3333魔能機曱 (Johnson)|r - Traditional Chinese translation',
 	'|cffCC3333Meowcactus|r - Simplified Chinese Translation',
+	'|cffCC3333ZamestoTV|r - Russian Translation',
 }
 
 -- SortList
