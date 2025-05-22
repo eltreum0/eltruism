@@ -1549,7 +1549,6 @@ L["Your World of Warcraft version is not expected to be compatible with Eltruism
 L["Your World of Warcraft version is older than Eltruism, you might run into issues!"] = "Ваша версия World of Warcraft старее, чем Eltruism, могут возникнуть проблемы!"
 L["Zone Text"] = "Текст зоны"
 L["|cffff0000Private Servers are unsupported!"] = "|cffff0000Частные серверы не поддерживаются!"
---lines after reordering
 L["Displays % - HP and a status symbol. Can be customized in Eltruism > Media"] = "Отображает % - HP и символ статуса. Можно настроить в Eltruism > Медиа"
 L["Frequently Asked Questions"] = "Часто задаваемые вопросы"
 L["How do I disable the chat hide?"] = "Как отключить скрытие чата?"
@@ -1620,3 +1619,6 @@ L["Enable static backdrop texture size"] = "Включить статическ�
 L["Backdrop Texture will not adjust to the missing health"] = "Текстура фона не будет подстраиваться под недостающее здоровье"
 L["Click Casting Button"] = "Кнопка клика для каста"
 L["Add a shortcut to open the Click Casting menu on the Spellbook"] = "Добавить ярлык для открытия меню клика для каста в книге заклинаний"
+L["Your ElvUI Version:"] = true
+L["Latest ElvUI Version:"] = true
+L["Plays a voiced emote when you have low mana as a healer. Usage: [eltruism:lowmana{5}] as an example of 5%"] = true

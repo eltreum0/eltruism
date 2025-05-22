@@ -1550,7 +1550,6 @@ L["Your World of Warcraft version is not expected to be compatible with Eltruism
 L["Your World of Warcraft version is older than Eltruism, you might run into issues!"] = "Sua versão do World of Warcraft é mais antiga que Eltruism, você pode ter problemas!"
 L["Zone Text"] = "Texto da Zona"
 L["|cffff0000Private Servers are unsupported!"] = "|cffff0000Servidores Privados não são suportados!"
---lines after reordering
 L["Displays % - HP and a status symbol. Can be customized in Eltruism > Media"] = "Exibe % - HP e um símbolo de status. Pode ser personalizado em Eltruism > Mídia"
 L["Frequently Asked Questions"] = "Perguntas frequentes"
 L["How do I disable the chat hide?"] = "Como faço para desativar a ocultação do bate-papo?"
@@ -1621,3 +1620,5 @@ L["Enable static backdrop texture size"] = true
 L["Backdrop Texture will not adjust to the missing health"] = true
 L["Click Casting Button"] = true
 L["Add a shortcut to open the Click Casting menu on the Spellbook"] = true
+L["Your ElvUI Version:"] = true
+L["Latest ElvUI Version:"] = true
