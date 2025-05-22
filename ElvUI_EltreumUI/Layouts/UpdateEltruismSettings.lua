@@ -32,6 +32,8 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.chat.itemlevels = true
 		E.db.ElvUI_EltreumUI.chat.rollsound = true
 		E.db.ElvUI_EltreumUI.chat.chattoggles = true
+		E.db.ElvUI_EltreumUI.chat.chatraceicon = true
+		E.db.ElvUI_EltreumUI.chat.chaticonenable = true
 
 		-- Nameplates
 		E.db.ElvUI_EltreumUI.nameplates.nameplatepower.autoadjustposition = true
