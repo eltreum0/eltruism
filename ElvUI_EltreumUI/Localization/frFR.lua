@@ -1550,7 +1550,6 @@ L["Your World of Warcraft version is not expected to be compatible with Eltruism
 L["Your World of Warcraft version is older than Eltruism, you might run into issues!"] = "Votre version de World of Warcraft est plus ancienne que celle d'Eltruism, vous risquez de rencontrer des problèmes !"
 L["Zone Text"] = "Texte de la zone"
 L["|cffff0000Private Servers are unsupported!"] = "|cffff0000Les serveurs privés ne sont pas pris en charge!"
---lines after reordering
 L["Displays % - HP and a status symbol. Can be customized in Eltruism > Media"] = "Affiche % - HP et un symbole d'état. Peut être personnalisé dans Eltruism > Media"
 L["Frequently Asked Questions"] = "Questions fréquemment posées"
 L["How do I disable the chat hide?"] = "Comment désactiver le masquage du chat ?"
@@ -1616,8 +1615,10 @@ L["Customize Friendly Healthbar Width"] = "Personnaliser la largeur de la barre 
 L["Change the Healthbar Width on Friendly Nameplates inside Instances"] = "Modifier la largeur de la barre de santé sur les plaques d'identité amicales à l'intérieur des instances"
 L["Nameplate Health Bar Border"] = "Barre de santé de la plaque d'identité Bordure de la barre de santé"
 L["Nameplate Health Bar Thickness"] = "Barre de santé de la plaque d'identité Épaisseur de la barre de santé"
-L["Backdrop Texture Behavior"] = true
-L["Enable static backdrop texture size"] = true
-L["Backdrop Texture will not adjust to the missing health"] = true
-L["Click Casting Button"] = true
-L["Add a shortcut to open the Click Casting menu on the Spellbook"] = true
+L["Backdrop Texture Behavior"] = 'Comportement de la texture de la toile de fond'
+L["Enable static backdrop texture size"] = "Activer la taille statique de la texture de la toile de fond"
+L["Backdrop Texture will not adjust to the missing health"] = "La texture de la toile de fond ne s'adaptera pas à la santé manquante."
+L["Click Casting Button"] = "Bouton d'incantation par clic"
+L["Add a shortcut to open the Click Casting menu on the Spellbook"] = "Ajouter un raccourci pour ouvrir le menu Click Casting sur le Spellbook"
+L["Your ElvUI Version:"] = "Votre version d'ElvUI:"
+L["Latest ElvUI Version:"] = "Dernière version d'ElvUI:"

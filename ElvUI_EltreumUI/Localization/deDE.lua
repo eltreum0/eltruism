@@ -1620,3 +1620,5 @@ L["Enable static backdrop texture size"] = "Statische Hintergrundtexturgröße a
 L["Backdrop Texture will not adjust to the missing health"] = "Die Hintergrundtextur wird sich nicht an die fehlende Gesundheit anpassen"
 L["Click Casting Button"] = "Klicke Zaubertaste"
 L["Add a shortcut to open the Click Casting menu on the Spellbook"] = "Füge eine Verknüpfung hinzu, um das Klick Zauber-Menü im Zauberbuch zu öffnen"
+L["Your ElvUI Version:"] = true
+L["Latest ElvUI Version:"] = true

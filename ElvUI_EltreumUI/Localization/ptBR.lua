@@ -1550,7 +1550,6 @@ L["Your World of Warcraft version is not expected to be compatible with Eltruism
 L["Your World of Warcraft version is older than Eltruism, you might run into issues!"] = "Sua versão do World of Warcraft é mais antiga que Eltruism, você pode ter problemas!"
 L["Zone Text"] = "Texto da Zona"
 L["|cffff0000Private Servers are unsupported!"] = "|cffff0000Servidores Privados não são suportados!"
---lines after reordering
 L["Displays % - HP and a status symbol. Can be customized in Eltruism > Media"] = "Exibe % - HP e um símbolo de status. Pode ser personalizado em Eltruism > Mídia"
 L["Frequently Asked Questions"] = "Perguntas frequentes"
 L["How do I disable the chat hide?"] = "Como faço para desativar a ocultação do bate-papo?"
@@ -1616,8 +1615,10 @@ L["Customize Friendly Healthbar Width"] = "Personalizar a Largura da Barra de Sa
 L["Change the Healthbar Width on Friendly Nameplates inside Instances"] = "Alterar a largura da barra de saúde em placas de identificação de amigos dentro de instâncias"
 L["Nameplate Health Bar Border"] = "Borda da Barra de Saúde da Placa de Identificação"
 L["Nameplate Health Bar Thickness"] = "Espessura da Barra de Saúde da Placa de Identificação"
-L["Backdrop Texture Behavior"] = true
-L["Enable static backdrop texture size"] = true
-L["Backdrop Texture will not adjust to the missing health"] = true
-L["Click Casting Button"] = true
-L["Add a shortcut to open the Click Casting menu on the Spellbook"] = true
+L["Backdrop Texture Behavior"] = "Comportamento da textura de fundo"
+L["Enable static backdrop texture size"] = "Ativar o tamanho estático da textura de fundo"
+L["Backdrop Texture will not adjust to the missing health"] = "A textura de fundo não se ajustará à saúde ausente"
+L["Click Casting Button"] = "Botão de conjuração por clique"
+L["Add a shortcut to open the Click Casting menu on the Spellbook"] = "Adicione um atalho para abrir o menu Click Casting no Livro de Feitiços"
+L["Your ElvUI Version:"] = "Sua versão do ElvUI:"
+L["Latest ElvUI Version:"] = "Versão mais recente do ElvUI:"
