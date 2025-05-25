@@ -1064,8 +1064,8 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 			if E.db.unitframe.units.boss.enable then
 				for i = 1, 8 do
 					if UnitExists("boss"..i) then
-						local _, bossclass = UnitClass("pet")
-						local reactionboss = UnitReaction("pet", "player")
+						local _, bossclass = UnitClass("boss"..i)
+						local reactionboss = UnitReaction("boss"..i, "player")
 						local bosscastbar = _G["ElvUF_Boss"..i.."_CastBar"]
 						if bosscastbar then
 
