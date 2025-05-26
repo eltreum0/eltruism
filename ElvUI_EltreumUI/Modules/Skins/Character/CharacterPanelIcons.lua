@@ -180,7 +180,7 @@ EltruismCharacterPanelEventFrame:SetScript("OnEvent", function()
 
 		classsymbolonframe = ElvUI_EltreumUI:GetClassIcons(E.db.ElvUI_EltreumUI.skins.classiconsstyle,E.myclass,false,"32")
 
-		if E.Retail or E.Cata then
+		if E.Retail or E.Cata or E.Mists then
 			if _G.CharacterFrameTitleText:GetText() ~= nil and not (_G.CharacterFrameTitleText:GetText():match("|T")) then
 				if E.db.ElvUI_EltreumUI.skins.characterskingradients then
 					_G.CharacterFrameTitleText:SetText(classsymbolonframe.." "..ElvUI_EltreumUI:GradientName(_G.CharacterFrameTitleText:GetText(), E.myclass))
