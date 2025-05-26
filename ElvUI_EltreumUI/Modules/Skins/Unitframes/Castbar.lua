@@ -1061,6 +1061,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 				end
 			end
 
+			--boss
 			if E.db.unitframe.units.boss.enable then
 				for i = 1, 8 do
 					if UnitExists("boss"..i) then
