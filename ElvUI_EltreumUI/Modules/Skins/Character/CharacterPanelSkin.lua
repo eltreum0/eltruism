@@ -65,7 +65,7 @@ if E.Retail then
 	CharacterFrame.EltruismSpeedDescTooltip = CreateFrame("Frame", "EltruismSpeedDesc")
 end
 
-if E.Cata or E.Classic then
+if not E.Retail then
 	CharacterFrame.Text = CharacterFrame:CreateFontString("EltruismIlvlBanner", "OVERLAY", "GameFontNormal")
 	CharacterFrame.Text2 = CharacterFrame:CreateFontString("EltruismIlvlText", "OVERLAY", "GameFontNormal")
 	CharacterFrame.Text3 = CharacterFrame:CreateFontString("EltruismAttributes", "OVERLAY", "GameFontNormal")
@@ -375,7 +375,7 @@ if not E.Retail then
 		end
 	end)
 
-	if E.Cata then
+	if E.Cata or E.Mists then
 		local catadualspec = CreateFrame("FRAME")
 		catadualspec:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 		catadualspec:RegisterEvent("PLAYER_TALENT_UPDATE")
@@ -1344,7 +1344,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 			end
 		end)
-	elseif E.Cata then
+	elseif E.Cata or E.Mists then
 
 		local function HandleCharacterPanelSize()
 			if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
@@ -2506,7 +2506,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 					qualityAnchor.Frame.Quality = qualityAnchor.Frame:CreateTexture("EltruismItemQualityTexture"..InvSlotName, "OVERLAY")
 				end
 
-				if E.Retail or E.Cata then
+				if E.Retail or E.Cata or E.Mists then
 					qualityAnchor.Frame:SetFrameLevel(2) --retail works fine
 					if E.db.ElvUI_EltreumUI.skins.classicarmory then
 						qualityAnchor.Frame:SetSize(200, _G["Character"..InvSlotName]:GetHeight() + 2)
@@ -2720,7 +2720,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									self.EltruismInspectHook = true
 								end
 
-								if E.Cata then
+								if E.Cata or E.Mists then
 									if not self.EltruismInspectHookCata then
 										_G.InspectTalentFrame:HookScript("OnShow", function()
 											if InCombatLockdown() then
@@ -2757,7 +2757,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 												end
 												--increase the size of the background
 												if _G.InspectTalentFrameBackgroundTopLeft then
-													if E.Cata then
+													if E.Cata or E.Mists then
 														if _G.InspectTalentFrameScrollFrame.backdrop then
 															_G.InspectTalentFrameScrollFrame.backdrop:Kill()
 														end
@@ -2975,7 +2975,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					end
 
 					EltruismInspectBgTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
-					if E.Cata or E.Classic then
+					if not E.Retail then
 						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop)
 						EltruismInspectBgTexture:SetParent(_G.InspectFrame)
 						if _G.InspectModelFrameRotateLeftButton:IsShown() then
@@ -2984,7 +2984,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 						if _G.InspectModelFrameRotateRightButton:IsShown() then
 							_G.InspectModelFrameRotateRightButton:Hide()
 						end
-					elseif E.Retail then
+					else
 						_G.InspectModelFrameBackgroundBotLeft:Hide()
 						_G.InspectModelFrameBackgroundBotRight:Hide()
 						_G.InspectModelFrameBackgroundTopLeft:Hide()
