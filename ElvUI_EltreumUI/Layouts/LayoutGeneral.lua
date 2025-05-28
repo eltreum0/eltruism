@@ -317,7 +317,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["colors"]["classResources"]["PALADIN"]["b"] = 0.050980392156863
 	E.db["unitframe"]["colors"]["classResources"]["PALADIN"]["g"] = 1
 	E.db["unitframe"]["colors"]["classResources"]["PALADIN"]["r"] = 1
-	E.db["unitframe"]["colors"]["classResources"]["WARLOCK"]["r"] = 0.58039215686275
 	--E.db["unitframe"]["colors"]["classResources"]["DEATHKNIGHT"][0]["b"] = 1
 	--E.db["unitframe"]["colors"]["classResources"]["DEATHKNIGHT"][0]["g"] = 1
 	--E.db["unitframe"]["colors"]["classResources"]["DEATHKNIGHT"][0]["r"] = 0
