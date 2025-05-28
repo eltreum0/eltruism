@@ -53,6 +53,8 @@ LSM:Register("statusbar", "OverwatchHQ", [[Interface\Addons\ElvUI_EltreumUI\Medi
 LSM:Register("statusbar", "OverwatchLQ", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\OverwatchLQ.tga]])
 LSM:Register("statusbar", "OverwatchLQ2", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\OverwatchLQ2.tga]])
 LSM:Register("statusbar", "OverwatchLQFlip", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\OverwatchLQFlip.tga]])
+LSM:Register("statusbar", "OverwatchJiberishBushido20", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\JiberishBushido1.tga]])
+LSM:Register("statusbar", "OverwatchJiberishNotBushido", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\JiberishBushido2.tga]])
 
 LSM:Register("statusbar", "Eltreum-Tapped", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-Tapped.tga]])
 LSM:Register("statusbar", "Eltreum-TappedV2", [[Interface\Addons\ElvUI_EltreumUI\Media\Statusbar\Eltreum-TappedV2.tga]])

@@ -105,7 +105,6 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["b"] = 1
 		E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["g"] = 1
 		E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["r"] = 0
-		E.db["nameplates"]["colors"]["classResources"]["WARLOCK"]["r"] = 0.58039215686275
 		E.db["nameplates"]["colors"]["classResources"]["MONK"][1]["b"] = 0.57254904508591
 		E.db["nameplates"]["colors"]["classResources"]["MONK"][1]["g"] = 1
 		E.db["nameplates"]["colors"]["classResources"]["MONK"][1]["r"] = 0.078431375324726
