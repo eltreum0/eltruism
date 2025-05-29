@@ -1622,3 +1622,4 @@ L["Click Casting Button"] = "Botão de conjuração por clique"
 L["Add a shortcut to open the Click Casting menu on the Spellbook"] = "Adicione um atalho para abrir o menu Click Casting no Livro de Feitiços"
 L["Your ElvUI Version:"] = "Sua versão do ElvUI:"
 L["Latest ElvUI Version:"] = "Versão mais recente do ElvUI:"
+L["Enable Backdrop Modifications"] = true

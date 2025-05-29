@@ -1622,3 +1622,4 @@ L["Your ElvUI Version:"] = true
 L["Latest ElvUI Version:"] = true
 L["Databars Thickness"] = true
 L["Alternative Power Thickness"] = true
+L["Enable Backdrop Modifications"] = true

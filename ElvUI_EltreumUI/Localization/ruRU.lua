@@ -1622,3 +1622,4 @@ L["Add a shortcut to open the Click Casting menu on the Spellbook"] = "Доба�
 L["Your ElvUI Version:"] = "Ваша версия ElvUI:"
 L["Latest ElvUI Version:"] = "Последняя версия ElvUI:"
 L["Plays a voiced emote when you have low mana as a healer. Usage: [eltruism:lowmana{5}] as an example of 5%"] = "Воспроизводит озвученную эмоцию, когда у вас мало маны как у целителя. Использование: [eltruism:lowmana{5}] как пример 5%"
+L["Enable Backdrop Modifications"] = true
