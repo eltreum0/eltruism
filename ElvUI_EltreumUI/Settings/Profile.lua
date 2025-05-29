@@ -1721,6 +1721,7 @@ P.ElvUI_EltreumUI = {
 			castbartexture = "Eltreum-Blank",
 			backdroptexture = "Eltreum-Blank",
 			backdroptexturestaticsize = false,
+			fliptargetbackdrop = false,
 			backdropalpha = 1,
 			healthalpha = 0.7,
 			backdrophidden = false,
@@ -1730,7 +1731,6 @@ P.ElvUI_EltreumUI = {
 			pettexture = "Eltreum-Blank",
 			targettargettargettexture = "Eltreum-Blank",
 			bosstexture = "Eltreum-Blank",
-
 			focustexture = "Eltreum-Blank",
 			deathknighttexture = "Eltreum-Class-DeathKnightV2",
 			demonhuntertexture = "Eltreum-Class-DemonHunterV2",
