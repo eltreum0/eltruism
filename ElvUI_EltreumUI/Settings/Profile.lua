@@ -259,6 +259,7 @@ P.ElvUI_EltreumUI = {
 		bagsync = false,
 		hekili = false,
 		omnicd = false,
+		omnicdshadows = true,
 		cell = false,
 		cellhealthloss = false,
 		dbm = false,

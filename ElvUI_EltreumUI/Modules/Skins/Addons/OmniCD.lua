@@ -21,22 +21,18 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 		--omnicd doesnt do normal ace new addon thing
 		local OmniCD = _G.OmniCD[1]
 
-		--icons on UF shadows, only hook if shadows are enabled
-		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+		--omnicd shadows
+		if E.db.ElvUI_EltreumUI.skins.omnicdshadows then
 			hooksecurefunc(OmniCD.Party.BarFrameIconMixin,"SetBorder",function(icon)
-				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
-					if not icon.shadow then
-						icon:CreateShadow(2) --prevent shadow overlap
-						ElvUI_EltreumUI:ShadowColor(icon.shadow)
-					end
+				if not icon.shadow then
+					icon:CreateShadow(2) --prevent shadow overlap
+					ElvUI_EltreumUI:ShadowColor(icon.shadow)
 				end
 			end)
 			hooksecurefunc(OmniCD.Party.BarFrameIconMixin,"SetExIconName",function(icon)
-				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
-					if not icon.shadow then
-						icon:CreateShadow(2) --prevent shadow overlap
-						ElvUI_EltreumUI:ShadowColor(icon.shadow)
-					end
+				if not icon.shadow then
+					icon:CreateShadow(2) --prevent shadow overlap
+					ElvUI_EltreumUI:ShadowColor(icon.shadow)
 				end
 			end)
 		end
@@ -44,16 +40,16 @@ function ElvUI_EltreumUI:EltruismOmniCD()
 		--interrupt bars shadows/gradient/position
 		hooksecurefunc(OmniCD.Party.BarFrameIconMixin,"SetBorder",function(icon)
 
-			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+			if E.db.ElvUI_EltreumUI.skins.omnicdshadows then
 				if not icon.shadow then
 					icon:CreateShadow(3) --prevent shadow overlap
 					ElvUI_EltreumUI:ShadowColor(icon.shadow)
 				end
 			end
 
-			 if icon and icon.statusBar then
+			if icon and icon.statusBar then
 				--shadows
-				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+				if E.db.ElvUI_EltreumUI.skins.omnicdshadows then
 					--omnicd name bar mode disables the BG now instead, so we need a check for that instead of the profile now
 					if icon.statusBar and (not nameBar) and not icon.statusBar.shadow then
 						icon.statusBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
