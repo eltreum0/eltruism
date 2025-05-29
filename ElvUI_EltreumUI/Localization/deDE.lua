@@ -1623,3 +1623,4 @@ L["Add a shortcut to open the Click Casting menu on the Spellbook"] = "Füge ein
 L["Your ElvUI Version:"] = "Deine ElvUI Version:"
 L["Latest ElvUI Version:"] = "Letzte ElvUI Version:"
 L["Enable Backdrop Modifications"] = true
+L["Invert Target Backdrop"] = true
