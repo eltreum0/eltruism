@@ -34,6 +34,25 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 		return
 	end
 
+	if E.db.ElvUI_EltreumUI.nameplates.backdrop.BDmodifications then
+		if unit.Health.backdrop then
+			unit.Health.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.backdrop.backdroptexture))
+			if E.db.ElvUI_EltreumUI.nameplates.backdrop.backdroptexturestaticsize then
+				unit.Health.backdrop.Center:SetAllPoints(unit.Health)
+			end
+			if E.db.ElvUI_EltreumUI.nameplates.backdrop.backdrophidden then
+				unit.Health.backdrop.LeftEdge:Hide()
+				unit.Health.backdrop.BottomLeftCorner:Hide()
+				unit.Health.backdrop.TopLeftCorner:Hide()
+				unit.Health.backdrop.RightEdge:Hide()
+				unit.Health.backdrop.BottomRightCorner:Hide()
+				unit.Health.backdrop.TopRightCorner:Hide()
+				unit.Health.backdrop.TopEdge:Hide()
+				unit.Health.backdrop.BottomEdge:Hide()
+			end
+		end
+	end
+
 	if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.enableHealthHeight then --and unit.unit:match("nameplate") then --unit is always nameplate
 		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.disableCombatConditions then
 			if UnitIsUnit(unit.unit, "target") then

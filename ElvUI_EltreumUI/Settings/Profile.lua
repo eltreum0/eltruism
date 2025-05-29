@@ -563,6 +563,12 @@ P.ElvUI_EltreumUI = {
 		disableFriendlyClick = false,
 		customizeFriendlySize = false,
 		customizeFriendlySizeX = 100,
+		backdrop = {
+			BDmodifications = false,
+			backdrophidden = false,
+			backdroptexture = "Eltreum-Blank",
+			backdroptexturestaticsize = false,
+		},
 	},
 
 	glow = {
