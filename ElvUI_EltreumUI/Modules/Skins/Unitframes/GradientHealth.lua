@@ -585,6 +585,9 @@ function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 					unitframe.Health.backdropTex:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexture))
 					if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdroptexturestaticsize then
 						unitframe.Health.backdropTex:SetAllPoints(unitframe.Health)
+						if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.fliptargetbackdrop and name == 'Target' then
+							unitframe.Health.backdropTex:SetTexCoord(1, 0, 0, 1)
+						end
 					end
 				end
 			end

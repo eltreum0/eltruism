@@ -259,6 +259,7 @@ P.ElvUI_EltreumUI = {
 		bagsync = false,
 		hekili = false,
 		omnicd = false,
+		omnicdshadows = true,
 		cell = false,
 		cellhealthloss = false,
 		dbm = false,
@@ -563,6 +564,12 @@ P.ElvUI_EltreumUI = {
 		disableFriendlyClick = false,
 		customizeFriendlySize = false,
 		customizeFriendlySizeX = 100,
+		backdrop = {
+			BDmodifications = false,
+			backdrophidden = false,
+			backdroptexture = "Eltreum-Blank",
+			backdroptexturestaticsize = false,
+		},
 	},
 
 	glow = {
@@ -1715,6 +1722,7 @@ P.ElvUI_EltreumUI = {
 			castbartexture = "Eltreum-Blank",
 			backdroptexture = "Eltreum-Blank",
 			backdroptexturestaticsize = false,
+			fliptargetbackdrop = false,
 			backdropalpha = 1,
 			healthalpha = 0.7,
 			backdrophidden = false,
@@ -1724,7 +1732,6 @@ P.ElvUI_EltreumUI = {
 			pettexture = "Eltreum-Blank",
 			targettargettargettexture = "Eltreum-Blank",
 			bosstexture = "Eltreum-Blank",
-
 			focustexture = "Eltreum-Blank",
 			deathknighttexture = "Eltreum-Class-DeathKnightV2",
 			demonhuntertexture = "Eltreum-Class-DemonHunterV2",
