@@ -54,6 +54,9 @@ function ElvUI_EltreumUI:ImproveInstall(installtype,mode,null,custom,path)
 		_G.PluginInstallFrame.Option3:SetScript('OnLeave', nil)
 		_G.PluginInstallFrame.Option4:SetScript('OnEnter', nil)
 		_G.PluginInstallFrame.Option4:SetScript('OnLeave', nil)
+		_G.PluginInstallFrame.gaptexture:Hide()
+		_G.PluginInstallFrame.classsymbol:Hide()
+		_G.PluginInstallFrame.shadow:Hide()
 	end
 	if custom then
 		_G.PluginInstallFrame.installpreview:SetTexture(path)
