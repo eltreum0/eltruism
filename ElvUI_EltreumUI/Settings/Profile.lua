@@ -1756,6 +1756,8 @@ P.ElvUI_EltreumUI = {
 			arenatexture = "Eltreum-Blank",
 
 			enableHealComm = true,
+			enableHealCommCustom = false,
+			enableHealCommTexture = "Eltreum-Blank",
 		},
 		sparkcustomcolor ={
 			enable = false,

@@ -433,11 +433,18 @@ hooksecurefunc(UF, "Style", ElvUI_EltreumUI.CustomTexture) --old target of targe
 -- replace absorb texture with unitframe texture
 function ElvUI_EltreumUI:SetTexture_HealComm(obj)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
-	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications and E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enableHealComm then
-		obj.myBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-		obj.otherBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-		obj.absorbBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
-		obj.healAbsorbBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
+		if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enableHealComm then
+			obj.myBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+			obj.otherBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+			obj.absorbBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+			obj.healAbsorbBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
+		elseif E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enableHealCommCustom then
+			obj.myBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enableHealCommTexture))
+			obj.otherBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enableHealCommTexture))
+			obj.absorbBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enableHealCommTexture))
+			obj.healAbsorbBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enableHealCommTexture))
+		end
 	end
 end
 hooksecurefunc(UF, "SetTexture_HealComm", ElvUI_EltreumUI.SetTexture_HealComm)
