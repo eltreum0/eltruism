@@ -21,7 +21,7 @@ local notexcoord = {
 
 --create and update the portraits
 local modelcheck = CreateFrame("PlayerModel", "EltruismPortraitFixModel")
-local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,SettingUpdate)
+local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,f)
 	if not frame then return end
 	if not frame.USE_PORTRAIT then return end
 	if not frame.unit then return end
@@ -139,7 +139,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 		frame.EltruismPortrait.background:SetVertexColor(1,0,0,0)
 	end
 
-	if (update or SettingUpdate) then
+	if update then
 		--if not UnitExists(frame.unit) then return end
 		if not isPlayerCustom or (E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcircle and isPlayerCustom) then
 			frame.EltruismPortrait.portrait:SetMask("")
@@ -153,7 +153,7 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 			frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
 
 			if not isPlayerCustom then
-				if (ElvUI_EltreumUI:ShouldRotatePortrait(model) or db == "pet") and db ~= "player" and (db ~= "party" or (db == "party" and E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align == "RIGHT")) then
+				if (ElvUI_EltreumUI:ShouldRotatePortrait(model) or db == "pet") and db ~= "player" and db ~= "boss" and (db ~= "party" or (db == "party" and E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align == "RIGHT")) then
 					frame.EltruismPortrait.portrait:SetTexCoord(1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
 				else
 					frame.EltruismPortrait.portrait:SetTexCoord(E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale, 1 - E.db.ElvUI_EltreumUI.unitframes.portrait[db].scale)
@@ -289,8 +289,15 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 				end
 				frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
 			else
+				frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\clearmask.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+				frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
 				frame.EltruismPortrait.portrait:SetMask("")
+				frame.EltruismPortrait.border:Hide()
+				--frame.EltruismPortrait.portrait:SetMask("")
 			end
+		else
+			frame.EltruismPortrait.border:Show()
+			frame.EltruismPortrait.edge:SetAlpha(1)
 		end
 
 		if invert then
@@ -310,30 +317,9 @@ local function CreatePorfraitFrameAndTexture(frame,name,invert,update,db,Setting
 				end
 			end
 		end
-	end
 
-	if SettingUpdate then
 		frame.EltruismPortrait:SetPoint("CENTER", frame, tostring(E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.align), E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.x, E.db.ElvUI_EltreumUI.unitframes.portrait[db].position.y)
 		frame.EltruismPortrait:SetSize(E.db.ElvUI_EltreumUI.unitframes.portrait[db].size,E.db.ElvUI_EltreumUI.unitframes.portrait[db].size)
-
-		if isPlayerCustom then
-			frame.EltruismPortrait.border:Hide()
-			frame.EltruismPortrait.rare:SetAlpha(0)
-			frame.EltruismPortrait.edge:SetAlpha(0)
-			frame.EltruismPortrait.portrait:SetMask("")
-			if E.db.ElvUI_EltreumUI.unitframes.portrait[db].customcircle then
-				frame.EltruismPortrait.border:Show()
-				frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
-			else
-				frame.EltruismPortrait.Mask:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Portrait\\clearmask.tga", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
-				frame.EltruismPortrait.portrait:AddMaskTexture(frame.EltruismPortrait.Mask)
-				frame.EltruismPortrait.portrait:SetMask("")
-				frame.EltruismPortrait.border:Hide()
-			end
-		else
-			frame.EltruismPortrait.border:Show()
-			frame.EltruismPortrait.edge:SetAlpha(1)
-		end
 
 		if not E.db.ElvUI_EltreumUI.unitframes.portrait[db].rare or E.db.ElvUI_EltreumUI.unitframes.portrait[db].type ~= "CIRCLE" or isPlayerCustom then
 			frame.EltruismPortrait.rare:SetTexture()
@@ -442,6 +428,11 @@ function ElvUI_EltreumUI:BlizzPortraits(unit,hasStateChanged)
 				CreatePorfraitFrameAndTexture(_G["ElvUF_FocusTarget"],"ElvUF_FocusTarget",false,hasStateChanged,"focustarget")
 			end
 		end
+		for i = 1, 8 do
+			if _G["ElvUF_Boss"..i] and _G["ElvUF_Boss"..i].unit then
+				CreatePorfraitFrameAndTexture(_G["ElvUF_Boss"..i],"ElvUF_Boss"..i,false,true,"boss")
+			end
+		end
 		if IsInGroup() and not IsInRaid() then
 			for i = 1, 5 do
 				if _G["ElvUF_PartyGroup1UnitButton"..i] and _G["ElvUF_PartyGroup1UnitButton"..i].unit then
@@ -463,21 +454,25 @@ function ElvUI_EltreumUI:BlizzPortraitsGroup(frame)
 		if not frame.USE_PORTRAIT then return end
 		if not frame:GetName() then return end
 		if frame:GetName():match("PartyGroup") and not frame:GetName():match("Pet") then
-			E:Delay(0, function() CreatePorfraitFrameAndTexture(_G[tostring(frame:GetName())],tostring(frame:GetName()),false,true,"party") end)
+			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,tostring(frame:GetName()),false,true,"party") end)
 		end
 		if frame:GetName():match("Focus") then
-			E:Delay(0, function() CreatePorfraitFrameAndTexture(_G[tostring(frame:GetName())],tostring(frame:GetName()),false,true,tostring(frame.unit)) end)
+			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,tostring(frame:GetName()),false,true,tostring(frame.unit)) end)
 		end
 		if frame:GetName():match("FocusTarget") then
-			E:Delay(0, function() CreatePorfraitFrameAndTexture(_G[tostring(frame:GetName())],tostring(frame:GetName()),false,true,"focustarget") end)
+			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,tostring(frame:GetName()),false,true,"focustarget") end)
 		end
 		if frame:GetName():match("TargetTarget") then
-			E:Delay(0, function() CreatePorfraitFrameAndTexture(_G[tostring(frame:GetName())],tostring(frame:GetName()),true,true,"targettarget") end)
+			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,tostring(frame:GetName()),true,true,"targettarget") end)
+		end
+		if frame:GetName():match("Boss") then
+			E:Delay(0, function() CreatePorfraitFrameAndTexture(frame,tostring(frame:GetName()),false,true,"boss") end)
 		end
 	end
 end
 hooksecurefunc(UF,"Configure_Portrait", ElvUI_EltreumUI.BlizzPortraitsGroup)
 hooksecurefunc(UF,"Update_PartyFrames", ElvUI_EltreumUI.BlizzPortraitsGroup)
+hooksecurefunc(UF,"Update_BossFrames", ElvUI_EltreumUI.BlizzPortraitsGroup)
 
 --function to update portrait when settings change
 function ElvUI_EltreumUI:BlizzPortraitSettingUpdate(unit)
@@ -506,6 +501,13 @@ function ElvUI_EltreumUI:BlizzPortraitSettingUpdate(unit)
 		end
 		if unit == "focustarget" then
 			CreatePorfraitFrameAndTexture(_G["ElvUF_FocusTarget"],"ElvUF_FocusTarget",false,true,"focustarget",true)
+		end
+		if unit == "boss" then
+			for i = 1, 8 do
+				if _G["ElvUF_Boss"..i] and _G["ElvUF_Boss"..i].unit then
+					CreatePorfraitFrameAndTexture(_G["ElvUF_Boss"..i],"ElvUF_Boss"..i,false,true,"boss",true)
+				end
+			end
 		end
 	end
 end
