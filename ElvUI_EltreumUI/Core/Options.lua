@@ -4061,36 +4061,27 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added enableMouseoverCast CVar to the cvar list due to it being needed for mouse over casts with Clique
-Added OverwatchHQ, OverwatchLQ, OverwatchLQ2 and OverwatchLQFlip statusbar textures
-Added an option to allow the Backdrop Texture in unitframes to not change size
-Added an option to disable the Click Casting Button on the spellbook in Retail
+Added an option to set a custom texture for the absorb/healcomm on the unitframe
+Added options to enable the static backdrop size in Nameplates
+Added an option to flip the target unitframe backdrop texture
+Added an option to disable shadows in the OmniCD skin
+Added portraits to the Boss unitframe
+Added Russian locale by ZamestoTV
+Added gradient to Boss Castbars
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated how keybinds are set for the Quest Item Bar, now making use of the ElvUI keybind mode /kb
-Updated how some movers are created to avoid issues with MoveAnything and similar Addons
-Updated Chat Race Icons to be enabled with the default profile if using other settings
-Updated Keybind text in Quest Item Bar to use ElvUI Action Bar 1 text settings
-Updated RareScanner skin to avoid overlapping texts in the Quest Frame
-Updated Unitframe Backdrop Texture to be able to be changed more often
-Updated how Unitframe Backdrop Texture is applied in Light Mode
-Updated OmniCD to be able to be used in Classic
-Updated BigWigs profile to use the new format
-Updated Shadow and Light profile
-Updated German locale by Dlarge
-Updated Auctionator Skin
+Updated Portraits function to enable the required 3D model when enabling the portrait
+Updated profile to remove some references to warlock class resource colors
+Updated the chat Race icon to be disabled by default
+Updated German locale
+Updated for 11.1.7
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed a possible error with the Character Panel skin
-Fixed an issue with the Objective Tracker shadows
-Fixed a missing line on the option menu for skins
-Fixed a possible error with the click casting
-Fixed a possible error with the ElvUI Skin
-Fixed an issue where chat could error
+Fixed an issue where classbar shadows would not work when detached
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
