@@ -37,7 +37,8 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 		else
 
 			if not _G.MirrorTimerMover then --return of the mirror timer mover
-				E:CreateMover(_G.MirrorTimerContainer, 'MirrorTimerMover', L["MirrorTimer"], nil, nil, nil, 'ALL,SOLO')
+				--E:CreateMover(_G.MirrorTimerContainer, 'MirrorTimerMover', L["MirrorTimer"], nil, nil, nil, 'ALL,SOLO')
+				E:CreateMover(_G.MirrorTimerContainer, 'MirrorTimerMover', L["MirrorTimer"], nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,skins,general,blizzard')
 			end
 
 			if not _G.MirrorTimerContainer.EltruismHook then
