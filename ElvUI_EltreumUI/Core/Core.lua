@@ -276,6 +276,11 @@ function ElvUI_EltreumUI:Anchors()
 	if E.Retail then
 		E:CreateMover(_G.RaidBossEmoteFrame, "MoverRaidBossEmoteFrame", "Raid/Boss Emote Frame", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
 		E:CreateMover(EltreumArcheologyAnchor, "MoverEltreumArcheologyAnchor", "EltruismArcheology", nil, nil, nil, "ALL,SOLO,ELTREUMUI")
+
+		--recreate the mirror timer mover
+		--E:CreateMover(_G.MirrorTimerContainer, 'MirrorTimerMover', L["MirrorTimer"], nil, nil, nil, 'ALL,SOLO')
+		E:CreateMover(_G.MirrorTimerContainer, 'MirrorTimerMover', L["MirrorTimer"], nil, nil, nil, "ALL,SOLO,ELTREUMUI", nil, 'ElvUI_EltreumUI,skins,general,blizzard')
+
 		_G.ArcheologyDigsiteProgressBar:BreakFromFrameManager()
 		_G.ArcheologyDigsiteProgressBar:ClearAllPoints()
 		_G.ArcheologyDigsiteProgressBar:SetPoint("CENTER", _G["EltruismArcheology"], "CENTER", 0, 0)
