@@ -35,12 +35,12 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 				end
 			end
 		else
+
+			if not _G.MirrorTimerMover then --return of the mirror timer mover
+				E:CreateMover(_G.MirrorTimerContainer, 'MirrorTimerMover', L["MirrorTimer"], nil, nil, nil, 'ALL,SOLO')
+			end
+
 			if not _G.MirrorTimerContainer.EltruismHook then
-
-				if not _G.MirrorTimerMover then --return of the mirror timer mover
-					E:CreateMover(_G.MirrorTimerContainer, 'MirrorTimerMover', L["MirrorTimer"], nil, nil, nil, 'ALL,SOLO')
-				end
-
 				hooksecurefunc(_G.MirrorTimerContainer, 'SetupTimer', function(container, timer) --based on elvui
 					_G.MirrorTimerContainer.EltruismHook = true
 					local bar = container:GetAvailableTimer(timer)
