@@ -1,5 +1,6 @@
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
+local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
