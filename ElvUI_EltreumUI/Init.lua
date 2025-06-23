@@ -113,6 +113,9 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 		end
 		ElvUI_EltreumUI:SkinProfessions() --makes professions wider
 	end
+	if E.Mists then
+		ElvUI_EltreumUI.Spec = _G.C_SpecializationInfo.GetSpecialization()
+	end
 	if not E.Classic then
 		ElvUI_EltreumUI:DungeonRoleIcons() -- add spec icons to the lfg frame
 	end
