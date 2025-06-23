@@ -97,9 +97,11 @@ local function EltruismStatsDatatextOnEnter()
 		statnerf = statnerf1
 	end
 
+	--GetSpellCritChance(value or none at all)
+
 	if E.Retail then
 		local retailhaste = GetHaste()
-		local retailcrit = GetCritChance()
+		local retailcrit = math.max(GetCritChance(),GetSpellCritChance())
 		local versdmg = GetCombatRatingBonus(29) + GetVersatilityBonus(29)
 		local versdef = GetCombatRatingBonus(31) + GetVersatilityBonus(31)
 		local avoidance = GetAvoidance()
@@ -145,7 +147,7 @@ local function EltruismStatsDatatextOnEnter()
 			if E.Classic then
 				DT.tooltip:AddDoubleLine(RANGED_ATTACK_POWER..":", ElvUI[1].media.hexvaluecolor..totalranged.."|r", 1, 1, 1)
 			else
-				DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMastery()).."|r", 1, 1, 1)
+				DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMasteryEffect()).."|r", 1, 1, 1)
 			end
 			if not E.Classic then
 				DT.tooltip:AddDoubleLine(ITEM_MOD_HIT_RANGED_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetCombatRatingBonus(7)).."|r",1,1,1) --GetCombatRatingBonus(CR_HIT_RANGED)
@@ -162,7 +164,7 @@ local function EltruismStatsDatatextOnEnter()
 			if E.Classic then
 				DT.tooltip:AddDoubleLine(ITEM_MOD_SPELL_POWER_SHORT..":", ElvUI[1].media.hexvaluecolor..spellpower.."|r", 1, 1, 1)
 			else
-				DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMastery()).."|r", 1, 1, 1)
+				DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMasteryEffect()).."|r", 1, 1, 1)
 			end
 			if E.Cata then
 				DT.tooltip:AddDoubleLine(ITEM_MOD_HIT_SPELL_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetCombatRatingBonus(8)).."|r",1,1,1) --GetCombatRatingBonus(CR_HIT_SPELL)
@@ -187,7 +189,7 @@ local function EltruismStatsDatatextOnEnter()
 					if E.Classic then
 						DT.tooltip:AddDoubleLine(MELEE_ATTACK_POWER..":", ElvUI[1].media.hexvaluecolor..totalmelee.."|r", 1, 1, 1)
 					else
-						DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMastery()).."|r", 1, 1, 1)
+						DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMasteryEffect()).."|r", 1, 1, 1)
 					end
 					DT.tooltip:AddDoubleLine(ITEM_MOD_HIT_MELEE_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetCombatRatingBonus(6)).."|r",1,1,1) --GetCombatRatingBonus(CR_HIT_MELEE)
 					DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetMeleeHaste()).."|r",1,1,1)
@@ -196,10 +198,14 @@ local function EltruismStatsDatatextOnEnter()
 					if E.Classic then
 						DT.tooltip:AddDoubleLine(ITEM_MOD_ARMOR_PENETRATION_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetArmorPenetration()).."|r",1,1,1)
 					end
-					DT.tooltip:AddDoubleLine(STAT_EXPERTISE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetExpertise()*0.25).."|r", 1, 1, 1)
+					if E.Mists then
+						DT.tooltip:AddDoubleLine(STAT_EXPERTISE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetExpertise()).."|r", 1, 1, 1)
+					else
+						DT.tooltip:AddDoubleLine(STAT_EXPERTISE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetExpertise()*0.25).."|r", 1, 1, 1)
+					end
 				else
 					if E.Cata then
-						DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMastery()).."|r", 1, 1, 1)
+						DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMasteryEffect()).."|r", 1, 1, 1)
 						DT.tooltip:AddDoubleLine(ITEM_MOD_HIT_SPELL_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetCombatRatingBonus(8)).."|r",1,1,1) --GetCombatRatingBonus(CR_HIT_SPELL)
 						DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetCombatRatingBonus(20)).."|r",1,1,1) --GetCombatRatingBonus(CR_HASTE_SPELL)
 						DT.tooltip:AddDoubleLine(STAT_CRITICAL_STRIKE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetSpellCritChance(2)).."|r",1,1,1)
@@ -218,7 +224,7 @@ local function EltruismStatsDatatextOnEnter()
 			elseif E.myclass == "PALADIN" then
 				if spent1 > spent3 and spent1 > spent2 then
 					if E.Cata then
-						DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMastery()).."|r", 1, 1, 1)
+						DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMasteryEffect()).."|r", 1, 1, 1)
 						DT.tooltip:AddDoubleLine(ITEM_MOD_HIT_SPELL_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetCombatRatingBonus(8)).."|r",1,1,1) --GetCombatRatingBonus(CR_HIT_SPELL)
 						DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetCombatRatingBonus(20)).."|r",1,1,1) --GetCombatRatingBonus(CR_HASTE_SPELL)
 						DT.tooltip:AddDoubleLine(STAT_CRITICAL_STRIKE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetSpellCritChance(2)).."|r",1,1,1)
@@ -237,7 +243,7 @@ local function EltruismStatsDatatextOnEnter()
 					if E.Classic then
 						DT.tooltip:AddDoubleLine(MELEE_ATTACK_POWER..":", ElvUI[1].media.hexvaluecolor..totalmelee.."|r", 1, 1, 1)
 					else
-						DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMastery()).."|r", 1, 1, 1)
+						DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMasteryEffect()).."|r", 1, 1, 1)
 					end
 					DT.tooltip:AddDoubleLine(ITEM_MOD_HIT_MELEE_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetCombatRatingBonus(6)).."|r",1,1,1) --GetCombatRatingBonus(CR_HIT_MELEE)
 					DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetMeleeHaste()).."|r",1,1,1)
@@ -246,14 +252,18 @@ local function EltruismStatsDatatextOnEnter()
 					if E.Classic then
 						DT.tooltip:AddDoubleLine(ITEM_MOD_ARMOR_PENETRATION_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetArmorPenetration()).."|r",1,1,1)
 					end
-					DT.tooltip:AddDoubleLine(STAT_EXPERTISE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetExpertise()*0.25).."|r", 1, 1, 1)
+					if E.Mists then
+						DT.tooltip:AddDoubleLine(STAT_EXPERTISE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetExpertise()).."|r", 1, 1, 1)
+					else
+						DT.tooltip:AddDoubleLine(STAT_EXPERTISE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetExpertise()*0.25).."|r", 1, 1, 1)
+					end
 				end
 			end
 		else
 			if E.Classic then
 				DT.tooltip:AddDoubleLine(MELEE_ATTACK_POWER..":", ElvUI[1].media.hexvaluecolor..totalmelee.."|r", 1, 1, 1)
 			else
-				DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMastery()).."|r", 1, 1, 1)
+				DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMasteryEffect()).."|r", 1, 1, 1)
 			end
 			DT.tooltip:AddDoubleLine(ITEM_MOD_HIT_MELEE_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetCombatRatingBonus(6)).."|r",1,1,1) --GetCombatRatingBonus(CR_HIT_MELEE)
 			DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetMeleeHaste()).."|r",1,1,1)
@@ -262,11 +272,15 @@ local function EltruismStatsDatatextOnEnter()
 			if E.Classic then
 				DT.tooltip:AddDoubleLine(ITEM_MOD_ARMOR_PENETRATION_RATING_SHORT..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetArmorPenetration()).."|r",1,1,1)
 			end
-			DT.tooltip:AddDoubleLine(STAT_EXPERTISE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetExpertise()*0.25).."|r", 1, 1, 1)
+			if E.Mists then
+				DT.tooltip:AddDoubleLine(STAT_EXPERTISE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetExpertise()).."|r", 1, 1, 1)
+			else
+				DT.tooltip:AddDoubleLine(STAT_EXPERTISE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetExpertise()*0.25).."|r", 1, 1, 1)
+			end
 		end
 		if not E.Classic then
-			if not E.Cata then
-				DT.tooltip:AddDoubleLine(STAT_RESILIENCE..":", ElvUI[1].media.hexvaluecolor..GetCombatRating(CR_RESILIENCE_CRIT_TAKEN).."|r", 1, 1, 1)
+			if E.Mists then
+				DT.tooltip:AddDoubleLine(STAT_RESILIENCE..":", ElvUI[1].media.hexvaluecolor..GetModResilienceDamageReduction().."%|r", 1, 1, 1)
 			else
 				DT.tooltip:AddDoubleLine(STAT_RESILIENCE..":", ElvUI[1].media.hexvaluecolor..GetCombatRating(_G.COMBAT_RATING_RESILIENCE_CRIT_TAKEN).."|r", 1, 1, 1)
 			end
@@ -279,7 +293,7 @@ end
 local function EltruismStatsDatatext1(dt)
 	if E.Retail then
 		local retailhaste = GetHaste()
-		local retailcrit = GetCritChance()
+		local retailcrit = math.max(GetCritChance(),GetSpellCritChance())
 		local haste = STAT_HASTE..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", retailhaste).."|r"
 		local crit = CRIT_ABBR..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", retailcrit).."|r"
 
@@ -378,7 +392,7 @@ local function EltruismStatsDatatext2(dt)
 		local mastery
 		if E.Cata or E.Mists then --TODO: look into mists only functions
 			--mastery
-			mastery = STAT_MASTERY..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMastery()).."|r"
+			mastery = STAT_MASTERY..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetMasteryEffect()).."|r"
 		end
 
 		if E.myclass == "HUNTER" then
