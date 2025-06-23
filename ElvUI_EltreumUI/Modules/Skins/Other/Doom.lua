@@ -177,7 +177,7 @@ function ElvUI_EltreumUI:Doom()
 						local getCooldownDetails
 						if (v[2] == "spell") then
 							getCooldownDetails = memorize(function()
-								if E.Retail then
+								if E.Retail or E.Mists then
 									local cooldowntable = GetSpellCooldown(v[3])
 									local spelltable = GetSpellInfo(v[3])
 									return {
