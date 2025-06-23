@@ -320,7 +320,7 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 end
 
 local currenttalentretail = E.Retail and GetSpecialization()
-local currenttalentcata = E.Cata and GetActiveTalentGroup()
+local currenttalentcata = E.Cata and GetActiveTalentGroup() or E.Mists and _G.C_SpecializationInfo.GetSpecialization()
 function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 	local newtalentretail = E.Retail and GetSpecialization()
 	local newtalentcata = (E.Cata or E.ClassicSOD) and GetActiveTalentGroup()
