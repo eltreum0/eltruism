@@ -181,7 +181,7 @@ function ElvUI_EltreumUI:Initialize()
 		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
 		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 	end
-	if E.Cata then
+	if E.Cata or E.Mists then
 		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
 		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 	end
@@ -326,8 +326,10 @@ function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 	local newtalentcata = (E.Cata or E.ClassicSOD) and GetActiveTalentGroup()
 	if E.Retail then
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
+	elseif E.Mists then
+		ElvUI_EltreumUI.Spec = _G.C_SpecializationInfo.GetSpecialization()
 	end
-	if (E.Retail and currenttalentretail ~= newtalentretail) or ((E.Cata or E.ClassicSOD) and currenttalentcata ~= newtalentcata) then
+	if (E.Retail and currenttalentretail ~= newtalentretail) or ((E.Cata or E.ClassicSOD or E.Mists) and currenttalentcata ~= newtalentcata) then
 		currenttalentretail = newtalentretail
 		currenttalentcata = newtalentcata
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
