@@ -1404,7 +1404,7 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				UIParent_ManageFramePositions()
 			end)
-		elseif E.Cata then
+		elseif E.Cata or E.Mists then
 
 			--from blizzard's FrameXML/WatchFrame.lua
 			if _G.ObjectiveFrameMover then
