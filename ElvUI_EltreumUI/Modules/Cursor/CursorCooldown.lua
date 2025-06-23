@@ -198,7 +198,7 @@ function ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, show, startHidd
 					else
 						if needUpdate then
 							needUpdate = false
-							if E.Retail then
+							if E.Retail or E.Mists then
 								local cooldownData = currGetCooldown(currArg)
 								if type(cooldownData) =="table" then
 									startstamp, durationstamp = cooldownData.startTime, cooldownData.duration
@@ -269,7 +269,7 @@ function ElvUI_EltreumUI:updateStamps(startstamp, durationstamp, show, startHidd
 end
 
 function ElvUI_EltreumUI:showCooldown(texture, getCooldownFunc, arg, hasCooldown)
-	if E.Retail then
+	if E.Retail or E.Mists then
 		local cooldownData = getCooldownFunc(arg)
 		if type(cooldownData) =="table" then
 			start, duration, enabled = cooldownData.startTime, cooldownData.duration, cooldownData.isEnabled
@@ -334,7 +334,7 @@ function ElvUI_EltreumUI:checkSpellCooldown(spell)
 		return ElvUI_EltreumUI:checkPetActionCooldown(findPetActionIndexForSpell(spell))
 	end
 
-	if E.Retail then
+	if E.Retail or E.Mists then
 		baseCooldown = GetSpellBaseCooldown(spell)
 		if baseCooldown == 0 then
 			local spellChargeData = GetSpellCharges(spell)
@@ -375,7 +375,7 @@ function ElvUI_EltreumUI:checkInventoryItemCooldown(invSlot)
 end
 
 function ElvUI_EltreumUI:checkContainerItemCooldown(bagId, bagSlot)
-	if E.Retail then
+	if E.Retail or E.Mists then
 		itemLinkcontainer = C_Container.GetContainerItemLink(bagId, bagSlot)
 	else
 		itemLinkcontainer = GetContainerItemLink(bagId, bagSlot)
