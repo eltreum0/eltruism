@@ -137,6 +137,9 @@ local function EltruismStatsDatatextOnEnter()
 
 		local spellpower = math.max(GetSpellBonusDamage(2),GetSpellBonusDamage(3),GetSpellBonusDamage(4),GetSpellBonusDamage(5),GetSpellBonusDamage(6),GetSpellBonusDamage(7),GetSpellBonusHealing())
 		local spellcrit = math.max(GetSpellCritChance(2),GetSpellCritChance(3),GetSpellCritChance(4),GetSpellCritChance(5),GetSpellCritChance(6),GetSpellCritChance(7))
+		if E.Mists then
+			spellcrit = GetCritChance()
+		end
 
 		DT.tooltip:ClearLines()
 		DT.tooltip:AddDoubleLine(basestatlabel..":", ElvUI[1].media.hexvaluecolor..currentstat.."|r ".."(|cffFFFFFF"..(basestat-statbuff+statnerf).."|r + |cff09ff00"..statbuff.."|r - |cfff44336"..statnerf.."|r)",1,1,1)
@@ -302,6 +305,9 @@ local function EltruismStatsDatatext1(dt)
 		local haste
 		local crit
 		local spellcrit = math.max(GetSpellCritChance(2),GetSpellCritChance(3),GetSpellCritChance(4),GetSpellCritChance(5),GetSpellCritChance(6),GetSpellCritChance(7))
+		if E.Mists then
+			spellcrit = GetCritChance()
+		end
 
 		if E.myclass == "HUNTER" then
 			haste = STAT_HASTE..": "..ElvUI[1].media.hexvaluecolor..string.format("%.1f%%", GetHaste()).."|r"
