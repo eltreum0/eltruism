@@ -374,7 +374,7 @@ local function SpellInfo(spellID)
 end
 
 local function SpellCooldown(spellID)
-	if E.Retail then
+	if E.Retail or E.Mists then
 		local cooldownData = GetSpellCooldown(spellID)
 		if cooldownData then
 			return cooldownData.startTime, cooldownData.duration
