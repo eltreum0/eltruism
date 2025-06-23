@@ -6,11 +6,9 @@ local Screenshot = _G.Screenshot
 local EltruismScreenShot = CreateFrame("Frame", "EltruismScreenShot")
 function ElvUI_EltreumUI:AutoScreenshot()
 	if E.db.ElvUI_EltreumUI.otherstuff.screenshot then
-		if E.Retail then
-			EltruismScreenShot:RegisterEvent("CHALLENGE_MODE_COMPLETED")
-		end
-		if E.Retail or E.Cata then
+		if E.Retail or E.Mists then
 			EltruismScreenShot:RegisterEvent("ACHIEVEMENT_EARNED")
+			EltruismScreenShot:RegisterEvent("CHALLENGE_MODE_COMPLETED")
 		end
 		EltruismScreenShot:RegisterEvent("PLAYER_LEVEL_UP")
 		EltruismScreenShot:SetScript("OnEvent", function(_,event)

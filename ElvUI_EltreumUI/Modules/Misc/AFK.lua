@@ -62,16 +62,17 @@ local classMusic = {
 local cataMusic ={
 	["Human"] = 53210,
 	["Gnome"] = 369055,
-	["NightElf"] = E.Cata and 441709 or 53187,
+	["NightElf"] = E.Mists and 441709 or 53187,
 	["Dwarf"] = 298910,
 	["Draenei"] = 53284,
 	["Worgen"] = 441525,
-	["Orc"] = E.Cata and 441713 or 53201,
+	["Orc"] = E.Mists and 441713 or 53201,
 	["Scourge"] = 53217,
-	["Tauren"] = E.Cata and 441788 or 53215,
+	["Tauren"] = E.Mists and 441788 or 53215,
 	["Troll"] = 371378,
 	["Goblin"] = 441627,
 	["BloodElf"] = 53473,
+	["Pandaren"] = 642246,
 }
 
 local classicMusic = {

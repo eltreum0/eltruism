@@ -101,8 +101,8 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 		end
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
 		ElvUI_EltreumUI:ClickCastingShortcut() --adds a button to the spellbook to show the click casting menu
-	elseif E.Cata or E.Classic then
-		if not E.Cata then
+	else
+		if not E.Mists then
 			ElvUI_EltreumUI:DynamicClassicDatatext() --toggles datatext for warlocks/hunters to show soulshards/ammo
 			ElvUI_EltreumUI:UpdateAvgIlvl() --updates the ilvl of the character at login so its not 0
 			ElvUI_EltreumUI:ClassicSockets() --adds sockets and enchants into the character panel, based on Kibs Item Level by Kibsgaard
@@ -181,9 +181,10 @@ function ElvUI_EltreumUI:Initialize()
 		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
 		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 	end
-	if E.Cata or E.Mists then
+	if E.Mists then
 		ElvUI_EltreumUI:RegisterEvent('ACHIEVEMENT_EARNED') --for auto screenshot
 		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+		ElvUI_EltreumUI:RegisterEvent('CHALLENGE_MODE_COMPLETED') --for auto screenshot
 	end
 	if E.ClassicSOD then
 		ElvUI_EltreumUI:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
@@ -320,21 +321,21 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 end
 
 local currenttalentretail = E.Retail and GetSpecialization()
-local currenttalentcata = E.Cata and GetActiveTalentGroup() or E.Mists and _G.C_SpecializationInfo.GetSpecialization()
+local currenttalentmists = E.Mists and _G.C_SpecializationInfo.GetSpecialization()
 function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 	local newtalentretail = E.Retail and GetSpecialization()
-	local newtalentcata = (E.Cata or E.ClassicSOD) and GetActiveTalentGroup()
+	local cnewtalentmists = E.ClassicSOD and GetActiveTalentGroup() or E.Mists and _G.C_SpecializationInfo.GetSpecialization()
 	if E.Retail then
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
 	elseif E.Mists then
 		ElvUI_EltreumUI.Spec = _G.C_SpecializationInfo.GetSpecialization()
 	end
-	if (E.Retail and currenttalentretail ~= newtalentretail) or ((E.Cata or E.ClassicSOD or E.Mists) and currenttalentcata ~= newtalentcata) then
+	if (E.Retail and currenttalentretail ~= newtalentretail) or ((E.ClassicSOD or E.Mists) and currenttalentmists ~= cnewtalentmists) then
 		currenttalentretail = newtalentretail
-		currenttalentcata = newtalentcata
+		currenttalentmists = cnewtalentmists
 		ElvUI_EltreumUI:ClassIconsOnCharacterPanel()
 		ElvUI_EltreumUI:FixChatToggles()
-		if E.Retail or (E.Cata or E.ClassicSOD) then
+		if E.Retail or (E.ClassicSOD or E.Mists) then
 			ElvUI_EltreumUI:NamePlateOptions()
 			ElvUI_EltreumUI:Shadows()
 			if E.private.nameplates.enable then

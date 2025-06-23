@@ -38,7 +38,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 				end)
 			end
 		end)
-	elseif E.Cata then
+	--[[elseif E.Cata then
 		EltruismExpandedTalents:RegisterEvent("ADDON_LOADED")
 		EltruismExpandedTalents:RegisterEvent("PLAYER_ENTERING_WORLD")
 		EltruismExpandedTalents:RegisterEvent("PLAYER_STARTED_MOVING")
@@ -58,7 +58,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 					adjustscale()
 				end)
 			end
-		end)
+		end)]]
 	elseif E.Classic then
 		if E.db.ElvUI_EltreumUI.skins.tbctalents and E.private.skins.blizzard.enable and E.private.skins.blizzard.talent then
 			EltruismExpandedTalents:RegisterEvent("ADDON_LOADED")

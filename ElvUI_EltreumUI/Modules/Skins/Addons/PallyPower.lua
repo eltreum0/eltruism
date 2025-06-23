@@ -99,7 +99,7 @@ function ElvUI_EltreumUI:EltruismPallyPower()
 		end
 
 		--hide the double lines
-		if E.Cata then
+		if E.Mists then
 			_G.PallyPowerRF.TopEdge:Kill()
 		end
 		_G.PallyPowerRF.BottomEdge:Kill()

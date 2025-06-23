@@ -448,7 +448,7 @@ function ElvUI_EltreumUI:SkinAuctionator()
 				end
 
 				--buying
-				if E.Retail or E.Cata then
+				if E.Retail or E.Mists then
 					S:HandleButton(_G["AuctionatorBuyCommodityFrame"].BackButton)
 					S:HandleButton(_G["AuctionatorBuyCommodityFrame"].DetailsContainer.BuyButton)
 					S:HandleEditBox(_G["AuctionatorBuyCommodityFrame"].DetailsContainer.Quantity)
@@ -534,7 +534,7 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 	if E.db.ElvUI_EltreumUI.skins.auctionator then
 		if E.private.skins.blizzard.enable then
 			ElvUI_EltreumUI:SkinAuctionator()
-			if E.Retail or E.Cata then
+			if E.Retail or E.Mists then
 				_G["AuctionHouseFrame"]:HookScript("OnShow",function()
 					if not tabSkinned then
 						E:Delay(0, function()

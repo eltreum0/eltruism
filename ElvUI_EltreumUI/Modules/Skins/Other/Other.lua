@@ -297,7 +297,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 
 						CraftDetailScrollFrame:Hide()
 						CraftDetailScrollFrameScrollBar:Hide()
-						if E.Cata then
+						if E.Mists then
 							CraftFrameFilterDropDown:ClearAllPoints()
 							CraftFrameFilterDropDown:SetPoint("TOPRIGHT", CraftDetailScrollChildFrame, 0, 50)
 							CraftFrameAvailableFilterCheckButton:ClearAllPoints()
@@ -393,7 +393,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 			else
 				vellumbutton = _G["EltruismVellumButton"]
 			end
-		elseif E.Cata then
+		elseif E.Mists then
 			if not _G["EltruismVellumButton"] then
 				vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["TradeSkillFrame"], "MagicButtonTemplate")
 				vellumbutton:SetPoint("RIGHT", _G.TradeSkillCreateButton, "LEFT", -1, 0)
@@ -431,7 +431,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 			disenchantbutton:SetText(disenchant)
 			disenchantbutton:SetAttribute("type1", "spell")
 			disenchantbutton:SetAttribute("spell", "13262")
-			if E.Retail or E.Cata then
+			if E.Retail or E.Mists then
 				local vellum = GetItemInfo(38682)
 				if vellum then
 					vellum = string.match(vellum, "%s+(%S+)")

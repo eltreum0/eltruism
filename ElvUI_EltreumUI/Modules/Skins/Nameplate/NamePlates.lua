@@ -714,7 +714,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				else
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.10
 				end
-			elseif E.Cata then
+			elseif E.Mists then
 				if E.myclass == "MAGE" then
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35
 				elseif E.myclass == "WARRIOR" or E.myclass == "HUNTER" then
@@ -740,7 +740,7 @@ EltruismNamePlateOptionsFrame:SetScript("OnEvent", ElvUI_EltreumUI.NamePlateOpti
 --add threat to nameplate by putting threat into title and moving title to the healthbar
 function ElvUI_EltreumUI:ClassicThreatNP()
 	if E.private.nameplates.enable then
-		if E.Classic or E.Cata then
+		if E.Classic or E.Mists then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = E.db.general.font
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["fontOutline"] = E.db.general.fontStyle
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = true
@@ -904,7 +904,7 @@ hooksecurefunc(NP, 'Initialize', function()
 		NP.multiplier = 0
 	end
 end)
-if E.Retail or E.Cata then
+if E.Retail or E.Mists then
 	hooksecurefunc(NP, 'Construct_Runes', function()
 		if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor then
 			NP.multiplier = 0

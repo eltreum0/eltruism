@@ -235,7 +235,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[923] = 13931, -- +$k1 Dodge
 		[924] = 7428, -- +$k1 Dodge
 		[925] = 13646, -- +$k1 Dodge
-		[926] = E.Cata and 359895 or 13933, --enchant-shield-frost-resistance
+		[926] = E.Mists and 359895 or 13933, --enchant-shield-frost-resistance
 		[927] = 13939, -- +$k1 Strength
 		[928] = 13824, -- +$13824s1 All Stats
 		[929] = 20020, -- +$k1 Stamina
@@ -289,16 +289,16 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[1884] = 20009, -- +$k1 Spirit
 		[1885] = 20010, -- +$k1 Strength
 		[1886] = 20011, -- +$k1 Stamina
-		[1887] = E.Cata and 20012 or 20023, -- +$k1 Agility
-		[1888] = E.Cata and 359685 or 20014, -- shield resilience? resistance? 46525
+		[1887] = E.Mists and 20012 or 20023, -- +$k1 Agility
+		[1888] = E.Mists and 359685 or 20014, -- shield resilience? resistance? 46525
 		[1889] = 20015, -- +$k1 Armor
 		[1890] = 20016, -- +$k1 Spirit and +$k2 Stamina
 		[1891] = 20025, -- +$19988s1 All Stats
 		[1892] = 20026, -- +$19990s1 Health
 		[1893] = 20028, -- +$k1 Mana
 		[1894] = 20029, -- Icy Chill
-		[1896] = E.Cata and 20030 or 20031, -- +$k1 Weapon Damage
-		[1897] = E.Cata and 13695 or 20031, --enchant-weapon-superior-striking
+		[1896] = E.Mists and 20030 or 20031, -- +$k1 Weapon Damage
+		[1897] = E.Mists and 13695 or 20031, --enchant-weapon-superior-striking
 		[1898] = 20032, -- Lifestealing
 		[1899] = 20033, -- Unholy Weapon
 		[1900] = 20034, -- Crusader
@@ -330,9 +330,9 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[2544] = 22844, -- +$k1 Spell Power
 		[2545] = 22846, -- +$k1 Dodge
 		[2563] = 23799, -- +$k1 Strength
-		[2564] = E.Cata and 25080 or 23800, --enchant-gloves-superior-agility
+		[2564] = E.Mists and 25080 or 23800, --enchant-gloves-superior-agility
 		[2565] = 23801, -- +$k1 Spirit
-		[2566] = E.Cata and 2317 or 23802, -- +13 spellpower
+		[2566] = E.Mists and 2317 or 23802, -- +13 spellpower
 		[2567] = 23803, -- +$k1 Spirit
 		[2568] = 23804, -- +$k1 Intellect
 		[2583] = 24149, -- +$k1 Dodge +$k2 Stamina +$k3 Parry
@@ -354,7 +354,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		[2616] = 25078, -- +$25065s1 Fire Spell Power
 		[2617] = 25079, -- +$k1 Spell Power
 		[2619] = 25081, --enchant-cloak-greater-fire-resistance
-		[2620] = E.Cata and 359949 or 25082, -- 15 nature res
+		[2620] = E.Mists and 359949 or 25082, -- 15 nature res
 		[2621] = 25084, -- 2% Reduced Threat
 		[2622] = 25086, -- +$k1 Dodge
 		[2628] = 25122, --brilliant-wizard-oil
@@ -1318,7 +1318,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 	setmetatable(CharacterFrameAdapter, { __index = ElvUI_EltreumUI.FrameAdapter })
 	function CharacterFrameAdapter:new()
 		local instance
-		if E.Cata then
+		if E.Mists then
 			instance = ElvUI_EltreumUI.FrameAdapter:new(_G.CharacterModelScene, _G.CharacterModelScene, 'Character')
 		else
 			instance = ElvUI_EltreumUI.FrameAdapter:new(_G.CharacterModelFrame, _G.CharacterModelFrame, 'Character')
@@ -1444,7 +1444,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 				ChestSlot = true,
 				WristSlot = true,
 				HandsSlot = true,
-				--WaistSlot = E.Cata and true or false,
+				--WaistSlot = E.Mists and true or false,
 				LegsSlot = true,
 				FeetSlot = true,
 				--Finger0Slot = true,
@@ -1452,7 +1452,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 				-- Trinket0Slot = true,
 				-- Trinket1Slot = true,
 				MainHandSlot = true,
-				--SecondaryHandSlot = E.Cata and true or false,
+				--SecondaryHandSlot = E.Mists and true or false,
 			},
 			itemInfos = nil,
 			parentVisible = false,
@@ -1792,7 +1792,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		--return UnitLevel(self.adapter:GetUnit()) >= 60
 		if E.Classic then
 			return UnitLevel(self.adapter:GetUnit()) == 60
-		elseif E.Cata then
+		elseif E.Mists then
 			return UnitLevel(self.adapter:GetUnit()) == 85
 		end
 	end
@@ -2032,7 +2032,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 					Tooltips[i]:SetOwner(Tooltips[i - 1], "ANCHOR_NONE")
 					Tooltips[i]:SetPoint("TOPLEFT", Tooltips[i - 1], "TOPRIGHT")
 				end
-				if E.Cata then
+				if E.Mists then
 					if item[FIELD_TYPE] == TYPE_HYPERLINK then
 						Tooltips[i]:SetHyperlink(item[FIELD_CONTENT])
 						self.link = item[FIELD_CONTENT]

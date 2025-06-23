@@ -80,7 +80,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								end
 								SelectActiveQuest(i)
 							end
-						elseif E.Cata or E.Classic then
+						elseif E.Mists or E.Classic then
 							if completed then
 								if E.db.ElvUI_EltreumUI.dev then
 									ElvUI_EltreumUI:Print("tried to complete "..completed)
@@ -128,7 +128,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 								end
 							end
 						end
-					elseif E.Cata or E.Classic then
+					elseif E.Mists or E.Classic then
 						AcceptQuest()
 						if E.db.ElvUI_EltreumUI.dev then
 							ElvUI_EltreumUI:Print("quest accepted")
@@ -214,7 +214,7 @@ function ElvUI_EltreumUI:AutoAcceptQuests()
 						return
 					else
 						--https://wowpedia.fandom.com/wiki/Category:API_namespaces/C_GossipInfo
-						--if E.Retail or E.Cata then
+						--if E.Retail or E.Mists then
 						local active = C_GossipInfo.GetActiveQuests()
 						local available = C_GossipInfo.GetAvailableQuests()
 						local notcomplete = 0

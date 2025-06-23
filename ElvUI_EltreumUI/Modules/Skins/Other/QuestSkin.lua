@@ -56,7 +56,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			else
 				wowheadbutton:SetPoint("TOPLEFT", _G.QuestLogFrame, "TOPLEFT", 15, -15)
 			end
-		elseif E.Cata or E.Mists then
+		elseif E.Mists then
 			local x, y = _G.QuestLogFrameTrackButton:GetSize()
 			wowheadbutton:SetWidth(x)
 			wowheadbutton:SetHeight(y)
@@ -108,26 +108,6 @@ function ElvUI_EltreumUI:SkinQuests()
 				wowheadregion = "wowhead.com/mop-classic/ru"
 			elseif E.locale == "zhCN" or E.locale == "zhTW" then
 				wowheadregion = "wowhead.com/mop-classic/cn"
-			end
-		elseif E.Cata then
-			if E.locale == "deDE" then
-				wowheadregion = "wowhead.com/cata/de"
-			elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW" then
-				wowheadregion = "wowhead.com/cata"
-			elseif E.locale == "esMX" or E.locale == "esES" then
-				wowheadregion = "wowhead.com/cata/es"
-			elseif E.locale == "frFR" then
-				wowheadregion = "wowhead.com/cata/fr"
-			elseif E.locale == "itIT" then
-				wowheadregion = "wowhead.com/cata/it"
-			elseif E.locale == "koKR" then
-				wowheadregion = "wowhead.com/cata/ko"
-			elseif E.locale == "ptBR" or E.locale == "ptPT" then
-				wowheadregion = "wowhead.com/cata/pt"
-			elseif E.locale == "ruRU" then
-				wowheadregion = "wowhead.com/cata/ru"
-			elseif E.locale == "zhCN" or E.locale == "zhTW" then
-				wowheadregion = "wowhead.com/cata/cn"
 			end
 		elseif E.Classic then
 			if E.locale == "deDE" then
@@ -185,7 +165,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			wowheadbutton:SetScript('OnClick', function()
 				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
 			end)
-		elseif E.Cata or E.Mists then
+		elseif E.Mists then
 			local questID
 			--hook the function that sets the quest detail to get the questID from the quest title
 			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --_G.QuestLogFrame.lua 311
@@ -1404,7 +1384,7 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				UIParent_ManageFramePositions()
 			end)
-		elseif E.Cata or E.Mists then
+		elseif E.Mists then
 
 			--from blizzard's FrameXML/WatchFrame.lua
 			if _G.ObjectiveFrameMover then
