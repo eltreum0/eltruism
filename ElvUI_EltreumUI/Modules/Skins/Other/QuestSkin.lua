@@ -56,7 +56,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			else
 				wowheadbutton:SetPoint("TOPLEFT", _G.QuestLogFrame, "TOPLEFT", 15, -15)
 			end
-		elseif E.Cata then
+		elseif E.Cata or E.Mists then
 			local x, y = _G.QuestLogFrameTrackButton:GetSize()
 			wowheadbutton:SetWidth(x)
 			wowheadbutton:SetHeight(y)
@@ -88,6 +88,26 @@ function ElvUI_EltreumUI:SkinQuests()
 				wowheadregion = "ru.wowhead.com"
 			elseif E.locale == "zhCN" or E.locale == "zhTW" then
 				wowheadregion = "cn.wowhead.com"
+			end
+		elseif E.Mists then
+			if E.locale == "deDE" then
+				wowheadregion = "wowhead.com/mop-classic/de"
+			elseif E.locale == "enUS" or E.locale == "enCN" or E.locale == "enGB" or E.locale == "enTW" then
+				wowheadregion = "wowhead.com/mop-classic"
+			elseif E.locale == "esMX" or E.locale == "esES" then
+				wowheadregion = "wowhead.com/mop-classic/es"
+			elseif E.locale == "frFR" then
+				wowheadregion = "wowhead.com/mop-classic/fr"
+			elseif E.locale == "itIT" then
+				wowheadregion = "wowhead.com/mop-classic/it"
+			elseif E.locale == "koKR" then
+				wowheadregion = "wowhead.com/mop-classic/ko"
+			elseif E.locale == "ptBR" or E.locale == "ptPT" then
+				wowheadregion = "wowhead.com/mop-classic/pt"
+			elseif E.locale == "ruRU" then
+				wowheadregion = "wowhead.com/mop-classic/ru"
+			elseif E.locale == "zhCN" or E.locale == "zhTW" then
+				wowheadregion = "wowhead.com/mop-classic/cn"
 			end
 		elseif E.Cata then
 			if E.locale == "deDE" then
@@ -165,7 +185,7 @@ function ElvUI_EltreumUI:SkinQuests()
 			wowheadbutton:SetScript('OnClick', function()
 				E:StaticPopup_Show('ELVUI_EDITBOX', nil, nil, "https://"..wowheadregion.."/quest="..questID)
 			end)
-		elseif E.Cata then
+		elseif E.Cata or E.Mists then
 			local questID
 			--hook the function that sets the quest detail to get the questID from the quest title
 			hooksecurefunc("QuestLog_SetSelection", function(questTitle) --_G.QuestLogFrame.lua 311
