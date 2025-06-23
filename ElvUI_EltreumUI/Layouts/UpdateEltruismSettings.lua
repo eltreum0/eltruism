@@ -107,7 +107,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		-- Skins
 		E.db.ElvUI_EltreumUI.skins.levelbossinstance = true
 		E.db.ElvUI_EltreumUI.skins.widertransmog = true
-		--E.db.ElvUI_EltreumUI.skins.expandedstable = true
+		E.db.ElvUI_EltreumUI.skins.expandedstable = true
 		E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel = true
 		E.db.ElvUI_EltreumUI.skins.classicarmory = true
 		E.db.ElvUI_EltreumUI.skins.classicarmoryautostats = true
