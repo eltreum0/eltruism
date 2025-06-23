@@ -601,6 +601,29 @@ function ElvUI_EltreumUI:NamePlateOptions()
 								_G["ElvNP_TargetClassPowerClassPower"]:Show()
 							end
 						end
+					elseif E.Mists then
+						if E.myclass == 'DEATHKNIGHT' then
+							_G["ElvNP_TargetClassPowerRunes"]:Show()
+						elseif E.myclass == 'PALADIN' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' then
+							_G["ElvNP_TargetClassPowerClassPower"]:Show()
+						elseif E.myclass == 'DRUID' then
+							stance = GetShapeshiftForm()
+							if stance == 2 then --its a cat
+								_G["ElvNP_TargetClassPowerClassPower"]:Show()
+							else
+								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+							end
+						elseif E.myclass == 'MONK' then
+							if ElvUI_EltreumUI.Spec == 1 then
+								_G["ElvNP_TargetClassPowerStagger"]:Show()
+							else
+								_G["ElvNP_TargetClassPowerClassPower"]:Show()
+							end
+						elseif E.myclass == 'MAGE' then
+							if ElvUI_EltreumUI.Spec == 1 then
+								_G["ElvNP_TargetClassPowerClassPower"]:Show()
+							end
+						end
 					else
 						if E.myclass == 'ROGUE' then
 							_G["ElvNP_TargetClassPowerClassPower"]:Show()
@@ -631,6 +654,24 @@ function ElvUI_EltreumUI:NamePlateOptions()
 							end
 						elseif E.myclass == 'MAGE' then
 							if ElvUI_EltreumUI.Spec == 62 then
+								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+							end
+						end
+					elseif E.Mists then
+						if E.myclass == 'DEATHKNIGHT' then
+							_G["ElvNP_TargetClassPowerRunes"]:Hide()
+						elseif E.myclass == 'PALADIN' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' then
+							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+						elseif E.myclass == 'DRUID' then
+								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+						elseif E.myclass == 'MONK' then
+							if ElvUI_EltreumUI.Spec == 1 then
+								_G["ElvNP_TargetClassPowerStagger"]:Hide()
+							else
+								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+							end
+						elseif E.myclass == 'MAGE' then
+							if ElvUI_EltreumUI.Spec == 1 then
 								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 							end
 						end
