@@ -186,7 +186,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.glow.enable = true
 		E.db.ElvUI_EltreumUI.glow.pixel = true
 		E.db.ElvUI_EltreumUI.glow.enablepet = true
-		if E.Classic then
+		if E.Classic or E.Mists then
 			E.db.ElvUI_EltreumUI.glow.enabletotem = true
 		end
 
