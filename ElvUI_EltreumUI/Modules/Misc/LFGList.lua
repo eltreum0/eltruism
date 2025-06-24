@@ -344,9 +344,18 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 				local partymembers = {}
 
 				for i=1, numMembers do
-					local role, class, _, specLocalized = C_LFGList.GetSearchResultMemberInfo(entry.resultID, i)
-					local icon = E.Retail and iconTable[class][specLocalized] or iconTable[class]
-					partymembers[#partymembers+1] = {roleIndex[role], classIndex[class], raidClassColors[class],icon}
+					--GetSearchResultMemberInfo is removed in 11.0.7
+					--local role, class, _, specLocalized = C_LFGList.GetSearchResultMemberInfo(entry.resultID, i)
+					--local icon = E.Retail and iconTable[class][specLocalized] or iconTable[class]
+					--[#partymembers+1] = {roleIndex[role], classIndex[class], raidClassColors[class],icon}
+
+
+					local playerInfo  = C_LFGList.GetSearchResultPlayerInfo(entry.resultID, i)
+					if playerInfo then
+						local role, class, specLocalized = playerInfo.assignedRole, playerInfo.className, playerInfo.specName
+						local icon = E.Retail and iconTable[class][specLocalized] or iconTable[class]
+						partymembers[#partymembers+1] = {roleIndex[role], classIndex[class], raidClassColors[class],icon}
+					end
 				end
 
 				if categoryID == 2 then --sort dungeon members
