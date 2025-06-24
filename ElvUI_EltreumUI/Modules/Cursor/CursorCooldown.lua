@@ -120,7 +120,7 @@ function ElvUI_EltreumUI:CooldownEnable()
 		ElvUI_EltreumUI:SecureHook("UseInventoryItem", "checkInventoryItemCooldown")
 	end
 
-	if E.Retail or E.Mists then --TODO: look into mop
+	if E.Retail or E.Mists then
 		if not ElvUI_EltreumUI:IsHooked(_G.C_Item,"UseItemByName", "checkItemCooldown") then
 			ElvUI_EltreumUI:SecureHook(_G.C_Item,"UseItemByName", "checkItemCooldown")
 		end
