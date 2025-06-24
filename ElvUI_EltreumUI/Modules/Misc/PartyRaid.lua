@@ -318,14 +318,17 @@ end)]]
 --automatic combat logging
 function ElvUI_EltreumUI:AutoCombatLog()
 	if E.db.ElvUI_EltreumUI.cvars.combatlog then
-		if not InCombatLockdown() then
-			SetCVar("advancedCombatLogging", 1)
-		end
 		local _, instanceType2 = IsInInstance()
 		if instanceType2 == "raid" or instanceType2 == "party" or instanceType2 == "scenario" then
+			if not InCombatLockdown() then
+				SetCVar("advancedCombatLogging", 1)
+			end
 			LoggingCombat(true)
 			--ElvUI_EltreumUI:Print(COMBATLOGENABLED)
 		else
+			if not InCombatLockdown() then
+				SetCVar("advancedCombatLogging", 0)
+			end
 			LoggingCombat(false)
 			--ElvUI_EltreumUI:Print(COMBATLOGDISABLED)
 		end
