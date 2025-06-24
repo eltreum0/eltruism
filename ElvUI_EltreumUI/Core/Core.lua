@@ -878,6 +878,10 @@ function ElvUI_EltreumUI:PerformanceOptimization()
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = false
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop = false
 	E.db.ElvUI_EltreumUI.chat.chatgradient = false
+
+	--disable combat logging
+	_G.C_CVar.SetCVar("advancedCombatLogging", 0)
+	_G.LoggingCombat(false)
 end
 
 --toggle 3d models
