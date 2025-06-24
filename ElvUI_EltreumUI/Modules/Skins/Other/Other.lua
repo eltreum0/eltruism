@@ -385,18 +385,15 @@ function ElvUI_EltreumUI:EnchantScroll()
 		end
 
 		--create vellum button
-		if E.Retail then
+		if not E.Classic then
 			if not _G["EltruismVellumButton"] then
-				vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["ProfessionsFrame"], "MagicButtonTemplate")
-				vellumbutton:SetPoint("RIGHT", _G.ProfessionsFrame.CraftingPage.CreateAllButton, "LEFT", -1, 0)
-				S:HandleButton(vellumbutton)
-			else
-				vellumbutton = _G["EltruismVellumButton"]
-			end
-		elseif E.Mists then
-			if not _G["EltruismVellumButton"] then
-				vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["TradeSkillFrame"], "MagicButtonTemplate")
-				vellumbutton:SetPoint("LEFT", _G.TradeSkillCreateButton, "RIGHT", 82, 0)
+				if E.Retail then
+					vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["ProfessionsFrame"], "MagicButtonTemplate")
+					vellumbutton:SetPoint("RIGHT", _G.ProfessionsFrame.CraftingPage.CreateAllButton, "LEFT", -1, 0)
+				else
+					vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["TradeSkillFrame"], "MagicButtonTemplate")
+					vellumbutton:SetPoint("LEFT", _G.TradeSkillCreateButton, "RIGHT", 82, 0)
+				end
 				S:HandleButton(vellumbutton)
 			else
 				vellumbutton = _G["EltruismVellumButton"]
@@ -431,7 +428,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 			disenchantbutton:SetText(disenchant)
 			disenchantbutton:SetAttribute("type1", "spell")
 			disenchantbutton:SetAttribute("spell", "13262")
-			if E.Retail or E.Mists then
+			if not E.Classic then
 				local vellum = GetItemInfo(38682)
 				if vellum then
 					vellum = string.match(vellum, "%s+(%S+)")
@@ -490,12 +487,12 @@ function ElvUI_EltreumUI:EnchantScroll()
 					tradeskilltext = _G.TradeSkillFrameTitleText:GetText()
 				end
 				if tradeskilltext and tradeskilltext:match(enchantingtext) then
-					if E.Retail then
+					if not E.Classic then
 						vellumbutton:Show()
 					end
 					disenchantbutton:Show()
 				else
-					if E.Retail then
+					if not E.Classic then
 						vellumbutton:Hide()
 					end
 					disenchantbutton:Hide()
