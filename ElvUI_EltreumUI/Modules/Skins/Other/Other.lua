@@ -396,7 +396,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 		elseif E.Mists then
 			if not _G["EltruismVellumButton"] then
 				vellumbutton = CreateFrame("BUTTON", "EltruismVellumButton", _G["TradeSkillFrame"], "MagicButtonTemplate")
-				vellumbutton:SetPoint("RIGHT", _G.TradeSkillCreateButton, "LEFT", -1, 0)
+				vellumbutton:SetPoint("LEFT", _G.TradeSkillCreateButton, "RIGHT", 82, 0) --???
 				S:HandleButton(vellumbutton)
 			else
 				vellumbutton = _G["EltruismVellumButton"]
