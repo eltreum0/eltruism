@@ -3702,14 +3702,14 @@ function ElvUI_EltreumUI:Shadows()
 			if E.db.datatexts.panels.EltruismDataText and E.db.datatexts.panels.EltruismDataText.enable then
 				if _G["RightChatPanel"] and _G["RightChatPanel"].backdrop and not _G["RightChatPanel"].backdrop.shadow then
 					_G["RightChatPanel"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(RightChatShadow.shadow)
+					ElvUI_EltreumUI:ShadowColor(_G["RightChatPanel"].backdrop.shadow)
 					_G.RightChatPanel.backdrop.shadow.BottomEdge:Hide()
 					_G.RightChatPanel.backdrop.shadow.BottomRightCorner:Hide()
 					_G.RightChatPanel.backdrop.shadow.BottomLeftCorner:Hide()
 				end
 				if _G["LeftChatPanel"] and _G["LeftChatPanel"].backdrop and not _G["LeftChatPanel"].backdrop.shadow then
 					_G["LeftChatPanel"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(LeftChatShadow.shadow)
+					ElvUI_EltreumUI:ShadowColor(_G["LeftChatPanel"].backdrop.shadow)
 					_G.LeftChatPanel.backdrop.shadow.BottomEdge:Hide()
 					_G.LeftChatPanel.backdrop.shadow.BottomRightCorner:Hide()
 					_G.LeftChatPanel.backdrop.shadow.BottomLeftCorner:Hide()
