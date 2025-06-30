@@ -593,7 +593,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 						elseif E.myclass == 'MONK' then
 							if ElvUI_EltreumUI.Spec == 269 then
 								_G["ElvNP_TargetClassPowerClassPower"]:Show()
-							elseif ElvUI_EltreumUI.Spec == 268 then
+							elseif ElvUI_EltreumUI.Spec == 268 and _G["ElvNP_TargetClassPowerStagger"] then
 								_G["ElvNP_TargetClassPowerStagger"]:Show()
 							end
 						elseif E.myclass == 'MAGE' then
@@ -614,7 +614,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 							end
 						elseif E.myclass == 'MONK' then
-							if ElvUI_EltreumUI.Spec == 1 then
+							if ElvUI_EltreumUI.Spec == 1 and _G["ElvNP_TargetClassPowerStagger"] then
 								_G["ElvNP_TargetClassPowerStagger"]:Show()
 							else
 								_G["ElvNP_TargetClassPowerClassPower"]:Show()
@@ -649,7 +649,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 						elseif E.myclass == 'MONK' then
 							if ElvUI_EltreumUI.Spec == 269 then
 								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
-							elseif ElvUI_EltreumUI.Spec == 268 then
+							elseif ElvUI_EltreumUI.Spec == 268 and _G["ElvNP_TargetClassPowerStagger"] then
 								_G["ElvNP_TargetClassPowerStagger"]:Hide()
 							end
 						elseif E.myclass == 'MAGE' then
@@ -665,7 +665,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 						elseif E.myclass == 'DRUID' then
 								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 						elseif E.myclass == 'MONK' then
-							if ElvUI_EltreumUI.Spec == 1 then
+							if ElvUI_EltreumUI.Spec == 1 and _G["ElvNP_TargetClassPowerStagger"] then
 								_G["ElvNP_TargetClassPowerStagger"]:Hide()
 							else
 								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
