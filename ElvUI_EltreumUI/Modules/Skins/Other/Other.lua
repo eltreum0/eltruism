@@ -410,6 +410,14 @@ function ElvUI_EltreumUI:EnchantScroll()
 				disenchantbutton:SetPoint("LEFT", _G.TradeSkillCreateButton, "RIGHT", 1, 0)
 			end
 			S:HandleButton(disenchantbutton)
+
+			local vellum = GetItemInfo(38682)
+			if vellum then
+				vellum = string.match(vellum, "%s+(%S+)")
+				vellumbutton:SetText(vellum)
+			else
+				vellumbutton:SetText("MISSING")
+			end
 		else
 			disenchantbutton = _G["EltruismDisenchantButton"]
 		end
@@ -431,8 +439,6 @@ function ElvUI_EltreumUI:EnchantScroll()
 			if not E.Classic then
 				local vellum = GetItemInfo(38682)
 				if vellum then
-					vellum = string.match(vellum, "%s+(%S+)")
-					vellumbutton:SetText(vellum)
 					vellumbutton:SetScript("OnShow", function()
 						if GetItemCount(38682) > 0 then
 							vellumbutton:SetEnabled(true)
