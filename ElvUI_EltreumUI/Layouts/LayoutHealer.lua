@@ -398,6 +398,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	E.db["movers"]["TorghastBuffsMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,206"
 	E.db["movers"]["TotemBarMover"] = "BOTTOM,UIParent,BOTTOM,308,306" --shaman totem
 	E.db["movers"]["TotemTrackerMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-399,260" --class totems thing like consecration
+	E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,UIParent,BOTTOM,0,341" --move it below the castbar for monk/druid in mop
 	E.db["general"]["totems"]["growthDirection"] = "HORIZONTAL"
 	E.db["general"]["totems"]["size"] = 30
 	E.db["general"]["totems"]["spacing"] = 5
