@@ -3,7 +3,7 @@ local UF = E:GetModule('UnitFrames')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
 local powertype, _
-local unitframe, isHooked, staggerframe, npstaggerframe,isHookedstagger
+local unitframe, staggerframe, npstaggerframe,isHookedstagger
 local UnitPowerType = _G.UnitPowerType
 local UnitExists = _G.UnitExists
 local headergroup, group, groupbutton
@@ -359,14 +359,14 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 				_G["ElvUF_Player_AdditionalPowerBar"]:SetAlpha(E.db.general.backdropfadecolor.a)
 				_G["ElvUF_Player_AdditionalPowerBar"].ClipFrame:SetAlpha(E.db.general.backdropfadecolor.a)
 			end
-			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and not isHooked then
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and not _G["ElvUF_Player_AdditionalPowerBar"].isHooked then
 					hooksecurefunc(_G["ElvUF_Player_AdditionalPowerBar"], "SetStatusBarColor", function(_,r,g,b) --i knew the vertex thing from details could be useful
 						_G["ElvUF_Player_AdditionalPowerBar"]:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= 1}, {r=r,g= g,b= b,a= 1})
 						if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
 							_G["ElvUF_Player_AdditionalPowerBar"].bg:SetAlpha(E.db.general.backdropfadecolor.a)
 						end
 					end)
-				isHooked = true
+				_G["ElvUF_Player_AdditionalPowerBar"].isHooked = true
 			end
 		end
 	end
@@ -404,14 +404,14 @@ function ElvUI_EltreumUI:GradientEclipse()
 				_G["ElvUF_Player_EclipsePowerBar"].LunarBar:SetAlpha(E.db.general.backdropfadecolor.a)
 				_G["ElvUF_Player_EclipsePowerBar"].SolarBar:SetAlpha(E.db.general.backdropfadecolor.a)
 			end
-			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and not isHooked then
+			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and not _G["ElvUF_Player_EclipsePowerBar"].isHooked then
 				hooksecurefunc(_G["ElvUF_Player_EclipsePowerBar"].LunarBar, "SetStatusBarColor", function(_,r,g,b) --i knew the vertex thing from details could be useful
 					_G["ElvUF_Player_EclipsePowerBar"].LunarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= 1}, {r=r,g= g,b= b,a= 1})
 				end)
 				hooksecurefunc(_G["ElvUF_Player_EclipsePowerBar"].SolarBar, "SetStatusBarColor", function(_,r,g,b) --i knew the vertex thing from details could be useful
 					_G["ElvUF_Player_EclipsePowerBar"].SolarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r,g= g,b= b,a= 1}, {r=r - 0.4,g= g - 0.4,b= b - 0.4,a= 1})
 				end)
-				isHooked = true
+				_G["ElvUF_Player_EclipsePowerBar"].isHooked = true
 			end
 			_G["ElvUF_Player_EclipsePowerBar"].Arrow:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\ArrowEltruismEclipse.tga")
 		end
