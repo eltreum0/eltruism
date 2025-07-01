@@ -9,8 +9,8 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Thin") then
 
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
-				E.db["movers"]["TotemTrackerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,270" --adjusted for the additional power in druid/monk in mop
-				E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,UIParent,BOTTOM,0,256"
+				E.db["movers"]["TotemTrackerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,276" --adjusted for the additional power in druid/monk in mop
+				E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,UIParent,BOTTOM,0,260"
 			end
 
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") then

@@ -465,8 +465,8 @@ function ElvUI_EltreumUI:SetupLayoutDPS(silent)
 	E.db["movers"]["TorghastBuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-346"
 	E.db["movers"]["TotemBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,100" --shaman
 	--E.db["movers"]["TotemTrackerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,258" --class totem like consecration
-	E.db["movers"]["TotemTrackerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,270" --adjusted for the additional power in druid/monk in mop
-	E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,UIParent,BOTTOM,0,256"
+	E.db["movers"]["TotemTrackerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,276" --adjusted for the additional power in druid/monk in mop
+	E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,UIParent,BOTTOM,0,260"
 	E.db["general"]["totems"]["growthDirection"] = "HORIZONTAL"
 	E.db["general"]["totems"]["size"] = 30
 	E.db["general"]["totems"]["spacing"] = 5
