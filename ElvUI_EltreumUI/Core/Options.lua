@@ -4061,27 +4061,19 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added = ACH:Group(E:TextGradient("Added", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.added.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = ACH:Description([[
-Added an option to set a custom texture for the absorb/healcomm on the unitframe
-Added options to enable the static backdrop size in Nameplates
-Added an option to flip the target unitframe backdrop texture
-Added an option to disable shadows in the OmniCD skin
-Added portraits to the Boss unitframe
-Added Russian locale by ZamestoTV
-Added gradient to Boss Castbars
+Added support for Mists of Pandaria Classic
+Added the Mirror Timer mover
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = ACH:Description([[
-Updated Portraits function to enable the required 3D model when enabling the portrait
-Updated profile to remove some references to warlock class resource colors
-Updated the chat Race icon to be disabled by default
-Updated German locale
-Updated for 11.1.7
+Updated Stats datatext to better reflect certain stats
+Updated BigWigs profile due to nameplate changes
 ]], 5, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
-Fixed an issue where classbar shadows would not work when detached
+Fixed Chat shadow color when using Eltruism Datatext
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[
