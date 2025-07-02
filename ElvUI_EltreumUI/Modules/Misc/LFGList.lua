@@ -356,8 +356,8 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 							local icon =  iconTable[playerInfo.classFilename][playerInfo.specName]
 							partymembers[#partymembers+1] = {roleIndex[playerInfo.assignedRole], classIndex[playerInfo.classFilename], raidClassColors[playerInfo.classFilename],icon}
 						else
-							local icon =  iconTable[playerInfo.className]
-							partymembers[#partymembers+1] = {roleIndex[playerInfo.assignedRole], classIndex[playerInfo.className], raidClassColors[playerInfo.className],icon}
+							local icon =  iconTable[playerInfo.classFilename]
+							partymembers[#partymembers+1] = {roleIndex[playerInfo.assignedRole], classIndex[playerInfo.classFilename], raidClassColors[playerInfo.classFilename],icon}
 						end
 					end
 				end
