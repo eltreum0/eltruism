@@ -352,9 +352,13 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 
 					local playerInfo  = C_LFGList.GetSearchResultPlayerInfo(entry.resultID, i)
 					if playerInfo then
-						local role, class, specLocalized = playerInfo.assignedRole, playerInfo.className, playerInfo.specName
-						local icon = E.Retail and iconTable[class][specLocalized] or iconTable[class]
-						partymembers[#partymembers+1] = {roleIndex[role], classIndex[class], raidClassColors[class],icon}
+						if E.Retail then
+							local icon =  iconTable[playerInfo.classFilename][playerInfo.specName]
+							partymembers[#partymembers+1] = {roleIndex[playerInfo.assignedRole], classIndex[playerInfo.classFilename], raidClassColors[playerInfo.classFilename],icon}
+						else
+							local icon =  iconTable[playerInfo.className]
+							partymembers[#partymembers+1] = {roleIndex[playerInfo.assignedRole], classIndex[playerInfo.className], raidClassColors[playerInfo.className],icon}
+						end
 					end
 				end
 
