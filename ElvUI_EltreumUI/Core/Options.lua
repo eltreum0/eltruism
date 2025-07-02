@@ -4073,6 +4073,7 @@ Updated BigWigs profile due to nameplate changes
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
+Fixed an error with the LFG List due to an API change
 Fixed Chat shadow color when using Eltruism Datatext
 ]], 7, "small", nil, nil, nil, nil, "full")
 

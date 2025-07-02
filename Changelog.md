@@ -1,6 +1,9 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.3.5.1
+Fixed an error with the LFG List due to an API change  
+___
 ### 4.3.5
 Added support for Mists of Pandaria Classic  
 Added the Mirror Timer mover  
