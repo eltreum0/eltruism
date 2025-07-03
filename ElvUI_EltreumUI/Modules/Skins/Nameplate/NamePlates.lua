@@ -847,25 +847,6 @@ function ElvUI_EltreumUI:NameplateRestedOverlaps()
 end
 
 --Class color the target, plus use unit's target directly
-local classcolorcast = {
-	["DEATHKNIGHT"]	= "FFC41E3A",
-	["DEMONHUNTER"]	= "FFA330C9",
-	["DRUID"] = "FFFF7C0A",
-	["HUNTER"] = "FFAAD372",
-	["MAGE"] = "FF3FC7EB",
-	["MONK"] = "FF00FF98",
-	["PALADIN"]	= "FFF48CBA",
-	["PRIEST"] = "FFFFFFFF",
-	["ROGUE"] = "FFFFF468",
-	["SHAMAN"] = "FF0070DD",
-	["WARLOCK"] = "FF8788EE",
-	["WARRIOR"] = "FFC69B6D",
-	["HOSTILE"] = "FFFF0000",
-	["UNFRIENDLY"] = "FFF26000",
-	["NEUTRAL"] = "FFE4E400",
-	["FRIENDLY"] = "FF33FF33",
-	["EVOKER"] = "FF33937F",
-}
 function ElvUI_EltreumUI:Castbar_PostCastStart(unit)
 	self:CheckInterrupt(unit)
 	local plate = self.__owner
@@ -880,17 +861,17 @@ function ElvUI_EltreumUI:Castbar_PostCastStart(unit)
 				--local targetname = E:AbbreviateString(UnitName(unit..'target'))
 				if UnitIsPlayer(unit.."target") then
 					local _ , classes = UnitClass(unit.."target")
-					self.Text:SetText(spellName..' ['.."|c"..classcolorcast[classes]..targetname.."|r]")
+					self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast(classes)..targetname.."|r]")
 				else
 					local reaction = UnitReaction(unit.."target", "player")
 					if reaction >= 5 then
-						self.Text:SetText(spellName..' ['.."|c"..classcolorcast["FRIENDLY"]..targetname.."|r]")
+						self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..targetname.."|r]")
 					elseif reaction == 4 then
-						self.Text:SetText(spellName..' ['.."|c"..classcolorcast["NEUTRAL"]..targetname.."|r]")
+						self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("NEUTRAL")..targetname.."|r]")
 					elseif reaction == 3 then
-						self.Text:SetText(spellName..' ['.."|c"..classcolorcast["UNFRIENDLY"]..targetname.."|r]")
+						self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("UNFRIENDLY")..targetname.."|r]")
 					elseif reaction == 2 or reaction == 1 then
-						self.Text:SetText(spellName..' ['.."|c"..classcolorcast["HOSTILE"]..targetname.."|r]")
+						self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("HOSTILE")..targetname.."|r]")
 					end
 				end
 			end

@@ -4,7 +4,7 @@
 	<Script file='Core.lua'/>
 	<Script file='AddonSetup.lua'/>
 	<Script file='Install.lua'/>
-	<Script file='Tags.lua'/>
+	<Include file='Tags\Load_Tags.xml'/>
 	<Script file='VersionCheck.lua'/>
 	<Script file='DatabaseConverter.lua'/>
 	<Script file='Options.lua'/>
