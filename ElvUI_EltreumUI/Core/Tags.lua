@@ -847,6 +847,34 @@ E:AddTag("target:eltruism:abbrev", 'UNIT_TARGET', function(unit,_,args)
 	end
 end)
 E:AddTagInfo("target:eltruism:abbrev", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays the current target of the unit, accepts length args"])
+
+--target of target gradient name
+E:AddTag("name:eltruism:gradient:targetoftarget", "UNIT_NAME_UPDATE", function(unit)
+	if not UnitExists("targettarget") then return end
+	local name = UnitName("targettarget")
+	if name then
+		if UnitIsPlayer("targettarget") or (E.Retail and UnitInPartyIsAI("targettarget")) then
+			local _, unitClass = UnitClass("targettarget")
+			if not unitClass then return end
+			return ElvUI_EltreumUI:GradientName(name, unitClass)
+		elseif not UnitIsPlayer("targettarget") then
+			local reaction = UnitReaction("targettarget", "player")
+			if reaction then
+				if reaction >= 5 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCFRIENDLY")
+				elseif reaction == 4 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCNEUTRAL")
+				elseif reaction == 3 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCUNFRIENDLY")
+				elseif reaction == 2 or reaction == 1 then
+					return ElvUI_EltreumUI:GradientName(name, "NPCHOSTILE")
+				end
+			end
+		end
+	end
+end)
+E:AddTagInfo("name:eltruism:gradient:targetoftarget", ElvUI_EltreumUI.Name.." "..L["Names"], L["Displays unit name in gradient class color or reaction color"])
+
 -------------------------------------------------------------------------- ICONS -------------------------------------------------------------------------
 
 --show class icons on all targets
