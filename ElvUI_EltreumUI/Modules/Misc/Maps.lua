@@ -145,7 +145,7 @@ if E.Retail then
 								local _,_,flyspeed = GetUnitSpeed('player')
 								speed = flyspeed
 							end
-							if IsPlayerMoving() then
+							if IsPlayerMoving() or _G.UnitOnTaxi("player") then
 								if (not speed or speed == 0) then --might be dragonflying, calculate based on delta distance
 									E:Delay(1, function()
 										local previousdistance = C_Navigation.GetDistance()
