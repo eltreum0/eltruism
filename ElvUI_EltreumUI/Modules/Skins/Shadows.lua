@@ -667,9 +667,17 @@ function ElvUI_EltreumUI:Shadows()
 								ElvUI_EltreumUI:ShadowColor(_G.GarrisonLandingPage.shadow)
 							end
 						end
-						if  _G.GarrisonLandingPageTab1 and not _G.GarrisonLandingPageTab1.shadow then
-							_G.GarrisonLandingPageTab1:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.GarrisonLandingPageTab1.shadow)
+						if _G.GarrisonLandingPageTab1 and _G.GarrisonLandingPageTab1.backdrop and not _G.GarrisonLandingPageTab1.backdrop.shadow then
+							_G.GarrisonLandingPageTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.GarrisonLandingPageTab1.backdrop.shadow)
+						end
+						if _G.GarrisonLandingPageTab2 and _G.GarrisonLandingPageTab2.backdrop and not _G.GarrisonLandingPageTab2.backdrop.shadow then
+							_G.GarrisonLandingPageTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.GarrisonLandingPageTab2.backdrop.shadow)
+						end
+						if _G.GarrisonLandingPageTab3 and _G.GarrisonLandingPageTab3.backdrop and not _G.GarrisonLandingPageTab3.backdrop.shadow then
+							_G.GarrisonLandingPageTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.GarrisonLandingPageTab3.backdrop.shadow)
 						end
 						if _G.CovenantMissionFrame then
 							if not _G.CovenantMissionFrame.shadow then
