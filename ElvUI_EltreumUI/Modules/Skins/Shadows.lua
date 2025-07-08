@@ -735,6 +735,10 @@ function ElvUI_EltreumUI:Shadows()
 							_G.CollectionsJournalTab5.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.CollectionsJournalTab5.backdrop.shadow)
 						end
+						if _G.CollectionsJournalTab6 and _G.CollectionsJournalTab6.backdrop and not _G.CollectionsJournalTab6.backdrop.shadow then
+							_G.CollectionsJournalTab6.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.CollectionsJournalTab6.backdrop.shadow)
+						end
 						if not _G.ToyBox.shadow then
 							_G.ToyBox:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.ToyBox.shadow)
