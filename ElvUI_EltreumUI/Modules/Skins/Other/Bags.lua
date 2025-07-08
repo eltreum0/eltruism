@@ -100,6 +100,14 @@ function ElvUI_EltreumUI:BagProfessions()
 				[71] = 74258, --cata Enchanting
 				[72] = 76666, --cata Blacksmithing
 				[73] = 80731, --cata Alchemy
+				[74] = 110400, --mop Enchanting
+				[75] = 110420, --mop Jewelcrafting
+				[76] = 110403, --mop Engineering
+				[77] = 110423, --mop Leatherworking
+				[78] = 110417, --mop Inscription
+				[79] = 110396, --mop Blacksmithing
+				[80] = 110426, --mop Tailoring
+				[81] = 105206, --mop Alchemy
 			}
 			local blockprof = {
 				[4620674] = true,

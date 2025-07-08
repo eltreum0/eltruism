@@ -1,6 +1,16 @@
 ### 🌌 Next Version
 The future is uncertain
 ___
+### 4.3.5.1
+Fixed an error with the LFG List due to an API change  
+___
+### 4.3.5
+Added support for Mists of Pandaria Classic  
+Added the Mirror Timer mover  
+Updated Stats datatext to better reflect certain stats  
+Updated BigWigs profile due to nameplate changes  
+Fixed Chat shadow color when using Eltruism Datatext  
+___
 ### 4.3.4
 Added an option to set a custom texture for the absorb/healcomm on the unitframe  
 Added options to enable the static backdrop size in Nameplates  

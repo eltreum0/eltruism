@@ -716,7 +716,7 @@ function ElvUI_EltreumUI:GradientMode()
 end
 
 function ElvUI_EltreumUI:ShamanTextureMode()
-	if (E.Cata or E.Classic) and E.myclass == 'SHAMAN' then
+	if (E.Mists or E.Classic) and E.myclass == 'SHAMAN' then
 		if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor and E.private.unitframe.enable then
 			local UF = E:GetModule('UnitFrames') --only classpower that is actually in UF instead of NP
 			local function TotemBackground()

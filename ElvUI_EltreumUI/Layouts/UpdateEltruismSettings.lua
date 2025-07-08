@@ -107,7 +107,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		-- Skins
 		E.db.ElvUI_EltreumUI.skins.levelbossinstance = true
 		E.db.ElvUI_EltreumUI.skins.widertransmog = true
-		--E.db.ElvUI_EltreumUI.skins.expandedstable = true
+		E.db.ElvUI_EltreumUI.skins.expandedstable = true
 		E.db.ElvUI_EltreumUI.skins.classiconsoncharacterpanel = true
 		E.db.ElvUI_EltreumUI.skins.classicarmory = true
 		E.db.ElvUI_EltreumUI.skins.classicarmoryautostats = true
@@ -186,7 +186,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.glow.enable = true
 		E.db.ElvUI_EltreumUI.glow.pixel = true
 		E.db.ElvUI_EltreumUI.glow.enablepet = true
-		if E.Cata or E.Classic then
+		if E.Classic or E.Mists then
 			E.db.ElvUI_EltreumUI.glow.enabletotem = true
 		end
 
@@ -211,7 +211,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		if E.Retail then
 			E.db.ElvUI_EltreumUI.quests.enable = true
 			E.db.ElvUI_EltreumUI.quests.rogueopen = true
-		elseif E.Cata or E.Classic then
+		elseif E.Mists or E.Classic then
 			E.db.ElvUI_EltreumUI.quests.enable = false
 		end
 		E.db.ElvUI_EltreumUI.quests.questitems = true

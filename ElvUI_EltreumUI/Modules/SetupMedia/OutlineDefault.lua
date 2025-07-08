@@ -37,7 +37,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	if E.Retail then
 		E.db["general"]["queueStatus"]["fontOutline"] = "OUTLINE"
 	end
-	if E.Cata then
+	if E.Mists then
 		E.db["general"]["totems"]["fontOutline"] = "OUTLINE"
 	end
 	E.db["general"]["addonCompartment"]["fontOutline"] = "OUTLINE"

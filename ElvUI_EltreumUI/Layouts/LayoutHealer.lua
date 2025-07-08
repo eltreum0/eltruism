@@ -375,7 +375,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	if E.Classic then
 		E.db["movers"]["QuestTimerFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-258,-231"
 		E.db["movers"]["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-223,-304"
-	elseif E.Cata then
+	elseif E.Mists then
 		E.db["movers"]["WatchFrameMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-115,-306"
 		E.db["movers"]["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-110,-319"
 	end
@@ -398,10 +398,11 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	E.db["movers"]["TorghastBuffsMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,206"
 	E.db["movers"]["TotemBarMover"] = "BOTTOM,UIParent,BOTTOM,308,306" --shaman totem
 	E.db["movers"]["TotemTrackerMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-399,260" --class totems thing like consecration
+	E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,UIParent,BOTTOM,0,341" --move it below the castbar for monk/druid in mop
 	E.db["general"]["totems"]["growthDirection"] = "HORIZONTAL"
 	E.db["general"]["totems"]["size"] = 30
 	E.db["general"]["totems"]["spacing"] = 5
-	if E.Cata then
+	--[[if E.Cata then
 		--Shaman things
 		E.db["actionbar"]["totemBar"]["buttonSize"] = 24
 		E.db["actionbar"]["totemBar"]["flyoutSize"] = 24
@@ -409,7 +410,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 		E.db["actionbar"]["totemBar"]["font"] = "Kimberley"
 		E.db["actionbar"]["totemBar"]["spacing"] = 5
 		E.db["actionbar"]["totemBar"]["visibility"] = "[combat] show;[@target, noexists] hide; [vehicleui] hide; [bonusbar:5] hide; [overridebar] hide; [possessbar] hide; [petbattle] hide; show"
-	end
+	end]]
 	E.db["movers"]["TorghastChoiceToggle"] = "BOTTOM,UIParent,BOTTOM,0,445"
 	E.db["movers"]["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,0,-1"
 	if E.Retail then

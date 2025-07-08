@@ -593,11 +593,34 @@ function ElvUI_EltreumUI:NamePlateOptions()
 						elseif E.myclass == 'MONK' then
 							if ElvUI_EltreumUI.Spec == 269 then
 								_G["ElvNP_TargetClassPowerClassPower"]:Show()
-							elseif ElvUI_EltreumUI.Spec == 268 then
+							elseif ElvUI_EltreumUI.Spec == 268 and _G["ElvNP_TargetClassPowerStagger"] then
 								_G["ElvNP_TargetClassPowerStagger"]:Show()
 							end
 						elseif E.myclass == 'MAGE' then
 							if ElvUI_EltreumUI.Spec == 62 then
+								_G["ElvNP_TargetClassPowerClassPower"]:Show()
+							end
+						end
+					elseif E.Mists then
+						if E.myclass == 'DEATHKNIGHT' then
+							_G["ElvNP_TargetClassPowerRunes"]:Show()
+						elseif E.myclass == 'PALADIN' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' then
+							_G["ElvNP_TargetClassPowerClassPower"]:Show()
+						elseif E.myclass == 'DRUID' then
+							stance = GetShapeshiftForm()
+							if stance == 2 then --its a cat
+								_G["ElvNP_TargetClassPowerClassPower"]:Show()
+							else
+								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+							end
+						elseif E.myclass == 'MONK' then
+							if ElvUI_EltreumUI.Spec == 1 and _G["ElvNP_TargetClassPowerStagger"] then
+								_G["ElvNP_TargetClassPowerStagger"]:Show()
+							else
+								_G["ElvNP_TargetClassPowerClassPower"]:Show()
+							end
+						elseif E.myclass == 'MAGE' then
+							if ElvUI_EltreumUI.Spec == 1 then
 								_G["ElvNP_TargetClassPowerClassPower"]:Show()
 							end
 						end
@@ -626,11 +649,29 @@ function ElvUI_EltreumUI:NamePlateOptions()
 						elseif E.myclass == 'MONK' then
 							if ElvUI_EltreumUI.Spec == 269 then
 								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
-							elseif ElvUI_EltreumUI.Spec == 268 then
+							elseif ElvUI_EltreumUI.Spec == 268 and _G["ElvNP_TargetClassPowerStagger"] then
 								_G["ElvNP_TargetClassPowerStagger"]:Hide()
 							end
 						elseif E.myclass == 'MAGE' then
 							if ElvUI_EltreumUI.Spec == 62 then
+								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+							end
+						end
+					elseif E.Mists then
+						if E.myclass == 'DEATHKNIGHT' then
+							_G["ElvNP_TargetClassPowerRunes"]:Hide()
+						elseif E.myclass == 'PALADIN' or E.myclass == 'ROGUE' or E.myclass == 'WARLOCK' then
+							_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+						elseif E.myclass == 'DRUID' then
+								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+						elseif E.myclass == 'MONK' then
+							if ElvUI_EltreumUI.Spec == 1 and _G["ElvNP_TargetClassPowerStagger"] then
+								_G["ElvNP_TargetClassPowerStagger"]:Hide()
+							else
+								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
+							end
+						elseif E.myclass == 'MAGE' then
+							if ElvUI_EltreumUI.Spec == 1 then
 								_G["ElvNP_TargetClassPowerClassPower"]:Hide()
 							end
 						end
@@ -673,7 +714,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 				else
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.10
 				end
-			elseif E.Cata then
+			elseif E.Mists then
 				if E.myclass == "MAGE" then
 					E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.35
 				elseif E.myclass == "WARRIOR" or E.myclass == "HUNTER" then
@@ -699,7 +740,7 @@ EltruismNamePlateOptionsFrame:SetScript("OnEvent", ElvUI_EltreumUI.NamePlateOpti
 --add threat to nameplate by putting threat into title and moving title to the healthbar
 function ElvUI_EltreumUI:ClassicThreatNP()
 	if E.private.nameplates.enable then
-		if E.Classic or E.Cata then
+		if E.Classic or E.Mists then
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["font"] = E.db.general.font
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["fontOutline"] = E.db.general.fontStyle
 			E.db["nameplates"]["units"]["ENEMY_NPC"]["title"]["enable"] = true
@@ -806,25 +847,6 @@ function ElvUI_EltreumUI:NameplateRestedOverlaps()
 end
 
 --Class color the target, plus use unit's target directly
-local classcolorcast = {
-	["DEATHKNIGHT"]	= "FFC41E3A",
-	["DEMONHUNTER"]	= "FFA330C9",
-	["DRUID"] = "FFFF7C0A",
-	["HUNTER"] = "FFAAD372",
-	["MAGE"] = "FF3FC7EB",
-	["MONK"] = "FF00FF98",
-	["PALADIN"]	= "FFF48CBA",
-	["PRIEST"] = "FFFFFFFF",
-	["ROGUE"] = "FFFFF468",
-	["SHAMAN"] = "FF0070DD",
-	["WARLOCK"] = "FF8788EE",
-	["WARRIOR"] = "FFC69B6D",
-	["HOSTILE"] = "FFFF0000",
-	["UNFRIENDLY"] = "FFF26000",
-	["NEUTRAL"] = "FFE4E400",
-	["FRIENDLY"] = "FF33FF33",
-	["EVOKER"] = "FF33937F",
-}
 function ElvUI_EltreumUI:Castbar_PostCastStart(unit)
 	self:CheckInterrupt(unit)
 	local plate = self.__owner
@@ -839,17 +861,17 @@ function ElvUI_EltreumUI:Castbar_PostCastStart(unit)
 				--local targetname = E:AbbreviateString(UnitName(unit..'target'))
 				if UnitIsPlayer(unit.."target") then
 					local _ , classes = UnitClass(unit.."target")
-					self.Text:SetText(spellName..' ['.."|c"..classcolorcast[classes]..targetname.."|r]")
+					self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast(classes)..targetname.."|r]")
 				else
 					local reaction = UnitReaction(unit.."target", "player")
 					if reaction >= 5 then
-						self.Text:SetText(spellName..' ['.."|c"..classcolorcast["FRIENDLY"]..targetname.."|r]")
+						self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("FRIENDLY")..targetname.."|r]")
 					elseif reaction == 4 then
-						self.Text:SetText(spellName..' ['.."|c"..classcolorcast["NEUTRAL"]..targetname.."|r]")
+						self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("NEUTRAL")..targetname.."|r]")
 					elseif reaction == 3 then
-						self.Text:SetText(spellName..' ['.."|c"..classcolorcast["UNFRIENDLY"]..targetname.."|r]")
+						self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("UNFRIENDLY")..targetname.."|r]")
 					elseif reaction == 2 or reaction == 1 then
-						self.Text:SetText(spellName..' ['.."|c"..classcolorcast["HOSTILE"]..targetname.."|r]")
+						self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast("HOSTILE")..targetname.."|r]")
 					end
 				end
 			end
@@ -863,7 +885,7 @@ hooksecurefunc(NP, 'Initialize', function()
 		NP.multiplier = 0
 	end
 end)
-if E.Retail or E.Cata then
+if E.Retail or E.Mists then
 	hooksecurefunc(NP, 'Construct_Runes', function()
 		if E.db.ElvUI_EltreumUI.unitframes.darkpowercolor then
 			NP.multiplier = 0

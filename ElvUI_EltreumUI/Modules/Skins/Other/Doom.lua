@@ -177,7 +177,7 @@ function ElvUI_EltreumUI:Doom()
 						local getCooldownDetails
 						if (v[2] == "spell") then
 							getCooldownDetails = memorize(function()
-								if E.Retail then
+								if E.Retail or E.Mists then
 									local cooldowntable = GetSpellCooldown(v[3])
 									local spelltable = GetSpellInfo(v[3])
 									return {
@@ -301,7 +301,7 @@ function ElvUI_EltreumUI:Doom()
 							DCP.TextFrame:SetText(animating[1][3])
 						end
 						if E.db.ElvUI_EltreumUI.skins.doom.tts and animating[1][3] then --and animating[1][3] ~= nil then
-							if E.Cata then --cata on 29/10/2024 seems to not have fully migrated like classic era
+							if E.Mists then --cata on 29/10/2024 seems to not have fully migrated like classic era
 								if E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil then
 									C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, animating[1][3], Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
 								end

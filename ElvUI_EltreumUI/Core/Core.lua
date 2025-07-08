@@ -38,6 +38,9 @@ local pairs = _G.pairs
 local StaticPopupDialogs = _G.StaticPopupDialogs
 local ceil = _G.ceil
 local BuffFrame = _G.BuffFrame
+local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
+local GetShapeshiftFormInfo = _G.GetShapeshiftFormInfo
+local select = _G.select
 
 -- Eltreum UI print
 function ElvUI_EltreumUI:Print(msg)
@@ -187,6 +190,76 @@ function ElvUI_EltreumUI:RestoreBlizzCombatText()
 	end
 end
 
+--to get the correct name for the files
+--https://stackoverflow.com/questions/2421695/first-character-uppercase-lua
+function ElvUI_EltreumUI:firstToUpper(str)
+	return (str:gsub("^%l", string.upper))
+end
+
+--copy of elvui abbrev
+function ElvUI_EltreumUI:Abbrev(name)
+	local letters, lastWord = '', strmatch(name, '.+%s(.+)$')
+	if lastWord then
+		for word in gmatch(name, '.-%s') do
+			local firstLetter = utf8sub(gsub(word, '^[%s%p]*', ''), 1, 1)
+			if firstLetter ~= utf8lower(firstLetter) then
+				letters = format('%s%s. ', letters, firstLetter)
+			end
+		end
+		name = format('%s%s', letters, lastWord)
+	end
+	return name
+end
+
+local classcolorcast = {
+	["DEATHKNIGHT"]	= "FFC41E3A",
+	["DEMONHUNTER"]	= "FFA330C9",
+	["DRUID"] = "FFFF7C0A",
+	["HUNTER"] = "FFAAD372",
+	["MAGE"] = "FF3FC7EB",
+	["MONK"] = "FF00FF98",
+	["PALADIN"]	= "FFF48CBA",
+	["PRIEST"] = "FFFFFFFF",
+	["ROGUE"] = "FFFFF468",
+	["SHAMAN"] = "FF0070DD",
+	["WARLOCK"] = "FF8788EE",
+	["WARRIOR"] = "FFC69B6D",
+	["HOSTILE"] = "FFFF0000",
+	["UNFRIENDLY"] = "FFF26000",
+	["NEUTRAL"] = "FFE4E400",
+	["FRIENDLY"] = "FF33FF33",
+	["EVOKER"] = "FF33937F",
+}
+function ElvUI_EltreumUI:classcolorcast(unitclass)
+	if classcolorcast[unitclass] then
+		return classcolorcast[unitclass]
+	end
+end
+
+--level difference table based on blizzard's
+local eltruismdif = {
+	["-9"] = "|cFF808080",
+	["-8"] = "|cFF008000",
+	["-7"] = "|cFF008000",
+	["-6"] = "|cFF008000",
+	["-5"] = "|cFF008000",
+	["-4"] = "|cFF008000",
+	["-3"] = "|cFF008000",
+	["-2"] = "|cFFFFFF00",
+	["-1"] = "|cFFFFFF00",
+	["0"] = "|cFFFFFF00",
+	["1"] = "|cFFFFFF00",
+	["2"] = "|cFFFFFF00",
+	["3"] = "|cFFFFA500",
+	["4"] = "|cFFA50000",
+	["5"] = "|cFFFF0000",
+}
+function ElvUI_EltreumUI:eltruismdif(value)
+	if value and eltruismdif[value] then
+		return eltruismdif[value]
+	end
+end
+
 -- Ghost frame for Automatic Weakauras Positioning
 local EltreumWAAnchor = CreateFrame("Frame", "EltruismWA", UIParent)
 EltreumWAAnchor:SetPoint("CENTER", UIParent, "CENTER", 0, -380)
@@ -320,7 +393,7 @@ function ElvUI_EltreumUI:EnteringWorldCVars()
 	SetCVar('DynamicRenderScaleMin', E.db.ElvUI_EltreumUI.cvars.dynamicrenderscalemin)
 	if E.Retail and E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.enable then
 		SetCVar('showInGameNavigation', E.db.ElvUI_EltreumUI.cvars.showInGameNavigation)
-	elseif E.Classic or E.Cata then
+	elseif E.Classic or E.Mists then
 		SetCVar('clampTargetNameplateToScreen', E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen)
 	end
 end
@@ -727,6 +800,29 @@ function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
 	end
 end
 
+function ElvUI_EltreumUI:SpellInfoShapeshift(spellID,ShapeshiftFormID)
+	if ShapeshiftFormID then
+		if GetShapeshiftFormInfo(1) then
+			spellID = select(4,GetShapeshiftFormInfo(ShapeshiftFormID))
+			if spellID then
+				local spellData = GetSpellInfo(spellID)
+				if spellData.name then
+					return spellData.name
+				else
+					return ""
+				end
+			else
+				return ""
+			end
+		else
+			return ""
+		end
+	elseif spellID then
+		local spellData = GetSpellInfo(spellID)
+		return spellData.name
+	end
+end
+
 do
 	local shortenReplace = function(t) return t:utf8sub(1,1)..'. ' end
 	function ElvUI_EltreumUI:ShortenString(text, length, cut,firstname)
@@ -878,6 +974,10 @@ function ElvUI_EltreumUI:PerformanceOptimization()
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableaurabars = false
 	E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablebackdrop = false
 	E.db.ElvUI_EltreumUI.chat.chatgradient = false
+
+	--disable combat logging
+	_G.C_CVar.SetCVar("advancedCombatLogging", 0)
+	_G.LoggingCombat(false)
 end
 
 --toggle 3d models

@@ -292,7 +292,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if (arg == "Blizzard_MacroUI") or IsAddOnLoaded("Blizzard_MacroUI") then
-						if E.Retail or E.Cata then
+						if E.Retail or E.Mists then
 							if not _G.MacroFrame.shadow then
 								_G.MacroFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G.MacroFrame.shadow)
@@ -317,7 +317,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if (arg == "Blizzard_GuildBankUI") or IsAddOnLoaded("Blizzard_GuildBankUI") then
-						if E.Retail or E.Cata then
+						if E.Retail or E.Mists then
 							if E.Retail then
 								if not _G.GuildBankFrame.shadow then
 									_G.GuildBankFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -619,7 +619,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if (arg == "Blizzard_AchievementUI") or IsAddOnLoaded("Blizzard_AchievementUI") then
-						if E.Retail or E.Cata then
+						if E.Retail or E.Mists then
 							if _G.AchievementFrame then
 								if _G.AchievementFrame.backdrop then
 									if not _G.AchievementFrame.backdrop.shadow then
@@ -667,9 +667,17 @@ function ElvUI_EltreumUI:Shadows()
 								ElvUI_EltreumUI:ShadowColor(_G.GarrisonLandingPage.shadow)
 							end
 						end
-						if  _G.GarrisonLandingPageTab1 and not _G.GarrisonLandingPageTab1.shadow then
-							_G.GarrisonLandingPageTab1:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G.GarrisonLandingPageTab1.shadow)
+						if _G.GarrisonLandingPageTab1 and _G.GarrisonLandingPageTab1.backdrop and not _G.GarrisonLandingPageTab1.backdrop.shadow then
+							_G.GarrisonLandingPageTab1.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.GarrisonLandingPageTab1.backdrop.shadow)
+						end
+						if _G.GarrisonLandingPageTab2 and _G.GarrisonLandingPageTab2.backdrop and not _G.GarrisonLandingPageTab2.backdrop.shadow then
+							_G.GarrisonLandingPageTab2.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.GarrisonLandingPageTab2.backdrop.shadow)
+						end
+						if _G.GarrisonLandingPageTab3 and _G.GarrisonLandingPageTab3.backdrop and not _G.GarrisonLandingPageTab3.backdrop.shadow then
+							_G.GarrisonLandingPageTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.GarrisonLandingPageTab3.backdrop.shadow)
 						end
 						if _G.CovenantMissionFrame then
 							if not _G.CovenantMissionFrame.shadow then
@@ -726,6 +734,10 @@ function ElvUI_EltreumUI:Shadows()
 						if _G.CollectionsJournalTab5 and _G.CollectionsJournalTab5.backdrop and not _G.CollectionsJournalTab5.backdrop.shadow then
 							_G.CollectionsJournalTab5.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.CollectionsJournalTab5.backdrop.shadow)
+						end
+						if _G.CollectionsJournalTab6 and _G.CollectionsJournalTab6.backdrop and not _G.CollectionsJournalTab6.backdrop.shadow then
+							_G.CollectionsJournalTab6.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.CollectionsJournalTab6.backdrop.shadow)
 						end
 						if not _G.ToyBox.shadow then
 							_G.ToyBox:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -1122,7 +1134,7 @@ function ElvUI_EltreumUI:Shadows()
 			end)
 
 			--mirror timer shadow
-			if E.Cata then
+			if E.Mists then
 				hooksecurefunc('TimerTracker_StartTimerOfType', function() --from elvui
 					for _, frame in pairs(_G.TimerTracker.timerList) do
 						if frame and frame.bar and not frame.bar.shadow then
@@ -1253,7 +1265,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		if E.Retail or E.Cata then
+		if E.Retail or E.Mists then
 			if E.db.ElvUI_EltreumUI.skins.shadow.blizzard then
 
 				--loss of control frame icon
@@ -1265,7 +1277,7 @@ function ElvUI_EltreumUI:Shadows()
 				end
 
 				--main minimize button easier here
-				if E.Cata then
+				if E.Mists then
 					if _G.ObjectiveTrackerFrame then
 						if _G.ObjectiveTrackerFrame.HeaderMenu and _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton and not _G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton.shadow then
 							_G.ObjectiveTrackerFrame.HeaderMenu.MinimizeButton:CreateShadow()
@@ -1504,7 +1516,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--Shaman Totem things
-			if E.Cata then
+			--[[if E.Mists then
 				if E.myclass == "SHAMAN" and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.totembar) and E.db.actionbar.totemBar.enable then
 					local totemframes = {
 						_G.MultiCastSummonSpellButton,
@@ -1541,7 +1553,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end)
 				end
-			end
+			end]]
 		end
 		------------------------------------------------------------------------------------------------------unitframes
 		if E.db.ElvUI_EltreumUI.skins.shadow.unitframes then
@@ -3702,14 +3714,14 @@ function ElvUI_EltreumUI:Shadows()
 			if E.db.datatexts.panels.EltruismDataText and E.db.datatexts.panels.EltruismDataText.enable then
 				if _G["RightChatPanel"] and _G["RightChatPanel"].backdrop and not _G["RightChatPanel"].backdrop.shadow then
 					_G["RightChatPanel"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(RightChatShadow.shadow)
+					ElvUI_EltreumUI:ShadowColor(_G["RightChatPanel"].backdrop.shadow)
 					_G.RightChatPanel.backdrop.shadow.BottomEdge:Hide()
 					_G.RightChatPanel.backdrop.shadow.BottomRightCorner:Hide()
 					_G.RightChatPanel.backdrop.shadow.BottomLeftCorner:Hide()
 				end
 				if _G["LeftChatPanel"] and _G["LeftChatPanel"].backdrop and not _G["LeftChatPanel"].backdrop.shadow then
 					_G["LeftChatPanel"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-					ElvUI_EltreumUI:ShadowColor(LeftChatShadow.shadow)
+					ElvUI_EltreumUI:ShadowColor(_G["LeftChatPanel"].backdrop.shadow)
 					_G.LeftChatPanel.backdrop.shadow.BottomEdge:Hide()
 					_G.LeftChatPanel.backdrop.shadow.BottomRightCorner:Hide()
 					_G.LeftChatPanel.backdrop.shadow.BottomLeftCorner:Hide()

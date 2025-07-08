@@ -603,14 +603,14 @@ function ElvUI_EltreumUI:QuestItem()
 							if not blocklist[itemID] then
 								local _, _, _, _, _, itemType, itemSubType, _, _, _, _, classID = GetItemInfo(link)
 								if CheckButtonExistence(itemID) then
-									if E.Retail or E.Cata then
+									if E.Retail or E.Mists then
 										local questInfo = C_Container.GetContainerItemQuestInfo(bag,slot)
 										if ((questInfo.isQuestItem or (itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12)) and GetItemSpell(itemID) ~= nil) or (CheckItemTooltip(link,itemID)) then
 											local _, count = GetContainerItemInfo(bag,slot)
 											AddButton(index,bag,slot,link,itemID,count)
 											index = (index + 1)
 										end
-									elseif E.Cata or E.Classic then
+									elseif E.Classic then
 										if ((itemType == QUEST_TOKEN or itemSubType == QUEST_TOKEN or classID == 12) and GetItemSpell(itemID) ~= nil) or (CheckItemTooltip(link,itemID)) then
 											local _, count = GetContainerItemInfo(bag,slot)
 											AddButton(index,bag,slot,link,itemID,count)

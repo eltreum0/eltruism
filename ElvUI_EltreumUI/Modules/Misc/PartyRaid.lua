@@ -207,9 +207,9 @@ function ElvUI_EltreumUI:BattleRes()
 end
 
 --set correct role for classic
-local isTank, isHealer, isDPS = false,false,false
+--[[local isTank, isHealer, isDPS = false,false,false
 function ElvUI_EltreumUI:SetGroupRoleClassic()
-	if E.Cata and not InCombatLockdown() then
+	if E.Mists and not InCombatLockdown() then
 		if UnitGroupRolesAssigned("player") == "DAMAGER" then
 			isDPS = true
 			isTank = false
@@ -286,7 +286,7 @@ function ElvUI_EltreumUI:SetGroupRoleClassic()
 						UnitSetRole("player","DAMAGER")
 					end
 				end
-			--[[elseif E.myclass == 'DEATHKNIGHT' then --only check for the blade barrier talent
+			elseif E.myclass == 'DEATHKNIGHT' then --only check for the blade barrier talent
 				if select(5, GetTalentInfo(1, 21)) > 0 then
 					if not isTank then
 						UnitSetRole("player","TANK")
@@ -295,7 +295,7 @@ function ElvUI_EltreumUI:SetGroupRoleClassic()
 					if not isDPS then
 						UnitSetRole("player","DAMAGER")
 					end
-				end]]
+				end
 			end
 		end
 	end
@@ -308,24 +308,27 @@ roleframe:RegisterEvent("PLAYER_ENTERING_WORLD")
 --roleframe:RegisterEvent("PLAYER_ROLES_ASSIGNED")
 --roleframe:RegisterEvent("GROUP_LEFT")
 roleframe:SetScript("OnEvent", function()
-	if E.Cata then
+	if E.Mists then
 		ElvUI_EltreumUI:SetGroupRoleClassic()
 	else
 		roleframe:UnregisterAllEvents()
 	end
-end)
+end)]]
 
 --automatic combat logging
 function ElvUI_EltreumUI:AutoCombatLog()
 	if E.db.ElvUI_EltreumUI.cvars.combatlog then
-		if not InCombatLockdown() then
-			SetCVar("advancedCombatLogging", 1)
-		end
 		local _, instanceType2 = IsInInstance()
 		if instanceType2 == "raid" or instanceType2 == "party" or instanceType2 == "scenario" then
+			if not InCombatLockdown() then
+				SetCVar("advancedCombatLogging", 1)
+			end
 			LoggingCombat(true)
 			--ElvUI_EltreumUI:Print(COMBATLOGENABLED)
 		else
+			if not InCombatLockdown() then
+				SetCVar("advancedCombatLogging", 0)
+			end
 			LoggingCombat(false)
 			--ElvUI_EltreumUI:Print(COMBATLOGDISABLED)
 		end

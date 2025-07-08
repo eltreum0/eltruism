@@ -1,0 +1,6 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file='Health.lua'/>
+	<Script file='Icons.lua'/>
+	<Script file='Name.lua'/>
+	<Script file='Other.lua'/>
+</Ui>

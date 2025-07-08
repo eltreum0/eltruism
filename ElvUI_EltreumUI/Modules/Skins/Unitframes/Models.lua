@@ -52,7 +52,7 @@ local classModels = {
 	--4234796 smoky stormwind
 	--937003 fire
 }
-if E.Cata then
+if E.Mists then
 	classModels = {
 		["MAGE"] = "environments/stars/nexusraid_runeeffects_starry.m2",
 		["PALADIN"] = "environments/stars/netherstormskybox.m2", --spells/dragonbreath_arcane.m2
@@ -492,7 +492,7 @@ function ElvUI_EltreumUI:FocusUFEffects()
 		end
 	end
 end
-if E.Retail or E.Cata then
+if E.Retail or E.Mists then
 	hooksecurefunc(UF, "Construct_FocusFrame", ElvUI_EltreumUI.FocusUFEffects)
 	hooksecurefunc(UF, "Update_FocusFrame", ElvUI_EltreumUI.FocusUFEffects)
 end
