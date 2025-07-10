@@ -505,6 +505,10 @@ local function FixElvUIMinimapBorder()
 		if _G.Minimap.backdrop then
 			_G.Minimap.backdrop:Hide()
 		end
+		local tracking = MinimapCluster.Tracking or MinimapCluster.TrackingFrame or _G.MiniMapTrackingFrame or _G.MiniMapTracking
+		if tracking then
+			tracking:SetParent(_G.Minimap)
+		end
 	else
 		if _G.MinimapBackdrop then
 			_G.MinimapBackdrop:Show()
