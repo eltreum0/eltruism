@@ -93,7 +93,8 @@ local function SkinFrame(object)
 							frame.eltruismbgtexture:SetTexture("")
 						end
 						if frame:GetParent().TransmogSelectedAnim then --transmog stuff
-							frame.eltruismbgtexture:SetTexture("")
+							--frame.eltruismbgtexture:SetTexture("") --at some point this stopped working and now the frame needs to be hidden
+							frame:Hide()
 						end
 					end
 					if (frame.SelectedTexture or frame.glossTex) and not E.db.ElvUI_EltreumUI.skins.elvui.button then --fix some more buttons
