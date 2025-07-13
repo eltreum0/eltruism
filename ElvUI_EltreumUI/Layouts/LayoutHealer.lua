@@ -872,7 +872,7 @@ function ElvUI_EltreumUI:SetupLayoutHealer(silent)
 	E.db["unitframe"]["units"]["player"]["power"]["text_format"] = ""
 	E.db["unitframe"]["units"]["player"]["power"]["width"] = "spaced"
 	E.db["unitframe"]["units"]["player"]["power"]["xOffset"] = 0
-	E.db["unitframe"]["units"]["player"]["power"]["autoHide"] = true
+	E.db["unitframe"]["units"]["player"]["power"]["autoHide"] = false --was true
 	E.db["unitframe"]["units"]["player"]["power"]["detachFromFrame"] = false
 	E.db["unitframe"]["units"]["player"]["power"]["detachedWidth"] = 295
 	E.db["unitframe"]["units"]["player"]["power"]["strataAndLevel"]["useCustomLevel"] = false
