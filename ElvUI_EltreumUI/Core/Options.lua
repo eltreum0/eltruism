@@ -177,7 +177,8 @@ local DONATORS = {
 	'crusty',
 	'clozure',
 	'Aphadon',
-	'shifty'
+	'shifty',
+	'Baleos',
 }
 
 local TRANSLATORS = {
