@@ -1,6 +1,7 @@
 local E, L = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local Translit = E.Libs.Translit
 
 --from elvui, modified for gradient
 do
