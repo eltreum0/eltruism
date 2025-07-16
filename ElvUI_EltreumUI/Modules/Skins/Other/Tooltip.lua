@@ -159,7 +159,7 @@ function ElvUI_EltreumUI:Tooltip()
 						name = itemName
 					end
 
-					if E.db.ElvUI_EltreumUI.skins.ilvltooltip then
+					if E.Classic and E.db.ElvUI_EltreumUI.skins.ilvltooltip then
 						local line = _G["GameTooltipTextLeft2"]:GetText()
 						if line and not line:match(ITEM_LEVEL) then
 							if (itemLink ~= nil) then
@@ -210,7 +210,7 @@ function ElvUI_EltreumUI:Tooltip()
 
 			if not _G.ShoppingTooltip1.EltruismTooltipHook then
 				_G.ShoppingTooltip1:HookScript("OnTooltipSetItem", function(tooltip)
-					if E.db.ElvUI_EltreumUI.skins.ilvltooltip then --CURRENTLY_EQUIPPED
+					if E.Classic and E.db.ElvUI_EltreumUI.skins.ilvltooltip then --CURRENTLY_EQUIPPED
 						local line = _G["ShoppingTooltip1TextLeft2"]:GetText()
 						if line and not line:match(ITEM_LEVEL) then
 							local _, itemLink = tooltip:GetItem()
@@ -252,7 +252,7 @@ function ElvUI_EltreumUI:Tooltip()
 						b2 = b2 + E.db.ElvUI_EltreumUI.skins.gradienttooltipoffset2
 						b2 = ElvUI_EltreumUI:Interval(b2, 0, 1)
 
-						if E.db.ElvUI_EltreumUI.skins.ilvltooltip then
+						if E.Classic and E.db.ElvUI_EltreumUI.skins.ilvltooltip then
 							local _, _, _, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(itemLink)
 							if itemLevel and (classID == 2 or classID == 4) then
 								if _G["ShoppingTooltip1TextLeft2"]:GetText() ~= nil then
@@ -303,7 +303,7 @@ function ElvUI_EltreumUI:Tooltip()
 
 			if not _G.ShoppingTooltip2.EltruismTooltipHook then
 				_G.ShoppingTooltip2:HookScript("OnTooltipSetItem", function(tooltip)
-					if E.db.ElvUI_EltreumUI.skins.ilvltooltip then --CURRENTLY_EQUIPPED
+					if E.Classic and E.db.ElvUI_EltreumUI.skins.ilvltooltip then --CURRENTLY_EQUIPPED
 						local line = _G["ShoppingTooltip2TextLeft2"]:GetText()
 						if line and not line:match(ITEM_LEVEL) then
 							local _, itemLink = tooltip:GetItem()
