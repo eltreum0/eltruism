@@ -320,7 +320,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	--E.db["unitframe"]["colors"]["classResources"]["DEATHKNIGHT"][0]["b"] = 1
 	--E.db["unitframe"]["colors"]["classResources"]["DEATHKNIGHT"][0]["g"] = 1
 	--E.db["unitframe"]["colors"]["classResources"]["DEATHKNIGHT"][0]["r"] = 0
-	E.db["unitframe"]["colors"]["classResources"]["MONK"][1]["b"] = 0.57254904508591
+	--[[E.db["unitframe"]["colors"]["classResources"]["MONK"][1]["b"] = 0.57254904508591
 	E.db["unitframe"]["colors"]["classResources"]["MONK"][1]["g"] = 1
 	E.db["unitframe"]["colors"]["classResources"]["MONK"][1]["r"] = 0.078431375324726
 	E.db["unitframe"]["colors"]["classResources"]["MONK"][2]["b"] = 0.61568629741669
@@ -337,7 +337,16 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["colors"]["classResources"]["MONK"][5]["r"] = 0.10588236153126
 	E.db["unitframe"]["colors"]["classResources"]["MONK"][6]["b"] = 0.93333339691162
 	E.db["unitframe"]["colors"]["classResources"]["MONK"][6]["g"] = 1
-	E.db["unitframe"]["colors"]["classResources"]["MONK"][6]["r"] = 0.11372549831867
+	E.db["unitframe"]["colors"]["classResources"]["MONK"][6]["r"] = 0.11372549831867]]
+	--plugin export method doesnt seem to work, use table
+	E.db.unitframe.colors.classResources.MONK = {
+		{r = 0.57254904508591, g = 1, b = 0.078431375324726},
+		{r = 0.61568629741669, g = 1, b = 0.082352943718433},
+		{r = 0.7294117808342, g = 1, b = 0.098039224743843},
+		{r = 0.78039222955704, g = 1, b = 0.094117656350136},
+		{r = 0.85490202903748, g = 1, b = 0.10588236153126},
+		{r = 0.93333339691162, g = 1, b = 0.11372549831867}
+	}
 	E.db["unitframe"]["colors"]["classResources"]["chargedComboPoint"]["g"] = 0.63921570777893
 	E.db["unitframe"]["colors"]["classResources"]["chargedComboPoint"]["r"] = 0.16078431904316
 	E.db["unitframe"]["colors"]["classResources"]["comboPoints"][1]["b"] = 0.05882353335619
