@@ -105,7 +105,7 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["b"] = 1
 		E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["g"] = 1
 		E.db["nameplates"]["colors"]["classResources"]["DEATHKNIGHT"]["r"] = 0
-		E.db["nameplates"]["colors"]["classResources"]["MONK"][1]["b"] = 0.57254904508591
+		--[[E.db["nameplates"]["colors"]["classResources"]["MONK"][1]["b"] = 0.57254904508591
 		E.db["nameplates"]["colors"]["classResources"]["MONK"][1]["g"] = 1
 		E.db["nameplates"]["colors"]["classResources"]["MONK"][1]["r"] = 0.078431375324726
 		E.db["nameplates"]["colors"]["classResources"]["MONK"][2]["b"] = 0.61568629741669
@@ -122,7 +122,16 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		E.db["nameplates"]["colors"]["classResources"]["MONK"][5]["r"] = 0.10588236153126
 		E.db["nameplates"]["colors"]["classResources"]["MONK"][6]["b"] = 0.93333339691162
 		E.db["nameplates"]["colors"]["classResources"]["MONK"][6]["g"] = 1
-		E.db["nameplates"]["colors"]["classResources"]["MONK"][6]["r"] = 0.11372549831867
+		E.db["nameplates"]["colors"]["classResources"]["MONK"][6]["r"] = 0.11372549831867]]
+		--plugin export method doesnt seem to work, use table
+		E.db.nameplates.colors.classResources.MONK = {
+			{r = 0.57254904508591, g = 1, b = 0.078431375324726},
+			{r = 0.61568629741669, g = 1, b = 0.082352943718433},
+			{r = 0.7294117808342, g = 1, b = 0.098039224743843},
+			{r = 0.78039222955704, g = 1, b = 0.094117656350136},
+			{r = 0.85490202903748, g = 1, b = 0.10588236153126},
+			{r = 0.93333339691162, g = 1, b = 0.11372549831867}
+		}
 		E.db["nameplates"]["colors"]["classResources"]["comboPoints"][1]["b"] = 0.05882353335619
 		E.db["nameplates"]["colors"]["classResources"]["comboPoints"][1]["g"] = 0.41960787773132
 		E.db["nameplates"]["colors"]["classResources"]["comboPoints"][1]["r"] = 1
