@@ -12,7 +12,7 @@ local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.Ge
 local UIParent = _G.UIParent
 local ilvlpattern
 local texture
-local itemLevel
+local itemLevel, itemLevel2
 local tt
 local itemQuality, classID
 local hex
@@ -67,16 +67,18 @@ local function AddLootIcons(_, _, message, ...)
 			end
 			tt:Hide()
 
-			_, _, itemQuality, _, _, _, _, _, _, _, _, classID = GetItemInfo(link)
+			_, _, itemQuality, itemLevel2, _, _, _, _, _, _, _, classID = GetItemInfo(link)
 			if itemLevel == nil then
-				itemLevel = select(4, GetItemInfo(link))
+				itemLevel = itemLevel2
 			end
 
 			local item = Item:CreateFromItemLink(link)
 			if not item:IsItemEmpty() then
 				item:ContinueOnItemLoad(function()
-					classID = select(12, GetItemInfo(link))
-					itemQuality = item:GetItemQuality()
+					_, _, itemQuality, itemLevel2, _, _, _, _, _, _, _, classID = GetItemInfo(link)
+					if itemLevel == nil then
+						itemLevel = itemLevel2
+					end
 					--print(itemType, itemQuality, itemLevel)
 				end)
 			end
