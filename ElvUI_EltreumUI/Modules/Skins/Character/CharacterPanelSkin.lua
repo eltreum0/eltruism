@@ -1356,7 +1356,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					else
 						r, g, b = E:ColorGradient((equippedilvl / bagilvl), P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.badB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.mediumB, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodR, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodG, P.ElvUI_EltreumUI.skins.ilvltextcolordifference.goodB)
 					end
-					if CharacterFrame.ItemLevelText and E.db.general.itemLevel.displayCharacterInfo then
+					if CharacterFrame.ItemLevelText and E.db.general.itemLevel.displayCharacterInfo and E.db.ElvUI_EltreumUI.skins.classicarmory then
 						if E.db.ElvUI_EltreumUI.skins.ilvltextchangepoint then
 							CharacterFrame.ItemLevelText:ClearAllPoints()
 							CharacterFrame.ItemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -10)
@@ -1365,7 +1365,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						CharacterFrame.ItemLevelText:SetText("|cffFFCE00"..L["Item Level"]..":|r "..E:RGBToHex(r, g, b)..((math.floor(equippedilvl*100))/100).."|r ("..((math.floor(bagilvl*100))/100)..")|r")
 					end
 				else
-					if CharacterFrame.ItemLevelText and E.db.general.itemLevel.displayCharacterInfo then
+					if CharacterFrame.ItemLevelText and E.db.general.itemLevel.displayCharacterInfo and E.db.ElvUI_EltreumUI.skins.classicarmory then
 						if E.db.ElvUI_EltreumUI.skins.ilvltextchangepoint then
 							CharacterFrame.ItemLevelText:ClearAllPoints()
 							CharacterFrame.ItemLevelText:SetPoint("BOTTOM", _G.CharacterLevelText, "BOTTOM", 0, -10)
@@ -1761,7 +1761,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		--update ilvl
 		hooksecurefunc("PaperDollFrame_UpdateStats", function()
-			if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
+			if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and E.db.ElvUI_EltreumUI.skins.classicarmory then
 				local bagilvl, equippedilvl = GetAverageItemLevel()
 				if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
 					local r, g, b
@@ -1805,7 +1805,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		hooksecurefunc(_G.CharacterFrame, "Expand", HandleCharacterPanelSize)
 
 		local function ItemLevelString()
-			if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
+			if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and E.db.ElvUI_EltreumUI.skins.classicarmory then
 				local bagilvl, equippedilvl = GetAverageItemLevel()
 				if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
 					local r, g, b
