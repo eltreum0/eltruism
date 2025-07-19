@@ -101,7 +101,7 @@ local function AddLootIcons(_, _, message, ...)
 				local localizedClass, englishClass, localizedRace, englishRace, sex, name, realm = GetPlayerInfoByGUID(guid)
 				print(name,englishRace,englishClass)
 			end]]
-			message = message:gsub("(|c%x+|Hitem:.-|h|r)", Icon)
+			message = message:gsub("(|Hitem:.-|h|r)", Icon)
 			return false, message, ...
 		elseif E.db.ElvUI_EltreumUI.chat.looticons and E.db.ElvUI_EltreumUI.chat.classcolorchat and not E.db.chat.chatHistory then
 			if guid ~= nil then
@@ -109,13 +109,13 @@ local function AddLootIcons(_, _, message, ...)
 				local msg
 				if E.db.ElvUI_EltreumUI.chat.classcolorchatcustom then
 					local r,g,b = ElvUI_EltreumUI:ChatCustomColor(unitclass)
-					msg = "|c"..E:RGBToHex(r,g,b, 'ff')..message:gsub("(|c%x+|Hitem:.-|h|r)", Icon).."|r"
+					msg = "|c"..E:RGBToHex(r,g,b, 'ff')..message:gsub("(|Hitem:.-|h|r)", Icon).."|r"
 				else
-					msg = "|cff"..classcolorsescape[unitclass]..message:gsub("(|c%x+|Hitem:.-|h|r)", Icon).."|r"
+					msg = "|cff"..classcolorsescape[unitclass]..message:gsub("(|Hitem:.-|h|r)", Icon).."|r"
 				end
 				return false, msg, ...
 			else
-				message = message:gsub("(|c%x+|Hitem:.-|h|r)", Icon)
+				message = message:gsub("(|Hitem:.-|h|r)", Icon)
 				return false, message, ...
 			end
 		elseif not E.db.ElvUI_EltreumUI.chat.looticons and E.db.ElvUI_EltreumUI.chat.classcolorchat and not E.db.chat.chatHistory then
