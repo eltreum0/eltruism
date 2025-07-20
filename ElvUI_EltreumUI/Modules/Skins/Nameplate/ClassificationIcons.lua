@@ -232,6 +232,15 @@ local bossIDs = {
 	["4830"] = true, --old-serrakis
 	["75155"] = true, --akumai-the-devourer
 
+	--blackfathom (sod version)
+	["202699"] = true, --baron-aquanis
+	["201722"] = true, --ghamoo-ra
+	["204068"] = true, --lady-sarevess
+	["204921"] = true, --gelihast
+	["207356"] = true, --lorgus-jett
+	["209678"] = true, --twilight-lord-kelris
+	["213334"] = true, --akumai
+
 	--the-stockade
 	["46383"] = true, --randolph-moloch
 	["46264"] = true, --lord-overheat
@@ -304,15 +313,6 @@ local bossIDs = {
 	["4854"] = true, --grimlok
 	["2748"] = true, --archaedas
 
-	--blackfathom (sod version)
-	["202699"] = true, --baron-aquanis
-	["201722"] = true, --ghamoo-ra
-	["204068"] = true, --lady-sarevess
-	["204921"] = true, --gelihast
-	["207356"] = true, --lorgus-jett
-	["209678"] = true, --twilight-lord-kelris
-	["213334"] = true, --akumai
-
 	---gnomeregan
 	["7361"] = true, --grubbis
 	["7079"] = true, --viscous-fallout
@@ -321,6 +321,106 @@ local bossIDs = {
 	["6228"] = true, --dark-iron-ambassador
 	["7800"] = true, --mekgineer-thermaplugg
 	["6231"] = true, --techbot
+
+	--zulgurub
+	["14507"] = true, --high-priest-venoxis
+	["14517"] = true, --high-priestess-jeklik
+	["14510"] = true, --high-priestess-marli
+	["14509"] = true, --high-priest-thekal
+	["14515"] = true, --high-priestess-arlokk
+	["14834"] = true, --hakkar
+	["11382"] = true, --bloodlord-mandokir
+	["14988"] = true, --ohgan
+	["15083"] = true, --edge-of-madness
+	["15114"] = true, --gahzranka
+	["11380"] = true, --jindo-the-hexxer
+
+	--blackwing-lair
+	["12435"] = true, --razorgore-the-untamed
+	["13020"] = true, --vaelastrasz-the-corrupt
+	["12017"] = true, --broodlord-lashlayer
+	["11983"] = true, --firemaw
+	["14601"] = true, --ebonroc
+	["11981"] = true, --flamegor
+	["14020"] = true, --chromaggus
+	["11583"] = true, --nefarian
+
+	--ruins-of-ahnqiraj
+	["15348"] = true, --kurinnaxx
+	["15341"] = true, --general-rajaxx
+	["15340"] = true, --moam
+	["15370"] = true, --buru-the-gorger
+	["15369"] = true, --ayamiss-the-hunter
+	["15339"] = true, --ossirian-the-unscarred
+
+	--molten-core
+	["12118"] = true, --lucifron
+	["11982"] = true, --magmadar
+	["12259"] = true, --gehennas
+	["12057"] = true, --garr
+	["12264"] = true, --shazzrah
+	["12056"] = true, --baron-geddon
+	["11988"] = true, --golemagg-the-incinerator
+	["12098"] = true, --sulfuron-harbinger
+	["12018"] = true, --majordomo-executus
+	["11502"] = true, --ragnaros
+	["228429"] = true, --lucifron
+	["228430"] = true, --magmadar
+	["228431"] = true, --gehennas
+	["228432"] = true, --garr
+	["228433"] = true, --baron-geddon
+	["228434"] = true, --shazzrah
+	["228435"] = true, --golemagg-the-incinerator
+	["228436"] = true, --sulfuron-harbinger
+	["228437"] = true, --majordomo-executus
+	["228438"] = true, --ragnaros
+
+	--naxxramas
+	["15956"] = true, --anubrekhan
+	["15953"] = true, --grand-widow-faerlina
+	["15952"] = true, --maexxna
+	["15954"] = true, --noth-the-plaguebringer
+	["15936"] = true, --heigan-the-unclean
+	["16011"] = true, --loatheb
+	["16061"] = true, --instructor-razuvious
+	["16060"] = true, --gothik-the-harvester
+	["16063"] = true, --sir-zeliek
+	["16065"] = true, --lady-blaumeux
+	["16064"] = true, --thane-korthazz
+	["16028"] = true, --patchwerk
+	["15931"] = true, --grobbulus
+	["15932"] = true, --gluth
+	["15928"] = true, --thaddius
+	["15989"] = true, --sapphiron
+	["15990"] = true, --kelthuzad
+
+	--ahnqiraj
+	["15263"] = true, --the-prophet-skeram
+	["15516"] = true, --battleguard-sartura
+	["15510"] = true, --fankriss-the-unyielding
+	["15509"] = true, --princess-huhuran
+	["15276"] = true, --veklor
+	["15275"] = true, --veknilash
+	["15727"] = true, --cthun
+	["15543"] = true, --yauj
+	["15544"] = true, --vem
+	["15511"] = true, --kri
+	["15299"] = true, --viscidus
+	["15517"] = true, --ouro
+
+	--scarlet-enclave (sod raid)
+	["240811"] = true, --balnazzar
+	["242563"] = true, --beatrix
+	["243269"] = true, --solistrasza
+	["241906"] = true, --sir-dornel
+	["240794"] = true, --alexei-the-beastlord
+	["241021"] = true, --mason-the-echo
+	["240795"] = true, --herod
+	["240810"] = true, --doan
+	["240809"] = true, --vishas
+	["243021"] = true, --lilian-voss
+	["243005"] = true, --putress
+	["241006"] = true, --grand-crusader-caldoran
 
 	--sod event bosses
 	["212804"] = true, --centrius
@@ -423,6 +523,84 @@ local bossIDs = {
 	["19219"] = true, --mechano-lord-capacitus
 	["19221"] = true, --nethermancer-sepethrea
 	["19220"] = true, --pathaleon-the-calculator
+
+	--karazhan
+	["16181"] = true, --rokad-the-ravager
+	["16152"] = true, --attumen-the-huntsman
+	["16151"] = true, --midnight
+	["15687"] = true, --moroes
+	["16457"] = true, --maiden-of-virtue
+	["17521"] = true, --the-big-bad-wolf
+	["16179"] = true, --hyakiss-the-lurker
+	["17534"] = true, --julianne
+	["17546"] = true, --roar
+	["17535"] = true, --dorothee
+	["17533"] = true, --romulo
+	["16180"] = true, --shadikith-the-glider
+	["17547"] = true, --tinhead
+	["17548"] = true, --tito
+	["18168"] = true, --the-crone
+	["17543"] = true, --strawman
+	["15691"] = true, --the-curator
+	["16524"] = true, --shade-of-aran
+	["15688"] = true, --terestian-illhoof
+	["15689"] = true, --netherspite
+	["16816"] = true, --echo-of-medivh
+	["15690"] = true, --prince-malchezaar
+
+	--the eye
+	["19514"] = true, --alar
+	["19516"] = true, --void-reaver
+	["18805"] = true, --high-astromancer-solarian
+	["19622"] = true, --kaelthas-sunstrider
+
+	--black-temple
+	["22887"] = true, --high-warlord-najentus
+	["22898"] = true, --supremus
+	["22841"] = true, --shade-of-akama
+	["22871"] = true, --teron-gorefiend
+	["22948"] = true, --gurtogg-bloodboil
+	["23418"] = true, --essence-of-suffering
+	["23420"] = true, --essence-of-anger
+	["23419"] = true, --essence-of-desire
+	["22947"] = true, --mother-shahraz
+	["22949"] = true, --gathios-the-shatterer
+	["22951"] = true, --lady-malande
+	["22952"] = true, --veras-darkshadow
+	["22950"] = true, --high-nethermancer-zerevor
+	["22917"] = true, --illidan-stormrage
+
+	--sunwell-plateau
+	["24850"] = true, --kalecgos
+	["24882"] = true, --brutallus
+	["25038"] = true, --felmyst
+	["25840"] = true, --entropius
+	["25166"] = true, --grand-warlock-alythess
+	["25165"] = true, --lady-sacrolash
+	["25741"] = true, --muru
+	["25315"] = true, --kiljaeden
+
+	--serpentshrine-cavern
+	["21216"] = true, --hydross-the-unstable
+	["21217"] = true, --the-lurker-below
+	["21215"] = true, --leotheras-the-blind
+	["21214"] = true, --fathom-lord-karathress
+	["21213"] = true, --morogrim-tidewalker
+	["21212"] = true, --lady-vashj
+
+	--gruuls-lair
+	["18831"] = true, --high-king-maulgar
+	["19044"] = true, --gruul-the-dragonkiller
+
+	--hyjal-summit
+	["17767"] = true, --rage-winterchill
+	["17808"] = true, --anetheron
+	["17888"] = true, --kazrogal
+	["17842"] = true, --azgalor
+	["17968"] = true, --archimonde
+
+	--magtheridons-lair
+	["17257"] = true, --magtheridon
 
 	--tbc world bosses
 	["18728"] = true, --doom-lord-kazzak
@@ -538,6 +716,93 @@ local bossIDs = {
 	["29266"] = true, --xevozz
 	["29314"] = true, --zuramat-the-obliterator
 
+	--onyxias-lair
+	["10184"] = true, --onyxia
+
+	--the-obsidian-sanctum
+	["28860"] = true, --sartharion
+
+	--the-eye-of-eternity
+	["28859"] = true, --malygos
+
+	--vault-of-archavon
+	["31125"] = true, --archavon-the-stone-watcher
+	["33993"] = true, --emalon-the-storm-watcher
+	["35013"] = true, --koralon-the-flame-watcher
+	["38433"] = true, --toravon-the-ice-watcher
+
+	--ulduar
+	["33113"] = true, --flame-leviathan
+	["33118"] = true, --ignis-the-furnace-master
+	["33186"] = true, --razorscale
+	["33293"] = true, --xt-002-deconstructor
+	["32867"] = true, --steelbreaker
+	["32930"] = true, --kologarn
+	["33515"] = true, --auriaya
+	["32845"] = true, --hodir
+	["32865"] = true, --thorim
+	["32906"] = true, --freya
+	["33350"] = true, --mimiron
+	["33271"] = true, --general-vezax
+	["33288"] = true, --yogg-saron
+	["32871"] = true, --algalon-the-observer
+
+	--trial-of-the-crusader
+	["34796"] = true, --gormok-the-impaler
+	["35144"] = true, --acidmaw
+	["34780"] = true, --lord-jaraxxus
+	["34467"] = true, --alyssia-moonstalker
+	["34451"] = true, --birana-stormhoof
+	["34497"] = true, --fjola-lightbane
+	["34564"] = true, --anubarak
+	["34466"] = true, --anthar-forgemender
+	["34471"] = true, --baelnor-lightbearer
+	["34473"] = true, --brienna-nightfell
+	["34455"] = true, --broln-stouthorn
+	["34447"] = true, --caiphus-the-stern
+	["34799"] = true, --dreadscale
+	["34459"] = true, --erin-misthoof
+	["34496"] = true, --eydis-darkbane
+	["34449"] = true, --ginselle-blightslinger
+	["34458"] = true, --gorgrim-shadowcleave
+	["34450"] = true, --harkzog
+	["34797"] = true, --icehowl
+	["34472"] = true, --irieth-shadowstep
+	["34460"] = true, --kavina-grovesong
+	["34445"] = true, --liandra-suncaller
+	["34456"] = true, --malithas-brightblade
+	["34454"] = true, --mazdinah
+	["34469"] = true, --melador-valestrider
+	["34453"] = true, --narrhok-steelbreaker
+	["34468"] = true, --noozle-whizzlestick
+	["34448"] = true, --rujkah
+	["34470"] = true, --saamul
+	["34474"] = true, --serissa-grimdabbler
+	["34463"] = true, --shaabad
+	["34475"] = true, --shocuul
+	["34444"] = true, --thrakgar
+	["34461"] = true, --tyrius-duskblade
+	["34465"] = true, --velanaa
+	["34441"] = true, --vivienne-blackwhisper
+
+	--icecrown-citadel
+	["36612"] = true, --lord-marrowgar
+	["36855"] = true, --lady-deathwhisper
+	["36939"] = true, --high-overlord-saurfang
+	["36948"] = true, --muradin-bronzebeard
+	["37813"] = true, --deathbringer-saurfang
+	["36626"] = true, --festergut
+	["36627"] = true, --rotface
+	["36678"] = true, --professor-putricide
+	["37970"] = true, --prince-valanar
+	["37955"] = true, --blood-queen-lanathel
+	["36789"] = true, --valithria-dreamwalker
+	["36853"] = true, --sindragosa
+	["36597"] = true, --the-lich-king
+
+	--the-ruby-sanctum
+	["39863"] = true, --halion
+
 	-------Cataclysm-------
 
 	-- Vortex Pinnacle
@@ -627,6 +892,60 @@ local bossIDs = {
 	["39732"] = true, --setesh
 	["39425"] = true, --temple-guardian-anhuur
 
+	--baradin-hold
+	["55869"] = true, --alizabal
+	["47120"] = true, --argaloth
+	["52363"] = true, --occuthar
+
+	--throne-of-the-four-winds
+	["46753"] = true, --alakir
+	["45870"] = true, --anshal
+	["45871"] = true, --nezir
+	["45872"] = true, --rohash
+
+	--the-bastion-of-twilight
+	["43688"] = true, --arion
+	["43324"] = true, --chogall
+	["43735"] = true, --elementium-monstrosity
+	["43687"] = true, --feludius
+	["44600"] = true, --halfus-wyrmbreaker
+	["43686"] = true, --ignacious
+	["45213"] = true, --sinestra
+	["43689"] = true, --terrastra
+	["45993"] = true, --theralion
+	["45992"] = true, --valiona
+
+	--blackwing-descent
+	["42166"] = true, --arcanotron
+	["41442"] = true, --atramedes
+	["43296"] = true, --chimaeron
+	["42179"] = true, --electron
+	["42178"] = true, --magmatron
+	["41570"] = true, --magmaw
+	["41378"] = true, --maloriak
+	["41376"] = true, --nefarian
+	["41270"] = true, --onyxia
+	["42180"] = true, --toxitron
+
+	--firelands
+	["52498"] = true, --bethtilac
+	["52558"] = true, --lord-rhyolith
+	["52530"] = true, --alysrazor
+	["53691"] = true, --shannox
+	["53494"] = true, --baleroc
+	["52571"] = true, --majordomo-staghelm
+	["52409"] = true, --ragnaros
+
+	--dragon-soul
+	["55265"] = true, --morchok
+	["55308"] = true, --warlord-zonozz
+	["55312"] = true, --yorsahj-the-unsleeping
+	["55689"] = true, --hagara-the-stormbinder
+	["55294"] = true, --ultraxion
+	["56427"] = true, --warmaster-blackhorn
+	["53879"] = true, --deathwing
+	["56173"] = true, --deathwing
+
 	--cataclysm world bosses
 	["50063"] = true, --akmahat
 	["50056"] = true, --garr
@@ -686,6 +1005,88 @@ local bossIDs = {
 	["61485"] = true, --general-pavalak
 	["61567"] = true, --vizier-jinbak
 	["62205"] = true, --wing-leader-neronok
+
+	--mogushan-vaults
+	["60047"] = true, --amethyst-guardian
+	["60051"] = true, --cobalt-guardian
+	["60410"] = true, --elegon
+	["60009"] = true, --feng-the-accursed
+	["60143"] = true, --garajal-the-spiritbinder
+	["60043"] = true, --jade-guardian
+	["60400"] = true, --jan-xi
+	["59915"] = true, --jasper-guardian
+	["60708"] = true, --meng-the-demented
+	["60709"] = true, --qiang-the-merciless
+	["60399"] = true, --qin-xi
+	["60710"] = true, --subetai-the-swift
+	["60701"] = true, --zian-of-the-endless-shadow
+
+	--terrace-of-endless-spring
+	["60586"] = true, --elder-asani
+	["60585"] = true, --elder-regail
+	["62983"] = true, --lei-shi
+	["60583"] = true, --protector-kaolan
+	["60999"] = true, --sha-of-fear
+	["62442"] = true, --tsulong
+
+	--heart-of-fear
+	["62511"] = true, --amber-shaper-unsok
+	["62543"] = true, --blade-lord-tayak
+	["62164"] = true, --garalon
+	["62837"] = true, --grand-empress-shekzeer
+	["62980"] = true, --imperial-vizier-zorlok
+	["62397"] = true, --wind-lord-meljarak
+
+	--throne-of-thunder
+	["69465"] = true, --jinrokh-the-breaker
+	["69427"] = true, --dark-animus
+	["68036"] = true, --durumu-the-forgotten
+	["70212"] = true, --flaming-head
+	["69131"] = true, --frost-king-malakk
+	["70235"] = true, --frozen-head
+	["69132"] = true, --high-priestess-marli
+	["68476"] = true, --horridon
+	["68078"] = true, --iron-qon
+	["69712"] = true, --ji-kun
+	["69465"] = true, --jinrokh-the-breaker
+	["69134"] = true, --kazrajin
+	["68397"] = true, --lei-shen
+	["68905"] = true, --lulin
+	["69017"] = true, --primordius
+	["69473"] = true, --ra-den
+	["68904"] = true, --suen
+	["69078"] = true, --sul-the-sandcrawler
+	["67977"] = true, --tortos
+	["70247"] = true, --venomous-head
+	["70248"] = true, --arcane-head
+
+	--siege-of-orgrimmar
+	["72276"] = true, --amalgam-of-corruption
+	["71859"] = true, --earthbreaker-haromm
+	["72249"] = true, --galakras
+	["71865"] = true, --garrosh-hellscream
+	["71515"] = true, --general-nazgrim
+	["71479"] = true, --he-softfoot
+	["71153"] = true, --hisek-the-swarmkeeper
+	["71543"] = true, --immerseus
+	["71466"] = true, --iron-juggernaut
+	["71160"] = true, --iyyokuk-the-lucid
+	["71154"] = true, --karoz-the-locust
+	["71156"] = true, --kaztik-the-manipulator
+	["71161"] = true, --kilruk-the-wind-reaver
+	["71155"] = true, --korven-the-prime
+	["71454"] = true, --malkorok
+	["153325"] = true, --norushen
+	["71158"] = true, --rikkal-the-dissector
+	["71475"] = true, --rook-stonetoe
+	["71889"] = true, --secured-stockpile-of-pandaren-spoils
+	["71734"] = true, --sha-of-pride
+	["71504"] = true, --siegecrafter-blackfuse
+	["71152"] = true, --skeer-the-bloodseeker
+	["71480"] = true, --sun-tenderheart
+	["71529"] = true, --thok-the-bloodthirsty
+	["71858"] = true, --wavebinder-kardris
+	["71157"] = true, --xaril-the-poisoned-mind
 
 	--mop world bosses
 	["60491"] = true, --sha-of-anger
@@ -751,6 +1152,50 @@ local bossIDs = {
 	["74790"] = true, --gugrokk
 	["75786"] = true, --roltall
 	["74787"] = true, --slave-watcher-crushto
+
+	--highmaul
+	["78491"] = true, --brackenspore
+	["77428"] = true, --imperator-margok
+	["78714"] = true, --kargath-bladefist
+	["79015"] = true, --koragh
+	["78237"] = true, --phemos
+	["78238"] = true, --pol
+	["78948"] = true, --tectus
+	["77404"] = true, --the-butcher
+
+	--blackrock-foundry
+	["77557"] = true, --admiral-garan
+	["76865"] = true, --beastlord-darmac
+	["77325"] = true, --blackhand
+	["77231"] = true, --enforcer-sorka
+	["76814"] = true, --flamebender-kagraz
+	["76809"] = true, --foreman-feldspar
+	["76974"] = true, --franzok
+	["76877"] = true, --gruul
+	["76973"] = true, --hansgar
+	["76806"] = true, --heart-of-the-mountain
+	["77692"] = true, --kromog
+	["77477"] = true, --marak-the-blooded
+	["76906"] = true, --operator-thogar
+	["77182"] = true, --oregorger
+
+	--hellfire-citadel
+	["91331"] = true, --archimonde
+	["92142"] = true, --blademaster-jubeithos
+	["92144"] = true, --dia-darkwhisper
+	["89890"] = true, --fel-lord-zakuun
+	["91809"] = true, --gorefiend
+	["92146"] = true, --gurtogg-bloodboil
+	["90284"] = true, --iron-reaver
+	["90378"] = true, --kilrogg-deadeye
+	["90776"] = true, --kormrok
+	["91349"] = true, --mannoroth
+	["92919"] = true, --residual-energy
+	["90316"] = true, --shadow-lord-iskar
+	["95068"] = true, --siegemaster-martak
+	["90296"] = true, --soulbound-construct
+	["93439"] = true, --tyrant-velhari
+	["93068"] = true, --xhulhorac
 
 	--wod world bosses
 	["81252"] = true, --drov-the-ruiner
@@ -856,6 +1301,63 @@ local bossIDs = {
 	["96754"] = true, --harbaron
 	["96759"] = true, --helya
 	["96756"] = true, --ymiron-the-fallen-king
+
+	--the-emerald-nightmare
+	["104636"] = true, --cenarius
+	["106087"] = true, --elerethe-renferal
+	["105906"] = true, --eye-of-ilgynoth
+	["105393"] = true, --ilgynoth
+	["102672"] = true, --nythendra
+	["100497"] = true, --ursoc
+	["103769"] = true, --xavius
+	["102679"] = true, --ysondre
+	["102683"] = true, --emeriss
+	["102682"] = true, --lethon
+	["102681"] = true, --taerar
+
+	--the-nighthold
+	["104415"] = true, --chronomatic-anomaly
+	["211664"] = true, --elisande
+	["104154"] = true, --guldan
+	["104528"] = true, --high-botanist-telarn
+	["101002"] = true, --krosus
+	["102263"] = true, --skorpyron
+	["107699"] = true, --spellblade-aluriel
+	["103758"] = true, --star-augur-etraeus
+	["103685"] = true, --tichondrius
+	["104288"] = true, --trilliax
+
+	--trial-of-valor
+	["114344"] = true, --guarm
+	["114537"] = true, --helya
+	["114263"] = true, --odyn
+
+	--tomb-of-sargeras
+	["120996"] = true, --atrigan
+	["118460"] = true, --engine-of-souls
+	["120436"] = true, --fallen-avatar
+	["115844"] = true, --goroth
+	["116407"] = true, --harjatan
+	["118523"] = true, --huntress-kasparian
+	["117269"] = true, --kiljaeden
+	["118289"] = true, --maiden-of-vigilance
+	["115767"] = true, --mistress-sasszine
+
+	--antorus-the-burning-throne
+	["122367"] = true, --admiral-svirax
+	["121975"] = true, --aggramar
+	["124828"] = true, --argus-the-unmaker
+	["131561"] = true, --essence-of-eonar
+	["126916"] = true, --fharg
+	["123371"] = true, --garothi-worldbreaker
+	["125055"] = true, --imonar-the-soulhunter
+	["125050"] = true, --kingaroth
+	["122468"] = true, --noura-mother-of-flames
+	["124393"] = true, --portal-keeper-hasabel
+	["125075"] = true, --varimathras
+	["122467"] = true, --asara-mother-of-night
+	["122469"] = true, --diima-mother-of-gloom
+	["125436"] = true, --thuraya-mother-of-the-cosmos
 
 	--legion world bosses
 	["109943"] = true, --ana-mouz
@@ -968,6 +1470,58 @@ local bossIDs = {
 	["133389"] = true, --galvazzt
 	["133384"] = true, --merektha
 
+	--uldir
+	["133298"] = true, --fetid-devourer
+	["163405"] = true, --ghuun
+	["140853"] = true, --mother
+	["136383"] = true, --mythrax-the-unraveler
+	["137119"] = true, --taloc
+	["134442"] = true, --vectis
+	["134445"] = true, --zekvoz
+	["138967"] = true, --zul
+
+	--battle-of-dazaralor
+	["144680"] = true, --frida-ironbellows
+	["148117"] = true, --grong
+	["144638"] = true, --grong-the-revenant
+	["144796"] = true, --high-tinker-mekkatorque
+	["145616"] = true, --king-rastakhan
+	["218287"] = true, --lady-jaina-proudmoore
+	["146256"] = true, --laminaria
+	["148238"] = true, --mara-grimfang
+	["146099"] = true, --manceroy-flamefist
+	["145261"] = true, --opulence
+	["144747"] = true, --pakus-aspect
+	["144683"] = true, --rawani-kanae
+
+	--crucible-of-storms
+	["145371"] = true, --uunat
+	["146497"] = true, --zaxasj-the-speaker
+
+	--the-eternal-palace
+	["155144"] = true, --abyssal-commander-sivara
+	["154986"] = true, --blackwater-behemoth
+	["153142"] = true, --lady-ashvane
+	["152128"] = true, --orgozoa
+	["155126"] = true, --queen-azshara
+	["152364"] = true, --radiance-of-azshara
+	["152853"] = true, --silivaz-the-zealous
+	["150859"] = true, --zaqul
+
+	--nyalotha-the-waking-city
+	["156575"] = true, --dark-inquisitor-xanesh
+	["157602"] = true, --drestagath
+	["157439"] = true, --fury-of-nzoth
+	["158328"] = true, --ilgynoth
+	["156523"] = true, --maut
+	["158041"] = true, --nzoth-the-corruptor
+	["161901"] = true, --prophet-skitra
+	["156866"] = true, --ra-den
+	["157231"] = true, --shadhar-the-insatiable
+	["157254"] = true, --tekris
+	["157354"] = true, --vexiona
+	["156818"] = true, --wrathion
+
 	--bfa world bosses
 	["154638"] = true, --grand-empress-shekzara
 	["160970"] = true, --vuklaz-the-earthbreaker
@@ -1045,6 +1599,61 @@ local bossIDs = {
 	["167410"] = true, --devos
 	["162060"] = true, --oryphrion
 	["162058"] = true, --ventunax
+
+	--castle-nathria
+	["166644"] = true, --artificer-xymox
+	["166971"] = true, --castellan-niklaus
+	["166969"] = true, --baroness-frieda
+	["166970"] = true, --lord-stavros
+	["165318"] = true, --general-kaal
+	["170323"] = true, --general-grashaal
+	["164261"] = true, --hungering-destroyer
+	["165066"] = true, --huntsman-altimor
+	["165067"] = true, --margore
+	["169457"] = true, --bargast
+	["169458"] = true, --hecutis
+	["165759"] = true, --kaelthas-sunstrider
+	["167517"] = true, --lady-inerva-darkvein
+	["172145"] = true, --shriekwing
+	["168938"] = true, --sire-denathrius
+	["174733"] = true, --sludgefist
+
+	--sanctum-of-domination
+	["180018"] = true, --eye-of-the-jailer
+	["179390"] = true, --fatescribe-roh-kalo
+	["175731"] = true, --guardian-of-the-first-ones
+	["175559"] = true, --kelthuzad
+	["178738"] = true, --kyra
+	["177096"] = true, --agatha
+	["177097"] = true, --annhylde
+	["177100"] = true, --aradne
+	["177098"] = true, --arthura
+	["177101"] = true, --brynja
+	["177099"] = true, --daschla
+	["177094"] = true, --signe
+	["175726"] = true, --skyja
+	["176523"] = true, --painsmith-raznal
+	["175729"] = true, --remnant-of-nerzhul
+	["175727"] = true, --soulrender-dormazain
+	["175732"] = true, --sylvanas-windrunner
+	["152253"] = true, --the-tarragrue
+
+	--sepulcher-of-the-first-ones
+	["181954"] = true, --anduin-wrynn
+	["183501"] = true, --artificer-xymox
+	["181224"] = true, --dausegne
+	["184915"] = true, --halondrus
+	["182169"] = true, --lihuvim
+	["181398"] = true, --malganis
+	["181399"] = true, --kintessa
+	["181549"] = true, --prototype-of-war
+	["181548"] = true, --prototype-of-absolution
+	["181551"] = true, --prototype-of-duty
+	["181546"] = true, --prototype-of-renewal
+	["182777"] = true, --rygelon
+	["183937"] = true, --skolex
+	["180990"] = true, --the-jailer
+	["180773"] = true, --vigilant-guardian
 
 	--shadowlands world bosses
 	["167524"] = true, --valinor
@@ -1291,6 +1900,27 @@ local bossIDs = {
 	["247283"] = true, --soul-scribe
 	["234933"] = true, --taahbat
 
+	--liberation-of-undermine
+	["231075"] = true, --chrome-king-gallywix
+	["229181"] = true, --flarendo
+	["229177"] = true, --torq
+	["229953"] = true, --mugzee
+	["228458"] = true, --one-armed-bandit
+	["228648"] = true, --rik-reverb
+	["230583"] = true, --sprocketmonger-lockenstock
+	["230322"] = true, --stix-bunkjunker
+	["225821"] = true, --the-geargrinder
+
+	--manaforge-omega
+	["237661"] = true, --adarus-duskblaze
+	["233824"] = true, --dimensius
+	["247989"] = true, --forgeweaver-araz
+	["237861"] = true, --fractillus
+	["233815"] = true, --loomithar
+	["237763"] = true, --nexus-king-salhadaar
+	["233814"] = true, --plexus-sentinel
+	["233816"] = true, --soulbinder-naazindhri
+
 	--war within world bosses
 	["221084"] = true, --kordac
 	["229334"] = true, --kordac 2?
@@ -1299,7 +1929,6 @@ local bossIDs = {
 	["221067"] = true, --orta
 	["231821"] = true, --the-gobfather
 	["238319"] = true, --reshanor
-
 }
 
 local textureDB = {
