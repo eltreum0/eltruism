@@ -354,7 +354,7 @@ local texturePaths = {
 	--["188952"] = "Interface\\Icons\\Spell_AnimaMaw_Nova.blp", --dominated hearthsone
 	--["162973"] = "Interface\\Icons\\inv_holiday_hearthstonewinterveil.blp", --greatfather-winters-hearthstone
 	["235016"] = "Interface\\Icons\\inv_10_blacksmithing_craftedoptional_engineering_uprez", --redeployment module
-	["235016"] = "Interface\\Icons\\inv_holiday_hearthstonemidsummerfirefestival", --hearthstone-of-the-flame
+	["209035"] = "Interface\\Icons\\inv_holiday_hearthstonemidsummerfirefestival", --hearthstone-of-the-flame
 	["236687"] = "Interface\\Icons\\inv_111_goldenbomb_goldblue", --explosive-hearthstone
 }
 local hearthstones = {
