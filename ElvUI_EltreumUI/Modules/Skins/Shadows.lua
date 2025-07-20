@@ -1326,6 +1326,7 @@ function ElvUI_EltreumUI:Shadows()
 				_G["ElvUIPetBattleActionBar"],
 				_G["ElvUI_TopPanel"],
 				_G["ElvUI_BottomPanel"],
+				_G["ElvUI_CopyChatFrame"],
 			}
 			for _, frame in pairs(GeneralElvUIFrames) do
 				if frame and not frame.shadow then
