@@ -40,6 +40,10 @@ local TeleportsItems = {
 	--162973, --greatfather-winters-hearthstone
 	--193588, --timewalkers-hearthstone
 	--208704, --deepdwellers-earthen-hearthstone
+	235016, --redeployment module
+	209035, --hearthstone-of-the-flame
+	228940, --notorious-threads-hearthstone
+	236687, --explosive-hearthstone
 	206195, --path of the naaru
 	110560, --garrison-hearthstone
 	140192, --dalaran-hearthstone
@@ -346,9 +350,12 @@ local texturePaths = {
 	["410074"] = "Interface\\Icons\\achievement_dungeon_underrot.blp", --path-of-festering-rot
 	["410071"] = "Interface\\Icons\\achievement_dungeon_freehold.blp", --path-of-the-freebooter
 	["410080"] = "Interface\\Icons\\achievement_dungeon_skywall.blp", --path-of-winds-domain
-	["206195"] = "Interface\\Icons\\inv_pet_naaru_purple.blp"
+	["206195"] = "Interface\\Icons\\inv_pet_naaru_purple.blp",
 	--["188952"] = "Interface\\Icons\\Spell_AnimaMaw_Nova.blp", --dominated hearthsone
 	--["162973"] = "Interface\\Icons\\inv_holiday_hearthstonewinterveil.blp", --greatfather-winters-hearthstone
+	["235016"] = "Interface\\Icons\\inv_10_blacksmithing_craftedoptional_engineering_uprez", --redeployment module
+	["235016"] = "Interface\\Icons\\inv_holiday_hearthstonemidsummerfirefestival", --hearthstone-of-the-flame
+	["236687"] = "Interface\\Icons\\inv_111_goldenbomb_goldblue", --explosive-hearthstone
 }
 local hearthstones = {
 	["6948"] = true, --hearthstone
@@ -362,6 +369,10 @@ local hearthstones = {
 	["206195"] = true, --path of the naaru
 	--["188952"] = true, --dominated hearthsone
 	--["162973"] = true, --greatfather-winters-hearthstone
+	["235016"] = true, --redeployment module
+	["209035"] = true, --hearthstone-of-the-flame
+	["228940"] = true, --notorious-threads-hearthstone
+	["236687"] = true, --explosive-hearthstone
 }
 
 local function SpellInfo(spellID)
