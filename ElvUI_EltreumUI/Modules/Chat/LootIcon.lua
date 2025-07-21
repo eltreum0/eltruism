@@ -48,29 +48,7 @@ local function AddLootIcons(_, _, message, ...)
 
 			ilvlpattern = _G.ITEM_LEVEL:gsub('%%d', '(%%d+)')
 			texture = GetItemIcon(link)
-
-			--from elvui
-			tt = E.ScanTooltip
-			tt:SetOwner(UIParent, 'ANCHOR_NONE')
-			tt:SetHyperlink(link)
-			for x = 1, tt:NumLines() do
-				local line = _G["ElvUI_ScanTooltipTextLeft"..x]
-				if line then
-					local lineText = line:GetText()
-					if lineText ~= nil then
-						itemLevel = tonumber(lineText:match(ilvlpattern))
-						if itemLevel ~= nil then
-							break
-						end
-					end
-				end
-			end
-			tt:Hide()
-
-			_, _, itemQuality, itemLevel2, _, _, _, _, _, _, _, classID = GetItemInfo(link)
-			if itemLevel == nil then
-				itemLevel = itemLevel2
-			end
+			_, _, itemQuality, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(link)
 
 			local item = Item:CreateFromItemLink(link)
 			if not item:IsItemEmpty() then
