@@ -433,7 +433,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if (arg == "Blizzard_InspectUI") or IsAddOnLoaded("Blizzard_InspectUI") then
-						if E.Retail then
+						if E.Retail or E.Mists then
 							if _G.InspectFrame and not _G.InspectFrame.shadow then
 								_G.InspectFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G.InspectFrame.shadow)
@@ -455,6 +455,10 @@ function ElvUI_EltreumUI:Shadows()
 						if _G.InspectFrameTab3 and _G.InspectFrameTab3.backdrop and not _G.InspectFrameTab3.backdrop.shadow then
 							_G.InspectFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.InspectFrameTab3.backdrop.shadow)
+						end
+						if _G.InspectFrameTab4 and _G.InspectFrameTab4.backdrop and not _G.InspectFrameTab4.backdrop.shadow then
+							_G.InspectFrameTab4.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.InspectFrameTab4.backdrop.shadow)
 						end
 						if IsAddOnLoaded("ElvUI_WindTools") then
 							if E.db.WT.item.inspect.inspect then
