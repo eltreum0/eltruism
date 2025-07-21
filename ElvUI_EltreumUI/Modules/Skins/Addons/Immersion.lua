@@ -179,6 +179,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 		--buttons are created depending on quest, hook frame to update them
 		_G["ImmersionFrame"]:HookScript("OnShow", updatebuttons)
 		_G["ImmersionFrame"]:HookScript("OnEvent", updatebuttons)
+		updatebuttons() --fire before show just in case
 	end
 end
 S:AddCallbackForAddon('Immersion', "EltruismImmersion", ElvUI_EltreumUI.EltruismImmersion)
