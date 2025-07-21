@@ -770,7 +770,12 @@ function ElvUI_EltreumUI:SkinQuests()
 						local function updateObjectiveCount()
 							--add quest count
 								if _G.QuestObjectiveTracker and _G.QuestObjectiveTracker.Header and _G.QuestObjectiveTracker.Header.Text then
-									local NumQuests = select(2, _G.C_QuestLog.GetNumQuestLogEntries())
+									--local NumQuests = select(2, _G.C_QuestLog.GetNumQuestLogEntries())
+
+									--GetNumQuestLogEntries is returning higher numbers so remove 12 from it
+									local NumQuests = select(2, _G.C_QuestLog.GetNumQuestLogEntries()) - 13
+									if NumQuests < 0 then NumQuests = 0 end
+
 									--if (NumQuests >= (MAX_QUESTS - 5)) then --global still returning 25
 									if (NumQuests >= 30) then
 										--_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, QUESTS_LABEL))
