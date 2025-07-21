@@ -775,8 +775,6 @@ function ElvUI_EltreumUI:SkinQuests()
 									if (NumQuests >= 30) then
 										--_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, QUESTS_LABEL))
 										_G.QuestObjectiveTracker.Header.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, 35, QUESTS_LABEL))
-									--else
-									--	_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(QUESTS_LABEL)
 									else
 										_G.QuestObjectiveTracker.Header.Text:SetText(QUESTS_LABEL)
 									end
