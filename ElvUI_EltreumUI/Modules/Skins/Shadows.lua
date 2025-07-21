@@ -62,7 +62,6 @@ function ElvUI_EltreumUI:Shadows()
 							end
 						end
 					end
-
 					if (arg == "Blizzard_PlayerSpells") or IsAddOnLoaded("Blizzard_PlayerSpells") then
 						if _G.PlayerSpellsFrame then
 							if not _G.PlayerSpellsFrame.shadow then
