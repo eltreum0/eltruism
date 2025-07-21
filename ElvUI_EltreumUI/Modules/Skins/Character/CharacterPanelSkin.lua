@@ -2721,7 +2721,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 								end
 
 								if E.Mists then
-									if not self.EltruismInspectHookCata then
+									if not self.EltruismInspectHookMists then
 										_G.InspectTalentFrame:HookScript("OnShow", function()
 											if InCombatLockdown() then
 												UIErrorsFrame:AddMessage(ERR_NOT_IN_COMBAT, 1.0, 0.2, 0.2, 1.0)
@@ -2782,7 +2782,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 												_G.InspectFrame:SetWidth(384)
 											end
 										end)
-										self.EltruismInspectHookCata = true
+										self.EltruismInspectHookMists = true
 									end
 								end
 							end
@@ -2938,10 +2938,10 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					end
 
 					--add bg texture
-					if E.Retail then
+					if E.Retail or E.Mists then
 						EltruismInspectBgTextureFader:SetAllPoints(_G.InspectFrame)
 					else
-						EltruismInspectBgTextureFader:SetAllPoints(_G.InspectFrame.backdrop)
+						EltruismInspectBgTextureFader:SetAllPoints(_G.InspectFrame.backdrop) --backdrop missing in mists!
 					end
 					EltruismInspectBgTextureFader:SetParent(_G.InspectFrame)
 					EltruismInspectBgTextureFader:SetDrawLayer("ARTWORK",7)
@@ -2976,7 +2976,11 @@ function ElvUI_EltreumUI:InspectBg(unit)
 
 					EltruismInspectBgTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
 					if not E.Retail then
-						EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop)
+						if not E.Mists then
+							EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame.backdrop)
+						else
+							EltruismInspectBgTexture:SetAllPoints(_G.InspectFrame)
+						end
 						EltruismInspectBgTexture:SetParent(_G.InspectFrame)
 						if _G.InspectModelFrameRotateLeftButton:IsShown() then
 							_G.InspectModelFrameRotateLeftButton:Hide()
