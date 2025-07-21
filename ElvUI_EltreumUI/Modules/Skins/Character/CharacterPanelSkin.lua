@@ -376,11 +376,11 @@ if not E.Retail then
 	end)
 
 	if E.Mists then
-		local catadualspec = CreateFrame("FRAME")
-		catadualspec:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
-		catadualspec:RegisterEvent("PLAYER_TALENT_UPDATE")
-		--catadualspec:RegisterEvent("CHARACTER_POINTS_CHANGED")
-		catadualspec:SetScript("OnEvent", function()
+		local mistsdualspec = CreateFrame("FRAME")
+		mistsdualspec:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
+		mistsdualspec:RegisterEvent("PLAYER_TALENT_UPDATE")
+		--mistsdualspec:RegisterEvent("CHARACTER_POINTS_CHANGED")
+		mistsdualspec:SetScript("OnEvent", function()
 			E:Delay(2, function()
 				if CharacterFrame.Text5 and CharacterFrame.Text5:GetText() ~= nil then
 					CharacterFrame.Text5:SetText(ElvUI_EltreumUI:GetPlayerSpec())
