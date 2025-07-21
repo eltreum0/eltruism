@@ -830,6 +830,36 @@ function ElvUI_EltreumUI:Shadows()
 							_G.EncounterJournalNavBarOverflowButton.EltruismArrow:SetScale(0.7)
 							_G.EncounterJournalNavBarOverflowButton.EltruismArrow:SetPoint("CENTER", _G.EncounterJournalNavBarOverflowButton, "CENTER", 0, 0)
 						end
+
+						--seems to not detect backdrop correctly and still set shadows to the frame, leaving gaps
+						--[[
+							local encountershadows = {
+								_G.EncounterJournalSuggestTab,
+								_G.EncounterJournalDungeonTab,
+								_G.EncounterJournalRaidTab,
+								_G.EncounterJournalLootJournalTab,
+								_G.EncounterJournalEncounterFrameInfoOverviewTab,
+								_G.EncounterJournalEncounterFrameInfoLootTab,
+								_G.EncounterJournalEncounterFrameInfoBossTab,
+								_G.EncounterJournalEncounterFrameInfoModelTab,
+								_G.EncounterJournalMonthlyActivitiesTab,
+							}
+							for _, frame in pairs(encountershadows) do
+								if frame then
+									if frame.backdrop then
+										if not frame.backdrop.shadow then
+											frame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+											ElvUI_EltreumUI:ShadowColor(frame.backdrop.shadow)
+										end
+									elseif not frame.backdrop then
+										if not frame.shadow then
+											frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+											ElvUI_EltreumUI:ShadowColor(frame.shadow)
+										end
+									end
+								end
+							end
+						]]
 						if not _G.EncounterJournal.shadow then
 							_G.EncounterJournal:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.EncounterJournal.shadow)
