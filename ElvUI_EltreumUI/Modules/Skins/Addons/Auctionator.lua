@@ -362,6 +362,9 @@ function ElvUI_EltreumUI:SkinAuctionator()
 				if _G["AuctionatorSellingFrame"].SaleItemFrame.Price then
 					S:HandleEditBox(_G["AuctionatorSellingFrame"].SaleItemFrame.Price.MoneyInput.GoldBox)
 					S:HandleEditBox(_G["AuctionatorSellingFrame"].SaleItemFrame.Price.MoneyInput.SilverBox)
+					if _G["AuctionatorSellingFrame"].SaleItemFrame.Price.MoneyInput.CopperBox then
+						S:HandleEditBox(_G["AuctionatorSellingFrame"].SaleItemFrame.Price.MoneyInput.CopperBox)
+					end
 				end
 
 				--handle radio buttons
@@ -445,6 +448,14 @@ function ElvUI_EltreumUI:SkinAuctionator()
 					end
 					S:HandleTrimScrollBar(_G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices.ResultsListing.ScrollArea.ScrollBar)
 					handlechildtab(_G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices.ResultsListing.HeaderContainer)
+				end
+
+				if _G["AuctionatorSellingFrame"].AuctionatorSaleItem then --handle refresh button
+					for _, v in pairs{_G["AuctionatorSellingFrame"].AuctionatorSaleItem:GetChildren()} do
+						if v and v.icon and v.icon == "Interface\\Buttons\\UI-RefreshButton" then
+							S:HandleButton(v)
+						end
+					end
 				end
 
 				--buying
