@@ -21,9 +21,9 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 				E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,UIParent,BOTTOM,0,260" --due to new monk/druid in mop
 			end
 
-			if E.Retail then
+			--[[if E.Retail then
 				ElvUI_EltreumUI:ModelsToggle(true) --disable models after layout for now due to the 3D model bug
-			end
+			end]]
 
 			ElvUI_EltreumUI:Print(L["Settings for ElvUI were updated."])
 		end
