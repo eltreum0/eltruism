@@ -486,6 +486,14 @@ function ElvUI_EltreumUI:SkinAuctionator()
 						_G["AuctionatorBuyCommodityFrame"].IconAndName.Icon:SetTexCoord(unpack(E.TexCoords))
 						S:HandleIconBorder(_G["AuctionatorBuyCommodityFrame"].IconAndName.QualityBorder, _G["AuctionatorBuyCommodityFrame"].IconAndName.backdrop)
 					end
+
+					if _G["AuctionatorBuyCommodityFrame"] then --handle refresh button
+						for _, v in pairs{_G["AuctionatorBuyCommodityFrame"]:GetChildren()} do
+							if v and v.icon and v.icon == "Interface\\Buttons\\UI-RefreshButton" then
+								S:HandleButton(v)
+							end
+						end
+					end
 				end
 
 				--cancelling
