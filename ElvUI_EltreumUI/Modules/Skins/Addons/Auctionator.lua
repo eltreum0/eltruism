@@ -119,13 +119,19 @@ function ElvUI_EltreumUI:SkinAuctionator()
 				S:HandleEditBox(_G["AuctionatorShoppingTabItemFrame"].CraftedLevelRange.MinBox)
 				S:HandleEditBox(_G["AuctionatorShoppingTabItemFrame"].CraftedLevelRange.MaxBox)
 				S:HandleEditBox(_G["AuctionatorShoppingTabItemFrame"].PurchaseQuantity.InputBox)
-				S:HandleDropDownBox(_G["AuctionatorShoppingTabItemFrame_FilterKeySelector"],240)
 				S:HandleDropDownBox(_G["AuctionatorShoppingTabItemFrame"].QualityContainer.DropDown.DropDown,200)
 				S:HandleDropDownBox(_G["AuctionatorShoppingTabItemFrame"].ExpansionContainer.DropDown.DropDown,200)
 				S:HandleDropDownBox(_G["AuctionatorShoppingTabItemFrame"].TierContainer.DropDown.DropDown,200)
 				--S:HandleDropDownBox(_G["AuctionatorShoppingTabItemFrame"].DropDown,240)
 				if _G["AuctionatorShoppingTabItemFrame"].Inset then
 					_G["AuctionatorShoppingTabItemFrame"].Inset:Hide()
+				end
+				if _G["AuctionatorShoppingTabItemFrame_FilterKeySelector"] then
+					if _G["AuctionatorShoppingTabItemFrame_FilterKeySelector"].DropDown then
+						S:HandleDropDownBox(_G["AuctionatorShoppingTabItemFrame_FilterKeySelector"].DropDown,240)
+					else
+						S:HandleDropDownBox(_G["AuctionatorShoppingTabItemFrame_FilterKeySelector"],240)
+					end
 				end
 
 				--selling
