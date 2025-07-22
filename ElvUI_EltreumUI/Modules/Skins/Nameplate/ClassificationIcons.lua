@@ -117,6 +117,12 @@ local bossIDs = {
 	["3586"] = true, --miner-johnson
 	["65014"] = true, --mr-smite
 	["49541"] = true, --vanessa-vancleef
+	["644"] = true, --rhahkzor
+	["642"] = true, --sneeds-shredder
+	["1763"] = true, --gilnid
+	["647"] = true, --captain-greenskin
+	["639"] = true, --edwin-vancleef
+	["645"] = true, --cookie
 
 	--blackrock-spire
 	["9596"] = true, --bannok-grimaxe
