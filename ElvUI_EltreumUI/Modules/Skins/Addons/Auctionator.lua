@@ -455,6 +455,9 @@ function ElvUI_EltreumUI:SkinAuctionator()
 						if v and v.icon and v.icon == "Interface\\Buttons\\UI-RefreshButton" then
 							S:HandleButton(v)
 						end
+						if v and v.iconAtlas and v.iconAtlas == "UI-RefreshButton" then
+							S:HandleButton(v)
+						end
 					end
 				end
 
@@ -492,6 +495,9 @@ function ElvUI_EltreumUI:SkinAuctionator()
 							if v and v.icon and v.icon == "Interface\\Buttons\\UI-RefreshButton" then
 								S:HandleButton(v)
 							end
+							if v and v.iconAtlas and v.iconAtlas == "UI-RefreshButton" then
+								S:HandleButton(v)
+							end
 						end
 					end
 				end
@@ -516,6 +522,12 @@ function ElvUI_EltreumUI:SkinAuctionator()
 					if v.CancelNextButton then
 						S:HandleButton(v.CancelNextButton)
 						S:HandleButton(v.StartScanButton)
+					end
+					if v and v.icon and v.icon == "Interface\\Buttons\\UI-RefreshButton" then
+						S:HandleButton(v)
+					end
+					if v and v.iconAtlas and v.iconAtlas == "UI-RefreshButton" then
+						S:HandleButton(v)
 					end
 				end
 
