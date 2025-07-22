@@ -362,6 +362,9 @@ function ElvUI_EltreumUI:SkinAuctionator()
 				if _G["AuctionatorSellingFrame"].SaleItemFrame.Price then
 					S:HandleEditBox(_G["AuctionatorSellingFrame"].SaleItemFrame.Price.MoneyInput.GoldBox)
 					S:HandleEditBox(_G["AuctionatorSellingFrame"].SaleItemFrame.Price.MoneyInput.SilverBox)
+					if _G["AuctionatorSellingFrame"].SaleItemFrame.Price.MoneyInput.CopperBox then
+						S:HandleEditBox(_G["AuctionatorSellingFrame"].SaleItemFrame.Price.MoneyInput.CopperBox)
+					end
 				end
 
 				--handle radio buttons
@@ -447,6 +450,14 @@ function ElvUI_EltreumUI:SkinAuctionator()
 					handlechildtab(_G["AuctionatorSellingFrame"].BuyFrame.HistoryPrices.ResultsListing.HeaderContainer)
 				end
 
+				if _G["AuctionatorSellingFrame"].AuctionatorSaleItem then --handle refresh button
+					for _, v in pairs{_G["AuctionatorSellingFrame"].AuctionatorSaleItem:GetChildren()} do
+						if v and v.icon and v.icon == "Interface\\Buttons\\UI-RefreshButton" then
+							S:HandleButton(v)
+						end
+					end
+				end
+
 				--buying
 				if E.Retail or E.Mists then
 					S:HandleButton(_G["AuctionatorBuyCommodityFrame"].BackButton)
@@ -474,6 +485,14 @@ function ElvUI_EltreumUI:SkinAuctionator()
 						_G["AuctionatorBuyCommodityFrame"].IconAndName.backdrop:SetPoint("BOTTOMRIGHT",_G["AuctionatorBuyCommodityFrame"].IconAndName.Icon,"BOTTOMRIGHT",1,-1)
 						_G["AuctionatorBuyCommodityFrame"].IconAndName.Icon:SetTexCoord(unpack(E.TexCoords))
 						S:HandleIconBorder(_G["AuctionatorBuyCommodityFrame"].IconAndName.QualityBorder, _G["AuctionatorBuyCommodityFrame"].IconAndName.backdrop)
+					end
+
+					if _G["AuctionatorBuyCommodityFrame"] then --handle refresh button
+						for _, v in pairs{_G["AuctionatorBuyCommodityFrame"]:GetChildren()} do
+							if v and v.icon and v.icon == "Interface\\Buttons\\UI-RefreshButton" then
+								S:HandleButton(v)
+							end
+						end
 					end
 				end
 

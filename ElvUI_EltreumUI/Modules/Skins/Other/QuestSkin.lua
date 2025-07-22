@@ -766,22 +766,37 @@ function ElvUI_EltreumUI:SkinQuests()
 						k.OnHeaderLeaveHook = true
 					end
 					if k.AddObjective and not k.AddObjectiveHook then
-						hooksecurefunc(k, "AddObjective", function()
-							blockskin(k)
 
+						local function updateObjectiveCount()
 							--add quest count
 								if _G.QuestObjectiveTracker and _G.QuestObjectiveTracker.Header and _G.QuestObjectiveTracker.Header.Text then
-									local NumQuests = select(2, _G.C_QuestLog.GetNumQuestLogEntries())
+									--local NumQuests = select(2, _G.C_QuestLog.GetNumQuestLogEntries())
+
+									--GetNumQuestLogEntries is returning higher numbers so remove 12 from it
+									local NumQuests = select(2, _G.C_QuestLog.GetNumQuestLogEntries()) - 13
+									if NumQuests < 0 then NumQuests = 0 end
+
 									--if (NumQuests >= (MAX_QUESTS - 5)) then --global still returning 25
 									if (NumQuests >= 30) then
 										--_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, QUESTS_LABEL))
 										_G.QuestObjectiveTracker.Header.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, 35, QUESTS_LABEL))
-									--else
-									--	_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(QUESTS_LABEL)
+									else
+										_G.QuestObjectiveTracker.Header.Text:SetText(QUESTS_LABEL)
 									end
 								end
 							--C_QuestLog.SortQuestWatches() --fix lines when added
+						end
+
+						hooksecurefunc(k, "AddObjective", function()
+							blockskin(k)
+							updateObjectiveCount()
 						end)
+
+						--update quest count on quest removed
+						local questnumbermonitor = CreateFrame("frame")
+						questnumbermonitor:RegisterEvent("QUEST_REMOVED")
+						questnumbermonitor:SetScript("OnEvent",updateObjectiveCount)
+
 						k.AddObjectiveHook = true
 					end
 					if k.Update and not k.EltruismUpdateHooked then
