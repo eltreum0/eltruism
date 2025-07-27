@@ -572,7 +572,8 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 		if E.private.skins.blizzard.enable then
 			ElvUI_EltreumUI:SkinAuctionator()
 			if E.Retail or E.Mists then
-				_G["AuctionHouseFrame"]:HookScript("OnShow",function()
+
+				local function skinbaseframe()
 					if not tabSkinned then
 						E:Delay(0, function()
 							ElvUI_EltreumUI:SkinAuctionator()
@@ -594,7 +595,16 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 							end
 						end)
 					end
+				end
+
+				_G["AuctionHouseFrame"]:HookScript("OnShow",function()
+					skinbaseframe()
 				end)
+
+				hooksecurefunc(AuctionHouseFrame, "SetDisplayMode", function()
+					skinbaseframe()
+				end)
+
 				if not InCombatLockdown and not _G.AuctionHouseFrame:HasScript("OnDragStart") then
 					_G.AuctionHouseFrame:SetMovable(true)
 					_G.AuctionHouseFrame:EnableMouse(true)
