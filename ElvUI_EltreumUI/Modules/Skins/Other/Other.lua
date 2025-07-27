@@ -411,12 +411,14 @@ function ElvUI_EltreumUI:EnchantScroll()
 			end
 			S:HandleButton(disenchantbutton)
 
-			local vellum = GetItemInfo(38682)
-			if vellum then
-				vellum = string.match(vellum, "%s+(%S+)")
-				vellumbutton:SetText(vellum)
-			else
-				vellumbutton:SetText("MISSING")
+			if not E.Classic then
+				local vellum = GetItemInfo(38682)
+				if vellum then
+					vellum = string.match(vellum, "%s+(%S+)")
+					vellumbutton:SetText(vellum)
+				else
+					vellumbutton:SetText("MISSING")
+				end
 			end
 		else
 			disenchantbutton = _G["EltruismDisenchantButton"]
