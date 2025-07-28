@@ -164,6 +164,16 @@ function ElvUI_EltreumUI:OldVersionCheck()
 	--	return
 	--elseif E.private.ElvUI_EltreumUI.install_version >= "4.1.2" and E.private.ElvUI_EltreumUI.install_version < "4.1.3" then --fix era priest paging shadowform
 	--end
+
+	--issue with old tooltip itemCount
+	if type(E.db.tooltip.itemCount) ~= "table" then
+		E.db.tooltip.itemCount = {
+			bags = false,
+			bank = false,
+			stack = false
+		}
+	end
+
 end
 
 function ElvUI_EltreumUI:NewVersionCheck()
