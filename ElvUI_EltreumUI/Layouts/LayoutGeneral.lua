@@ -880,7 +880,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["tooltip"]["healthBar"]["fontOutline"] = "OUTLINE"
 	E.db["tooltip"]["healthBar"]["height"] = 15
 	E.db["tooltip"]["healthBar"]["statusPosition"] = "TOP"
-	E.db["tooltip"]["itemCount"] = "NONE"
+	E.db["tooltip"]["itemCount"]["bags"] = false
+	E.db["tooltip"]["itemCount"]["bank"] = false
+	E.db["tooltip"]["itemCount"]["stack"] = false
 	E.db["tooltip"]["modifierID"] = "SHIFT"
 	E.db["tooltip"]["showElvUIUsers"] = true
 	E.db["tooltip"]["visibility"]["combatOverride"] = "CTRL"
