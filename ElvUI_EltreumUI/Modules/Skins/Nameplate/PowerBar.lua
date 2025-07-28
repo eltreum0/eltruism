@@ -58,18 +58,18 @@ local shamanlavaburst = 8
 local huntersteadyshot = 10 --now baseline
 local druideclipse,costTable
 local predictioncolorr, predictioncolorg, predictioncolorb
-local isSetup, isSetupprediction = false, false
 local maxpower = 0
 
 --Calculate the Power Cost and draw on the Bar
 function ElvUI_EltreumUI:PowerPrediction()
 	if E.private.ElvUI_EltreumUI.nameplatepower.enable then
 		EltreumPowerPrediction:Hide() --hide at the start before events
+		EltreumPowerPrediction:SetValue(0)
 		EltreumPowerPredictionIncoming:SetValue(0)
 		EltreumPowerPredictionIncoming:Hide() --hide at the start before events
 		predictioncolorr, predictioncolorg, predictioncolorb = EltreumPowerBar:GetStatusBarColor()
 
-		if not isSetupprediction then
+		if not EltreumPowerBar.isSetupprediction then
 			EltreumPowerPrediction:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture))
 			EltreumPowerPredictionIncoming:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture))
 			--make them behave nicely since i had to split them
@@ -77,7 +77,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 			EltreumPowerPredictionIncoming:SetReverseFill(false)
 			EltreumPowerPrediction:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
 			EltreumPowerPredictionIncoming:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
-			isSetupprediction = true
+			EltreumPowerBar.isSetupprediction = true
 		end
 
 		EltreumPowerPrediction:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
@@ -227,7 +227,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 			EltreumPowerAnchor = C_NamePlate.GetNamePlateForUnit("target")
 			EltreumPowerBar:SetParent(EltreumPowerAnchor)
 
-			if not isSetup then
+			if not EltreumPowerBar.isSetup then
 				EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.font), E.db.ElvUI_EltreumUI.nameplates.nameplatepower.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				EltreumPowerBar:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
 				S:HandleStatusBar(EltreumPowerBar)
@@ -259,7 +259,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				EltreumPowerBar:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture))
 
 
-				isSetup = true
+				EltreumPowerBar.isSetup = true
 			end
 
 			--check if max power has changed, update then
