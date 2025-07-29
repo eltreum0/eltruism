@@ -463,6 +463,7 @@ local modelsRotate = {
 	[5899823] = true, --Stitchoaf
 	[5770389] = true, --Chef Hobbs
 	[335908] = true, --Terenas Menethil II
+	[3071425] = true, --Zekhan
 }
 
 local targetlike = {
