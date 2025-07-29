@@ -103,42 +103,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 				_G["ImmersionFrame"].TalkBox.Elements:SetPoint("TOP", _G["ImmersionFrame"].TalkBox, "BOTTOM", 0, -10)
 			end
 
-			for i = 1, 30 do --title button seems to go to 20, but there might be more somewhere
-				local v = _G["ImmersionTitleButton"..i]
-				if v then
-					if not v.IsSkinned then
-						--S:HandleButton(v,true,nil,nil,true,"TRANSPARENT")
-						S:HandleButton(v)
-						--v:CreateBackdrop('Transparent')
-						v.Hilite:Hide()
-						v.Overlay:Hide()
-						--v:StyleButton()
-						v.Center:Show()
-						v.Center:SetAlpha(E.db.general.backdropfadecolor.a)
-						--v.Center.SetAlpha = E.noop
-						--v.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
-
-						--v.hover:SetVertexColor(classcolor.r, classcolor.g,classcolor.b, 0.7) --hover color
-						--v.pushed:SetColorTexture(classcolor.r, classcolor.g,classcolor.b, 0.8) --pushed color
-						v.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+3, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-						v.Label:SetShadowOffset(1,-1)
-						if E.db.ElvUI_EltreumUI.skins.shadow.enable then
-							if v and not v.shadow then
-								v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(v.shadow)
-							end
-						end
-						local point, relativeTo, relativePoint, xOfs, yOfs = v:GetPoint()
-						v:ClearAllPoints()
-						v:SetPoint(point,relativeTo,relativePoint,xOfs,yOfs-5)
-
-						v.IsSkinned = true
-					else
-						if v.Center then
-							v.Center:SetAlpha(E.db.general.backdropfadecolor.a)
-						end
-					end
-				end
+			for i = 1, 30 do --button seems to go to 20, but there might be more somewhere
 				if _G["ImmersionQuestInfoItem" .. i] and not _G["ImmersionQuestInfoItem" .. i].EltruismSkin then
 					_G["ImmersionQuestInfoItem" .. i].NameFrame:StripTextures()
 					_G["ImmersionQuestInfoItem" .. i].NameFrame:CreateBackdrop('Transparent')
@@ -172,6 +137,43 @@ function ElvUI_EltreumUI:EltruismImmersion()
 						_G["ImmersionProgressItem" .. i].Name:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 					end
 					_G["ImmersionProgressItem" .. i].EltruismSkin = true
+				end
+			end
+
+			for _, v in ipairs(_G["ImmersionFrame"].TitleButtons.Buttons) do
+				if v then
+					if not v.IsSkinned then
+						--S:HandleButton(v,true,nil,nil,true,"TRANSPARENT")
+						S:HandleButton(v)
+						--v:CreateBackdrop('Transparent')
+						v.Hilite:Hide()
+						v.Overlay:Hide()
+						--v:StyleButton()
+						v.Center:Show()
+						v.Center:SetAlpha(E.db.general.backdropfadecolor.a)
+						--v.Center.SetAlpha = E.noop
+						--v.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
+
+						--v.hover:SetVertexColor(classcolor.r, classcolor.g,classcolor.b, 0.7) --hover color
+						--v.pushed:SetColorTexture(classcolor.r, classcolor.g,classcolor.b, 0.8) --pushed color
+						v.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+3, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+						v.Label:SetShadowOffset(1,-1)
+						if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+							if v and not v.shadow then
+								v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(v.shadow)
+							end
+						end
+						local point, relativeTo, relativePoint, xOfs, yOfs = v:GetPoint()
+						v:ClearAllPoints()
+						v:SetPoint(point,relativeTo,relativePoint,xOfs,yOfs-5)
+
+						v.IsSkinned = true
+					else
+						if v.Center then
+							v.Center:SetAlpha(E.db.general.backdropfadecolor.a)
+						end
+					end
 				end
 			end
 		end
