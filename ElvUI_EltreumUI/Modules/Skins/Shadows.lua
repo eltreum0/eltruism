@@ -1247,7 +1247,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 
 			--finally fix gametooltip shadow
-			if _G.GameTooltipStatusBar and E.private.tooltip.enable then
+			if _G.GameTooltipStatusBar and E.private.tooltip.enable and not _G.GameTooltipStatusBar.EltruismHookShadow then
 				_G.GameTooltipStatusBar:HookScript("OnShow", function()
 					if _G.GameTooltip.shadow then
 						if E.db.tooltip.healthBar.statusPosition == "TOP" then
@@ -1276,6 +1276,7 @@ function ElvUI_EltreumUI:Shadows()
 					end
 					ElvUI_EltreumUI:ShadowColor(_G.GameTooltip.shadow)
 				end)
+				_G.GameTooltipStatusBar.EltruismHookShadow = true
 			end
 
 			--datatexts
