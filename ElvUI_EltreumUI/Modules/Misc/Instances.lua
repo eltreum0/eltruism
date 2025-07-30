@@ -48,7 +48,7 @@ instancedifficulty:SetScript("OnEvent", function()
 
 	--create mover only if setting is enabled
 	if not instancedifficulty.movercreated then
-		E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismInstanceDifficulty", nil, nil, nil, "ELTREUMUI,PARTY,RAID", nil, 'ElvUI_EltreumUI,party,instances')
+		E:CreateMover(instancedifficulty, "MoverEltruismInstanceDifficulty", "EltruismInstanceDifficulty", nil, nil, nil, "ELTREUMUI,PARTY,RAID,ALL", nil, 'ElvUI_EltreumUI,party,instances')
 		instancedifficulty.movercreated = true
 	end
 
