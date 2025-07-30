@@ -773,7 +773,7 @@ function ElvUI_EltreumUI:SkinQuests()
 									--local NumQuests = select(2, _G.C_QuestLog.GetNumQuestLogEntries())
 
 									--GetNumQuestLogEntries is returning higher numbers so remove 12 from it
-									local NumQuests = select(2, _G.C_QuestLog.GetNumQuestLogEntries()) - 13
+									local NumQuests = select(2, _G.C_QuestLog.GetNumQuestLogEntries()) - 16 --13 seemed correct but managed to hit 38/35
 									if NumQuests < 0 then NumQuests = 0 end
 
 									--if (NumQuests >= (MAX_QUESTS - 5)) then --global still returning 25
