@@ -236,8 +236,16 @@ instancedifficulty:SetScript("OnEvent", function()
 				end
 			end
 		elseif DifficultyID == 208 then --delve
-			instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.delve)
-			backuptext = E.db.ElvUI_EltreumUI.skins.instances.delve
+			--https://warcraft.wiki.gg/wiki/API_C_UIWidgetManager.GetScenarioHeaderDelvesWidgetVisualizationInfo
+			----ScenarioObjectiveTracker.ContentsFrame.1914a7047b0.WidgetContainer.192440b2760 is the frame with the id, would need a more complex thing to get other ids, use the tier one instead
+			local delveinfo = C_UIWidgetManager.GetScenarioHeaderDelvesWidgetVisualizationInfo(6183) --6183 is a tier delve
+			if delveinfo and delveinfo.shownState == 1 then
+				instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.delve.." "..delveinfo.tierText)
+				backuptext = E.db.ElvUI_EltreumUI.skins.instances.delve.." "..delveinfo.tierText
+			else --no tier info, prob a boss so just keep regular text
+				instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.delve)
+				backuptext = E.db.ElvUI_EltreumUI.skins.instances.delve
+			end
 			if E.db.ElvUI_EltreumUI.skins.instances.difficultycolors then
 				if E.db.ElvUI_EltreumUI.skins.instances.gradient then
 					textgradient = (E:TextGradient(" "..E.db.ElvUI_EltreumUI.skins.instances.delve, E.db.ElvUI_EltreumUI.skins.instances.delveColor.r, E.db.ElvUI_EltreumUI.skins.instances.delveColor.g, E.db.ElvUI_EltreumUI.skins.instances.delveColor.b, E.db.ElvUI_EltreumUI.skins.instances.delveColor.r + E.db.ElvUI_EltreumUI.skins.instances.redoffset, E.db.ElvUI_EltreumUI.skins.instances.delveColor.g + E.db.ElvUI_EltreumUI.skins.instances.greenoffset, E.db.ElvUI_EltreumUI.skins.instances.delveColor.b + E.db.ElvUI_EltreumUI.skins.instances.blueoffset))
