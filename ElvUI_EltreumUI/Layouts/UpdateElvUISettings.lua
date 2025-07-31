@@ -25,6 +25,17 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 				ElvUI_EltreumUI:ModelsToggle(true) --disable models after layout for now due to the 3D model bug
 			end]]
 
+			--fix power prediction color overlapping some other colors
+			E.db["unitframe"]["colors"]["powerPrediction"]["additional"]["a"] = 0.7
+			E.db["unitframe"]["colors"]["powerPrediction"]["additional"]["b"] = 1
+			E.db["unitframe"]["colors"]["powerPrediction"]["additional"]["g"] = 1
+			E.db["unitframe"]["colors"]["powerPrediction"]["additional"]["r"] = 1
+			E.db["unitframe"]["colors"]["powerPrediction"]["color"]["a"] = 0.7
+			E.db["unitframe"]["colors"]["powerPrediction"]["color"]["b"] = 1
+			E.db["unitframe"]["colors"]["powerPrediction"]["color"]["g"] = 1
+			E.db["unitframe"]["colors"]["powerPrediction"]["color"]["r"] = 1
+			E.db["unitframe"]["colors"]["powerPrediction"]["enable"] = true
+
 			ElvUI_EltreumUI:Print(L["Settings for ElvUI were updated."])
 		end
 	else
