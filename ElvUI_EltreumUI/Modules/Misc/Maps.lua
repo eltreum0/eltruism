@@ -75,6 +75,9 @@ if E.Retail then
 			--and just for sanity check do it twice but another way
 			function MapCanvasPinMixin:SetPassThroughButtons() end
 
+			WorldMapMixin.SetPassThroughButtons = function() end
+			function WorldMapMixin:SetPassThroughButtons() end
+
 			--remove max distance
 			if not SuperTrackedFrame.EltruismHook then
 
