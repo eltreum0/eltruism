@@ -8,7 +8,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 	if update then
 		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Thin") then
 
-			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
+			--[[if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 				E.db["movers"]["TotemTrackerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,276" --adjusted for the additional power in druid/monk in mop
 				E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,UIParent,BOTTOM,0,260"
 			end
@@ -19,7 +19,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Thin") then
 				E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,UIParent,BOTTOM,0,260" --due to new monk/druid in mop
-			end
+			end]]
 
 			--[[if E.Retail then
 				ElvUI_EltreumUI:ModelsToggle(true) --disable models after layout for now due to the 3D model bug
