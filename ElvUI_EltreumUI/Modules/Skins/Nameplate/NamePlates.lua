@@ -33,7 +33,7 @@ local nameplateShowOnlyNames
 local nameplateShowFriends
 local UnitName = _G.UnitName
 local IsResting = _G.IsResting
-local IsPlayerSpell = _G.IsPlayerSpell
+local IsPlayerSpell = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsPlayerSpell
 local UnitIsUnit = _G.UnitIsUnit
 local proc = {}
 local UnitAffectingCombat = _G.UnitAffectingCombat

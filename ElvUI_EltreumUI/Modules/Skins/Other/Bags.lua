@@ -7,7 +7,7 @@ local InCombatLockdown = _G.InCombatLockdown
 local ipairs = _G.ipairs
 local GetProfessions = _G.GetProfessions
 local GetProfessionInfo = _G.GetProfessionInfo
-local IsSpellKnown = _G.IsSpellKnown
+local IsSpellKnown = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsSpellKnown
 local IsPlayerMoving = _G.IsPlayerMoving
 local CastSpell = _G.CastSpell
 

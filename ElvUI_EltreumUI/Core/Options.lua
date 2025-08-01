@@ -1892,7 +1892,12 @@ function ElvUI_EltreumUI:Configtable()
 		for _, v in pairs(ElvUI_EltreumUI:GetTeleportSpells()) do
 			if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
 				local spellData = GetSpellInfo(v)
-				local hasSpell = IsSpellKnown(v)
+				local hasSpell
+				if _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown then
+					hasSpell = _G.C_SpellBook.IsSpellKnown(v)
+				else
+					hasSpell = IsSpellKnown(v)
+				end
 				if hasSpell then
 					tpspellsitems[v] = spellData.name
 				end

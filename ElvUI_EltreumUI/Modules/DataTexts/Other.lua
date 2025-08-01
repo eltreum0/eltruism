@@ -15,7 +15,7 @@ local C_CurrencyInfo_GetCurrencyInfo = _G.C_CurrencyInfo and _G.C_CurrencyInfo.G
 local format = _G.format
 local select = _G.select
 local gsub = _G.gsub
-local GetLootMethod = _G.GetLootMethod
+local GetLootMethod = _G.C_PartyInfo and _G.C_PartyInfo.GetLootMethod or _G.GetLootMethod
 local IsInGroup = _G.IsInGroup
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------spell haste datatext

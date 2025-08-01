@@ -3,7 +3,7 @@ local S = E:GetModule('Skins')
 local _, powertype,powernumber,tablepowernumber
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local IsPlayerSpell = _G.IsPlayerSpell
+local IsPlayerSpell = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsPlayerSpell
 local C_UnitAuras = _G.C_UnitAuras
 local UnitCastingInfo = _G.UnitCastingInfo
 local GetSpellPowerCost = _G.C_Spell and _G.C_Spell.GetSpellPowerCost or _G.GetSpellPowerCost
