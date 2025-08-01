@@ -40,6 +40,7 @@ local TeleportsItems = {
 	--162973, --greatfather-winters-hearthstone
 	--193588, --timewalkers-hearthstone
 	--208704, --deepdwellers-earthen-hearthstone
+	246565, --cosmic-hearthstone
 	235016, --redeployment module
 	209035, --hearthstone-of-the-flame
 	228940, --notorious-threads-hearthstone
@@ -356,6 +357,7 @@ local texturePaths = {
 	["235016"] = "Interface\\Icons\\inv_10_blacksmithing_craftedoptional_engineering_uprez", --redeployment module
 	["209035"] = "Interface\\Icons\\inv_holiday_hearthstonemidsummerfirefestival", --hearthstone-of-the-flame
 	["236687"] = "Interface\\Icons\\inv_111_goldenbomb_goldblue", --explosive-hearthstone
+	["246565"] = "Interface\\Icons\\spell_holy_circleofrenewal_shadow", --cosmic-hearthstone
 }
 local hearthstones = {
 	["6948"] = true, --hearthstone
@@ -373,6 +375,7 @@ local hearthstones = {
 	["209035"] = true, --hearthstone-of-the-flame
 	["228940"] = true, --notorious-threads-hearthstone
 	["236687"] = true, --explosive-hearthstone
+	["246565"] = true, --cosmic-hearthstone
 }
 
 local function SpellInfo(spellID)
