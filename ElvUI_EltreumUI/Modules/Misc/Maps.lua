@@ -63,8 +63,12 @@ if E.Retail then
 						C_Map.ClearUserWaypoint()
 					elseif instanceType == "none" then --is in the open world
 						--if event == "USER_WAYPOINT_UPDATED" and C_Map.HasUserWaypoint() then
-						if C_Map.HasUserWaypoint() then
-							E:Delay(0, function() C_SuperTrack.SetSuperTrackedUserWaypoint(true) end)
+						if C_Map.HasUserWaypoint()then
+							E:Delay(0, function()
+								if not InCombatLockdown() then --check for combat due to taint
+									C_SuperTrack.SetSuperTrackedUserWaypoint(true)
+								end
+							end)
 						end
 					end
 				end)
