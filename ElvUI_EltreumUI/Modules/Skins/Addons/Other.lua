@@ -97,6 +97,43 @@ end
 if _G.BasicMessageDialog then
 	S:HandleFrame(_G.BasicMessageDialog)
 	if _G._G.BasicMessageDialogButton then
-		S:HandleButton(_G._G.BasicMessageDialogButton)
+		S:HandleButton(_G.BasicMessageDialogButton)
 	end
 end
+
+--world quest tab... tab
+function ElvUI_EltreumUI:EltruismWQT()
+	local tab = _G.WQT_QuestMapTab
+	if not tab then return end
+
+	--from elvui, skin it the same way as the other tabs on the map frame
+	tab:CreateBackdrop()
+	tab:Size(30, 40)
+
+	if tab.Background then
+		tab.Background:SetAlpha(0)
+	end
+
+	if tab.SelectedTexture then
+		tab.SelectedTexture:SetDrawLayer('ARTWORK')
+		tab.SelectedTexture:SetColorTexture(1, 0.82, 0, 0.3)
+		tab.SelectedTexture:SetAllPoints()
+	end
+
+	for _, region in next, { tab:GetRegions() } do
+		if region:IsObjectType('Texture') and region:GetAtlas() == 'QuestLog-Tab-side-Glow-hover' then
+			region:SetColorTexture(1, 1, 1, 0.3)
+			region:SetAllPoints()
+		end
+	end
+
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+		if E.db.ElvUI_EltreumUI.skins.shadow.blizzard and E.private.skins.blizzard.enable then
+			if tab.backdrop and not tab.backdrop.shadow then
+					tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(tab.backdrop.shadow)
+			end
+		end
+	end
+end
+S:AddCallbackForAddon('WorldQuestTab', "EltruismWQT", ElvUI_EltreumUI.EltruismWQT)

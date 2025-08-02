@@ -6,6 +6,8 @@ local addon = ...
 local _G = _G
 ElvUI_EltreumUI = E:NewModule(addon, 'AceHook-3.0', 'AceEvent-3.0', 'AceTimer-3.0', 'AceConsole-3.0')
 local GetAddOnMetadata = _G.C_AddOns and _G.C_AddOns.GetAddOnMetadata or _G.GetAddOnMetadata
+local GetSpecialization = _G.C_SpecializationInfo and _G.C_SpecializationInfo.GetSpecialization or _G.GetSpecialization
+local GetSpecializationInfo = _G.C_SpecializationInfo and _G.C_SpecializationInfo.GetSpecializationInfo or _G.GetSpecializationInfo
 
 --Binding
 _G.BINDING_HEADER_ELTRUISM = GetAddOnMetadata(..., 'Title')
@@ -94,6 +96,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	ElvUI_EltreumUI:ExpandedTalents() --makes talents fit in one window without scroll in classic, scale in retail
 	if E.Retail then
 		ElvUI_EltreumUI:WaypointTimeToArrive() --adds an ETA below waypoints
+		ElvUI_EltreumUI:UpdateSuperTrackedColor() --colors the waypoint icon
 		ElvUI_EltreumUI:EltruismHideTalkingHead() --hides talking head from world quests
 		ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 		if E.db.ElvUI_EltreumUI.quests.anchor then
@@ -114,7 +117,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 		ElvUI_EltreumUI:SkinProfessions() --makes professions wider
 	end
 	if E.Mists then
-		ElvUI_EltreumUI.Spec = _G.C_SpecializationInfo.GetSpecialization()
+		ElvUI_EltreumUI.Spec = GetSpecialization()
 	end
 	if not E.Classic then
 		ElvUI_EltreumUI:DungeonRoleIcons() -- add spec icons to the lfg frame
@@ -321,14 +324,14 @@ function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
 end
 
 local currenttalentretail = E.Retail and GetSpecialization()
-local currenttalentmists = E.Mists and _G.C_SpecializationInfo.GetSpecialization()
+local currenttalentmists = E.Mists and GetSpecialization()
 function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 	local newtalentretail = E.Retail and GetSpecialization()
-	local cnewtalentmists = E.ClassicSOD and GetActiveTalentGroup() or E.Mists and _G.C_SpecializationInfo.GetSpecialization()
+	local cnewtalentmists = E.ClassicSOD and GetActiveTalentGroup() or E.Mists and GetSpecialization()
 	if E.Retail then
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
 	elseif E.Mists then
-		ElvUI_EltreumUI.Spec = _G.C_SpecializationInfo.GetSpecialization()
+		ElvUI_EltreumUI.Spec = GetSpecialization()
 	end
 	if (E.Retail and currenttalentretail ~= newtalentretail) or ((E.ClassicSOD or E.Mists) and currenttalentmists ~= cnewtalentmists) then
 		currenttalentretail = newtalentretail

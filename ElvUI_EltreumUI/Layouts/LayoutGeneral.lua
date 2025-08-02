@@ -438,6 +438,15 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["colors"]["power_backdrop"]["b"] = 0
 	E.db["unitframe"]["colors"]["power_backdrop"]["g"] = 0
 	E.db["unitframe"]["colors"]["power_backdrop"]["r"] = 0
+	E.db["unitframe"]["colors"]["powerPrediction"]["additional"]["a"] = 0.7
+	E.db["unitframe"]["colors"]["powerPrediction"]["additional"]["b"] = 1
+	E.db["unitframe"]["colors"]["powerPrediction"]["additional"]["g"] = 1
+	E.db["unitframe"]["colors"]["powerPrediction"]["additional"]["r"] = 1
+	E.db["unitframe"]["colors"]["powerPrediction"]["color"]["a"] = 0.7
+	E.db["unitframe"]["colors"]["powerPrediction"]["color"]["b"] = 1
+	E.db["unitframe"]["colors"]["powerPrediction"]["color"]["g"] = 1
+	E.db["unitframe"]["colors"]["powerPrediction"]["color"]["r"] = 1
+	E.db["unitframe"]["colors"]["powerPrediction"]["enable"] = true
 
 	--movers
 	E.db["movers"]["MoverEltruismInstanceDifficulty"] = "TOPRIGHT,UIParent,TOPRIGHT,-146,-21"

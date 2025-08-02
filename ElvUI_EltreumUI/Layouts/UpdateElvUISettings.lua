@@ -8,7 +8,7 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 	if update then
 		if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Healer") or ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Thin") then
 
-			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
+			--[[if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum DPS/Tank") then
 				E.db["movers"]["TotemTrackerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,276" --adjusted for the additional power in druid/monk in mop
 				E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,UIParent,BOTTOM,0,260"
 			end
@@ -19,11 +19,22 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 
 			if ElvDB.profileKeys[E.mynameRealm]:match("Eltreum Thin") then
 				E.db["movers"]["AdditionalPowerMover"] = "BOTTOM,UIParent,BOTTOM,0,260" --due to new monk/druid in mop
-			end
+			end]]
 
 			--[[if E.Retail then
 				ElvUI_EltreumUI:ModelsToggle(true) --disable models after layout for now due to the 3D model bug
 			end]]
+
+			--fix power prediction color overlapping some other colors
+			E.db["unitframe"]["colors"]["powerPrediction"]["additional"]["a"] = 0.7
+			E.db["unitframe"]["colors"]["powerPrediction"]["additional"]["b"] = 1
+			E.db["unitframe"]["colors"]["powerPrediction"]["additional"]["g"] = 1
+			E.db["unitframe"]["colors"]["powerPrediction"]["additional"]["r"] = 1
+			E.db["unitframe"]["colors"]["powerPrediction"]["color"]["a"] = 0.7
+			E.db["unitframe"]["colors"]["powerPrediction"]["color"]["b"] = 1
+			E.db["unitframe"]["colors"]["powerPrediction"]["color"]["g"] = 1
+			E.db["unitframe"]["colors"]["powerPrediction"]["color"]["r"] = 1
+			E.db["unitframe"]["colors"]["powerPrediction"]["enable"] = true
 
 			ElvUI_EltreumUI:Print(L["Settings for ElvUI were updated."])
 		end

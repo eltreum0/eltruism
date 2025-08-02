@@ -1887,12 +1887,17 @@ function ElvUI_EltreumUI:Configtable()
 		["SPELL"] = _G.SPELLS,
 	}, false, nil, function() return E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype = value end)
 	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.teleporttype.style = "radio"
-	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.teleport = ACH:Select(L["Select Spell/Item"], nil, 11, function()
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.teleport = ACH:Select(L["Select Spell/Item"], nil, 14, function()
 		local tpspellsitems = {}
 		for _, v in pairs(ElvUI_EltreumUI:GetTeleportSpells()) do
 			if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
 				local spellData = GetSpellInfo(v)
-				local hasSpell = IsSpellKnown(v)
+				local hasSpell
+				if _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown then
+					hasSpell = _G.C_SpellBook.IsSpellKnown(v)
+				else
+					hasSpell = IsSpellKnown(v)
+				end
 				if hasSpell then
 					tpspellsitems[v] = spellData.name
 				end
@@ -1939,6 +1944,7 @@ function ElvUI_EltreumUI:Configtable()
 			E.db.ElvUI_EltreumUI.otherstuff.datatextteleport = tostring(name)
 		end
 	end)
+	ElvUI_EltreumUI.Options.args.misc.args.datatext.args.teleportnolabel = ACH:Toggle(L["No Label"], nil, 15, nil, false, "full", function() return E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.datatextteleportnolabel = value end)
 
 	--unitframes
 	ElvUI_EltreumUI.Options.args.unitframes = ACH:Group(E:TextGradient(L["Unitframes"], 0.50, 0.70, 1, 0.67, 0.95, 1), L["Add Gradient, Custom Textures, Models, change fill orientation and more"], 85, 'tab')

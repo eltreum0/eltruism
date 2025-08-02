@@ -1586,7 +1586,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			CharacterFrame:HookScript("OnShow", function()
 				HandleCharacterPanelSize()
 				_G.CharacterFrame:Expand() --start expanded
-				if IsAddOnLoaded("ElvUI_CataArmory") then --reset the points since cataarmory adjusts and makes the skin look incorrect
+				if IsAddOnLoaded("ElvUI_CataArmory") or IsAddOnLoaded("ReforgedArmory") then --reset the points since cataarmory adjusts and makes the skin look incorrect
 					if _G.CharacterFrame.BottomRightCorner then
 						_G.CharacterFrame.BottomRightCorner:ClearAllPoints()
 						_G.CharacterFrame.BottomRightCorner:SetPoint('BOTTOMRIGHT', _G.CharacterFrame, 'BOTTOMRIGHT', 0, 0)
@@ -1835,7 +1835,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 		end
 
-		if IsAddOnLoaded("ElvUI_CataArmory") then
+		if IsAddOnLoaded("ElvUI_CataArmory") or IsAddOnLoaded("ReforgedArmory") then
 			--fix the double item level
 			E.db["cataarmory"]["character"]["avgItemLevel"]["enable"] = false
 

@@ -1936,6 +1936,7 @@ P.ElvUI_EltreumUI = {
 		musicshuffle = false,
 		datatextteleport = "Hearthstone",
 		datatextteleporttype = "ITEM",
+		datatextteleportnolabel = false,
 		datatextclasscolorbar = true,
 		datatextclasscolorbaralpha = 0.5,
 		datatextclasscolor = {
