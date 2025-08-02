@@ -115,7 +115,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 											LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({button._PixelGlow:GetRegions()}) do
-													local r,g,b = v:GetVertexColor()
+													local r,g,b = glowcolor[1],glowcolor[2],glowcolor[3]
 													v:SetVertexColor(r-(k/20),g-(k/20),b-(k/20),1)
 												end
 											end
@@ -124,7 +124,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 											LCG.AutoCastGlow_Start(button, glowcolor, 8, 1, 1.5, 1, 1)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({button._AutoCastGlow:GetRegions()}) do
-													local r,g,b = v:GetVertexColor()
+													local r,g,b = glowcolor[1],glowcolor[2],glowcolor[3]
 													v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),1)
 												end
 											end
