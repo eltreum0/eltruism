@@ -67,7 +67,6 @@ function ElvUI_EltreumUI:SkillGlow()
 						if E.db.ElvUI_EltreumUI.glow.gradient then
 							for k,v in pairs({button._AutoCastGlow:GetRegions()}) do
 								local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-								print(k)
 								local percentage = 1 - ((k*2)/100)
 								v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 							end
