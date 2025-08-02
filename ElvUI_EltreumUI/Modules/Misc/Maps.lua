@@ -71,12 +71,10 @@ if E.Retail then
 			end
 
 			--try to fix issue where the MapCanvasPinMixin:SetPassThroughButtons() will throw a taint
-			MapCanvasPinMixin.SetPassThroughButtons = function() end
-			--and just for sanity check do it twice but another way
-			function MapCanvasPinMixin:SetPassThroughButtons() end
-
-			WorldMapMixin.SetPassThroughButtons = function() end
-			function WorldMapMixin:SetPassThroughButtons() end
+			MapCanvasPinMixin.SetPassThroughButtons = E.noop
+			MapCanvasPinMixin.CheckMouseButtonPassthrough = E.noop
+			WorldMapMixin.SetPassThroughButtons = E.noop
+			WorldMapMixin.CheckMouseButtonPassthrough = E.noop
 
 			--remove max distance
 			if not SuperTrackedFrame.EltruismHook then
