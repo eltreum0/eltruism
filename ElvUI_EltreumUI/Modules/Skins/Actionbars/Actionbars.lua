@@ -40,7 +40,7 @@ function ElvUI_EltreumUI:SkillGlow()
 						if E.db.ElvUI_EltreumUI.glow.gradient then
 							for k,v in pairs({button._PixelGlow:GetRegions()}) do
 								local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-								local percentage = 1 - k/20
+								local percentage = 1 - ((k*4)/100)
 								v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 							end
 						end
@@ -67,7 +67,8 @@ function ElvUI_EltreumUI:SkillGlow()
 						if E.db.ElvUI_EltreumUI.glow.gradient then
 							for k,v in pairs({button._AutoCastGlow:GetRegions()}) do
 								local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-								local percentage = 1 - k/50
+								print(k)
+								local percentage = 1 - ((k*2)/100)
 								v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 							end
 						end
@@ -187,7 +188,7 @@ function ElvUI_EltreumUI:SkillGlow()
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({totemglow1._PixelGlow:GetRegions()}) do
 													local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-													local percentage = 1 - k/30
+													local percentage = 1 - ((k*4)/100)
 													v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 												end
 											end
@@ -196,7 +197,7 @@ function ElvUI_EltreumUI:SkillGlow()
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({totemglow1._AutoCastGlow:GetRegions()}) do
 													local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-													local percentage = 1 - k/50
+													local percentage = 1 - ((k*2)/100)
 													v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 												end
 											end
@@ -229,7 +230,7 @@ function ElvUI_EltreumUI:SkillGlow()
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({totemglow2._PixelGlow:GetRegions()}) do
 													local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-													local percentage = 1 - k/30
+													local percentage = 1 - ((k*4)/100)
 													v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 												end
 											end
@@ -238,7 +239,7 @@ function ElvUI_EltreumUI:SkillGlow()
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({totemglow2._AutoCastGlow:GetRegions()}) do
 													local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-													local percentage = 1 - k/50
+													local percentage = 1 - ((k*2)/100)
 													v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 												end
 											end
@@ -271,7 +272,7 @@ function ElvUI_EltreumUI:SkillGlow()
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({totemglow3._PixelGlow:GetRegions()}) do
 													local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-													local percentage = 1 - k/30
+													local percentage = 1 - ((k*4)/100)
 													v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 												end
 											end
@@ -280,7 +281,7 @@ function ElvUI_EltreumUI:SkillGlow()
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({totemglow3._AutoCastGlow:GetRegions()}) do
 													local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-													local percentage = 1 - k/50
+													local percentage = 1 - ((k*2)/100)
 													v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 												end
 											end
@@ -313,7 +314,7 @@ function ElvUI_EltreumUI:SkillGlow()
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({totemglow4._PixelGlow:GetRegions()}) do
 													local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-													local percentage = 1 - k/30
+													local percentage = 1 - ((k*4)/100)
 													v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 												end
 											end
@@ -322,7 +323,7 @@ function ElvUI_EltreumUI:SkillGlow()
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({totemglow4._AutoCastGlow:GetRegions()}) do
 													local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-													local percentage = 1 - k/50
+													local percentage = 1 - ((k*2)/100)
 													v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 												end
 											end
@@ -500,7 +501,7 @@ function ElvUI_EltreumUI:SkillGlow()
 														if E.db.ElvUI_EltreumUI.glow.gradient then
 															for k,v in pairs({_G[buttonname]._PixelGlow:GetRegions()}) do
 																local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-																local percentage = 1 - k/20
+																local percentage = 1 - ((k*4)/100)
 																v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 															end
 														end
@@ -509,7 +510,7 @@ function ElvUI_EltreumUI:SkillGlow()
 														if E.db.ElvUI_EltreumUI.glow.gradient then
 															for k,v in pairs({_G[buttonname]._AutoCastGlow:GetRegions()}) do
 																local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-																local percentage = 1 - k/50
+																local percentage = 1 - ((k*2)/100)
 																v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 															end
 														end
@@ -539,7 +540,7 @@ function ElvUI_EltreumUI:SkillGlow()
 													if E.db.ElvUI_EltreumUI.glow.gradient then
 															for k,v in pairs({_G[buttonname]._PixelGlow:GetRegions()}) do
 																local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-																local percentage = 1 - k/20
+																local percentage = 1 - ((k*4)/100)
 																v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 															end
 														end
@@ -548,7 +549,7 @@ function ElvUI_EltreumUI:SkillGlow()
 													if E.db.ElvUI_EltreumUI.glow.gradient then
 														for k,v in pairs({_G[buttonname]._AutoCastGlow:GetRegions()}) do
 															local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-															local percentage = 1 - k/50
+															local percentage = 1 - ((k*2)/100)
 															v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 														end
 													end
@@ -593,7 +594,7 @@ function ElvUI_EltreumUI:SkillGlow()
 												if E.db.ElvUI_EltreumUI.glow.gradient then
 													for k,v in pairs({_G[buttonname]._PixelGlow:GetRegions()}) do
 														local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-														local percentage = 1 - k/20
+														local percentage = 1 - ((k*4)/100)
 														v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 													end
 												end
@@ -602,7 +603,7 @@ function ElvUI_EltreumUI:SkillGlow()
 												if E.db.ElvUI_EltreumUI.glow.gradient then
 													for k,v in pairs({_G[buttonname]._AutoCastGlow:GetRegions()}) do
 														local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-														local percentage = 1 - k/50
+														local percentage = 1 - ((k*2)/100)
 														v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 													end
 												end
@@ -696,7 +697,7 @@ function ElvUI_EltreumUI:SkillGlowPet()
 					if E.db.ElvUI_EltreumUI.glow.gradient then
 						for k,v in pairs({button._PixelGlow:GetRegions()}) do
 							local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-							local percentage = 1 - k/20
+							local percentage = 1 - ((k*4)/100)
 							v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 						end
 					end
@@ -706,7 +707,7 @@ function ElvUI_EltreumUI:SkillGlowPet()
 					if E.db.ElvUI_EltreumUI.glow.gradient then
 						for k,v in pairs({button._AutoCastGlow:GetRegions()}) do
 							local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-							local percentage = 1 - k/50
+							local percentage = 1 - ((k*2)/100)
 							v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 						end
 					end
@@ -804,7 +805,7 @@ function ElvUI_EltreumUI:PreviewGlow()
 			if E.db.ElvUI_EltreumUI.glow.gradient then
 				for k,v in pairs({EltruismGlowPreview._PixelGlow:GetRegions()}) do
 					local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-					local percentage = 1 - k/20
+					local percentage = 1 - ((k*4)/100)
 					v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 				end
 			end
@@ -813,7 +814,7 @@ function ElvUI_EltreumUI:PreviewGlow()
 			if E.db.ElvUI_EltreumUI.glow.gradient then
 				for k,v in pairs({EltruismGlowPreview._AutoCastGlow:GetRegions()}) do
 					local r,g,b = skillglowcolor[1],skillglowcolor[2],skillglowcolor[3]
-					local percentage = 1 - k/50
+					local percentage = 1 - ((k*2)/100)
 					v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 				end
 			end

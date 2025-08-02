@@ -21,7 +21,7 @@ function ElvUI_EltreumUI:UFGlow(object, debuffType, _, wasFiltered)
 							LCG.PixelGlow_Start(object, {color.r, color.g, color.b, 1}, 7, 0.25, 14, 4, 3, 3, false, nil, 6)
 							if E.db.ElvUI_EltreumUI.glow.gradient then
 								for k,v in pairs({object._PixelGlow:GetRegions()}) do
-									local percentage = 1 - k/20
+									local percentage = 1 - ((k*4)/100)
 									v:SetVertexColor((color.r*percentage),(color.g*percentage),(color.b*percentage),1)
 								end
 							end
@@ -29,7 +29,7 @@ function ElvUI_EltreumUI:UFGlow(object, debuffType, _, wasFiltered)
 							LCG.AutoCastGlow_Start(object, {color.r, color.g, color.b, 1}, 8, 0.4, 2, 3, 3)
 							if E.db.ElvUI_EltreumUI.glow.gradient then
 								for k,v in pairs({object._AutoCastGlow:GetRegions()}) do
-									local percentage = 1 - k/50
+									local percentage = 1 - ((k*2)/100)
 									v:SetVertexColor((color.r*percentage),(color.g*percentage),(color.b*percentage),1)
 								end
 							end
