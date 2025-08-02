@@ -758,6 +758,10 @@ function ElvUI_EltreumUI:Shadows()
 							_G.WardrobeFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G.WardrobeFrame.shadow)
 						end
+						if _G.WardrobeOutfitEditFrame and not _G.WardrobeOutfitEditFrame.shadow then
+							_G.WardrobeOutfitEditFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(_G.WardrobeOutfitEditFrame.shadow)
+						end
 					end
 					if (arg == "Blizzard_ReforgingUI") or IsAddOnLoaded("Blizzard_ReforgingUI") then
 						if not _G.ReforgingFrame.shadow then
