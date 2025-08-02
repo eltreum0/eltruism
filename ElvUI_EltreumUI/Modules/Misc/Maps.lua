@@ -57,6 +57,7 @@ if E.Retail then
 				--EltruismAutopin:SetScript("OnEvent", function(_, event)
 				EltruismAutopin:SetScript("OnEvent", function()
 					EltruismAutopin:UnregisterEvent("PLAYER_STARTED_MOVING")
+					if InCombatLockdown() then return end --check for combat due to taint
 					local _, instanceType = IsInInstance()
 					--print(instanceType,event,"autopin")
 					if instanceType ~= "none" then --clears waypoints inside instances
@@ -65,9 +66,7 @@ if E.Retail then
 						--if event == "USER_WAYPOINT_UPDATED" and C_Map.HasUserWaypoint() then
 						if C_Map.HasUserWaypoint()then
 							E:Delay(0, function()
-								if not InCombatLockdown() then --check for combat due to taint
-									C_SuperTrack.SetSuperTrackedUserWaypoint(true)
-								end
+								C_SuperTrack.SetSuperTrackedUserWaypoint(true)
 							end)
 						end
 					end
