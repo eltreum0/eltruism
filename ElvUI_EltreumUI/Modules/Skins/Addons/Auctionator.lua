@@ -1,6 +1,7 @@
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
+local GetNumRegions = _G.GetNumRegions
 local tabSkinned = false
 
 local function handlechildtab(frame)
