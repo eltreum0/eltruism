@@ -2720,7 +2720,15 @@ function ElvUI_EltreumUI:InspectBg(unit)
 									self.EltruismInspectHook = true
 								end
 
-								if E.Mists then
+								if _G.InspectModelFrame then
+									_G.InspectModelFrame.BackgroundBotLeft:Hide()
+									_G.InspectModelFrame.BackgroundBotRight:Hide()
+									_G.InspectModelFrame.BackgroundOverlay:Hide()
+									_G.InspectModelFrame.BackgroundTopLeft:Hide()
+									_G.InspectModelFrame.BackgroundTopRight:Hide()
+								end
+
+								--[[if E.Mists then
 									if not self.EltruismInspectHookMists then
 										_G.InspectTalentFrame:HookScript("OnShow", function()
 											if InCombatLockdown() then
@@ -2784,7 +2792,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 										end)
 										self.EltruismInspectHookMists = true
 									end
-								end
+								end]]
 							end
 						end)
 					else
