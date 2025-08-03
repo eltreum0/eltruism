@@ -773,7 +773,10 @@ function ElvUI_EltreumUI:SkinQuests()
 									--local NumQuests = select(2, _G.C_QuestLog.GetNumQuestLogEntries())
 
 									--GetNumQuestLogEntries is returning higher numbers so remove 12 from it
-									local NumQuests = select(2, _G.C_QuestLog.GetNumQuestLogEntries()) - 15 --13 seemed correct but managed to hit 38/35
+									--13 seemed correct but managed to hit 38/35
+									--turns out some quests count as more, as finishing a battle pet quest changed the total return by more than 1
+									--maybe some quests are returning higher values to reserve slots for following quests
+									local NumQuests = select(2, _G.C_QuestLog.GetNumQuestLogEntries()) - 15
 									if NumQuests < 0 then NumQuests = 0 end
 
 									--if (NumQuests >= (MAX_QUESTS - 5)) then --global still returning 25
