@@ -61,6 +61,27 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 							end
 						end
 
+						--mirror timer... time text
+						if not bar.StatusBar.EltruismTimerHook then
+							local spellInfo = C_Spell.GetSpellInfo(5384)
+							hooksecurefunc(bar, "UpdateStatusBarValue", function(bar1)
+								if bar1.Text then
+									local barvalue = math.floor(bar1.StatusBar:GetValue())
+									local minutes =  math.floor(barvalue/60)
+									local seconds = barvalue % 60
+									local timetext = string.format('%d:%02d', minutes, seconds)
+									if bar.Text:GetText():match(_G.BREATH_LABEL) then
+										bar1.Text:SetText(_G.BREATH_LABEL.." "..timetext)
+									elseif bar.Text:GetText():match(_G.EXHAUSTION_LABEL) then
+										bar1.Text:SetText(_G.EXHAUSTION_LABEL.." "..timetext)
+									elseif bar.Text:GetText():match(spellInfo.name) then --feign death
+										bar1.Text:SetText(spellInfo.name.." "..timetext)
+									end
+								end
+							end)
+							bar.StatusBar.EltruismTimerHook = true
+						end
+
 						--gradient
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 							local atlas = bar.StatusBar:GetStatusBarTexture():GetAtlas()
