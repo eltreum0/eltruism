@@ -383,7 +383,7 @@ function ElvUI_EltreumUI:QuestItem()
 			--------------------------------------------------------------------------------------------------------
 			-- OnClick
 			--local function Button_OnClick(self,button, down)
-			local function Button_OnClick(button, _, _)
+			--[[local function Button_OnClick(button, _, _)
 				--print(button,down)
 				-- Handle Modified Click
 				--print("button_onclick")
@@ -391,12 +391,12 @@ function ElvUI_EltreumUI:QuestItem()
 					return
 				end
 				button:Click("LeftButton", true)
-			end
+			end]]
 
 			-- Make Button
 			local function CreateItemButton()
 				--print("creatingitembutton")
-				local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"SecureActionButtonTemplate")
+				local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"ActionButtonTemplate, SecureActionButtonTemplate")
 				b:CreateBackdrop('Transparent')
 				b:SetSize(E.db.ElvUI_EltreumUI.quests.questitemsize,E.db.ElvUI_EltreumUI.quests.questitemsizey)
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
@@ -406,7 +406,7 @@ function ElvUI_EltreumUI:QuestItem()
 					end
 				end
 				b:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square")
-				b:RegisterForClicks("LeftButtonUp","RightButtonUp")
+				b:RegisterForClicks("AnyDown","AnyUp")
 				b:SetScript("OnEnter", function (button)
 					GameTooltip:SetOwner(UIParent, "ANCHOR_CURSOR")
 					local bag, slot = button:GetAttribute("bag"), button:GetAttribute("slot")
@@ -425,7 +425,7 @@ function ElvUI_EltreumUI:QuestItem()
 					end
 					GameTooltip:Hide()
 				end)
-				b:HookScript("OnClick",Button_OnClick)
+				--b:HookScript("OnClick",Button_OnClick)
 
 				b:HookScript("OnEnter", function()
 					AB:BindUpdate(b)
@@ -498,6 +498,7 @@ function ElvUI_EltreumUI:QuestItem()
 				btn.link = link
 				btn.itemID = itemID
 
+				btn:SetAttribute("type*","item")
 				btn:SetAttribute("bag",bag)
 				btn:SetAttribute("slot",slot)
 				btn:RegisterForClicks("AnyDown", "AnyUp")
@@ -641,6 +642,7 @@ function ElvUI_EltreumUI:QuestItem()
 				EltruismQuestItemFrame.shownItems = (index - 1)
 				for i = index, #self.items do
 					self.items[i]:Hide()
+					self.items[i]:SetAttribute("disabled",nil)
 				end
 
 				--update bind text
