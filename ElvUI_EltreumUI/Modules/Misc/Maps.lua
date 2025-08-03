@@ -78,6 +78,10 @@ if E.Retail then
 			MapCanvasPinMixin.CheckMouseButtonPassthrough = E.noop
 			WorldMapMixin.SetPassThroughButtons = E.noop
 			WorldMapMixin.CheckMouseButtonPassthrough = E.noop
+			SuperTrackablePinMixin.SetPropagateMouseClicks = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
+			SuperTrackablePinMixin.UpdateMousePropagation = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
+			SuperTrackablePinMixin.SetPassThroughButtons = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
+			--SetPropagateMouseClicks
 
 			--remove max distance
 			if not SuperTrackedFrame.EltruismHook then
