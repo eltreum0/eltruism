@@ -6,9 +6,7 @@ local UIParent = _G.UIParent
 local UnitIsAFK = _G.UnitIsAFK
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local PlayMusic = _G.PlayMusic
-local PlaySound = _G.PlaySound
 local StopMusic = _G.StopMusic
-local StopSound = _G.StopSound
 local tonumber = _G.tonumber
 
 -- general alliance walk (legion) maybe human music idk
@@ -17,20 +15,20 @@ local tonumber = _G.tonumber
 -- AFK music (modified with the help of Repooc!)
 local racialMusic = {
 	["Human"] = 53210,
-	["Gnome"] = 369055,
-	["NightElf"] = 441709,
+	["Gnome"] = E.Classic and 53189 or 369055,
+	["NightElf"] = E.Classic and 53187 or 441709,
 	["KulTiran"] = 1781897,
-	["Dwarf"] = 298910,
+	["Dwarf"] = E.Classic and 53192 or 298910,
 	["Draenei"] = 53284,
 	["Worgen"] = 441525,
 	["VoidElf"] = 1864282,
 	["LightforgedDraenei"] = 1864285,
 	["DarkIronDwarf"] = 441566,
 	["Mechagnome"] = 3028751,
-	["Orc"] = 441713,
-	["Scourge"] = 53217,
-	["Tauren"] = 441788,
-	["Troll"] = 371378,
+	["Orc"] = E.Classic and 53201 or 441713,
+	["Scourge"] = E.Classic and 53519 or 53217,
+	["Tauren"] = E.Classic and 53215 or 441788,
+	["Troll"] = E.Classic and 53254 or 371378,
 	["Goblin"] = 441627,
 	["BloodElf"] = 53473,
 	["Pandaren"] = 642246,
@@ -59,33 +57,6 @@ local classMusic = {
 	["EVOKER"] = 4887975, --test
 }
 
-local cataMusic ={
-	["Human"] = 53210,
-	["Gnome"] = 369055,
-	["NightElf"] = E.Mists and 441709 or 53187,
-	["Dwarf"] = 298910,
-	["Draenei"] = 53284,
-	["Worgen"] = 441525,
-	["Orc"] = E.Mists and 441713 or 53201,
-	["Scourge"] = 53217,
-	["Tauren"] = E.Mists and 441788 or 53215,
-	["Troll"] = 371378,
-	["Goblin"] = 441627,
-	["BloodElf"] = 53473,
-	["Pandaren"] = 642246,
-}
-
-local classicMusic = {
-	["Human"] = 6794,
-	["Gnome"] = 7341,
-	["NightElf"] = 3920,
-	["Dwarf"] = 7319,
-	["Orc"] = 2902,
-	["Scourge"] = 5074,
-	["Tauren"] = 7077,
-	["Troll"] = 8452,
-}
-
 -- with the help of Repooc, Simpy and Acidweb (not in order :D)
 local musicSettingLoadingIn = GetCVar('Sound_EnableMusic')
 local musicSetting = musicSettingLoadingIn
@@ -101,7 +72,7 @@ function ElvUI_EltreumUI:AFKmusic()
 					PlayMusic(classMusic[E.myclass])
 				end
 			else
-				PlayMusic(cataMusic[E.myrace])
+				PlayMusic(racialMusic[E.myrace])
 			end
 		else
 			StopMusic()
