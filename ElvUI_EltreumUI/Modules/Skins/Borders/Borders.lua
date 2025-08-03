@@ -23,8 +23,8 @@ local classcolor2check = false
 local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder,focuscastbarborder,arenaborder
 local bordertexture,focusborder,bossborder,powerbarborder, playercastbarborder,petactionborder, experienceborder, threatborder
 local playerclassbarborder1, playerclassbarborder2, comboborder, playerpowerborder, targetpowerborder, reputationborder
-local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder,totemborderaction, altpowerborder, tooltipborder
-local MinimapBorder,LeftChatBorder,RightChatBorder,totemborderfly,focustargetborder,targettargetpowerborder, focuspowerborder
+local barborder1,barborder2,barborder3,barborder4,barborder5,barborder6,partyborder, altpowerborder, tooltipborder
+local MinimapBorder,LeftChatBorder,RightChatBorder,focustargetborder,targettargetpowerborder, focuspowerborder
 local raid1borderholder,raid2borderholder,raid3borderholder,partyborderholder, comboborderholder, tankborderholder, assistborderholder = {},{},{},{},{},{},{}
 local rectangleminimapdetect = CreateFrame("FRAME")
 local updatelocationpos = CreateFrame("Frame")
@@ -1624,7 +1624,7 @@ function ElvUI_EltreumUI:UFAuraBorders(_,button)
 end
 hooksecurefunc(UF, 'PostUpdateAura', ElvUI_EltreumUI.UFAuraBorders) --uf aura borders and debuff colors update
 
-local ttx,tty,tthpx,tthpy
+local ttx,tty,tthpy
 function ElvUI_EltreumUI:TooltipBorder()
 	if not _G["EltruismTooltipBorder"] then
 		tooltipborder = CreateFrame("Frame", "EltruismTooltipBorder", _G.GameTooltip, BackdropTemplateMixin and "BackdropTemplate")
@@ -1646,7 +1646,7 @@ function ElvUI_EltreumUI:TooltipBorder()
 	 if not tooltipborder.Hooks then
 	 	local function FixSize()
 	 		if _G.GameTooltipStatusBar and _G.GameTooltipStatusBar:IsShown() and (_G.GameTooltipStatusBar:GetAlpha() ~= 0) then --isshown and isvisible always return true
-				tthpx,tthpy = _G.GameTooltipStatusBar:GetSize()
+				tthpy = select(2,_G.GameTooltipStatusBar:GetSize())
 				ttx,tty = _G.GameTooltip:GetSize()
 				if E.db.tooltip.healthBar.statusPosition == "TOP" then
 					tooltipborder:SetPoint("CENTER", _G.GameTooltip, "CENTER", 0, tthpy/2)
@@ -2111,7 +2111,7 @@ function ElvUI_EltreumUI:ShowHideBorders(install)
 				_G["EltruismAuraBorder"..aura]:Show()
 			end
 		end
-		for totem = 1, 7 do
+		--[[for totem = 1, 7 do
 			if _G["EltruismTotemBorderAction"..totem] then
 				_G["EltruismTotemBorderAction"..totem]:Show()
 			end
@@ -2120,7 +2120,7 @@ function ElvUI_EltreumUI:ShowHideBorders(install)
 			if _G["EltruismTotemBorderFly"..totemfly] then
 				_G["EltruismTotemBorderFly"..totemfly]:Show()
 			end
-		end
+		end]]
 		for stance = 1, 10 do
 			if _G["EltruismStanceBorder"..stance] then
 				_G["EltruismStanceBorder"..stance]:Show()
@@ -2184,7 +2184,7 @@ function ElvUI_EltreumUI:ShowHideBorders(install)
 				_G["EltruismAuraBorder"..aura]:Hide()
 			end
 		end
-		for totem = 1, 7 do
+		--[[for totem = 1, 7 do
 			if _G["EltruismTotemBorderAction"..totem] then
 				_G["EltruismTotemBorderAction"..totem]:Hide()
 			end
@@ -2193,7 +2193,7 @@ function ElvUI_EltreumUI:ShowHideBorders(install)
 			if _G["EltruismTotemBorderFly"..totemfly] then
 				_G["EltruismTotemBorderFly"..totemfly]:Hide()
 			end
-		end
+		end]]
 		for stance = 1, 10 do
 			if _G["EltruismStanceBorder"..stance] then
 				_G["EltruismStanceBorder"..stance]:Hide()

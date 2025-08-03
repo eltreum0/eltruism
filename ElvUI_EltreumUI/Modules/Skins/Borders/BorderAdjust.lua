@@ -96,17 +96,22 @@ function ElvUI_EltreumUI:BorderAdjust()
 				E.db["movers"]["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-4"
 
 				--alt power adjustments
-				if _G.ElvUF_Player_ClassBar and _G.ElvUF_Player_ClassBar.__max then
-					if _G.ElvUF_Player_ClassBar.__max == 7 then
-						E.db.ElvUI_EltreumUI.borders.combosizex = 59
-						E.db.ElvUI_EltreumUI.borders.combosizey = 42
-					elseif _G.ElvUF_Player_ClassBar.__max == 6 then
-						E.db.ElvUI_EltreumUI.borders.combosizex = 62
-						E.db.ElvUI_EltreumUI.borders.combosizey = 42
-					elseif _G.ElvUF_Player_ClassBar.__max == 5 then
-						E.db.ElvUI_EltreumUI.borders.combosizex = 71
-						E.db.ElvUI_EltreumUI.borders.combosizey = 42
-					elseif _G.ElvUF_Player_ClassBar.__max == 4 then
+				if _G.ElvUF_Player then
+					if _G.ElvUF_Player_ClassBar and _G.ElvUF_Player_ClassBar:IsShown() and _G.ElvUF_Player_ClassBar.__max then
+						if _G.ElvUF_Player_ClassBar.__max == 7 then
+							E.db.ElvUI_EltreumUI.borders.combosizex = 59
+							E.db.ElvUI_EltreumUI.borders.combosizey = 42
+						elseif _G.ElvUF_Player_ClassBar.__max == 6 then
+							E.db.ElvUI_EltreumUI.borders.combosizex = 62
+							E.db.ElvUI_EltreumUI.borders.combosizey = 42
+						elseif _G.ElvUF_Player_ClassBar.__max == 5 then
+							E.db.ElvUI_EltreumUI.borders.combosizex = 71
+							E.db.ElvUI_EltreumUI.borders.combosizey = 42
+						elseif _G.ElvUF_Player_ClassBar.__max == 4 then
+							E.db.ElvUI_EltreumUI.borders.combosizex = 76
+							E.db.ElvUI_EltreumUI.borders.combosizey = 42
+						end
+					elseif _G.ElvUF_Player.Totems and _G.ElvUF_Player.Totems:IsShown() then
 						E.db.ElvUI_EltreumUI.borders.combosizex = 76
 						E.db.ElvUI_EltreumUI.borders.combosizey = 42
 					end
