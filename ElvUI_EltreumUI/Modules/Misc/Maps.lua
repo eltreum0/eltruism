@@ -57,26 +57,31 @@ if E.Retail then
 				--EltruismAutopin:SetScript("OnEvent", function(_, event)
 				EltruismAutopin:SetScript("OnEvent", function()
 					EltruismAutopin:UnregisterEvent("PLAYER_STARTED_MOVING")
+					if InCombatLockdown() then return end --check for combat due to taint
 					local _, instanceType = IsInInstance()
 					--print(instanceType,event,"autopin")
 					if instanceType ~= "none" then --clears waypoints inside instances
 						C_Map.ClearUserWaypoint()
 					elseif instanceType == "none" then --is in the open world
 						--if event == "USER_WAYPOINT_UPDATED" and C_Map.HasUserWaypoint() then
-						if C_Map.HasUserWaypoint() then
-							E:Delay(0, function() C_SuperTrack.SetSuperTrackedUserWaypoint(true) end)
+						if C_Map.HasUserWaypoint()then
+							E:Delay(0, function()
+								C_SuperTrack.SetSuperTrackedUserWaypoint(true)
+							end)
 						end
 					end
 				end)
 			end
 
 			--try to fix issue where the MapCanvasPinMixin:SetPassThroughButtons() will throw a taint
-			MapCanvasPinMixin.SetPassThroughButtons = function() end
-			--and just for sanity check do it twice but another way
-			function MapCanvasPinMixin:SetPassThroughButtons() end
-
-			WorldMapMixin.SetPassThroughButtons = function() end
-			function WorldMapMixin:SetPassThroughButtons() end
+			MapCanvasPinMixin.SetPassThroughButtons = E.noop
+			MapCanvasPinMixin.CheckMouseButtonPassthrough = E.noop
+			WorldMapMixin.SetPassThroughButtons = E.noop
+			WorldMapMixin.CheckMouseButtonPassthrough = E.noop
+			SuperTrackablePinMixin.SetPropagateMouseClicks = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
+			SuperTrackablePinMixin.UpdateMousePropagation = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
+			SuperTrackablePinMixin.SetPassThroughButtons = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
+			--SetPropagateMouseClicks
 
 			--remove max distance
 			if not SuperTrackedFrame.EltruismHook then

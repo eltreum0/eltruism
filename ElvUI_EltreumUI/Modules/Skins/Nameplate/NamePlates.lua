@@ -47,6 +47,8 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 	else
 		glowcolor = {E.db.ElvUI_EltreumUI.glow.glowcustomcolornp.r, E.db.ElvUI_EltreumUI.glow.glowcustomcolornp.g, E.db.ElvUI_EltreumUI.glow.glowcustomcolornp.b, 1}
 	end
+	local r,g,b = glowcolor[1],glowcolor[2],glowcolor[3]
+
 	if button and button.spellID then
 		if not string.find(unit, "nameplate") then
 			return
@@ -115,8 +117,8 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 											LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({button._PixelGlow:GetRegions()}) do
-													local r,g,b = v:GetVertexColor()
-													v:SetVertexColor(r-(k/20),g-(k/20),b-(k/20),1)
+													local percentage = 1 - ((k*4)/100)
+													v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 												end
 											end
 										elseif E.db.ElvUI_EltreumUI.glow.autocast then
@@ -124,8 +126,8 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 											LCG.AutoCastGlow_Start(button, glowcolor, 8, 1, 1.5, 1, 1)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({button._AutoCastGlow:GetRegions()}) do
-													local r,g,b = v:GetVertexColor()
-													v:SetVertexColor(r-(k/50),g-(k/50),b-(k/50),1)
+													local percentage = 1 - ((k*2)/100)
+													v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 												end
 											end
 										elseif E.db.ElvUI_EltreumUI.glow.blizzard then
