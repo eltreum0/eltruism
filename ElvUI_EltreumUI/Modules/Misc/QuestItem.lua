@@ -21,7 +21,6 @@ local tonumber = _G.tonumber
 local GetInventorySlotInfo = _G.GetInventorySlotInfo
 local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetInventoryItemCooldown = _G.GetInventoryItemCooldown
-local GetBindingText = _G.GetBindingText
 local CooldownFrame_Set = _G.CooldownFrame_Set
 local _, instanceType
 local GetItemSpell = _G.C_Item and _G.C_Item.GetItemSpell or _G.GetItemSpell

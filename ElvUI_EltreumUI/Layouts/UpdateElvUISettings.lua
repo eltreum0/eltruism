@@ -1,5 +1,4 @@
 local E, L = unpack(ElvUI)
-local valuecolors = E:ClassColor(E.myclass, true)
 
 --profile updates, so that whole profile doesnt need to be reimported
 function ElvUI_EltreumUI:UpdateElvUISettings(update)
