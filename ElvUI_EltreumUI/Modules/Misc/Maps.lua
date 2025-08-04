@@ -75,21 +75,20 @@ if E.Retail then
 			end
 
 			--try to fix issue where the MapCanvasPinMixin:SetPassThroughButtons() will throw a taint
-			--[[
-				MapCanvasPinMixin.SetPassThroughButtons = E.noop
-				MapCanvasPinMixin.CheckMouseButtonPassthrough = E.noop
-				MapCanvasPinMixin.ShouldMouseButtonBePassthrough = E.noop
-				WorldMapMixin.SetPassThroughButtons = E.noop
-				WorldMapMixin.CheckMouseButtonPassthrough = E.noop
-				WorldMapMixin.ShouldMouseButtonBePassthrough = E.noop
-				_G.WorldMapFrame.SetPassThroughButtons = E.noop
-				_G.WorldMapFrame.CheckMouseButtonPassthrough = E.noop
-				_G.WorldMapFrame.ShouldMouseButtonBePassthrough = E.noop
-				SuperTrackablePinMixin.SetPropagateMouseClicks = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
-				SuperTrackablePinMixin.UpdateMousePropagation = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
-				SuperTrackablePinMixin.SetPassThroughButtons = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
-				SuperTrackablePinMixin.ShouldMouseButtonBePassthrough = E.noop
-			]]
+			MapCanvasPinMixin.SetPassThroughButtons = E.noop
+			MapCanvasPinMixin.CheckMouseButtonPassthrough = E.noop
+			MapCanvasPinMixin.ShouldMouseButtonBePassthrough = E.noop
+			WorldMapMixin.SetPassThroughButtons = E.noop
+			WorldMapMixin.CheckMouseButtonPassthrough = E.noop
+			WorldMapMixin.ShouldMouseButtonBePassthrough = E.noop
+			_G.WorldMapFrame.SetPassThroughButtons = E.noop
+			_G.WorldMapFrame.CheckMouseButtonPassthrough = E.noop
+			_G.WorldMapFrame.ShouldMouseButtonBePassthrough = E.noop
+			SuperTrackablePinMixin.SetPropagateMouseClicks = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
+			SuperTrackablePinMixin.UpdateMousePropagation = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
+			SuperTrackablePinMixin.SetPassThroughButtons = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
+			SuperTrackablePinMixin.ShouldMouseButtonBePassthrough = E.noop
+
 
 			--remove max distance
 			if not SuperTrackedFrame.EltruismHook then
