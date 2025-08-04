@@ -37,6 +37,7 @@ local IsPlayerSpell = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsPla
 local UnitIsUnit = _G.UnitIsUnit
 local proc = {}
 local UnitAffectingCombat = _G.UnitAffectingCombat
+local GetNumRegions = _G.GetNumRegions
 local pairs = _G.pairs
 
 -- Different Debuffs/Buffs on nameplates
@@ -117,7 +118,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 											LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({button._PixelGlow:GetRegions()}) do
-													local percentage = 1 - ((k*4)/100)
+													local percentage = 1 - ((k*(100/(button._PixelGlow:GetNumRegions()+1)))/100)
 													v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 												end
 											end
@@ -126,7 +127,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 											LCG.AutoCastGlow_Start(button, glowcolor, 8, 1, 1.5, 1, 1)
 											if E.db.ElvUI_EltreumUI.glow.gradient then
 												for k,v in pairs({button._AutoCastGlow:GetRegions()}) do
-													local percentage = 1 - ((k*2)/100)
+													local percentage = 1 - ((k*(100/(button._AutoCastGlow:GetNumRegions()+1)))/100)
 													v:SetVertexColor((r*percentage),(g*percentage),(b*percentage),1)
 												end
 											end
