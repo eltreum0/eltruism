@@ -456,6 +456,7 @@ function ElvUI_EltreumUI:QuestItem()
 					--b.HotKey:SetJustifyH("LEFT")
 				end
 
+				b:Enable()
 				b:Show()
 				--if (#EltruismQuestItemFrame.items == 0) then
 				if (EltruismQuestItemFrame.shownItems == 0) then
@@ -580,16 +581,20 @@ function ElvUI_EltreumUI:QuestItem()
 			-- Update Buttons
 			function EltruismQuestItemFrame:UpdateButtons()
 				--print("updating buttons function")
-				-- Check if we are locked by combat
-				if (InCombatLockdown()) then
-					return
-				end
+
 
 				--reset ids
 				if #EltruismQuestItemFrame.items > 0 then
 					for i =1, #EltruismQuestItemFrame.items do
 						EltruismQuestItemFrame.items[i].itemID = 0
+						EltruismQuestItemFrame.items[i]:SetAttribute("disabled",nil)
+						EltruismQuestItemFrame.items[i]:Disable()
 					end
+				end
+
+				-- Check if we are locked by combat
+				if (InCombatLockdown()) then
+					return
 				end
 
 				-- locals
