@@ -502,6 +502,7 @@ function ElvUI_EltreumUI:QuestItem()
 				btn:SetAttribute("bag",bag)
 				btn:SetAttribute("slot",slot)
 				btn:RegisterForClicks("AnyDown", "AnyUp")
+				btn:Enable()
 
 				if (index > 1) then
 					btn:ClearAllPoints()
@@ -643,6 +644,7 @@ function ElvUI_EltreumUI:QuestItem()
 				for i = index, #self.items do
 					self.items[i]:Hide()
 					self.items[i]:SetAttribute("disabled",nil)
+					self.items[i]:Disable()
 				end
 
 				--update bind text
