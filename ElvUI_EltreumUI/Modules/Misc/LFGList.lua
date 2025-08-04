@@ -334,6 +334,9 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 				if entry.DataDisplay.Enumerate[i] then
 					entry.DataDisplay.Enumerate[i]:Hide()
 					entry.DataDisplay.Enumerate[i.."b"]:Hide()
+					if E.Retail then
+						entry.DataDisplay.Enumerate[i.."c"]:Hide()
+					end
 				end
 			end
 
@@ -350,9 +353,9 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 					--[#partymembers+1] = {roleIndex[role], classIndex[class], raidClassColors[class],icon}
 					local playerInfo  = C_LFGList.GetSearchResultPlayerInfo(entry.resultID, i)
 					if playerInfo then
-						local role, class, specLocalized = playerInfo.assignedRole, playerInfo.classFilename, playerInfo.specName
+						local role, class, specLocalized, isLeaver = playerInfo.assignedRole, playerInfo.classFilename, playerInfo.specName, playerInfo.isLeaver
 						local icon = E.Retail and iconTable[class][specLocalized] or iconTable[class]
-						partymembers[#partymembers+1] = {roleIndex[role], classIndex[class], raidClassColors[class],icon}
+						partymembers[#partymembers+1] = {roleIndex[role], classIndex[class], raidClassColors[class],icon,isLeaver}
 					end
 				end
 
@@ -382,6 +385,13 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 						entry.DataDisplay.Enumerate[i.."b"] = entry.DataDisplay:CreateTexture(nil, "BACKGROUND")
 						entry.DataDisplay.Enumerate[i.."b"]:SetSize(19, 19)
 					end
+					if E.Retail then
+						if not entry.DataDisplay.Enumerate[i.."c"] then
+							entry.DataDisplay.Enumerate[i.."c"] = entry.DataDisplay:CreateTexture(nil, "BORDER")
+							entry.DataDisplay.Enumerate[i.."c"]:SetSize(10, 10)
+							entry.DataDisplay.Enumerate[i.."c"]:SetAtlas('groupfinder-icon-leaver',false)
+						end
+					end
 
 					entry.DataDisplay.Enumerate[i]:SetPoint("RIGHT", entry.DataDisplay.Enumerate, "RIGHT", -13 - 21*(maxNumPlayers-i), -1)
 					entry.DataDisplay.Enumerate[i]:Show()
@@ -404,6 +414,16 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 					else
 						entry.DataDisplay.Enumerate[i]:SetDesaturated(false)
 						entry.DataDisplay.Enumerate[i.."b"]:SetDesaturated(false)
+					end
+
+					--leaver icon
+					if E.Retail then
+						if partymembers[i][5] then
+							entry.DataDisplay.Enumerate[i.."c"]:SetPoint("CENTER", entry.DataDisplay.Enumerate[i], "TOPRIGHT", 0, 2)
+							entry.DataDisplay.Enumerate[i.."c"]:Show()
+						else
+							entry.DataDisplay.Enumerate[i.."c"]:Hide()
+						end
 					end
 
 					local r, g, b, _ = partymembers[i][3]:GetRGBA()
