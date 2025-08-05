@@ -1745,6 +1745,9 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('whisperMode', 'inline')
 	SetCVar('colorChatNamesByClass', 1)
 	SetCVar('chatClassColorOverride', 0)
+	SetCVar("lootUnderMouse", 1)
+	SetCVar("chatBubbles", 1)
+	SetCVar("chatBubblesParty", 1)
 
 	if _G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown then
 		_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:SetValue('SHIFT')
@@ -1801,10 +1804,6 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar('cameraIndirectOffset', 15) --controls the distance to trigger the occludedSilhouettePlayer
 	elseif E.Mists or E.Classic then
 		SetCVar('cameraDistanceMaxZoomFactor', 3.4)
-
-		SetCVar("lootUnderMouse", 1)
-		SetCVar("chatBubbles", 1)
-		SetCVar("chatBubblesParty", 1)
 	end
 	ElvUI_EltreumUI:Print(L["General CVars have been set."])
 end
