@@ -432,7 +432,9 @@ function ElvUI_EltreumUI:QuestItem()
 					AB:FixKeybindText(b)
 				end)
 
-				b:SetAttribute("type*","item")
+				if not InCombatLockdown() then
+					b:SetAttribute("type*","item")
+				end
 
 				b.icon = b:CreateTexture(nil,"ARTWORK")
 				b.icon:SetAllPoints()
