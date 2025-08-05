@@ -2702,22 +2702,31 @@ function ElvUI_EltreumUI:InspectBg(unit)
 							else
 								_G.InspectNameText:ClearAllPoints()
 								_G.InspectNameText:SetPoint("TOP", _G.InspectFrame, "TOP", 0, -20)
-								_G.InspectFrame:SetWidth(450)
-								_G.InspectPaperDollItemsFrame:SetWidth(450)
-								_G.InspectHandsSlot:ClearAllPoints()
-								_G.InspectHandsSlot:SetPoint("TOPRIGHT", _G.InspectFrame, "TOPRIGHT", -45, -74)
-								_G.InspectModelFrame:ClearAllPoints()
-								_G.InspectModelFrame:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 0)
-								_G.InspectMainHandSlot:ClearAllPoints()
-								_G.InspectMainHandSlot:SetPoint("CENTER", _G.InspectFrame, "CENTER", -52, -150)
-								if not self.EltruismInspectHook then
-									_G.InspectModelFrame:HookScript("OnShow", function()
-										_G.InspectFrame:SetWidth(450)
-									end)
-									_G.InspectModelFrame:HookScript("OnHide", function()
-										_G.InspectFrame:SetWidth(384)
-									end)
-									self.EltruismInspectHook = true
+								if E.Mists then
+									_G.InspectHandsSlot:ClearAllPoints()
+									_G.InspectHandsSlot:SetPoint("TOPRIGHT", _G.InspectFrame, "TOPRIGHT", -13, -74)
+									_G.InspectModelFrame:ClearAllPoints()
+									_G.InspectModelFrame:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 0)
+									_G.InspectMainHandSlot:ClearAllPoints()
+									_G.InspectMainHandSlot:SetPoint("CENTER", _G.InspectFrame, "CENTER", -20, -185)
+								else
+									_G.InspectFrame:SetWidth(450)
+									_G.InspectPaperDollItemsFrame:SetWidth(450)
+									_G.InspectHandsSlot:ClearAllPoints()
+									_G.InspectHandsSlot:SetPoint("TOPRIGHT", _G.InspectFrame, "TOPRIGHT", -45, -74)
+									_G.InspectModelFrame:ClearAllPoints()
+									_G.InspectModelFrame:SetPoint("CENTER", _G.InspectFrame, "CENTER", 0, 0)
+									_G.InspectMainHandSlot:ClearAllPoints()
+									_G.InspectMainHandSlot:SetPoint("CENTER", _G.InspectFrame, "CENTER", -52, -150)
+									if not self.EltruismInspectHook then
+										_G.InspectModelFrame:HookScript("OnShow", function()
+											_G.InspectFrame:SetWidth(450)
+										end)
+										_G.InspectModelFrame:HookScript("OnHide", function()
+											_G.InspectFrame:SetWidth(384)
+										end)
+										self.EltruismInspectHook = true
+									end
 								end
 
 								if _G.InspectModelFrame then

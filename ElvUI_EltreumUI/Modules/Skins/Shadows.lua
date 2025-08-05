@@ -491,9 +491,18 @@ function ElvUI_EltreumUI:Shadows()
 								ElvUI_EltreumUI:ShadowColor(_G.PlayerTalentFrame.shadow)
 							end
 						else
-							if _G.PlayerTalentFrame and _G.PlayerTalentFrame.backdrop and not _G.PlayerTalentFrame.backdrop.shadow then
-								_G.PlayerTalentFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(_G.PlayerTalentFrame.backdrop.shadow)
+							if _G.PlayerTalentFrame then
+								if _G.PlayerTalentFrame.backdrop then
+									if not _G.PlayerTalentFrame.backdrop.shadow then
+										_G.PlayerTalentFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(_G.PlayerTalentFrame.backdrop.shadow)
+									end
+								else
+									if not _G.PlayerTalentFrame.shadow then
+										_G.PlayerTalentFrame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+										ElvUI_EltreumUI:ShadowColor(_G.PlayerTalentFrame.shadow)
+									end
+								end
 							end
 							if _G.PlayerTalentFrameTab3 and _G.PlayerTalentFrameTab3.backdrop and not _G.PlayerTalentFrameTab3.backdrop.shadow then
 								_G.PlayerTalentFrameTab3.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -1088,6 +1097,8 @@ function ElvUI_EltreumUI:Shadows()
 				_G.SpellBookFrameTabButton1,
 				_G.SpellBookFrameTabButton2,
 				_G.SpellBookFrameTabButton3,
+				_G.SpellBookFrameTabButton4,
+				_G.SpellBookFrameTabButton5,
 				_G.SpellBookSkillLineTab1,
 				_G.SpellBookSkillLineTab2,
 				_G.SpellBookSkillLineTab3,

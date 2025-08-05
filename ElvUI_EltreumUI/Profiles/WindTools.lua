@@ -301,6 +301,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 		E.db["WT"]["maps"]["rectangleMinimap"]["heightPercentage"] = 0.7
 		E.db["WT"]["maps"]["whoClicked"]["addRealm"] = true
 		E.db["WT"]["maps"]["whoClicked"]["onlyOnCombat"] = false
+		E.db["WT"]["maps"]["eventTracker"]["enable"] = false
 
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["name"] = E.db.general.font
 		E.db["WT"]["misc"]["gameBar"]["additionalText"]["font"]["style"] = ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle)
@@ -347,6 +348,7 @@ function ElvUI_EltreumUI:GetWindToolsProfile()
 
 		E.db["WT"]["tooltips"]["groupInfo"]["enable"] = false
 		E.db["WT"]["tooltips"]["groupInfo"]["title"] = false
+		E.db["WT"]["tooltips"]["keystone"]["enable"] = false
 
 		ElvUI_EltreumUI:Print("WindTools profile has been set")
 

@@ -432,7 +432,9 @@ function ElvUI_EltreumUI:QuestItem()
 					AB:FixKeybindText(b)
 				end)
 
-				b:SetAttribute("type*","item")
+				if not InCombatLockdown() then
+					b:SetAttribute("type*","item")
+				end
 
 				b.icon = b:CreateTexture(nil,"ARTWORK")
 				b.icon:SetAllPoints()
@@ -582,19 +584,20 @@ function ElvUI_EltreumUI:QuestItem()
 			function EltruismQuestItemFrame:UpdateButtons()
 				--print("updating buttons function")
 
+				-- Check if we are locked by combat
+				if (InCombatLockdown()) then
+					return
+				end
 
 				--reset ids
 				if #EltruismQuestItemFrame.items > 0 then
 					for i =1, #EltruismQuestItemFrame.items do
 						EltruismQuestItemFrame.items[i].itemID = 0
-						EltruismQuestItemFrame.items[i]:SetAttribute("disabled",nil)
-						EltruismQuestItemFrame.items[i]:Disable()
+						if not InCombatLockdown() then
+							EltruismQuestItemFrame.items[i]:SetAttribute("disabled",nil)
+							EltruismQuestItemFrame.items[i]:Disable()
+						end
 					end
-				end
-
-				-- Check if we are locked by combat
-				if (InCombatLockdown()) then
-					return
 				end
 
 				-- locals

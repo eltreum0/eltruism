@@ -926,7 +926,95 @@ function ElvUI_EltreumUI:Configtable()
 	ElvUI_EltreumUI.Options.args.cvars.args.general.args.description1 = ACH:Description(L["Setup CVars"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
 	ElvUI_EltreumUI.Options.args.cvars.args.general.args.generalVars = ACH:Execute(L["General CVars"], nil, 2, function() ElvUI_EltreumUI:SetupCVars() ElvUI_EltreumUI:NameplateCVars() end,nil,true, "full")
 	ElvUI_EltreumUI.Options.args.cvars.args.general.args.description2 = ACH:Description(L["It will set these CVars:"], 3, nil, nil, nil, nil, nil, "full")
-	ElvUI_EltreumUI.Options.args.cvars.args.general.args.cvarlist = ACH:Description('- autoLootDefault 1\n- ShowClassColorInFriendlyNameplate 1\n- removeChatDelay 1\n- autoQuestWatch 1\n- cameraDistanceMaxZoomFactor 2.6\n- nameplateLargerScale 1.2\n- nameplateMaxDistance 60\n- nameplateMinAlpha 1\n- nameplateMinScale 1\n- nameplateMotion 1\n- nameplateOccludedAlphaMult 0\n- nameplateOverlapH 0.8\n- nameplateOverlapV 1.1\n- nameplateSelectedScale 1\n- nameplateSelfAlpha 1\n- nameplateShowFriendlyMinions 0\n- nameplateOtherBottomInset 0.02\n- nameplateOtherTopInset 0.1\n- nameplateTargetRadialPosition 1\n- nameplateTargetBehindMaxDistance 40\n- nameplateShowEnemies 1\n- nameplateShowFriends 1\n- UnitNameEnemyGuardianName 0\n- UnitNameEnemyMinionName 0\n- UnitNameEnemyPetName 0\n- UnitNameEnemyPlayerName 1\n- UnitNameEnemyTotemName 1\n- UnitNameFriendlyPetName 0\n- UnitNameNPC 1\n- statusTextDisplay BOTH\n- screenshotQuality 10\n- chatMouseScroll 1\n- wholeChatWindowClickable 0\n- showTutorials 0\n- UberTooltips 1\n- alwaysCompareItems 0\n- allowCompareWithToggle 1\n- instantQuestText 1\nmaxFPSLoading 30\n- autoLootRate 1\n- showQuestTrackingTooltips 1\n- lootUnderMouse 1\n- equipmentManager 1\n- previewTalents 1\n- WorldTextMinSize 6', 4, nil, nil, nil, nil, nil, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.general.args.cvarlist = ACH:Description([[
+
+ActionButtonUseKeyDown 1
+allowCompareWithToggle 1
+alwaysCompareItems 0
+alwaysShowActionBars 1
+autoLootDefault 1
+autoLootRate 1
+autoQuestWatch 1
+cameraDistanceMaxZoomFactor 2.6
+cameraIndirectOffset 15
+cameraIndirectVisibility 1
+chatBubbles 1
+chatBubblesParty 1
+chatClassColorOverride 0
+chatMouseScroll 1
+chatStyle 'classic'
+colorChatNamesByClass 1
+displaySpellActivationOverlays 1
+enableMouseoverCast 1
+findYourselfAnywhere 1
+findYourselfAnywhereOnlyInCombat 1
+findYourselfMode 2
+findYourselfModeCircle 0
+findYourselfModeOutline 1
+fstack_preferParentKeys 0
+instantQuestText 1
+lockActionBars 1
+lootUnderMouse 1
+maxFPSLoading 30
+minimapTrackingShowAll 1
+missingTransmogSourceInItemTooltips 1
+nameplateGlobalScale 1
+nameplateLargeBottomInset 0.02
+nameplateLargerScale 1.2
+nameplateLargeTopInset 0.1
+nameplateMaxDistance 60
+nameplateMinAlpha1
+nameplateMinScale 1
+nameplateMotion 1
+nameplateOccludedAlphaMult 0
+nameplateOtherBottomInset 0.02
+nameplateOtherTopInset 0.1
+nameplateOverlapH 0.8
+nameplateOverlapV 1.1
+nameplateSelectedScale 1
+nameplateSelfAlpha 1
+nameplateShowEnemies 1
+nameplateShowFriendlyMinions 0
+nameplateShowFriends 1
+nameplateTargetBehindMaxDistance 40
+nameplateTargetRadialPosition 1
+occludedSilhouettePlayer 1
+PushToTalkSound 0
+removeChatDelay 1
+screenshotQuality 10
+ShowClassColorInFriendlyNameplate 1
+showNPETutorials 0
+showQuestTrackingTooltips 1
+showTutorials 0
+SoftTargetIconEnemy 0
+SoftTargetIconFriend 0
+SoftTargetIconGameObject 1
+SoftTargetIconInteract 1
+SoftTargetInteract 3
+SoftTargetInteractArc 2
+SoftTargetInteractRange 5
+SoftTargetLowPriorityIcons 1
+SoftTargetNameplateInteract 1
+spellActivationOverlayOpacity 0.5
+statusTextDisplay 'BOTH'
+threatWarning 3
+UberTooltips 1
+UnitNameEnemyGuardianName 0
+UnitNameEnemyMinionName 0
+UnitNameEnemyPetName 0
+UnitNameEnemyPlayerName 1
+UnitNameEnemyTotemName 1
+UnitNameFriendlyPetName 0
+UnitNameHostleNPC 0
+UnitNameInteractiveNPC 0
+UnitNameNonCombatCreatureName 0
+UnitNameNPC 0
+UnitNameNPC 1
+UnitNameOwn 0
+whisperMode 'inline'
+wholeChatWindowClickable 0
+WorldTextMinSize 6
+]], 4, nil, nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars = ACH:Group(L["Other CVars"], nil, 2)
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.combattext = ACH:Group(L["Combat Text"], nil, 2, "tab")
 	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.combattext.args.description1 = ACH:Description(L["Blizzard Floating Combat Text"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")

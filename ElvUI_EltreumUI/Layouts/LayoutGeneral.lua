@@ -1745,19 +1745,13 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('whisperMode', 'inline')
 	SetCVar('colorChatNamesByClass', 1)
 	SetCVar('chatClassColorOverride', 0)
+	SetCVar("lootUnderMouse", 1)
+	SetCVar("chatBubbles", 1)
+	SetCVar("chatBubblesParty", 1)
 
 	if _G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown then
 		_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:SetValue('SHIFT')
 		_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:RefreshValue()
-	end
-
-	if E.Retail then
-		SetCVar('cameraDistanceMaxZoomFactor', 2.6)
-		--occluded character visibility
-		SetCVar('cameraIndirectVisibility', 1)
-		SetCVar('cameraIndirectOffset', 15)
-	else
-		SetCVar('cameraDistanceMaxZoomFactor', 3.4)
 	end
 
 	--new softtarget (only function if player enables interact with target option, which these cvars do not enable)
@@ -1773,6 +1767,8 @@ function ElvUI_EltreumUI:SetupCVars()
 	SetCVar('WorldTextMinSize', 6)
 
 	if E.Retail then
+		SetCVar('cameraDistanceMaxZoomFactor', 2.6)
+
 		--this makes it so that the non nameplate names are hidden
 		SetCVar('UnitNameHostleNPC', 0) --Display names for hostile NPCs, even when they are dead
 		SetCVar('UnitNameInteractiveNPC', 0) --Display names for interactive NPCs
@@ -1793,12 +1789,21 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar('findYourselfInBGOnlyInCombat', 9) --"Highlight your character in Battlegrounds only when in combat"
 		SetCVar('findYourselfInRaid', 0) --"Always Highlight your character in Raids"
 		SetCVar('findYourselfInRaidOnlyInCombat', 0) --"Highlight your character in Raids only when in combat"
-		SetCVar('findYourselfMode', 1) --"Highlight you character. 0 = circle, 1 = circle & outline"
+		SetCVar('ObjectSelectionCircle', 1) --enables/disables the target circle
+		SetCVar('rawMouseEnable', 1) --default is 0, not sure if i should enable for everyone
 		]]
+
+		--set character to be highlighted in combat only
+		SetCVar('findYourselfMode', 2) --"Highlight you character. 0 = circle, 1 = circle & outline, 2 = outline"
+		SetCVar('findYourselfAnywhere', 1) --"Always Highlight your character"
+		SetCVar('findYourselfAnywhereOnlyInCombat', 1) --"Highlight your character only when in combat"
+		SetCVar('findYourselfModeOutline', 1)
+		SetCVar('findYourselfModeCircle', 0)
+		SetCVar('occludedSilhouettePlayer', 1) --not sure why its black now instead of colored like it was in a previous ptr
+		SetCVar('cameraIndirectVisibility', 1) --occluded character visibility
+		SetCVar('cameraIndirectOffset', 15) --controls the distance to trigger the occludedSilhouettePlayer
 	elseif E.Mists or E.Classic then
-		SetCVar("lootUnderMouse", 1)
-		SetCVar("chatBubbles", 1)
-		SetCVar("chatBubblesParty", 1)
+		SetCVar('cameraDistanceMaxZoomFactor', 3.4)
 	end
 	ElvUI_EltreumUI:Print(L["General CVars have been set."])
 end

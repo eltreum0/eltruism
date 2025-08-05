@@ -465,6 +465,7 @@ local modelsRotate = {
 	[335908] = true, --Terenas Menethil II
 	[3071425] = true, --Zekhan
 	[1810653] = true, --Lord Stormsong
+	[6047739] = true, --Hollow Reflection
 }
 
 local targetlike = {
