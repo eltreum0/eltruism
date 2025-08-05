@@ -589,7 +589,9 @@ function ElvUI_EltreumUI:QuestItem()
 				if #EltruismQuestItemFrame.items > 0 then
 					for i =1, #EltruismQuestItemFrame.items do
 						EltruismQuestItemFrame.items[i].itemID = 0
-						EltruismQuestItemFrame.items[i]:SetAttribute("disabled",nil)
+						if not InCombatLockdown() then
+							EltruismQuestItemFrame.items[i]:SetAttribute("disabled",nil)
+						end
 						EltruismQuestItemFrame.items[i]:Disable()
 					end
 				end
