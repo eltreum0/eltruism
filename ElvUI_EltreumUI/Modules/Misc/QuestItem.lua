@@ -584,6 +584,10 @@ function ElvUI_EltreumUI:QuestItem()
 			function EltruismQuestItemFrame:UpdateButtons()
 				--print("updating buttons function")
 
+				-- Check if we are locked by combat
+				if (InCombatLockdown()) then
+					return
+				end
 
 				--reset ids
 				if #EltruismQuestItemFrame.items > 0 then
@@ -591,14 +595,9 @@ function ElvUI_EltreumUI:QuestItem()
 						EltruismQuestItemFrame.items[i].itemID = 0
 						if not InCombatLockdown() then
 							EltruismQuestItemFrame.items[i]:SetAttribute("disabled",nil)
+							EltruismQuestItemFrame.items[i]:Disable()
 						end
-						EltruismQuestItemFrame.items[i]:Disable()
 					end
-				end
-
-				-- Check if we are locked by combat
-				if (InCombatLockdown()) then
-					return
 				end
 
 				-- locals
