@@ -1765,9 +1765,6 @@ function ElvUI_EltreumUI:SetupCVars()
 
 	if E.Retail then
 		SetCVar('cameraDistanceMaxZoomFactor', 2.6)
-		--occluded character visibility
-		SetCVar('cameraIndirectVisibility', 1)
-		SetCVar('cameraIndirectOffset', 15)
 
 		--this makes it so that the non nameplate names are hidden
 		SetCVar('UnitNameHostleNPC', 0) --Display names for hostile NPCs, even when they are dead
@@ -1800,6 +1797,7 @@ function ElvUI_EltreumUI:SetupCVars()
 		SetCVar('findYourselfModeOutline', 1)
 		SetCVar('findYourselfModeCircle', 0)
 		SetCVar('occludedSilhouettePlayer', 1) --not sure why its black now instead of colored like it was in a previous ptr
+		SetCVar('cameraIndirectVisibility', 1) --occluded character visibility
 		SetCVar('cameraIndirectOffset', 15) --controls the distance to trigger the occludedSilhouettePlayer
 	elseif E.Mists or E.Classic then
 		SetCVar('cameraDistanceMaxZoomFactor', 3.4)
