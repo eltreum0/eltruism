@@ -1479,8 +1479,11 @@ local bossIDs = {
 	--uldir
 	["133298"] = true, --fetid-devourer
 	["163405"] = true, --ghuun
+	["132998"] = true, --ghuun
 	["140853"] = true, --mother
+	["135452"] = true, --mother
 	["136383"] = true, --mythrax-the-unraveler
+	["134546"] = true, --mythrax-the-unraveler
 	["137119"] = true, --taloc
 	["134442"] = true, --vectis
 	["134445"] = true, --zekvoz
@@ -1503,6 +1506,8 @@ local bossIDs = {
 	--crucible-of-storms
 	["145371"] = true, --uunat
 	["146497"] = true, --zaxasj-the-speaker
+	["144755"] = true, --zaxasj-the-speaker
+	["144754"] = true, --fathul-the-feared
 
 	--the-eternal-palace
 	["155144"] = true, --abyssal-commander-sivara
