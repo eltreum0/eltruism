@@ -311,7 +311,7 @@ function ElvUI_EltreumUI:QuestItem()
 			EltruismQuestItemFrame:RegisterEvent("QUEST_ACCEPTED") -- Needed for items that starts a quest, when we accept it, update to remove the icon
 			--EltruismQuestItemFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 			EltruismQuestItemFrame:RegisterEvent("UPDATE_BINDINGS")
-			--EltruismQuestItemFrame:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN")
+			EltruismQuestItemFrame:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN")
 			--these were causing memory issues, exploding whenever a waypoint was set
 			--EltruismQuestItemFrame:RegisterEvent("QUEST_LOG_UPDATE") -- For when items get added/removed during quest
 			EltruismQuestItemFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")	-- Should work better than PLAYER_ENTERING_WORLD
@@ -692,7 +692,7 @@ function ElvUI_EltreumUI:QuestItem()
 			end)
 
 			-- Update Cooldowns
-			--[[function EltruismQuestItemFrame:ACTIONBAR_UPDATE_COOLDOWN()
+			function EltruismQuestItemFrame:ACTIONBAR_UPDATE_COOLDOWN()
 				if EltruismQuestItemFrame.debug then
 					ElvUI_EltreumUI:Print("Firing ACTIONBAR_UPDATE_COOLDOWN")
 				end
@@ -702,7 +702,7 @@ function ElvUI_EltreumUI:QuestItem()
 				if (EltruismQuestItemFrame.shownItems > 0) then
 					EltruismQuestItemFrame:UpdateCooldowns()
 				end
-			end]]
+			end
 
 			-- Inventory Changed
 			function EltruismQuestItemFrame:UNIT_INVENTORY_CHANGED(_,unit)
