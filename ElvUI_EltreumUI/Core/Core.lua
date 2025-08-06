@@ -547,7 +547,11 @@ do
 			_G.StaticPopup1Text:SetText(deletetext)
 		end
 
-		_G.StaticPopup1.editBox:SetText(DELETE_ITEM_CONFIRM_STRING) --from line 2028
+		if E.Retail then
+			_G.StaticPopup1.EditBox:SetText(DELETE_ITEM_CONFIRM_STRING) --from line 2028
+		else
+			_G.StaticPopup1.editBox:SetText(DELETE_ITEM_CONFIRM_STRING) --from line 2028
+		end
 
 		if throttle == 0 then
 			throttle = 1
