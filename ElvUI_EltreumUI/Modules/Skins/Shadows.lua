@@ -3751,6 +3751,10 @@ function ElvUI_EltreumUI:Shadows()
 					_G["ElvUI_BankContainerFrameWarbandHolder"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(_G["ElvUI_BankContainerFrameWarbandHolder"].shadow)
 				end
+				if _G.ElvUI_BankContainerFrameBankTabs and not _G.ElvUI_BankContainerFrameBankTabs.shadow then
+					_G["ElvUI_BankContainerFrameBankTabs"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(_G["ElvUI_BankContainerFrameBankTabs"].shadow)
+				end
 			end
 		end
 		------------------------------------------------------------------------------------------------------chat
