@@ -66,8 +66,9 @@ if E.Retail then
 						--if event == "USER_WAYPOINT_UPDATED" and C_Map.HasUserWaypoint() then
 						if C_Map.HasUserWaypoint()then
 							E:Delay(0, function()
-								if InCombatLockdown() then return end --check for combat again due to taint
-								C_SuperTrack.SetSuperTrackedUserWaypoint(true)
+								if not InCombatLockdown() then --check for combat again due to taint
+									C_SuperTrack.SetSuperTrackedUserWaypoint(true)
+								end
 							end)
 						end
 					end
@@ -75,20 +76,28 @@ if E.Retail then
 			end
 
 			--try to fix issue where the MapCanvasPinMixin:SetPassThroughButtons() will throw a taint
-			MapCanvasPinMixin.SetPassThroughButtons = E.noop
-			MapCanvasPinMixin.CheckMouseButtonPassthrough = E.noop
-			MapCanvasPinMixin.ShouldMouseButtonBePassthrough = E.noop
-			WorldMapMixin.SetPassThroughButtons = E.noop
+
+
+			--[[WorldMapMixin.SetPassThroughButtons = E.noop
 			WorldMapMixin.CheckMouseButtonPassthrough = E.noop
 			WorldMapMixin.ShouldMouseButtonBePassthrough = E.noop
 			_G.WorldMapFrame.SetPassThroughButtons = E.noop
 			_G.WorldMapFrame.CheckMouseButtonPassthrough = E.noop
-			_G.WorldMapFrame.ShouldMouseButtonBePassthrough = E.noop
-			SuperTrackablePinMixin.SetPropagateMouseClicks = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
-			SuperTrackablePinMixin.UpdateMousePropagation = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
-			SuperTrackablePinMixin.SetPassThroughButtons = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
-			SuperTrackablePinMixin.ShouldMouseButtonBePassthrough = E.noop
+			_G.WorldMapFrame.ShouldMouseButtonBePassthrough = E.noop]]
 
+			_G.SuperTrackablePinMixin.SetPropagateMouseClicks = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
+			_G.SuperTrackablePinMixin.UpdateMousePropagation = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
+			_G.SuperTrackablePinMixin.SetPassThroughButtons = E.noop --this is new [TOGGLEWORLDMAP]:1: in function <[string "TOGGLEWORLDMAP"]:1>
+			_G.SuperTrackablePinMixin.ShouldMouseButtonBePassthrough = E.noop
+			_G.WorldQuestPinMixin.SetPassThroughButtons = E.noop
+			_G.WorldQuestPinMixin.CheckMouseButtonPassthrough = E.noop
+			_G.WorldQuestPinMixin.ShouldMouseButtonBePassthrough = E.noop
+			_G.MapCanvasPinMixin.SetPassThroughButtons = E.noop
+			_G.MapCanvasPinMixin.CheckMouseButtonPassthrough = E.noop
+			_G.MapCanvasPinMixin.ShouldMouseButtonBePassthrough = E.noop
+			_G.WaypointLocationPinMixin.SetPassThroughButtons = E.noop
+			_G.WaypointLocationPinMixin.CheckMouseButtonPassthrough = E.noop
+			_G.WaypointLocationPinMixin.ShouldMouseButtonBePassthrough = E.noop
 
 			--remove max distance
 			if not SuperTrackedFrame.EltruismHook then
