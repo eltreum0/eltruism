@@ -38,7 +38,7 @@ local racialMusic = {
 	["Vulpera"] = 3260632,
 	["MagharOrc"] = 2146630,
 	["Dracthyr"] = 4872480,
-	["EarthenDwarf"] = 6065451,
+	["EarthenDwarf"] = 6065661, --6065451, --6065451 is inn music, use more combat themed
 }
 local classMusic = {
 	["WARRIOR"] = 1417334,
