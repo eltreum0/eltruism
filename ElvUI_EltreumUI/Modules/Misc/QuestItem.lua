@@ -35,6 +35,7 @@ E:CreateMover(EltruismQuestItemFrame, "MoverEltruismQuestItem", "EltruismQuestIt
 EltruismQuestItemFrame.tip = CreateFrame("GameTooltip","EltruismQuestItemTip",nil,"GameTooltipTemplate")
 EltruismQuestItemFrame.tip:SetOwner(UIParent,"ANCHOR_NONE")
 EltruismQuestItemFrame.items = {}
+EltruismQuestItemFrame.debug = false
 
 -- Constants
 local UPDATE_DELAY = 1.0 --was 0.5 but i think that might be too low
@@ -302,6 +303,7 @@ function ElvUI_EltreumUI:QuestItem()
 			EltruismQuestItemFrame:RegisterEvent("MAIL_SUCCESS") -- when mailing quest items UNIT_INVENTORY_CHANGED does not fire
 
 			--these events will simply request an update
+			EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE")
 			EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_DELAYED")
 			--EltruismQuestItemFrame:RegisterEvent("BAG_UPDATE_COOLDOWN")
 			EltruismQuestItemFrame:RegisterEvent("QUEST_WATCH_UPDATE")
@@ -331,7 +333,9 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- update mover position
 			function EltruismQuestItemFrame:FixPosition()
-				--print("fixing position")
+				if EltruismQuestItemFrame.debug then
+					ElvUI_EltreumUI:Print("Firing FixPosition")
+				end
 				E:Delay(0, function()
 					if not InCombatLockdown() and _G["EltruismQuestItem1"] then
 						local point, relativeTo, relativePoint, xOfs, yOfs = EltruismQuestItemFrame:GetPoint()
@@ -366,37 +370,15 @@ function ElvUI_EltreumUI:QuestItem()
 			end
 
 			--------------------------------------------------------------------------------------------------------
-			--                                                Main                                                --
-			--------------------------------------------------------------------------------------------------------
-			local function OnUpdate(_,elapsed)
-				--print("quest item spam "..math.random(1,99))
-				EltruismQuestItemFrame.updateTime = (EltruismQuestItemFrame.updateTime + elapsed)
-				if (EltruismQuestItemFrame.updateTime > UPDATE_DELAY) then
-					--print("setting onupdate to nil, updating buttons")
-					--print("updated in: ", EltruismQuestItemFrame.updateTime)
-					EltruismQuestItemFrame:SetScript("OnUpdate",nil)
-					EltruismQuestItemFrame:UpdateButtons()
-				end
-			end
-			--------------------------------------------------------------------------------------------------------
 			--                                                Items                                               --
 			--------------------------------------------------------------------------------------------------------
-			-- OnClick
-			--local function Button_OnClick(self,button, down)
-			--[[local function Button_OnClick(button, _, _)
-				--print(button,down)
-				-- Handle Modified Click
-				--print("button_onclick")
-				if (HandleModifiedItemClick(button.link)) then
-					return
-				end
-				button:Click("LeftButton", true)
-			end]]
 
 			-- Make Button
 			local function CreateItemButton()
-				--print("creatingitembutton")
-				local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"ActionButtonTemplate, SecureActionButtonTemplate")
+				if EltruismQuestItemFrame.debug then
+					ElvUI_EltreumUI:Print("Firing CreateItemButton")
+				end
+				local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"ActionButtonTemplate, InsecureActionButtonTemplate")
 				b:CreateBackdrop('Transparent')
 				b:SetSize(E.db.ElvUI_EltreumUI.quests.questitemsize,E.db.ElvUI_EltreumUI.quests.questitemsizey)
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
@@ -432,9 +414,7 @@ function ElvUI_EltreumUI:QuestItem()
 					AB:FixKeybindText(b)
 				end)
 
-				if not InCombatLockdown() then
-					b:SetAttribute("type*","item")
-				end
+				b:SetAttribute("type*","item")
 
 				b.icon = b:CreateTexture(nil,"ARTWORK")
 				b.icon:SetAllPoints()
@@ -474,10 +454,11 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Add Button
 			local function AddButton(index,bag,slot,link,itemID,count)
-				--print("adding button")
+				if EltruismQuestItemFrame.debug then
+					ElvUI_EltreumUI:Print("Firing AddButton")
+				end
 				local btn = EltruismQuestItemFrame.items[index] or CreateItemButton()
 				local _, _, _, _, _, _, _, _, _, itemTexture, _, _ = GetItemInfo(link)
-				--print(link,index)
 				btn.icon:SetTexture(itemTexture)
 				--btn.icon:SetTexCoord(0.08,0.92,0.08,0.92)
 				--btn.icon:SetTexCoord(unpack(E.TexCoords))
@@ -523,7 +504,9 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Check Item -- Az: Some items which starts a quest, are not marked as "Quest" in itemType or itemSubType. Ex: item:17008
 			local function CheckItemTooltip(link,itemID)
-				--print("checking item tooltip")
+				if EltruismQuestItemFrame.debug then
+					ElvUI_EltreumUI:Print("Firing AddButton")
+				end
 				local _, _, _, _, _, itemType, itemSubType, _, itemEquipLoc, _, _, classID = GetItemInfo(link)
 
 				-- Include predefinded items
@@ -560,14 +543,20 @@ function ElvUI_EltreumUI:QuestItem()
 			--------------------------------------------------------------------------------------------------------
 			--                                               Update                                               --
 			--------------------------------------------------------------------------------------------------------
-			-- Request a Button Update
-			function EltruismQuestItemFrame:RequestUpdate()
-				--print("requesting update")
-				EltruismQuestItemFrame.updateTime = 0
-				EltruismQuestItemFrame:SetScript("OnUpdate",OnUpdate)
-				--print("re quest item spam "..math.random(1,99))
+			-- Update Cooldowns
+			function EltruismQuestItemFrame:UpdateCooldowns()
+				if EltruismQuestItemFrame.debug then
+					ElvUI_EltreumUI:Print("Firing UpdateCooldowns")
+				end
+				for i = 1, EltruismQuestItemFrame.shownItems do
+					local bag, slot = self.items[i]:GetAttribute("bag"), self.items[i]:GetAttribute("slot")
+					if (bag) then
+						CooldownFrame_Set(self.items[i].cooldown,GetContainerItemCooldown(bag,slot))
+					else
+						CooldownFrame_Set(self.items[i].cooldown,GetInventoryItemCooldown("player",slot))
+					end
+				end
 			end
-			EltruismQuestItemFrame:RequestUpdate()
 
 			--check for other buttons that are the same
 			local function CheckButtonExistence(itemID)
@@ -582,17 +571,26 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Update Buttons
 			function EltruismQuestItemFrame:UpdateButtons()
-				--print("updating buttons function")
+				if EltruismQuestItemFrame.debug then
+					ElvUI_EltreumUI:Print("Firing UpdateButtons")
+				end
+
+				 --use dummy item id to avoid taint
+				if #EltruismQuestItemFrame.items > 0 then
+					for i =1, #EltruismQuestItemFrame.items do
+						EltruismQuestItemFrame.items[i].itemID = 6948
+					end
+				end
 
 				-- Check if we are locked by combat
-				if (InCombatLockdown()) then
+				if InCombatLockdown() then
 					return
 				end
 
 				--reset ids
 				if #EltruismQuestItemFrame.items > 0 then
 					for i =1, #EltruismQuestItemFrame.items do
-						EltruismQuestItemFrame.items[i].itemID = 0
+						EltruismQuestItemFrame.items[i].itemID = 6948
 						if not InCombatLockdown() then
 							EltruismQuestItemFrame.items[i]:SetAttribute("disabled",nil)
 							EltruismQuestItemFrame.items[i]:Disable()
@@ -675,37 +673,29 @@ function ElvUI_EltreumUI:QuestItem()
 				-- Update Misc
 				EltruismQuestItemFrame:UpdateCooldowns()
 			end
-
-			-- Update Cooldowns
-			function EltruismQuestItemFrame:UpdateCooldowns()
-				--print("updating cooldowns function")
-				for i = 1, EltruismQuestItemFrame.shownItems do
-					local bag, slot = self.items[i]:GetAttribute("bag"), self.items[i]:GetAttribute("slot")
-					if (bag) then
-						CooldownFrame_Set(self.items[i].cooldown,GetContainerItemCooldown(bag,slot))
-					else
-						CooldownFrame_Set(self.items[i].cooldown,GetInventoryItemCooldown("player",slot))
-					end
-				end
-			end
+			EltruismQuestItemFrame:UpdateButtons()
 
 			--------------------------------------------------------------------------------------------------------
 			--                                               Events                                               --
 			--------------------------------------------------------------------------------------------------------
 			EltruismQuestItemFrame:SetScript("OnEvent",function(frame,event,...)
-				--print(event.." quest onevent spam "..math.random(1,99))
+				if EltruismQuestItemFrame.debug then
+					ElvUI_EltreumUI:Print("Firing OnEvent")
+				end
 				if (frame[event]) then
 					--print("registered",event)
 					frame[event](frame,event,...)
 				else
 					--print("unregisteredevent",event)
-					EltruismQuestItemFrame:RequestUpdate()
+					EltruismQuestItemFrame:UpdateButtons()
 				end
 			end)
 
 			-- Update Cooldowns
 			function EltruismQuestItemFrame:ACTIONBAR_UPDATE_COOLDOWN()
-				--print("actionbar update cooldown")
+				if EltruismQuestItemFrame.debug then
+					ElvUI_EltreumUI:Print("Firing ACTIONBAR_UPDATE_COOLDOWN")
+				end
 				if not EltruismQuestItemFrame.shownItems then --added this check
 					EltruismQuestItemFrame.shownItems = 0
 				end
@@ -716,9 +706,11 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Inventory Changed
 			function EltruismQuestItemFrame:UNIT_INVENTORY_CHANGED(_,unit)
-				--print("unit inventory changed")
+				if EltruismQuestItemFrame.debug then
+					ElvUI_EltreumUI:Print("Firing UNIT_INVENTORY_CHANGED")
+				end
 				if (unit == "player") then
-					EltruismQuestItemFrame:RequestUpdate()
+					EltruismQuestItemFrame:UpdateButtons()
 					-- update mover position
 					EltruismQuestItemFrame:FixPosition()
 				end
@@ -726,8 +718,10 @@ function ElvUI_EltreumUI:QuestItem()
 
 			-- Inventory might've changed because of mail
 			function EltruismQuestItemFrame:MAIL_SUCCESS()
-				--print("mail sucess")
-				EltruismQuestItemFrame:RequestUpdate()
+				if EltruismQuestItemFrame.debug then
+					ElvUI_EltreumUI:Print("Firing MAIL_SUCCESS")
+				end
+				EltruismQuestItemFrame:UpdateButtons()
 				-- update mover position
 				EltruismQuestItemFrame:FixPosition()
 			end
