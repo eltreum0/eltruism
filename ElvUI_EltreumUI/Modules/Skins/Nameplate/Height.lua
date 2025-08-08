@@ -68,8 +68,8 @@ function ElvUI_EltreumUI:NameplateCustomOptions(unit)
 
 			--check if its not explosive
 			--[[if (unit.unitGUID and unit.unitGUID:match("-120651-")) or UnitIsUnit(unit.unit,"player") then
-                return
-            end]]
+				return
+			end]]
 
 			if UnitIsUnit(unit.unit, "target") then
 				if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.useelvuinpheight then

@@ -622,7 +622,7 @@ E:AddTag("eltruism:healthcurrentmaxpercentshort:gradient", 'UNIT_HEALTH UNIT_MAX
 		local value,perctext,perc
 		local min = UnitHealth(unit)
 		local max = UnitHealthMax(unit)
-		if min == max  then
+		if min == max then
 			value = E:ShortValue(min, 0)
 			perctext = ""
 			perc = " "

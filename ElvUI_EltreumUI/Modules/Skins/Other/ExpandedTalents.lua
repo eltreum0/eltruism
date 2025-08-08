@@ -73,7 +73,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 					local PlayerTalentFrameBackgroundBottomRight = _G.PlayerTalentFrameBackgroundBottomRight
 					local PlayerTalentFrameBackgroundTopLeft = _G.PlayerTalentFrameBackgroundTopLeft
 					local PlayerTalentFrameCancelButton = _G.PlayerTalentFrameCancelButton
-					local PlayerTalentFrameScrollChildFrame =  _G.PlayerTalentFrameScrollChildFrame
+					local PlayerTalentFrameScrollChildFrame = _G.PlayerTalentFrameScrollChildFrame
 
 					EltruismExpandedTalents:UnregisterAllEvents()
 					--hide the scroll
