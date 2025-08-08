@@ -12,6 +12,7 @@ local UnitPlayerControlled = _G.UnitPlayerControlled
 local UnitCanAttack = _G.UnitCanAttack
 local UnitGUID = _G.UnitGUID
 local UnitIsDead = _G.UnitIsDead
+local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
 --gradient threat
 function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)

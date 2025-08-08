@@ -1795,7 +1795,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 							targetpowerborder:SetBackdropBorderColor(classcolorreaction[targetclass]["r1"], classcolorreaction[targetclass]["g1"], classcolorreaction[targetclass]["b1"], 1)
 						end
 					end
-				elseif not UnitIsPlayer("target") then
+				else
 					local reactiontarget = UnitReaction("target", "player")
 					if reactiontarget >= 5 then
 						if E.db.ElvUI_EltreumUI.borders.targetborder and E.db.unitframe.units.target.enable and targetborder ~= nil then
@@ -1868,7 +1868,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 					if UnitIsPlayer("targettarget") or (E.Retail and UnitInPartyIsAI("targettarget")) then
 						local _, targettargetclass = UnitClass("targettarget")
 						targettargetborder:SetBackdropBorderColor(classcolorreaction[targettargetclass]["r1"], classcolorreaction[targettargetclass]["g1"], classcolorreaction[targettargetclass]["b1"], 1)
-					elseif not UnitIsPlayer("targettarget") then
+					else
 						local reactiontargettarget = UnitReaction("targettarget", "player")
 						if reactiontargettarget >= 5 then
 							targettargetborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
@@ -1890,7 +1890,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 					if UnitIsPlayer("focus") or (E.Retail and UnitInPartyIsAI("focus")) then
 						local _, focusclass = UnitClass("focus")
 						focusborder:SetBackdropBorderColor(classcolorreaction[focusclass]["r1"], classcolorreaction[focusclass]["g1"], classcolorreaction[focusclass]["b1"], 1)
-					elseif not UnitIsPlayer("focus") then
+					else
 						local reactionfocus = UnitReaction("focus", "player")
 						if reactionfocus >= 5 then
 							focusborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
@@ -1907,7 +1907,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 					if UnitIsPlayer("focus") or (E.Retail and UnitInPartyIsAI("focus")) then
 						local _, focusclass = UnitClass("focus")
 						focuscastbarborder:SetBackdropBorderColor(classcolorreaction[focusclass]["r1"], classcolorreaction[focusclass]["g1"], classcolorreaction[focusclass]["b1"], 1)
-					elseif not UnitIsPlayer("focus") then
+					else
 						local reactionfocus = UnitReaction("focus", "player")
 						if reactionfocus >= 5 then
 							focuscastbarborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
@@ -1930,7 +1930,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 				if focustargetborder ~= nil then
 					if UnitIsPlayer("focustarget") or (E.Retail and UnitInPartyIsAI("focustarget")) then
 						focustargetborder:SetBackdropBorderColor(classcolorreaction[focustargetclass]["r1"], classcolorreaction[focustargetclass]["g1"], classcolorreaction[focustargetclass]["b1"], 1)
-					elseif not UnitIsPlayer("focustarget") then
+					else
 						if reactionfocustarget >= 5 then
 							focustargetborder:SetBackdropBorderColor(classcolorreaction["NPCFRIENDLY"]["r1"], classcolorreaction["NPCFRIENDLY"]["g1"], classcolorreaction["NPCFRIENDLY"]["b1"], 1)
 						elseif reactionfocustarget == 4 then
@@ -1952,7 +1952,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 					if UnitIsPlayer("boss1"..i) or (E.Retail and UnitInPartyIsAI("boss1"..i)) then
 						local _, bossclass = UnitClass("boss"..i)
 						bossbordername:SetBackdropBorderColor(classcolorreaction[bossclass]["r1"], classcolorreaction[bossclass]["g1"], classcolorreaction[bossclass]["b1"], 1)
-					elseif not UnitIsPlayer("boss"..i) then
+					else
 						if E.db.ElvUI_EltreumUI.borders.classcolor then
 							local reactionboss = UnitReaction("boss1", "player")
 							if reactionboss >= 5 then

@@ -3,6 +3,7 @@ local _G = _G
 local GetSpecialization = _G.C_SpecializationInfo and _G.C_SpecializationInfo.GetSpecialization or _G.GetSpecialization
 local UnitGroupRolesAssigned = _G.UnitGroupRolesAssigned
 local stanceBackup = 0 --store previous stance to force refresh it
+local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
 --ty a lot azilroka
 local stanceID = {

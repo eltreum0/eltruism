@@ -39,6 +39,7 @@ local proc = {}
 local UnitAffectingCombat = _G.UnitAffectingCombat
 local GetNumRegions = _G.GetNumRegions
 local pairs = _G.pairs
+local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1
@@ -506,7 +507,7 @@ function ElvUI_EltreumUI:NamePlateOptions()
 			_, targetclass = UnitClass("target")
 			reactiontarget = UnitReaction("target", "player")
 			if UnitExists("target") and E.global.nameplates.filters.EltreumTarget then
-				if targetclass and UnitIsPlayer("target") then
+				if targetclass and (UnitIsPlayer("target") or (E.Retail and UnitInPartyIsAI("target"))) then --npc
 					if E.db.ElvUI_EltreumUI.nameplates.nptextureversion == "V1" then
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["texture"] = playerclassv1[targetclass]
 						E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["texture"]["enable"] = true
@@ -862,7 +863,7 @@ function ElvUI_EltreumUI:Castbar_PostCastStart(unit)
 				local targetname = E:ShortenString(UnitName(unit..'target'), 12)
 				--local spellName = E:AbbreviateString(self.spellName)
 				--local targetname = E:AbbreviateString(UnitName(unit..'target'))
-				if UnitIsPlayer(unit.."target") then
+				if UnitIsPlayer(unit.."target") or (E.Retail and UnitInPartyIsAI(unit.."target")) then
 					local _ , classes = UnitClass(unit.."target")
 					self.Text:SetText(spellName..' ['.."|c"..ElvUI_EltreumUI:classcolorcast(classes)..targetname.."|r]")
 				else

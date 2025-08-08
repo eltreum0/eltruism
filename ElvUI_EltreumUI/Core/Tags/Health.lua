@@ -17,6 +17,7 @@ local gsub = _G.gsub
 local format = _G.format
 local UnitReaction = _G.UnitReaction
 local string = _G.string
+local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
 if not E.Retail then
 	E:AddTag("eltruism:effectivehp", "UNIT_HEALTH UNIT_TARGET", function()
@@ -39,7 +40,7 @@ end
 E:AddTag("eltruism:hpstatus", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
-	if not UnitIsPlayer(unit) then --npc
+	if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 		if not UnitIsDead(unit) then
 			local min, max = UnitHealth(unit), UnitHealthMax(unit)
 			return E:GetFormattedText('CURRENT_PERCENT', min, max, nil, true)
@@ -87,7 +88,7 @@ E:AddTagInfo("eltruism:hpstatus", ElvUI_EltreumUI.Name.." "..L["Health"], L["Dis
 E:AddTag("eltruism:hpstatus:line", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
-	if not UnitIsPlayer(unit) then --npc
+	if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 		if not UnitIsDead(unit) then
 			local min, max = UnitHealth(unit), UnitHealthMax(unit)
 			local perc = min / max * 100
@@ -137,7 +138,7 @@ E:AddTagInfo("eltruism:hpstatus:line", ElvUI_EltreumUI.Name.." "..L["Health"], L
 E:AddTag("eltruism:hpstatus:reverse", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
-	if not UnitIsPlayer(unit) then --npc
+	if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 		if not UnitIsDead(unit) then
 			local min1, max1 = UnitHealth(unit), UnitHealthMax(unit)
 			if max1 == 0 then max1 = 1 end
@@ -198,7 +199,7 @@ E:AddTagInfo("eltruism:hpstatus:reverse", ElvUI_EltreumUI.Name.." "..L["Health"]
 E:AddTag("eltruism:hpstatusnopc", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
 	local deadtexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Dead\\dead"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdeadicon)..".tga:0:0:0:0|t"
 	local dctexture = "|TInterface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Disconnect\\dc"..tostring(E.db.ElvUI_EltreumUI.otherstuff.hpstatusdcicon)..".tga:0:0:0:0|t"
-	if not UnitIsPlayer(unit) then --npc
+	if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 		if not UnitIsDead(unit) then
 			return E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1))
 		else
@@ -311,7 +312,7 @@ E:AddTag("eltruism:hpstatus:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTI
 	local min, max = UnitHealth(unit), UnitHealthMax(unit)
 	local value = E:GetFormattedText('CURRENT_PERCENT', min, max, nil, true)
 	local lengthOK = string.len(value) > 2 and true or false
-	if not UnitIsPlayer(unit) then --npc
+	if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 		if not UnitIsDead(unit) then
 			local reaction = UnitReaction(unit, "player")
 			if reaction then
@@ -394,7 +395,7 @@ E:AddTag("eltruism:hpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONN
 	local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
 	local value = E:ShortValue(UnitHealth(unit), tostring(E.db.general.decimalLength or 1))
 	local lengthOK = string.len(value) > 2 and true or false
-	if not UnitIsPlayer(unit) then --npc
+	if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 		if not UnitIsDead(unit) then
 			local reaction = UnitReaction(unit, "player")
 			if reaction then
@@ -476,7 +477,7 @@ E:AddTag("eltruism:longhpstatusnopc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_
 	local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
 	local value = tostring(UnitHealth(unit))
 	local lengthOK = string.len(value) > 2 and true or false
-	if not UnitIsPlayer(unit) then --npc
+	if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 		if not UnitIsDead(unit) then
 			local reaction = UnitReaction(unit, "player")
 			if reaction then
@@ -558,7 +559,7 @@ E:AddTag("eltruism:hpdeficitpc:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_
 	local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
 	local value = "-"..E:ShortValue(deficit).." _ "..E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))
 	if deficit > 0 and cur > 0 then
-		if not UnitIsPlayer(unit) then
+		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 			local reaction = UnitReaction(unit, "player")
 			if reaction then
 				if reaction >= 5 then
@@ -587,7 +588,7 @@ E:AddTag("eltruism:pchpdeficit:gradient", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_NAME_
 	local isTarget = UnitIsUnit(unit,"target") and not UnitIsUnit(unit,"player") and not unit:match("party")
 	if deficit > 0 and cur > 0 then
 		local value = E:GetFormattedText('PERCENT', UnitHealth(unit), UnitHealthMax(unit))
-		if not UnitIsPlayer(unit) then
+		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 			local reaction = UnitReaction(unit, "player")
 			if reaction then
 				if reaction >= 5 then
@@ -621,7 +622,7 @@ E:AddTag("eltruism:healthcurrentmaxpercentshort:gradient", 'UNIT_HEALTH UNIT_MAX
 		local value,perctext,perc
 		local min = UnitHealth(unit)
 		local max = UnitHealthMax(unit)
-		if min == max  then
+		if min == max then
 			value = E:ShortValue(min, 0)
 			perctext = ""
 			perc = " "
@@ -631,7 +632,7 @@ E:AddTag("eltruism:healthcurrentmaxpercentshort:gradient", 'UNIT_HEALTH UNIT_MAX
 			perctext = gsub(perctext,"a","||")
 			perc = tostring(format("%.1f%%",min / max * 100))
 		end
-		if not UnitIsPlayer(unit) then
+		if not UnitIsPlayer(unit) and not (E.Retail and UnitInPartyIsAI(unit)) then --npc
 			local reaction = UnitReaction(unit, "player")
 			if reaction then
 				if reaction >= 5 then

@@ -67,7 +67,7 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 							hooksecurefunc(bar, "UpdateStatusBarValue", function(bar1)
 								if bar1.Text then
 									local barvalue = math.floor(bar1.StatusBar:GetValue())
-									local minutes =  math.floor(barvalue/60)
+									local minutes = math.floor(barvalue/60)
 									local seconds = barvalue % 60
 									local timetext = string.format('%d:%02d', minutes, seconds)
 									if bar.Text:GetText():match(_G.BREATH_LABEL) then

@@ -70,7 +70,7 @@ function ElvUI_EltreumUI:GradientArcheology()
 		if _G.ArcheologyDigsiteProgressBar.BarTitle then
 			_G.ArcheologyDigsiteProgressBar.BarTitle:Hide()
 			_G.ArcheologyDigsiteProgressBar.BarTitle:SetAlpha(0)
-			_G.ArcheologyDigsiteProgressBar.EltruismBarTitle =  _G.ArcheologyDigsiteProgressBar:CreateFontString(nil, "ARTWORK")
+			_G.ArcheologyDigsiteProgressBar.EltruismBarTitle = _G.ArcheologyDigsiteProgressBar:CreateFontString(nil, "ARTWORK")
 			_G.ArcheologyDigsiteProgressBar.EltruismBarTitle:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 			_G.ArcheologyDigsiteProgressBar.EltruismBarTitle:SetPoint("TOP", _G["EltruismArcheology"], "TOP", 0+E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsetx, 0+E.db.ElvUI_EltreumUI.otherstuff.archeology.archeologyfontoffsety)
 			_G.ArcheologyDigsiteProgressBar.EltruismBarTitle:SetText(_G.ArcheologyDigsiteProgressBar.BarTitle:GetText())
