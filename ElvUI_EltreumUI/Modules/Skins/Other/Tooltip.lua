@@ -12,6 +12,7 @@ local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local GameTooltip = _G.GameTooltip
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
 --gradient tooltip health
 local function SetTooltipGradient(unit)

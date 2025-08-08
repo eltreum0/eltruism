@@ -9,6 +9,7 @@ local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoa
 local hooksecurefunc = _G.hooksecurefunc
 local select = _G.select
 local C_ChatBubbles = _G.C_ChatBubbles
+local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
 local EltruismBlizzShadows = CreateFrame("Frame")
 local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
