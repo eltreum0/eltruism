@@ -6,7 +6,7 @@ local UnitAffectingCombat = _G.UnitAffectingCombat
 local UnitIsUnit = _G.UnitIsUnit
 local CreateFrame = _G.CreateFrame
 local UnitThreatSituation = _G.UnitThreatSituation
-local UnitCastingInfo = _G.UnitCastingInfo
+local UnitCastingInfo = _G.UnitCastingInfo or _G.CastingInfo
 
 --np custom health height conditions
 local heighttable = {
