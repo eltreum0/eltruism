@@ -107,6 +107,9 @@ function ElvUI_EltreumUI:EltruismImmersion()
 				if _G["ImmersionContentFrame"].RewardsFrame.Header then
 					_G["ImmersionContentFrame"].RewardsFrame.Header:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize + 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				end
+				if _G["ImmersionContentFrame"].RewardsFrame.ItemChooseText then
+					_G["ImmersionContentFrame"].RewardsFrame.ItemChooseText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize + 1, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+				end
 				if _G["ImmersionContentFrame"].RewardsFrame.ItemReceiveText then
 					_G["ImmersionContentFrame"].RewardsFrame.ItemReceiveText:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize + 1, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				end
