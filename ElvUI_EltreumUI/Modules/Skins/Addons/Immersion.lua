@@ -133,7 +133,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 						_G["ImmersionQuestInfoItem" .. i].NameFrame:StripTextures()
 						_G["ImmersionQuestInfoItem" .. i].NameFrame:CreateBackdrop('Transparent')
 						_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:ClearAllPoints()
-						_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionQuestInfoItem" .. i .."Name"],"TOPLEFT",-3,0)
+						_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionQuestInfoItem" .. i .."Name"],"TOPLEFT",-3,-1)
 						_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionQuestInfoItem" .. i .."Name"],"BOTTOMRIGHT",-6,-3)
 						--_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetOutside(_G["ImmersionQuestInfoItem" .. i .."Name"])
 						_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
