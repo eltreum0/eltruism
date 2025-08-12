@@ -450,4 +450,4 @@ E:AddTag("eltruism:unitdps", "UNIT_HEALTH", function(unit)
 		return ""
 	end
 end)
-E:AddTagInfo("eltruism:unitdps", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Displays DPS on the unit"])
+E:AddTagInfo("eltruism:unitdps", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Displays the instant DPS on the unit"])
