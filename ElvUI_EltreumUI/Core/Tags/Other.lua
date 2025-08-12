@@ -443,8 +443,10 @@ E:AddTag("eltruism:unitdps", "UNIT_HEALTH", function(unit)
 		local dps = math.floor(hpdiff / timediff)
 		if hpdiff > 0 then
 			return E:ShortValue(dps)
-		else
+		elseif hpdiff < 0 then
 			return "|cFF00FF00"..E:ShortValue(dps*-1).."|r"
+		elseif hpdiff == 0 then
+			return ""
 		end
 	else
 		return ""
