@@ -420,3 +420,35 @@ E:AddTag("eltruism:healermana", 'UNIT_NAME_UPDATE UNIT_POWER_FREQUENT UNIT_MAXPO
 	end
 end)
 E:AddTagInfo("eltruism:healermana", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows mana if the unit is a healer"])
+
+--experimental dps on unit tag
+local lastHp = 0
+local lastTime = GetTime()
+E:AddTag("eltruism:unitdps", "UNIT_HEALTH", function(unit)
+	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
+	local now = GetTime()
+	if lastHp == 0 or lastHp > maxhp then
+		lastHp = cur
+		lastTime = now
+		return ""
+	end
+	if UnitIsDead(unit) then
+		return ""
+	end
+	local timediff = now - lastTime
+	local hpdiff = lastHp - cur
+	lastHp = cur
+	lastTime = now
+	if hpdiff > 0 and timediff > 0 then
+		local dps = math.floor(hpdiff / timediff)
+		if dps > 0 then
+			return E:GetFormattedText("CURRENT", math.floor(hpdiff / timediff))
+		else
+			return "|cFF00FF00"..E:GetFormattedText("CURRENT", math.floor(hpdiff / timediff)).."|r"
+		end
+
+	else
+		return ""
+	end
+end)
+E:AddTagInfo("eltruism:unitdps", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Displays DPS on the unit"])
