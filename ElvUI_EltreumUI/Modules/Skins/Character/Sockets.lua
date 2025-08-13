@@ -1222,7 +1222,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		self.hidden = false
 	end
 
-	function SlotIcon:Render(textureName, tooltip, overlayAtlas)
+	function SlotIcon:Render(textureName, tooltip, overlayAtlas, enchantId)
 		self:Hide()
 		self.frame:SetAlpha(1.0)
 		self.frame.icon:SetTexture(textureName)
@@ -1234,10 +1234,20 @@ function ElvUI_EltreumUI:ClassicSockets()
 			self.frame.overlay:Hide()
 		end
 		self.frame:SetScript("OnEnter", function ()
+			_G.GameTooltip:SetOwner(self.frame, 'ANCHOR_RIGHT')
+			if enchantId then
+				_G.GameTooltip:SetSpellByID(enchantId)
+			else
+				_G.GameTooltip:AddLine("Missing enchant", 1, 1, 1)
+			end
+			_G.GameTooltip:Show()
 			tooltip:Show(self.frame)
+			tooltip:Hide()
+			--GameTooltip:SetHyperlink(tooltip:GetLink())
 		end)
 		self.frame:SetScript("OnLeave", function ()
 			tooltip:Hide()
+			_G.GameTooltip:Hide()
 		end)
 		self.frame:SetScript("OnMouseUp", function ()
 			if tooltip and tooltip:HasLink() and IsModifiedClick("CHATLINK") then
@@ -1629,7 +1639,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 		end
 	end
 
-	function SlotIconManager:_AddIcon(slotName, textureName, tooltip, overlayAtlas)
+	function SlotIconManager:_AddIcon(slotName, textureName, tooltip, overlayAtlas, enchantId)
 		local previousSlotIcon, slotIcon
 		local slotIconIndex = 1
 		if self.slotIcons[slotName] then
@@ -1668,7 +1678,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 			slotIcon.frame:SetScale(iconScale)
 			table.insert(self.slotIcons[slotName], slotIcon)
 		end
-		slotIcon:Render(textureName, tooltip, overlayAtlas)
+		slotIcon:Render(textureName, tooltip, overlayAtlas,enchantId)
 	end
 
 	function SlotIconManager:_AddEnchants()
@@ -1696,12 +1706,13 @@ function ElvUI_EltreumUI:ClassicSockets()
 						itemtooltip:AddHyperlink(spellInfoEnchant:getLink())
 					else
 						itemtooltip:AddText("Unknown enchant. Please report on Discord this ID: "..enchantInfo.enchantId)
+
 						--stop errors when the enchant is unknown
 						--[[
 						local spellInfoEnchant = SpellInfoFunctionTable:new("enchant:" .. KIBC_EnchantToSpellID[enchantInfo:getId()])
 						tooltip:AddText(string.format("Unknown enchant #%d", enchantInfo:getId()).." ID:"..spellInfoEnchant.spellId)]]
 					end
-					self:_AddIcon(slotName, texture, itemtooltip)
+					self:_AddIcon(slotName, texture, itemtooltip,nil,KIBC_EnchantToSpellID[enchantInfo:getId()])
 				elseif self:IsSlotEnchantRequired(slotName) then
 					itemtooltip:AddText("Missing enchant")
 					self:_AddIcon(slotName, "INTERFACE/BUTTONS/UI-GROUPLOOT-PASS-UP", itemtooltip)
