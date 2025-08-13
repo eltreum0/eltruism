@@ -467,6 +467,8 @@ local modelsRotate = {
 	[1810653] = true, --Lord Stormsong
 	[6047739] = true, --Hollow Reflection
 	[5159886] = true, --Xal'atath
+	[6218203] = true, --Ascendance
+	[6020408] = true, --Ascendance
 }
 
 local targetlike = {

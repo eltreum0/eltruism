@@ -827,6 +827,15 @@ function ElvUI_EltreumUI:SpellInfoShapeshift(spellID,ShapeshiftFormID)
 	end
 end
 
+function ElvUI_EltreumUI:EltruismSpellInfo(spellID)
+	local spellData = GetSpellInfo(spellID)
+	if spellData then
+		return spellData.name, spellData.spellID
+	else
+		return "UNKNOWN", 187874 --fallback value
+	end
+end
+
 do
 	local shortenReplace = function(t) return t:utf8sub(1,1)..'. ' end
 	function ElvUI_EltreumUI:ShortenString(text, length, cut,firstname)

@@ -378,7 +378,7 @@ function ElvUI_EltreumUI:QuestItem()
 				if EltruismQuestItemFrame.debug then
 					ElvUI_EltreumUI:Print("Firing CreateItemButton")
 				end
-				local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"ActionButtonTemplate, InsecureActionButtonTemplate")
+				local b = CreateFrame("Button","EltruismQuestItem"..(#EltruismQuestItemFrame.items + 1),EltruismQuestItemFrame,"ActionButtonTemplate, SecureActionButtonTemplate")
 				b:CreateBackdrop('Transparent')
 				b:SetSize(E.db.ElvUI_EltreumUI.quests.questitemsize,E.db.ElvUI_EltreumUI.quests.questitemsizey)
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable then

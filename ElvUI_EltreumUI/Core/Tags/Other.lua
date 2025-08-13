@@ -4,6 +4,38 @@ local GetSpecialization = _G.C_SpecializationInfo and _G.C_SpecializationInfo.Ge
 local UnitGroupRolesAssigned = _G.UnitGroupRolesAssigned
 local stanceBackup = 0 --store previous stance to force refresh it
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
+local GetTime = _G.GetTime
+local UnitHealthMax = _G.UnitHealthMax
+local UnitHealth = _G.UnitHealth
+local tonumber = _G.tonumber
+local UnitIsDead = _G.UnitIsDead
+local UnitPower = _G.UnitPower
+local Enum = _G.Enum
+local UnitPowerMax = _G.UnitPowerMax
+local math = _G.math
+local DoEmote = _G.DoEmote
+local GetSpecializationRole = _G.GetSpecializationRole
+local UnitIsUnit = _G.UnitIsUnit
+local strsplit = _G.strsplit
+local UnitClass = _G.UnitClass
+local UnitIsPlayer = _G.UnitIsPlayer
+local IsInRaid = _G.IsInRaid
+local GetShapeshiftForm = _G.GetShapeshiftForm
+local tostring = _G.tostring
+local UnitBattlePetLevel = _G.UnitBattlePetLevel
+local UnitIsBattlePetCompanion = _G.UnitIsBattlePetCompanion
+local UnitIsWildBattlePet = _G.UnitIsWildBattlePet
+local UnitLevel = _G.UnitLevel
+local UnitEffectiveLevel = _G.UnitEffectiveLevel
+local UnitCastingInfo = _G.UnitCastingInfo or _G.CastingInfo
+local UnitChannelInfo = _G.UnitChannelInfo or _G.ChannelInfo
+local UnitReaction = _G.UnitReaction
+local UnitName = _G.UnitName
+local UnitClassification = _G.UnitClassification
+local UnitCanAttack = _G.UnitCanAttack
+local UnitIsEnemy = _G.UnitIsEnemy
+local GROUP = _G.GROUP
+local TARGET = _G.TARGET
 
 --ty a lot azilroka
 local stanceID = {
@@ -275,11 +307,11 @@ if E.Mists then
 	E:AddTag("eltruism:presencecolor", 1, function()
 		local stance = GetShapeshiftForm()
 		if stance == 1 then
-			return "|cFFff4040"..SpellInfo(48266).."|r"
+			return "|cFFff4040"..ElvUI_EltreumUI:EltruismSpellInfo(48266).."|r"
 		elseif stance == 2 then
-			return "|cFF40ffff"..SpellInfo(48263).."|r"
+			return "|cFF40ffff"..ElvUI_EltreumUI:EltruismSpellInfo(48263).."|r"
 		elseif stance == 3 then
-			return "|cFF40ff40"..SpellInfo(48265).."|r"
+			return "|cFF40ff40"..ElvUI_EltreumUI:EltruismSpellInfo(48265).."|r"
 		end
 	end)
 	E:AddTagInfo("eltruism:presencecolor", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows the current presence with color"])
@@ -316,7 +348,7 @@ E:AddTag("eltruism:classcolor", 'UNIT_NAME_UPDATE', function(unit)
 	if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 		local _, unitClass = UnitClass(unit)
 		if not unitClass then return end
-		local cs = ElvUF.colors.class[unitClass]
+		local cs = _G.ElvUF.colors.class[unitClass]
 		return (cs and E:RGBToHex(cs[1], cs[2], cs[3])) or '|cFFcccccc'
 	end
 end)
@@ -388,3 +420,36 @@ E:AddTag("eltruism:healermana", 'UNIT_NAME_UPDATE UNIT_POWER_FREQUENT UNIT_MAXPO
 	end
 end)
 E:AddTagInfo("eltruism:healermana", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Shows mana if the unit is a healer"])
+
+--experimental dps on unit tag
+local lastHp = 0
+local lastTime = GetTime()
+E:AddTag("eltruism:unitdps", "UNIT_HEALTH", function(unit)
+	local cur, maxhp = UnitHealth(unit), UnitHealthMax(unit)
+	local now = GetTime()
+	if lastHp == 0 or lastHp > maxhp then
+		lastHp = cur
+		lastTime = now
+		return ""
+	end
+	if UnitIsDead(unit) then
+		return ""
+	end
+	local timediff = now - lastTime
+	local hpdiff = lastHp - cur
+	lastHp = cur
+	lastTime = now
+	if timediff > 0 then
+		local dps = math.floor(hpdiff / timediff)
+		if hpdiff > 0 then
+			return E:ShortValue(dps)
+		elseif hpdiff < 0 then
+			return "|cFF00FF00"..E:ShortValue(dps*-1).."|r"
+		elseif hpdiff == 0 then
+			return ""
+		end
+	else
+		return ""
+	end
+end)
+E:AddTagInfo("eltruism:unitdps", ElvUI_EltreumUI.Name.." "..L["Miscellaneous"], L["Displays the instant DPS on the unit"])

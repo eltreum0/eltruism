@@ -2730,11 +2730,13 @@ function ElvUI_EltreumUI:InspectBg(unit)
 								end
 
 								if _G.InspectModelFrame then
-									_G.InspectModelFrame.BackgroundBotLeft:Hide()
-									_G.InspectModelFrame.BackgroundBotRight:Hide()
-									_G.InspectModelFrame.BackgroundOverlay:Hide()
-									_G.InspectModelFrame.BackgroundTopLeft:Hide()
-									_G.InspectModelFrame.BackgroundTopRight:Hide()
+									if _G.InspectModelFrame.BackgroundBotLeft then
+										_G.InspectModelFrame.BackgroundBotLeft:Hide()
+										_G.InspectModelFrame.BackgroundBotRight:Hide()
+										_G.InspectModelFrame.BackgroundOverlay:Hide()
+										_G.InspectModelFrame.BackgroundTopLeft:Hide()
+										_G.InspectModelFrame.BackgroundTopRight:Hide()
+									end
 								end
 
 								--[[if E.Mists then

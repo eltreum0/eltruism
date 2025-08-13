@@ -378,15 +378,6 @@ local hearthstones = {
 	["246565"] = true, --cosmic-hearthstone
 }
 
-local function SpellInfo(spellID)
-	local spellData = GetSpellInfo(spellID)
-	if spellData then
-		return spellData.name, spellData.spellID
-	else
-		return "UNKNOWN", 187874 --fallback value
-	end
-end
-
 local function SpellCooldown(spellID)
 	if E.Retail or E.Mists then
 		local cooldownData = GetSpellCooldown(spellID)
@@ -435,7 +426,7 @@ local function EltruismTeleportsOnEvent(self)
 		_G["EltruismHearthStoneSecureButton"].id = tostring(556)
 	else
 		if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
-			local _, spellID = SpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+			local _, spellID = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
 			_G["EltruismHearthStoneSecureButton"].id = tostring(spellID)
 		elseif E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "ITEM" then
 			local _, itemLink = GetItemInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
@@ -555,7 +546,7 @@ local function EltruismTeleportsOnEnter()
 	end
 	for _,v in pairs(TeleportsSpells) do
 		local texture = GetSpellTexture(v)
-		local namespells = SpellInfo(v)
+		local namespells = ElvUI_EltreumUI:EltruismSpellInfo(v)
 		local hasSpell = IsSpellKnown(v)
 		if texture and namespells and hasSpell then
 			local start, duration = SpellCooldown(v)
@@ -656,7 +647,7 @@ local function EltruismTeleportsOnEnter()
 			end
 			for _,v in pairs(TeleportsSpells) do
 				local texture = GetSpellTexture(v)
-				local namespells = SpellInfo(v)
+				local namespells = ElvUI_EltreumUI:EltruismSpellInfo(v)
 				local hasSpell = IsSpellKnown(v)
 				if texture and namespells and hasSpell then
 					local startcd2, durationcd2 = SpellCooldown(v)
@@ -733,13 +724,13 @@ local function EltruismTeleportsOnClick(self)
 	if InCombatLockdown() then return end
 	if not hsIsReady and E.myclass == "SHAMAN" then
 		_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'spell')
-		local nameastrall, spellID = SpellInfo(556)
+		local nameastrall, spellID = ElvUI_EltreumUI:EltruismSpellInfo(556)
 		_G["EltruismHearthStoneSecureButton"].id = tostring(spellID)
 		_G["EltruismHearthStoneSecureButton"]:SetAttribute('spell', nameastrall)
 	else
 		if E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "SPELL" then
 			_G["EltruismHearthStoneSecureButton"]:SetAttribute('type', 'spell')
-			local namespell, spellID = SpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
+			local namespell, spellID = ElvUI_EltreumUI:EltruismSpellInfo(E.db.ElvUI_EltreumUI.otherstuff.datatextteleport)
 			_G["EltruismHearthStoneSecureButton"].id = tostring(spellID)
 			_G["EltruismHearthStoneSecureButton"]:SetAttribute('spell', namespell)
 		elseif E.db.ElvUI_EltreumUI.otherstuff.datatextteleporttype == "ITEM" then

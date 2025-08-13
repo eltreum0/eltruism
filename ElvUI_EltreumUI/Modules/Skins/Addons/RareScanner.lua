@@ -53,9 +53,9 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 				S:HandleEditBox(v)
 
 				--add shadows too
-				if not v.shadow then
-					v:CreateShadow()
-					ElvUI_EltreumUI:ShadowColor(v.shadow)
+				if not v.backdrop.shadow then
+					v.backdrop:CreateShadow()
+					ElvUI_EltreumUI:ShadowColor(v.backdrop.shadow)
 				end
 
 				--elvui didnt get rid of the blizzard texture
