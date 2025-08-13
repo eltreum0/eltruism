@@ -1,6 +1,21 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+### 4.3.8
+Added an experimental instant DPS tag [eltruism:unitdps]  
+Added more models to the Portrait Fix  
+Updated some tags and other functions to allow AI party members to use class colors  
+Updated Sockets in Classic Era to better show tooltips for the Enchants  
+Updated Quest Item Bar to allow item usage in combat  
+Updated Bag Profession Icons to add missing IDs  
+Updated Immersion skin to better handle fonts  
+Updated music for Earthen and Dracthyr  
+Fixed an issue when disabling ElvUI's spellbook skin would still have the shadows  
+Fixed an issue when using Leatrix Maps and having ElvUI world map disabled  
+Fixed shadows on unitframes when the infopanel was enabled but not shown  
+Fixed an error with the Item Delete due to a change on Blizzard's API  
+Fixed an error in Classic Era when inspecting units  
+---
 ### 4.3.7
 Added an option to hide the icon on the Teleports Datatext  
 Added timer text to the Mirror Timers in Retail  
