@@ -137,7 +137,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 						_G["ImmersionQuestInfoItem" .. i].NameFrame:CreateBackdrop('Transparent')
 						_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:ClearAllPoints()
 						_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionQuestInfoItem" .. i .."Name"],"TOPLEFT",-3,-1)
-						_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionQuestInfoItem" .. i .."Name"],"BOTTOMRIGHT",-7,-2)
+						_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionQuestInfoItem" .. i .."Name"],"BOTTOMRIGHT",-7,0)
 						--_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetOutside(_G["ImmersionQuestInfoItem" .. i .."Name"])
 						_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
 						if _G["ImmersionQuestInfoItem"..i].objectType and _G["ImmersionQuestInfoItem"..i].objectType == "item" and _G["ImmersionQuestInfoItem" .. i].Name:GetText() ~= nil then
@@ -154,7 +154,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 						if _G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop then
 							_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:ClearAllPoints()
 							_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionQuestInfoItem" .. i .."Name"],"TOPLEFT",-3,-1)
-							_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionQuestInfoItem" .. i .."Name"],"BOTTOMRIGHT",-7,-2)
+							_G["ImmersionQuestInfoItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionQuestInfoItem" .. i .."Name"],"BOTTOMRIGHT",-7,0)
 						end
 						if _G["ImmersionQuestInfoItem" .. i].Name then
 							_G["ImmersionQuestInfoItem" .. i].Name:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -167,7 +167,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 						_G["ImmersionProgressItem" .. i].NameFrame:CreateBackdrop('Transparent')
 						_G["ImmersionProgressItem" .. i].NameFrame.backdrop:ClearAllPoints()
 						_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionProgressItem" .. i .."Name"],"TOPLEFT",-3,0)
-						_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionProgressItem" .. i .."Name"],"BOTTOMRIGHT",-7,-2)
+						_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionProgressItem" .. i .."Name"],"BOTTOMRIGHT",-7,0)
 						--_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetOutside(_G["ImmersionProgressItem" .. i .."Name"])
 						_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetAlpha(0.5) --transparent is setting alpha to 1 for some reason
 						if _G["ImmersionProgressItem"..i].objectType and _G["ImmersionProgressItem"..i].objectType == "item" then
@@ -184,7 +184,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 						if _G["ImmersionProgressItem" .. i].NameFrame.backdrop then
 							_G["ImmersionProgressItem" .. i].NameFrame.backdrop:ClearAllPoints()
 							_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("TOPLEFT",_G["ImmersionProgressItem" .. i .."Name"],"TOPLEFT",-3,0)
-							_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionProgressItem" .. i .."Name"],"BOTTOMRIGHT",-7,-2)
+							_G["ImmersionProgressItem" .. i].NameFrame.backdrop:SetPoint("BOTTOMRIGHT",_G["ImmersionProgressItem" .. i .."Name"],"BOTTOMRIGHT",-7,0)
 						end
 
 						if _G["ImmersionProgressItem" .. i].Name then
@@ -196,37 +196,32 @@ function ElvUI_EltreumUI:EltruismImmersion()
 
 			for _, v in ipairs(_G["ImmersionFrame"].TitleButtons.Buttons) do
 				if v then
-					if not v.IsSkinned then
-						--S:HandleButton(v,true,nil,nil,true,"TRANSPARENT")
-						S:HandleButton(v)
-						--v:CreateBackdrop('Transparent')
-						v.Hilite:Hide()
-						v.Overlay:Hide()
-						--v:StyleButton()
-						v.Center:Show()
-						v.Center:SetAlpha(E.db.general.backdropfadecolor.a)
-						--v.Center.SetAlpha = E.noop
-						--v.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
+					--S:HandleButton(v,true,nil,nil,true,"TRANSPARENT")
+					S:HandleButton(v)
+					--v:CreateBackdrop('Transparent')
+					v.Hilite:Hide()
+					v.Overlay:Hide()
+					--v:StyleButton()
+					v.Center:Show()
+					v.Center:SetAlpha(E.db.general.backdropfadecolor.a)
+					--v.Center.SetAlpha = E.noop
+					--v.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
 
-						--v.hover:SetVertexColor(classcolor.r, classcolor.g,classcolor.b, 0.7) --hover color
-						--v.pushed:SetColorTexture(classcolor.r, classcolor.g,classcolor.b, 0.8) --pushed color
-						v.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+3, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-						v.Label:SetShadowOffset(1,-1)
-						if E.db.ElvUI_EltreumUI.skins.shadow.enable then
-							if v and not v.shadow then
-								v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(v.shadow)
-							end
+					--v.hover:SetVertexColor(classcolor.r, classcolor.g,classcolor.b, 0.7) --hover color
+					--v.pushed:SetColorTexture(classcolor.r, classcolor.g,classcolor.b, 0.8) --pushed color
+					v.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+3, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+					v.Label:SetShadowOffset(1,-1)
+					if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+						if v and not v.shadow then
+							v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(v.shadow)
 						end
+					end
+					if not v.EltruismPoint then
 						local point, relativeTo, relativePoint, xOfs, yOfs = v:GetPoint()
 						v:ClearAllPoints()
 						v:SetPoint(point,relativeTo,relativePoint,xOfs,yOfs-5)
-
-						v.IsSkinned = true
-					else
-						if v.Center then
-							v.Center:SetAlpha(E.db.general.backdropfadecolor.a)
-						end
+						v.EltruismPoint = true
 					end
 				end
 			end
