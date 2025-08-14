@@ -2866,7 +2866,8 @@
     ],
     "Lua.diagnostics.disable": [
         "undefined-global",
-        "undefined-field"
+        "undefined-field",
+        "redundant-parameter"
     ],
     "Lua.type.weakNilCheck": true,
 }
