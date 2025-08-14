@@ -18,7 +18,6 @@ local tonumber = _G.tonumber
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local ipairs = _G.ipairs
-local WorldFrame = _G.WorldFrame
 local GetItemGem = _G.C_Item and _G.C_Item.GetItemGem or _G.GetItemGem
 local GameTooltip = _G.GameTooltip
 local GetSpellLink = _G.GetSpellLink
@@ -1885,7 +1884,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 				texture:SetTexture(nil)
 			end
 		end
-		InvisibleTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
+		InvisibleTooltip:SetOwner(_G.UIParent, "ANCHOR_NONE")
 		InvisibleTooltip:SetHyperlink(link)
 		for i = 1, n do
 			local texture = _G[InvisibleTooltip:GetName().."Texture"..i]
@@ -1922,17 +1921,17 @@ function ElvUI_EltreumUI:ClassicSockets()
 		local result = false
 		local bitem = {}
 		local itemS = self.itemString
-		itemS = itemS:sub(1, -4)
-		itemS = string.sub(itemS, 34)
+		itemS = itemS:sub(34, -4)
+
 		local sep = ":"
 		local pattern = string.format("([^%s]+)", sep)
-		string.gsub(itemS, pattern, function(c) bitem[#bitem + 1] = c end)
-		for k,_ in pairs(bitem) do
-			if bitem[k]=="6514" or bitem[k]=="6935" then
-				result = true
+		local _, count = string.gsub(itemS, pattern, function(c) bitem[#bitem + 1] = c end)
+		for _, item in ipairs(bitem) do
+			if item == "6514" or item == "6935" then
+				return true
 			end
 		end
-		return result
+		return false
 	end
 
 	function ItemStringInfoFunctionTable:GetUpgrades()
@@ -1940,7 +1939,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 			self.upgrades = { nil, nil }
 			local link = self:getLink()
 			if link then
-				InvisibleTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
+				InvisibleTooltip:SetOwner(_G.UIParent, "ANCHOR_NONE")
 				InvisibleTooltip:SetHyperlink(self:getLink())
 				for i = 1, 5 do
 					local text = _G[InvisibleTooltip:GetName() .. "TextLeft" .. i]
