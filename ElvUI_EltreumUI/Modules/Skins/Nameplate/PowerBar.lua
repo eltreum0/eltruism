@@ -1,6 +1,5 @@
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
-local _, powertype,powernumber,tablepowernumber
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local IsPlayerSpell = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsPlayerSpell
@@ -15,7 +14,6 @@ local UnitExists = _G.UnitExists
 local UnitCanAttack = _G.UnitCanAttack
 local C_NamePlate = _G.C_NamePlate
 local GetShapeshiftForm = _G.GetShapeshiftForm
-local stance
 local CreateVector3D = _G.CreateVector3D
 local UnitIsDead = _G.UnitIsDead
 
@@ -46,18 +44,12 @@ local EltreumPowerPredictionIncoming = CreateFrame('StatusBar', "EltruismPowerBa
 EltreumPowerPrediction:SetValue(0)
 EltreumPowerPredictionIncoming:Hide()
 EltreumPowerPredictionIncoming:SetValue(0)
-local mainCost = 0
-local incResource = 0
-local startTime, endTime, spellID = 0, 0, 0
-local spellGenerators
 local druidwrath = 6
 local druidstarfire = 8
 local shamanhex = 0
 local shamanbolt = 6
 local shamanlavaburst = 8
 local huntersteadyshot = 10 --now baseline
-local druideclipse,costTable
-local predictioncolorr, predictioncolorg, predictioncolorb
 local maxpower = 0
 
 --Calculate the Power Cost and draw on the Bar
@@ -67,7 +59,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 		EltreumPowerPrediction:SetValue(0)
 		EltreumPowerPredictionIncoming:SetValue(0)
 		EltreumPowerPredictionIncoming:Hide() --hide at the start before events
-		predictioncolorr, predictioncolorg, predictioncolorb = EltreumPowerBar:GetStatusBarColor()
+		local predictioncolorr, predictioncolorg, predictioncolorb = EltreumPowerBar:GetStatusBarColor()
 
 		if not EltreumPowerBar.isSetupprediction then
 			EltreumPowerPrediction:SetStatusBarTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.texture))
@@ -84,7 +76,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 		EltreumPowerPredictionIncoming:SetStatusBarColor(predictioncolorr * 4, predictioncolorg * 4, predictioncolorb * 4, 0.7)
 
 		if E.Retail then
-			druideclipse = C_UnitAuras.GetPlayerAuraBySpellID(48517) --might be removed in dragonflight
+			local druideclipse = C_UnitAuras.GetPlayerAuraBySpellID(48517) --might be removed in dragonflight
 			if IsPlayerSpell(114107) and druideclipse ~= nil then
 				druidwrath = 10
 				druidstarfire = 10
@@ -102,7 +94,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 		end
 
 		--Some of this is from Asakawa's Universal Power Bar, but mostly has been revamped and updated to current values instead of BFA values
-		spellGenerators = {
+		local spellGenerators = {
 
 			-- Balance Druid
 			[190984] = druidwrath, --wrath
@@ -150,22 +142,19 @@ function ElvUI_EltreumUI:PowerPrediction()
 			[56641] = huntersteadyshot, --steady shot gives bonus focus with a talent
 		}
 
-		mainCost = 0 --reset
-		tablepowernumber = powernumber
+		local mainCost = 0 --reset
+		local incResource = 0 -- reset
 
-		_, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
+		local _, _, _, startTime, endTime, _, _, _, spellID = UnitCastingInfo("player")
 		if startTime ~= endTime then
-			costTable = GetSpellPowerCost(spellID)
+			local costTable = GetSpellPowerCost(spellID)
 			if costTable then --if nil then cost = 0
 				for _, v in next, costTable do
 					--costPercent, costPerSec, hasRequiredAura, type, name, cost, minCost, requiredAuraID, costPercent, costPerSec
-					if v.type == powernumber then
+					if v.type == UnitPowerType("player") then
 						mainCost = v.cost
 					else
 						mainCost = 0
-						if E.myclass == "HUNTER" then
-							tablepowernumber = 123123 --random value so it doesnt match
-						end
 					end
 				end
 			else
@@ -173,7 +162,7 @@ function ElvUI_EltreumUI:PowerPrediction()
 			end
 
 			--because priest/shaman/druid have a secondary power AND mana they need to be checked against
-			if spellGenerators[spellID] and (E.myclass == "HUNTER" and tablepowernumber == powernumber or E.myclass ~= "HUNTER") then
+			if spellGenerators[spellID] and (E.myclass ~= "HUNTER") then
 				incResource = spellGenerators[spellID]
 				--readjust if the incoming would go over max
 				if (incResource + EltreumPowerBar:GetValue()) >= UnitPowerMax("player") then
@@ -275,7 +264,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				EltreumPowerBar:SetMinMaxValues(0, UnitPowerMax("player"))
 			end
 
-			powernumber, powertype = UnitPowerType("player")
+			local powernumber, powertype = UnitPowerType("player")
 
 			--set gradient if enabled
 			if powertype then
@@ -332,7 +321,7 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 					end
 				end
 			elseif E.myclass == 'DRUID' then
-				stance = GetShapeshiftForm()
+				local stance = GetShapeshiftForm()
 				--[[
 					-- FOR BALANCE
 					--retail

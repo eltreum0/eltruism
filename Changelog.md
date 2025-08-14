@@ -1,6 +1,9 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+### 4.3.8.1
+Fixed an issue with the Bag Profession missing Icons in Mists of Pandaria Classic and Classic Era  
+---
 ### 4.3.8
 Added an experimental instant DPS tag [eltruism:unitdps]  
 Added more models to the Portrait Fix  

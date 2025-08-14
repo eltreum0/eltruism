@@ -16,14 +16,6 @@ local GetCursorPosition = _G.GetCursorPosition
 local InCombatLockdown = _G.InCombatLockdown
 local GetTime = _G.GetTime
 local GetSpellCooldown = _G.C_Spell and _G.C_Spell.GetSpellCooldown or _G.GetSpellCooldown
-local colorcast
-local colorgcd
-local colorcursor
-local currentring
-local Defaults
-local QUAD_POINTS
-local QUAD_COORD_FULL
-local QUAD_COORD_FUNC
 
 function ElvUI_EltreumUI:CursorInit()
 	if E.db.ElvUI_EltreumUI.cursors.cursor.enable then
@@ -42,7 +34,7 @@ local Cursor = CreateFrame("Frame", "EltruismCursorCursor", rootFrame)
 
 --Detect the current cursor for options
 function ElvUI_EltreumUI:CurrentTypeofCursor()
-	currentring = E.db.ElvUI_EltreumUI.cursors.cursor.ring
+	local currentring = E.db.ElvUI_EltreumUI.cursors.cursor.ring
 	if currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring1.tga' then
 		currentring = '|cff82B4ffType 1|r'
 	elseif currentring == 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\Cursor\\ring2.tga' then
@@ -104,6 +96,10 @@ end
 function ElvUI_EltreumUI:CastCursor()
 	if E.db.ElvUI_EltreumUI.cursors.cursor.enable then
 
+		local colorcast
+		local colorgcd
+		local colorcursor
+
 		if E.db.ElvUI_EltreumUI.cursors.cursor.fixlag == 0 then
 			--SetCVar("gxCursor", 0)
 			SetCVar("HardwareCursor", 0)
@@ -142,7 +138,7 @@ function ElvUI_EltreumUI:CastCursor()
 			}
 		end
 
-		Defaults = {
+		local Defaults = {
 			cast = {
 				radius = E.db.ElvUI_EltreumUI.cursors.cursorcast.radius,
 				sublayer = 1,
@@ -166,19 +162,19 @@ function ElvUI_EltreumUI:CastCursor()
 				texture = E.db.ElvUI_EltreumUI.cursors.cursor.ring,
 			},
 		}
-		QUAD_POINTS = {
+		local QUAD_POINTS = {
 			{ 'TOPLEFT', 'TOP' },
 			{ 'TOPRIGHT', 'RIGHT' },
 			{ 'BOTTOMRIGHT', 'BOTTOM' },
 			{ 'BOTTOMLEFT', 'LEFT' },
 		}
-		QUAD_COORD_FULL = {
+		local QUAD_COORD_FULL = {
 			{ 0,0, 0,1, 1,0, 1,1 },
 			{ 0,1, 1,1, 0,0, 1,0 },
 			{ 1,1, 1,0, 0,1, 0,0 },
 			{ 1,0, 0,0, 1,1, 0,1 },
 		}
-		QUAD_COORD_FUNC = {
+		local QUAD_COORD_FUNC = {
 			function(t, r, x1, x2, y1, y2) -- Quadrant1: TOPRIGHT
 				t:SetTexCoord(x1,1-y2, x1,1-y1, x2,1-y2, x2,1-y1)
 				t:SetSize(x2*r, (1-y1)*r)

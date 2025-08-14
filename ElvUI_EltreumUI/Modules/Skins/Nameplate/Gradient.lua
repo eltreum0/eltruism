@@ -2,7 +2,6 @@ local E = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
-local _, nameplate, db, className, player, reaction, targettype, sf
 local UnitIsTapDenied = _G.UnitIsTapDenied
 local InCombatLockdown = _G.InCombatLockdown
 local UnitClass = _G.UnitClass
@@ -17,8 +16,8 @@ local UnitInPartyIsAI = _G.UnitInPartyIsAI
 --gradient threat
 function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
-	nameplate, db = self.__owner, NP.db.threat
-	sf = NP:StyleFilterChanges(nameplate)
+	local nameplate, db = self.__owner, NP.db.threat
+	local sf = NP:StyleFilterChanges(nameplate)
 	if status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) and not sf.HealthColor then
 		if not nameplate.Health then return end
 		--NP:Health_SetColors(nameplate, true)
@@ -117,13 +116,14 @@ local function GradientNameplates(unit)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 		if unit and unit.Health then
-			sf = NP:StyleFilterChanges(unit)
+			local sf = NP:StyleFilterChanges(unit)
 			if sf.HealthColor then
 				unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, {r=sf.HealthColor.r,g= sf.HealthColor.g,b= sf.HealthColor.b,a= 1}, {r=sf.HealthColor.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr,g= sf.HealthColor.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg,b= sf.HealthColor.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb,a= 1})
 			else
-				_, className = UnitClass(unit.unit)
-				player = UnitIsPlayer(unit.unit) or (E.Retail and UnitInPartyIsAI(unit.unit))
-				reaction = UnitReaction(unit.unit, "player")
+				local _, className = UnitClass(unit.unit)
+				local isPlayer = UnitIsPlayer(unit.unit) or (E.Retail and UnitInPartyIsAI(unit.unit))
+				local reaction = UnitReaction(unit.unit, "player")
+				local targettype
 
 				if reaction and reaction >= 5 then
 					targettype = "NPCFRIENDLY"
@@ -139,7 +139,7 @@ local function GradientNameplates(unit)
 					unit.CurrentlyBeingTanked = nil
 				end
 
-				if className and player then
+				if className and isPlayer then
 					if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npcustomcolor then
 						unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, ElvUI_EltreumUI:GradientColorsCustom(className))
 					else

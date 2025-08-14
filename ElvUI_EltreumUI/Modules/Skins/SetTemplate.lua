@@ -1,4 +1,6 @@
 local E = unpack(ElvUI)
+local S = E:GetModule('Skins')
+local valuecolors = E:ClassColor(E.myclass, true)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local hooksecurefunc = _G.hooksecurefunc
@@ -6,9 +8,6 @@ local EnumerateFrames = _G.EnumerateFrames
 local getmetatable = _G.getmetatable
 local type = _G.type
 local BackdropTemplateMixin = _G.BackdropTemplateMixin
-local valuecolors = E:ClassColor(E.myclass, true)
-local atlas
-local S = E:GetModule('Skins')
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 
 local widgetAtlas = {
@@ -383,7 +382,7 @@ local function SkinFrame(object)
 								frame:GetParent():GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							end
 							if frame:GetParent():GetParent().Bar and frame:GetParent():GetParent().Bar.SetStatusBarColor and frame:GetParent():GetParent().Bar.SetStatusBarTexture then
-								atlas = frame:GetParent():GetParent().Bar:GetStatusBarTexture():GetAtlas()
+								local atlas = frame:GetParent():GetParent().Bar:GetStatusBarTexture():GetAtlas()
 								frame:GetParent():GetParent().Bar.EltruismAtlas = atlas
 								frame:GetParent():GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
 								frame:GetParent():GetParent().Bar:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
@@ -416,7 +415,7 @@ local function SkinFrame(object)
 										widget.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 									end
 									if widget.Bar then
-										atlas = widget.Bar:GetStatusBarTexture():GetAtlas()
+										local atlas = widget.Bar:GetStatusBarTexture():GetAtlas()
 										if atlas then
 											widget.Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
 											widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
@@ -432,7 +431,7 @@ local function SkinFrame(object)
 								frame:GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 							end
 							if frame:GetParent().Bar then
-								atlas = frame:GetParent().Bar:GetStatusBarTexture():GetAtlas()
+								local atlas = frame:GetParent().Bar:GetStatusBarTexture():GetAtlas()
 								if atlas then
 									frame:GetParent().Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
 									frame:GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
@@ -447,7 +446,7 @@ local function SkinFrame(object)
 										widget.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 									end
 									if widget.Bar then
-										atlas = widget.Bar:GetStatusBarTexture():GetAtlas()
+										local atlas = widget.Bar:GetStatusBarTexture():GetAtlas()
 										if atlas then
 											widget.Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
 											widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))

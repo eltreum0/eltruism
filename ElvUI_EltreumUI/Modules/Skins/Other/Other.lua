@@ -12,8 +12,6 @@ local WideTradeSkill = CreateFrame("Frame")
 WideTradeSkill:RegisterEvent("PLAYER_ENTERING_WORLD")
 local WideTradeSkillEnchant = CreateFrame("Frame")
 WideTradeSkillEnchant:RegisterEvent("PLAYER_ENTERING_WORLD")
-local skillbutton,skillTitle
-local vellumbutton,disenchantbutton
 local string = _G.string
 local UseItemByName = _G.C_Item and _G.C_Item.UseItemByName or _G.UseItemByName
 
@@ -162,7 +160,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 					--_G.TRADE_SKILLS_DISPLAYED = _G.TRADE_SKILLS_DISPLAYED + 14
 					--for i = numSkills + 1, 22 do
 					for i = 9, 22 do
-						skillbutton = CreateFrame("Button", "TradeSkillSkill" .. i, TradeSkillFrame, "TradeSkillSkillButtonTemplate")
+						local skillbutton = CreateFrame("Button", "TradeSkillSkill" .. i, TradeSkillFrame, "TradeSkillSkillButtonTemplate")
 						skillbutton:SetID(i)
 						skillbutton:Hide()
 						skillbutton:ClearAllPoints()
@@ -170,7 +168,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 					end
 					--increase the width of the rows so the title fits
 					for i = 1, 22 do
-						skillTitle = _G["TradeSkillSkill"..i]
+						local skillTitle = _G["TradeSkillSkill"..i]
 						skillTitle:SetWidth(335)
 					end
 					TradeSkillFrame.EltruismExpand = true
@@ -406,6 +404,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 		end
 
 		--create vellum button
+		local vellumbutton
 		if not E.Classic then
 			if not _G["EltruismVellumButton"] then
 				if E.Retail then
@@ -422,6 +421,7 @@ function ElvUI_EltreumUI:EnchantScroll()
 		end
 
 		--create disenchant button
+		local disenchantbutton
 		if not _G["EltruismDisenchantButton"] then
 			if E.Retail then
 				disenchantbutton = CreateFrame("BUTTON", "EltruismDisenchantButton", _G["ProfessionsFrame"], "MagicButtonTemplate,InsecureActionButtonTemplate")

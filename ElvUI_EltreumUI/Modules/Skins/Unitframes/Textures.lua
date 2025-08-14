@@ -9,13 +9,6 @@ local UnitIsPlayer = _G.UnitIsPlayer
 local select = _G.select
 local UnitIsTapDenied = _G.UnitIsTapDenied
 local UnitPlayerControlled = _G.UnitPlayerControlled
-local _, unit1class, buttonclass, classunit, unitframe, namebar, reaction,groupbar
-local headergroup = nil
-local headertank = nil
-local headerassist = nil
-local headerraidpet = nil
-local forced
-local group, groupbutton, tankbutton, assistbutton, raidpetbutton,partypetbutton
 local IsInGroup = _G.IsInGroup
 local UnitIsCharmed = _G.UnitIsCharmed
 local pairs = _G.pairs
@@ -23,8 +16,9 @@ local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
 --set the textures for single units
 function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientation)
-	_, classunit = UnitClass(unit)
-	reaction = UnitReaction(unit, "player")
+	local _, classunit = UnitClass(unit)
+	local reaction = UnitReaction(unit, "player")
+	local namebar
 	if UnitExists(unit) then
 		if UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit)) then
 			if classunit then
@@ -47,7 +41,7 @@ function ElvUI_EltreumUI:ApplyUnitCustomTexture(unit,name,unittexture,noOrientat
 				end
 			end
 		end
-		unitframe = _G["ElvUF_"..name]
+		local unitframe = _G["ElvUF_"..name]
 		if unitframe and unitframe.Health and unitframe.Health:GetStatusBarTexture() ~= nil then
 			if not noOrientation then
 				unitframe.Health:SetOrientation(E.db.ElvUI_EltreumUI.unitframes.UForientation)
@@ -187,8 +181,9 @@ end
 function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 
 	--due to raid pet, check if is player
+	local buttonclass
 	if UnitIsPlayer(button.unit) or (E.Retail and UnitInPartyIsAI(button.unit)) then
-		_, buttonclass = UnitClass(button.unit)
+		buttonclass = select(2, UnitClass(button.unit))
 	else
 		buttonclass = "NPCFRIENDLY"
 	end
@@ -213,7 +208,7 @@ function ElvUI_EltreumUI:ApplyGroupCustomTexture(button,noOrientation,frametype)
 			end
 		end
 
-		groupbar = ElvUI_EltreumUI:UnitframeClassTexture(buttonclass)
+		local groupbar = ElvUI_EltreumUI:UnitframeClassTexture(buttonclass)
 		if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 			button.Health.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.backdropalpha)
 			if E.db.ElvUI_EltreumUI.unitframes.ufcustomtexture.enable then
@@ -304,7 +299,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 			ElvUI_EltreumUI:ApplyUnitCustomTexture("arena5", "Arena5", "arena",true)
 		end
 
-		forced = false
+		local forced = false
 		if unit == "testunit" then
 			forced = true
 			unit = "player"
@@ -330,7 +325,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 
 		--group/raid unitframes
 		if (IsInGroup() or forced) and UnitExists(unit) and (E.db.ElvUI_EltreumUI.unitframes.lightmode or E.db.ElvUI_EltreumUI.unitframes.darkmode) then
-			headergroup = nil
+			local headergroup = nil
 			if _G["ElvUF_Raid1"] and _G["ElvUF_Raid1"]:IsShown() then
 				headergroup = _G["ElvUF_Raid1"]
 			elseif _G["ElvUF_Raid2"] and _G["ElvUF_Raid2"]:IsShown() then
@@ -341,31 +336,31 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 				headergroup = _G["ElvUF_Party"]
 			end
 
-			headertank = nil
+			local headertank = nil
 			if _G["ElvUF_Tank"] and _G["ElvUF_Tank"]:IsShown() then
 				headertank = _G["ElvUF_Tank"]
 			end
 
-			headerassist = nil
+			local headerassist = nil
 			if _G["ElvUF_Assist"] and _G["ElvUF_Assist"]:IsShown() then
 				headerassist = _G["ElvUF_Assist"]
 			end
 
-			headerraidpet = nil
+			local headerraidpet = nil
 			if _G["ElvUF_RaidpetGroup1"] and _G["ElvUF_RaidpetGroup1"]:IsShown() and E.db.unitframe.units.raidpet.enable then
 				headerraidpet = _G["ElvUF_RaidpetGroup1"]
 			end
 
-			_, unit1class = UnitClass(unit)
+			local _, unit1class = UnitClass(unit)
 			if not unit1class then
 				return
 			end
 
 			if headergroup ~= nil then
 				for i = 1, headergroup:GetNumChildren() do
-					group = select(i, headergroup:GetChildren())
+					local group = select(i, headergroup:GetChildren())
 					for j = 1, group:GetNumChildren() do
-						groupbutton = select(j, group:GetChildren())
+						local groupbutton = select(j, group:GetChildren())
 						if groupbutton and groupbutton.Health then
 							if headergroup == _G["ElvUF_Party"] then
 								ElvUI_EltreumUI:ApplyGroupCustomTexture(groupbutton,true,"party")
@@ -379,7 +374,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 
 			if headergroup == _G["ElvUF_Party"] and E.db.unitframe.units.party.petsGroup.enable then
 				for i = 1, 5 do
-					partypetbutton = _G["ElvUF_PartyGroup1UnitButton"..i.."Pet"]
+					local partypetbutton = _G["ElvUF_PartyGroup1UnitButton"..i.."Pet"]
 					if partypetbutton and partypetbutton.Health then
 						ElvUI_EltreumUI:ApplyGroupCustomTexture(partypetbutton)
 					end
@@ -388,7 +383,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 
 			if headertank ~= nil then
 				for i = 1, headertank:GetNumChildren() do
-					tankbutton = select(i, headertank:GetChildren())
+					local tankbutton = select(i, headertank:GetChildren())
 					if tankbutton and tankbutton.Health then
 						ElvUI_EltreumUI:ApplyGroupCustomTexture(tankbutton,true)
 					end
@@ -409,7 +404,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 
 			if headerassist ~= nil then
 				for i = 1, headerassist:GetNumChildren() do
-					assistbutton = select(i, headerassist:GetChildren())
+					local assistbutton = select(i, headerassist:GetChildren())
 					if assistbutton and assistbutton.Health then
 						ElvUI_EltreumUI:ApplyGroupCustomTexture(assistbutton,true)
 					end
@@ -418,7 +413,7 @@ function ElvUI_EltreumUI:CustomTexture(unit)
 
 			if headerraidpet ~= nil then
 				for i = 1, headerraidpet:GetNumChildren() do
-					raidpetbutton = select(i, headerraidpet:GetChildren())
+					local raidpetbutton = select(i, headerraidpet:GetChildren())
 					if raidpetbutton and raidpetbutton.Health then
 						ElvUI_EltreumUI:ApplyGroupCustomTexture(raidpetbutton,true)
 					end

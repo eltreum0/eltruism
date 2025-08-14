@@ -8,7 +8,6 @@ local UnitReaction = _G.UnitReaction
 local UnitIsPlayer = _G.UnitIsPlayer
 local UnitIsTapDenied = _G.UnitIsTapDenied
 local UnitPlayerControlled = _G.UnitPlayerControlled
-local _, buttonclass, classunit, unitframe, reaction
 local UnitIsCharmed = _G.UnitIsCharmed
 local pairs = _G.pairs
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
@@ -189,7 +188,7 @@ function ElvUI_EltreumUI:ApplyGradientBackdrop(unit,frame,englishClass,reactionu
 						end
 					end
 				else
-					if not reaction then return end
+					if not reactionunit then return end
 					if E.db.ElvUI_EltreumUI.unitframes.lightmode then
 						if frame.Health.backdropTex then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation == "HORIZONTAL" then
@@ -555,9 +554,9 @@ end
 --set the textures or gradients for single units
 function ElvUI_EltreumUI:ApplyUnitGradient(unit,name,unitDB,noOrientation)
 	if UnitExists(unit) then
-		_, classunit = UnitClass(unit)
-		reaction = UnitReaction(unit, "player")
-		unitframe = _G["ElvUF_"..name]
+		local _, classunit = UnitClass(unit)
+		local reaction = UnitReaction(unit, "player")
+		local unitframe = _G["ElvUF_"..name]
 
 		local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitInPartyIsAI(unit))
 		local isCharmed = UnitIsCharmed(unit)
@@ -1036,7 +1035,7 @@ end
 
 --set the textures or gradients for group units
 function ElvUI_EltreumUI:ApplyGroupGradient(button,noOrientation)
-
+	local _, buttonclass
 	--due to raid pet, check if is player
 	if UnitIsPlayer(button.unit) or (E.Retail and UnitInPartyIsAI(button.unit)) then --C_LFGInfo.IsInLFGFollowerDungeon() could be used
 		_, buttonclass = UnitClass(button.unit)
