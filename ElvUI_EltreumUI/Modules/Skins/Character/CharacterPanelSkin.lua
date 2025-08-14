@@ -27,6 +27,8 @@ local InCombatLockdown = _G.InCombatLockdown
 local format = _G.format
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 
+--GetTalentTabInfo is going to be removed, use C_SpecializationInfo.GetSpecializationInfo instead TODO
+
 --improving character panel
 local CharacterFrame = _G.CharacterFrame
 local CharacterFrameBackgroundTexture = CharacterFrame:CreateTexture("EltruismCharacterBG")
@@ -283,10 +285,6 @@ function ElvUI_EltreumUI:GetUnitItemLevel(unit)
 	end
 	return total/16
 end
-
---cata to detect dual spec
---GetNumTalentGroups() --gets if they actually have dual spec in the first place
---GetActiveTalentGroup() --gets which of the dual is being used
 
 --turns out classic has the functions to get number of points on talent trees
 function ElvUI_EltreumUI:GetPlayerSpec()
