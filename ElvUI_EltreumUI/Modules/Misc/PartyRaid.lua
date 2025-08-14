@@ -11,7 +11,6 @@ local GetInstanceInfo = _G.GetInstanceInfo
 local GetSpellTexture = _G.C_Spell and _G.C_Spell.GetSpellTexture or _G.GetSpellTexture
 local GetSpellCharges = _G.C_Spell and _G.C_Spell.GetSpellCharges or _G.GetSpellCharges
 local InCombatLockdown = _G.InCombatLockdown
-local _, instanceType
 local DifficultyID
 local ingroup
 local difficultyok
@@ -37,7 +36,7 @@ local GetTime = _G.GetTime
 -- Conversion of the party/raid death weakaura into an addon option
 local deaththrottle
 function ElvUI_EltreumUI:RaidDeathGroupCheck()
-	_, instanceType = IsInInstance()
+	local _, instanceType = IsInInstance()
 	if E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.enable then
 		if IsInGroup() then
 			if E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.bgdisable then --to disable it in arena/bg
@@ -127,7 +126,7 @@ local workingIDs = {
 
 function ElvUI_EltreumUI:BattleRes()
 	if E.Retail and E.db.ElvUI_EltreumUI.otherstuff.bres then
-		_, instanceType = IsInInstance()
+		local _, instanceType = IsInInstance()
 		DifficultyID = select(3, GetInstanceInfo())
 		ingroup = IsInGroup()
 
