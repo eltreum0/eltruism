@@ -4172,6 +4172,7 @@ Updated music for Earthen and Dracthyr
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed = ACH:Group(E:TextGradient("Fixed", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 4)
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.fixed.args.description = ACH:Description([[
+Fixed an issue with the Bag Profession missing Icons in Mists of Pandaria Classic and Classic Era
 Fixed an issue when disabling ElvUI's spellbook skin would still have the shadows
 Fixed an issue when using Leatrix Maps and having ElvUI world map disabled
 Fixed shadows on unitframes when the infopanel was enabled but not shown
