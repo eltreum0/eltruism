@@ -15,10 +15,6 @@ local powerbareffecttarget = CreateFrame("PlayerModel", "EltruismTargetPowerBarE
 local powerbareffecttargettarget = CreateFrame("PlayerModel", "EltruismTargetTargetPowerBarEffect")
 local powerbareffectfocus = CreateFrame("PlayerModel", "EltruismFocusPowerBarEffect")
 local powerbareffectpet = CreateFrame("PlayerModel", "EltruismPetPowerBarEffect")
-local powerbar, targetpowerbar, targettargetpowerbar, petpowerbar
-local _, targetclass, targettargetbar, playerbar,targetbar, reactiontarget,reactionpet
-local reactiontargettarget, targettargetclass, petbar
-local focuspowerbar, focusbar, focusclass,reactionfocus
 local CreateVector3D = _G.CreateVector3D
 local rad = _G.rad
 local UnitReaction = _G.UnitReaction
@@ -108,7 +104,7 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 			return
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
-			playerbar = _G["ElvUF_Player"]
+			local playerbar = _G["ElvUF_Player"]
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
 				--playereffect:ClearModel()
 				playereffect:SetModel(classModels[E.myclass])
@@ -144,7 +140,7 @@ function ElvUI_EltreumUI:PlayerUFEffects()
 			end
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
-			powerbar = _G["ElvUF_Player_PowerBar"]
+			local powerbar = _G["ElvUF_Player_PowerBar"]
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
 				if E.Retail then
 					powerbareffectplayer:SetModel(1715069)
@@ -196,9 +192,9 @@ function ElvUI_EltreumUI:TargetUFEffects()
 			return
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
-			targetbar = _G["ElvUF_Target"]
-			reactiontarget = UnitReaction("target", "player")
-			_, targetclass = UnitClass("target")
+			local targetbar = _G["ElvUF_Target"]
+			local reactiontarget = UnitReaction("target", "player")
+			local _, targetclass = UnitClass("target")
 
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
 				--targeteffect:ClearModel()
@@ -251,7 +247,7 @@ function ElvUI_EltreumUI:TargetUFEffects()
 		end
 
 		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
-			targetpowerbar = _G["ElvUF_Target_PowerBar"]
+			local targetpowerbar = _G["ElvUF_Target_PowerBar"]
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
 				if E.Retail then
 					powerbareffecttarget:SetModel(1715069)
@@ -302,9 +298,9 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 			return
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
-			targettargetbar = _G["ElvUF_TargetTarget"]
-			reactiontargettarget = UnitReaction("targettarget", "player")
-			_, targettargetclass = UnitClass("targettarget")
+			local  targettargetbar = _G["ElvUF_TargetTarget"]
+			local reactiontargettarget = UnitReaction("targettarget", "player")
+			local _, targettargetclass = UnitClass("targettarget")
 
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
 				if (UnitIsPlayer("targettarget") or (E.Retail and UnitInPartyIsAI("targettarget"))) and targettargetclass then
@@ -354,7 +350,7 @@ function ElvUI_EltreumUI:TargetTargetUFEffects()
 		end
 
 		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
-			targettargetpowerbar = _G["ElvUF_TargetTarget_PowerBar"]
+			local targettargetpowerbar = _G["ElvUF_TargetTarget_PowerBar"]
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
 				if E.Retail then
 					powerbareffecttargettarget:SetModel(1715069)
@@ -408,9 +404,9 @@ function ElvUI_EltreumUI:FocusUFEffects()
 			return
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
-			focusbar = _G["ElvUF_Focus"]
-			reactionfocus = UnitReaction("focus", "player")
-			_, focusclass = UnitClass("focus")
+			local focusbar = _G["ElvUF_Focus"]
+			local  reactionfocus = UnitReaction("focus", "player")
+			local _, focusclass = UnitClass("focus")
 
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
 				--focuseffect:ClearModel()
@@ -462,7 +458,7 @@ function ElvUI_EltreumUI:FocusUFEffects()
 		end
 
 		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
-			focuspowerbar = _G["ElvUF_Focus_PowerBar"]
+			local focuspowerbar = _G["ElvUF_Focus_PowerBar"]
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
 				if E.Retail then
 					powerbareffectfocus:SetModel(1715069)
@@ -515,8 +511,8 @@ function ElvUI_EltreumUI:PetUFEffects()
 			return
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.unitframe then
-			petbar = _G["ElvUF_Pet"]
-			reactionpet = UnitReaction("pet", "player")
+			local petbar = _G["ElvUF_Pet"]
+			local reactionpet = UnitReaction("pet", "player")
 
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltype == "CLASS" then
 				--peteffect:ClearModel()
@@ -564,7 +560,7 @@ function ElvUI_EltreumUI:PetUFEffects()
 			end
 		end
 		if E.db.ElvUI_EltreumUI.unitframes.models.powerbar then
-			petpowerbar = _G["ElvUF_Pet_PowerBar"]
+			local petpowerbar = _G["ElvUF_Pet_PowerBar"]
 			if E.db.ElvUI_EltreumUI.unitframes.models.modeltypepower == "DEFAULT" then
 				if E.Retail then
 					powerbareffectpet:SetModel(1715069)

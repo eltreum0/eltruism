@@ -6,10 +6,6 @@ local UnitExists = _G.UnitExists
 local UnitClass = _G.UnitClass
 local UnitReaction = _G.UnitReaction
 local UnitIsPlayer = _G.UnitIsPlayer
-local targetcastbar,focuscastbar,castbar,petcastbar
-local reactiontarget,reactionfocus,reactionpet
-local _, targetclass, focusclass, petclass
-local headergroup,group,groupbutton
 local select = _G.select
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local IsInGroup = _G.IsInGroup
@@ -25,7 +21,7 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 			--player
 			if E.db.unitframe.units.player.enable then
 				if UnitExists("player") then
-					castbar = _G["ElvUF_Player_CastBar"]
+					local castbar = _G["ElvUF_Player_CastBar"]
 					if castbar then
 
 						--spark
@@ -156,9 +152,9 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 			--target
 			if E.db.unitframe.units.target.enable then
 				if UnitExists("target") then
-					_, targetclass = UnitClass("target")
-					reactiontarget = UnitReaction("target", "player")
-					targetcastbar = _G["ElvUF_Target_CastBar"]
+					local _, targetclass = UnitClass("target")
+					local reactiontarget = UnitReaction("target", "player")
+					local targetcastbar = _G["ElvUF_Target_CastBar"]
 					if targetcastbar then
 
 						--spark
@@ -429,9 +425,9 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 			--focus
 			if E.db.unitframe.units.focus.enable then
 				if UnitExists("focus") then
-					_, focusclass = UnitClass("focus")
-					reactionfocus = UnitReaction("focus", "player")
-					focuscastbar = _G["ElvUF_Focus_CastBar"]
+					local _, focusclass = UnitClass("focus")
+					local reactionfocus = UnitReaction("focus", "player")
+					local focuscastbar = _G["ElvUF_Focus_CastBar"]
 					if focuscastbar then
 						if E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.enable then
 							focuscastbar.Spark_:SetTexture(E.LSM:Fetch("statusbar", E.db.ElvUI_EltreumUI.unitframes.sparkcustomcolor.texture))
@@ -684,9 +680,9 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 			--pet
 			if E.db.unitframe.units.pet.enable then
 				if UnitExists("pet") then
-					_, petclass = UnitClass("pet")
-					reactionpet = UnitReaction("pet", "player")
-					petcastbar = _G["ElvUF_Pet_CastBar"]
+					local _, petclass = UnitClass("pet")
+					local reactionpet = UnitReaction("pet", "player")
+					local petcastbar = _G["ElvUF_Pet_CastBar"]
 
 					if petcastbar then
 						--spark
@@ -941,15 +937,15 @@ function ElvUI_EltreumUI:CastBarTextureGradient()
 			--party
 			if E.db.unitframe.units.party.enable then
 				if IsInGroup() then
-					headergroup = nil
+					local headergroup = nil
 					if _G["ElvUF_Party"] and _G["ElvUF_Party"]:IsShown() then
 						headergroup = _G["ElvUF_Party"]
 					end
 					if headergroup ~= nil then
 						for i = 1, headergroup:GetNumChildren() do
-							group = select(i, headergroup:GetChildren())
+							local group = select(i, headergroup:GetChildren())
 							for j = 1, group:GetNumChildren() do
-								groupbutton = select(j, group:GetChildren())
+								local groupbutton = select(j, group:GetChildren())
 								if groupbutton and groupbutton.Castbar then
 									local _, buttonclass = UnitClass(groupbutton.unit)
 									--set textures
@@ -1329,8 +1325,8 @@ hooksecurefunc(UF, 'PostCastStart', ElvUI_EltreumUI.CastBarTextureGradient)
 function ElvUI_EltreumUI:CastBarTextureGradientFail(unit)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	if not unit then return end
-	castbar = _G["ElvUF_Player_CastBar"]
-	targetcastbar = _G["ElvUF_Target_CastBar"]
+	local castbar = _G["ElvUF_Player_CastBar"]
+	local targetcastbar = _G["ElvUF_Target_CastBar"]
 	if E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 

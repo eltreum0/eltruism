@@ -10,12 +10,6 @@ local select = _G.select
 local Item = _G.Item
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local UIParent = _G.UIParent
-local ilvlpattern
-local texture
-local itemLevel, itemLevel2
-local tt
-local itemQuality, classID
-local hex
 local GetPlayerInfoByGUID = _G.GetPlayerInfoByGUID
 
 local classcolorsescape = {
@@ -46,16 +40,21 @@ local function AddLootIcons(_, _, message, ...)
 	elseif E.db.ElvUI_EltreumUI.chat.enable then
 		local function Icon(link)
 
-			ilvlpattern = _G.ITEM_LEVEL:gsub('%%d', '(%%d+)')
-			texture = GetItemIcon(link)
-			_, _, itemQuality, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(link)
+			local texture = GetItemIcon(link)
+			local _, _, itemQuality, itemLevel, _, _, _, _, _, _, _, classID = GetItemInfo(link)
 
 			local item = Item:CreateFromItemLink(link)
 			if not item:IsItemEmpty() then
 				item:ContinueOnItemLoad(function()
-					_, _, itemQuality, itemLevel2, _, _, _, _, _, _, _, classID = GetItemInfo(link)
+					local _, _, itemQuality2, itemLevel2, _, _, _, _, _, _, _, classID2 = GetItemInfo(link)
 					if itemLevel == nil then
 						itemLevel = itemLevel2
+					end
+					if itemQuality == nil then
+						itemQuality = itemQuality2
+					end
+					if classID == nil then
+						classID = classID2
 					end
 					--print(itemType, itemQuality, itemLevel)
 				end)
@@ -64,7 +63,7 @@ local function AddLootIcons(_, _, message, ...)
 			--local fontsize = select(2, GetChatWindowInfo(1))
 			--itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount,itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expacID, setID, isCraftingReagent = GetItemInfo(item)
 			if itemLevel ~= nil and itemLevel > 1 and E.db.ElvUI_EltreumUI.chat.itemlevels and itemQuality ~= nil and (classID == 2 or classID == 4 or classID == 3) then
-				_, _, _, hex = GetItemQualityColor(itemQuality)
+				local _, _, _, hex = GetItemQualityColor(itemQuality)
 				--return "|T"..texture..":".. 12 .."|t|c"..hex.."["..itemLevel.."]|r"..link
 				--return "|T"..texture..":"..fontsize..":"..fontsize..":0:0:64:64:5:59:5:59|t|c"..hex.."["..itemLevel.."]|r"..link
 				return "|T"..texture..":12:12:0:0:64:64:5:59:5:59|t|c"..hex.."["..itemLevel.."]|r"..link

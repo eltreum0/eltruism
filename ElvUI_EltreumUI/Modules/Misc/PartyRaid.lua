@@ -11,12 +11,6 @@ local GetInstanceInfo = _G.GetInstanceInfo
 local GetSpellTexture = _G.C_Spell and _G.C_Spell.GetSpellTexture or _G.GetSpellTexture
 local GetSpellCharges = _G.C_Spell and _G.C_Spell.GetSpellCharges or _G.GetSpellCharges
 local InCombatLockdown = _G.InCombatLockdown
-local DifficultyID
-local ingroup
-local difficultyok
-local instanceok
-local currentCharges, cooldownStart, cooldownDuration
-local cooldown
 local GetPartyAssignment = _G.GetPartyAssignment
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local hooksecurefunc = _G.hooksecurefunc
@@ -127,8 +121,9 @@ local workingIDs = {
 function ElvUI_EltreumUI:BattleRes()
 	if E.Retail and E.db.ElvUI_EltreumUI.otherstuff.bres then
 		local _, instanceType = IsInInstance()
-		DifficultyID = select(3, GetInstanceInfo())
-		ingroup = IsInGroup()
+		local DifficultyID = select(3, GetInstanceInfo())
+		local difficultyok = false
+		local instanceok = false
 
 		if workingIDs[DifficultyID] then
 			difficultyok = true
@@ -163,17 +158,17 @@ function ElvUI_EltreumUI:BattleRes()
 			end
 		end
 
-		if ingroup and instanceok and difficultyok then
+		if IsInGroup() and instanceok and difficultyok then
 			bresframe:SetAlpha(1)
 			bresframe:SetScript('OnUpdate', function(_, elapsed)
 				TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 				if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
 					TimeSinceLastUpdate = 0
 					--currentCharges, maxCharges, cooldownStart, cooldownDuration, chargeModRate = GetSpellCharges(spellId or spellName)
-					currentCharges, _, cooldownStart, cooldownDuration = GetSpellCharges(20484)
+					local currentCharges, _, cooldownStart, cooldownDuration = GetSpellCharges(20484)
 					if currentCharges ~= nil and cooldownStart ~= nil and cooldownDuration ~= nil then
 						bresframe:SetAlpha(1)
-						cooldown = math.floor(cooldownDuration - (GetTime() - cooldownStart))
+						local cooldown = math.floor(cooldownDuration - (GetTime() - cooldownStart))
 						if cooldown <= 0 then
 							spellcd:SetText(READY)
 						else

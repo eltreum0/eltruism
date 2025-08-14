@@ -2,7 +2,6 @@ local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
 local GetNumRegions = _G.GetNumRegions
-local tabSkinned = false
 
 local function handlechildtab(frame)
 	for _, v in pairs{frame:GetChildren()} do
@@ -575,7 +574,7 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 			if E.Retail or E.Mists then
 
 				local function skinbaseframe()
-					if not tabSkinned then
+					if not _G["AuctionHouseFrame"].EltruismTabSkinned then
 						E:Delay(0, function()
 							ElvUI_EltreumUI:SkinAuctionator()
 							for _, j in pairs{_G["AuctionHouseFrame"]:GetChildren()} do
@@ -588,7 +587,7 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 													v.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 													ElvUI_EltreumUI:ShadowColor(v.backdrop.shadow)
 												end
-												tabSkinned = true
+												_G["AuctionHouseFrame"].EltruismTabSkinned = true
 											end
 										end
 									end
@@ -616,7 +615,7 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 				end
 			else
 				_G["AuctionFrame"]:HookScript("OnShow",function()
-					if not tabSkinned then
+					if not _G["AuctionFrame"].EltruismTabSkinned then
 						E:Delay(0, function()
 							ElvUI_EltreumUI:SkinAuctionator()
 							for i = 4, 8 do
@@ -626,7 +625,7 @@ function ElvUI_EltreumUI:EltruismAuctionFrame()
 										_G["AuctionFrameTab"..i].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 										ElvUI_EltreumUI:ShadowColor(_G["AuctionFrameTab"..i].backdrop.shadow)
 									end
-									tabSkinned = true
+									_G["AuctionFrame"].EltruismTabSkinned = true
 								end
 							end
 						end)

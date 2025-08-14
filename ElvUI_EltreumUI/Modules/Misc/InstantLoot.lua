@@ -20,16 +20,9 @@ local GetLootSlotType = _G.GetLootSlotType
 local CloseLoot = _G.CloseLoot
 local Screenshot = _G.Screenshot
 local UIFrameFadeOut = _G.UIFrameFadeOut
-local itemLink
-local itemName, quality
-local itemtexture
-local r,g,b
-local id
-local itemID
-local lootQuality, isQuestItem
-local lootsoundthrottle = 0
 local PlaySoundFile = _G.PlaySoundFile
 local ConfirmLootSlot = _G.ConfirmLootSlot
+local lootsoundthrottle = 0
 
 --wishlist popup
 local WishlistItemFrame = CreateFrame("Frame", "EltruismWishlistItem", UIParent)
@@ -89,17 +82,18 @@ local function InstantLoot(_, event,_, arg2)
 		--ElvUI_EltreumUI:Print("Event: "..event)
 		if E.db.ElvUI_EltreumUI.loot.lootwishlistwarning then
 			for i = GetNumLootItems(), 1, -1 do
-				itemLink = GetLootSlotLink(i)
+				local itemLink = GetLootSlotLink(i)
 				if itemLink == nil then
 					itemLink = "|cffe6cc80|Hitem:158075::::::::53:257::11:4:4932:4933:6316:1554::::::|h[Heart of Azeroth]|h|r"
 				end
-				itemName, _, quality = GetItemInfo(itemLink)
-				itemtexture = GetItemIcon(itemLink)
+				local itemName, _, quality = GetItemInfo(itemLink)
+				local itemtexture = GetItemIcon(itemLink)
+				local r,g,b
 				if quality then
 					r,g,b = GetItemQualityColor(quality)
 				end
-				id = itemLink:match("item:(%d+)")
-				itemID = tonumber(id)
+				local id = itemLink:match("item:(%d+)")
+				local itemID = tonumber(id)
 				for k=1, #E.private.ElvUI_EltreumUI.wishlistID do
 					if itemID == tonumber(E.private.ElvUI_EltreumUI.wishlistID[k]) then
 						WishlistItemFrame.Text2:SetText("")
@@ -145,7 +139,7 @@ local function InstantLoot(_, event,_, arg2)
 					ElvUI_EltreumUI:Print("Autoloot is enabled, please disable it to use Loot Filtering")
 				end
 				for i = GetNumLootItems(), 1, -1 do
-					_, _, _, _, lootQuality, _, isQuestItem = GetLootSlotInfo(i)
+					local _, _, _, _, lootQuality, _, isQuestItem = GetLootSlotInfo(i)
 					if isQuestItem then
 						LootSlot(i)
 					elseif lootQuality >= tonumber(E.db.ElvUI_EltreumUI.loot.fastlootquality) then
@@ -168,12 +162,12 @@ local function InstantLoot(_, event,_, arg2)
 				return
 			else
 				for i = GetNumLootItems(), 1, -1 do
-					itemLink = GetLootSlotLink(i)
+					local itemLink = GetLootSlotLink(i)
 					if itemLink == nil then
 						itemLink = "|cffe6cc80|Hitem:158075::::::::53:257::11:4:4932:4933:6316:1554::::::|h[Heart of Azeroth]|h|r"
 					end
-					id = itemLink:match("item:(%d+)")
-					itemID = tonumber(id)
+					local id = itemLink:match("item:(%d+)")
+					local itemID = tonumber(id)
 					if GetLootSlotType(i) == 2 then
 						LootSlot(i)
 					end

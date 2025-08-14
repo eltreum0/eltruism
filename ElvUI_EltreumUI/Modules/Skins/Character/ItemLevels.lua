@@ -1,21 +1,13 @@
 local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local overlayFrame
-local _, hex
-local itemLink
-local quality
-local slotID
-local itemQuality, itemLevel
 local math = _G.math
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetInventoryItemQuality = _G.GetInventoryItemQuality
 local GetDetailedItemLevelInfo = _G.C_Item and _G.C_Item.GetDetailedItemLevelInfo or _G.GetDetailedItemLevelInfo
-local level
 local hooksecurefunc = _G.hooksecurefunc
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
-local isHooked = false
 
 --Calculate ilvl and average ilvl of player items/inspect unit
 local EltruismInspectilvls = CreateFrame("Frame")
@@ -67,7 +59,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 			if button.eltruismilvl then
 				return
 			end
-			overlayFrame = CreateFrame("FRAME", nil, button)
+			local overlayFrame = CreateFrame("FRAME", nil, button)
 			--overlayFrame:SetFrameLevel(9999) -- this was bugging out inspect
 			overlayFrame:SetAllPoints()
 			button.eltruismilvl = overlayFrame:CreateFontString('$parentItemLevel', 'OVERLAY')
@@ -91,7 +83,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 				return button.eltruismilvl and button.eltruismilvl:Hide()
 			end
 			PrepareItemButton(button)
-			_, _, _, hex = GetItemQualityColor(itemQuality2)
+			local _, _, _, hex = GetItemQualityColor(itemQuality2)
 			--if hex == "ffffffff" then
 				--return
 			--end
@@ -101,12 +93,11 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 
 		local function GetItemQualityAndLevel(unit, slotID2)
 			-- link is more reliably fetched than ID, for whatever reason
-			--local itemLink = GetInventoryItemLink(unit, slotID)
-			itemLink = GetInventoryItemLink(unit, slotID2)
+			local itemLink = GetInventoryItemLink(unit, slotID2)
 			--local itemLink = LibItemInfo:GetUnitItemIndexLink(unit, slotID)
 			if itemLink ~= nil then
-				quality = GetInventoryItemQuality(unit, slotID2)
-				level = GetDetailedItemLevelInfo(itemLink)
+				local quality = GetInventoryItemQuality(unit, slotID2)
+				local level = GetDetailedItemLevelInfo(itemLink)
 				---local level LibItemInfo:GetItemLevel(itemLink)
 				--print(level) --level is the item level of each item
 				return quality, level
@@ -115,9 +106,9 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 
 		local function UpdateItemSlotButton(button, unit)
 			if button.eltruismilvl then button.eltruismilvl:Hide() end
-			slotID = button:GetID()
+			local slotID = button:GetID()
 			if (slotID >= _G.INVSLOT_FIRST_EQUIPPED and slotID <= _G.INVSLOT_LAST_EQUIPPED) then
-				itemQuality, itemLevel = GetItemQualityAndLevel(unit, slotID)
+				local itemQuality, itemLevel = GetItemQualityAndLevel(unit, slotID)
 				if itemLevel then
 					return AddLevelToButton(button, itemLevel, itemQuality)
 				end
@@ -151,7 +142,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 		EltruismInspectilvls:SetScript("OnEvent", function(_,event,arg)
 			if arg == "Blizzard_InspectUI" or IsAddOnLoaded("Blizzard_InspectUI") then
 				EltruismInspectilvls:UnregisterEvent("ADDON_LOADED")
-				if not isHooked then
+				if not EltruismInspectilvls.isHooked then
 					hooksecurefunc("InspectPaperDollItemSlotButton_Update", function(button)
 						if E.db.ElvUI_EltreumUI.skins.ilvlsinspect and _G.InspectFrame:IsVisible() then
 							if _G.InspectFrame and _G.InspectFrame.unit then
@@ -161,7 +152,7 @@ function ElvUI_EltreumUI:UpdateAvgIlvl()
 							end
 						end
 					end)
-					isHooked = true
+					EltruismInspectilvls.isHooked = true
 				end
 			end
 			if event == "INSPECT_READY" then

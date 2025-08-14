@@ -1,4 +1,5 @@
 local E = unpack(ElvUI)
+local AB = E:GetModule('ActionBars')
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
@@ -22,10 +23,7 @@ local GetInventorySlotInfo = _G.GetInventorySlotInfo
 local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetInventoryItemCooldown = _G.GetInventoryItemCooldown
 local CooldownFrame_Set = _G.CooldownFrame_Set
-local _, instanceType
 local GetItemSpell = _G.C_Item and _G.C_Item.GetItemSpell or _G.GetItemSpell
-local AB = E:GetModule('ActionBars')
-
 
 --A merge of QBAr by Aezay with a few edits by Eltreum
 --This module is GNU GPL v3
@@ -291,7 +289,7 @@ local blocklist = {
 
 function ElvUI_EltreumUI:QuestItem()
 	if E.db.ElvUI_EltreumUI.quests.questitems then
-		_, instanceType = IsInInstance()
+		local _, instanceType = IsInInstance()
 		if instanceType ~= "none" then
 			EltruismQuestItemFrame:Hide()
 			EltruismQuestItemFrame:UnregisterAllEvents()

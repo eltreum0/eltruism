@@ -20,16 +20,6 @@ local CharacterTitleText = _G.CharacterTitleText
 local CharacterLevelText = _G.CharacterLevelText
 local NORMAL_FONT_COLOR = _G.NORMAL_FONT_COLOR
 local MANA_REGEN = _G.MANA_REGEN
-local total, maxlevel = 0, 0
-local level, mainhand, offhand, ranged
-local linkloop, mainlevel, mainlink
-local offhandlink, offhandlevel, rangedlevel, rangedlink
-local spec, points
-local _, name, spent
-local linewidth1, linewidth2, linewidth3, linewidth4
-local texturefile, linewidthsle1, linewidthsle2
-local id, currentSpec, speed, combatText, combat, regenRate, regenRateText
-local qualityAnchor,qualityAnchorInspect
 local CharacterModelScene = _G.CharacterModelScene
 local pairs = _G.pairs
 local string = _G.string
@@ -231,11 +221,11 @@ end
 
 --adapted from libiteminfo to be player only
 function ElvUI_EltreumUI:GetUnitItemLevel(unit)
-	total, maxlevel = 0, 0
+	local total, maxlevel = 0, 0
 
 	for i = 1, 15 do
 		if (i ~= 4) then
-			linkloop = _G.GetInventoryItemLink(unit, i)
+			local linkloop = _G.GetInventoryItemLink(unit, i)
 			if linkloop then
 				level = select(4, GetItemInfo(linkloop))
 			else
@@ -252,32 +242,32 @@ function ElvUI_EltreumUI:GetUnitItemLevel(unit)
 		end
 	end
 
-	mainlevel = 0
-	mainlink = _G.GetInventoryItemLink(unit, 16)
+	local mainlevel = 0
+	local mainlink = _G.GetInventoryItemLink(unit, 16)
 	if mainlink then
 		mainlevel = select(4, GetItemInfo(mainlink))
 	end
-	mainhand = (tonumber(mainlevel))
+	local mainhand = (tonumber(mainlevel))
 	if mainhand == nil then
 		mainhand = 0
 	end
 
-	offhandlink = _G.GetInventoryItemLink(unit, 17)
-	offhandlevel = 0
+	local offhandlink = _G.GetInventoryItemLink(unit, 17)
+	local offhandlevel = 0
 	if offhandlink then
 		offhandlevel = select(4, GetItemInfo(offhandlink))
 	end
-	offhand = (tonumber(offhandlevel))
+	local offhand = (tonumber(offhandlevel))
 	if offhand == nil then
 		offhand = 0
 	end
 
-	rangedlevel = 0
-	rangedlink = _G.GetInventoryItemLink(unit, 18)
+	local rangedlevel = 0
+	local rangedlink = _G.GetInventoryItemLink(unit, 18)
 	if rangedlink then
 		rangedlevel = select(4, GetItemInfo(rangedlink))
 	end
-	ranged = (tonumber(rangedlevel))
+	local ranged = (tonumber(rangedlevel))
 	if ranged == nil then
 		ranged = 0
 	end
@@ -301,16 +291,14 @@ end
 --turns out classic has the functions to get number of points on talent trees
 function ElvUI_EltreumUI:GetPlayerSpec()
 	--reset variables
-	name = ""
-	spent = 0
-	points = 0
-	spec = ""
+	local points = 0
+	local spec = ""
 
 	local _, _, _, _, spent1 = _G.GetTalentTabInfo(1)
 	local _, _, _, _, spent2 = _G.GetTalentTabInfo(2)
 	local _, _, _, _, spent3 = _G.GetTalentTabInfo(3)
 	for i=1, _G.GetNumTalentTabs() do
-		_, name, _, _, spent = _G.GetTalentTabInfo(i)
+		local _, name, _, _, spent = _G.GetTalentTabInfo(i)
 		if spent > 0 and (not points or spent > points) then
 			spec, points = name, spent
 		end
@@ -499,7 +487,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				--CharacterStatsPane.OffenseCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 
 				--statusbars
-				linewidthsle1 = (( 300 - CharacterStatsPane.OffenseCategory.Title:GetStringWidth())/2)
+				local linewidthsle1 = (( 300 - CharacterStatsPane.OffenseCategory.Title:GetStringWidth())/2)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismOffenseCategory", CharacterStatsPane)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetMinMaxValues(0,100)
 				CharacterStatsPane.OffenseCategory.Title.StatusLine:SetValue(100)
@@ -536,7 +524,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				--CharacterStatsPane.DefenseCategory.Title:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize + 6, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 
 				--statusbars
-				linewidthsle2 = (( 300 - CharacterStatsPane.DefenseCategory.Title:GetStringWidth())/2)
+				local linewidthsle2 = (( 300 - CharacterStatsPane.DefenseCategory.Title:GetStringWidth())/2)
 				CharacterStatsPane.DefenseCategory.Title.StatusLine = CreateFrame("StatusBar", "EltruismDefenseCategory", CharacterStatsPane)
 				CharacterStatsPane.DefenseCategory.Title.StatusLine:SetMinMaxValues(0,100)
 				CharacterStatsPane.DefenseCategory.Title.StatusLine:SetValue(100)
@@ -633,14 +621,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					CharacterFrame.EltruismClassResource:Show()
 					CharacterFrame.EltruismClassResourceDesc:Show()
 					CharacterFrame.EltruismClassResourceDescTooltip:Show()
-					currentSpec = _G.GetSpecialization()
+					local currentSpec = _G.GetSpecialization()
 					if currentSpec then
-						id, _ = _G.GetSpecializationInfo(currentSpec)
-					end
-					if id == 264 or id == 257 or id == 256 or id == 65 or id == 270 or id == 105 then
-						CharacterFrame.EltruismClassResource:Hide()
-						CharacterFrame.EltruismClassResourceDesc:Hide()
-						CharacterFrame.EltruismClassResourceDescTooltip:Hide()
+						local id = _G.GetSpecializationInfo(currentSpec)
+						if id == 264 or id == 257 or id == 256 or id == 65 or id == 270 or id == 105 then
+							CharacterFrame.EltruismClassResource:Hide()
+							CharacterFrame.EltruismClassResourceDesc:Hide()
+							CharacterFrame.EltruismClassResourceDescTooltip:Hide()
+						end
 					end
 				else
 					CharacterFrame.EltruismClassResource:Hide()
@@ -815,18 +803,18 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 					--extra stats
 					if E.db.ElvUI_EltreumUI.skins.classicarmoryeltruismstats then
-						speed = ((_G.GetUnitSpeed("player")/7) *100)
+						local speed = ((_G.GetUnitSpeed("player")/7) *100)
 						CharacterFrame.EltruismSpeed:SetText(math.ceil(speed).."%")
-						_, combat = GetManaRegen()
+						local _, combat = GetManaRegen()
 						combat = math.floor(combat * 5.0)
-						combatText = BreakUpLargeNumbers(combat)
+						local combatText = BreakUpLargeNumbers(combat)
 						if E.myclass == 'HUNTER' or E.myclass == 'ROGUE' or E.myclass == 'DRUID' or E.myclass == 'MONK' then
 							CharacterFrame.EltruismClassResource:SetText(BreakUpLargeNumbers(GetPowerRegen()))
 						elseif E.myclass == 'MAGE' or E.myclass == 'SHAMAN' or E.myclass == 'WARLOCK' or E.myclass == 'PALADIN' or E.myclass == 'PRIEST' then
 							CharacterFrame.EltruismClassResource:SetText(combatText)
 						elseif E.myclass == 'DEATHKNIGHT' then
-							_, regenRate = _G.GetRuneCooldown(1)
-							regenRateText = (format(STAT_RUNE_REGEN_FORMAT, regenRate))
+							local _, regenRate = _G.GetRuneCooldown(1)
+							local regenRateText = (format(STAT_RUNE_REGEN_FORMAT, regenRate))
 							CharacterFrame.EltruismClassResource:SetText(regenRateText)
 						end
 
@@ -935,6 +923,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 
 			--statusbars
+			local linewidth1 = 10
 			if ElvUI_EltreumUI:SLCheck("stats") then
 				linewidth1 = (( 300 - CharacterStatsPane.ItemLevelCategory.Title:GetStringWidth())/2)
 			else
@@ -963,6 +952,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterStatsPane.ItemLevelCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
 			end
 
+			local linewidth2 = 10
 			if ElvUI_EltreumUI:SLCheck("stats") then
 				linewidth2 = (( 300 - CharacterStatsPane.AttributesCategory.Title:GetStringWidth())/2)
 			else
@@ -991,6 +981,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				CharacterStatsPane.AttributesCategory.Title.StatusLine2:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass,true,false))
 			end
 
+			local linewidth3 = 10
 			if ElvUI_EltreumUI:SLCheck("stats") then
 				linewidth3 = (( 300 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
 			else
@@ -1020,7 +1011,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 
 			if E.db.ElvUI_EltreumUI.skins.classicarmoryeltruismstats then
-				linewidth4 = (( 193 - CharacterFrame.EltruismExtraStatsFont:GetStringWidth())/2)
+				local linewidth4 = (( 193 - CharacterFrame.EltruismExtraStatsFont:GetStringWidth())/2)
 				CharacterFrame.EltruismExtraStats:SetSize(linewidth4, 4)
 				CharacterFrame.EltruismExtraStats:SetPoint("RIGHT", CharacterFrame.EltruismExtraStatsFont, "LEFT", 0, -1)
 				CharacterFrame.EltruismExtraStats:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
@@ -2014,7 +2005,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "BLACK" then
 				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\black")
 			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
-				texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
+				local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
 				CharacterFrameBackgroundTexture:SetTexture(texturefile)
 			end
 			CharacterFrameBackgroundTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
@@ -2493,7 +2484,7 @@ function ElvUI_EltreumUI:PlayerItemQuality(unit)
 	if E.db.ElvUI_EltreumUI.skins.itemquality and E.private.skins.blizzard.enable and E.private.skins.blizzard.character then
 		E:Delay(0, function()
 			for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
-				qualityAnchor = _G["Character"..InvSlotIdTable[InvSlotId]]
+				local qualityAnchor = _G["Character"..InvSlotIdTable[InvSlotId]]
 				if not qualityAnchor then return end
 				if _G["EltruismItemQuality"..InvSlotName] then
 					qualityAnchor.Frame = _G["EltruismItemQuality"..InvSlotName]
@@ -2988,7 +2979,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "BLACK" then
 						EltruismInspectBgTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\black")
 					elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
-						texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
+						local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
 						EltruismInspectBgTexture:SetTexture(texturefile)
 						EltruismInspectBgTexture:SetTexCoord(0.1, 0.50, 0, 1)
 					end
@@ -3030,7 +3021,7 @@ function ElvUI_EltreumUI:InspectBg(unit)
 			if ElvUI_EltreumUI:SLCheck('inspect') then return end
 			E:Delay(0, function()
 				for InvSlotId, InvSlotName in pairs(InvSlotIdTable) do
-					qualityAnchorInspect = _G["Inspect"..InvSlotIdTable[InvSlotId]]
+					local qualityAnchorInspect = _G["Inspect"..InvSlotIdTable[InvSlotId]]
 					if qualityAnchorInspect == nil then return end
 
 					if _G["EltruismInspectItemQuality"..InvSlotName] then

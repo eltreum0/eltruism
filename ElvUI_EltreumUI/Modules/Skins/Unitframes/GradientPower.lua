@@ -2,14 +2,11 @@ local E = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
-local powertype, _
-local unitframe, staggerframe, npstaggerframe,isHookedstagger
 local UnitPowerType = _G.UnitPowerType
 local UnitExists = _G.UnitExists
-local headergroup, group, groupbutton
 local select = _G.select
-local forced = false
 local IsInGroup = _G.IsInGroup
+local isHookedstagger = false
 
 --powers there are gradients for since retail has like 100+ power types
 local powertypes ={
@@ -28,17 +25,16 @@ local powertypes ={
 
 --Apply Gradient Power Colors to Unit
 function ElvUI_EltreumUI:ApplyUnitGradientPower(unit,name)
+	local forced = false
 	if unit == "testunit" then
 		forced = true
 		unit = "player"
-	else
-		forced = false
 	end
 
-	_, powertype = UnitPowerType(unit)
+	local _, powertype = UnitPowerType(unit)
 	if UnitExists(unit) and powertype then
 		--print(powertype,unit)
-		unitframe = _G["ElvUF_"..name]
+		local unitframe = _G["ElvUF_"..name]
 		if unitframe and unitframe.Power then
 			if E.db.unitframe.colors.transparentPower and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
 				unitframe.Power.backdrop.Center:SetTexture(E.LSM:Fetch("statusbar", E.db.unitframe.statusbar))
@@ -148,7 +144,7 @@ end
 --Apply Gradient Power Colors to Group Unit
 function ElvUI_EltreumUI:ApplyGroupGradientPower(groupunitframe)
 	if groupunitframe and groupunitframe.unit then
-		_, powertype = UnitPowerType(groupunitframe.unit)
+		local _, powertype = UnitPowerType(groupunitframe.unit)
 		if powertype then
 			if groupunitframe.Power then
 				if E.db.unitframe.colors.transparentPower and E.db.unitframe.colors.custompowerbackdrop then --fix transparent power custom backdrop
@@ -258,6 +254,7 @@ hooksecurefunc(UF, "ClassPower_SetBarColor", ElvUI_EltreumUI.UFClassPower_SetBar
 --Gradient Power Colors
 function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
+	local forced = false
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablepower and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		ElvUI_EltreumUI:ApplyUnitGradientPower("player", "Player")
 		ElvUI_EltreumUI:ApplyUnitGradientPower("target", "Target")
@@ -284,8 +281,6 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 
 		if unit == "testunit" then
 			forced = true
-		else
-			forced = false
 		end
 
 		if forced then
@@ -310,7 +305,7 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 
 		--group/raid unitframes
 		if IsInGroup() or forced then
-			headergroup = nil
+			local headergroup = nil
 			if _G["ElvUF_Raid1"] and _G["ElvUF_Raid1"]:IsShown() and E.db["unitframe"]["units"]["raid1"]["power"]["enable"] then
 				headergroup = _G["ElvUF_Raid1"]
 			elseif _G["ElvUF_Raid2"] and _G["ElvUF_Raid2"]:IsShown() and E.db["unitframe"]["units"]["raid2"]["power"]["enable"] then
@@ -322,9 +317,9 @@ function ElvUI_EltreumUI:GradientPower(unit)--(unit,r,g,b)
 			end
 			if headergroup ~= nil then
 				for i = 1, headergroup:GetNumChildren() do
-					group = select(i, headergroup:GetChildren())
+					local group = select(i, headergroup:GetChildren())
 					for j = 1, group:GetNumChildren() do
-						groupbutton = select(j, group:GetChildren())
+						local groupbutton = select(j, group:GetChildren())
 						if groupbutton and groupbutton.Power and groupbutton.Power:IsShown() and groupbutton.unit then
 							ElvUI_EltreumUI:ApplyGroupGradientPower(groupbutton)
 						end
@@ -378,13 +373,13 @@ hooksecurefunc(UF, "PostUpdatePowerColor", ElvUI_EltreumUI.GradientPower)
 function ElvUI_EltreumUI:GradientStagger()
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enableclassbar and E.db.ElvUI_EltreumUI.unitframes.UFmodifications then
 		if not isHookedstagger then
-			staggerframe = _G["ElvUF_Player_Stagger"]
+			local staggerframe = _G["ElvUF_Player_Stagger"]
 			if staggerframe then
 				hooksecurefunc(staggerframe, "SetStatusBarColor", function(stagger,r,g,b)
 					stagger:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.5,g= g - 0.5,b= b - 0.5,a= 1}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= 1})
 				end)
 			end
-			npstaggerframe = _G["ElvNP_TargetClassPowerStagger"]
+			local npstaggerframe = _G["ElvNP_TargetClassPowerStagger"]
 			if npstaggerframe then
 				hooksecurefunc(npstaggerframe, "SetStatusBarColor", function(npstagger,r,g,b)
 					npstagger:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientationpower, {r=r - 0.5,g= g - 0.5,b= b - 0.5,a= 1}, {r=r + 0.2,g= g + 0.2,b= b + 0.2,a= 1})

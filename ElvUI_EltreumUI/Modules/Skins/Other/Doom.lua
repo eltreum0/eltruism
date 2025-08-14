@@ -27,7 +27,6 @@ local GetActionTexture = _G.GetActionTexture
 local GetInventoryItemID = _G.GetInventoryItemID
 local GetInventoryItemTexture = _G.GetInventoryItemTexture
 local wasPreviewing = false
-local listedSpells
 local cooldowns, animating, watching = { }, { }, { }
 local petOverlay = {1,1,1}
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
@@ -100,7 +99,7 @@ function ElvUI_EltreumUI:Doom()
 		end
 
 		--load in the ignored spells
-		listedSpells = {}
+		local listedSpells = {}
 		if E.db.ElvUI_EltreumUI.skins.doom.ignoring then
 			local list = {strsplit("," ,E.private.ElvUI_EltreumUI.doomignored)}
 			for _,v in ipairs(list) do

@@ -1,8 +1,10 @@
 local E = unpack(ElvUI)
-local _G = _G
+local DT = E:GetModule('DataTexts')
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
 local A = E:GetModule('Auras')
+local valuecolors = E:ClassColor(E.myclass, true)
+local _G = _G
 local pairs = _G.pairs
 local CreateFrame = _G.CreateFrame
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
@@ -16,8 +18,7 @@ local MinimapShadow = CreateFrame("Frame", "EltruismMiniMapShadowFrame")
 local RightChatShadow = CreateFrame("Frame", "EltruismRightChatShadowFrame")
 local LeftChatShadow = CreateFrame("Frame", "EltruismLeftChatShadowFrame")
 local timermonitor = CreateFrame("FRAME")
-local valuecolors = E:ClassColor(E.myclass, true)
-local DT = E:GetModule('DataTexts')
+
 
 --simple function to set shadow color
 function ElvUI_EltreumUI:ShadowColor(shadow)

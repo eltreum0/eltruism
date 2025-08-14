@@ -1,10 +1,11 @@
 local E, L = unpack(ElvUI)
+local M = E:GetModule('Minimap')
+local S = E:GetModule('Skins')
+local valuecolors = E:ClassColor(E.myclass, true)
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent
 local IsInInstance = _G.IsInInstance
-local S = E:GetModule('Skins')
-local valuecolors = E:ClassColor(E.myclass, true)
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local Minimap = _G.Minimap
 local GetPlayerFacing = _G.GetPlayerFacing
@@ -15,7 +16,6 @@ local InCombatLockdown = _G.InCombatLockdown
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
 local pairs = _G.pairs
 local hooksecurefunc = _G.hooksecurefunc
-local M = E:GetModule('Minimap')
 
 --Conversion of Time to Arrive weakaura (new version)
 if E.Retail then
