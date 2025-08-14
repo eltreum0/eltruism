@@ -29,7 +29,7 @@ local GetInventoryItemTexture = _G.GetInventoryItemTexture
 local wasPreviewing = false
 local cooldowns, animating, watching = { }, { }, { }
 local petOverlay = {1,1,1}
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local C_VoiceChat = _G.C_VoiceChat
 
 --createframes

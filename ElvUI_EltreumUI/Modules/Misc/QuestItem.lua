@@ -9,7 +9,6 @@ local GetItemClassInfo = _G.C_Item and _G.C_Item.GetItemClassInfo or _G.GetItemC
 local InCombatLockdown = _G.InCombatLockdown
 local GetBindingKey = _G.GetBindingKey
 local SetBindingClick = _G.SetBindingClick
-local HandleModifiedItemClick = _G.HandleModifiedItemClick
 local GameTooltip = _G.GameTooltip
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local ipairs = _G.ipairs
@@ -430,7 +429,7 @@ function ElvUI_EltreumUI:QuestItem()
 
 				if E.db.ElvUI_EltreumUI.quests.showkeybind then
 					b.HotKey = b:CreateFontString(nil,"ARTWORK","NumberFontNormalSmallGray")
-					b.HotKey:SetPoint(E.db.actionbar.bar1.hotkeyTextPosition or "CENTER",b.icon,E.db.actionbar.bar1.hotkeyTextXOffset or 0,b.icon,E.db.actionbar.bar1.hotkeyTextYOffset or 0)
+					b.HotKey:SetPoint(E.db.actionbar.bar1.hotkeyTextPosition or "CENTER",b.icon,E.db.actionbar.bar1.hotkeyTextPosition or "CENTER",E.db.actionbar.bar1.hotkeyTextXOffset or 0,E.db.actionbar.bar1.hotkeyTextYOffset or 0)
 					b.HotKey:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.actionbar.bar1.hotkeyFontSize, ElvUI_EltreumUI:FontFlag(E.db.actionbar.bar1.hotkeyFontOutline))
 					--b.HotKey:SetPoint("TOPRIGHT",b.icon,0,0)
 					--b.HotKey:SetJustifyH("LEFT")
@@ -660,7 +659,7 @@ function ElvUI_EltreumUI:QuestItem()
 						self.items[i].bindstring = "CLICK ".."EltruismQuestItem"..i..":LeftButton"
 
 						self.items[i].commandName = "CLICK ".."EltruismQuestItem"..i..":LeftButton"
-						SetBindingClick(self.items[i].bindstring, "EltruismQuestItem1")
+						SetBindingClick(self.items[i].bindstring, "EltruismQuestItem1",self.items[i])
 
 						--try to get elvui binding mode to work
 						AB:StyleButton(self.items[i])

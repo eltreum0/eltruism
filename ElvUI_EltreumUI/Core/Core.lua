@@ -6,9 +6,9 @@ local UIParent = _G.UIParent
 local print = _G.print
 local unpack = _G.unpack
 local hooksecurefunc = _G.hooksecurefunc
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
-local DisableAddOn = _G.C_AddOns and _G.C_AddOns.DisableAddOn or _G.DisableAddOn
-local LoadAddOn = _G.C_AddOns and _G.C_AddOns.LoadAddOn or _G.LoadAddOn
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
+local DisableAddOn = _G.C_AddOns and _G.C_AddOns.DisableAddOn
+local LoadAddOn = _G.C_AddOns and _G.C_AddOns.LoadAddOn
 local GetPhysicalScreenSize = _G.GetPhysicalScreenSize
 local UIParentLoadAddOn = _G.UIParentLoadAddOn
 local GetCursorInfo = _G.GetCursorInfo
@@ -201,8 +201,8 @@ function ElvUI_EltreumUI:Abbrev(name)
 	local letters, lastWord = '', strmatch(name, '.+%s(.+)$')
 	if lastWord then
 		for word in gmatch(name, '.-%s') do
-			local firstLetter = utf8sub(gsub(word, '^[%s%p]*', ''), 1, 1)
-			if firstLetter ~= utf8lower(firstLetter) then
+			local firstLetter = string.utf8sub(gsub(word, '^[%s%p]*', ''), 1, 1)
+			if firstLetter ~= string.utf8lower(firstLetter) then
 				letters = format('%s%s. ', letters, firstLetter)
 			end
 		end
@@ -667,7 +667,7 @@ EltruismGameMenu:SetScript("OnEvent", function()
 					if GameMenuFrame.ElvUI then
 						EltruismMenuButton:Point("TOP", GameMenuFrame.ElvUI, "BOTTOM", 0, -1)
 					else
-						EltruismMenuButton:Point("TOP", GameMenuButtonAddons, "BOTTOM", 0, -1)
+						EltruismMenuButton:Point("TOP", _G.GameMenuButtonAddons, "BOTTOM", 0, -1)
 					end
 					if _G["GameMenu_SLEConfig"] and not _G["GameMenuReloadUI"] and not _G.TXUI_GAME_BUTTON then
 						EltruismMenuButton:Point("TOP", _G["GameMenu_SLEConfig"], "BOTTOM", 0, -1)

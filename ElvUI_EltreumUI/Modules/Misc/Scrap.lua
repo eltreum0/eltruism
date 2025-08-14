@@ -2,7 +2,7 @@ local E = unpack(ElvUI)
 local B = E:GetModule('Bags')
 local S = E:GetModule('Skins')
 local _G = _G
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local GetContainerItemID = _G.C_Container and _G.C_Container.GetContainerItemID or _G.GetContainerItemID
 
 --based on Scrap_ElvUI by RainForDays, which was removed and not updated, and is also no longer available

@@ -1,9 +1,9 @@
 local E, L= unpack(ElvUI)
 local S = E:GetModule('Skins')
 local _G = _G
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local EnableAddOn = _G.C_AddOns and _G.C_AddOns.EnableAddOn or _G.EnableAddOn
-local DisableAddOn = _G.C_AddOns and _G.C_AddOns.DisableAddOn or _G.DisableAddOn
+local DisableAddOn = _G.C_AddOns and _G.C_AddOns.DisableAddOn
 local GetAddOnInfo = _G.C_AddOns and _G.C_AddOns.GetAddOnInfo or _G.GetAddOnInfo
 local SaveAddOns = _G.C_AddOns and _G.C_AddOns.SaveAddOns or _G.SaveAddOns
 local select = _G.select

@@ -3,6 +3,8 @@ local _G = _G
 local CH = E:GetModule("Chat")
 local hooksecurefunc = _G.hooksecurefunc
 local format = _G.string.format
+local TIMERUNNING_ATLAS = '|A:timerunning-glues-icon-small:%s:%s:0:0|a'
+local TIMERUNNING_SMALL = format(TIMERUNNING_ATLAS, 12, 10)
 
 --Add Icons to chat messages
 function ElvUI_EltreumUI:AuthorMVPDonatorIcons()

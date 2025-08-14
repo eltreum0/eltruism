@@ -1,6 +1,6 @@
 local E = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 
 function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	if IsAddOnLoaded("ElvUI_SLE") then
@@ -29,7 +29,7 @@ function ElvUI_EltreumUI:SetupFontsOutlineDefault()
 	if IsAddOnLoaded('ProjectAzilroka') then
 		local PAprofile = ProjectAzilrokaDB["profileKeys"][E.mynameRealm]
 		if ProjectAzilrokaDB["profiles"][PAprofile]["stAddonManager"] then
-			ProjectAzilrokaDB["profiles"][PAprofile]["stAddonManager"]["FontFlag"] = fontStyle
+			ProjectAzilrokaDB["profiles"][PAprofile]["stAddonManager"]["FontFlag"] = "THICKOUTLINE"
 		end
 	end
 	E.db["general"]["fontStyle"] = "OUTLINE"

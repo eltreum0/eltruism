@@ -6,7 +6,7 @@ local CreateFrame = _G.CreateFrame
 local max = _G.max
 local tonumber = _G.tonumber
 local math = _G.math
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 local CharacterStatsPane = _G.CharacterStatsPane
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
@@ -221,7 +221,7 @@ end
 
 --adapted from libiteminfo to be player only
 function ElvUI_EltreumUI:GetUnitItemLevel(unit)
-	local total, maxlevel = 0, 0
+	local total, maxlevel, level = 0, 0, 0
 
 	for i = 1, 15 do
 		if (i ~= 4) then
@@ -549,11 +549,12 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 				end
 
 				--fix enhancement
+				local linewidthsle3 = (( 300 - CharacterStatsPane.EnhancementsCategory.Title:GetStringWidth())/2)
 				if CharacterStatsPane.EnhancementsCategory.Title.StatusLine then
-					CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetSize(linewidth3 + 8, 4)
+					CharacterStatsPane.EnhancementsCategory.Title.StatusLine:SetSize(linewidthsle3 + 8, 4)
 				end
 				if CharacterStatsPane.EnhancementsCategory.Title.StatusLine2 then
-					CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetSize(linewidth3 + 8, 4)
+					CharacterStatsPane.EnhancementsCategory.Title.StatusLine2:SetSize(linewidthsle3 + 8, 4)
 				end
 			end
 
@@ -1170,7 +1171,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "BLACK" then
 				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\black")
 			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
-				texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
+				local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
 				CharacterFrameBackgroundTexture:SetTexture(texturefile)
 			end
 			CharacterFrameBackgroundTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)
@@ -1717,7 +1718,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "BLACK" then
 				CharacterFrameBackgroundTexture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Textures\\Backgrounds\\black")
 			elseif E.db.ElvUI_EltreumUI.skins.armorybgtype == "CUSTOM" then
-				texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
+				local texturefile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.skins.armorybgtexture
 				CharacterFrameBackgroundTexture:SetTexture(texturefile)
 			end
 			CharacterFrameBackgroundTexture:SetAlpha(E.db.ElvUI_EltreumUI.skins.expandarmorybgalpha)

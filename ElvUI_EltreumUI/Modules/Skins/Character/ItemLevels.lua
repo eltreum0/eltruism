@@ -7,7 +7,7 @@ local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetInventoryItemQuality = _G.GetInventoryItemQuality
 local GetDetailedItemLevelInfo = _G.C_Item and _G.C_Item.GetDetailedItemLevelInfo or _G.GetDetailedItemLevelInfo
 local hooksecurefunc = _G.hooksecurefunc
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 
 --Calculate ilvl and average ilvl of player items/inspect unit
 local EltruismInspectilvls = CreateFrame("Frame")

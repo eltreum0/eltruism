@@ -7,7 +7,7 @@ local valuecolors = E:ClassColor(E.myclass, true)
 local _G = _G
 local pairs = _G.pairs
 local CreateFrame = _G.CreateFrame
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 local select = _G.select
 local C_ChatBubbles = _G.C_ChatBubbles
@@ -4100,6 +4100,7 @@ end
 local classcolor = E:ClassColor(E.myclass, true)
 function ElvUI_EltreumUI:NameplateShadows(nameplate)
 	if not nameplate then return end
+	local bordertexture
 	if E.private.nameplates.enable then
 		if (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.nameplateborders) and not E.db.ElvUI_EltreumUI.borders.bordertest then
 			if not nameplate.Health then return end

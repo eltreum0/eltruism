@@ -366,6 +366,7 @@ end
 
 function ElvUI_EltreumUI:CHALLENGE_MODE_COMPLETED()
 	ElvUI_EltreumUI:AutoScreenshot()
+	ElvUI_EltreumUI:QuestMythicPlusEnd()
 end
 
 function ElvUI_EltreumUI:PLAYER_AVG_ITEM_LEVEL_UPDATE()
@@ -408,9 +409,7 @@ function ElvUI_EltreumUI:CHALLENGE_MODE_START()
 	ElvUI_EltreumUI:QuestMythicPlusStart()
 end
 
-function ElvUI_EltreumUI:CHALLENGE_MODE_COMPLETED()
-	ElvUI_EltreumUI:QuestMythicPlusEnd()
-end
+
 
 function ElvUI_EltreumUI:CHALLENGE_MODE_RESET()
 	ElvUI_EltreumUI:QuestMythicPlusEnd()
