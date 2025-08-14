@@ -7,5 +7,5 @@
 	<Include file='Tags\Load_Tags.xml'/>
 	<Script file='VersionCheck.lua'/>
 	<Script file='DatabaseConverter.lua'/>
-	<Script file='Options.lua'/>
+	<Include file='Options\load_options.xml'/>
 </Ui>
