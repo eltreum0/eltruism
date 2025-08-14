@@ -68,14 +68,14 @@ function ElvUI_EltreumUI:BagProfessions()
 				[48] = 12180, --Tailoring
 				[49] = 26790, --Tailoring
 				[50] = 51309, --Tailoring
-				[51] = 3273, --First Aid --astham knows this one
+				[51] = 3273, --First Aid
 				[52] = 3274, --First Aid
 				[53] = 7924, --First Aid
 				[54] = 10846, --First Aid
 				[55] = 27028, --First Aid
 				[56] = 45542, --First Aid
 				[57] = 2550, --Cooking
-				[58] = 3102, --Cooking --astham knows this one
+				[58] = 3102, --Cooking
 				[59] = 3413, --Cooking
 				[60] = 18260, --Cooking
 				[61] = 185, --Cooking
