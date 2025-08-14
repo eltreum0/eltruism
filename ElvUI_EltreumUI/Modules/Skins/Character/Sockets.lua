@@ -1807,34 +1807,14 @@ function ElvUI_EltreumUI:ClassicSockets()
 		return slotName == "MainHandSlot" or slotName == "SecondaryHandSlot" or slotName == "RangedSlot"
 	end
 
-	function SlotIconManager:IsAtMaxLevel()
-		--return UnitLevel(self.adapter:GetUnit()) >= 60
-		if E.Classic then
-			return UnitLevel(self.adapter:GetUnit()) == 60
-		elseif E.Mists then
-			return UnitLevel(self.adapter:GetUnit()) == 85
-		end
-	end
-
 	function SlotIconManager:IsSlotEnchantRequired(slotName)
-		return self.slotsWithRequiredEnchants[slotName] ~= nil and self:IsAtMaxLevel()
-	end
-
-	function SlotIconManager:IsSlotGemRequired()
-		return self:IsAtMaxLevel()
+		return self.slotsWithRequiredEnchants[slotName] ~= nil and _G.IsPlayerAtEffectiveMaxLevel
 	end
 
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ITEM STRING INFO
 	function ItemStringInfoFunctionTable:new(itemString)
-		--itemString = string.match(itemString, "^|%x%x%x%x%x%x%x%x%x|H([^|]+)|h") or itemString
 		local _, _, enchantId = strsplit(":",itemString)
 
-		--[[
-		_type, itemId, enchantId, jewelId1, jewelId2, jewelId3, jewelId4, suffixId, uniqueId, linkLevel, specializationID, reforgeId = strsplit(
-				":",
-				itemString
-			)
-		]]
 		return setmetatable({
 			itemString = itemString,
 			enchantId = tonumber(enchantId) or 0,
