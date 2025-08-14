@@ -830,9 +830,9 @@ end
 function ElvUI_EltreumUI:EltruismSpellInfo(spellID)
 	local spellData = GetSpellInfo(spellID)
 	if spellData then
-		return spellData.name, spellData.spellID
+		return spellData.name, spellData.spellID, spellData.iconID
 	else
-		return "UNKNOWN", 187874 --fallback value
+		return "UNKNOWN", 187874, 136244--fallback value
 	end
 end
 
