@@ -466,6 +466,7 @@ hooksecurefunc(S,"HandleTab",function(_,tab, noBackdrop)
 end)
 
 hooksecurefunc(S,"HandleButton",function(_,button, _, _, noStyle)
+	if not button then return end
 	if button.EltruismAnimationTest then return end
 	if noStyle then return end
 	CreateFader(button)
