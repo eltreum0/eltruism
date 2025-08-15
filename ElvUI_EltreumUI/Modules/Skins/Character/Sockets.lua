@@ -1892,19 +1892,21 @@ function ElvUI_EltreumUI:ClassicSockets()
 	end
 
 	function ItemStringInfoFunctionTable:IsEye()
-		local result = false
 		local bitem = {}
 		local itemS = self.itemString
-		itemS = itemS:sub(34, -4)
+		itemS = itemS:sub(1, -4)
+		itemS = itemS:sub(34)
 
-		local sep = ":"
-		local pattern = string.format("([^%s]+)", sep)
-		local _, count = string.gsub(itemS, pattern, function(c) bitem[#bitem + 1] = c end)
+		for part in string.gmatch(itemS, "([^:]+)") do
+			bitem[#bitem + 1] = part
+		end
+
 		for _, item in ipairs(bitem) do
 			if item == "6514" or item == "6935" then
 				return true
 			end
 		end
+
 		return false
 	end
 
