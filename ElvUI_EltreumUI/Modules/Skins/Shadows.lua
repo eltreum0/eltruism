@@ -3947,7 +3947,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		if IsAddOnLoaded("Leatrix_Maps") or not E.private.skins.blizzard.worldmap then --leatrix map issues
+		if IsAddOnLoaded("Leatrix_Maps") then --leatrix map issues
 			if LeaMapsDB["NoMapBorder"] == "On" then
 				if _G.WorldMapFrame and _G.WorldMapFrame.shadow then
 					_G.WorldMapFrame.shadow:Hide()
@@ -3957,7 +3957,12 @@ function ElvUI_EltreumUI:Shadows()
 					_G.WorldMapFrame.shadow:Hide()
 				end
 			end
+		elseif not E.private.skins.blizzard.worldmap then
+			if _G.WorldMapFrame and _G.WorldMapFrame.shadow then
+				_G.WorldMapFrame.shadow:Hide()
+			end
 		end
+
 		if not E.private.skins.blizzard.spellbook then
 			local disablespellbook = {
 				_G.SpellBookFrame,
