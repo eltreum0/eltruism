@@ -821,7 +821,6 @@ local bossIDs = {
 	["40484"] = true, --erudax
 	["40177"] = true, --forgemaster-throngus
 	["39625"] = true, --general-umbriss
-	["45992"] = true, --valiona
 	["40320"] = true,
 
 	--Throne of the Tides
@@ -1054,7 +1053,6 @@ local bossIDs = {
 	["68476"] = true, --horridon
 	["68078"] = true, --iron-qon
 	["69712"] = true, --ji-kun
-	["69465"] = true, --jinrokh-the-breaker
 	["69134"] = true, --kazrajin
 	["68397"] = true, --lei-shen
 	["68905"] = true, --lulin
@@ -1601,7 +1599,6 @@ local bossIDs = {
 
 	--sanguine-depths
 	["162103"] = true, --executor-tarvold
-	["165318"] = true, --general-kaal
 	["162102"] = true, --grand-proctor-beryllia
 	["162100"] = true, --kryxis-the-voracious
 

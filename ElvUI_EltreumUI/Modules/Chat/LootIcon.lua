@@ -1,6 +1,6 @@
 local E = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local ChatFrame_AddMessageEventFilter = _G.ChatFrame_AddMessageEventFilter
 local ChatFrame_RemoveMessageEventFilter = _G.ChatFrame_RemoveMessageEventFilter
 local GetItemIcon = _G.C_Item and _G.C_Item.GetItemIconByID or _G.GetItemIcon

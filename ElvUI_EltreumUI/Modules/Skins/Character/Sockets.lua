@@ -18,13 +18,12 @@ local tonumber = _G.tonumber
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local ipairs = _G.ipairs
-local WorldFrame = _G.WorldFrame
 local GetItemGem = _G.C_Item and _G.C_Item.GetItemGem or _G.GetItemGem
 local GameTooltip = _G.GameTooltip
 local GetSpellLink = _G.GetSpellLink
 local GetSpellInfoFunctionTable = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
 local GetSpellTexture = _G.C_Spell and _G.C_Spell.GetSpellTexture or _G.GetSpellTexture
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local type = _G.type
 local max = _G.max
 local strlenutf8 = _G.strlenutf8
@@ -1169,9 +1168,8 @@ function ElvUI_EltreumUI:ClassicSockets()
 	end
 
 	function PoolFunctionTable:Release(ref)
-		--print(ref)
 		if not self.allocated[ref] then
-			return --error("PoolFunctionTable:Release failed: bad reference")
+			return
 		end
 		local category = self.allocated[ref]
 		self.allocated[ref] = nil
@@ -1243,7 +1241,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 			_G.GameTooltip:Show()
 			tooltip:Show(self.frame)
 			tooltip:Hide()
-			--GameTooltip:SetHyperlink(tooltip:GetLink())
 		end)
 		self.frame:SetScript("OnLeave", function ()
 			tooltip:Hide()
@@ -1771,8 +1768,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 			local itemString = GetInventoryItemLink(self.adapter:GetUnit(), GetInventorySlotInfo(slotName))
 			self.itemInfos[slotName] = itemString and ItemStringInfoFunctionTable:new(itemString) or nil
 		end
-		-- One-handed artifacts (i.e. ones with "imaginary" part which emerges into existance when artifcat is equipped)
-		-- need special treatment: either main or secondary hand has real item level, the other one is always 750:
 	end
 
 	function SlotIconManager:GetItemInfoForAllSlots()
@@ -1808,34 +1803,14 @@ function ElvUI_EltreumUI:ClassicSockets()
 		return slotName == "MainHandSlot" or slotName == "SecondaryHandSlot" or slotName == "RangedSlot"
 	end
 
-	function SlotIconManager:IsAtMaxLevel()
-		--return UnitLevel(self.adapter:GetUnit()) >= 60
-		if E.Classic then
-			return UnitLevel(self.adapter:GetUnit()) == 60
-		elseif E.Mists then
-			return UnitLevel(self.adapter:GetUnit()) == 85
-		end
-	end
-
 	function SlotIconManager:IsSlotEnchantRequired(slotName)
-		return self.slotsWithRequiredEnchants[slotName] ~= nil and self:IsAtMaxLevel()
-	end
-
-	function SlotIconManager:IsSlotGemRequired()
-		return self:IsAtMaxLevel()
+		return self.slotsWithRequiredEnchants[slotName] ~= nil and _G.IsPlayerAtEffectiveMaxLevel
 	end
 
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ITEM STRING INFO
 	function ItemStringInfoFunctionTable:new(itemString)
-		--itemString = string.match(itemString, "^|%x%x%x%x%x%x%x%x%x|H([^|]+)|h") or itemString
 		local _, _, enchantId = strsplit(":",itemString)
 
-		--[[
-		_type, itemId, enchantId, jewelId1, jewelId2, jewelId3, jewelId4, suffixId, uniqueId, linkLevel, specializationID, reforgeId = strsplit(
-				":",
-				itemString
-			)
-		]]
 		return setmetatable({
 			itemString = itemString,
 			enchantId = tonumber(enchantId) or 0,
@@ -1847,7 +1822,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 	end
 
 	function ItemStringInfoFunctionTable:getLink()
-		--local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, itemSellPrice = GetItemInfo(self.itemString)
 		local _, itemLink = GetItemInfo(self.itemString)
 		return itemLink
 	end
@@ -1876,7 +1850,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 
 	local InvisibleTooltip = CreateFrame("GameTooltip", "EltruismKibsItemLevel" .. "InvisibleTooltip", nil, "GameTooltipTemplate")
 	function ItemStringInfoFunctionTable:_getTooltipSockets(link)
-		-- Based on Bimbo add-on code
 		local result = {}
 		local n = 30
 		for i = 1, n do
@@ -1885,7 +1858,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 				texture:SetTexture(nil)
 			end
 		end
-		InvisibleTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
+		InvisibleTooltip:SetOwner(_G.UIParent, "ANCHOR_NONE")
 		InvisibleTooltip:SetHyperlink(link)
 		for i = 1, n do
 			local texture = _G[InvisibleTooltip:GetName().."Texture"..i]
@@ -1922,17 +1895,17 @@ function ElvUI_EltreumUI:ClassicSockets()
 		local result = false
 		local bitem = {}
 		local itemS = self.itemString
-		itemS = itemS:sub(1, -4)
-		itemS = string.sub(itemS, 34)
+		itemS = itemS:sub(34, -4)
+
 		local sep = ":"
 		local pattern = string.format("([^%s]+)", sep)
-		string.gsub(itemS, pattern, function(c) bitem[#bitem + 1] = c end)
-		for k,_ in pairs(bitem) do
-			if bitem[k]=="6514" or bitem[k]=="6935" then
-				result = true
+		local _, count = string.gsub(itemS, pattern, function(c) bitem[#bitem + 1] = c end)
+		for _, item in ipairs(bitem) do
+			if item == "6514" or item == "6935" then
+				return true
 			end
 		end
-		return result
+		return false
 	end
 
 	function ItemStringInfoFunctionTable:GetUpgrades()
@@ -1940,7 +1913,7 @@ function ElvUI_EltreumUI:ClassicSockets()
 			self.upgrades = { nil, nil }
 			local link = self:getLink()
 			if link then
-				InvisibleTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
+				InvisibleTooltip:SetOwner(_G.UIParent, "ANCHOR_NONE")
 				InvisibleTooltip:SetHyperlink(self:getLink())
 				for i = 1, 5 do
 					local text = _G[InvisibleTooltip:GetName() .. "TextLeft" .. i]
@@ -2130,36 +2103,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 	function SpellInfoFunctionTable:getTextureName()
 		return GetSpellTexture(self.spellId)
 	end
-	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------SPINNER
-	--[[local Spinner = {}
-	Spinner.__index = Spinner
-	function Spinner:new(parent)
-		local frame = CreateFrame("FRAME", nil, parent, "EltruismKibsItemLevel".."Spinner")
-
-		return setmetatable({
-			frame = frame,
-		}, self)
-	end
-	local poolSpinner = PoolFunctionTable:new(
-		function (...)
-			return nil
-		end,
-		function (parent)
-			return Spinner:new(parent)
-		end,
-		function (ref, parent)
-			ref.frame:SetParent(parent)
-		end,
-		function (ref)
-			ref.frame:SetParent(nil)
-		end
-	)
-	local function AllocateSpinner(parent)
-		return poolSpinner:Allocate(parent)
-	end
-	local function ReleaseSpinner(ref)
-		poolSpinner:Release(ref)
-	end]]
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------APPLYSTYLE
 	local function ApplyStyle()
 		local style = 0
@@ -2176,10 +2119,6 @@ function ElvUI_EltreumUI:ClassicSockets()
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------INITIALIZE
 	local frame = CreateFrame("Frame")
 	frame:RegisterEvent("ADDON_LOADED")
-	--frame:RegisterEvent("INSPECT_READY")
-	--frame:SetScript("OnEvent", function(_, event,...)
-		--local args = {...}
-		--if event == "ADDON_LOADED" and args[1] == "Blizzard_InspectUI" then
 	frame:SetScript("OnEvent", function(_, event)
 		if event == "ADDON_LOADED" and IsAddOnLoaded("Blizzard_InspectUI") and E.db.ElvUI_EltreumUI.skins.socketsinspect then
 			self.inspectorSlotIconManager = SlotIconManager:new(InspectionFrameAdapter:new())

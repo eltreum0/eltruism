@@ -13,7 +13,6 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 			whileDead = 1,
 			hideOnEscape = false,
 		}
-		local NONE = _G.NONE
 
 		if E.private.ElvUI_EltreumUI.install_version < "3.7.5" or forced then
 			--making sure it only runs on the current char's profile
@@ -23,8 +22,8 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 			else
 				currentprofile = false
 			end
-			local ProfileNames = NONE
-			local CharacterNames = NONE
+			local ProfileNames = _G.NONE
+			local CharacterNames = _G.NONE
 			for profile, data in pairs(ElvDB.profiles) do
 				local profileChanged = false
 				if profile == currentprofile then
@@ -54,13 +53,13 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 								profileChanged = true
 							end
 							if data.ElvUI_EltreumUI.skins then
-								if db.ElvUI_EltreumUI.skins.classiconsblizz then
-									db.ElvUI_EltreumUI.skins.classiconsblizz = nil
-									db.ElvUI_EltreumUI.skins.classiconsstyle = "BLIZZARD"
+								if data.ElvUI_EltreumUI.skins.classiconsblizz then
+									data.ElvUI_EltreumUI.skins.classiconsblizz = nil
+									data.ElvUI_EltreumUI.skins.classiconsstyle = "BLIZZARD"
 								end
-								if db.ElvUI_EltreumUI.skins.classiconsreleaf then
-									db.ElvUI_EltreumUI.skins.classiconsreleaf = nil
-									db.ElvUI_EltreumUI.skins.classiconsstyle = "RELEAF"
+								if data.ElvUI_EltreumUI.skins.classiconsreleaf then
+									data.ElvUI_EltreumUI.skins.classiconsreleaf = nil
+									data.ElvUI_EltreumUI.skins.classiconsstyle = "RELEAF"
 								end
 							end
 							if data.ElvUI_EltreumUI.instances then
@@ -497,7 +496,7 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 							end
 						end
 						if profileChanged then
-							if ProfileNames == NONE then
+							if ProfileNames == _G.NONE then
 								ProfileNames = profile
 							else
 								ProfileNames = ProfileNames..', '..profile

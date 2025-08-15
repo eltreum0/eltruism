@@ -1,6 +1,6 @@
 local E, L = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 
 -- AddOnSkins Profile

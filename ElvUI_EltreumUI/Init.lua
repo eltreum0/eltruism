@@ -327,7 +327,7 @@ local currenttalentretail = E.Retail and GetSpecialization()
 local currenttalentmists = E.Mists and GetSpecialization()
 function ElvUI_EltreumUI:ACTIVE_TALENT_GROUP_CHANGED()
 	local newtalentretail = E.Retail and GetSpecialization()
-	local cnewtalentmists = E.ClassicSOD and GetActiveTalentGroup() or E.Mists and GetSpecialization()
+	local cnewtalentmists = E.ClassicSOD and GetActiveTalentGroup() or E.Mists and GetSpecialization() --GetActiveTalentGroup is going to be removed use C_SpecializationInfo.GetActiveSpecGroup instead TOOD
 	if E.Retail then
 		ElvUI_EltreumUI.Spec = GetSpecializationInfo(GetSpecialization())
 	elseif E.Mists then
@@ -366,6 +366,7 @@ end
 
 function ElvUI_EltreumUI:CHALLENGE_MODE_COMPLETED()
 	ElvUI_EltreumUI:AutoScreenshot()
+	ElvUI_EltreumUI:QuestMythicPlusEnd()
 end
 
 function ElvUI_EltreumUI:PLAYER_AVG_ITEM_LEVEL_UPDATE()
@@ -408,9 +409,7 @@ function ElvUI_EltreumUI:CHALLENGE_MODE_START()
 	ElvUI_EltreumUI:QuestMythicPlusStart()
 end
 
-function ElvUI_EltreumUI:CHALLENGE_MODE_COMPLETED()
-	ElvUI_EltreumUI:QuestMythicPlusEnd()
-end
+
 
 function ElvUI_EltreumUI:CHALLENGE_MODE_RESET()
 	ElvUI_EltreumUI:QuestMythicPlusEnd()

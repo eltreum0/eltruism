@@ -62,6 +62,8 @@ local GetParryChance = _G.GetParryChance
 local GetDodgeChance = _G.GetDodgeChance
 local UnitArmor = _G.UnitArmor
 
+--GetTalentTabInfo is going to be removed, use C_SpecializationInfo.GetSpecializationInfo instead TODO
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------stats datatext
 local function EltruismStatsDatatextOnEnter()
 	local basestat1, currentstat1, statbuff1, statnerf1 = UnitStat('player', LE_UNIT_STAT_STRENGTH)

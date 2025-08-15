@@ -1,7 +1,7 @@
 local E, L = unpack(ElvUI)
 local valuecolors = E:ClassColor(E.myclass, true)
 local _G = _G
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local tostring = _G.tostring
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local math = _G.math

@@ -222,9 +222,9 @@ function ElvUI_EltreumUI:SetGroupRoleClassic()
 				UnitSetRole("player","DAMAGER")
 			end
 		else
-			local _, _, _, _, spent1 = _G.GetTalentTabInfo(1)
-			local _, _, _, _, spent2 = _G.GetTalentTabInfo(2)
-			local _, _, _, _, spent3 = _G.GetTalentTabInfo(3)
+			local _, _, _, _, spent1 = _G.GetTalentTabInfo(1) --GetTalentTabInfo is going to be removed, use C_SpecializationInfo.GetSpecializationInfo instead TODO
+			local _, _, _, _, spent2 = _G.GetTalentTabInfo(2) --GetTalentTabInfo is going to be removed, use C_SpecializationInfo.GetSpecializationInfo instead TODO
+			local _, _, _, _, spent3 = _G.GetTalentTabInfo(3) --GetTalentTabInfo is going to be removed, use C_SpecializationInfo.GetSpecializationInfo instead TODO
 			--print(isDPS,isTank,isHealer,E.myclass,spent1,spent2,spent3)
 			if E.myclass == 'SHAMAN' then
 				if spent3 < spent1 and spent3 < spent2 then
@@ -281,7 +281,7 @@ function ElvUI_EltreumUI:SetGroupRoleClassic()
 					end
 				end
 			elseif E.myclass == 'DEATHKNIGHT' then --only check for the blade barrier talent
-				if select(5, GetTalentInfo(1, 21)) > 0 then
+				if select(5, GetTalentInfo(1, 21)) > 0 then --GetTalentInfo is going to be removed, Use C_SpecializationInfo.GetTalentInfo instead. TODO
 					if not isTank then
 						UnitSetRole("player","TANK")
 					end

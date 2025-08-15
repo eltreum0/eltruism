@@ -1,7 +1,7 @@
 local E, L, V, P, G = unpack(ElvUI)
 local classcolor = E:ClassColor(E.myclass, true)
 local _G = _G
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local tostring = _G.tostring
 
 -- WarpDeplete profile setup

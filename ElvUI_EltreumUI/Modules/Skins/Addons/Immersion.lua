@@ -6,7 +6,7 @@ local pairs = _G.pairs
 local tostring = _G.tostring
 local tonumber = _G.tonumber
 local InCombatLockdown = _G.InCombatLockdown
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local GetQuestItemInfo = _G.GetQuestItemInfo
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 

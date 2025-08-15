@@ -1,7 +1,7 @@
 local E, L = unpack(ElvUI)
 local _G = _G
 local IsInInstance = _G.IsInInstance
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc
 local InCombatLockdown = _G.InCombatLockdown
 local UnitLevel = _G.UnitLevel

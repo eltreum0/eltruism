@@ -1,7 +1,7 @@
 local E = unpack(ElvUI)
 local _G = _G
 --local ObjectiveTracker_Collapse = _G.ObjectiveTracker_Collapse
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local IsInInstance = _G.IsInInstance
 --local ObjectiveTracker_Expand = _G.ObjectiveTracker_Expand
 local ObjectiveTrackerFrame = _G.ObjectiveTrackerFrame

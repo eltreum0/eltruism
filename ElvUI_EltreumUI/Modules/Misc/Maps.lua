@@ -13,7 +13,7 @@ local IsPlayerMoving = _G.IsPlayerMoving
 local gsub = _G.gsub
 local Enum = _G.Enum
 local InCombatLockdown = _G.InCombatLockdown
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local pairs = _G.pairs
 local hooksecurefunc = _G.hooksecurefunc
 

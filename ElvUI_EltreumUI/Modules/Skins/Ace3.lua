@@ -466,6 +466,7 @@ hooksecurefunc(S,"HandleTab",function(_,tab, noBackdrop)
 end)
 
 hooksecurefunc(S,"HandleButton",function(_,button, _, _, noStyle)
+	if not button then return end
 	if button.EltruismAnimationTest then return end
 	if noStyle then return end
 	CreateFader(button)
@@ -473,7 +474,7 @@ end)
 
 --for some reason buttons on macro frame dont get animation, maybe because they load too early?
 --[[
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local macroframe = CreateFrame("FRAME")
 macroframe:RegisterEvent("ADDON_LOADED")
 macroframe:SetScript("OnEvent",function(_,_,arg)

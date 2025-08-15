@@ -1,6 +1,6 @@
 local E, L = unpack(ElvUI)
 local _G = _G
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local Translit = E.Libs.Translit
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 
@@ -611,7 +611,7 @@ E:AddTag("name:eltruism:abbrev", "UNIT_NAME_UPDATE", function(unit,_,args)
 	if not args then args = 16 end
 	args = tonumber(args)
 	if string.len(name) > tonumber(args) then --first for npcs with multiple names/titles
-		name = Abbrev(name)
+		name = ElvUI_EltreumUI:Abbrev(name)
 	end
 	if name then
 		return E:ShortenString(name, args)
@@ -626,7 +626,7 @@ E:AddTag("target:eltruism:abbrev", 'UNIT_TARGET', function(unit,_,args)
 	if not args then args = 16 end
 	args = tonumber(args)
 	if string.len(targetName) > tonumber(args) then --first for npcs with multiple names/titles
-		targetName = Abbrev(targetName)
+		targetName = ElvUI_EltreumUI:Abbrev(targetName)
 	end
 	if targetName then
 		return E:ShortenString(targetName, args)

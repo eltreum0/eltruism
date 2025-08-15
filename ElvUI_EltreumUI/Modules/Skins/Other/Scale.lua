@@ -1,7 +1,7 @@
 local E = unpack(ElvUI)
 local _G = _G
 local CreateFrame = _G.CreateFrame
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 
 --frame scaling
 function ElvUI_EltreumUI:FrameScales()

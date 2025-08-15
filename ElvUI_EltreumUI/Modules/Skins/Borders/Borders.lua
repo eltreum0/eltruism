@@ -9,7 +9,7 @@ local table = _G.table
 local pairs = _G.pairs
 local UnitExists = _G.UnitExists
 local UnitReaction = _G.UnitReaction
-local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
 local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local tostring = _G.tostring
@@ -589,7 +589,7 @@ local function BordersPart1()
 							raid1border:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.raidstrata)
 							raid1border:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.raidlevel)
 							if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.raid1.infoPanel.enable then
-								raid1border:SetPoint("CENTER", _G["ElvUF_PartyGroup1UnitButton"..i], "CENTER", 0, E.db.unitframe.units.raid1.infoPanel.height)
+								raid1border:SetPoint("CENTER", _G['ElvUF_Raid1Group'..l..'UnitButton'..k], "CENTER", 0, E.db.unitframe.units.raid1.infoPanel.height)
 							end
 						end
 					end
@@ -1763,7 +1763,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 		if E.db.unitframe.units.target.enable then
 			if UnitExists("target") then
 				if E.db.unitframe.units.target.buffs.enable then
-					local number = E.db.unitframe.units.target.buffs.numrows * E.db.unitframe.units.target.buffs.perrow or 2
+					local number = (E.db.unitframe.units.target.buffs.numrows * E.db.unitframe.units.target.buffs.perrow) or 2
 					for i = 1, number do
 						if _G["ElvUF_TargetBuffsButton"..i] then
 							ElvUI_EltreumUI:UFAuraBorders(nil,_G["ElvUF_TargetBuffsButton"..i])
@@ -1771,7 +1771,7 @@ function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of 
 					end
 				end
 				if E.db.unitframe.units.target.debuffs.enable then
-					local number = E.db.unitframe.units.target.debuffs.numrows * E.db.unitframe.units.target.debuffs.perrow or 2
+					local number = (E.db.unitframe.units.target.debuffs.numrows * E.db.unitframe.units.target.debuffs.perrow) or 2
 					for i = 1, number do
 						if _G["ElvUF_TargetDebuffsButton"..i] then
 							ElvUI_EltreumUI:UFAuraBorders(nil,_G["ElvUF_TargetDebuffsButton"..i])
