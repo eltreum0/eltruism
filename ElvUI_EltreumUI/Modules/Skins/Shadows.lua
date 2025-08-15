@@ -1453,7 +1453,7 @@ function ElvUI_EltreumUI:Shadows()
 				--elvui action bars
 				for i = 1, 15 do
 					if E.db.actionbar["bar"..i] and E.db.actionbar["bar"..i].backdrop then
-						if _G["ElvUI_Bar"..i] and _G["ElvUI_Bar"..i].backdrop then
+						if _G["ElvUI_Bar"..i] and _G["ElvUI_Bar"..i].backdrop and not _G["ElvUI_Bar"..i].backdrop.shadow then
 							_G["ElvUI_Bar"..i].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G["ElvUI_Bar"..i].backdrop.shadow)
 						end
@@ -1521,6 +1521,23 @@ function ElvUI_EltreumUI:Shadows()
 					if _G.BossButton and not _G.BossButton.shadow then
 						_G.BossButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.BossButton.shadow)
+					end
+				end
+
+				--flyouts
+				for i = 1, 15 do
+					if _G["LABFlyoutButton"..i] then
+						if _G["LABFlyoutButton"..i].backdrop then
+							if not _G["LABFlyoutButton"..i].backdrop.shadow then
+								_G["LABFlyoutButton"..i].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["LABFlyoutButton"..i].backdrop.shadow)
+							end
+						else
+							if not _G["LABFlyoutButton"..i].shadow then
+								_G["LABFlyoutButton"..i]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["LABFlyoutButton"..i].shadow)
+							end
+						end
 					end
 				end
 			end
