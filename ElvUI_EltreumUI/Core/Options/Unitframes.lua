@@ -22,47 +22,63 @@ local function PortraitWasToggled(portrait)
 	if E.db.ElvUI_EltreumUI.unitframes.portrait.enable then
 		if portrait == "all" then
 			E.db.unitframe.units.player.portrait.enable = true
+			E.db.unitframe.units.player.portrait.overlay = true
 			E.db.unitframe.units.target.portrait.enable = true
+			E.db.unitframe.units.target.portrait.overlay = true
 			E.db.unitframe.units.focus.portrait.enable = true
+			E.db.unitframe.units.focus.portrait.overlay = true
 			E.db.unitframe.units.focustarget.portrait.enable = true
+			E.db.unitframe.units.focustarget.portrait.overlay = true
 			E.db.unitframe.units.targettarget.portrait.enable = true
+			E.db.unitframe.units.targettarget.portrait.overlay = true
 			E.db.unitframe.units.boss.portrait.enable = true
+			E.db.unitframe.units.boss.portrait.overlay = true
 			E.db.unitframe.units.party.portrait.enable = true
+			E.db.unitframe.units.party.portrait.overlay = true
 			E.db.unitframe.units.pet.portrait.enable = true
+			E.db.unitframe.units.pet.portrait.overlay = true
 
 			E:StaticPopup_Show('CONFIG_RL')
 		else
 			if portrait == "player" then
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.player.enable then
 					E.db.unitframe.units.player.portrait.enable = true
+					E.db.unitframe.units.player.portrait.overlay = true
 				end
 			elseif portrait == "target" then
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable then
 					E.db.unitframe.units.target.portrait.enable = true
+					E.db.unitframe.units.target.portrait.overlay = true
 				end
 			elseif portrait == "focus" then
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable then
 					E.db.unitframe.units.focus.portrait.enable = true
+					E.db.unitframe.units.focus.portrait.overlay = true
 				end
 			elseif portrait == "focustarget" then
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable then
 					E.db.unitframe.units.focustarget.portrait.enable = true
+					E.db.unitframe.units.focustarget.portrait.overlay = true
 				end
 			elseif portrait == "targettarget" then
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable then
 					E.db.unitframe.units.targettarget.portrait.enable = true
+					E.db.unitframe.units.targettarget.portrait.overlay = true
 				end
 			elseif portrait == "boss" then
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.boss.enable then
 					E.db.unitframe.units.boss.portrait.enable = true
+					E.db.unitframe.units.boss.portrait.overlay = true
 				end
 			elseif portrait == "party" then
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable then
 					E.db.unitframe.units.party.portrait.enable = true
+					E.db.unitframe.units.party.portrait.overlay = true
 				end
 			elseif portrait == "pet" then
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.pet.enable then
 					E.db.unitframe.units.pet.portrait.enable = true
+					E.db.unitframe.units.pet.portrait.overlay = true
 				end
 			end
 		end
