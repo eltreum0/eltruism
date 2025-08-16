@@ -295,14 +295,18 @@ The Item Level shown on the Character Panel Skin uses code from Simple Item leve
 	ElvUI_EltreumUI.Options.args.changelog.args.added.args.description = E.Libs.ACH:Description([[
 Added an experimental instant DPS tag [eltruism:unitdps]
 Added more models to the Portrait Fix
+Added shadows to Fly outs
 ]], 3, "small", nil, nil, nil, nil, "full")
 	ElvUI_EltreumUI.Options.args.changelog.args.updated = E.Libs.ACH:Group(E:TextGradient("Updated", 0.50, 0.70, 1, 0.67, 0.95, 1), nil, 3)
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.inline = true
 	ElvUI_EltreumUI.Options.args.changelog.args.updated.args.description = E.Libs.ACH:Description([[
+Updated Portrait function to enable overlay and toggle the 3D models alongside the setting
+Updated Combat Music to better handle Boss units that don't trigger Encounter Start events
 Updated some tags and other functions to allow AI party members to use class colors
 Updated Sockets in Classic Era to better show tooltips for the Enchants
 Updated Quest Item Bar to allow item usage in combat
 Updated Bag Profession Icons to add missing IDs
+Updated the maximum size shadows can be set to
 Updated Immersion skin to better handle fonts
 Updated music for Earthen and Dracthyr
 ]], 5, "small", nil, nil, nil, nil, "full")
@@ -315,6 +319,7 @@ Fixed an issue when using Leatrix Maps and having ElvUI world map disabled
 Fixed shadows on unitframes when the infopanel was enabled but not shown
 Fixed an error with the Item Delete due to a change on Blizzard's API
 Fixed an error in Classic Era when inspecting units
+Fixed an issue with the Leatrix Maps DB when not using Leatrix Maps
 ]], 7, "small", nil, nil, nil, nil, "full")
 
 	--[[

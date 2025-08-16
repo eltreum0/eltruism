@@ -1,6 +1,13 @@
 ### 🌌 Next Version
 The future is uncertain
 ---
+4.3.8.2
+Added shadows to Fly outs  
+Updated Portrait function to enable overlay and toggle the 3D models alongside the setting  
+Updated Combat Music to better handle Boss units that don't trigger Encounter Start events  
+Updated the maximum size shadows can be set to  
+Fixed an issue with the Leatrix Maps DB when not using Leatrix Maps  
+---
 ### 4.3.8.1
 Fixed an issue with the Bag Profession missing Icons in Mists of Pandaria Classic and Classic Era  
 ---
