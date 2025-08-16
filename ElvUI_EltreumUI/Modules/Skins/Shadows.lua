@@ -1453,7 +1453,7 @@ function ElvUI_EltreumUI:Shadows()
 				--elvui action bars
 				for i = 1, 15 do
 					if E.db.actionbar["bar"..i] and E.db.actionbar["bar"..i].backdrop then
-						if _G["ElvUI_Bar"..i] and _G["ElvUI_Bar"..i].backdrop then
+						if _G["ElvUI_Bar"..i] and _G["ElvUI_Bar"..i].backdrop and not _G["ElvUI_Bar"..i].backdrop.shadow then
 							_G["ElvUI_Bar"..i].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G["ElvUI_Bar"..i].backdrop.shadow)
 						end
@@ -1521,6 +1521,23 @@ function ElvUI_EltreumUI:Shadows()
 					if _G.BossButton and not _G.BossButton.shadow then
 						_G.BossButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G.BossButton.shadow)
+					end
+				end
+
+				--flyouts
+				for i = 1, 15 do
+					if _G["LABFlyoutButton"..i] then
+						if _G["LABFlyoutButton"..i].backdrop then
+							if not _G["LABFlyoutButton"..i].backdrop.shadow then
+								_G["LABFlyoutButton"..i].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["LABFlyoutButton"..i].backdrop.shadow)
+							end
+						else
+							if not _G["LABFlyoutButton"..i].shadow then
+								_G["LABFlyoutButton"..i]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["LABFlyoutButton"..i].shadow)
+							end
+						end
 					end
 				end
 			end
@@ -3947,7 +3964,7 @@ function ElvUI_EltreumUI:Shadows()
 			end
 		end
 
-		if IsAddOnLoaded("Leatrix_Maps") or not E.private.skins.blizzard.worldmap then --leatrix map issues
+		if IsAddOnLoaded("Leatrix_Maps") then --leatrix map issues
 			if LeaMapsDB["NoMapBorder"] == "On" then
 				if _G.WorldMapFrame and _G.WorldMapFrame.shadow then
 					_G.WorldMapFrame.shadow:Hide()
@@ -3957,7 +3974,12 @@ function ElvUI_EltreumUI:Shadows()
 					_G.WorldMapFrame.shadow:Hide()
 				end
 			end
+		elseif not E.private.skins.blizzard.worldmap then
+			if _G.WorldMapFrame and _G.WorldMapFrame.shadow then
+				_G.WorldMapFrame.shadow:Hide()
+			end
 		end
+
 		if not E.private.skins.blizzard.spellbook then
 			local disablespellbook = {
 				_G.SpellBookFrame,

@@ -18,51 +18,86 @@ local PortraitStyles = {
 	["UGGGREY"] = L["U.GG Grey"],
 }
 
-local function PortraitWasToggled(portrait)
+local function PortraitWasToggled(portrait, value)
 	if E.db.ElvUI_EltreumUI.unitframes.portrait.enable then
 		if portrait == "all" then
-			E.db.unitframe.units.player.portrait.enable = true
-			E.db.unitframe.units.target.portrait.enable = true
-			E.db.unitframe.units.focus.portrait.enable = true
-			E.db.unitframe.units.focustarget.portrait.enable = true
-			E.db.unitframe.units.targettarget.portrait.enable = true
-			E.db.unitframe.units.boss.portrait.enable = true
-			E.db.unitframe.units.party.portrait.enable = true
-			E.db.unitframe.units.pet.portrait.enable = true
+			E.db.unitframe.units.player.portrait.enable = value
+			E.db.unitframe.units.target.portrait.enable = value
+			E.db.unitframe.units.focus.portrait.enable = value
+			E.db.unitframe.units.focustarget.portrait.enable = value
+			E.db.unitframe.units.targettarget.portrait.enable = value
+			E.db.unitframe.units.boss.portrait.enable = value
+			E.db.unitframe.units.party.portrait.enable = value
+			E.db.unitframe.units.pet.portrait.enable = value
+
+			if value == true then
+				E.db.unitframe.units.player.portrait.overlay = value
+				E.db.unitframe.units.target.portrait.overlay = value
+				E.db.unitframe.units.focus.portrait.overlay = value
+				E.db.unitframe.units.focustarget.portrait.overlay = value
+				E.db.unitframe.units.targettarget.portrait.overlay = value
+				E.db.unitframe.units.boss.portrait.overlay = value
+				E.db.unitframe.units.party.portrait.overlay = value
+				E.db.unitframe.units.pet.portrait.overlay = value
+			end
 
 			E:StaticPopup_Show('CONFIG_RL')
 		else
 			if portrait == "player" then
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.player.enable then
-					E.db.unitframe.units.player.portrait.enable = true
+					E.db.unitframe.units.player.portrait.enable = value
+					if value == true then
+						E.db.unitframe.units.player.portrait.overlay = value
+					end
 				end
 			elseif portrait == "target" then
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable then
-					E.db.unitframe.units.target.portrait.enable = true
+					E.db.unitframe.units.target.portrait.enable = value
+					if value == true then
+						E.db.unitframe.units.target.portrait.overlay = value
+					end
 				end
 			elseif portrait == "focus" then
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable then
-					E.db.unitframe.units.focus.portrait.enable = true
+					E.db.unitframe.units.focus.portrait.enable = value
+					if value == true then
+					E.db.unitframe.units.focus.portrait.overlay = value
+					end
 				end
 			elseif portrait == "focustarget" then
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable then
-					E.db.unitframe.units.focustarget.portrait.enable = true
+					E.db.unitframe.units.focustarget.portrait.enable = value
+					if value == true then
+						E.db.unitframe.units.focustarget.portrait.overlay = value
+					end
 				end
 			elseif portrait == "targettarget" then
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable then
-					E.db.unitframe.units.targettarget.portrait.enable = true
+					E.db.unitframe.units.targettarget.portrait.enable = value
+					if value == true then
+						E.db.unitframe.units.targettarget.portrait.overlay = value
+					end
 				end
 			elseif portrait == "boss" then
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.boss.enable then
-					E.db.unitframe.units.boss.portrait.enable = true
+					E.db.unitframe.units.boss.portrait.enable = value
+					if value == true then
+						E.db.unitframe.units.boss.portrait.overlay = value
+					end
 				end
 			elseif portrait == "party" then
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable then
-					E.db.unitframe.units.party.portrait.enable = true
+					E.db.unitframe.units.party.portrait.enable = value
+					if value == true then
+						E.db.unitframe.units.party.portrait.overlay = value
+					end
 				end
 			elseif portrait == "pet" then
 				if E.db.ElvUI_EltreumUI.unitframes.portrait.pet.enable then
-					E.db.unitframe.units.pet.portrait.enable = true
+					E.db.unitframe.units.pet.portrait.enable = value
+					if value == true then
+						E.db.unitframe.units.pet.portrait.overlay = value
+					end
 				end
 			end
 		end
@@ -143,11 +178,11 @@ function ElvUI_EltreumUI:UnitframeOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.general.args.offset = E.Libs.ACH:Toggle(L["Automatically offset Player/Target Portrait"], L["Detects player and target's species and uses it to fix the offset of the 3D Portrait"], 3, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraitfixoffset = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.portraitfix end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.general.args.enableportraitdead = E.Libs.ACH:Toggle(L["Pause and Desaturate Portrait if Dead"], nil, 4, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.portraitdead end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portraitdead = value end, function() return not E.db.ElvUI_EltreumUI.unitframes.portraitfix end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.general.args.description2 = E.Libs.ACH:Description(L["Portrait Skin"], 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.general.args.enableportraitskin = E.Libs.ACH:Toggle(L["Enable Portrait Skin"], nil, 8, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.portrait.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.enable = value PortraitWasToggled("all") end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.general.args.enableportraitskin = E.Libs.ACH:Toggle(L["Enable Portrait Skin"], nil, 8, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.portrait.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.enable = value PortraitWasToggled("all", value) end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.general.args.gradient = E.Libs.ACH:Toggle(L["Enable Gradient"], nil, 9, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.portrait.gradient end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.gradient = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.general.args.shadow = E.Libs.ACH:Toggle(L["Enable Shadows"], nil, 10, nil, false,'full', function() return E.db.ElvUI_EltreumUI.unitframes.portrait.shadow end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.shadow = value E:StaticPopup_Show('CONFIG_RL') end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player = E.Libs.ACH:Group(L["Player"], nil, 20, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.player.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.player.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("player") PortraitWasToggled("player") end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.player.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.player.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("player") PortraitWasToggled("player", value) end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.portraittype = E.Libs.ACH:Select(L["Type"], L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
@@ -175,7 +210,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.texture = E.Libs.ACH:Select(L["Texture"], L["Choose the texture type"], 13, PortraitStyles, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.player.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.player.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("player") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.player.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.player.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.player.args.texture.style = "radio"
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target = E.Libs.ACH:Group(L["Target"], nil, 21, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("target") PortraitWasToggled("target") end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("target") PortraitWasToggled("target", value) end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.portraittype = E.Libs.ACH:Select(L["Type"], L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
@@ -203,7 +238,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.texture = E.Libs.ACH:Select(L["Texture"], L["Choose the texture type"], 13, PortraitStyles, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.target.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.target.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("target") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.target.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.target.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.target.args.texture.style = "radio"
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus = E.Libs.ACH:Group(L["Focus"], nil, 22, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end, E.Classic or E.ClassicHC)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focus") PortraitWasToggled("focus") end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focus") PortraitWasToggled("focus", value) end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus.args.portraittype = E.Libs.ACH:Select(L["Type"], L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
@@ -231,7 +266,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus.args.texture = E.Libs.ACH:Select(L["Texture"], L["Choose the texture type"], 13, PortraitStyles, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focus.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focus.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focus") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.focus.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.focus.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focus.args.texture.style = "radio"
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focustarget = E.Libs.ACH:Group(L["FocusTarget"], nil, 22, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end, E.Classic or E.ClassicHC)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focustarget.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focustarget") PortraitWasToggled("focustarget") end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focustarget.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focustarget") PortraitWasToggled("focustarget", value) end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focustarget.args.portraittype = E.Libs.ACH:Select(L["Type"], L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
@@ -259,7 +294,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focustarget.args.texture = E.Libs.ACH:Select(L["Texture"], L["Choose the texture type"], 13, PortraitStyles, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("focustarget") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.focustarget.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.focustarget.args.texture.style = "radio"
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.targettarget = E.Libs.ACH:Group(L["TargetTarget"], nil, 22, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.targettarget.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("targettarget") PortraitWasToggled("targettarget") end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.targettarget.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("targettarget") PortraitWasToggled("targettarget", value) end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.targettarget.args.portraittype = E.Libs.ACH:Select(L["Type"], L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
@@ -287,7 +322,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.targettarget.args.texture = E.Libs.ACH:Select(L["Texture"], L["Choose the texture type"], 13, PortraitStyles, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("targettarget") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.targettarget.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.targettarget.args.texture.style = "radio"
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party = E.Libs.ACH:Group(L["Party"], nil, 23, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("party") PortraitWasToggled("party") end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("party") PortraitWasToggled("party", value) end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.portraittype = E.Libs.ACH:Select(L["Type"], L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
@@ -315,7 +350,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.texture = E.Libs.ACH:Select(L["Texture"], L["Choose the texture type"], 13, PortraitStyles, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.party.style end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.party.style = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("party") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.party.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.party.custom end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.party.args.texture.style = "radio"
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.pet = E.Libs.ACH:Group(E.NewSign..L["Pet"], nil, 24, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.pet.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.pet.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.pet.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("pet") PortraitWasToggled("pet") end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.pet.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.pet.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.pet.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("pet") PortraitWasToggled("pet", value) end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.pet.args.portraittype = E.Libs.ACH:Select(L["Type"], L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
@@ -335,7 +370,7 @@ function ElvUI_EltreumUI:UnitframeOptions()
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.pet.args.enablecustomcolor = E.Libs.ACH:Toggle(L["Enable Custom Colors"], nil, 6, nil, false, "full", function() return E.db.ElvUI_EltreumUI.unitframes.portrait.pet.customcolor end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.pet.customcolor = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("pet") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.pet.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.pet.args.customcolor = E.Libs.ACH:Color(L["Custom Color"], nil, 7, false, nil, function() local dr = P.ElvUI_EltreumUI.unitframes.portrait.pet.color.r local dg = P.ElvUI_EltreumUI.unitframes.portrait.pet.color.g local db = P.ElvUI_EltreumUI.unitframes.portrait.pet.color.b return E.db.ElvUI_EltreumUI.unitframes.portrait.pet.color.r, E.db.ElvUI_EltreumUI.unitframes.portrait.pet.color.g, E.db.ElvUI_EltreumUI.unitframes.portrait.pet.color.b, 1, dr, dg, db, 1 end, function(_, r, g, b) E.db.ElvUI_EltreumUI.unitframes.portrait.pet.color.r, E.db.ElvUI_EltreumUI.unitframes.portrait.pet.color.g, E.db.ElvUI_EltreumUI.unitframes.portrait.pet.color.b = r, g, b ElvUI_EltreumUI:BlizzPortraitSettingUpdate("pet") end, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.pet.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.enable or not E.db.ElvUI_EltreumUI.unitframes.portrait.pet.customcolor end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.boss = E.Libs.ACH:Group(L["Boss"], nil, 23, "tab", nil, nil, function() return not E.db.ElvUI_EltreumUI.unitframes.portrait.enable end)
-	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.boss.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.boss.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.boss.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("boss") PortraitWasToggled("boss") end)
+	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.boss.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 0, nil, false, nil, function() return E.db.ElvUI_EltreumUI.unitframes.portrait.boss.enable end, function(_, value) E.db.ElvUI_EltreumUI.unitframes.portrait.boss.enable = value ElvUI_EltreumUI:BlizzPortraitSettingUpdate("boss") PortraitWasToggled("boss", value) end)
 	ElvUI_EltreumUI.Options.args.unitframes.args.general.args.portrait.args.boss.args.portraittype = E.Libs.ACH:Select(L["Type"], L["Choose Portrait Type"], 1, {
 		["CIRCLE"] = L["Circle"],
 		["BLIZZARD"] = L["Blizzard"],
