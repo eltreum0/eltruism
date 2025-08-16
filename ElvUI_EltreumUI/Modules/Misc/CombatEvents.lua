@@ -35,26 +35,38 @@ function ElvUI_EltreumUI:CombatMusic(event)
 			end
 		end
 	elseif event == 'PLAYER_REGEN_DISABLED' then --combat starts
-		if E.private.ElvUI_EltreumUI.combatmusic.enable then
-			local _, instanceType = IsInInstance()
-			local soundfile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.musicfile
-			if E.db.ElvUI_EltreumUI.otherstuff.musicshuffle then
-				wipe(list)
-				list = {strsplit("," ,E.private.ElvUI_EltreumUI.combatmusic.shufflelist)}
-				soundfile = [[Interface\AddOns\]]..list[math.random(1,#list)]
-			end
-			if not E.private.ElvUI_EltreumUI.combatmusic.disableinstance then
-				if dontstopboss == 0 then
-					PlayMusic(soundfile)
-					dontstop = 1
+		if UnitExists("boss1") then --there is a boss but its not triggering ENCOUNTER_START
+			if E.private.ElvUI_EltreumUI.combatmusic.bossmusic then
+				local soundfileboss = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.bossfile
+				if dontstop == 1 then
+					StopMusic()
 				end
-			elseif E.private.ElvUI_EltreumUI.combatmusic.disableinstance then
-				if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "pvp" or instanceType == "arena" then
-					return
-				elseif instanceType == "none" then
+				PlayMusic(soundfileboss)
+				otherBoss = true
+				dontstopboss = 0
+			end
+		else
+			if E.private.ElvUI_EltreumUI.combatmusic.enable then
+				local _, instanceType = IsInInstance()
+				local soundfile = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.musicfile
+				if E.db.ElvUI_EltreumUI.otherstuff.musicshuffle then
+					wipe(list)
+					list = {strsplit("," ,E.private.ElvUI_EltreumUI.combatmusic.shufflelist)}
+					soundfile = [[Interface\AddOns\]]..list[math.random(1,#list)]
+				end
+				if not E.private.ElvUI_EltreumUI.combatmusic.disableinstance then
 					if dontstopboss == 0 then
 						PlayMusic(soundfile)
 						dontstop = 1
+					end
+				elseif E.private.ElvUI_EltreumUI.combatmusic.disableinstance then
+					if instanceType == "raid" or instanceType == "party" or instanceType == "scenario" or instanceType == "pvp" or instanceType == "arena" then
+						return
+					elseif instanceType == "none" then
+						if dontstopboss == 0 then
+							PlayMusic(soundfile)
+							dontstop = 1
+						end
 					end
 				end
 			end
@@ -67,16 +79,6 @@ function ElvUI_EltreumUI:CombatMusic(event)
 					dontstop = 0
 				end
 			end
-		end
-	elseif UnitExists("boss1") then --there is a boss but its not triggering ENCOUNTER_START
-		if E.private.ElvUI_EltreumUI.combatmusic.bossmusic then
-			local soundfileboss = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.bossfile
-			if dontstop == 1 then
-				StopMusic()
-			end
-			PlayMusic(soundfileboss)
-			otherBoss = true
-			dontstopboss = 0
 		end
 	end
 end
