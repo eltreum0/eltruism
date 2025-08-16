@@ -214,13 +214,13 @@ function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
 end
 
 function ElvUI_EltreumUI:ENCOUNTER_START(event)
-	ElvUI_EltreumUI:QuestEncounter()
+	ElvUI_EltreumUI:QuestCombat(event)
 	ElvUI_EltreumUI:CombatMusic(event)
 	ElvUI_EltreumUI:BattleRes()
 end
 
 function ElvUI_EltreumUI:ENCOUNTER_END(event)
-	ElvUI_EltreumUI:QuestEncounterEnd()
+	ElvUI_EltreumUI:QuestCombat(event)
 	ElvUI_EltreumUI:CombatMusic(event)
 	ElvUI_EltreumUI:BattleRes()
 end
@@ -268,14 +268,14 @@ end
 function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED(event)
 	ElvUI_EltreumUI:CombatMusic(event)
 	ElvUI_EltreumUI:BlizzCombatText()
-	ElvUI_EltreumUI:QuestCombatEnd()
+	ElvUI_EltreumUI:QuestCombat(event)
 	ElvUI_EltreumUI:MinimapHide(event)
 	ElvUI_EltreumUI:DatatextHide(event)
 end
 
 function ElvUI_EltreumUI:PLAYER_REGEN_DISABLED(event)
 	ElvUI_EltreumUI:CombatMusic(event)
-	ElvUI_EltreumUI:QuestCombat()
+	ElvUI_EltreumUI:QuestCombat(event)
 	ElvUI_EltreumUI:MinimapHide(event)
 	ElvUI_EltreumUI:DatatextHide(event)
 end
@@ -360,9 +360,9 @@ function ElvUI_EltreumUI:ACHIEVEMENT_EARNED()
 	ElvUI_EltreumUI:AutoScreenshot()
 end
 
-function ElvUI_EltreumUI:CHALLENGE_MODE_COMPLETED()
+function ElvUI_EltreumUI:CHALLENGE_MODE_COMPLETED(event)
 	ElvUI_EltreumUI:AutoScreenshot()
-	ElvUI_EltreumUI:QuestMythicPlusEnd()
+	ElvUI_EltreumUI:QuestCombat(event)
 end
 
 function ElvUI_EltreumUI:PLAYER_AVG_ITEM_LEVEL_UPDATE()
@@ -401,14 +401,14 @@ function ElvUI_EltreumUI:PLAYER_LOGOUT()
 	ElvUI_EltreumUI:BlizzCombatText()
 end
 
-function ElvUI_EltreumUI:CHALLENGE_MODE_START()
-	ElvUI_EltreumUI:QuestMythicPlusStart()
+function ElvUI_EltreumUI:CHALLENGE_MODE_START(event)
+	ElvUI_EltreumUI:QuestCombat(event)
 end
 
 
 
-function ElvUI_EltreumUI:CHALLENGE_MODE_RESET()
-	ElvUI_EltreumUI:QuestMythicPlusEnd()
+function ElvUI_EltreumUI:CHALLENGE_MODE_RESET(event)
+	ElvUI_EltreumUI:QuestCombat(event)
 end
 
 local function CallbackInitialize()
