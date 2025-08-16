@@ -214,18 +214,14 @@ function ElvUI_EltreumUI:COMBAT_LOG_EVENT_UNFILTERED()
 end
 
 function ElvUI_EltreumUI:ENCOUNTER_START(event)
-	local event2 = event
 	ElvUI_EltreumUI:QuestEncounter()
-	ElvUI_EltreumUI:CombatMusic(event2)
-	ElvUI_EltreumUI:BossMusic(event)
+	ElvUI_EltreumUI:CombatMusic(event)
 	ElvUI_EltreumUI:BattleRes()
 end
 
 function ElvUI_EltreumUI:ENCOUNTER_END(event)
-	local event2 = event
 	ElvUI_EltreumUI:QuestEncounterEnd()
-	ElvUI_EltreumUI:StopBossMusic(event)
-	ElvUI_EltreumUI:StopCombatMusic(event2)
+	ElvUI_EltreumUI:CombatMusic(event)
 	ElvUI_EltreumUI:BattleRes()
 end
 
@@ -270,7 +266,7 @@ function ElvUI_EltreumUI:PLAYER_LEVEL_UP()
 end
 
 function ElvUI_EltreumUI:PLAYER_REGEN_ENABLED(event)
-	ElvUI_EltreumUI:StopCombatMusic(event)
+	ElvUI_EltreumUI:CombatMusic(event)
 	ElvUI_EltreumUI:BlizzCombatText()
 	ElvUI_EltreumUI:QuestCombatEnd()
 	ElvUI_EltreumUI:MinimapHide(event)
