@@ -15,8 +15,6 @@ local otherBossEncounter = false
 
 --Hide Quests during events
 function ElvUI_EltreumUI:QuestCombat(event)
-	print(event)
-
 	if event == "PLAYER_REGEN_ENABLED" then --out of combat
 		if E.db.ElvUI_EltreumUI.quests.combatenable or otherBossEncounter then
 			if E.Retail then
