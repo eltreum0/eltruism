@@ -264,7 +264,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		if not (frame and frame.leftHolder) then return end
 		for _,line in pairs({frame.leftHolder.buttons:GetRegions()}) do
-			line:SetVertexColor(E.db.general.valuecolor.r, E.db.general.valuecolor.g, E.db.general.valuecolor.b, 1)
+			line:SetVertexColor(E.db.general.valuecolor.r, E.db.general.valuecolor.g, E.db.general.valuecolor.b, 0.4)
 		end
 	end)
 
