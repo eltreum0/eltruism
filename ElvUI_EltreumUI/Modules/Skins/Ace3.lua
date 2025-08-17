@@ -260,6 +260,14 @@ function ElvUI_EltreumUI:Ace3Skin()
 		end
 	end)
 
+	hooksecurefunc(E,"Config_CreateSeparatorLine",function(_,frame)
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
+		if not (frame and frame.leftHolder) then return end
+		for _,line in pairs({frame.leftHolder.buttons:GetRegions()}) do
+			line:SetVertexColor(E.db.general.valuecolor.r, E.db.general.valuecolor.g, E.db.general.valuecolor.b, 1)
+		end
+	end)
+
 	hooksecurefunc(E,"Config_SetButtonColor",function(_,button, disabled)
 		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		local buttontext = (button.Text) or (button.text) or (_G[button:GetName()] and _G[button:GetName() .. "Text"]) --using button.Text.GetText would return the function instead
@@ -348,6 +356,18 @@ function ElvUI_EltreumUI:Ace3Skin()
 			end)
 			tab.EltruismDisableHook = true
 		end
+
+		if tab.eltruismbordertest then
+			tab.eltruismbordertest.BottomLeftCorner:Hide()
+			tab.eltruismbordertest.BottomRightCorner:Hide()
+		elseif tab.backdrop then
+			if tab.backdrop.eltruismbordertest then
+				tab.backdrop.eltruismbordertest.BottomLeftCorner:Hide()
+				tab.backdrop.eltruismbordertest.BottomRightCorner:Hide()
+			end
+			tab.backdrop.BottomLeftCorner:Hide()
+			tab.backdrop.BottomRightCorner:Hide()
+		end
 	end)
 
 	hooksecurefunc(S,"Ace3_TabSetSelected",function(tab,selected)
@@ -371,6 +391,18 @@ function ElvUI_EltreumUI:Ace3Skin()
 			end
 			bd:SetBackdropBorderColor(0, 0, 0, 1)
 			--bd.SetBackdropBorderColor = E.noop
+		end
+
+		if tab.eltruismbordertest then
+			tab.eltruismbordertest.BottomLeftCorner:Hide()
+			tab.eltruismbordertest.BottomRightCorner:Hide()
+		elseif tab.backdrop then
+			if tab.backdrop.eltruismbordertest then
+				tab.backdrop.eltruismbordertest.BottomLeftCorner:Hide()
+				tab.backdrop.eltruismbordertest.BottomRightCorner:Hide()
+			end
+			tab.backdrop.BottomLeftCorner:Hide()
+			tab.backdrop.BottomRightCorner:Hide()
 		end
 	end)
 
