@@ -791,6 +791,16 @@ function ElvUI_EltreumUI:SLCheck(setting)
 	return false
 end
 
+--reforged armory compatibility check
+function ElvUI_EltreumUI:ReforgedCheck(setting)
+	if not IsAddOnLoaded("ReforgedArmory") or not setting or not E.Mists then return false end
+	if setting == 'avgItemLevel' and E.db.cataarmory.character.avgItemLevel.enable then
+		return true
+	end
+
+	return false
+end
+
 --check for blinkii's kick on cd function
 function ElvUI_EltreumUI:CheckmMediaTagInterrupt()
 	if IsAddOnLoaded("ElvUI_mMediaTag") and E.Retail then

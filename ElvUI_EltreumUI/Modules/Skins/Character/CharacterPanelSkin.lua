@@ -747,7 +747,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			end
 
 			CharacterFrame:HookScript("OnShow", function()
-				if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
+				if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
 					if not ElvUI_EltreumUI:SLCheck("stats") then
 						local bagilvl, equippedilvl = GetAverageItemLevel()
 						if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
@@ -787,7 +787,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 						CharacterStatsPane.EnhancementsCategory.backdrop:Hide()
 					end
 				else
-					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
+					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
 						local bagilvl, equippedilvl = GetAverageItemLevel()
 						if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
 							local r, g, b
@@ -1240,7 +1240,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 							actor:SetPosition(E.db.ElvUI_EltreumUI.skins.charactermodelcam.zoomretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.xretail, E.db.ElvUI_EltreumUI.skins.charactermodelcam.yretail)
 						end
 					end)
-					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
+					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
 						if not ElvUI_EltreumUI:SLCheck("stats") then
 							local bagilvl, equippedilvl = GetAverageItemLevel()
 							if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
@@ -1285,7 +1285,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 			if PaperDollFrame:IsVisible() then
 				_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				if E.db.ElvUI_EltreumUI.skins.classicarmory then
-					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
+					if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
 						if not ElvUI_EltreumUI:SLCheck("stats") then
 							local bagilvl, equippedilvl = GetAverageItemLevel()
 							if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
@@ -1337,7 +1337,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 	elseif E.Mists then
 
 		local function HandleCharacterPanelSize()
-			if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
+			if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
 				local bagilvl, equippedilvl = GetAverageItemLevel()
 				if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
 					local r, g, b
@@ -1444,7 +1444,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 					end
 					_G.CharacterFrameTitleText:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armorynamefontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 					if E.db.ElvUI_EltreumUI.skins.classicarmory then
-						if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable then
+						if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
 							local bagilvl, equippedilvl = GetAverageItemLevel()
 							if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
 								local r, g, b
@@ -1751,7 +1751,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 		--update ilvl
 		hooksecurefunc("PaperDollFrame_UpdateStats", function()
-			if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and E.db.ElvUI_EltreumUI.skins.classicarmory then
+			if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and E.db.ElvUI_EltreumUI.skins.classicarmory and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
 				local bagilvl, equippedilvl = GetAverageItemLevel()
 				if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
 					local r, g, b
@@ -1795,7 +1795,7 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		hooksecurefunc(_G.CharacterFrame, "Expand", HandleCharacterPanelSize)
 
 		local function ItemLevelString()
-			if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and E.db.ElvUI_EltreumUI.skins.classicarmory then
+			if E.db.ElvUI_EltreumUI.skins.ilvltextcolordifferenceenable and E.db.ElvUI_EltreumUI.skins.classicarmory and not ElvUI_EltreumUI:ReforgedCheck("avgItemLevel") then
 				local bagilvl, equippedilvl = GetAverageItemLevel()
 				if bagilvl ~= equippedilvl then --as suggested by dlarge, inspired by SLE
 					local r, g, b
@@ -1826,8 +1826,6 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 		end
 
 		if IsAddOnLoaded("ElvUI_CataArmory") or IsAddOnLoaded("ReforgedArmory") then
-			--fix the double item level
-			E.db["cataarmory"]["character"]["avgItemLevel"]["enable"] = false
 
 			--fix the text position
 			E.db["cataarmory"]["character"]["enchant"]["MainHandSlot"]["anchorPoint"] = "TOPLEFT"
