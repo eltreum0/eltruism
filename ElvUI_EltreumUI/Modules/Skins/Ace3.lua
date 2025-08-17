@@ -357,16 +357,19 @@ function ElvUI_EltreumUI:Ace3Skin()
 			tab.EltruismDisableHook = true
 		end
 
-		if tab.eltruismbordertest then
-			tab.eltruismbordertest.BottomLeftCorner:Hide()
-			tab.eltruismbordertest.BottomRightCorner:Hide()
+		if tab.eltruismuniversalborders then
+			tab.eltruismuniversalborders.BottomLeftCorner:Hide()
+			tab.eltruismuniversalborders.BottomRightCorner:Hide()
+			tab.eltruismuniversalborders.BottomEdge:Hide()
 		elseif tab.backdrop then
-			if tab.backdrop.eltruismbordertest then
-				tab.backdrop.eltruismbordertest.BottomLeftCorner:Hide()
-				tab.backdrop.eltruismbordertest.BottomRightCorner:Hide()
+			if tab.backdrop.eltruismuniversalborders then
+				tab.backdrop.eltruismuniversalborders.BottomLeftCorner:Hide()
+				tab.backdrop.eltruismuniversalborders.BottomRightCorner:Hide()
+				tab.backdrop.eltruismuniversalborders.BottomEdge:Hide()
 			end
 			tab.backdrop.BottomLeftCorner:Hide()
 			tab.backdrop.BottomRightCorner:Hide()
+			tab.backdrop.BottomEdge:Hide()
 		end
 	end)
 
@@ -393,16 +396,19 @@ function ElvUI_EltreumUI:Ace3Skin()
 			--bd.SetBackdropBorderColor = E.noop
 		end
 
-		if tab.eltruismbordertest then
-			tab.eltruismbordertest.BottomLeftCorner:Hide()
-			tab.eltruismbordertest.BottomRightCorner:Hide()
+		if tab.eltruismuniversalborders then
+			tab.eltruismuniversalborders.BottomLeftCorner:Hide()
+			tab.eltruismuniversalborders.BottomRightCorner:Hide()
+			tab.eltruismuniversalborders.BottomEdge:Hide()
 		elseif tab.backdrop then
-			if tab.backdrop.eltruismbordertest then
-				tab.backdrop.eltruismbordertest.BottomLeftCorner:Hide()
-				tab.backdrop.eltruismbordertest.BottomRightCorner:Hide()
+			if tab.backdrop.eltruismuniversalborders then
+				tab.backdrop.eltruismuniversalborders.BottomLeftCorner:Hide()
+				tab.backdrop.eltruismuniversalborders.BottomRightCorner:Hide()
+				tab.backdrop.eltruismuniversalborders.BottomEdge:Hide()
 			end
 			tab.backdrop.BottomLeftCorner:Hide()
 			tab.backdrop.BottomRightCorner:Hide()
+			tab.backdrop.BottomEdge:Hide()
 		end
 	end)
 

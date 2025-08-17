@@ -4124,7 +4124,7 @@ function ElvUI_EltreumUI:NameplateShadows(nameplate)
 	if not nameplate then return end
 	local bordertexture
 	if E.private.nameplates.enable then
-		if (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.nameplateborders) and not E.db.ElvUI_EltreumUI.borders.bordertest then
+		if (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.nameplateborders) and not E.db.ElvUI_EltreumUI.borders.universalborders then
 			if not nameplate.Health then return end
 
 			if not nameplate.Health.EltruismNameplateBorder then
