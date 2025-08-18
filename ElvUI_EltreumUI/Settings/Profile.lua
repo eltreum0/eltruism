@@ -751,9 +751,10 @@ P.ElvUI_EltreumUI = {
 
 		universalborders = false,
 		universalborderssettings = {
-			xOffset = -3,
-			yOffset = -3,
-			thickness = 11,
+			xOffset = 12,
+			yOffset = 12,
+			thickness = 17,
+			hideWithBorders = true,
 		},
 		classcolor = true,
 
