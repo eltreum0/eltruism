@@ -587,7 +587,6 @@ local isMenuExpanded = false
 local EltruismGameMenu = CreateFrame("Frame")
 EltruismGameMenu:RegisterEvent("PLAYER_ENTERING_WORLD")
 EltruismGameMenu:SetScript("OnEvent", function()
-
 	if E.db.ElvUI_EltreumUI.otherstuff.gamemenu then
 		if E.Retail then
 			local EM = E:GetModule('EditorMode')
