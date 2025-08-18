@@ -127,6 +127,13 @@ local function BordersPart1()
 			if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.player.infoPanel.enable then
 				playerborder:SetPoint("CENTER", _G.ElvUF_Player, "CENTER", 0, E.db.unitframe.units.player.infoPanel.height)
 			end
+
+			if E.db.ElvUI_EltreumUI.borders.universalborders then
+				if _G.ElvUF_Player_HealthBar.backdrop and _G.ElvUF_Player_HealthBar.backdrop.eltruismuniversalborders then
+					_G.ElvUF_Player_HealthBar.backdrop.eltruismuniversalborders:Kill()
+					_G.ElvUF_Player_HealthBar.backdrop.eltruismuniversalborders = nil
+				end
+			end
 		end
 
 		--player classbar
@@ -147,6 +154,13 @@ local function BordersPart1()
 				playerclassbarborder1:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				playerclassbarborder1:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.alternativeclassbarstrata)
 				playerclassbarborder1:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.alternativeclassbarlevel)
+
+				if E.db.ElvUI_EltreumUI.borders.universalborders then
+					if _G.ElvUF_Player_AdditionalPowerBar.backdrop and _G.ElvUF_Player_AdditionalPowerBar.backdrop.eltruismuniversalborders then
+						_G.ElvUF_Player_AdditionalPowerBar.backdrop.eltruismuniversalborders:Kill()
+						_G.ElvUF_Player_AdditionalPowerBar.backdrop.eltruismuniversalborders = nil
+					end
+				end
 			end
 
 			if _G["ElvUF_Player_Stagger"] and E.db.ElvUI_EltreumUI.borders.staggerclassbar then
@@ -165,6 +179,13 @@ local function BordersPart1()
 				playerclassbarborder2:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				playerclassbarborder2:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.staggerclassbarstrata)
 				playerclassbarborder2:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.staggerclassbarlevel)
+
+				if E.db.ElvUI_EltreumUI.borders.universalborders then
+					if _G.ElvUF_Player_Stagger.backdrop and _G.ElvUF_Player_Stagger.backdrop.eltruismuniversalborders then
+						_G.ElvUF_Player_Stagger.backdrop.eltruismuniversalborders:Kill()
+						_G.ElvUF_Player_Stagger.backdrop.eltruismuniversalborders = nil
+					end
+				end
 			end
 
 			if E.db.ElvUI_EltreumUI.borders.comboclassbar then
@@ -188,6 +209,13 @@ local function BordersPart1()
 								comboborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 								comboborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.combostrata)
 								comboborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.combolevel)
+
+								if E.db.ElvUI_EltreumUI.borders.universalborders then
+									if _G["ElvUF_PlayerClassIconButton"..i].backdrop and _G["ElvUF_PlayerClassIconButton"..i].backdrop.eltruismuniversalborders then
+										_G["ElvUF_PlayerClassIconButton"..i].backdrop.eltruismuniversalborders:Kill()
+										_G["ElvUF_PlayerClassIconButton"..i].backdrop.eltruismuniversalborders = nil
+									end
+								end
 							end
 						end
 					end
@@ -211,6 +239,13 @@ local function BordersPart1()
 								comboborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 								comboborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.combostrata)
 								comboborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.combolevel)
+
+								if E.db.ElvUI_EltreumUI.borders.universalborders then
+									if _G["ElvUF_PlayerRuneButton"..i].backdrop and _G["ElvUF_PlayerRuneButton"..i].backdrop.eltruismuniversalborders then
+										_G["ElvUF_PlayerRuneButton"..i].backdrop.eltruismuniversalborders:Kill()
+										_G["ElvUF_PlayerRuneButton"..i].backdrop.eltruismuniversalborders = nil
+									end
+								end
 							end
 						end
 					end
@@ -234,6 +269,13 @@ local function BordersPart1()
 								comboborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 								comboborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.combostrata)
 								comboborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.combolevel)
+
+								if E.db.ElvUI_EltreumUI.borders.universalborders then
+									if _G["ElvUF_PlayerTotem"..i].backdrop and _G["ElvUF_PlayerTotem"..i].backdrop.eltruismuniversalborders then
+										_G["ElvUF_PlayerTotem"..i].backdrop.eltruismuniversalborders:Kill()
+										_G["ElvUF_PlayerTotem"..i].backdrop.eltruismuniversalborders = nil
+									end
+								end
 							end
 						end
 					end
@@ -256,6 +298,13 @@ local function BordersPart1()
 							comboborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 							comboborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.combostrata)
 							comboborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.combolevel)
+
+							if E.db.ElvUI_EltreumUI.borders.universalborders then
+								if _G["ElvUF_Player_ClassBar"].backdrop and _G["ElvUF_Player_ClassBar"].backdrop.eltruismuniversalborders then
+									_G["ElvUF_Player_ClassBar"].backdrop.eltruismuniversalborders:Kill()
+									_G["ElvUF_Player_ClassBar"].backdrop.eltruismuniversalborders = nil
+								end
+							end
 						end
 
 						if _G["ElvUF_Player_Runes"] and _G["ElvUF_Player_Runes"].backdrop then
@@ -275,6 +324,13 @@ local function BordersPart1()
 							comboborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 							comboborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.combostrata)
 							comboborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.combolevel)
+
+							if E.db.ElvUI_EltreumUI.borders.universalborders then
+								if _G["ElvUF_Player_Runes"].backdrop and _G["ElvUF_Player_Runes"].backdrop.eltruismuniversalborders then
+									_G["ElvUF_Player_Runes"].backdrop.eltruismuniversalborders:Kill()
+									_G["ElvUF_Player_Runes"].backdrop.eltruismuniversalborders = nil
+								end
+							end
 						end
 
 						if _G["ElvUF_Player"] and _G["ElvUF_Player"].Totems and _G["ElvUF_Player"].Totems.backdrop then
@@ -294,6 +350,13 @@ local function BordersPart1()
 							comboborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 							comboborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.combostrata)
 							comboborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.combolevel)
+
+							if E.db.ElvUI_EltreumUI.borders.universalborders then
+								if _G["ElvUF_Player"].Totems.backdrop and _G["ElvUF_Player"].Totems.backdrop.eltruismuniversalborders then
+									_G["ElvUF_Player"].Totems.backdrop.eltruismuniversalborders:Kill()
+									_G["ElvUF_Player"].Totems.backdrop.eltruismuniversalborders = nil
+								end
+							end
 						end
 					end
 				end
@@ -327,6 +390,13 @@ local function BordersPart1()
 				end
 				playerpowerborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.playerpowerstrata)
 				playerpowerborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.playerpowerlevel)
+
+				if E.db.ElvUI_EltreumUI.borders.universalborders then
+					if _G["ElvUF_Player_PowerBar"].backdrop and _G["ElvUF_Player_PowerBar"].backdrop.eltruismuniversalborders then
+						_G["ElvUF_Player_PowerBar"].backdrop.eltruismuniversalborders:Kill()
+						_G["ElvUF_Player_PowerBar"].backdrop.eltruismuniversalborders = nil
+					end
+				end
 			end
 		end
 
@@ -354,6 +424,13 @@ local function BordersPart1()
 					--playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", -E.db.unitframe.units.player.castbar.iconSize/2, 0)
 					playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"].Holder, "CENTER", 0, 0)
 				end
+
+				if E.db.ElvUI_EltreumUI.borders.universalborders then
+					if _G["ElvUF_Player_CastBar"].Icon and _G["ElvUF_Player_CastBar"].Icon.bg.eltruismuniversalborders then
+						_G["ElvUF_Player_CastBar"].Icon.bg.eltruismuniversalborders:Kill()
+						_G["ElvUF_Player_CastBar"].Icon.bg.eltruismuniversalborders = nil
+					end
+				end
 			else
 				playercastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xplayercast, E.db.ElvUI_EltreumUI.borders.yplayercast)
 				playercastbarborder:SetPoint("CENTER", _G["ElvUF_Player_CastBar"], "CENTER", 0, 0)
@@ -365,6 +442,13 @@ local function BordersPart1()
 			playercastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			playercastbarborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.playercaststrata)
 			playercastbarborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.playercastlevel)
+
+			if E.db.ElvUI_EltreumUI.borders.universalborders then
+				if _G["ElvUF_Player_CastBar"].backdrop and _G["ElvUF_Player_CastBar"].backdrop.eltruismuniversalborders then
+					_G["ElvUF_Player_CastBar"].backdrop.eltruismuniversalborders:Kill()
+					_G["ElvUF_Player_CastBar"].backdrop.eltruismuniversalborders = nil
+				end
+			end
 		end
 
 		--target
@@ -390,6 +474,13 @@ local function BordersPart1()
 
 			if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.target.infoPanel.enable then
 				targetborder:SetPoint("CENTER", _G.ElvUF_Target, "CENTER", 0, E.db.unitframe.units.target.infoPanel.height)
+			end
+
+			if E.db.ElvUI_EltreumUI.borders.universalborders then
+				if _G["ElvUF_Target_HealthBar"].backdrop and _G["ElvUF_Target_HealthBar"].backdrop.eltruismuniversalborders then
+					_G["ElvUF_Target_HealthBar"].backdrop.eltruismuniversalborders:Kill()
+					_G["ElvUF_Target_HealthBar"].backdrop.eltruismuniversalborders = nil
+				end
 			end
 		end
 
@@ -417,6 +508,13 @@ local function BordersPart1()
 					--targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"], "CENTER", -E.db.unitframe.units.target.castbar.iconSize/2, 0)
 					targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"].Holder, "CENTER", 0, 0)
 				end
+
+				if E.db.ElvUI_EltreumUI.borders.universalborders then
+					if _G["ElvUF_Target_CastBar"].Icon and _G["ElvUF_Target_CastBar"].Icon.bg.eltruismuniversalborders then
+						_G["ElvUF_Target_CastBar"].Icon.bg.eltruismuniversalborders:Kill()
+						_G["ElvUF_Target_CastBar"].Icon.bg.eltruismuniversalborders = nil
+					end
+				end
 			else
 				targetcastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcasttarget, E.db.ElvUI_EltreumUI.borders.ycasttarget)
 				targetcastbarborder:SetPoint("CENTER", _G["ElvUF_Target_CastBar"].Holder, "CENTER", 0, 0)
@@ -428,6 +526,13 @@ local function BordersPart1()
 			targetcastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			targetcastbarborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.targetcaststrata)
 			targetcastbarborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.targetcastlevel)
+
+			if E.db.ElvUI_EltreumUI.borders.universalborders then
+				if _G["ElvUF_Target_CastBar"].backdrop and _G["ElvUF_Target_CastBar"].backdrop.eltruismuniversalborders then
+					_G["ElvUF_Target_CastBar"].backdrop.eltruismuniversalborders:Kill()
+					_G["ElvUF_Target_CastBar"].backdrop.eltruismuniversalborders = nil
+				end
+			end
 		end
 
 		--target power
@@ -448,6 +553,13 @@ local function BordersPart1()
 				targetpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				targetpowerborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.targetpowerstrata)
 				targetpowerborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.targetpowerlevel)
+
+				if E.db.ElvUI_EltreumUI.borders.universalborders then
+					if _G["ElvUF_Target_PowerBar"].backdrop and _G["ElvUF_Target_PowerBar"].backdrop.eltruismuniversalborders then
+						_G["ElvUF_Target_PowerBar"].backdrop.eltruismuniversalborders:Kill()
+						_G["ElvUF_Target_PowerBar"].backdrop.eltruismuniversalborders = nil
+					end
+				end
 			end
 		end
 
@@ -474,6 +586,13 @@ local function BordersPart1()
 			if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.targettarget.infoPanel.enable then
 				targettargetborder:SetPoint("CENTER", _G.ElvUF_TargetTarget, "CENTER", 0, E.db.unitframe.units.targettarget.infoPanel.height)
 			end
+
+			if E.db.ElvUI_EltreumUI.borders.universalborders then
+				if _G["ElvUF_TargetTarget_HealthBar"].backdrop and _G["ElvUF_TargetTarget_HealthBar"].backdrop.eltruismuniversalborders then
+					_G["ElvUF_TargetTarget_HealthBar"].backdrop.eltruismuniversalborders:Kill()
+					_G["ElvUF_TargetTarget_HealthBar"].backdrop.eltruismuniversalborders = nil
+				end
+			end
 		end
 
 		--target of target power
@@ -494,6 +613,13 @@ local function BordersPart1()
 				targettargetpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				targettargetpowerborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.targettargetpowerstrata)
 				targettargetpowerborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.targettargetpowerlevel)
+
+				if E.db.ElvUI_EltreumUI.borders.universalborders then
+					if _G["ElvUF_TargetTarget_PowerBar"].backdrop and _G["ElvUF_TargetTarget_PowerBar"].backdrop.eltruismuniversalborders then
+						_G["ElvUF_TargetTarget_PowerBar"].backdrop.eltruismuniversalborders:Kill()
+						_G["ElvUF_TargetTarget_PowerBar"].backdrop.eltruismuniversalborders = nil
+					end
+				end
 			end
 		end
 
@@ -519,6 +645,13 @@ local function BordersPart1()
 			petborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.petlevel)
 			if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.pet.infoPanel.enable then
 				petborder:SetPoint("CENTER", _G.ElvUF_Pet, "CENTER", 0, E.db.unitframe.units.pet.infoPanel.height)
+			end
+
+			if E.db.ElvUI_EltreumUI.borders.universalborders then
+				if _G["ElvUF_Pet_HealthBar"].backdrop and _G["ElvUF_Pet_HealthBar"].backdrop.eltruismuniversalborders then
+					_G["ElvUF_Pet_HealthBar"].backdrop.eltruismuniversalborders:Kill()
+					_G["ElvUF_Pet_HealthBar"].backdrop.eltruismuniversalborders = nil
+				end
 			end
 		end
 
@@ -552,6 +685,13 @@ local function BordersPart1()
 					partyborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.partylevel)
 					if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.party.infoPanel.enable then
 						partyborder:SetPoint("CENTER", _G["ElvUF_PartyGroup1UnitButton"..i], "CENTER", 0, E.db.unitframe.units.party.infoPanel.height)
+					end
+
+					if E.db.ElvUI_EltreumUI.borders.universalborders then
+						if _G["ElvUF_PartyGroup1UnitButton"..i].backdrop and _G["ElvUF_PartyGroup1UnitButton"..i].backdrop.eltruismuniversalborders then
+							_G["ElvUF_PartyGroup1UnitButton"..i].backdrop.eltruismuniversalborders:Kill()
+							_G["ElvUF_PartyGroup1UnitButton"..i].backdrop.eltruismuniversalborders = nil
+						end
 					end
 				end
 			end
@@ -590,6 +730,13 @@ local function BordersPart1()
 							raid1border:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.raidlevel)
 							if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.raid1.infoPanel.enable then
 								raid1border:SetPoint("CENTER", _G['ElvUF_Raid1Group'..l..'UnitButton'..k], "CENTER", 0, E.db.unitframe.units.raid1.infoPanel.height)
+							end
+
+							if E.db.ElvUI_EltreumUI.borders.universalborders then
+								if _G['ElvUF_Raid1Group'..l..'UnitButton'..k].backdrop and _G['ElvUF_Raid1Group'..l..'UnitButton'..k].backdrop.eltruismuniversalborders then
+									_G['ElvUF_Raid1Group'..l..'UnitButton'..k].backdrop.eltruismuniversalborders:Kill()
+									_G['ElvUF_Raid1Group'..l..'UnitButton'..k].backdrop.eltruismuniversalborders = nil
+								end
 							end
 						end
 					end
@@ -688,6 +835,13 @@ local function BordersPart1()
 						if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.raid2.infoPanel.enable then
 							raid2border:SetPoint("CENTER", _G['ElvUF_Raid2Group'..l..'UnitButton'..k], "CENTER", 0, E.db.unitframe.units.raid2.infoPanel.height)
 						end
+
+						if E.db.ElvUI_EltreumUI.borders.universalborders then
+							if _G['ElvUF_Raid2Group'..l..'UnitButton'..k].backdrop and _G['ElvUF_Raid2Group'..l..'UnitButton'..k].backdrop.eltruismuniversalborders then
+								_G['ElvUF_Raid2Group'..l..'UnitButton'..k].backdrop.eltruismuniversalborders:Kill()
+								_G['ElvUF_Raid2Group'..l..'UnitButton'..k].backdrop.eltruismuniversalborders = nil
+							end
+						end
 					end
 				end
 			end
@@ -727,6 +881,13 @@ local function BordersPart1()
 						if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.raid3.infoPanel.enable then
 							raid3border:SetPoint("CENTER", _G['ElvUF_Raid3Group'..l..'UnitButton'..k], "CENTER", 0, E.db.unitframe.units.raid3.infoPanel.height)
 						end
+
+						if E.db.ElvUI_EltreumUI.borders.universalborders then
+							if _G['ElvUF_Raid3Group'..l..'UnitButton'..k].backdrop and _G['ElvUF_Raid3Group'..l..'UnitButton'..k].backdrop.eltruismuniversalborders then
+								_G['ElvUF_Raid3Group'..l..'UnitButton'..k].backdrop.eltruismuniversalborders:Kill()
+								_G['ElvUF_Raid3Group'..l..'UnitButton'..k].backdrop.eltruismuniversalborders = nil
+							end
+						end
 					end
 				end
 			end
@@ -756,6 +917,13 @@ local function BordersPart1()
 			if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.focus.infoPanel.enable then
 				focusborder:SetPoint("CENTER", _G.ElvUF_Focus, "CENTER", 0, E.db.unitframe.units.focus.infoPanel.height)
 			end
+
+			if E.db.ElvUI_EltreumUI.borders.universalborders then
+				if _G['ElvUF_Focus_HealthBar'].backdrop and _G['ElvUF_Focus_HealthBar'].backdrop.eltruismuniversalborders then
+					_G['ElvUF_Focus_HealthBar'].backdrop.eltruismuniversalborders:Kill()
+					_G['ElvUF_Focus_HealthBar'].backdrop.eltruismuniversalborders = nil
+				end
+			end
 		end
 
 		--focus castbar
@@ -782,6 +950,13 @@ local function BordersPart1()
 					--focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"], "CENTER", -E.db.unitframe.units.focus.castbar.iconSize/2, 0)
 					focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"].Holder, "CENTER", 0, 0)
 				end
+
+				if E.db.ElvUI_EltreumUI.borders.universalborders then
+					if _G['ElvUF_Focus_CastBar'].Icon and _G['ElvUF_Focus_CastBar'].Icon.bg.eltruismuniversalborders then
+						_G['ElvUF_Focus_CastBar'].Icon.bg.eltruismuniversalborders:Kill()
+						_G['ElvUF_Focus_CastBar'].Icon.bg.eltruismuniversalborders = nil
+					end
+				end
 			else
 				focuscastbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xcastfocus, E.db.ElvUI_EltreumUI.borders.ycastfocus)
 				focuscastbarborder:SetPoint("CENTER", _G["ElvUF_Focus_CastBar"].Holder, "CENTER", 0, 0)
@@ -793,6 +968,13 @@ local function BordersPart1()
 			focuscastbarborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			focuscastbarborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.focuscaststrata)
 			focuscastbarborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.focuscastlevel)
+
+			if E.db.ElvUI_EltreumUI.borders.universalborders then
+				if _G['ElvUF_Focus_CastBar'].backdrop and _G['ElvUF_Focus_CastBar'].backdrop.eltruismuniversalborders then
+					_G['ElvUF_Focus_CastBar'].backdrop.eltruismuniversalborders:Kill()
+					_G['ElvUF_Focus_CastBar'].backdrop.eltruismuniversalborders = nil
+				end
+			end
 		end
 
 		--focus power
@@ -813,6 +995,13 @@ local function BordersPart1()
 				focuspowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 				focuspowerborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.focuspowerstrata)
 				focuspowerborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.focuspowerlevel)
+
+				if E.db.ElvUI_EltreumUI.borders.universalborders then
+					if _G['ElvUF_Focus_PowerBar'].backdrop and _G['ElvUF_Focus_PowerBar'].backdrop.eltruismuniversalborders then
+						_G['ElvUF_Focus_PowerBar'].backdrop.eltruismuniversalborders:Kill()
+						_G['ElvUF_Focus_PowerBar'].backdrop.eltruismuniversalborders = nil
+					end
+				end
 			end
 		end
 
@@ -838,6 +1027,13 @@ local function BordersPart1()
 
 			if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.focustarget.infoPanel.enable then
 				focustargetborder:SetPoint("CENTER", _G.ElvUF_FocusTarget, "CENTER", 0, E.db.unitframe.units.focustarget.infoPanel.height)
+			end
+
+			if E.db.ElvUI_EltreumUI.borders.universalborders then
+				if _G['ElvUF_FocusTarget_HealthBar'].backdrop and _G['ElvUF_FocusTarget_HealthBar'].backdrop.eltruismuniversalborders then
+					_G['ElvUF_FocusTarget_HealthBar'].backdrop.eltruismuniversalborders:Kill()
+					_G['ElvUF_FocusTarget_HealthBar'].backdrop.eltruismuniversalborders = nil
+				end
 			end
 		end
 
@@ -878,6 +1074,13 @@ local function BordersPart1()
 					bossborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.bosslevel)
 					if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.boss.infoPanel.enable then
 						bossborder:SetPoint("CENTER", _G["ElvUF_Boss"..i], "CENTER", 0, E.db.unitframe.units.boss.infoPanel.height)
+					end
+
+					if E.db.ElvUI_EltreumUI.borders.universalborders then
+						if _G["ElvUF_Boss"..i].backdrop and _G["ElvUF_Boss"..i].backdrop.eltruismuniversalborders then
+							_G["ElvUF_Boss"..i].backdrop.eltruismuniversalborders:Kill()
+							_G["ElvUF_Boss"..i].backdrop.eltruismuniversalborders = nil
+						end
 					end
 				end
 			end
@@ -921,6 +1124,13 @@ local function BordersPart1()
 					if E.db.ElvUI_EltreumUI.unitframes.infopanelontop and E.db.unitframe.units.arena.infoPanel.enable then
 						arenaborder:SetPoint("CENTER", _G["ElvUF_Arena"..i], "CENTER", 0, E.db.unitframe.units.arena.infoPanel.height)
 					end
+
+					if E.db.ElvUI_EltreumUI.borders.universalborders then
+						if _G["ElvUF_Arena"..i].backdrop and _G["ElvUF_Arena"..i].backdrop.eltruismuniversalborders then
+							_G["ElvUF_Arena"..i].backdrop.eltruismuniversalborders:Kill()
+							_G["ElvUF_Arena"..i].backdrop.eltruismuniversalborders = nil
+						end
+					end
 				end
 			end
 		end
@@ -950,6 +1160,13 @@ local function BordersPart1()
 					end
 					tankborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.tankassiststrata)
 					tankborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.tankassistlevel)
+
+					if E.db.ElvUI_EltreumUI.borders.universalborders then
+						if _G["ElvUF_TankUnitButton"..k].backdrop and _G["ElvUF_TankUnitButton"..k].backdrop.eltruismuniversalborders then
+							_G["ElvUF_TankUnitButton"..k].backdrop.eltruismuniversalborders:Kill()
+							_G["ElvUF_TankUnitButton"..k].backdrop.eltruismuniversalborders = nil
+						end
+					end
 				end
 
 				if _G['ElvUF_AssistUnitButton'..k] then
@@ -974,6 +1191,13 @@ local function BordersPart1()
 					end
 					assistborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.tankassiststrata)
 					assistborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.tankassistlevel)
+
+					if E.db.ElvUI_EltreumUI.borders.universalborders then
+						if _G["ElvUF_AssistUnitButton"..k].backdrop and _G["ElvUF_AssistUnitButton"..k].backdrop.eltruismuniversalborders then
+							_G["ElvUF_AssistUnitButton"..k].backdrop.eltruismuniversalborders:Kill()
+							_G["ElvUF_AssistUnitButton"..k].backdrop.eltruismuniversalborders = nil
+						end
+					end
 				end
 			end
 		end
@@ -1006,6 +1230,16 @@ local function BordersPart2()
 					barborder1:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					barborder1:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.bar1strata)
 					barborder1:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.bar1level)
+
+					if E.db.ElvUI_EltreumUI.borders.universalborders then
+						if v.eltruismuniversalborders then
+							v.eltruismuniversalborders:Kill()
+							v.eltruismuniversalborders = nil
+						elseif v.backdrop and v.backdrop.eltruismuniversalborders then
+							v.backdrop.eltruismuniversalborders:Kill()
+							v.backdrop.eltruismuniversalborders = nil
+						end
+					end
 				end
 			end
 			createbar1borders()
@@ -1033,6 +1267,16 @@ local function BordersPart2()
 					barborder2:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					barborder2:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.bar2strata)
 					barborder2:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.bar2level)
+
+					if E.db.ElvUI_EltreumUI.borders.universalborders then
+						if v.eltruismuniversalborders then
+							v.eltruismuniversalborders:Kill()
+							v.eltruismuniversalborders = nil
+						elseif v.backdrop and v.backdrop.eltruismuniversalborders then
+							v.backdrop.eltruismuniversalborders:Kill()
+							v.backdrop.eltruismuniversalborders = nil
+						end
+					end
 				end
 			end
 			createbar2borders()
@@ -1060,6 +1304,16 @@ local function BordersPart2()
 					barborder3:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					barborder3:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.bar3strata)
 					barborder3:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.bar3level)
+
+					if E.db.ElvUI_EltreumUI.borders.universalborders then
+						if v.eltruismuniversalborders then
+							v.eltruismuniversalborders:Kill()
+							v.eltruismuniversalborders = nil
+						elseif v.backdrop and v.backdrop.eltruismuniversalborders then
+							v.backdrop.eltruismuniversalborders:Kill()
+							v.backdrop.eltruismuniversalborders = nil
+						end
+					end
 				end
 			end
 			createbar3borders()
@@ -1087,6 +1341,16 @@ local function BordersPart2()
 					barborder4:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					barborder4:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.bar4strata)
 					barborder4:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.bar4level)
+
+					if E.db.ElvUI_EltreumUI.borders.universalborders then
+						if v.eltruismuniversalborders then
+							v.eltruismuniversalborders:Kill()
+							v.eltruismuniversalborders = nil
+						elseif v.backdrop and v.backdrop.eltruismuniversalborders then
+							v.backdrop.eltruismuniversalborders:Kill()
+							v.backdrop.eltruismuniversalborders = nil
+						end
+					end
 				end
 			end
 			createbar4borders()
@@ -1114,6 +1378,16 @@ local function BordersPart2()
 					barborder5:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					barborder5:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.bar5strata)
 					barborder5:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.bar5level)
+
+					if E.db.ElvUI_EltreumUI.borders.universalborders then
+						if v.eltruismuniversalborders then
+							v.eltruismuniversalborders:Kill()
+							v.eltruismuniversalborders = nil
+						elseif v.backdrop and v.backdrop.eltruismuniversalborders then
+							v.backdrop.eltruismuniversalborders:Kill()
+							v.backdrop.eltruismuniversalborders = nil
+						end
+					end
 				end
 			end
 			createbar5borders()
@@ -1141,6 +1415,16 @@ local function BordersPart2()
 					barborder6:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					barborder6:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.bar6strata)
 					barborder6:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.bar6level)
+
+					if E.db.ElvUI_EltreumUI.borders.universalborders then
+						if v.eltruismuniversalborders then
+							v.eltruismuniversalborders:Kill()
+							v.eltruismuniversalborders = nil
+						elseif v.backdrop and v.backdrop.eltruismuniversalborders then
+							v.backdrop.eltruismuniversalborders:Kill()
+							v.backdrop.eltruismuniversalborders = nil
+						end
+					end
 				end
 			end
 			createbar6borders()
@@ -1168,6 +1452,16 @@ local function BordersPart2()
 					stanceborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					stanceborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.stancestrata)
 					stanceborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.stancelevel)
+
+					if E.db.ElvUI_EltreumUI.borders.universalborders then
+						if v.eltruismuniversalborders then
+							v.eltruismuniversalborders:Kill()
+							v.eltruismuniversalborders = nil
+						elseif v.backdrop and v.backdrop.eltruismuniversalborders then
+							v.backdrop.eltruismuniversalborders:Kill()
+							v.backdrop.eltruismuniversalborders = nil
+						end
+					end
 				end
 			end
 			createstanceborders()
@@ -1195,6 +1489,16 @@ local function BordersPart2()
 					petactionborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 					petactionborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.petabstrata)
 					petactionborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.petablevel)
+
+					if E.db.ElvUI_EltreumUI.borders.universalborders then
+						if v.eltruismuniversalborders then
+							v.eltruismuniversalborders:Kill()
+							v.eltruismuniversalborders = nil
+						elseif v.backdrop and v.backdrop.eltruismuniversalborders then
+							v.backdrop.eltruismuniversalborders:Kill()
+							v.backdrop.eltruismuniversalborders = nil
+						end
+					end
 				end
 			end
 			createstancepetactionborders()
@@ -1258,11 +1562,21 @@ local function BordersPart2()
 	end]]
 
 	--nameplate power bar
-	if E.db.ElvUI_EltreumUI.borders.powerbarborder then
-		if not _G["EltruismPowerBarBorder"] then
-			powerbarborder = CreateFrame("Frame", "EltruismPowerBarBorder", _G.EltruismPowerBar, BackdropTemplateMixin and "BackdropTemplate")
+	if E.db.ElvUI_EltreumUI.borders.powerbarborder and _G.EltruismPowerBar then
+		if E.db.ElvUI_EltreumUI.borders.universalborders then
+			if _G.EltruismPowerBar.eltruismuniversalborders then
+				_G.EltruismPowerBar.eltruismuniversalborders:Kill()
+				_G.EltruismPowerBar.eltruismuniversalborders = nil
+			end
+			if _G.EltruismPowerBar.backdrop and _G.EltruismPowerBar.backdrop.eltruismuniversalborders then
+				_G.EltruismPowerBar.backdrop.eltruismuniversalborders:Kill()
+				_G.EltruismPowerBar.backdrop.eltruismuniversalborders = nil
+			end
+		end
+		if not _G["EltruismNameplatePowerBarBorder"] then
+			powerbarborder = CreateFrame("Frame", "EltruismNameplatePowerBarBorder", _G.EltruismPowerBar, BackdropTemplateMixin and "BackdropTemplate")
 		else
-			powerbarborder = _G["EltruismPowerBarBorder"]
+			powerbarborder = _G["EltruismNameplatePowerBarBorder"]
 		end
 		powerbarborder:SetSize(E.db.ElvUI_EltreumUI.borders.xpowerbar, E.db.ElvUI_EltreumUI.borders.ypowerbar)
 		powerbarborder:SetPoint("CENTER", _G.EltruismPowerBar, "CENTER", 0, 0)
@@ -1329,6 +1643,16 @@ local function BordersPart2()
 				_G.Minimap.location:SetPoint('TOP', _G.Minimap, 'TOP', 0, -15)
 			end)
 		end
+
+		if E.db.ElvUI_EltreumUI.borders.universalborders then
+			if _G["Minimap"].eltruismuniversalborders then
+				_G["Minimap"].eltruismuniversalborders:Kill()
+				_G["Minimap"].eltruismuniversalborders = nil
+			elseif _G["Minimap"].backdrop and _G["Minimap"].backdrop.eltruismuniversalborders then
+				_G["Minimap"].backdrop.eltruismuniversalborders:Kill()
+				_G["Minimap"].backdrop.eltruismuniversalborders = nil
+			end
+		end
 	end
 
 	--chat
@@ -1375,6 +1699,23 @@ local function BordersPart2()
 			LeftChatBorder:Hide()
 			RightChatBorder:Hide()
 		end
+
+		if E.db.ElvUI_EltreumUI.borders.universalborders then
+			if _G["LeftChatPanel"].eltruismuniversalborders then
+				_G["LeftChatPanel"].eltruismuniversalborders:Kill()
+				_G["LeftChatPanel"].eltruismuniversalborders = nil
+			elseif _G["LeftChatPanel"].backdrop and _G["LeftChatPanel"].backdrop.eltruismuniversalborders then
+				_G["LeftChatPanel"].backdrop.eltruismuniversalborders:Kill()
+				_G["LeftChatPanel"].backdrop.eltruismuniversalborders = nil
+			end
+			if _G["RightChatPanel"].eltruismuniversalborders then
+				_G["RightChatPanel"].eltruismuniversalborders:Kill()
+				_G["RightChatPanel"].eltruismuniversalborders = nil
+			elseif _G["RightChatPanel"].backdrop and _G["RightChatPanel"].backdrop.eltruismuniversalborders then
+				_G["RightChatPanel"].backdrop.eltruismuniversalborders:Kill()
+				_G["RightChatPanel"].backdrop.eltruismuniversalborders = nil
+			end
+		end
 	end
 
 	--databars
@@ -1393,6 +1734,23 @@ local function BordersPart2()
 		experienceborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 		experienceborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.experiencebarstrata)
 		experienceborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.experiencebarlevel)
+
+		if E.db.ElvUI_EltreumUI.borders.universalborders then
+			if _G["ElvUI_ExperienceBar"].eltruismuniversalborders then
+				_G["ElvUI_ExperienceBar"].eltruismuniversalborders:Kill()
+				_G["ElvUI_ExperienceBar"].eltruismuniversalborders = nil
+			elseif _G["ElvUI_ExperienceBar"].backdrop and _G["ElvUI_ExperienceBar"].backdrop.eltruismuniversalborders then
+				_G["ElvUI_ExperienceBar"].backdrop.eltruismuniversalborders:Kill()
+				_G["ElvUI_ExperienceBar"].backdrop.eltruismuniversalborders = nil
+			end
+			if _G["ElvUI_ExperienceBarHolder"].eltruismuniversalborders then
+				_G["ElvUI_ExperienceBarHolder"].eltruismuniversalborders:Kill()
+				_G["ElvUI_ExperienceBarHolder"].eltruismuniversalborders = nil
+			elseif _G["ElvUI_ExperienceBarHolder"].backdrop and _G["ElvUI_ExperienceBarHolder"].backdrop.eltruismuniversalborders then
+				_G["ElvUI_ExperienceBarHolder"].backdrop.eltruismuniversalborders:Kill()
+				_G["ElvUI_ExperienceBarHolder"].backdrop.eltruismuniversalborders = nil
+			end
+		end
 	end
 	if E.db.databars.reputation.enable and E.db.ElvUI_EltreumUI.borders.reputationbar and _G.ElvUI_ReputationBar then
 		if not _G["EltruismReputationBorder"] then
@@ -1409,6 +1767,23 @@ local function BordersPart2()
 		reputationborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 		reputationborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.reputationbarstrata)
 		reputationborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.reputationbarlevel)
+
+		if E.db.ElvUI_EltreumUI.borders.universalborders then
+			if _G["ElvUI_ReputationBar"].eltruismuniversalborders then
+				_G["ElvUI_ReputationBar"].eltruismuniversalborders:Kill()
+				_G["ElvUI_ReputationBar"].eltruismuniversalborders = nil
+			elseif _G["ElvUI_ReputationBar"].backdrop and _G["ElvUI_ReputationBar"].backdrop.eltruismuniversalborders then
+				_G["ElvUI_ReputationBar"].backdrop.eltruismuniversalborders:Kill()
+				_G["ElvUI_ReputationBar"].backdrop.eltruismuniversalborders = nil
+			end
+			if _G["ElvUI_ReputationBarHolder"].eltruismuniversalborders then
+				_G["ElvUI_ReputationBarHolder"].eltruismuniversalborders:Kill()
+				_G["ElvUI_ReputationBarHolder"].eltruismuniversalborders = nil
+			elseif _G["ElvUI_ReputationBarHolder"].backdrop and _G["ElvUI_ReputationBarHolder"].backdrop.eltruismuniversalborders then
+				_G["ElvUI_ReputationBarHolder"].backdrop.eltruismuniversalborders:Kill()
+				_G["ElvUI_ReputationBarHolder"].backdrop.eltruismuniversalborders = nil
+			end
+		end
 	end
 	if E.db.databars.threat.enable and E.db.ElvUI_EltreumUI.borders.threatbar and _G.ElvUI_ThreatBar then
 		if not _G["EltruismThreatBorder"] then
@@ -1425,6 +1800,23 @@ local function BordersPart2()
 		threatborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 		threatborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.threatbarstrata)
 		threatborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.threatbarlevel)
+
+		if E.db.ElvUI_EltreumUI.borders.universalborders then
+			if _G["ElvUI_ThreatBar"].eltruismuniversalborders then
+				_G["ElvUI_ThreatBar"].eltruismuniversalborders:Kill()
+				_G["ElvUI_ThreatBar"].eltruismuniversalborders = nil
+			elseif _G["ElvUI_ThreatBar"].backdrop and _G["ElvUI_ThreatBar"].backdrop.eltruismuniversalborders then
+				_G["ElvUI_ThreatBar"].backdrop.eltruismuniversalborders:Kill()
+				_G["ElvUI_ThreatBar"].backdrop.eltruismuniversalborders = nil
+			end
+			if _G["ElvUI_ThreatBarHolder"].eltruismuniversalborders then
+				_G["ElvUI_ThreatBarHolder"].eltruismuniversalborders:Kill()
+				_G["ElvUI_ThreatBarHolder"].eltruismuniversalborders = nil
+			elseif _G["ElvUI_ThreatBarHolder"].backdrop and _G["ElvUI_ThreatBarHolder"].backdrop.eltruismuniversalborders then
+				_G["ElvUI_ThreatBarHolder"].backdrop.eltruismuniversalborders:Kill()
+				_G["ElvUI_ThreatBarHolder"].backdrop.eltruismuniversalborders = nil
+			end
+		end
 	end
 
 	--altpowerbar
@@ -1443,6 +1835,16 @@ local function BordersPart2()
 		altpowerborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 		altpowerborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.altpowerbarstrata)
 		altpowerborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.altpowerbarlevel)
+
+		if E.db.ElvUI_EltreumUI.borders.universalborders then
+			if _G["ElvUI_AltPowerBar"].eltruismuniversalborders then
+				_G["ElvUI_AltPowerBar"].eltruismuniversalborders:Kill()
+				_G["ElvUI_AltPowerBar"].eltruismuniversalborders = nil
+			elseif _G["ElvUI_AltPowerBar"].backdrop and _G["ElvUI_AltPowerBar"].backdrop.eltruismuniversalborders then
+				_G["ElvUI_AltPowerBar"].backdrop.eltruismuniversalborders:Kill()
+				_G["ElvUI_AltPowerBar"].backdrop.eltruismuniversalborders = nil
+			end
+		end
 	end
 
 	--fire tooltip border
@@ -1453,7 +1855,7 @@ end
 
 --Borders on frames
 function ElvUI_EltreumUI:Borders()
-	if E.db.ElvUI_EltreumUI.borders.borders and not E.db.ElvUI_EltreumUI.borders.universalborders then
+	if E.db.ElvUI_EltreumUI.borders.borders then
 		if E.Classic and not E.db.ElvUI_EltreumUI.skins.classicblueshaman then
 			classcolorreaction["SHAMAN"] = {r1 = 0.95686066150665, g1 = 0.54901838302612, b1 = 0.72941017150879}
 		end
@@ -1493,12 +1895,17 @@ local debuffColors = { -- handle colors of LibDispel
 }
 
 function ElvUI_EltreumUI:AuraBorders(button)
-	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
+	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable then
 		local auraborder
 		if not _G["EltruismAuraBorder"..button:GetName()] then
 			auraborder = CreateFrame("Frame", "EltruismAuraBorder"..button:GetName(), button, BackdropTemplateMixin and "BackdropTemplate")
 		else
 			auraborder = _G["EltruismAuraBorder"..button:GetName()]
+		end
+
+		if E.db.ElvUI_EltreumUI.borders.universalborders and button.eltruismuniversalborders then
+			button.eltruismuniversalborders:Kill()
+			button.eltruismuniversalborders = nil
 		end
 
 		if button.auraType == "debuffs" then
@@ -1531,7 +1938,7 @@ end
 hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraBorders) --aura (minimap) borders
 
 function ElvUI_EltreumUI:AuraBordersColorDebuff(button)
-	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
+	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder and E.private.auras.enable then
 		local auraborder = _G["EltruismAuraBorder"..button:GetName()]
 		if not auraborder then return end
 		if button.auraType == "debuffs" then
@@ -1545,22 +1952,15 @@ function ElvUI_EltreumUI:AuraBordersColorDebuff(button)
 		end
 	end
 
-	if button.eltruismuniversalborders then --cursed borders
-		if button.auraType == "debuffs" then
-			if debuffColors[button.debuffType] then
-				button.eltruismuniversalborders:SetBackdropBorderColor(debuffColors[button.debuffType].r, debuffColors[button.debuffType].g, debuffColors[button.debuffType].b, 1)
-			else
-				button.eltruismuniversalborders:SetBackdropBorderColor(0.8, 0, 0, 1)
-			end
-		else
-			button.eltruismuniversalborders:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-		end
+	if E.db.ElvUI_EltreumUI.borders.universalborders and button.eltruismuniversalborders then
+		button.eltruismuniversalborders:Kill()
+		button.eltruismuniversalborders = nil
 	end
 end
 hooksecurefunc(A, 'UpdateAura', ElvUI_EltreumUI.AuraBordersColorDebuff) --debuff colors update
 
 function ElvUI_EltreumUI:UFAuraBorders(_,button)
-	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf and E.private.auras.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
+	if button and E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf and E.private.auras.enable then
 		ElvUI_EltreumUI:GetButtonCasterForBorderColor(button) --fix the border color
 		local auraborder
 		if not _G["EltruismAuraBorder"..button:GetName()] then
@@ -1609,17 +2009,9 @@ function ElvUI_EltreumUI:UFAuraBorders(_,button)
 		end
 	end
 
-	if button and button.eltruismuniversalborders then --cursed borders
-		if button.isDebuff then
-			local r,g,b = button:GetBackdropBorderColor()
-			if r then
-				button.eltruismuniversalborders:SetBackdropBorderColor(r,g,b, 1)
-			else
-				button.eltruismuniversalborders:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			end
-		else
-			button.eltruismuniversalborders:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-		end
+	if E.db.ElvUI_EltreumUI.borders.universalborders and button.eltruismuniversalborders then
+		button.eltruismuniversalborders:Kill()
+		button.eltruismuniversalborders = nil
 	end
 end
 hooksecurefunc(UF, 'PostUpdateAura', ElvUI_EltreumUI.UFAuraBorders) --uf aura borders and debuff colors update
@@ -1643,10 +2035,10 @@ function ElvUI_EltreumUI:TooltipBorder()
 	--tooltipborder:SetPoint("CENTER", _G.GameTooltip, "CENTER", 0, 0)
 	--tooltipborder:SetSize(100, 100)
 
-	 if not tooltipborder.Hooks then
+	if not tooltipborder.Hooks then
 	 	local function FixSize()
 	 		if _G.GameTooltipStatusBar and _G.GameTooltipStatusBar:IsShown() and (_G.GameTooltipStatusBar:GetAlpha() ~= 0) then --isshown and isvisible always return true
-				tthpy = select(2,_G.GameTooltipStatusBar:GetSize())
+				tthpy = _G.select(2,_G.GameTooltipStatusBar:GetSize())
 				ttx,tty = _G.GameTooltip:GetSize()
 				if E.db.tooltip.healthBar.statusPosition == "TOP" then
 					tooltipborder:SetPoint("CENTER", _G.GameTooltip, "CENTER", 0, tthpy/2)
@@ -1681,7 +2073,7 @@ function ElvUI_EltreumUI:TooltipBorder()
 					tooltipborder:SetBackdropBorderColor(reactionColor.r, reactionColor.g, reactionColor.b, 1)
 				end
 			elseif _G.GameTooltip:GetItem() then --has item
-				local name,itemLink = GameTooltip:GetItem()
+				local name,itemLink = _G.GameTooltip:GetItem()
 				if not name then return end
 				if not itemLink then return end
 				local _, _, itemQuality = GetItemInfo(itemLink)
@@ -1700,16 +2092,25 @@ function ElvUI_EltreumUI:TooltipBorder()
 			FixSize()
 
 			FixColor()
+
+			if E.db.ElvUI_EltreumUI.borders.universalborders then
+				if _G.GameTooltip and _G.GameTooltip.NineSlice and _G.GameTooltip.NineSlice.eltruismuniversalborders then
+					 _G.GameTooltip.NineSlice.eltruismuniversalborders:Kill()
+					 _G.GameTooltip.NineSlice.eltruismuniversalborders = nil
+				end
+			end
 		end
 		_G.GameTooltip:HookScript("OnShow", TooltipBorderFix) --when it appears
 		_G.GameTooltip:HookScript("OnEvent", TooltipBorderFix) --for other events
 		_G.GameTooltip:HookScript("OnSizeChanged", TooltipBorderFix) --when comparing
 		tooltipborder.Hooks = true
 	end
+
+
 end
 
 function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of target changes if the target is not in party/raid, no event to register :(
-	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor and not E.db.ElvUI_EltreumUI.borders.universalborders then
+	if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.classcolor then
 
 		--targettarget doesnt fire events, and if both units are registered then only the last one is triggering the function, with player never triggering it
 		local powertypemonitortarget = CreateFrame("frame")

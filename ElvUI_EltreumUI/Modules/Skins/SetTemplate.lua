@@ -54,7 +54,7 @@ local frametypes = {
 }
 
 local function EltruismBorders(frame)
-	if E.db.ElvUI_EltreumUI.borders.universalborders and not frame.eltruismuniversalborders then
+	if E.db.ElvUI_EltreumUI.borders.universalborders and not frame.eltruismuniversalborders and not frame.eltruismuniversalbordersadded then
 		if not E.db.ElvUI_EltreumUI.borders.classcolor then
 			valuecolors = {
 				r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
@@ -71,7 +71,6 @@ local function EltruismBorders(frame)
 		frame.eltruismuniversalborders:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
 		frame.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel()+1)
 		frame.eltruismuniversalborders:SetFrameStrata(frame:GetFrameStrata())
-		--SetOutside(obj, anchor, xOffset, yOffset, anchor2, noScale)
 		frame.eltruismuniversalborders:SetOutside(frame, E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset, E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset)
 		if frame.IconBorder then --items are different
 			local itemoffset = 20
@@ -109,10 +108,34 @@ local function EltruismBorders(frame)
 			if frame.shadow then frame.shadow:Hide() end
 		end
 
+		frame.eltruismuniversalbordersadded = true
+
+		--[[if isUnitFrameElement then
+			if frame:GetParent() and frame:GetParent():GetParent() and frame:GetParent():GetParent().Health then
+				if not frame:GetParent():GetParent().EltruismUniversalBorderHook then
+					hooksecurefunc(frame:GetParent():GetParent().Health,"ForceUpdate", function(frame)
+						if UnitIsPlayer(frame:GetParent().unit) or (E.Retail and UnitInPartyIsAI(frame:GetParent().unit)) then
+							local _, frameunitclass = UnitClass(frame:GetParent().unit)
+							frame.eltruismuniversalborders:SetBackdropBorderColor(classcolorreaction[targetclass]["r1"], classcolorreaction[targetclass]["g1"], classcolorreaction[targetclass]["b1"], 1)
+						end
+					end)
+				end
+			end
+		end
+
+		if frame.auraType and frame.debuffType and debuffColors[frame.debuffType] then
+			frame.eltruismuniversalborders:SetBackdropBorderColor(debuffColors[frame.debuffType].r, debuffColors[frame.debuffType].g, debuffColors[frame.debuffType].b, 1)
+		end]]
+
 		if frame.shadow then
 			frame.shadow:Hide()
-		elseif frame.backdrop and frame.backdrop.shadow then
-			frame.backdrop.shadow:Hide()
+		elseif frame.backdrop then
+			if frame.backdrop.shadow then
+				frame.backdrop.shadow:Hide()
+			end
+			if frame.backdrop.eltruismuniversalborders then
+				frame.backdrop.eltruismuniversalborders:Hide()
+			end
 		elseif frame:GetParent() and frame:GetParent().shadow then
 			frame:GetParent().shadow:Hide()
 		end
