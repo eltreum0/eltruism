@@ -69,7 +69,7 @@ local function EltruismBorders(frame)
 			edgeSize = E.db.ElvUI_EltreumUI.borders.universalborderssettings.thickness,
 		})
 		frame.eltruismuniversalborders:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
-		frame.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel()+1)
+		frame.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel()+20)
 		frame.eltruismuniversalborders:SetFrameStrata(frame:GetFrameStrata())
 		frame.eltruismuniversalborders:SetOutside(frame, E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset, E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset)
 		if frame.IconBorder then --items are different
