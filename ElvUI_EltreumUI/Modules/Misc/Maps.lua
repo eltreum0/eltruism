@@ -534,13 +534,21 @@ local function FixElvUIMinimapBorder()
 		if _G.Minimap.backdrop then
 			_G.Minimap.backdrop:Hide()
 		end
-		local tracking = _G.MinimapCluster.Tracking or _G.MinimapCluster.TrackingFrame or _G.MiniMapTrackingFrame or _G.MiniMapTracking
-		if tracking then
-			tracking:SetParent(_G.Minimap)
-		end
-		local queuestatus = _G.MiniMapLFGFrame or _G.LFGMinimapFrame --only in classic
-		if queuestatus then
-			queuestatus:SetParent(_G.Minimap)
+
+		--show icons that could be hidden by hiding the backdrop
+		local minimapTrackingIcons = {
+			_G.MinimapCluster.Tracking,
+			_G.MinimapCluster.TrackingFrame,
+			_G.MiniMapTrackingFrame,
+			_G.MiniMapTracking,
+			_G.ExpansionLandingPageMinimapButton,
+			_G.MiniMapLFGFrame,
+			_G.LFGMinimapFrame,
+		}
+		for _, frame in pairs(minimapTrackingIcons) do
+			if frame then
+				frame:SetParent(_G.Minimap)
+			end
 		end
 	else
 		if _G.MinimapBackdrop then
