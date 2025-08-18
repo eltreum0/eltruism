@@ -9,6 +9,7 @@ local getmetatable = _G.getmetatable
 local type = _G.type
 local BackdropTemplateMixin = _G.BackdropTemplateMixin
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
+local fixedConfig = false
 
 local widgetAtlas = {
 	["widgetstatusbar-fill-blue"] = { r = 0, g = 0, b = 255, a = 1},
@@ -71,9 +72,17 @@ local function EltruismBorders(frame)
 		frame.eltruismuniversalborders:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
 		frame.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel()+2)
 		frame.eltruismuniversalborders:SetFrameStrata(frame:GetFrameStrata())
-		frame.eltruismuniversalborders:SetPropagateMouseClicks(true)
-
 		frame.eltruismuniversalborders:SetOutside(frame, E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset, E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset)
+
+		--if not hiding the config frame border then the buttons become unclickable
+		if not fixedConfig then
+			local configFrame = E:Config_GetWindow()
+			if configFrame and configFrame.eltruismuniversalborders then
+				configFrame.eltruismuniversalborders:Kill()
+				configFrame.eltruismuniversalborders = nil
+			end
+		end
+
 		if frame.IconBorder then --items are different
 			local itemoffset = 20
 			local itemoutside = 14
