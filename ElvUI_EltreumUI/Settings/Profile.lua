@@ -828,7 +828,7 @@ P.ElvUI_EltreumUI = {
 		xpowerbar = 138.8,
 		ypowerbar = 12,
 		powerbarstrata = "MEDIUM",
-		powerbarlevel = 3,
+		powerbarlevel = 150,
 
 		minimapborder = true,
 		minimapsizex = 226,
