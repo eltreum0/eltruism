@@ -9,6 +9,7 @@ local getmetatable = _G.getmetatable
 local type = _G.type
 local BackdropTemplateMixin = _G.BackdropTemplateMixin
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
+local fixedConfig = false
 
 local widgetAtlas = {
 	["widgetstatusbar-fill-blue"] = { r = 0, g = 0, b = 255, a = 1},
@@ -53,6 +54,444 @@ local frametypes = {
 	["ModelScene"] = true,
 }
 
+local function EltruismBorders(frame)
+	if E.db.ElvUI_EltreumUI.borders.universalborders and not frame.eltruismuniversalborders and not frame.eltruismuniversalbordersadded then
+		if not E.db.ElvUI_EltreumUI.borders.classcolor then
+			valuecolors = {
+				r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
+				g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
+				b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
+			}
+		end
+		frame.eltruismuniversalborders = CreateFrame("Frame", nil, frame, BackdropTemplateMixin and "BackdropTemplate")
+		frame.eltruismuniversalborders:SetPoint("CENTER", frame, "CENTER", 0, 0)
+		frame.eltruismuniversalborders:SetBackdrop({
+			edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
+			edgeSize = E.db.ElvUI_EltreumUI.borders.universalborderssettings.thickness,
+		})
+		frame.eltruismuniversalborders:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
+		frame.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel()+2)
+		frame.eltruismuniversalborders:SetFrameStrata(frame:GetFrameStrata())
+		frame.eltruismuniversalborders:SetOutside(frame, E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset, E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset)
+
+		--if not hiding the config frame border then the buttons become unclickable
+		if not fixedConfig then
+			local configFrame = E:Config_GetWindow()
+			if configFrame and configFrame.eltruismuniversalborders then
+				configFrame.eltruismuniversalborders:Kill()
+				configFrame.eltruismuniversalborders = nil
+			end
+		end
+
+		if frame.IconBorder then --items are different
+			local itemoffset = 20
+			local itemoutside = 14
+			frame.eltruismuniversalborders:SetBackdrop({
+				edgeFile = E.LSM:Fetch("border", "Eltreum-Border-1"),
+				edgeSize = itemoffset,
+			})
+			frame.eltruismuniversalborders:SetOutside(frame, itemoutside, itemoutside)
+			if frame.rarity then
+				local r,g,b = GetItemQualityColor(frame.rarity)
+				frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+				frame.eltruismuniversalborders:Show()
+				togglebackdrop(frame,false)
+			else
+				frame.eltruismuniversalborders:Hide()
+				togglebackdrop(frame,true)
+			end
+			hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable)
+				frametable.eltruismuniversalborders:SetBackdrop({
+					edgeFile = E.LSM:Fetch("border", "Eltreum-Border-1"),
+					edgeSize = itemoffset,
+				})
+				frametable.eltruismuniversalborders:SetOutside(frametable, itemoutside, itemoutside)
+				if frametable.rarity then
+					local r,g,b = GetItemQualityColor(frametable.rarity)
+					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+					frametable.eltruismuniversalborders:Show()
+					togglebackdrop(frame,false)
+				else
+					frame.eltruismuniversalborders:Hide()
+					togglebackdrop(frame,true)
+				end
+			end)
+			if frame.shadow then frame.shadow:Hide() end
+		end
+
+		frame.eltruismuniversalbordersadded = true
+
+		--[[if isUnitFrameElement then
+			if frame:GetParent() and frame:GetParent():GetParent() and frame:GetParent():GetParent().Health then
+				if not frame:GetParent():GetParent().EltruismUniversalBorderHook then
+					hooksecurefunc(frame:GetParent():GetParent().Health,"ForceUpdate", function(frame)
+						if UnitIsPlayer(frame:GetParent().unit) or (E.Retail and UnitInPartyIsAI(frame:GetParent().unit)) then
+							local _, frameunitclass = UnitClass(frame:GetParent().unit)
+							frame.eltruismuniversalborders:SetBackdropBorderColor(classcolorreaction[targetclass]["r1"], classcolorreaction[targetclass]["g1"], classcolorreaction[targetclass]["b1"], 1)
+						end
+					end)
+				end
+			end
+		end
+
+		if frame.auraType and frame.debuffType and debuffColors[frame.debuffType] then
+			frame.eltruismuniversalborders:SetBackdropBorderColor(debuffColors[frame.debuffType].r, debuffColors[frame.debuffType].g, debuffColors[frame.debuffType].b, 1)
+		end]]
+
+		if frame.shadow then
+			frame.shadow:Hide()
+		elseif frame.backdrop then
+			if frame.backdrop.shadow then
+				frame.backdrop.shadow:Hide()
+			end
+			if frame.backdrop.eltruismuniversalborders then
+				frame.backdrop.eltruismuniversalborders:Hide()
+			end
+		elseif frame:GetParent() and frame:GetParent().shadow then
+			frame:GetParent().shadow:Hide()
+		end
+	end
+end
+
+local function EltruismBackground(frame,isUnitFrameElement)
+	if not frame.EltruismBackground then
+		frame.eltruismbgtexture = frame:CreateTexture(nil, "BORDER")
+		frame.eltruismbgtexture:SetParent(frame)
+		frame.eltruismbgtexture:ClearAllPoints()
+		frame.eltruismbgtexture:SetPoint("TOPLEFT", 1, -1)
+		frame.eltruismbgtexture:SetPoint("BOTTOMRIGHT", -1, 1)
+		frame.eltruismbgtexture:SetTexture(E.LSM:Fetch("background", E.db.ElvUI_EltreumUI.skins.elvui.texture), true, true)
+		frame.eltruismbgtexture:SetHorizTile(true)
+		frame.eltruismbgtexture:SetVertTile(true)
+		frame.eltruismbgtexture:SetBlendMode("ADD")
+		if (frame:GetObjectType() == "Button" or frame:GetObjectType() == "CheckButton") and frame.icon then --fix for buttons since the texture could overlap over the icon
+			frame.eltruismbgtexture:SetDrawLayer("BACKGROUND")
+		end
+		if frame:GetParent() then
+			if frame:GetParent():GetObjectType() == "Button" and frame:GetParent().icon and not isUnitFrameElement then --fix for buttons since the texture could overlap over the icon
+				frame.eltruismbgtexture:SetDrawLayer("BACKGROUND")
+			end
+			if frame:GetParent().TransmogStateTexture then --transmog stuff
+				frame.eltruismbgtexture:SetTexture("")
+			end
+			if frame:GetParent().TransmogSelectedAnim then --transmog stuff
+				--frame.eltruismbgtexture:SetTexture("") --at some point this stopped working and now the frame needs to be hidden
+				frame:Hide()
+			end
+		end
+		if (frame.SelectedTexture or frame.glossTex) and not E.db.ElvUI_EltreumUI.skins.elvui.button then --fix some more buttons
+			frame.eltruismbgtexture:Hide()
+		end
+		if isUnitFrameElement and (frame:GetParent() and frame:GetParent().isTransparent == false) then --only on health
+			frame.eltruismbgtexture:SetDrawLayer("ARTWORK")
+			frame.eltruismbgtexture:SetParent(frame:GetParent())
+		end
+		if E.db.ElvUI_EltreumUI.skins.elvui.color.classcolor then
+			frame.eltruismbgtexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,0.15)
+		else
+			frame.eltruismbgtexture:SetVertexColor(E.db.ElvUI_EltreumUI.skins.elvui.color.r,E.db.ElvUI_EltreumUI.skins.elvui.color.g,E.db.ElvUI_EltreumUI.skins.elvui.color.b,E.db.ElvUI_EltreumUI.skins.elvui.color.a)
+		end
+
+		frame.EltruismBackground = true
+	else
+		if frame.eltruismbgtexture then
+			frame.eltruismbgtexture:Show()
+		end
+	end
+end
+
+local function EltruisAce3(frame)
+	if E.db.ElvUI_EltreumUI.skins.ace3.enable then
+		E:Delay(0,function()
+			if frame:GetParent() then
+				if frame:GetParent().obj then
+					if frame:GetParent().obj.SetValue then
+						if not frame:GetParent().obj.EltruismHookLabel then
+							hooksecurefunc(frame:GetParent().obj,"SetValue", function(frametext)
+								E:Delay(0, function()
+									if frametext.label then
+										if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+											frametext.label:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+										else
+											frametext.label:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+										end
+									end
+									if frametext.titletext then
+										if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+											frametext.titletext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+										else
+											frametext.titletext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+										end
+									end
+								end)
+							end)
+							frame:GetParent().obj.EltruismHookLabel = true
+						end
+					end
+					if frame:GetParent().obj.SetText then
+						if not frame:GetParent().obj.EltruismHookSetText then
+							hooksecurefunc(frame:GetParent().obj,"SetText", function(frametext)
+								E:Delay(0, function()
+									if frametext.label then
+										if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+											frametext.label:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+										else
+											frametext.label:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+										end
+									end
+									if frametext.titletext then
+										if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+											frametext.titletext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+										else
+											frametext.titletext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+										end
+									end
+								end)
+							end)
+							frame:GetParent().obj.EltruismHookSetText = true
+						end
+					end
+					if frame:GetParent().obj.label and frame:GetParent().obj.label.SetTextColor then
+						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+							frame:GetParent().obj.label:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+						else
+							frame:GetParent().obj.label:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+						end
+					end
+					if frame:GetParent().obj.titletext and frame:GetParent().obj.titletext.SetTextColor then
+						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+							frame:GetParent().obj.titletext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+						else
+							frame:GetParent().obj.titletext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+						end
+					end
+				end
+				if frame:GetParent().label then
+					if frame:GetParent().label.SetText then
+						if not frame:GetParent().EltruismHookSetTextLabel then
+							hooksecurefunc(frame:GetParent().label,"SetText", function(frametext)
+								E:Delay(0, function()
+									if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+										frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+									else
+										frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+									end
+								end)
+							end)
+							frame:GetParent().EltruismHookSetTextLabel = true
+						end
+						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+							frame:GetParent().label:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+						else
+							frame:GetParent().label:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+						end
+					end
+				end
+				if frame:GetParent().titletext then
+					if frame:GetParent().titletext.SetText then
+						if not frame:GetParent().EltruismHookSetTextTitleText then
+							hooksecurefunc(frame:GetParent().titletext,"SetText", function(frametext)
+								E:Delay(0, function()
+									if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+										frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+									else
+										frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+									end
+								end)
+							end)
+							frame:GetParent().EltruismHookSetTextTitleText = true
+						end
+						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+							frame:GetParent().titletext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+						else
+							frame:GetParent().titletext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+						end
+					end
+				end
+				if frame:GetParent().Label then
+					if frame:GetParent().Label.SetText then
+						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+							frame:GetParent().Label:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+						else
+							frame:GetParent().Label:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+						end
+					end
+				end
+			end
+
+			if frame.name and frame.name.SetText then
+				if frame.objectType and frame.objectType == "item" then
+					return
+				end
+				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+					frame.name:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+				else
+					frame.name:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				end
+			end
+
+			if frame.TitleText and frame.TitleText.SetText then
+				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+					frame.TitleText:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+				else
+					frame.TitleText:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				end
+			end
+
+			if frame.TitleContainer and frame.TitleContainer.TitleText and frame.TitleContainer.TitleText.SetText then
+				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+					frame.TitleContainer.TitleText:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+				else
+					frame.TitleContainer.TitleText:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				end
+			end
+
+			if frame.Name and frame.Name.SetText and not frame.HotKey then
+				if frame.objectType and frame.objectType == "item" then
+					return
+				end
+				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+					frame.Name:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+				else
+					frame.Name:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				end
+			end
+
+			if frame.Header and frame.Header.Text and frame.Header.Text.SetText then
+				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+					frame.Header.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+				else
+					frame.Header.Text:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				end
+			end
+		end)
+	end
+end
+
+local function EltruismShadow(frame)
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+		--saved instances shadow
+		if frame:GetParent() and frame:GetParent().key and frame:GetParent().key == "SavedInstancesTooltip" then
+			if not frame.shadow then
+				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(frame.shadow)
+			end
+		end
+
+		--possible widget shadows
+		if frame:GetParent() and frame:GetParent():GetParent() then
+			if frame:GetParent():GetParent().widgetContainer then
+				if not frame.shadow then
+					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+					ElvUI_EltreumUI:ShadowColor(frame.shadow)
+
+					--font/texture
+					if frame:GetParent():GetParent().Label then
+						local _,size = frame:GetParent():GetParent().Label:GetFont()
+						frame:GetParent():GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+					end
+					if frame:GetParent():GetParent().Bar and frame:GetParent():GetParent().Bar.SetStatusBarColor and frame:GetParent():GetParent().Bar.SetStatusBarTexture then
+						local atlas = frame:GetParent():GetParent().Bar:GetStatusBarTexture():GetAtlas()
+						frame:GetParent():GetParent().Bar.EltruismAtlas = atlas
+						frame:GetParent():GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+						frame:GetParent():GetParent().Bar:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+						if not frame:GetParent():GetParent().Bar.EltruismColorHook and frame:GetParent():GetParent().Bar.DisplayBarValue then
+							hooksecurefunc(frame:GetParent():GetParent().Bar, "DisplayBarValue", function(widget)
+								local _, maxValue = widget:GetMinMaxValues()
+								S:StatusBarColorGradient(widget, widget:GetValue(), maxValue)
+								widget.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
+								widget.backdrop:SetBackdropColor(0,0,0)
+								widget:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+
+								--[[if not atlas then
+									atlas = widget:GetStatusBarTexture():GetAtlas()
+								end
+								if not atlas then
+									atlas = widget.EltruismAtlas
+								end]]
+								--widget:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+							end)
+							frame:GetParent():GetParent().Bar.EltruismColorHook = true
+
+						end
+					end
+
+					-- hook for when label gets added
+					if not frame:GetParent():GetParent().EltruismLabelHook then
+						frame:GetParent():GetParent():HookScript("OnShow", function(widget)
+							if widget.Label then
+								local _,size = widget.Label:GetFont()
+								widget.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+							end
+							if widget.Bar then
+								local atlas = widget.Bar:GetStatusBarTexture():GetAtlas()
+								if atlas then
+									widget.Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+									widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+								end
+							end
+						end)
+						frame:GetParent():GetParent().EltruismLabelHook = true
+					end
+
+					--same as above, but for when its the first parent
+					if frame:GetParent().Label then
+						local _,size = frame:GetParent().Label:GetFont()
+						frame:GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+					end
+					if frame:GetParent().Bar then
+						local atlas = frame:GetParent().Bar:GetStatusBarTexture():GetAtlas()
+						if atlas then
+							frame:GetParent().Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+							frame:GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+						end
+					end
+
+					-- hook for when label gets added
+					if not frame:GetParent().EltruismLabelHook then
+						frame:GetParent():HookScript("OnShow", function(widget)
+							if widget.Label then
+								local _,size = widget.Label:GetFont()
+								widget.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+							end
+							if widget.Bar then
+								local atlas = widget.Bar:GetStatusBarTexture():GetAtlas()
+								if atlas then
+									widget.Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+									widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+								end
+							end
+						end)
+						frame:GetParent():GetParent().EltruismLabelHook = true
+					end
+				end
+			end
+		end
+
+		--new dropdowns?
+		if frame:GetParent() and frame:GetParent().InitScrollLayout then
+			if not frame.shadow then
+				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(frame.shadow)
+			end
+		end
+
+		--petbattle
+		if frame:GetParent() and frame:GetParent().PetType then
+			if not frame.shadow then
+				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(frame.shadow)
+			end
+		end
+		if frame:GetParent() and frame:GetParent() == _G["ElvUIPetBattleActionBar"] then
+			if not frame.shadow then
+				frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+				ElvUI_EltreumUI:ShadowColor(frame.shadow)
+			end
+		end
+	end
+end
+
 local function SkinFrame(object)
 	if not object then return end --rare but not impossible nil error
 	if object:GetObjectType() == "Texture" then object = object:GetParent() end
@@ -71,416 +510,16 @@ local function SkinFrame(object)
 
 			--if frame.showDispellableDebuff then return end --fix RaidDebufs
 			if template ~= "NoBackdrop" then
-				if not frame.EltruismBackground then
-					frame.eltruismbgtexture = frame:CreateTexture(nil, "BORDER")
-					frame.eltruismbgtexture:SetParent(frame)
-					frame.eltruismbgtexture:ClearAllPoints()
-					frame.eltruismbgtexture:SetPoint("TOPLEFT", 1, -1)
-					frame.eltruismbgtexture:SetPoint("BOTTOMRIGHT", -1, 1)
-					frame.eltruismbgtexture:SetTexture(E.LSM:Fetch("background", E.db.ElvUI_EltreumUI.skins.elvui.texture), true, true)
-					frame.eltruismbgtexture:SetHorizTile(true)
-					frame.eltruismbgtexture:SetVertTile(true)
-					frame.eltruismbgtexture:SetBlendMode("ADD")
-					if (frame:GetObjectType() == "Button" or frame:GetObjectType() == "CheckButton") and frame.icon then --fix for buttons since the texture could overlap over the icon
-						frame.eltruismbgtexture:SetDrawLayer("BACKGROUND")
-					end
-					if frame:GetParent() then
-						if frame:GetParent():GetObjectType() == "Button" and frame:GetParent().icon and not isUnitFrameElement then --fix for buttons since the texture could overlap over the icon
-							frame.eltruismbgtexture:SetDrawLayer("BACKGROUND")
-						end
-						if frame:GetParent().TransmogStateTexture then --transmog stuff
-							frame.eltruismbgtexture:SetTexture("")
-						end
-						if frame:GetParent().TransmogSelectedAnim then --transmog stuff
-							--frame.eltruismbgtexture:SetTexture("") --at some point this stopped working and now the frame needs to be hidden
-							frame:Hide()
-						end
-					end
-					if (frame.SelectedTexture or frame.glossTex) and not E.db.ElvUI_EltreumUI.skins.elvui.button then --fix some more buttons
-						frame.eltruismbgtexture:Hide()
-					end
-					if isUnitFrameElement and (frame:GetParent() and frame:GetParent().isTransparent == false) then --only on health
-						frame.eltruismbgtexture:SetDrawLayer("ARTWORK")
-						frame.eltruismbgtexture:SetParent(frame:GetParent())
-					end
-					if E.db.ElvUI_EltreumUI.skins.elvui.color.classcolor then
-						frame.eltruismbgtexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,0.15)
-					else
-						frame.eltruismbgtexture:SetVertexColor(E.db.ElvUI_EltreumUI.skins.elvui.color.r,E.db.ElvUI_EltreumUI.skins.elvui.color.g,E.db.ElvUI_EltreumUI.skins.elvui.color.b,E.db.ElvUI_EltreumUI.skins.elvui.color.a)
-					end
-
-					frame.EltruismBackground = true
-				else
-					if frame.eltruismbgtexture then
-						frame.eltruismbgtexture:Show()
-					end
-				end
-
-
-				--[[
-					if not frame.shadow then
-						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(frame.shadow)
-					end
-				]]
-
-				if E.db.ElvUI_EltreumUI.borders.bordertest and not frame.eltruismbordertest then
-					local classcolor
-					if E.db.ElvUI_EltreumUI.borders.classcolor then
-						classcolor = E:ClassColor(E.myclass, true)
-					elseif not E.db.ElvUI_EltreumUI.borders.classcolor then
-						classcolor = {
-							r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
-							g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
-							b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
-						}
-					end
-
-
-					--local offset = (E.PixelMode and 13) or 14
-					local size = 11
-					local offset = (E.PixelMode and size) or (size + 1)
-					frame.eltruismbordertest = CreateFrame("Frame", nil, frame, BackdropTemplateMixin and "BackdropTemplate")
-					frame.eltruismbordertest:SetPoint("CENTER", frame, "CENTER", 0, 0)
-					frame.eltruismbordertest:SetBackdrop({
-						edgeFile = E.LSM:Fetch("border", "Eltreum-Border-1"),
-						edgeSize = offset,
-					})
-					frame.eltruismbordertest:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-					frame.eltruismbordertest:SetFrameLevel(frame:GetFrameLevel()+1)
-					frame.eltruismbordertest:SetFrameStrata(frame:GetFrameStrata())
-					--SetOutside(obj, anchor, xOffset, yOffset, anchor2, noScale)
-					frame.eltruismbordertest:SetOutside(frame, offset-2, offset-2)
-					if frame.IconBorder then --items are different
-						local itemoffset = 20
-						local itemoutside = 14
-						frame.eltruismbordertest:SetBackdrop({
-							edgeFile = E.LSM:Fetch("border", "Eltreum-Border-1"),
-							edgeSize = itemoffset,
-						})
-						frame.eltruismbordertest:SetOutside(frame, itemoutside, itemoutside)
-						if frame.rarity then
-							local r,g,b = GetItemQualityColor(frame.rarity)
-							frame.eltruismbordertest:SetBackdropBorderColor(r, g, b, 1)
-							frame.eltruismbordertest:Show()
-							togglebackdrop(frame,false)
-						else
-							frame.eltruismbordertest:Hide()
-							togglebackdrop(frame,true)
-						end
-						hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable)
-							frametable.eltruismbordertest:SetBackdrop({
-								edgeFile = E.LSM:Fetch("border", "Eltreum-Border-1"),
-								edgeSize = itemoffset,
-							})
-							frametable.eltruismbordertest:SetOutside(frametable, itemoutside, itemoutside)
-							if frametable.rarity then
-								local r,g,b = GetItemQualityColor(frametable.rarity)
-								frametable.eltruismbordertest:SetBackdropBorderColor(r, g, b, 1)
-								frametable.eltruismbordertest:Show()
-								togglebackdrop(frame,false)
-							else
-								frame.eltruismbordertest:Hide()
-								togglebackdrop(frame,true)
-							end
-						end)
-						if frame.shadow then frame.shadow:Hide() end
-					end
-				end
+				EltruismBackground(frame,isUnitFrameElement)
+				EltruismBorders(frame)
 			else
 				if frame.eltruismbgtexture then
 					frame.eltruismbgtexture:Hide()
 				end
 			end
 
-			--skin here because it needs to enumerate frames
-			if E.db.ElvUI_EltreumUI.skins.ace3.enable then
-				E:Delay(0,function()
-					if frame:GetParent() then
-						if frame:GetParent().obj then
-							if frame:GetParent().obj.SetValue then
-								if not frame:GetParent().obj.EltruismHookLabel then
-									hooksecurefunc(frame:GetParent().obj,"SetValue", function(frametext)
-										E:Delay(0, function()
-											if frametext.label then
-												if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-													frametext.label:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-												else
-													frametext.label:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-												end
-											end
-											if frametext.titletext then
-												if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-													frametext.titletext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-												else
-													frametext.titletext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-												end
-											end
-										end)
-									end)
-									frame:GetParent().obj.EltruismHookLabel = true
-								end
-							end
-							if frame:GetParent().obj.SetText then
-								if not frame:GetParent().obj.EltruismHookSetText then
-									hooksecurefunc(frame:GetParent().obj,"SetText", function(frametext)
-										E:Delay(0, function()
-											if frametext.label then
-												if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-													frametext.label:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-												else
-													frametext.label:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-												end
-											end
-											if frametext.titletext then
-												if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-													frametext.titletext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-												else
-													frametext.titletext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-												end
-											end
-										end)
-									end)
-									frame:GetParent().obj.EltruismHookSetText = true
-								end
-							end
-							if frame:GetParent().obj.label and frame:GetParent().obj.label.SetTextColor then
-								if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-									frame:GetParent().obj.label:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-								else
-									frame:GetParent().obj.label:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-								end
-							end
-							if frame:GetParent().obj.titletext and frame:GetParent().obj.titletext.SetTextColor then
-								if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-									frame:GetParent().obj.titletext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-								else
-									frame:GetParent().obj.titletext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-								end
-							end
-						end
-						if frame:GetParent().label then
-							if frame:GetParent().label.SetText then
-								if not frame:GetParent().EltruismHookSetTextLabel then
-									hooksecurefunc(frame:GetParent().label,"SetText", function(frametext)
-										E:Delay(0, function()
-											if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-												frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-											else
-												frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-											end
-										end)
-									end)
-									frame:GetParent().EltruismHookSetTextLabel = true
-								end
-								if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-									frame:GetParent().label:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-								else
-									frame:GetParent().label:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-								end
-							end
-						end
-						if frame:GetParent().titletext then
-							if frame:GetParent().titletext.SetText then
-								if not frame:GetParent().EltruismHookSetTextTitleText then
-									hooksecurefunc(frame:GetParent().titletext,"SetText", function(frametext)
-										E:Delay(0, function()
-											if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-												frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-											else
-												frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-											end
-										end)
-									end)
-									frame:GetParent().EltruismHookSetTextTitleText = true
-								end
-								if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-									frame:GetParent().titletext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-								else
-									frame:GetParent().titletext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-								end
-							end
-						end
-						if frame:GetParent().Label then
-							if frame:GetParent().Label.SetText then
-								if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-									frame:GetParent().Label:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-								else
-									frame:GetParent().Label:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-								end
-							end
-						end
-					end
-
-					if frame.name and frame.name.SetText then
-						if frame.objectType and frame.objectType == "item" then
-							return
-						end
-						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-							frame.name:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-						else
-							frame.name:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-						end
-					end
-
-					if frame.TitleText and frame.TitleText.SetText then
-						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-							frame.TitleText:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-						else
-							frame.TitleText:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-						end
-					end
-
-					if frame.TitleContainer and frame.TitleContainer.TitleText and frame.TitleContainer.TitleText.SetText then
-						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-							frame.TitleContainer.TitleText:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-						else
-							frame.TitleContainer.TitleText:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-						end
-					end
-
-					if frame.Name and frame.Name.SetText and not frame.HotKey then
-						if frame.objectType and frame.objectType == "item" then
-							return
-						end
-						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-							frame.Name:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-						else
-							frame.Name:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-						end
-					end
-
-					if frame.Header and frame.Header.Text and frame.Header.Text.SetText then
-						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-							frame.Header.Text:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-						else
-							frame.Header.Text:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-						end
-					end
-				end)
-			end
-
-			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
-				--saved instances shadow
-				if frame:GetParent() and frame:GetParent().key and frame:GetParent().key == "SavedInstancesTooltip" then
-					if not frame.shadow then
-						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(frame.shadow)
-					end
-				end
-
-				--possible widget shadows
-				if frame:GetParent() and frame:GetParent():GetParent() then
-					if frame:GetParent():GetParent().widgetContainer then
-						if not frame.shadow then
-							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(frame.shadow)
-
-							--font/texture
-							if frame:GetParent():GetParent().Label then
-								local _,size = frame:GetParent():GetParent().Label:GetFont()
-								frame:GetParent():GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-							end
-							if frame:GetParent():GetParent().Bar and frame:GetParent():GetParent().Bar.SetStatusBarColor and frame:GetParent():GetParent().Bar.SetStatusBarTexture then
-								local atlas = frame:GetParent():GetParent().Bar:GetStatusBarTexture():GetAtlas()
-								frame:GetParent():GetParent().Bar.EltruismAtlas = atlas
-								frame:GetParent():GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
-								frame:GetParent():GetParent().Bar:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
-								if not frame:GetParent():GetParent().Bar.EltruismColorHook and frame:GetParent():GetParent().Bar.DisplayBarValue then
-									hooksecurefunc(frame:GetParent():GetParent().Bar, "DisplayBarValue", function(widget)
-										local _, maxValue = widget:GetMinMaxValues()
-										S:StatusBarColorGradient(widget, widget:GetValue(), maxValue)
-										widget.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
-										widget.backdrop:SetBackdropColor(0,0,0)
-										widget:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
-
-										--[[if not atlas then
-											atlas = widget:GetStatusBarTexture():GetAtlas()
-										end
-										if not atlas then
-											atlas = widget.EltruismAtlas
-										end]]
-										--widget:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
-									end)
-									frame:GetParent():GetParent().Bar.EltruismColorHook = true
-
-								end
-							end
-
-							-- hook for when label gets added
-							if not frame:GetParent():GetParent().EltruismLabelHook then
-								frame:GetParent():GetParent():HookScript("OnShow", function(widget)
-									if widget.Label then
-										local _,size = widget.Label:GetFont()
-										widget.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-									end
-									if widget.Bar then
-										local atlas = widget.Bar:GetStatusBarTexture():GetAtlas()
-										if atlas then
-											widget.Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
-											widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
-										end
-									end
-								end)
-								frame:GetParent():GetParent().EltruismLabelHook = true
-							end
-
-							--same as above, but for when its the first parent
-							if frame:GetParent().Label then
-								local _,size = frame:GetParent().Label:GetFont()
-								frame:GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-							end
-							if frame:GetParent().Bar then
-								local atlas = frame:GetParent().Bar:GetStatusBarTexture():GetAtlas()
-								if atlas then
-									frame:GetParent().Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
-									frame:GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
-								end
-							end
-
-							-- hook for when label gets added
-							if not frame:GetParent().EltruismLabelHook then
-								frame:GetParent():HookScript("OnShow", function(widget)
-									if widget.Label then
-										local _,size = widget.Label:GetFont()
-										widget.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-									end
-									if widget.Bar then
-										local atlas = widget.Bar:GetStatusBarTexture():GetAtlas()
-										if atlas then
-											widget.Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
-											widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
-										end
-									end
-								end)
-								frame:GetParent():GetParent().EltruismLabelHook = true
-							end
-						end
-					end
-				end
-
-				--new dropdowns?
-				if frame:GetParent() and frame:GetParent().InitScrollLayout then
-					if not frame.shadow then
-						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(frame.shadow)
-					end
-				end
-
-				--petbattle
-				if frame:GetParent() and frame:GetParent().PetType then
-					if not frame.shadow then
-						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(frame.shadow)
-					end
-				end
-				if frame:GetParent() and frame:GetParent() == _G["ElvUIPetBattleActionBar"] then
-					if not frame.shadow then
-						frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-						ElvUI_EltreumUI:ShadowColor(frame.shadow)
-					end
-				end
-			end
+			EltruisAce3(frame)
+			EltruismShadow(frame)
 
 			if not E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
 				if frame.eltruismbgtexture then

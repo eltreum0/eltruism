@@ -8,6 +8,146 @@ local type = _G.type
 local ipairs  = _G.ipairs
 local valuecolors = E:ClassColor(E.myclass, true)
 local S = E:GetModule('Skins')
+local backupR,backupG,backupB = 1,1,1
+local pairs = _G.pairs
+
+local function SetupFrameHooks(frame,isTree)
+	frame:HookScript("OnEnter", function()
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
+		if not frame.highlight then
+			UIFrameFadeIn(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 0, 1)
+		end
+		if frame.SetBackdropBorderColor then
+			frame:SetBackdropBorderColor(0, 0, 0, 1)
+		end
+		local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
+		if frametext and frametext.GetText and not frame.disabled and not (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
+			backupR,backupG,backupB = frametext:GetTextColor()
+			if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
+				frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
+			else
+				frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+			end
+		end
+
+		if frame.eltruismuniversalborders then
+			frame.BottomLeftCorner:Hide()
+			frame.BottomRightCorner:Hide()
+			frame.TopLeftCorner:Hide()
+			frame.TopRightCorner:Hide()
+		elseif frame.backdrop then
+			frame.backdrop.BottomLeftCorner:Hide()
+			frame.backdrop.BottomRightCorner:Hide()
+			frame.backdrop.TopLeftCorner:Hide()
+			frame.backdrop.TopRightCorner:Hide()
+		end
+	end)
+
+	frame:HookScript("OnShow", function()
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
+		local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
+		if frametext and frametext.GetText then
+			E:Delay(0,function() --the disable is delayed so delay running to run after it
+				if frame.selected then
+					if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
+						frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
+					else
+						frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+					end
+				elseif frame.disabled or (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
+					frametext:SetTextColor(0.5,0.5,0.5)
+				else
+					if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+						frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+					else
+						frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+					end
+				end
+			end)
+		end
+	end)
+
+	frame:HookScript("OnEnable", function()
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
+		local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
+		if frametext and frametext.GetText then
+			if frame.selected then
+				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
+					frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
+				else
+					frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				end
+			elseif frame.disabled or (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
+				frametext:SetTextColor(0.5,0.5,0.5)
+			else
+				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+					frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+				else
+					frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				end
+			end
+		end
+	end)
+
+	frame:HookScript("OnClick", function()
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
+		local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
+		if frametext and frametext.GetText then
+			if frame.selected then
+				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
+					frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
+				else
+					frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				end
+			elseif frame.disabled or (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
+				frametext:SetTextColor(0.5,0.5,0.5)
+			else
+				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+					frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+				else
+					frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				end
+			end
+		end
+	end)
+
+	frame:HookScript("OnDisable", function()
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
+		local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
+		if frametext and frametext.GetText then
+			if frame.selected then
+				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
+					frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
+				else
+					frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				end
+			elseif frame.disabled or (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
+				frametext:SetTextColor(0.5,0.5,0.5)
+			else
+				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
+					frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
+				else
+					frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
+				end
+			end
+		end
+	end)
+
+	frame:HookScript("OnLeave", function()
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
+		if isTree then
+			if not frame.selected then
+				UIFrameFadeOut(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 1, 0)
+			end
+		else
+			UIFrameFadeOut(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 1, 0)
+		end
+		local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
+		if frametext and frametext.GetText and not frame.disabled and not (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
+			frametext:SetTextColor(backupR,backupG,backupB)
+		end
+	end)
+end
 
 local function CreateFader(frame,isTree)
 	if not E.private.ElvUI_EltreumUI then return end
@@ -37,131 +177,9 @@ local function CreateFader(frame,isTree)
 		frame.EltruismAnimation:SetBlendMode("BLEND")
 		frame.EltruismAnimation:SetAlpha(0)
 
-		local backupR,backupG,backupB = 1,1,1
-
-		frame:HookScript("OnEnter", function()
-			if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
-			if not frame.highlight then
-				UIFrameFadeIn(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 0, 1)
-			end
-			if frame.SetBackdropBorderColor then
-				frame:SetBackdropBorderColor(0, 0, 0, 1)
-			end
-			local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
-			if frametext and frametext.GetText and not frame.disabled and not (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
-				backupR,backupG,backupB = frametext:GetTextColor()
-				if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
-					frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
-				else
-					frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-				end
-			end
-		end)
-
-		frame:HookScript("OnShow", function()
-			if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
-			local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
-			if frametext and frametext.GetText then
-				E:Delay(0,function() --the disable is delayed so delay running to run after it
-					if frame.selected then
-						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
-							frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
-						else
-							frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-						end
-					elseif frame.disabled or (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
-						frametext:SetTextColor(0.5,0.5,0.5)
-					else
-						if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-							frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-						else
-							frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-						end
-					end
-				end)
-			end
-		end)
-
-		frame:HookScript("OnEnable", function()
-			if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
-			local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
-			if frametext and frametext.GetText then
-				if frame.selected then
-					if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
-						frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
-					else
-						frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-					end
-				elseif frame.disabled or (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
-					frametext:SetTextColor(0.5,0.5,0.5)
-				else
-					if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-						frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-					else
-						frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-					end
-				end
-			end
-		end)
-
-		frame:HookScript("OnClick", function()
-			if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
-			local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
-			if frametext and frametext.GetText then
-				if frame.selected then
-					if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
-						frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
-					else
-						frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-					end
-				elseif frame.disabled or (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
-					frametext:SetTextColor(0.5,0.5,0.5)
-				else
-					if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-						frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-					else
-						frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-					end
-				end
-			end
-		end)
-
-		frame:HookScript("OnDisable", function()
-			if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
-			local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
-			if frametext and frametext.GetText then
-				if frame.selected then
-					if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.classcolor then
-						frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextSelected.b)
-					else
-						frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-					end
-				elseif frame.disabled or (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
-					frametext:SetTextColor(0.5,0.5,0.5)
-				else
-					if not E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.classcolor then
-						frametext:SetTextColor(E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.r, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.g, E.db.ElvUI_EltreumUI.skins.ace3.tab.TextEnabled.b)
-					else
-						frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
-					end
-				end
-			end
-		end)
-
-		frame:HookScript("OnLeave", function()
-			if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
-			if isTree then
-				if not frame.selected then
-					UIFrameFadeOut(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 1, 0)
-				end
-			else
-				UIFrameFadeOut(frame.EltruismAnimation, E.db.ElvUI_EltreumUI.skins.ace3.fadetime, 1, 0)
-			end
-			local frametext = (frame.Text) or (frame.text) or (_G[frame:GetName()] and _G[frame:GetName() .. "Text"]) --using frame.Text.GetText would return the function instead
-			if frametext and frametext.GetText and not frame.disabled and not (frame.GetButtonState and frame:GetButtonState() == "DISABLED") then
-				frametext:SetTextColor(backupR,backupG,backupB)
-			end
-		end)
+		SetupFrameHooks(frame,isTree)
+	else
+		SetupFrameHooks(frame,isTree)
 	end
 end
 
@@ -260,6 +278,14 @@ function ElvUI_EltreumUI:Ace3Skin()
 		end
 	end)
 
+	hooksecurefunc(E,"Config_CreateSeparatorLine",function(_,frame)
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
+		if not (frame and frame.leftHolder) then return end
+		for _,line in pairs({frame.leftHolder.buttons:GetRegions()}) do
+			line:SetVertexColor(E.db.general.valuecolor.r, E.db.general.valuecolor.g, E.db.general.valuecolor.b, 0.4)
+		end
+	end)
+
 	hooksecurefunc(E,"Config_SetButtonColor",function(_,button, disabled)
 		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		local buttontext = (button.Text) or (button.text) or (_G[button:GetName()] and _G[button:GetName() .. "Text"]) --using button.Text.GetText would return the function instead
@@ -348,6 +374,21 @@ function ElvUI_EltreumUI:Ace3Skin()
 			end)
 			tab.EltruismDisableHook = true
 		end
+
+		if tab.eltruismuniversalborders then
+			tab.eltruismuniversalborders.BottomLeftCorner:Hide()
+			tab.eltruismuniversalborders.BottomRightCorner:Hide()
+			tab.eltruismuniversalborders.BottomEdge:Hide()
+		elseif tab.backdrop then
+			if tab.backdrop.eltruismuniversalborders then
+				tab.backdrop.eltruismuniversalborders.BottomLeftCorner:Hide()
+				tab.backdrop.eltruismuniversalborders.BottomRightCorner:Hide()
+				tab.backdrop.eltruismuniversalborders.BottomEdge:Hide()
+			end
+			tab.backdrop.BottomLeftCorner:Hide()
+			tab.backdrop.BottomRightCorner:Hide()
+			tab.backdrop.BottomEdge:Hide()
+		end
 	end)
 
 	hooksecurefunc(S,"Ace3_TabSetSelected",function(tab,selected)
@@ -371,6 +412,21 @@ function ElvUI_EltreumUI:Ace3Skin()
 			end
 			bd:SetBackdropBorderColor(0, 0, 0, 1)
 			--bd.SetBackdropBorderColor = E.noop
+		end
+
+		if tab.eltruismuniversalborders then
+			tab.eltruismuniversalborders.BottomLeftCorner:Hide()
+			tab.eltruismuniversalborders.BottomRightCorner:Hide()
+			tab.eltruismuniversalborders.BottomEdge:Hide()
+		elseif tab.backdrop then
+			if tab.backdrop.eltruismuniversalborders then
+				tab.backdrop.eltruismuniversalborders.BottomLeftCorner:Hide()
+				tab.backdrop.eltruismuniversalborders.BottomRightCorner:Hide()
+				tab.backdrop.eltruismuniversalborders.BottomEdge:Hide()
+			end
+			tab.backdrop.BottomLeftCorner:Hide()
+			tab.backdrop.BottomRightCorner:Hide()
+			tab.backdrop.BottomEdge:Hide()
 		end
 	end)
 
@@ -457,6 +513,15 @@ function ElvUI_EltreumUI:Ace3Skin()
 			end
 		end
 	end)
+
+	--from elvui, to fix the buttons on the game menu
+	if E.Retail then
+		hooksecurefunc(_G.GameMenuFrame, 'Layout', function()
+			for _,button in pairs(_G.GameMenuFrame.MenuButtons) do
+				CreateFader(button)
+			end
+		end)
+	end
 end
 
 hooksecurefunc(S,"HandleTab",function(_,tab, noBackdrop)

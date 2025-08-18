@@ -505,7 +505,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["general"]["minimap"]["icons"]["calendar"]["position"] = "TOPLEFT"
 	E.db["general"]["minimap"]["icons"]["calendar"]["xOffset"] = 3
 	E.db["general"]["minimap"]["icons"]["calendar"]["yOffset"] = -38
-	E.db["general"]["minimap"]["icons"]["classHall"]["position"] = "BOTTOM"
+	E.db["general"]["minimap"]["icons"]["classHall"]["position"] = "BOTTOMLEFT"
 	E.db["general"]["minimap"]["icons"]["classHall"]["scale"] = 1
 	E.db["general"]["minimap"]["icons"]["difficulty"]["position"] = "BOTTOM"
 	E.db["general"]["minimap"]["icons"]["difficulty"]["scale"] = 1.2

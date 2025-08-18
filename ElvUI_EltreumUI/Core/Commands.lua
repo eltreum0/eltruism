@@ -171,14 +171,14 @@ function ElvUI_EltreumUI:RunCommands(message)
 		end
 	elseif message == "togglemodels" then
 		ElvUI_EltreumUI:ModelsToggle()
-	elseif message == 'cursedborders' then
+	elseif message == 'universalborders' then
 		E.PopupDialogs["ELTRUISMBORDERTEST"] = {
 			text = "Test mode to enable borders everywhere",
 			OnAccept = function()
-				if not E.db.ElvUI_EltreumUI.borders.bordertest then
-					E.db.ElvUI_EltreumUI.borders.bordertest = true
+				if not E.db.ElvUI_EltreumUI.borders.universalborders then
+					E.db.ElvUI_EltreumUI.borders.universalborders = true
 				else
-					E.db.ElvUI_EltreumUI.borders.bordertest = false
+					E.db.ElvUI_EltreumUI.borders.universalborders = false
 				end
 				ReloadUI()
 			end,

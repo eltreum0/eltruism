@@ -4124,7 +4124,7 @@ function ElvUI_EltreumUI:NameplateShadows(nameplate)
 	if not nameplate then return end
 	local bordertexture
 	if E.private.nameplates.enable then
-		if (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.nameplateborders) and not E.db.ElvUI_EltreumUI.borders.bordertest then
+		if (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.nameplateborders) then
 			if not nameplate.Health then return end
 
 			if not nameplate.Health.EltruismNameplateBorder then
@@ -4150,6 +4150,17 @@ function ElvUI_EltreumUI:NameplateShadows(nameplate)
 				}
 			end
 			nameplate.Health.EltruismNameplateBorder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+
+			if E.db.ElvUI_EltreumUI.borders.universalborders then
+				if nameplate.backdrop and nameplate.backdrop.eltruismuniversalborders then
+					nameplate.backdrop.eltruismuniversalborders:Kill()
+					nameplate.backdrop.eltruismuniversalborders = nil
+				end
+				if nameplate.Health.backdrop and nameplate.Health.backdrop.eltruismuniversalborders then
+					nameplate.Health.backdrop.eltruismuniversalborders:Kill()
+					nameplate.Health.backdrop.eltruismuniversalborders = nil
+				end
+			end
 
 			--will need more work since nameplates can change, same issue with gradient nameplates, likely needs to be moved over there
 			--[[local player = UnitIsPlayer(nameplate.unit) or (E.Retail and UnitInPartyIsAI(nameplate.unit))

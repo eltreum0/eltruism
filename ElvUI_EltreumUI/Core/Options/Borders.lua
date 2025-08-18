@@ -14,7 +14,13 @@ function ElvUI_EltreumUI:BorderOptions()
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.enable = E.Libs.ACH:Toggle(L["Enable"], nil, 4, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.borders end,function(_, value) E.db.ElvUI_EltreumUI.borders.borders = value ElvUI_EltreumUI:ShowHideBorders() ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.enableautoadjust = E.Libs.ACH:Toggle(L["Enable Auto-adjusting the actionbar spacing and position"], L["Adjusts actionbar spacing and position based on borders being enabled or not"], 5, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust end,function(_, value) E.db.ElvUI_EltreumUI.borders.borderautoadjust = value ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end)
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.description2 = E.Libs.ACH:Description(L["Choose the Border Texture to be used:"], 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
-	ElvUI_EltreumUI.Options.args.borders.args.general.args.bordertexture = E.Libs.ACH:SharedMediaBorder("", nil, 7, "full", function() return E.db.ElvUI_EltreumUI.borders.texture end, function(_,key) E.db.ElvUI_EltreumUI.borders.texture = key ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end, function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end)
+	ElvUI_EltreumUI.Options.args.borders.args.general.args.bordertexture = E.Libs.ACH:SharedMediaBorder("", nil, 7, "full", function() return E.db.ElvUI_EltreumUI.borders.texture end, function(_,key) E.db.ElvUI_EltreumUI.borders.texture = key ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end,
+	function()
+		if E.db.ElvUI_EltreumUI.borders.universalborders then
+			return false
+		end
+		return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders
+	end)
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.classcolors = E.Libs.ACH:Toggle(L["Use Class Colors"], nil, 8, nil, false,nil,function() return E.db.ElvUI_EltreumUI.borders.classcolor end,function(_, value) E.db.ElvUI_EltreumUI.borders.classcolor = value ElvUI_EltreumUI:Borders() E:StaticPopup_Show('CONFIG_RL') end,function() return not E.db.ElvUI_EltreumUI.borders.borders end)
 	ElvUI_EltreumUI.Options.args.borders.args.general.args.colorborders = E.Libs.ACH:Color(L["Custom Color"], nil, 9, false, nil, function()
 		local customcolorborders = E.db.ElvUI_EltreumUI.borders.bordercolors
@@ -25,6 +31,13 @@ function ElvUI_EltreumUI:BorderOptions()
 			local customcolorborders = E.db.ElvUI_EltreumUI.borders.bordercolors
 			customcolorborders.r, customcolorborders.g, customcolorborders.b = r, g, b E:StaticPopup_Show('CONFIG_RL') ElvUI_EltreumUI:Borders()
 		end, function() return E.db.ElvUI_EltreumUI.borders.classcolor end)
+
+	ElvUI_EltreumUI.Options.args.borders.args.general.args.descriptionuniversalborders = E.Libs.ACH:Description(L["TESTING: Universal Borders Customization:"], 20, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, nil, function() return not E.db.ElvUI_EltreumUI.borders.universalborders end)
+	ElvUI_EltreumUI.Options.args.borders.args.general.args.universalbordersthickness = E.Libs.ACH:Toggle(L["Hide on frames that have regular Borders"], nil, 21, nil, false,"full",function() return E.db.ElvUI_EltreumUI.borders.universalborderssettings.hideWithBorders end,function(_, value) E.db.ElvUI_EltreumUI.borders.universalborderssettings.hideWithBorders = value end, nil, function() return not E.db.ElvUI_EltreumUI.borders.universalborders end)
+	ElvUI_EltreumUI.Options.args.borders.args.general.args.universalbordersthickness = E.Libs.ACH:Range(L["Thickness"], nil, 22, { min = 1, max = 200, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.universalborderssettings.thickness end, function(_, value) E.db.ElvUI_EltreumUI.borders.universalborderssettings.thickness = value end, nil, function() return not E.db.ElvUI_EltreumUI.borders.universalborders end)
+	ElvUI_EltreumUI.Options.args.borders.args.general.args.universalbordersxoffset = E.Libs.ACH:Range(L["X offset"], nil, 23, { min = -200, max = 200, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset end, function(_, value) E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset = value end, nil, function() return not E.db.ElvUI_EltreumUI.borders.universalborders end)
+	ElvUI_EltreumUI.Options.args.borders.args.general.args.universalbordersyoffset = E.Libs.ACH:Range(L["Y offset"], nil, 23, { min = -200, max = 200, step = 0.1 }, "full", function() return E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset end, function(_, value) E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset = value end, nil, function() return not E.db.ElvUI_EltreumUI.borders.universalborders end)
+	ElvUI_EltreumUI.Options.args.borders.args.general.args.universalborderreload = E.Libs.ACH:Execute("Reload", nil, 24, function() ReloadUI() end, nil, false, nil, nil, nil, nil, function() return not E.db.ElvUI_EltreumUI.borders.universalborders end)
 	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders = E.Libs.ACH:Group(L["ActionBars"], nil, 2, nil,nil,nil,function() return E.db.ElvUI_EltreumUI.borders.borderautoadjust or not E.db.ElvUI_EltreumUI.borders.borders end)
 	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders.args.description0 = E.Libs.ACH:Group(L["(All settings require a reload)"], nil, 1)
 	ElvUI_EltreumUI.Options.args.borders.args.actionbarsborders.args.description0.inline = true

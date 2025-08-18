@@ -220,6 +220,19 @@ function ElvUI_EltreumUI:NameplatePower(nameplate)
 				EltreumPowerBar.Text:SetFont(E.LSM:Fetch("font", E.db.ElvUI_EltreumUI.nameplates.nameplatepower.font), E.db.ElvUI_EltreumUI.nameplates.nameplatepower.fontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 				EltreumPowerBar:SetSize(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizex, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.sizey)
 				S:HandleStatusBar(EltreumPowerBar)
+
+				--hide double border if the other way didn't hide it
+				if E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.powerbarborder and E.db.ElvUI_EltreumUI.borders.universalborders then
+					if _G.EltruismPowerBar.eltruismuniversalborders then
+						_G.EltruismPowerBar.eltruismuniversalborders:Kill()
+						_G.EltruismPowerBar.eltruismuniversalborders = nil
+					end
+					if _G.EltruismPowerBar.backdrop and _G.EltruismPowerBar.backdrop.eltruismuniversalborders then
+						_G.EltruismPowerBar.backdrop.eltruismuniversalborders:Kill()
+						_G.EltruismPowerBar.backdrop.eltruismuniversalborders = nil
+					end
+				end
+
 				EltreumPowerBar.backdrop:SetBackdropColor(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.r, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.g, E.db.ElvUI_EltreumUI.nameplates.nameplatepower.b)
 				EltreumPowerBar.backdrop:SetAlpha(E.db.ElvUI_EltreumUI.nameplates.nameplatepower.a)
 				EltreumPowerBar:SetFrameStrata("MEDIUM")

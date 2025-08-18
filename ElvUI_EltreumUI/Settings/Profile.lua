@@ -749,8 +749,13 @@ P.ElvUI_EltreumUI = {
 		texture = "Eltreum-Border-1",
 		borderautoadjust = false,
 
-		bordertest = false,
-
+		universalborders = false,
+		universalborderssettings = {
+			xOffset = 12,
+			yOffset = 12,
+			thickness = 17,
+			hideWithBorders = true,
+		},
 		classcolor = true,
 
 		auraborder = true,
