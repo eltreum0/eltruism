@@ -9,6 +9,7 @@ local getmetatable = _G.getmetatable
 local type = _G.type
 local BackdropTemplateMixin = _G.BackdropTemplateMixin
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
+local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local fixedConfig = false
 
 local widgetAtlas = {
@@ -78,47 +79,103 @@ local function EltruismBorders(frame)
 		if not fixedConfig then
 			local configFrame = E:Config_GetWindow()
 			if configFrame and configFrame.eltruismuniversalborders then
-				configFrame.eltruismuniversalborders:Kill()
-				configFrame.eltruismuniversalborders = nil
+				--configFrame.eltruismuniversalborders:Kill()
+				--configFrame.eltruismuniversalborders = nil
+				configFrame.eltruismuniversalborders:SetFrameStrata("MEDIUM")
+				configFrame.Center:ClearAllPoints()
+				configFrame.Center:SetPoint("TOPLEFT", configFrame, "TOPLEFT", 2, -2)
+				configFrame.Center:SetPoint("BOTTOMRIGHT", configFrame, "BOTTOMRIGHT", -2, 4)
+
+				fixedConfig = true
 			end
 		end
 
 		if frame.IconBorder then --items are different
-			local itemoffset = 20
-			local itemoutside = 14
-			frame.eltruismuniversalborders:SetBackdrop({
-				edgeFile = E.LSM:Fetch("border", "Eltreum-Border-1"),
-				edgeSize = itemoffset,
-			})
-			frame.eltruismuniversalborders:SetOutside(frame, itemoutside, itemoutside)
 			if frame.rarity then
 				local r,g,b = GetItemQualityColor(frame.rarity)
 				frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
 				frame.eltruismuniversalborders:Show()
 				togglebackdrop(frame,false)
+			--[[elseif (frame.count or frame.icon) and not frame.BagID then
+				print(frame.count)
+				local r,g,b = frame.IconBorder:GetVertexColor()
+				frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+				frame.eltruismuniversalborders:Show()
+				togglebackdrop(frame,false)]]
 			else
-				frame.eltruismuniversalborders:Hide()
-				togglebackdrop(frame,true)
+				frame.eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
+				frame.eltruismuniversalborders:Show()
+				togglebackdrop(frame,false)
+				--[[frame.eltruismuniversalborders:Hide()
+				togglebackdrop(frame,true)]]
 			end
 			hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable)
 				frametable.eltruismuniversalborders:SetBackdrop({
-					edgeFile = E.LSM:Fetch("border", "Eltreum-Border-1"),
-					edgeSize = itemoffset,
+					edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
+					edgeSize = E.db.ElvUI_EltreumUI.borders.universalborderssettings.thickness,
 				})
-				frametable.eltruismuniversalborders:SetOutside(frametable, itemoutside, itemoutside)
+				frametable.eltruismuniversalborders:SetOutside(frametable, E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset, E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset)
 				if frametable.rarity then
 					local r,g,b = GetItemQualityColor(frametable.rarity)
 					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
 					frametable.eltruismuniversalborders:Show()
-					togglebackdrop(frame,false)
+					togglebackdrop(frametable,false)
+				--[[elseif (frametable.count or frametable.icon) and not frametable.BagID then --is item but not on bag
+					local r,g,b = frametable.IconBorder:GetVertexColor()
+					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+					frametable.eltruismuniversalborders:Show()
+					togglebackdrop(frametable,false)]]
 				else
-					frame.eltruismuniversalborders:Hide()
-					togglebackdrop(frame,true)
+					frametable.eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
+					frametable.eltruismuniversalborders:Show()
+					togglebackdrop(frametable,false)
+					--[[frametable.eltruismuniversalborders:Hide()
+					togglebackdrop(frametable,true)]]
 				end
 			end)
+			hooksecurefunc(frame.IconBorder, "SetShown", function(frametable,shown)
+				if shown then
+					local r,g,b = frametable:GetVertexColor()
+					frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+					frametable:GetParent().eltruismuniversalborders:Show()
+					togglebackdrop(frametable:GetParent(),false)
+				else
+					frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
+					frametable:GetParent().eltruismuniversalborders:Show()
+					togglebackdrop(frametable:GetParent(),false)
+					--[[frametable:GetParent().eltruismuniversalborders:Hide()
+					togglebackdrop(frametable:GetParent(),true)]]
+				end
+			end)
+			hooksecurefunc(frame.IconBorder, "Show", function(frametable,shown)
+				E:Delay(0, function() --delay until after the vertex color is set
+					if shown then
+						local r,g,b = frametable:GetVertexColor()
+						frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+						frametable:GetParent().eltruismuniversalborders:Show()
+						togglebackdrop(frametable:GetParent(),false)
+					else
+						frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
+						frametable:GetParent().eltruismuniversalborders:Show()
+						togglebackdrop(frametable:GetParent(),false)
+						--[[frametable:GetParent().eltruismuniversalborders:Hide()
+						togglebackdrop(frametable:GetParent(),true)]]
+					end
+				end)
+			end)
+			hooksecurefunc(frame.IconBorder, "Hide", function(frametable)
+				frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
+				frametable:GetParent().eltruismuniversalborders:Show()
+				togglebackdrop(frametable:GetParent(),false)
+				--[[frametable:GetParent().eltruismuniversalborders:Hide()
+				togglebackdrop(frametable:GetParent(),true)]]
+			end)
+
 			if frame.shadow then frame.shadow:Hide() end
 		end
 
+
+		togglebackdrop(frame,false)
 		frame.eltruismuniversalbordersadded = true
 
 		--[[if isUnitFrameElement then
@@ -138,17 +195,18 @@ local function EltruismBorders(frame)
 			frame.eltruismuniversalborders:SetBackdropBorderColor(debuffColors[frame.debuffType].r, debuffColors[frame.debuffType].g, debuffColors[frame.debuffType].b, 1)
 		end]]
 
+		--even though shadows shouldnt be made, try to handle possible ones
 		if frame.shadow then
 			frame.shadow:Hide()
-		elseif frame.backdrop then
-			if frame.backdrop.shadow then
-				frame.backdrop.shadow:Hide()
-			end
+		elseif frame.backdrop and frame.backdrop.shadow then
+			frame.backdrop.shadow:Hide()
 			if frame.backdrop.eltruismuniversalborders then
 				frame.backdrop.eltruismuniversalborders:Hide()
 			end
 		elseif frame:GetParent() and frame:GetParent().shadow then
 			frame:GetParent().shadow:Hide()
+		elseif frame:GetParent() and frame:GetParent():GetParent() and frame:GetParent():GetParent().shadow then
+			frame:GetParent():GetParent().shadow:Hide()
 		end
 	end
 end
@@ -190,6 +248,10 @@ local function EltruismBackground(frame,isUnitFrameElement)
 			frame.eltruismbgtexture:SetVertexColor(valuecolors.r,valuecolors.g,valuecolors.b,0.15)
 		else
 			frame.eltruismbgtexture:SetVertexColor(E.db.ElvUI_EltreumUI.skins.elvui.color.r,E.db.ElvUI_EltreumUI.skins.elvui.color.g,E.db.ElvUI_EltreumUI.skins.elvui.color.b,E.db.ElvUI_EltreumUI.skins.elvui.color.a)
+		end
+
+		if frame.leftHolder then --elvui second config frame stuff
+			frame.eltruismbgtexture:SetTexture("")
 		end
 
 		frame.EltruismBackground = true
