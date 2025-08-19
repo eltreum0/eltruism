@@ -66,8 +66,11 @@ local function EltruismBorders(frame)
 		frame.eltruismuniversalborders:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
 		frame.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel()+2)
 		frame.eltruismuniversalborders:SetFrameStrata(frame:GetFrameStrata())
-		frame.eltruismuniversalborders:SetOutside(frame, E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset, E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset)
-
+		if frame.Center then
+			frame.eltruismuniversalborders:SetOutside(frame.Center, E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset, E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset)
+		else
+			frame.eltruismuniversalborders:SetOutside(frame, E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset, E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset)
+		end
 		--if not hiding the config frame border then the buttons become unclickable
 		if not fixedConfig then
 			local configFrame = E:Config_GetWindow()
@@ -96,12 +99,21 @@ local function EltruismBorders(frame)
 				frame.eltruismuniversalborders:Hide()
 				togglebackdrop(frame,true)
 			end
+			if frame.caerdonButton then
+				frame.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel()+1)
+				frame.caerdonButton:SetFrameLevel(frame:GetFrameLevel()+2)
+			end
+
 			hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable)
 				frametable.eltruismuniversalborders:SetBackdrop({
 					edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
 					edgeSize = E.db.ElvUI_EltreumUI.borders.universalborderssettings.thickness,
 				})
-				frametable.eltruismuniversalborders:SetOutside(frametable, E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset, E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset)
+				if frametable.Center then
+					frametable.eltruismuniversalborders:SetOutside(frametable.Center, E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset, E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset)
+				else
+					frametable.eltruismuniversalborders:SetOutside(frametable, E.db.ElvUI_EltreumUI.borders.universalborderssettings.xOffset, E.db.ElvUI_EltreumUI.borders.universalborderssettings.yOffset)
+				end
 				if frametable.rarity then
 					local r,g,b = GetItemQualityColor(frametable.rarity)
 					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
@@ -114,6 +126,10 @@ local function EltruismBorders(frame)
 					frametable.eltruismuniversalborders:Hide()
 					togglebackdrop(frametable,true)
 				end
+				if frametable.caerdonButton then
+					frametable.eltruismuniversalborders:SetFrameLevel(frametable:GetFrameLevel()+1)
+					frametable.caerdonButton:SetFrameLevel(frametable:GetFrameLevel()+2)
+				end
 			end)
 			hooksecurefunc(frame.IconBorder, "SetShown", function(frametable,shown)
 				if shown then
@@ -121,6 +137,10 @@ local function EltruismBorders(frame)
 					frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
 					frametable:GetParent().eltruismuniversalborders:Show()
 					togglebackdrop(frametable:GetParent(),false)
+					if frametable:GetParent().caerdonButton then
+						frametable:GetParent().eltruismuniversalborders:SetFrameLevel(frametable:GetParent():GetFrameLevel()+1)
+						frametable:GetParent().caerdonButton:SetFrameLevel(frametable:GetParent():GetFrameLevel()+2)
+					end
 				else
 					--[[frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
 					frametable:GetParent().eltruismuniversalborders:Show()
@@ -136,6 +156,10 @@ local function EltruismBorders(frame)
 						frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
 						frametable:GetParent().eltruismuniversalborders:Show()
 						togglebackdrop(frametable:GetParent(),false)
+						if frametable:GetParent().caerdonButton then
+							frametable:GetParent().eltruismuniversalborders:SetFrameLevel(frametable:GetParent():GetFrameLevel()+1)
+							frametable:GetParent().caerdonButton:SetFrameLevel(frametable:GetParent():GetFrameLevel()+2)
+						end
 					else
 						--[[frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
 						frametable:GetParent().eltruismuniversalborders:Show()
@@ -159,6 +183,9 @@ local function EltruismBorders(frame)
 		--sharedmedia dropdown preview
 		if frame:GetParent() and frame:GetParent().displayButton then
 			frame:GetParent().displayButton:SetFrameLevel(frame:GetFrameLevel()+3)
+		end
+		if _G.ElvNP_TargetClassPowerClassPower and _G.ElvNP_TargetClassPowerClassPower.backdrop and _G.ElvNP_TargetClassPowerClassPower.backdrop.eltruismuniversalborders then
+			_G.ElvNP_TargetClassPowerClassPower.backdrop.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel())
 		end
 
 		togglebackdrop(frame,false)
