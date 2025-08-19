@@ -29,18 +29,6 @@ local function SetupFrameHooks(frame,isTree)
 				frametext:SetTextColor(valuecolors.r, valuecolors.g, valuecolors.b)
 			end
 		end
-
-		if frame.eltruismuniversalborders then
-			frame.BottomLeftCorner:Hide()
-			frame.BottomRightCorner:Hide()
-			frame.TopLeftCorner:Hide()
-			frame.TopRightCorner:Hide()
-		elseif frame.backdrop then
-			frame.backdrop.BottomLeftCorner:Hide()
-			frame.backdrop.BottomRightCorner:Hide()
-			frame.backdrop.TopLeftCorner:Hide()
-			frame.backdrop.TopRightCorner:Hide()
-		end
 	end)
 
 	frame:HookScript("OnShow", function()
@@ -150,6 +138,7 @@ local function SetupFrameHooks(frame,isTree)
 end
 
 local function CreateFader(frame,isTree)
+	if not E.private.skins.ace3Enable then return end
 	if not E.private.ElvUI_EltreumUI then return end
 	if not E.private.ElvUI_EltreumUI.install_version then return end
 	if not E.db.ElvUI_EltreumUI then return end
@@ -178,8 +167,8 @@ local function CreateFader(frame,isTree)
 		frame.EltruismAnimation:SetAlpha(0)
 
 		SetupFrameHooks(frame,isTree)
-	else
-		SetupFrameHooks(frame,isTree)
+	elseif frame:GetParent() == _G.GameMenuFrame then
+		SetupFrameHooks(frame)
 	end
 end
 
@@ -251,6 +240,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 
 	--hooks based on elvui skin functions, just changing color/texture for the most part
 	hooksecurefunc(E,"Config_UpdateLeftButtons",function()
+		if not E.private.skins.ace3Enable then return end
 		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		local frame = E:Config_GetWindow()
 		if not (frame and frame.leftHolder) then return end
@@ -279,6 +269,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 	end)
 
 	hooksecurefunc(E,"Config_CreateSeparatorLine",function(_,frame)
+		if not E.private.skins.ace3Enable then return end
 		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		if not (frame and frame.leftHolder) then return end
 		for _,line in pairs({frame.leftHolder.buttons:GetRegions()}) do
@@ -287,6 +278,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 	end)
 
 	hooksecurefunc(E,"Config_SetButtonColor",function(_,button, disabled)
+		if not E.private.skins.ace3Enable then return end
 		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		local buttontext = (button.Text) or (button.text) or (_G[button:GetName()] and _G[button:GetName() .. "Text"]) --using button.Text.GetText would return the function instead
 		if disabled then
@@ -318,6 +310,7 @@ function ElvUI_EltreumUI:Ace3Skin()
 	end)
 
 	hooksecurefunc(S,"Ace3_SkinTab",function(_,tab)
+		if not E.private.skins.ace3Enable then return end
 		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		CreateFader(tab)
 		local tabtext = (tab.Text) or (tab.text) or (_G[tab:GetName()] and _G[tab:GetName() .. "Text"]) --using tab.Text.GetText would return the function instead
@@ -376,22 +369,16 @@ function ElvUI_EltreumUI:Ace3Skin()
 		end
 
 		if tab.eltruismuniversalborders then
-			tab.eltruismuniversalborders.BottomLeftCorner:Hide()
-			tab.eltruismuniversalborders.BottomRightCorner:Hide()
-			tab.eltruismuniversalborders.BottomEdge:Hide()
+			tab.eltruismuniversalborders:SetFrameLevel(tab:GetFrameLevel()-1)
 		elseif tab.backdrop then
 			if tab.backdrop.eltruismuniversalborders then
-				tab.backdrop.eltruismuniversalborders.BottomLeftCorner:Hide()
-				tab.backdrop.eltruismuniversalborders.BottomRightCorner:Hide()
-				tab.backdrop.eltruismuniversalborders.BottomEdge:Hide()
+				tab.backdrop.eltruismuniversalborders:SetFrameLevel(tab:GetFrameLevel()-1)
 			end
-			tab.backdrop.BottomLeftCorner:Hide()
-			tab.backdrop.BottomRightCorner:Hide()
-			tab.backdrop.BottomEdge:Hide()
 		end
 	end)
 
 	hooksecurefunc(S,"Ace3_TabSetSelected",function(tab,selected)
+		if not E.private.skins.ace3Enable then return end
 		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		local bd = tab.backdrop
 		if not bd then return end
@@ -415,25 +402,18 @@ function ElvUI_EltreumUI:Ace3Skin()
 		end
 
 		if tab.eltruismuniversalborders then
-			tab.eltruismuniversalborders.BottomLeftCorner:Hide()
-			tab.eltruismuniversalborders.BottomRightCorner:Hide()
-			tab.eltruismuniversalborders.BottomEdge:Hide()
+			tab.eltruismuniversalborders:SetFrameLevel(tab:GetFrameLevel()-1)
 		elseif tab.backdrop then
 			if tab.backdrop.eltruismuniversalborders then
-				tab.backdrop.eltruismuniversalborders.BottomLeftCorner:Hide()
-				tab.backdrop.eltruismuniversalborders.BottomRightCorner:Hide()
-				tab.backdrop.eltruismuniversalborders.BottomEdge:Hide()
+				tab.backdrop.eltruismuniversalborders:SetFrameLevel(tab:GetFrameLevel()-1)
 			end
-			tab.backdrop.BottomLeftCorner:Hide()
-			tab.backdrop.BottomRightCorner:Hide()
-			tab.backdrop.BottomEdge:Hide()
 		end
 	end)
 
 	hooksecurefunc(S,"Ace3_RefreshTree",function(tab)
+		if not E.private.skins.ace3Enable then return end
 		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		if not tab.tree then return end
-		if not E.private.skins.ace3Enable then return end
 		local status = tab.status or tab.localstatus
 		local lines = tab.lines
 		local buttons = tab.buttons
@@ -474,6 +454,8 @@ function ElvUI_EltreumUI:Ace3Skin()
 	end)
 
 	hooksecurefunc(S,"HandleSliderFrame",function(_,frame)
+		if not E.private.skins.ace3Enable then return end
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		if not frame then return end
 		if not E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.classcolor then
 			frame:GetThumbTexture():SetVertexColor(E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.r, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.g, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.b, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.a)
@@ -483,6 +465,8 @@ function ElvUI_EltreumUI:Ace3Skin()
 	end)
 
 	hooksecurefunc(S,"HandleCheckBox",function(_,frame)
+		if not E.private.skins.ace3Enable then return end
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		if not frame then return end
 		if frame.SetCheckedTexture then
 			if not E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.classcolor then
@@ -494,6 +478,8 @@ function ElvUI_EltreumUI:Ace3Skin()
 	end)
 
 	hooksecurefunc(S,"HandleNextPrevButton",function(_,btn) --actually skins dropdowns too
+		if not E.private.skins.ace3Enable then return end
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		if not btn then return end
 		if not E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.classcolor then
 			btn:GetNormalTexture():SetVertexColor(E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.r, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.g, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.b, E.db.ElvUI_EltreumUI.skins.ace3.button.hovercolor.a)
@@ -503,6 +489,8 @@ function ElvUI_EltreumUI:Ace3Skin()
 	end)
 
 	hooksecurefunc(S,"Ace3_CheckBoxSetDesaturated",function(frame,value)
+		if not E.private.skins.ace3Enable then return end
+		if not E.db.ElvUI_EltreumUI.skins.ace3.enable then return end
 		if not frame then return end
 		if value then return end
 		if frame:GetObjectType() == "Texture" then
