@@ -110,7 +110,7 @@ function ElvUI_EltreumUI:AFKLogo()
 	if E.db.general.afk and E.db.ElvUI_EltreumUI.otherstuff.afklogo then
 
 		--add shadows
-		if _G.ElvUIAFKFrame and _G.ElvUIAFKFrame.bottom and not _G.ElvUIAFKFrame.bottom.shadow then
+		if _G.ElvUIAFKFrame and _G.ElvUIAFKFrame.bottom and not _G.ElvUIAFKFrame.bottom.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
 			_G.ElvUIAFKFrame.bottom:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			ElvUI_EltreumUI:ShadowColor(_G.ElvUIAFKFrame.bottom.shadow)
 		end

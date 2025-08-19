@@ -36,7 +36,7 @@ local function ConstructCompatibilityFrame()
 			E:StaticPopup_Show("PRIVATE_RL")
 		end
 	end)
-	if not frame.shadow then
+	if not frame.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
 		frame:CreateShadow()
 		ElvUI_EltreumUI:ShadowColor(frame.shadow)
 	end

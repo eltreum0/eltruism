@@ -468,7 +468,7 @@ function ElvUI_EltreumUI:FixChatToggles()
 				_G.RightChatToggleButton:Show()
 			end)
 
-			if E.db.ElvUI_EltreumUI.skins.shadow.enable and _G[datatextname].template and _G[datatextname].template ~= 'NoBackdrop' then
+			if E.db.ElvUI_EltreumUI.skins.shadow.enable and _G[datatextname].template and _G[datatextname].template ~= 'NoBackdrop' and not E.db.ElvUI_EltreumUI.borders.universalborders then
 				if not _G[datatextname].shadow then
 					_G[datatextname]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(_G[datatextname].shadow)
@@ -748,7 +748,7 @@ function ElvUI_EltreumUI:ClickCastingShortcut()
 				clickbindopenbutton:SetScript('OnClick', function()
 					if not IsAddOnLoaded("Blizzard_ClickBindingUI") then
 						LoadAddOn("Blizzard_ClickBindingUI")
-						if not _G["ClickBindingFrame"].shadow then
+						if not _G["ClickBindingFrame"].shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
 							_G["ClickBindingFrame"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(_G["ClickBindingFrame"].shadow)
 						end
