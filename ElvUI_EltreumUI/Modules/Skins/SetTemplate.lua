@@ -96,12 +96,6 @@ local function EltruismBorders(frame)
 				frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
 				frame.eltruismuniversalborders:Show()
 				togglebackdrop(frame,false)
-			--[[elseif (frame.count or frame.icon) and not frame.BagID then
-				print(frame.count)
-				local r,g,b = frame.IconBorder:GetVertexColor()
-				frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
-				frame.eltruismuniversalborders:Show()
-				togglebackdrop(frame,false)]]
 			else
 				frame.eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
 				frame.eltruismuniversalborders:Show()
@@ -120,17 +114,10 @@ local function EltruismBorders(frame)
 					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
 					frametable.eltruismuniversalborders:Show()
 					togglebackdrop(frametable,false)
-				--[[elseif (frametable.count or frametable.icon) and not frametable.BagID then --is item but not on bag
-					local r,g,b = frametable.IconBorder:GetVertexColor()
-					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
-					frametable.eltruismuniversalborders:Show()
-					togglebackdrop(frametable,false)]]
 				else
 					frametable.eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
 					frametable.eltruismuniversalborders:Show()
 					togglebackdrop(frametable,false)
-					--[[frametable.eltruismuniversalborders:Hide()
-					togglebackdrop(frametable,true)]]
 				end
 			end)
 			hooksecurefunc(frame.IconBorder, "SetShown", function(frametable,shown)
@@ -143,8 +130,6 @@ local function EltruismBorders(frame)
 					frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
 					frametable:GetParent().eltruismuniversalborders:Show()
 					togglebackdrop(frametable:GetParent(),false)
-					--[[frametable:GetParent().eltruismuniversalborders:Hide()
-					togglebackdrop(frametable:GetParent(),true)]]
 				end
 			end)
 			hooksecurefunc(frame.IconBorder, "Show", function(frametable,shown)
@@ -158,8 +143,6 @@ local function EltruismBorders(frame)
 						frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
 						frametable:GetParent().eltruismuniversalborders:Show()
 						togglebackdrop(frametable:GetParent(),false)
-						--[[frametable:GetParent().eltruismuniversalborders:Hide()
-						togglebackdrop(frametable:GetParent(),true)]]
 					end
 				end)
 			end)
@@ -167,33 +150,13 @@ local function EltruismBorders(frame)
 				frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
 				frametable:GetParent().eltruismuniversalborders:Show()
 				togglebackdrop(frametable:GetParent(),false)
-				--[[frametable:GetParent().eltruismuniversalborders:Hide()
-				togglebackdrop(frametable:GetParent(),true)]]
 			end)
 
 			if frame.shadow then frame.shadow:Hide() end
 		end
 
-
 		togglebackdrop(frame,false)
 		frame.eltruismuniversalbordersadded = true
-
-		--[[if isUnitFrameElement then
-			if frame:GetParent() and frame:GetParent():GetParent() and frame:GetParent():GetParent().Health then
-				if not frame:GetParent():GetParent().EltruismUniversalBorderHook then
-					hooksecurefunc(frame:GetParent():GetParent().Health,"ForceUpdate", function(frame)
-						if UnitIsPlayer(frame:GetParent().unit) or (E.Retail and UnitInPartyIsAI(frame:GetParent().unit)) then
-							local _, frameunitclass = UnitClass(frame:GetParent().unit)
-							frame.eltruismuniversalborders:SetBackdropBorderColor(classcolorreaction[targetclass]["r1"], classcolorreaction[targetclass]["g1"], classcolorreaction[targetclass]["b1"], 1)
-						end
-					end)
-				end
-			end
-		end
-
-		if frame.auraType and frame.debuffType and debuffColors[frame.debuffType] then
-			frame.eltruismuniversalborders:SetBackdropBorderColor(debuffColors[frame.debuffType].r, debuffColors[frame.debuffType].g, debuffColors[frame.debuffType].b, 1)
-		end]]
 
 		--even though shadows shouldnt be made, try to handle possible ones
 		if frame.shadow then
