@@ -77,7 +77,7 @@ local function EltruismBorders(frame)
 				configFrame.eltruismuniversalborders:SetFrameStrata("MEDIUM")
 				configFrame.Center:ClearAllPoints()
 				configFrame.Center:SetPoint("TOPLEFT", configFrame, "TOPLEFT", 2, -2)
-				configFrame.Center:SetPoint("BOTTOMRIGHT", configFrame, "BOTTOMRIGHT", -2, 4)
+				configFrame.Center:SetPoint("BOTTOMRIGHT", configFrame, "BOTTOMRIGHT", -2, 2)
 
 				fixedConfig = true
 			end
