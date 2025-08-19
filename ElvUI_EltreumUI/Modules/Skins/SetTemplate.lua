@@ -57,13 +57,6 @@ local frametypes = {
 
 local function EltruismBorders(frame)
 	if E.db.ElvUI_EltreumUI.borders.universalborders and not frame.eltruismuniversalborders and not frame.eltruismuniversalbordersadded then
-		if not E.db.ElvUI_EltreumUI.borders.classcolor then
-			valuecolors = {
-				r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
-				g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
-				b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
-			}
-		end
 		frame.eltruismuniversalborders = CreateFrame("Frame", nil, frame, BackdropTemplateMixin and "BackdropTemplate")
 		frame.eltruismuniversalborders:SetPoint("CENTER", frame, "CENTER", 0, 0)
 		frame.eltruismuniversalborders:SetBackdrop({
@@ -572,6 +565,13 @@ end
 
 function ElvUI_EltreumUI:SetTemplateSkin()
 	if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
+		if not E.db.ElvUI_EltreumUI.borders.classcolor then --set the variable here so its not spamming
+			valuecolors = {
+				r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
+				g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
+				b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
+			}
+		end
 		SkinFrame(loopframe)
 		loopframe = EnumerateFrames()
 		while loopframe do
