@@ -412,91 +412,91 @@ local function EltruismShadow(frame)
 		--possible widget shadows
 		if frame:GetParent() and frame:GetParent():GetParent() and not frame:GetParent():GetParent().EltruismWidgetHook then
 			if frame:GetParent():GetParent().widgetContainer then
-				if not frame.shadow then
+				if not frame.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
 					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(frame.shadow)
-
-					--font/texture
-					if frame:GetParent():GetParent().Label then
-						local _,size = frame:GetParent():GetParent().Label:GetFont()
-						frame:GetParent():GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-					end
-					if frame:GetParent():GetParent().Bar and frame:GetParent():GetParent().Bar.SetStatusBarColor and frame:GetParent():GetParent().Bar.SetStatusBarTexture then
-						local atlas = frame:GetParent():GetParent().Bar:GetStatusBarTexture():GetAtlas()
-						frame:GetParent():GetParent().Bar.EltruismAtlas = atlas
-						frame:GetParent():GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
-						frame:GetParent():GetParent().Bar:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
-						if not frame:GetParent():GetParent().Bar.EltruismColorHook and frame:GetParent():GetParent().Bar.DisplayBarValue then
-							hooksecurefunc(frame:GetParent():GetParent().Bar, "DisplayBarValue", function(widget)
-								local _, maxValue = widget:GetMinMaxValues()
-								S:StatusBarColorGradient(widget, widget:GetValue(), maxValue)
-								widget.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
-								widget.backdrop:SetBackdropColor(0,0,0)
-								widget:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
-
-								--[[if not atlas then
-									atlas = widget:GetStatusBarTexture():GetAtlas()
-								end
-								if not atlas then
-									atlas = widget.EltruismAtlas
-								end]]
-								--widget:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
-							end)
-							frame:GetParent():GetParent().Bar.EltruismColorHook = true
-						end
-					end
-
-					-- hook for when label gets added
-					if not frame:GetParent():GetParent().EltruismLabelHook then
-						frame:GetParent():GetParent():HookScript("OnShow", function(widget)
-							if widget.Label then
-								local _,size = widget.Label:GetFont()
-								widget.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-							end
-							if widget.Bar then
-								local atlas = widget.Bar:GetStatusBarTexture():GetAtlas()
-								if atlas then
-									widget.Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
-									widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
-								end
-							end
-						end)
-						frame:GetParent():GetParent().EltruismLabelHook = true
-					end
-
-					--same as above, but for when its the first parent
-					if frame:GetParent().Label then
-						local _,size = frame:GetParent().Label:GetFont()
-						frame:GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-					end
-					if frame:GetParent().Bar then
-						local atlas = frame:GetParent().Bar:GetStatusBarTexture():GetAtlas()
-						if atlas then
-							frame:GetParent().Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
-							frame:GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
-						end
-					end
-
-					-- hook for when label gets added
-					if not frame:GetParent().EltruismLabelHook then
-						frame:GetParent():HookScript("OnShow", function(widget)
-							if widget.Label then
-								local _,size = widget.Label:GetFont()
-								widget.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-							end
-							if widget.Bar then
-								local atlas = widget.Bar:GetStatusBarTexture():GetAtlas()
-								if atlas then
-									widget.Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
-									widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
-								end
-							end
-						end)
-						frame:GetParent():GetParent().EltruismLabelHook = true
-					end
-
-					frame:GetParent():GetParent().EltruismWidgetHook = true
 				end
+
+				--font/texture
+				if frame:GetParent():GetParent().Label then
+					local _,size = frame:GetParent():GetParent().Label:GetFont()
+					frame:GetParent():GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+				end
+				if frame:GetParent():GetParent().Bar and frame:GetParent():GetParent().Bar.SetStatusBarColor and frame:GetParent():GetParent().Bar.SetStatusBarTexture then
+					local atlas = frame:GetParent():GetParent().Bar:GetStatusBarTexture():GetAtlas()
+					frame:GetParent():GetParent().Bar.EltruismAtlas = atlas
+					frame:GetParent():GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+					frame:GetParent():GetParent().Bar:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+					if not frame:GetParent():GetParent().Bar.EltruismColorHook and frame:GetParent():GetParent().Bar.DisplayBarValue then
+						hooksecurefunc(frame:GetParent():GetParent().Bar, "DisplayBarValue", function(widget)
+							local _, maxValue = widget:GetMinMaxValues()
+							S:StatusBarColorGradient(widget, widget:GetValue(), maxValue)
+							widget.backdrop:SetAlpha(E.db.general.backdropfadecolor.a)
+							widget.backdrop:SetBackdropColor(0,0,0)
+							widget:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+
+							--[[if not atlas then
+								atlas = widget:GetStatusBarTexture():GetAtlas()
+							end
+							if not atlas then
+								atlas = widget.EltruismAtlas
+							end]]
+							--widget:SetStatusBarColor(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+						end)
+						frame:GetParent():GetParent().Bar.EltruismColorHook = true
+					end
+				end
+
+				-- hook for when label gets added
+				if not frame:GetParent():GetParent().EltruismLabelHook then
+					frame:GetParent():GetParent():HookScript("OnShow", function(widget)
+						if widget.Label then
+							local _,size = widget.Label:GetFont()
+							widget.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+						end
+						if widget.Bar then
+							local atlas = widget.Bar:GetStatusBarTexture():GetAtlas()
+							if atlas then
+								widget.Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+								widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+							end
+						end
+					end)
+					frame:GetParent():GetParent().EltruismLabelHook = true
+				end
+
+				--same as above, but for when its the first parent
+				if frame:GetParent().Label then
+					local _,size = frame:GetParent().Label:GetFont()
+					frame:GetParent().Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+				end
+				if frame:GetParent().Bar then
+					local atlas = frame:GetParent().Bar:GetStatusBarTexture():GetAtlas()
+					if atlas then
+						frame:GetParent().Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+						frame:GetParent().Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+					end
+				end
+
+				-- hook for when label gets added
+				if not frame:GetParent().EltruismLabelHook then
+					frame:GetParent():HookScript("OnShow", function(widget)
+						if widget.Label then
+							local _,size = widget.Label:GetFont()
+							widget.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), size, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
+						end
+						if widget.Bar then
+							local atlas = widget.Bar:GetStatusBarTexture():GetAtlas()
+							if atlas then
+								widget.Bar:GetStatusBarTexture():SetColorTexture(widgetAtlas[atlas].r,widgetAtlas[atlas].g,widgetAtlas[atlas].b,widgetAtlas[atlas].a)
+								widget.Bar:SetStatusBarTexture(E.LSM:Fetch("statusbar", "ElvUI Norm1"))
+							end
+						end
+					end)
+					frame:GetParent():GetParent().EltruismLabelHook = true
+				end
+
+				frame:GetParent():GetParent().EltruismWidgetHook = true
 			end
 		end
 
