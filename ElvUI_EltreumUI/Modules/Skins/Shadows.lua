@@ -33,7 +33,7 @@ end
 
 --Frame Shadows, turns out ElvUI includes the function
 function ElvUI_EltreumUI:Shadows()
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 		local benikdettached = false
 		if IsAddOnLoaded("ElvUI_BenikUI") then
 			benikdettached = E.db.benikui.unitframes.player.detachPortrait
@@ -4012,7 +4012,7 @@ function ElvUI_EltreumUI:Shadows()
 end
 
 function ElvUI_EltreumUI:RaidShadows()
-	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.raid and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.raidborders) then
+	if E.private.unitframe.enable and E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.raid and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.raidborders) and not E.db.ElvUI_EltreumUI.borders.universalborders then
 		--raid
 		if E.db.unitframe.units.raid1.enable or E.db.unitframe.units.raid2.enable or E.db.unitframe.units.raid3.enable then
 			for i = 1, 3 do
@@ -4187,7 +4187,7 @@ function ElvUI_EltreumUI:NameplateShadows(nameplate)
 			nameplate.Health.EltruismNameplateBorder:SetFrameStrata(nameplate.Health:GetFrameStrata())
 			nameplate.Health.EltruismNameplateBorder:SetPoint("CENTER", nameplate.Health, "CENTER", 0, 0)
 			nameplate.Health.EltruismNameplateBorder:SetOutside(nameplate.Health, E.db.ElvUI_EltreumUI.borders.nameplatesizex, E.db.ElvUI_EltreumUI.borders.nameplatesizey)
-		elseif E.db.ElvUI_EltreumUI.skins.shadow.enable then
+		elseif E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 			if E.db.ElvUI_EltreumUI.skins.shadow.nameplates then
 				if not nameplate.Health then return end
 				if nameplate.Health.backdrop and not nameplate.Health.backdrop.shadow then
@@ -4247,7 +4247,7 @@ hooksecurefunc(NP, 'StylePlate', ElvUI_EltreumUI.NameplateShadows) --nameplate s
 
 function ElvUI_EltreumUI:Construct_AuraIcon(button)
 	if not button then return end
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.npauras then
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.npauras and not E.db.ElvUI_EltreumUI.borders.universalborders then
 		if button and not button.shadow then
 			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			ElvUI_EltreumUI:ShadowColor(button.shadow)
@@ -4258,7 +4258,7 @@ hooksecurefunc(NP, 'Construct_AuraIcon', ElvUI_EltreumUI.Construct_AuraIcon) --n
 
 function ElvUI_EltreumUI:AuraShadows(button)
 	if not button then return end
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) and not IsAddOnLoaded("Masque") then
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborder) and not IsAddOnLoaded("Masque") and not E.db.ElvUI_EltreumUI.borders.universalborders then
 		if button and not button.shadow then
 			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			ElvUI_EltreumUI:ShadowColor(button.shadow)
@@ -4269,7 +4269,7 @@ hooksecurefunc(A, 'CreateIcon', ElvUI_EltreumUI.AuraShadows) --aura (minimap) sh
 
 function ElvUI_EltreumUI:UFAuraShadows(button)
 	if not button then return end
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.ufaura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf) then
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.ufaura and not (E.db.ElvUI_EltreumUI.borders.borders and E.db.ElvUI_EltreumUI.borders.auraborderuf) and not E.db.ElvUI_EltreumUI.borders.universalborders then
 		if button and not button.shadow then
 			button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 			ElvUI_EltreumUI:ShadowColor(button.shadow)
@@ -4283,7 +4283,7 @@ local TimeSinceLastUpdate = 0
 local ONUPDATE_INTERVAL = 0.1
 local M = E:GetModule('Misc')
 function ElvUI_EltreumUI:ChatBubblesShadows()
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable and not self.ChatShadowsHooked and (E.private.general.chatBubbles == "backdrop" or E.private.general.chatBubbles == "backdrop_noborder") then
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and not self.ChatShadowsHooked and (E.private.general.chatBubbles == "backdrop" or E.private.general.chatBubbles == "backdrop_noborder") and not E.db.ElvUI_EltreumUI.borders.universalborders then
 		M.BubbleFrame:HookScript("OnUpdate",function(_,elapsed)
 			TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 			if TimeSinceLastUpdate >= ONUPDATE_INTERVAL then
@@ -4316,7 +4316,7 @@ hooksecurefunc(M, "LoadChatBubbles", ElvUI_EltreumUI.ChatBubblesShadows)
 
 --Datatexts
 function ElvUI_EltreumUI:DataTextShadows(name)
-	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.datatexts then
+	if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.datatexts and not E.db.ElvUI_EltreumUI.borders.universalborders then
 		local panel = DT:FetchFrame(name)
 		if not panel then return end
 		E:Delay(0.5, function() --needs a delay to wait for the panel setup
