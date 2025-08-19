@@ -198,7 +198,7 @@ function ElvUI_EltreumUI:EltruismBagSync()
 			end
 
 			--shadows
-			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+			if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 				if not Search.frame.shadow then
 					Search.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(Search.frame.shadow)

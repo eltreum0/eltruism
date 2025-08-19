@@ -147,7 +147,7 @@ function ElvUI_EltreumUI:BattleRes()
 		spellicon:SetTexCoord(0.08,0.92,0.08,0.92)
 
 		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
-			if not bresframe.shadow then
+			if not bresframe.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
 				bresframe:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				bresframe.shadow:ClearAllPoints()
 				bresframe.shadow:SetPoint("BOTTOMLEFT", spellicon,"BOTTOMLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)

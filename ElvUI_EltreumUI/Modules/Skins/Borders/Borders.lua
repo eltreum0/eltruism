@@ -2098,6 +2098,10 @@ function ElvUI_EltreumUI:TooltipBorder()
 					 _G.GameTooltip.NineSlice.eltruismuniversalborders:Kill()
 					 _G.GameTooltip.NineSlice.eltruismuniversalborders = nil
 				end
+				if _G.GameTooltipStatusBar and _G.GameTooltipStatusBar.backdrop and _G.GameTooltipStatusBar.backdrop.eltruismuniversalborders then
+					_G.GameTooltipStatusBar.backdrop.eltruismuniversalborders:Kill()
+					 _G.GameTooltipStatusBar.backdrop.eltruismuniversalborders = nil
+				end
 			end
 		end
 		_G.GameTooltip:HookScript("OnShow", TooltipBorderFix) --when it appears

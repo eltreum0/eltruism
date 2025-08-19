@@ -33,7 +33,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 			_G["ImmersionFrame"].TalkBox.ReputationBar:SetPoint("BOTTOMLEFT", _G["ImmersionFrame"].TalkBox, "TOPLEFT", 0, E.db.ElvUI_EltreumUI.skins.shadow.length)
 			_G["ImmersionFrame"].TalkBox.ReputationBar:SetPoint("BOTTOMRIGHT", _G["ImmersionFrame"].TalkBox, "TOPRIGHT", 0, E.db.ElvUI_EltreumUI.skins.shadow.length)
 			_G["ImmersionFrame"].TalkBox.ReputationBar:SetHeight(4)
-			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+			if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 				if not _G["ImmersionFrame"].TalkBox.ReputationBar.shadow then
 					_G["ImmersionFrame"].TalkBox.ReputationBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(_G["ImmersionFrame"].TalkBox.ReputationBar.shadow)
@@ -48,7 +48,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 			_G["ImmersionFrame"].TalkBox.ProgressionBar:SetSize(width,height+5)
 		end
 
-		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 			for _, frame in pairs(frames) do
 				if frame and not frame.shadow then
 					frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -211,7 +211,7 @@ function ElvUI_EltreumUI:EltruismImmersion()
 					--v.pushed:SetColorTexture(classcolor.r, classcolor.g,classcolor.b, 0.8) --pushed color
 					v.Label:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize+3, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 					v.Label:SetShadowOffset(1,-1)
-					if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+					if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 						if v and not v.shadow then
 							v:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 							ElvUI_EltreumUI:ShadowColor(v.shadow)

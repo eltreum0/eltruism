@@ -30,7 +30,7 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 				rarescannerbutton.UnfilterEnabledButton:GetPushedTexture():SetTexCoord(0, 1, 0, 1)
 			end
 
-			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+			if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 				if not E.Classic then
 					if rarescannerbutton and not rarescannerbutton.shadow then
 						rarescannerbutton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -53,7 +53,7 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 				S:HandleEditBox(v)
 
 				--add shadows too
-				if not v.backdrop.shadow then
+				if not v.backdrop.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
 					v.backdrop:CreateShadow()
 					ElvUI_EltreumUI:ShadowColor(v.backdrop.shadow)
 				end
@@ -92,7 +92,7 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 							v.Icon:SetTexCoord(unpack(E.TexCoords))
 							--S:HandleFrame(v) --can end up erasing icon
 							v:CreateBackdrop()
-							if E.db.ElvUI_EltreumUI.skins.shadow.enable and not v.shadow then
+							if E.db.ElvUI_EltreumUI.skins.shadow.enable and not v.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
 								v:CreateShadow(2)
 								ElvUI_EltreumUI:ShadowColor(v.shadow)
 							end

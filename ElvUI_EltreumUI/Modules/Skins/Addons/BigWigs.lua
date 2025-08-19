@@ -113,7 +113,7 @@ do
 					self.candyBarBar:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, {r=r-0.4,g= g-0.4,b= b-0.4,a= 0.7}, {r=r+0.2,g=g+0.2,b=b+0.2,a= 0.7})
 				end
 
-				if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs then
+				if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs and not E.db.ElvUI_EltreumUI.borders.universalborders then
 					if not self.candyBarBar.shadow then
 						self.candyBarBar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(self.candyBarBar.shadow)
@@ -344,7 +344,7 @@ do
 						frame:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.orientation, ElvUI_EltreumUI:GradientColors(E.myclass, false, false))
 					end
 					frame.text:SetFont(E.LSM:Fetch("font", E.db.general.font), E.db.general.fontSize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
-					if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs then
+					if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs and not E.db.ElvUI_EltreumUI.borders.universalborders then
 						frame:SetWidth(width-1)
 						if not frame.shadow then
 							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -368,7 +368,7 @@ do
 
 							if not frame.EltruismSkin then
 								S:HandleFrame(frame)
-								if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs then
+								if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs and not E.db.ElvUI_EltreumUI.borders.universalborders then
 									if not frame.shadow then
 										frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 										ElvUI_EltreumUI:ShadowColor(frame.shadow)
@@ -386,7 +386,7 @@ do
 										if iconparent.icon then --crop icon
 											iconparent.icon:SetTexCoord(0.08,0.92,0.08,0.92)
 										end
-										if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs then
+										if E.db.ElvUI_EltreumUI.skins.shadow.bigwigs and not E.db.ElvUI_EltreumUI.borders.universalborders then
 											if not iconparent.shadow then
 												iconparent:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 												ElvUI_EltreumUI:ShadowColor(iconparent.shadow)

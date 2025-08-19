@@ -72,7 +72,7 @@ function ElvUI_EltreumUI:EltruismClique()
 					S:HandleScrollBar(_G["CliqueConfigUIScrollBar"])
 				end
 
-				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 					for _, frame in pairs(frames) do
 						if frame and not frame.shadow then
 							frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -89,7 +89,7 @@ function ElvUI_EltreumUI:EltruismClique()
 				_G["CliqueSpellbookTabButton"]:SetNormalTexture([[Interface\AddOns\Clique\images\icon_square_64]])
 				_G["CliqueSpellbookTabButton"]:GetNormalTexture():SetTexCoord(unpack(E.TexCoords))
 				_G["CliqueSpellbookTabButton"].EltruismSkin = true
-				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 					if _G["CliqueSpellbookTabButton"] and not _G["CliqueSpellbookTabButton"].shadow then
 						_G["CliqueSpellbookTabButton"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(_G["CliqueSpellbookTabButton"].shadow)

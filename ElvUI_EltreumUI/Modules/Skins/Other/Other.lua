@@ -52,7 +52,7 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 						end
 
 						--shadows
-						if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard then
+						if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard and not E.db.ElvUI_EltreumUI.borders.universalborders then
 							if not bar.shadow then
 								bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(bar.shadow)
@@ -116,7 +116,7 @@ function ElvUI_EltreumUI:GradientMirrorLoot()
 		for i = 1, maxBars do
 			local frame = M:LootRoll_GetFrame(i)
 			if frame then
-				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 					if not frame.status.shadow then
 						frame.status:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(frame.status.shadow)
@@ -288,7 +288,7 @@ function ElvUI_EltreumUI:SkinProfessions()
 					_G.CRAFTS_DISPLAYED = 22 --declare outside due to era pet training
 
 					E:Delay(0, function()
-						if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard and E.private.skins.blizzard.enable then
+						if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.blizzard and E.private.skins.blizzard.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 							if CraftFrame.backdrop and not CraftFrame.backdrop.shadow then
 								CraftFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(CraftFrame.backdrop.shadow)

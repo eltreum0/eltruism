@@ -267,7 +267,7 @@ function ElvUI_EltreumUI:SkinQuests()
 							if not bar.BarFrame.backdrop then
 								bar.BarFrame:CreateBackdrop()
 								bar.BarFrame.backdrop:SetOutside(bar.Icon)
-								if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+								if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 									if not bar.BarFrame.backdrop.shadow then
 										bar.BarFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 										ElvUI_EltreumUI:ShadowColor(bar.BarFrame.backdrop.shadow)
@@ -276,7 +276,7 @@ function ElvUI_EltreumUI:SkinQuests()
 								bar.BarFrame.backdrop:SetShown(bar.Icon:IsShown())
 							else
 								bar.BarFrame.backdrop:SetOutside(bar.Icon)
-								if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+								if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 									if not bar.BarFrame.backdrop.shadow then
 										bar.BarFrame.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 										ElvUI_EltreumUI:ShadowColor(bar.BarFrame.backdrop.shadow)
@@ -287,7 +287,7 @@ function ElvUI_EltreumUI:SkinQuests()
 						end
 
 						if not bar.EltruismSkin then
-							if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and E.private.general.pixelPerfect then
+							if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and E.private.general.pixelPerfect and not E.db.ElvUI_EltreumUI.borders.universalborders then
 								bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(bar.shadow)
 							end
@@ -905,7 +905,7 @@ function ElvUI_EltreumUI:SkinQuests()
 										ScenarioObjectiveBlockBackground:SetSize(243, 80)
 										ScenarioObjectiveBlockBackground:SetFrameLevel(3)
 										ScenarioObjectiveBlockBackground:Show()
-										if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow and E.private.general.pixelPerfect then
+										if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow and E.private.general.pixelPerfect and not E.db.ElvUI_EltreumUI.borders.universalborders then
 											ScenarioObjectiveBlockBackground:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 											ElvUI_EltreumUI:ShadowColor(ScenarioObjectiveBlockBackground.shadow.shadow)
 										end
@@ -990,7 +990,7 @@ function ElvUI_EltreumUI:SkinQuests()
 								ScenarioObjectiveBlockBackground:SetSize(243, 80)
 								ScenarioObjectiveBlockBackground:SetFrameLevel(3)
 								ScenarioObjectiveBlockBackground:Show()
-								if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow and E.private.general.pixelPerfect then
+								if E.db.ElvUI_EltreumUI.skins.questsettings.lineshadow and not ScenarioObjectiveBlockBackground.shadow and E.private.general.pixelPerfect and not E.db.ElvUI_EltreumUI.borders.universalborders then
 									ScenarioObjectiveBlockBackground:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 									ElvUI_EltreumUI:ShadowColor(ScenarioObjectiveBlockBackground.shadow.shadow)
 								end
