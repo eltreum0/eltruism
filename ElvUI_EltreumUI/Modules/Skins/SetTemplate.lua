@@ -90,11 +90,11 @@ local function EltruismBorders(frame)
 				frame.eltruismuniversalborders:Show()
 				togglebackdrop(frame,false)
 			else
-				frame.eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
+				--[[frame.eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
 				frame.eltruismuniversalborders:Show()
-				togglebackdrop(frame,false)
-				--[[frame.eltruismuniversalborders:Hide()
-				togglebackdrop(frame,true)]]
+				togglebackdrop(frame,false)]]
+				frame.eltruismuniversalborders:Hide()
+				togglebackdrop(frame,true)
 			end
 			hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable)
 				frametable.eltruismuniversalborders:SetBackdrop({
@@ -108,9 +108,11 @@ local function EltruismBorders(frame)
 					frametable.eltruismuniversalborders:Show()
 					togglebackdrop(frametable,false)
 				else
-					frametable.eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
+					--[[frametable.eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
 					frametable.eltruismuniversalborders:Show()
-					togglebackdrop(frametable,false)
+					togglebackdrop(frametable,false)]]
+					frametable.eltruismuniversalborders:Hide()
+					togglebackdrop(frametable,true)
 				end
 			end)
 			hooksecurefunc(frame.IconBorder, "SetShown", function(frametable,shown)
@@ -120,9 +122,11 @@ local function EltruismBorders(frame)
 					frametable:GetParent().eltruismuniversalborders:Show()
 					togglebackdrop(frametable:GetParent(),false)
 				else
-					frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
+					--[[frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
 					frametable:GetParent().eltruismuniversalborders:Show()
-					togglebackdrop(frametable:GetParent(),false)
+					togglebackdrop(frametable:GetParent(),false)]]
+					frametable:GetParent().eltruismuniversalborders:Hide()
+					togglebackdrop(frametable:GetParent(),true)
 				end
 			end)
 			hooksecurefunc(frame.IconBorder, "Show", function(frametable,shown)
@@ -133,16 +137,20 @@ local function EltruismBorders(frame)
 						frametable:GetParent().eltruismuniversalborders:Show()
 						togglebackdrop(frametable:GetParent(),false)
 					else
-						frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
+						--[[frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
 						frametable:GetParent().eltruismuniversalborders:Show()
-						togglebackdrop(frametable:GetParent(),false)
+						togglebackdrop(frametable:GetParent(),false)]]
+						frametable:GetParent().eltruismuniversalborders:Hide()
+						togglebackdrop(frametable:GetParent(),true)
 					end
 				end)
 			end)
 			hooksecurefunc(frame.IconBorder, "Hide", function(frametable)
-				frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
+				--[[frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
 				frametable:GetParent().eltruismuniversalborders:Show()
-				togglebackdrop(frametable:GetParent(),false)
+				togglebackdrop(frametable:GetParent(),false)]]
+				frametable:GetParent().eltruismuniversalborders:Hide()
+				togglebackdrop(frametable:GetParent(),true)
 			end)
 
 			if frame.shadow then frame.shadow:Hide() end
