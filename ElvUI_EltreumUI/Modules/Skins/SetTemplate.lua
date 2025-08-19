@@ -155,6 +155,11 @@ local function EltruismBorders(frame)
 			if frame.shadow then frame.shadow:Hide() end
 		end
 
+		--sharedmedia dropdown preview
+		if frame:GetParent() and frame:GetParent().displayButton then
+			frame:GetParent().displayButton:SetFrameLevel(frame:GetFrameLevel()+3)
+		end
+
 		togglebackdrop(frame,false)
 		frame.eltruismuniversalbordersadded = true
 
