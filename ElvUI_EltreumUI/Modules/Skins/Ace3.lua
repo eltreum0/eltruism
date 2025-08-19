@@ -31,15 +31,11 @@ local function SetupFrameHooks(frame,isTree)
 		end
 
 		if frame.eltruismuniversalborders then
-			frame.BottomLeftCorner:Hide()
-			frame.BottomRightCorner:Hide()
-			frame.TopLeftCorner:Hide()
-			frame.TopRightCorner:Hide()
+			frame.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel()-1)
 		elseif frame.backdrop then
-			frame.backdrop.BottomLeftCorner:Hide()
-			frame.backdrop.BottomRightCorner:Hide()
-			frame.backdrop.TopLeftCorner:Hide()
-			frame.backdrop.TopRightCorner:Hide()
+			if frame.backdrop.eltruismuniversalborders then
+				frame.backdrop.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel()-1)
+			end
 		end
 	end)
 
@@ -376,18 +372,11 @@ function ElvUI_EltreumUI:Ace3Skin()
 		end
 
 		if tab.eltruismuniversalborders then
-			tab.eltruismuniversalborders.BottomLeftCorner:Hide()
-			tab.eltruismuniversalborders.BottomRightCorner:Hide()
-			tab.eltruismuniversalborders.BottomEdge:Hide()
+			tab.eltruismuniversalborders:SetFrameLevel(tab:GetFrameLevel()-1)
 		elseif tab.backdrop then
 			if tab.backdrop.eltruismuniversalborders then
-				tab.backdrop.eltruismuniversalborders.BottomLeftCorner:Hide()
-				tab.backdrop.eltruismuniversalborders.BottomRightCorner:Hide()
-				tab.backdrop.eltruismuniversalborders.BottomEdge:Hide()
+				tab.backdrop.eltruismuniversalborders:SetFrameLevel(tab:GetFrameLevel()-1)
 			end
-			tab.backdrop.BottomLeftCorner:Hide()
-			tab.backdrop.BottomRightCorner:Hide()
-			tab.backdrop.BottomEdge:Hide()
 		end
 	end)
 
@@ -415,18 +404,11 @@ function ElvUI_EltreumUI:Ace3Skin()
 		end
 
 		if tab.eltruismuniversalborders then
-			tab.eltruismuniversalborders.BottomLeftCorner:Hide()
-			tab.eltruismuniversalborders.BottomRightCorner:Hide()
-			tab.eltruismuniversalborders.BottomEdge:Hide()
+			tab.eltruismuniversalborders:SetFrameLevel(tab:GetFrameLevel()-1)
 		elseif tab.backdrop then
 			if tab.backdrop.eltruismuniversalborders then
-				tab.backdrop.eltruismuniversalborders.BottomLeftCorner:Hide()
-				tab.backdrop.eltruismuniversalborders.BottomRightCorner:Hide()
-				tab.backdrop.eltruismuniversalborders.BottomEdge:Hide()
+				tab.backdrop.eltruismuniversalborders:SetFrameLevel(tab:GetFrameLevel()-1)
 			end
-			tab.backdrop.BottomLeftCorner:Hide()
-			tab.backdrop.BottomRightCorner:Hide()
-			tab.backdrop.BottomEdge:Hide()
 		end
 	end)
 
