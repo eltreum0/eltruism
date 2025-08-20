@@ -70,7 +70,7 @@ local function togglebackdrop(frame,show)
 end
 
 local function EltruismBorders(frame,isUnitFrameElement)
-	if isUnitFrameElement then return end
+	if (isUnitFrameElement and not (frame:GetDebugName() and frame:GetDebugName():match("AuraBar"))) then return end
 	if E.db.ElvUI_EltreumUI.borders.universalborders and not frame.eltruismuniversalborders and not frame.eltruismuniversalbordersadded then
 		frame.eltruismuniversalborders = CreateFrame("Frame", nil, frame, BackdropTemplateMixin and "BackdropTemplate")
 		frame.eltruismuniversalborders:SetPoint("CENTER", frame, "CENTER", 0, 0)
