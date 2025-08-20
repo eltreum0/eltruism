@@ -42,18 +42,30 @@ local function togglebackdrop(frame,show)
 		frame.BottomEdge:Hide()
 		frame.TopEdge:Hide()
 	end
-end
+	if frame.backdrop then
+		if show then
+			frame.backdrop.TopLeftCorner:Show()
+			frame.backdrop.TopRightCorner:Show()
+			frame.backdrop.BottomLeftCorner:Show()
+			frame.backdrop.BottomRightCorner:Show()
 
---based on elvui toolkit
-local loopframe = CreateFrame("Frame")
-local frametypes = {
-	["Region"] = true,
-	["Texture"] = true,
-	["Cooldown"] = true,
-	["Slider"] = true,
-	["ScrollFrame"] = true,
-	["ModelScene"] = true,
-}
+			frame.backdrop.LeftEdge:Show()
+			frame.backdrop.RightEdge:Show()
+			frame.backdrop.BottomEdge:Show()
+			frame.backdrop.TopEdge:Show()
+		else
+			frame.backdrop.TopLeftCorner:Hide()
+			frame.backdrop.TopRightCorner:Hide()
+			frame.backdrop.BottomLeftCorner:Hide()
+			frame.backdrop.BottomRightCorner:Hide()
+
+			frame.backdrop.LeftEdge:Hide()
+			frame.backdrop.RightEdge:Hide()
+			frame.backdrop.BottomEdge:Hide()
+			frame.backdrop.TopEdge:Hide()
+		end
+	end
+end
 
 local function EltruismBorders(frame,isUnitFrameElement)
 	if isUnitFrameElement then return end
@@ -92,7 +104,7 @@ local function EltruismBorders(frame,isUnitFrameElement)
 				local r,g,b = GetItemQualityColor(frame.rarity)
 				frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
 				frame.eltruismuniversalborders:Show()
-				togglebackdrop(frame,false)
+				togglebackdrop(frame)
 			else
 				--[[frame.eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
 				frame.eltruismuniversalborders:Show()
@@ -119,7 +131,7 @@ local function EltruismBorders(frame,isUnitFrameElement)
 					local r,g,b = GetItemQualityColor(frametable.rarity)
 					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
 					frametable.eltruismuniversalborders:Show()
-					togglebackdrop(frametable,false)
+					togglebackdrop(frametable)
 				else
 					--[[frametable.eltruismuniversalborders:SetBackdropBorderColor(0, 0, 0, 1)
 					frametable.eltruismuniversalborders:Show()
@@ -137,7 +149,7 @@ local function EltruismBorders(frame,isUnitFrameElement)
 					local r,g,b = frametable:GetVertexColor()
 					frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
 					frametable:GetParent().eltruismuniversalborders:Show()
-					togglebackdrop(frametable:GetParent(),false)
+					togglebackdrop(frametable:GetParent())
 					if frametable:GetParent().caerdonButton then
 						frametable:GetParent().eltruismuniversalborders:SetFrameLevel(frametable:GetParent():GetFrameLevel()+1)
 						frametable:GetParent().caerdonButton:SetFrameLevel(frametable:GetParent():GetFrameLevel()+2)
@@ -156,7 +168,7 @@ local function EltruismBorders(frame,isUnitFrameElement)
 						local r,g,b = frametable:GetVertexColor()
 						frametable:GetParent().eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
 						frametable:GetParent().eltruismuniversalborders:Show()
-						togglebackdrop(frametable:GetParent(),false)
+						togglebackdrop(frametable:GetParent())
 						if frametable:GetParent().caerdonButton then
 							frametable:GetParent().eltruismuniversalborders:SetFrameLevel(frametable:GetParent():GetFrameLevel()+1)
 							frametable:GetParent().caerdonButton:SetFrameLevel(frametable:GetParent():GetFrameLevel()+2)
@@ -189,7 +201,7 @@ local function EltruismBorders(frame,isUnitFrameElement)
 			_G.ElvNP_TargetClassPowerClassPower.backdrop.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel())
 		end
 
-		togglebackdrop(frame,false)
+		togglebackdrop(frame)
 		frame.eltruismuniversalbordersadded = true
 
 		--even though shadows shouldnt be made, try to handle possible ones
@@ -607,6 +619,16 @@ local function SkinFrame(object)
 	end
 end
 
+--based on elvui toolkit
+local loopframe = CreateFrame("Frame")
+local frametypes = {
+	["Region"] = true,
+	["Texture"] = true,
+	["Cooldown"] = true,
+	["Slider"] = true,
+	["ScrollFrame"] = true,
+	["ModelScene"] = true,
+}
 function ElvUI_EltreumUI:SetTemplateSkin()
 	if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
 		if not E.db.ElvUI_EltreumUI.borders.classcolor then --set the variable here so its not spamming
