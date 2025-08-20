@@ -1,7 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">\
 	<Script file='OptionsCore.lua'/>
 	<Script file='Installer.lua'/>
-	<Script file='Addons.lua'/>
 	<Script file='Unitframes.lua'/>
 	<Script file='Misc.lua'/>
 	<Script file='Borders.lua'/>

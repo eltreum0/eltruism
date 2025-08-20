@@ -342,7 +342,6 @@ Fixed an issue with the Leatrix Maps DB when not using Leatrix Maps
 
 	E.Options.args.ElvUI_EltreumUI = ElvUI_EltreumUI.Options
 
-	ElvUI_EltreumUI:AddonsOptions()
 	ElvUI_EltreumUI:BorderOptions()
 	ElvUI_EltreumUI:ChatOptions()
 	ElvUI_EltreumUI:CombatMusicOptions()
