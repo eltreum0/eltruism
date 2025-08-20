@@ -55,7 +55,8 @@ local frametypes = {
 	["ModelScene"] = true,
 }
 
-local function EltruismBorders(frame)
+local function EltruismBorders(frame,isUnitFrameElement)
+	if isUnitFrameElement then return end
 	if E.db.ElvUI_EltreumUI.borders.universalborders and not frame.eltruismuniversalborders and not frame.eltruismuniversalbordersadded then
 		frame.eltruismuniversalborders = CreateFrame("Frame", nil, frame, BackdropTemplateMixin and "BackdropTemplate")
 		frame.eltruismuniversalborders:SetPoint("CENTER", frame, "CENTER", 0, 0)
@@ -577,7 +578,7 @@ local function SkinFrame(object)
 			--if frame.showDispellableDebuff then return end --fix RaidDebufs
 			if template ~= "NoBackdrop" then
 				EltruismBackground(frame,isUnitFrameElement)
-				EltruismBorders(frame)
+				EltruismBorders(frame,isUnitFrameElement)
 			else
 				if frame.eltruismbgtexture then
 					frame.eltruismbgtexture:Hide()
