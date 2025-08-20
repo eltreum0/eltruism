@@ -646,7 +646,6 @@ function ElvUI_EltreumUI:SkinQuests()
 					_G.ObjectiveTrackerFrame,
 					_G.UIWidgetObjectiveTracker,
 				}
-
 				for _, module in pairs(questmodules) do
 					if module and module.Header then
 
@@ -766,7 +765,6 @@ function ElvUI_EltreumUI:SkinQuests()
 						k.OnHeaderLeaveHook = true
 					end
 					if k.AddObjective and not k.AddObjectiveHook then
-
 						local function updateObjectiveCount()
 							--add quest count
 								if _G.QuestObjectiveTracker and _G.QuestObjectiveTracker.Header and _G.QuestObjectiveTracker.Header.Text then
