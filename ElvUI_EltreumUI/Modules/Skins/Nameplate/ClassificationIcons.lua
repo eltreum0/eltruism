@@ -1905,8 +1905,10 @@ local bossIDs = {
 
 	--eco-dome-aldani
 	["234893"] = true, --azhiccar
-	["247283"] = true, --soul-scribe
+	["237514"] = true, --awazj
 	["234933"] = true, --taahbat
+	["247283"] = true, --soul-scribe
+	["234935"] = true, --soul-scribe
 
 	--liberation-of-undermine
 	["231075"] = true, --chrome-king-gallywix
