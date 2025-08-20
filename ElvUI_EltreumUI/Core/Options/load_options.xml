@@ -1,14 +1,12 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">\
 	<Script file='OptionsCore.lua'/>
 	<Script file='Installer.lua'/>
-	<Script file='Addons.lua'/>
 	<Script file='Unitframes.lua'/>
 	<Script file='Misc.lua'/>
 	<Script file='Borders.lua'/>
 	<Script file='Gradient.lua'/>
 	<Script file='Nameplates.lua'/>
 	<Script file='Skins.lua'/>
-	<Script file='Aurafilters.lua'/>
 	<Script file='CVars.lua'/>
 	<Script file='CustomGlow.lua'/>
 	<Script file='Map.lua'/>
@@ -17,7 +15,6 @@
 	<Script file='Cursor.lua'/>
 	<Script file='Loot.lua'/>
 	<Script file='Party.lua'/>
-	<Script file='AFK.lua'/>
 	<Script file='CombatMusic.lua'/>
 	<Script file='Cooldown.lua'/>
 	<Script file='Quests.lua'/>

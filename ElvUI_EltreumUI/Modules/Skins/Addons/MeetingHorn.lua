@@ -21,7 +21,7 @@ function ElvUI_EltreumUI:EltruismMeetingHorn()
 		S:HandleFrame(f.MainPanel)
 		f.MainPanel:SetTemplate('Transparent', nil, true)
 
-		if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+		if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 			if not f.MainPanel.shadow then
 				f.MainPanel:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(f.MainPanel.shadow)
@@ -142,7 +142,7 @@ function ElvUI_EltreumUI:EltruismMeetingHorn()
 			if group and group:GetName() == nil then
 				if group.HighlightTexture then
 					S:HandleTab(group)
-					if not group.backdrop.shadow then
+					if not group.backdrop.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
 						group.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(group.backdrop.shadow)
 					end

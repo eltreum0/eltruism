@@ -73,7 +73,7 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 		if frame and frame.AuraBars and not frame.AuraBarHook then
 			hooksecurefunc(frame.AuraBars, 'PostUpdateBar', function(_,_,bar)
 				if bar then
-					if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not bar.shadow then
+					if E.db.ElvUI_EltreumUI.skins.shadow.enable and E.db.ElvUI_EltreumUI.skins.shadow.aura and not bar.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
 						bar:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 						ElvUI_EltreumUI:ShadowColor(bar.shadow)
 						if E.db.ElvUI_EltreumUI.unitframes.thinmodeaurabars then
@@ -95,6 +95,11 @@ function ElvUI_EltreumUI:AuraBarTexture(frame)
 							bar.shadow:ClearAllPoints()
 							bar.shadow:SetPoint("TOPLEFT", bar.icon, "TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length,E.db.ElvUI_EltreumUI.skins.shadow.length)
 							bar.shadow:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+						end
+					end
+					if E.db.ElvUI_EltreumUI.borders.universalborders then
+						if bar.backdrop and bar.backdrop.eltruismuniversalborders then
+							bar.backdrop.eltruismuniversalborders:SetFrameLevel(bar:GetFrameLevel()+1)
 						end
 					end
 					if bar.bg then

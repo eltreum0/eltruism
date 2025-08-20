@@ -9,7 +9,7 @@ function ElvUI_EltreumUI:EltruismScrap()
 	E:Delay(0, function()
 		if _G["MerchantFrameSecureTab0"] then
 			S:HandleTab(_G["MerchantFrameSecureTab0"])
-			if E.db.ElvUI_EltreumUI.skins.shadow.enable and _G["MerchantFrameSecureTab0"].backdrop and not _G["MerchantFrameSecureTab0"].backdrop.shadow then
+			if E.db.ElvUI_EltreumUI.skins.shadow.enable and _G["MerchantFrameSecureTab0"].backdrop and not _G["MerchantFrameSecureTab0"].backdrop.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
 				_G["MerchantFrameSecureTab0"].backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 				ElvUI_EltreumUI:ShadowColor(_G["MerchantFrameSecureTab0"].backdrop.shadow)
 			end
@@ -128,7 +128,7 @@ function ElvUI_EltreumUI:EltruismWQT()
 	end
 
 	if E.db.ElvUI_EltreumUI.skins.shadow.enable then
-		if E.db.ElvUI_EltreumUI.skins.shadow.blizzard and E.private.skins.blizzard.enable then
+		if E.db.ElvUI_EltreumUI.skins.shadow.blizzard and E.private.skins.blizzard.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 			if tab.backdrop and not tab.backdrop.shadow then
 					tab.backdrop:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 					ElvUI_EltreumUI:ShadowColor(tab.backdrop.shadow)

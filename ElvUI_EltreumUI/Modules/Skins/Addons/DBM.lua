@@ -25,7 +25,7 @@ function ElvUI_EltreumUI:DBMSkin()
 						icon:SetPoint("BOTTOMRIGHT", bar.frame, "BOTTOMLEFT", E.PixelMode and -5 or -10, 0)
 
 						--shadows
-						if E.db.ElvUI_EltreumUI.skins.shadow then
+						if E.db.ElvUI_EltreumUI.skins.shadow and not E.db.ElvUI_EltreumUI.borders.universalborders then
 							if not bar.frame.shadow then
 								bar.frame:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(bar.frame.shadow)

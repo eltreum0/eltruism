@@ -30,7 +30,7 @@ function ElvUI_EltreumUI:EltruismBugSack()
 					end
 				end
 
-				if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 					local frames = {
 						_G["BugSackFrame"],
 						_G["BugSackTabAll"].backdrop,
