@@ -21,26 +21,28 @@ local widgetAtlas = {
 }
 
 local function togglebackdrop(frame,show)
-	if show then
-		frame.TopLeftCorner:Show()
-		frame.TopRightCorner:Show()
-		frame.BottomLeftCorner:Show()
-		frame.BottomRightCorner:Show()
+	if frame.TopLeftCorner then
+		if show then
+			frame.TopLeftCorner:Show()
+			frame.TopRightCorner:Show()
+			frame.BottomLeftCorner:Show()
+			frame.BottomRightCorner:Show()
 
-		frame.LeftEdge:Show()
-		frame.RightEdge:Show()
-		frame.BottomEdge:Show()
-		frame.TopEdge:Show()
-	else
-		frame.TopLeftCorner:Hide()
-		frame.TopRightCorner:Hide()
-		frame.BottomLeftCorner:Hide()
-		frame.BottomRightCorner:Hide()
+			frame.LeftEdge:Show()
+			frame.RightEdge:Show()
+			frame.BottomEdge:Show()
+			frame.TopEdge:Show()
+		else
+			frame.TopLeftCorner:Hide()
+			frame.TopRightCorner:Hide()
+			frame.BottomLeftCorner:Hide()
+			frame.BottomRightCorner:Hide()
 
-		frame.LeftEdge:Hide()
-		frame.RightEdge:Hide()
-		frame.BottomEdge:Hide()
-		frame.TopEdge:Hide()
+			frame.LeftEdge:Hide()
+			frame.RightEdge:Hide()
+			frame.BottomEdge:Hide()
+			frame.TopEdge:Hide()
+		end
 	end
 	if frame.backdrop then
 		if show then
