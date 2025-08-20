@@ -209,6 +209,10 @@ local function EltruismBorders(frame,isUnitFrameElement)
 end
 
 local function EltruismBackground(frame,isUnitFrameElement)
+	if isUnitFrameElement and not E.db.ElvUI_EltreumUI.skins.elvui.unitframes then return end
+	if isNamePlateElement and not E.db.ElvUI_EltreumUI.skins.elvui.nameplates then return end
+	if frame:GetObjectType() == "Button" and not E.db.ElvUI_EltreumUI.skins.elvui.button then return end
+	if frame:GetParent() and frame:GetParent():GetObjectType() == "Button" and not E.db.ElvUI_EltreumUI.skins.elvui.button then return end
 	if not frame.EltruismBackground then
 		frame.eltruismbgtexture = frame:CreateTexture(nil, "BORDER")
 		frame.eltruismbgtexture:SetParent(frame)
@@ -568,16 +572,12 @@ local function SkinFrame(object)
 	if type(mt) == 'function' then return end
 	if mt.SetTemplate and not mt.SetTemplateEltruismHook then
 		hooksecurefunc(mt, "SetTemplate", function(frame, template, _, _, _, isUnitFrameElement, isNamePlateElement)
-			if isUnitFrameElement and not E.db.ElvUI_EltreumUI.skins.elvui.unitframes then return end
-			if isNamePlateElement and not E.db.ElvUI_EltreumUI.skins.elvui.nameplates then return end
-			if frame:GetObjectType() == "Button" and not E.db.ElvUI_EltreumUI.skins.elvui.button then return end
-			if frame:GetParent() and frame:GetParent():GetObjectType() == "Button" and not E.db.ElvUI_EltreumUI.skins.elvui.button then return end
 			if frame:GetObjectType() == "CheckButton" and frame.mask then return end --actionbar masks fix
 			if frame.bgrElvUISkin then return end --baganator elvui skin
 
 			--if frame.showDispellableDebuff then return end --fix RaidDebufs
 			if template ~= "NoBackdrop" then
-				EltruismBackground(frame,isUnitFrameElement)
+				EltruismBackground(frame,isUnitFrameElement,isNamePlateElement)
 				EltruismBorders(frame,isUnitFrameElement)
 			else
 				if frame.eltruismbgtexture then
