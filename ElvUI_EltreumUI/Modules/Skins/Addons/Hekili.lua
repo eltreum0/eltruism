@@ -20,6 +20,7 @@ function ElvUI_EltreumUI:EltruismHekili()
 					if _G["Hekili_Primary_B"..i].Empowerment then
 						_G["Hekili_Primary_B"..i].Empowerment:SetAlpha(0)
 					end
+					_G["Hekili_Primary_B"..i].Backdrop:Hide()
 				end
 				if _G["Hekili_Defensives_B"..i] then
 					S:HandleButton(_G["Hekili_Defensives_B"..i])
@@ -34,6 +35,7 @@ function ElvUI_EltreumUI:EltruismHekili()
 					if _G["Hekili_Defensives_B"..i].Empowerment then
 						_G["Hekili_Defensives_B"..i].Empowerment:SetAlpha(0)
 					end
+					_G["Hekili_Defensives_B"..i].Backdrop:Hide()
 				end
 				if _G["Hekili_Cooldowns_B"..i] then
 					S:HandleButton(_G["Hekili_Cooldowns_B"..i])
@@ -48,6 +50,7 @@ function ElvUI_EltreumUI:EltruismHekili()
 					if _G["Hekili_Cooldowns_B"..i].Empowerment then
 						_G["Hekili_Cooldowns_B"..i].Empowerment:SetAlpha(0)
 					end
+					_G["Hekili_Cooldowns_B"..i].Backdrop:Hide()
 				end
 				if _G["Hekili_AOE_B"..i] then
 					S:HandleButton(_G["Hekili_AOE_B"..i])
@@ -62,6 +65,7 @@ function ElvUI_EltreumUI:EltruismHekili()
 					if _G["Hekili_AOE_B"..i].Empowerment then
 						_G["Hekili_AOE_B"..i].Empowerment:SetAlpha(0)
 					end
+					_G["Hekili_AOE_B"..i].Backdrop:Hide()
 				end
 				if _G["Hekili_Interrupts_B"..i] then
 					S:HandleButton(_G["Hekili_Interrupts_B"..i])
@@ -76,6 +80,7 @@ function ElvUI_EltreumUI:EltruismHekili()
 					if _G["Hekili_Interrupts_B"..i].Empowerment then
 						_G["Hekili_Interrupts_B"..i].Empowerment:SetAlpha(0)
 					end
+					_G["Hekili_Interrupts_B"..i].Backdrop:Hide()
 				end
 			end
 		end)
