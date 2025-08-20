@@ -2044,7 +2044,6 @@ local function HandleUFAuraBorder(button,isNamePlateElement)
 			end
 		end
 	end
-
 	if E.db.ElvUI_EltreumUI.borders.universalborders and button.eltruismuniversalborders then
 		button.eltruismuniversalborders:Kill()
 		button.eltruismuniversalborders = nil
@@ -2155,8 +2154,6 @@ function ElvUI_EltreumUI:TooltipBorder()
 		_G.GameTooltip:HookScript("OnSizeChanged", TooltipBorderFix) --when comparing
 		tooltipborder.Hooks = true
 	end
-
-
 end
 
 function ElvUI_EltreumUI:BordersTargetChanged() --does not work whent target of target changes if the target is not in party/raid, no event to register :(
