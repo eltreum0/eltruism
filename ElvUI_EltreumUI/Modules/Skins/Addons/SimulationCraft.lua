@@ -14,6 +14,7 @@ function ElvUI_EltreumUI:EltruismSimulationCraft()
 				S:HandleFrame(_G["SimcFrame"])
 				S:HandleButton(_G["SimcFrameButton"])
 				S:HandleScrollBar(_G["SimcScrollFrameScrollBar"])
+				S:HandleCheckBox(_G["SimcFrame"].CheckButton)
 
 				if E.db.ElvUI_EltreumUI.skins.shadow.enable and not E.db.ElvUI_EltreumUI.borders.universalborders then
 					if not E.Classic then
