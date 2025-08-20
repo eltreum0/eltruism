@@ -1972,6 +1972,12 @@ function ElvUI_EltreumUI:UFAuraBorders(_,button)
 			})
 			auraborder:SetFrameStrata(E.db.ElvUI_EltreumUI.borders.auraufstrata)
 			auraborder:SetFrameLevel(E.db.ElvUI_EltreumUI.borders.aurauflevel)
+
+			if button.Count then --raise the count so its not covered by the border
+				button.Count:GetParent():SetFrameStrata(E.db.ElvUI_EltreumUI.borders.auraufstrata)
+				button.Count:GetParent():SetFrameLevel(E.db.ElvUI_EltreumUI.borders.aurauflevel+1)
+			end
+
 			if button.filter == "HELPFUL" then
 				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufbuffsizex, E.db.ElvUI_EltreumUI.borders.ufbuffsizey)
 				if classcolor2check then
