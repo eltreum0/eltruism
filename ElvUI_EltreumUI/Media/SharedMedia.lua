@@ -197,7 +197,9 @@ LSM:Register("sound", "AmanThul - Wipe", [[Interface\Addons\ElvUI_EltreumUI\Medi
 
 -- Border
 LSM:Register("border", "Eltreum-Border-1", [[Interface\Addons\ElvUI_EltreumUI\Media\border\Eltreum-Border-1.tga]])
+LSM:Register("border", "Eltreum-Border-1b", [[Interface\Addons\ElvUI_EltreumUI\Media\border\Eltreum-Border-1b.tga]])
 LSM:Register("border", "Eltreum-Border-2", [[Interface\Addons\ElvUI_EltreumUI\Media\border\Eltreum-Border-2.tga]])
+LSM:Register("border", "Eltreum-Border-2b", [[Interface\Addons\ElvUI_EltreumUI\Media\border\Eltreum-Border-2b.tga]])
 LSM:Register("border", "RenaitreBeveled10", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreBeveled10.tga]])
 LSM:Register("border", "RenaitreBeveled10x", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreBeveled10x.tga]])
 LSM:Register("border", "RenaitreFade10", [[Interface\Addons\ElvUI_EltreumUI\Media\border\RenaitreFade10.tga]])

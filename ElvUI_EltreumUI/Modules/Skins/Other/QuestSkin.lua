@@ -1736,7 +1736,8 @@ function ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
 	local newHeight = math.max(E.db.ElvUI_EltreumUI.skins.questsettings.objectiveFrameHeight, scenarioBlockHeight)
 	E.db.general.objectiveFrameAutoHide = false --causes taints otherwise
 
-	if not InCombatLockdown() then
+	_G["ObjectiveFrameHolder"]:SetSize(260,newHeight) --due to nil rect set the size on the holder itself
+	if not InCombatLockdown() then --just for sanity sake keep trying to set the size
 		Enum.EditModeObjectiveTrackerSetting.Height = newHeight
 		ObjectiveTrackerFrame:SetHeight(newHeight)
 		ObjectiveTrackerFrame:BreakFromFrameManager()
@@ -1748,8 +1749,8 @@ function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 	if E.db.ElvUI_EltreumUI.quests.anchor then
 		if not _G["ObjectiveFrameHolder"] then
 			local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
+			holder:SetSize(260, 550)
 			holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
-			holder:SetSize(130, 22)
 			holder:SetClampedToScreen(true)
 
 			ObjectiveTrackerFrame:BreakFromFrameManager()
@@ -1765,6 +1766,7 @@ function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 			_G.ObjectiveTrackerFrame:SetUserPlaced(true) -- UIParent.lua line 3090 stops it from being moved <
 			_G.ObjectiveTrackerFrame:ClearAllPoints()
 			_G.ObjectiveTrackerFrame:SetPoint("TOP", holder, "TOP")
+			_G.ObjectiveTrackerFrame:SetPoint("BOTTOM", holder, "BOTTOM")
 			E:CreateMover(holder, "ObjectiveFrameMover", L["Objective Frame"], nil, nil, nil, "ALL,GENERAL", nil, 'ElvUI_EltreumUI,quests')
 
 			ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
@@ -1773,6 +1775,7 @@ function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 			ObjectiveTrackerFrame.Selection:Kill()
 			_G.ObjectiveTrackerFrame:ClearAllPoints()
 			_G.ObjectiveTrackerFrame:SetPoint("TOP", _G["ObjectiveFrameHolder"], "TOP")
+			_G.ObjectiveTrackerFrame:SetPoint("BOTTOM", _G["ObjectiveFrameHolder"], "BOTTOM")
 			ElvUI_EltreumUI:UpdateObjectiveTrackerHeight()
 		end
 	end

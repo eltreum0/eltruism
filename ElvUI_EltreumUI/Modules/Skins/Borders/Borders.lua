@@ -2115,7 +2115,9 @@ function ElvUI_EltreumUI:TooltipBorder()
 					tooltipborder:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
 				else
 					local reactionColor = ElvUF.colors.reaction[reaction]
-					tooltipborder:SetBackdropBorderColor(reactionColor.r, reactionColor.g, reactionColor.b, 1)
+					if reactionColor then
+						tooltipborder:SetBackdropBorderColor(reactionColor.r, reactionColor.g, reactionColor.b, 1)
+					end
 				end
 			elseif _G.GameTooltip:GetItem() then --has item
 				local name,itemLink = _G.GameTooltip:GetItem()
