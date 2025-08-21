@@ -1,6 +1,7 @@
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
 local valuecolors = E:ClassColor(E.myclass, true)
+local colorsborders = valuecolors
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local hooksecurefunc = _G.hooksecurefunc
@@ -78,7 +79,7 @@ local function EltruismBorders(frame,isUnitFrameElement)
 			edgeFile = E.LSM:Fetch("border", E.db.ElvUI_EltreumUI.borders.texture),
 			edgeSize = E.db.ElvUI_EltreumUI.borders.universalborderssettings.thickness,
 		})
-		frame.eltruismuniversalborders:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
+		frame.eltruismuniversalborders:SetBackdropBorderColor(colorsborders.r, colorsborders.g, colorsborders.b, 1)
 		frame.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel()+2)
 		frame.eltruismuniversalborders:SetFrameStrata(frame:GetFrameStrata())
 		if frame.Center then
@@ -591,16 +592,24 @@ local function SkinFrame(object)
 
 			--if frame.showDispellableDebuff then return end --fix RaidDebufs
 			if template ~= "NoBackdrop" then
-				EltruismBackground(frame,isUnitFrameElement,isNamePlateElement)
-				EltruismBorders(frame,isUnitFrameElement)
+				if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
+					EltruismBackground(frame,isUnitFrameElement,isNamePlateElement)
+				end
+				if E.db.ElvUI_EltreumUI.borders.universalborders then
+					EltruismBorders(frame,isUnitFrameElement)
+				end
 			else
 				if frame.eltruismbgtexture then
 					frame.eltruismbgtexture:Hide()
 				end
 			end
 
-			EltruisAce3(frame)
-			EltruismShadow(frame)
+			if E.db.ElvUI_EltreumUI.skins.ace3.enable then
+				EltruisAce3(frame)
+			end
+			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
+				EltruismShadow(frame)
+			end
 
 			if not E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
 				if frame.eltruismbgtexture then
@@ -632,9 +641,9 @@ local frametypes = {
 	["ModelScene"] = true,
 }
 function ElvUI_EltreumUI:SetTemplateSkin()
-	if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
+	if E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate or E.db.ElvUI_EltreumUI.skins.ace3.enable or E.db.ElvUI_EltreumUI.skins.shadow.enable or E.db.ElvUI_EltreumUI.borders.universalborders then
 		if not E.db.ElvUI_EltreumUI.borders.classcolor then --set the variable here so its not spamming
-			valuecolors = {
+			colorsborders = {
 				r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,
 				g = E.db.ElvUI_EltreumUI.borders.bordercolors.g,
 				b = E.db.ElvUI_EltreumUI.borders.bordercolors.b
