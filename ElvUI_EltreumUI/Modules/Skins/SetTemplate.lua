@@ -203,6 +203,10 @@ local function EltruismBorders(frame,isUnitFrameElement)
 		if _G.ElvNP_TargetClassPowerClassPower and _G.ElvNP_TargetClassPowerClassPower.backdrop and _G.ElvNP_TargetClassPowerClassPower.backdrop.eltruismuniversalborders then
 			_G.ElvNP_TargetClassPowerClassPower.backdrop.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel())
 		end
+		if frame:GetDebugName() and frame:GetDebugName():match("AuraBar") then
+			frame.eltruismuniversalborders:SetFrameLevel(1)
+			frame.eltruismuniversalborders:SetFrameStrata("BACKGROUND")
+		end
 
 		togglebackdrop(frame)
 		frame.eltruismuniversalbordersadded = true
