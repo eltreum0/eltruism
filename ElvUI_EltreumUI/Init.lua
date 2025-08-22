@@ -306,9 +306,6 @@ function ElvUI_EltreumUI:ZONE_CHANGED_NEW_AREA()
 	if E.db.ElvUI_EltreumUI.otherstuff.minimapcardinaldirections.rotate then
 		ElvUI_EltreumUI:MinimapCardinalDirectionsRotateInstance()
 	end
-	if E.db.ElvUI_EltreumUI.borders.borders then
-		ElvUI_EltreumUI:GroupBorderColorUpdate()
-	end
 end
 
 function ElvUI_EltreumUI:PLAYER_TARGET_CHANGED()
