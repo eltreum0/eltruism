@@ -173,7 +173,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 		ElvUI_EltreumUI:ModelsToggle()
 	elseif message == 'universalborders' then
 		E.PopupDialogs["ELTRUISMBORDERTEST"] = {
-			text = "Test mode to enable borders everywhere",
+			text = "Test mode to enable borders everywhere\nWarning: the memory usage will increase at first, then return to normal due to the borders being created.",
 			OnAccept = function()
 				if not E.db.ElvUI_EltreumUI.borders.universalborders then
 					E.db.ElvUI_EltreumUI.borders.universalborders = true

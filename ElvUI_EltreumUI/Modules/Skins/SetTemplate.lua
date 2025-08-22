@@ -197,15 +197,25 @@ local function EltruismBorders(frame,isUnitFrameElement)
 		end
 
 		--sharedmedia dropdown preview
-		if frame:GetParent() and frame:GetParent().displayButton then
-			frame:GetParent().displayButton:SetFrameLevel(frame:GetFrameLevel()+3)
+		if frame:GetParent() then
+			if frame:GetParent().displayButton then
+				frame:GetParent().displayButton:SetFrameLevel(frame:GetFrameLevel()+3)
+			end
+			if frame:GetParent().NameBackground then
+				frame:GetParent().artBackdrop:SetOutside(frame.Icon)
+				--frame:GetParent().Icon:SetInside(frame.eltruismuniversalborders)
+			end
 		end
 		if _G.ElvNP_TargetClassPowerClassPower and _G.ElvNP_TargetClassPowerClassPower.backdrop and _G.ElvNP_TargetClassPowerClassPower.backdrop.eltruismuniversalborders then
 			_G.ElvNP_TargetClassPowerClassPower.backdrop.eltruismuniversalborders:SetFrameLevel(frame:GetFrameLevel())
 		end
-		if frame:GetDebugName() and frame:GetDebugName():match("AuraBar") then
-			frame.eltruismuniversalborders:SetFrameLevel(1)
-			frame.eltruismuniversalborders:SetFrameStrata("BACKGROUND")
+		if frame:GetDebugName() then
+			if frame:GetDebugName():match("AuraBar") then
+				frame.eltruismuniversalborders:SetFrameLevel(1)
+				frame.eltruismuniversalborders:SetFrameStrata("BACKGROUND")
+			elseif frame:GetDebugName():match("QuestIcons") then
+				frame.eltruismuniversalborders:Hide()
+			end
 		end
 
 		togglebackdrop(frame)
