@@ -625,16 +625,6 @@ local function SkinFrame(object)
 				EltruismShadow(frame)
 			end
 
-			if not E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
-				if frame.eltruismbgtexture then
-					frame.eltruismbgtexture:Hide()
-				end
-			else
-				if frame.eltruismbgtexture then
-					frame.eltruismbgtexture:Show()
-				end
-			end
-
 			if frame == _G.QuestInfoItemHighlight then --fix the highlight
 				frame:SetBackdropBorderColor(1, 1, 0)
 				frame:SetBackdropColor(0, 0, 0, 0)
