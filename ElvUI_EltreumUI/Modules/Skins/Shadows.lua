@@ -2715,6 +2715,14 @@ function ElvUI_EltreumUI:Shadows()
 							if _G["ElvUF_Player_ClassBar"] and not _G["ElvUF_Player_ClassBar"].shadow then
 								_G["ElvUF_Player_ClassBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_ClassBar"].shadow)
+								if E.myclass == 'ROGUE' and E.db.unitframe.units.player.classbar.detachFromFrame and E.db.unitframe.units.player.classbar.spacing <= 0 then --rogue combo point issue in retail
+									_G["ElvUF_Player_ClassBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_ClassBar"].shadow)
+									local maxRoguePoints = tostring(_G["ElvUF_Player_ClassBar"].__max)
+									_G["ElvUF_Player_ClassBar"].shadow:ClearAllPoints()
+									_G["ElvUF_Player_ClassBar"].shadow:SetPoint("TOPLEFT", _G["ElvUF_PlayerClassIconButton1"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+									_G["ElvUF_Player_ClassBar"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_PlayerClassIconButton"..maxRoguePoints],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								end
 							end
 							if _G["ElvUF_Player_AdditionalPowerBar"] and not _G["ElvUF_Player_AdditionalPowerBar"].shadow then
 								_G["ElvUF_Player_AdditionalPowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
@@ -2749,6 +2757,15 @@ function ElvUI_EltreumUI:Shadows()
 										end
 									end
 								end
+							elseif E.myclass == 'ROGUE' and E.db.unitframe.units.player.classbar.detachFromFrame and E.db.unitframe.units.player.classbar.spacing <= 0 then --rogue combo point issue in retail
+								if _G["ElvUF_Player_ClassBar"] and not _G["ElvUF_Player_ClassBar"].shadow then
+									_G["ElvUF_Player_ClassBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_ClassBar"].shadow)
+									local maxRoguePoints = tostring(_G["ElvUF_Player_ClassBar"].__max)
+									_G["ElvUF_Player_ClassBar"].shadow:ClearAllPoints()
+									_G["ElvUF_Player_ClassBar"].shadow:SetPoint("TOPLEFT", _G["ElvUF_PlayerClassIconButton1"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+									_G["ElvUF_Player_ClassBar"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_PlayerClassIconButton"..maxRoguePoints],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								end
 							else --other class bar
 								for i = 1, 10 do
 									if not _G["ElvUF_PlayerClassIconButton"..i] then
@@ -2768,7 +2785,7 @@ function ElvUI_EltreumUI:Shadows()
 						end
 					end
 					if E.db.unitframe.units.player.classbar.detachFromFrame then
-						if E.db["unitframe"]["units"]["player"]["classbar"]["spacing"] > 0 then
+						if E.db.unitframe.units.player.classbar.spacing > 0 then
 							createClassbarShadows("spaced")
 						else
 							createClassbarShadows("all")
