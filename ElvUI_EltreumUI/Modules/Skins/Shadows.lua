@@ -2715,7 +2715,7 @@ function ElvUI_EltreumUI:Shadows()
 							if _G["ElvUF_Player_ClassBar"] and not _G["ElvUF_Player_ClassBar"].shadow then
 								_G["ElvUF_Player_ClassBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_ClassBar"].shadow)
-								if E.myclass == 'ROGUE' and E.db.unitframe.units.player.classbar.detachFromFrame and E.db.unitframe.units.player.classbar.spacing <= 0 then --rogue combo point issue in retail
+								if E.myclass == 'ROGUE' and E.db.unitframe.units.player.classbar.detachFromFrame and E.db.unitframe.units.player.classbar.spacing < 1 then --rogue combo point issue in retail
 									_G["ElvUF_Player_ClassBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 									ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_ClassBar"].shadow)
 									local maxRoguePoints = tostring(_G["ElvUF_Player_ClassBar"].__max)
@@ -2757,7 +2757,7 @@ function ElvUI_EltreumUI:Shadows()
 										end
 									end
 								end
-							elseif E.myclass == 'ROGUE' and E.db.unitframe.units.player.classbar.detachFromFrame and E.db.unitframe.units.player.classbar.spacing <= 0 then --rogue combo point issue in retail
+							elseif E.myclass == 'ROGUE' and E.db.unitframe.units.player.classbar.detachFromFrame and E.db.unitframe.units.player.classbar.spacing < 1 then --rogue combo point issue in retail
 								if _G["ElvUF_Player_ClassBar"] and not _G["ElvUF_Player_ClassBar"].shadow then
 									_G["ElvUF_Player_ClassBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 									ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_ClassBar"].shadow)
