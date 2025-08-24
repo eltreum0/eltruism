@@ -234,6 +234,20 @@ local function EltruismBorders(frame,isUnitFrameElement)
 		elseif frame:GetParent() and frame:GetParent():GetParent() and frame:GetParent():GetParent().shadow then
 			frame:GetParent():GetParent().shadow:Hide()
 		end
+
+		--lfg selected issue
+		if frame.SelectedTexture and not frame.SelectedTextureEltruismHook then
+			if frame.TopLeftCorner then
+				hooksecurefunc(frame,"SetBackdropBorderColor", function(framebg,r)--,a)
+					if r == 1 then
+						frame.eltruismuniversalborders:SetBackdropBorderColor(1, 1, 0, 1)
+					else
+						frame.eltruismuniversalborders:SetBackdropBorderColor(colorsborders.r, colorsborders.g, colorsborders.b, 1)
+					end
+				end)
+			end
+			frame.SelectedTextureEltruismHook = true
+		end
 	end
 end
 
@@ -267,7 +281,7 @@ local function EltruismBackground(frame,isUnitFrameElement)
 				frame:Hide()
 			end
 		end
-		if (frame.SelectedTexture or frame.glossTex) and not E.db.ElvUI_EltreumUI.skins.elvui.button then --fix some more buttons
+		if (frame.SelectedTexture or frame.glossTex) then --fix some more buttons
 			frame.eltruismbgtexture:Hide()
 		end
 		if isUnitFrameElement and (frame:GetParent() and frame:GetParent().isTransparent == false) then --only on health
@@ -623,16 +637,6 @@ local function SkinFrame(object)
 			end
 			if E.db.ElvUI_EltreumUI.skins.shadow.enable then
 				EltruismShadow(frame)
-			end
-
-			if not E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate then
-				if frame.eltruismbgtexture then
-					frame.eltruismbgtexture:Hide()
-				end
-			else
-				if frame.eltruismbgtexture then
-					frame.eltruismbgtexture:Show()
-				end
 			end
 
 			if frame == _G.QuestInfoItemHighlight then --fix the highlight

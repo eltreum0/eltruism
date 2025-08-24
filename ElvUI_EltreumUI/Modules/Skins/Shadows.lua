@@ -2704,46 +2704,26 @@ function ElvUI_EltreumUI:Shadows()
 					end
 				end
 
-				--runes
-				if E.myclass == 'DEATHKNIGHT' then
-					for i = 1, 6 do
-						if not _G["ElvUF_PlayerRuneButton"..i] then
-							break
-						end
-						local button = _G["ElvUF_PlayerRuneButton"..i] --.backdrop
-						if not button then
-							break
-						else
-							if not button.shadow and (E.db.unitframe.units.player.classbar.fill == "spaced" or E.db.unitframe.units.player.classbar.detachFromFrame) then
-								button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(button.shadow)
-							end
-						end
-					end
-				end
-
 				--player classbar
-				if E.db.unitframe.units.player.classbar.enable then
-					if E.db.unitframe.units.player.classbar.detachFromFrame then
-						if _G["ElvUF_Player_ClassBar"] and not _G["ElvUF_Player_ClassBar"].shadow then
-							_G["ElvUF_Player_ClassBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_ClassBar"].shadow)
-						end
-						if _G["ElvUF_Player_AdditionalPowerBar"] and not _G["ElvUF_Player_AdditionalPowerBar"].shadow then
-							_G["ElvUF_Player_AdditionalPowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_AdditionalPowerBar"].shadow)
-						end
-						if _G["ElvUF_Player_Stagger"] and not _G["ElvUF_Player_Stagger"].shadow then
-							_G["ElvUF_Player_Stagger"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-							ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_Stagger"].shadow)
-						end
-					else
-						if E.db.unitframe.units.player.classbar.fill ~= "spaced" then
+				if E.db.unitframe.units.player.classbar.enable and not (E.db.ElvUI_EltreumUI.borders.comboclassbar and E.db.ElvUI_EltreumUI.borders.borders) then
+					local function createClassbarShadows(mode)
+						if mode == "all" then
+							if _G["ElvUF_Player_Runes"] and not _G["ElvUF_Player_Runes"].shadow then
+								_G["ElvUF_Player_Runes"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_Runes"].shadow)
+							end
 							if _G["ElvUF_Player_ClassBar"] and not _G["ElvUF_Player_ClassBar"].shadow then
 								_G["ElvUF_Player_ClassBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_ClassBar"].shadow)
+								if E.myclass == 'ROGUE' and E.db.unitframe.units.player.classbar.detachFromFrame and E.db.unitframe.units.player.classbar.spacing < 1 then --rogue combo point issue in retail
+									_G["ElvUF_Player_ClassBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_ClassBar"].shadow)
+									local maxRoguePoints = tostring(_G["ElvUF_Player_ClassBar"].__max)
+									_G["ElvUF_Player_ClassBar"].shadow:ClearAllPoints()
+									_G["ElvUF_Player_ClassBar"].shadow:SetPoint("TOPLEFT", _G["ElvUF_PlayerClassIconButton1"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+									_G["ElvUF_Player_ClassBar"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_PlayerClassIconButton"..maxRoguePoints],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								end
 							end
-						else
 							if _G["ElvUF_Player_AdditionalPowerBar"] and not _G["ElvUF_Player_AdditionalPowerBar"].shadow then
 								_G["ElvUF_Player_AdditionalPowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_AdditionalPowerBar"].shadow)
@@ -2752,24 +2732,70 @@ function ElvUI_EltreumUI:Shadows()
 								_G["ElvUF_Player_Stagger"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
 								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_Stagger"].shadow)
 							end
+						elseif mode == "extra" then
+							if _G["ElvUF_Player_AdditionalPowerBar"] and not _G["ElvUF_Player_AdditionalPowerBar"].shadow then
+								_G["ElvUF_Player_AdditionalPowerBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_AdditionalPowerBar"].shadow)
+							end
+							if _G["ElvUF_Player_Stagger"] and not _G["ElvUF_Player_Stagger"].shadow then
+								_G["ElvUF_Player_Stagger"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+								ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_Stagger"].shadow)
+							end
+						elseif mode == "spaced" then
+							if E.myclass == 'DEATHKNIGHT' then 	--runes
+								for i = 1, 6 do
+									if not _G["ElvUF_PlayerRuneButton"..i] then
+										break
+									end
+									local button = _G["ElvUF_PlayerRuneButton"..i] --.backdrop
+									if not button then
+										break
+									else
+										if not button.shadow and (E.db.unitframe.units.player.classbar.fill == "spaced" or E.db.unitframe.units.player.classbar.detachFromFrame) then
+											button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+											ElvUI_EltreumUI:ShadowColor(button.shadow)
+										end
+									end
+								end
+							elseif E.myclass == 'ROGUE' and E.db.unitframe.units.player.classbar.detachFromFrame and E.db.unitframe.units.player.classbar.spacing < 1 then --rogue combo point issue in retail
+								if _G["ElvUF_Player_ClassBar"] and not _G["ElvUF_Player_ClassBar"].shadow then
+									_G["ElvUF_Player_ClassBar"]:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+									ElvUI_EltreumUI:ShadowColor(_G["ElvUF_Player_ClassBar"].shadow)
+									local maxRoguePoints = tostring(_G["ElvUF_Player_ClassBar"].__max)
+									_G["ElvUF_Player_ClassBar"].shadow:ClearAllPoints()
+									_G["ElvUF_Player_ClassBar"].shadow:SetPoint("TOPLEFT", _G["ElvUF_PlayerClassIconButton1"],"TOPLEFT", -E.db.ElvUI_EltreumUI.skins.shadow.length, E.db.ElvUI_EltreumUI.skins.shadow.length)
+									_G["ElvUF_Player_ClassBar"].shadow:SetPoint("BOTTOMRIGHT", _G["ElvUF_PlayerClassIconButton"..maxRoguePoints],"BOTTOMRIGHT", E.db.ElvUI_EltreumUI.skins.shadow.length, -E.db.ElvUI_EltreumUI.skins.shadow.length)
+								end
+							else --other class bar
+								for i = 1, 10 do
+									if not _G["ElvUF_PlayerClassIconButton"..i] then
+										break
+									end
+									local button = _G["ElvUF_PlayerClassIconButton"..i].backdrop
+									if not button then
+										break
+									else
+										if not button.shadow then
+											button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+											ElvUI_EltreumUI:ShadowColor(button.shadow)
+										end
+									end
+								end
+							end
 						end
 					end
-				end
-
-				--classpower
-				if E.myclass ~= 'DEATHKNIGHT' and not (E.db.ElvUI_EltreumUI.borders.comboclassbar and E.db.ElvUI_EltreumUI.borders.borders) then
-					for i = 1, 10 do
-						if not _G["ElvUF_PlayerClassIconButton"..i] then
-							break
-						end
-						local button = _G["ElvUF_PlayerClassIconButton"..i].backdrop
-						if not button then
-							break
+					if E.db.unitframe.units.player.classbar.detachFromFrame then
+						if E.db.unitframe.units.player.classbar.spacing > 0 then
+							createClassbarShadows("spaced")
 						else
-							if not button.shadow then
-								button:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
-								ElvUI_EltreumUI:ShadowColor(button.shadow)
-							end
+							createClassbarShadows("all")
+						end
+					else
+						if E.db.unitframe.units.player.classbar.fill ~= "spaced" then
+							createClassbarShadows("all")
+						else
+							createClassbarShadows("extra")
+							createClassbarShadows("spaced")
 						end
 					end
 				end
