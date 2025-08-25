@@ -58,7 +58,7 @@ function ElvUI_EltreumUI:HidePopups(delay)
 		hooksecurefunc(W, "ConstructCompatibilityFrame", WindtoolsCompatHideWhileInstall)
 	end
 	if IsAddOnLoaded("Details_Streamer") then
-		DisableAddOn("Details_Streamer")
+		DisableAddOn("Details_Streamer",E.myguid)
 	end
 	E:Delay(delay, function()
 		if IsAddOnLoaded("Details") and _G['_detalhes'] then
