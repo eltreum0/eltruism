@@ -249,7 +249,8 @@ local function EltruismBorders(frame,isUnitFrameElement)
 			frame.SelectedTextureEltruismHook = true
 		end
 
-		if frame:GetDebugName():match("PetJournalLoadoutPet") and frame:GetDebugName():match("backdrop") and not frame:GetDebugName():match("Spell") then --fix pet battle issue
+		 --fix pet battle/transmog issue
+		if frame:GetDebugName():match("PetJournalLoadoutPet") and frame:GetDebugName():match("backdrop") and not frame:GetDebugName():match("Spell") then
 			local r,g,b = frame.BottomEdge:GetVertexColor()
 			frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
 			if not frame.FixedPetBattleBorderColorEltruism then
@@ -259,12 +260,28 @@ local function EltruismBorders(frame,isUnitFrameElement)
 				frame.FixedPetBattleBorderColorEltruism = true
 			end
 		elseif frame:GetDebugName():match("PetJournal.ScrollBox.ScrollTarget") or frame:GetDebugName():match("PetJournalPetCardPetInfo") then
-			print(frame:GetParent().petList, frame.petList)
 			local r,g,b = frame.BottomEdge:GetVertexColor()
 			frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
 			if not frame.FixedPetBattleBorderColorEltruism then
 				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r,g,b)
 					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+				end)
+				frame.FixedPetBattleBorderColorEltruism = true
+			end
+		elseif frame:GetDebugName():match("WardrobeCollectionFrame.ItemsCollectionFrame.Model") then
+			if frame:GetParent().HideVisual then
+				frame:GetParent().HideVisual:SetFrameLevel(frame:GetFrameLevel()+2)
+			end
+			if frame:GetParent().Favorite then
+				frame:GetParent().Favorite:SetFrameLevel(frame:GetFrameLevel()+2)
+			end
+			if not frame.FixedPetBattleBorderColorEltruism then
+				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r,g,b)
+					if r == 1 and g == 0.7 and b == 1 then --highlighted
+						frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+					else
+						frame.eltruismuniversalborders:SetBackdropBorderColor(colorsborders.r, colorsborders.g, colorsborders.b, 1)
+					end
 				end)
 				frame.FixedPetBattleBorderColorEltruism = true
 			end
