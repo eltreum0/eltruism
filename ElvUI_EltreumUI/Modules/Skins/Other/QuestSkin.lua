@@ -1750,7 +1750,7 @@ function ElvUI_EltreumUI:ObjectiveTrackerAnchor()
 		if not _G["ObjectiveFrameHolder"] then
 			local holder = CreateFrame("FRAME", "ObjectiveFrameHolder", E.UIParent)
 			holder:SetSize(260, 550)
-			holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -135, -300)
+			holder:SetPoint("TOPRIGHT", E.UIParent, "TOPRIGHT", -75,-319)
 			holder:SetClampedToScreen(true)
 
 			ObjectiveTrackerFrame:BreakFromFrameManager()
