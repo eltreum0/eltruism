@@ -248,6 +248,27 @@ local function EltruismBorders(frame,isUnitFrameElement)
 			end
 			frame.SelectedTextureEltruismHook = true
 		end
+
+		if frame:GetDebugName():match("PetJournalLoadoutPet") and frame:GetDebugName():match("backdrop") and not frame:GetDebugName():match("Spell") then --fix pet battle issue
+			local r,g,b = frame.BottomEdge:GetVertexColor()
+			frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+			if not frame.FixedPetBattleBorderColorEltruism then
+				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r,g,b)
+					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+				end)
+				frame.FixedPetBattleBorderColorEltruism = true
+			end
+		elseif frame:GetDebugName():match("PetJournal.ScrollBox.ScrollTarget") or frame:GetDebugName():match("PetJournalPetCardPetInfo") then
+			print(frame:GetParent().petList, frame.petList)
+			local r,g,b = frame.BottomEdge:GetVertexColor()
+			frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+			if not frame.FixedPetBattleBorderColorEltruism then
+				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r,g,b)
+					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+				end)
+				frame.FixedPetBattleBorderColorEltruism = true
+			end
+		end
 	end
 end
 
@@ -296,6 +317,10 @@ local function EltruismBackground(frame,isUnitFrameElement)
 
 		if frame.leftHolder then --elvui second config frame stuff
 			frame.eltruismbgtexture:SetTexture("")
+		end
+
+		if frame:GetDebugName():match("PetJournalLoadoutPet") then --fix pet battle issue
+			if frame.icon and frame.backdrop then frame.backdrop:SetFrameLevel(frame:GetFrameLevel()+2) end
 		end
 
 		frame.EltruismBackground = true
