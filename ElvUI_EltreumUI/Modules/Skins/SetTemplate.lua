@@ -268,6 +268,19 @@ local function EltruismBorders(frame,isUnitFrameElement)
 				end)
 				frame.FixedPetBattleBorderColorEltruism = true
 			end
+		elseif frame:GetDebugName():match("PetBattleFrame") and (frame:GetDebugName():match("Ally") or frame:GetDebugName():match("Enemy")) then
+			if frame.Icon then
+				frame.eltruismuniversalborders:Hide()
+				return
+			end
+			local r,g,b = frame.BottomEdge:GetVertexColor()
+			frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+			if not frame.FixedPetBattleBorderColorEltruism then
+				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r,g,b)
+					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+				end)
+				frame.FixedPetBattleBorderColorEltruism = true
+			end
 		elseif frame:GetDebugName():match("WardrobeCollectionFrame.ItemsCollectionFrame.Model") then
 			if frame:GetParent().HideVisual then
 				frame:GetParent().HideVisual:SetFrameLevel(frame:GetFrameLevel()+2)
