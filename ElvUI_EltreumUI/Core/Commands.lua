@@ -173,7 +173,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 		ElvUI_EltreumUI:ModelsToggle()
 	elseif message == 'universalborders' then
 		E.PopupDialogs["ELTRUISMBORDERTEST"] = {
-			text = "Test mode to enable borders everywhere\nWarning: the memory usage will increase at first, then return to normal due to the borders being created.",
+			text = "Placeholder",
 			OnAccept = function()
 				if not E.db.ElvUI_EltreumUI.borders.universalborders then
 					E.db.ElvUI_EltreumUI.borders.universalborders = true
@@ -188,6 +188,11 @@ function ElvUI_EltreumUI:RunCommands(message)
 			whileDead = 1,
 			hideOnEscape = false,
 		}
+		if not E.db.ElvUI_EltreumUI.borders.universalborders then
+			E.PopupDialogs["ELTRUISMBORDERTEST"].text = "Test mode to enable borders everywhere\nWarning: the memory usage will increase at first, then return to normal due to the borders being created."
+		else
+			E.PopupDialogs["ELTRUISMBORDERTEST"].text = "Disabling test mode universal borders."
+		end
 		E:StaticPopup_Show('ELTRUISMBORDERTEST')
 	elseif message == 'background' then
 		if E.db.ElvUI_EltreumUI.unitframes.greybackground then
