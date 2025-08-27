@@ -248,6 +248,57 @@ local function EltruismBorders(frame,isUnitFrameElement)
 			end
 			frame.SelectedTextureEltruismHook = true
 		end
+
+		 --fix pet battle/transmog issue
+		if frame:GetDebugName():match("PetJournalLoadoutPet") and frame:GetDebugName():match("backdrop") and not frame:GetDebugName():match("Spell") then
+			local r,g,b = frame.BottomEdge:GetVertexColor()
+			frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+			if not frame.FixedPetBattleBorderColorEltruism then
+				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r,g,b)
+					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+				end)
+				frame.FixedPetBattleBorderColorEltruism = true
+			end
+		elseif frame:GetDebugName():match("PetJournal.ScrollBox.ScrollTarget") or frame:GetDebugName():match("PetJournalPetCardPetInfo") then
+			local r,g,b = frame.BottomEdge:GetVertexColor()
+			frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+			if not frame.FixedPetBattleBorderColorEltruism then
+				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r,g,b)
+					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+				end)
+				frame.FixedPetBattleBorderColorEltruism = true
+			end
+		elseif frame:GetDebugName():match("PetBattleFrame") and (frame:GetDebugName():match("Ally") or frame:GetDebugName():match("Enemy")) then
+			if frame.Icon then
+				frame.eltruismuniversalborders:Hide()
+				return
+			end
+			local r,g,b = frame.BottomEdge:GetVertexColor()
+			frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+			if not frame.FixedPetBattleBorderColorEltruism then
+				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r,g,b)
+					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+				end)
+				frame.FixedPetBattleBorderColorEltruism = true
+			end
+		elseif frame:GetDebugName():match("WardrobeCollectionFrame.ItemsCollectionFrame.Model") then
+			if frame:GetParent().HideVisual then
+				frame:GetParent().HideVisual:SetFrameLevel(frame:GetFrameLevel()+2)
+			end
+			if frame:GetParent().Favorite then
+				frame:GetParent().Favorite:SetFrameLevel(frame:GetFrameLevel()+2)
+			end
+			if not frame.FixedPetBattleBorderColorEltruism then
+				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r,g,b)
+					if r == 1 and g == 0.7 and b == 1 then --highlighted
+						frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+					else
+						frame.eltruismuniversalborders:SetBackdropBorderColor(colorsborders.r, colorsborders.g, colorsborders.b, 1)
+					end
+				end)
+				frame.FixedPetBattleBorderColorEltruism = true
+			end
+		end
 	end
 end
 
@@ -296,6 +347,10 @@ local function EltruismBackground(frame,isUnitFrameElement)
 
 		if frame.leftHolder then --elvui second config frame stuff
 			frame.eltruismbgtexture:SetTexture("")
+		end
+
+		if frame:GetDebugName():match("PetJournalLoadoutPet") then --fix pet battle issue
+			if frame.icon and frame.backdrop then frame.backdrop:SetFrameLevel(frame:GetFrameLevel()+2) end
 		end
 
 		frame.EltruismBackground = true

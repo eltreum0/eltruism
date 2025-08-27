@@ -58,7 +58,7 @@ function ElvUI_EltreumUI:HidePopups(delay)
 		hooksecurefunc(W, "ConstructCompatibilityFrame", WindtoolsCompatHideWhileInstall)
 	end
 	if IsAddOnLoaded("Details_Streamer") then
-		DisableAddOn("Details_Streamer")
+		DisableAddOn("Details_Streamer",E.myguid)
 	end
 	E:Delay(delay, function()
 		if IsAddOnLoaded("Details") and _G['_detalhes'] then
@@ -700,14 +700,25 @@ if VideoOptionsFrame and not VideoOptionsFrame:HasScript("OnDragStart") then
 	VideoOptionsFrame:SetScript("OnDragStop", VideoOptionsFrame.StopMovingOrSizing)
 	VideoOptionsFrame:SetClampedToScreen(true)
 end
-local SettingsPanel = _G.SettingsPanel --Dragonflight
-if SettingsPanel and not SettingsPanel:HasScript("OnDragStart") then
-	SettingsPanel:SetMovable(true)
-	SettingsPanel:EnableMouse(true)
-	SettingsPanel:RegisterForDrag("LeftButton")
-	SettingsPanel:SetScript("OnDragStart", SettingsPanel.StartMoving)
-	SettingsPanel:SetScript("OnDragStop", SettingsPanel.StopMovingOrSizing)
-	SettingsPanel:SetClampedToScreen(true)
+local SettingsPanel = _G.SettingsPanel --Dragonflight onwards
+if SettingsPanel then
+	if SettingsPanel:HasScript("OnDragStart") then
+		SettingsPanel:SetScript("OnDragStart", nil)
+		SettingsPanel:SetScript("OnDragStop", nil)
+		SettingsPanel:SetMovable(true)
+		SettingsPanel:EnableMouse(true)
+		SettingsPanel:RegisterForDrag("LeftButton")
+		SettingsPanel:SetScript("OnDragStart", SettingsPanel.StartMoving)
+		SettingsPanel:SetScript("OnDragStop", SettingsPanel.StopMovingOrSizing)
+		SettingsPanel:SetClampedToScreen(true)
+	else
+		SettingsPanel:SetMovable(true)
+		SettingsPanel:EnableMouse(true)
+		SettingsPanel:RegisterForDrag("LeftButton")
+		SettingsPanel:SetScript("OnDragStart", SettingsPanel.StartMoving)
+		SettingsPanel:SetScript("OnDragStop", SettingsPanel.StopMovingOrSizing)
+		SettingsPanel:SetClampedToScreen(true)
+	end
 end
 
 --click casting button toggle
