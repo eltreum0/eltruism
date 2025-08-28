@@ -570,7 +570,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["bags"]["bagSize"] = 35
 	E.db["bags"]["bagWidth"] = 412
 	E.db["bags"]["bankSize"] = 35
-	--E.db["bags"]["bankWidth"] = 412
 	E.db["bags"]["clearSearchOnClose"] = true
 	E.db["bags"]["countFont"] = "Kimberley"
 	E.db["bags"]["countFontOutline"] = "OUTLINE"
@@ -587,7 +586,6 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["bags"]["transparent"] = true
 	E.db["bags"]["vendorGrays"]["enable"] = true
 	E.db["bags"]["moneyFormat"] = "SMART"
---???????????
 	E.db["bags"]["bankCombined"] = true
 	E.db["bags"]["bankSize"] = 35
 	E.db["bags"]["bankWidth"] = 920
