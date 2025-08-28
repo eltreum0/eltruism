@@ -35,6 +35,27 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 			E.db["unitframe"]["colors"]["powerPrediction"]["color"]["r"] = 1
 			E.db["unitframe"]["colors"]["powerPrediction"]["enable"] = true
 
+			E.db["bags"]["bankCombined"] = true
+			E.db["bags"]["bankSize"] = 35
+			E.db["bags"]["bankWidth"] = 920
+			E.db["bags"]["split"]["alwaysProfessionBank"] = true
+			E.db["bags"]["split"]["bag5"] = true
+			E.db["bags"]["split"]["bagSpacing"] = 7
+			E.db["bags"]["split"]["bank"] = true
+			E.db["bags"]["split"]["bank10"] = true
+			E.db["bags"]["split"]["bank11"] = true
+			E.db["bags"]["split"]["bank7"] = true
+			E.db["bags"]["split"]["bank8"] = true
+			E.db["bags"]["split"]["bank9"] = true
+			E.db["bags"]["split"]["bankSpacing"] = 1
+			E.db["bags"]["split"]["player"] = true
+			E.db["bags"]["split"]["warband"] = true
+			E.db["bags"]["split"]["warband14"] = true
+			E.db["bags"]["split"]["warband15"] = true
+			E.db["bags"]["split"]["warband16"] = true
+			E.db["bags"]["useBlizzardJunk"] = false
+			E.db["bags"]["warbandSize"] = 35
+
 			ElvUI_EltreumUI:Print(L["Settings for ElvUI were updated."])
 		end
 	else

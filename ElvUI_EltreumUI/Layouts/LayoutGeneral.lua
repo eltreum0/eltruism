@@ -570,7 +570,7 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["bags"]["bagSize"] = 35
 	E.db["bags"]["bagWidth"] = 412
 	E.db["bags"]["bankSize"] = 35
-	E.db["bags"]["bankWidth"] = 412
+	--E.db["bags"]["bankWidth"] = 412
 	E.db["bags"]["clearSearchOnClose"] = true
 	E.db["bags"]["countFont"] = "Kimberley"
 	E.db["bags"]["countFontOutline"] = "OUTLINE"
@@ -584,14 +584,30 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["bags"]["junkIcon"] = true
 	E.db["bags"]["scrapIcon"] = true --not in classic
 	E.db["bags"]["showBindType"] = true
-	E.db["bags"]["split"]["bagSpacing"] = 7
 	E.db["bags"]["transparent"] = true
 	E.db["bags"]["vendorGrays"]["enable"] = true
-	if E.Retail then
-		E.db["bags"]["split"]["bag5"] = true
-		E.db["bags"]["split"]["player"] = true
-	end
 	E.db["bags"]["moneyFormat"] = "SMART"
+--???????????
+	E.db["bags"]["bankCombined"] = true
+	E.db["bags"]["bankSize"] = 35
+	E.db["bags"]["bankWidth"] = 920
+	E.db["bags"]["split"]["alwaysProfessionBank"] = true
+	E.db["bags"]["split"]["bag5"] = true
+	E.db["bags"]["split"]["bagSpacing"] = 7
+	E.db["bags"]["split"]["bank"] = true
+	E.db["bags"]["split"]["bank10"] = true
+	E.db["bags"]["split"]["bank11"] = true
+	E.db["bags"]["split"]["bank7"] = true
+	E.db["bags"]["split"]["bank8"] = true
+	E.db["bags"]["split"]["bank9"] = true
+	E.db["bags"]["split"]["bankSpacing"] = 1
+	E.db["bags"]["split"]["player"] = true
+	E.db["bags"]["split"]["warband"] = true
+	E.db["bags"]["split"]["warband14"] = true
+	E.db["bags"]["split"]["warband15"] = true
+	E.db["bags"]["split"]["warband16"] = true
+	E.db["bags"]["useBlizzardJunk"] = false
+	E.db["bags"]["warbandSize"] = 35
 
 	-- Chat
 	E.db["chat"]["chatHistory"] = false
@@ -1625,7 +1641,7 @@ function ElvUI_EltreumUI:SetupDataText()
 
 	local buttonwidth = _G.RightChatToggleButton:GetWidth()
 	--local width = GetPhysicalScreenSize()
-	local width = ceil(E.screenWidth)
+	local width = math.ceil(E.screenWidth)
 	E.global["datatexts"]["customPanels"]["EltruismDataText"]["width"] = 2 + math.ceil(width - (buttonwidth * 2))
 
 	--scale stuff for 4k
