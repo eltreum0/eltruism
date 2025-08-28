@@ -232,11 +232,11 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 
 
-				--[[if _G.ObjectiveFrameMover then
+				if _G.ObjectiveFrameMover then
 					questside = _G.ObjectiveFrameMover:GetPoint()
 				else
 					questside = "RIGHT"
-				end]]
+				end
 
 				if _G.ObjectiveTrackerFrame and _G.ObjectiveTrackerFrame.HeaderMenu and _G.ObjectiveTrackerFrame.HeaderMenu.Title then --fix when collapsed
 					_G.ObjectiveTrackerFrame.HeaderMenu.Title:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.questsettings.fontSizeHeader, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
@@ -718,8 +718,21 @@ function ElvUI_EltreumUI:SkinQuests()
 						block.HeaderText:SetWordWrap(true)
 					end
 					local itemButton = block.itemButton or block.ItemButton
-					if itemButton and itemButton.questLogIndex then
-						--itemButton:Hide() --button is tainted no matter what it seems, hide it
+					if itemButton then
+						if E.db.ElvUI_EltreumUI.skins.shadow.enable and not itemButton.shadow then
+							itemButton:CreateShadow(E.db.ElvUI_EltreumUI.skins.shadow.length)
+							ElvUI_EltreumUI:ShadowColor(itemButton.shadow)
+						end
+						if itemButton.HotKey then
+							itemButton.HotKey:Kill()
+						end
+						if questside:match("RIGHT") then
+							itemButton:ClearAllPoints()
+							itemButton:SetPoint("TOPLEFT", block, "TOPLEFT", -60, -3)
+						else
+							itemButton:ClearAllPoints()
+							itemButton:SetPoint("TOPRIGHT", block, "TOPRIGHT", 80, -3)
+						end
 						itemButton:UnregisterEvent("ADDON_ACTION_FORBIDDEN")
 						itemButton:UnregisterEvent("ADDON_ACTION_BLOCKED")
 					end

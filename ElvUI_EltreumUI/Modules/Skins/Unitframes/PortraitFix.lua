@@ -469,6 +469,7 @@ local modelsRotate = {
 	[5159886] = true, --Xal'atath
 	[6218203] = true, --Ascendance
 	[6020408] = true, --Ascendance
+	[5789477] = true, --Void Speaker Eirich
 }
 
 local targetlike = {
