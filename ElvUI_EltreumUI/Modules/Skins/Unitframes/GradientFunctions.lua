@@ -292,6 +292,10 @@ colorupdateframe:RegisterEvent("PLAYER_LOGIN")
 	["CALENDAR_ACTION_PENDING"] = true,
 	--THEN FINALLY
 	["PLAYER_LOGIN"] = false,
+	--VARIABLES_LOADED also exists
+	--LOADING_SCREEN_ENABLED this too
+	--LOADING_SCREEN_DISABLED and this
+	--ADDONS_UNLOADING interesting
 	--there is also FIRST_FRAME_RENDERED
 }]]
 
