@@ -443,21 +443,15 @@ function ElvUI_EltreumUI:NamePlateOptions()
 		if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate then
 			if E.global.nameplates.filters.EltreumTarget then
 				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["border"]["enable"] = true
-				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["border"]["color"]["b"] = nameplateclasscolors.b
-				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["border"]["color"]["g"] = nameplateclasscolors.g
-				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["border"]["color"]["r"] = nameplateclasscolors.r
+				E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["border"]["playerClass"] = true
 			end
 			if E.global.nameplates.filters.EltreumRare then
 				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["health"]["border"]["enable"] = true
-				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["health"]["border"]["color"]["b"] = nameplateclasscolors.b
-				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["health"]["border"]["color"]["g"] = nameplateclasscolors.g
-				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["health"]["border"]["color"]["r"] = nameplateclasscolors.r
+				E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["health"]["border"]["playerClass"] = true
 			end
 			if not E.Retail and E.global.nameplates.filters.ElvUI_Boss then
 				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["health"]["border"]["enable"] = true
-				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["health"]["border"]["color"]["b"] = nameplateclasscolors.b
-				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["health"]["border"]["color"]["g"] = nameplateclasscolors.g
-				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["health"]["border"]["color"]["r"] = nameplateclasscolors.r
+				E.global["nameplates"]["filters"]["ElvUI_Boss"]["actions"]["health"]["border"]["playerClass"] = true
 			end
 		elseif not E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.ClassBorderNameplate then
 			if E.global.nameplates.filters.EltreumTarget then
