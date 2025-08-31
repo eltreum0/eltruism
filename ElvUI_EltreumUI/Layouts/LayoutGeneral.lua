@@ -96,6 +96,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	E.db["unitframe"]["units"]["target"]["health"]["reverseFill"] = false
 	E.db["unitframe"]["units"]["target"]["power"]["reverseFill"] = false
 
+	--disable the custom auras on target
+	E.db["unitframe"]["units"]["target"]["auras"]["enable"] = false
+
 	--general pixel perfect things
 	E.private["general"]["pixelPerfect"] = true
 	E.db["unitframe"]["thinBorders"] = true
