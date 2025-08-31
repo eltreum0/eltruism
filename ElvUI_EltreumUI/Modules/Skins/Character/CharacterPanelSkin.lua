@@ -1629,14 +1629,14 @@ function ElvUI_EltreumUI:ExpandedCharacterStats()
 
 			hooksecurefunc('PaperDollFrame_UpdateStatCategory', function(categoryFrame)
 				if not categoryFrame then return end
-				local numVisible = 0;
+				local numVisible = 0
 				local newtext
 				local categoryInfo = _G.PAPERDOLL_STATCATEGORIES[categoryFrame.Category]
 				if (categoryInfo) then
 					for _, stat in next, categoryInfo.stats do
 						local statInfo = _G.PAPERDOLL_STATINFO[stat]
 						if (statInfo) then
-							local statFrame = _G[categoryFrame:GetName().."Stat"..numVisible+1];
+							local statFrame = _G[categoryFrame:GetName().."Stat"..numVisible+1]
 							if statFrame and statFrame.Label then
 								local text = statFrame.Label:GetText()
 								statFrame.Label:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.ElvUI_EltreumUI.skins.armoryfontsize, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))

@@ -630,8 +630,8 @@ EltruismGameMenu:SetScript("OnEvent", function()
 									E:ToggleMoveMode()
 									HideUIPanel(_G["GameMenuFrame"])
 								else
-									PlaySound(SOUNDKIT.IG_MAINMENU_OPTION);
-									ShowUIPanel(EditModeManagerFrame);
+									PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
+									ShowUIPanel(EditModeManagerFrame)
 								end
 							end
 						end)
