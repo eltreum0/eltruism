@@ -3,7 +3,7 @@ local DT = E:GetModule('DataTexts')
 local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
 local A = E:GetModule('Auras')
-local valuecolors = E:ClassColor(E.myclass, true)
+local valuecolors = E.myClassColor
 local _G = _G
 local pairs = _G.pairs
 local CreateFrame = _G.CreateFrame
@@ -4145,7 +4145,7 @@ function ElvUI_EltreumUI:RaidShadows()
 end
 
 --benik's version
-local classcolor = E:ClassColor(E.myclass, true)
+local classcolor = E.myClassColor
 function ElvUI_EltreumUI:NameplateShadows(nameplate)
 	if not nameplate then return end
 	local bordertexture

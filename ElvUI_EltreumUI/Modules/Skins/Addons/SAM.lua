@@ -3,7 +3,7 @@ local S = E:GetModule('Skins')
 local _G = _G
 local pairs = _G.pairs
 local hooksecurefunc = _G.hooksecurefunc
-local valuecolors = E:ClassColor(E.myclass, true)
+local valuecolors = E.myClassColor
 
 --skin simple addon manager
 function ElvUI_EltreumUI:EltruismSAM()

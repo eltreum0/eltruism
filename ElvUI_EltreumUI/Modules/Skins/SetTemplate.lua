@@ -1,6 +1,6 @@
 local E = unpack(ElvUI)
 local S = E:GetModule('Skins')
-local valuecolors = E:ClassColor(E.myclass, true)
+local valuecolors = E.myClassColor
 local colorsborders = valuecolors
 local _G = _G
 local CreateFrame = _G.CreateFrame

@@ -3,7 +3,7 @@ local DB = E:GetModule('DataBars')
 local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
-local classcolor = E:ClassColor(E.myclass, true)
+local classcolor = E.myClassColor
 
 --gradient xp
 function ElvUI_EltreumUI:GradientDatabarXP()

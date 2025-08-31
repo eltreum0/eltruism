@@ -1,7 +1,7 @@
 local E, L, _, P = unpack(ElvUI)
 local _G = _G
 local select = _G.select
-local classcolor = E:ClassColor(E.myclass, true)
+local classcolor = E.myClassColor
 local CreateFrame = _G.CreateFrame
 local max = _G.max
 local tonumber = _G.tonumber

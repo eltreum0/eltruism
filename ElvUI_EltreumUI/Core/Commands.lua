@@ -204,7 +204,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 		end
 	elseif message == 'secretbgtest' then
 		if not E.db.ElvUI_EltreumUI.otherstuff.colorbg then
-			local valuecolors = E:ClassColor(E.myclass, true)
+			local valuecolors = E.myClassColor
 			E.db.ElvUI_EltreumUI.otherstuff.colorbg = true
 			E.db.general.backdropcolor.b = valuecolors.b*0.3
 			E.db.general.backdropcolor.g = valuecolors.g*0.3

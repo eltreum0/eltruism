@@ -4,7 +4,7 @@ local NP = E:GetModule('NamePlates')
 local UF = E:GetModule('UnitFrames')
 local LCG = E.Libs.CustomGlow
 --local LCG = LibStub('LibCustomGlow-1.0')
-local classcolor = E:ClassColor(E.myclass, true)
+local classcolor = E.myClassColor
 local hooksecurefunc = _G.hooksecurefunc
 local CreateFrame = _G.CreateFrame
 local string = _G.string
@@ -420,7 +420,7 @@ end
 
 -- Nameplate options for Border and Glow and Texture
 function ElvUI_EltreumUI:NamePlateOptions()
-	nameplateclasscolors = E:ClassColor(E.myclass, true)
+	nameplateclasscolors = E.myClassColor
 	if E.private.nameplates.enable then
 
 		--fix threat

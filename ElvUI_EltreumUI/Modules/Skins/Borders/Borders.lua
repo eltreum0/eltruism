@@ -17,7 +17,7 @@ local UnitIsPlayer = _G.UnitIsPlayer
 local UnitClass = _G.UnitClass
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
 local UnitPowerType = _G.UnitPowerType
-local classcolor = E:ClassColor(E.myclass, true)
+local classcolor = E.myClassColor
 local classcolor2 = {}
 local classcolor2check = false
 local targetborder,targettargetborder,targetcastbarborder,petborder,playerborder,stanceborder,focuscastbarborder,arenaborder
@@ -58,7 +58,7 @@ local PowerReadjust = {
 
 function ElvUI_EltreumUI:GetBorderClassColors()
 	if E.db.ElvUI_EltreumUI.borders.classcolor then
-		classcolor = E:ClassColor(E.myclass, true)
+		classcolor = E.myClassColor
 	elseif not E.db.ElvUI_EltreumUI.borders.classcolor then
 		classcolor = {
 			r = E.db.ElvUI_EltreumUI.borders.bordercolors.r,

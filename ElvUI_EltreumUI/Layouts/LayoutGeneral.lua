@@ -1,5 +1,5 @@
 local E, L = unpack(ElvUI)
-local valuecolors = E:ClassColor(E.myclass, true)
+local valuecolors = E.myClassColor
 local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local tostring = _G.tostring

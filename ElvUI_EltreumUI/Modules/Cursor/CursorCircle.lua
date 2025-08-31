@@ -105,7 +105,7 @@ function ElvUI_EltreumUI:CastCursor()
 			SetCVar("HardwareCursor", 0)
 		end
 		if E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor then
-			colorcast = E:ClassColor(E.myclass, true)
+			colorcast = E.myClassColor
 		end
 		if not E.db.ElvUI_EltreumUI.cursors.cursorcast.classcolor then
 			colorcast = {
@@ -116,7 +116,7 @@ function ElvUI_EltreumUI:CastCursor()
 			}
 		end
 		if E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor then
-			colorgcd = E:ClassColor(E.myclass, true)
+			colorgcd = E.myClassColor
 		end
 		if not E.db.ElvUI_EltreumUI.cursors.cursorgcd.classcolor then
 			colorgcd = {
@@ -127,7 +127,7 @@ function ElvUI_EltreumUI:CastCursor()
 			}
 		end
 		if E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor then
-			colorcursor = E:ClassColor(E.myclass, true)
+			colorcursor = E.myClassColor
 		end
 		if not E.db.ElvUI_EltreumUI.cursors.cursorcursor.classcolor then
 			colorcursor = {
