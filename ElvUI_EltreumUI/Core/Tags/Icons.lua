@@ -285,7 +285,7 @@ E:AddTagInfo("eltruism:classIcon:uggbw", ElvUI_EltreumUI.Name.." "..L["Icons"], 
 
 -- Releaf Logo
 E:AddTag("releaf", "UNIT_NAME_UPDATE", function()
-	local color = E:ClassColor(E.myclass, true)
+	local color = E.myClassColor
 	local red = math.floor(color.r*255)
 	local blue = math.floor(color.b*255)
 	local green = math.floor(color.g*255)

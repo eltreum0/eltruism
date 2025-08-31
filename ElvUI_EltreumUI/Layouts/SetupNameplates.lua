@@ -213,10 +213,13 @@ function ElvUI_EltreumUI:SetupNamePlates()
 		--new due to elvui changes
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["smartAuraPosition"] = "FLUID_BUFFS_ON_DEBUFFS"
+
 		--E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["priority"] = "Blacklist,RaidBuffsElvUI,Dispellable,blockNoDuration,CastByUnit"
 		--E.db["nameplates"]["units"]["ENEMY_NPC"]["debuffs"]["priority"] = "Blacklist,Personal,CCDebuffs,CastByNPC"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["buffs"]["priority"] = "Blacklist,Dispellable,PlayerBuffs,TurtleBuffs"
 		E.db["nameplates"]["units"]["ENEMY_PLAYER"]["debuffs"]["priority"] = "Blacklist,Personal,Boss,CCDebuffs,RaidDebuffs,nonPersonal"
+
+		E.db["nameplates"]["units"]["ENEMY_NPC"]["auras"]["enable"] = false
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["anchorPoint"] = "TOP"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["attachTo"] = "DEBUFFS"
 		E.db["nameplates"]["units"]["ENEMY_NPC"]["buffs"]["countFont"] = "Kimberley"
@@ -628,12 +631,16 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["isTarget"] = true
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["triggers"]["requireTarget"] = false
 		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["alpha"] = 100
+
 		--reset this because other plugins seem to change it
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["border"] = false
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["health"] = false
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["color"]["power"] = false
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["flash"]["enable"] = false
-		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["texture"]["enable"] = false
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["health"]["border"]["enable"] = false
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["health"]["colors"]["enable"] = false
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["health"]["flash"]["enable"] = false
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["health"]["texture"]["enable"] = false
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["power"]["border"]["enable"] = false
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["power"]["colors"]["enable"] = false
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["power"]["flash"]["enable"] = false
+		E.global["nameplates"]["filters"]["ElvUI_Target"]["actions"]["power"]["texture"]["enable"] = false
 
 		-- Non targeted enemies
 		E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["actions"]["alpha"] = 100 --20 --test 100% alpha
@@ -643,12 +650,14 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		--E.global["nameplates"]["filters"]["ElvUI_NonTarget"]["triggers"]["priority"] = 4
 
 		-- Target enemy
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["health"] = false
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["healthClass"] = false
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["border"] = true
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["b"] = 0
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["g"] = 0
-		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["color"]["borderColor"]["r"] = 0
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["border"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["colors"]["enable"] = false
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["flash"]["enable"] = false
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["texture"]["enable"] = false
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["border"]["class"] = false
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["border"]["color"]["b"] = 0
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["border"]["color"]["g"] = 0
+		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["health"]["border"]["color"]["r"] = 0
 		E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["isTarget"] = true
 		--E.global["nameplates"]["filters"]["EltreumTarget"]["triggers"]["requireTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumTarget"]["actions"]["scale"] = 1.25
@@ -673,39 +682,36 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		--E.global["nameplates"]["filters"]["EltreumRefreshDebuff"]["triggers"]["requireTarget"] = true
 
 		-- Enemy is casting, draw attention to interrupt
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["border"] = false
-		--E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["b"] = 0.22745098039216
-		--E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["g"] = 0.11764705882353
-		--E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["r"] = 0.76862745098039
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["b"] = 1
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["g"] = 0
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["r"] = 1
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["borderColor"]["a"] = 0.7
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["health"] = false
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["healthColor"]["r"] = 1
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["healthColor"]["g"] = 0
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["color"]["healthColor"]["b"] = 1
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["color"]["b"] = 0
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["color"]["g"] = 0
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["color"]["r"] = 0
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["speed"] = 7
-		if E.version > 13.29 then
-			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["enable"] = false
-			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"][1] = 1
-			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"][2] = 0
-			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"][3] = 0.078431375324726
-			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["color"][4] = 0.90000000596046
-			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["enable"] = true
-			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["size"] = 2
-			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["speed"] = 0.75
-			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["lines"] = 8
-			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["glow"]["style"] = "Pixel Glow"
-		else
-			E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["flash"]["enable"] = true
-		end
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["border"]["enable"] = false
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["border"]["class"] = true
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["border"]["color"]["b"] = 1
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["border"]["color"]["g"] = 0
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["border"]["color"]["r"] = 1
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["border"]["color"]["a"] = 0.7
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["colors"]["enable"] = false
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["colors"]["color"]["b"] = 1
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["colors"]["color"]["g"] = 0
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["colors"]["color"]["r"] = 1
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["colors"]["color"]["a"] = 1
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["flash"]["class"] = false
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["flash"]["color"]["b"] = 0
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["flash"]["color"]["g"] = 0
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["flash"]["color"]["r"] = 0
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["flash"]["color"]["a"] = 1
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["flash"]["enable"] = false
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["flash"]["speed"] = 7
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["glow"]["style"] = "Pixel Glow"
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["glow"]["color"][1] = 1
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["glow"]["color"][2] = 0
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["glow"]["color"][3] = 0.08
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["glow"]["color"][4] = 0.90
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["glow"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["glow"]["size"] = 2
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["glow"]["speed"] = 0.75
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["glow"]["lines"] = 8
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["texture"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["health"]["texture"]["texture"] = "Eltreum-Stripes"
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["scale"] = 1.2
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["enable"] = true
-		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["texture"]["texture"] = "Eltreum-Stripes"
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["actions"]["alpha"] = 100
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["casting"]["interruptible"] = true
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["isNotTapDenied"] = true
@@ -724,20 +730,24 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumInterrupt"]["triggers"]["instanceType"]["scenario"] = true
 
 		-- Enemy at execute range, general range bc different classes have different hp% executes
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["b"] = 0
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["borderColor"]["g"] = 0
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["b"] = 1
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["g"] = 0
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["color"]["healthColor"]["r"] = 0.65
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["color"]["b"] = 0
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["color"]["g"] = 0
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["color"]["r"] = 0
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["enable"] = false
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["flash"]["speed"] = 7
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["health"]["colors"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["health"]["colors"]["color"]["b"] = 1
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["health"]["colors"]["color"]["g"] = 0
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["health"]["colors"]["color"]["r"] = 0.65
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["health"]["colors"]["color"]["a"] = 1
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["health"]["border"]["enable"] = false
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["health"]["border"]["color"]["a"] = 1
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["health"]["border"]["color"]["b"] = 0
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["health"]["border"]["color"]["g"] = 0
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["health"]["border"]["color"]["r"] = 0
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["health"]["flash"]["color"]["b"] = 0
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["health"]["flash"]["color"]["g"] = 0
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["health"]["flash"]["color"]["r"] = 0
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["health"]["flash"]["color"]["a"] = 1
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["health"]["flash"]["enable"] = false
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["health"]["texture"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["health"]["texture"]["texture"] = "ElvUI Norm1"
 		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["scale"] = 1.25
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["texture"]["enable"] = true
-		E.global["nameplates"]["filters"]["EltreumExecute"]["actions"]["texture"]["texture"] = "ElvUI Norm1"
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["healthThreshold"] = true
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["isTarget"] = false
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["isNotTapDenied"] = true
@@ -746,12 +756,13 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumExecute"]["triggers"]["underHealthThreshold"] = 0.2
 
 		--fancy rares
-		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["health"] = true
-		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["b"] = 1
-		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["g"] = 1
-		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["color"]["healthColor"]["r"] = 1
-		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["enable"] = true
-		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["texture"]["texture"] = rareclass[E.myclass]
+		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["health"]["colors"]["color"]["b"] = 1
+		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["health"]["colors"]["color"]["g"] = 1
+		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["health"]["colors"]["color"]["r"] = 1
+		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["health"]["colors"]["color"]["a"] = 1
+		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["health"]["colors"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["health"]["texture"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumRare"]["actions"]["health"]["texture"]["texture"] = rareclass[E.myclass]
 		E.global["nameplates"]["filters"]["EltreumRare"]["triggers"]["classification"]["rare"] = true
 		E.global["nameplates"]["filters"]["EltreumRare"]["triggers"]["classification"]["rareelite"] = true
 		E.global["nameplates"]["filters"]["EltreumRare"]["triggers"]["classification"]["worldboss"] = false --issues in AV bg
@@ -766,8 +777,13 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["isTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["notTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["triggers"]["priority"] = 13
+		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["actions"]["health"]["flash"]["color"]["b"] = 1
+		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["actions"]["health"]["flash"]["color"]["g"] = 1
+		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["actions"]["health"]["flash"]["color"]["r"] = 1
+		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["actions"]["health"]["flash"]["color"]["a"] = 1
+		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["actions"]["health"]["flash"]["enable"] = true
+		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["actions"]["health"]["flash"]["speed"] = 8
 		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["actions"]["alpha"] = 100
-		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["actions"]["flash"]["enable"] = true
 		E.global["nameplates"]["filters"]["EltreumSpellsteal"]["actions"]["scale"] = 1.25
 
 		--hide nameplates for unattackable npcs
@@ -795,6 +811,7 @@ function ElvUI_EltreumUI:SetupStyleFilters()
 		E.global["nameplates"]["filters"]["EltreumLevel"]["triggers"]["notTarget"] = true
 		E.global["nameplates"]["filters"]["EltreumLevel"]["triggers"]["notTargetMe"] = false
 		E.global["nameplates"]["filters"]["EltreumLevel"]["triggers"]["playerCanAttack"] = true
+
 		--totem portrait filter
 		E.global["nameplates"]["filters"]["EltreumTotems"]["actions"]["scale"] = 1.25
 		E.global["nameplates"]["filters"]["EltreumTotems"]["actions"]["usePortrait"] = true

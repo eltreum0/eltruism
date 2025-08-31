@@ -7,6 +7,7 @@ local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 	if update then
 		E.db.ElvUI_EltreumUI.skins.weakaurasoptions = true
+		E.db.ElvUI_EltreumUI.skins.sam = true
 		E.db.ElvUI_EltreumUI.otherstuff.partyraiddeath.playerdeathsound = "Frankly thats a skill issue"
 		E.db.ElvUI_EltreumUI.waypoints.waypointetasetting.color.enable = true
 		E.db.ElvUI_EltreumUI.unitframes.gradientmode.enablegroupunits = true
@@ -164,6 +165,7 @@ function ElvUI_EltreumUI:UpdateEltruismSettings(update)
 		E.db.ElvUI_EltreumUI.skins.dbm = true
 		E.db.ElvUI_EltreumUI.skins.auctionator = true
 		E.db.ElvUI_EltreumUI.skins.weakaurasoptions = true
+		E.db.ElvUI_EltreumUI.skins.sam = true
 		E.db.ElvUI_EltreumUI.skins.elvui.SetTemplate = true --elvui skin
 		E.db.ElvUI_EltreumUI.skins.elvui.texture = "Eltreum-Tile03"
 		E.db.ElvUI_EltreumUI.skins.ace3.enable = true --elvui skin

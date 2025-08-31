@@ -24,6 +24,13 @@ function ElvUI_EltreumUI:UpdateElvUISettings(update)
 				ElvUI_EltreumUI:ModelsToggle(true) --disable models after layout for now due to the 3D model bug
 			end]]
 
+			--rerun elvui style filters due to elvui np changes
+			ElvUI_EltreumUI:SetupStyleFilters()
+
+			--disable the custom auras on target and enemy npc
+			E.db["unitframe"]["units"]["target"]["auras"]["enable"] = false
+			E.db["nameplates"]["units"]["ENEMY_NPC"]["auras"]["enable"] = false
+
 			--fix power prediction color overlapping some other colors
 			E.db["unitframe"]["colors"]["powerPrediction"]["additional"]["a"] = 0.7
 			E.db["unitframe"]["colors"]["powerPrediction"]["additional"]["b"] = 1

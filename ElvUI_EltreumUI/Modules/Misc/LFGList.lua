@@ -403,7 +403,7 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 						entry.DataDisplay.Enumerate[i]:SetTexCoord(unpack(partymembers[i][4]))
 					end
 
-					local _, appStatus = C_LFGList.GetApplicationInfo(entry.resultID);
+					local _, appStatus = C_LFGList.GetApplicationInfo(entry.resultID)
 					local isInactive = false
 					if LFG_LIST_INACTIVE_STATUSES[appStatus] then
 						isInactive = true
@@ -463,14 +463,14 @@ function ElvUI_EltreumUI:DungeonRoleIcons()
 		--i dont like it but it taints otherwise
 		--C_LFGList.SetEntryTitle = function() return end
 		_G.LFGListEntryCreation_SetTitleFromActivityInfo = function(self)
-			local activeEntryInfo = C_LFGList.GetActiveEntryInfo();
+			local activeEntryInfo = C_LFGList.GetActiveEntryInfo()
 			if(not self.selectedActivity or not self.selectedGroup or not self.selectedCategory) then
-				return;
+				return
 			end
-			local activityID = activeEntryInfo and activeEntryInfo.activityID or (self.selectedActivity or 0);
-			local activityInfo = C_LFGList.GetActivityInfoTable(activityID);
+			local activityID = activeEntryInfo and activeEntryInfo.activityID or (self.selectedActivity or 0)
+			local activityInfo = C_LFGList.GetActivityInfoTable(activityID)
 			if((activityInfo and activityInfo.isMythicPlusActivity) or not C_LFGList.IsPlayerAuthenticatedForLFG(self.selectedActivity)) then
-				C_LFGList.SetEntryTitle(self.selectedActivity, self.selectedGroup, self.selectedPlaystyle);
+				C_LFGList.SetEntryTitle(self.selectedActivity, self.selectedGroup, self.selectedPlaystyle)
 			end
 		end]]
 	end

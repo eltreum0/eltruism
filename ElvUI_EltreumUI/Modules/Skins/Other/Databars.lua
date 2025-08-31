@@ -3,7 +3,7 @@ local DB = E:GetModule('DataBars')
 local S = E:GetModule('Skins')
 local _G = _G
 local hooksecurefunc = _G.hooksecurefunc
-local classcolor = E:ClassColor(E.myclass, true)
+local classcolor = E.myClassColor
 
 --gradient xp
 function ElvUI_EltreumUI:GradientDatabarXP()
@@ -22,7 +22,7 @@ function ElvUI_EltreumUI:GradientDatabarRep()
 		local customColors = DB.db.colors.useCustomFactionColors
 		local _, reaction, factionID
 		if E.Retail then
-			local watchedFactionData = C_Reputation.GetWatchedFactionData();
+			local watchedFactionData = C_Reputation.GetWatchedFactionData()
 			if not watchedFactionData then return end
 			reaction, factionID = watchedFactionData.reaction, watchedFactionData.factionID
 			if factionID then

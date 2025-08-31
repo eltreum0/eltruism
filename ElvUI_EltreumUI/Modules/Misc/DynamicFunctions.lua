@@ -10,7 +10,7 @@ local IsPlayerAtEffectiveMaxLevel = _G.IsPlayerAtEffectiveMaxLevel
 
 --fixed cooldown text to be class color
 function ElvUI_EltreumUI:CooldownColors()
-	local valuecolors = E:ClassColor(E.myclass, true)
+	local valuecolors = E.myClassColor
 	if E.db.ElvUI_EltreumUI.skins.classcolorcooldowns then
 		if E.myclass == "PRIEST" then
 			E.db["cooldown"]["daysIndicator"]["b"] = 0.7

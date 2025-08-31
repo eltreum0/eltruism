@@ -1,6 +1,6 @@
 local E = unpack(ElvUI)
 local _G = _G
-local classcolor = E:ClassColor(E.myclass, true)
+local classcolor = E.myClassColor
 local CreateFrame = _G.CreateFrame
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local hooksecurefunc = _G.hooksecurefunc

@@ -7,7 +7,7 @@ local WorldMapFrame = _G.WorldMapFrame
 local select = _G.select
 local GetInstanceInfo = _G.GetInstanceInfo
 local C_ChallengeMode = _G.C_ChallengeMode
-local classcolors = E:ClassColor(E.myclass, true)
+local classcolors = E.myClassColor
 local textgradient,backuptext
 
 local instancedifficulty = CreateFrame("FRAME")

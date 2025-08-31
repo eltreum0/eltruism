@@ -1,7 +1,7 @@
 local E, L = unpack(ElvUI)
 local M = E:GetModule('Minimap')
 local S = E:GetModule('Skins')
-local valuecolors = E:ClassColor(E.myclass, true)
+local valuecolors = E.myClassColor
 local _G = _G
 local CreateFrame = _G.CreateFrame
 local UIParent = _G.UIParent

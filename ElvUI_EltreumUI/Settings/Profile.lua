@@ -265,6 +265,7 @@ P.ElvUI_EltreumUI = {
 		dbm = false,
 		auctionator = false,
 		weakaurasoptions = false,
+		sam = false,
 
 		hideABkeypress = false,
 		tbctalents = false,

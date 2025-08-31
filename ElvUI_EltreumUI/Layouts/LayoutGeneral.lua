@@ -1,5 +1,5 @@
 local E, L = unpack(ElvUI)
-local valuecolors = E:ClassColor(E.myclass, true)
+local valuecolors = E.myClassColor
 local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local tostring = _G.tostring
@@ -95,6 +95,9 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 	--reverse target
 	E.db["unitframe"]["units"]["target"]["health"]["reverseFill"] = false
 	E.db["unitframe"]["units"]["target"]["power"]["reverseFill"] = false
+
+	--disable the custom auras on target
+	E.db["unitframe"]["units"]["target"]["auras"]["enable"] = false
 
 	--general pixel perfect things
 	E.private["general"]["pixelPerfect"] = true
