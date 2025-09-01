@@ -1630,3 +1630,5 @@ L["Nameplate Aura Border X offset"] = true
 L["Nameplate Aura Border Y offset"] = true
 L["Nameplates Debuff Aura Border X offset"] = true
 L["Nameplates Debuff Aura Border Y offset"] = true
+L["Nameplate Castbar Border"] = true
+L["Nameplate Castbar Thickness"] = true
