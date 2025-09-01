@@ -421,12 +421,9 @@ function ElvUI_EltreumUI:SkinQuests()
 								subLines(v)
 							end
 						else
-							for i = 1, #block.usedLines do
-								if block.usedLines[i] then
-									local line = block.usedLines[i]
-									if line then
-										subLines(line)
-									end
+							for _, line in next, block.usedLines do
+								if line then
+									subLines(line)
 								end
 							end
 						end
