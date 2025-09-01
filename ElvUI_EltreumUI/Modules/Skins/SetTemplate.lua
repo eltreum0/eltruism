@@ -19,6 +19,7 @@ local widgetAtlas = {
 	["widgetstatusbar-fill-red"] = { r = 255, g = 0, b = 0, a = 1},
 	["widgetstatusbar-fill-white"] = { r = 255, g = 255, b = 255, a = 1},
 	["widgetstatusbar-fill-yellow"] = { r = 255, g = 255, b = 0, a = 1},
+	["cosmic-bar-fill-white"] = { r = 255, g = 255, b = 255, a = 1},
 }
 
 local function togglebackdrop(frame,show)
