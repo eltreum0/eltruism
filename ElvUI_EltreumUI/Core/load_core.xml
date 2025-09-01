@@ -2,6 +2,7 @@
 	<Script file='Compatibility.lua'/>
 	<Script file='Commands.lua'/>
 	<Script file='Core.lua'/>
+	<Script file='Performance.lua'/>
 	<Script file='AddonSetup.lua'/>
 	<Script file='Install.lua'/>
 	<Include file='Tags\Load_Tags.xml'/>
