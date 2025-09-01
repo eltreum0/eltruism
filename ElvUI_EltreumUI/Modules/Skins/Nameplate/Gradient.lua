@@ -18,7 +18,7 @@ function ElvUI_EltreumUI:ThreatIndicator_PostUpdate(unit, status)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	local nameplate, db = self.__owner, NP.db.threat
 	local sf = NP:StyleFilterChanges(nameplate)
-	if status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) and not ((sf.health and sf.health.colors) and sf.actions.health.colors.enable) then
+	if sf and status and db.enable and db.useThreatColor and not UnitIsTapDenied(unit) and not ((sf.health and sf.health.colors) and sf.health.colors.enable) then
 		if not nameplate.Health then return end
 		--NP:Health_SetColors(nameplate, true)
 
@@ -117,7 +117,7 @@ local function GradientNameplates(unit)
 	if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
 		if unit and unit.Health then
 			local sf = NP:StyleFilterChanges(unit)
-			if (sf.health and sf.health.colors) and sf.actions.health.colors.enable then
+			if (sf and sf.health and sf.health.colors) then
 				unit.Health:GetStatusBarTexture():SetGradient(E.db.ElvUI_EltreumUI.unitframes.gradientmode.nporientation, {r=sf.actions.health.colors.color.r,g= sf.actions.health.colors.color.g,b= sf.actions.health.colors.color.b,a= 1}, {r=sf.actions.health.colors.color.r + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterr,g= sf.actions.health.colors.color.g + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterg,b= sf.actions.health.colors.color.b + E.db.ElvUI_EltreumUI.unitframes.gradientmode.stylefilterb,a= sf.actions.health.colors.color.a})
 			else
 				local _, className = UnitClass(unit.unit)
@@ -180,7 +180,8 @@ hooksecurefunc(NP, "ClassPower_SetBarColor", ElvUI_EltreumUI.NPClassPower_SetBar
 function ElvUI_EltreumUI:StyleFilterClearChanges(frame, changes)
 	if ElvUI_EltreumUI:EncounterCheck() then return end
 	-- bar stuff
-	if changes and changes.health then
+	--print(changes,frame.Health)
+	if changes then
 		local h = frame.Health
 		if h.r and h.g and h.b then
 			if E.db.ElvUI_EltreumUI.unitframes.gradientmode.npenable then
