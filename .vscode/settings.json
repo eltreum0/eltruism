@@ -2,7 +2,7 @@
     "Lua.type.weakUnionCheck": true,
     "wowAPI.luals.frameXML": true,
     "Lua.diagnostics.globals": [
-        "ElvUI_EltreumUI",
+        "ElvUI_EltreumUI"
     ],
     "wowAPI.luals.configurationScope": "Workspace",
     "wowAPI.luals.defineKnownGlobals": true,
