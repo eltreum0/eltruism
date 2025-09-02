@@ -1,4 +1,4 @@
-local E, _, _, P = unpack(ElvUI)
+local E = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local _G = _G
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar

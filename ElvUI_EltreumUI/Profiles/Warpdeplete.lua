@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L= unpack(ElvUI)
 local classcolor = E.myClassColor
 local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
@@ -7,6 +7,7 @@ local tostring = _G.tostring
 -- WarpDeplete profile setup
 function ElvUI_EltreumUI:GetWarpDepleteProfile()
 	if IsAddOnLoaded("WarpDeplete") then
+		local WarpDepleteDB = _G.WarpDepleteDB
 		WarpDepleteDB["profileKeys"][E.mynameRealm] = E.mynameRealm
 		WarpDepleteDB["global"]["mdtAlertShown"] = true
 		WarpDepleteDB["profiles"][E.mynameRealm] = {

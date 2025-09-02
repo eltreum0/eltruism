@@ -97,9 +97,9 @@ function ElvUI_EltreumUI:EltruismClique()
 				end
 			end
 		end
-		hooksecurefunc(_G["Clique"],"ShowBindingConfig", SkinClique)
+		_G.hooksecurefunc(_G["Clique"],"ShowBindingConfig", SkinClique)
 		if E.Retail then
-			hooksecurefunc(_G["Clique"],"ShowSpellBookButton", SkinCliqueTab)
+			_G.hooksecurefunc(_G["Clique"],"ShowSpellBookButton", SkinCliqueTab)
 		else
 			SkinCliqueTab()
 		end

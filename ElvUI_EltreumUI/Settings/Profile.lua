@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, _, _, P = unpack(ElvUI)
 
 -- Eltreum UI Profile DB
 P.ElvUI_EltreumUI = {
@@ -1056,8 +1056,16 @@ P.ElvUI_EltreumUI = {
 		nameplatesizex = 11,
 		nameplatesizey = 10,
 		nameplatesize = 13,
-		nameplatestrata = "TOOLTIP",
-		nameplatelevel = 50,
+		--nameplatestrata = "TOOLTIP",
+		--nameplatelevel = 50,
+
+		nameplatecastborders = true,
+		nameplatecastsizex = 11,
+		nameplatecastsizey = 10,
+		nameplatecastsize = 13,
+		--nameplatestrata = "TOOLTIP",
+		--nameplatelevel = 50,
+
 
 		bordercolors = {
 			r = 0.27,

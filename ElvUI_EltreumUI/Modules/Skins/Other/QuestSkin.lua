@@ -790,9 +790,9 @@ function ElvUI_EltreumUI:SkinQuests()
 									--if (NumQuests >= (MAX_QUESTS - 5)) then --global still returning 25
 									if (NumQuests >= 30) then
 										--_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, QUESTS_LABEL))
-										_G.QuestObjectiveTracker.Header.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, 35, QUESTS_LABEL))
+										_G.QuestObjectiveTracker.Header.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, 35, _G.QUESTS_LABEL))
 									else
-										_G.QuestObjectiveTracker.Header.Text:SetText(QUESTS_LABEL)
+										_G.QuestObjectiveTracker.Header.Text:SetText(_G.QUESTS_LABEL)
 									end
 								end
 							--C_QuestLog.SortQuestWatches() --fix lines when added
@@ -868,7 +868,7 @@ function ElvUI_EltreumUI:SkinQuests()
 								--if (NumQuests >= (MAX_QUESTS - 5)) then --global still returning 25
 								if (NumQuests >= 30) then
 									--_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, QUESTS_LABEL))
-									_G.QuestObjectiveTracker.Header.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, 35, QUESTS_LABEL))
+									_G.QuestObjectiveTracker.Header.Text:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, 35, _G.QUESTS_LABEL))
 								--else
 								--	_G.ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(QUESTS_LABEL)
 								end
@@ -1255,10 +1255,10 @@ function ElvUI_EltreumUI:SkinQuests()
 			hooksecurefunc("QuestWatch_Update",function()
 
 				local NumQuests = select(2, GetNumQuestLogEntries())
-				if (NumQuests >= (MAX_QUESTS - 5)) then
-					QuestWatchFrameTitle:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, QUESTS_LABEL))
+				if (NumQuests >= (_G.MAX_QUESTS - 5)) then
+					QuestWatchFrameTitle:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, _G.MAX_QUESTS, _G.QUESTS_LABEL))
 				else
-					QuestWatchFrameTitle:SetText(QUESTS_LABEL)
+					QuestWatchFrameTitle:SetText(_G.QUESTS_LABEL)
 				end
 				if (GetNumQuestWatches() == 0) then
 					_G.QuestWatchFrame.HeaderBar:SetAlpha(0)
@@ -1400,7 +1400,7 @@ function ElvUI_EltreumUI:SkinQuests()
 				end
 
 				-- Hide unused watch lines
-				for i=watchTextIndex, MAX_QUESTWATCH_LINES do
+				for i=watchTextIndex, _G.MAX_QUESTWATCH_LINES do
 					_G["QuestWatchLine"..i]:Hide()
 				end
 
@@ -1546,10 +1546,10 @@ function ElvUI_EltreumUI:SkinQuests()
 
 				local NumQuests = select(2, GetNumQuestLogEntries())
 
-				if (NumQuests >= (MAX_QUESTS - 5)) then
-					WatchFrameTitle:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, MAX_QUESTS, QUESTS_LABEL))
+				if (NumQuests >= (_G.MAX_QUESTS - 5)) then
+					WatchFrameTitle:SetText(format("|CFFFF0000%d/%d|r - %s", NumQuests, _G.MAX_QUESTS, _G.QUESTS_LABEL))
 				else
-					WatchFrameTitle:SetText(QUESTS_LABEL)
+					WatchFrameTitle:SetText(_G.QUESTS_LABEL)
 				end
 
 				if (GetNumQuestWatches() == 0) then

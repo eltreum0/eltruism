@@ -1,4 +1,4 @@
-local E, _, _, P = unpack(ElvUI)
+local E = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local _G = _G
@@ -94,7 +94,7 @@ function ElvUI_EltreumUI:InstallerOptions()
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.player.args.description3 = E.Libs.ACH:Description(nil, 7, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.player.args.minimalbuffs = E.Libs.ACH:Execute(L["Minimal Buffs"], nil, 8, function() ElvUI_EltreumUI:SetupBuffs('player', 'Minimal') end,nil,false,'full')
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.player.args.minimaldebuffs = E.Libs.ACH:Execute(L["Minimal Debuffs"], nil, 9, function() ElvUI_EltreumUI:SetupDebuffs('player', 'Minimal') end,nil,false,'full')
-	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.target = E.Libs.ACH:Group(TARGET, nil, 2)
+	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.target = E.Libs.ACH:Group(_G.TARGET, nil, 2)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.target.args.target = E.Libs.ACH:Description(L["Select how auras will be displayed for Target"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1)
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.target.args.allbuffs = E.Libs.ACH:Execute(L["All Target Buffs"], L["Set filters to show more buffs on Target"], 2, function() ElvUI_EltreumUI:SetupBuffs('target', 'Everything') end,nil,false,'full')
 	ElvUI_EltreumUI.Options.args.installer.args.tab4.args.target.args.alldebuffs = E.Libs.ACH:Execute(L["All Target Debuffs"], L["Set filters to show more debuffs on Target"], 3, function() ElvUI_EltreumUI:SetupDebuffs('target', 'Everything') end,nil,false,'full')

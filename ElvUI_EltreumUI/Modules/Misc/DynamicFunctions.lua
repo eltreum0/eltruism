@@ -474,11 +474,15 @@ end
 -- Inspired by Luckyone's performance option. Thanks Luckyone!
 function ElvUI_EltreumUI:EmptyDetailsTable()
 	if IsAddOnLoaded('Details') then
-		_detalhes.encounter_spell_pool = {}
-		_detalhes.npcid_pool = {}
-		_detalhes.spell_pool = {}
-		_detalhes.spell_school_cache = {}
-		_detalhes.boss_mods_timers = {}
+		_G._detalhes.encounter_spell_pool = {}
+		_G._detalhes.npcid_pool = {}
+		_G._detalhes.spell_pool = {}
+		_G._detalhes.spell_school_cache = {}
+		_G._detalhes.boss_mods_timers = {}
+		_G._detalhes.trinket_data = {}
+		_G._detalhes.savedCustomSpells = {}
+		_G._detalhes.keystone_cache = {}
+		_G._detalhes.raid_data = {}
 
 		ElvUI_EltreumUI:Print("Details tables were cleared")
 	else

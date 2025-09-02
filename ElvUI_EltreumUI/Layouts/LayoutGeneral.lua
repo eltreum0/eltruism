@@ -350,6 +350,19 @@ function ElvUI_EltreumUI:SetupGeneralLayout()
 		{r = 0.85490202903748, g = 1, b = 0.10588236153126},
 		{r = 0.93333339691162, g = 1, b = 0.11372549831867}
 	}
+	E.db["unitframe"]["colors"]["classResources"]["MAGE"]["ARCANE_CHARGES"]["r"] = 0
+	E.db["unitframe"]["colors"]["classResources"]["MAGE"]["ARCANE_CHARGES"]["g"] = 0.62
+	E.db["unitframe"]["colors"]["classResources"]["MAGE"]["ARCANE_CHARGES"]["b"] = 1
+
+	--these are the original version of colors from simpy, looks better with gradient
+	E.db["unitframe"]["colors"]["classResources"]["SHAMAN"]["MAELSTROM"]["r"] = 0.58
+	E.db["unitframe"]["colors"]["classResources"]["SHAMAN"]["MAELSTROM"]["g"] = 0.51
+	E.db["unitframe"]["colors"]["classResources"]["SHAMAN"]["MAELSTROM"]["b"] = 0.79
+	--these are the second version of colors from simpy, but they are too dark and dont look good with gradient
+	--[[E.db["unitframe"]["colors"]["classResources"]["SHAMAN"]["MAELSTROM"]["r"] = 0.35
+	E.db["unitframe"]["colors"]["classResources"]["SHAMAN"]["MAELSTROM"]["g"] = 0.15
+	E.db["unitframe"]["colors"]["classResources"]["SHAMAN"]["MAELSTROM"]["b"] = 1]]
+
 	E.db["unitframe"]["colors"]["classResources"]["chargedComboPoint"]["g"] = 0.63921570777893
 	E.db["unitframe"]["colors"]["classResources"]["chargedComboPoint"]["r"] = 0.16078431904316
 	E.db["unitframe"]["colors"]["classResources"]["comboPoints"][1]["b"] = 0.05882353335619

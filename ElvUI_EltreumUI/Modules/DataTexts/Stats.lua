@@ -219,7 +219,7 @@ local function EltruismStatsDatatextOnEnter()
 			else
 				DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetMasteryEffect()).."|r", 1, 1, 1)
 				DT.tooltip:AddDoubleLine(HIT..": ", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", (math.max(GetSpellHitModifier(),GetCombatRatingBonus(8),GetCombatRatingBonus(6)))).."|r",1,1,1) --GetCombatRatingBonus(CR_HIT_SPELL)
-				DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", math.max(GetCombatRatingBonus(CR_HASTE_SPELL),GetMeleeHaste())).."|r",1,1,1) --GetCombatRatingBonus(CR_HASTE_SPELL)
+				DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", math.max(GetCombatRatingBonus(_G.CR_HASTE_SPELL),GetMeleeHaste())).."|r",1,1,1) --GetCombatRatingBonus(CR_HASTE_SPELL)
 				DT.tooltip:AddDoubleLine(STAT_CRITICAL_STRIKE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", spellcrit).."|r",1,1,1)
 				DT.tooltip:AddLine(' ')
 				DT.tooltip:AddDoubleLine(STAT_EXPERTISE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetExpertise()).."|r", 1, 1, 1)
@@ -237,7 +237,7 @@ local function EltruismStatsDatatextOnEnter()
 			else
 				DT.tooltip:AddDoubleLine(STAT_MASTERY..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetMasteryEffect()).."|r", 1, 1, 1)
 				DT.tooltip:AddDoubleLine(HIT..": ", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", (math.max(GetSpellHitModifier(),GetCombatRatingBonus(8),GetCombatRatingBonus(6)))).."|r",1,1,1) --GetCombatRatingBonus(CR_HIT_SPELL)
-				DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", math.max(GetCombatRatingBonus(CR_HASTE_SPELL),GetMeleeHaste())).."|r",1,1,1) --GetCombatRatingBonus(CR_HASTE_SPELL)
+				DT.tooltip:AddDoubleLine(STAT_HASTE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", math.max(GetCombatRatingBonus(_G.CR_HASTE_SPELL),GetMeleeHaste())).."|r",1,1,1) --GetCombatRatingBonus(CR_HASTE_SPELL)
 				DT.tooltip:AddDoubleLine(STAT_CRITICAL_STRIKE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", spellcrit).."|r",1,1,1)
 				DT.tooltip:AddLine(' ')
 				DT.tooltip:AddDoubleLine(STAT_EXPERTISE..":", ElvUI[1].media.hexvaluecolor..string.format("%.2f%%", GetExpertise()).."|r", 1, 1, 1)
@@ -246,7 +246,7 @@ local function EltruismStatsDatatextOnEnter()
 		end
 		if not E.Classic then
 			if E.Mists then
-				DT.tooltip:AddDoubleLine(STAT_RESILIENCE..":", ElvUI[1].media.hexvaluecolor..GetModResilienceDamageReduction().."%|r", 1, 1, 1)
+				DT.tooltip:AddDoubleLine(STAT_RESILIENCE..":", ElvUI[1].media.hexvaluecolor.._G.GetModResilienceDamageReduction().."%|r", 1, 1, 1)
 			else
 				DT.tooltip:AddDoubleLine(STAT_RESILIENCE..":", ElvUI[1].media.hexvaluecolor..GetCombatRating(_G.COMBAT_RATING_RESILIENCE_CRIT_TAKEN).."|r", 1, 1, 1)
 			end

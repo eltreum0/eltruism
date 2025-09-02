@@ -152,6 +152,7 @@ function ElvUI_EltreumUI:RunCommands(message)
 			text = L["Disabling a number of functions in ElvUI and Eltruism to optimize performance"],
 			OnAccept = function()
 				ElvUI_EltreumUI:PerformanceOptimization()
+				ElvUI_EltreumUI:PerformanceCVars(true)
 				ReloadUI()
 			end,
 			button1 = ACCEPT,
@@ -161,6 +162,9 @@ function ElvUI_EltreumUI:RunCommands(message)
 			hideOnEscape = false,
 		}
 		E:StaticPopup_Show('ELTRUISMPERFORMANCE')
+	elseif message == 'performancecvars' then
+		ElvUI_EltreumUI:PerformanceCVars(true)
+		ElvUI_EltreumUI:Print("Applied several CVars to optimize performance")
 	elseif message == "encountercheck" then
 		if E.db.ElvUI_EltreumUI.encountercheck then
 			ElvUI_EltreumUI:Print("Disabled Encounter Check. Some functions will no longer be disabled during boss fights")

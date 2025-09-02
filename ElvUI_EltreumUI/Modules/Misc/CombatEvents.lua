@@ -17,7 +17,7 @@ local list = {}
 
 --play music during combat
 function ElvUI_EltreumUI:CombatMusic(event)
-	if not tostring(GetCVar('Sound_EnableMusic')) == '1' then return end
+	if tostring(GetCVar('Sound_EnableMusic')) ~= '1' then return end
 	if event == 'ENCOUNTER_START' then --boss start
 		if E.private.ElvUI_EltreumUI.combatmusic.bossmusic then
 			local soundfileboss = [[Interface\AddOns\]]..E.private.ElvUI_EltreumUI.combatmusic.bossfile

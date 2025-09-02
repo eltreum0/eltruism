@@ -10,7 +10,6 @@ local getmetatable = _G.getmetatable
 local type = _G.type
 local BackdropTemplateMixin = _G.BackdropTemplateMixin
 local GetItemQualityColor = _G.C_Item and _G.C_Item.GetItemQualityColor or _G.GetItemQualityColor
-local GetItemInfo = _G.C_Item and _G.C_Item.GetItemInfo or _G.GetItemInfo
 local fixedConfig = false
 
 local widgetAtlas = {
@@ -19,6 +18,7 @@ local widgetAtlas = {
 	["widgetstatusbar-fill-red"] = { r = 255, g = 0, b = 0, a = 1},
 	["widgetstatusbar-fill-white"] = { r = 255, g = 255, b = 255, a = 1},
 	["widgetstatusbar-fill-yellow"] = { r = 255, g = 255, b = 0, a = 1},
+	["cosmic-bar-fill-white"] = { r = 255, g = 255, b = 255, a = 1},
 }
 
 local function togglebackdrop(frame,show)
@@ -238,7 +238,7 @@ local function EltruismBorders(frame,isUnitFrameElement)
 		--lfg selected issue
 		if frame.SelectedTexture and not frame.SelectedTextureEltruismHook then
 			if frame.TopLeftCorner then
-				hooksecurefunc(frame,"SetBackdropBorderColor", function(framebg,r)--,a)
+				hooksecurefunc(frame,"SetBackdropBorderColor", function(_,r)--,a)
 					if r == 1 then
 						frame.eltruismuniversalborders:SetBackdropBorderColor(1, 1, 0, 1)
 					else
@@ -254,8 +254,8 @@ local function EltruismBorders(frame,isUnitFrameElement)
 			local r,g,b = frame.BottomEdge:GetVertexColor()
 			frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
 			if not frame.FixedPetBattleBorderColorEltruism then
-				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r,g,b)
-					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r1,g1,b1)
+					frametable.eltruismuniversalborders:SetBackdropBorderColor(r1, g1, b1, 1)
 				end)
 				frame.FixedPetBattleBorderColorEltruism = true
 			end
@@ -263,8 +263,8 @@ local function EltruismBorders(frame,isUnitFrameElement)
 			local r,g,b = frame.BottomEdge:GetVertexColor()
 			frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
 			if not frame.FixedPetBattleBorderColorEltruism then
-				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r,g,b)
-					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r2,g2,b2)
+					frametable.eltruismuniversalborders:SetBackdropBorderColor(r2, g2, b2, 1)
 				end)
 				frame.FixedPetBattleBorderColorEltruism = true
 			end
@@ -276,8 +276,8 @@ local function EltruismBorders(frame,isUnitFrameElement)
 			local r,g,b = frame.BottomEdge:GetVertexColor()
 			frame.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
 			if not frame.FixedPetBattleBorderColorEltruism then
-				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r,g,b)
-					frametable.eltruismuniversalborders:SetBackdropBorderColor(r, g, b, 1)
+				hooksecurefunc(frame, "SetBackdropBorderColor", function(frametable,r3,g3,b3)
+					frametable.eltruismuniversalborders:SetBackdropBorderColor(r3, g3, b3, 1)
 				end)
 				frame.FixedPetBattleBorderColorEltruism = true
 			end
@@ -302,7 +302,7 @@ local function EltruismBorders(frame,isUnitFrameElement)
 	end
 end
 
-local function EltruismBackground(frame,isUnitFrameElement)
+local function EltruismBackground(frame,isUnitFrameElement,isNamePlateElement)
 	if isUnitFrameElement and not E.db.ElvUI_EltreumUI.skins.elvui.unitframes then return end
 	if isNamePlateElement and not E.db.ElvUI_EltreumUI.skins.elvui.nameplates then return end
 	if frame:GetObjectType() == "Button" and not E.db.ElvUI_EltreumUI.skins.elvui.button then return end

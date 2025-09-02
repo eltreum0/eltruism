@@ -1,7 +1,9 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 
 -- Dynamic Cam profile setup
 function ElvUI_EltreumUI:GetDynamicCamProfile()
+	local DynamicCamDB = _G.DynamicCamDB
+
 	if DynamicCamDB.profiles.Eltreum then
 		--local key = {[E.mynameRealm] = "Eltreum"}
 		--table.insert(DynamicCamDB.profileKeys, key)
@@ -216,5 +218,5 @@ function ElvUI_EltreumUI:GetDynamicCamProfile()
 			["firstRun"] = false,
 		}
 	end
-	DynamicCam.db:SetProfile("Eltreum")
+	_G.DynamicCam.db:SetProfile("Eltreum")
 end

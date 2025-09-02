@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 
@@ -6,6 +6,7 @@ local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 function ElvUI_EltreumUI:GetQuestieProfile()
 	if not E.Retail then
 		if IsAddOnLoaded("Questie") then
+			local QuestieConfig = _G.QuestieConfig
 			if QuestieConfig.profiles.Eltreum then
 				table.insert(QuestieConfig.profileKeys, E.mynameRealm)
 				QuestieConfig["profileKeys"][E.mynameRealm] = "Eltreum"

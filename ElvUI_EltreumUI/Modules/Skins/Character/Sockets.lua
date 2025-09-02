@@ -11,7 +11,6 @@ local C_Timer = _G.C_Timer
 local pairs = _G.pairs
 local GetInventoryItemLink = _G.GetInventoryItemLink
 local GetInventorySlotInfo = _G.GetInventorySlotInfo
-local UnitLevel = _G.UnitLevel
 local string = _G.string
 local strsplit = _G.strsplit
 local tonumber = _G.tonumber
@@ -21,7 +20,6 @@ local ipairs = _G.ipairs
 local GetItemGem = _G.C_Item and _G.C_Item.GetItemGem or _G.GetItemGem
 local GameTooltip = _G.GameTooltip
 local GetSpellLink = _G.GetSpellLink
-local GetSpellInfoFunctionTable = _G.C_Spell and _G.C_Spell.GetSpellInfo or _G.GetSpellInfo
 local GetSpellTexture = _G.C_Spell and _G.C_Spell.GetSpellTexture or _G.GetSpellTexture
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local type = _G.type
@@ -1201,8 +1199,8 @@ function ElvUI_EltreumUI:ClassicSockets()
 			if 255 >= strlenutf8(text) then
 				_G.MacroFrameText:Insert(link)
 			end
-		elseif ChatEdit_GetActiveWindow() then
-			ChatEdit_InsertLink(link)
+		elseif _G.ChatEdit_GetActiveWindow() then
+			_G.ChatEdit_InsertLink(link)
 		end
 	end
 

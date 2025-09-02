@@ -1,4 +1,4 @@
-local E, _, _, P = unpack(ElvUI)
+local E = unpack(ElvUI)
 local L = E.Libs.ACL:GetLocale('ElvUI', E.global.general.locale)
 local _G = _G
 local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
@@ -107,21 +107,20 @@ whisperMode 'inline'
 wholeChatWindowClickable 0
 WorldTextMinSize 6
 ]], 4, nil, nil, nil, nil, nil, "full")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars = E.Libs.ACH:Group(L["Other CVars"], nil, 2)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.combattext = E.Libs.ACH:Group(L["Combat Text"], nil, 2, "tab")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.combattext.args.description1 = E.Libs.ACH:Description(L["Blizzard Floating Combat Text"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.combattext.args.blizzcombatexttoggle = E.Libs.ACH:Toggle(L["Disable Combat Text"], L["Enable or disable Blizzard's default Floating Combat Text"], 2, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = value E:StaticPopup_Show('CONFIG_RL') end)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.combattext.args.blizzcombatextmana = E.Libs.ACH:Toggle(L["Enable Resource Gains"], L["Enable or disable Blizzard's default Floating Combat Text for Mana/Rage/Energy and other resouces"], 3, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana = value E:StaticPopup_Show('CONFIG_RL') end)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.combattext.args.restorecvars = E.Libs.ACH:Execute(L["Restore All Blizzard Combat Text"], nil, 4, function() ElvUI_EltreumUI:RestoreBlizzCombatText() E:StaticPopup_Show('CONFIG_RL') end,nil,true, "full")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.combattext.args.description2 = E.Libs.ACH:Description(L["Change the Scale of the World Text"], 5, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.combattext.args.worldtextscale = E.Libs.ACH:Range(L["Select the size of the World Text"], nil, 6, { min = 0.2, max = 2, step = 0.1 }, 'full', function() return E.db.ElvUI_EltreumUI.otherstuff.worldtextscale end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldtextscale = value ElvUI_EltreumUI:WorldTextScale(value) end)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.camera = E.Libs.ACH:Group(L["Camera"], nil, 2, "tab")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.camera.args.description1 = E.Libs.ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.camera.args.cameraFOV = E.Libs.ACH:Range(L["Camera Field of View"], L["This allows you to zoom out further with the camera to increase the field of view."], 2, { min = 50, max = 90, step = 1 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.cameraFOV end, function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraFOV = value SetCVar('camerafov', value) end, nil)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.camera.args.cameraDistanceMaxZoomFactor = E.Libs.ACH:Range(L["Camera Distance Max Zoom Factor"], L["Maximum Camera Zoom Out"], 2, { min = 1, max = function() if not (E.Mists or E.Classic) then return 2.6 else return 4 end end, step = 0.1 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor end, function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor = value SetCVar('cameraDistanceMaxZoomFactor', value) end)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates = E.Libs.ACH:Group(L["Nameplates"], nil, 2, "tab")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.description1 = E.Libs.ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.SoftTargetInteract = E.Libs.ACH:Toggle(L["Soft Target Interact"], L["Enable Soft Target Interactions"], 2, nil, false,'full',
+	ElvUI_EltreumUI.Options.args.cvars.args.combattext = E.Libs.ACH:Group(L["Combat Text"], nil, 2)
+	ElvUI_EltreumUI.Options.args.cvars.args.combattext.args.description1 = E.Libs.ACH:Description(L["Blizzard Floating Combat Text"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.combattext.args.blizzcombatexttoggle = E.Libs.ACH:Toggle(L["Disable Combat Text"], L["Enable or disable Blizzard's default Floating Combat Text"], 2, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombattext = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.cvars.args.combattext.args.blizzcombatextmana = E.Libs.ACH:Toggle(L["Enable Resource Gains"], L["Enable or disable Blizzard's default Floating Combat Text for Mana/Rage/Energy and other resouces"], 3, nil, false,'full',function() return E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana end,function(_, value) E.db.ElvUI_EltreumUI.otherstuff.blizzcombatmana = value E:StaticPopup_Show('CONFIG_RL') end)
+	ElvUI_EltreumUI.Options.args.cvars.args.combattext.args.restorecvars = E.Libs.ACH:Execute(L["Restore All Blizzard Combat Text"], nil, 4, function() ElvUI_EltreumUI:RestoreBlizzCombatText() E:StaticPopup_Show('CONFIG_RL') end,nil,true, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.combattext.args.description2 = E.Libs.ACH:Description(L["Change the Scale of the World Text"], 5, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.combattext.args.worldtextscale = E.Libs.ACH:Range(L["Select the size of the World Text"], nil, 6, { min = 0.2, max = 2, step = 0.1 }, 'full', function() return E.db.ElvUI_EltreumUI.otherstuff.worldtextscale end, function(_, value) E.db.ElvUI_EltreumUI.otherstuff.worldtextscale = value ElvUI_EltreumUI:WorldTextScale(value) end)
+	ElvUI_EltreumUI.Options.args.cvars.args.camera = E.Libs.ACH:Group(L["Camera"], nil, 2)
+	ElvUI_EltreumUI.Options.args.cvars.args.camera.args.description1 = E.Libs.ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.camera.args.cameraFOV = E.Libs.ACH:Range(L["Camera Field of View"], L["This allows you to zoom out further with the camera to increase the field of view."], 2, { min = 50, max = 90, step = 1 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.cameraFOV end, function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraFOV = value SetCVar('camerafov', value) end, nil)
+	ElvUI_EltreumUI.Options.args.cvars.args.camera.args.cameraDistanceMaxZoomFactor = E.Libs.ACH:Range(L["Camera Distance Max Zoom Factor"], L["Maximum Camera Zoom Out"], 2, { min = 1, max = function() if not (E.Mists or E.Classic) then return 2.6 else return 4 end end, step = 0.1 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor end, function(_, value) E.db.ElvUI_EltreumUI.cvars.cameraDistanceMaxZoomFactor = value SetCVar('cameraDistanceMaxZoomFactor', value) end)
+	ElvUI_EltreumUI.Options.args.cvars.args.nameplates = E.Libs.ACH:Group(L["Nameplates"], nil, 2)
+	ElvUI_EltreumUI.Options.args.cvars.args.nameplates.args.description1 = E.Libs.ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.nameplates.args.SoftTargetInteract = E.Libs.ACH:Toggle(L["Soft Target Interact"], L["Enable Soft Target Interactions"], 2, nil, false,'full',
 		function()
 			if GetCVar('SoftTargetInteract') == '0' then
 				return false
@@ -147,19 +146,19 @@ WorldTextMinSize 6
 				SetCVar('SoftTargetIconFriend', 0)
 			end
 		end, nil)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.description2 = E.Libs.ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateTargetRadialPosition = E.Libs.ACH:Select(L["Nameplate Target Radial Position"], L["When target is off screen, position its nameplate radially around sides and bottom."], 4, {
+	ElvUI_EltreumUI.Options.args.cvars.args.nameplates.args.description2 = E.Libs.ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.nameplates.args.nameplateTargetRadialPosition = E.Libs.ACH:Select(L["Nameplate Target Radial Position"], L["When target is off screen, position its nameplate radially around sides and bottom."], 4, {
 		["1"] = L["Target Only"],
 		["2"] = L["All in Combat"],
 	}, false, nil, function() return GetCVar('nameplateTargetRadialPosition') end, function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateTargetRadialPosition = value SetCVar('nameplateTargetRadialPosition', value) end)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateTargetRadialPosition.style = "radio"
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.description3 = E.Libs.ACH:Description(" ", 5, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateOtherBottomInset = E.Libs.ACH:Range(L["Nameplate Other Bottom Inset"], L["In screen % the inset from the Bottom"], 6, { min = 0.01, max = 1, step = 0.01 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset end, function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset = value SetCVar('nameplateOtherBottomInset', value) SetCVar('nameplateLargeBottomInset', value) end)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateOtherTopInset = E.Libs.ACH:Range(L["Nameplate Other Top Inset"], L["In screen % the inset from the Top"], 6, { min = 0.01, max = 1, step = 0.01 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset end, function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset = value SetCVar('nameplateOtherTopInset', value) SetCVar('nameplateLargeTopInset', value) end)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateOccludedAlphaMult = E.Libs.ACH:Range(L["Nameplate Occluded Alpha"], L["Alpha of Nameplates out of Sight"], 7, { min = 0, max = 1, step = 0.01 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult end, function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult = value SetCVar('nameplateOccludedAlphaMult', value) end)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.nameplateGlobalScale = E.Libs.ACH:Range(L["Nameplate Global Scale"], L["Global Scaling of nameplates after selected, min, and max scale"], 7, { min = 0.1, max = 10, step = 0.01 }, 'full', function() return _G.tonumber(GetCVar('nameplateGlobalScale')) end, function(_, value) SetCVar('nameplateGlobalScale', value) end)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.description4 = E.Libs.ACH:Description(" ", 8, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.nameplates.args.clampTargetNameplateToScreen = E.Libs.ACH:Toggle(L["Clamp Nameplates"], nil, 9, nil, false,'full',
+	ElvUI_EltreumUI.Options.args.cvars.args.nameplates.args.nameplateTargetRadialPosition.style = "radio"
+	ElvUI_EltreumUI.Options.args.cvars.args.nameplates.args.description3 = E.Libs.ACH:Description(" ", 5, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.nameplates.args.nameplateOtherBottomInset = E.Libs.ACH:Range(L["Nameplate Other Bottom Inset"], L["In screen % the inset from the Bottom"], 6, { min = 0.01, max = 1, step = 0.01 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset end, function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherBottomInset = value SetCVar('nameplateOtherBottomInset', value) SetCVar('nameplateLargeBottomInset', value) end)
+	ElvUI_EltreumUI.Options.args.cvars.args.nameplates.args.nameplateOtherTopInset = E.Libs.ACH:Range(L["Nameplate Other Top Inset"], L["In screen % the inset from the Top"], 6, { min = 0.01, max = 1, step = 0.01 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset end, function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOtherTopInset = value SetCVar('nameplateOtherTopInset', value) SetCVar('nameplateLargeTopInset', value) end)
+	ElvUI_EltreumUI.Options.args.cvars.args.nameplates.args.nameplateOccludedAlphaMult = E.Libs.ACH:Range(L["Nameplate Occluded Alpha"], L["Alpha of Nameplates out of Sight"], 7, { min = 0, max = 1, step = 0.01 }, 'full', function() return E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult end, function(_, value) E.db.ElvUI_EltreumUI.cvars.nameplateOccludedAlphaMult = value SetCVar('nameplateOccludedAlphaMult', value) end)
+	ElvUI_EltreumUI.Options.args.cvars.args.nameplates.args.nameplateGlobalScale = E.Libs.ACH:Range(L["Nameplate Global Scale"], L["Global Scaling of nameplates after selected, min, and max scale"], 7, { min = 0.1, max = 10, step = 0.01 }, 'full', function() return _G.tonumber(GetCVar('nameplateGlobalScale')) end, function(_, value) SetCVar('nameplateGlobalScale', value) end)
+	ElvUI_EltreumUI.Options.args.cvars.args.nameplates.args.description4 = E.Libs.ACH:Description(" ", 8, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", E.Retail)
+	ElvUI_EltreumUI.Options.args.cvars.args.nameplates.args.clampTargetNameplateToScreen = E.Libs.ACH:Toggle(L["Clamp Nameplates"], nil, 9, nil, false,'full',
 		function()
 			if GetCVar('clampTargetNameplateToScreen') == '0' then
 				return false
@@ -175,9 +174,27 @@ WorldTextMinSize 6
 				E.db.ElvUI_EltreumUI.cvars.clampTargetNameplateToScreen = 0
 			end
 		end, nil, E.Retail)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics = E.Libs.ACH:Group(L["Graphics"], nil, 2, "tab")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.description1 = E.Libs.ACH:Description(L["AMD FSR"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.forceFSRon = E.Libs.ACH:Toggle(L["Enable AMD FSR even if not scaling"], L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"], 2, nil, false,'full',
+	ElvUI_EltreumUI.Options.args.cvars.args.misc = E.Libs.ACH:Group(L["Misc"], nil, 2, nil, nil,nil,nil,not E.Retail)
+	ElvUI_EltreumUI.Options.args.cvars.args.misc.args.description1 = E.Libs.ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.cvars.args.misc.args.showInGameNavigation = E.Libs.ACH:Toggle(SHOW_IN_GAME_NAVIGATION, nil, 2, nil, false,"full",
+	function()
+		if GetCVar('showInGameNavigation') == '0' then
+			return false
+		elseif GetCVar('showInGameNavigation') == '1' then
+			return true
+		end
+	end, function(_, value)
+		if value == true then
+			SetCVar('showInGameNavigation', 1)
+			E.db.ElvUI_EltreumUI.cvars.showInGameNavigation = 1
+		else
+			SetCVar('showInGameNavigation', 0)
+			E.db.ElvUI_EltreumUI.cvars.showInGameNavigation = 0
+		end
+	end, nil, not E.Retail)
+	ElvUI_EltreumUI.Options.args.cvars.args.graphics = E.Libs.ACH:Group(L["Graphics"], nil, 2)
+	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.description1 = E.Libs.ACH:Description(L["AMD FSR"], 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
+	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.forceFSRon = E.Libs.ACH:Toggle(L["Enable AMD FSR even if not scaling"], L["Forces AMD's FSR to sharpen image even if you aren't running a lower resolution"], 2, nil, false,'full',
 		function()
 			if GetCVar('ResampleAlwaysSharpen') == '0' then
 				return false
@@ -191,17 +208,17 @@ WorldTextMinSize 6
 				SetCVar('ResampleAlwaysSharpen', 0)
 			end
 		end)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.forceFSRsharpness = E.Libs.ACH:Range(_G.RESAMPLE_QUALITY_FSR, nil, 3, { min = 0, max = 2, step = 0.1 }, 'full', function() return _G.tonumber(GetCVar('ResampleSharpness')) end, function(_, value) SetCVar('ResampleSharpness', value) end, function() if GetCVar('ResampleAlwaysSharpen') == '1' then return false elseif GetCVar('ResampleAlwaysSharpen') == '0' then return true end end)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.description2 = E.Libs.ACH:Description(LOW_LATENCY_MODE, 4, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.lowlatencycvar = E.Libs.ACH:Select(" ",OPTION_TOOLTIP_LOW_LATENCY_MODE, 5, {
+	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.forceFSRsharpness = E.Libs.ACH:Range(_G.RESAMPLE_QUALITY_FSR, nil, 3, { min = 0, max = 2, step = 0.1 }, 'full', function() return _G.tonumber(GetCVar('ResampleSharpness')) end, function(_, value) SetCVar('ResampleSharpness', value) end, function() if GetCVar('ResampleAlwaysSharpen') == '1' then return false elseif GetCVar('ResampleAlwaysSharpen') == '0' then return true end end)
+	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.description2 = E.Libs.ACH:Description(LOW_LATENCY_MODE, 4, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.lowlatencycvar = E.Libs.ACH:Select(" ",OPTION_TOOLTIP_LOW_LATENCY_MODE, 5, {
 		["0"] = VIDEO_OPTIONS_DISABLED,
 		["1"] = VIDEO_OPTIONS_BUILTIN,
 		["2"] = VIDEO_OPTIONS_NVIDIA_REFLEX,
 		--["3"] = VIDEO_OPTIONS_NVIDIA_REFLEX_BOOST,
 	}, false, nil, function() return GetCVar('LowLatencyMode') end, function(_, value) local number = _G.tonumber(value) SetCVar('LowLatencyMode', number) end, nil)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.lowlatencycvar.style = "radio"
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.description3 = E.Libs.ACH:Description(L["Dynamic Render Scale"], 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.dynamicrenderscaleenable = E.Libs.ACH:Toggle(L["Lowers render scale if GPU bound to hit Target FPS."], L["Note this feature is in BETA.\nKnown issues:\n - May cause hitching.\n - May behave poorly with vsync on."], 7, nil, false,'full',
+	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.lowlatencycvar.style = "radio"
+	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.description3 = E.Libs.ACH:Description(L["Dynamic Render Scale"], 6, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.dynamicrenderscaleenable = E.Libs.ACH:Toggle(L["Lowers render scale if GPU bound to hit Target FPS."], L["Note this feature is in BETA.\nKnown issues:\n - May cause hitching.\n - May behave poorly with vsync on."], 7, nil, false,'full',
 		function()
 			if GetCVar('DynamicRenderScale') == '0' then
 				return false
@@ -215,10 +232,10 @@ WorldTextMinSize 6
 				SetCVar('DynamicRenderScale', 0)
 			end
 		end)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.dynamicrenderscaleenable.descStyle = "inline"
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.dynamicrenderscalepercentage = E.Libs.ACH:Range(L["Dynamic Render Scale Minimum"], L["Lowest Render Scale used"], 8, { min = 0.1, max = 1, step = 0.01 }, 'full', function() return _G.tonumber(GetCVar('DynamicRenderScaleMin')) end, function(_, value) SetCVar('DynamicRenderScaleMin', _G.tonumber(value)) E.db.ElvUI_EltreumUI.cvars.dynamicrenderscalemin = _G.tonumber(value) end, function() if GetCVar('DynamicRenderScale') == '1' then return false elseif GetCVar('DynamicRenderScale') == '0' then return true end end)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.description4 = E.Libs.ACH:Description("", 19, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.graphics.args.preloadNonCritical = E.Libs.ACH:Toggle(_G.DISABLE.." ".."worldPreloadNonCritical", L["Disable the worldPreloadNonCritical CVar, doing so can improve loading times."], 20, nil, false,'full',
+	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.dynamicrenderscaleenable.descStyle = "inline"
+	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.dynamicrenderscalepercentage = E.Libs.ACH:Range(L["Dynamic Render Scale Minimum"], L["Lowest Render Scale used"], 8, { min = 0.1, max = 1, step = 0.01 }, 'full', function() return _G.tonumber(GetCVar('DynamicRenderScaleMin')) end, function(_, value) SetCVar('DynamicRenderScaleMin', _G.tonumber(value)) E.db.ElvUI_EltreumUI.cvars.dynamicrenderscalemin = _G.tonumber(value) end, function() if GetCVar('DynamicRenderScale') == '1' then return false elseif GetCVar('DynamicRenderScale') == '0' then return true end end)
+	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.description4 = E.Libs.ACH:Description("", 19, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full")
+	ElvUI_EltreumUI.Options.args.cvars.args.graphics.args.preloadNonCritical = E.Libs.ACH:Toggle(_G.DISABLE.." ".."worldPreloadNonCritical", L["Disable the worldPreloadNonCritical CVar, doing so can improve loading times."], 20, nil, false,'full',
 		function()
 			if GetCVar('worldPreloadNonCritical') == '2' then
 				return false
@@ -234,51 +251,4 @@ WorldTextMinSize 6
 				SetCVar('worldPreloadNonCritical', 2)
 			end
 		end)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.misc = E.Libs.ACH:Group(L["Misc"], nil, 2, "tab", nil,nil,nil,not E.Retail)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.misc.args.description1 = E.Libs.ACH:Description(" ", 1, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.misc.args.showInGameNavigation = E.Libs.ACH:Toggle(SHOW_IN_GAME_NAVIGATION, nil, 2, nil, false,"full",
-		function()
-			if GetCVar('showInGameNavigation') == '0' then
-				return false
-			elseif GetCVar('showInGameNavigation') == '1' then
-				return true
-			end
-		end, function(_, value)
-			if value == true then
-				SetCVar('showInGameNavigation', 1)
-				E.db.ElvUI_EltreumUI.cvars.showInGameNavigation = 1
-			else
-				SetCVar('showInGameNavigation', 0)
-				E.db.ElvUI_EltreumUI.cvars.showInGameNavigation = 0
-			end
-		end, nil, not E.Retail)
-
-	--the set default for these settings work, so not sure this is needed
-	--[[ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.misc.args.description2 = E.Libs.ACH:Description(" ", 3, nil, 'Interface\\AddOns\\ElvUI_EltreumUI\\Media\\Textures\\EltreumHeader', nil, 3240, 1, "full", not E.Retail)
-	ElvUI_EltreumUI.Options.args.cvars.args.othercvars.args.misc.args.resetitemquality = E.Libs.ACH:Execute(COLORS_ITEM_QUALITY.." "..COLORS.." "..RESET, nil, 7, function()
-		_G.ITEM_QUALITY_COLORS[0]["r"] = 157/255 --poor
-		_G.ITEM_QUALITY_COLORS[0]["g"] = 157/255 --poor
-		_G.ITEM_QUALITY_COLORS[0]["b"] = 157/255 --poor
-		_G.ITEM_QUALITY_COLORS[1]["r"] = 240/255 --common
-		_G.ITEM_QUALITY_COLORS[1]["g"] = 1 --common
-		_G.ITEM_QUALITY_COLORS[1]["b"] = 251/255 --common
-		_G.ITEM_QUALITY_COLORS[2]["r"] = 30/255 --uncommon
-		_G.ITEM_QUALITY_COLORS[2]["g"] = 1 --uncommon
-		_G.ITEM_QUALITY_COLORS[2]["b"] = 0 --uncommon
-		_G.ITEM_QUALITY_COLORS[3]["r"] = 0 --rare
-		_G.ITEM_QUALITY_COLORS[3]["g"] = 112/255 --rare
-		_G.ITEM_QUALITY_COLORS[3]["b"] = 221/255 --rare
-		_G.ITEM_QUALITY_COLORS[4]["r"] = 163/255 --epic
-		_G.ITEM_QUALITY_COLORS[4]["g"] = 53/255 --epic
-		_G.ITEM_QUALITY_COLORS[4]["b"] = 238/255 --epic
-		_G.ITEM_QUALITY_COLORS[5]["r"] = 1 --legendary
-		_G.ITEM_QUALITY_COLORS[5]["g"] = 128/255 --legendary
-		_G.ITEM_QUALITY_COLORS[5]["b"] = 0 --legendary
-		_G.ITEM_QUALITY_COLORS[6]["r"] = 230/255 --artifact
-		_G.ITEM_QUALITY_COLORS[6]["g"] = 204/255 --artifact
-		_G.ITEM_QUALITY_COLORS[6]["b"] = 128/255 --artifact
-		_G.ITEM_QUALITY_COLORS[7]["r"] = 0 --heirloom
-		_G.ITEM_QUALITY_COLORS[7]["g"] = 204/255 --heirloom
-		_G.ITEM_QUALITY_COLORS[7]["b"] = 1 --heirloom
-	end, nil, true,'full',nil,nil,nil,not E.Retail)]]
 end

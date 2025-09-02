@@ -7,8 +7,8 @@ function ElvUI_EltreumUI:DatabaseConversions(forced)
 	if E.private.ElvUI_EltreumUI.install_version ~= nil then
 		E.PopupDialogs["ELTRUISMDBCONVERT"] = {
 			text = L["Eltruism database was converted.\n|cff82B4ffThe Following profiles were updated:|r\n%s\n\n|cff82B4ffPrivate settings were updated for the following private profiles:|r\n%s\n\n|cff82B4ffIf you have any issues please report in Discord or open a ticket.|r\n|cffff0000A Reload is necessary to save this conversion and fix variables|r"],
-			OnAccept = ReloadUI,
-			button1 = ACCEPT,
+			OnAccept = _G.ReloadUI,
+			button1 = _G.ACCEPT,
 			timeout = 0,
 			whileDead = 1,
 			hideOnEscape = false,

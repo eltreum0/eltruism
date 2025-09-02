@@ -45,7 +45,7 @@ local function hookCell(frame,region,solo,isPet)
 			if region.unitid and not region.EltruismHook then
 				if frame and frame.SetVertexColor then
 					hooksecurefunc(frame,"SetVertexColor", function()
-						local _, englishClass = UnitClass(region.unitid)
+						local _, englishClass = _G.UnitClass(region.unitid)
 						--gradient
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
@@ -81,7 +81,7 @@ local function hookCell(frame,region,solo,isPet)
 			if frame and frame.SetStatusBarColor and not frame.EltruismHook then
 				hooksecurefunc(frame,"SetStatusBarColor", function()
 					if frame:GetParent().__unitGuid then
-						local _, englishClass = GetPlayerInfoByGUID(frame:GetParent().__unitGuid)
+						local _, englishClass = _G.GetPlayerInfoByGUID(frame:GetParent().__unitGuid)
 						--gradient
 						if E.db.ElvUI_EltreumUI.unitframes.gradientmode.enable then
 							if E.db.ElvUI_EltreumUI.unitframes.gradientmode.customcolor then
@@ -169,7 +169,7 @@ function ElvUI_EltreumUI:EltruismCell()
 		end
 
 		--raid
-		if _G["CellRaidFrame"] and IsInGroup() then
+		if _G["CellRaidFrame"] and _G.IsInGroup() then
 			for i = 1, 8 do
 				if _G["CellRaidFrameHeader"..i] then
 					for v = 1, 5 do
@@ -201,7 +201,7 @@ function ElvUI_EltreumUI:EltruismCell()
 		end
 
 		--party
-		if _G["CellPartyFrame"] and IsInGroup() then
+		if _G["CellPartyFrame"] and _G.IsInGroup() then
 			if _G["CellPartyFrameHeader"] then
 				for i = 1, 5 do
 					if _G["CellPartyFrameHeaderUnitButton"..i] and _G["CellPartyFrameHeaderUnitButton"..i.."HealthBar"] then

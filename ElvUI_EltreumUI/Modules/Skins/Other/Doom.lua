@@ -78,7 +78,7 @@ function ElvUI_EltreumUI:PreviewDoom()
 
 	if DCP:GetAlpha() == 1 and E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil then
 		local tts = GetSpellInfo(33786)
-		C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts.name, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
+		C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts.name, _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
 	end
 
 	wasPreviewing = true
@@ -148,7 +148,7 @@ function ElvUI_EltreumUI:Doom()
 		end
 
 		local function GetPetActionIndexByName(name)
-			for i=1, NUM_PET_ACTION_SLOTS, 1 do
+			for i=1, _G.NUM_PET_ACTION_SLOTS, 1 do
 				if (GetPetActionInfo(i) == name) then
 					return i
 				end
@@ -285,7 +285,7 @@ function ElvUI_EltreumUI:Doom()
 				end
 			end
 
-			if (#animating > 0) and not IsInCinematicScene() then
+			if (#animating > 0) and not _G.IsInCinematicScene() then
 				runtimer = runtimer + update
 				if (runtimer > (E.db.ElvUI_EltreumUI.skins.doom.fadeInTime + E.db.ElvUI_EltreumUI.skins.doom.holdTime + E.db.ElvUI_EltreumUI.skins.doom.fadeOutTime)) then
 					tremove(animating,1)
@@ -302,12 +302,12 @@ function ElvUI_EltreumUI:Doom()
 						if E.db.ElvUI_EltreumUI.skins.doom.tts and animating[1][3] then --and animating[1][3] ~= nil then
 							if E.Mists then --cata on 29/10/2024 seems to not have fully migrated like classic era
 								if E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil then
-									C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, animating[1][3], Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
+									C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, animating[1][3], _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
 								end
 							else
 								local tts = GetSpellInfo(animating[1][3])
 								if E.db.ElvUI_EltreumUI.skins.doom.ttsvoice ~= nil and tts ~= nil then
-									C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts.name, Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
+									C_VoiceChat.SpeakText(E.db.ElvUI_EltreumUI.skins.doom.ttsvoice, tts.name, _G.Enum.VoiceTtsDestination.LocalPlayback, 0, E.db.ElvUI_EltreumUI.skins.doom.ttsvolume)
 								end
 							end
 						end
@@ -366,7 +366,7 @@ function ElvUI_EltreumUI:Doom()
 		function DCP:COMBAT_LOG_EVENT_UNFILTERED()
 			local _,event,_,_,_,sourceFlags,_,_,_,_,_,spellID = CombatLogGetCurrentEventInfo()
 			if (event == "SPELL_CAST_SUCCESS") then
-				if (bit.band(sourceFlags,COMBATLOG_OBJECT_TYPE_PET) == COMBATLOG_OBJECT_TYPE_PET and bit.band(sourceFlags,COMBATLOG_OBJECT_AFFILIATION_MINE) == COMBATLOG_OBJECT_AFFILIATION_MINE) then
+				if (_G.bit.band(sourceFlags,_G.COMBATLOG_OBJECT_TYPE_PET) == _G.COMBATLOG_OBJECT_TYPE_PET and _G.bit.band(sourceFlags,_G.COMBATLOG_OBJECT_AFFILIATION_MINE) == _G.COMBATLOG_OBJECT_AFFILIATION_MINE) then
 					local name
 					local spelltable = GetSpellInfo(spellID)
 					name = spelltable.name
@@ -412,8 +412,8 @@ function ElvUI_EltreumUI:Doom()
 			end
 		end)
 
-		hooksecurefunc(C_Container, "UseContainerItem", function(bag,slot)
-			local itemID = C_Container.GetContainerItemID(bag, slot)
+		hooksecurefunc(_G.C_Container, "UseContainerItem", function(bag,slot)
+			local itemID = _G.C_Container.GetContainerItemID(bag, slot)
 
 			if (itemID) then
 				local texture = select(10, GetItemInfo(itemID))

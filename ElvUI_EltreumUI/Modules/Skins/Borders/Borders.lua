@@ -70,13 +70,13 @@ end
 
 function ElvUI_EltreumUI:GetButtonCasterForBorderColor(button)
 	if E.db.ElvUI_EltreumUI.borders.classcolor then
-		if button.caster then
-			if UnitIsPlayer(button.caster) or (E.Retail and UnitInPartyIsAI(button.caster)) then
-				local _, classunit = UnitClass(button.caster)
+		if button.aura.sourceUnit then
+			if UnitIsPlayer(button.aura.sourceUnit) or (E.Retail and UnitInPartyIsAI(button.caster)) then
+				local _, classunit = UnitClass(button.aura.sourceUnit)
 				classcolor2 = E:ClassColor(classunit, true)
 				classcolor2check = true
 			else
-				local reactiontarget = UnitReaction(button.caster, "player")
+				local reactiontarget = UnitReaction(button.aura.sourceUnit, "player")
 				if reactiontarget then
 					if reactiontarget >= 5 then
 						classcolor2 = ElvUI_EltreumUI:GetClassColorsRGB("NPCFRIENDLY")
@@ -2019,29 +2019,29 @@ local function HandleUFAuraBorder(button,isNamePlateElement)
 		end
 	else
 		auraborder = _G["EltruismAuraBorder"..button:GetName()]
-		if button.filter == "HELPFUL" then
-			if isNamePlateElement then
-				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.npbuffsizex, E.db.ElvUI_EltreumUI.borders.npbuffsizey)
-			else
-				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufbuffsizex, E.db.ElvUI_EltreumUI.borders.ufbuffsizey)
-			end
-			if classcolor2check then
-				auraborder:SetBackdropBorderColor(classcolor2.r, classcolor2.g, classcolor2.b, 1)
-			else
-				auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			end
+	end
+	if button.filter == "HELPFUL" then
+		if isNamePlateElement then
+			auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.npbuffsizex, E.db.ElvUI_EltreumUI.borders.npbuffsizey)
 		else
-			if isNamePlateElement then
-				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.npdebuffsizex, E.db.ElvUI_EltreumUI.borders.npdebuffsizey)
-			else
-				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufdebuffsizex, E.db.ElvUI_EltreumUI.borders.ufdebuffsizey)
-			end
-			local r,g,b = button:GetBackdropBorderColor()
-			if r then
-				auraborder:SetBackdropBorderColor(r,g,b, 1)
-			else
-				auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
-			end
+			auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufbuffsizex, E.db.ElvUI_EltreumUI.borders.ufbuffsizey)
+		end
+		if classcolor2check then
+			auraborder:SetBackdropBorderColor(classcolor2.r, classcolor2.g, classcolor2.b, 1)
+		else
+			auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+		end
+	else
+		if isNamePlateElement then
+			auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.npdebuffsizex, E.db.ElvUI_EltreumUI.borders.npdebuffsizey)
+		else
+			auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufdebuffsizex, E.db.ElvUI_EltreumUI.borders.ufdebuffsizey)
+		end
+		local r,g,b = button:GetBackdropBorderColor()
+		if r then
+			auraborder:SetBackdropBorderColor(r,g,b, 1)
+		else
+			auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
 		end
 	end
 	if E.db.ElvUI_EltreumUI.borders.universalborders and button.eltruismuniversalborders then
@@ -2054,8 +2054,8 @@ function ElvUI_EltreumUI:UFAuraBorders(_,button)
 	if button and E.db.ElvUI_EltreumUI.borders.borders and E.private.auras.enable then
 		if button.isNamePlateElement and E.db.ElvUI_EltreumUI.borders.aurabordernp then
 			HandleUFAuraBorder(button,button.isNamePlateElement)
-		elseif not button.isNamePlateElement and E.db.ElvUI_EltreumUI.borders.auraborderuf then
-			HandleUFAuraBorder(button)
+		elseif button.isUnitFrameElement and E.db.ElvUI_EltreumUI.borders.auraborderuf then
+			HandleUFAuraBorder(button,false)
 		end
 	end
 end
@@ -2081,8 +2081,8 @@ function ElvUI_EltreumUI:TooltipBorder()
 	--tooltipborder:SetSize(100, 100)
 
 	if not tooltipborder.Hooks then
-	 	local function FixSize()
-	 		if _G.GameTooltipStatusBar and _G.GameTooltipStatusBar:IsShown() and (_G.GameTooltipStatusBar:GetAlpha() ~= 0) then --isshown and isvisible always return true
+		local function FixSize()
+			if _G.GameTooltipStatusBar and _G.GameTooltipStatusBar:IsShown() and (_G.GameTooltipStatusBar:GetAlpha() ~= 0) then --isshown and isvisible always return true
 				tthpy = _G.select(2,_G.GameTooltipStatusBar:GetSize())
 				ttx,tty = _G.GameTooltip:GetSize()
 				if E.db.tooltip.healthBar.statusPosition == "TOP" then
@@ -2096,10 +2096,10 @@ function ElvUI_EltreumUI:TooltipBorder()
 				tooltipborder:SetPoint("CENTER", _G.GameTooltip, "CENTER", 0, 0)
 				tooltipborder:SetSize(ttx+E.db.ElvUI_EltreumUI.borders.tooltipsizex, tty+E.db.ElvUI_EltreumUI.borders.tooltipsizey)
 			end
-	 	end
+		end
 
-	 	local function FixColor()
-	 		if _G.GameTooltip:GetUnit() and E.db.ElvUI_EltreumUI.borders.classcolor then --has unit
+		local function FixColor()
+			if _G.GameTooltip:GetUnit() and E.db.ElvUI_EltreumUI.borders.classcolor then --has unit
 				local _,unittp = _G.GameTooltip:GetUnit() --can error for target of target npc
 				if not unittp then
 					if UnitExists("targettarget") then
@@ -2114,7 +2114,7 @@ function ElvUI_EltreumUI:TooltipBorder()
 					local valuecolors = E:ClassColor(classunit, true)
 					tooltipborder:SetBackdropBorderColor(valuecolors.r, valuecolors.g, valuecolors.b, 1)
 				else
-					local reactionColor = ElvUF.colors.reaction[reaction]
+					local reactionColor = _G.ElvUF.colors.reaction[reaction]
 					if reactionColor then
 						tooltipborder:SetBackdropBorderColor(reactionColor.r, reactionColor.g, reactionColor.b, 1)
 					end
@@ -2130,7 +2130,7 @@ function ElvUI_EltreumUI:TooltipBorder()
 			else --is regular tooltip
 				tooltipborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
 			end
-	 	end
+		end
 
 		local function TooltipBorderFix()
 			if _G.GameTooltip.shadow then

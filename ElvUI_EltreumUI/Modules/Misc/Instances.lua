@@ -238,7 +238,7 @@ instancedifficulty:SetScript("OnEvent", function()
 		elseif DifficultyID == 208 then --delve
 			--https://warcraft.wiki.gg/wiki/API_C_UIWidgetManager.GetScenarioHeaderDelvesWidgetVisualizationInfo
 			----ScenarioObjectiveTracker.ContentsFrame.1914a7047b0.WidgetContainer.192440b2760 is the frame with the id, would need a more complex thing to get other ids, use the tier one instead
-			local delveinfo = C_UIWidgetManager.GetScenarioHeaderDelvesWidgetVisualizationInfo(6183) --6183 is a tier delve
+			local delveinfo = _G.C_UIWidgetManager.GetScenarioHeaderDelvesWidgetVisualizationInfo(6183) --6183 is a tier delve
 			if delveinfo and delveinfo.shownState == 1 then
 				instancedifficulty.Text:SetText(E.db.ElvUI_EltreumUI.skins.instances.delve.." "..delveinfo.tierText)
 				backuptext = E.db.ElvUI_EltreumUI.skins.instances.delve.." "..delveinfo.tierText

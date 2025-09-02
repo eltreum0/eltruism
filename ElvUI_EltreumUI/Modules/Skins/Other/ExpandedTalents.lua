@@ -26,7 +26,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 				end
 
 				local function adjustscale()
-					if not InCombatLockdown() then
+					if not _G.InCombatLockdown() then
 						_G.PlayerSpellsFrame:SetScale(E.db.ElvUI_EltreumUI.skins.expandedtalentscale)
 					end
 				end
@@ -88,7 +88,7 @@ function ElvUI_EltreumUI:ExpandedTalents()
 					end
 
 					--fix rank size
-					for i =1, MAX_NUM_TALENTS do
+					for i =1, _G.MAX_NUM_TALENTS do
 						if _G["PlayerTalentFrameTalent"..i.."Rank"] then
 							_G["PlayerTalentFrameTalent"..i.."Rank"]:SetFont(E.LSM:Fetch('font', E.db.general.font), E.db.general.fontSize+4, ElvUI_EltreumUI:FontFlag(E.db.general.fontStyle))
 						end

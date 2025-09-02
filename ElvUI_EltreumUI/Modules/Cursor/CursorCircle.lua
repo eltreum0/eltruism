@@ -494,11 +494,11 @@ function ElvUI_EltreumUI:CastCursor()
 		cursorframe:RegisterEvent("FIRST_FRAME_RENDERED")
 		cursorframe:RegisterEvent("PLAYER_LOGIN")
 		cursorframe:SetScript("OnEvent", function()
-			if InCombatLockdown() then UIErrorsFrame:AddMessage(ERR_NOT_IN_COMBAT, 1.0, 0.2, 0.2, 1.0) end
+			if InCombatLockdown() then _G.UIErrorsFrame:AddMessage(_G.ERR_NOT_IN_COMBAT, 1.0, 0.2, 0.2, 1.0) end
 			if not InCombatLockdown() then
 				--print('cursorframe loaded')
 				collectgarbage()
-				ResetCPUUsage()
+				_G.ResetCPUUsage()
 				cursorframe:UnregisterAllEvents()
 				cursorframe:SetScript("OnEvent", nil)
 				Cursor.db = Defaults.cursor

@@ -53,6 +53,8 @@ local db = {
 	readyTime = 4.0,
 	gracePeriod = 2.2, --time after cd start that pressing a skill will show the cd left
 }
+local textsize = 15
+local cooldownsize = 28
 
 local EltruismCooldownFrame = CreateFrame("MessageFrame", "EltruismCooldown", UIParent)
 local EltruismCooldownText = EltruismCooldownFrame:CreateFontString("EltruismCoooldownText", "OVERLAY", "GameFontNormal")
@@ -64,8 +66,8 @@ EltruismCooldownMask:SetAllPoints(EltruismCooldownFrame)
 EltruismCooldownFrame:Hide()
 
 function ElvUI_EltreumUI:CooldownEnable()
-	local cooldownsize = 28
-	local textsize = 15
+
+
 	if E.db.ElvUI_EltreumUI then
 		if not E.db.ElvUI_EltreumUI.cursors.cursorcursor then
 			cooldownsize = 28
@@ -303,7 +305,7 @@ end
 
 local function findPetActionIndexForSpell(spell)
 	if not spell then return end
-	for i = 1, NUM_PET_ACTION_SLOTS do
+	for i = 1, _G.NUM_PET_ACTION_SLOTS do
 		local namepet, _, _, isToken = GetPetActionInfo(i)
 		if isToken then namepet = _G[namepet] end
 		if namepet == spell and E.db.ElvUI_EltreumUI.cursors.cursor.petcooldown then

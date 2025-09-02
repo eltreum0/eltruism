@@ -598,7 +598,7 @@ function ElvUI_EltreumUI:PortraitFix(unit)
 			if newrotation ~= 0 then
 				local db = self.db
 				if not db then return end
-				self:SetRotation(rad(newrotation))
+				self:SetRotation(_G.rad(newrotation))
 				self:SetViewTranslation(xOffset * 100, db.yOffset * 100)
 			else
 				--prob couldnt get model bc it was nil from PEW, so reset stuff

@@ -22,7 +22,6 @@ local GetCVar = _G.C_CVar and _G.C_CVar.GetCVar or _G.GetCVar
 local InCombatLockdown = _G.InCombatLockdown
 local SetCVar = _G.C_CVar and _G.C_CVar.SetCVar or _G.SetCVar
 local TimeSinceLastUpdate = 0
-local nameplateShowOnlyNames
 local UnitName = _G.UnitName
 local IsResting = _G.IsResting
 local IsPlayerSpell = _G.C_SpellBook and _G.C_SpellBook.IsSpellKnown or _G.IsPlayerSpell
@@ -32,6 +31,7 @@ local UnitAffectingCombat = _G.UnitAffectingCombat
 local GetNumRegions = _G.GetNumRegions
 local pairs = _G.pairs
 local UnitInPartyIsAI = _G.UnitInPartyIsAI
+local C_NamePlate = _G.C_NamePlate
 
 -- Different Debuffs/Buffs on nameplates
 local ONUPDATE_INTERVAL = 0.1
@@ -48,11 +48,11 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 		if not string.find(unit, "nameplate") then
 			return
 		else
-			--[[if button.caster ~= "player" then
+			--[[if button.aura.sourceUnit ~= "player" then
 				button:Hide()
 			end]]
 
-			--[[if UnitIsUnit(button.caster, "player") then
+			--[[if UnitIsUnit(button.aura.sourceUnit, "player") then
 				button:SetSize(50,50)
 			end]]
 
@@ -107,7 +107,7 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 							local debufftime = tonumber(button.Cooldown.timer.text:GetText())
 							if E.db.ElvUI_EltreumUI.nameplates.nameplateOptions.npglow then
 								if debufftime ~= nil and debufftime <= E.db.ElvUI_EltreumUI.glow.numberdebuff and debufftime > 0 then
-									if button.caster and UnitIsUnit(button.caster, "player") then
+									if button.aura.sourceUnit and UnitIsUnit(button.aura.sourceUnit, "player") then
 										if E.db.ElvUI_EltreumUI.glow.pixel then
 											LCG.PixelGlow_Start(button, glowcolor, 6, 0.8, 4, 2, 1, 1, false, nil)
 											if E.db.ElvUI_EltreumUI.glow.gradient then

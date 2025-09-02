@@ -137,9 +137,9 @@ local function ColorSysMsgs(_, _, message, ...)
 		end
 		if message:find(rollstring) then
 			--from this deleted user on the addons discord (ty whoever you are) https://discord.com/channels/168296152670797824/168296152670797824/558463766828679188
-			local _rollMessageTailRegex = RANDOM_ROLL_RESULT:gsub("%(", "%%("):gsub("%)", "%%)"):gsub("%%d", "(%%d+)"):gsub("%%%d+%$d", "(%%d+)"):gsub("%%s", ""):gsub("%%%d+%$s", "").. "$"
+			local _rollMessageTailRegex = _G.RANDOM_ROLL_RESULT:gsub("%(", "%%("):gsub("%)", "%%)"):gsub("%%d", "(%%d+)"):gsub("%%%d+%$d", "(%%d+)"):gsub("%%s", ""):gsub("%%%d+%$s", "").. "$"
 			local name = message:gsub("%s*" .. _rollMessageTailRegex, "")
-			local _, unitClass = UnitClass(name)
+			local _, unitClass = _G.UnitClass(name)
 			if unitClass then
 				local msg = (string.format("|cff"..classcolorsescape[unitClass]..message.."|r"))
 				if msg:find(rollstring.." 1 ") then

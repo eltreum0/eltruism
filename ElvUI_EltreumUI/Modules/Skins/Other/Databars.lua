@@ -22,20 +22,20 @@ function ElvUI_EltreumUI:GradientDatabarRep()
 		local customColors = DB.db.colors.useCustomFactionColors
 		local _, reaction, factionID
 		if E.Retail then
-			local watchedFactionData = C_Reputation.GetWatchedFactionData()
+			local watchedFactionData = _G.C_Reputation.GetWatchedFactionData()
 			if not watchedFactionData then return end
 			reaction, factionID = watchedFactionData.reaction, watchedFactionData.factionID
 			if factionID then
-				local info = factionID and C_GossipInfo.GetFriendshipReputation(factionID)
+				local info = factionID and _G.C_GossipInfo.GetFriendshipReputation(factionID)
 				if info and info.friendshipFactionID then
-					local isMajorFaction = factionID and C_Reputation.IsMajorFaction(factionID)
+					local isMajorFaction = factionID and _G.C_Reputation.IsMajorFaction(factionID)
 					if isMajorFaction then
 						reaction = 10
 					end
 				end
 			end
 		else
-			_, reaction = GetWatchedFactionInfo()
+			_, reaction = _G.GetWatchedFactionInfo()
 		end
 		if reaction then
 			local customReaction = reaction == 9 or reaction == 10 -- 9 is paragon, 10 is renown
@@ -113,7 +113,7 @@ if E.Retail then
 end
 
 --add class color bar on the bottom
-local EltruismDataTextTexture = CreateFrame("FRAME")
+local EltruismDataTextTexture = _G.CreateFrame("FRAME")
 function ElvUI_EltreumUI:BottomDatabarTexture()
 	local gradtop = false
 	local relativePoint = "BOTTOM"
@@ -123,7 +123,7 @@ function ElvUI_EltreumUI:BottomDatabarTexture()
 	end
 
 	if E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbar and not EltruismDataTextTexture.texture then
-		local width = ceil(E.screenWidth)
+		local width = _G.ceil(E.screenWidth)
 		EltruismDataTextTexture:SetSize(width,16)
 		EltruismDataTextTexture.texture = EltruismDataTextTexture:CreateTexture(nil,"BACKGROUND")
 		if _G["DTPanelEltruismDataTextMover"] and _G["DTPanelEltruismDataTextMover"].parent then
@@ -142,7 +142,7 @@ function ElvUI_EltreumUI:BottomDatabarTexture()
 				EltruismDataTextTexture.texture:SetTexture("Interface\\Addons\\ElvUI_EltreumUI\\Media\\Statusbar\\EltreumFade3.tga")
 			end
 		else
-			EltruismDataTextTexture:SetPoint("BOTTOM", UIParent)
+			EltruismDataTextTexture:SetPoint("BOTTOM", _G.UIParent)
 		end
 		if E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.custom then
 			EltruismDataTextTexture.texture:SetVertexColor(E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.r, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.g, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolor.b, E.db.ElvUI_EltreumUI.otherstuff.datatextclasscolorbaralpha)

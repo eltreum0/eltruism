@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 
 if not E.private.ElvUI_EltreumUI then return end
 if not E.private.ElvUI_EltreumUI.install_version then return end

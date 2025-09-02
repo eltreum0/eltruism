@@ -84,7 +84,7 @@ function ElvUI_EltreumUI:EltruismRareScanner()
 		end
 
 		--hooksecurefunc(scanner_button,"ShowButton",function()
-		hooksecurefunc(rarescannerbutton.LootBar.itemFramesPool,"ShowIfReady",function() --item delay so hook later function
+		_G.hooksecurefunc(rarescannerbutton.LootBar.itemFramesPool,"ShowIfReady",function() --item delay so hook later function
 			E:Delay(0, function()
 				if _G["LootBar"] and _G["LootBar"]:IsVisible() then
 					for _, v in pairs{_G["LootBar"]:GetChildren()} do

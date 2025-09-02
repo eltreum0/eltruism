@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local _, _, V = unpack(ElvUI)
 
 -- Eltreum UI Private DB
 V.ElvUI_EltreumUI = {

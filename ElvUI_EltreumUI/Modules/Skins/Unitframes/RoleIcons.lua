@@ -27,7 +27,7 @@ function ElvUI_EltreumUI:UnitframeRoleIcons()
 			}
 		end
 		if IsAddOnLoaded("ElvUI_SLE") then
-			local SLE = unpack(ElvUI_SLE)
+			local SLE = unpack(_G.ElvUI_SLE)
 			local styles = {
 				["Eltruism"] = "ELTRUISM",
 				["Atwood ElvUI"] = "ATWOODELVUI",
