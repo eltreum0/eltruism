@@ -148,7 +148,7 @@ function ElvUI_EltreumUI:PLAYER_ENTERING_WORLD(_, initLogin)
 	ElvUI_EltreumUI:HardcoreDeath() -- hardcore death sound/animation
 	ElvUI_EltreumUI:BagProfessions() -- add profession buttons to bags
 	ElvUI_EltreumUI:BordersTargetChanged() --fix borders for focus
-	ElvUI_EltreumUI:PerformanceCVars(true) --set some cvars that reset on login
+	--ElvUI_EltreumUI:PerformanceCVars(true) --set some cvars that reset on login
 end
 
 function ElvUI_EltreumUI:Initialize()
