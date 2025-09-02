@@ -70,13 +70,13 @@ end
 
 function ElvUI_EltreumUI:GetButtonCasterForBorderColor(button)
 	if E.db.ElvUI_EltreumUI.borders.classcolor then
-		if button.caster then
-			if UnitIsPlayer(button.caster) or (E.Retail and UnitInPartyIsAI(button.caster)) then
-				local _, classunit = UnitClass(button.caster)
+		if button.aura.sourceUnit then
+			if UnitIsPlayer(button.aura.sourceUnit) or (E.Retail and UnitInPartyIsAI(button.caster)) then
+				local _, classunit = UnitClass(button.aura.sourceUnit)
 				classcolor2 = E:ClassColor(classunit, true)
 				classcolor2check = true
 			else
-				local reactiontarget = UnitReaction(button.caster, "player")
+				local reactiontarget = UnitReaction(button.aura.sourceUnit, "player")
 				if reactiontarget then
 					if reactiontarget >= 5 then
 						classcolor2 = ElvUI_EltreumUI:GetClassColorsRGB("NPCFRIENDLY")
@@ -2019,29 +2019,29 @@ local function HandleUFAuraBorder(button,isNamePlateElement)
 		end
 	else
 		auraborder = _G["EltruismAuraBorder"..button:GetName()]
-		if button.filter == "HELPFUL" then
-			if isNamePlateElement then
-				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.npbuffsizex, E.db.ElvUI_EltreumUI.borders.npbuffsizey)
-			else
-				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufbuffsizex, E.db.ElvUI_EltreumUI.borders.ufbuffsizey)
-			end
-			if classcolor2check then
-				auraborder:SetBackdropBorderColor(classcolor2.r, classcolor2.g, classcolor2.b, 1)
-			else
-				auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
-			end
+	end
+	if button.filter == "HELPFUL" then
+		if isNamePlateElement then
+			auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.npbuffsizex, E.db.ElvUI_EltreumUI.borders.npbuffsizey)
 		else
-			if isNamePlateElement then
-				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.npdebuffsizex, E.db.ElvUI_EltreumUI.borders.npdebuffsizey)
-			else
-				auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufdebuffsizex, E.db.ElvUI_EltreumUI.borders.ufdebuffsizey)
-			end
-			local r,g,b = button:GetBackdropBorderColor()
-			if r then
-				auraborder:SetBackdropBorderColor(r,g,b, 1)
-			else
-				auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
-			end
+			auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufbuffsizex, E.db.ElvUI_EltreumUI.borders.ufbuffsizey)
+		end
+		if classcolor2check then
+			auraborder:SetBackdropBorderColor(classcolor2.r, classcolor2.g, classcolor2.b, 1)
+		else
+			auraborder:SetBackdropBorderColor(classcolor.r, classcolor.g, classcolor.b, 1)
+		end
+	else
+		if isNamePlateElement then
+			auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.npdebuffsizex, E.db.ElvUI_EltreumUI.borders.npdebuffsizey)
+		else
+			auraborder:SetSize(E.db.ElvUI_EltreumUI.borders.ufdebuffsizex, E.db.ElvUI_EltreumUI.borders.ufdebuffsizey)
+		end
+		local r,g,b = button:GetBackdropBorderColor()
+		if r then
+			auraborder:SetBackdropBorderColor(r,g,b, 1)
+		else
+			auraborder:SetBackdropBorderColor(0.8, 0, 0, 1)
 		end
 	end
 	if E.db.ElvUI_EltreumUI.borders.universalborders and button.eltruismuniversalborders then
@@ -2054,8 +2054,8 @@ function ElvUI_EltreumUI:UFAuraBorders(_,button)
 	if button and E.db.ElvUI_EltreumUI.borders.borders and E.private.auras.enable then
 		if button.isNamePlateElement and E.db.ElvUI_EltreumUI.borders.aurabordernp then
 			HandleUFAuraBorder(button,button.isNamePlateElement)
-		elseif not button.isNamePlateElement and E.db.ElvUI_EltreumUI.borders.auraborderuf then
-			HandleUFAuraBorder(button)
+		elseif button.isUnitFrameElement and E.db.ElvUI_EltreumUI.borders.auraborderuf then
+			HandleUFAuraBorder(button,false)
 		end
 	end
 end
