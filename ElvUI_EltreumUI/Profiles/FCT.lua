@@ -1,8 +1,8 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 
 -- Floating Combat Text profile setup
 function ElvUI_EltreumUI:GetFCTProfile()
-	ElvFCT = {
+	_G.ElvFCT = {
 		["nameplates"] = {
 			["enable"] = true,
 			["frames"] = {

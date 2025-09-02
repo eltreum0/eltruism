@@ -1,4 +1,3 @@
-local E, L, V, P, G = unpack(ElvUI)
 local _G = _G
 
 -- BigWigs profile setup

@@ -1,7 +1,10 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 
 -- DBM profile setup
 function ElvUI_EltreumUI:GetDBMProfile()
+	local DBM = _G.DBM
+	local DBM_AllSavedOptions = _G.DBM_AllSavedOptions
+
 	DBM:CreateProfile("Eltreum")
 	DBM_AllSavedOptions["Eltreum"] = {}
 	DBM_AllSavedOptions["Eltreum"] = {
@@ -361,11 +364,11 @@ function ElvUI_EltreumUI:GetDBMProfile()
 		["SpecialWarningDuration"] = 4,
 		["DontPlayTrivialSpecialWarningSound"] = false,
 	}
-	DBM_MinimapIcon = {
+	_G.DBM_MinimapIcon = {
 		["hide"] = true,
 	}
-	DBT_AllPersistentOptions["Eltreum"] = {}
-	DBT_AllPersistentOptions["Eltreum"] = {
+	_G.DBT_AllPersistentOptions["Eltreum"] = {}
+	_G.DBT_AllPersistentOptions["Eltreum"] = {
 		["DBM"] = {
 			["DisableRightClick"] = true,
 			["StartColorPR"] = 1,

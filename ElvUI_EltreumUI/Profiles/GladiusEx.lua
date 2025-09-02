@@ -1,16 +1,16 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local table = _G.table
 
 -- GladiusEx profile setup
 function ElvUI_EltreumUI:GetGladiusExProfile()
-	if GladiusExDB.profiles.Eltreum then
+	if _G.GladiusExDB.profiles.Eltreum then
 		--local key = {[E.mynameRealm] = "Eltreum"}
 		--table.insert(DynamicCamDB.profileKeys, key)
-		table.insert(GladiusExDB.profileKeys, E.mynameRealm)
-		GladiusExDB["profileKeys"][E.mynameRealm] = "Eltreum"
+		table.insert(_G.GladiusExDB.profileKeys, E.mynameRealm)
+		_G.GladiusExDB["profileKeys"][E.mynameRealm] = "Eltreum"
 	else
-		GladiusExDB = {
+		_G.GladiusExDB = {
 			["namespaces"] = {
 				["party_CastBar"] = {
 					["profiles"] = {
@@ -436,6 +436,6 @@ function ElvUI_EltreumUI:GetGladiusExProfile()
 				},
 			},
 		}
-		GladiusEx.dbi:SetProfile("Eltreum")
+		_G.GladiusEx.dbi:SetProfile("Eltreum")
 	end
 end

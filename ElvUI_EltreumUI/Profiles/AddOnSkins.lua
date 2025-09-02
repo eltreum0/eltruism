@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 
@@ -6,7 +6,7 @@ local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 function ElvUI_EltreumUI:GetASProfile()
 	local valuecolors = E.myClassColor
 	if IsAddOnLoaded("AddOnSkins") then
-		local AS = unpack(AddOnSkins)
+		local AS = unpack(_G.AddOnSkins)
 		--AS.data:SetProfile("Eltreum Dual")
 		AS.db["EmbedBackdrop"] = false
 		AS.db["EmbedBackdropTransparent"] = false

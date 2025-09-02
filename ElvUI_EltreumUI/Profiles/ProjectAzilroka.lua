@@ -1,9 +1,10 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 
 -- ProjectAzilroka profile setup
 function ElvUI_EltreumUI:GetPAProfile()
 	local PA = _G.ProjectAzilroka
+	local ProjectAzilrokaDB = _G.ProjectAzilrokaDB
 	--PA.data:SetProfile("Default")
 	if ProjectAzilrokaDB.profiles.Eltreum then
 		table.insert(ProjectAzilrokaDB.profileKeys, E.mynameRealm)

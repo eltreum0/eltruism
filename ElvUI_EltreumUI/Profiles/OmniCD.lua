@@ -1,4 +1,4 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E, L = unpack(ElvUI)
 local _G = _G
 local IsAddOnLoaded = _G.C_AddOns and _G.C_AddOns.IsAddOnLoaded
 local table = _G.table
@@ -6,6 +6,7 @@ local table = _G.table
 -- OmniCD profile setup
 function ElvUI_EltreumUI:GetOmniCDProfile(profile)
 	if IsAddOnLoaded('OmniCD') then
+		local OmniCDDB = _G.OmniCDDB
 		if profile == "dps" then
 			if OmniCDDB.profiles.EltreumDPS then
 				table.insert(OmniCDDB.profileKeys, E.mynameRealm)

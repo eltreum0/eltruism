@@ -1,15 +1,15 @@
-local E, L, V, P, G = unpack(ElvUI)
+local E = unpack(ElvUI)
 local _G = _G
 local table = _G.table
 
 -- Exorsus Raid Tools profile setup
 function ElvUI_EltreumUI:GetMRTProfile()
-	if VMRT.Profiles.Eltreum then
-		table.insert(VMRT.ProfileKeys, E.mynameRealm)
-		VMRT["ProfileKeys"][E.mynameRealm] = "Eltreum"
+	if _G.VMRT.Profiles.Eltreum then
+		table.insert(_G.VMRT.ProfileKeys, E.mynameRealm)
+		_G.VMRT["ProfileKeys"][E.mynameRealm] = "Eltreum"
 	else
 		if E.Retail then
-			VMRT = {
+			_G.VMRT = {
 				["Note"] = {
 					["BlackNames"] = {
 					},
@@ -1063,7 +1063,7 @@ function ElvUI_EltreumUI:GetMRTProfile()
 				},
 			}
 		elseif E.Classic then
-			VMRT = {
+			_G.VMRT = {
 				["Note"] = {
 					["BlackNames"] = {
 						[4] = "Personal Sounds*",
@@ -1785,7 +1785,7 @@ function ElvUI_EltreumUI:GetMRTProfile()
 				},
 			}
 		elseif E.Mists then
-			VMRT = {
+			_G.VMRT = {
 				["Note"] = {
 					["BlackNames"] = {
 						[4] = "Personal Sounds*",
@@ -2515,6 +2515,6 @@ function ElvUI_EltreumUI:GetMRTProfile()
 				},
 			}
 		end
-		VMRT["ProfileKeys"][E.mynameRealm] = "Eltreum"
+		_G.VMRT["ProfileKeys"][E.mynameRealm] = "Eltreum"
 	end
 end

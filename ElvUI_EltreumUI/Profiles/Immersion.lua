@@ -1,8 +1,6 @@
-local E, L, V, P, G = unpack(ElvUI)
-
 -- Immersion profile setup
 function ElvUI_EltreumUI:GetImmersionProfile()
-	ImmersionSetup = {
+	_G.ImmersionSetup = {
 		["strata"] = "MEDIUM",
 		["scale"] = 0.8,
 		["elementscale"] = 1,
