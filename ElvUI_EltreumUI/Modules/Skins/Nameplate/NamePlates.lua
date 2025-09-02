@@ -56,7 +56,6 @@ function ElvUI_EltreumUI:PostUpdateIconDebuff(unit, button)
 				button:SetSize(50,50)
 			end]]
 
-
 			button.Cooldown:SetFrameStrata('DIALOG')
 			TimeSinceLastUpdate = 0
 			if not button.Cooldown or not button.Cooldown:IsShown() then
