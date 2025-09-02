@@ -222,7 +222,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 				["FocusTarget"] = {
 					["isPlayer"] = true,
 					["textShake"] = false,
-					["enable"] = true,
+					["enable"] = false,
 					["isTarget"] = false,
 					["fontSize"] = 16,
 					["advanced"] = {
@@ -245,7 +245,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 				["PetTarget"] = {
 					["isPlayer"] = true,
 					["textShake"] = false,
-					["enable"] = true,
+					["enable"] = false,
 					["isTarget"] = false,
 					["fontSize"] = 16,
 					["showIcon"] = true,
@@ -269,7 +269,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 				["TargetTargetTarget"] = {
 					["isPlayer"] = true,
 					["textShake"] = false,
-					["enable"] = true,
+					["enable"] = false,
 					["isTarget"] = false,
 					["fontSize"] = 16,
 					["showIcon"] = true,
@@ -317,7 +317,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 				["Raid2"] = {
 					["isPlayer"] = true,
 					["textShake"] = false,
-					["enable"] = true,
+					["enable"] = false,
 					["isTarget"] = false,
 					["fontSize"] = 16,
 					["showIcon"] = true,
@@ -341,7 +341,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 				["Raid3"] = {
 					["isPlayer"] = true,
 					["textShake"] = false,
-					["enable"] = true,
+					["enable"] = false,
 					["isTarget"] = false,
 					["fontSize"] = 16,
 					["showIcon"] = true,
@@ -390,7 +390,7 @@ function ElvUI_EltreumUI:GetFCTProfile()
 				["Raid1"] = {
 					["isPlayer"] = true,
 					["textShake"] = false,
-					["enable"] = true,
+					["enable"] = false,
 					["isTarget"] = false,
 					["fontSize"] = 16,
 					["showIcon"] = true,
